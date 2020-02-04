@@ -1,0 +1,25 @@
+{
+    "name": "@pulumi/keycloak",
+    "version": "${VERSION}",
+    "description": "A Pulumi package for creating and managing keycloak cloud resources.",
+    "keywords": [
+        "pulumi",
+        "keycloak"
+    ],
+    "homepage": "https://pulumi.io",
+    "repository": "https://github.com/pulumi/pulumi-keycloak",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "tsc"
+    },
+    "dependencies": {
+        "@pulumi/pulumi": "latest"
+    },
+    "devDependencies": {
+        "@types/mime": "^2.0.0",
+        "@types/node": "^8.0.25"
+    },
+    "pulumi": {
+        "resource": true
+    }
+}
