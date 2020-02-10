@@ -16,10 +16,30 @@ class ClientScope(pulumi.CustomResource):
     realm_id: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, consent_screen_text=None, description=None, name=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a ClientScope resource with the given unique name, props, and options.
+        ## # OpenId.ClientScope
+        
+        Allows for creating and managing Keycloak client scopes that can be attached to
+        clients that use the OpenID Connect protocol.
+        
+        Client Scopes can be used to share common protocol and role mappings between multiple
+        clients within a realm. They can also be used by clients to conditionally request
+        claims or roles for a user based on the OAuth 2.0 `scope` parameter.
+        
+        ### Argument Reference
+        
+        The following arguments are supported:
+        
+        - `realm_id` - (Required) The realm this client scope belongs to.
+        - `name` - (Required) The display name of this client scope in the GUI.
+        - `description` - (Optional) The description of this client scope in the GUI.
+        - `consent_screen_text` - (Optional) When set, a consent screen will be displayed to users
+        authenticating to clients with this scope attached. The consent screen will display the string
+        value of this attribute.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_client_scope.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -59,6 +79,8 @@ class ClientScope(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_client_scope.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

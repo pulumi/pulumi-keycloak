@@ -178,7 +178,20 @@ class AwaitableGetRealmResult(GetRealmResult):
 
 def get_realm(internationalizations=None,realm=None,security_defenses=None,smtp_servers=None,opts=None):
     """
-    Use this data source to access information about an existing resource.
+    ## # .Realm data source
+    
+    This data source can be used to fetch properties of a Keycloak realm for
+    usage with other resources.
+    
+    ### Argument Reference
+    
+    The following arguments are supported:
+    
+    - `realm` - (Required) The realm name.
+    
+    ### Attributes Reference
+    
+    See the docs for the `.Realm` resource for details on the exported attributes.
     
     
     The **internationalizations** object supports the following:
@@ -214,6 +227,8 @@ def get_realm(internationalizations=None,realm=None,security_defenses=None,smtp_
       * `replyToDisplayName` (`str`)
       * `ssl` (`bool`)
       * `starttls` (`bool`)
+
+    > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/realm.html.markdown.
     """
     __args__ = dict()
 

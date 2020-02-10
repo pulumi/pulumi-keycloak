@@ -7,6 +7,28 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.Ldap
 {
+    /// <summary>
+    /// ## # keycloak.Ldap.MsadUserAccountControlMapper
+    /// 
+    /// Allows for creating and managing MSAD user account control mappers for Keycloak
+    /// users federated via LDAP.
+    /// 
+    /// The MSAD (Microsoft Active Directory) user account control mapper is specific
+    /// to LDAP user federation providers that are pulling from AD, and it can propagate
+    /// AD user state to Keycloak in order to enforce settings like expired passwords
+    /// or disabled accounts.
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
+    /// - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
+    /// - `name` - (Required) Display name of this mapper when displayed in the console.
+    /// - `ldap_password_policy_hints_enabled` - (Optional) When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
+    /// 
+    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_msad_user_account_control_mapper.html.markdown.
+    /// </summary>
     public partial class MsadUserAccountControlMapper : Pulumi.CustomResource
     {
         [Output("ldapPasswordPolicyHintsEnabled")]

@@ -21,7 +21,28 @@ class User(pulumi.CustomResource):
     username: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, attributes=None, email=None, enabled=None, federated_identities=None, first_name=None, initial_password=None, last_name=None, realm_id=None, username=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a User resource with the given unique name, props, and options.
+        ## # .User
+        
+        Allows for creating and managing Users within Keycloak.
+        
+        This resource was created primarily to enable the acceptance tests for the `.Group` resource.
+        Creating users within Keycloak is not recommended. Instead, users should be federated from external sources
+        by configuring user federation providers or identity providers.
+        
+        ### Argument Reference
+        
+        The following arguments are supported:
+        
+        - `realm_id` - (Required) The realm this user belongs to.
+        - `username` - (Required) The unique username of this user.
+        - `initial_password` (Optional) When given, the user's initial password will be set.
+           This attribute is only respected during initial user creation.
+            - `value` (Required) The initial password.
+            - `temporary` (Optional) If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
+        - `enabled` - (Optional) When false, this user cannot log in. Defaults to `true`.
+        - `email` - (Optional) The user's email.
+        - `first_name` - (Optional) The user's first name.
+        - `last_name` - (Optional) The user's last name.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -36,6 +57,8 @@ class User(pulumi.CustomResource):
         
           * `temporary` (`pulumi.Input[bool]`)
           * `value` (`pulumi.Input[str]`)
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/user.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -93,6 +116,8 @@ class User(pulumi.CustomResource):
         
           * `temporary` (`pulumi.Input[bool]`)
           * `value` (`pulumi.Input[str]`)
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/user.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

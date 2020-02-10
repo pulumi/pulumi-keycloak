@@ -100,6 +100,8 @@ class Realm(pulumi.CustomResource):
           * `replyToDisplayName` (`pulumi.Input[str]`)
           * `ssl` (`pulumi.Input[bool]`)
           * `starttls` (`pulumi.Input[bool]`)
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/realm.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -219,6 +221,8 @@ class Realm(pulumi.CustomResource):
           * `replyToDisplayName` (`pulumi.Input[str]`)
           * `ssl` (`pulumi.Input[bool]`)
           * `starttls` (`pulumi.Input[bool]`)
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/realm.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

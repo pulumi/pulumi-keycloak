@@ -13,7 +13,7 @@ class GetClientResult:
     """
     A collection of values returned by getClient.
     """
-    def __init__(__self__, access_type=None, authorization=None, client_id=None, client_secret=None, description=None, direct_access_grants_enabled=None, enabled=None, implicit_flow_enabled=None, name=None, realm_id=None, resource_server_id=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None, id=None):
+    def __init__(__self__, access_type=None, authorization=None, client_id=None, client_secret=None, description=None, direct_access_grants_enabled=None, enabled=None, full_scope_allowed=None, implicit_flow_enabled=None, name=None, realm_id=None, resource_server_id=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None, id=None):
         if access_type and not isinstance(access_type, str):
             raise TypeError("Expected argument 'access_type' to be a str")
         __self__.access_type = access_type
@@ -35,6 +35,9 @@ class GetClientResult:
         if enabled and not isinstance(enabled, bool):
             raise TypeError("Expected argument 'enabled' to be a bool")
         __self__.enabled = enabled
+        if full_scope_allowed and not isinstance(full_scope_allowed, bool):
+            raise TypeError("Expected argument 'full_scope_allowed' to be a bool")
+        __self__.full_scope_allowed = full_scope_allowed
         if implicit_flow_enabled and not isinstance(implicit_flow_enabled, bool):
             raise TypeError("Expected argument 'implicit_flow_enabled' to be a bool")
         __self__.implicit_flow_enabled = implicit_flow_enabled
@@ -81,6 +84,7 @@ class AwaitableGetClientResult(GetClientResult):
             description=self.description,
             direct_access_grants_enabled=self.direct_access_grants_enabled,
             enabled=self.enabled,
+            full_scope_allowed=self.full_scope_allowed,
             implicit_flow_enabled=self.implicit_flow_enabled,
             name=self.name,
             realm_id=self.realm_id,
@@ -94,8 +98,23 @@ class AwaitableGetClientResult(GetClientResult):
 
 def get_client(client_id=None,realm_id=None,opts=None):
     """
-    Use this data source to access information about an existing resource.
+    ## # OpenId.Client data source
     
+    This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
+    
+    ### Argument Reference
+    
+    The following arguments are supported:
+    
+    - `realm_id` - (Required) The realm id.
+    - `client_id` - (Required) The client id.
+    
+    ### Attributes Reference
+    
+    See the docs for the `OpenId.Client` resource for details on the exported attributes.
+    
+
+    > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/openid_client.html.markdown.
     """
     __args__ = dict()
 
@@ -115,6 +134,7 @@ def get_client(client_id=None,realm_id=None,opts=None):
         description=__ret__.get('description'),
         direct_access_grants_enabled=__ret__.get('directAccessGrantsEnabled'),
         enabled=__ret__.get('enabled'),
+        full_scope_allowed=__ret__.get('fullScopeAllowed'),
         implicit_flow_enabled=__ret__.get('implicitFlowEnabled'),
         name=__ret__.get('name'),
         realm_id=__ret__.get('realmId'),

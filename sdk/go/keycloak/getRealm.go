@@ -7,6 +7,22 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// ## # .Realm data source
+// 
+// This data source can be used to fetch properties of a Keycloak realm for
+// usage with other resources.
+// 
+// ### Argument Reference
+// 
+// The following arguments are supported:
+// 
+// - `realm` - (Required) The realm name.
+// 
+// ### Attributes Reference
+// 
+// See the docs for the `.Realm` resource for details on the exported attributes.
+//
+// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/realm.html.markdown.
 func LookupRealm(ctx *pulumi.Context, args *GetRealmArgs) (*GetRealmResult, error) {
 	inputs := make(map[string]interface{})
 	if args != nil {

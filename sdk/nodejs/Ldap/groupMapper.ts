@@ -4,6 +4,77 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## # keycloak.Ldap.GroupMapper
+ * 
+ * Allows for creating and managing group mappers for Keycloak users federated
+ * via LDAP.
+ * 
+ * The LDAP group mapper can be used to map an LDAP user's groups from some DN
+ * to Keycloak groups. This group mapper will also create the groups within Keycloak
+ * if they do not already exist.
+ * 
+ * ### Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * 
+ * const realm = new keycloak.Realm("realm", {
+ *     enabled: true,
+ *     realm: "test",
+ * });
+ * const ldapUserFederation = new keycloak.Ldap.UserFederation("ldapUserFederation", {
+ *     bindCredential: "admin",
+ *     bindDn: "cn=admin,dc=example,dc=org",
+ *     connectionUrl: "ldap://openldap",
+ *     rdnLdapAttribute: "cn",
+ *     realmId: realm.id,
+ *     userObjectClasses: [
+ *         "simpleSecurityObject",
+ *         "organizationalRole",
+ *     ],
+ *     usernameLdapAttribute: "cn",
+ *     usersDn: "dc=example,dc=org",
+ *     uuidLdapAttribute: "entryDN",
+ * });
+ * const ldapGroupMapper = new keycloak.Ldap.GroupMapper("ldapGroupMapper", {
+ *     groupNameLdapAttribute: "cn",
+ *     groupObjectClasses: ["groupOfNames"],
+ *     ldapGroupsDn: "dc=example,dc=org",
+ *     ldapUserFederationId: ldapUserFederation.id,
+ *     memberofLdapAttribute: "memberOf",
+ *     membershipAttributeType: "DN",
+ *     membershipLdapAttribute: "member",
+ *     membershipUserLdapAttribute: "cn",
+ *     realmId: realm.id,
+ * });
+ * ```
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm that this LDAP mapper will exist in.
+ * - `ldapUserFederationId` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
+ * - `name` - (Required) Display name of this mapper when displayed in the console.
+ * - `ldapGroupsDn` - (Required) The LDAP DN where groups can be found.
+ * - `groupNameLdapAttribute` - (Required) The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
+ * - `groupObjectClasses` - (Required) Array of strings representing the object classes for the group. Must contain at least one.
+ * - `preserveGroupInheritance` - (Optional) When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
+ * - `ignoreMissingGroups` - (Optional) When `true`, missing groups in the hierarchy will be ignored.
+ * - `membershipLdapAttribute` - (Required) The name of the LDAP attribute that is used for membership mappings.
+ * - `membershipAttributeType` - (Optional) Can be one of `DN` or `UID`. Defaults to `DN`.
+ * - `membershipUserLdapAttribute` - (Required) The name of the LDAP attribute on a user that is used for membership mappings.
+ * - `groupsLdapFilter` - (Optional) When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+ * - `mode` - (Optional) Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+ * - `userRolesRetrieveStrategy` - (Optional) Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
+ * - `memberofLdapAttribute` - (Optional) Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
+ * - `mappedGroupAttributes` - (Optional) Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
+ * - `dropNonExistingGroupsDuringSync` - (Optional) When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
+ *
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_group_mapper.html.markdown.
+ */
 export class GroupMapper extends pulumi.CustomResource {
     /**
      * Get an existing GroupMapper resource's state with the given name, ID, and optional extra

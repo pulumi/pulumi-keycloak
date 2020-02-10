@@ -6,6 +6,24 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * ## # keycloak.OpenId.Client data source
+ * 
+ * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm id.
+ * - `clientId` - (Required) The client id.
+ * 
+ * ### Attributes Reference
+ * 
+ * See the docs for the `keycloak.OpenId.Client` resource for details on the exported attributes.
+ *
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/openid_client.html.markdown.
+ */
 export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Promise<GetClientResult> & GetClientResult {
     if (!opts) {
         opts = {}
@@ -41,6 +59,7 @@ export interface GetClientResult {
     readonly description: string;
     readonly directAccessGrantsEnabled: boolean;
     readonly enabled: boolean;
+    readonly fullScopeAllowed: boolean;
     readonly implicitFlowEnabled: boolean;
     readonly name: string;
     readonly realmId: string;

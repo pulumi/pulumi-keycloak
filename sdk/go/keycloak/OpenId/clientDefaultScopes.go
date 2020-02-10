@@ -8,6 +8,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_client_default_scopes.html.markdown.
 type ClientDefaultScopes struct {
 	s *pulumi.ResourceState
 }

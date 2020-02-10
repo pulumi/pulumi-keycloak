@@ -8,6 +8,28 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// ## # OpenId.HardcodedRoleProtocolMapper
+// 
+// Allows for creating and managing hardcoded role protocol mappers within
+// Keycloak.
+// 
+// Hardcoded role protocol mappers allow you to specify a single role to
+// always map to an access token for a client. Protocol mappers can be
+// defined for a single client, or they can be defined for a client scope
+// which can be shared between multiple different clients.
+// 
+// ### Argument Reference
+// 
+// The following arguments are supported:
+// 
+// - `realmId` - (Required) The realm this protocol mapper exists within.
+// - `clientId` - (Required if `clientScopeId` is not specified) The client this protocol mapper is attached to.
+// - `clientScopeId` - (Required if `clientId` is not specified) The client scope this protocol mapper is attached to.
+// - `name` - (Required) The display name of this protocol mapper in the
+//   GUI.
+// - `roleId` - (Required) The ID of the role to map to an access token.
+//
+// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_hardcoded_role_protocol_mapper.html.markdown.
 type HardcodedRoleProtocolMapper struct {
 	s *pulumi.ResourceState
 }

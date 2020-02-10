@@ -8,6 +8,30 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// ## # .User
+// 
+// Allows for creating and managing Users within Keycloak.
+// 
+// This resource was created primarily to enable the acceptance tests for the `.Group` resource.
+// Creating users within Keycloak is not recommended. Instead, users should be federated from external sources
+// by configuring user federation providers or identity providers.
+// 
+// ### Argument Reference
+// 
+// The following arguments are supported:
+// 
+// - `realmId` - (Required) The realm this user belongs to.
+// - `username` - (Required) The unique username of this user.
+// - `initialPassword` (Optional) When given, the user's initial password will be set.
+//    This attribute is only respected during initial user creation.
+//     - `value` (Required) The initial password.
+//     - `temporary` (Optional) If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
+// - `enabled` - (Optional) When false, this user cannot log in. Defaults to `true`.
+// - `email` - (Optional) The user's email.
+// - `firstName` - (Optional) The user's first name.
+// - `lastName` - (Optional) The user's last name.
+//
+// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/user.html.markdown.
 type User struct {
 	s *pulumi.ResourceState
 }

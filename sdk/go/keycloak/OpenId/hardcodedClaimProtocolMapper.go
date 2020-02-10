@@ -8,6 +8,32 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// ## # OpenId.HardcodedClaimProtocolMapper
+// 
+// Allows for creating and managing hardcoded claim protocol mappers within
+// Keycloak.
+// 
+// Hardcoded claim protocol mappers allow you to define a claim with a hardcoded
+// value. Protocol mappers can be defined for a single client, or they can
+// be defined for a client scope which can be shared between multiple different
+// clients.
+// 
+// ### Argument Reference
+// 
+// The following arguments are supported:
+// 
+// - `realmId` - (Required) The realm this protocol mapper exists within.
+// - `clientId` - (Required if `clientScopeId` is not specified) The client this protocol mapper is attached to.
+// - `clientScopeId` - (Required if `clientId` is not specified) The client scope this protocol mapper is attached to.
+// - `name` - (Required) The display name of this protocol mapper in the GUI.
+// - `claimName` - (Required) The name of the claim to insert into a token.
+// - `claimValue` - (Required) The hardcoded value of the claim.
+// - `claimValueType` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `long`, `int`, or `boolean`. Defaults to `String`.
+// - `addToIdToken` - (Optional) Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+// - `addToAccessToken` - (Optional) Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+// - `addToUserinfo` - (Optional) Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+//
+// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_hardcoded_claim_protocol_mapper.html.markdown.
 type HardcodedClaimProtocolMapper struct {
 	s *pulumi.ResourceState
 }

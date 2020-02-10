@@ -4,6 +4,84 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## # keycloak.Ldap.UserFederation
+ * 
+ * Allows for creating and managing LDAP user federation providers within Keycloak.
+ * 
+ * Keycloak can use an LDAP user federation provider to federate users to Keycloak
+ * from a directory system such as LDAP or Active Directory. Federated users
+ * will exist within the realm and will be able to log in to clients. Federated
+ * users can have their attributes defined using mappers.
+ * 
+ * ### Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * 
+ * const realm = new keycloak.Realm("realm", {
+ *     enabled: true,
+ *     realm: "test",
+ * });
+ * const ldapUserFederation = new keycloak.Ldap.UserFederation("ldapUserFederation", {
+ *     bindCredential: "admin",
+ *     bindDn: "cn=admin,dc=example,dc=org",
+ *     connectionTimeout: "5s",
+ *     connectionUrl: "ldap://openldap",
+ *     enabled: true,
+ *     rdnLdapAttribute: "cn",
+ *     readTimeout: "10s",
+ *     realmId: realm.id,
+ *     userObjectClasses: [
+ *         "simpleSecurityObject",
+ *         "organizationalRole",
+ *     ],
+ *     usernameLdapAttribute: "cn",
+ *     usersDn: "dc=example,dc=org",
+ *     uuidLdapAttribute: "entryDN",
+ * });
+ * ```
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm that this provider will provide user federation for.
+ * - `name` - (Required) Display name of the provider when displayed in the console.
+ * - `enabled` - (Optional) When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+ * - `priority` - (Optional) Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+ * - `importEnabled` - (Optional) When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
+ * - `editMode` - (Optional) Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
+ * - `syncRegistrations` - (Optional) When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+ * - `vendor` - (Optional) Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OPTIONAL`.
+ * - `usernameLdapAttribute` - (Required) Name of the LDAP attribute to use as the Keycloak username.
+ * - `rdnLdapAttribute` - (Required) Name of the LDAP attribute to use as the relative distinguished name.
+ * - `uuidLdapAttribute` - (Required) Name of the LDAP attribute to use as a unique object identifier for objects in LDAP.
+ * - `userObjectClasses` - (Required) Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
+ * - `connectionUrl` - (Required) Connection URL to the LDAP server.
+ * - `usersDn` - (Required) Full DN of LDAP tree where your users are.
+ * - `bindDn` - (Optional) DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
+ * - `bindCredential` - (Optional) Password of LDAP admin. This attribute must be set if `bindDn` is set.
+ * - `customUserSearchFilter` - (Optional) Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
+ * - `searchScope` - (Optional) Can be one of `ONE_LEVEL` or `SUBTREE`:
+ *     - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
+ *     - `SUBTREE`: Search entire LDAP subtree.
+ * - `validatePasswordPolicy` - (Optional) When `true`, Keycloak will validate passwords using the realm policy before updating it.
+ * - `useTruststoreSpi` - (Optional) Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
+ *     - `ALWAYS` - Always use the truststore SPI for LDAP connections.
+ *     - `NEVER` - Never use the truststore SPI for LDAP connections.
+ *     - `ONLY_FOR_LDAPS` - Only use the truststore SPI if your LDAP connection uses the ldaps protocol.
+ * - `connectionTimeout` - (Optional) LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+ * - `readTimeout` - (Optional) LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+ * - `pagination` - (Optional) When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
+ * - `batchSizeForSync` - (Optional) The number of users to sync within a single transaction. Defaults to `1000`.
+ * - `fullSyncPeriod` - (Optional) How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
+ * - `changedSyncPeriod` - (Optional) How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
+ * - `cachePolicy` - (Optional) Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+ *
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_user_federation.html.markdown.
+ */
 export class UserFederation extends pulumi.CustomResource {
     /**
      * Get an existing UserFederation resource's state with the given name, ID, and optional extra

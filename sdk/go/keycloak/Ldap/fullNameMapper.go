@@ -8,6 +8,26 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// ## # Ldap.FullNameMapper
+// 
+// Allows for creating and managing full name mappers for Keycloak users federated
+// via LDAP.
+// 
+// The LDAP full name mapper can map a user's full name from an LDAP attribute
+// to the first and last name attributes of a Keycloak user.
+// 
+// ### Argument Reference
+// 
+// The following arguments are supported:
+// 
+// - `realmId` - (Required) The realm that this LDAP mapper will exist in.
+// - `ldapUserFederationId` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
+// - `name` - (Required) Display name of this mapper when displayed in the console.
+// - `ldapFullNameAttribute` - (Required) The name of the LDAP attribute containing the user's full name.
+// - `readOnly` - (Optional) When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
+// - `writeOnly` - (Optional) When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
+//
+// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_full_name_mapper.html.markdown.
 type FullNameMapper struct {
 	s *pulumi.ResourceState
 }

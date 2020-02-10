@@ -6,6 +6,113 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * ## # keycloak..Role
+ * 
+ * Allows for creating and managing roles within Keycloak.
+ * 
+ * Roles allow you define privileges within Keycloak and map them to users
+ * and groups.
+ * 
+ * ### Example Usage (Realm role)
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * 
+ * const realm = new keycloak.Realm("realm", {
+ *     enabled: true,
+ *     realm: "my-realm",
+ * });
+ * const realmRole = new keycloak.Role("realmRole", {
+ *     description: "My Realm Role",
+ *     realmId: realm.id,
+ * });
+ * ```
+ * 
+ * ### Example Usage (Client role)
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * 
+ * const realm = new keycloak.Realm("realm", {
+ *     enabled: true,
+ *     realm: "my-realm",
+ * });
+ * const client = new keycloak.OpenId.Client("client", {
+ *     accessType: "BEARER-ONLY",
+ *     clientId: "client",
+ *     enabled: true,
+ *     realmId: realm.id,
+ * });
+ * const clientRole = new keycloak.Role("clientRole", {
+ *     clientId: keycloak_client_client.id,
+ *     description: "My Client Role",
+ *     realmId: realm.id,
+ * });
+ * ```
+ * 
+ * ### Example Usage (Composite role)
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * 
+ * const realm = new keycloak.Realm("realm", {
+ *     enabled: true,
+ *     realm: "my-realm",
+ * });
+ * const createRole = new keycloak.Role("createRole", {
+ *     realmId: realm.id,
+ * });
+ * const readRole = new keycloak.Role("readRole", {
+ *     realmId: realm.id,
+ * });
+ * const updateRole = new keycloak.Role("updateRole", {
+ *     realmId: realm.id,
+ * });
+ * const deleteRole = new keycloak.Role("deleteRole", {
+ *     realmId: realm.id,
+ * });
+ * const client = new keycloak.OpenId.Client("client", {
+ *     accessType: "BEARER-ONLY",
+ *     clientId: "client",
+ *     enabled: true,
+ *     realmId: realm.id,
+ * });
+ * const clientRole = new keycloak.Role("clientRole", {
+ *     clientId: keycloak_client_client.id,
+ *     description: "My Client Role",
+ *     realmId: realm.id,
+ * });
+ * const adminRole = new keycloak.Role("adminRole", {
+ *     compositeRoles: [
+ *         "{keycloak_role.create_role.id}",
+ *         "{keycloak_role.read_role.id}",
+ *         "{keycloak_role.update_role.id}",
+ *         "{keycloak_role.delete_role.id}",
+ *         "{keycloak_role.client_role.id}",
+ *     ],
+ *     realmId: realm.id,
+ * });
+ * ```
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm this role exists within.
+ * - `clientId` - (Optional) When specified, this role will be created as
+ *   a client role attached to the client with the provided ID
+ * - `name` - (Required) The name of the role
+ * - `description` - (Optional) The description of the role
+ * - `compositeRoles` - (Optional) When specified, this role will be a
+ *   composite role, composed of all roles that have an ID present within
+ *   this list.
+ *
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/role.html.markdown.
+ */
 export class Role extends pulumi.CustomResource {
     /**
      * Get an existing Role resource's state with the given name, ID, and optional extra

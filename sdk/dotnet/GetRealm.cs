@@ -9,6 +9,24 @@ namespace Pulumi.Keycloak
 {
     public static partial class Invokes
     {
+        /// <summary>
+        /// ## # keycloak..Realm data source
+        /// 
+        /// This data source can be used to fetch properties of a Keycloak realm for
+        /// usage with other resources.
+        /// 
+        /// ### Argument Reference
+        /// 
+        /// The following arguments are supported:
+        /// 
+        /// - `realm` - (Required) The realm name.
+        /// 
+        /// ### Attributes Reference
+        /// 
+        /// See the docs for the `keycloak..Realm` resource for details on the exported attributes.
+        /// 
+        /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/realm.html.markdown.
+        /// </summary>
         public static Task<GetRealmResult> GetRealm(GetRealmArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetRealmResult>("keycloak:index/getRealm:getRealm", args ?? ResourceArgs.Empty, options.WithVersion());
     }

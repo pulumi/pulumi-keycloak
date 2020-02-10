@@ -7,6 +7,9 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    /// <summary>
+    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_client_default_scopes.html.markdown.
+    /// </summary>
     public partial class ClientDefaultScopes : Pulumi.CustomResource
     {
         [Output("clientId")]

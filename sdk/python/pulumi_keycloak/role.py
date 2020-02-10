@@ -17,10 +17,30 @@ class Role(pulumi.CustomResource):
     realm_id: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, client_id=None, composite_roles=None, description=None, name=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a Role resource with the given unique name, props, and options.
+        ## # .Role
+        
+        Allows for creating and managing roles within Keycloak.
+        
+        Roles allow you define privileges within Keycloak and map them to users
+        and groups.
+        
+        ### Argument Reference
+        
+        The following arguments are supported:
+        
+        - `realm_id` - (Required) The realm this role exists within.
+        - `client_id` - (Optional) When specified, this role will be created as
+          a client role attached to the client with the provided ID
+        - `name` - (Required) The name of the role
+        - `description` - (Optional) The description of the role
+        - `composite_roles` - (Optional) When specified, this role will be a
+          composite role, composed of all roles that have an ID present within
+          this list.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/role.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -61,6 +81,8 @@ class Role(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/role.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

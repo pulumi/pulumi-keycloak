@@ -4,6 +4,70 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## # keycloak.Saml.IdentityProvider
+ * 
+ * Allows to create and manage SAML Identity Providers within Keycloak.
+ * 
+ * SAML (Security Assertion Markup Language) identity providers allows to authenticate through a third-party system, using SAML standard.
+ * 
+ * ### Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * 
+ * const realmIdentityProvider = new keycloak.Saml.IdentityProvider("realmIdentityProvider", {
+ *     alias: "my-idp",
+ *     backchannelSupported: true,
+ *     forceAuthn: true,
+ *     postBindingAuthnRequest: true,
+ *     postBindingLogout: true,
+ *     postBindingResponse: true,
+ *     realm: "my-realm",
+ *     singleLogoutServiceUrl: "https://domain.com/adfs/ls/?wa=wsignout1.0",
+ *     singleSignOnServiceUrl: "https://domain.com/adfs/ls/",
+ *     storeToken: false,
+ *     trustEmail: true,
+ * });
+ * ```
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realm` - (Required) The name of the realm. This is unique across Keycloak.
+ * - `alias` - (Optional) The uniq name of identity provider.
+ * - `enabled` - (Optional) When false, users and clients will not be able to access this realm. Defaults to `true`.
+ * - `displayName` - (Optional) The display name for the realm that is shown when logging in to the admin console.
+ * - `storeToken` - (Optional) Enable/disable if tokens must be stored after authenticating users. Defaults to `true`.
+ * - `addReadTokenRoleOnCreate` - (Optional) Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role. Defaults to `false`.
+ * - `trustEmail` - (Optional) If enabled then email provided by this provider is not verified even if verification is enabled for the realm. Defaults to `false`.
+ * - `linkOnly` - (Optional) If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't want to allow login from the provider, but want to integrate with a provider. Defaults to `false`.
+ * - `hideOnLoginPage` - (Optional) If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
+ * - `firstBrokerLoginFlowAlias` - (Optional) Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
+ * - `postBrokerLoginFlowAlias` - (Optional) Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
+ * - `authenticateByDefault` - (Optional) Authenticate users by default. Defaults to `false`.
+ * 
+ * #### SAML Configuration
+ * 
+ * - `singleSignOnServiceUrl` - (Optional) The Url that must be used to send authentication requests (SAML AuthnRequest).
+ * - `singleLogoutServiceUrl` - (Optional) The Url that must be used to send logout requests.
+ * - `backchannelSupported` - (Optional) Does the external IDP support back-channel logout ?.
+ * - `nameIdPolicyFormat` - (Optional) Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
+ * - `postBindingResponse` - (Optional) Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+ * - `postBindingAuthnRequest` - (Optional) Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+ * - `postBindingLogout` - (Optional) Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+ * - `wantAssertionsSigned` - (Optional) Indicates whether this service provider expects a signed Assertion.
+ * - `wantAssertionsEncrypted` - (Optional) Indicates whether this service provider expects an encrypted Assertion.
+ * - `forceAuthn` - (Optional) Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
+ * - `validateSignature` - (Optional) Enable/disable signature validation of SAML responses.
+ * - `signingCertificate` - (Optional) Signing Certificate.
+ * - `signatureAlgorithm` - (Optional) Signing Algorithm. Defaults to empty.
+ * - `xmlSignKeyInfoKeyNameTransformer` - (Optional) Sign Key Transformer. Defaults to empty.
+ *
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/saml_identity_provider.html.markdown.
+ */
 export class IdentityProvider extends pulumi.CustomResource {
     /**
      * Get an existing IdentityProvider resource's state with the given name, ID, and optional extra

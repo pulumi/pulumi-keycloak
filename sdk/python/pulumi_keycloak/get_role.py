@@ -46,8 +46,30 @@ class AwaitableGetRoleResult(GetRoleResult):
 
 def get_role(client_id=None,name=None,realm_id=None,opts=None):
     """
-    Use this data source to access information about an existing resource.
+    ## # .Role data source
     
+    This data source can be used to fetch properties of a Keycloak role for
+    usage with other resources, such as `.GroupRoles`.
+    
+    ### Argument Reference
+    
+    The following arguments are supported:
+    
+    - `realm_id` - (Required) The realm this role exists within.
+    - `client_id` - (Optional) When specified, this role is assumed to be a
+      client role belonging to the client with the provided ID
+    - `name` - (Required) The name of the role
+      
+    ### Attributes Reference
+    
+    In addition to the arguments listed above, the following computed attributes are exported:
+    
+    - `id` - The unique ID of the role, which can be used as an argument to
+      other resources supported by this provider.
+    - `description` - The description of the role.
+    
+
+    > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/role.html.markdown.
     """
     __args__ = dict()
 

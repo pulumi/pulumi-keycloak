@@ -7,6 +7,22 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// ## # OpenId.Client data source
+// 
+// This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
+// 
+// ### Argument Reference
+// 
+// The following arguments are supported:
+// 
+// - `realmId` - (Required) The realm id.
+// - `clientId` - (Required) The client id.
+// 
+// ### Attributes Reference
+// 
+// See the docs for the `OpenId.Client` resource for details on the exported attributes.
+//
+// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/openid_client.html.markdown.
 func LookupClient(ctx *pulumi.Context, args *GetClientArgs) (*GetClientResult, error) {
 	inputs := make(map[string]interface{})
 	if args != nil {
@@ -25,6 +41,7 @@ func LookupClient(ctx *pulumi.Context, args *GetClientArgs) (*GetClientResult, e
 		Description: outputs["description"],
 		DirectAccessGrantsEnabled: outputs["directAccessGrantsEnabled"],
 		Enabled: outputs["enabled"],
+		FullScopeAllowed: outputs["fullScopeAllowed"],
 		ImplicitFlowEnabled: outputs["implicitFlowEnabled"],
 		Name: outputs["name"],
 		RealmId: outputs["realmId"],
@@ -53,6 +70,7 @@ type GetClientResult struct {
 	Description interface{}
 	DirectAccessGrantsEnabled interface{}
 	Enabled interface{}
+	FullScopeAllowed interface{}
 	ImplicitFlowEnabled interface{}
 	Name interface{}
 	RealmId interface{}

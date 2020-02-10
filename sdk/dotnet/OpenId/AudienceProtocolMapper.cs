@@ -7,6 +7,31 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    /// <summary>
+    /// ## # keycloak.OpenId.AudienceProtocolMapper
+    /// 
+    /// Allows for creating and managing audience protocol mappers within
+    /// Keycloak. This mapper was added in Keycloak v4.6.0.Final.
+    /// 
+    /// Audience protocol mappers allow you add audiences to the `aud` claim
+    /// within issued tokens. The audience can be a custom string, or it can be
+    /// mapped to the ID of a pre-existing client.
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm this protocol mapper exists within.
+    /// - `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
+    /// - `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
+    /// - `name` - (Required) The display name of this protocol mapper in the GUI.
+    /// - `included_client_audience` - (Required if `included_custom_audience` is not specified) A client ID to include within the token's `aud` claim.
+    /// - `included_custom_audience` - (Required if `included_client_audience` is not specified) A custom audience to include within the token's `aud` claim.
+    /// - `add_to_id_token` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+    /// - `add_to_access_token` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+    /// 
+    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_audience_protocol_mapper.html.markdown.
+    /// </summary>
     public partial class AudienceProtocolMapper : Pulumi.CustomResource
     {
         /// <summary>

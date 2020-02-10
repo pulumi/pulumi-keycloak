@@ -19,10 +19,26 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
     user_attribute: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, attribute_friendly_name=None, attribute_name=None, claim_name=None, identity_provider_alias=None, name=None, realm=None, user_attribute=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a AttributeImporterIdentityProviderMapper resource with the given unique name, props, and options.
+        ## # .AttributeImporterIdentityProviderMapper
+        
+        Allows to create and manage identity provider mappers within Keycloak.
+        
+        ### Argument Reference
+        
+        The following arguments are supported:
+        
+        - `realm` - (Required) The name of the realm.
+        - `name` - (Required) The name of the mapper.
+        - `identity_provider_alias` - (Required) The alias of the associated identity provider.
+        - `user_attribute` - (Required) The user attribute name to store SAML attribute.
+        - `attribute_name` - (Optional) The Name of attribute to search for in assertion. You can leave this blank and specify a friendly name instead.
+        - `attribute_friendly_name` - (Optional) The friendly name of attribute to search for in assertion.  You can leave this blank and specify an attribute name instead.
+        - `claim_name` - (Optional) The claim name.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/attribute_importer_identity_provider_mapper.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -69,6 +85,8 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/attribute_importer_identity_provider_mapper.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

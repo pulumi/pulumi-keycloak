@@ -6,6 +6,72 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * ## # keycloak.OpenId.Client
+ * 
+ * Allows for creating and managing Keycloak clients that use the OpenID Connect protocol.
+ * 
+ * Clients are entities that can use Keycloak for user authentication. Typically,
+ * clients are applications that redirect users to Keycloak for authentication
+ * in order to take advantage of Keycloak's user sessions for SSO.
+ * 
+ * ### Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * 
+ * const realm = new keycloak.Realm("realm", {
+ *     enabled: true,
+ *     realm: "my-realm",
+ * });
+ * const openidClient = new keycloak.OpenId.Client("openidClient", {
+ *     accessType: "CONFIDENTIAL",
+ *     clientId: "test-client",
+ *     enabled: true,
+ *     realmId: realm.id,
+ *     validRedirectUris: ["http://localhost:8080/openid-callback"],
+ * });
+ * ```
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm this client is attached to.
+ * - `clientId` - (Required) The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+ * - `name` - (Optional) The display name of this client in the GUI.
+ * - `enabled` - (Optional) When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+ * - `description` - (Optional) The description of this client in the GUI.
+ * - `accessType` - (Required) Specifies the type of client, which can be one of the following:
+ *     - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
+ *       This client should be used for applications using the Authorization Code or Client Credentials grant flows.
+ *     - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
+ *       URIs for security. This client should be used for applications using the Implicit grant flow.
+ *     - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
+ * - `clientSecret` - (Optional) The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and
+ * should be treated with the same care as a password. If omitted, Keycloak will generate a GUID for this attribute.
+ * - `standardFlowEnabled` - (Optional) When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+ * - `implicitFlowEnabled` - (Optional) When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+ * - `directAccessGrantsEnabled` - (Optional) When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
+ * - `serviceAccountsEnabled` - (Optional) When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
+ * - `validRedirectUris` - (Optional) A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
+ * wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
+ * is set to `true`.
+ * - `webOrigins` - (Optional) A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+ * - `adminUrl` - (Optional) URL to the admin interface of the client.
+ * - `baseUrl` - (Optional) Default URL to use when the auth server needs to redirect or link back to the client.
+ * - `pkceCodeChallengeMethod` - (Optional) The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
+ * - `fullScopeAllowed` - (Optional) - Allow to include all roles mappings in the access token.
+ * 
+ * ### Attributes Reference
+ * 
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ * 
+ * - `serviceAccountUserId` - When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
+ *
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_client.html.markdown.
+ */
 export class Client extends pulumi.CustomResource {
     /**
      * Get an existing Client resource's state with the given name, ID, and optional extra
@@ -40,6 +106,8 @@ export class Client extends pulumi.CustomResource {
     public readonly description!: pulumi.Output<string | undefined>;
     public readonly directAccessGrantsEnabled!: pulumi.Output<boolean | undefined>;
     public readonly enabled!: pulumi.Output<boolean | undefined>;
+    public readonly excludeSessionStateFromAuthResponse!: pulumi.Output<boolean | undefined>;
+    public readonly fullScopeAllowed!: pulumi.Output<boolean | undefined>;
     public readonly implicitFlowEnabled!: pulumi.Output<boolean | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly pkceCodeChallengeMethod!: pulumi.Output<string | undefined>;
@@ -70,6 +138,8 @@ export class Client extends pulumi.CustomResource {
             inputs["description"] = state ? state.description : undefined;
             inputs["directAccessGrantsEnabled"] = state ? state.directAccessGrantsEnabled : undefined;
             inputs["enabled"] = state ? state.enabled : undefined;
+            inputs["excludeSessionStateFromAuthResponse"] = state ? state.excludeSessionStateFromAuthResponse : undefined;
+            inputs["fullScopeAllowed"] = state ? state.fullScopeAllowed : undefined;
             inputs["implicitFlowEnabled"] = state ? state.implicitFlowEnabled : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["pkceCodeChallengeMethod"] = state ? state.pkceCodeChallengeMethod : undefined;
@@ -98,6 +168,8 @@ export class Client extends pulumi.CustomResource {
             inputs["description"] = args ? args.description : undefined;
             inputs["directAccessGrantsEnabled"] = args ? args.directAccessGrantsEnabled : undefined;
             inputs["enabled"] = args ? args.enabled : undefined;
+            inputs["excludeSessionStateFromAuthResponse"] = args ? args.excludeSessionStateFromAuthResponse : undefined;
+            inputs["fullScopeAllowed"] = args ? args.fullScopeAllowed : undefined;
             inputs["implicitFlowEnabled"] = args ? args.implicitFlowEnabled : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["pkceCodeChallengeMethod"] = args ? args.pkceCodeChallengeMethod : undefined;
@@ -131,6 +203,8 @@ export interface ClientState {
     readonly description?: pulumi.Input<string>;
     readonly directAccessGrantsEnabled?: pulumi.Input<boolean>;
     readonly enabled?: pulumi.Input<boolean>;
+    readonly excludeSessionStateFromAuthResponse?: pulumi.Input<boolean>;
+    readonly fullScopeAllowed?: pulumi.Input<boolean>;
     readonly implicitFlowEnabled?: pulumi.Input<boolean>;
     readonly name?: pulumi.Input<string>;
     readonly pkceCodeChallengeMethod?: pulumi.Input<string>;
@@ -154,6 +228,8 @@ export interface ClientArgs {
     readonly description?: pulumi.Input<string>;
     readonly directAccessGrantsEnabled?: pulumi.Input<boolean>;
     readonly enabled?: pulumi.Input<boolean>;
+    readonly excludeSessionStateFromAuthResponse?: pulumi.Input<boolean>;
+    readonly fullScopeAllowed?: pulumi.Input<boolean>;
     readonly implicitFlowEnabled?: pulumi.Input<boolean>;
     readonly name?: pulumi.Input<string>;
     readonly pkceCodeChallengeMethod?: pulumi.Input<string>;

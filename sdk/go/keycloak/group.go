@@ -8,6 +8,35 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// ## # .Group
+// 
+// Allows for creating and managing Groups within Keycloak.
+// 
+// Groups provide a logical wrapping for users within Keycloak. Users within a
+// group can share attributes and roles, and group membership can be mapped
+// to a claim.
+// 
+// Attributes can also be defined on Groups.
+// 
+// Groups can also be federated from external data sources, such as LDAP or Active Directory.
+// This resource **should not** be used to manage groups that were created this way.
+// 
+// ### Argument Reference
+// 
+// The following arguments are supported:
+// 
+// - `realmId` - (Required) The realm this group exists in.
+// - `parentId` - (Optional) The ID of this group's parent. If omitted, this group will be defined at the root level.
+// - `name` - (Required) The name of the group.
+// - `attributes` - (Optional) A dict of key/value pairs to set as custom attributes for the group.
+// 
+// ### Attributes Reference
+// 
+// In addition to the arguments listed above, the following computed attributes are exported:
+// 
+// - `path` - The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
+//
+// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/group.html.markdown.
 type Group struct {
 	s *pulumi.ResourceState
 }
@@ -20,10 +49,12 @@ func NewGroup(ctx *pulumi.Context,
 	}
 	inputs := make(map[string]interface{})
 	if args == nil {
+		inputs["attributes"] = nil
 		inputs["name"] = nil
 		inputs["parentId"] = nil
 		inputs["realmId"] = nil
 	} else {
+		inputs["attributes"] = args.Attributes
 		inputs["name"] = args.Name
 		inputs["parentId"] = args.ParentId
 		inputs["realmId"] = args.RealmId
@@ -42,6 +73,7 @@ func GetGroup(ctx *pulumi.Context,
 	name string, id pulumi.ID, state *GroupState, opts ...pulumi.ResourceOpt) (*Group, error) {
 	inputs := make(map[string]interface{})
 	if state != nil {
+		inputs["attributes"] = state.Attributes
 		inputs["name"] = state.Name
 		inputs["parentId"] = state.ParentId
 		inputs["path"] = state.Path
@@ -64,6 +96,10 @@ func (r *Group) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
+func (r *Group) Attributes() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["attributes"])
+}
+
 func (r *Group) Name() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["name"])
 }
@@ -82,6 +118,7 @@ func (r *Group) RealmId() pulumi.StringOutput {
 
 // Input properties used for looking up and filtering Group resources.
 type GroupState struct {
+	Attributes interface{}
 	Name interface{}
 	ParentId interface{}
 	Path interface{}
@@ -90,6 +127,7 @@ type GroupState struct {
 
 // The set of arguments for constructing a Group resource.
 type GroupArgs struct {
+	Attributes interface{}
 	Name interface{}
 	ParentId interface{}
 	RealmId interface{}

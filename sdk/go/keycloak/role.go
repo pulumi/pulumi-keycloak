@@ -8,6 +8,27 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// ## # .Role
+// 
+// Allows for creating and managing roles within Keycloak.
+// 
+// Roles allow you define privileges within Keycloak and map them to users
+// and groups.
+// 
+// ### Argument Reference
+// 
+// The following arguments are supported:
+// 
+// - `realmId` - (Required) The realm this role exists within.
+// - `clientId` - (Optional) When specified, this role will be created as
+//   a client role attached to the client with the provided ID
+// - `name` - (Required) The name of the role
+// - `description` - (Optional) The description of the role
+// - `compositeRoles` - (Optional) When specified, this role will be a
+//   composite role, composed of all roles that have an ID present within
+//   this list.
+//
+// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/role.html.markdown.
 type Role struct {
 	s *pulumi.ResourceState
 }

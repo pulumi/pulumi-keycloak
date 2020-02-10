@@ -4,6 +4,55 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## # keycloak.Saml.UserPropertyProtocolMapper
+ * 
+ * Allows for creating and managing user property protocol mappers for
+ * SAML clients within Keycloak.
+ * 
+ * SAML user property protocol mappers allow you to map properties of the Keycloak
+ * user model to an attribute in a SAML assertion. Protocol mappers
+ * can be defined for a single client, or they can be defined for a client scope which
+ * can be shared between multiple different clients.
+ * 
+ * ### Example Usage (Client)
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * 
+ * const realm = new keycloak.Realm("realm", {
+ *     enabled: true,
+ *     realm: "my-realm",
+ * });
+ * const samlClient = new keycloak.Saml.Client("samlClient", {
+ *     clientId: "test-saml-client",
+ *     realmId: keycloak_realm_test.id,
+ * });
+ * const samlUserPropertyMapper = new keycloak.Saml.UserPropertyProtocolMapper("samlUserPropertyMapper", {
+ *     clientId: samlClient.id,
+ *     realmId: keycloak_realm_test.id,
+ *     samlAttributeName: "email",
+ *     samlAttributeNameFormat: "Unspecified",
+ *     userProperty: "email",
+ * });
+ * ```
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm this protocol mapper exists within.
+ * - `clientId` - (Required if `clientScopeId` is not specified) The SAML client this protocol mapper is attached to.
+ * - `clientScopeId` - (Required if `clientId` is not specified) The SAML client scope this protocol mapper is attached to.
+ * - `name` - (Required) The display name of this protocol mapper in the GUI.
+ * - `userProperty` - (Required) The property of the Keycloak user model to map.
+ * - `friendlyName` - (Optional) An optional human-friendly name for this attribute.
+ * - `samlAttributeName` - (Required) The name of the SAML attribute.
+ * - `samlAttributeNameFormat` - (Required) The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
+ *
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/saml_user_property_protocol_mapper.html.markdown.
+ */
 export class UserPropertyProtocolMapper extends pulumi.CustomResource {
     /**
      * Get an existing UserPropertyProtocolMapper resource's state with the given name, ID, and optional extra

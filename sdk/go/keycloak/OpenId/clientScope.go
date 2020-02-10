@@ -8,6 +8,27 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// ## # OpenId.ClientScope
+// 
+// Allows for creating and managing Keycloak client scopes that can be attached to
+// clients that use the OpenID Connect protocol.
+// 
+// Client Scopes can be used to share common protocol and role mappings between multiple
+// clients within a realm. They can also be used by clients to conditionally request
+// claims or roles for a user based on the OAuth 2.0 `scope` parameter.
+// 
+// ### Argument Reference
+// 
+// The following arguments are supported:
+// 
+// - `realmId` - (Required) The realm this client scope belongs to.
+// - `name` - (Required) The display name of this client scope in the GUI.
+// - `description` - (Optional) The description of this client scope in the GUI.
+// - `consentScreenText` - (Optional) When set, a consent screen will be displayed to users
+// authenticating to clients with this scope attached. The consent screen will display the string
+// value of this attribute.
+//
+// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_client_scope.html.markdown.
 type ClientScope struct {
 	s *pulumi.ResourceState
 }

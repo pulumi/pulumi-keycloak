@@ -7,6 +7,29 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    /// <summary>
+    /// ## # keycloak..Role
+    /// 
+    /// Allows for creating and managing roles within Keycloak.
+    /// 
+    /// Roles allow you define privileges within Keycloak and map them to users
+    /// and groups.
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm this role exists within.
+    /// - `client_id` - (Optional) When specified, this role will be created as
+    ///   a client role attached to the client with the provided ID
+    /// - `name` - (Required) The name of the role
+    /// - `description` - (Optional) The description of the role
+    /// - `composite_roles` - (Optional) When specified, this role will be a
+    ///   composite role, composed of all roles that have an ID present within
+    ///   this list.
+    /// 
+    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/role.html.markdown.
+    /// </summary>
     public partial class Role : Pulumi.CustomResource
     {
         [Output("clientId")]

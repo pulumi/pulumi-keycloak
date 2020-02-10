@@ -7,6 +7,23 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    /// <summary>
+    /// ## # keycloak..DefaultGroups
+    /// 
+    /// Allows for managing a realm's default groups.
+    /// 
+    /// Note that you should not use `keycloak..DefaultGroups` with a group with memberships managed
+    /// by `keycloak..GroupMemberships`.
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm this group exists in.
+    /// - `group_ids` - (Required) A set of group ids that should be default groups on the realm referenced by `realm_id`.
+    /// 
+    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/default_groups.html.markdown.
+    /// </summary>
     public partial class DefaultGroups : Pulumi.CustomResource
     {
         [Output("groupIds")]

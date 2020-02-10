@@ -8,6 +8,33 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// ## # OpenId.UserAttributeProtocolMapper
+// 
+// Allows for creating and managing user attribute protocol mappers within
+// Keycloak.
+// 
+// User attribute protocol mappers allow you to map custom attributes defined
+// for a user within Keycloak to a claim in a token. Protocol mappers can be
+// defined for a single client, or they can be defined for a client scope which
+// can be shared between multiple different clients.
+// 
+// ### Argument Reference
+// 
+// The following arguments are supported:
+// 
+// - `realmId` - (Required) The realm this protocol mapper exists within.
+// - `clientId` - (Required if `clientScopeId` is not specified) The client this protocol mapper is attached to.
+// - `clientScopeId` - (Required if `clientId` is not specified) The client scope this protocol mapper is attached to.
+// - `name` - (Required) The display name of this protocol mapper in the GUI.
+// - `userAttribute` - (Required) The custom user attribute to map a claim for.
+// - `claimName` - (Required) The name of the claim to insert into a token.
+// - `claimValueType` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `long`, `int`, or `boolean`. Defaults to `String`.
+// - `multivalued` - (Optional) Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+// - `addToIdToken` - (Optional) Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
+// - `addToAccessToken` - (Optional) Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
+// - `addToUserinfo` - (Optional) Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
+//
+// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_user_attribute_protocol_mapper.html.markdown.
 type UserAttributeProtocolMapper struct {
 	s *pulumi.ResourceState
 }

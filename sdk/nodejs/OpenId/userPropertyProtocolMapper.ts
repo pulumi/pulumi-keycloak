@@ -6,6 +6,80 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * ## # keycloak.OpenId.UserPropertyProtocolMapper
+ * 
+ * Allows for creating and managing user property protocol mappers within
+ * Keycloak.
+ * 
+ * User property protocol mappers allow you to map built in properties defined
+ * on the Keycloak user interface to a claim in a token. Protocol mappers can be
+ * defined for a single client, or they can be defined for a client scope which
+ * can be shared between multiple different clients.
+ * 
+ * ### Example Usage (Client)
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * 
+ * const realm = new keycloak.Realm("realm", {
+ *     enabled: true,
+ *     realm: "my-realm",
+ * });
+ * const openidClient = new keycloak.OpenId.Client("openidClient", {
+ *     accessType: "CONFIDENTIAL",
+ *     clientId: "test-client",
+ *     enabled: true,
+ *     realmId: realm.id,
+ *     validRedirectUris: ["http://localhost:8080/openid-callback"],
+ * });
+ * const userPropertyMapper = new keycloak.OpenId.UserPropertyProtocolMapper("userPropertyMapper", {
+ *     claimName: "email",
+ *     clientId: openidClient.id,
+ *     realmId: realm.id,
+ *     userProperty: "email",
+ * });
+ * ```
+ * 
+ * ### Example Usage (Client Scope)
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * 
+ * const realm = new keycloak.Realm("realm", {
+ *     enabled: true,
+ *     realm: "my-realm",
+ * });
+ * const clientScope = new keycloak.OpenId.ClientScope("clientScope", {
+ *     realmId: realm.id,
+ * });
+ * const userPropertyMapper = new keycloak.OpenId.UserPropertyProtocolMapper("userPropertyMapper", {
+ *     claimName: "email",
+ *     clientScopeId: clientScope.id,
+ *     realmId: realm.id,
+ *     userProperty: "email",
+ * });
+ * ```
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm this protocol mapper exists within.
+ * - `clientId` - (Required if `clientScopeId` is not specified) The client this protocol mapper is attached to.
+ * - `clientScopeId` - (Required if `clientId` is not specified) The client scope this protocol mapper is attached to.
+ * - `name` - (Required) The display name of this protocol mapper in the GUI.
+ * - `userProperty` - (Required) The built in user property (such as email) to map a claim for.
+ * - `claimName` - (Required) The name of the claim to insert into a token.
+ * - `claimValueType` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `long`, `int`, or `boolean`. Defaults to `String`.
+ * - `addToIdToken` - (Optional) Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+ * - `addToAccessToken` - (Optional) Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+ * - `addToUserinfo` - (Optional) Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+ *
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_user_property_protocol_mapper.html.markdown.
+ */
 export class UserPropertyProtocolMapper extends pulumi.CustomResource {
     /**
      * Get an existing UserPropertyProtocolMapper resource's state with the given name, ID, and optional extra

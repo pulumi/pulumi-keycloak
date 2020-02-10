@@ -6,6 +6,9 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_client_default_scopes.html.markdown.
+ */
 export class ClientDefaultScopes extends pulumi.CustomResource {
     /**
      * Get an existing ClientDefaultScopes resource's state with the given name, ID, and optional extra

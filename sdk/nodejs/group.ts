@@ -4,6 +4,64 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## # keycloak..Group
+ * 
+ * Allows for creating and managing Groups within Keycloak.
+ * 
+ * Groups provide a logical wrapping for users within Keycloak. Users within a
+ * group can share attributes and roles, and group membership can be mapped
+ * to a claim.
+ * 
+ * Attributes can also be defined on Groups.
+ * 
+ * Groups can also be federated from external data sources, such as LDAP or Active Directory.
+ * This resource **should not** be used to manage groups that were created this way.
+ * 
+ * ### Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * 
+ * const realm = new keycloak.Realm("realm", {
+ *     enabled: true,
+ *     realm: "my-realm",
+ * });
+ * const parentGroup = new keycloak.Group("parentGroup", {
+ *     realmId: realm.id,
+ * });
+ * const childGroup = new keycloak.Group("childGroup", {
+ *     parentId: parentGroup.id,
+ *     realmId: realm.id,
+ * });
+ * const childGroupWithOptionalAttributes = new keycloak.Group("childGroupWithOptionalAttributes", {
+ *     attributes: {
+ *         key1: "value1",
+ *         key2: "value2",
+ *     },
+ *     parentId: parentGroup.id,
+ *     realmId: realm.id,
+ * });
+ * ```
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm this group exists in.
+ * - `parentId` - (Optional) The ID of this group's parent. If omitted, this group will be defined at the root level.
+ * - `name` - (Required) The name of the group.
+ * - `attributes` - (Optional) A dict of key/value pairs to set as custom attributes for the group.
+ * 
+ * ### Attributes Reference
+ * 
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ * 
+ * - `path` - The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
+ *
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/group.html.markdown.
+ */
 export class Group extends pulumi.CustomResource {
     /**
      * Get an existing Group resource's state with the given name, ID, and optional extra
@@ -31,6 +89,7 @@ export class Group extends pulumi.CustomResource {
         return obj['__pulumiType'] === Group.__pulumiType;
     }
 
+    public readonly attributes!: pulumi.Output<{[key: string]: any} | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly parentId!: pulumi.Output<string | undefined>;
     public /*out*/ readonly path!: pulumi.Output<string>;
@@ -48,6 +107,7 @@ export class Group extends pulumi.CustomResource {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
             const state = argsOrState as GroupState | undefined;
+            inputs["attributes"] = state ? state.attributes : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["parentId"] = state ? state.parentId : undefined;
             inputs["path"] = state ? state.path : undefined;
@@ -57,6 +117,7 @@ export class Group extends pulumi.CustomResource {
             if (!args || args.realmId === undefined) {
                 throw new Error("Missing required property 'realmId'");
             }
+            inputs["attributes"] = args ? args.attributes : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["parentId"] = args ? args.parentId : undefined;
             inputs["realmId"] = args ? args.realmId : undefined;
@@ -77,6 +138,7 @@ export class Group extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Group resources.
  */
 export interface GroupState {
+    readonly attributes?: pulumi.Input<{[key: string]: any}>;
     readonly name?: pulumi.Input<string>;
     readonly parentId?: pulumi.Input<string>;
     readonly path?: pulumi.Input<string>;
@@ -87,6 +149,7 @@ export interface GroupState {
  * The set of arguments for constructing a Group resource.
  */
 export interface GroupArgs {
+    readonly attributes?: pulumi.Input<{[key: string]: any}>;
     readonly name?: pulumi.Input<string>;
     readonly parentId?: pulumi.Input<string>;
     readonly realmId: pulumi.Input<string>;

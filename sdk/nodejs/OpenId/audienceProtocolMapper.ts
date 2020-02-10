@@ -4,6 +4,75 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## # keycloak.OpenId.AudienceProtocolMapper
+ * 
+ * Allows for creating and managing audience protocol mappers within
+ * Keycloak. This mapper was added in Keycloak v4.6.0.Final.
+ * 
+ * Audience protocol mappers allow you add audiences to the `aud` claim
+ * within issued tokens. The audience can be a custom string, or it can be
+ * mapped to the ID of a pre-existing client.
+ * 
+ * ### Example Usage (Client)
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * 
+ * const realm = new keycloak.Realm("realm", {
+ *     enabled: true,
+ *     realm: "my-realm",
+ * });
+ * const openidClient = new keycloak.OpenId.Client("openidClient", {
+ *     accessType: "CONFIDENTIAL",
+ *     clientId: "test-client",
+ *     enabled: true,
+ *     realmId: realm.id,
+ *     validRedirectUris: ["http://localhost:8080/openid-callback"],
+ * });
+ * const audienceMapper = new keycloak.OpenId.AudienceProtocolMapper("audienceMapper", {
+ *     clientId: openidClient.id,
+ *     includedCustomAudience: "foo",
+ *     realmId: realm.id,
+ * });
+ * ```
+ * 
+ * ### Example Usage (Client Scope)
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * 
+ * const realm = new keycloak.Realm("realm", {
+ *     enabled: true,
+ *     realm: "my-realm",
+ * });
+ * const clientScope = new keycloak.OpenId.ClientScope("clientScope", {
+ *     realmId: realm.id,
+ * });
+ * const audienceMapper = new keycloak.OpenId.AudienceProtocolMapper("audienceMapper", {
+ *     clientScopeId: clientScope.id,
+ *     includedCustomAudience: "foo",
+ *     realmId: realm.id,
+ * });
+ * ```
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm this protocol mapper exists within.
+ * - `clientId` - (Required if `clientScopeId` is not specified) The client this protocol mapper is attached to.
+ * - `clientScopeId` - (Required if `clientId` is not specified) The client scope this protocol mapper is attached to.
+ * - `name` - (Required) The display name of this protocol mapper in the GUI.
+ * - `includedClientAudience` - (Required if `includedCustomAudience` is not specified) A client ID to include within the token's `aud` claim.
+ * - `includedCustomAudience` - (Required if `includedClientAudience` is not specified) A custom audience to include within the token's `aud` claim.
+ * - `addToIdToken` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+ * - `addToAccessToken` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+ *
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_audience_protocol_mapper.html.markdown.
+ */
 export class AudienceProtocolMapper extends pulumi.CustomResource {
     /**
      * Get an existing AudienceProtocolMapper resource's state with the given name, ID, and optional extra

@@ -4,6 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/group_memberships.html.markdown.
+ */
 export class GroupMemberships extends pulumi.CustomResource {
     /**
      * Get an existing GroupMemberships resource's state with the given name, ID, and optional extra

@@ -7,6 +7,32 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.Saml
 {
+    /// <summary>
+    /// ## # keycloak.Saml.UserAttributeProtocolMapper
+    /// 
+    /// Allows for creating and managing user attribute protocol mappers for
+    /// SAML clients within Keycloak.
+    /// 
+    /// SAML user attribute protocol mappers allow you to map custom attributes defined
+    /// for a user within Keycloak to an attribute in a SAML assertion. Protocol mappers
+    /// can be defined for a single client, or they can be defined for a client scope which
+    /// can be shared between multiple different clients.
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm this protocol mapper exists within.
+    /// - `client_id` - (Required if `client_scope_id` is not specified) The SAML client this protocol mapper is attached to.
+    /// - `client_scope_id` - (Required if `client_id` is not specified) The SAML client scope this protocol mapper is attached to.
+    /// - `name` - (Required) The display name of this protocol mapper in the GUI.
+    /// - `user_attribute` - (Required) The custom user attribute to map.
+    /// - `friendly_name` - (Optional) An optional human-friendly name for this attribute.
+    /// - `saml_attribute_name` - (Required) The name of the SAML attribute.
+    /// - `saml_attribute_name_format` - (Required) The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
+    /// 
+    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/saml_user_attribute_protocol_mapper.html.markdown.
+    /// </summary>
     public partial class UserAttributeProtocolMapper : Pulumi.CustomResource
     {
         [Output("clientId")]

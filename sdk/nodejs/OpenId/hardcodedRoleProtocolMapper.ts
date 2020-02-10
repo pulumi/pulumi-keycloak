@@ -6,6 +6,80 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * ## # keycloak.OpenId.HardcodedRoleProtocolMapper
+ * 
+ * Allows for creating and managing hardcoded role protocol mappers within
+ * Keycloak.
+ * 
+ * Hardcoded role protocol mappers allow you to specify a single role to
+ * always map to an access token for a client. Protocol mappers can be
+ * defined for a single client, or they can be defined for a client scope
+ * which can be shared between multiple different clients.
+ * 
+ * ### Example Usage (Client)
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * 
+ * const realm = new keycloak.Realm("realm", {
+ *     enabled: true,
+ *     realm: "my-realm",
+ * });
+ * const role = new keycloak.Role("role", {
+ *     realmId: realm.id,
+ * });
+ * const openidClient = new keycloak.OpenId.Client("openidClient", {
+ *     accessType: "CONFIDENTIAL",
+ *     clientId: "test-client",
+ *     enabled: true,
+ *     realmId: realm.id,
+ *     validRedirectUris: ["http://localhost:8080/openid-callback"],
+ * });
+ * const hardcodedRoleMapper = new keycloak.OpenId.HardcodedRoleProtocolMapper("hardcodedRoleMapper", {
+ *     clientId: openidClient.id,
+ *     realmId: realm.id,
+ *     roleId: role.id,
+ * });
+ * ```
+ * 
+ * ### Example Usage (Client Scope)
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * 
+ * const realm = new keycloak.Realm("realm", {
+ *     enabled: true,
+ *     realm: "my-realm",
+ * });
+ * const role = new keycloak.Role("role", {
+ *     realmId: realm.id,
+ * });
+ * const clientScope = new keycloak.OpenId.ClientScope("clientScope", {
+ *     realmId: realm.id,
+ * });
+ * const hardcodedRoleMapper = new keycloak.OpenId.HardcodedRoleProtocolMapper("hardcodedRoleMapper", {
+ *     clientScopeId: clientScope.id,
+ *     realmId: realm.id,
+ *     roleId: role.id,
+ * });
+ * ```
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm this protocol mapper exists within.
+ * - `clientId` - (Required if `clientScopeId` is not specified) The client this protocol mapper is attached to.
+ * - `clientScopeId` - (Required if `clientId` is not specified) The client scope this protocol mapper is attached to.
+ * - `name` - (Required) The display name of this protocol mapper in the
+ *   GUI.
+ * - `roleId` - (Required) The ID of the role to map to an access token.
+ *
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_hardcoded_role_protocol_mapper.html.markdown.
+ */
 export class HardcodedRoleProtocolMapper extends pulumi.CustomResource {
     /**
      * Get an existing HardcodedRoleProtocolMapper resource's state with the given name, ID, and optional extra

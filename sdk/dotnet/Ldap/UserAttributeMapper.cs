@@ -7,6 +7,30 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.Ldap
 {
+    /// <summary>
+    /// ## # keycloak.Ldap.UserAttributeMapper
+    /// 
+    /// Allows for creating and managing user attribute mappers for Keycloak users
+    /// federated via LDAP.
+    /// 
+    /// The LDAP user attribute mapper can be used to map a single LDAP attribute
+    /// to an attribute on the Keycloak user model.
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
+    /// - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
+    /// - `name` - (Required) Display name of this mapper when displayed in the console.
+    /// - `user_model_attribute` - (Required) Name of the user property or attribute you want to map the LDAP attribute into.
+    /// - `ldap_attribute` - (Required) Name of the mapped attribute on the LDAP object.
+    /// - `read_only` - (Optional) When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
+    /// - `always_read_value_from_ldap` - (Optional) When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
+    /// - `is_mandatory_in_ldap` - (Optional) When `true`, this attribute must exist in LDAP. Defaults to `false`.
+    /// 
+    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_user_attribute_mapper.html.markdown.
+    /// </summary>
     public partial class UserAttributeMapper : Pulumi.CustomResource
     {
         /// <summary>

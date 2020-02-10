@@ -29,10 +29,41 @@ class GroupMapper(pulumi.CustomResource):
     user_roles_retrieve_strategy: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, drop_non_existing_groups_during_sync=None, group_name_ldap_attribute=None, group_object_classes=None, groups_ldap_filter=None, ignore_missing_groups=None, ldap_groups_dn=None, ldap_user_federation_id=None, mapped_group_attributes=None, memberof_ldap_attribute=None, membership_attribute_type=None, membership_ldap_attribute=None, membership_user_ldap_attribute=None, mode=None, name=None, preserve_group_inheritance=None, realm_id=None, user_roles_retrieve_strategy=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a GroupMapper resource with the given unique name, props, and options.
+        ## # Ldap.GroupMapper
+        
+        Allows for creating and managing group mappers for Keycloak users federated
+        via LDAP.
+        
+        The LDAP group mapper can be used to map an LDAP user's groups from some DN
+        to Keycloak groups. This group mapper will also create the groups within Keycloak
+        if they do not already exist.
+        
+        ### Argument Reference
+        
+        The following arguments are supported:
+        
+        - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
+        - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
+        - `name` - (Required) Display name of this mapper when displayed in the console.
+        - `ldap_groups_dn` - (Required) The LDAP DN where groups can be found.
+        - `group_name_ldap_attribute` - (Required) The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
+        - `group_object_classes` - (Required) Array of strings representing the object classes for the group. Must contain at least one.
+        - `preserve_group_inheritance` - (Optional) When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
+        - `ignore_missing_groups` - (Optional) When `true`, missing groups in the hierarchy will be ignored.
+        - `membership_ldap_attribute` - (Required) The name of the LDAP attribute that is used for membership mappings.
+        - `membership_attribute_type` - (Optional) Can be one of `DN` or `UID`. Defaults to `DN`.
+        - `membership_user_ldap_attribute` - (Required) The name of the LDAP attribute on a user that is used for membership mappings.
+        - `groups_ldap_filter` - (Optional) When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+        - `mode` - (Optional) Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+        - `user_roles_retrieve_strategy` - (Optional) Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
+        - `memberof_ldap_attribute` - (Optional) Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
+        - `mapped_group_attributes` - (Optional) Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
+        - `drop_non_existing_groups_during_sync` - (Optional) When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_group_mapper.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -97,6 +128,8 @@ class GroupMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_group_mapper.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

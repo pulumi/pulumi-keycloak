@@ -6,6 +6,24 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * ## # keycloak..Realm data source
+ * 
+ * This data source can be used to fetch properties of a Keycloak realm for
+ * usage with other resources.
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realm` - (Required) The realm name.
+ * 
+ * ### Attributes Reference
+ * 
+ * See the docs for the `keycloak..Realm` resource for details on the exported attributes.
+ *
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/realm.html.markdown.
+ */
 export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmResult> & GetRealmResult {
     if (!opts) {
         opts = {}

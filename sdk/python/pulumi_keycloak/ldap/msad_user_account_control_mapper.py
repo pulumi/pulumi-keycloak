@@ -16,10 +16,29 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
     realm_id: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, ldap_password_policy_hints_enabled=None, ldap_user_federation_id=None, name=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a MsadUserAccountControlMapper resource with the given unique name, props, and options.
+        ## # Ldap.MsadUserAccountControlMapper
+        
+        Allows for creating and managing MSAD user account control mappers for Keycloak
+        users federated via LDAP.
+        
+        The MSAD (Microsoft Active Directory) user account control mapper is specific
+        to LDAP user federation providers that are pulling from AD, and it can propagate
+        AD user state to Keycloak in order to enforce settings like expired passwords
+        or disabled accounts.
+        
+        ### Argument Reference
+        
+        The following arguments are supported:
+        
+        - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
+        - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
+        - `name` - (Required) Display name of this mapper when displayed in the console.
+        - `ldap_password_policy_hints_enabled` - (Optional) When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_msad_user_account_control_mapper.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -61,6 +80,8 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_msad_user_account_control_mapper.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

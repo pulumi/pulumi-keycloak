@@ -23,10 +23,36 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
     realm_role_prefix: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, add_to_access_token=None, add_to_id_token=None, add_to_userinfo=None, claim_name=None, claim_value_type=None, client_id=None, client_scope_id=None, multivalued=None, name=None, realm_id=None, realm_role_prefix=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a UserRealmRoleProtocolMapper resource with the given unique name, props, and options.
+        ## # OpenId.UserRealmRoleProtocolMapper
+        
+        Allows for creating and managing user realm role protocol mappers within
+        Keycloak.
+        
+        User realm role protocol mappers allow you to define a claim containing the list of the realm roles.
+        Protocol mappers can be defined for a single client, or they can
+        be defined for a client scope which can be shared between multiple different
+        clients.
+        
+        ### Argument Reference
+        
+        The following arguments are supported:
+        
+        - `realm_id` - (Required) The realm this protocol mapper exists within.
+        - `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
+        - `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
+        - `name` - (Required) The display name of this protocol mapper in the GUI.
+        - `claim_name` - (Required) The name of the claim to insert into a token.
+        - `claim_value_type` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `long`, `int`, or `boolean`. Defaults to `String`.
+        - `multivalued` - (Optional) Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `true`.
+        - `realm_role_prefix` - (Optional) A prefix for each Realm Role.
+        - `add_to_id_token` - (Optional) Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        - `add_to_access_token` - (Optional) Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+        - `add_to_userinfo` - (Optional) Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_user_realm_role_protocol_mapper.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -75,6 +101,8 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_user_realm_role_protocol_mapper.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

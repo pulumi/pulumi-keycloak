@@ -8,6 +8,21 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// ## # .DefaultGroups
+// 
+// Allows for managing a realm's default groups.
+// 
+// Note that you should not use `.DefaultGroups` with a group with memberships managed
+// by `.GroupMemberships`.
+// 
+// ### Argument Reference
+// 
+// The following arguments are supported:
+// 
+// - `realmId` - (Required) The realm this group exists in.
+// - `groupIds` - (Required) A set of group ids that should be default groups on the realm referenced by `realmId`.
+//
+// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/default_groups.html.markdown.
 type DefaultGroups struct {
 	s *pulumi.ResourceState
 }

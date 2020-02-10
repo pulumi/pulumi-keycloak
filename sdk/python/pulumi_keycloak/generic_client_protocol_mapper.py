@@ -18,10 +18,33 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
     realm_id: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, client_id=None, config=None, name=None, protocol=None, protocol_mapper=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a GenericClientProtocolMapper resource with the given unique name, props, and options.
+        ## # .GenericClientProtocolMapper
+        
+        Allows for creating and managing protocol mapper for both types of clients (openid-connect and saml) within Keycloak.
+        
+        There are two uses cases for using this resource:
+        * If you implemented a custom protocol mapper, this resource can be used to configure it
+        * If the provider doesn't support a particular protocol mapper, this resource can be used instead.
+        
+        Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors. 
+        Therefore, if possible, a specific mapper should be used.
+        
+        ### Argument Reference
+        
+        The following arguments are supported:
+        
+        - `realm_id` - (Required) The realm this protocol mapper exists within.
+        - `client_id` - (Required) The client this protocol mapper is attached to.
+        - `name` - (Required) The display name of this protocol mapper in the GUI.
+        - `protocol` - (Required) The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+        - `protocol_mapper` - (Required) The name of the protocol mapper. The protocol mapper must be
+           compatible with the specified client.
+        - `config` - (Required) A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/generic_client_protocol_mapper.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -71,6 +94,8 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/generic_client_protocol_mapper.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

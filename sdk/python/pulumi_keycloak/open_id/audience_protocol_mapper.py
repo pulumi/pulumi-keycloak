@@ -20,10 +20,32 @@ class AudienceProtocolMapper(pulumi.CustomResource):
     realm_id: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, add_to_access_token=None, add_to_id_token=None, client_id=None, client_scope_id=None, included_client_audience=None, included_custom_audience=None, name=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a AudienceProtocolMapper resource with the given unique name, props, and options.
+        ## # OpenId.AudienceProtocolMapper
+        
+        Allows for creating and managing audience protocol mappers within
+        Keycloak. This mapper was added in Keycloak v4.6.0.Final.
+        
+        Audience protocol mappers allow you add audiences to the `aud` claim
+        within issued tokens. The audience can be a custom string, or it can be
+        mapped to the ID of a pre-existing client.
+        
+        ### Argument Reference
+        
+        The following arguments are supported:
+        
+        - `realm_id` - (Required) The realm this protocol mapper exists within.
+        - `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
+        - `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
+        - `name` - (Required) The display name of this protocol mapper in the GUI.
+        - `included_client_audience` - (Required if `included_custom_audience` is not specified) A client ID to include within the token's `aud` claim.
+        - `included_custom_audience` - (Required if `included_client_audience` is not specified) A custom audience to include within the token's `aud` claim.
+        - `add_to_id_token` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+        - `add_to_access_token` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_audience_protocol_mapper.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -67,6 +89,8 @@ class AudienceProtocolMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_audience_protocol_mapper.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

@@ -7,6 +7,9 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    /// <summary>
+    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/custom_user_federation.html.markdown.
+    /// </summary>
     public partial class CustomUserFederation : Pulumi.CustomResource
     {
         [Output("cachePolicy")]

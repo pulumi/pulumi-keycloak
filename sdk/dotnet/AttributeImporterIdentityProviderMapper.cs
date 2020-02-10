@@ -7,6 +7,25 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    /// <summary>
+    /// ## # keycloak..AttributeImporterIdentityProviderMapper
+    /// 
+    /// Allows to create and manage identity provider mappers within Keycloak.
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm` - (Required) The name of the realm.
+    /// - `name` - (Required) The name of the mapper.
+    /// - `identity_provider_alias` - (Required) The alias of the associated identity provider.
+    /// - `user_attribute` - (Required) The user attribute name to store SAML attribute.
+    /// - `attribute_name` - (Optional) The Name of attribute to search for in assertion. You can leave this blank and specify a friendly name instead.
+    /// - `attribute_friendly_name` - (Optional) The friendly name of attribute to search for in assertion.  You can leave this blank and specify an attribute name instead.
+    /// - `claim_name` - (Optional) The claim name.
+    /// 
+    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/attribute_importer_identity_provider_mapper.html.markdown.
+    /// </summary>
     public partial class AttributeImporterIdentityProviderMapper : Pulumi.CustomResource
     {
         /// <summary>

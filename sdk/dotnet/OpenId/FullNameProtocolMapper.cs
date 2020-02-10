@@ -7,6 +7,31 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    /// <summary>
+    /// ## # keycloak.OpenId.FullNameProtocolMapper
+    /// 
+    /// Allows for creating and managing full name protocol mappers within
+    /// Keycloak.
+    /// 
+    /// Full name protocol mappers allow you to map a user's first and last name
+    /// to the OpenID Connect `name` claim in a token. Protocol mappers can be defined
+    /// for a single client, or they can be defined for a client scope which can
+    /// be shared between multiple different clients.
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm this protocol mapper exists within.
+    /// - `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
+    /// - `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
+    /// - `name` - (Required) The display name of this protocol mapper in the GUI.
+    /// - `add_to_id_token` - (Optional) Indicates if the user's full name should be added as a claim to the id token. Defaults to `true`.
+    /// - `add_to_access_token` - (Optional) Indicates if the user's full name should be added as a claim to the access token. Defaults to `true`.
+    /// - `add_to_userinfo` - (Optional) Indicates if the user's full name should be added as a claim to the UserInfo response body. Defaults to `true`.
+    /// 
+    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_full_name_protocol_mapper.html.markdown.
+    /// </summary>
     public partial class FullNameProtocolMapper : Pulumi.CustomResource
     {
         [Output("addToAccessToken")]

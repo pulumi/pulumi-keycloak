@@ -4,6 +4,60 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## # keycloak..GenericClientProtocolMapper
+ * 
+ * Allows for creating and managing protocol mapper for both types of clients (openid-connect and saml) within Keycloak.
+ * 
+ * There are two uses cases for using this resource:
+ * * If you implemented a custom protocol mapper, this resource can be used to configure it
+ * * If the provider doesn't support a particular protocol mapper, this resource can be used instead.
+ * 
+ * Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors. 
+ * Therefore, if possible, a specific mapper should be used.
+ * 
+ * ### Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * 
+ * const realm = new keycloak.Realm("realm", {
+ *     enabled: true,
+ *     realm: "my-realm",
+ * });
+ * const samlClient = new keycloak.Saml.Client("samlClient", {
+ *     clientId: "test-client",
+ *     realmId: realm.id,
+ * });
+ * const samlHardcodeAttributeMapper = new keycloak.GenericClientProtocolMapper("samlHardcodeAttributeMapper", {
+ *     clientId: samlClient.id,
+ *     config: {
+ *         "attribute.name": "name",
+ *         "attribute.nameformat": "Basic",
+ *         "attribute.value": "value",
+ *         "friendly.name": "display name",
+ *     },
+ *     protocol: "saml",
+ *     protocolMapper: "saml-hardcode-attribute-mapper",
+ *     realmId: realm.id,
+ * });
+ * ```
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm this protocol mapper exists within.
+ * - `clientId` - (Required) The client this protocol mapper is attached to.
+ * - `name` - (Required) The display name of this protocol mapper in the GUI.
+ * - `protocol` - (Required) The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+ * - `protocolMapper` - (Required) The name of the protocol mapper. The protocol mapper must be
+ *    compatible with the specified client.
+ * - `config` - (Required) A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+ *
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/generic_client_protocol_mapper.html.markdown.
+ */
 export class GenericClientProtocolMapper extends pulumi.CustomResource {
     /**
      * Get an existing GenericClientProtocolMapper resource's state with the given name, ID, and optional extra

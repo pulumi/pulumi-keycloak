@@ -7,6 +7,9 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    /// <summary>
+    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/group_memberships.html.markdown.
+    /// </summary>
     public partial class GroupMemberships : Pulumi.CustomResource
     {
         [Output("groupId")]

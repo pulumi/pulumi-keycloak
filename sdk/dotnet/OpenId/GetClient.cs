@@ -9,6 +9,24 @@ namespace Pulumi.Keycloak.OpenId
 {
     public static partial class Invokes
     {
+        /// <summary>
+        /// ## # keycloak.OpenId.Client data source
+        /// 
+        /// This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
+        /// 
+        /// ### Argument Reference
+        /// 
+        /// The following arguments are supported:
+        /// 
+        /// - `realm_id` - (Required) The realm id.
+        /// - `client_id` - (Required) The client id.
+        /// 
+        /// ### Attributes Reference
+        /// 
+        /// See the docs for the `keycloak.OpenId.Client` resource for details on the exported attributes.
+        /// 
+        /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/openid_client.html.markdown.
+        /// </summary>
         public static Task<GetClientResult> GetClient(GetClientArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetClientResult>("keycloak:OpenId/getClient:getClient", args ?? ResourceArgs.Empty, options.WithVersion());
     }
@@ -36,6 +54,7 @@ namespace Pulumi.Keycloak.OpenId
         public readonly string Description;
         public readonly bool DirectAccessGrantsEnabled;
         public readonly bool Enabled;
+        public readonly bool FullScopeAllowed;
         public readonly bool ImplicitFlowEnabled;
         public readonly string Name;
         public readonly string RealmId;
@@ -59,6 +78,7 @@ namespace Pulumi.Keycloak.OpenId
             string description,
             bool directAccessGrantsEnabled,
             bool enabled,
+            bool fullScopeAllowed,
             bool implicitFlowEnabled,
             string name,
             string realmId,
@@ -77,6 +97,7 @@ namespace Pulumi.Keycloak.OpenId
             Description = description;
             DirectAccessGrantsEnabled = directAccessGrantsEnabled;
             Enabled = enabled;
+            FullScopeAllowed = fullScopeAllowed;
             ImplicitFlowEnabled = implicitFlowEnabled;
             Name = name;
             RealmId = realmId;
