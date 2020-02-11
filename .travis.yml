@@ -5,10 +5,19 @@ go: 1.13.4
 sudo: true # give us 7.5GB and >2 bursted cores.
 git:
   depth: false
+env:
+  - DOCKER_COMPOSE_VERSION=1.25.4
 before_install:
-    - git clone https://github.com/pulumi/scripts ${GOPATH}/src/github.com/pulumi/scripts
-    - source ${GOPATH}/src/github.com/pulumi/scripts/ci/prepare-environment.sh
-    - source ${PULUMI_SCRIPTS}/ci/keep-failed-tests.sh
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  - git clone https://github.com/pulumi/scripts ${GOPATH}/src/github.com/pulumi/scripts
+  - source ${GOPATH}/src/github.com/pulumi/scripts/ci/prepare-environment.sh
+  - source ${PULUMI_SCRIPTS}/ci/keep-failed-tests.sh
+  - docker-compose -f testing/docker-compose.yaml up --build -d
+  - ./testing/wait-for-local-keycloak.sh
+  - ./testing/create-terraform-client.sh
 install:
     - source ${PULUMI_SCRIPTS}/ci/install-common-toolchain.sh
     - curl -L https://get.pulumi.com/ | bash
