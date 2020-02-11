@@ -9,6 +9,7 @@ replace (
 )
 
 require (
+	cloud.google.com/go/logging v1.0.0 // indirect
 	github.com/hashicorp/terraform v0.12.9
 	github.com/mrparkers/terraform-provider-keycloak v0.0.0-20191218161228-a467c7185cbc
 	github.com/pkg/errors v0.8.1
