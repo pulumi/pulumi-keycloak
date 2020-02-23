@@ -21,6 +21,7 @@ from .group_roles import *
 from .hardcoded_attribute_identity_provider_mapper import *
 from .hardcoded_role_identity_mapper import *
 from .realm import *
+from .realm_events import *
 from .required_action import *
 from .role import *
 from .user import *

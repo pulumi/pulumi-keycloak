@@ -100,9 +100,12 @@ export class Client extends pulumi.CustomResource {
     }
 
     public readonly accessType!: pulumi.Output<string>;
+    public readonly adminUrl!: pulumi.Output<string | undefined>;
     public readonly authorization!: pulumi.Output<outputs.OpenId.ClientAuthorization | undefined>;
+    public readonly baseUrl!: pulumi.Output<string | undefined>;
     public readonly clientId!: pulumi.Output<string>;
     public readonly clientSecret!: pulumi.Output<string>;
+    public readonly consentRequired!: pulumi.Output<boolean | undefined>;
     public readonly description!: pulumi.Output<string | undefined>;
     public readonly directAccessGrantsEnabled!: pulumi.Output<boolean | undefined>;
     public readonly enabled!: pulumi.Output<boolean | undefined>;
@@ -132,9 +135,12 @@ export class Client extends pulumi.CustomResource {
         if (opts && opts.id) {
             const state = argsOrState as ClientState | undefined;
             inputs["accessType"] = state ? state.accessType : undefined;
+            inputs["adminUrl"] = state ? state.adminUrl : undefined;
             inputs["authorization"] = state ? state.authorization : undefined;
+            inputs["baseUrl"] = state ? state.baseUrl : undefined;
             inputs["clientId"] = state ? state.clientId : undefined;
             inputs["clientSecret"] = state ? state.clientSecret : undefined;
+            inputs["consentRequired"] = state ? state.consentRequired : undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["directAccessGrantsEnabled"] = state ? state.directAccessGrantsEnabled : undefined;
             inputs["enabled"] = state ? state.enabled : undefined;
@@ -162,9 +168,12 @@ export class Client extends pulumi.CustomResource {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["accessType"] = args ? args.accessType : undefined;
+            inputs["adminUrl"] = args ? args.adminUrl : undefined;
             inputs["authorization"] = args ? args.authorization : undefined;
+            inputs["baseUrl"] = args ? args.baseUrl : undefined;
             inputs["clientId"] = args ? args.clientId : undefined;
             inputs["clientSecret"] = args ? args.clientSecret : undefined;
+            inputs["consentRequired"] = args ? args.consentRequired : undefined;
             inputs["description"] = args ? args.description : undefined;
             inputs["directAccessGrantsEnabled"] = args ? args.directAccessGrantsEnabled : undefined;
             inputs["enabled"] = args ? args.enabled : undefined;
@@ -197,9 +206,12 @@ export class Client extends pulumi.CustomResource {
  */
 export interface ClientState {
     readonly accessType?: pulumi.Input<string>;
+    readonly adminUrl?: pulumi.Input<string>;
     readonly authorization?: pulumi.Input<inputs.OpenId.ClientAuthorization>;
+    readonly baseUrl?: pulumi.Input<string>;
     readonly clientId?: pulumi.Input<string>;
     readonly clientSecret?: pulumi.Input<string>;
+    readonly consentRequired?: pulumi.Input<boolean>;
     readonly description?: pulumi.Input<string>;
     readonly directAccessGrantsEnabled?: pulumi.Input<boolean>;
     readonly enabled?: pulumi.Input<boolean>;
@@ -222,9 +234,12 @@ export interface ClientState {
  */
 export interface ClientArgs {
     readonly accessType: pulumi.Input<string>;
+    readonly adminUrl?: pulumi.Input<string>;
     readonly authorization?: pulumi.Input<inputs.OpenId.ClientAuthorization>;
+    readonly baseUrl?: pulumi.Input<string>;
     readonly clientId: pulumi.Input<string>;
     readonly clientSecret?: pulumi.Input<string>;
+    readonly consentRequired?: pulumi.Input<boolean>;
     readonly description?: pulumi.Input<string>;
     readonly directAccessGrantsEnabled?: pulumi.Input<boolean>;
     readonly enabled?: pulumi.Input<boolean>;

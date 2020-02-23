@@ -15,6 +15,7 @@
     "files": [
         "Ldap/fullNameMapper.ts",
         "Ldap/groupMapper.ts",
+        "Ldap/hardcodedRoleMapper.ts",
         "Ldap/index.ts",
         "Ldap/msadUserAccountControlMapper.ts",
         "Ldap/userAttributeMapper.ts",
@@ -29,6 +30,7 @@
         "OpenId/clientDefaultScopes.ts",
         "OpenId/clientOptionalScopes.ts",
         "OpenId/clientScope.ts",
+        "OpenId/clientServiceAccountRealmRole.ts",
         "OpenId/clientServiceAccountRole.ts",
         "OpenId/fullNameProtocolMapper.ts",
         "OpenId/getClient.ts",
@@ -65,6 +67,7 @@
         "index.ts",
         "provider.ts",
         "realm.ts",
+        "realmEvents.ts",
         "requiredAction.ts",
         "role.ts",
         "types/index.ts",

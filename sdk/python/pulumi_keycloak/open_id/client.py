@@ -11,9 +11,12 @@ from .. import utilities, tables
 
 class Client(pulumi.CustomResource):
     access_type: pulumi.Output[str]
+    admin_url: pulumi.Output[str]
     authorization: pulumi.Output[dict]
+    base_url: pulumi.Output[str]
     client_id: pulumi.Output[str]
     client_secret: pulumi.Output[str]
+    consent_required: pulumi.Output[bool]
     description: pulumi.Output[str]
     direct_access_grants_enabled: pulumi.Output[bool]
     enabled: pulumi.Output[bool]
@@ -29,7 +32,7 @@ class Client(pulumi.CustomResource):
     standard_flow_enabled: pulumi.Output[bool]
     valid_redirect_uris: pulumi.Output[list]
     web_origins: pulumi.Output[list]
-    def __init__(__self__, resource_name, opts=None, access_type=None, authorization=None, client_id=None, client_secret=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, implicit_flow_enabled=None, name=None, pkce_code_challenge_method=None, realm_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, access_type=None, admin_url=None, authorization=None, base_url=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, implicit_flow_enabled=None, name=None, pkce_code_challenge_method=None, realm_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # OpenId.Client
         
@@ -106,11 +109,14 @@ class Client(pulumi.CustomResource):
             if access_type is None:
                 raise TypeError("Missing required property 'access_type'")
             __props__['access_type'] = access_type
+            __props__['admin_url'] = admin_url
             __props__['authorization'] = authorization
+            __props__['base_url'] = base_url
             if client_id is None:
                 raise TypeError("Missing required property 'client_id'")
             __props__['client_id'] = client_id
             __props__['client_secret'] = client_secret
+            __props__['consent_required'] = consent_required
             __props__['description'] = description
             __props__['direct_access_grants_enabled'] = direct_access_grants_enabled
             __props__['enabled'] = enabled
@@ -135,7 +141,7 @@ class Client(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, access_type=None, authorization=None, client_id=None, client_secret=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, implicit_flow_enabled=None, name=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None):
+    def get(resource_name, id, opts=None, access_type=None, admin_url=None, authorization=None, base_url=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, implicit_flow_enabled=None, name=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None):
         """
         Get an existing Client resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -156,9 +162,12 @@ class Client(pulumi.CustomResource):
 
         __props__ = dict()
         __props__["access_type"] = access_type
+        __props__["admin_url"] = admin_url
         __props__["authorization"] = authorization
+        __props__["base_url"] = base_url
         __props__["client_id"] = client_id
         __props__["client_secret"] = client_secret
+        __props__["consent_required"] = consent_required
         __props__["description"] = description
         __props__["direct_access_grants_enabled"] = direct_access_grants_enabled
         __props__["enabled"] = enabled

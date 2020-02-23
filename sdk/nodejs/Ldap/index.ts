@@ -4,6 +4,7 @@
 // Export members:
 export * from "./fullNameMapper";
 export * from "./groupMapper";
+export * from "./hardcodedRoleMapper";
 export * from "./msadUserAccountControlMapper";
 export * from "./userAttributeMapper";
 export * from "./userFederation";

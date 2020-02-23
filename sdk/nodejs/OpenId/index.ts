@@ -10,6 +10,7 @@ export * from "./clientAuthorizationScope";
 export * from "./clientDefaultScopes";
 export * from "./clientOptionalScopes";
 export * from "./clientScope";
+export * from "./clientServiceAccountRealmRole";
 export * from "./clientServiceAccountRole";
 export * from "./fullNameProtocolMapper";
 export * from "./getClient";

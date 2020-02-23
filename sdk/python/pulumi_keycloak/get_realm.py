@@ -13,7 +13,7 @@ class GetRealmResult:
     """
     A collection of values returned by getRealm.
     """
-    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, browser_flow=None, client_authentication_flow=None, direct_grant_flow=None, display_name=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, security_defenses=None, smtp_servers=None, sso_session_idle_timeout=None, sso_session_max_lifespan=None, verify_email=None, id=None):
+    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, browser_flow=None, client_authentication_flow=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, security_defenses=None, smtp_servers=None, sso_session_idle_timeout=None, sso_session_max_lifespan=None, verify_email=None, id=None):
         if access_code_lifespan and not isinstance(access_code_lifespan, str):
             raise TypeError("Expected argument 'access_code_lifespan' to be a str")
         __self__.access_code_lifespan = access_code_lifespan
@@ -53,6 +53,9 @@ class GetRealmResult:
         if display_name and not isinstance(display_name, str):
             raise TypeError("Expected argument 'display_name' to be a str")
         __self__.display_name = display_name
+        if display_name_html and not isinstance(display_name_html, str):
+            raise TypeError("Expected argument 'display_name_html' to be a str")
+        __self__.display_name_html = display_name_html
         if docker_authentication_flow and not isinstance(docker_authentication_flow, str):
             raise TypeError("Expected argument 'docker_authentication_flow' to be a str")
         __self__.docker_authentication_flow = docker_authentication_flow
@@ -150,6 +153,7 @@ class AwaitableGetRealmResult(GetRealmResult):
             client_authentication_flow=self.client_authentication_flow,
             direct_grant_flow=self.direct_grant_flow,
             display_name=self.display_name,
+            display_name_html=self.display_name_html,
             docker_authentication_flow=self.docker_authentication_flow,
             duplicate_emails_allowed=self.duplicate_emails_allowed,
             edit_username_allowed=self.edit_username_allowed,
@@ -176,7 +180,7 @@ class AwaitableGetRealmResult(GetRealmResult):
             verify_email=self.verify_email,
             id=self.id)
 
-def get_realm(internationalizations=None,realm=None,security_defenses=None,smtp_servers=None,opts=None):
+def get_realm(display_name_html=None,internationalizations=None,realm=None,security_defenses=None,smtp_servers=None,opts=None):
     """
     ## # .Realm data source
     
@@ -232,6 +236,7 @@ def get_realm(internationalizations=None,realm=None,security_defenses=None,smtp_
     """
     __args__ = dict()
 
+    __args__['displayNameHtml'] = display_name_html
     __args__['internationalizations'] = internationalizations
     __args__['realm'] = realm
     __args__['securityDefenses'] = security_defenses
@@ -256,6 +261,7 @@ def get_realm(internationalizations=None,realm=None,security_defenses=None,smtp_
         client_authentication_flow=__ret__.get('clientAuthenticationFlow'),
         direct_grant_flow=__ret__.get('directGrantFlow'),
         display_name=__ret__.get('displayName'),
+        display_name_html=__ret__.get('displayNameHtml'),
         docker_authentication_flow=__ret__.get('dockerAuthenticationFlow'),
         duplicate_emails_allowed=__ret__.get('duplicateEmailsAllowed'),
         edit_username_allowed=__ret__.get('editUsernameAllowed'),

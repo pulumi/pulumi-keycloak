@@ -18,6 +18,7 @@ export * from "./hardcodedAttributeIdentityProviderMapper";
 export * from "./hardcodedRoleIdentityMapper";
 export * from "./provider";
 export * from "./realm";
+export * from "./realmEvents";
 export * from "./requiredAction";
 export * from "./role";
 export * from "./user";

@@ -5,6 +5,7 @@
 # Export this package's modules as members:
 from .full_name_mapper import *
 from .group_mapper import *
+from .hardcoded_role_mapper import *
 from .msad_user_account_control_mapper import *
 from .user_attribute_mapper import *
 from .user_federation import *

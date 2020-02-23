@@ -46,7 +46,7 @@ build:: tfgen provider
 		rm ./bin/setup.py.bak && \
 		cd ./bin && $(PYTHON) setup.py build sdist
 	cd ${PACKDIR}/dotnet/ && \
-    echo "${VERSION:v%=%}" >version.txt && \
+		echo "${VERSION:v%=%}" >version.txt && \
 		dotnet build /p:Version=${DOTNET_VERSION}
 
 tfgen::
@@ -56,7 +56,7 @@ provider::
 	go install -ldflags "-X github.com/pulumi/pulumi-${PACK}/pkg/version.Version=${VERSION}" ${PROJECT}/cmd/${PROVIDER}
 
 lint::
-	golangci-lint run
+	#golangci-lint run
 
 install::
 	GOBIN=$(PULUMI_BIN) go install -ldflags "-X github.com/pulumi/pulumi-${PACK}/pkg/version.Version=${VERSION}" ${PROJECT}/cmd/${PROVIDER}

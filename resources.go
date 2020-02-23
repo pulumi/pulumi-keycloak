@@ -17,9 +17,9 @@ package keycloak
 import (
 	"unicode"
 
-	"github.com/hashicorp/terraform/terraform"
+	"github.com/hashicorp/terraform-plugin-sdk/terraform"
 	"github.com/mrparkers/terraform-provider-keycloak/provider"
-	"github.com/pulumi/pulumi-terraform/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfbridge"
 	"github.com/pulumi/pulumi/pkg/resource"
 	"github.com/pulumi/pulumi/pkg/tokens"
 )
@@ -35,6 +35,14 @@ const (
 	openIDMod = "OpenId" // the openid module
 	samlMod   = "Saml"   // the Saml module
 )
+
+var namespaceMap = map[string]string{
+	"keycloak": "Keycloak",
+	"Ldap":     "Ldap",
+	"Oidc":     "Oidc",
+	"OpenId":   "OpenId",
+	"Saml":     "Saml",
+}
 
 // makeMember manufactures a type token for the package and the given module and type.
 func makeMember(mod string, mem string) tokens.ModuleMember {
@@ -163,12 +171,14 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_user_template_importer_identity_provider_mapper": {
 				Tok: makeResource(mainMod, "UserTemplateImporterIdentityProviderMapper"),
 			},
+			"keycloak_realm_events": {Tok: makeResource(mainMod, "RealmEvents")},
 
 			"keycloak_ldap_full_name_mapper":                 {Tok: makeResource(ldapMod, "FullNameMapper")},
 			"keycloak_ldap_group_mapper":                     {Tok: makeResource(ldapMod, "GroupMapper")},
 			"keycloak_ldap_msad_user_account_control_mapper": {Tok: makeResource(ldapMod, "MsadUserAccountControlMapper")},
 			"keycloak_ldap_user_attribute_mapper":            {Tok: makeResource(ldapMod, "UserAttributeMapper")},
 			"keycloak_ldap_user_federation":                  {Tok: makeResource(ldapMod, "UserFederation")},
+			"keycloak_ldap_hardcoded_role_mapper":            {Tok: makeResource(ldapMod, "HardcodedRoleMapper")},
 
 			"keycloak_oidc_identity_provider": {Tok: makeResource(oidcMod, "IdentityProvider")},
 
@@ -201,6 +211,9 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"keycloak_openid_user_realm_role_protocol_mapper": {
 				Tok: makeResource(openIDMod, "UserRealmRoleProtocolMapper"),
+			},
+			"keycloak_openid_client_service_account_realm_role": {
+				Tok: makeResource(openIDMod, "ClientServiceAccountRealmRole"),
 			},
 
 			"keycloak_saml_client":                         {Tok: makeResource(samlMod, "Client")},
@@ -236,12 +249,10 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{
-				"Pulumi":                       "1.5.0-*",
+				"Pulumi":                       "1.11.0-preview",
 				"System.Collections.Immutable": "1.6.0",
 			},
-			Namespaces: map[string]string{
-				mainPkg: "Keycloak",
-			},
+			Namespaces: namespaceMap,
 		},
 	}
 

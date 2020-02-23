@@ -59,6 +59,7 @@ export class Realm extends pulumi.CustomResource {
      */
     public readonly directGrantFlow!: pulumi.Output<string | undefined>;
     public readonly displayName!: pulumi.Output<string | undefined>;
+    public readonly displayNameHtml!: pulumi.Output<string | undefined>;
     /**
      * Which flow should be used for DockerAuthenticationFlow
      */
@@ -129,6 +130,7 @@ export class Realm extends pulumi.CustomResource {
             inputs["clientAuthenticationFlow"] = state ? state.clientAuthenticationFlow : undefined;
             inputs["directGrantFlow"] = state ? state.directGrantFlow : undefined;
             inputs["displayName"] = state ? state.displayName : undefined;
+            inputs["displayNameHtml"] = state ? state.displayNameHtml : undefined;
             inputs["dockerAuthenticationFlow"] = state ? state.dockerAuthenticationFlow : undefined;
             inputs["duplicateEmailsAllowed"] = state ? state.duplicateEmailsAllowed : undefined;
             inputs["editUsernameAllowed"] = state ? state.editUsernameAllowed : undefined;
@@ -174,6 +176,7 @@ export class Realm extends pulumi.CustomResource {
             inputs["clientAuthenticationFlow"] = args ? args.clientAuthenticationFlow : undefined;
             inputs["directGrantFlow"] = args ? args.directGrantFlow : undefined;
             inputs["displayName"] = args ? args.displayName : undefined;
+            inputs["displayNameHtml"] = args ? args.displayNameHtml : undefined;
             inputs["dockerAuthenticationFlow"] = args ? args.dockerAuthenticationFlow : undefined;
             inputs["duplicateEmailsAllowed"] = args ? args.duplicateEmailsAllowed : undefined;
             inputs["editUsernameAllowed"] = args ? args.editUsernameAllowed : undefined;
@@ -239,6 +242,7 @@ export interface RealmState {
      */
     readonly directGrantFlow?: pulumi.Input<string>;
     readonly displayName?: pulumi.Input<string>;
+    readonly displayNameHtml?: pulumi.Input<string>;
     /**
      * Which flow should be used for DockerAuthenticationFlow
      */
@@ -311,6 +315,7 @@ export interface RealmArgs {
      */
     readonly directGrantFlow?: pulumi.Input<string>;
     readonly displayName?: pulumi.Input<string>;
+    readonly displayNameHtml?: pulumi.Input<string>;
     /**
      * Which flow should be used for DockerAuthenticationFlow
      */
