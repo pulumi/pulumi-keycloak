@@ -9,7 +9,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Ldap
 {
     /// <summary>
-    /// ## # keycloak.Ldap.UserAttributeMapper
+    /// ## # keycloak.ldap.UserAttributeMapper
     /// 
     /// Allows for creating and managing user attribute mappers for Keycloak users
     /// federated via LDAP.
@@ -91,12 +91,12 @@ namespace Pulumi.Keycloak.Ldap
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public UserAttributeMapper(string name, UserAttributeMapperArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:Ldap/userAttributeMapper:UserAttributeMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:ldap/userAttributeMapper:UserAttributeMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
         private UserAttributeMapper(string name, Input<string> id, UserAttributeMapperState? state = null, CustomResourceOptions? options = null)
-            : base("keycloak:Ldap/userAttributeMapper:UserAttributeMapper", name, state, MakeResourceOptions(options, id))
+            : base("keycloak:ldap/userAttributeMapper:UserAttributeMapper", name, state, MakeResourceOptions(options, id))
         {
         }
 

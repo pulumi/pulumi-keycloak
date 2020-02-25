@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Fix the casing of the Go, NodeJS and Python sub packages
 
 ---
 

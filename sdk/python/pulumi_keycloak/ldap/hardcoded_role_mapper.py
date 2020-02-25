@@ -16,7 +16,7 @@ class HardcodedRoleMapper(pulumi.CustomResource):
     role: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, ldap_user_federation_id=None, name=None, realm_id=None, role=None, __props__=None, __name__=None, __opts__=None):
         """
-        ## # Ldap.HardcodedRoleMapper
+        ## # ldap.HardcodedRoleMapper
         
         This mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
         
@@ -62,7 +62,7 @@ class HardcodedRoleMapper(pulumi.CustomResource):
                 raise TypeError("Missing required property 'role'")
             __props__['role'] = role
         super(HardcodedRoleMapper, __self__).__init__(
-            'keycloak:Ldap/hardcodedRoleMapper:HardcodedRoleMapper',
+            'keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper',
             resource_name,
             __props__,
             opts)

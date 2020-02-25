@@ -9,7 +9,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Ldap
 {
     /// <summary>
-    /// ## # keycloak.Ldap.MsadUserAccountControlMapper
+    /// ## # keycloak.ldap.MsadUserAccountControlMapper
     /// 
     /// Allows for creating and managing MSAD user account control mappers for Keycloak
     /// users federated via LDAP.
@@ -62,12 +62,12 @@ namespace Pulumi.Keycloak.Ldap
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public MsadUserAccountControlMapper(string name, MsadUserAccountControlMapperArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:Ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
         private MsadUserAccountControlMapper(string name, Input<string> id, MsadUserAccountControlMapperState? state = null, CustomResourceOptions? options = null)
-            : base("keycloak:Ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper", name, state, MakeResourceOptions(options, id))
+            : base("keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper", name, state, MakeResourceOptions(options, id))
         {
         }
 

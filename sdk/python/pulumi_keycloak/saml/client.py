@@ -37,7 +37,7 @@ class Client(pulumi.CustomResource):
     valid_redirect_uris: pulumi.Output[list]
     def __init__(__self__, resource_name, opts=None, assertion_consumer_post_url=None, assertion_consumer_redirect_url=None, base_url=None, client_id=None, client_signature_required=None, description=None, enabled=None, force_post_binding=None, front_channel_logout=None, full_scope_allowed=None, idp_initiated_sso_relay_state=None, idp_initiated_sso_url_name=None, include_authn_statement=None, logout_service_post_binding_url=None, logout_service_redirect_binding_url=None, master_saml_processing_url=None, name=None, name_id_format=None, realm_id=None, root_url=None, sign_assertions=None, sign_documents=None, signing_certificate=None, signing_private_key=None, valid_redirect_uris=None, __props__=None, __name__=None, __opts__=None):
         """
-        ## # Saml.Client
+        ## # saml.Client
         
         Allows for creating and managing Keycloak clients that use the SAML protocol.
         
@@ -127,7 +127,7 @@ class Client(pulumi.CustomResource):
             __props__['signing_private_key'] = signing_private_key
             __props__['valid_redirect_uris'] = valid_redirect_uris
         super(Client, __self__).__init__(
-            'keycloak:Saml/client:Client',
+            'keycloak:saml/client:Client',
             resource_name,
             __props__,
             opts)

@@ -39,7 +39,7 @@ class UserFederation(pulumi.CustomResource):
     vendor: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, batch_size_for_sync=None, bind_credential=None, bind_dn=None, cache_policy=None, changed_sync_period=None, connection_timeout=None, connection_url=None, custom_user_search_filter=None, edit_mode=None, enabled=None, full_sync_period=None, import_enabled=None, name=None, pagination=None, priority=None, rdn_ldap_attribute=None, read_timeout=None, realm_id=None, search_scope=None, sync_registrations=None, use_truststore_spi=None, user_object_classes=None, username_ldap_attribute=None, users_dn=None, uuid_ldap_attribute=None, validate_password_policy=None, vendor=None, __props__=None, __name__=None, __opts__=None):
         """
-        ## # Ldap.UserFederation
+        ## # ldap.UserFederation
         
         Allows for creating and managing LDAP user federation providers within Keycloak.
         
@@ -149,7 +149,7 @@ class UserFederation(pulumi.CustomResource):
             __props__['validate_password_policy'] = validate_password_policy
             __props__['vendor'] = vendor
         super(UserFederation, __self__).__init__(
-            'keycloak:Ldap/userFederation:UserFederation',
+            'keycloak:ldap/userFederation:UserFederation',
             resource_name,
             __props__,
             opts)

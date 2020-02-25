@@ -16,7 +16,7 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
     realm_id: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, ldap_password_policy_hints_enabled=None, ldap_user_federation_id=None, name=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
         """
-        ## # Ldap.MsadUserAccountControlMapper
+        ## # ldap.MsadUserAccountControlMapper
         
         Allows for creating and managing MSAD user account control mappers for Keycloak
         users federated via LDAP.
@@ -66,7 +66,7 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
         super(MsadUserAccountControlMapper, __self__).__init__(
-            'keycloak:Ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper',
+            'keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper',
             resource_name,
             __props__,
             opts)

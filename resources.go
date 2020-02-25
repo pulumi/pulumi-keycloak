@@ -15,6 +15,7 @@
 package keycloak
 
 import (
+	"strings"
 	"unicode"
 
 	"github.com/hashicorp/terraform-plugin-sdk/terraform"
@@ -38,36 +39,27 @@ const (
 
 var namespaceMap = map[string]string{
 	"keycloak": "Keycloak",
-	"Ldap":     "Ldap",
-	"Oidc":     "Oidc",
-	"OpenId":   "OpenId",
-	"Saml":     "Saml",
 }
 
 // makeMember manufactures a type token for the package and the given module and type.
 func makeMember(mod string, mem string) tokens.ModuleMember {
-	return tokens.ModuleMember(mainPkg + ":" + mod + ":" + mem)
+	moduleName := strings.ToLower(mod)
+	namespaceMap[moduleName] = mod
+	fn := string(unicode.ToLower(rune(mem[0]))) + mem[1:]
+	token := moduleName + "/" + fn
+	return tokens.ModuleMember(mainPkg + ":" + token + ":" + mem)
 }
 
-// makeType manufactures a type token for the package and the given module and type.
 func makeType(mod string, typ string) tokens.Type {
 	return tokens.Type(makeMember(mod, typ))
 }
 
-// makeDataSource manufactures a standard resource token given a module and resource name.  It
-// automatically uses the main package and names the file by simply lower casing the data source's
-// first character.
 func makeDataSource(mod string, res string) tokens.ModuleMember {
-	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
-	return makeMember(mod+"/"+fn, res)
+	return makeMember(mod, res)
 }
 
-// makeResource manufactures a standard resource token given a module and resource name.  It
-// automatically uses the main package and names the file by simply lower casing the resource's
-// first character.
 func makeResource(mod string, res string) tokens.Type {
-	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
-	return makeType(mod+"/"+fn, res)
+	return makeType(mod, res)
 }
 
 func refProviderLicense(license tfbridge.TFProviderLicense) *tfbridge.TFProviderLicense {

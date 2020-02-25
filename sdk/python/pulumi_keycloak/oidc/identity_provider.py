@@ -99,7 +99,7 @@ class IdentityProvider(pulumi.CustomResource):
             __props__['validate_signature'] = validate_signature
             __props__['internal_id'] = None
         super(IdentityProvider, __self__).__init__(
-            'keycloak:Oidc/identityProvider:IdentityProvider',
+            'keycloak:oidc/identityProvider:IdentityProvider',
             resource_name,
             __props__,
             opts)

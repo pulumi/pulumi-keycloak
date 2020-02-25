@@ -9,7 +9,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Ldap
 {
     /// <summary>
-    /// ## # keycloak.Ldap.HardcodedRoleMapper
+    /// ## # keycloak.ldap.HardcodedRoleMapper
     /// 
     /// This mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
     /// 
@@ -59,12 +59,12 @@ namespace Pulumi.Keycloak.Ldap
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public HardcodedRoleMapper(string name, HardcodedRoleMapperArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:Ldap/hardcodedRoleMapper:HardcodedRoleMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
         private HardcodedRoleMapper(string name, Input<string> id, HardcodedRoleMapperState? state = null, CustomResourceOptions? options = null)
-            : base("keycloak:Ldap/hardcodedRoleMapper:HardcodedRoleMapper", name, state, MakeResourceOptions(options, id))
+            : base("keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper", name, state, MakeResourceOptions(options, id))
         {
         }
 

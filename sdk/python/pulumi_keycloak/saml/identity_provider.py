@@ -39,7 +39,7 @@ class IdentityProvider(pulumi.CustomResource):
     xml_sign_key_info_key_name_transformer: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, add_read_token_role_on_create=None, alias=None, authenticate_by_default=None, backchannel_supported=None, display_name=None, enabled=None, first_broker_login_flow_alias=None, force_authn=None, hide_on_login_page=None, link_only=None, name_id_policy_format=None, post_binding_authn_request=None, post_binding_logout=None, post_binding_response=None, post_broker_login_flow_alias=None, realm=None, signature_algorithm=None, signing_certificate=None, single_logout_service_url=None, single_sign_on_service_url=None, store_token=None, trust_email=None, validate_signature=None, want_assertions_encrypted=None, want_assertions_signed=None, xml_sign_key_info_key_name_transformer=None, __props__=None, __name__=None, __opts__=None):
         """
-        ## # Saml.IdentityProvider
+        ## # saml.IdentityProvider
         
         Allows to create and manage SAML Identity Providers within Keycloak.
         
@@ -135,7 +135,7 @@ class IdentityProvider(pulumi.CustomResource):
             __props__['xml_sign_key_info_key_name_transformer'] = xml_sign_key_info_key_name_transformer
             __props__['internal_id'] = None
         super(IdentityProvider, __self__).__init__(
-            'keycloak:Saml/identityProvider:IdentityProvider',
+            'keycloak:saml/identityProvider:IdentityProvider',
             resource_name,
             __props__,
             opts)

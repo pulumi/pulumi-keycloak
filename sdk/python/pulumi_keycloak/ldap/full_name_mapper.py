@@ -18,7 +18,7 @@ class FullNameMapper(pulumi.CustomResource):
     write_only: pulumi.Output[bool]
     def __init__(__self__, resource_name, opts=None, ldap_full_name_attribute=None, ldap_user_federation_id=None, name=None, read_only=None, realm_id=None, write_only=None, __props__=None, __name__=None, __opts__=None):
         """
-        ## # Ldap.FullNameMapper
+        ## # ldap.FullNameMapper
         
         Allows for creating and managing full name mappers for Keycloak users federated
         via LDAP.
@@ -72,7 +72,7 @@ class FullNameMapper(pulumi.CustomResource):
             __props__['realm_id'] = realm_id
             __props__['write_only'] = write_only
         super(FullNameMapper, __self__).__init__(
-            'keycloak:Ldap/fullNameMapper:FullNameMapper',
+            'keycloak:ldap/fullNameMapper:FullNameMapper',
             resource_name,
             __props__,
             opts)

@@ -9,7 +9,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Saml
 {
     /// <summary>
-    /// ## # keycloak.Saml.IdentityProvider
+    /// ## # keycloak.saml.IdentityProvider
     /// 
     /// Allows to create and manage SAML Identity Providers within Keycloak.
     /// 
@@ -232,12 +232,12 @@ namespace Pulumi.Keycloak.Saml
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public IdentityProvider(string name, IdentityProviderArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:Saml/identityProvider:IdentityProvider", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:saml/identityProvider:IdentityProvider", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
         private IdentityProvider(string name, Input<string> id, IdentityProviderState? state = null, CustomResourceOptions? options = null)
-            : base("keycloak:Saml/identityProvider:IdentityProvider", name, state, MakeResourceOptions(options, id))
+            : base("keycloak:saml/identityProvider:IdentityProvider", name, state, MakeResourceOptions(options, id))
         {
         }
 

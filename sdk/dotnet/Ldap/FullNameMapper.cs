@@ -9,7 +9,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Ldap
 {
     /// <summary>
-    /// ## # keycloak.Ldap.FullNameMapper
+    /// ## # keycloak.ldap.FullNameMapper
     /// 
     /// Allows for creating and managing full name mappers for Keycloak users federated
     /// via LDAP.
@@ -68,12 +68,12 @@ namespace Pulumi.Keycloak.Ldap
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public FullNameMapper(string name, FullNameMapperArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:Ldap/fullNameMapper:FullNameMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:ldap/fullNameMapper:FullNameMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
         private FullNameMapper(string name, Input<string> id, FullNameMapperState? state = null, CustomResourceOptions? options = null)
-            : base("keycloak:Ldap/fullNameMapper:FullNameMapper", name, state, MakeResourceOptions(options, id))
+            : base("keycloak:ldap/fullNameMapper:FullNameMapper", name, state, MakeResourceOptions(options, id))
         {
         }
 

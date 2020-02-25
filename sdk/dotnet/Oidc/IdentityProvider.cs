@@ -180,12 +180,12 @@ namespace Pulumi.Keycloak.Oidc
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public IdentityProvider(string name, IdentityProviderArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:Oidc/identityProvider:IdentityProvider", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:oidc/identityProvider:IdentityProvider", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
         private IdentityProvider(string name, Input<string> id, IdentityProviderState? state = null, CustomResourceOptions? options = null)
-            : base("keycloak:Oidc/identityProvider:IdentityProvider", name, state, MakeResourceOptions(options, id))
+            : base("keycloak:oidc/identityProvider:IdentityProvider", name, state, MakeResourceOptions(options, id))
         {
         }
 
