@@ -15,7 +15,7 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfbridge"
 
 	keycloak "github.com/pulumi/pulumi-keycloak"
 	"github.com/pulumi/pulumi-keycloak/pkg/version"

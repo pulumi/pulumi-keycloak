@@ -11,6 +11,7 @@ from .client_authorization_scope import *
 from .client_default_scopes import *
 from .client_optional_scopes import *
 from .client_scope import *
+from .client_service_account_realm_role import *
 from .client_service_account_role import *
 from .full_name_protocol_mapper import *
 from .group_membership_protocol_mapper import *

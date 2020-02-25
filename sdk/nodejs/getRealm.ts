@@ -33,6 +33,7 @@ export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promi
         opts.version = utilities.getVersion();
     }
     const promise: Promise<GetRealmResult> = pulumi.runtime.invoke("keycloak:index/getRealm:getRealm", {
+        "displayNameHtml": args.displayNameHtml,
         "internationalizations": args.internationalizations,
         "realm": args.realm,
         "securityDefenses": args.securityDefenses,
@@ -46,6 +47,7 @@ export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promi
  * A collection of arguments for invoking getRealm.
  */
 export interface GetRealmArgs {
+    readonly displayNameHtml?: string;
     readonly internationalizations?: inputs.GetRealmInternationalization[];
     readonly realm: string;
     readonly securityDefenses?: inputs.GetRealmSecurityDefense[];
@@ -69,6 +71,7 @@ export interface GetRealmResult {
     readonly clientAuthenticationFlow: string;
     readonly directGrantFlow: string;
     readonly displayName: string;
+    readonly displayNameHtml?: string;
     readonly dockerAuthenticationFlow: string;
     readonly duplicateEmailsAllowed: boolean;
     readonly editUsernameAllowed: boolean;
