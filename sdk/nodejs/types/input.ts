@@ -100,7 +100,7 @@ export interface UserInitialPassword {
     value: pulumi.Input<string>;
 }
 
-export namespace OpenId {
+export namespace openid {
     export interface ClientAuthorization {
         allowRemoteResourceManagement?: pulumi.Input<boolean>;
         keepDefaults?: pulumi.Input<boolean>;

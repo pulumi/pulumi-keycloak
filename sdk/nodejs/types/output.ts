@@ -111,7 +111,7 @@ export interface UserInitialPassword {
     value: string;
 }
 
-export namespace OpenId {
+export namespace openid {
     export interface ClientAuthorization {
         allowRemoteResourceManagement?: boolean;
         keepDefaults?: boolean;

@@ -9,7 +9,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Ldap
 {
     /// <summary>
-    /// ## # keycloak.Ldap.UserFederation
+    /// ## # keycloak.ldap.UserFederation
     /// 
     /// Allows for creating and managing LDAP user federation providers within Keycloak.
     /// 
@@ -227,12 +227,12 @@ namespace Pulumi.Keycloak.Ldap
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public UserFederation(string name, UserFederationArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:Ldap/userFederation:UserFederation", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:ldap/userFederation:UserFederation", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
         private UserFederation(string name, Input<string> id, UserFederationState? state = null, CustomResourceOptions? options = null)
-            : base("keycloak:Ldap/userFederation:UserFederation", name, state, MakeResourceOptions(options, id))
+            : base("keycloak:ldap/userFederation:UserFederation", name, state, MakeResourceOptions(options, id))
         {
         }
 

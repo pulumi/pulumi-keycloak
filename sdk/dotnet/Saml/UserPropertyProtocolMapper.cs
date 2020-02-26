@@ -9,7 +9,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Saml
 {
     /// <summary>
-    /// ## # keycloak.Saml.UserPropertyProtocolMapper
+    /// ## # keycloak.saml.UserPropertyProtocolMapper
     /// 
     /// Allows for creating and managing user property protocol mappers for
     /// SAML clients within Keycloak.
@@ -69,12 +69,12 @@ namespace Pulumi.Keycloak.Saml
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public UserPropertyProtocolMapper(string name, UserPropertyProtocolMapperArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:Saml/userPropertyProtocolMapper:UserPropertyProtocolMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
         private UserPropertyProtocolMapper(string name, Input<string> id, UserPropertyProtocolMapperState? state = null, CustomResourceOptions? options = null)
-            : base("keycloak:Saml/userPropertyProtocolMapper:UserPropertyProtocolMapper", name, state, MakeResourceOptions(options, id))
+            : base("keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper", name, state, MakeResourceOptions(options, id))
         {
         }
 

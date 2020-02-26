@@ -4,7 +4,7 @@
 
 import importlib
 # Make subpackages available:
-__all__ = ['ldap', 'oidc', 'open_id', 'saml', 'config']
+__all__ = ['config', 'ldap', 'oidc', 'openid', 'saml']
 for pkg in __all__:
     if pkg != 'config':
         importlib.import_module(f'{__name__}.{pkg}')

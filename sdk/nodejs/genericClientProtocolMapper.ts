@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  *     enabled: true,
  *     realm: "my-realm",
  * });
- * const samlClient = new keycloak.Saml.Client("samlClient", {
+ * const samlClient = new keycloak.saml.Client("samlClient", {
  *     clientId: "test-client",
  *     realmId: realm.id,
  * });

@@ -25,10 +25,10 @@ export * from "./user";
 export * from "./userTemplateImporterIdentityProviderMapper";
 
 // Export sub-modules:
-import * as Ldap from "./Ldap/index";
-import * as Oidc from "./Oidc/index";
-import * as OpenId from "./OpenId/index";
-import * as Saml from "./Saml/index";
 import * as config from "./config/index";
+import * as ldap from "./ldap/index";
+import * as oidc from "./oidc/index";
+import * as openid from "./openid/index";
+import * as saml from "./saml/index";
 import * as types from "./types/index";
-export {Ldap, Oidc, OpenId, Saml, config, types};
+export {config, ldap, oidc, openid, saml, types};

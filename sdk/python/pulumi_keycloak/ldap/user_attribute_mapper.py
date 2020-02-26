@@ -20,7 +20,7 @@ class UserAttributeMapper(pulumi.CustomResource):
     user_model_attribute: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, always_read_value_from_ldap=None, is_mandatory_in_ldap=None, ldap_attribute=None, ldap_user_federation_id=None, name=None, read_only=None, realm_id=None, user_model_attribute=None, __props__=None, __name__=None, __opts__=None):
         """
-        ## # Ldap.UserAttributeMapper
+        ## # ldap.UserAttributeMapper
         
         Allows for creating and managing user attribute mappers for Keycloak users
         federated via LDAP.
@@ -80,7 +80,7 @@ class UserAttributeMapper(pulumi.CustomResource):
                 raise TypeError("Missing required property 'user_model_attribute'")
             __props__['user_model_attribute'] = user_model_attribute
         super(UserAttributeMapper, __self__).__init__(
-            'keycloak:Ldap/userAttributeMapper:UserAttributeMapper',
+            'keycloak:ldap/userAttributeMapper:UserAttributeMapper',
             resource_name,
             __props__,
             opts)

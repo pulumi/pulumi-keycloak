@@ -20,7 +20,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
     user_property: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, client_id=None, client_scope_id=None, friendly_name=None, name=None, realm_id=None, saml_attribute_name=None, saml_attribute_name_format=None, user_property=None, __props__=None, __name__=None, __opts__=None):
         """
-        ## # Saml.UserPropertyProtocolMapper
+        ## # saml.UserPropertyProtocolMapper
         
         Allows for creating and managing user property protocol mappers for
         SAML clients within Keycloak.
@@ -82,7 +82,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
                 raise TypeError("Missing required property 'user_property'")
             __props__['user_property'] = user_property
         super(UserPropertyProtocolMapper, __self__).__init__(
-            'keycloak:Saml/userPropertyProtocolMapper:UserPropertyProtocolMapper',
+            'keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper',
             resource_name,
             __props__,
             opts)

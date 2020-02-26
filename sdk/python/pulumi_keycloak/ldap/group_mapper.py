@@ -29,7 +29,7 @@ class GroupMapper(pulumi.CustomResource):
     user_roles_retrieve_strategy: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, drop_non_existing_groups_during_sync=None, group_name_ldap_attribute=None, group_object_classes=None, groups_ldap_filter=None, ignore_missing_groups=None, ldap_groups_dn=None, ldap_user_federation_id=None, mapped_group_attributes=None, memberof_ldap_attribute=None, membership_attribute_type=None, membership_ldap_attribute=None, membership_user_ldap_attribute=None, mode=None, name=None, preserve_group_inheritance=None, realm_id=None, user_roles_retrieve_strategy=None, __props__=None, __name__=None, __opts__=None):
         """
-        ## # Ldap.GroupMapper
+        ## # ldap.GroupMapper
         
         Allows for creating and managing group mappers for Keycloak users federated
         via LDAP.
@@ -114,7 +114,7 @@ class GroupMapper(pulumi.CustomResource):
             __props__['realm_id'] = realm_id
             __props__['user_roles_retrieve_strategy'] = user_roles_retrieve_strategy
         super(GroupMapper, __self__).__init__(
-            'keycloak:Ldap/groupMapper:GroupMapper',
+            'keycloak:ldap/groupMapper:GroupMapper',
             resource_name,
             __props__,
             opts)

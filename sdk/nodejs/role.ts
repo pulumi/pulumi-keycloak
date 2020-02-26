@@ -40,7 +40,7 @@ import * as utilities from "./utilities";
  *     enabled: true,
  *     realm: "my-realm",
  * });
- * const client = new keycloak.OpenId.Client("client", {
+ * const client = new keycloak.openid.Client("client", {
  *     accessType: "BEARER-ONLY",
  *     clientId: "client",
  *     enabled: true,
@@ -75,7 +75,7 @@ import * as utilities from "./utilities";
  * const deleteRole = new keycloak.Role("deleteRole", {
  *     realmId: realm.id,
  * });
- * const client = new keycloak.OpenId.Client("client", {
+ * const client = new keycloak.openid.Client("client", {
  *     accessType: "BEARER-ONLY",
  *     clientId: "client",
  *     enabled: true,

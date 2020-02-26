@@ -9,7 +9,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Saml
 {
     /// <summary>
-    /// ## # keycloak.Saml.Client
+    /// ## # keycloak.saml.Client
     /// 
     /// Allows for creating and managing Keycloak clients that use the SAML protocol.
     /// 
@@ -135,12 +135,12 @@ namespace Pulumi.Keycloak.Saml
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Client(string name, ClientArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:Saml/client:Client", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:saml/client:Client", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
         private Client(string name, Input<string> id, ClientState? state = null, CustomResourceOptions? options = null)
-            : base("keycloak:Saml/client:Client", name, state, MakeResourceOptions(options, id))
+            : base("keycloak:saml/client:Client", name, state, MakeResourceOptions(options, id))
         {
         }
 

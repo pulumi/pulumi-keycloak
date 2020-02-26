@@ -9,7 +9,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Ldap
 {
     /// <summary>
-    /// ## # keycloak.Ldap.GroupMapper
+    /// ## # keycloak.ldap.GroupMapper
     /// 
     /// Allows for creating and managing group mappers for Keycloak users federated
     /// via LDAP.
@@ -113,12 +113,12 @@ namespace Pulumi.Keycloak.Ldap
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public GroupMapper(string name, GroupMapperArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:Ldap/groupMapper:GroupMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:ldap/groupMapper:GroupMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
         private GroupMapper(string name, Input<string> id, GroupMapperState? state = null, CustomResourceOptions? options = null)
-            : base("keycloak:Ldap/groupMapper:GroupMapper", name, state, MakeResourceOptions(options, id))
+            : base("keycloak:ldap/groupMapper:GroupMapper", name, state, MakeResourceOptions(options, id))
         {
         }
 
