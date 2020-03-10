@@ -3,6 +3,7 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Fix the casing of the Go, NodeJS and Python sub packages
+* Upgrade to v1.17.0 of the KeyCloak Terraform Provider
 
 ---
 
