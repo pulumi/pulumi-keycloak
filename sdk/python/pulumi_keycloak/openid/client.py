@@ -10,6 +10,7 @@ from typing import Union
 from .. import utilities, tables
 
 class Client(pulumi.CustomResource):
+    access_token_lifespan: pulumi.Output[str]
     access_type: pulumi.Output[str]
     admin_url: pulumi.Output[str]
     authorization: pulumi.Output[dict]
@@ -32,7 +33,7 @@ class Client(pulumi.CustomResource):
     standard_flow_enabled: pulumi.Output[bool]
     valid_redirect_uris: pulumi.Output[list]
     web_origins: pulumi.Output[list]
-    def __init__(__self__, resource_name, opts=None, access_type=None, admin_url=None, authorization=None, base_url=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, implicit_flow_enabled=None, name=None, pkce_code_challenge_method=None, realm_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, access_token_lifespan=None, access_type=None, admin_url=None, authorization=None, base_url=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, implicit_flow_enabled=None, name=None, pkce_code_challenge_method=None, realm_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # openid.Client
         
@@ -106,6 +107,7 @@ class Client(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
+            __props__['access_token_lifespan'] = access_token_lifespan
             if access_type is None:
                 raise TypeError("Missing required property 'access_type'")
             __props__['access_type'] = access_type
@@ -141,7 +143,7 @@ class Client(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, access_type=None, admin_url=None, authorization=None, base_url=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, implicit_flow_enabled=None, name=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None):
+    def get(resource_name, id, opts=None, access_token_lifespan=None, access_type=None, admin_url=None, authorization=None, base_url=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, implicit_flow_enabled=None, name=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None):
         """
         Get an existing Client resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -161,6 +163,7 @@ class Client(pulumi.CustomResource):
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+        __props__["access_token_lifespan"] = access_token_lifespan
         __props__["access_type"] = access_type
         __props__["admin_url"] = admin_url
         __props__["authorization"] = authorization

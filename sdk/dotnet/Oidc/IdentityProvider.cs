@@ -166,7 +166,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string?> UserInfoUrl { get; private set; } = null!;
 
         /// <summary>
-        /// Enable/disable signature validation of SAML responses.
+        /// Enable/disable signature validation of external IDP signatures.
         /// </summary>
         [Output("validateSignature")]
         public Output<bool?> ValidateSignature { get; private set; } = null!;
@@ -372,7 +372,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? UserInfoUrl { get; set; }
 
         /// <summary>
-        /// Enable/disable signature validation of SAML responses.
+        /// Enable/disable signature validation of external IDP signatures.
         /// </summary>
         [Input("validateSignature")]
         public Input<bool>? ValidateSignature { get; set; }
@@ -545,7 +545,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? UserInfoUrl { get; set; }
 
         /// <summary>
-        /// Enable/disable signature validation of SAML responses.
+        /// Enable/disable signature validation of external IDP signatures.
         /// </summary>
         [Input("validateSignature")]
         public Input<bool>? ValidateSignature { get; set; }

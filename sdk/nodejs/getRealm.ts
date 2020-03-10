@@ -33,6 +33,7 @@ export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promi
         opts.version = utilities.getVersion();
     }
     const promise: Promise<GetRealmResult> = pulumi.runtime.invoke("keycloak:index/getRealm:getRealm", {
+        "attributes": args.attributes,
         "displayNameHtml": args.displayNameHtml,
         "internationalizations": args.internationalizations,
         "realm": args.realm,
@@ -47,6 +48,7 @@ export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promi
  * A collection of arguments for invoking getRealm.
  */
 export interface GetRealmArgs {
+    readonly attributes?: {[key: string]: any};
     readonly displayNameHtml?: string;
     readonly internationalizations?: inputs.GetRealmInternationalization[];
     readonly realm: string;
@@ -67,6 +69,7 @@ export interface GetRealmResult {
     readonly actionTokenGeneratedByAdminLifespan: string;
     readonly actionTokenGeneratedByUserLifespan: string;
     readonly adminTheme: string;
+    readonly attributes: {[key: string]: any};
     readonly browserFlow: string;
     readonly clientAuthenticationFlow: string;
     readonly directGrantFlow: string;
@@ -93,6 +96,7 @@ export interface GetRealmResult {
     readonly resetPasswordAllowed: boolean;
     readonly securityDefenses: outputs.GetRealmSecurityDefense[];
     readonly smtpServers: outputs.GetRealmSmtpServer[];
+    readonly sslRequired: string;
     readonly ssoSessionIdleTimeout: string;
     readonly ssoSessionMaxLifespan: string;
     readonly verifyEmail: boolean;

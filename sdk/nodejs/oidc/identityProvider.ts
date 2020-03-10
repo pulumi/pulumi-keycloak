@@ -135,7 +135,7 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly userInfoUrl!: pulumi.Output<string | undefined>;
     /**
-     * Enable/disable signature validation of SAML responses.
+     * Enable/disable signature validation of external IDP signatures.
      */
     public readonly validateSignature!: pulumi.Output<boolean | undefined>;
 
@@ -343,7 +343,7 @@ export interface IdentityProviderState {
      */
     readonly userInfoUrl?: pulumi.Input<string>;
     /**
-     * Enable/disable signature validation of SAML responses.
+     * Enable/disable signature validation of external IDP signatures.
      */
     readonly validateSignature?: pulumi.Input<boolean>;
 }
@@ -452,7 +452,7 @@ export interface IdentityProviderArgs {
      */
     readonly userInfoUrl?: pulumi.Input<string>;
     /**
-     * Enable/disable signature validation of SAML responses.
+     * Enable/disable signature validation of external IDP signatures.
      */
     readonly validateSignature?: pulumi.Input<boolean>;
 }

@@ -10,7 +10,18 @@ export interface GetRealmInternationalization {
 }
 
 export interface GetRealmSecurityDefense {
+    bruteForceDetections?: inputs.GetRealmSecurityDefenseBruteForceDetection[];
     headers?: inputs.GetRealmSecurityDefenseHeader[];
+}
+
+export interface GetRealmSecurityDefenseBruteForceDetection {
+    failureResetTimeSeconds?: number;
+    maxFailureWaitSeconds?: number;
+    maxLoginFailures?: number;
+    minimumQuickLoginWaitSeconds?: number;
+    permanentLockout?: boolean;
+    quickLoginCheckMilliSeconds?: number;
+    waitIncrementSeconds?: number;
 }
 
 export interface GetRealmSecurityDefenseHeader {
@@ -105,5 +116,16 @@ export namespace openid {
         allowRemoteResourceManagement?: pulumi.Input<boolean>;
         keepDefaults?: pulumi.Input<boolean>;
         policyEnforcementMode: pulumi.Input<string>;
+    }
+
+    export interface ClientGroupPolicyGroup {
+        extendChildren: pulumi.Input<boolean>;
+        id: pulumi.Input<string>;
+        path: pulumi.Input<string>;
+    }
+
+    export interface ClientRolePolicyRole {
+        id: pulumi.Input<string>;
+        required: pulumi.Input<boolean>;
     }
 }

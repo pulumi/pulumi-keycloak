@@ -68,7 +68,7 @@ type IdentityProvider struct {
 	UiLocales pulumi.BoolPtrOutput `pulumi:"uiLocales"`
 	// User Info URL
 	UserInfoUrl pulumi.StringPtrOutput `pulumi:"userInfoUrl"`
-	// Enable/disable signature validation of SAML responses.
+	// Enable/disable signature validation of external IDP signatures.
 	ValidateSignature pulumi.BoolPtrOutput `pulumi:"validateSignature"`
 }
 
@@ -172,7 +172,7 @@ type identityProviderState struct {
 	UiLocales *bool `pulumi:"uiLocales"`
 	// User Info URL
 	UserInfoUrl *string `pulumi:"userInfoUrl"`
-	// Enable/disable signature validation of SAML responses.
+	// Enable/disable signature validation of external IDP signatures.
 	ValidateSignature *bool `pulumi:"validateSignature"`
 }
 
@@ -231,7 +231,7 @@ type IdentityProviderState struct {
 	UiLocales pulumi.BoolPtrInput
 	// User Info URL
 	UserInfoUrl pulumi.StringPtrInput
-	// Enable/disable signature validation of SAML responses.
+	// Enable/disable signature validation of external IDP signatures.
 	ValidateSignature pulumi.BoolPtrInput
 }
 
@@ -292,7 +292,7 @@ type identityProviderArgs struct {
 	UiLocales *bool `pulumi:"uiLocales"`
 	// User Info URL
 	UserInfoUrl *string `pulumi:"userInfoUrl"`
-	// Enable/disable signature validation of SAML responses.
+	// Enable/disable signature validation of external IDP signatures.
 	ValidateSignature *bool `pulumi:"validateSignature"`
 }
 
@@ -350,7 +350,7 @@ type IdentityProviderArgs struct {
 	UiLocales pulumi.BoolPtrInput
 	// User Info URL
 	UserInfoUrl pulumi.StringPtrInput
-	// Enable/disable signature validation of SAML responses.
+	// Enable/disable signature validation of external IDP signatures.
 	ValidateSignature pulumi.BoolPtrInput
 }
 

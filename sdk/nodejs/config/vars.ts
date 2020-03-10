@@ -19,6 +19,10 @@ export let initialLogin: boolean | undefined = __config.getObject<boolean>("init
 export let password: string | undefined = __config.get("password") || utilities.getEnv("KEYCLOAK_PASSWORD");
 export let realm: string | undefined = __config.get("realm") || (utilities.getEnv("KEYCLOAK_REALM") || "master");
 /**
+ * Allows x509 calls using an unknown CA certificate (for development purposes)
+ */
+export let rootCaCertificate: string | undefined = __config.get("rootCaCertificate");
+/**
  * The base URL of the Keycloak instance, before `/auth`
  */
 export let url: string | undefined = __config.get("url") || utilities.getEnv("KEYCLOAK_URL");

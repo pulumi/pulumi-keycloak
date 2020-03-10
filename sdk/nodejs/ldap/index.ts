@@ -5,6 +5,7 @@
 export * from "./fullNameMapper";
 export * from "./groupMapper";
 export * from "./hardcodedRoleMapper";
+export * from "./msadLdsUserAccountControlMapper";
 export * from "./msadUserAccountControlMapper";
 export * from "./userAttributeMapper";
 export * from "./userFederation";

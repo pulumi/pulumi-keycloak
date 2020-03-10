@@ -34,6 +34,14 @@ namespace Pulumi.Keycloak
 
     public sealed class GetRealmArgs : Pulumi.InvokeArgs
     {
+        [Input("attributes")]
+        private Dictionary<string, object>? _attributes;
+        public Dictionary<string, object> Attributes
+        {
+            get => _attributes ?? (_attributes = new Dictionary<string, object>());
+            set => _attributes = value;
+        }
+
         [Input("displayNameHtml")]
         public string? DisplayNameHtml { get; set; }
 
@@ -81,6 +89,7 @@ namespace Pulumi.Keycloak
         public readonly string ActionTokenGeneratedByAdminLifespan;
         public readonly string ActionTokenGeneratedByUserLifespan;
         public readonly string AdminTheme;
+        public readonly ImmutableDictionary<string, object> Attributes;
         public readonly string BrowserFlow;
         public readonly string ClientAuthenticationFlow;
         public readonly string DirectGrantFlow;
@@ -107,6 +116,7 @@ namespace Pulumi.Keycloak
         public readonly bool ResetPasswordAllowed;
         public readonly ImmutableArray<Outputs.GetRealmSecurityDefensesResult> SecurityDefenses;
         public readonly ImmutableArray<Outputs.GetRealmSmtpServersResult> SmtpServers;
+        public readonly string SslRequired;
         public readonly string SsoSessionIdleTimeout;
         public readonly string SsoSessionMaxLifespan;
         public readonly bool VerifyEmail;
@@ -126,6 +136,7 @@ namespace Pulumi.Keycloak
             string actionTokenGeneratedByAdminLifespan,
             string actionTokenGeneratedByUserLifespan,
             string adminTheme,
+            ImmutableDictionary<string, object> attributes,
             string browserFlow,
             string clientAuthenticationFlow,
             string directGrantFlow,
@@ -152,6 +163,7 @@ namespace Pulumi.Keycloak
             bool resetPasswordAllowed,
             ImmutableArray<Outputs.GetRealmSecurityDefensesResult> securityDefenses,
             ImmutableArray<Outputs.GetRealmSmtpServersResult> smtpServers,
+            string sslRequired,
             string ssoSessionIdleTimeout,
             string ssoSessionMaxLifespan,
             bool verifyEmail,
@@ -166,6 +178,7 @@ namespace Pulumi.Keycloak
             ActionTokenGeneratedByAdminLifespan = actionTokenGeneratedByAdminLifespan;
             ActionTokenGeneratedByUserLifespan = actionTokenGeneratedByUserLifespan;
             AdminTheme = adminTheme;
+            Attributes = attributes;
             BrowserFlow = browserFlow;
             ClientAuthenticationFlow = clientAuthenticationFlow;
             DirectGrantFlow = directGrantFlow;
@@ -192,6 +205,7 @@ namespace Pulumi.Keycloak
             ResetPasswordAllowed = resetPasswordAllowed;
             SecurityDefenses = securityDefenses;
             SmtpServers = smtpServers;
+            SslRequired = sslRequired;
             SsoSessionIdleTimeout = ssoSessionIdleTimeout;
             SsoSessionMaxLifespan = ssoSessionMaxLifespan;
             VerifyEmail = verifyEmail;
@@ -222,6 +236,14 @@ namespace Pulumi.Keycloak
 
     public sealed class GetRealmSecurityDefensesArgs : Pulumi.InvokeArgs
     {
+        [Input("bruteForceDetections")]
+        private List<GetRealmSecurityDefensesBruteForceDetectionsArgs>? _bruteForceDetections;
+        public List<GetRealmSecurityDefensesBruteForceDetectionsArgs> BruteForceDetections
+        {
+            get => _bruteForceDetections ?? (_bruteForceDetections = new List<GetRealmSecurityDefensesBruteForceDetectionsArgs>());
+            set => _bruteForceDetections = value;
+        }
+
         [Input("headers")]
         private List<GetRealmSecurityDefensesHeadersArgs>? _headers;
         public List<GetRealmSecurityDefensesHeadersArgs> Headers
@@ -231,6 +253,34 @@ namespace Pulumi.Keycloak
         }
 
         public GetRealmSecurityDefensesArgs()
+        {
+        }
+    }
+
+    public sealed class GetRealmSecurityDefensesBruteForceDetectionsArgs : Pulumi.InvokeArgs
+    {
+        [Input("failureResetTimeSeconds")]
+        public int? FailureResetTimeSeconds { get; set; }
+
+        [Input("maxFailureWaitSeconds")]
+        public int? MaxFailureWaitSeconds { get; set; }
+
+        [Input("maxLoginFailures")]
+        public int? MaxLoginFailures { get; set; }
+
+        [Input("minimumQuickLoginWaitSeconds")]
+        public int? MinimumQuickLoginWaitSeconds { get; set; }
+
+        [Input("permanentLockout")]
+        public bool? PermanentLockout { get; set; }
+
+        [Input("quickLoginCheckMilliSeconds")]
+        public int? QuickLoginCheckMilliSeconds { get; set; }
+
+        [Input("waitIncrementSeconds")]
+        public int? WaitIncrementSeconds { get; set; }
+
+        public GetRealmSecurityDefensesBruteForceDetectionsArgs()
         {
         }
     }
@@ -339,6 +389,37 @@ namespace Pulumi.Keycloak
     }
 
     [OutputType]
+    public sealed class GetRealmSecurityDefensesBruteForceDetectionsResult
+    {
+        public readonly int FailureResetTimeSeconds;
+        public readonly int MaxFailureWaitSeconds;
+        public readonly int MaxLoginFailures;
+        public readonly int MinimumQuickLoginWaitSeconds;
+        public readonly bool PermanentLockout;
+        public readonly int QuickLoginCheckMilliSeconds;
+        public readonly int WaitIncrementSeconds;
+
+        [OutputConstructor]
+        private GetRealmSecurityDefensesBruteForceDetectionsResult(
+            int failureResetTimeSeconds,
+            int maxFailureWaitSeconds,
+            int maxLoginFailures,
+            int minimumQuickLoginWaitSeconds,
+            bool permanentLockout,
+            int quickLoginCheckMilliSeconds,
+            int waitIncrementSeconds)
+        {
+            FailureResetTimeSeconds = failureResetTimeSeconds;
+            MaxFailureWaitSeconds = maxFailureWaitSeconds;
+            MaxLoginFailures = maxLoginFailures;
+            MinimumQuickLoginWaitSeconds = minimumQuickLoginWaitSeconds;
+            PermanentLockout = permanentLockout;
+            QuickLoginCheckMilliSeconds = quickLoginCheckMilliSeconds;
+            WaitIncrementSeconds = waitIncrementSeconds;
+        }
+    }
+
+    [OutputType]
     public sealed class GetRealmSecurityDefensesHeadersResult
     {
         public readonly string ContentSecurityPolicy;
@@ -372,11 +453,15 @@ namespace Pulumi.Keycloak
     [OutputType]
     public sealed class GetRealmSecurityDefensesResult
     {
+        public readonly ImmutableArray<GetRealmSecurityDefensesBruteForceDetectionsResult> BruteForceDetections;
         public readonly ImmutableArray<GetRealmSecurityDefensesHeadersResult> Headers;
 
         [OutputConstructor]
-        private GetRealmSecurityDefensesResult(ImmutableArray<GetRealmSecurityDefensesHeadersResult> headers)
+        private GetRealmSecurityDefensesResult(
+            ImmutableArray<GetRealmSecurityDefensesBruteForceDetectionsResult> bruteForceDetections,
+            ImmutableArray<GetRealmSecurityDefensesHeadersResult> headers)
         {
+            BruteForceDetections = bruteForceDetections;
             Headers = headers;
         }
     }

@@ -40,6 +40,7 @@ export class ClientAuthorizationPermission extends pulumi.CustomResource {
     public readonly realmId!: pulumi.Output<string>;
     public readonly resourceServerId!: pulumi.Output<string>;
     public readonly resources!: pulumi.Output<string[] | undefined>;
+    public readonly scopes!: pulumi.Output<string[] | undefined>;
     public readonly type!: pulumi.Output<string | undefined>;
 
     /**
@@ -61,6 +62,7 @@ export class ClientAuthorizationPermission extends pulumi.CustomResource {
             inputs["realmId"] = state ? state.realmId : undefined;
             inputs["resourceServerId"] = state ? state.resourceServerId : undefined;
             inputs["resources"] = state ? state.resources : undefined;
+            inputs["scopes"] = state ? state.scopes : undefined;
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as ClientAuthorizationPermissionArgs | undefined;
@@ -77,6 +79,7 @@ export class ClientAuthorizationPermission extends pulumi.CustomResource {
             inputs["realmId"] = args ? args.realmId : undefined;
             inputs["resourceServerId"] = args ? args.resourceServerId : undefined;
             inputs["resources"] = args ? args.resources : undefined;
+            inputs["scopes"] = args ? args.scopes : undefined;
             inputs["type"] = args ? args.type : undefined;
         }
         if (!opts) {
@@ -101,6 +104,7 @@ export interface ClientAuthorizationPermissionState {
     readonly realmId?: pulumi.Input<string>;
     readonly resourceServerId?: pulumi.Input<string>;
     readonly resources?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly scopes?: pulumi.Input<pulumi.Input<string>[]>;
     readonly type?: pulumi.Input<string>;
 }
 
@@ -115,5 +119,6 @@ export interface ClientAuthorizationPermissionArgs {
     readonly realmId: pulumi.Input<string>;
     readonly resourceServerId: pulumi.Input<string>;
     readonly resources?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly scopes?: pulumi.Input<pulumi.Input<string>[]>;
     readonly type?: pulumi.Input<string>;
 }

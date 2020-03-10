@@ -17,8 +17,9 @@ class ClientAuthorizationPermission(pulumi.CustomResource):
     realm_id: pulumi.Output[str]
     resource_server_id: pulumi.Output[str]
     resources: pulumi.Output[list]
+    scopes: pulumi.Output[list]
     type: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, decision_strategy=None, description=None, name=None, policies=None, realm_id=None, resource_server_id=None, resources=None, type=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, decision_strategy=None, description=None, name=None, policies=None, realm_id=None, resource_server_id=None, resources=None, scopes=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a ClientAuthorizationPermission resource with the given unique name, props, and options.
         
@@ -53,6 +54,7 @@ class ClientAuthorizationPermission(pulumi.CustomResource):
                 raise TypeError("Missing required property 'resource_server_id'")
             __props__['resource_server_id'] = resource_server_id
             __props__['resources'] = resources
+            __props__['scopes'] = scopes
             __props__['type'] = type
         super(ClientAuthorizationPermission, __self__).__init__(
             'keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission',
@@ -61,7 +63,7 @@ class ClientAuthorizationPermission(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, decision_strategy=None, description=None, name=None, policies=None, realm_id=None, resource_server_id=None, resources=None, type=None):
+    def get(resource_name, id, opts=None, decision_strategy=None, description=None, name=None, policies=None, realm_id=None, resource_server_id=None, resources=None, scopes=None, type=None):
         """
         Get an existing ClientAuthorizationPermission resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -80,6 +82,7 @@ class ClientAuthorizationPermission(pulumi.CustomResource):
         __props__["realm_id"] = realm_id
         __props__["resource_server_id"] = resource_server_id
         __props__["resources"] = resources
+        __props__["scopes"] = scopes
         __props__["type"] = type
         return ClientAuthorizationPermission(resource_name, opts=opts, __props__=__props__)
     def translate_output_property(self, prop):

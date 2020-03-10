@@ -57,6 +57,9 @@ namespace Pulumi.Keycloak.OpenId
     /// </summary>
     public partial class Client : Pulumi.CustomResource
     {
+        [Output("accessTokenLifespan")]
+        public Output<string?> AccessTokenLifespan { get; private set; } = null!;
+
         [Output("accessType")]
         public Output<string> AccessType { get; private set; } = null!;
 
@@ -169,6 +172,9 @@ namespace Pulumi.Keycloak.OpenId
 
     public sealed class ClientArgs : Pulumi.ResourceArgs
     {
+        [Input("accessTokenLifespan")]
+        public Input<string>? AccessTokenLifespan { get; set; }
+
         [Input("accessType", required: true)]
         public Input<string> AccessType { get; set; } = null!;
 
@@ -246,6 +252,9 @@ namespace Pulumi.Keycloak.OpenId
 
     public sealed class ClientState : Pulumi.ResourceArgs
     {
+        [Input("accessTokenLifespan")]
+        public Input<string>? AccessTokenLifespan { get; set; }
+
         [Input("accessType")]
         public Input<string>? AccessType { get; set; }
 

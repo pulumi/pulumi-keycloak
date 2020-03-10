@@ -31,6 +31,9 @@ namespace Pulumi.Keycloak.OpenId
         [Output("resources")]
         public Output<ImmutableArray<string>> Resources { get; private set; } = null!;
 
+        [Output("scopes")]
+        public Output<ImmutableArray<string>> Scopes { get; private set; } = null!;
+
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
 
@@ -111,6 +114,14 @@ namespace Pulumi.Keycloak.OpenId
             set => _resources = value;
         }
 
+        [Input("scopes")]
+        private InputList<string>? _scopes;
+        public InputList<string> Scopes
+        {
+            get => _scopes ?? (_scopes = new InputList<string>());
+            set => _scopes = value;
+        }
+
         [Input("type")]
         public Input<string>? Type { get; set; }
 
@@ -150,6 +161,14 @@ namespace Pulumi.Keycloak.OpenId
         {
             get => _resources ?? (_resources = new InputList<string>());
             set => _resources = value;
+        }
+
+        [Input("scopes")]
+        private InputList<string>? _scopes;
+        public InputList<string> Scopes
+        {
+            get => _scopes ?? (_scopes = new InputList<string>());
+            set => _scopes = value;
         }
 
         [Input("type")]

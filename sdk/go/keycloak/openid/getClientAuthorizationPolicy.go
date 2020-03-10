@@ -19,6 +19,7 @@ func GetClientAuthorizationPolicy(ctx *pulumi.Context, args *GetClientAuthorizat
 
 // A collection of arguments for invoking getClientAuthorizationPolicy.
 type GetClientAuthorizationPolicyArgs struct {
+	Logic *string `pulumi:"logic"`
 	Name string `pulumi:"name"`
 	RealmId string `pulumi:"realmId"`
 	ResourceServerId string `pulumi:"resourceServerId"`
@@ -30,7 +31,7 @@ type GetClientAuthorizationPolicyResult struct {
 	DecisionStrategy string `pulumi:"decisionStrategy"`
 	// id is the provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	Logic string `pulumi:"logic"`
+	Logic *string `pulumi:"logic"`
 	Name string `pulumi:"name"`
 	Owner string `pulumi:"owner"`
 	Policies []string `pulumi:"policies"`

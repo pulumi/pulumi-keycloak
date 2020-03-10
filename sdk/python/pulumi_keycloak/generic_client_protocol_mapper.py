@@ -11,12 +11,13 @@ from . import utilities, tables
 
 class GenericClientProtocolMapper(pulumi.CustomResource):
     client_id: pulumi.Output[str]
+    client_scope_id: pulumi.Output[str]
     config: pulumi.Output[dict]
     name: pulumi.Output[str]
     protocol: pulumi.Output[str]
     protocol_mapper: pulumi.Output[str]
     realm_id: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, client_id=None, config=None, name=None, protocol=None, protocol_mapper=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, client_id=None, client_scope_id=None, config=None, name=None, protocol=None, protocol_mapper=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # .GenericClientProtocolMapper
         
@@ -63,9 +64,8 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if client_id is None:
-                raise TypeError("Missing required property 'client_id'")
             __props__['client_id'] = client_id
+            __props__['client_scope_id'] = client_scope_id
             if config is None:
                 raise TypeError("Missing required property 'config'")
             __props__['config'] = config
@@ -86,7 +86,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, client_id=None, config=None, name=None, protocol=None, protocol_mapper=None, realm_id=None):
+    def get(resource_name, id, opts=None, client_id=None, client_scope_id=None, config=None, name=None, protocol=None, protocol_mapper=None, realm_id=None):
         """
         Get an existing GenericClientProtocolMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -101,6 +101,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
 
         __props__ = dict()
         __props__["client_id"] = client_id
+        __props__["client_scope_id"] = client_scope_id
         __props__["config"] = config
         __props__["name"] = name
         __props__["protocol"] = protocol

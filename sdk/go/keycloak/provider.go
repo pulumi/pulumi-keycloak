@@ -65,6 +65,8 @@ type providerArgs struct {
 	InitialLogin *bool `pulumi:"initialLogin"`
 	Password *string `pulumi:"password"`
 	Realm *string `pulumi:"realm"`
+	// Allows x509 calls using an unknown CA certificate (for development purposes)
+	RootCaCertificate *string `pulumi:"rootCaCertificate"`
 	// The base URL of the Keycloak instance, before `/auth`
 	Url *string `pulumi:"url"`
 	Username *string `pulumi:"username"`
@@ -80,6 +82,8 @@ type ProviderArgs struct {
 	InitialLogin pulumi.BoolPtrInput
 	Password pulumi.StringPtrInput
 	Realm pulumi.StringPtrInput
+	// Allows x509 calls using an unknown CA certificate (for development purposes)
+	RootCaCertificate pulumi.StringPtrInput
 	// The base URL of the Keycloak instance, before `/auth`
 	Url pulumi.StringPtrInput
 	Username pulumi.StringPtrInput

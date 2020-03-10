@@ -46,6 +46,7 @@ export class Provider extends pulumi.ProviderResource {
             inputs["initialLogin"] = pulumi.output(args ? args.initialLogin : undefined).apply(JSON.stringify);
             inputs["password"] = (args ? args.password : undefined) || utilities.getEnv("KEYCLOAK_PASSWORD");
             inputs["realm"] = (args ? args.realm : undefined) || (utilities.getEnv("KEYCLOAK_REALM") || "master");
+            inputs["rootCaCertificate"] = args ? args.rootCaCertificate : undefined;
             inputs["url"] = (args ? args.url : undefined) || utilities.getEnv("KEYCLOAK_URL");
             inputs["username"] = (args ? args.username : undefined) || utilities.getEnv("KEYCLOAK_USER");
         }
@@ -76,6 +77,10 @@ export interface ProviderArgs {
     readonly initialLogin?: pulumi.Input<boolean>;
     readonly password?: pulumi.Input<string>;
     readonly realm?: pulumi.Input<string>;
+    /**
+     * Allows x509 calls using an unknown CA certificate (for development purposes)
+     */
+    readonly rootCaCertificate?: pulumi.Input<string>;
     /**
      * The base URL of the Keycloak instance, before `/auth`
      */

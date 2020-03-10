@@ -30,11 +30,12 @@ const (
 	// packages:
 	mainPkg = "keycloak"
 	// modules:
-	mainMod   = "index"  // the y module
-	ldapMod   = "Ldap"   // the ldap module
-	oidcMod   = "Oidc"   // the oidc module
-	openIDMod = "OpenId" // the openid module
-	samlMod   = "Saml"   // the Saml module
+	mainMod           = "index"          // the y module
+	ldapMod           = "Ldap"           // the ldap module
+	oidcMod           = "Oidc"           // the oidc module
+	openIDMod         = "OpenId"         // the openid module
+	samlMod           = "Saml"           // the Saml module
+	authenticationMod = "Authentication" // the Authentication module
 )
 
 var namespaceMap = map[string]string{
@@ -163,16 +164,23 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_user_template_importer_identity_provider_mapper": {
 				Tok: makeResource(mainMod, "UserTemplateImporterIdentityProviderMapper"),
 			},
-			"keycloak_realm_events": {Tok: makeResource(mainMod, "RealmEvents")},
+			"keycloak_realm_events":               {Tok: makeResource(mainMod, "RealmEvents")},
+			"keycloak_generic_client_role_mapper": {Tok: makeResource(mainMod, "GenericClientRoleMapper")},
 
-			"keycloak_ldap_full_name_mapper":                 {Tok: makeResource(ldapMod, "FullNameMapper")},
-			"keycloak_ldap_group_mapper":                     {Tok: makeResource(ldapMod, "GroupMapper")},
-			"keycloak_ldap_msad_user_account_control_mapper": {Tok: makeResource(ldapMod, "MsadUserAccountControlMapper")},
-			"keycloak_ldap_user_attribute_mapper":            {Tok: makeResource(ldapMod, "UserAttributeMapper")},
-			"keycloak_ldap_user_federation":                  {Tok: makeResource(ldapMod, "UserFederation")},
-			"keycloak_ldap_hardcoded_role_mapper":            {Tok: makeResource(ldapMod, "HardcodedRoleMapper")},
+			"keycloak_ldap_full_name_mapper": {Tok: makeResource(ldapMod, "FullNameMapper")},
+			"keycloak_ldap_group_mapper":     {Tok: makeResource(ldapMod, "GroupMapper")},
+			"keycloak_ldap_msad_user_account_control_mapper": {
+				Tok: makeResource(ldapMod, "MsadUserAccountControlMapper"),
+			},
+			"keycloak_ldap_user_attribute_mapper": {Tok: makeResource(ldapMod, "UserAttributeMapper")},
+			"keycloak_ldap_user_federation":       {Tok: makeResource(ldapMod, "UserFederation")},
+			"keycloak_ldap_hardcoded_role_mapper": {Tok: makeResource(ldapMod, "HardcodedRoleMapper")},
+			"keycloak_ldap_msad_lds_user_account_control_mapper": {
+				Tok: makeResource(ldapMod, "MsadLdsUserAccountControlMapper"),
+			},
 
-			"keycloak_oidc_identity_provider": {Tok: makeResource(oidcMod, "IdentityProvider")},
+			"keycloak_oidc_identity_provider":        {Tok: makeResource(oidcMod, "IdentityProvider")},
+			"keycloak_oidc_google_identity_provider": {Tok: makeResource(oidcMod, "GoogleIdentityProvider")},
 
 			"keycloak_openid_audience_protocol_mapper": {Tok: makeResource(openIDMod, "AudienceProtocolMapper")},
 			"keycloak_openid_client":                   {Tok: makeResource(openIDMod, "Client")},
@@ -207,11 +215,23 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_openid_client_service_account_realm_role": {
 				Tok: makeResource(openIDMod, "ClientServiceAccountRealmRole"),
 			},
+			"keycloak_openid_client_aggregate_policy": {Tok: makeResource(openIDMod, "ClientAggregatePolicy")},
+			"keycloak_openid_client_client_policy":    {Tok: makeResource(openIDMod, "ClientPolicy")},
+			"keycloak_openid_client_group_policy":     {Tok: makeResource(openIDMod, "ClientGroupPolicy")},
+			"keycloak_openid_client_js_policy":        {Tok: makeResource(openIDMod, "ClientJsPolicy")},
+			"keycloak_openid_client_role_policy":      {Tok: makeResource(openIDMod, "ClientRolePolicy")},
+			"keycloak_openid_client_time_policy":      {Tok: makeResource(openIDMod, "ClientTimePolicy")},
+			"keycloak_openid_client_user_policy":      {Tok: makeResource(openIDMod, "ClientUserPolicy")},
 
 			"keycloak_saml_client":                         {Tok: makeResource(samlMod, "Client")},
 			"keycloak_saml_identity_provider":              {Tok: makeResource(samlMod, "IdentityProvider")},
 			"keycloak_saml_user_attribute_protocol_mapper": {Tok: makeResource(samlMod, "UserAttributeProtocolMapper")},
 			"keycloak_saml_user_property_protocol_mapper":  {Tok: makeResource(samlMod, "UserPropertyProtocolMapper")},
+
+			"keycloak_authentication_execution":        {Tok: makeResource(authenticationMod, "Execution")},
+			"keycloak_authentication_execution_config": {Tok: makeResource(authenticationMod, "ExecutionConfig")},
+			"keycloak_authentication_flow":             {Tok: makeResource(authenticationMod, "Flow")},
+			"keycloak_authentication_subflow":          {Tok: makeResource(authenticationMod, "Subflow")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"keycloak_group":      {Tok: makeDataSource(mainMod, "getGroup")},

@@ -99,6 +99,7 @@ export class Client extends pulumi.CustomResource {
         return obj['__pulumiType'] === Client.__pulumiType;
     }
 
+    public readonly accessTokenLifespan!: pulumi.Output<string | undefined>;
     public readonly accessType!: pulumi.Output<string>;
     public readonly adminUrl!: pulumi.Output<string | undefined>;
     public readonly authorization!: pulumi.Output<outputs.openid.ClientAuthorization | undefined>;
@@ -134,6 +135,7 @@ export class Client extends pulumi.CustomResource {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
             const state = argsOrState as ClientState | undefined;
+            inputs["accessTokenLifespan"] = state ? state.accessTokenLifespan : undefined;
             inputs["accessType"] = state ? state.accessType : undefined;
             inputs["adminUrl"] = state ? state.adminUrl : undefined;
             inputs["authorization"] = state ? state.authorization : undefined;
@@ -167,6 +169,7 @@ export class Client extends pulumi.CustomResource {
             if (!args || args.realmId === undefined) {
                 throw new Error("Missing required property 'realmId'");
             }
+            inputs["accessTokenLifespan"] = args ? args.accessTokenLifespan : undefined;
             inputs["accessType"] = args ? args.accessType : undefined;
             inputs["adminUrl"] = args ? args.adminUrl : undefined;
             inputs["authorization"] = args ? args.authorization : undefined;
@@ -205,6 +208,7 @@ export class Client extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Client resources.
  */
 export interface ClientState {
+    readonly accessTokenLifespan?: pulumi.Input<string>;
     readonly accessType?: pulumi.Input<string>;
     readonly adminUrl?: pulumi.Input<string>;
     readonly authorization?: pulumi.Input<inputs.openid.ClientAuthorization>;
@@ -233,6 +237,7 @@ export interface ClientState {
  * The set of arguments for constructing a Client resource.
  */
 export interface ClientArgs {
+    readonly accessTokenLifespan?: pulumi.Input<string>;
     readonly accessType: pulumi.Input<string>;
     readonly adminUrl?: pulumi.Input<string>;
     readonly authorization?: pulumi.Input<inputs.openid.ClientAuthorization>;
