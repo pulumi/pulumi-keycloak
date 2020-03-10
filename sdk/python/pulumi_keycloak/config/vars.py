@@ -29,6 +29,11 @@ password = __config__.get('password') or utilities.get_env('KEYCLOAK_PASSWORD')
 
 realm = __config__.get('realm') or (utilities.get_env('KEYCLOAK_REALM') or 'master')
 
+root_ca_certificate = __config__.get('rootCaCertificate')
+"""
+Allows x509 calls using an unknown CA certificate (for development purposes)
+"""
+
 url = __config__.get('url') or utilities.get_env('KEYCLOAK_URL')
 """
 The base URL of the Keycloak instance, before `/auth`

@@ -10,7 +10,7 @@ from typing import Union
 from . import utilities, tables
 
 class Provider(pulumi.ProviderResource):
-    def __init__(__self__, resource_name, opts=None, client_id=None, client_secret=None, client_timeout=None, initial_login=None, password=None, realm=None, url=None, username=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, client_id=None, client_secret=None, client_timeout=None, initial_login=None, password=None, realm=None, root_ca_certificate=None, url=None, username=None, __props__=None, __name__=None, __opts__=None):
         """
         The provider type for the keycloak package. By default, resources use package-wide configuration
         settings, however an explicit `Provider` instance may be created and passed during resource
@@ -55,6 +55,7 @@ class Provider(pulumi.ProviderResource):
             if realm is None:
                 realm = (utilities.get_env('KEYCLOAK_REALM') or 'master')
             __props__['realm'] = realm
+            __props__['root_ca_certificate'] = root_ca_certificate
             if url is None:
                 url = utilities.get_env('KEYCLOAK_URL')
             __props__['url'] = url

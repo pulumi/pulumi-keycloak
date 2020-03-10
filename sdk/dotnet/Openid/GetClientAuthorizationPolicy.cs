@@ -16,6 +16,9 @@ namespace Pulumi.Keycloak.OpenId
 
     public sealed class GetClientAuthorizationPolicyArgs : Pulumi.InvokeArgs
     {
+        [Input("logic")]
+        public string? Logic { get; set; }
+
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
@@ -34,7 +37,7 @@ namespace Pulumi.Keycloak.OpenId
     public sealed class GetClientAuthorizationPolicyResult
     {
         public readonly string DecisionStrategy;
-        public readonly string Logic;
+        public readonly string? Logic;
         public readonly string Name;
         public readonly string Owner;
         public readonly ImmutableArray<string> Policies;
@@ -51,7 +54,7 @@ namespace Pulumi.Keycloak.OpenId
         [OutputConstructor]
         private GetClientAuthorizationPolicyResult(
             string decisionStrategy,
-            string logic,
+            string? logic,
             string name,
             string owner,
             ImmutableArray<string> policies,

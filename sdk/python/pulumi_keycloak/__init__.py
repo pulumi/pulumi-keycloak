@@ -4,7 +4,7 @@
 
 import importlib
 # Make subpackages available:
-__all__ = ['config', 'ldap', 'oidc', 'openid', 'saml']
+__all__ = ['authentication', 'config', 'ldap', 'oidc', 'openid', 'saml']
 for pkg in __all__:
     if pkg != 'config':
         importlib.import_module(f'{__name__}.{pkg}')
@@ -15,6 +15,7 @@ from .attribute_to_role_identity_mapper import *
 from .custom_user_federation import *
 from .default_groups import *
 from .generic_client_protocol_mapper import *
+from .generic_client_role_mapper import *
 from .group import *
 from .group_memberships import *
 from .group_roles import *

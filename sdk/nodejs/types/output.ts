@@ -21,7 +21,18 @@ export interface GetRealmKeysKey {
 }
 
 export interface GetRealmSecurityDefense {
+    bruteForceDetections: outputs.GetRealmSecurityDefenseBruteForceDetection[];
     headers: outputs.GetRealmSecurityDefenseHeader[];
+}
+
+export interface GetRealmSecurityDefenseBruteForceDetection {
+    failureResetTimeSeconds: number;
+    maxFailureWaitSeconds: number;
+    maxLoginFailures: number;
+    minimumQuickLoginWaitSeconds: number;
+    permanentLockout: boolean;
+    quickLoginCheckMilliSeconds: number;
+    waitIncrementSeconds: number;
 }
 
 export interface GetRealmSecurityDefenseHeader {
@@ -116,6 +127,17 @@ export namespace openid {
         allowRemoteResourceManagement?: boolean;
         keepDefaults?: boolean;
         policyEnforcementMode: string;
+    }
+
+    export interface ClientGroupPolicyGroup {
+        extendChildren: boolean;
+        id: string;
+        path: string;
+    }
+
+    export interface ClientRolePolicyRole {
+        id: string;
+        required: boolean;
     }
 
     export interface GetClientAuthorization {

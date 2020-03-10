@@ -70,6 +70,12 @@ namespace Pulumi.Keycloak
         public Input<string>? Realm { get; set; }
 
         /// <summary>
+        /// Allows x509 calls using an unknown CA certificate (for development purposes)
+        /// </summary>
+        [Input("rootCaCertificate")]
+        public Input<string>? RootCaCertificate { get; set; }
+
+        /// <summary>
         /// The base URL of the Keycloak instance, before `/auth`
         /// </summary>
         [Input("url")]

@@ -86,9 +86,13 @@ export class GenericClientProtocolMapper extends pulumi.CustomResource {
     }
 
     /**
-     * The mapper's associated client.
+     * The mapper's associated client. Cannot be used at the same time as client_scope_id.
      */
-    public readonly clientId!: pulumi.Output<string>;
+    public readonly clientId!: pulumi.Output<string | undefined>;
+    /**
+     * The mapper's associated client scope. Cannot be used at the same time as client_id.
+     */
+    public readonly clientScopeId!: pulumi.Output<string | undefined>;
     public readonly config!: pulumi.Output<{[key: string]: any}>;
     /**
      * A human-friendly name that will appear in the Keycloak console.
@@ -103,7 +107,7 @@ export class GenericClientProtocolMapper extends pulumi.CustomResource {
      */
     public readonly protocolMapper!: pulumi.Output<string>;
     /**
-     * The realm id where the associated client exists.
+     * The realm id where the associated client or client scope exists.
      */
     public readonly realmId!: pulumi.Output<string>;
 
@@ -120,6 +124,7 @@ export class GenericClientProtocolMapper extends pulumi.CustomResource {
         if (opts && opts.id) {
             const state = argsOrState as GenericClientProtocolMapperState | undefined;
             inputs["clientId"] = state ? state.clientId : undefined;
+            inputs["clientScopeId"] = state ? state.clientScopeId : undefined;
             inputs["config"] = state ? state.config : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["protocol"] = state ? state.protocol : undefined;
@@ -127,9 +132,6 @@ export class GenericClientProtocolMapper extends pulumi.CustomResource {
             inputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as GenericClientProtocolMapperArgs | undefined;
-            if (!args || args.clientId === undefined) {
-                throw new Error("Missing required property 'clientId'");
-            }
             if (!args || args.config === undefined) {
                 throw new Error("Missing required property 'config'");
             }
@@ -143,6 +145,7 @@ export class GenericClientProtocolMapper extends pulumi.CustomResource {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["clientId"] = args ? args.clientId : undefined;
+            inputs["clientScopeId"] = args ? args.clientScopeId : undefined;
             inputs["config"] = args ? args.config : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["protocol"] = args ? args.protocol : undefined;
@@ -165,9 +168,13 @@ export class GenericClientProtocolMapper extends pulumi.CustomResource {
  */
 export interface GenericClientProtocolMapperState {
     /**
-     * The mapper's associated client.
+     * The mapper's associated client. Cannot be used at the same time as client_scope_id.
      */
     readonly clientId?: pulumi.Input<string>;
+    /**
+     * The mapper's associated client scope. Cannot be used at the same time as client_id.
+     */
+    readonly clientScopeId?: pulumi.Input<string>;
     readonly config?: pulumi.Input<{[key: string]: any}>;
     /**
      * A human-friendly name that will appear in the Keycloak console.
@@ -182,7 +189,7 @@ export interface GenericClientProtocolMapperState {
      */
     readonly protocolMapper?: pulumi.Input<string>;
     /**
-     * The realm id where the associated client exists.
+     * The realm id where the associated client or client scope exists.
      */
     readonly realmId?: pulumi.Input<string>;
 }
@@ -192,9 +199,13 @@ export interface GenericClientProtocolMapperState {
  */
 export interface GenericClientProtocolMapperArgs {
     /**
-     * The mapper's associated client.
+     * The mapper's associated client. Cannot be used at the same time as client_scope_id.
      */
-    readonly clientId: pulumi.Input<string>;
+    readonly clientId?: pulumi.Input<string>;
+    /**
+     * The mapper's associated client scope. Cannot be used at the same time as client_id.
+     */
+    readonly clientScopeId?: pulumi.Input<string>;
     readonly config: pulumi.Input<{[key: string]: any}>;
     /**
      * A human-friendly name that will appear in the Keycloak console.
@@ -209,7 +220,7 @@ export interface GenericClientProtocolMapperArgs {
      */
     readonly protocolMapper: pulumi.Input<string>;
     /**
-     * The realm id where the associated client exists.
+     * The realm id where the associated client or client scope exists.
      */
     readonly realmId: pulumi.Input<string>;
 }

@@ -68,13 +68,14 @@ class AwaitableGetClientAuthorizationPolicyResult(GetClientAuthorizationPolicyRe
             type=self.type,
             id=self.id)
 
-def get_client_authorization_policy(name=None,realm_id=None,resource_server_id=None,opts=None):
+def get_client_authorization_policy(logic=None,name=None,realm_id=None,resource_server_id=None,opts=None):
     """
     Use this data source to access information about an existing resource.
     
     """
     __args__ = dict()
 
+    __args__['logic'] = logic
     __args__['name'] = name
     __args__['realmId'] = realm_id
     __args__['resourceServerId'] = resource_server_id

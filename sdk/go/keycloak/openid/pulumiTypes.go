@@ -139,6 +139,196 @@ func (o ClientAuthorizationPtrOutput) PolicyEnforcementMode() pulumi.StringOutpu
 	return o.ApplyT(func (v ClientAuthorization) string { return v.PolicyEnforcementMode }).(pulumi.StringOutput)
 }
 
+type ClientGroupPolicyGroup struct {
+	ExtendChildren bool `pulumi:"extendChildren"`
+	Id string `pulumi:"id"`
+	Path string `pulumi:"path"`
+}
+
+type ClientGroupPolicyGroupInput interface {
+	pulumi.Input
+
+	ToClientGroupPolicyGroupOutput() ClientGroupPolicyGroupOutput
+	ToClientGroupPolicyGroupOutputWithContext(context.Context) ClientGroupPolicyGroupOutput
+}
+
+type ClientGroupPolicyGroupArgs struct {
+	ExtendChildren pulumi.BoolInput `pulumi:"extendChildren"`
+	Id pulumi.StringInput `pulumi:"id"`
+	Path pulumi.StringInput `pulumi:"path"`
+}
+
+func (ClientGroupPolicyGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientGroupPolicyGroup)(nil)).Elem()
+}
+
+func (i ClientGroupPolicyGroupArgs) ToClientGroupPolicyGroupOutput() ClientGroupPolicyGroupOutput {
+	return i.ToClientGroupPolicyGroupOutputWithContext(context.Background())
+}
+
+func (i ClientGroupPolicyGroupArgs) ToClientGroupPolicyGroupOutputWithContext(ctx context.Context) ClientGroupPolicyGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientGroupPolicyGroupOutput)
+}
+
+type ClientGroupPolicyGroupArrayInput interface {
+	pulumi.Input
+
+	ToClientGroupPolicyGroupArrayOutput() ClientGroupPolicyGroupArrayOutput
+	ToClientGroupPolicyGroupArrayOutputWithContext(context.Context) ClientGroupPolicyGroupArrayOutput
+}
+
+type ClientGroupPolicyGroupArray []ClientGroupPolicyGroupInput
+
+func (ClientGroupPolicyGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClientGroupPolicyGroup)(nil)).Elem()
+}
+
+func (i ClientGroupPolicyGroupArray) ToClientGroupPolicyGroupArrayOutput() ClientGroupPolicyGroupArrayOutput {
+	return i.ToClientGroupPolicyGroupArrayOutputWithContext(context.Background())
+}
+
+func (i ClientGroupPolicyGroupArray) ToClientGroupPolicyGroupArrayOutputWithContext(ctx context.Context) ClientGroupPolicyGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientGroupPolicyGroupArrayOutput)
+}
+
+type ClientGroupPolicyGroupOutput struct { *pulumi.OutputState }
+
+func (ClientGroupPolicyGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientGroupPolicyGroup)(nil)).Elem()
+}
+
+func (o ClientGroupPolicyGroupOutput) ToClientGroupPolicyGroupOutput() ClientGroupPolicyGroupOutput {
+	return o
+}
+
+func (o ClientGroupPolicyGroupOutput) ToClientGroupPolicyGroupOutputWithContext(ctx context.Context) ClientGroupPolicyGroupOutput {
+	return o
+}
+
+func (o ClientGroupPolicyGroupOutput) ExtendChildren() pulumi.BoolOutput {
+	return o.ApplyT(func (v ClientGroupPolicyGroup) bool { return v.ExtendChildren }).(pulumi.BoolOutput)
+}
+
+func (o ClientGroupPolicyGroupOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func (v ClientGroupPolicyGroup) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o ClientGroupPolicyGroupOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func (v ClientGroupPolicyGroup) string { return v.Path }).(pulumi.StringOutput)
+}
+
+type ClientGroupPolicyGroupArrayOutput struct { *pulumi.OutputState}
+
+func (ClientGroupPolicyGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClientGroupPolicyGroup)(nil)).Elem()
+}
+
+func (o ClientGroupPolicyGroupArrayOutput) ToClientGroupPolicyGroupArrayOutput() ClientGroupPolicyGroupArrayOutput {
+	return o
+}
+
+func (o ClientGroupPolicyGroupArrayOutput) ToClientGroupPolicyGroupArrayOutputWithContext(ctx context.Context) ClientGroupPolicyGroupArrayOutput {
+	return o
+}
+
+func (o ClientGroupPolicyGroupArrayOutput) Index(i pulumi.IntInput) ClientGroupPolicyGroupOutput {
+	return pulumi.All(o, i).ApplyT(func (vs []interface{}) ClientGroupPolicyGroup {
+		return vs[0].([]ClientGroupPolicyGroup)[vs[1].(int)]
+	}).(ClientGroupPolicyGroupOutput)
+}
+
+type ClientRolePolicyRole struct {
+	Id string `pulumi:"id"`
+	Required bool `pulumi:"required"`
+}
+
+type ClientRolePolicyRoleInput interface {
+	pulumi.Input
+
+	ToClientRolePolicyRoleOutput() ClientRolePolicyRoleOutput
+	ToClientRolePolicyRoleOutputWithContext(context.Context) ClientRolePolicyRoleOutput
+}
+
+type ClientRolePolicyRoleArgs struct {
+	Id pulumi.StringInput `pulumi:"id"`
+	Required pulumi.BoolInput `pulumi:"required"`
+}
+
+func (ClientRolePolicyRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientRolePolicyRole)(nil)).Elem()
+}
+
+func (i ClientRolePolicyRoleArgs) ToClientRolePolicyRoleOutput() ClientRolePolicyRoleOutput {
+	return i.ToClientRolePolicyRoleOutputWithContext(context.Background())
+}
+
+func (i ClientRolePolicyRoleArgs) ToClientRolePolicyRoleOutputWithContext(ctx context.Context) ClientRolePolicyRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientRolePolicyRoleOutput)
+}
+
+type ClientRolePolicyRoleArrayInput interface {
+	pulumi.Input
+
+	ToClientRolePolicyRoleArrayOutput() ClientRolePolicyRoleArrayOutput
+	ToClientRolePolicyRoleArrayOutputWithContext(context.Context) ClientRolePolicyRoleArrayOutput
+}
+
+type ClientRolePolicyRoleArray []ClientRolePolicyRoleInput
+
+func (ClientRolePolicyRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClientRolePolicyRole)(nil)).Elem()
+}
+
+func (i ClientRolePolicyRoleArray) ToClientRolePolicyRoleArrayOutput() ClientRolePolicyRoleArrayOutput {
+	return i.ToClientRolePolicyRoleArrayOutputWithContext(context.Background())
+}
+
+func (i ClientRolePolicyRoleArray) ToClientRolePolicyRoleArrayOutputWithContext(ctx context.Context) ClientRolePolicyRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientRolePolicyRoleArrayOutput)
+}
+
+type ClientRolePolicyRoleOutput struct { *pulumi.OutputState }
+
+func (ClientRolePolicyRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientRolePolicyRole)(nil)).Elem()
+}
+
+func (o ClientRolePolicyRoleOutput) ToClientRolePolicyRoleOutput() ClientRolePolicyRoleOutput {
+	return o
+}
+
+func (o ClientRolePolicyRoleOutput) ToClientRolePolicyRoleOutputWithContext(ctx context.Context) ClientRolePolicyRoleOutput {
+	return o
+}
+
+func (o ClientRolePolicyRoleOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func (v ClientRolePolicyRole) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o ClientRolePolicyRoleOutput) Required() pulumi.BoolOutput {
+	return o.ApplyT(func (v ClientRolePolicyRole) bool { return v.Required }).(pulumi.BoolOutput)
+}
+
+type ClientRolePolicyRoleArrayOutput struct { *pulumi.OutputState}
+
+func (ClientRolePolicyRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClientRolePolicyRole)(nil)).Elem()
+}
+
+func (o ClientRolePolicyRoleArrayOutput) ToClientRolePolicyRoleArrayOutput() ClientRolePolicyRoleArrayOutput {
+	return o
+}
+
+func (o ClientRolePolicyRoleArrayOutput) ToClientRolePolicyRoleArrayOutputWithContext(ctx context.Context) ClientRolePolicyRoleArrayOutput {
+	return o
+}
+
+func (o ClientRolePolicyRoleArrayOutput) Index(i pulumi.IntInput) ClientRolePolicyRoleOutput {
+	return pulumi.All(o, i).ApplyT(func (vs []interface{}) ClientRolePolicyRole {
+		return vs[0].([]ClientRolePolicyRole)[vs[1].(int)]
+	}).(ClientRolePolicyRoleOutput)
+}
+
 type GetClientAuthorization struct {
 	AllowRemoteResourceManagement bool `pulumi:"allowRemoteResourceManagement"`
 	PolicyEnforcementMode string `pulumi:"policyEnforcementMode"`
@@ -291,6 +481,10 @@ func (o GetClientServiceAccountUserFederatedIdentityArrayOutput) Index(i pulumi.
 func init() {
 	pulumi.RegisterOutputType(ClientAuthorizationOutput{})
 	pulumi.RegisterOutputType(ClientAuthorizationPtrOutput{})
+	pulumi.RegisterOutputType(ClientGroupPolicyGroupOutput{})
+	pulumi.RegisterOutputType(ClientGroupPolicyGroupArrayOutput{})
+	pulumi.RegisterOutputType(ClientRolePolicyRoleOutput{})
+	pulumi.RegisterOutputType(ClientRolePolicyRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetClientAuthorizationOutput{})
 	pulumi.RegisterOutputType(GetClientServiceAccountUserFederatedIdentityOutput{})
 	pulumi.RegisterOutputType(GetClientServiceAccountUserFederatedIdentityArrayOutput{})

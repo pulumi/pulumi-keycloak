@@ -1336,6 +1336,7 @@ func (o GetRealmKeysKeyArrayOutput) Index(i pulumi.IntInput) GetRealmKeysKeyOutp
 }
 
 type GetRealmSecurityDefense struct {
+	BruteForceDetections []GetRealmSecurityDefenseBruteForceDetection `pulumi:"bruteForceDetections"`
 	Headers []GetRealmSecurityDefenseHeader `pulumi:"headers"`
 }
 
@@ -1347,6 +1348,7 @@ type GetRealmSecurityDefenseInput interface {
 }
 
 type GetRealmSecurityDefenseArgs struct {
+	BruteForceDetections GetRealmSecurityDefenseBruteForceDetectionArrayInput `pulumi:"bruteForceDetections"`
 	Headers GetRealmSecurityDefenseHeaderArrayInput `pulumi:"headers"`
 }
 
@@ -1397,6 +1399,10 @@ func (o GetRealmSecurityDefenseOutput) ToGetRealmSecurityDefenseOutputWithContex
 	return o
 }
 
+func (o GetRealmSecurityDefenseOutput) BruteForceDetections() GetRealmSecurityDefenseBruteForceDetectionArrayOutput {
+	return o.ApplyT(func (v GetRealmSecurityDefense) []GetRealmSecurityDefenseBruteForceDetection { return v.BruteForceDetections }).(GetRealmSecurityDefenseBruteForceDetectionArrayOutput)
+}
+
 func (o GetRealmSecurityDefenseOutput) Headers() GetRealmSecurityDefenseHeaderArrayOutput {
 	return o.ApplyT(func (v GetRealmSecurityDefense) []GetRealmSecurityDefenseHeader { return v.Headers }).(GetRealmSecurityDefenseHeaderArrayOutput)
 }
@@ -1419,6 +1425,128 @@ func (o GetRealmSecurityDefenseArrayOutput) Index(i pulumi.IntInput) GetRealmSec
 	return pulumi.All(o, i).ApplyT(func (vs []interface{}) GetRealmSecurityDefense {
 		return vs[0].([]GetRealmSecurityDefense)[vs[1].(int)]
 	}).(GetRealmSecurityDefenseOutput)
+}
+
+type GetRealmSecurityDefenseBruteForceDetection struct {
+	FailureResetTimeSeconds int `pulumi:"failureResetTimeSeconds"`
+	MaxFailureWaitSeconds int `pulumi:"maxFailureWaitSeconds"`
+	MaxLoginFailures int `pulumi:"maxLoginFailures"`
+	MinimumQuickLoginWaitSeconds int `pulumi:"minimumQuickLoginWaitSeconds"`
+	PermanentLockout bool `pulumi:"permanentLockout"`
+	QuickLoginCheckMilliSeconds int `pulumi:"quickLoginCheckMilliSeconds"`
+	WaitIncrementSeconds int `pulumi:"waitIncrementSeconds"`
+}
+
+type GetRealmSecurityDefenseBruteForceDetectionInput interface {
+	pulumi.Input
+
+	ToGetRealmSecurityDefenseBruteForceDetectionOutput() GetRealmSecurityDefenseBruteForceDetectionOutput
+	ToGetRealmSecurityDefenseBruteForceDetectionOutputWithContext(context.Context) GetRealmSecurityDefenseBruteForceDetectionOutput
+}
+
+type GetRealmSecurityDefenseBruteForceDetectionArgs struct {
+	FailureResetTimeSeconds pulumi.IntInput `pulumi:"failureResetTimeSeconds"`
+	MaxFailureWaitSeconds pulumi.IntInput `pulumi:"maxFailureWaitSeconds"`
+	MaxLoginFailures pulumi.IntInput `pulumi:"maxLoginFailures"`
+	MinimumQuickLoginWaitSeconds pulumi.IntInput `pulumi:"minimumQuickLoginWaitSeconds"`
+	PermanentLockout pulumi.BoolInput `pulumi:"permanentLockout"`
+	QuickLoginCheckMilliSeconds pulumi.IntInput `pulumi:"quickLoginCheckMilliSeconds"`
+	WaitIncrementSeconds pulumi.IntInput `pulumi:"waitIncrementSeconds"`
+}
+
+func (GetRealmSecurityDefenseBruteForceDetectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRealmSecurityDefenseBruteForceDetection)(nil)).Elem()
+}
+
+func (i GetRealmSecurityDefenseBruteForceDetectionArgs) ToGetRealmSecurityDefenseBruteForceDetectionOutput() GetRealmSecurityDefenseBruteForceDetectionOutput {
+	return i.ToGetRealmSecurityDefenseBruteForceDetectionOutputWithContext(context.Background())
+}
+
+func (i GetRealmSecurityDefenseBruteForceDetectionArgs) ToGetRealmSecurityDefenseBruteForceDetectionOutputWithContext(ctx context.Context) GetRealmSecurityDefenseBruteForceDetectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRealmSecurityDefenseBruteForceDetectionOutput)
+}
+
+type GetRealmSecurityDefenseBruteForceDetectionArrayInput interface {
+	pulumi.Input
+
+	ToGetRealmSecurityDefenseBruteForceDetectionArrayOutput() GetRealmSecurityDefenseBruteForceDetectionArrayOutput
+	ToGetRealmSecurityDefenseBruteForceDetectionArrayOutputWithContext(context.Context) GetRealmSecurityDefenseBruteForceDetectionArrayOutput
+}
+
+type GetRealmSecurityDefenseBruteForceDetectionArray []GetRealmSecurityDefenseBruteForceDetectionInput
+
+func (GetRealmSecurityDefenseBruteForceDetectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRealmSecurityDefenseBruteForceDetection)(nil)).Elem()
+}
+
+func (i GetRealmSecurityDefenseBruteForceDetectionArray) ToGetRealmSecurityDefenseBruteForceDetectionArrayOutput() GetRealmSecurityDefenseBruteForceDetectionArrayOutput {
+	return i.ToGetRealmSecurityDefenseBruteForceDetectionArrayOutputWithContext(context.Background())
+}
+
+func (i GetRealmSecurityDefenseBruteForceDetectionArray) ToGetRealmSecurityDefenseBruteForceDetectionArrayOutputWithContext(ctx context.Context) GetRealmSecurityDefenseBruteForceDetectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRealmSecurityDefenseBruteForceDetectionArrayOutput)
+}
+
+type GetRealmSecurityDefenseBruteForceDetectionOutput struct { *pulumi.OutputState }
+
+func (GetRealmSecurityDefenseBruteForceDetectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRealmSecurityDefenseBruteForceDetection)(nil)).Elem()
+}
+
+func (o GetRealmSecurityDefenseBruteForceDetectionOutput) ToGetRealmSecurityDefenseBruteForceDetectionOutput() GetRealmSecurityDefenseBruteForceDetectionOutput {
+	return o
+}
+
+func (o GetRealmSecurityDefenseBruteForceDetectionOutput) ToGetRealmSecurityDefenseBruteForceDetectionOutputWithContext(ctx context.Context) GetRealmSecurityDefenseBruteForceDetectionOutput {
+	return o
+}
+
+func (o GetRealmSecurityDefenseBruteForceDetectionOutput) FailureResetTimeSeconds() pulumi.IntOutput {
+	return o.ApplyT(func (v GetRealmSecurityDefenseBruteForceDetection) int { return v.FailureResetTimeSeconds }).(pulumi.IntOutput)
+}
+
+func (o GetRealmSecurityDefenseBruteForceDetectionOutput) MaxFailureWaitSeconds() pulumi.IntOutput {
+	return o.ApplyT(func (v GetRealmSecurityDefenseBruteForceDetection) int { return v.MaxFailureWaitSeconds }).(pulumi.IntOutput)
+}
+
+func (o GetRealmSecurityDefenseBruteForceDetectionOutput) MaxLoginFailures() pulumi.IntOutput {
+	return o.ApplyT(func (v GetRealmSecurityDefenseBruteForceDetection) int { return v.MaxLoginFailures }).(pulumi.IntOutput)
+}
+
+func (o GetRealmSecurityDefenseBruteForceDetectionOutput) MinimumQuickLoginWaitSeconds() pulumi.IntOutput {
+	return o.ApplyT(func (v GetRealmSecurityDefenseBruteForceDetection) int { return v.MinimumQuickLoginWaitSeconds }).(pulumi.IntOutput)
+}
+
+func (o GetRealmSecurityDefenseBruteForceDetectionOutput) PermanentLockout() pulumi.BoolOutput {
+	return o.ApplyT(func (v GetRealmSecurityDefenseBruteForceDetection) bool { return v.PermanentLockout }).(pulumi.BoolOutput)
+}
+
+func (o GetRealmSecurityDefenseBruteForceDetectionOutput) QuickLoginCheckMilliSeconds() pulumi.IntOutput {
+	return o.ApplyT(func (v GetRealmSecurityDefenseBruteForceDetection) int { return v.QuickLoginCheckMilliSeconds }).(pulumi.IntOutput)
+}
+
+func (o GetRealmSecurityDefenseBruteForceDetectionOutput) WaitIncrementSeconds() pulumi.IntOutput {
+	return o.ApplyT(func (v GetRealmSecurityDefenseBruteForceDetection) int { return v.WaitIncrementSeconds }).(pulumi.IntOutput)
+}
+
+type GetRealmSecurityDefenseBruteForceDetectionArrayOutput struct { *pulumi.OutputState}
+
+func (GetRealmSecurityDefenseBruteForceDetectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRealmSecurityDefenseBruteForceDetection)(nil)).Elem()
+}
+
+func (o GetRealmSecurityDefenseBruteForceDetectionArrayOutput) ToGetRealmSecurityDefenseBruteForceDetectionArrayOutput() GetRealmSecurityDefenseBruteForceDetectionArrayOutput {
+	return o
+}
+
+func (o GetRealmSecurityDefenseBruteForceDetectionArrayOutput) ToGetRealmSecurityDefenseBruteForceDetectionArrayOutputWithContext(ctx context.Context) GetRealmSecurityDefenseBruteForceDetectionArrayOutput {
+	return o
+}
+
+func (o GetRealmSecurityDefenseBruteForceDetectionArrayOutput) Index(i pulumi.IntInput) GetRealmSecurityDefenseBruteForceDetectionOutput {
+	return pulumi.All(o, i).ApplyT(func (vs []interface{}) GetRealmSecurityDefenseBruteForceDetection {
+		return vs[0].([]GetRealmSecurityDefenseBruteForceDetection)[vs[1].(int)]
+	}).(GetRealmSecurityDefenseBruteForceDetectionOutput)
 }
 
 type GetRealmSecurityDefenseHeader struct {
@@ -1798,6 +1926,8 @@ func init() {
 	pulumi.RegisterOutputType(GetRealmKeysKeyArrayOutput{})
 	pulumi.RegisterOutputType(GetRealmSecurityDefenseOutput{})
 	pulumi.RegisterOutputType(GetRealmSecurityDefenseArrayOutput{})
+	pulumi.RegisterOutputType(GetRealmSecurityDefenseBruteForceDetectionOutput{})
+	pulumi.RegisterOutputType(GetRealmSecurityDefenseBruteForceDetectionArrayOutput{})
 	pulumi.RegisterOutputType(GetRealmSecurityDefenseHeaderOutput{})
 	pulumi.RegisterOutputType(GetRealmSecurityDefenseHeaderArrayOutput{})
 	pulumi.RegisterOutputType(GetRealmSmtpServerOutput{})

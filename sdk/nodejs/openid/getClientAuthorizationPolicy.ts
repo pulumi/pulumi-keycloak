@@ -15,6 +15,7 @@ export function getClientAuthorizationPolicy(args: GetClientAuthorizationPolicyA
         opts.version = utilities.getVersion();
     }
     const promise: Promise<GetClientAuthorizationPolicyResult> = pulumi.runtime.invoke("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", {
+        "logic": args.logic,
         "name": args.name,
         "realmId": args.realmId,
         "resourceServerId": args.resourceServerId,
@@ -27,6 +28,7 @@ export function getClientAuthorizationPolicy(args: GetClientAuthorizationPolicyA
  * A collection of arguments for invoking getClientAuthorizationPolicy.
  */
 export interface GetClientAuthorizationPolicyArgs {
+    readonly logic?: string;
     readonly name: string;
     readonly realmId: string;
     readonly resourceServerId: string;
@@ -37,7 +39,7 @@ export interface GetClientAuthorizationPolicyArgs {
  */
 export interface GetClientAuthorizationPolicyResult {
     readonly decisionStrategy: string;
-    readonly logic: string;
+    readonly logic?: string;
     readonly name: string;
     readonly owner: string;
     readonly policies: string[];

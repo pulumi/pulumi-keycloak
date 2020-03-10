@@ -35,6 +35,7 @@ func LookupRealm(ctx *pulumi.Context, args *LookupRealmArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getRealm.
 type LookupRealmArgs struct {
+	Attributes map[string]interface{} `pulumi:"attributes"`
 	DisplayNameHtml *string `pulumi:"displayNameHtml"`
 	Internationalizations []GetRealmInternationalization `pulumi:"internationalizations"`
 	Realm string `pulumi:"realm"`
@@ -54,6 +55,7 @@ type LookupRealmResult struct {
 	ActionTokenGeneratedByAdminLifespan string `pulumi:"actionTokenGeneratedByAdminLifespan"`
 	ActionTokenGeneratedByUserLifespan string `pulumi:"actionTokenGeneratedByUserLifespan"`
 	AdminTheme string `pulumi:"adminTheme"`
+	Attributes map[string]interface{} `pulumi:"attributes"`
 	BrowserFlow string `pulumi:"browserFlow"`
 	ClientAuthenticationFlow string `pulumi:"clientAuthenticationFlow"`
 	DirectGrantFlow string `pulumi:"directGrantFlow"`
@@ -82,6 +84,7 @@ type LookupRealmResult struct {
 	ResetPasswordAllowed bool `pulumi:"resetPasswordAllowed"`
 	SecurityDefenses []GetRealmSecurityDefense `pulumi:"securityDefenses"`
 	SmtpServers []GetRealmSmtpServer `pulumi:"smtpServers"`
+	SslRequired string `pulumi:"sslRequired"`
 	SsoSessionIdleTimeout string `pulumi:"ssoSessionIdleTimeout"`
 	SsoSessionMaxLifespan string `pulumi:"ssoSessionMaxLifespan"`
 	VerifyEmail bool `pulumi:"verifyEmail"`

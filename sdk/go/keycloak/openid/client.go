@@ -59,6 +59,7 @@ import (
 type Client struct {
 	pulumi.CustomResourceState
 
+	AccessTokenLifespan pulumi.StringPtrOutput `pulumi:"accessTokenLifespan"`
 	AccessType pulumi.StringOutput `pulumi:"accessType"`
 	AdminUrl pulumi.StringPtrOutput `pulumi:"adminUrl"`
 	Authorization ClientAuthorizationPtrOutput `pulumi:"authorization"`
@@ -120,6 +121,7 @@ func GetClient(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Client resources.
 type clientState struct {
+	AccessTokenLifespan *string `pulumi:"accessTokenLifespan"`
 	AccessType *string `pulumi:"accessType"`
 	AdminUrl *string `pulumi:"adminUrl"`
 	Authorization *ClientAuthorization `pulumi:"authorization"`
@@ -145,6 +147,7 @@ type clientState struct {
 }
 
 type ClientState struct {
+	AccessTokenLifespan pulumi.StringPtrInput
 	AccessType pulumi.StringPtrInput
 	AdminUrl pulumi.StringPtrInput
 	Authorization ClientAuthorizationPtrInput
@@ -174,6 +177,7 @@ func (ClientState) ElementType() reflect.Type {
 }
 
 type clientArgs struct {
+	AccessTokenLifespan *string `pulumi:"accessTokenLifespan"`
 	AccessType string `pulumi:"accessType"`
 	AdminUrl *string `pulumi:"adminUrl"`
 	Authorization *ClientAuthorization `pulumi:"authorization"`
@@ -198,6 +202,7 @@ type clientArgs struct {
 
 // The set of arguments for constructing a Client resource.
 type ClientArgs struct {
+	AccessTokenLifespan pulumi.StringPtrInput
 	AccessType pulumi.StringInput
 	AdminUrl pulumi.StringPtrInput
 	Authorization ClientAuthorizationPtrInput

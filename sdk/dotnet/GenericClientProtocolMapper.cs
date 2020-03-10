@@ -37,10 +37,16 @@ namespace Pulumi.Keycloak
     public partial class GenericClientProtocolMapper : Pulumi.CustomResource
     {
         /// <summary>
-        /// The mapper's associated client.
+        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
         /// </summary>
         [Output("clientId")]
-        public Output<string> ClientId { get; private set; } = null!;
+        public Output<string?> ClientId { get; private set; } = null!;
+
+        /// <summary>
+        /// The mapper's associated client scope. Cannot be used at the same time as client_id.
+        /// </summary>
+        [Output("clientScopeId")]
+        public Output<string?> ClientScopeId { get; private set; } = null!;
 
         [Output("config")]
         public Output<ImmutableDictionary<string, object>> Config { get; private set; } = null!;
@@ -64,7 +70,7 @@ namespace Pulumi.Keycloak
         public Output<string> ProtocolMapper { get; private set; } = null!;
 
         /// <summary>
-        /// The realm id where the associated client exists.
+        /// The realm id where the associated client or client scope exists.
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
@@ -116,10 +122,16 @@ namespace Pulumi.Keycloak
     public sealed class GenericClientProtocolMapperArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The mapper's associated client.
+        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
         /// </summary>
-        [Input("clientId", required: true)]
-        public Input<string> ClientId { get; set; } = null!;
+        [Input("clientId")]
+        public Input<string>? ClientId { get; set; }
+
+        /// <summary>
+        /// The mapper's associated client scope. Cannot be used at the same time as client_id.
+        /// </summary>
+        [Input("clientScopeId")]
+        public Input<string>? ClientScopeId { get; set; }
 
         [Input("config", required: true)]
         private InputMap<object>? _config;
@@ -148,7 +160,7 @@ namespace Pulumi.Keycloak
         public Input<string> ProtocolMapper { get; set; } = null!;
 
         /// <summary>
-        /// The realm id where the associated client exists.
+        /// The realm id where the associated client or client scope exists.
         /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
@@ -161,10 +173,16 @@ namespace Pulumi.Keycloak
     public sealed class GenericClientProtocolMapperState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The mapper's associated client.
+        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
+
+        /// <summary>
+        /// The mapper's associated client scope. Cannot be used at the same time as client_id.
+        /// </summary>
+        [Input("clientScopeId")]
+        public Input<string>? ClientScopeId { get; set; }
 
         [Input("config")]
         private InputMap<object>? _config;
@@ -193,7 +211,7 @@ namespace Pulumi.Keycloak
         public Input<string>? ProtocolMapper { get; set; }
 
         /// <summary>
-        /// The realm id where the associated client exists.
+        /// The realm id where the associated client or client scope exists.
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }

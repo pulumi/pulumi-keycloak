@@ -21,6 +21,7 @@ type ClientAuthorizationPermission struct {
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
 	ResourceServerId pulumi.StringOutput `pulumi:"resourceServerId"`
 	Resources pulumi.StringArrayOutput `pulumi:"resources"`
+	Scopes pulumi.StringArrayOutput `pulumi:"scopes"`
 	Type pulumi.StringPtrOutput `pulumi:"type"`
 }
 
@@ -65,6 +66,7 @@ type clientAuthorizationPermissionState struct {
 	RealmId *string `pulumi:"realmId"`
 	ResourceServerId *string `pulumi:"resourceServerId"`
 	Resources []string `pulumi:"resources"`
+	Scopes []string `pulumi:"scopes"`
 	Type *string `pulumi:"type"`
 }
 
@@ -76,6 +78,7 @@ type ClientAuthorizationPermissionState struct {
 	RealmId pulumi.StringPtrInput
 	ResourceServerId pulumi.StringPtrInput
 	Resources pulumi.StringArrayInput
+	Scopes pulumi.StringArrayInput
 	Type pulumi.StringPtrInput
 }
 
@@ -91,6 +94,7 @@ type clientAuthorizationPermissionArgs struct {
 	RealmId string `pulumi:"realmId"`
 	ResourceServerId string `pulumi:"resourceServerId"`
 	Resources []string `pulumi:"resources"`
+	Scopes []string `pulumi:"scopes"`
 	Type *string `pulumi:"type"`
 }
 
@@ -103,6 +107,7 @@ type ClientAuthorizationPermissionArgs struct {
 	RealmId pulumi.StringInput
 	ResourceServerId pulumi.StringInput
 	Resources pulumi.StringArrayInput
+	Scopes pulumi.StringArrayInput
 	Type pulumi.StringPtrInput
 }
 

@@ -38,8 +38,10 @@ import (
 type GenericClientProtocolMapper struct {
 	pulumi.CustomResourceState
 
-	// The mapper's associated client.
-	ClientId pulumi.StringOutput `pulumi:"clientId"`
+	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
+	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	ClientScopeId pulumi.StringPtrOutput `pulumi:"clientScopeId"`
 	Config pulumi.MapOutput `pulumi:"config"`
 	// A human-friendly name that will appear in the Keycloak console.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -47,16 +49,13 @@ type GenericClientProtocolMapper struct {
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
 	// The type of the protocol mapper.
 	ProtocolMapper pulumi.StringOutput `pulumi:"protocolMapper"`
-	// The realm id where the associated client exists.
+	// The realm id where the associated client or client scope exists.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
 // NewGenericClientProtocolMapper registers a new resource with the given unique name, arguments, and options.
 func NewGenericClientProtocolMapper(ctx *pulumi.Context,
 	name string, args *GenericClientProtocolMapperArgs, opts ...pulumi.ResourceOption) (*GenericClientProtocolMapper, error) {
-	if args == nil || args.ClientId == nil {
-		return nil, errors.New("missing required argument 'ClientId'")
-	}
 	if args == nil || args.Config == nil {
 		return nil, errors.New("missing required argument 'Config'")
 	}
@@ -94,8 +93,10 @@ func GetGenericClientProtocolMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GenericClientProtocolMapper resources.
 type genericClientProtocolMapperState struct {
-	// The mapper's associated client.
+	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
 	ClientId *string `pulumi:"clientId"`
+	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	ClientScopeId *string `pulumi:"clientScopeId"`
 	Config map[string]interface{} `pulumi:"config"`
 	// A human-friendly name that will appear in the Keycloak console.
 	Name *string `pulumi:"name"`
@@ -103,13 +104,15 @@ type genericClientProtocolMapperState struct {
 	Protocol *string `pulumi:"protocol"`
 	// The type of the protocol mapper.
 	ProtocolMapper *string `pulumi:"protocolMapper"`
-	// The realm id where the associated client exists.
+	// The realm id where the associated client or client scope exists.
 	RealmId *string `pulumi:"realmId"`
 }
 
 type GenericClientProtocolMapperState struct {
-	// The mapper's associated client.
+	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
 	ClientId pulumi.StringPtrInput
+	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	ClientScopeId pulumi.StringPtrInput
 	Config pulumi.MapInput
 	// A human-friendly name that will appear in the Keycloak console.
 	Name pulumi.StringPtrInput
@@ -117,7 +120,7 @@ type GenericClientProtocolMapperState struct {
 	Protocol pulumi.StringPtrInput
 	// The type of the protocol mapper.
 	ProtocolMapper pulumi.StringPtrInput
-	// The realm id where the associated client exists.
+	// The realm id where the associated client or client scope exists.
 	RealmId pulumi.StringPtrInput
 }
 
@@ -126,8 +129,10 @@ func (GenericClientProtocolMapperState) ElementType() reflect.Type {
 }
 
 type genericClientProtocolMapperArgs struct {
-	// The mapper's associated client.
-	ClientId string `pulumi:"clientId"`
+	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	ClientId *string `pulumi:"clientId"`
+	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	ClientScopeId *string `pulumi:"clientScopeId"`
 	Config map[string]interface{} `pulumi:"config"`
 	// A human-friendly name that will appear in the Keycloak console.
 	Name *string `pulumi:"name"`
@@ -135,14 +140,16 @@ type genericClientProtocolMapperArgs struct {
 	Protocol string `pulumi:"protocol"`
 	// The type of the protocol mapper.
 	ProtocolMapper string `pulumi:"protocolMapper"`
-	// The realm id where the associated client exists.
+	// The realm id where the associated client or client scope exists.
 	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a GenericClientProtocolMapper resource.
 type GenericClientProtocolMapperArgs struct {
-	// The mapper's associated client.
-	ClientId pulumi.StringInput
+	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	ClientId pulumi.StringPtrInput
+	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	ClientScopeId pulumi.StringPtrInput
 	Config pulumi.MapInput
 	// A human-friendly name that will appear in the Keycloak console.
 	Name pulumi.StringPtrInput
@@ -150,7 +157,7 @@ type GenericClientProtocolMapperArgs struct {
 	Protocol pulumi.StringInput
 	// The type of the protocol mapper.
 	ProtocolMapper pulumi.StringInput
-	// The realm id where the associated client exists.
+	// The realm id where the associated client or client scope exists.
 	RealmId pulumi.StringInput
 }
 

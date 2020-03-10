@@ -28,6 +28,11 @@ namespace Pulumi.Keycloak
         public static string? Realm { get; set; } = __config.Get("realm") ?? Utilities.GetEnv("KEYCLOAK_REALM") ?? "master";
 
         /// <summary>
+        /// Allows x509 calls using an unknown CA certificate (for development purposes)
+        /// </summary>
+        public static string? RootCaCertificate { get; set; } = __config.Get("rootCaCertificate");
+
+        /// <summary>
         /// The base URL of the Keycloak instance, before `/auth`
         /// </summary>
         public static string? Url { get; set; } = __config.Get("url") ?? Utilities.GetEnv("KEYCLOAK_URL");

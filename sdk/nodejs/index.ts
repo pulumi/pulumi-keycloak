@@ -7,6 +7,7 @@ export * from "./attributeToRoleIdentityMapper";
 export * from "./customUserFederation";
 export * from "./defaultGroups";
 export * from "./genericClientProtocolMapper";
+export * from "./genericClientRoleMapper";
 export * from "./getGroup";
 export * from "./getRealm";
 export * from "./getRealmKeys";
@@ -25,10 +26,11 @@ export * from "./user";
 export * from "./userTemplateImporterIdentityProviderMapper";
 
 // Export sub-modules:
+import * as authentication from "./authentication/index";
 import * as config from "./config/index";
 import * as ldap from "./ldap/index";
 import * as oidc from "./oidc/index";
 import * as openid from "./openid/index";
 import * as saml from "./saml/index";
 import * as types from "./types/index";
-export {config, ldap, oidc, openid, saml, types};
+export {authentication, config, ldap, oidc, openid, saml, types};
