@@ -2,10 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Fix the casing of the Go, NodeJS and Python sub packages
-* Upgrade to v1.17.0 of the KeyCloak Terraform Provider
+_(none)_
 
 ---
+
+## 1.2.0 (2020-03-10)
+* Fix the casing of the Go, NodeJS and Python sub packages
+* Upgrade to v1.17.0 of the KeyCloak Terraform Provider
 
 ## v1.1.0 (2020-02-25)
 * Upgrade to v1.16.0 of the KeyCloak Terraform Provider
