@@ -2,11 +2,14 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+_(none)_
+
+---
+
+## 1.3.0 (2020-03-21)
 * Upgrade to v1.17.1 of the KeyCloak Terraform Provider
 * Upgrade to Pulumi v1.12.1
 * Upgrade to pulumi-terraform-bridge v1.8.2
-
----
 
 ## 1.2.0 (2020-03-10)
 * Fix the casing of the Go, NodeJS and Python sub packages
