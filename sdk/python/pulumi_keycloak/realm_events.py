@@ -20,13 +20,13 @@ class RealmEvents(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, admin_events_details_enabled=None, admin_events_enabled=None, enabled_event_types=None, events_enabled=None, events_expiration=None, events_listeners=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # .RealmEvents
-        
+
         Allows for managing Realm Events settings within Keycloak.
-        
+
         ### Argument Reference
-        
+
         The following arguments are supported:
-        
+
         - `realm_id` - (Required) The name of the realm the event settings apply to.
         - `admin_events_enabled` - (Optional) When true, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
         - `admin_events_details_enabled` - (Optional) When true, saved admin events will included detailed information for create/update requests. Defaults to `false`.
@@ -34,11 +34,11 @@ class RealmEvents(pulumi.CustomResource):
         - `events_expiration` - (Optional) The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
         - `enabled_event_types` - (Optional) The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
         - `events_listeners` - (Optional) The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
-        
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_realm_events.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/realm_events.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -77,16 +77,15 @@ class RealmEvents(pulumi.CustomResource):
         """
         Get an existing RealmEvents resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/realm_events.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["admin_events_details_enabled"] = admin_events_details_enabled
         __props__["admin_events_enabled"] = admin_events_enabled
         __props__["enabled_event_types"] = enabled_event_types

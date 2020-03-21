@@ -12,18 +12,18 @@ import (
 )
 
 // ## # ldap.GroupMapper
-// 
+//
 // Allows for creating and managing group mappers for Keycloak users federated
 // via LDAP.
-// 
+//
 // The LDAP group mapper can be used to map an LDAP user's groups from some DN
 // to Keycloak groups. This group mapper will also create the groups within Keycloak
 // if they do not already exist.
-// 
+//
 // ### Argument Reference
-// 
+//
 // The following arguments are supported:
-// 
+//
 // - `realmId` - (Required) The realm that this LDAP mapper will exist in.
 // - `ldapUserFederationId` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
 // - `name` - (Required) Display name of this mapper when displayed in the console.
@@ -41,8 +41,8 @@ import (
 // - `memberofLdapAttribute` - (Optional) Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
 // - `mappedGroupAttributes` - (Optional) Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
 // - `dropNonExistingGroupsDuringSync` - (Optional) When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
-// 
-// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_group_mapper.html.markdown.
+//
+// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_ldap_group_mapper.html.markdown.
 type GroupMapper struct {
 	pulumi.CustomResourceState
 

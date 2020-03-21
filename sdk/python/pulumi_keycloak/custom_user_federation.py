@@ -13,18 +13,37 @@ class CustomUserFederation(pulumi.CustomResource):
     cache_policy: pulumi.Output[str]
     config: pulumi.Output[dict]
     enabled: pulumi.Output[bool]
+    """
+    When false, this provider will not be used when performing queries for users.
+    """
     name: pulumi.Output[str]
+    """
+    Display name of the provider when displayed in the console.
+    """
     priority: pulumi.Output[float]
+    """
+    Priority of this provider when looking up users. Lower values are first.
+    """
     provider_id: pulumi.Output[str]
+    """
+    The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
+    interface
+    """
     realm_id: pulumi.Output[str]
+    """
+    The realm this provider will provide user federation for.
+    """
     def __init__(__self__, resource_name, opts=None, cache_policy=None, config=None, enabled=None, name=None, priority=None, provider_id=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a CustomUserFederation resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/custom_user_federation.html.markdown.
+        :param pulumi.Input[bool] enabled: When false, this provider will not be used when performing queries for users.
+        :param pulumi.Input[str] name: Display name of the provider when displayed in the console.
+        :param pulumi.Input[float] priority: Priority of this provider when looking up users. Lower values are first.
+        :param pulumi.Input[str] provider_id: The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
+               interface
+        :param pulumi.Input[str] realm_id: The realm this provider will provide user federation for.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -65,16 +84,21 @@ class CustomUserFederation(pulumi.CustomResource):
         """
         Get an existing CustomUserFederation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/custom_user_federation.html.markdown.
+        :param pulumi.Input[bool] enabled: When false, this provider will not be used when performing queries for users.
+        :param pulumi.Input[str] name: Display name of the provider when displayed in the console.
+        :param pulumi.Input[float] priority: Priority of this provider when looking up users. Lower values are first.
+        :param pulumi.Input[str] provider_id: The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
+               interface
+        :param pulumi.Input[str] realm_id: The realm this provider will provide user federation for.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["cache_policy"] = cache_policy
         __props__["config"] = config
         __props__["enabled"] = enabled

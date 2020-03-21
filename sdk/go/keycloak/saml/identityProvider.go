@@ -12,15 +12,15 @@ import (
 )
 
 // ## # saml.IdentityProvider
-// 
+//
 // Allows to create and manage SAML Identity Providers within Keycloak.
-// 
+//
 // SAML (Security Assertion Markup Language) identity providers allows to authenticate through a third-party system, using SAML standard.
-// 
+//
 // ### Argument Reference
-// 
+//
 // The following arguments are supported:
-// 
+//
 // - `realm` - (Required) The name of the realm. This is unique across Keycloak.
 // - `alias` - (Optional) The uniq name of identity provider.
 // - `enabled` - (Optional) When false, users and clients will not be able to access this realm. Defaults to `true`.
@@ -33,9 +33,9 @@ import (
 // - `firstBrokerLoginFlowAlias` - (Optional) Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
 // - `postBrokerLoginFlowAlias` - (Optional) Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
 // - `authenticateByDefault` - (Optional) Authenticate users by default. Defaults to `false`.
-// 
+//
 // #### SAML Configuration
-// 
+//
 // - `singleSignOnServiceUrl` - (Optional) The Url that must be used to send authentication requests (SAML AuthnRequest).
 // - `singleLogoutServiceUrl` - (Optional) The Url that must be used to send logout requests.
 // - `backchannelSupported` - (Optional) Does the external IDP support back-channel logout ?.
@@ -50,8 +50,8 @@ import (
 // - `signingCertificate` - (Optional) Signing Certificate.
 // - `signatureAlgorithm` - (Optional) Signing Algorithm. Defaults to empty.
 // - `xmlSignKeyInfoKeyNameTransformer` - (Optional) Sign Key Transformer. Defaults to empty.
-// 
-// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/saml_identity_provider.html.markdown.
+//
+// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_saml_identity_provider.html.markdown.
 type IdentityProvider struct {
 	pulumi.CustomResourceState
 

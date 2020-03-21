@@ -36,17 +36,17 @@ class Client(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, access_token_lifespan=None, access_type=None, admin_url=None, authorization=None, base_url=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, implicit_flow_enabled=None, name=None, pkce_code_challenge_method=None, realm_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # openid.Client
-        
+
         Allows for creating and managing Keycloak clients that use the OpenID Connect protocol.
-        
+
         Clients are entities that can use Keycloak for user authentication. Typically,
         clients are applications that redirect users to Keycloak for authentication
         in order to take advantage of Keycloak's user sessions for SSO.
-        
+
         ### Argument Reference
-        
+
         The following arguments are supported:
-        
+
         - `realm_id` - (Required) The realm this client is attached to.
         - `client_id` - (Required) The unique ID of this client, referenced in the URI during authentication and in issued tokens.
         - `name` - (Optional) The display name of this client in the GUI.
@@ -72,23 +72,23 @@ class Client(pulumi.CustomResource):
         - `base_url` - (Optional) Default URL to use when the auth server needs to redirect or link back to the client.
         - `pkce_code_challenge_method` - (Optional) The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
         - `full_scope_allowed` - (Optional) - Allow to include all roles mappings in the access token.
-        
+
         ### Attributes Reference
-        
+
         In addition to the arguments listed above, the following computed attributes are exported:
-        
+
         - `service_account_user_id` - When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
-        
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_openid_client.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        
+
         The **authorization** object supports the following:
-        
+
           * `allowRemoteResourceManagement` (`pulumi.Input[bool]`)
           * `keepDefaults` (`pulumi.Input[bool]`)
           * `policyEnforcementMode` (`pulumi.Input[str]`)
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_client.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -147,22 +147,21 @@ class Client(pulumi.CustomResource):
         """
         Get an existing Client resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        
+
         The **authorization** object supports the following:
-        
+
           * `allowRemoteResourceManagement` (`pulumi.Input[bool]`)
           * `keepDefaults` (`pulumi.Input[bool]`)
           * `policyEnforcementMode` (`pulumi.Input[str]`)
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_client.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["access_token_lifespan"] = access_token_lifespan
         __props__["access_type"] = access_type
         __props__["admin_url"] = admin_url

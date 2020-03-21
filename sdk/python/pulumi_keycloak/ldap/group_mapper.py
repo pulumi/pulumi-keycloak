@@ -17,6 +17,9 @@ class GroupMapper(pulumi.CustomResource):
     ignore_missing_groups: pulumi.Output[bool]
     ldap_groups_dn: pulumi.Output[str]
     ldap_user_federation_id: pulumi.Output[str]
+    """
+    The ldap user federation provider to attach this mapper to.
+    """
     mapped_group_attributes: pulumi.Output[list]
     memberof_ldap_attribute: pulumi.Output[str]
     membership_attribute_type: pulumi.Output[str]
@@ -24,24 +27,30 @@ class GroupMapper(pulumi.CustomResource):
     membership_user_ldap_attribute: pulumi.Output[str]
     mode: pulumi.Output[str]
     name: pulumi.Output[str]
+    """
+    Display name of the mapper when displayed in the console.
+    """
     preserve_group_inheritance: pulumi.Output[bool]
     realm_id: pulumi.Output[str]
+    """
+    The realm in which the ldap user federation provider exists.
+    """
     user_roles_retrieve_strategy: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, drop_non_existing_groups_during_sync=None, group_name_ldap_attribute=None, group_object_classes=None, groups_ldap_filter=None, ignore_missing_groups=None, ldap_groups_dn=None, ldap_user_federation_id=None, mapped_group_attributes=None, memberof_ldap_attribute=None, membership_attribute_type=None, membership_ldap_attribute=None, membership_user_ldap_attribute=None, mode=None, name=None, preserve_group_inheritance=None, realm_id=None, user_roles_retrieve_strategy=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # ldap.GroupMapper
-        
+
         Allows for creating and managing group mappers for Keycloak users federated
         via LDAP.
-        
+
         The LDAP group mapper can be used to map an LDAP user's groups from some DN
         to Keycloak groups. This group mapper will also create the groups within Keycloak
         if they do not already exist.
-        
+
         ### Argument Reference
-        
+
         The following arguments are supported:
-        
+
         - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
         - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
         - `name` - (Required) Display name of this mapper when displayed in the console.
@@ -59,11 +68,14 @@ class GroupMapper(pulumi.CustomResource):
         - `memberof_ldap_attribute` - (Optional) Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
         - `mapped_group_attributes` - (Optional) Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
         - `drop_non_existing_groups_during_sync` - (Optional) When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
-        
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_ldap_group_mapper.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_group_mapper.html.markdown.
+        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
+        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -124,16 +136,18 @@ class GroupMapper(pulumi.CustomResource):
         """
         Get an existing GroupMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_group_mapper.html.markdown.
+        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
+        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["drop_non_existing_groups_during_sync"] = drop_non_existing_groups_during_sync
         __props__["group_name_ldap_attribute"] = group_name_ldap_attribute
         __props__["group_object_classes"] = group_object_classes

@@ -62,7 +62,7 @@ import * as utilities from "./utilities";
  * - `firstName` - (Optional) The user's first name.
  * - `lastName` - (Optional) The user's last name.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/user.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_user.html.markdown.
  */
 export class User extends pulumi.CustomResource {
     /**

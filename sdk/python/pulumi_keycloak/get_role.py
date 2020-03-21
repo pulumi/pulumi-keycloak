@@ -13,25 +13,25 @@ class GetRoleResult:
     """
     A collection of values returned by getRole.
     """
-    def __init__(__self__, client_id=None, description=None, name=None, realm_id=None, id=None):
+    def __init__(__self__, client_id=None, description=None, id=None, name=None, realm_id=None):
         if client_id and not isinstance(client_id, str):
             raise TypeError("Expected argument 'client_id' to be a str")
         __self__.client_id = client_id
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         __self__.description = description
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if realm_id and not isinstance(realm_id, str):
-            raise TypeError("Expected argument 'realm_id' to be a str")
-        __self__.realm_id = realm_id
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
         id is the provider-assigned unique ID for this managed resource.
         """
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        __self__.name = name
+        if realm_id and not isinstance(realm_id, str):
+            raise TypeError("Expected argument 'realm_id' to be a str")
+        __self__.realm_id = realm_id
 class AwaitableGetRoleResult(GetRoleResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -40,38 +40,38 @@ class AwaitableGetRoleResult(GetRoleResult):
         return GetRoleResult(
             client_id=self.client_id,
             description=self.description,
+            id=self.id,
             name=self.name,
-            realm_id=self.realm_id,
-            id=self.id)
+            realm_id=self.realm_id)
 
 def get_role(client_id=None,name=None,realm_id=None,opts=None):
     """
     ## # .Role data source
-    
+
     This data source can be used to fetch properties of a Keycloak role for
     usage with other resources, such as `.GroupRoles`.
-    
+
     ### Argument Reference
-    
+
     The following arguments are supported:
-    
+
     - `realm_id` - (Required) The realm this role exists within.
     - `client_id` - (Optional) When specified, this role is assumed to be a
       client role belonging to the client with the provided ID
     - `name` - (Required) The name of the role
       
     ### Attributes Reference
-    
+
     In addition to the arguments listed above, the following computed attributes are exported:
-    
+
     - `id` - The unique ID of the role, which can be used as an argument to
       other resources supported by this provider.
     - `description` - The description of the role.
-    
 
-    > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/role.html.markdown.
+    > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_role.html.markdown.
     """
     __args__ = dict()
+
 
     __args__['clientId'] = client_id
     __args__['name'] = name
@@ -85,6 +85,6 @@ def get_role(client_id=None,name=None,realm_id=None,opts=None):
     return AwaitableGetRoleResult(
         client_id=__ret__.get('clientId'),
         description=__ret__.get('description'),
+        id=__ret__.get('id'),
         name=__ret__.get('name'),
-        realm_id=__ret__.get('realmId'),
-        id=__ret__.get('id'))
+        realm_id=__ret__.get('realmId'))

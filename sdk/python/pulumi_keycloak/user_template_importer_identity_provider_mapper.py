@@ -11,15 +11,30 @@ from . import utilities, tables
 
 class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
     identity_provider_alias: pulumi.Output[str]
+    """
+    IDP Alias
+    """
     name: pulumi.Output[str]
+    """
+    IDP Mapper Name
+    """
     realm: pulumi.Output[str]
+    """
+    Realm Name
+    """
     template: pulumi.Output[str]
+    """
+    Username For Template Import
+    """
     def __init__(__self__, resource_name, opts=None, identity_provider_alias=None, name=None, realm=None, template=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a UserTemplateImporterIdentityProviderMapper resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] identity_provider_alias: IDP Alias
+        :param pulumi.Input[str] name: IDP Mapper Name
+        :param pulumi.Input[str] realm: Realm Name
+        :param pulumi.Input[str] template: Username For Template Import
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -57,14 +72,19 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
         """
         Get an existing UserTemplateImporterIdentityProviderMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] identity_provider_alias: IDP Alias
+        :param pulumi.Input[str] name: IDP Mapper Name
+        :param pulumi.Input[str] realm: Realm Name
+        :param pulumi.Input[str] template: Username For Template Import
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["identity_provider_alias"] = identity_provider_alias
         __props__["name"] = name
         __props__["realm"] = realm

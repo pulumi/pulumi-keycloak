@@ -11,34 +11,143 @@ from .. import utilities, tables
 
 class GoogleIdentityProvider(pulumi.CustomResource):
     accepts_prompt_none_forward_from_client: pulumi.Output[bool]
+    """
+    This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
+    case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
+    returned to client, but the request with prompt=none will be forwarded to this identity provider.
+    """
     add_read_token_role_on_create: pulumi.Output[bool]
+    """
+    Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+    """
     alias: pulumi.Output[str]
+    """
+    The alias uniquely identifies an identity provider and it is also used to build the redirect uri. In case of google this
+    is computed and always google
+    """
     authenticate_by_default: pulumi.Output[bool]
+    """
+    Enable/disable authenticate users by default.
+    """
     client_id: pulumi.Output[str]
+    """
+    Client ID.
+    """
     client_secret: pulumi.Output[str]
+    """
+    Client Secret.
+    """
     default_scopes: pulumi.Output[str]
+    """
+    The scopes to be sent when asking for authorization. See the documentation for possible values, separator and default
+    value'. Default: 'openid profile email'
+    """
     disable_user_info: pulumi.Output[bool]
+    """
+    Disable usage of User Info service to obtain additional user information? Default is to use this OIDC service.
+    """
     display_name: pulumi.Output[str]
+    """
+    Not used by this provider, Will be implicitly Google
+    """
     enabled: pulumi.Output[bool]
+    """
+    Enable/disable this identity provider.
+    """
     extra_config: pulumi.Output[dict]
     first_broker_login_flow_alias: pulumi.Output[str]
+    """
+    Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+    that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+    """
     hide_on_login_page: pulumi.Output[bool]
+    """
+    Hide On Login Page.
+    """
     hosted_domain: pulumi.Output[str]
+    """
+    Set 'hd' query parameter when logging in with Google. Google will list accounts only for this domain. Keycloak validates
+    that the returned identity token has a claim for this domain. When '*' is entered, any hosted account can be used.
+    """
     internal_id: pulumi.Output[str]
+    """
+    Internal Identity Provider Id
+    """
     link_only: pulumi.Output[bool]
+    """
+    If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
+    want to allow login from the provider, but want to integrate with a provider
+    """
     post_broker_login_flow_alias: pulumi.Output[str]
+    """
+    Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
+    additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+    you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+    authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+    """
     provider_id: pulumi.Output[str]
+    """
+    provider id, is always google, unless you have a extended custom implementation
+    """
     realm: pulumi.Output[str]
+    """
+    Realm Name
+    """
     request_refresh_token: pulumi.Output[bool]
+    """
+    Set 'access_type' query parameter to 'offline' when redirecting to google authorization endpoint, to get a refresh token
+    back. Useful if planning to use Token Exchange to retrieve Google token to access Google APIs when the user is not at
+    the browser.
+    """
     store_token: pulumi.Output[bool]
+    """
+    Enable/disable if tokens must be stored after authenticating users.
+    """
     trust_email: pulumi.Output[bool]
+    """
+    If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+    """
     use_user_ip_param: pulumi.Output[bool]
+    """
+    Set 'userIp' query parameter when invoking on Google's User Info service. This will use the user's ip address. Useful if
+    Google is throttling access to the User Info service.
+    """
     def __init__(__self__, resource_name, opts=None, accepts_prompt_none_forward_from_client=None, add_read_token_role_on_create=None, authenticate_by_default=None, client_id=None, client_secret=None, default_scopes=None, disable_user_info=None, enabled=None, extra_config=None, first_broker_login_flow_alias=None, hide_on_login_page=None, hosted_domain=None, link_only=None, post_broker_login_flow_alias=None, provider_id=None, realm=None, request_refresh_token=None, store_token=None, trust_email=None, use_user_ip_param=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a GoogleIdentityProvider resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] accepts_prompt_none_forward_from_client: This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
+               case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
+               returned to client, but the request with prompt=none will be forwarded to this identity provider.
+        :param pulumi.Input[bool] add_read_token_role_on_create: Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+        :param pulumi.Input[bool] authenticate_by_default: Enable/disable authenticate users by default.
+        :param pulumi.Input[str] client_id: Client ID.
+        :param pulumi.Input[str] client_secret: Client Secret.
+        :param pulumi.Input[str] default_scopes: The scopes to be sent when asking for authorization. See the documentation for possible values, separator and default
+               value'. Default: 'openid profile email'
+        :param pulumi.Input[bool] disable_user_info: Disable usage of User Info service to obtain additional user information? Default is to use this OIDC service.
+        :param pulumi.Input[bool] enabled: Enable/disable this identity provider.
+        :param pulumi.Input[str] first_broker_login_flow_alias: Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+               that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+        :param pulumi.Input[bool] hide_on_login_page: Hide On Login Page.
+        :param pulumi.Input[str] hosted_domain: Set 'hd' query parameter when logging in with Google. Google will list accounts only for this domain. Keycloak validates
+               that the returned identity token has a claim for this domain. When '*' is entered, any hosted account can be used.
+        :param pulumi.Input[bool] link_only: If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
+               want to allow login from the provider, but want to integrate with a provider
+        :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
+               additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+               you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+               authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+        :param pulumi.Input[str] provider_id: provider id, is always google, unless you have a extended custom implementation
+        :param pulumi.Input[str] realm: Realm Name
+        :param pulumi.Input[bool] request_refresh_token: Set 'access_type' query parameter to 'offline' when redirecting to google authorization endpoint, to get a refresh token
+               back. Useful if planning to use Token Exchange to retrieve Google token to access Google APIs when the user is not at
+               the browser.
+        :param pulumi.Input[bool] store_token: Enable/disable if tokens must be stored after authenticating users.
+        :param pulumi.Input[bool] trust_email: If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+        :param pulumi.Input[bool] use_user_ip_param: Set 'userIp' query parameter when invoking on Google's User Info service. This will use the user's ip address. Useful if
+               Google is throttling access to the User Info service.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -97,14 +206,50 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         """
         Get an existing GoogleIdentityProvider resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] accepts_prompt_none_forward_from_client: This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
+               case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
+               returned to client, but the request with prompt=none will be forwarded to this identity provider.
+        :param pulumi.Input[bool] add_read_token_role_on_create: Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+        :param pulumi.Input[str] alias: The alias uniquely identifies an identity provider and it is also used to build the redirect uri. In case of google this
+               is computed and always google
+        :param pulumi.Input[bool] authenticate_by_default: Enable/disable authenticate users by default.
+        :param pulumi.Input[str] client_id: Client ID.
+        :param pulumi.Input[str] client_secret: Client Secret.
+        :param pulumi.Input[str] default_scopes: The scopes to be sent when asking for authorization. See the documentation for possible values, separator and default
+               value'. Default: 'openid profile email'
+        :param pulumi.Input[bool] disable_user_info: Disable usage of User Info service to obtain additional user information? Default is to use this OIDC service.
+        :param pulumi.Input[str] display_name: Not used by this provider, Will be implicitly Google
+        :param pulumi.Input[bool] enabled: Enable/disable this identity provider.
+        :param pulumi.Input[str] first_broker_login_flow_alias: Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+               that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+        :param pulumi.Input[bool] hide_on_login_page: Hide On Login Page.
+        :param pulumi.Input[str] hosted_domain: Set 'hd' query parameter when logging in with Google. Google will list accounts only for this domain. Keycloak validates
+               that the returned identity token has a claim for this domain. When '*' is entered, any hosted account can be used.
+        :param pulumi.Input[str] internal_id: Internal Identity Provider Id
+        :param pulumi.Input[bool] link_only: If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
+               want to allow login from the provider, but want to integrate with a provider
+        :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
+               additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+               you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+               authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+        :param pulumi.Input[str] provider_id: provider id, is always google, unless you have a extended custom implementation
+        :param pulumi.Input[str] realm: Realm Name
+        :param pulumi.Input[bool] request_refresh_token: Set 'access_type' query parameter to 'offline' when redirecting to google authorization endpoint, to get a refresh token
+               back. Useful if planning to use Token Exchange to retrieve Google token to access Google APIs when the user is not at
+               the browser.
+        :param pulumi.Input[bool] store_token: Enable/disable if tokens must be stored after authenticating users.
+        :param pulumi.Input[bool] trust_email: If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+        :param pulumi.Input[bool] use_user_ip_param: Set 'userIp' query parameter when invoking on Google's User Info service. This will use the user's ip address. Useful if
+               Google is throttling access to the User Info service.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["accepts_prompt_none_forward_from_client"] = accepts_prompt_none_forward_from_client
         __props__["add_read_token_role_on_create"] = add_read_token_role_on_create
         __props__["alias"] = alias

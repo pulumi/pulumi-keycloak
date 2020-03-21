@@ -55,7 +55,7 @@ import * as utilities from "../utilities";
  * - `readOnly` - (Optional) When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
  * - `writeOnly` - (Optional) When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_full_name_mapper.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_ldap_full_name_mapper.html.markdown.
  */
 export class FullNameMapper extends pulumi.CustomResource {
     /**

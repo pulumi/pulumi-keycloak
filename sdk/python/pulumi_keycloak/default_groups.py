@@ -15,23 +15,23 @@ class DefaultGroups(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, group_ids=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # .DefaultGroups
-        
+
         Allows for managing a realm's default groups.
-        
+
         Note that you should not use `.DefaultGroups` with a group with memberships managed
         by `.GroupMemberships`.
-        
+
         ### Argument Reference
-        
+
         The following arguments are supported:
-        
+
         - `realm_id` - (Required) The realm this group exists in.
         - `group_ids` - (Required) A set of group ids that should be default groups on the realm referenced by `realm_id`.
-        
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_default_groups.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/default_groups.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -67,16 +67,15 @@ class DefaultGroups(pulumi.CustomResource):
         """
         Get an existing DefaultGroups resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/default_groups.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["group_ids"] = group_ids
         __props__["realm_id"] = realm_id
         return DefaultGroups(resource_name, opts=opts, __props__=__props__)

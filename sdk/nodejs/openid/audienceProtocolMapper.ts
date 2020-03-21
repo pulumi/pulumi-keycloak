@@ -71,7 +71,7 @@ import * as utilities from "../utilities";
  * - `addToIdToken` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
  * - `addToAccessToken` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_audience_protocol_mapper.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_openid_audience_protocol_mapper.html.markdown.
  */
 export class AudienceProtocolMapper extends pulumi.CustomResource {
     /**

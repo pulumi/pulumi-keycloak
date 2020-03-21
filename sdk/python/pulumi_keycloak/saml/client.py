@@ -38,17 +38,17 @@ class Client(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, assertion_consumer_post_url=None, assertion_consumer_redirect_url=None, base_url=None, client_id=None, client_signature_required=None, description=None, enabled=None, force_post_binding=None, front_channel_logout=None, full_scope_allowed=None, idp_initiated_sso_relay_state=None, idp_initiated_sso_url_name=None, include_authn_statement=None, logout_service_post_binding_url=None, logout_service_redirect_binding_url=None, master_saml_processing_url=None, name=None, name_id_format=None, realm_id=None, root_url=None, sign_assertions=None, sign_documents=None, signing_certificate=None, signing_private_key=None, valid_redirect_uris=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # saml.Client
-        
+
         Allows for creating and managing Keycloak clients that use the SAML protocol.
-        
+
         Clients are entities that can use Keycloak for user authentication. Typically,
         clients are applications that redirect users to Keycloak for authentication
         in order to take advantage of Keycloak's user sessions for SSO.
-        
+
         ### Argument Reference
-        
+
         The following arguments are supported:
-        
+
         - `realm_id` - (Required) The realm this client is attached to.
         - `client_id` - (Required) The unique ID of this client, referenced in the URI during authentication and in issued tokens.
         - `name` - (Optional) The display name of this client in the GUI.
@@ -74,11 +74,11 @@ class Client(pulumi.CustomResource):
         - `logout_service_post_binding_url` - (Optional) SAML POST Binding URL for the client's single logout service.
         - `logout_service_redirect_binding_url` - (Optional) SAML Redirect Binding URL for the client's single logout service.
         - `full_scope_allowed` - (Optional) - Allow to include all roles mappings in the access token
-        
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_saml_client.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/saml_client.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -137,16 +137,15 @@ class Client(pulumi.CustomResource):
         """
         Get an existing Client resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/saml_client.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["assertion_consumer_post_url"] = assertion_consumer_post_url
         __props__["assertion_consumer_redirect_url"] = assertion_consumer_redirect_url
         __props__["base_url"] = base_url

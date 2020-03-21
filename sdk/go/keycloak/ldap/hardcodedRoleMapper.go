@@ -12,19 +12,19 @@ import (
 )
 
 // ## # ldap.HardcodedRoleMapper
-// 
+//
 // This mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
-// 
+//
 // ### Argument Reference
-// 
+//
 // The following arguments are supported:
-// 
+//
 // - `realmId` - (Required) The realm that this LDAP mapper will exist in.
 // - `ldapUserFederationId` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
 // - `name` - (Required) Display name of this mapper when displayed in the console.
 // - `role` - (Required) The role which should be assigned to the users.
-// 
-// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_hardcoded_role_mapper.html.markdown.
+//
+// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_ldap_hardcoded_role_mapper.html.markdown.
 type HardcodedRoleMapper struct {
 	pulumi.CustomResourceState
 

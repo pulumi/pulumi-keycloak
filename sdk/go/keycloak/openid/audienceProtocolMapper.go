@@ -12,18 +12,18 @@ import (
 )
 
 // ## # openid.AudienceProtocolMapper
-// 
+//
 // Allows for creating and managing audience protocol mappers within
 // Keycloak. This mapper was added in Keycloak v4.6.0.Final.
-// 
+//
 // Audience protocol mappers allow you add audiences to the `aud` claim
 // within issued tokens. The audience can be a custom string, or it can be
 // mapped to the ID of a pre-existing client.
-// 
+//
 // ### Argument Reference
-// 
+//
 // The following arguments are supported:
-// 
+//
 // - `realmId` - (Required) The realm this protocol mapper exists within.
 // - `clientId` - (Required if `clientScopeId` is not specified) The client this protocol mapper is attached to.
 // - `clientScopeId` - (Required if `clientId` is not specified) The client scope this protocol mapper is attached to.
@@ -32,8 +32,8 @@ import (
 // - `includedCustomAudience` - (Required if `includedClientAudience` is not specified) A custom audience to include within the token's `aud` claim.
 // - `addToIdToken` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
 // - `addToAccessToken` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
-// 
-// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_audience_protocol_mapper.html.markdown.
+//
+// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_openid_audience_protocol_mapper.html.markdown.
 type AudienceProtocolMapper struct {
 	pulumi.CustomResourceState
 

@@ -51,7 +51,7 @@ import * as utilities from "../utilities";
  * - `samlAttributeName` - (Required) The name of the SAML attribute.
  * - `samlAttributeNameFormat` - (Required) The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/saml_user_attribute_protocol_mapper.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_saml_user_attribute_protocol_mapper.html.markdown.
  */
 export class UserAttributeProtocolMapper extends pulumi.CustomResource {
     /**

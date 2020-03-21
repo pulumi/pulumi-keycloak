@@ -12,6 +12,9 @@ from .. import utilities, tables
 class Subflow(pulumi.CustomResource):
     alias: pulumi.Output[str]
     authenticator: pulumi.Output[str]
+    """
+    Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
+    """
     description: pulumi.Output[str]
     parent_flow_alias: pulumi.Output[str]
     provider_id: pulumi.Output[str]
@@ -20,9 +23,9 @@ class Subflow(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, alias=None, authenticator=None, description=None, parent_flow_alias=None, provider_id=None, realm_id=None, requirement=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a Subflow resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] authenticator: Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -65,14 +68,16 @@ class Subflow(pulumi.CustomResource):
         """
         Get an existing Subflow resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] authenticator: Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["alias"] = alias
         __props__["authenticator"] = authenticator
         __props__["description"] = description

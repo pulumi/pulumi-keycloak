@@ -13,10 +13,16 @@ class GetClientAuthorizationPolicyResult:
     """
     A collection of values returned by getClientAuthorizationPolicy.
     """
-    def __init__(__self__, decision_strategy=None, logic=None, name=None, owner=None, policies=None, realm_id=None, resource_server_id=None, resources=None, scopes=None, type=None, id=None):
+    def __init__(__self__, decision_strategy=None, id=None, logic=None, name=None, owner=None, policies=None, realm_id=None, resource_server_id=None, resources=None, scopes=None, type=None):
         if decision_strategy and not isinstance(decision_strategy, str):
             raise TypeError("Expected argument 'decision_strategy' to be a str")
         __self__.decision_strategy = decision_strategy
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        id is the provider-assigned unique ID for this managed resource.
+        """
         if logic and not isinstance(logic, str):
             raise TypeError("Expected argument 'logic' to be a str")
         __self__.logic = logic
@@ -44,12 +50,6 @@ class GetClientAuthorizationPolicyResult:
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         __self__.type = type
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        id is the provider-assigned unique ID for this managed resource.
-        """
 class AwaitableGetClientAuthorizationPolicyResult(GetClientAuthorizationPolicyResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -57,6 +57,7 @@ class AwaitableGetClientAuthorizationPolicyResult(GetClientAuthorizationPolicyRe
             yield self
         return GetClientAuthorizationPolicyResult(
             decision_strategy=self.decision_strategy,
+            id=self.id,
             logic=self.logic,
             name=self.name,
             owner=self.owner,
@@ -65,15 +66,14 @@ class AwaitableGetClientAuthorizationPolicyResult(GetClientAuthorizationPolicyRe
             resource_server_id=self.resource_server_id,
             resources=self.resources,
             scopes=self.scopes,
-            type=self.type,
-            id=self.id)
+            type=self.type)
 
 def get_client_authorization_policy(logic=None,name=None,realm_id=None,resource_server_id=None,opts=None):
     """
     Use this data source to access information about an existing resource.
-    
     """
     __args__ = dict()
+
 
     __args__['logic'] = logic
     __args__['name'] = name
@@ -87,6 +87,7 @@ def get_client_authorization_policy(logic=None,name=None,realm_id=None,resource_
 
     return AwaitableGetClientAuthorizationPolicyResult(
         decision_strategy=__ret__.get('decisionStrategy'),
+        id=__ret__.get('id'),
         logic=__ret__.get('logic'),
         name=__ret__.get('name'),
         owner=__ret__.get('owner'),
@@ -95,5 +96,4 @@ def get_client_authorization_policy(logic=None,name=None,realm_id=None,resource_
         resource_server_id=__ret__.get('resourceServerId'),
         resources=__ret__.get('resources'),
         scopes=__ret__.get('scopes'),
-        type=__ret__.get('type'),
-        id=__ret__.get('id'))
+        type=__ret__.get('type'))

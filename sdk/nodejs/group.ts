@@ -60,7 +60,7 @@ import * as utilities from "./utilities";
  * 
  * - `path` - The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/group.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_group.html.markdown.
  */
 export class Group extends pulumi.CustomResource {
     /**

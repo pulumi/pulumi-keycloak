@@ -6,9 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/realm.html.markdown.
- */
 export class Realm extends pulumi.CustomResource {
     /**
      * Get an existing Realm resource's state with the given name, ID, and optional extra

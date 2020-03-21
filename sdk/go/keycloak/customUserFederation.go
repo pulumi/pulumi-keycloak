@@ -11,7 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
-// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/custom_user_federation.html.markdown.
 type CustomUserFederation struct {
 	pulumi.CustomResourceState
 

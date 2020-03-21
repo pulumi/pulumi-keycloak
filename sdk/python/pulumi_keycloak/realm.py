@@ -21,11 +21,23 @@ class Realm(pulumi.CustomResource):
     admin_theme: pulumi.Output[str]
     attributes: pulumi.Output[dict]
     browser_flow: pulumi.Output[str]
+    """
+    Which flow should be used for BrowserFlow
+    """
     client_authentication_flow: pulumi.Output[str]
+    """
+    Which flow should be used for ClientAuthenticationFlow
+    """
     direct_grant_flow: pulumi.Output[str]
+    """
+    Which flow should be used for DirectGrantFlow
+    """
     display_name: pulumi.Output[str]
     display_name_html: pulumi.Output[str]
     docker_authentication_flow: pulumi.Output[str]
+    """
+    Which flow should be used for DockerAuthenticationFlow
+    """
     duplicate_emails_allowed: pulumi.Output[bool]
     edit_username_allowed: pulumi.Output[bool]
     email_theme: pulumi.Output[str]
@@ -36,37 +48,59 @@ class Realm(pulumi.CustomResource):
     offline_session_idle_timeout: pulumi.Output[str]
     offline_session_max_lifespan: pulumi.Output[str]
     password_policy: pulumi.Output[str]
+    """
+    String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
+    can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
+    and notUsername(undefined)"
+    """
     realm: pulumi.Output[str]
     refresh_token_max_reuse: pulumi.Output[float]
     registration_allowed: pulumi.Output[bool]
     registration_email_as_username: pulumi.Output[bool]
     registration_flow: pulumi.Output[str]
+    """
+    Which flow should be used for RegistrationFlow
+    """
     remember_me: pulumi.Output[bool]
     reset_credentials_flow: pulumi.Output[str]
+    """
+    Which flow should be used for ResetCredentialsFlow
+    """
     reset_password_allowed: pulumi.Output[bool]
     revoke_refresh_token: pulumi.Output[bool]
     security_defenses: pulumi.Output[dict]
     smtp_server: pulumi.Output[dict]
     ssl_required: pulumi.Output[str]
+    """
+    SSL Required: Values can be 'none', 'external' or 'all'.
+    """
     sso_session_idle_timeout: pulumi.Output[str]
     sso_session_max_lifespan: pulumi.Output[str]
     verify_email: pulumi.Output[bool]
     def __init__(__self__, resource_name, opts=None, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, internationalization=None, login_theme=None, login_with_email_allowed=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, revoke_refresh_token=None, security_defenses=None, smtp_server=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_max_lifespan=None, verify_email=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a Realm resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        
+        :param pulumi.Input[str] browser_flow: Which flow should be used for BrowserFlow
+        :param pulumi.Input[str] client_authentication_flow: Which flow should be used for ClientAuthenticationFlow
+        :param pulumi.Input[str] direct_grant_flow: Which flow should be used for DirectGrantFlow
+        :param pulumi.Input[str] docker_authentication_flow: Which flow should be used for DockerAuthenticationFlow
+        :param pulumi.Input[str] password_policy: String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
+               can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
+               and notUsername(undefined)"
+        :param pulumi.Input[str] registration_flow: Which flow should be used for RegistrationFlow
+        :param pulumi.Input[str] reset_credentials_flow: Which flow should be used for ResetCredentialsFlow
+        :param pulumi.Input[str] ssl_required: SSL Required: Values can be 'none', 'external' or 'all'.
+
         The **internationalization** object supports the following:
-        
+
           * `defaultLocale` (`pulumi.Input[str]`)
           * `supportedLocales` (`pulumi.Input[list]`)
-        
+
         The **security_defenses** object supports the following:
-        
+
           * `bruteForceDetection` (`pulumi.Input[dict]`)
-        
             * `failureResetTimeSeconds` (`pulumi.Input[float]`)
             * `maxFailureWaitSeconds` (`pulumi.Input[float]`)
             * `maxLoginFailures` (`pulumi.Input[float]`)
@@ -74,9 +108,8 @@ class Realm(pulumi.CustomResource):
             * `permanentLockout` (`pulumi.Input[bool]`)
             * `quickLoginCheckMilliSeconds` (`pulumi.Input[float]`)
             * `waitIncrementSeconds` (`pulumi.Input[float]`)
-        
+
           * `headers` (`pulumi.Input[dict]`)
-        
             * `contentSecurityPolicy` (`pulumi.Input[str]`)
             * `contentSecurityPolicyReportOnly` (`pulumi.Input[str]`)
             * `strictTransportSecurity` (`pulumi.Input[str]`)
@@ -84,14 +117,13 @@ class Realm(pulumi.CustomResource):
             * `xFrameOptions` (`pulumi.Input[str]`)
             * `xRobotsTag` (`pulumi.Input[str]`)
             * `xXssProtection` (`pulumi.Input[str]`)
-        
+
         The **smtp_server** object supports the following:
-        
+
           * `auth` (`pulumi.Input[dict]`)
-        
             * `password` (`pulumi.Input[str]`)
             * `username` (`pulumi.Input[str]`)
-        
+
           * `envelopeFrom` (`pulumi.Input[str]`)
           * `from` (`pulumi.Input[str]`)
           * `fromDisplayName` (`pulumi.Input[str]`)
@@ -101,8 +133,6 @@ class Realm(pulumi.CustomResource):
           * `replyToDisplayName` (`pulumi.Input[str]`)
           * `ssl` (`pulumi.Input[bool]`)
           * `starttls` (`pulumi.Input[bool]`)
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/realm.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -175,20 +205,29 @@ class Realm(pulumi.CustomResource):
         """
         Get an existing Realm resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        
+        :param pulumi.Input[str] browser_flow: Which flow should be used for BrowserFlow
+        :param pulumi.Input[str] client_authentication_flow: Which flow should be used for ClientAuthenticationFlow
+        :param pulumi.Input[str] direct_grant_flow: Which flow should be used for DirectGrantFlow
+        :param pulumi.Input[str] docker_authentication_flow: Which flow should be used for DockerAuthenticationFlow
+        :param pulumi.Input[str] password_policy: String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
+               can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
+               and notUsername(undefined)"
+        :param pulumi.Input[str] registration_flow: Which flow should be used for RegistrationFlow
+        :param pulumi.Input[str] reset_credentials_flow: Which flow should be used for ResetCredentialsFlow
+        :param pulumi.Input[str] ssl_required: SSL Required: Values can be 'none', 'external' or 'all'.
+
         The **internationalization** object supports the following:
-        
+
           * `defaultLocale` (`pulumi.Input[str]`)
           * `supportedLocales` (`pulumi.Input[list]`)
-        
+
         The **security_defenses** object supports the following:
-        
+
           * `bruteForceDetection` (`pulumi.Input[dict]`)
-        
             * `failureResetTimeSeconds` (`pulumi.Input[float]`)
             * `maxFailureWaitSeconds` (`pulumi.Input[float]`)
             * `maxLoginFailures` (`pulumi.Input[float]`)
@@ -196,9 +235,8 @@ class Realm(pulumi.CustomResource):
             * `permanentLockout` (`pulumi.Input[bool]`)
             * `quickLoginCheckMilliSeconds` (`pulumi.Input[float]`)
             * `waitIncrementSeconds` (`pulumi.Input[float]`)
-        
+
           * `headers` (`pulumi.Input[dict]`)
-        
             * `contentSecurityPolicy` (`pulumi.Input[str]`)
             * `contentSecurityPolicyReportOnly` (`pulumi.Input[str]`)
             * `strictTransportSecurity` (`pulumi.Input[str]`)
@@ -206,14 +244,13 @@ class Realm(pulumi.CustomResource):
             * `xFrameOptions` (`pulumi.Input[str]`)
             * `xRobotsTag` (`pulumi.Input[str]`)
             * `xXssProtection` (`pulumi.Input[str]`)
-        
+
         The **smtp_server** object supports the following:
-        
+
           * `auth` (`pulumi.Input[dict]`)
-        
             * `password` (`pulumi.Input[str]`)
             * `username` (`pulumi.Input[str]`)
-        
+
           * `envelopeFrom` (`pulumi.Input[str]`)
           * `from` (`pulumi.Input[str]`)
           * `fromDisplayName` (`pulumi.Input[str]`)
@@ -223,12 +260,11 @@ class Realm(pulumi.CustomResource):
           * `replyToDisplayName` (`pulumi.Input[str]`)
           * `ssl` (`pulumi.Input[bool]`)
           * `starttls` (`pulumi.Input[bool]`)
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/realm.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["access_code_lifespan"] = access_code_lifespan
         __props__["access_code_lifespan_login"] = access_code_lifespan_login
         __props__["access_code_lifespan_user_action"] = access_code_lifespan_user_action

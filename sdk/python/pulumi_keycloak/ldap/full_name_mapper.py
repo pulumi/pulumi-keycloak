@@ -12,35 +12,47 @@ from .. import utilities, tables
 class FullNameMapper(pulumi.CustomResource):
     ldap_full_name_attribute: pulumi.Output[str]
     ldap_user_federation_id: pulumi.Output[str]
+    """
+    The ldap user federation provider to attach this mapper to.
+    """
     name: pulumi.Output[str]
+    """
+    Display name of the mapper when displayed in the console.
+    """
     read_only: pulumi.Output[bool]
     realm_id: pulumi.Output[str]
+    """
+    The realm in which the ldap user federation provider exists.
+    """
     write_only: pulumi.Output[bool]
     def __init__(__self__, resource_name, opts=None, ldap_full_name_attribute=None, ldap_user_federation_id=None, name=None, read_only=None, realm_id=None, write_only=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # ldap.FullNameMapper
-        
+
         Allows for creating and managing full name mappers for Keycloak users federated
         via LDAP.
-        
+
         The LDAP full name mapper can map a user's full name from an LDAP attribute
         to the first and last name attributes of a Keycloak user.
-        
+
         ### Argument Reference
-        
+
         The following arguments are supported:
-        
+
         - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
         - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
         - `name` - (Required) Display name of this mapper when displayed in the console.
         - `ldap_full_name_attribute` - (Required) The name of the LDAP attribute containing the user's full name.
         - `read_only` - (Optional) When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
         - `write_only` - (Optional) When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
-        
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_ldap_full_name_mapper.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_full_name_mapper.html.markdown.
+        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
+        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -82,16 +94,18 @@ class FullNameMapper(pulumi.CustomResource):
         """
         Get an existing FullNameMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_full_name_mapper.html.markdown.
+        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
+        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["ldap_full_name_attribute"] = ldap_full_name_attribute
         __props__["ldap_user_federation_id"] = ldap_user_federation_id
         __props__["name"] = name

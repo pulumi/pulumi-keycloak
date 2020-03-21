@@ -9,21 +9,21 @@ import (
 )
 
 // ## # openid.Client data source
-// 
+//
 // This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
-// 
+//
 // ### Argument Reference
-// 
+//
 // The following arguments are supported:
-// 
+//
 // - `realmId` - (Required) The realm id.
 // - `clientId` - (Required) The client id.
-// 
+//
 // ### Attributes Reference
-// 
+//
 // See the docs for the `openid.Client` resource for details on the exported attributes.
-// 
-// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/openid_client.html.markdown.
+//
+// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_openid_client.html.markdown.
 func LookupClient(ctx *pulumi.Context, args *LookupClientArgs, opts ...pulumi.InvokeOption) (*LookupClientResult, error) {
 	var rv LookupClientResult
 	err := ctx.Invoke("keycloak:openid/getClient:getClient", args, &rv, opts...)

@@ -53,7 +53,7 @@ import * as utilities from "./utilities";
  *   other resources supported by this provider.
  * - `description` - The description of the role.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/role.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_role.html.markdown.
  */
 export function getRole(args: GetRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetRoleResult> & GetRoleResult {
     if (!opts) {

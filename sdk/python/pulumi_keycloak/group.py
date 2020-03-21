@@ -18,37 +18,37 @@ class Group(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, attributes=None, name=None, parent_id=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # .Group
-        
+
         Allows for creating and managing Groups within Keycloak.
-        
+
         Groups provide a logical wrapping for users within Keycloak. Users within a
         group can share attributes and roles, and group membership can be mapped
         to a claim.
-        
+
         Attributes can also be defined on Groups.
-        
+
         Groups can also be federated from external data sources, such as LDAP or Active Directory.
         This resource **should not** be used to manage groups that were created this way.
-        
+
         ### Argument Reference
-        
+
         The following arguments are supported:
-        
+
         - `realm_id` - (Required) The realm this group exists in.
         - `parent_id` - (Optional) The ID of this group's parent. If omitted, this group will be defined at the root level.
         - `name` - (Required) The name of the group.
         - `attributes` - (Optional) A dict of key/value pairs to set as custom attributes for the group.
-        
+
         ### Attributes Reference
-        
+
         In addition to the arguments listed above, the following computed attributes are exported:
-        
+
         - `path` - The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
-        
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_group.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/group.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -85,16 +85,15 @@ class Group(pulumi.CustomResource):
         """
         Get an existing Group resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/group.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["attributes"] = attributes
         __props__["name"] = name
         __props__["parent_id"] = parent_id

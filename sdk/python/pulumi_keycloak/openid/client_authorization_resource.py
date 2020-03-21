@@ -23,7 +23,6 @@ class ClientAuthorizationResource(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, attributes=None, display_name=None, icon_uri=None, name=None, owner_managed_access=None, realm_id=None, resource_server_id=None, scopes=None, type=None, uris=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a ClientAuthorizationResource resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -69,7 +68,7 @@ class ClientAuthorizationResource(pulumi.CustomResource):
         """
         Get an existing ClientAuthorizationResource resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -77,6 +76,7 @@ class ClientAuthorizationResource(pulumi.CustomResource):
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["attributes"] = attributes
         __props__["display_name"] = display_name
         __props__["icon_uri"] = icon_uri

@@ -66,7 +66,7 @@ import * as utilities from "../utilities";
  * - `signatureAlgorithm` - (Optional) Signing Algorithm. Defaults to empty.
  * - `xmlSignKeyInfoKeyNameTransformer` - (Optional) Sign Key Transformer. Defaults to empty.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/saml_identity_provider.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_saml_identity_provider.html.markdown.
  */
 export class IdentityProvider extends pulumi.CustomResource {
     /**

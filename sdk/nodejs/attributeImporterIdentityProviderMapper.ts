@@ -35,7 +35,7 @@ import * as utilities from "./utilities";
  * - `attributeFriendlyName` - (Optional) The friendly name of attribute to search for in assertion.  You can leave this blank and specify an attribute name instead.
  * - `claimName` - (Optional) The claim name.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/attribute_importer_identity_provider_mapper.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_attribute_importer_identity_provider_mapper.html.markdown.
  */
 export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResource {
     /**
