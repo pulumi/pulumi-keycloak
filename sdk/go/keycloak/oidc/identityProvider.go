@@ -14,6 +14,10 @@ import (
 type IdentityProvider struct {
 	pulumi.CustomResourceState
 
+	// This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
+	// case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
+	// returned to client, but the request with prompt=none will be forwarded to this identity provider.
+	AcceptsPromptNoneForwardFromClient pulumi.BoolPtrOutput `pulumi:"acceptsPromptNoneForwardFromClient"`
 	// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
 	AddReadTokenRoleOnCreate pulumi.BoolPtrOutput `pulumi:"addReadTokenRoleOnCreate"`
 	// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
@@ -28,6 +32,8 @@ type IdentityProvider struct {
 	ClientId pulumi.StringOutput `pulumi:"clientId"`
 	// Client Secret.
 	ClientSecret pulumi.StringOutput `pulumi:"clientSecret"`
+	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to 'openid'.
+	DefaultScopes pulumi.StringPtrOutput `pulumi:"defaultScopes"`
 	// Friendly name for Identity Providers.
 	DisplayName pulumi.StringPtrOutput `pulumi:"displayName"`
 	// Enable/disable this identity provider.
@@ -118,6 +124,10 @@ func GetIdentityProvider(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IdentityProvider resources.
 type identityProviderState struct {
+	// This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
+	// case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
+	// returned to client, but the request with prompt=none will be forwarded to this identity provider.
+	AcceptsPromptNoneForwardFromClient *bool `pulumi:"acceptsPromptNoneForwardFromClient"`
 	// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
 	// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
@@ -132,6 +142,8 @@ type identityProviderState struct {
 	ClientId *string `pulumi:"clientId"`
 	// Client Secret.
 	ClientSecret *string `pulumi:"clientSecret"`
+	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to 'openid'.
+	DefaultScopes *string `pulumi:"defaultScopes"`
 	// Friendly name for Identity Providers.
 	DisplayName *string `pulumi:"displayName"`
 	// Enable/disable this identity provider.
@@ -177,6 +189,10 @@ type identityProviderState struct {
 }
 
 type IdentityProviderState struct {
+	// This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
+	// case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
+	// returned to client, but the request with prompt=none will be forwarded to this identity provider.
+	AcceptsPromptNoneForwardFromClient pulumi.BoolPtrInput
 	// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
 	// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
@@ -191,6 +207,8 @@ type IdentityProviderState struct {
 	ClientId pulumi.StringPtrInput
 	// Client Secret.
 	ClientSecret pulumi.StringPtrInput
+	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to 'openid'.
+	DefaultScopes pulumi.StringPtrInput
 	// Friendly name for Identity Providers.
 	DisplayName pulumi.StringPtrInput
 	// Enable/disable this identity provider.
@@ -240,6 +258,10 @@ func (IdentityProviderState) ElementType() reflect.Type {
 }
 
 type identityProviderArgs struct {
+	// This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
+	// case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
+	// returned to client, but the request with prompt=none will be forwarded to this identity provider.
+	AcceptsPromptNoneForwardFromClient *bool `pulumi:"acceptsPromptNoneForwardFromClient"`
 	// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
 	// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
@@ -254,6 +276,8 @@ type identityProviderArgs struct {
 	ClientId string `pulumi:"clientId"`
 	// Client Secret.
 	ClientSecret string `pulumi:"clientSecret"`
+	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to 'openid'.
+	DefaultScopes *string `pulumi:"defaultScopes"`
 	// Friendly name for Identity Providers.
 	DisplayName *string `pulumi:"displayName"`
 	// Enable/disable this identity provider.
@@ -298,6 +322,10 @@ type identityProviderArgs struct {
 
 // The set of arguments for constructing a IdentityProvider resource.
 type IdentityProviderArgs struct {
+	// This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
+	// case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
+	// returned to client, but the request with prompt=none will be forwarded to this identity provider.
+	AcceptsPromptNoneForwardFromClient pulumi.BoolPtrInput
 	// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
 	// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
@@ -312,6 +340,8 @@ type IdentityProviderArgs struct {
 	ClientId pulumi.StringInput
 	// Client Secret.
 	ClientSecret pulumi.StringInput
+	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to 'openid'.
+	DefaultScopes pulumi.StringPtrInput
 	// Friendly name for Identity Providers.
 	DisplayName pulumi.StringPtrInput
 	// Enable/disable this identity provider.

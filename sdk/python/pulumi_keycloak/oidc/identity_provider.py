@@ -10,6 +10,7 @@ from typing import Union
 from .. import utilities, tables
 
 class IdentityProvider(pulumi.CustomResource):
+    accepts_prompt_none_forward_from_client: pulumi.Output[bool]
     add_read_token_role_on_create: pulumi.Output[bool]
     alias: pulumi.Output[str]
     authenticate_by_default: pulumi.Output[bool]
@@ -17,6 +18,7 @@ class IdentityProvider(pulumi.CustomResource):
     backchannel_supported: pulumi.Output[bool]
     client_id: pulumi.Output[str]
     client_secret: pulumi.Output[str]
+    default_scopes: pulumi.Output[str]
     display_name: pulumi.Output[str]
     enabled: pulumi.Output[bool]
     extra_config: pulumi.Output[dict]
@@ -36,7 +38,7 @@ class IdentityProvider(pulumi.CustomResource):
     ui_locales: pulumi.Output[bool]
     user_info_url: pulumi.Output[str]
     validate_signature: pulumi.Output[bool]
-    def __init__(__self__, resource_name, opts=None, add_read_token_role_on_create=None, alias=None, authenticate_by_default=None, authorization_url=None, backchannel_supported=None, client_id=None, client_secret=None, display_name=None, enabled=None, extra_config=None, first_broker_login_flow_alias=None, hide_on_login_page=None, jwks_url=None, link_only=None, login_hint=None, logout_url=None, post_broker_login_flow_alias=None, provider_id=None, realm=None, store_token=None, token_url=None, trust_email=None, ui_locales=None, user_info_url=None, validate_signature=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, accepts_prompt_none_forward_from_client=None, add_read_token_role_on_create=None, alias=None, authenticate_by_default=None, authorization_url=None, backchannel_supported=None, client_id=None, client_secret=None, default_scopes=None, display_name=None, enabled=None, extra_config=None, first_broker_login_flow_alias=None, hide_on_login_page=None, jwks_url=None, link_only=None, login_hint=None, logout_url=None, post_broker_login_flow_alias=None, provider_id=None, realm=None, store_token=None, token_url=None, trust_email=None, ui_locales=None, user_info_url=None, validate_signature=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a IdentityProvider resource with the given unique name, props, and options.
         
@@ -60,6 +62,7 @@ class IdentityProvider(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
+            __props__['accepts_prompt_none_forward_from_client'] = accepts_prompt_none_forward_from_client
             __props__['add_read_token_role_on_create'] = add_read_token_role_on_create
             if alias is None:
                 raise TypeError("Missing required property 'alias'")
@@ -75,6 +78,7 @@ class IdentityProvider(pulumi.CustomResource):
             if client_secret is None:
                 raise TypeError("Missing required property 'client_secret'")
             __props__['client_secret'] = client_secret
+            __props__['default_scopes'] = default_scopes
             __props__['display_name'] = display_name
             __props__['enabled'] = enabled
             __props__['extra_config'] = extra_config
@@ -105,7 +109,7 @@ class IdentityProvider(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, add_read_token_role_on_create=None, alias=None, authenticate_by_default=None, authorization_url=None, backchannel_supported=None, client_id=None, client_secret=None, display_name=None, enabled=None, extra_config=None, first_broker_login_flow_alias=None, hide_on_login_page=None, internal_id=None, jwks_url=None, link_only=None, login_hint=None, logout_url=None, post_broker_login_flow_alias=None, provider_id=None, realm=None, store_token=None, token_url=None, trust_email=None, ui_locales=None, user_info_url=None, validate_signature=None):
+    def get(resource_name, id, opts=None, accepts_prompt_none_forward_from_client=None, add_read_token_role_on_create=None, alias=None, authenticate_by_default=None, authorization_url=None, backchannel_supported=None, client_id=None, client_secret=None, default_scopes=None, display_name=None, enabled=None, extra_config=None, first_broker_login_flow_alias=None, hide_on_login_page=None, internal_id=None, jwks_url=None, link_only=None, login_hint=None, logout_url=None, post_broker_login_flow_alias=None, provider_id=None, realm=None, store_token=None, token_url=None, trust_email=None, ui_locales=None, user_info_url=None, validate_signature=None):
         """
         Get an existing IdentityProvider resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -117,6 +121,7 @@ class IdentityProvider(pulumi.CustomResource):
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+        __props__["accepts_prompt_none_forward_from_client"] = accepts_prompt_none_forward_from_client
         __props__["add_read_token_role_on_create"] = add_read_token_role_on_create
         __props__["alias"] = alias
         __props__["authenticate_by_default"] = authenticate_by_default
@@ -124,6 +129,7 @@ class IdentityProvider(pulumi.CustomResource):
         __props__["backchannel_supported"] = backchannel_supported
         __props__["client_id"] = client_id
         __props__["client_secret"] = client_secret
+        __props__["default_scopes"] = default_scopes
         __props__["display_name"] = display_name
         __props__["enabled"] = enabled
         __props__["extra_config"] = extra_config

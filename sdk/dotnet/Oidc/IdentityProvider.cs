@@ -11,6 +11,15 @@ namespace Pulumi.Keycloak.Oidc
     public partial class IdentityProvider : Pulumi.CustomResource
     {
         /// <summary>
+        /// This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity
+        /// provider. In case that client sends a request with prompt=none and user is not yet authenticated, the error
+        /// will not be directly returned to client, but the request with prompt=none will be forwarded to this identity
+        /// provider.
+        /// </summary>
+        [Output("acceptsPromptNoneForwardFromClient")]
+        public Output<bool?> AcceptsPromptNoneForwardFromClient { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
         /// </summary>
         [Output("addReadTokenRoleOnCreate")]
@@ -51,6 +60,13 @@ namespace Pulumi.Keycloak.Oidc
         /// </summary>
         [Output("clientSecret")]
         public Output<string> ClientSecret { get; private set; } = null!;
+
+        /// <summary>
+        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to
+        /// 'openid'.
+        /// </summary>
+        [Output("defaultScopes")]
+        public Output<string?> DefaultScopes { get; private set; } = null!;
 
         /// <summary>
         /// Friendly name for Identity Providers.
@@ -218,6 +234,15 @@ namespace Pulumi.Keycloak.Oidc
     public sealed class IdentityProviderArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity
+        /// provider. In case that client sends a request with prompt=none and user is not yet authenticated, the error
+        /// will not be directly returned to client, but the request with prompt=none will be forwarded to this identity
+        /// provider.
+        /// </summary>
+        [Input("acceptsPromptNoneForwardFromClient")]
+        public Input<bool>? AcceptsPromptNoneForwardFromClient { get; set; }
+
+        /// <summary>
         /// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
         /// </summary>
         [Input("addReadTokenRoleOnCreate")]
@@ -258,6 +283,13 @@ namespace Pulumi.Keycloak.Oidc
         /// </summary>
         [Input("clientSecret", required: true)]
         public Input<string> ClientSecret { get; set; } = null!;
+
+        /// <summary>
+        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to
+        /// 'openid'.
+        /// </summary>
+        [Input("defaultScopes")]
+        public Input<string>? DefaultScopes { get; set; }
 
         /// <summary>
         /// Friendly name for Identity Providers.
@@ -385,6 +417,15 @@ namespace Pulumi.Keycloak.Oidc
     public sealed class IdentityProviderState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity
+        /// provider. In case that client sends a request with prompt=none and user is not yet authenticated, the error
+        /// will not be directly returned to client, but the request with prompt=none will be forwarded to this identity
+        /// provider.
+        /// </summary>
+        [Input("acceptsPromptNoneForwardFromClient")]
+        public Input<bool>? AcceptsPromptNoneForwardFromClient { get; set; }
+
+        /// <summary>
         /// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
         /// </summary>
         [Input("addReadTokenRoleOnCreate")]
@@ -425,6 +466,13 @@ namespace Pulumi.Keycloak.Oidc
         /// </summary>
         [Input("clientSecret")]
         public Input<string>? ClientSecret { get; set; }
+
+        /// <summary>
+        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to
+        /// 'openid'.
+        /// </summary>
+        [Input("defaultScopes")]
+        public Input<string>? DefaultScopes { get; set; }
 
         /// <summary>
         /// Friendly name for Identity Providers.
