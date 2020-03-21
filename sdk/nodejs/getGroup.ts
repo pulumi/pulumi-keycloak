@@ -51,7 +51,7 @@ import * as utilities from "./utilities";
  * - `id` - The unique ID of the group, which can be used as an argument to
  *   other resources supported by this provider.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/group.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_group.html.markdown.
  */
 export function getGroup(args: GetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetGroupResult> & GetGroupResult {
     if (!opts) {

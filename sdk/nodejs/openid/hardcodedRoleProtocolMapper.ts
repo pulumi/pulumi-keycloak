@@ -78,7 +78,7 @@ import * as utilities from "../utilities";
  *   GUI.
  * - `roleId` - (Required) The ID of the role to map to an access token.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_hardcoded_role_protocol_mapper.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_openid_hardcoded_role_protocol_mapper.html.markdown.
  */
 export class HardcodedRoleProtocolMapper extends pulumi.CustomResource {
     /**

@@ -18,7 +18,6 @@ class ClientAuthorizationScope(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, display_name=None, icon_uri=None, name=None, realm_id=None, resource_server_id=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a ClientAuthorizationScope resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -59,7 +58,7 @@ class ClientAuthorizationScope(pulumi.CustomResource):
         """
         Get an existing ClientAuthorizationScope resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -67,6 +66,7 @@ class ClientAuthorizationScope(pulumi.CustomResource):
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["display_name"] = display_name
         __props__["icon_uri"] = icon_uri
         __props__["name"] = name

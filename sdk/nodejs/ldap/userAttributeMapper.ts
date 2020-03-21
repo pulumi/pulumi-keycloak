@@ -58,7 +58,7 @@ import * as utilities from "../utilities";
  * - `alwaysReadValueFromLdap` - (Optional) When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
  * - `isMandatoryInLdap` - (Optional) When `true`, this attribute must exist in LDAP. Defaults to `false`.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_user_attribute_mapper.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_ldap_user_attribute_mapper.html.markdown.
  */
 export class UserAttributeMapper extends pulumi.CustomResource {
     /**

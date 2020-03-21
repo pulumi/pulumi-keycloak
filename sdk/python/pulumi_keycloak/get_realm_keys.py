@@ -13,10 +13,16 @@ class GetRealmKeysResult:
     """
     A collection of values returned by getRealmKeys.
     """
-    def __init__(__self__, algorithms=None, keys=None, realm_id=None, statuses=None, id=None):
+    def __init__(__self__, algorithms=None, id=None, keys=None, realm_id=None, statuses=None):
         if algorithms and not isinstance(algorithms, list):
             raise TypeError("Expected argument 'algorithms' to be a list")
         __self__.algorithms = algorithms
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        id is the provider-assigned unique ID for this managed resource.
+        """
         if keys and not isinstance(keys, list):
             raise TypeError("Expected argument 'keys' to be a list")
         __self__.keys = keys
@@ -26,12 +32,6 @@ class GetRealmKeysResult:
         if statuses and not isinstance(statuses, list):
             raise TypeError("Expected argument 'statuses' to be a list")
         __self__.statuses = statuses
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        id is the provider-assigned unique ID for this managed resource.
-        """
 class AwaitableGetRealmKeysResult(GetRealmKeysResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -39,35 +39,35 @@ class AwaitableGetRealmKeysResult(GetRealmKeysResult):
             yield self
         return GetRealmKeysResult(
             algorithms=self.algorithms,
+            id=self.id,
             keys=self.keys,
             realm_id=self.realm_id,
-            statuses=self.statuses,
-            id=self.id)
+            statuses=self.statuses)
 
 def get_realm_keys(algorithms=None,realm_id=None,statuses=None,opts=None):
     """
     ## # .getRealmKeys data source
-    
+
     Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
-    
+
     Remarks:
-    
+
     - A key must meet all filter criteria
     - This datasource may return more than one value.
     - If no key matches the filter criteria, then an error is returned.
-    
+
     ### Argument Reference
-    
+
     The following arguments are supported:
-    
+
     - `realm_id` - (Required) The realm of which the keys are retrieved.
     - `algorithms` - (Optional) When specified, keys are filtered by algorithm (values for algorithm: `HS256`, `RS256`,`AES`, ...)
     - `status` - (Optional) When specified, keys are filtered by status (values for status: `ACTIVE`, `DISABLED` and `PASSIVE`)
-    
 
-    > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/realm_keys.html.markdown.
+    > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_realm_keys.html.markdown.
     """
     __args__ = dict()
+
 
     __args__['algorithms'] = algorithms
     __args__['realmId'] = realm_id
@@ -80,7 +80,7 @@ def get_realm_keys(algorithms=None,realm_id=None,statuses=None,opts=None):
 
     return AwaitableGetRealmKeysResult(
         algorithms=__ret__.get('algorithms'),
+        id=__ret__.get('id'),
         keys=__ret__.get('keys'),
         realm_id=__ret__.get('realmId'),
-        statuses=__ret__.get('statuses'),
-        id=__ret__.get('id'))
+        statuses=__ret__.get('statuses'))

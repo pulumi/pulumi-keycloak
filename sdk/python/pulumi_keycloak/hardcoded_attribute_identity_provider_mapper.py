@@ -11,17 +11,40 @@ from . import utilities, tables
 
 class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
     attribute_name: pulumi.Output[str]
+    """
+    OIDC Claim
+    """
     attribute_value: pulumi.Output[str]
+    """
+    User Attribute
+    """
     identity_provider_alias: pulumi.Output[str]
+    """
+    IDP Alias
+    """
     name: pulumi.Output[str]
+    """
+    IDP Mapper Name
+    """
     realm: pulumi.Output[str]
+    """
+    Realm Name
+    """
     user_session: pulumi.Output[bool]
+    """
+    Is Attribute Related To a User Session
+    """
     def __init__(__self__, resource_name, opts=None, attribute_name=None, attribute_value=None, identity_provider_alias=None, name=None, realm=None, user_session=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a HardcodedAttributeIdentityProviderMapper resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] attribute_name: OIDC Claim
+        :param pulumi.Input[str] attribute_value: User Attribute
+        :param pulumi.Input[str] identity_provider_alias: IDP Alias
+        :param pulumi.Input[str] name: IDP Mapper Name
+        :param pulumi.Input[str] realm: Realm Name
+        :param pulumi.Input[bool] user_session: Is Attribute Related To a User Session
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -63,14 +86,21 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
         """
         Get an existing HardcodedAttributeIdentityProviderMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] attribute_name: OIDC Claim
+        :param pulumi.Input[str] attribute_value: User Attribute
+        :param pulumi.Input[str] identity_provider_alias: IDP Alias
+        :param pulumi.Input[str] name: IDP Mapper Name
+        :param pulumi.Input[str] realm: Realm Name
+        :param pulumi.Input[bool] user_session: Is Attribute Related To a User Session
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["attribute_name"] = attribute_name
         __props__["attribute_value"] = attribute_value
         __props__["identity_provider_alias"] = identity_provider_alias

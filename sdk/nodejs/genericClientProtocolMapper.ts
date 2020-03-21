@@ -56,7 +56,7 @@ import * as utilities from "./utilities";
  *    compatible with the specified client.
  * - `config` - (Required) A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/generic_client_protocol_mapper.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_generic_client_protocol_mapper.html.markdown.
  */
 export class GenericClientProtocolMapper extends pulumi.CustomResource {
     /**

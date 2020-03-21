@@ -32,6 +32,12 @@ export class IdentityProvider extends pulumi.CustomResource {
     }
 
     /**
+     * This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity
+     * provider. In case that client sends a request with prompt=none and user is not yet authenticated, the error will not
+     * be directly returned to client, but the request with prompt=none will be forwarded to this identity provider.
+     */
+    public readonly acceptsPromptNoneForwardFromClient!: pulumi.Output<boolean | undefined>;
+    /**
      * Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
      */
     public readonly addReadTokenRoleOnCreate!: pulumi.Output<boolean | undefined>;
@@ -59,6 +65,11 @@ export class IdentityProvider extends pulumi.CustomResource {
      * Client Secret.
      */
     public readonly clientSecret!: pulumi.Output<string>;
+    /**
+     * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to
+     * 'openid'.
+     */
+    public readonly defaultScopes!: pulumi.Output<string | undefined>;
     /**
      * Friendly name for Identity Providers.
      */
@@ -151,6 +162,7 @@ export class IdentityProvider extends pulumi.CustomResource {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
             const state = argsOrState as IdentityProviderState | undefined;
+            inputs["acceptsPromptNoneForwardFromClient"] = state ? state.acceptsPromptNoneForwardFromClient : undefined;
             inputs["addReadTokenRoleOnCreate"] = state ? state.addReadTokenRoleOnCreate : undefined;
             inputs["alias"] = state ? state.alias : undefined;
             inputs["authenticateByDefault"] = state ? state.authenticateByDefault : undefined;
@@ -158,6 +170,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             inputs["backchannelSupported"] = state ? state.backchannelSupported : undefined;
             inputs["clientId"] = state ? state.clientId : undefined;
             inputs["clientSecret"] = state ? state.clientSecret : undefined;
+            inputs["defaultScopes"] = state ? state.defaultScopes : undefined;
             inputs["displayName"] = state ? state.displayName : undefined;
             inputs["enabled"] = state ? state.enabled : undefined;
             inputs["extraConfig"] = state ? state.extraConfig : undefined;
@@ -197,6 +210,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             if (!args || args.tokenUrl === undefined) {
                 throw new Error("Missing required property 'tokenUrl'");
             }
+            inputs["acceptsPromptNoneForwardFromClient"] = args ? args.acceptsPromptNoneForwardFromClient : undefined;
             inputs["addReadTokenRoleOnCreate"] = args ? args.addReadTokenRoleOnCreate : undefined;
             inputs["alias"] = args ? args.alias : undefined;
             inputs["authenticateByDefault"] = args ? args.authenticateByDefault : undefined;
@@ -204,6 +218,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             inputs["backchannelSupported"] = args ? args.backchannelSupported : undefined;
             inputs["clientId"] = args ? args.clientId : undefined;
             inputs["clientSecret"] = args ? args.clientSecret : undefined;
+            inputs["defaultScopes"] = args ? args.defaultScopes : undefined;
             inputs["displayName"] = args ? args.displayName : undefined;
             inputs["enabled"] = args ? args.enabled : undefined;
             inputs["extraConfig"] = args ? args.extraConfig : undefined;
@@ -240,6 +255,12 @@ export class IdentityProvider extends pulumi.CustomResource {
  */
 export interface IdentityProviderState {
     /**
+     * This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity
+     * provider. In case that client sends a request with prompt=none and user is not yet authenticated, the error will not
+     * be directly returned to client, but the request with prompt=none will be forwarded to this identity provider.
+     */
+    readonly acceptsPromptNoneForwardFromClient?: pulumi.Input<boolean>;
+    /**
      * Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
      */
     readonly addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
@@ -267,6 +288,11 @@ export interface IdentityProviderState {
      * Client Secret.
      */
     readonly clientSecret?: pulumi.Input<string>;
+    /**
+     * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to
+     * 'openid'.
+     */
+    readonly defaultScopes?: pulumi.Input<string>;
     /**
      * Friendly name for Identity Providers.
      */
@@ -353,6 +379,12 @@ export interface IdentityProviderState {
  */
 export interface IdentityProviderArgs {
     /**
+     * This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity
+     * provider. In case that client sends a request with prompt=none and user is not yet authenticated, the error will not
+     * be directly returned to client, but the request with prompt=none will be forwarded to this identity provider.
+     */
+    readonly acceptsPromptNoneForwardFromClient?: pulumi.Input<boolean>;
+    /**
      * Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
      */
     readonly addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
@@ -380,6 +412,11 @@ export interface IdentityProviderArgs {
      * Client Secret.
      */
     readonly clientSecret: pulumi.Input<string>;
+    /**
+     * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to
+     * 'openid'.
+     */
+    readonly defaultScopes?: pulumi.Input<string>;
     /**
      * Friendly name for Identity Providers.
      */

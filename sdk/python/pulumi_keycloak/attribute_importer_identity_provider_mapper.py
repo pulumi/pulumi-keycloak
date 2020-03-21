@@ -11,22 +11,43 @@ from . import utilities, tables
 
 class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
     attribute_friendly_name: pulumi.Output[str]
+    """
+    Attribute Friendly Name
+    """
     attribute_name: pulumi.Output[str]
+    """
+    Attribute Name
+    """
     claim_name: pulumi.Output[str]
+    """
+    Claim Name
+    """
     identity_provider_alias: pulumi.Output[str]
+    """
+    IDP Alias
+    """
     name: pulumi.Output[str]
+    """
+    IDP Mapper Name
+    """
     realm: pulumi.Output[str]
+    """
+    Realm Name
+    """
     user_attribute: pulumi.Output[str]
+    """
+    User Attribute
+    """
     def __init__(__self__, resource_name, opts=None, attribute_friendly_name=None, attribute_name=None, claim_name=None, identity_provider_alias=None, name=None, realm=None, user_attribute=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # .AttributeImporterIdentityProviderMapper
-        
+
         Allows to create and manage identity provider mappers within Keycloak.
-        
+
         ### Argument Reference
-        
+
         The following arguments are supported:
-        
+
         - `realm` - (Required) The name of the realm.
         - `name` - (Required) The name of the mapper.
         - `identity_provider_alias` - (Required) The alias of the associated identity provider.
@@ -34,11 +55,18 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
         - `attribute_name` - (Optional) The Name of attribute to search for in assertion. You can leave this blank and specify a friendly name instead.
         - `attribute_friendly_name` - (Optional) The friendly name of attribute to search for in assertion.  You can leave this blank and specify an attribute name instead.
         - `claim_name` - (Optional) The claim name.
-        
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_attribute_importer_identity_provider_mapper.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/attribute_importer_identity_provider_mapper.html.markdown.
+        :param pulumi.Input[str] attribute_friendly_name: Attribute Friendly Name
+        :param pulumi.Input[str] attribute_name: Attribute Name
+        :param pulumi.Input[str] claim_name: Claim Name
+        :param pulumi.Input[str] identity_provider_alias: IDP Alias
+        :param pulumi.Input[str] name: IDP Mapper Name
+        :param pulumi.Input[str] realm: Realm Name
+        :param pulumi.Input[str] user_attribute: User Attribute
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -81,16 +109,22 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
         """
         Get an existing AttributeImporterIdentityProviderMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/attribute_importer_identity_provider_mapper.html.markdown.
+        :param pulumi.Input[str] attribute_friendly_name: Attribute Friendly Name
+        :param pulumi.Input[str] attribute_name: Attribute Name
+        :param pulumi.Input[str] claim_name: Claim Name
+        :param pulumi.Input[str] identity_provider_alias: IDP Alias
+        :param pulumi.Input[str] name: IDP Mapper Name
+        :param pulumi.Input[str] realm: Realm Name
+        :param pulumi.Input[str] user_attribute: User Attribute
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["attribute_friendly_name"] = attribute_friendly_name
         __props__["attribute_name"] = attribute_name
         __props__["claim_name"] = claim_name

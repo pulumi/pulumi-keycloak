@@ -18,7 +18,7 @@ import * as utilities from "../utilities";
  * - `name` - (Required) Display name of this mapper when displayed in the console.
  * - `role` - (Required) The role which should be assigned to the users.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_hardcoded_role_mapper.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_ldap_hardcoded_role_mapper.html.markdown.
  */
 export class HardcodedRoleMapper extends pulumi.CustomResource {
     /**

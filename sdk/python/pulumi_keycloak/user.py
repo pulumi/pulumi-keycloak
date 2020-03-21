@@ -22,17 +22,17 @@ class User(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, attributes=None, email=None, enabled=None, federated_identities=None, first_name=None, initial_password=None, last_name=None, realm_id=None, username=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # .User
-        
+
         Allows for creating and managing Users within Keycloak.
-        
+
         This resource was created primarily to enable the acceptance tests for the `.Group` resource.
         Creating users within Keycloak is not recommended. Instead, users should be federated from external sources
         by configuring user federation providers or identity providers.
-        
+
         ### Argument Reference
-        
+
         The following arguments are supported:
-        
+
         - `realm_id` - (Required) The realm this user belongs to.
         - `username` - (Required) The unique username of this user.
         - `initial_password` (Optional) When given, the user's initial password will be set.
@@ -43,22 +43,22 @@ class User(pulumi.CustomResource):
         - `email` - (Optional) The user's email.
         - `first_name` - (Optional) The user's first name.
         - `last_name` - (Optional) The user's last name.
-        
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_user.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        
+
         The **federated_identities** object supports the following:
-        
+
           * `identityProvider` (`pulumi.Input[str]`)
           * `userId` (`pulumi.Input[str]`)
           * `userName` (`pulumi.Input[str]`)
-        
+
         The **initial_password** object supports the following:
-        
+
           * `temporary` (`pulumi.Input[bool]`)
           * `value` (`pulumi.Input[str]`)
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/user.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -101,27 +101,26 @@ class User(pulumi.CustomResource):
         """
         Get an existing User resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        
+
         The **federated_identities** object supports the following:
-        
+
           * `identityProvider` (`pulumi.Input[str]`)
           * `userId` (`pulumi.Input[str]`)
           * `userName` (`pulumi.Input[str]`)
-        
+
         The **initial_password** object supports the following:
-        
+
           * `temporary` (`pulumi.Input[bool]`)
           * `value` (`pulumi.Input[str]`)
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/user.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["attributes"] = attributes
         __props__["email"] = email
         __props__["enabled"] = enabled

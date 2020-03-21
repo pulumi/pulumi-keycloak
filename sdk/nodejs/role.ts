@@ -111,7 +111,7 @@ import * as utilities from "./utilities";
  *   composite role, composed of all roles that have an ID present within
  *   this list.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/role.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_role.html.markdown.
  */
 export class Role extends pulumi.CustomResource {
     /**

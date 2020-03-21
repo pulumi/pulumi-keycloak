@@ -13,7 +13,7 @@ class GetRealmResult:
     """
     A collection of values returned by getRealm.
     """
-    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, security_defenses=None, smtp_servers=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_max_lifespan=None, verify_email=None, id=None):
+    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, id=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, security_defenses=None, smtp_servers=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_max_lifespan=None, verify_email=None):
         if access_code_lifespan and not isinstance(access_code_lifespan, str):
             raise TypeError("Expected argument 'access_code_lifespan' to be a str")
         __self__.access_code_lifespan = access_code_lifespan
@@ -74,6 +74,12 @@ class GetRealmResult:
         if enabled and not isinstance(enabled, bool):
             raise TypeError("Expected argument 'enabled' to be a bool")
         __self__.enabled = enabled
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        id is the provider-assigned unique ID for this managed resource.
+        """
         if internationalizations and not isinstance(internationalizations, list):
             raise TypeError("Expected argument 'internationalizations' to be a list")
         __self__.internationalizations = internationalizations
@@ -134,12 +140,6 @@ class GetRealmResult:
         if verify_email and not isinstance(verify_email, bool):
             raise TypeError("Expected argument 'verify_email' to be a bool")
         __self__.verify_email = verify_email
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        id is the provider-assigned unique ID for this managed resource.
-        """
 class AwaitableGetRealmResult(GetRealmResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -166,6 +166,7 @@ class AwaitableGetRealmResult(GetRealmResult):
             edit_username_allowed=self.edit_username_allowed,
             email_theme=self.email_theme,
             enabled=self.enabled,
+            id=self.id,
             internationalizations=self.internationalizations,
             login_theme=self.login_theme,
             login_with_email_allowed=self.login_with_email_allowed,
@@ -185,36 +186,37 @@ class AwaitableGetRealmResult(GetRealmResult):
             ssl_required=self.ssl_required,
             sso_session_idle_timeout=self.sso_session_idle_timeout,
             sso_session_max_lifespan=self.sso_session_max_lifespan,
-            verify_email=self.verify_email,
-            id=self.id)
+            verify_email=self.verify_email)
 
 def get_realm(attributes=None,display_name_html=None,internationalizations=None,realm=None,security_defenses=None,smtp_servers=None,opts=None):
     """
     ## # .Realm data source
-    
+
     This data source can be used to fetch properties of a Keycloak realm for
     usage with other resources.
-    
+
     ### Argument Reference
-    
+
     The following arguments are supported:
-    
+
     - `realm` - (Required) The realm name.
-    
+
     ### Attributes Reference
-    
+
     See the docs for the `.Realm` resource for details on the exported attributes.
-    
-    
+
+    > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_realm.html.markdown.
+
+
+
     The **internationalizations** object supports the following:
-    
+
       * `defaultLocale` (`str`)
       * `supportedLocales` (`list`)
-    
+
     The **security_defenses** object supports the following:
-    
+
       * `bruteForceDetections` (`list`)
-    
         * `failureResetTimeSeconds` (`float`)
         * `maxFailureWaitSeconds` (`float`)
         * `maxLoginFailures` (`float`)
@@ -222,9 +224,8 @@ def get_realm(attributes=None,display_name_html=None,internationalizations=None,
         * `permanentLockout` (`bool`)
         * `quickLoginCheckMilliSeconds` (`float`)
         * `waitIncrementSeconds` (`float`)
-    
+
       * `headers` (`list`)
-    
         * `contentSecurityPolicy` (`str`)
         * `contentSecurityPolicyReportOnly` (`str`)
         * `strictTransportSecurity` (`str`)
@@ -232,14 +233,13 @@ def get_realm(attributes=None,display_name_html=None,internationalizations=None,
         * `xFrameOptions` (`str`)
         * `xRobotsTag` (`str`)
         * `xXssProtection` (`str`)
-    
+
     The **smtp_servers** object supports the following:
-    
+
       * `auths` (`list`)
-    
         * `password` (`str`)
         * `username` (`str`)
-    
+
       * `envelopeFrom` (`str`)
       * `from` (`str`)
       * `fromDisplayName` (`str`)
@@ -249,10 +249,9 @@ def get_realm(attributes=None,display_name_html=None,internationalizations=None,
       * `replyToDisplayName` (`str`)
       * `ssl` (`bool`)
       * `starttls` (`bool`)
-
-    > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/realm.html.markdown.
     """
     __args__ = dict()
+
 
     __args__['attributes'] = attributes
     __args__['displayNameHtml'] = display_name_html
@@ -287,6 +286,7 @@ def get_realm(attributes=None,display_name_html=None,internationalizations=None,
         edit_username_allowed=__ret__.get('editUsernameAllowed'),
         email_theme=__ret__.get('emailTheme'),
         enabled=__ret__.get('enabled'),
+        id=__ret__.get('id'),
         internationalizations=__ret__.get('internationalizations'),
         login_theme=__ret__.get('loginTheme'),
         login_with_email_allowed=__ret__.get('loginWithEmailAllowed'),
@@ -306,5 +306,4 @@ def get_realm(attributes=None,display_name_html=None,internationalizations=None,
         ssl_required=__ret__.get('sslRequired'),
         sso_session_idle_timeout=__ret__.get('ssoSessionIdleTimeout'),
         sso_session_max_lifespan=__ret__.get('ssoSessionMaxLifespan'),
-        verify_email=__ret__.get('verifyEmail'),
-        id=__ret__.get('id'))
+        verify_email=__ret__.get('verifyEmail'))

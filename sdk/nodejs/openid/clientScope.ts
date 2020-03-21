@@ -43,7 +43,7 @@ import * as utilities from "../utilities";
  * authenticating to clients with this scope attached. The consent screen will display the string
  * value of this attribute.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_client_scope.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_openid_client_scope.html.markdown.
  */
 export class ClientScope extends pulumi.CustomResource {
     /**

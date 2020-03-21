@@ -11,14 +11,25 @@ from .. import utilities, tables
 
 class MsadLdsUserAccountControlMapper(pulumi.CustomResource):
     ldap_user_federation_id: pulumi.Output[str]
+    """
+    The ldap user federation provider to attach this mapper to.
+    """
     name: pulumi.Output[str]
+    """
+    Display name of the mapper when displayed in the console.
+    """
     realm_id: pulumi.Output[str]
+    """
+    The realm in which the ldap user federation provider exists.
+    """
     def __init__(__self__, resource_name, opts=None, ldap_user_federation_id=None, name=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a MsadLdsUserAccountControlMapper resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
+        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -55,14 +66,18 @@ class MsadLdsUserAccountControlMapper(pulumi.CustomResource):
         """
         Get an existing MsadLdsUserAccountControlMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
+        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["ldap_user_federation_id"] = ldap_user_federation_id
         __props__["name"] = name
         __props__["realm_id"] = realm_id

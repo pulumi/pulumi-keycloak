@@ -12,17 +12,17 @@ import (
 )
 
 // ## # saml.Client
-// 
+//
 // Allows for creating and managing Keycloak clients that use the SAML protocol.
-// 
+//
 // Clients are entities that can use Keycloak for user authentication. Typically,
 // clients are applications that redirect users to Keycloak for authentication
 // in order to take advantage of Keycloak's user sessions for SSO.
-// 
+//
 // ### Argument Reference
-// 
+//
 // The following arguments are supported:
-// 
+//
 // - `realmId` - (Required) The realm this client is attached to.
 // - `clientId` - (Required) The unique ID of this client, referenced in the URI during authentication and in issued tokens.
 // - `name` - (Optional) The display name of this client in the GUI.
@@ -48,8 +48,8 @@ import (
 // - `logoutServicePostBindingUrl` - (Optional) SAML POST Binding URL for the client's single logout service.
 // - `logoutServiceRedirectBindingUrl` - (Optional) SAML Redirect Binding URL for the client's single logout service.
 // - `fullScopeAllowed` - (Optional) - Allow to include all roles mappings in the access token
-// 
-// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/saml_client.html.markdown.
+//
+// > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_saml_client.html.markdown.
 type Client struct {
 	pulumi.CustomResourceState
 

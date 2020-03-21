@@ -14,25 +14,37 @@ class FullNameProtocolMapper(pulumi.CustomResource):
     add_to_id_token: pulumi.Output[bool]
     add_to_userinfo: pulumi.Output[bool]
     client_id: pulumi.Output[str]
+    """
+    The mapper's associated client. Cannot be used at the same time as client_scope_id.
+    """
     client_scope_id: pulumi.Output[str]
+    """
+    The mapper's associated client scope. Cannot be used at the same time as client_id.
+    """
     name: pulumi.Output[str]
+    """
+    A human-friendly name that will appear in the Keycloak console.
+    """
     realm_id: pulumi.Output[str]
+    """
+    The realm id where the associated client or client scope exists.
+    """
     def __init__(__self__, resource_name, opts=None, add_to_access_token=None, add_to_id_token=None, add_to_userinfo=None, client_id=None, client_scope_id=None, name=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # openid.FullNameProtocolMapper
-        
+
         Allows for creating and managing full name protocol mappers within
         Keycloak.
-        
+
         Full name protocol mappers allow you to map a user's first and last name
         to the OpenID Connect `name` claim in a token. Protocol mappers can be defined
         for a single client, or they can be defined for a client scope which can
         be shared between multiple different clients.
-        
+
         ### Argument Reference
-        
+
         The following arguments are supported:
-        
+
         - `realm_id` - (Required) The realm this protocol mapper exists within.
         - `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
         - `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
@@ -40,11 +52,15 @@ class FullNameProtocolMapper(pulumi.CustomResource):
         - `add_to_id_token` - (Optional) Indicates if the user's full name should be added as a claim to the id token. Defaults to `true`.
         - `add_to_access_token` - (Optional) Indicates if the user's full name should be added as a claim to the access token. Defaults to `true`.
         - `add_to_userinfo` - (Optional) Indicates if the user's full name should be added as a claim to the UserInfo response body. Defaults to `true`.
-        
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_openid_full_name_protocol_mapper.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_full_name_protocol_mapper.html.markdown.
+        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
+        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
+        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -83,16 +99,19 @@ class FullNameProtocolMapper(pulumi.CustomResource):
         """
         Get an existing FullNameProtocolMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_full_name_protocol_mapper.html.markdown.
+        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
+        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
+        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["add_to_access_token"] = add_to_access_token
         __props__["add_to_id_token"] = add_to_id_token
         __props__["add_to_userinfo"] = add_to_userinfo

@@ -1,0 +1,3 @@
+name: realm-csharp
+runtime: dotnet
+description: A minimal C# Pulumi program to create KeyCloak Realm

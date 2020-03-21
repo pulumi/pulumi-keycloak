@@ -11,28 +11,44 @@ from .. import utilities, tables
 
 class HardcodedRoleMapper(pulumi.CustomResource):
     ldap_user_federation_id: pulumi.Output[str]
+    """
+    The ldap user federation provider to attach this mapper to.
+    """
     name: pulumi.Output[str]
+    """
+    Display name of the mapper when displayed in the console.
+    """
     realm_id: pulumi.Output[str]
+    """
+    The realm in which the ldap user federation provider exists.
+    """
     role: pulumi.Output[str]
+    """
+    Role to grant to user.
+    """
     def __init__(__self__, resource_name, opts=None, ldap_user_federation_id=None, name=None, realm_id=None, role=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # ldap.HardcodedRoleMapper
-        
+
         This mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
-        
+
         ### Argument Reference
-        
+
         The following arguments are supported:
-        
+
         - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
         - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
         - `name` - (Required) Display name of this mapper when displayed in the console.
         - `role` - (Required) The role which should be assigned to the users.
-        
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_ldap_hardcoded_role_mapper.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_hardcoded_role_mapper.html.markdown.
+        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
+        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
+        :param pulumi.Input[str] role: Role to grant to user.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -72,16 +88,19 @@ class HardcodedRoleMapper(pulumi.CustomResource):
         """
         Get an existing HardcodedRoleMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_hardcoded_role_mapper.html.markdown.
+        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
+        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
+        :param pulumi.Input[str] role: Role to grant to user.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["ldap_user_federation_id"] = ldap_user_federation_id
         __props__["name"] = name
         __props__["realm_id"] = realm_id

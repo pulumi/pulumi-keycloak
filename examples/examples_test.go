@@ -15,15 +15,34 @@ package examples
 import (
 	"os"
 	"path"
+	"path/filepath"
 	"testing"
 
 	"github.com/pulumi/pulumi/pkg/testing/integration"
 )
 
-func TestAccRealm(t *testing.T) {
-	test := getJSBaseOptions(t).
+func TestAccRealmTs(t *testing.T) {
+	test := getJSBaseOptions().
 		With(integration.ProgramTestOptions{
-			Dir: path.Join(getCwd(t), "realm"),
+			Dir: path.Join(getCwd(t), "realm", "ts"),
+		})
+
+	integration.ProgramTest(t, &test)
+}
+
+func TestAccRealmPython(t *testing.T) {
+	test := getPythonBaseOptions().
+		With(integration.ProgramTestOptions{
+			Dir: path.Join(getCwd(t), "realm", "python"),
+		})
+
+	integration.ProgramTest(t, &test)
+}
+
+func TestAccRealmCsharp(t *testing.T) {
+	test := getCSBaseOptions().
+		With(integration.ProgramTestOptions{
+			Dir: path.Join(getCwd(t), "realm", "csharp"),
 		})
 
 	integration.ProgramTest(t, &test)
@@ -44,7 +63,7 @@ func getBaseOptions() integration.ProgramTestOptions {
 	}
 }
 
-func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
+func getJSBaseOptions() integration.ProgramTestOptions {
 	base := getBaseOptions()
 	baseJS := base.With(integration.ProgramTestOptions{
 		Dependencies: []string{
@@ -53,4 +72,26 @@ func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	})
 
 	return baseJS
+}
+
+func getCSBaseOptions() integration.ProgramTestOptions {
+	base := getBaseOptions()
+	csharpBase := base.With(integration.ProgramTestOptions{
+		Dependencies: []string{
+			"Pulumi.Keycloak",
+		},
+	})
+
+	return csharpBase
+}
+
+func getPythonBaseOptions() integration.ProgramTestOptions {
+	base := getBaseOptions()
+	basePython := base.With(integration.ProgramTestOptions{
+		Dependencies: []string{
+			filepath.Join("..", "sdk", "python", "bin"),
+		},
+	})
+
+	return basePython
 }

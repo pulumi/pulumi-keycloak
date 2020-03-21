@@ -65,7 +65,7 @@ import * as utilities from "../utilities";
  * - `logoutServiceRedirectBindingUrl` - (Optional) SAML Redirect Binding URL for the client's single logout service.
  * - `fullScopeAllowed` - (Optional) - Allow to include all roles mappings in the access token
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/saml_client.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_saml_client.html.markdown.
  */
 export class Client extends pulumi.CustomResource {
     /**

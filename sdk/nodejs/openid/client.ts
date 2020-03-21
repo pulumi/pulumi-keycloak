@@ -70,7 +70,7 @@ import * as utilities from "../utilities";
  * 
  * - `serviceAccountUserId` - When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/openid_client.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_openid_client.html.markdown.
  */
 export class Client extends pulumi.CustomResource {
     /**

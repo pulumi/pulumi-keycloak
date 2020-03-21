@@ -55,7 +55,7 @@ import * as utilities from "../utilities";
  * - `name` - (Required) Display name of this mapper when displayed in the console.
  * - `ldapPasswordPolicyHintsEnabled` - (Optional) When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/ldap_msad_user_account_control_mapper.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_ldap_msad_user_account_control_mapper.html.markdown.
  */
 export class MsadUserAccountControlMapper extends pulumi.CustomResource {
     /**

@@ -13,7 +13,7 @@ class GetClientResult:
     """
     A collection of values returned by getClient.
     """
-    def __init__(__self__, access_type=None, authorization=None, client_id=None, client_secret=None, description=None, direct_access_grants_enabled=None, enabled=None, full_scope_allowed=None, implicit_flow_enabled=None, name=None, realm_id=None, resource_server_id=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None, id=None):
+    def __init__(__self__, access_type=None, authorization=None, client_id=None, client_secret=None, description=None, direct_access_grants_enabled=None, enabled=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, name=None, realm_id=None, resource_server_id=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None):
         if access_type and not isinstance(access_type, str):
             raise TypeError("Expected argument 'access_type' to be a str")
         __self__.access_type = access_type
@@ -38,6 +38,12 @@ class GetClientResult:
         if full_scope_allowed and not isinstance(full_scope_allowed, bool):
             raise TypeError("Expected argument 'full_scope_allowed' to be a bool")
         __self__.full_scope_allowed = full_scope_allowed
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        id is the provider-assigned unique ID for this managed resource.
+        """
         if implicit_flow_enabled and not isinstance(implicit_flow_enabled, bool):
             raise TypeError("Expected argument 'implicit_flow_enabled' to be a bool")
         __self__.implicit_flow_enabled = implicit_flow_enabled
@@ -65,12 +71,6 @@ class GetClientResult:
         if web_origins and not isinstance(web_origins, list):
             raise TypeError("Expected argument 'web_origins' to be a list")
         __self__.web_origins = web_origins
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        id is the provider-assigned unique ID for this managed resource.
-        """
 class AwaitableGetClientResult(GetClientResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -85,6 +85,7 @@ class AwaitableGetClientResult(GetClientResult):
             direct_access_grants_enabled=self.direct_access_grants_enabled,
             enabled=self.enabled,
             full_scope_allowed=self.full_scope_allowed,
+            id=self.id,
             implicit_flow_enabled=self.implicit_flow_enabled,
             name=self.name,
             realm_id=self.realm_id,
@@ -93,30 +94,29 @@ class AwaitableGetClientResult(GetClientResult):
             service_accounts_enabled=self.service_accounts_enabled,
             standard_flow_enabled=self.standard_flow_enabled,
             valid_redirect_uris=self.valid_redirect_uris,
-            web_origins=self.web_origins,
-            id=self.id)
+            web_origins=self.web_origins)
 
 def get_client(client_id=None,realm_id=None,opts=None):
     """
     ## # openid.Client data source
-    
+
     This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
-    
+
     ### Argument Reference
-    
+
     The following arguments are supported:
-    
+
     - `realm_id` - (Required) The realm id.
     - `client_id` - (Required) The client id.
-    
-    ### Attributes Reference
-    
-    See the docs for the `openid.Client` resource for details on the exported attributes.
-    
 
-    > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/openid_client.html.markdown.
+    ### Attributes Reference
+
+    See the docs for the `openid.Client` resource for details on the exported attributes.
+
+    > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_openid_client.html.markdown.
     """
     __args__ = dict()
+
 
     __args__['clientId'] = client_id
     __args__['realmId'] = realm_id
@@ -135,6 +135,7 @@ def get_client(client_id=None,realm_id=None,opts=None):
         direct_access_grants_enabled=__ret__.get('directAccessGrantsEnabled'),
         enabled=__ret__.get('enabled'),
         full_scope_allowed=__ret__.get('fullScopeAllowed'),
+        id=__ret__.get('id'),
         implicit_flow_enabled=__ret__.get('implicitFlowEnabled'),
         name=__ret__.get('name'),
         realm_id=__ret__.get('realmId'),
@@ -143,5 +144,4 @@ def get_client(client_id=None,realm_id=None,opts=None):
         service_accounts_enabled=__ret__.get('serviceAccountsEnabled'),
         standard_flow_enabled=__ret__.get('standardFlowEnabled'),
         valid_redirect_uris=__ret__.get('validRedirectUris'),
-        web_origins=__ret__.get('webOrigins'),
-        id=__ret__.get('id'))
+        web_origins=__ret__.get('webOrigins'))

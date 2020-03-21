@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  * 
  * See the docs for the `keycloak..Realm` resource for details on the exported attributes.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/realm.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_realm.html.markdown.
  */
 export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmResult> & GetRealmResult {
     if (!opts) {

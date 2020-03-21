@@ -38,7 +38,7 @@ import * as utilities from "./utilities";
  * - `realmId` - (Required) The realm this group exists in.
  * - `groupIds` - (Required) A set of group ids that should be default groups on the realm referenced by `realmId`.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/default_groups.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_default_groups.html.markdown.
  */
 export class DefaultGroups extends pulumi.CustomResource {
     /**

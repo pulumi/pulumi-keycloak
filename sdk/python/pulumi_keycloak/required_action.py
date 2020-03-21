@@ -19,7 +19,6 @@ class RequiredAction(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, alias=None, default_action=None, enabled=None, name=None, priority=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a RequiredAction resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -61,7 +60,7 @@ class RequiredAction(pulumi.CustomResource):
         """
         Get an existing RequiredAction resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -69,6 +68,7 @@ class RequiredAction(pulumi.CustomResource):
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["alias"] = alias
         __props__["default_action"] = default_action
         __props__["enabled"] = enabled

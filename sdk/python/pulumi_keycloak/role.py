@@ -18,16 +18,16 @@ class Role(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, client_id=None, composite_roles=None, description=None, name=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # .Role
-        
+
         Allows for creating and managing roles within Keycloak.
-        
+
         Roles allow you define privileges within Keycloak and map them to users
         and groups.
-        
+
         ### Argument Reference
-        
+
         The following arguments are supported:
-        
+
         - `realm_id` - (Required) The realm this role exists within.
         - `client_id` - (Optional) When specified, this role will be created as
           a client role attached to the client with the provided ID
@@ -36,11 +36,11 @@ class Role(pulumi.CustomResource):
         - `composite_roles` - (Optional) When specified, this role will be a
           composite role, composed of all roles that have an ID present within
           this list.
-        
+
+        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_role.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/role.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -77,16 +77,15 @@ class Role(pulumi.CustomResource):
         """
         Get an existing Role resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/role.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["client_id"] = client_id
         __props__["composite_roles"] = composite_roles
         __props__["description"] = description

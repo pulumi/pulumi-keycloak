@@ -22,7 +22,7 @@ import * as utilities from "../utilities";
  * 
  * See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/openid_client.html.markdown.
+ * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_openid_client.html.markdown.
  */
 export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Promise<GetClientResult> & GetClientResult {
     if (!opts) {
