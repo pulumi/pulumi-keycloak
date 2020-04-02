@@ -132,4 +132,3 @@ type HardcodedAttributeIdentityProviderMapperArgs struct {
 func (HardcodedAttributeIdentityProviderMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*hardcodedAttributeIdentityProviderMapperArgs)(nil)).Elem()
 }
-

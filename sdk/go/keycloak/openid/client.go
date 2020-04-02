@@ -59,29 +59,29 @@ import (
 type Client struct {
 	pulumi.CustomResourceState
 
-	AccessTokenLifespan pulumi.StringPtrOutput `pulumi:"accessTokenLifespan"`
-	AccessType pulumi.StringOutput `pulumi:"accessType"`
-	AdminUrl pulumi.StringPtrOutput `pulumi:"adminUrl"`
-	Authorization ClientAuthorizationPtrOutput `pulumi:"authorization"`
-	BaseUrl pulumi.StringPtrOutput `pulumi:"baseUrl"`
-	ClientId pulumi.StringOutput `pulumi:"clientId"`
-	ClientSecret pulumi.StringOutput `pulumi:"clientSecret"`
-	ConsentRequired pulumi.BoolPtrOutput `pulumi:"consentRequired"`
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	DirectAccessGrantsEnabled pulumi.BoolPtrOutput `pulumi:"directAccessGrantsEnabled"`
-	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
-	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrOutput `pulumi:"excludeSessionStateFromAuthResponse"`
-	FullScopeAllowed pulumi.BoolPtrOutput `pulumi:"fullScopeAllowed"`
-	ImplicitFlowEnabled pulumi.BoolPtrOutput `pulumi:"implicitFlowEnabled"`
-	Name pulumi.StringOutput `pulumi:"name"`
-	PkceCodeChallengeMethod pulumi.StringPtrOutput `pulumi:"pkceCodeChallengeMethod"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	ResourceServerId pulumi.StringOutput `pulumi:"resourceServerId"`
-	ServiceAccountUserId pulumi.StringOutput `pulumi:"serviceAccountUserId"`
-	ServiceAccountsEnabled pulumi.BoolPtrOutput `pulumi:"serviceAccountsEnabled"`
-	StandardFlowEnabled pulumi.BoolPtrOutput `pulumi:"standardFlowEnabled"`
-	ValidRedirectUris pulumi.StringArrayOutput `pulumi:"validRedirectUris"`
-	WebOrigins pulumi.StringArrayOutput `pulumi:"webOrigins"`
+	AccessTokenLifespan                 pulumi.StringPtrOutput       `pulumi:"accessTokenLifespan"`
+	AccessType                          pulumi.StringOutput          `pulumi:"accessType"`
+	AdminUrl                            pulumi.StringPtrOutput       `pulumi:"adminUrl"`
+	Authorization                       ClientAuthorizationPtrOutput `pulumi:"authorization"`
+	BaseUrl                             pulumi.StringPtrOutput       `pulumi:"baseUrl"`
+	ClientId                            pulumi.StringOutput          `pulumi:"clientId"`
+	ClientSecret                        pulumi.StringOutput          `pulumi:"clientSecret"`
+	ConsentRequired                     pulumi.BoolPtrOutput         `pulumi:"consentRequired"`
+	Description                         pulumi.StringPtrOutput       `pulumi:"description"`
+	DirectAccessGrantsEnabled           pulumi.BoolPtrOutput         `pulumi:"directAccessGrantsEnabled"`
+	Enabled                             pulumi.BoolPtrOutput         `pulumi:"enabled"`
+	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrOutput         `pulumi:"excludeSessionStateFromAuthResponse"`
+	FullScopeAllowed                    pulumi.BoolPtrOutput         `pulumi:"fullScopeAllowed"`
+	ImplicitFlowEnabled                 pulumi.BoolPtrOutput         `pulumi:"implicitFlowEnabled"`
+	Name                                pulumi.StringOutput          `pulumi:"name"`
+	PkceCodeChallengeMethod             pulumi.StringPtrOutput       `pulumi:"pkceCodeChallengeMethod"`
+	RealmId                             pulumi.StringOutput          `pulumi:"realmId"`
+	ResourceServerId                    pulumi.StringOutput          `pulumi:"resourceServerId"`
+	ServiceAccountUserId                pulumi.StringOutput          `pulumi:"serviceAccountUserId"`
+	ServiceAccountsEnabled              pulumi.BoolPtrOutput         `pulumi:"serviceAccountsEnabled"`
+	StandardFlowEnabled                 pulumi.BoolPtrOutput         `pulumi:"standardFlowEnabled"`
+	ValidRedirectUris                   pulumi.StringArrayOutput     `pulumi:"validRedirectUris"`
+	WebOrigins                          pulumi.StringArrayOutput     `pulumi:"webOrigins"`
 }
 
 // NewClient registers a new resource with the given unique name, arguments, and options.
@@ -121,55 +121,55 @@ func GetClient(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Client resources.
 type clientState struct {
-	AccessTokenLifespan *string `pulumi:"accessTokenLifespan"`
-	AccessType *string `pulumi:"accessType"`
-	AdminUrl *string `pulumi:"adminUrl"`
-	Authorization *ClientAuthorization `pulumi:"authorization"`
-	BaseUrl *string `pulumi:"baseUrl"`
-	ClientId *string `pulumi:"clientId"`
-	ClientSecret *string `pulumi:"clientSecret"`
-	ConsentRequired *bool `pulumi:"consentRequired"`
-	Description *string `pulumi:"description"`
-	DirectAccessGrantsEnabled *bool `pulumi:"directAccessGrantsEnabled"`
-	Enabled *bool `pulumi:"enabled"`
-	ExcludeSessionStateFromAuthResponse *bool `pulumi:"excludeSessionStateFromAuthResponse"`
-	FullScopeAllowed *bool `pulumi:"fullScopeAllowed"`
-	ImplicitFlowEnabled *bool `pulumi:"implicitFlowEnabled"`
-	Name *string `pulumi:"name"`
-	PkceCodeChallengeMethod *string `pulumi:"pkceCodeChallengeMethod"`
-	RealmId *string `pulumi:"realmId"`
-	ResourceServerId *string `pulumi:"resourceServerId"`
-	ServiceAccountUserId *string `pulumi:"serviceAccountUserId"`
-	ServiceAccountsEnabled *bool `pulumi:"serviceAccountsEnabled"`
-	StandardFlowEnabled *bool `pulumi:"standardFlowEnabled"`
-	ValidRedirectUris []string `pulumi:"validRedirectUris"`
-	WebOrigins []string `pulumi:"webOrigins"`
+	AccessTokenLifespan                 *string              `pulumi:"accessTokenLifespan"`
+	AccessType                          *string              `pulumi:"accessType"`
+	AdminUrl                            *string              `pulumi:"adminUrl"`
+	Authorization                       *ClientAuthorization `pulumi:"authorization"`
+	BaseUrl                             *string              `pulumi:"baseUrl"`
+	ClientId                            *string              `pulumi:"clientId"`
+	ClientSecret                        *string              `pulumi:"clientSecret"`
+	ConsentRequired                     *bool                `pulumi:"consentRequired"`
+	Description                         *string              `pulumi:"description"`
+	DirectAccessGrantsEnabled           *bool                `pulumi:"directAccessGrantsEnabled"`
+	Enabled                             *bool                `pulumi:"enabled"`
+	ExcludeSessionStateFromAuthResponse *bool                `pulumi:"excludeSessionStateFromAuthResponse"`
+	FullScopeAllowed                    *bool                `pulumi:"fullScopeAllowed"`
+	ImplicitFlowEnabled                 *bool                `pulumi:"implicitFlowEnabled"`
+	Name                                *string              `pulumi:"name"`
+	PkceCodeChallengeMethod             *string              `pulumi:"pkceCodeChallengeMethod"`
+	RealmId                             *string              `pulumi:"realmId"`
+	ResourceServerId                    *string              `pulumi:"resourceServerId"`
+	ServiceAccountUserId                *string              `pulumi:"serviceAccountUserId"`
+	ServiceAccountsEnabled              *bool                `pulumi:"serviceAccountsEnabled"`
+	StandardFlowEnabled                 *bool                `pulumi:"standardFlowEnabled"`
+	ValidRedirectUris                   []string             `pulumi:"validRedirectUris"`
+	WebOrigins                          []string             `pulumi:"webOrigins"`
 }
 
 type ClientState struct {
-	AccessTokenLifespan pulumi.StringPtrInput
-	AccessType pulumi.StringPtrInput
-	AdminUrl pulumi.StringPtrInput
-	Authorization ClientAuthorizationPtrInput
-	BaseUrl pulumi.StringPtrInput
-	ClientId pulumi.StringPtrInput
-	ClientSecret pulumi.StringPtrInput
-	ConsentRequired pulumi.BoolPtrInput
-	Description pulumi.StringPtrInput
-	DirectAccessGrantsEnabled pulumi.BoolPtrInput
-	Enabled pulumi.BoolPtrInput
+	AccessTokenLifespan                 pulumi.StringPtrInput
+	AccessType                          pulumi.StringPtrInput
+	AdminUrl                            pulumi.StringPtrInput
+	Authorization                       ClientAuthorizationPtrInput
+	BaseUrl                             pulumi.StringPtrInput
+	ClientId                            pulumi.StringPtrInput
+	ClientSecret                        pulumi.StringPtrInput
+	ConsentRequired                     pulumi.BoolPtrInput
+	Description                         pulumi.StringPtrInput
+	DirectAccessGrantsEnabled           pulumi.BoolPtrInput
+	Enabled                             pulumi.BoolPtrInput
 	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrInput
-	FullScopeAllowed pulumi.BoolPtrInput
-	ImplicitFlowEnabled pulumi.BoolPtrInput
-	Name pulumi.StringPtrInput
-	PkceCodeChallengeMethod pulumi.StringPtrInput
-	RealmId pulumi.StringPtrInput
-	ResourceServerId pulumi.StringPtrInput
-	ServiceAccountUserId pulumi.StringPtrInput
-	ServiceAccountsEnabled pulumi.BoolPtrInput
-	StandardFlowEnabled pulumi.BoolPtrInput
-	ValidRedirectUris pulumi.StringArrayInput
-	WebOrigins pulumi.StringArrayInput
+	FullScopeAllowed                    pulumi.BoolPtrInput
+	ImplicitFlowEnabled                 pulumi.BoolPtrInput
+	Name                                pulumi.StringPtrInput
+	PkceCodeChallengeMethod             pulumi.StringPtrInput
+	RealmId                             pulumi.StringPtrInput
+	ResourceServerId                    pulumi.StringPtrInput
+	ServiceAccountUserId                pulumi.StringPtrInput
+	ServiceAccountsEnabled              pulumi.BoolPtrInput
+	StandardFlowEnabled                 pulumi.BoolPtrInput
+	ValidRedirectUris                   pulumi.StringArrayInput
+	WebOrigins                          pulumi.StringArrayInput
 }
 
 func (ClientState) ElementType() reflect.Type {
@@ -177,55 +177,54 @@ func (ClientState) ElementType() reflect.Type {
 }
 
 type clientArgs struct {
-	AccessTokenLifespan *string `pulumi:"accessTokenLifespan"`
-	AccessType string `pulumi:"accessType"`
-	AdminUrl *string `pulumi:"adminUrl"`
-	Authorization *ClientAuthorization `pulumi:"authorization"`
-	BaseUrl *string `pulumi:"baseUrl"`
-	ClientId string `pulumi:"clientId"`
-	ClientSecret *string `pulumi:"clientSecret"`
-	ConsentRequired *bool `pulumi:"consentRequired"`
-	Description *string `pulumi:"description"`
-	DirectAccessGrantsEnabled *bool `pulumi:"directAccessGrantsEnabled"`
-	Enabled *bool `pulumi:"enabled"`
-	ExcludeSessionStateFromAuthResponse *bool `pulumi:"excludeSessionStateFromAuthResponse"`
-	FullScopeAllowed *bool `pulumi:"fullScopeAllowed"`
-	ImplicitFlowEnabled *bool `pulumi:"implicitFlowEnabled"`
-	Name *string `pulumi:"name"`
-	PkceCodeChallengeMethod *string `pulumi:"pkceCodeChallengeMethod"`
-	RealmId string `pulumi:"realmId"`
-	ServiceAccountsEnabled *bool `pulumi:"serviceAccountsEnabled"`
-	StandardFlowEnabled *bool `pulumi:"standardFlowEnabled"`
-	ValidRedirectUris []string `pulumi:"validRedirectUris"`
-	WebOrigins []string `pulumi:"webOrigins"`
+	AccessTokenLifespan                 *string              `pulumi:"accessTokenLifespan"`
+	AccessType                          string               `pulumi:"accessType"`
+	AdminUrl                            *string              `pulumi:"adminUrl"`
+	Authorization                       *ClientAuthorization `pulumi:"authorization"`
+	BaseUrl                             *string              `pulumi:"baseUrl"`
+	ClientId                            string               `pulumi:"clientId"`
+	ClientSecret                        *string              `pulumi:"clientSecret"`
+	ConsentRequired                     *bool                `pulumi:"consentRequired"`
+	Description                         *string              `pulumi:"description"`
+	DirectAccessGrantsEnabled           *bool                `pulumi:"directAccessGrantsEnabled"`
+	Enabled                             *bool                `pulumi:"enabled"`
+	ExcludeSessionStateFromAuthResponse *bool                `pulumi:"excludeSessionStateFromAuthResponse"`
+	FullScopeAllowed                    *bool                `pulumi:"fullScopeAllowed"`
+	ImplicitFlowEnabled                 *bool                `pulumi:"implicitFlowEnabled"`
+	Name                                *string              `pulumi:"name"`
+	PkceCodeChallengeMethod             *string              `pulumi:"pkceCodeChallengeMethod"`
+	RealmId                             string               `pulumi:"realmId"`
+	ServiceAccountsEnabled              *bool                `pulumi:"serviceAccountsEnabled"`
+	StandardFlowEnabled                 *bool                `pulumi:"standardFlowEnabled"`
+	ValidRedirectUris                   []string             `pulumi:"validRedirectUris"`
+	WebOrigins                          []string             `pulumi:"webOrigins"`
 }
 
 // The set of arguments for constructing a Client resource.
 type ClientArgs struct {
-	AccessTokenLifespan pulumi.StringPtrInput
-	AccessType pulumi.StringInput
-	AdminUrl pulumi.StringPtrInput
-	Authorization ClientAuthorizationPtrInput
-	BaseUrl pulumi.StringPtrInput
-	ClientId pulumi.StringInput
-	ClientSecret pulumi.StringPtrInput
-	ConsentRequired pulumi.BoolPtrInput
-	Description pulumi.StringPtrInput
-	DirectAccessGrantsEnabled pulumi.BoolPtrInput
-	Enabled pulumi.BoolPtrInput
+	AccessTokenLifespan                 pulumi.StringPtrInput
+	AccessType                          pulumi.StringInput
+	AdminUrl                            pulumi.StringPtrInput
+	Authorization                       ClientAuthorizationPtrInput
+	BaseUrl                             pulumi.StringPtrInput
+	ClientId                            pulumi.StringInput
+	ClientSecret                        pulumi.StringPtrInput
+	ConsentRequired                     pulumi.BoolPtrInput
+	Description                         pulumi.StringPtrInput
+	DirectAccessGrantsEnabled           pulumi.BoolPtrInput
+	Enabled                             pulumi.BoolPtrInput
 	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrInput
-	FullScopeAllowed pulumi.BoolPtrInput
-	ImplicitFlowEnabled pulumi.BoolPtrInput
-	Name pulumi.StringPtrInput
-	PkceCodeChallengeMethod pulumi.StringPtrInput
-	RealmId pulumi.StringInput
-	ServiceAccountsEnabled pulumi.BoolPtrInput
-	StandardFlowEnabled pulumi.BoolPtrInput
-	ValidRedirectUris pulumi.StringArrayInput
-	WebOrigins pulumi.StringArrayInput
+	FullScopeAllowed                    pulumi.BoolPtrInput
+	ImplicitFlowEnabled                 pulumi.BoolPtrInput
+	Name                                pulumi.StringPtrInput
+	PkceCodeChallengeMethod             pulumi.StringPtrInput
+	RealmId                             pulumi.StringInput
+	ServiceAccountsEnabled              pulumi.BoolPtrInput
+	StandardFlowEnabled                 pulumi.BoolPtrInput
+	ValidRedirectUris                   pulumi.StringArrayInput
+	WebOrigins                          pulumi.StringArrayInput
 }
 
 func (ClientArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientArgs)(nil)).Elem()
 }
-

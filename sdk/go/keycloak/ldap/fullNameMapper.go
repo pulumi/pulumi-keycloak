@@ -38,10 +38,10 @@ type FullNameMapper struct {
 	// The ldap user federation provider to attach this mapper to.
 	LdapUserFederationId pulumi.StringOutput `pulumi:"ldapUserFederationId"`
 	// Display name of the mapper when displayed in the console.
-	Name pulumi.StringOutput `pulumi:"name"`
+	Name     pulumi.StringOutput  `pulumi:"name"`
 	ReadOnly pulumi.BoolPtrOutput `pulumi:"readOnly"`
 	// The realm in which the ldap user federation provider exists.
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	RealmId   pulumi.StringOutput  `pulumi:"realmId"`
 	WriteOnly pulumi.BoolPtrOutput `pulumi:"writeOnly"`
 }
 
@@ -86,11 +86,11 @@ type fullNameMapperState struct {
 	// The ldap user federation provider to attach this mapper to.
 	LdapUserFederationId *string `pulumi:"ldapUserFederationId"`
 	// Display name of the mapper when displayed in the console.
-	Name *string `pulumi:"name"`
-	ReadOnly *bool `pulumi:"readOnly"`
+	Name     *string `pulumi:"name"`
+	ReadOnly *bool   `pulumi:"readOnly"`
 	// The realm in which the ldap user federation provider exists.
-	RealmId *string `pulumi:"realmId"`
-	WriteOnly *bool `pulumi:"writeOnly"`
+	RealmId   *string `pulumi:"realmId"`
+	WriteOnly *bool   `pulumi:"writeOnly"`
 }
 
 type FullNameMapperState struct {
@@ -98,10 +98,10 @@ type FullNameMapperState struct {
 	// The ldap user federation provider to attach this mapper to.
 	LdapUserFederationId pulumi.StringPtrInput
 	// Display name of the mapper when displayed in the console.
-	Name pulumi.StringPtrInput
+	Name     pulumi.StringPtrInput
 	ReadOnly pulumi.BoolPtrInput
 	// The realm in which the ldap user federation provider exists.
-	RealmId pulumi.StringPtrInput
+	RealmId   pulumi.StringPtrInput
 	WriteOnly pulumi.BoolPtrInput
 }
 
@@ -114,11 +114,11 @@ type fullNameMapperArgs struct {
 	// The ldap user federation provider to attach this mapper to.
 	LdapUserFederationId string `pulumi:"ldapUserFederationId"`
 	// Display name of the mapper when displayed in the console.
-	Name *string `pulumi:"name"`
-	ReadOnly *bool `pulumi:"readOnly"`
+	Name     *string `pulumi:"name"`
+	ReadOnly *bool   `pulumi:"readOnly"`
 	// The realm in which the ldap user federation provider exists.
-	RealmId string `pulumi:"realmId"`
-	WriteOnly *bool `pulumi:"writeOnly"`
+	RealmId   string `pulumi:"realmId"`
+	WriteOnly *bool  `pulumi:"writeOnly"`
 }
 
 // The set of arguments for constructing a FullNameMapper resource.
@@ -127,14 +127,13 @@ type FullNameMapperArgs struct {
 	// The ldap user federation provider to attach this mapper to.
 	LdapUserFederationId pulumi.StringInput
 	// Display name of the mapper when displayed in the console.
-	Name pulumi.StringPtrInput
+	Name     pulumi.StringPtrInput
 	ReadOnly pulumi.BoolPtrInput
 	// The realm in which the ldap user federation provider exists.
-	RealmId pulumi.StringInput
+	RealmId   pulumi.StringInput
 	WriteOnly pulumi.BoolPtrInput
 }
 
 func (FullNameMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*fullNameMapperArgs)(nil)).Elem()
 }
-

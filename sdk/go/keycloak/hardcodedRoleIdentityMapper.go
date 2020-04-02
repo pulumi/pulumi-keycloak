@@ -109,4 +109,3 @@ type HardcodedRoleIdentityMapperArgs struct {
 func (HardcodedRoleIdentityMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*hardcodedRoleIdentityMapperArgs)(nil)).Elem()
 }
-

@@ -38,15 +38,15 @@ import (
 type User struct {
 	pulumi.CustomResourceState
 
-	Attributes pulumi.MapOutput `pulumi:"attributes"`
-	Email pulumi.StringPtrOutput `pulumi:"email"`
-	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
+	Attributes          pulumi.MapOutput                 `pulumi:"attributes"`
+	Email               pulumi.StringPtrOutput           `pulumi:"email"`
+	Enabled             pulumi.BoolPtrOutput             `pulumi:"enabled"`
 	FederatedIdentities UserFederatedIdentityArrayOutput `pulumi:"federatedIdentities"`
-	FirstName pulumi.StringPtrOutput `pulumi:"firstName"`
-	InitialPassword UserInitialPasswordPtrOutput `pulumi:"initialPassword"`
-	LastName pulumi.StringPtrOutput `pulumi:"lastName"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	Username pulumi.StringOutput `pulumi:"username"`
+	FirstName           pulumi.StringPtrOutput           `pulumi:"firstName"`
+	InitialPassword     UserInitialPasswordPtrOutput     `pulumi:"initialPassword"`
+	LastName            pulumi.StringPtrOutput           `pulumi:"lastName"`
+	RealmId             pulumi.StringOutput              `pulumi:"realmId"`
+	Username            pulumi.StringOutput              `pulumi:"username"`
 }
 
 // NewUser registers a new resource with the given unique name, arguments, and options.
@@ -83,27 +83,27 @@ func GetUser(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering User resources.
 type userState struct {
-	Attributes map[string]interface{} `pulumi:"attributes"`
-	Email *string `pulumi:"email"`
-	Enabled *bool `pulumi:"enabled"`
+	Attributes          map[string]interface{}  `pulumi:"attributes"`
+	Email               *string                 `pulumi:"email"`
+	Enabled             *bool                   `pulumi:"enabled"`
 	FederatedIdentities []UserFederatedIdentity `pulumi:"federatedIdentities"`
-	FirstName *string `pulumi:"firstName"`
-	InitialPassword *UserInitialPassword `pulumi:"initialPassword"`
-	LastName *string `pulumi:"lastName"`
-	RealmId *string `pulumi:"realmId"`
-	Username *string `pulumi:"username"`
+	FirstName           *string                 `pulumi:"firstName"`
+	InitialPassword     *UserInitialPassword    `pulumi:"initialPassword"`
+	LastName            *string                 `pulumi:"lastName"`
+	RealmId             *string                 `pulumi:"realmId"`
+	Username            *string                 `pulumi:"username"`
 }
 
 type UserState struct {
-	Attributes pulumi.MapInput
-	Email pulumi.StringPtrInput
-	Enabled pulumi.BoolPtrInput
+	Attributes          pulumi.MapInput
+	Email               pulumi.StringPtrInput
+	Enabled             pulumi.BoolPtrInput
 	FederatedIdentities UserFederatedIdentityArrayInput
-	FirstName pulumi.StringPtrInput
-	InitialPassword UserInitialPasswordPtrInput
-	LastName pulumi.StringPtrInput
-	RealmId pulumi.StringPtrInput
-	Username pulumi.StringPtrInput
+	FirstName           pulumi.StringPtrInput
+	InitialPassword     UserInitialPasswordPtrInput
+	LastName            pulumi.StringPtrInput
+	RealmId             pulumi.StringPtrInput
+	Username            pulumi.StringPtrInput
 }
 
 func (UserState) ElementType() reflect.Type {
@@ -111,31 +111,30 @@ func (UserState) ElementType() reflect.Type {
 }
 
 type userArgs struct {
-	Attributes map[string]interface{} `pulumi:"attributes"`
-	Email *string `pulumi:"email"`
-	Enabled *bool `pulumi:"enabled"`
+	Attributes          map[string]interface{}  `pulumi:"attributes"`
+	Email               *string                 `pulumi:"email"`
+	Enabled             *bool                   `pulumi:"enabled"`
 	FederatedIdentities []UserFederatedIdentity `pulumi:"federatedIdentities"`
-	FirstName *string `pulumi:"firstName"`
-	InitialPassword *UserInitialPassword `pulumi:"initialPassword"`
-	LastName *string `pulumi:"lastName"`
-	RealmId string `pulumi:"realmId"`
-	Username string `pulumi:"username"`
+	FirstName           *string                 `pulumi:"firstName"`
+	InitialPassword     *UserInitialPassword    `pulumi:"initialPassword"`
+	LastName            *string                 `pulumi:"lastName"`
+	RealmId             string                  `pulumi:"realmId"`
+	Username            string                  `pulumi:"username"`
 }
 
 // The set of arguments for constructing a User resource.
 type UserArgs struct {
-	Attributes pulumi.MapInput
-	Email pulumi.StringPtrInput
-	Enabled pulumi.BoolPtrInput
+	Attributes          pulumi.MapInput
+	Email               pulumi.StringPtrInput
+	Enabled             pulumi.BoolPtrInput
 	FederatedIdentities UserFederatedIdentityArrayInput
-	FirstName pulumi.StringPtrInput
-	InitialPassword UserInitialPasswordPtrInput
-	LastName pulumi.StringPtrInput
-	RealmId pulumi.StringInput
-	Username pulumi.StringInput
+	FirstName           pulumi.StringPtrInput
+	InitialPassword     UserInitialPasswordPtrInput
+	LastName            pulumi.StringPtrInput
+	RealmId             pulumi.StringInput
+	Username            pulumi.StringInput
 }
 
 func (UserArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*userArgs)(nil)).Elem()
 }
-

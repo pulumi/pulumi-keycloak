@@ -37,8 +37,8 @@ type GoogleIdentityProvider struct {
 	// Not used by this provider, Will be implicitly Google
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
 	// Enable/disable this identity provider.
-	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
-	ExtraConfig pulumi.MapOutput `pulumi:"extraConfig"`
+	Enabled     pulumi.BoolPtrOutput `pulumi:"enabled"`
+	ExtraConfig pulumi.MapOutput     `pulumi:"extraConfig"`
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
 	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrOutput `pulumi:"firstBrokerLoginFlowAlias"`
@@ -134,7 +134,7 @@ type googleIdentityProviderState struct {
 	// Not used by this provider, Will be implicitly Google
 	DisplayName *string `pulumi:"displayName"`
 	// Enable/disable this identity provider.
-	Enabled *bool `pulumi:"enabled"`
+	Enabled     *bool                  `pulumi:"enabled"`
 	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
 	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
@@ -195,7 +195,7 @@ type GoogleIdentityProviderState struct {
 	// Not used by this provider, Will be implicitly Google
 	DisplayName pulumi.StringPtrInput
 	// Enable/disable this identity provider.
-	Enabled pulumi.BoolPtrInput
+	Enabled     pulumi.BoolPtrInput
 	ExtraConfig pulumi.MapInput
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
 	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
@@ -255,7 +255,7 @@ type googleIdentityProviderArgs struct {
 	// Disable usage of User Info service to obtain additional user information? Default is to use this OIDC service.
 	DisableUserInfo *bool `pulumi:"disableUserInfo"`
 	// Enable/disable this identity provider.
-	Enabled *bool `pulumi:"enabled"`
+	Enabled     *bool                  `pulumi:"enabled"`
 	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
 	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
@@ -310,7 +310,7 @@ type GoogleIdentityProviderArgs struct {
 	// Disable usage of User Info service to obtain additional user information? Default is to use this OIDC service.
 	DisableUserInfo pulumi.BoolPtrInput
 	// Enable/disable this identity provider.
-	Enabled pulumi.BoolPtrInput
+	Enabled     pulumi.BoolPtrInput
 	ExtraConfig pulumi.MapInput
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
 	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
@@ -348,4 +348,3 @@ type GoogleIdentityProviderArgs struct {
 func (GoogleIdentityProviderArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*googleIdentityProviderArgs)(nil)).Elem()
 }
-

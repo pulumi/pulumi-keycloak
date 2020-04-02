@@ -40,14 +40,14 @@ type GroupMembershipProtocolMapper struct {
 	pulumi.CustomResourceState
 
 	AddToAccessToken pulumi.BoolPtrOutput `pulumi:"addToAccessToken"`
-	AddToIdToken pulumi.BoolPtrOutput `pulumi:"addToIdToken"`
-	AddToUserinfo pulumi.BoolPtrOutput `pulumi:"addToUserinfo"`
-	ClaimName pulumi.StringOutput `pulumi:"claimName"`
+	AddToIdToken     pulumi.BoolPtrOutput `pulumi:"addToIdToken"`
+	AddToUserinfo    pulumi.BoolPtrOutput `pulumi:"addToUserinfo"`
+	ClaimName        pulumi.StringOutput  `pulumi:"claimName"`
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
 	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
 	ClientScopeId pulumi.StringPtrOutput `pulumi:"clientScopeId"`
-	FullPath pulumi.BoolPtrOutput `pulumi:"fullPath"`
+	FullPath      pulumi.BoolPtrOutput   `pulumi:"fullPath"`
 	// A human-friendly name that will appear in the Keycloak console.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm id where the associated client or client scope exists.
@@ -88,15 +88,15 @@ func GetGroupMembershipProtocolMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GroupMembershipProtocolMapper resources.
 type groupMembershipProtocolMapperState struct {
-	AddToAccessToken *bool `pulumi:"addToAccessToken"`
-	AddToIdToken *bool `pulumi:"addToIdToken"`
-	AddToUserinfo *bool `pulumi:"addToUserinfo"`
-	ClaimName *string `pulumi:"claimName"`
+	AddToAccessToken *bool   `pulumi:"addToAccessToken"`
+	AddToIdToken     *bool   `pulumi:"addToIdToken"`
+	AddToUserinfo    *bool   `pulumi:"addToUserinfo"`
+	ClaimName        *string `pulumi:"claimName"`
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
 	ClientId *string `pulumi:"clientId"`
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
 	ClientScopeId *string `pulumi:"clientScopeId"`
-	FullPath *bool `pulumi:"fullPath"`
+	FullPath      *bool   `pulumi:"fullPath"`
 	// A human-friendly name that will appear in the Keycloak console.
 	Name *string `pulumi:"name"`
 	// The realm id where the associated client or client scope exists.
@@ -105,14 +105,14 @@ type groupMembershipProtocolMapperState struct {
 
 type GroupMembershipProtocolMapperState struct {
 	AddToAccessToken pulumi.BoolPtrInput
-	AddToIdToken pulumi.BoolPtrInput
-	AddToUserinfo pulumi.BoolPtrInput
-	ClaimName pulumi.StringPtrInput
+	AddToIdToken     pulumi.BoolPtrInput
+	AddToUserinfo    pulumi.BoolPtrInput
+	ClaimName        pulumi.StringPtrInput
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
 	ClientId pulumi.StringPtrInput
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
 	ClientScopeId pulumi.StringPtrInput
-	FullPath pulumi.BoolPtrInput
+	FullPath      pulumi.BoolPtrInput
 	// A human-friendly name that will appear in the Keycloak console.
 	Name pulumi.StringPtrInput
 	// The realm id where the associated client or client scope exists.
@@ -124,15 +124,15 @@ func (GroupMembershipProtocolMapperState) ElementType() reflect.Type {
 }
 
 type groupMembershipProtocolMapperArgs struct {
-	AddToAccessToken *bool `pulumi:"addToAccessToken"`
-	AddToIdToken *bool `pulumi:"addToIdToken"`
-	AddToUserinfo *bool `pulumi:"addToUserinfo"`
-	ClaimName string `pulumi:"claimName"`
+	AddToAccessToken *bool  `pulumi:"addToAccessToken"`
+	AddToIdToken     *bool  `pulumi:"addToIdToken"`
+	AddToUserinfo    *bool  `pulumi:"addToUserinfo"`
+	ClaimName        string `pulumi:"claimName"`
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
 	ClientId *string `pulumi:"clientId"`
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
 	ClientScopeId *string `pulumi:"clientScopeId"`
-	FullPath *bool `pulumi:"fullPath"`
+	FullPath      *bool   `pulumi:"fullPath"`
 	// A human-friendly name that will appear in the Keycloak console.
 	Name *string `pulumi:"name"`
 	// The realm id where the associated client or client scope exists.
@@ -142,14 +142,14 @@ type groupMembershipProtocolMapperArgs struct {
 // The set of arguments for constructing a GroupMembershipProtocolMapper resource.
 type GroupMembershipProtocolMapperArgs struct {
 	AddToAccessToken pulumi.BoolPtrInput
-	AddToIdToken pulumi.BoolPtrInput
-	AddToUserinfo pulumi.BoolPtrInput
-	ClaimName pulumi.StringInput
+	AddToIdToken     pulumi.BoolPtrInput
+	AddToUserinfo    pulumi.BoolPtrInput
+	ClaimName        pulumi.StringInput
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
 	ClientId pulumi.StringPtrInput
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
 	ClientScopeId pulumi.StringPtrInput
-	FullPath pulumi.BoolPtrInput
+	FullPath      pulumi.BoolPtrInput
 	// A human-friendly name that will appear in the Keycloak console.
 	Name pulumi.StringPtrInput
 	// The realm id where the associated client or client scope exists.
@@ -159,4 +159,3 @@ type GroupMembershipProtocolMapperArgs struct {
 func (GroupMembershipProtocolMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupMembershipProtocolMapperArgs)(nil)).Elem()
 }
-

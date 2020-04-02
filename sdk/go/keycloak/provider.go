@@ -18,7 +18,6 @@ import (
 // > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/index.html.markdown.
 type Provider struct {
 	pulumi.ProviderResourceState
-
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
@@ -57,39 +56,38 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	ClientId *string `pulumi:"clientId"`
+	ClientId     *string `pulumi:"clientId"`
 	ClientSecret *string `pulumi:"clientSecret"`
 	// Timeout (in seconds) of the Keycloak client
 	ClientTimeout *int `pulumi:"clientTimeout"`
 	// Whether or not to login to Keycloak instance on provider initialization
-	InitialLogin *bool `pulumi:"initialLogin"`
-	Password *string `pulumi:"password"`
-	Realm *string `pulumi:"realm"`
+	InitialLogin *bool   `pulumi:"initialLogin"`
+	Password     *string `pulumi:"password"`
+	Realm        *string `pulumi:"realm"`
 	// Allows x509 calls using an unknown CA certificate (for development purposes)
 	RootCaCertificate *string `pulumi:"rootCaCertificate"`
 	// The base URL of the Keycloak instance, before `/auth`
-	Url *string `pulumi:"url"`
+	Url      *string `pulumi:"url"`
 	Username *string `pulumi:"username"`
 }
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
-	ClientId pulumi.StringPtrInput
+	ClientId     pulumi.StringPtrInput
 	ClientSecret pulumi.StringPtrInput
 	// Timeout (in seconds) of the Keycloak client
 	ClientTimeout pulumi.IntPtrInput
 	// Whether or not to login to Keycloak instance on provider initialization
 	InitialLogin pulumi.BoolPtrInput
-	Password pulumi.StringPtrInput
-	Realm pulumi.StringPtrInput
+	Password     pulumi.StringPtrInput
+	Realm        pulumi.StringPtrInput
 	// Allows x509 calls using an unknown CA certificate (for development purposes)
 	RootCaCertificate pulumi.StringPtrInput
 	// The base URL of the Keycloak instance, before `/auth`
-	Url pulumi.StringPtrInput
+	Url      pulumi.StringPtrInput
 	Username pulumi.StringPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*providerArgs)(nil)).Elem()
 }
-

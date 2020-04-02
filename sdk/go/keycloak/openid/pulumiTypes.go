@@ -12,9 +12,9 @@ import (
 )
 
 type ClientAuthorization struct {
-	AllowRemoteResourceManagement *bool `pulumi:"allowRemoteResourceManagement"`
-	KeepDefaults *bool `pulumi:"keepDefaults"`
-	PolicyEnforcementMode string `pulumi:"policyEnforcementMode"`
+	AllowRemoteResourceManagement *bool  `pulumi:"allowRemoteResourceManagement"`
+	KeepDefaults                  *bool  `pulumi:"keepDefaults"`
+	PolicyEnforcementMode         string `pulumi:"policyEnforcementMode"`
 }
 
 type ClientAuthorizationInput interface {
@@ -26,8 +26,8 @@ type ClientAuthorizationInput interface {
 
 type ClientAuthorizationArgs struct {
 	AllowRemoteResourceManagement pulumi.BoolPtrInput `pulumi:"allowRemoteResourceManagement"`
-	KeepDefaults pulumi.BoolPtrInput `pulumi:"keepDefaults"`
-	PolicyEnforcementMode pulumi.StringInput `pulumi:"policyEnforcementMode"`
+	KeepDefaults                  pulumi.BoolPtrInput `pulumi:"keepDefaults"`
+	PolicyEnforcementMode         pulumi.StringInput  `pulumi:"policyEnforcementMode"`
 }
 
 func (ClientAuthorizationArgs) ElementType() reflect.Type {
@@ -59,7 +59,8 @@ type ClientAuthorizationPtrInput interface {
 
 type clientAuthorizationPtrType ClientAuthorizationArgs
 
-func ClientAuthorizationPtr(v *ClientAuthorizationArgs) ClientAuthorizationPtrInput {	return (*clientAuthorizationPtrType)(v)
+func ClientAuthorizationPtr(v *ClientAuthorizationArgs) ClientAuthorizationPtrInput {
+	return (*clientAuthorizationPtrType)(v)
 }
 
 func (*clientAuthorizationPtrType) ElementType() reflect.Type {
@@ -74,7 +75,7 @@ func (i *clientAuthorizationPtrType) ToClientAuthorizationPtrOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationPtrOutput)
 }
 
-type ClientAuthorizationOutput struct { *pulumi.OutputState }
+type ClientAuthorizationOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthorizationOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ClientAuthorization)(nil)).Elem()
@@ -98,18 +99,18 @@ func (o ClientAuthorizationOutput) ToClientAuthorizationPtrOutputWithContext(ctx
 	}).(ClientAuthorizationPtrOutput)
 }
 func (o ClientAuthorizationOutput) AllowRemoteResourceManagement() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v ClientAuthorization) *bool { return v.AllowRemoteResourceManagement }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v ClientAuthorization) *bool { return v.AllowRemoteResourceManagement }).(pulumi.BoolPtrOutput)
 }
 
 func (o ClientAuthorizationOutput) KeepDefaults() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v ClientAuthorization) *bool { return v.KeepDefaults }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v ClientAuthorization) *bool { return v.KeepDefaults }).(pulumi.BoolPtrOutput)
 }
 
 func (o ClientAuthorizationOutput) PolicyEnforcementMode() pulumi.StringOutput {
-	return o.ApplyT(func (v ClientAuthorization) string { return v.PolicyEnforcementMode }).(pulumi.StringOutput)
+	return o.ApplyT(func(v ClientAuthorization) string { return v.PolicyEnforcementMode }).(pulumi.StringOutput)
 }
 
-type ClientAuthorizationPtrOutput struct { *pulumi.OutputState}
+type ClientAuthorizationPtrOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthorizationPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ClientAuthorization)(nil)).Elem()
@@ -124,25 +125,25 @@ func (o ClientAuthorizationPtrOutput) ToClientAuthorizationPtrOutputWithContext(
 }
 
 func (o ClientAuthorizationPtrOutput) Elem() ClientAuthorizationOutput {
-	return o.ApplyT(func (v *ClientAuthorization) ClientAuthorization { return *v }).(ClientAuthorizationOutput)
+	return o.ApplyT(func(v *ClientAuthorization) ClientAuthorization { return *v }).(ClientAuthorizationOutput)
 }
 
 func (o ClientAuthorizationPtrOutput) AllowRemoteResourceManagement() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v ClientAuthorization) *bool { return v.AllowRemoteResourceManagement }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v ClientAuthorization) *bool { return v.AllowRemoteResourceManagement }).(pulumi.BoolPtrOutput)
 }
 
 func (o ClientAuthorizationPtrOutput) KeepDefaults() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v ClientAuthorization) *bool { return v.KeepDefaults }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v ClientAuthorization) *bool { return v.KeepDefaults }).(pulumi.BoolPtrOutput)
 }
 
 func (o ClientAuthorizationPtrOutput) PolicyEnforcementMode() pulumi.StringOutput {
-	return o.ApplyT(func (v ClientAuthorization) string { return v.PolicyEnforcementMode }).(pulumi.StringOutput)
+	return o.ApplyT(func(v ClientAuthorization) string { return v.PolicyEnforcementMode }).(pulumi.StringOutput)
 }
 
 type ClientGroupPolicyGroup struct {
-	ExtendChildren bool `pulumi:"extendChildren"`
-	Id string `pulumi:"id"`
-	Path string `pulumi:"path"`
+	ExtendChildren bool   `pulumi:"extendChildren"`
+	Id             string `pulumi:"id"`
+	Path           string `pulumi:"path"`
 }
 
 type ClientGroupPolicyGroupInput interface {
@@ -153,9 +154,9 @@ type ClientGroupPolicyGroupInput interface {
 }
 
 type ClientGroupPolicyGroupArgs struct {
-	ExtendChildren pulumi.BoolInput `pulumi:"extendChildren"`
-	Id pulumi.StringInput `pulumi:"id"`
-	Path pulumi.StringInput `pulumi:"path"`
+	ExtendChildren pulumi.BoolInput   `pulumi:"extendChildren"`
+	Id             pulumi.StringInput `pulumi:"id"`
+	Path           pulumi.StringInput `pulumi:"path"`
 }
 
 func (ClientGroupPolicyGroupArgs) ElementType() reflect.Type {
@@ -191,7 +192,7 @@ func (i ClientGroupPolicyGroupArray) ToClientGroupPolicyGroupArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ClientGroupPolicyGroupArrayOutput)
 }
 
-type ClientGroupPolicyGroupOutput struct { *pulumi.OutputState }
+type ClientGroupPolicyGroupOutput struct{ *pulumi.OutputState }
 
 func (ClientGroupPolicyGroupOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ClientGroupPolicyGroup)(nil)).Elem()
@@ -206,18 +207,18 @@ func (o ClientGroupPolicyGroupOutput) ToClientGroupPolicyGroupOutputWithContext(
 }
 
 func (o ClientGroupPolicyGroupOutput) ExtendChildren() pulumi.BoolOutput {
-	return o.ApplyT(func (v ClientGroupPolicyGroup) bool { return v.ExtendChildren }).(pulumi.BoolOutput)
+	return o.ApplyT(func(v ClientGroupPolicyGroup) bool { return v.ExtendChildren }).(pulumi.BoolOutput)
 }
 
 func (o ClientGroupPolicyGroupOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func (v ClientGroupPolicyGroup) string { return v.Id }).(pulumi.StringOutput)
+	return o.ApplyT(func(v ClientGroupPolicyGroup) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o ClientGroupPolicyGroupOutput) Path() pulumi.StringOutput {
-	return o.ApplyT(func (v ClientGroupPolicyGroup) string { return v.Path }).(pulumi.StringOutput)
+	return o.ApplyT(func(v ClientGroupPolicyGroup) string { return v.Path }).(pulumi.StringOutput)
 }
 
-type ClientGroupPolicyGroupArrayOutput struct { *pulumi.OutputState}
+type ClientGroupPolicyGroupArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientGroupPolicyGroupArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]ClientGroupPolicyGroup)(nil)).Elem()
@@ -232,14 +233,14 @@ func (o ClientGroupPolicyGroupArrayOutput) ToClientGroupPolicyGroupArrayOutputWi
 }
 
 func (o ClientGroupPolicyGroupArrayOutput) Index(i pulumi.IntInput) ClientGroupPolicyGroupOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) ClientGroupPolicyGroup {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClientGroupPolicyGroup {
 		return vs[0].([]ClientGroupPolicyGroup)[vs[1].(int)]
 	}).(ClientGroupPolicyGroupOutput)
 }
 
 type ClientRolePolicyRole struct {
-	Id string `pulumi:"id"`
-	Required bool `pulumi:"required"`
+	Id       string `pulumi:"id"`
+	Required bool   `pulumi:"required"`
 }
 
 type ClientRolePolicyRoleInput interface {
@@ -250,8 +251,8 @@ type ClientRolePolicyRoleInput interface {
 }
 
 type ClientRolePolicyRoleArgs struct {
-	Id pulumi.StringInput `pulumi:"id"`
-	Required pulumi.BoolInput `pulumi:"required"`
+	Id       pulumi.StringInput `pulumi:"id"`
+	Required pulumi.BoolInput   `pulumi:"required"`
 }
 
 func (ClientRolePolicyRoleArgs) ElementType() reflect.Type {
@@ -287,7 +288,7 @@ func (i ClientRolePolicyRoleArray) ToClientRolePolicyRoleArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(ClientRolePolicyRoleArrayOutput)
 }
 
-type ClientRolePolicyRoleOutput struct { *pulumi.OutputState }
+type ClientRolePolicyRoleOutput struct{ *pulumi.OutputState }
 
 func (ClientRolePolicyRoleOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ClientRolePolicyRole)(nil)).Elem()
@@ -302,14 +303,14 @@ func (o ClientRolePolicyRoleOutput) ToClientRolePolicyRoleOutputWithContext(ctx 
 }
 
 func (o ClientRolePolicyRoleOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func (v ClientRolePolicyRole) string { return v.Id }).(pulumi.StringOutput)
+	return o.ApplyT(func(v ClientRolePolicyRole) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o ClientRolePolicyRoleOutput) Required() pulumi.BoolOutput {
-	return o.ApplyT(func (v ClientRolePolicyRole) bool { return v.Required }).(pulumi.BoolOutput)
+	return o.ApplyT(func(v ClientRolePolicyRole) bool { return v.Required }).(pulumi.BoolOutput)
 }
 
-type ClientRolePolicyRoleArrayOutput struct { *pulumi.OutputState}
+type ClientRolePolicyRoleArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientRolePolicyRoleArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]ClientRolePolicyRole)(nil)).Elem()
@@ -324,14 +325,14 @@ func (o ClientRolePolicyRoleArrayOutput) ToClientRolePolicyRoleArrayOutputWithCo
 }
 
 func (o ClientRolePolicyRoleArrayOutput) Index(i pulumi.IntInput) ClientRolePolicyRoleOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) ClientRolePolicyRole {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClientRolePolicyRole {
 		return vs[0].([]ClientRolePolicyRole)[vs[1].(int)]
 	}).(ClientRolePolicyRoleOutput)
 }
 
 type GetClientAuthorization struct {
-	AllowRemoteResourceManagement bool `pulumi:"allowRemoteResourceManagement"`
-	PolicyEnforcementMode string `pulumi:"policyEnforcementMode"`
+	AllowRemoteResourceManagement bool   `pulumi:"allowRemoteResourceManagement"`
+	PolicyEnforcementMode         string `pulumi:"policyEnforcementMode"`
 }
 
 type GetClientAuthorizationInput interface {
@@ -342,8 +343,8 @@ type GetClientAuthorizationInput interface {
 }
 
 type GetClientAuthorizationArgs struct {
-	AllowRemoteResourceManagement pulumi.BoolInput `pulumi:"allowRemoteResourceManagement"`
-	PolicyEnforcementMode pulumi.StringInput `pulumi:"policyEnforcementMode"`
+	AllowRemoteResourceManagement pulumi.BoolInput   `pulumi:"allowRemoteResourceManagement"`
+	PolicyEnforcementMode         pulumi.StringInput `pulumi:"policyEnforcementMode"`
 }
 
 func (GetClientAuthorizationArgs) ElementType() reflect.Type {
@@ -358,7 +359,7 @@ func (i GetClientAuthorizationArgs) ToGetClientAuthorizationOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(GetClientAuthorizationOutput)
 }
 
-type GetClientAuthorizationOutput struct { *pulumi.OutputState }
+type GetClientAuthorizationOutput struct{ *pulumi.OutputState }
 
 func (GetClientAuthorizationOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetClientAuthorization)(nil)).Elem()
@@ -373,17 +374,17 @@ func (o GetClientAuthorizationOutput) ToGetClientAuthorizationOutputWithContext(
 }
 
 func (o GetClientAuthorizationOutput) AllowRemoteResourceManagement() pulumi.BoolOutput {
-	return o.ApplyT(func (v GetClientAuthorization) bool { return v.AllowRemoteResourceManagement }).(pulumi.BoolOutput)
+	return o.ApplyT(func(v GetClientAuthorization) bool { return v.AllowRemoteResourceManagement }).(pulumi.BoolOutput)
 }
 
 func (o GetClientAuthorizationOutput) PolicyEnforcementMode() pulumi.StringOutput {
-	return o.ApplyT(func (v GetClientAuthorization) string { return v.PolicyEnforcementMode }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetClientAuthorization) string { return v.PolicyEnforcementMode }).(pulumi.StringOutput)
 }
 
 type GetClientServiceAccountUserFederatedIdentity struct {
 	IdentityProvider string `pulumi:"identityProvider"`
-	UserId string `pulumi:"userId"`
-	UserName string `pulumi:"userName"`
+	UserId           string `pulumi:"userId"`
+	UserName         string `pulumi:"userName"`
 }
 
 type GetClientServiceAccountUserFederatedIdentityInput interface {
@@ -395,8 +396,8 @@ type GetClientServiceAccountUserFederatedIdentityInput interface {
 
 type GetClientServiceAccountUserFederatedIdentityArgs struct {
 	IdentityProvider pulumi.StringInput `pulumi:"identityProvider"`
-	UserId pulumi.StringInput `pulumi:"userId"`
-	UserName pulumi.StringInput `pulumi:"userName"`
+	UserId           pulumi.StringInput `pulumi:"userId"`
+	UserName         pulumi.StringInput `pulumi:"userName"`
 }
 
 func (GetClientServiceAccountUserFederatedIdentityArgs) ElementType() reflect.Type {
@@ -432,7 +433,7 @@ func (i GetClientServiceAccountUserFederatedIdentityArray) ToGetClientServiceAcc
 	return pulumi.ToOutputWithContext(ctx, i).(GetClientServiceAccountUserFederatedIdentityArrayOutput)
 }
 
-type GetClientServiceAccountUserFederatedIdentityOutput struct { *pulumi.OutputState }
+type GetClientServiceAccountUserFederatedIdentityOutput struct{ *pulumi.OutputState }
 
 func (GetClientServiceAccountUserFederatedIdentityOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetClientServiceAccountUserFederatedIdentity)(nil)).Elem()
@@ -447,18 +448,18 @@ func (o GetClientServiceAccountUserFederatedIdentityOutput) ToGetClientServiceAc
 }
 
 func (o GetClientServiceAccountUserFederatedIdentityOutput) IdentityProvider() pulumi.StringOutput {
-	return o.ApplyT(func (v GetClientServiceAccountUserFederatedIdentity) string { return v.IdentityProvider }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetClientServiceAccountUserFederatedIdentity) string { return v.IdentityProvider }).(pulumi.StringOutput)
 }
 
 func (o GetClientServiceAccountUserFederatedIdentityOutput) UserId() pulumi.StringOutput {
-	return o.ApplyT(func (v GetClientServiceAccountUserFederatedIdentity) string { return v.UserId }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetClientServiceAccountUserFederatedIdentity) string { return v.UserId }).(pulumi.StringOutput)
 }
 
 func (o GetClientServiceAccountUserFederatedIdentityOutput) UserName() pulumi.StringOutput {
-	return o.ApplyT(func (v GetClientServiceAccountUserFederatedIdentity) string { return v.UserName }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetClientServiceAccountUserFederatedIdentity) string { return v.UserName }).(pulumi.StringOutput)
 }
 
-type GetClientServiceAccountUserFederatedIdentityArrayOutput struct { *pulumi.OutputState}
+type GetClientServiceAccountUserFederatedIdentityArrayOutput struct{ *pulumi.OutputState }
 
 func (GetClientServiceAccountUserFederatedIdentityArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]GetClientServiceAccountUserFederatedIdentity)(nil)).Elem()
@@ -473,7 +474,7 @@ func (o GetClientServiceAccountUserFederatedIdentityArrayOutput) ToGetClientServ
 }
 
 func (o GetClientServiceAccountUserFederatedIdentityArrayOutput) Index(i pulumi.IntInput) GetClientServiceAccountUserFederatedIdentityOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) GetClientServiceAccountUserFederatedIdentity {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClientServiceAccountUserFederatedIdentity {
 		return vs[0].([]GetClientServiceAccountUserFederatedIdentity)[vs[1].(int)]
 	}).(GetClientServiceAccountUserFederatedIdentityOutput)
 }

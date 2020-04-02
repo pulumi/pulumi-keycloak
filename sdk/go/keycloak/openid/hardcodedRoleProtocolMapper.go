@@ -44,7 +44,7 @@ type HardcodedRoleProtocolMapper struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm id where the associated client or client scope exists.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	RoleId pulumi.StringOutput `pulumi:"roleId"`
+	RoleId  pulumi.StringOutput `pulumi:"roleId"`
 }
 
 // NewHardcodedRoleProtocolMapper registers a new resource with the given unique name, arguments, and options.
@@ -89,7 +89,7 @@ type hardcodedRoleProtocolMapperState struct {
 	Name *string `pulumi:"name"`
 	// The realm id where the associated client or client scope exists.
 	RealmId *string `pulumi:"realmId"`
-	RoleId *string `pulumi:"roleId"`
+	RoleId  *string `pulumi:"roleId"`
 }
 
 type HardcodedRoleProtocolMapperState struct {
@@ -101,7 +101,7 @@ type HardcodedRoleProtocolMapperState struct {
 	Name pulumi.StringPtrInput
 	// The realm id where the associated client or client scope exists.
 	RealmId pulumi.StringPtrInput
-	RoleId pulumi.StringPtrInput
+	RoleId  pulumi.StringPtrInput
 }
 
 func (HardcodedRoleProtocolMapperState) ElementType() reflect.Type {
@@ -117,7 +117,7 @@ type hardcodedRoleProtocolMapperArgs struct {
 	Name *string `pulumi:"name"`
 	// The realm id where the associated client or client scope exists.
 	RealmId string `pulumi:"realmId"`
-	RoleId string `pulumi:"roleId"`
+	RoleId  string `pulumi:"roleId"`
 }
 
 // The set of arguments for constructing a HardcodedRoleProtocolMapper resource.
@@ -130,10 +130,9 @@ type HardcodedRoleProtocolMapperArgs struct {
 	Name pulumi.StringPtrInput
 	// The realm id where the associated client or client scope exists.
 	RealmId pulumi.StringInput
-	RoleId pulumi.StringInput
+	RoleId  pulumi.StringInput
 }
 
 func (HardcodedRoleProtocolMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*hardcodedRoleProtocolMapperArgs)(nil)).Elem()
 }
-

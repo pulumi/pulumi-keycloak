@@ -15,8 +15,8 @@ type GenericClientRoleMapper struct {
 	pulumi.CustomResourceState
 
 	ClientId pulumi.StringOutput `pulumi:"clientId"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	RoleId pulumi.StringOutput `pulumi:"roleId"`
+	RealmId  pulumi.StringOutput `pulumi:"realmId"`
+	RoleId   pulumi.StringOutput `pulumi:"roleId"`
 }
 
 // NewGenericClientRoleMapper registers a new resource with the given unique name, arguments, and options.
@@ -57,14 +57,14 @@ func GetGenericClientRoleMapper(ctx *pulumi.Context,
 // Input properties used for looking up and filtering GenericClientRoleMapper resources.
 type genericClientRoleMapperState struct {
 	ClientId *string `pulumi:"clientId"`
-	RealmId *string `pulumi:"realmId"`
-	RoleId *string `pulumi:"roleId"`
+	RealmId  *string `pulumi:"realmId"`
+	RoleId   *string `pulumi:"roleId"`
 }
 
 type GenericClientRoleMapperState struct {
 	ClientId pulumi.StringPtrInput
-	RealmId pulumi.StringPtrInput
-	RoleId pulumi.StringPtrInput
+	RealmId  pulumi.StringPtrInput
+	RoleId   pulumi.StringPtrInput
 }
 
 func (GenericClientRoleMapperState) ElementType() reflect.Type {
@@ -73,18 +73,17 @@ func (GenericClientRoleMapperState) ElementType() reflect.Type {
 
 type genericClientRoleMapperArgs struct {
 	ClientId string `pulumi:"clientId"`
-	RealmId string `pulumi:"realmId"`
-	RoleId string `pulumi:"roleId"`
+	RealmId  string `pulumi:"realmId"`
+	RoleId   string `pulumi:"roleId"`
 }
 
 // The set of arguments for constructing a GenericClientRoleMapper resource.
 type GenericClientRoleMapperArgs struct {
 	ClientId pulumi.StringInput
-	RealmId pulumi.StringInput
-	RoleId pulumi.StringInput
+	RealmId  pulumi.StringInput
+	RoleId   pulumi.StringInput
 }
 
 func (GenericClientRoleMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*genericClientRoleMapperArgs)(nil)).Elem()
 }
-

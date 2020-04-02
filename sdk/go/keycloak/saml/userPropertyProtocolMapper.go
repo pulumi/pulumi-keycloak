@@ -38,14 +38,14 @@ import (
 type UserPropertyProtocolMapper struct {
 	pulumi.CustomResourceState
 
-	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
-	ClientScopeId pulumi.StringPtrOutput `pulumi:"clientScopeId"`
-	FriendlyName pulumi.StringPtrOutput `pulumi:"friendlyName"`
-	Name pulumi.StringOutput `pulumi:"name"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	SamlAttributeName pulumi.StringOutput `pulumi:"samlAttributeName"`
-	SamlAttributeNameFormat pulumi.StringOutput `pulumi:"samlAttributeNameFormat"`
-	UserProperty pulumi.StringOutput `pulumi:"userProperty"`
+	ClientId                pulumi.StringPtrOutput `pulumi:"clientId"`
+	ClientScopeId           pulumi.StringPtrOutput `pulumi:"clientScopeId"`
+	FriendlyName            pulumi.StringPtrOutput `pulumi:"friendlyName"`
+	Name                    pulumi.StringOutput    `pulumi:"name"`
+	RealmId                 pulumi.StringOutput    `pulumi:"realmId"`
+	SamlAttributeName       pulumi.StringOutput    `pulumi:"samlAttributeName"`
+	SamlAttributeNameFormat pulumi.StringOutput    `pulumi:"samlAttributeNameFormat"`
+	UserProperty            pulumi.StringOutput    `pulumi:"userProperty"`
 }
 
 // NewUserPropertyProtocolMapper registers a new resource with the given unique name, arguments, and options.
@@ -88,25 +88,25 @@ func GetUserPropertyProtocolMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserPropertyProtocolMapper resources.
 type userPropertyProtocolMapperState struct {
-	ClientId *string `pulumi:"clientId"`
-	ClientScopeId *string `pulumi:"clientScopeId"`
-	FriendlyName *string `pulumi:"friendlyName"`
-	Name *string `pulumi:"name"`
-	RealmId *string `pulumi:"realmId"`
-	SamlAttributeName *string `pulumi:"samlAttributeName"`
+	ClientId                *string `pulumi:"clientId"`
+	ClientScopeId           *string `pulumi:"clientScopeId"`
+	FriendlyName            *string `pulumi:"friendlyName"`
+	Name                    *string `pulumi:"name"`
+	RealmId                 *string `pulumi:"realmId"`
+	SamlAttributeName       *string `pulumi:"samlAttributeName"`
 	SamlAttributeNameFormat *string `pulumi:"samlAttributeNameFormat"`
-	UserProperty *string `pulumi:"userProperty"`
+	UserProperty            *string `pulumi:"userProperty"`
 }
 
 type UserPropertyProtocolMapperState struct {
-	ClientId pulumi.StringPtrInput
-	ClientScopeId pulumi.StringPtrInput
-	FriendlyName pulumi.StringPtrInput
-	Name pulumi.StringPtrInput
-	RealmId pulumi.StringPtrInput
-	SamlAttributeName pulumi.StringPtrInput
+	ClientId                pulumi.StringPtrInput
+	ClientScopeId           pulumi.StringPtrInput
+	FriendlyName            pulumi.StringPtrInput
+	Name                    pulumi.StringPtrInput
+	RealmId                 pulumi.StringPtrInput
+	SamlAttributeName       pulumi.StringPtrInput
 	SamlAttributeNameFormat pulumi.StringPtrInput
-	UserProperty pulumi.StringPtrInput
+	UserProperty            pulumi.StringPtrInput
 }
 
 func (UserPropertyProtocolMapperState) ElementType() reflect.Type {
@@ -114,29 +114,28 @@ func (UserPropertyProtocolMapperState) ElementType() reflect.Type {
 }
 
 type userPropertyProtocolMapperArgs struct {
-	ClientId *string `pulumi:"clientId"`
-	ClientScopeId *string `pulumi:"clientScopeId"`
-	FriendlyName *string `pulumi:"friendlyName"`
-	Name *string `pulumi:"name"`
-	RealmId string `pulumi:"realmId"`
-	SamlAttributeName string `pulumi:"samlAttributeName"`
-	SamlAttributeNameFormat string `pulumi:"samlAttributeNameFormat"`
-	UserProperty string `pulumi:"userProperty"`
+	ClientId                *string `pulumi:"clientId"`
+	ClientScopeId           *string `pulumi:"clientScopeId"`
+	FriendlyName            *string `pulumi:"friendlyName"`
+	Name                    *string `pulumi:"name"`
+	RealmId                 string  `pulumi:"realmId"`
+	SamlAttributeName       string  `pulumi:"samlAttributeName"`
+	SamlAttributeNameFormat string  `pulumi:"samlAttributeNameFormat"`
+	UserProperty            string  `pulumi:"userProperty"`
 }
 
 // The set of arguments for constructing a UserPropertyProtocolMapper resource.
 type UserPropertyProtocolMapperArgs struct {
-	ClientId pulumi.StringPtrInput
-	ClientScopeId pulumi.StringPtrInput
-	FriendlyName pulumi.StringPtrInput
-	Name pulumi.StringPtrInput
-	RealmId pulumi.StringInput
-	SamlAttributeName pulumi.StringInput
+	ClientId                pulumi.StringPtrInput
+	ClientScopeId           pulumi.StringPtrInput
+	FriendlyName            pulumi.StringPtrInput
+	Name                    pulumi.StringPtrInput
+	RealmId                 pulumi.StringInput
+	SamlAttributeName       pulumi.StringInput
 	SamlAttributeNameFormat pulumi.StringInput
-	UserProperty pulumi.StringInput
+	UserProperty            pulumi.StringInput
 }
 
 func (UserPropertyProtocolMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*userPropertyProtocolMapperArgs)(nil)).Elem()
 }
-

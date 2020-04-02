@@ -99,4 +99,3 @@ type MsadLdsUserAccountControlMapperArgs struct {
 func (MsadLdsUserAccountControlMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*msadLdsUserAccountControlMapperArgs)(nil)).Elem()
 }
-

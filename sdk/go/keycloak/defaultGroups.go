@@ -30,7 +30,7 @@ type DefaultGroups struct {
 	pulumi.CustomResourceState
 
 	GroupIds pulumi.StringArrayOutput `pulumi:"groupIds"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	RealmId  pulumi.StringOutput      `pulumi:"realmId"`
 }
 
 // NewDefaultGroups registers a new resource with the given unique name, arguments, and options.
@@ -68,12 +68,12 @@ func GetDefaultGroups(ctx *pulumi.Context,
 // Input properties used for looking up and filtering DefaultGroups resources.
 type defaultGroupsState struct {
 	GroupIds []string `pulumi:"groupIds"`
-	RealmId *string `pulumi:"realmId"`
+	RealmId  *string  `pulumi:"realmId"`
 }
 
 type DefaultGroupsState struct {
 	GroupIds pulumi.StringArrayInput
-	RealmId pulumi.StringPtrInput
+	RealmId  pulumi.StringPtrInput
 }
 
 func (DefaultGroupsState) ElementType() reflect.Type {
@@ -82,16 +82,15 @@ func (DefaultGroupsState) ElementType() reflect.Type {
 
 type defaultGroupsArgs struct {
 	GroupIds []string `pulumi:"groupIds"`
-	RealmId string `pulumi:"realmId"`
+	RealmId  string   `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a DefaultGroups resource.
 type DefaultGroupsArgs struct {
 	GroupIds pulumi.StringArrayInput
-	RealmId pulumi.StringInput
+	RealmId  pulumi.StringInput
 }
 
 func (DefaultGroupsArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultGroupsArgs)(nil)).Elem()
 }
-

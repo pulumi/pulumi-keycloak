@@ -12,7 +12,7 @@ import (
 )
 
 type RealmInternationalization struct {
-	DefaultLocale string `pulumi:"defaultLocale"`
+	DefaultLocale    string   `pulumi:"defaultLocale"`
 	SupportedLocales []string `pulumi:"supportedLocales"`
 }
 
@@ -24,7 +24,7 @@ type RealmInternationalizationInput interface {
 }
 
 type RealmInternationalizationArgs struct {
-	DefaultLocale pulumi.StringInput `pulumi:"defaultLocale"`
+	DefaultLocale    pulumi.StringInput      `pulumi:"defaultLocale"`
 	SupportedLocales pulumi.StringArrayInput `pulumi:"supportedLocales"`
 }
 
@@ -57,7 +57,8 @@ type RealmInternationalizationPtrInput interface {
 
 type realmInternationalizationPtrType RealmInternationalizationArgs
 
-func RealmInternationalizationPtr(v *RealmInternationalizationArgs) RealmInternationalizationPtrInput {	return (*realmInternationalizationPtrType)(v)
+func RealmInternationalizationPtr(v *RealmInternationalizationArgs) RealmInternationalizationPtrInput {
+	return (*realmInternationalizationPtrType)(v)
 }
 
 func (*realmInternationalizationPtrType) ElementType() reflect.Type {
@@ -72,7 +73,7 @@ func (i *realmInternationalizationPtrType) ToRealmInternationalizationPtrOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(RealmInternationalizationPtrOutput)
 }
 
-type RealmInternationalizationOutput struct { *pulumi.OutputState }
+type RealmInternationalizationOutput struct{ *pulumi.OutputState }
 
 func (RealmInternationalizationOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*RealmInternationalization)(nil)).Elem()
@@ -96,14 +97,14 @@ func (o RealmInternationalizationOutput) ToRealmInternationalizationPtrOutputWit
 	}).(RealmInternationalizationPtrOutput)
 }
 func (o RealmInternationalizationOutput) DefaultLocale() pulumi.StringOutput {
-	return o.ApplyT(func (v RealmInternationalization) string { return v.DefaultLocale }).(pulumi.StringOutput)
+	return o.ApplyT(func(v RealmInternationalization) string { return v.DefaultLocale }).(pulumi.StringOutput)
 }
 
 func (o RealmInternationalizationOutput) SupportedLocales() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v RealmInternationalization) []string { return v.SupportedLocales }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v RealmInternationalization) []string { return v.SupportedLocales }).(pulumi.StringArrayOutput)
 }
 
-type RealmInternationalizationPtrOutput struct { *pulumi.OutputState}
+type RealmInternationalizationPtrOutput struct{ *pulumi.OutputState }
 
 func (RealmInternationalizationPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RealmInternationalization)(nil)).Elem()
@@ -118,20 +119,20 @@ func (o RealmInternationalizationPtrOutput) ToRealmInternationalizationPtrOutput
 }
 
 func (o RealmInternationalizationPtrOutput) Elem() RealmInternationalizationOutput {
-	return o.ApplyT(func (v *RealmInternationalization) RealmInternationalization { return *v }).(RealmInternationalizationOutput)
+	return o.ApplyT(func(v *RealmInternationalization) RealmInternationalization { return *v }).(RealmInternationalizationOutput)
 }
 
 func (o RealmInternationalizationPtrOutput) DefaultLocale() pulumi.StringOutput {
-	return o.ApplyT(func (v RealmInternationalization) string { return v.DefaultLocale }).(pulumi.StringOutput)
+	return o.ApplyT(func(v RealmInternationalization) string { return v.DefaultLocale }).(pulumi.StringOutput)
 }
 
 func (o RealmInternationalizationPtrOutput) SupportedLocales() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v RealmInternationalization) []string { return v.SupportedLocales }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v RealmInternationalization) []string { return v.SupportedLocales }).(pulumi.StringArrayOutput)
 }
 
 type RealmSecurityDefenses struct {
 	BruteForceDetection *RealmSecurityDefensesBruteForceDetection `pulumi:"bruteForceDetection"`
-	Headers *RealmSecurityDefensesHeaders `pulumi:"headers"`
+	Headers             *RealmSecurityDefensesHeaders             `pulumi:"headers"`
 }
 
 type RealmSecurityDefensesInput interface {
@@ -143,7 +144,7 @@ type RealmSecurityDefensesInput interface {
 
 type RealmSecurityDefensesArgs struct {
 	BruteForceDetection RealmSecurityDefensesBruteForceDetectionPtrInput `pulumi:"bruteForceDetection"`
-	Headers RealmSecurityDefensesHeadersPtrInput `pulumi:"headers"`
+	Headers             RealmSecurityDefensesHeadersPtrInput             `pulumi:"headers"`
 }
 
 func (RealmSecurityDefensesArgs) ElementType() reflect.Type {
@@ -175,7 +176,8 @@ type RealmSecurityDefensesPtrInput interface {
 
 type realmSecurityDefensesPtrType RealmSecurityDefensesArgs
 
-func RealmSecurityDefensesPtr(v *RealmSecurityDefensesArgs) RealmSecurityDefensesPtrInput {	return (*realmSecurityDefensesPtrType)(v)
+func RealmSecurityDefensesPtr(v *RealmSecurityDefensesArgs) RealmSecurityDefensesPtrInput {
+	return (*realmSecurityDefensesPtrType)(v)
 }
 
 func (*realmSecurityDefensesPtrType) ElementType() reflect.Type {
@@ -190,7 +192,7 @@ func (i *realmSecurityDefensesPtrType) ToRealmSecurityDefensesPtrOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(RealmSecurityDefensesPtrOutput)
 }
 
-type RealmSecurityDefensesOutput struct { *pulumi.OutputState }
+type RealmSecurityDefensesOutput struct{ *pulumi.OutputState }
 
 func (RealmSecurityDefensesOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*RealmSecurityDefenses)(nil)).Elem()
@@ -214,14 +216,14 @@ func (o RealmSecurityDefensesOutput) ToRealmSecurityDefensesPtrOutputWithContext
 	}).(RealmSecurityDefensesPtrOutput)
 }
 func (o RealmSecurityDefensesOutput) BruteForceDetection() RealmSecurityDefensesBruteForceDetectionPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefenses) *RealmSecurityDefensesBruteForceDetection { return v.BruteForceDetection }).(RealmSecurityDefensesBruteForceDetectionPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefenses) *RealmSecurityDefensesBruteForceDetection { return v.BruteForceDetection }).(RealmSecurityDefensesBruteForceDetectionPtrOutput)
 }
 
 func (o RealmSecurityDefensesOutput) Headers() RealmSecurityDefensesHeadersPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefenses) *RealmSecurityDefensesHeaders { return v.Headers }).(RealmSecurityDefensesHeadersPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefenses) *RealmSecurityDefensesHeaders { return v.Headers }).(RealmSecurityDefensesHeadersPtrOutput)
 }
 
-type RealmSecurityDefensesPtrOutput struct { *pulumi.OutputState}
+type RealmSecurityDefensesPtrOutput struct{ *pulumi.OutputState }
 
 func (RealmSecurityDefensesPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RealmSecurityDefenses)(nil)).Elem()
@@ -236,25 +238,25 @@ func (o RealmSecurityDefensesPtrOutput) ToRealmSecurityDefensesPtrOutputWithCont
 }
 
 func (o RealmSecurityDefensesPtrOutput) Elem() RealmSecurityDefensesOutput {
-	return o.ApplyT(func (v *RealmSecurityDefenses) RealmSecurityDefenses { return *v }).(RealmSecurityDefensesOutput)
+	return o.ApplyT(func(v *RealmSecurityDefenses) RealmSecurityDefenses { return *v }).(RealmSecurityDefensesOutput)
 }
 
 func (o RealmSecurityDefensesPtrOutput) BruteForceDetection() RealmSecurityDefensesBruteForceDetectionPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefenses) *RealmSecurityDefensesBruteForceDetection { return v.BruteForceDetection }).(RealmSecurityDefensesBruteForceDetectionPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefenses) *RealmSecurityDefensesBruteForceDetection { return v.BruteForceDetection }).(RealmSecurityDefensesBruteForceDetectionPtrOutput)
 }
 
 func (o RealmSecurityDefensesPtrOutput) Headers() RealmSecurityDefensesHeadersPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefenses) *RealmSecurityDefensesHeaders { return v.Headers }).(RealmSecurityDefensesHeadersPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefenses) *RealmSecurityDefensesHeaders { return v.Headers }).(RealmSecurityDefensesHeadersPtrOutput)
 }
 
 type RealmSecurityDefensesBruteForceDetection struct {
-	FailureResetTimeSeconds *int `pulumi:"failureResetTimeSeconds"`
-	MaxFailureWaitSeconds *int `pulumi:"maxFailureWaitSeconds"`
-	MaxLoginFailures *int `pulumi:"maxLoginFailures"`
-	MinimumQuickLoginWaitSeconds *int `pulumi:"minimumQuickLoginWaitSeconds"`
-	PermanentLockout *bool `pulumi:"permanentLockout"`
-	QuickLoginCheckMilliSeconds *int `pulumi:"quickLoginCheckMilliSeconds"`
-	WaitIncrementSeconds *int `pulumi:"waitIncrementSeconds"`
+	FailureResetTimeSeconds      *int  `pulumi:"failureResetTimeSeconds"`
+	MaxFailureWaitSeconds        *int  `pulumi:"maxFailureWaitSeconds"`
+	MaxLoginFailures             *int  `pulumi:"maxLoginFailures"`
+	MinimumQuickLoginWaitSeconds *int  `pulumi:"minimumQuickLoginWaitSeconds"`
+	PermanentLockout             *bool `pulumi:"permanentLockout"`
+	QuickLoginCheckMilliSeconds  *int  `pulumi:"quickLoginCheckMilliSeconds"`
+	WaitIncrementSeconds         *int  `pulumi:"waitIncrementSeconds"`
 }
 
 type RealmSecurityDefensesBruteForceDetectionInput interface {
@@ -265,13 +267,13 @@ type RealmSecurityDefensesBruteForceDetectionInput interface {
 }
 
 type RealmSecurityDefensesBruteForceDetectionArgs struct {
-	FailureResetTimeSeconds pulumi.IntPtrInput `pulumi:"failureResetTimeSeconds"`
-	MaxFailureWaitSeconds pulumi.IntPtrInput `pulumi:"maxFailureWaitSeconds"`
-	MaxLoginFailures pulumi.IntPtrInput `pulumi:"maxLoginFailures"`
-	MinimumQuickLoginWaitSeconds pulumi.IntPtrInput `pulumi:"minimumQuickLoginWaitSeconds"`
-	PermanentLockout pulumi.BoolPtrInput `pulumi:"permanentLockout"`
-	QuickLoginCheckMilliSeconds pulumi.IntPtrInput `pulumi:"quickLoginCheckMilliSeconds"`
-	WaitIncrementSeconds pulumi.IntPtrInput `pulumi:"waitIncrementSeconds"`
+	FailureResetTimeSeconds      pulumi.IntPtrInput  `pulumi:"failureResetTimeSeconds"`
+	MaxFailureWaitSeconds        pulumi.IntPtrInput  `pulumi:"maxFailureWaitSeconds"`
+	MaxLoginFailures             pulumi.IntPtrInput  `pulumi:"maxLoginFailures"`
+	MinimumQuickLoginWaitSeconds pulumi.IntPtrInput  `pulumi:"minimumQuickLoginWaitSeconds"`
+	PermanentLockout             pulumi.BoolPtrInput `pulumi:"permanentLockout"`
+	QuickLoginCheckMilliSeconds  pulumi.IntPtrInput  `pulumi:"quickLoginCheckMilliSeconds"`
+	WaitIncrementSeconds         pulumi.IntPtrInput  `pulumi:"waitIncrementSeconds"`
 }
 
 func (RealmSecurityDefensesBruteForceDetectionArgs) ElementType() reflect.Type {
@@ -303,7 +305,8 @@ type RealmSecurityDefensesBruteForceDetectionPtrInput interface {
 
 type realmSecurityDefensesBruteForceDetectionPtrType RealmSecurityDefensesBruteForceDetectionArgs
 
-func RealmSecurityDefensesBruteForceDetectionPtr(v *RealmSecurityDefensesBruteForceDetectionArgs) RealmSecurityDefensesBruteForceDetectionPtrInput {	return (*realmSecurityDefensesBruteForceDetectionPtrType)(v)
+func RealmSecurityDefensesBruteForceDetectionPtr(v *RealmSecurityDefensesBruteForceDetectionArgs) RealmSecurityDefensesBruteForceDetectionPtrInput {
+	return (*realmSecurityDefensesBruteForceDetectionPtrType)(v)
 }
 
 func (*realmSecurityDefensesBruteForceDetectionPtrType) ElementType() reflect.Type {
@@ -318,7 +321,7 @@ func (i *realmSecurityDefensesBruteForceDetectionPtrType) ToRealmSecurityDefense
 	return pulumi.ToOutputWithContext(ctx, i).(RealmSecurityDefensesBruteForceDetectionPtrOutput)
 }
 
-type RealmSecurityDefensesBruteForceDetectionOutput struct { *pulumi.OutputState }
+type RealmSecurityDefensesBruteForceDetectionOutput struct{ *pulumi.OutputState }
 
 func (RealmSecurityDefensesBruteForceDetectionOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*RealmSecurityDefensesBruteForceDetection)(nil)).Elem()
@@ -342,34 +345,34 @@ func (o RealmSecurityDefensesBruteForceDetectionOutput) ToRealmSecurityDefensesB
 	}).(RealmSecurityDefensesBruteForceDetectionPtrOutput)
 }
 func (o RealmSecurityDefensesBruteForceDetectionOutput) FailureResetTimeSeconds() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesBruteForceDetection) *int { return v.FailureResetTimeSeconds }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.FailureResetTimeSeconds }).(pulumi.IntPtrOutput)
 }
 
 func (o RealmSecurityDefensesBruteForceDetectionOutput) MaxFailureWaitSeconds() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesBruteForceDetection) *int { return v.MaxFailureWaitSeconds }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.MaxFailureWaitSeconds }).(pulumi.IntPtrOutput)
 }
 
 func (o RealmSecurityDefensesBruteForceDetectionOutput) MaxLoginFailures() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesBruteForceDetection) *int { return v.MaxLoginFailures }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.MaxLoginFailures }).(pulumi.IntPtrOutput)
 }
 
 func (o RealmSecurityDefensesBruteForceDetectionOutput) MinimumQuickLoginWaitSeconds() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesBruteForceDetection) *int { return v.MinimumQuickLoginWaitSeconds }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.MinimumQuickLoginWaitSeconds }).(pulumi.IntPtrOutput)
 }
 
 func (o RealmSecurityDefensesBruteForceDetectionOutput) PermanentLockout() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesBruteForceDetection) *bool { return v.PermanentLockout }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *bool { return v.PermanentLockout }).(pulumi.BoolPtrOutput)
 }
 
 func (o RealmSecurityDefensesBruteForceDetectionOutput) QuickLoginCheckMilliSeconds() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesBruteForceDetection) *int { return v.QuickLoginCheckMilliSeconds }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.QuickLoginCheckMilliSeconds }).(pulumi.IntPtrOutput)
 }
 
 func (o RealmSecurityDefensesBruteForceDetectionOutput) WaitIncrementSeconds() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesBruteForceDetection) *int { return v.WaitIncrementSeconds }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.WaitIncrementSeconds }).(pulumi.IntPtrOutput)
 }
 
-type RealmSecurityDefensesBruteForceDetectionPtrOutput struct { *pulumi.OutputState}
+type RealmSecurityDefensesBruteForceDetectionPtrOutput struct{ *pulumi.OutputState }
 
 func (RealmSecurityDefensesBruteForceDetectionPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RealmSecurityDefensesBruteForceDetection)(nil)).Elem()
@@ -384,45 +387,45 @@ func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) ToRealmSecurityDefens
 }
 
 func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) Elem() RealmSecurityDefensesBruteForceDetectionOutput {
-	return o.ApplyT(func (v *RealmSecurityDefensesBruteForceDetection) RealmSecurityDefensesBruteForceDetection { return *v }).(RealmSecurityDefensesBruteForceDetectionOutput)
+	return o.ApplyT(func(v *RealmSecurityDefensesBruteForceDetection) RealmSecurityDefensesBruteForceDetection { return *v }).(RealmSecurityDefensesBruteForceDetectionOutput)
 }
 
 func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) FailureResetTimeSeconds() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesBruteForceDetection) *int { return v.FailureResetTimeSeconds }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.FailureResetTimeSeconds }).(pulumi.IntPtrOutput)
 }
 
 func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) MaxFailureWaitSeconds() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesBruteForceDetection) *int { return v.MaxFailureWaitSeconds }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.MaxFailureWaitSeconds }).(pulumi.IntPtrOutput)
 }
 
 func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) MaxLoginFailures() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesBruteForceDetection) *int { return v.MaxLoginFailures }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.MaxLoginFailures }).(pulumi.IntPtrOutput)
 }
 
 func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) MinimumQuickLoginWaitSeconds() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesBruteForceDetection) *int { return v.MinimumQuickLoginWaitSeconds }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.MinimumQuickLoginWaitSeconds }).(pulumi.IntPtrOutput)
 }
 
 func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) PermanentLockout() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesBruteForceDetection) *bool { return v.PermanentLockout }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *bool { return v.PermanentLockout }).(pulumi.BoolPtrOutput)
 }
 
 func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) QuickLoginCheckMilliSeconds() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesBruteForceDetection) *int { return v.QuickLoginCheckMilliSeconds }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.QuickLoginCheckMilliSeconds }).(pulumi.IntPtrOutput)
 }
 
 func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) WaitIncrementSeconds() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesBruteForceDetection) *int { return v.WaitIncrementSeconds }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.WaitIncrementSeconds }).(pulumi.IntPtrOutput)
 }
 
 type RealmSecurityDefensesHeaders struct {
-	ContentSecurityPolicy *string `pulumi:"contentSecurityPolicy"`
+	ContentSecurityPolicy           *string `pulumi:"contentSecurityPolicy"`
 	ContentSecurityPolicyReportOnly *string `pulumi:"contentSecurityPolicyReportOnly"`
-	StrictTransportSecurity *string `pulumi:"strictTransportSecurity"`
-	XContentTypeOptions *string `pulumi:"xContentTypeOptions"`
-	XFrameOptions *string `pulumi:"xFrameOptions"`
-	XRobotsTag *string `pulumi:"xRobotsTag"`
-	XXssProtection *string `pulumi:"xXssProtection"`
+	StrictTransportSecurity         *string `pulumi:"strictTransportSecurity"`
+	XContentTypeOptions             *string `pulumi:"xContentTypeOptions"`
+	XFrameOptions                   *string `pulumi:"xFrameOptions"`
+	XRobotsTag                      *string `pulumi:"xRobotsTag"`
+	XXssProtection                  *string `pulumi:"xXssProtection"`
 }
 
 type RealmSecurityDefensesHeadersInput interface {
@@ -433,13 +436,13 @@ type RealmSecurityDefensesHeadersInput interface {
 }
 
 type RealmSecurityDefensesHeadersArgs struct {
-	ContentSecurityPolicy pulumi.StringPtrInput `pulumi:"contentSecurityPolicy"`
+	ContentSecurityPolicy           pulumi.StringPtrInput `pulumi:"contentSecurityPolicy"`
 	ContentSecurityPolicyReportOnly pulumi.StringPtrInput `pulumi:"contentSecurityPolicyReportOnly"`
-	StrictTransportSecurity pulumi.StringPtrInput `pulumi:"strictTransportSecurity"`
-	XContentTypeOptions pulumi.StringPtrInput `pulumi:"xContentTypeOptions"`
-	XFrameOptions pulumi.StringPtrInput `pulumi:"xFrameOptions"`
-	XRobotsTag pulumi.StringPtrInput `pulumi:"xRobotsTag"`
-	XXssProtection pulumi.StringPtrInput `pulumi:"xXssProtection"`
+	StrictTransportSecurity         pulumi.StringPtrInput `pulumi:"strictTransportSecurity"`
+	XContentTypeOptions             pulumi.StringPtrInput `pulumi:"xContentTypeOptions"`
+	XFrameOptions                   pulumi.StringPtrInput `pulumi:"xFrameOptions"`
+	XRobotsTag                      pulumi.StringPtrInput `pulumi:"xRobotsTag"`
+	XXssProtection                  pulumi.StringPtrInput `pulumi:"xXssProtection"`
 }
 
 func (RealmSecurityDefensesHeadersArgs) ElementType() reflect.Type {
@@ -471,7 +474,8 @@ type RealmSecurityDefensesHeadersPtrInput interface {
 
 type realmSecurityDefensesHeadersPtrType RealmSecurityDefensesHeadersArgs
 
-func RealmSecurityDefensesHeadersPtr(v *RealmSecurityDefensesHeadersArgs) RealmSecurityDefensesHeadersPtrInput {	return (*realmSecurityDefensesHeadersPtrType)(v)
+func RealmSecurityDefensesHeadersPtr(v *RealmSecurityDefensesHeadersArgs) RealmSecurityDefensesHeadersPtrInput {
+	return (*realmSecurityDefensesHeadersPtrType)(v)
 }
 
 func (*realmSecurityDefensesHeadersPtrType) ElementType() reflect.Type {
@@ -486,7 +490,7 @@ func (i *realmSecurityDefensesHeadersPtrType) ToRealmSecurityDefensesHeadersPtrO
 	return pulumi.ToOutputWithContext(ctx, i).(RealmSecurityDefensesHeadersPtrOutput)
 }
 
-type RealmSecurityDefensesHeadersOutput struct { *pulumi.OutputState }
+type RealmSecurityDefensesHeadersOutput struct{ *pulumi.OutputState }
 
 func (RealmSecurityDefensesHeadersOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*RealmSecurityDefensesHeaders)(nil)).Elem()
@@ -510,34 +514,34 @@ func (o RealmSecurityDefensesHeadersOutput) ToRealmSecurityDefensesHeadersPtrOut
 	}).(RealmSecurityDefensesHeadersPtrOutput)
 }
 func (o RealmSecurityDefensesHeadersOutput) ContentSecurityPolicy() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesHeaders) *string { return v.ContentSecurityPolicy }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.ContentSecurityPolicy }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSecurityDefensesHeadersOutput) ContentSecurityPolicyReportOnly() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesHeaders) *string { return v.ContentSecurityPolicyReportOnly }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.ContentSecurityPolicyReportOnly }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSecurityDefensesHeadersOutput) StrictTransportSecurity() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesHeaders) *string { return v.StrictTransportSecurity }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.StrictTransportSecurity }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSecurityDefensesHeadersOutput) XContentTypeOptions() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesHeaders) *string { return v.XContentTypeOptions }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.XContentTypeOptions }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSecurityDefensesHeadersOutput) XFrameOptions() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesHeaders) *string { return v.XFrameOptions }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.XFrameOptions }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSecurityDefensesHeadersOutput) XRobotsTag() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesHeaders) *string { return v.XRobotsTag }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.XRobotsTag }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSecurityDefensesHeadersOutput) XXssProtection() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesHeaders) *string { return v.XXssProtection }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.XXssProtection }).(pulumi.StringPtrOutput)
 }
 
-type RealmSecurityDefensesHeadersPtrOutput struct { *pulumi.OutputState}
+type RealmSecurityDefensesHeadersPtrOutput struct{ *pulumi.OutputState }
 
 func (RealmSecurityDefensesHeadersPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RealmSecurityDefensesHeaders)(nil)).Elem()
@@ -552,48 +556,48 @@ func (o RealmSecurityDefensesHeadersPtrOutput) ToRealmSecurityDefensesHeadersPtr
 }
 
 func (o RealmSecurityDefensesHeadersPtrOutput) Elem() RealmSecurityDefensesHeadersOutput {
-	return o.ApplyT(func (v *RealmSecurityDefensesHeaders) RealmSecurityDefensesHeaders { return *v }).(RealmSecurityDefensesHeadersOutput)
+	return o.ApplyT(func(v *RealmSecurityDefensesHeaders) RealmSecurityDefensesHeaders { return *v }).(RealmSecurityDefensesHeadersOutput)
 }
 
 func (o RealmSecurityDefensesHeadersPtrOutput) ContentSecurityPolicy() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesHeaders) *string { return v.ContentSecurityPolicy }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.ContentSecurityPolicy }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSecurityDefensesHeadersPtrOutput) ContentSecurityPolicyReportOnly() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesHeaders) *string { return v.ContentSecurityPolicyReportOnly }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.ContentSecurityPolicyReportOnly }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSecurityDefensesHeadersPtrOutput) StrictTransportSecurity() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesHeaders) *string { return v.StrictTransportSecurity }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.StrictTransportSecurity }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSecurityDefensesHeadersPtrOutput) XContentTypeOptions() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesHeaders) *string { return v.XContentTypeOptions }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.XContentTypeOptions }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSecurityDefensesHeadersPtrOutput) XFrameOptions() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesHeaders) *string { return v.XFrameOptions }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.XFrameOptions }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSecurityDefensesHeadersPtrOutput) XRobotsTag() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesHeaders) *string { return v.XRobotsTag }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.XRobotsTag }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSecurityDefensesHeadersPtrOutput) XXssProtection() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSecurityDefensesHeaders) *string { return v.XXssProtection }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.XXssProtection }).(pulumi.StringPtrOutput)
 }
 
 type RealmSmtpServer struct {
-	Auth *RealmSmtpServerAuth `pulumi:"auth"`
-	EnvelopeFrom *string `pulumi:"envelopeFrom"`
-	From string `pulumi:"from"`
-	FromDisplayName *string `pulumi:"fromDisplayName"`
-	Host string `pulumi:"host"`
-	Port *string `pulumi:"port"`
-	ReplyTo *string `pulumi:"replyTo"`
-	ReplyToDisplayName *string `pulumi:"replyToDisplayName"`
-	Ssl *bool `pulumi:"ssl"`
-	Starttls *bool `pulumi:"starttls"`
+	Auth               *RealmSmtpServerAuth `pulumi:"auth"`
+	EnvelopeFrom       *string              `pulumi:"envelopeFrom"`
+	From               string               `pulumi:"from"`
+	FromDisplayName    *string              `pulumi:"fromDisplayName"`
+	Host               string               `pulumi:"host"`
+	Port               *string              `pulumi:"port"`
+	ReplyTo            *string              `pulumi:"replyTo"`
+	ReplyToDisplayName *string              `pulumi:"replyToDisplayName"`
+	Ssl                *bool                `pulumi:"ssl"`
+	Starttls           *bool                `pulumi:"starttls"`
 }
 
 type RealmSmtpServerInput interface {
@@ -604,16 +608,16 @@ type RealmSmtpServerInput interface {
 }
 
 type RealmSmtpServerArgs struct {
-	Auth RealmSmtpServerAuthPtrInput `pulumi:"auth"`
-	EnvelopeFrom pulumi.StringPtrInput `pulumi:"envelopeFrom"`
-	From pulumi.StringInput `pulumi:"from"`
-	FromDisplayName pulumi.StringPtrInput `pulumi:"fromDisplayName"`
-	Host pulumi.StringInput `pulumi:"host"`
-	Port pulumi.StringPtrInput `pulumi:"port"`
-	ReplyTo pulumi.StringPtrInput `pulumi:"replyTo"`
-	ReplyToDisplayName pulumi.StringPtrInput `pulumi:"replyToDisplayName"`
-	Ssl pulumi.BoolPtrInput `pulumi:"ssl"`
-	Starttls pulumi.BoolPtrInput `pulumi:"starttls"`
+	Auth               RealmSmtpServerAuthPtrInput `pulumi:"auth"`
+	EnvelopeFrom       pulumi.StringPtrInput       `pulumi:"envelopeFrom"`
+	From               pulumi.StringInput          `pulumi:"from"`
+	FromDisplayName    pulumi.StringPtrInput       `pulumi:"fromDisplayName"`
+	Host               pulumi.StringInput          `pulumi:"host"`
+	Port               pulumi.StringPtrInput       `pulumi:"port"`
+	ReplyTo            pulumi.StringPtrInput       `pulumi:"replyTo"`
+	ReplyToDisplayName pulumi.StringPtrInput       `pulumi:"replyToDisplayName"`
+	Ssl                pulumi.BoolPtrInput         `pulumi:"ssl"`
+	Starttls           pulumi.BoolPtrInput         `pulumi:"starttls"`
 }
 
 func (RealmSmtpServerArgs) ElementType() reflect.Type {
@@ -645,7 +649,8 @@ type RealmSmtpServerPtrInput interface {
 
 type realmSmtpServerPtrType RealmSmtpServerArgs
 
-func RealmSmtpServerPtr(v *RealmSmtpServerArgs) RealmSmtpServerPtrInput {	return (*realmSmtpServerPtrType)(v)
+func RealmSmtpServerPtr(v *RealmSmtpServerArgs) RealmSmtpServerPtrInput {
+	return (*realmSmtpServerPtrType)(v)
 }
 
 func (*realmSmtpServerPtrType) ElementType() reflect.Type {
@@ -660,7 +665,7 @@ func (i *realmSmtpServerPtrType) ToRealmSmtpServerPtrOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(RealmSmtpServerPtrOutput)
 }
 
-type RealmSmtpServerOutput struct { *pulumi.OutputState }
+type RealmSmtpServerOutput struct{ *pulumi.OutputState }
 
 func (RealmSmtpServerOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*RealmSmtpServer)(nil)).Elem()
@@ -684,46 +689,46 @@ func (o RealmSmtpServerOutput) ToRealmSmtpServerPtrOutputWithContext(ctx context
 	}).(RealmSmtpServerPtrOutput)
 }
 func (o RealmSmtpServerOutput) Auth() RealmSmtpServerAuthPtrOutput {
-	return o.ApplyT(func (v RealmSmtpServer) *RealmSmtpServerAuth { return v.Auth }).(RealmSmtpServerAuthPtrOutput)
+	return o.ApplyT(func(v RealmSmtpServer) *RealmSmtpServerAuth { return v.Auth }).(RealmSmtpServerAuthPtrOutput)
 }
 
 func (o RealmSmtpServerOutput) EnvelopeFrom() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSmtpServer) *string { return v.EnvelopeFrom }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSmtpServer) *string { return v.EnvelopeFrom }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSmtpServerOutput) From() pulumi.StringOutput {
-	return o.ApplyT(func (v RealmSmtpServer) string { return v.From }).(pulumi.StringOutput)
+	return o.ApplyT(func(v RealmSmtpServer) string { return v.From }).(pulumi.StringOutput)
 }
 
 func (o RealmSmtpServerOutput) FromDisplayName() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSmtpServer) *string { return v.FromDisplayName }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSmtpServer) *string { return v.FromDisplayName }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSmtpServerOutput) Host() pulumi.StringOutput {
-	return o.ApplyT(func (v RealmSmtpServer) string { return v.Host }).(pulumi.StringOutput)
+	return o.ApplyT(func(v RealmSmtpServer) string { return v.Host }).(pulumi.StringOutput)
 }
 
 func (o RealmSmtpServerOutput) Port() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSmtpServer) *string { return v.Port }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSmtpServer) *string { return v.Port }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSmtpServerOutput) ReplyTo() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSmtpServer) *string { return v.ReplyTo }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSmtpServer) *string { return v.ReplyTo }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSmtpServerOutput) ReplyToDisplayName() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSmtpServer) *string { return v.ReplyToDisplayName }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSmtpServer) *string { return v.ReplyToDisplayName }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSmtpServerOutput) Ssl() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v RealmSmtpServer) *bool { return v.Ssl }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v RealmSmtpServer) *bool { return v.Ssl }).(pulumi.BoolPtrOutput)
 }
 
 func (o RealmSmtpServerOutput) Starttls() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v RealmSmtpServer) *bool { return v.Starttls }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v RealmSmtpServer) *bool { return v.Starttls }).(pulumi.BoolPtrOutput)
 }
 
-type RealmSmtpServerPtrOutput struct { *pulumi.OutputState}
+type RealmSmtpServerPtrOutput struct{ *pulumi.OutputState }
 
 func (RealmSmtpServerPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RealmSmtpServer)(nil)).Elem()
@@ -738,47 +743,47 @@ func (o RealmSmtpServerPtrOutput) ToRealmSmtpServerPtrOutputWithContext(ctx cont
 }
 
 func (o RealmSmtpServerPtrOutput) Elem() RealmSmtpServerOutput {
-	return o.ApplyT(func (v *RealmSmtpServer) RealmSmtpServer { return *v }).(RealmSmtpServerOutput)
+	return o.ApplyT(func(v *RealmSmtpServer) RealmSmtpServer { return *v }).(RealmSmtpServerOutput)
 }
 
 func (o RealmSmtpServerPtrOutput) Auth() RealmSmtpServerAuthPtrOutput {
-	return o.ApplyT(func (v RealmSmtpServer) *RealmSmtpServerAuth { return v.Auth }).(RealmSmtpServerAuthPtrOutput)
+	return o.ApplyT(func(v RealmSmtpServer) *RealmSmtpServerAuth { return v.Auth }).(RealmSmtpServerAuthPtrOutput)
 }
 
 func (o RealmSmtpServerPtrOutput) EnvelopeFrom() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSmtpServer) *string { return v.EnvelopeFrom }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSmtpServer) *string { return v.EnvelopeFrom }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSmtpServerPtrOutput) From() pulumi.StringOutput {
-	return o.ApplyT(func (v RealmSmtpServer) string { return v.From }).(pulumi.StringOutput)
+	return o.ApplyT(func(v RealmSmtpServer) string { return v.From }).(pulumi.StringOutput)
 }
 
 func (o RealmSmtpServerPtrOutput) FromDisplayName() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSmtpServer) *string { return v.FromDisplayName }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSmtpServer) *string { return v.FromDisplayName }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSmtpServerPtrOutput) Host() pulumi.StringOutput {
-	return o.ApplyT(func (v RealmSmtpServer) string { return v.Host }).(pulumi.StringOutput)
+	return o.ApplyT(func(v RealmSmtpServer) string { return v.Host }).(pulumi.StringOutput)
 }
 
 func (o RealmSmtpServerPtrOutput) Port() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSmtpServer) *string { return v.Port }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSmtpServer) *string { return v.Port }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSmtpServerPtrOutput) ReplyTo() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSmtpServer) *string { return v.ReplyTo }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSmtpServer) *string { return v.ReplyTo }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSmtpServerPtrOutput) ReplyToDisplayName() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v RealmSmtpServer) *string { return v.ReplyToDisplayName }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v RealmSmtpServer) *string { return v.ReplyToDisplayName }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSmtpServerPtrOutput) Ssl() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v RealmSmtpServer) *bool { return v.Ssl }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v RealmSmtpServer) *bool { return v.Ssl }).(pulumi.BoolPtrOutput)
 }
 
 func (o RealmSmtpServerPtrOutput) Starttls() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v RealmSmtpServer) *bool { return v.Starttls }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v RealmSmtpServer) *bool { return v.Starttls }).(pulumi.BoolPtrOutput)
 }
 
 type RealmSmtpServerAuth struct {
@@ -827,7 +832,8 @@ type RealmSmtpServerAuthPtrInput interface {
 
 type realmSmtpServerAuthPtrType RealmSmtpServerAuthArgs
 
-func RealmSmtpServerAuthPtr(v *RealmSmtpServerAuthArgs) RealmSmtpServerAuthPtrInput {	return (*realmSmtpServerAuthPtrType)(v)
+func RealmSmtpServerAuthPtr(v *RealmSmtpServerAuthArgs) RealmSmtpServerAuthPtrInput {
+	return (*realmSmtpServerAuthPtrType)(v)
 }
 
 func (*realmSmtpServerAuthPtrType) ElementType() reflect.Type {
@@ -842,7 +848,7 @@ func (i *realmSmtpServerAuthPtrType) ToRealmSmtpServerAuthPtrOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(RealmSmtpServerAuthPtrOutput)
 }
 
-type RealmSmtpServerAuthOutput struct { *pulumi.OutputState }
+type RealmSmtpServerAuthOutput struct{ *pulumi.OutputState }
 
 func (RealmSmtpServerAuthOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*RealmSmtpServerAuth)(nil)).Elem()
@@ -866,14 +872,14 @@ func (o RealmSmtpServerAuthOutput) ToRealmSmtpServerAuthPtrOutputWithContext(ctx
 	}).(RealmSmtpServerAuthPtrOutput)
 }
 func (o RealmSmtpServerAuthOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func (v RealmSmtpServerAuth) string { return v.Password }).(pulumi.StringOutput)
+	return o.ApplyT(func(v RealmSmtpServerAuth) string { return v.Password }).(pulumi.StringOutput)
 }
 
 func (o RealmSmtpServerAuthOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func (v RealmSmtpServerAuth) string { return v.Username }).(pulumi.StringOutput)
+	return o.ApplyT(func(v RealmSmtpServerAuth) string { return v.Username }).(pulumi.StringOutput)
 }
 
-type RealmSmtpServerAuthPtrOutput struct { *pulumi.OutputState}
+type RealmSmtpServerAuthPtrOutput struct{ *pulumi.OutputState }
 
 func (RealmSmtpServerAuthPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RealmSmtpServerAuth)(nil)).Elem()
@@ -888,21 +894,21 @@ func (o RealmSmtpServerAuthPtrOutput) ToRealmSmtpServerAuthPtrOutputWithContext(
 }
 
 func (o RealmSmtpServerAuthPtrOutput) Elem() RealmSmtpServerAuthOutput {
-	return o.ApplyT(func (v *RealmSmtpServerAuth) RealmSmtpServerAuth { return *v }).(RealmSmtpServerAuthOutput)
+	return o.ApplyT(func(v *RealmSmtpServerAuth) RealmSmtpServerAuth { return *v }).(RealmSmtpServerAuthOutput)
 }
 
 func (o RealmSmtpServerAuthPtrOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func (v RealmSmtpServerAuth) string { return v.Password }).(pulumi.StringOutput)
+	return o.ApplyT(func(v RealmSmtpServerAuth) string { return v.Password }).(pulumi.StringOutput)
 }
 
 func (o RealmSmtpServerAuthPtrOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func (v RealmSmtpServerAuth) string { return v.Username }).(pulumi.StringOutput)
+	return o.ApplyT(func(v RealmSmtpServerAuth) string { return v.Username }).(pulumi.StringOutput)
 }
 
 type UserFederatedIdentity struct {
 	IdentityProvider string `pulumi:"identityProvider"`
-	UserId string `pulumi:"userId"`
-	UserName string `pulumi:"userName"`
+	UserId           string `pulumi:"userId"`
+	UserName         string `pulumi:"userName"`
 }
 
 type UserFederatedIdentityInput interface {
@@ -914,8 +920,8 @@ type UserFederatedIdentityInput interface {
 
 type UserFederatedIdentityArgs struct {
 	IdentityProvider pulumi.StringInput `pulumi:"identityProvider"`
-	UserId pulumi.StringInput `pulumi:"userId"`
-	UserName pulumi.StringInput `pulumi:"userName"`
+	UserId           pulumi.StringInput `pulumi:"userId"`
+	UserName         pulumi.StringInput `pulumi:"userName"`
 }
 
 func (UserFederatedIdentityArgs) ElementType() reflect.Type {
@@ -951,7 +957,7 @@ func (i UserFederatedIdentityArray) ToUserFederatedIdentityArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(UserFederatedIdentityArrayOutput)
 }
 
-type UserFederatedIdentityOutput struct { *pulumi.OutputState }
+type UserFederatedIdentityOutput struct{ *pulumi.OutputState }
 
 func (UserFederatedIdentityOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*UserFederatedIdentity)(nil)).Elem()
@@ -966,18 +972,18 @@ func (o UserFederatedIdentityOutput) ToUserFederatedIdentityOutputWithContext(ct
 }
 
 func (o UserFederatedIdentityOutput) IdentityProvider() pulumi.StringOutput {
-	return o.ApplyT(func (v UserFederatedIdentity) string { return v.IdentityProvider }).(pulumi.StringOutput)
+	return o.ApplyT(func(v UserFederatedIdentity) string { return v.IdentityProvider }).(pulumi.StringOutput)
 }
 
 func (o UserFederatedIdentityOutput) UserId() pulumi.StringOutput {
-	return o.ApplyT(func (v UserFederatedIdentity) string { return v.UserId }).(pulumi.StringOutput)
+	return o.ApplyT(func(v UserFederatedIdentity) string { return v.UserId }).(pulumi.StringOutput)
 }
 
 func (o UserFederatedIdentityOutput) UserName() pulumi.StringOutput {
-	return o.ApplyT(func (v UserFederatedIdentity) string { return v.UserName }).(pulumi.StringOutput)
+	return o.ApplyT(func(v UserFederatedIdentity) string { return v.UserName }).(pulumi.StringOutput)
 }
 
-type UserFederatedIdentityArrayOutput struct { *pulumi.OutputState}
+type UserFederatedIdentityArrayOutput struct{ *pulumi.OutputState }
 
 func (UserFederatedIdentityArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]UserFederatedIdentity)(nil)).Elem()
@@ -992,14 +998,14 @@ func (o UserFederatedIdentityArrayOutput) ToUserFederatedIdentityArrayOutputWith
 }
 
 func (o UserFederatedIdentityArrayOutput) Index(i pulumi.IntInput) UserFederatedIdentityOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) UserFederatedIdentity {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserFederatedIdentity {
 		return vs[0].([]UserFederatedIdentity)[vs[1].(int)]
 	}).(UserFederatedIdentityOutput)
 }
 
 type UserInitialPassword struct {
-	Temporary *bool `pulumi:"temporary"`
-	Value string `pulumi:"value"`
+	Temporary *bool  `pulumi:"temporary"`
+	Value     string `pulumi:"value"`
 }
 
 type UserInitialPasswordInput interface {
@@ -1011,7 +1017,7 @@ type UserInitialPasswordInput interface {
 
 type UserInitialPasswordArgs struct {
 	Temporary pulumi.BoolPtrInput `pulumi:"temporary"`
-	Value pulumi.StringInput `pulumi:"value"`
+	Value     pulumi.StringInput  `pulumi:"value"`
 }
 
 func (UserInitialPasswordArgs) ElementType() reflect.Type {
@@ -1043,7 +1049,8 @@ type UserInitialPasswordPtrInput interface {
 
 type userInitialPasswordPtrType UserInitialPasswordArgs
 
-func UserInitialPasswordPtr(v *UserInitialPasswordArgs) UserInitialPasswordPtrInput {	return (*userInitialPasswordPtrType)(v)
+func UserInitialPasswordPtr(v *UserInitialPasswordArgs) UserInitialPasswordPtrInput {
+	return (*userInitialPasswordPtrType)(v)
 }
 
 func (*userInitialPasswordPtrType) ElementType() reflect.Type {
@@ -1058,7 +1065,7 @@ func (i *userInitialPasswordPtrType) ToUserInitialPasswordPtrOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(UserInitialPasswordPtrOutput)
 }
 
-type UserInitialPasswordOutput struct { *pulumi.OutputState }
+type UserInitialPasswordOutput struct{ *pulumi.OutputState }
 
 func (UserInitialPasswordOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*UserInitialPassword)(nil)).Elem()
@@ -1082,14 +1089,14 @@ func (o UserInitialPasswordOutput) ToUserInitialPasswordPtrOutputWithContext(ctx
 	}).(UserInitialPasswordPtrOutput)
 }
 func (o UserInitialPasswordOutput) Temporary() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v UserInitialPassword) *bool { return v.Temporary }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v UserInitialPassword) *bool { return v.Temporary }).(pulumi.BoolPtrOutput)
 }
 
 func (o UserInitialPasswordOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func (v UserInitialPassword) string { return v.Value }).(pulumi.StringOutput)
+	return o.ApplyT(func(v UserInitialPassword) string { return v.Value }).(pulumi.StringOutput)
 }
 
-type UserInitialPasswordPtrOutput struct { *pulumi.OutputState}
+type UserInitialPasswordPtrOutput struct{ *pulumi.OutputState }
 
 func (UserInitialPasswordPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**UserInitialPassword)(nil)).Elem()
@@ -1104,19 +1111,19 @@ func (o UserInitialPasswordPtrOutput) ToUserInitialPasswordPtrOutputWithContext(
 }
 
 func (o UserInitialPasswordPtrOutput) Elem() UserInitialPasswordOutput {
-	return o.ApplyT(func (v *UserInitialPassword) UserInitialPassword { return *v }).(UserInitialPasswordOutput)
+	return o.ApplyT(func(v *UserInitialPassword) UserInitialPassword { return *v }).(UserInitialPasswordOutput)
 }
 
 func (o UserInitialPasswordPtrOutput) Temporary() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v UserInitialPassword) *bool { return v.Temporary }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v UserInitialPassword) *bool { return v.Temporary }).(pulumi.BoolPtrOutput)
 }
 
 func (o UserInitialPasswordPtrOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func (v UserInitialPassword) string { return v.Value }).(pulumi.StringOutput)
+	return o.ApplyT(func(v UserInitialPassword) string { return v.Value }).(pulumi.StringOutput)
 }
 
 type GetRealmInternationalization struct {
-	DefaultLocale string `pulumi:"defaultLocale"`
+	DefaultLocale    string   `pulumi:"defaultLocale"`
 	SupportedLocales []string `pulumi:"supportedLocales"`
 }
 
@@ -1128,7 +1135,7 @@ type GetRealmInternationalizationInput interface {
 }
 
 type GetRealmInternationalizationArgs struct {
-	DefaultLocale pulumi.StringInput `pulumi:"defaultLocale"`
+	DefaultLocale    pulumi.StringInput      `pulumi:"defaultLocale"`
 	SupportedLocales pulumi.StringArrayInput `pulumi:"supportedLocales"`
 }
 
@@ -1165,7 +1172,7 @@ func (i GetRealmInternationalizationArray) ToGetRealmInternationalizationArrayOu
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmInternationalizationArrayOutput)
 }
 
-type GetRealmInternationalizationOutput struct { *pulumi.OutputState }
+type GetRealmInternationalizationOutput struct{ *pulumi.OutputState }
 
 func (GetRealmInternationalizationOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetRealmInternationalization)(nil)).Elem()
@@ -1180,14 +1187,14 @@ func (o GetRealmInternationalizationOutput) ToGetRealmInternationalizationOutput
 }
 
 func (o GetRealmInternationalizationOutput) DefaultLocale() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmInternationalization) string { return v.DefaultLocale }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmInternationalization) string { return v.DefaultLocale }).(pulumi.StringOutput)
 }
 
 func (o GetRealmInternationalizationOutput) SupportedLocales() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v GetRealmInternationalization) []string { return v.SupportedLocales }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v GetRealmInternationalization) []string { return v.SupportedLocales }).(pulumi.StringArrayOutput)
 }
 
-type GetRealmInternationalizationArrayOutput struct { *pulumi.OutputState}
+type GetRealmInternationalizationArrayOutput struct{ *pulumi.OutputState }
 
 func (GetRealmInternationalizationArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]GetRealmInternationalization)(nil)).Elem()
@@ -1202,20 +1209,20 @@ func (o GetRealmInternationalizationArrayOutput) ToGetRealmInternationalizationA
 }
 
 func (o GetRealmInternationalizationArrayOutput) Index(i pulumi.IntInput) GetRealmInternationalizationOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) GetRealmInternationalization {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRealmInternationalization {
 		return vs[0].([]GetRealmInternationalization)[vs[1].(int)]
 	}).(GetRealmInternationalizationOutput)
 }
 
 type GetRealmKeysKey struct {
-	Algorithm string `pulumi:"algorithm"`
-	Certificate string `pulumi:"certificate"`
-	Kid string `pulumi:"kid"`
-	ProviderId string `pulumi:"providerId"`
-	ProviderPriority int `pulumi:"providerPriority"`
-	PublicKey string `pulumi:"publicKey"`
-	Status string `pulumi:"status"`
-	Type string `pulumi:"type"`
+	Algorithm        string `pulumi:"algorithm"`
+	Certificate      string `pulumi:"certificate"`
+	Kid              string `pulumi:"kid"`
+	ProviderId       string `pulumi:"providerId"`
+	ProviderPriority int    `pulumi:"providerPriority"`
+	PublicKey        string `pulumi:"publicKey"`
+	Status           string `pulumi:"status"`
+	Type             string `pulumi:"type"`
 }
 
 type GetRealmKeysKeyInput interface {
@@ -1226,14 +1233,14 @@ type GetRealmKeysKeyInput interface {
 }
 
 type GetRealmKeysKeyArgs struct {
-	Algorithm pulumi.StringInput `pulumi:"algorithm"`
-	Certificate pulumi.StringInput `pulumi:"certificate"`
-	Kid pulumi.StringInput `pulumi:"kid"`
-	ProviderId pulumi.StringInput `pulumi:"providerId"`
-	ProviderPriority pulumi.IntInput `pulumi:"providerPriority"`
-	PublicKey pulumi.StringInput `pulumi:"publicKey"`
-	Status pulumi.StringInput `pulumi:"status"`
-	Type pulumi.StringInput `pulumi:"type"`
+	Algorithm        pulumi.StringInput `pulumi:"algorithm"`
+	Certificate      pulumi.StringInput `pulumi:"certificate"`
+	Kid              pulumi.StringInput `pulumi:"kid"`
+	ProviderId       pulumi.StringInput `pulumi:"providerId"`
+	ProviderPriority pulumi.IntInput    `pulumi:"providerPriority"`
+	PublicKey        pulumi.StringInput `pulumi:"publicKey"`
+	Status           pulumi.StringInput `pulumi:"status"`
+	Type             pulumi.StringInput `pulumi:"type"`
 }
 
 func (GetRealmKeysKeyArgs) ElementType() reflect.Type {
@@ -1269,7 +1276,7 @@ func (i GetRealmKeysKeyArray) ToGetRealmKeysKeyArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmKeysKeyArrayOutput)
 }
 
-type GetRealmKeysKeyOutput struct { *pulumi.OutputState }
+type GetRealmKeysKeyOutput struct{ *pulumi.OutputState }
 
 func (GetRealmKeysKeyOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetRealmKeysKey)(nil)).Elem()
@@ -1284,38 +1291,38 @@ func (o GetRealmKeysKeyOutput) ToGetRealmKeysKeyOutputWithContext(ctx context.Co
 }
 
 func (o GetRealmKeysKeyOutput) Algorithm() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmKeysKey) string { return v.Algorithm }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmKeysKey) string { return v.Algorithm }).(pulumi.StringOutput)
 }
 
 func (o GetRealmKeysKeyOutput) Certificate() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmKeysKey) string { return v.Certificate }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmKeysKey) string { return v.Certificate }).(pulumi.StringOutput)
 }
 
 func (o GetRealmKeysKeyOutput) Kid() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmKeysKey) string { return v.Kid }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmKeysKey) string { return v.Kid }).(pulumi.StringOutput)
 }
 
 func (o GetRealmKeysKeyOutput) ProviderId() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmKeysKey) string { return v.ProviderId }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmKeysKey) string { return v.ProviderId }).(pulumi.StringOutput)
 }
 
 func (o GetRealmKeysKeyOutput) ProviderPriority() pulumi.IntOutput {
-	return o.ApplyT(func (v GetRealmKeysKey) int { return v.ProviderPriority }).(pulumi.IntOutput)
+	return o.ApplyT(func(v GetRealmKeysKey) int { return v.ProviderPriority }).(pulumi.IntOutput)
 }
 
 func (o GetRealmKeysKeyOutput) PublicKey() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmKeysKey) string { return v.PublicKey }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmKeysKey) string { return v.PublicKey }).(pulumi.StringOutput)
 }
 
 func (o GetRealmKeysKeyOutput) Status() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmKeysKey) string { return v.Status }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmKeysKey) string { return v.Status }).(pulumi.StringOutput)
 }
 
 func (o GetRealmKeysKeyOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmKeysKey) string { return v.Type }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmKeysKey) string { return v.Type }).(pulumi.StringOutput)
 }
 
-type GetRealmKeysKeyArrayOutput struct { *pulumi.OutputState}
+type GetRealmKeysKeyArrayOutput struct{ *pulumi.OutputState }
 
 func (GetRealmKeysKeyArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]GetRealmKeysKey)(nil)).Elem()
@@ -1330,14 +1337,14 @@ func (o GetRealmKeysKeyArrayOutput) ToGetRealmKeysKeyArrayOutputWithContext(ctx 
 }
 
 func (o GetRealmKeysKeyArrayOutput) Index(i pulumi.IntInput) GetRealmKeysKeyOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) GetRealmKeysKey {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRealmKeysKey {
 		return vs[0].([]GetRealmKeysKey)[vs[1].(int)]
 	}).(GetRealmKeysKeyOutput)
 }
 
 type GetRealmSecurityDefense struct {
 	BruteForceDetections []GetRealmSecurityDefenseBruteForceDetection `pulumi:"bruteForceDetections"`
-	Headers []GetRealmSecurityDefenseHeader `pulumi:"headers"`
+	Headers              []GetRealmSecurityDefenseHeader              `pulumi:"headers"`
 }
 
 type GetRealmSecurityDefenseInput interface {
@@ -1349,7 +1356,7 @@ type GetRealmSecurityDefenseInput interface {
 
 type GetRealmSecurityDefenseArgs struct {
 	BruteForceDetections GetRealmSecurityDefenseBruteForceDetectionArrayInput `pulumi:"bruteForceDetections"`
-	Headers GetRealmSecurityDefenseHeaderArrayInput `pulumi:"headers"`
+	Headers              GetRealmSecurityDefenseHeaderArrayInput              `pulumi:"headers"`
 }
 
 func (GetRealmSecurityDefenseArgs) ElementType() reflect.Type {
@@ -1385,7 +1392,7 @@ func (i GetRealmSecurityDefenseArray) ToGetRealmSecurityDefenseArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmSecurityDefenseArrayOutput)
 }
 
-type GetRealmSecurityDefenseOutput struct { *pulumi.OutputState }
+type GetRealmSecurityDefenseOutput struct{ *pulumi.OutputState }
 
 func (GetRealmSecurityDefenseOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetRealmSecurityDefense)(nil)).Elem()
@@ -1400,14 +1407,16 @@ func (o GetRealmSecurityDefenseOutput) ToGetRealmSecurityDefenseOutputWithContex
 }
 
 func (o GetRealmSecurityDefenseOutput) BruteForceDetections() GetRealmSecurityDefenseBruteForceDetectionArrayOutput {
-	return o.ApplyT(func (v GetRealmSecurityDefense) []GetRealmSecurityDefenseBruteForceDetection { return v.BruteForceDetections }).(GetRealmSecurityDefenseBruteForceDetectionArrayOutput)
+	return o.ApplyT(func(v GetRealmSecurityDefense) []GetRealmSecurityDefenseBruteForceDetection {
+		return v.BruteForceDetections
+	}).(GetRealmSecurityDefenseBruteForceDetectionArrayOutput)
 }
 
 func (o GetRealmSecurityDefenseOutput) Headers() GetRealmSecurityDefenseHeaderArrayOutput {
-	return o.ApplyT(func (v GetRealmSecurityDefense) []GetRealmSecurityDefenseHeader { return v.Headers }).(GetRealmSecurityDefenseHeaderArrayOutput)
+	return o.ApplyT(func(v GetRealmSecurityDefense) []GetRealmSecurityDefenseHeader { return v.Headers }).(GetRealmSecurityDefenseHeaderArrayOutput)
 }
 
-type GetRealmSecurityDefenseArrayOutput struct { *pulumi.OutputState}
+type GetRealmSecurityDefenseArrayOutput struct{ *pulumi.OutputState }
 
 func (GetRealmSecurityDefenseArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]GetRealmSecurityDefense)(nil)).Elem()
@@ -1422,19 +1431,19 @@ func (o GetRealmSecurityDefenseArrayOutput) ToGetRealmSecurityDefenseArrayOutput
 }
 
 func (o GetRealmSecurityDefenseArrayOutput) Index(i pulumi.IntInput) GetRealmSecurityDefenseOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) GetRealmSecurityDefense {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRealmSecurityDefense {
 		return vs[0].([]GetRealmSecurityDefense)[vs[1].(int)]
 	}).(GetRealmSecurityDefenseOutput)
 }
 
 type GetRealmSecurityDefenseBruteForceDetection struct {
-	FailureResetTimeSeconds int `pulumi:"failureResetTimeSeconds"`
-	MaxFailureWaitSeconds int `pulumi:"maxFailureWaitSeconds"`
-	MaxLoginFailures int `pulumi:"maxLoginFailures"`
-	MinimumQuickLoginWaitSeconds int `pulumi:"minimumQuickLoginWaitSeconds"`
-	PermanentLockout bool `pulumi:"permanentLockout"`
-	QuickLoginCheckMilliSeconds int `pulumi:"quickLoginCheckMilliSeconds"`
-	WaitIncrementSeconds int `pulumi:"waitIncrementSeconds"`
+	FailureResetTimeSeconds      int  `pulumi:"failureResetTimeSeconds"`
+	MaxFailureWaitSeconds        int  `pulumi:"maxFailureWaitSeconds"`
+	MaxLoginFailures             int  `pulumi:"maxLoginFailures"`
+	MinimumQuickLoginWaitSeconds int  `pulumi:"minimumQuickLoginWaitSeconds"`
+	PermanentLockout             bool `pulumi:"permanentLockout"`
+	QuickLoginCheckMilliSeconds  int  `pulumi:"quickLoginCheckMilliSeconds"`
+	WaitIncrementSeconds         int  `pulumi:"waitIncrementSeconds"`
 }
 
 type GetRealmSecurityDefenseBruteForceDetectionInput interface {
@@ -1445,13 +1454,13 @@ type GetRealmSecurityDefenseBruteForceDetectionInput interface {
 }
 
 type GetRealmSecurityDefenseBruteForceDetectionArgs struct {
-	FailureResetTimeSeconds pulumi.IntInput `pulumi:"failureResetTimeSeconds"`
-	MaxFailureWaitSeconds pulumi.IntInput `pulumi:"maxFailureWaitSeconds"`
-	MaxLoginFailures pulumi.IntInput `pulumi:"maxLoginFailures"`
-	MinimumQuickLoginWaitSeconds pulumi.IntInput `pulumi:"minimumQuickLoginWaitSeconds"`
-	PermanentLockout pulumi.BoolInput `pulumi:"permanentLockout"`
-	QuickLoginCheckMilliSeconds pulumi.IntInput `pulumi:"quickLoginCheckMilliSeconds"`
-	WaitIncrementSeconds pulumi.IntInput `pulumi:"waitIncrementSeconds"`
+	FailureResetTimeSeconds      pulumi.IntInput  `pulumi:"failureResetTimeSeconds"`
+	MaxFailureWaitSeconds        pulumi.IntInput  `pulumi:"maxFailureWaitSeconds"`
+	MaxLoginFailures             pulumi.IntInput  `pulumi:"maxLoginFailures"`
+	MinimumQuickLoginWaitSeconds pulumi.IntInput  `pulumi:"minimumQuickLoginWaitSeconds"`
+	PermanentLockout             pulumi.BoolInput `pulumi:"permanentLockout"`
+	QuickLoginCheckMilliSeconds  pulumi.IntInput  `pulumi:"quickLoginCheckMilliSeconds"`
+	WaitIncrementSeconds         pulumi.IntInput  `pulumi:"waitIncrementSeconds"`
 }
 
 func (GetRealmSecurityDefenseBruteForceDetectionArgs) ElementType() reflect.Type {
@@ -1487,7 +1496,7 @@ func (i GetRealmSecurityDefenseBruteForceDetectionArray) ToGetRealmSecurityDefen
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmSecurityDefenseBruteForceDetectionArrayOutput)
 }
 
-type GetRealmSecurityDefenseBruteForceDetectionOutput struct { *pulumi.OutputState }
+type GetRealmSecurityDefenseBruteForceDetectionOutput struct{ *pulumi.OutputState }
 
 func (GetRealmSecurityDefenseBruteForceDetectionOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetRealmSecurityDefenseBruteForceDetection)(nil)).Elem()
@@ -1502,34 +1511,34 @@ func (o GetRealmSecurityDefenseBruteForceDetectionOutput) ToGetRealmSecurityDefe
 }
 
 func (o GetRealmSecurityDefenseBruteForceDetectionOutput) FailureResetTimeSeconds() pulumi.IntOutput {
-	return o.ApplyT(func (v GetRealmSecurityDefenseBruteForceDetection) int { return v.FailureResetTimeSeconds }).(pulumi.IntOutput)
+	return o.ApplyT(func(v GetRealmSecurityDefenseBruteForceDetection) int { return v.FailureResetTimeSeconds }).(pulumi.IntOutput)
 }
 
 func (o GetRealmSecurityDefenseBruteForceDetectionOutput) MaxFailureWaitSeconds() pulumi.IntOutput {
-	return o.ApplyT(func (v GetRealmSecurityDefenseBruteForceDetection) int { return v.MaxFailureWaitSeconds }).(pulumi.IntOutput)
+	return o.ApplyT(func(v GetRealmSecurityDefenseBruteForceDetection) int { return v.MaxFailureWaitSeconds }).(pulumi.IntOutput)
 }
 
 func (o GetRealmSecurityDefenseBruteForceDetectionOutput) MaxLoginFailures() pulumi.IntOutput {
-	return o.ApplyT(func (v GetRealmSecurityDefenseBruteForceDetection) int { return v.MaxLoginFailures }).(pulumi.IntOutput)
+	return o.ApplyT(func(v GetRealmSecurityDefenseBruteForceDetection) int { return v.MaxLoginFailures }).(pulumi.IntOutput)
 }
 
 func (o GetRealmSecurityDefenseBruteForceDetectionOutput) MinimumQuickLoginWaitSeconds() pulumi.IntOutput {
-	return o.ApplyT(func (v GetRealmSecurityDefenseBruteForceDetection) int { return v.MinimumQuickLoginWaitSeconds }).(pulumi.IntOutput)
+	return o.ApplyT(func(v GetRealmSecurityDefenseBruteForceDetection) int { return v.MinimumQuickLoginWaitSeconds }).(pulumi.IntOutput)
 }
 
 func (o GetRealmSecurityDefenseBruteForceDetectionOutput) PermanentLockout() pulumi.BoolOutput {
-	return o.ApplyT(func (v GetRealmSecurityDefenseBruteForceDetection) bool { return v.PermanentLockout }).(pulumi.BoolOutput)
+	return o.ApplyT(func(v GetRealmSecurityDefenseBruteForceDetection) bool { return v.PermanentLockout }).(pulumi.BoolOutput)
 }
 
 func (o GetRealmSecurityDefenseBruteForceDetectionOutput) QuickLoginCheckMilliSeconds() pulumi.IntOutput {
-	return o.ApplyT(func (v GetRealmSecurityDefenseBruteForceDetection) int { return v.QuickLoginCheckMilliSeconds }).(pulumi.IntOutput)
+	return o.ApplyT(func(v GetRealmSecurityDefenseBruteForceDetection) int { return v.QuickLoginCheckMilliSeconds }).(pulumi.IntOutput)
 }
 
 func (o GetRealmSecurityDefenseBruteForceDetectionOutput) WaitIncrementSeconds() pulumi.IntOutput {
-	return o.ApplyT(func (v GetRealmSecurityDefenseBruteForceDetection) int { return v.WaitIncrementSeconds }).(pulumi.IntOutput)
+	return o.ApplyT(func(v GetRealmSecurityDefenseBruteForceDetection) int { return v.WaitIncrementSeconds }).(pulumi.IntOutput)
 }
 
-type GetRealmSecurityDefenseBruteForceDetectionArrayOutput struct { *pulumi.OutputState}
+type GetRealmSecurityDefenseBruteForceDetectionArrayOutput struct{ *pulumi.OutputState }
 
 func (GetRealmSecurityDefenseBruteForceDetectionArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]GetRealmSecurityDefenseBruteForceDetection)(nil)).Elem()
@@ -1544,19 +1553,19 @@ func (o GetRealmSecurityDefenseBruteForceDetectionArrayOutput) ToGetRealmSecurit
 }
 
 func (o GetRealmSecurityDefenseBruteForceDetectionArrayOutput) Index(i pulumi.IntInput) GetRealmSecurityDefenseBruteForceDetectionOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) GetRealmSecurityDefenseBruteForceDetection {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRealmSecurityDefenseBruteForceDetection {
 		return vs[0].([]GetRealmSecurityDefenseBruteForceDetection)[vs[1].(int)]
 	}).(GetRealmSecurityDefenseBruteForceDetectionOutput)
 }
 
 type GetRealmSecurityDefenseHeader struct {
-	ContentSecurityPolicy string `pulumi:"contentSecurityPolicy"`
+	ContentSecurityPolicy           string `pulumi:"contentSecurityPolicy"`
 	ContentSecurityPolicyReportOnly string `pulumi:"contentSecurityPolicyReportOnly"`
-	StrictTransportSecurity string `pulumi:"strictTransportSecurity"`
-	XContentTypeOptions string `pulumi:"xContentTypeOptions"`
-	XFrameOptions string `pulumi:"xFrameOptions"`
-	XRobotsTag string `pulumi:"xRobotsTag"`
-	XXssProtection string `pulumi:"xXssProtection"`
+	StrictTransportSecurity         string `pulumi:"strictTransportSecurity"`
+	XContentTypeOptions             string `pulumi:"xContentTypeOptions"`
+	XFrameOptions                   string `pulumi:"xFrameOptions"`
+	XRobotsTag                      string `pulumi:"xRobotsTag"`
+	XXssProtection                  string `pulumi:"xXssProtection"`
 }
 
 type GetRealmSecurityDefenseHeaderInput interface {
@@ -1567,13 +1576,13 @@ type GetRealmSecurityDefenseHeaderInput interface {
 }
 
 type GetRealmSecurityDefenseHeaderArgs struct {
-	ContentSecurityPolicy pulumi.StringInput `pulumi:"contentSecurityPolicy"`
+	ContentSecurityPolicy           pulumi.StringInput `pulumi:"contentSecurityPolicy"`
 	ContentSecurityPolicyReportOnly pulumi.StringInput `pulumi:"contentSecurityPolicyReportOnly"`
-	StrictTransportSecurity pulumi.StringInput `pulumi:"strictTransportSecurity"`
-	XContentTypeOptions pulumi.StringInput `pulumi:"xContentTypeOptions"`
-	XFrameOptions pulumi.StringInput `pulumi:"xFrameOptions"`
-	XRobotsTag pulumi.StringInput `pulumi:"xRobotsTag"`
-	XXssProtection pulumi.StringInput `pulumi:"xXssProtection"`
+	StrictTransportSecurity         pulumi.StringInput `pulumi:"strictTransportSecurity"`
+	XContentTypeOptions             pulumi.StringInput `pulumi:"xContentTypeOptions"`
+	XFrameOptions                   pulumi.StringInput `pulumi:"xFrameOptions"`
+	XRobotsTag                      pulumi.StringInput `pulumi:"xRobotsTag"`
+	XXssProtection                  pulumi.StringInput `pulumi:"xXssProtection"`
 }
 
 func (GetRealmSecurityDefenseHeaderArgs) ElementType() reflect.Type {
@@ -1609,7 +1618,7 @@ func (i GetRealmSecurityDefenseHeaderArray) ToGetRealmSecurityDefenseHeaderArray
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmSecurityDefenseHeaderArrayOutput)
 }
 
-type GetRealmSecurityDefenseHeaderOutput struct { *pulumi.OutputState }
+type GetRealmSecurityDefenseHeaderOutput struct{ *pulumi.OutputState }
 
 func (GetRealmSecurityDefenseHeaderOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetRealmSecurityDefenseHeader)(nil)).Elem()
@@ -1624,34 +1633,34 @@ func (o GetRealmSecurityDefenseHeaderOutput) ToGetRealmSecurityDefenseHeaderOutp
 }
 
 func (o GetRealmSecurityDefenseHeaderOutput) ContentSecurityPolicy() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmSecurityDefenseHeader) string { return v.ContentSecurityPolicy }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmSecurityDefenseHeader) string { return v.ContentSecurityPolicy }).(pulumi.StringOutput)
 }
 
 func (o GetRealmSecurityDefenseHeaderOutput) ContentSecurityPolicyReportOnly() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmSecurityDefenseHeader) string { return v.ContentSecurityPolicyReportOnly }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmSecurityDefenseHeader) string { return v.ContentSecurityPolicyReportOnly }).(pulumi.StringOutput)
 }
 
 func (o GetRealmSecurityDefenseHeaderOutput) StrictTransportSecurity() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmSecurityDefenseHeader) string { return v.StrictTransportSecurity }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmSecurityDefenseHeader) string { return v.StrictTransportSecurity }).(pulumi.StringOutput)
 }
 
 func (o GetRealmSecurityDefenseHeaderOutput) XContentTypeOptions() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmSecurityDefenseHeader) string { return v.XContentTypeOptions }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmSecurityDefenseHeader) string { return v.XContentTypeOptions }).(pulumi.StringOutput)
 }
 
 func (o GetRealmSecurityDefenseHeaderOutput) XFrameOptions() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmSecurityDefenseHeader) string { return v.XFrameOptions }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmSecurityDefenseHeader) string { return v.XFrameOptions }).(pulumi.StringOutput)
 }
 
 func (o GetRealmSecurityDefenseHeaderOutput) XRobotsTag() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmSecurityDefenseHeader) string { return v.XRobotsTag }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmSecurityDefenseHeader) string { return v.XRobotsTag }).(pulumi.StringOutput)
 }
 
 func (o GetRealmSecurityDefenseHeaderOutput) XXssProtection() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmSecurityDefenseHeader) string { return v.XXssProtection }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmSecurityDefenseHeader) string { return v.XXssProtection }).(pulumi.StringOutput)
 }
 
-type GetRealmSecurityDefenseHeaderArrayOutput struct { *pulumi.OutputState}
+type GetRealmSecurityDefenseHeaderArrayOutput struct{ *pulumi.OutputState }
 
 func (GetRealmSecurityDefenseHeaderArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]GetRealmSecurityDefenseHeader)(nil)).Elem()
@@ -1666,22 +1675,22 @@ func (o GetRealmSecurityDefenseHeaderArrayOutput) ToGetRealmSecurityDefenseHeade
 }
 
 func (o GetRealmSecurityDefenseHeaderArrayOutput) Index(i pulumi.IntInput) GetRealmSecurityDefenseHeaderOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) GetRealmSecurityDefenseHeader {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRealmSecurityDefenseHeader {
 		return vs[0].([]GetRealmSecurityDefenseHeader)[vs[1].(int)]
 	}).(GetRealmSecurityDefenseHeaderOutput)
 }
 
 type GetRealmSmtpServer struct {
-	Auths []GetRealmSmtpServerAuth `pulumi:"auths"`
-	EnvelopeFrom string `pulumi:"envelopeFrom"`
-	From string `pulumi:"from"`
-	FromDisplayName string `pulumi:"fromDisplayName"`
-	Host string `pulumi:"host"`
-	Port string `pulumi:"port"`
-	ReplyTo string `pulumi:"replyTo"`
-	ReplyToDisplayName string `pulumi:"replyToDisplayName"`
-	Ssl bool `pulumi:"ssl"`
-	Starttls bool `pulumi:"starttls"`
+	Auths              []GetRealmSmtpServerAuth `pulumi:"auths"`
+	EnvelopeFrom       string                   `pulumi:"envelopeFrom"`
+	From               string                   `pulumi:"from"`
+	FromDisplayName    string                   `pulumi:"fromDisplayName"`
+	Host               string                   `pulumi:"host"`
+	Port               string                   `pulumi:"port"`
+	ReplyTo            string                   `pulumi:"replyTo"`
+	ReplyToDisplayName string                   `pulumi:"replyToDisplayName"`
+	Ssl                bool                     `pulumi:"ssl"`
+	Starttls           bool                     `pulumi:"starttls"`
 }
 
 type GetRealmSmtpServerInput interface {
@@ -1692,16 +1701,16 @@ type GetRealmSmtpServerInput interface {
 }
 
 type GetRealmSmtpServerArgs struct {
-	Auths GetRealmSmtpServerAuthArrayInput `pulumi:"auths"`
-	EnvelopeFrom pulumi.StringInput `pulumi:"envelopeFrom"`
-	From pulumi.StringInput `pulumi:"from"`
-	FromDisplayName pulumi.StringInput `pulumi:"fromDisplayName"`
-	Host pulumi.StringInput `pulumi:"host"`
-	Port pulumi.StringInput `pulumi:"port"`
-	ReplyTo pulumi.StringInput `pulumi:"replyTo"`
-	ReplyToDisplayName pulumi.StringInput `pulumi:"replyToDisplayName"`
-	Ssl pulumi.BoolInput `pulumi:"ssl"`
-	Starttls pulumi.BoolInput `pulumi:"starttls"`
+	Auths              GetRealmSmtpServerAuthArrayInput `pulumi:"auths"`
+	EnvelopeFrom       pulumi.StringInput               `pulumi:"envelopeFrom"`
+	From               pulumi.StringInput               `pulumi:"from"`
+	FromDisplayName    pulumi.StringInput               `pulumi:"fromDisplayName"`
+	Host               pulumi.StringInput               `pulumi:"host"`
+	Port               pulumi.StringInput               `pulumi:"port"`
+	ReplyTo            pulumi.StringInput               `pulumi:"replyTo"`
+	ReplyToDisplayName pulumi.StringInput               `pulumi:"replyToDisplayName"`
+	Ssl                pulumi.BoolInput                 `pulumi:"ssl"`
+	Starttls           pulumi.BoolInput                 `pulumi:"starttls"`
 }
 
 func (GetRealmSmtpServerArgs) ElementType() reflect.Type {
@@ -1737,7 +1746,7 @@ func (i GetRealmSmtpServerArray) ToGetRealmSmtpServerArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmSmtpServerArrayOutput)
 }
 
-type GetRealmSmtpServerOutput struct { *pulumi.OutputState }
+type GetRealmSmtpServerOutput struct{ *pulumi.OutputState }
 
 func (GetRealmSmtpServerOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetRealmSmtpServer)(nil)).Elem()
@@ -1752,46 +1761,46 @@ func (o GetRealmSmtpServerOutput) ToGetRealmSmtpServerOutputWithContext(ctx cont
 }
 
 func (o GetRealmSmtpServerOutput) Auths() GetRealmSmtpServerAuthArrayOutput {
-	return o.ApplyT(func (v GetRealmSmtpServer) []GetRealmSmtpServerAuth { return v.Auths }).(GetRealmSmtpServerAuthArrayOutput)
+	return o.ApplyT(func(v GetRealmSmtpServer) []GetRealmSmtpServerAuth { return v.Auths }).(GetRealmSmtpServerAuthArrayOutput)
 }
 
 func (o GetRealmSmtpServerOutput) EnvelopeFrom() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmSmtpServer) string { return v.EnvelopeFrom }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmSmtpServer) string { return v.EnvelopeFrom }).(pulumi.StringOutput)
 }
 
 func (o GetRealmSmtpServerOutput) From() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmSmtpServer) string { return v.From }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmSmtpServer) string { return v.From }).(pulumi.StringOutput)
 }
 
 func (o GetRealmSmtpServerOutput) FromDisplayName() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmSmtpServer) string { return v.FromDisplayName }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmSmtpServer) string { return v.FromDisplayName }).(pulumi.StringOutput)
 }
 
 func (o GetRealmSmtpServerOutput) Host() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmSmtpServer) string { return v.Host }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmSmtpServer) string { return v.Host }).(pulumi.StringOutput)
 }
 
 func (o GetRealmSmtpServerOutput) Port() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmSmtpServer) string { return v.Port }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmSmtpServer) string { return v.Port }).(pulumi.StringOutput)
 }
 
 func (o GetRealmSmtpServerOutput) ReplyTo() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmSmtpServer) string { return v.ReplyTo }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmSmtpServer) string { return v.ReplyTo }).(pulumi.StringOutput)
 }
 
 func (o GetRealmSmtpServerOutput) ReplyToDisplayName() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmSmtpServer) string { return v.ReplyToDisplayName }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmSmtpServer) string { return v.ReplyToDisplayName }).(pulumi.StringOutput)
 }
 
 func (o GetRealmSmtpServerOutput) Ssl() pulumi.BoolOutput {
-	return o.ApplyT(func (v GetRealmSmtpServer) bool { return v.Ssl }).(pulumi.BoolOutput)
+	return o.ApplyT(func(v GetRealmSmtpServer) bool { return v.Ssl }).(pulumi.BoolOutput)
 }
 
 func (o GetRealmSmtpServerOutput) Starttls() pulumi.BoolOutput {
-	return o.ApplyT(func (v GetRealmSmtpServer) bool { return v.Starttls }).(pulumi.BoolOutput)
+	return o.ApplyT(func(v GetRealmSmtpServer) bool { return v.Starttls }).(pulumi.BoolOutput)
 }
 
-type GetRealmSmtpServerArrayOutput struct { *pulumi.OutputState}
+type GetRealmSmtpServerArrayOutput struct{ *pulumi.OutputState }
 
 func (GetRealmSmtpServerArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]GetRealmSmtpServer)(nil)).Elem()
@@ -1806,7 +1815,7 @@ func (o GetRealmSmtpServerArrayOutput) ToGetRealmSmtpServerArrayOutputWithContex
 }
 
 func (o GetRealmSmtpServerArrayOutput) Index(i pulumi.IntInput) GetRealmSmtpServerOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) GetRealmSmtpServer {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRealmSmtpServer {
 		return vs[0].([]GetRealmSmtpServer)[vs[1].(int)]
 	}).(GetRealmSmtpServerOutput)
 }
@@ -1861,7 +1870,7 @@ func (i GetRealmSmtpServerAuthArray) ToGetRealmSmtpServerAuthArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmSmtpServerAuthArrayOutput)
 }
 
-type GetRealmSmtpServerAuthOutput struct { *pulumi.OutputState }
+type GetRealmSmtpServerAuthOutput struct{ *pulumi.OutputState }
 
 func (GetRealmSmtpServerAuthOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetRealmSmtpServerAuth)(nil)).Elem()
@@ -1876,14 +1885,14 @@ func (o GetRealmSmtpServerAuthOutput) ToGetRealmSmtpServerAuthOutputWithContext(
 }
 
 func (o GetRealmSmtpServerAuthOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmSmtpServerAuth) string { return v.Password }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmSmtpServerAuth) string { return v.Password }).(pulumi.StringOutput)
 }
 
 func (o GetRealmSmtpServerAuthOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func (v GetRealmSmtpServerAuth) string { return v.Username }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetRealmSmtpServerAuth) string { return v.Username }).(pulumi.StringOutput)
 }
 
-type GetRealmSmtpServerAuthArrayOutput struct { *pulumi.OutputState}
+type GetRealmSmtpServerAuthArrayOutput struct{ *pulumi.OutputState }
 
 func (GetRealmSmtpServerAuthArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]GetRealmSmtpServerAuth)(nil)).Elem()
@@ -1898,7 +1907,7 @@ func (o GetRealmSmtpServerAuthArrayOutput) ToGetRealmSmtpServerAuthArrayOutputWi
 }
 
 func (o GetRealmSmtpServerAuthArrayOutput) Index(i pulumi.IntInput) GetRealmSmtpServerAuthOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) GetRealmSmtpServerAuth {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRealmSmtpServerAuth {
 		return vs[0].([]GetRealmSmtpServerAuth)[vs[1].(int)]
 	}).(GetRealmSmtpServerAuthOutput)
 }

@@ -14,9 +14,9 @@ import (
 type GroupMemberships struct {
 	pulumi.CustomResourceState
 
-	GroupId pulumi.StringPtrOutput `pulumi:"groupId"`
+	GroupId pulumi.StringPtrOutput   `pulumi:"groupId"`
 	Members pulumi.StringArrayOutput `pulumi:"members"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	RealmId pulumi.StringOutput      `pulumi:"realmId"`
 }
 
 // NewGroupMemberships registers a new resource with the given unique name, arguments, and options.
@@ -53,9 +53,9 @@ func GetGroupMemberships(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GroupMemberships resources.
 type groupMembershipsState struct {
-	GroupId *string `pulumi:"groupId"`
+	GroupId *string  `pulumi:"groupId"`
 	Members []string `pulumi:"members"`
-	RealmId *string `pulumi:"realmId"`
+	RealmId *string  `pulumi:"realmId"`
 }
 
 type GroupMembershipsState struct {
@@ -69,9 +69,9 @@ func (GroupMembershipsState) ElementType() reflect.Type {
 }
 
 type groupMembershipsArgs struct {
-	GroupId *string `pulumi:"groupId"`
+	GroupId *string  `pulumi:"groupId"`
 	Members []string `pulumi:"members"`
-	RealmId string `pulumi:"realmId"`
+	RealmId string   `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a GroupMemberships resource.
@@ -84,4 +84,3 @@ type GroupMembershipsArgs struct {
 func (GroupMembershipsArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupMembershipsArgs)(nil)).Elem()
 }
-

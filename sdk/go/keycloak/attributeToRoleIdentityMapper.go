@@ -162,4 +162,3 @@ type AttributeToRoleIdentityMapperArgs struct {
 func (AttributeToRoleIdentityMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*attributeToRoleIdentityMapperArgs)(nil)).Elem()
 }
-

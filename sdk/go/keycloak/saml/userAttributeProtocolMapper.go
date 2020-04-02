@@ -38,14 +38,14 @@ import (
 type UserAttributeProtocolMapper struct {
 	pulumi.CustomResourceState
 
-	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
-	ClientScopeId pulumi.StringPtrOutput `pulumi:"clientScopeId"`
-	FriendlyName pulumi.StringPtrOutput `pulumi:"friendlyName"`
-	Name pulumi.StringOutput `pulumi:"name"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	SamlAttributeName pulumi.StringOutput `pulumi:"samlAttributeName"`
-	SamlAttributeNameFormat pulumi.StringOutput `pulumi:"samlAttributeNameFormat"`
-	UserAttribute pulumi.StringOutput `pulumi:"userAttribute"`
+	ClientId                pulumi.StringPtrOutput `pulumi:"clientId"`
+	ClientScopeId           pulumi.StringPtrOutput `pulumi:"clientScopeId"`
+	FriendlyName            pulumi.StringPtrOutput `pulumi:"friendlyName"`
+	Name                    pulumi.StringOutput    `pulumi:"name"`
+	RealmId                 pulumi.StringOutput    `pulumi:"realmId"`
+	SamlAttributeName       pulumi.StringOutput    `pulumi:"samlAttributeName"`
+	SamlAttributeNameFormat pulumi.StringOutput    `pulumi:"samlAttributeNameFormat"`
+	UserAttribute           pulumi.StringOutput    `pulumi:"userAttribute"`
 }
 
 // NewUserAttributeProtocolMapper registers a new resource with the given unique name, arguments, and options.
@@ -88,25 +88,25 @@ func GetUserAttributeProtocolMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserAttributeProtocolMapper resources.
 type userAttributeProtocolMapperState struct {
-	ClientId *string `pulumi:"clientId"`
-	ClientScopeId *string `pulumi:"clientScopeId"`
-	FriendlyName *string `pulumi:"friendlyName"`
-	Name *string `pulumi:"name"`
-	RealmId *string `pulumi:"realmId"`
-	SamlAttributeName *string `pulumi:"samlAttributeName"`
+	ClientId                *string `pulumi:"clientId"`
+	ClientScopeId           *string `pulumi:"clientScopeId"`
+	FriendlyName            *string `pulumi:"friendlyName"`
+	Name                    *string `pulumi:"name"`
+	RealmId                 *string `pulumi:"realmId"`
+	SamlAttributeName       *string `pulumi:"samlAttributeName"`
 	SamlAttributeNameFormat *string `pulumi:"samlAttributeNameFormat"`
-	UserAttribute *string `pulumi:"userAttribute"`
+	UserAttribute           *string `pulumi:"userAttribute"`
 }
 
 type UserAttributeProtocolMapperState struct {
-	ClientId pulumi.StringPtrInput
-	ClientScopeId pulumi.StringPtrInput
-	FriendlyName pulumi.StringPtrInput
-	Name pulumi.StringPtrInput
-	RealmId pulumi.StringPtrInput
-	SamlAttributeName pulumi.StringPtrInput
+	ClientId                pulumi.StringPtrInput
+	ClientScopeId           pulumi.StringPtrInput
+	FriendlyName            pulumi.StringPtrInput
+	Name                    pulumi.StringPtrInput
+	RealmId                 pulumi.StringPtrInput
+	SamlAttributeName       pulumi.StringPtrInput
 	SamlAttributeNameFormat pulumi.StringPtrInput
-	UserAttribute pulumi.StringPtrInput
+	UserAttribute           pulumi.StringPtrInput
 }
 
 func (UserAttributeProtocolMapperState) ElementType() reflect.Type {
@@ -114,29 +114,28 @@ func (UserAttributeProtocolMapperState) ElementType() reflect.Type {
 }
 
 type userAttributeProtocolMapperArgs struct {
-	ClientId *string `pulumi:"clientId"`
-	ClientScopeId *string `pulumi:"clientScopeId"`
-	FriendlyName *string `pulumi:"friendlyName"`
-	Name *string `pulumi:"name"`
-	RealmId string `pulumi:"realmId"`
-	SamlAttributeName string `pulumi:"samlAttributeName"`
-	SamlAttributeNameFormat string `pulumi:"samlAttributeNameFormat"`
-	UserAttribute string `pulumi:"userAttribute"`
+	ClientId                *string `pulumi:"clientId"`
+	ClientScopeId           *string `pulumi:"clientScopeId"`
+	FriendlyName            *string `pulumi:"friendlyName"`
+	Name                    *string `pulumi:"name"`
+	RealmId                 string  `pulumi:"realmId"`
+	SamlAttributeName       string  `pulumi:"samlAttributeName"`
+	SamlAttributeNameFormat string  `pulumi:"samlAttributeNameFormat"`
+	UserAttribute           string  `pulumi:"userAttribute"`
 }
 
 // The set of arguments for constructing a UserAttributeProtocolMapper resource.
 type UserAttributeProtocolMapperArgs struct {
-	ClientId pulumi.StringPtrInput
-	ClientScopeId pulumi.StringPtrInput
-	FriendlyName pulumi.StringPtrInput
-	Name pulumi.StringPtrInput
-	RealmId pulumi.StringInput
-	SamlAttributeName pulumi.StringInput
+	ClientId                pulumi.StringPtrInput
+	ClientScopeId           pulumi.StringPtrInput
+	FriendlyName            pulumi.StringPtrInput
+	Name                    pulumi.StringPtrInput
+	RealmId                 pulumi.StringInput
+	SamlAttributeName       pulumi.StringInput
 	SamlAttributeNameFormat pulumi.StringInput
-	UserAttribute pulumi.StringInput
+	UserAttribute           pulumi.StringInput
 }
 
 func (UserAttributeProtocolMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*userAttributeProtocolMapperArgs)(nil)).Elem()
 }
-

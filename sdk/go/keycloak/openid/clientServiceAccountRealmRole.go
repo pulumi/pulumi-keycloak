@@ -14,8 +14,8 @@ import (
 type ClientServiceAccountRealmRole struct {
 	pulumi.CustomResourceState
 
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	Role pulumi.StringOutput `pulumi:"role"`
+	RealmId              pulumi.StringOutput `pulumi:"realmId"`
+	Role                 pulumi.StringOutput `pulumi:"role"`
 	ServiceAccountUserId pulumi.StringOutput `pulumi:"serviceAccountUserId"`
 }
 
@@ -56,14 +56,14 @@ func GetClientServiceAccountRealmRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ClientServiceAccountRealmRole resources.
 type clientServiceAccountRealmRoleState struct {
-	RealmId *string `pulumi:"realmId"`
-	Role *string `pulumi:"role"`
+	RealmId              *string `pulumi:"realmId"`
+	Role                 *string `pulumi:"role"`
 	ServiceAccountUserId *string `pulumi:"serviceAccountUserId"`
 }
 
 type ClientServiceAccountRealmRoleState struct {
-	RealmId pulumi.StringPtrInput
-	Role pulumi.StringPtrInput
+	RealmId              pulumi.StringPtrInput
+	Role                 pulumi.StringPtrInput
 	ServiceAccountUserId pulumi.StringPtrInput
 }
 
@@ -72,19 +72,18 @@ func (ClientServiceAccountRealmRoleState) ElementType() reflect.Type {
 }
 
 type clientServiceAccountRealmRoleArgs struct {
-	RealmId string `pulumi:"realmId"`
-	Role string `pulumi:"role"`
+	RealmId              string `pulumi:"realmId"`
+	Role                 string `pulumi:"role"`
 	ServiceAccountUserId string `pulumi:"serviceAccountUserId"`
 }
 
 // The set of arguments for constructing a ClientServiceAccountRealmRole resource.
 type ClientServiceAccountRealmRoleArgs struct {
-	RealmId pulumi.StringInput
-	Role pulumi.StringInput
+	RealmId              pulumi.StringInput
+	Role                 pulumi.StringInput
 	ServiceAccountUserId pulumi.StringInput
 }
 
 func (ClientServiceAccountRealmRoleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientServiceAccountRealmRoleArgs)(nil)).Elem()
 }
-

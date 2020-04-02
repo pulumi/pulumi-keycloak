@@ -169,4 +169,3 @@ type AudienceProtocolMapperArgs struct {
 func (AudienceProtocolMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*audienceProtocolMapperArgs)(nil)).Elem()
 }
-

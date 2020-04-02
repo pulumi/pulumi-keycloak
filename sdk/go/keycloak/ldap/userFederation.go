@@ -66,7 +66,7 @@ type UserFederation struct {
 	// Password of LDAP admin.
 	BindCredential pulumi.StringPtrOutput `pulumi:"bindCredential"`
 	// DN of LDAP admin, which will be used by Keycloak to access LDAP server.
-	BindDn pulumi.StringPtrOutput `pulumi:"bindDn"`
+	BindDn      pulumi.StringPtrOutput `pulumi:"bindDn"`
 	CachePolicy pulumi.StringPtrOutput `pulumi:"cachePolicy"`
 	// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
 	// sync.
@@ -100,8 +100,8 @@ type UserFederation struct {
 	// ONE_LEVEL: only search for users in the DN specified by user_dn. SUBTREE: search entire LDAP subtree.
 	SearchScope pulumi.StringPtrOutput `pulumi:"searchScope"`
 	// When true, newly created users will be synced back to LDAP.
-	SyncRegistrations pulumi.BoolPtrOutput `pulumi:"syncRegistrations"`
-	UseTruststoreSpi pulumi.StringPtrOutput `pulumi:"useTruststoreSpi"`
+	SyncRegistrations pulumi.BoolPtrOutput   `pulumi:"syncRegistrations"`
+	UseTruststoreSpi  pulumi.StringPtrOutput `pulumi:"useTruststoreSpi"`
 	// All values of LDAP objectClass attribute for users in LDAP.
 	UserObjectClasses pulumi.StringArrayOutput `pulumi:"userObjectClasses"`
 	// Name of the LDAP attribute to use as the Keycloak username.
@@ -170,7 +170,7 @@ type userFederationState struct {
 	// Password of LDAP admin.
 	BindCredential *string `pulumi:"bindCredential"`
 	// DN of LDAP admin, which will be used by Keycloak to access LDAP server.
-	BindDn *string `pulumi:"bindDn"`
+	BindDn      *string `pulumi:"bindDn"`
 	CachePolicy *string `pulumi:"cachePolicy"`
 	// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
 	// sync.
@@ -204,8 +204,8 @@ type userFederationState struct {
 	// ONE_LEVEL: only search for users in the DN specified by user_dn. SUBTREE: search entire LDAP subtree.
 	SearchScope *string `pulumi:"searchScope"`
 	// When true, newly created users will be synced back to LDAP.
-	SyncRegistrations *bool `pulumi:"syncRegistrations"`
-	UseTruststoreSpi *string `pulumi:"useTruststoreSpi"`
+	SyncRegistrations *bool   `pulumi:"syncRegistrations"`
+	UseTruststoreSpi  *string `pulumi:"useTruststoreSpi"`
 	// All values of LDAP objectClass attribute for users in LDAP.
 	UserObjectClasses []string `pulumi:"userObjectClasses"`
 	// Name of the LDAP attribute to use as the Keycloak username.
@@ -226,7 +226,7 @@ type UserFederationState struct {
 	// Password of LDAP admin.
 	BindCredential pulumi.StringPtrInput
 	// DN of LDAP admin, which will be used by Keycloak to access LDAP server.
-	BindDn pulumi.StringPtrInput
+	BindDn      pulumi.StringPtrInput
 	CachePolicy pulumi.StringPtrInput
 	// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
 	// sync.
@@ -261,7 +261,7 @@ type UserFederationState struct {
 	SearchScope pulumi.StringPtrInput
 	// When true, newly created users will be synced back to LDAP.
 	SyncRegistrations pulumi.BoolPtrInput
-	UseTruststoreSpi pulumi.StringPtrInput
+	UseTruststoreSpi  pulumi.StringPtrInput
 	// All values of LDAP objectClass attribute for users in LDAP.
 	UserObjectClasses pulumi.StringArrayInput
 	// Name of the LDAP attribute to use as the Keycloak username.
@@ -286,7 +286,7 @@ type userFederationArgs struct {
 	// Password of LDAP admin.
 	BindCredential *string `pulumi:"bindCredential"`
 	// DN of LDAP admin, which will be used by Keycloak to access LDAP server.
-	BindDn *string `pulumi:"bindDn"`
+	BindDn      *string `pulumi:"bindDn"`
 	CachePolicy *string `pulumi:"cachePolicy"`
 	// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
 	// sync.
@@ -320,8 +320,8 @@ type userFederationArgs struct {
 	// ONE_LEVEL: only search for users in the DN specified by user_dn. SUBTREE: search entire LDAP subtree.
 	SearchScope *string `pulumi:"searchScope"`
 	// When true, newly created users will be synced back to LDAP.
-	SyncRegistrations *bool `pulumi:"syncRegistrations"`
-	UseTruststoreSpi *string `pulumi:"useTruststoreSpi"`
+	SyncRegistrations *bool   `pulumi:"syncRegistrations"`
+	UseTruststoreSpi  *string `pulumi:"useTruststoreSpi"`
 	// All values of LDAP objectClass attribute for users in LDAP.
 	UserObjectClasses []string `pulumi:"userObjectClasses"`
 	// Name of the LDAP attribute to use as the Keycloak username.
@@ -343,7 +343,7 @@ type UserFederationArgs struct {
 	// Password of LDAP admin.
 	BindCredential pulumi.StringPtrInput
 	// DN of LDAP admin, which will be used by Keycloak to access LDAP server.
-	BindDn pulumi.StringPtrInput
+	BindDn      pulumi.StringPtrInput
 	CachePolicy pulumi.StringPtrInput
 	// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
 	// sync.
@@ -378,7 +378,7 @@ type UserFederationArgs struct {
 	SearchScope pulumi.StringPtrInput
 	// When true, newly created users will be synced back to LDAP.
 	SyncRegistrations pulumi.BoolPtrInput
-	UseTruststoreSpi pulumi.StringPtrInput
+	UseTruststoreSpi  pulumi.StringPtrInput
 	// All values of LDAP objectClass attribute for users in LDAP.
 	UserObjectClasses pulumi.StringArrayInput
 	// Name of the LDAP attribute to use as the Keycloak username.
@@ -396,4 +396,3 @@ type UserFederationArgs struct {
 func (UserFederationArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*userFederationArgs)(nil)).Elem()
 }
-

@@ -109,4 +109,3 @@ type UserTemplateImporterIdentityProviderMapperArgs struct {
 func (UserTemplateImporterIdentityProviderMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*userTemplateImporterIdentityProviderMapperArgs)(nil)).Elem()
 }
-

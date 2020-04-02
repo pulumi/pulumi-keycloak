@@ -53,31 +53,31 @@ import (
 type Client struct {
 	pulumi.CustomResourceState
 
-	AssertionConsumerPostUrl pulumi.StringPtrOutput `pulumi:"assertionConsumerPostUrl"`
-	AssertionConsumerRedirectUrl pulumi.StringPtrOutput `pulumi:"assertionConsumerRedirectUrl"`
-	BaseUrl pulumi.StringPtrOutput `pulumi:"baseUrl"`
-	ClientId pulumi.StringOutput `pulumi:"clientId"`
-	ClientSignatureRequired pulumi.BoolOutput `pulumi:"clientSignatureRequired"`
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
-	ForcePostBinding pulumi.BoolOutput `pulumi:"forcePostBinding"`
-	FrontChannelLogout pulumi.BoolOutput `pulumi:"frontChannelLogout"`
-	FullScopeAllowed pulumi.BoolPtrOutput `pulumi:"fullScopeAllowed"`
-	IdpInitiatedSsoRelayState pulumi.StringPtrOutput `pulumi:"idpInitiatedSsoRelayState"`
-	IdpInitiatedSsoUrlName pulumi.StringPtrOutput `pulumi:"idpInitiatedSsoUrlName"`
-	IncludeAuthnStatement pulumi.BoolOutput `pulumi:"includeAuthnStatement"`
-	LogoutServicePostBindingUrl pulumi.StringPtrOutput `pulumi:"logoutServicePostBindingUrl"`
-	LogoutServiceRedirectBindingUrl pulumi.StringPtrOutput `pulumi:"logoutServiceRedirectBindingUrl"`
-	MasterSamlProcessingUrl pulumi.StringPtrOutput `pulumi:"masterSamlProcessingUrl"`
-	Name pulumi.StringOutput `pulumi:"name"`
-	NameIdFormat pulumi.StringOutput `pulumi:"nameIdFormat"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	RootUrl pulumi.StringPtrOutput `pulumi:"rootUrl"`
-	SignAssertions pulumi.BoolOutput `pulumi:"signAssertions"`
-	SignDocuments pulumi.BoolOutput `pulumi:"signDocuments"`
-	SigningCertificate pulumi.StringPtrOutput `pulumi:"signingCertificate"`
-	SigningPrivateKey pulumi.StringPtrOutput `pulumi:"signingPrivateKey"`
-	ValidRedirectUris pulumi.StringArrayOutput `pulumi:"validRedirectUris"`
+	AssertionConsumerPostUrl        pulumi.StringPtrOutput   `pulumi:"assertionConsumerPostUrl"`
+	AssertionConsumerRedirectUrl    pulumi.StringPtrOutput   `pulumi:"assertionConsumerRedirectUrl"`
+	BaseUrl                         pulumi.StringPtrOutput   `pulumi:"baseUrl"`
+	ClientId                        pulumi.StringOutput      `pulumi:"clientId"`
+	ClientSignatureRequired         pulumi.BoolOutput        `pulumi:"clientSignatureRequired"`
+	Description                     pulumi.StringPtrOutput   `pulumi:"description"`
+	Enabled                         pulumi.BoolPtrOutput     `pulumi:"enabled"`
+	ForcePostBinding                pulumi.BoolOutput        `pulumi:"forcePostBinding"`
+	FrontChannelLogout              pulumi.BoolOutput        `pulumi:"frontChannelLogout"`
+	FullScopeAllowed                pulumi.BoolPtrOutput     `pulumi:"fullScopeAllowed"`
+	IdpInitiatedSsoRelayState       pulumi.StringPtrOutput   `pulumi:"idpInitiatedSsoRelayState"`
+	IdpInitiatedSsoUrlName          pulumi.StringPtrOutput   `pulumi:"idpInitiatedSsoUrlName"`
+	IncludeAuthnStatement           pulumi.BoolOutput        `pulumi:"includeAuthnStatement"`
+	LogoutServicePostBindingUrl     pulumi.StringPtrOutput   `pulumi:"logoutServicePostBindingUrl"`
+	LogoutServiceRedirectBindingUrl pulumi.StringPtrOutput   `pulumi:"logoutServiceRedirectBindingUrl"`
+	MasterSamlProcessingUrl         pulumi.StringPtrOutput   `pulumi:"masterSamlProcessingUrl"`
+	Name                            pulumi.StringOutput      `pulumi:"name"`
+	NameIdFormat                    pulumi.StringOutput      `pulumi:"nameIdFormat"`
+	RealmId                         pulumi.StringOutput      `pulumi:"realmId"`
+	RootUrl                         pulumi.StringPtrOutput   `pulumi:"rootUrl"`
+	SignAssertions                  pulumi.BoolOutput        `pulumi:"signAssertions"`
+	SignDocuments                   pulumi.BoolOutput        `pulumi:"signDocuments"`
+	SigningCertificate              pulumi.StringPtrOutput   `pulumi:"signingCertificate"`
+	SigningPrivateKey               pulumi.StringPtrOutput   `pulumi:"signingPrivateKey"`
+	ValidRedirectUris               pulumi.StringArrayOutput `pulumi:"validRedirectUris"`
 }
 
 // NewClient registers a new resource with the given unique name, arguments, and options.
@@ -114,59 +114,59 @@ func GetClient(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Client resources.
 type clientState struct {
-	AssertionConsumerPostUrl *string `pulumi:"assertionConsumerPostUrl"`
-	AssertionConsumerRedirectUrl *string `pulumi:"assertionConsumerRedirectUrl"`
-	BaseUrl *string `pulumi:"baseUrl"`
-	ClientId *string `pulumi:"clientId"`
-	ClientSignatureRequired *bool `pulumi:"clientSignatureRequired"`
-	Description *string `pulumi:"description"`
-	Enabled *bool `pulumi:"enabled"`
-	ForcePostBinding *bool `pulumi:"forcePostBinding"`
-	FrontChannelLogout *bool `pulumi:"frontChannelLogout"`
-	FullScopeAllowed *bool `pulumi:"fullScopeAllowed"`
-	IdpInitiatedSsoRelayState *string `pulumi:"idpInitiatedSsoRelayState"`
-	IdpInitiatedSsoUrlName *string `pulumi:"idpInitiatedSsoUrlName"`
-	IncludeAuthnStatement *bool `pulumi:"includeAuthnStatement"`
-	LogoutServicePostBindingUrl *string `pulumi:"logoutServicePostBindingUrl"`
-	LogoutServiceRedirectBindingUrl *string `pulumi:"logoutServiceRedirectBindingUrl"`
-	MasterSamlProcessingUrl *string `pulumi:"masterSamlProcessingUrl"`
-	Name *string `pulumi:"name"`
-	NameIdFormat *string `pulumi:"nameIdFormat"`
-	RealmId *string `pulumi:"realmId"`
-	RootUrl *string `pulumi:"rootUrl"`
-	SignAssertions *bool `pulumi:"signAssertions"`
-	SignDocuments *bool `pulumi:"signDocuments"`
-	SigningCertificate *string `pulumi:"signingCertificate"`
-	SigningPrivateKey *string `pulumi:"signingPrivateKey"`
-	ValidRedirectUris []string `pulumi:"validRedirectUris"`
+	AssertionConsumerPostUrl        *string  `pulumi:"assertionConsumerPostUrl"`
+	AssertionConsumerRedirectUrl    *string  `pulumi:"assertionConsumerRedirectUrl"`
+	BaseUrl                         *string  `pulumi:"baseUrl"`
+	ClientId                        *string  `pulumi:"clientId"`
+	ClientSignatureRequired         *bool    `pulumi:"clientSignatureRequired"`
+	Description                     *string  `pulumi:"description"`
+	Enabled                         *bool    `pulumi:"enabled"`
+	ForcePostBinding                *bool    `pulumi:"forcePostBinding"`
+	FrontChannelLogout              *bool    `pulumi:"frontChannelLogout"`
+	FullScopeAllowed                *bool    `pulumi:"fullScopeAllowed"`
+	IdpInitiatedSsoRelayState       *string  `pulumi:"idpInitiatedSsoRelayState"`
+	IdpInitiatedSsoUrlName          *string  `pulumi:"idpInitiatedSsoUrlName"`
+	IncludeAuthnStatement           *bool    `pulumi:"includeAuthnStatement"`
+	LogoutServicePostBindingUrl     *string  `pulumi:"logoutServicePostBindingUrl"`
+	LogoutServiceRedirectBindingUrl *string  `pulumi:"logoutServiceRedirectBindingUrl"`
+	MasterSamlProcessingUrl         *string  `pulumi:"masterSamlProcessingUrl"`
+	Name                            *string  `pulumi:"name"`
+	NameIdFormat                    *string  `pulumi:"nameIdFormat"`
+	RealmId                         *string  `pulumi:"realmId"`
+	RootUrl                         *string  `pulumi:"rootUrl"`
+	SignAssertions                  *bool    `pulumi:"signAssertions"`
+	SignDocuments                   *bool    `pulumi:"signDocuments"`
+	SigningCertificate              *string  `pulumi:"signingCertificate"`
+	SigningPrivateKey               *string  `pulumi:"signingPrivateKey"`
+	ValidRedirectUris               []string `pulumi:"validRedirectUris"`
 }
 
 type ClientState struct {
-	AssertionConsumerPostUrl pulumi.StringPtrInput
-	AssertionConsumerRedirectUrl pulumi.StringPtrInput
-	BaseUrl pulumi.StringPtrInput
-	ClientId pulumi.StringPtrInput
-	ClientSignatureRequired pulumi.BoolPtrInput
-	Description pulumi.StringPtrInput
-	Enabled pulumi.BoolPtrInput
-	ForcePostBinding pulumi.BoolPtrInput
-	FrontChannelLogout pulumi.BoolPtrInput
-	FullScopeAllowed pulumi.BoolPtrInput
-	IdpInitiatedSsoRelayState pulumi.StringPtrInput
-	IdpInitiatedSsoUrlName pulumi.StringPtrInput
-	IncludeAuthnStatement pulumi.BoolPtrInput
-	LogoutServicePostBindingUrl pulumi.StringPtrInput
+	AssertionConsumerPostUrl        pulumi.StringPtrInput
+	AssertionConsumerRedirectUrl    pulumi.StringPtrInput
+	BaseUrl                         pulumi.StringPtrInput
+	ClientId                        pulumi.StringPtrInput
+	ClientSignatureRequired         pulumi.BoolPtrInput
+	Description                     pulumi.StringPtrInput
+	Enabled                         pulumi.BoolPtrInput
+	ForcePostBinding                pulumi.BoolPtrInput
+	FrontChannelLogout              pulumi.BoolPtrInput
+	FullScopeAllowed                pulumi.BoolPtrInput
+	IdpInitiatedSsoRelayState       pulumi.StringPtrInput
+	IdpInitiatedSsoUrlName          pulumi.StringPtrInput
+	IncludeAuthnStatement           pulumi.BoolPtrInput
+	LogoutServicePostBindingUrl     pulumi.StringPtrInput
 	LogoutServiceRedirectBindingUrl pulumi.StringPtrInput
-	MasterSamlProcessingUrl pulumi.StringPtrInput
-	Name pulumi.StringPtrInput
-	NameIdFormat pulumi.StringPtrInput
-	RealmId pulumi.StringPtrInput
-	RootUrl pulumi.StringPtrInput
-	SignAssertions pulumi.BoolPtrInput
-	SignDocuments pulumi.BoolPtrInput
-	SigningCertificate pulumi.StringPtrInput
-	SigningPrivateKey pulumi.StringPtrInput
-	ValidRedirectUris pulumi.StringArrayInput
+	MasterSamlProcessingUrl         pulumi.StringPtrInput
+	Name                            pulumi.StringPtrInput
+	NameIdFormat                    pulumi.StringPtrInput
+	RealmId                         pulumi.StringPtrInput
+	RootUrl                         pulumi.StringPtrInput
+	SignAssertions                  pulumi.BoolPtrInput
+	SignDocuments                   pulumi.BoolPtrInput
+	SigningCertificate              pulumi.StringPtrInput
+	SigningPrivateKey               pulumi.StringPtrInput
+	ValidRedirectUris               pulumi.StringArrayInput
 }
 
 func (ClientState) ElementType() reflect.Type {
@@ -174,63 +174,62 @@ func (ClientState) ElementType() reflect.Type {
 }
 
 type clientArgs struct {
-	AssertionConsumerPostUrl *string `pulumi:"assertionConsumerPostUrl"`
-	AssertionConsumerRedirectUrl *string `pulumi:"assertionConsumerRedirectUrl"`
-	BaseUrl *string `pulumi:"baseUrl"`
-	ClientId string `pulumi:"clientId"`
-	ClientSignatureRequired *bool `pulumi:"clientSignatureRequired"`
-	Description *string `pulumi:"description"`
-	Enabled *bool `pulumi:"enabled"`
-	ForcePostBinding *bool `pulumi:"forcePostBinding"`
-	FrontChannelLogout *bool `pulumi:"frontChannelLogout"`
-	FullScopeAllowed *bool `pulumi:"fullScopeAllowed"`
-	IdpInitiatedSsoRelayState *string `pulumi:"idpInitiatedSsoRelayState"`
-	IdpInitiatedSsoUrlName *string `pulumi:"idpInitiatedSsoUrlName"`
-	IncludeAuthnStatement *bool `pulumi:"includeAuthnStatement"`
-	LogoutServicePostBindingUrl *string `pulumi:"logoutServicePostBindingUrl"`
-	LogoutServiceRedirectBindingUrl *string `pulumi:"logoutServiceRedirectBindingUrl"`
-	MasterSamlProcessingUrl *string `pulumi:"masterSamlProcessingUrl"`
-	Name *string `pulumi:"name"`
-	NameIdFormat *string `pulumi:"nameIdFormat"`
-	RealmId string `pulumi:"realmId"`
-	RootUrl *string `pulumi:"rootUrl"`
-	SignAssertions *bool `pulumi:"signAssertions"`
-	SignDocuments *bool `pulumi:"signDocuments"`
-	SigningCertificate *string `pulumi:"signingCertificate"`
-	SigningPrivateKey *string `pulumi:"signingPrivateKey"`
-	ValidRedirectUris []string `pulumi:"validRedirectUris"`
+	AssertionConsumerPostUrl        *string  `pulumi:"assertionConsumerPostUrl"`
+	AssertionConsumerRedirectUrl    *string  `pulumi:"assertionConsumerRedirectUrl"`
+	BaseUrl                         *string  `pulumi:"baseUrl"`
+	ClientId                        string   `pulumi:"clientId"`
+	ClientSignatureRequired         *bool    `pulumi:"clientSignatureRequired"`
+	Description                     *string  `pulumi:"description"`
+	Enabled                         *bool    `pulumi:"enabled"`
+	ForcePostBinding                *bool    `pulumi:"forcePostBinding"`
+	FrontChannelLogout              *bool    `pulumi:"frontChannelLogout"`
+	FullScopeAllowed                *bool    `pulumi:"fullScopeAllowed"`
+	IdpInitiatedSsoRelayState       *string  `pulumi:"idpInitiatedSsoRelayState"`
+	IdpInitiatedSsoUrlName          *string  `pulumi:"idpInitiatedSsoUrlName"`
+	IncludeAuthnStatement           *bool    `pulumi:"includeAuthnStatement"`
+	LogoutServicePostBindingUrl     *string  `pulumi:"logoutServicePostBindingUrl"`
+	LogoutServiceRedirectBindingUrl *string  `pulumi:"logoutServiceRedirectBindingUrl"`
+	MasterSamlProcessingUrl         *string  `pulumi:"masterSamlProcessingUrl"`
+	Name                            *string  `pulumi:"name"`
+	NameIdFormat                    *string  `pulumi:"nameIdFormat"`
+	RealmId                         string   `pulumi:"realmId"`
+	RootUrl                         *string  `pulumi:"rootUrl"`
+	SignAssertions                  *bool    `pulumi:"signAssertions"`
+	SignDocuments                   *bool    `pulumi:"signDocuments"`
+	SigningCertificate              *string  `pulumi:"signingCertificate"`
+	SigningPrivateKey               *string  `pulumi:"signingPrivateKey"`
+	ValidRedirectUris               []string `pulumi:"validRedirectUris"`
 }
 
 // The set of arguments for constructing a Client resource.
 type ClientArgs struct {
-	AssertionConsumerPostUrl pulumi.StringPtrInput
-	AssertionConsumerRedirectUrl pulumi.StringPtrInput
-	BaseUrl pulumi.StringPtrInput
-	ClientId pulumi.StringInput
-	ClientSignatureRequired pulumi.BoolPtrInput
-	Description pulumi.StringPtrInput
-	Enabled pulumi.BoolPtrInput
-	ForcePostBinding pulumi.BoolPtrInput
-	FrontChannelLogout pulumi.BoolPtrInput
-	FullScopeAllowed pulumi.BoolPtrInput
-	IdpInitiatedSsoRelayState pulumi.StringPtrInput
-	IdpInitiatedSsoUrlName pulumi.StringPtrInput
-	IncludeAuthnStatement pulumi.BoolPtrInput
-	LogoutServicePostBindingUrl pulumi.StringPtrInput
+	AssertionConsumerPostUrl        pulumi.StringPtrInput
+	AssertionConsumerRedirectUrl    pulumi.StringPtrInput
+	BaseUrl                         pulumi.StringPtrInput
+	ClientId                        pulumi.StringInput
+	ClientSignatureRequired         pulumi.BoolPtrInput
+	Description                     pulumi.StringPtrInput
+	Enabled                         pulumi.BoolPtrInput
+	ForcePostBinding                pulumi.BoolPtrInput
+	FrontChannelLogout              pulumi.BoolPtrInput
+	FullScopeAllowed                pulumi.BoolPtrInput
+	IdpInitiatedSsoRelayState       pulumi.StringPtrInput
+	IdpInitiatedSsoUrlName          pulumi.StringPtrInput
+	IncludeAuthnStatement           pulumi.BoolPtrInput
+	LogoutServicePostBindingUrl     pulumi.StringPtrInput
 	LogoutServiceRedirectBindingUrl pulumi.StringPtrInput
-	MasterSamlProcessingUrl pulumi.StringPtrInput
-	Name pulumi.StringPtrInput
-	NameIdFormat pulumi.StringPtrInput
-	RealmId pulumi.StringInput
-	RootUrl pulumi.StringPtrInput
-	SignAssertions pulumi.BoolPtrInput
-	SignDocuments pulumi.BoolPtrInput
-	SigningCertificate pulumi.StringPtrInput
-	SigningPrivateKey pulumi.StringPtrInput
-	ValidRedirectUris pulumi.StringArrayInput
+	MasterSamlProcessingUrl         pulumi.StringPtrInput
+	Name                            pulumi.StringPtrInput
+	NameIdFormat                    pulumi.StringPtrInput
+	RealmId                         pulumi.StringInput
+	RootUrl                         pulumi.StringPtrInput
+	SignAssertions                  pulumi.BoolPtrInput
+	SignDocuments                   pulumi.BoolPtrInput
+	SigningCertificate              pulumi.StringPtrInput
+	SigningPrivateKey               pulumi.StringPtrInput
+	ValidRedirectUris               pulumi.StringArrayInput
 }
 
 func (ClientArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientArgs)(nil)).Elem()
 }
-
