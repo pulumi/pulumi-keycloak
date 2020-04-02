@@ -29,7 +29,31 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_openid_client.html.markdown.
         /// </summary>
+        [Obsolete("Use GetClient.InvokeAsync() instead")]
         public static Task<GetClientResult> GetClient(GetClientArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetClientResult>("keycloak:openid/getClient:getClient", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetClient
+    {
+        /// <summary>
+        /// ## # keycloak.openid.Client data source
+        /// 
+        /// This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
+        /// 
+        /// ### Argument Reference
+        /// 
+        /// The following arguments are supported:
+        /// 
+        /// - `realm_id` - (Required) The realm id.
+        /// - `client_id` - (Required) The client id.
+        /// 
+        /// ### Attributes Reference
+        /// 
+        /// See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
+        /// 
+        /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_openid_client.html.markdown.
+        /// </summary>
+        public static Task<GetClientResult> InvokeAsync(GetClientArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetClientResult>("keycloak:openid/getClient:getClient", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

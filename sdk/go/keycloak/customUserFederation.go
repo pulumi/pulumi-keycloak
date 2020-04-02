@@ -15,7 +15,7 @@ type CustomUserFederation struct {
 	pulumi.CustomResourceState
 
 	CachePolicy pulumi.StringPtrOutput `pulumi:"cachePolicy"`
-	Config pulumi.MapOutput `pulumi:"config"`
+	Config      pulumi.MapOutput       `pulumi:"config"`
 	// When false, this provider will not be used when performing queries for users.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
 	// Display name of the provider when displayed in the console.
@@ -63,8 +63,8 @@ func GetCustomUserFederation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CustomUserFederation resources.
 type customUserFederationState struct {
-	CachePolicy *string `pulumi:"cachePolicy"`
-	Config map[string]interface{} `pulumi:"config"`
+	CachePolicy *string                `pulumi:"cachePolicy"`
+	Config      map[string]interface{} `pulumi:"config"`
 	// When false, this provider will not be used when performing queries for users.
 	Enabled *bool `pulumi:"enabled"`
 	// Display name of the provider when displayed in the console.
@@ -80,7 +80,7 @@ type customUserFederationState struct {
 
 type CustomUserFederationState struct {
 	CachePolicy pulumi.StringPtrInput
-	Config pulumi.MapInput
+	Config      pulumi.MapInput
 	// When false, this provider will not be used when performing queries for users.
 	Enabled pulumi.BoolPtrInput
 	// Display name of the provider when displayed in the console.
@@ -99,8 +99,8 @@ func (CustomUserFederationState) ElementType() reflect.Type {
 }
 
 type customUserFederationArgs struct {
-	CachePolicy *string `pulumi:"cachePolicy"`
-	Config map[string]interface{} `pulumi:"config"`
+	CachePolicy *string                `pulumi:"cachePolicy"`
+	Config      map[string]interface{} `pulumi:"config"`
 	// When false, this provider will not be used when performing queries for users.
 	Enabled *bool `pulumi:"enabled"`
 	// Display name of the provider when displayed in the console.
@@ -117,7 +117,7 @@ type customUserFederationArgs struct {
 // The set of arguments for constructing a CustomUserFederation resource.
 type CustomUserFederationArgs struct {
 	CachePolicy pulumi.StringPtrInput
-	Config pulumi.MapInput
+	Config      pulumi.MapInput
 	// When false, this provider will not be used when performing queries for users.
 	Enabled pulumi.BoolPtrInput
 	// Display name of the provider when displayed in the console.
@@ -134,4 +134,3 @@ type CustomUserFederationArgs struct {
 func (CustomUserFederationArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*customUserFederationArgs)(nil)).Elem()
 }
-

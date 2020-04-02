@@ -43,11 +43,11 @@ import (
 type Group struct {
 	pulumi.CustomResourceState
 
-	Attributes pulumi.MapOutput `pulumi:"attributes"`
-	Name pulumi.StringOutput `pulumi:"name"`
-	ParentId pulumi.StringPtrOutput `pulumi:"parentId"`
-	Path pulumi.StringOutput `pulumi:"path"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	Attributes pulumi.MapOutput       `pulumi:"attributes"`
+	Name       pulumi.StringOutput    `pulumi:"name"`
+	ParentId   pulumi.StringPtrOutput `pulumi:"parentId"`
+	Path       pulumi.StringOutput    `pulumi:"path"`
+	RealmId    pulumi.StringOutput    `pulumi:"realmId"`
 }
 
 // NewGroup registers a new resource with the given unique name, arguments, and options.
@@ -82,18 +82,18 @@ func GetGroup(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Group resources.
 type groupState struct {
 	Attributes map[string]interface{} `pulumi:"attributes"`
-	Name *string `pulumi:"name"`
-	ParentId *string `pulumi:"parentId"`
-	Path *string `pulumi:"path"`
-	RealmId *string `pulumi:"realmId"`
+	Name       *string                `pulumi:"name"`
+	ParentId   *string                `pulumi:"parentId"`
+	Path       *string                `pulumi:"path"`
+	RealmId    *string                `pulumi:"realmId"`
 }
 
 type GroupState struct {
 	Attributes pulumi.MapInput
-	Name pulumi.StringPtrInput
-	ParentId pulumi.StringPtrInput
-	Path pulumi.StringPtrInput
-	RealmId pulumi.StringPtrInput
+	Name       pulumi.StringPtrInput
+	ParentId   pulumi.StringPtrInput
+	Path       pulumi.StringPtrInput
+	RealmId    pulumi.StringPtrInput
 }
 
 func (GroupState) ElementType() reflect.Type {
@@ -102,20 +102,19 @@ func (GroupState) ElementType() reflect.Type {
 
 type groupArgs struct {
 	Attributes map[string]interface{} `pulumi:"attributes"`
-	Name *string `pulumi:"name"`
-	ParentId *string `pulumi:"parentId"`
-	RealmId string `pulumi:"realmId"`
+	Name       *string                `pulumi:"name"`
+	ParentId   *string                `pulumi:"parentId"`
+	RealmId    string                 `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a Group resource.
 type GroupArgs struct {
 	Attributes pulumi.MapInput
-	Name pulumi.StringPtrInput
-	ParentId pulumi.StringPtrInput
-	RealmId pulumi.StringInput
+	Name       pulumi.StringPtrInput
+	ParentId   pulumi.StringPtrInput
+	RealmId    pulumi.StringInput
 }
 
 func (GroupArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupArgs)(nil)).Elem()
 }
-

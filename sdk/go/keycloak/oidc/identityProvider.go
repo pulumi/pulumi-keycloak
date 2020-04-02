@@ -37,8 +37,8 @@ type IdentityProvider struct {
 	// Friendly name for Identity Providers.
 	DisplayName pulumi.StringPtrOutput `pulumi:"displayName"`
 	// Enable/disable this identity provider.
-	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
-	ExtraConfig pulumi.MapOutput `pulumi:"extraConfig"`
+	Enabled     pulumi.BoolPtrOutput `pulumi:"enabled"`
+	ExtraConfig pulumi.MapOutput     `pulumi:"extraConfig"`
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
 	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrOutput `pulumi:"firstBrokerLoginFlowAlias"`
@@ -147,7 +147,7 @@ type identityProviderState struct {
 	// Friendly name for Identity Providers.
 	DisplayName *string `pulumi:"displayName"`
 	// Enable/disable this identity provider.
-	Enabled *bool `pulumi:"enabled"`
+	Enabled     *bool                  `pulumi:"enabled"`
 	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
 	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
@@ -212,7 +212,7 @@ type IdentityProviderState struct {
 	// Friendly name for Identity Providers.
 	DisplayName pulumi.StringPtrInput
 	// Enable/disable this identity provider.
-	Enabled pulumi.BoolPtrInput
+	Enabled     pulumi.BoolPtrInput
 	ExtraConfig pulumi.MapInput
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
 	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
@@ -281,7 +281,7 @@ type identityProviderArgs struct {
 	// Friendly name for Identity Providers.
 	DisplayName *string `pulumi:"displayName"`
 	// Enable/disable this identity provider.
-	Enabled *bool `pulumi:"enabled"`
+	Enabled     *bool                  `pulumi:"enabled"`
 	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
 	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
@@ -345,7 +345,7 @@ type IdentityProviderArgs struct {
 	// Friendly name for Identity Providers.
 	DisplayName pulumi.StringPtrInput
 	// Enable/disable this identity provider.
-	Enabled pulumi.BoolPtrInput
+	Enabled     pulumi.BoolPtrInput
 	ExtraConfig pulumi.MapInput
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
 	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
@@ -387,4 +387,3 @@ type IdentityProviderArgs struct {
 func (IdentityProviderArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*identityProviderArgs)(nil)).Elem()
 }
-

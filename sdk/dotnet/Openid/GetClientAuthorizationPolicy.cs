@@ -11,7 +11,13 @@ namespace Pulumi.Keycloak.OpenId
 {
     public static partial class Invokes
     {
+        [Obsolete("Use GetClientAuthorizationPolicy.InvokeAsync() instead")]
         public static Task<GetClientAuthorizationPolicyResult> GetClientAuthorizationPolicy(GetClientAuthorizationPolicyArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetClientAuthorizationPolicyResult>("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetClientAuthorizationPolicy
+    {
+        public static Task<GetClientAuthorizationPolicyResult> InvokeAsync(GetClientAuthorizationPolicyArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetClientAuthorizationPolicyResult>("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

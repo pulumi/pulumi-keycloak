@@ -47,7 +47,7 @@ type UserRealmRoleProtocolMapper struct {
 	AddToIdToken pulumi.BoolPtrOutput `pulumi:"addToIdToken"`
 	// Indicates if the attribute should appear in the userinfo response body.
 	AddToUserinfo pulumi.BoolPtrOutput `pulumi:"addToUserinfo"`
-	ClaimName pulumi.StringOutput `pulumi:"claimName"`
+	ClaimName     pulumi.StringOutput  `pulumi:"claimName"`
 	// Claim type used when serializing tokens.
 	ClaimValueType pulumi.StringPtrOutput `pulumi:"claimValueType"`
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
@@ -103,8 +103,8 @@ type userRealmRoleProtocolMapperState struct {
 	// Indicates if the attribute should be a claim in the id token.
 	AddToIdToken *bool `pulumi:"addToIdToken"`
 	// Indicates if the attribute should appear in the userinfo response body.
-	AddToUserinfo *bool `pulumi:"addToUserinfo"`
-	ClaimName *string `pulumi:"claimName"`
+	AddToUserinfo *bool   `pulumi:"addToUserinfo"`
+	ClaimName     *string `pulumi:"claimName"`
 	// Claim type used when serializing tokens.
 	ClaimValueType *string `pulumi:"claimValueType"`
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
@@ -128,7 +128,7 @@ type UserRealmRoleProtocolMapperState struct {
 	AddToIdToken pulumi.BoolPtrInput
 	// Indicates if the attribute should appear in the userinfo response body.
 	AddToUserinfo pulumi.BoolPtrInput
-	ClaimName pulumi.StringPtrInput
+	ClaimName     pulumi.StringPtrInput
 	// Claim type used when serializing tokens.
 	ClaimValueType pulumi.StringPtrInput
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
@@ -155,8 +155,8 @@ type userRealmRoleProtocolMapperArgs struct {
 	// Indicates if the attribute should be a claim in the id token.
 	AddToIdToken *bool `pulumi:"addToIdToken"`
 	// Indicates if the attribute should appear in the userinfo response body.
-	AddToUserinfo *bool `pulumi:"addToUserinfo"`
-	ClaimName string `pulumi:"claimName"`
+	AddToUserinfo *bool  `pulumi:"addToUserinfo"`
+	ClaimName     string `pulumi:"claimName"`
 	// Claim type used when serializing tokens.
 	ClaimValueType *string `pulumi:"claimValueType"`
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
@@ -181,7 +181,7 @@ type UserRealmRoleProtocolMapperArgs struct {
 	AddToIdToken pulumi.BoolPtrInput
 	// Indicates if the attribute should appear in the userinfo response body.
 	AddToUserinfo pulumi.BoolPtrInput
-	ClaimName pulumi.StringInput
+	ClaimName     pulumi.StringInput
 	// Claim type used when serializing tokens.
 	ClaimValueType pulumi.StringPtrInput
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
@@ -201,4 +201,3 @@ type UserRealmRoleProtocolMapperArgs struct {
 func (UserRealmRoleProtocolMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*userRealmRoleProtocolMapperArgs)(nil)).Elem()
 }
-

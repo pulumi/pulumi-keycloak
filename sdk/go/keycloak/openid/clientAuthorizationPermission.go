@@ -14,15 +14,15 @@ import (
 type ClientAuthorizationPermission struct {
 	pulumi.CustomResourceState
 
-	DecisionStrategy pulumi.StringPtrOutput `pulumi:"decisionStrategy"`
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	Name pulumi.StringOutput `pulumi:"name"`
-	Policies pulumi.StringArrayOutput `pulumi:"policies"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	ResourceServerId pulumi.StringOutput `pulumi:"resourceServerId"`
-	Resources pulumi.StringArrayOutput `pulumi:"resources"`
-	Scopes pulumi.StringArrayOutput `pulumi:"scopes"`
-	Type pulumi.StringPtrOutput `pulumi:"type"`
+	DecisionStrategy pulumi.StringPtrOutput   `pulumi:"decisionStrategy"`
+	Description      pulumi.StringPtrOutput   `pulumi:"description"`
+	Name             pulumi.StringOutput      `pulumi:"name"`
+	Policies         pulumi.StringArrayOutput `pulumi:"policies"`
+	RealmId          pulumi.StringOutput      `pulumi:"realmId"`
+	ResourceServerId pulumi.StringOutput      `pulumi:"resourceServerId"`
+	Resources        pulumi.StringArrayOutput `pulumi:"resources"`
+	Scopes           pulumi.StringArrayOutput `pulumi:"scopes"`
+	Type             pulumi.StringPtrOutput   `pulumi:"type"`
 }
 
 // NewClientAuthorizationPermission registers a new resource with the given unique name, arguments, and options.
@@ -59,27 +59,27 @@ func GetClientAuthorizationPermission(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ClientAuthorizationPermission resources.
 type clientAuthorizationPermissionState struct {
-	DecisionStrategy *string `pulumi:"decisionStrategy"`
-	Description *string `pulumi:"description"`
-	Name *string `pulumi:"name"`
-	Policies []string `pulumi:"policies"`
-	RealmId *string `pulumi:"realmId"`
-	ResourceServerId *string `pulumi:"resourceServerId"`
-	Resources []string `pulumi:"resources"`
-	Scopes []string `pulumi:"scopes"`
-	Type *string `pulumi:"type"`
+	DecisionStrategy *string  `pulumi:"decisionStrategy"`
+	Description      *string  `pulumi:"description"`
+	Name             *string  `pulumi:"name"`
+	Policies         []string `pulumi:"policies"`
+	RealmId          *string  `pulumi:"realmId"`
+	ResourceServerId *string  `pulumi:"resourceServerId"`
+	Resources        []string `pulumi:"resources"`
+	Scopes           []string `pulumi:"scopes"`
+	Type             *string  `pulumi:"type"`
 }
 
 type ClientAuthorizationPermissionState struct {
 	DecisionStrategy pulumi.StringPtrInput
-	Description pulumi.StringPtrInput
-	Name pulumi.StringPtrInput
-	Policies pulumi.StringArrayInput
-	RealmId pulumi.StringPtrInput
+	Description      pulumi.StringPtrInput
+	Name             pulumi.StringPtrInput
+	Policies         pulumi.StringArrayInput
+	RealmId          pulumi.StringPtrInput
 	ResourceServerId pulumi.StringPtrInput
-	Resources pulumi.StringArrayInput
-	Scopes pulumi.StringArrayInput
-	Type pulumi.StringPtrInput
+	Resources        pulumi.StringArrayInput
+	Scopes           pulumi.StringArrayInput
+	Type             pulumi.StringPtrInput
 }
 
 func (ClientAuthorizationPermissionState) ElementType() reflect.Type {
@@ -87,31 +87,30 @@ func (ClientAuthorizationPermissionState) ElementType() reflect.Type {
 }
 
 type clientAuthorizationPermissionArgs struct {
-	DecisionStrategy *string `pulumi:"decisionStrategy"`
-	Description *string `pulumi:"description"`
-	Name *string `pulumi:"name"`
-	Policies []string `pulumi:"policies"`
-	RealmId string `pulumi:"realmId"`
-	ResourceServerId string `pulumi:"resourceServerId"`
-	Resources []string `pulumi:"resources"`
-	Scopes []string `pulumi:"scopes"`
-	Type *string `pulumi:"type"`
+	DecisionStrategy *string  `pulumi:"decisionStrategy"`
+	Description      *string  `pulumi:"description"`
+	Name             *string  `pulumi:"name"`
+	Policies         []string `pulumi:"policies"`
+	RealmId          string   `pulumi:"realmId"`
+	ResourceServerId string   `pulumi:"resourceServerId"`
+	Resources        []string `pulumi:"resources"`
+	Scopes           []string `pulumi:"scopes"`
+	Type             *string  `pulumi:"type"`
 }
 
 // The set of arguments for constructing a ClientAuthorizationPermission resource.
 type ClientAuthorizationPermissionArgs struct {
 	DecisionStrategy pulumi.StringPtrInput
-	Description pulumi.StringPtrInput
-	Name pulumi.StringPtrInput
-	Policies pulumi.StringArrayInput
-	RealmId pulumi.StringInput
+	Description      pulumi.StringPtrInput
+	Name             pulumi.StringPtrInput
+	Policies         pulumi.StringArrayInput
+	RealmId          pulumi.StringInput
 	ResourceServerId pulumi.StringInput
-	Resources pulumi.StringArrayInput
-	Scopes pulumi.StringArrayInput
-	Type pulumi.StringPtrInput
+	Resources        pulumi.StringArrayInput
+	Scopes           pulumi.StringArrayInput
+	Type             pulumi.StringPtrInput
 }
 
 func (ClientAuthorizationPermissionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientAuthorizationPermissionArgs)(nil)).Elem()
 }
-

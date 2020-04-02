@@ -16,12 +16,12 @@ type Subflow struct {
 
 	Alias pulumi.StringOutput `pulumi:"alias"`
 	// Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
-	Authenticator pulumi.StringPtrOutput `pulumi:"authenticator"`
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	ParentFlowAlias pulumi.StringOutput `pulumi:"parentFlowAlias"`
-	ProviderId pulumi.StringPtrOutput `pulumi:"providerId"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	Requirement pulumi.StringPtrOutput `pulumi:"requirement"`
+	Authenticator   pulumi.StringPtrOutput `pulumi:"authenticator"`
+	Description     pulumi.StringPtrOutput `pulumi:"description"`
+	ParentFlowAlias pulumi.StringOutput    `pulumi:"parentFlowAlias"`
+	ProviderId      pulumi.StringPtrOutput `pulumi:"providerId"`
+	RealmId         pulumi.StringOutput    `pulumi:"realmId"`
+	Requirement     pulumi.StringPtrOutput `pulumi:"requirement"`
 }
 
 // NewSubflow registers a new resource with the given unique name, arguments, and options.
@@ -63,23 +63,23 @@ func GetSubflow(ctx *pulumi.Context,
 type subflowState struct {
 	Alias *string `pulumi:"alias"`
 	// Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
-	Authenticator *string `pulumi:"authenticator"`
-	Description *string `pulumi:"description"`
+	Authenticator   *string `pulumi:"authenticator"`
+	Description     *string `pulumi:"description"`
 	ParentFlowAlias *string `pulumi:"parentFlowAlias"`
-	ProviderId *string `pulumi:"providerId"`
-	RealmId *string `pulumi:"realmId"`
-	Requirement *string `pulumi:"requirement"`
+	ProviderId      *string `pulumi:"providerId"`
+	RealmId         *string `pulumi:"realmId"`
+	Requirement     *string `pulumi:"requirement"`
 }
 
 type SubflowState struct {
 	Alias pulumi.StringPtrInput
 	// Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
-	Authenticator pulumi.StringPtrInput
-	Description pulumi.StringPtrInput
+	Authenticator   pulumi.StringPtrInput
+	Description     pulumi.StringPtrInput
 	ParentFlowAlias pulumi.StringPtrInput
-	ProviderId pulumi.StringPtrInput
-	RealmId pulumi.StringPtrInput
-	Requirement pulumi.StringPtrInput
+	ProviderId      pulumi.StringPtrInput
+	RealmId         pulumi.StringPtrInput
+	Requirement     pulumi.StringPtrInput
 }
 
 func (SubflowState) ElementType() reflect.Type {
@@ -89,27 +89,26 @@ func (SubflowState) ElementType() reflect.Type {
 type subflowArgs struct {
 	Alias string `pulumi:"alias"`
 	// Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
-	Authenticator *string `pulumi:"authenticator"`
-	Description *string `pulumi:"description"`
-	ParentFlowAlias string `pulumi:"parentFlowAlias"`
-	ProviderId *string `pulumi:"providerId"`
-	RealmId string `pulumi:"realmId"`
-	Requirement *string `pulumi:"requirement"`
+	Authenticator   *string `pulumi:"authenticator"`
+	Description     *string `pulumi:"description"`
+	ParentFlowAlias string  `pulumi:"parentFlowAlias"`
+	ProviderId      *string `pulumi:"providerId"`
+	RealmId         string  `pulumi:"realmId"`
+	Requirement     *string `pulumi:"requirement"`
 }
 
 // The set of arguments for constructing a Subflow resource.
 type SubflowArgs struct {
 	Alias pulumi.StringInput
 	// Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
-	Authenticator pulumi.StringPtrInput
-	Description pulumi.StringPtrInput
+	Authenticator   pulumi.StringPtrInput
+	Description     pulumi.StringPtrInput
 	ParentFlowAlias pulumi.StringInput
-	ProviderId pulumi.StringPtrInput
-	RealmId pulumi.StringInput
-	Requirement pulumi.StringPtrInput
+	ProviderId      pulumi.StringPtrInput
+	RealmId         pulumi.StringInput
+	Requirement     pulumi.StringPtrInput
 }
 
 func (SubflowArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*subflowArgs)(nil)).Elem()
 }
-

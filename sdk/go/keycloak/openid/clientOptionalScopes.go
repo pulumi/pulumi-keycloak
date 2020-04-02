@@ -14,9 +14,9 @@ import (
 type ClientOptionalScopes struct {
 	pulumi.CustomResourceState
 
-	ClientId pulumi.StringOutput `pulumi:"clientId"`
+	ClientId       pulumi.StringOutput      `pulumi:"clientId"`
 	OptionalScopes pulumi.StringArrayOutput `pulumi:"optionalScopes"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	RealmId        pulumi.StringOutput      `pulumi:"realmId"`
 }
 
 // NewClientOptionalScopes registers a new resource with the given unique name, arguments, and options.
@@ -56,15 +56,15 @@ func GetClientOptionalScopes(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ClientOptionalScopes resources.
 type clientOptionalScopesState struct {
-	ClientId *string `pulumi:"clientId"`
+	ClientId       *string  `pulumi:"clientId"`
 	OptionalScopes []string `pulumi:"optionalScopes"`
-	RealmId *string `pulumi:"realmId"`
+	RealmId        *string  `pulumi:"realmId"`
 }
 
 type ClientOptionalScopesState struct {
-	ClientId pulumi.StringPtrInput
+	ClientId       pulumi.StringPtrInput
 	OptionalScopes pulumi.StringArrayInput
-	RealmId pulumi.StringPtrInput
+	RealmId        pulumi.StringPtrInput
 }
 
 func (ClientOptionalScopesState) ElementType() reflect.Type {
@@ -72,19 +72,18 @@ func (ClientOptionalScopesState) ElementType() reflect.Type {
 }
 
 type clientOptionalScopesArgs struct {
-	ClientId string `pulumi:"clientId"`
+	ClientId       string   `pulumi:"clientId"`
 	OptionalScopes []string `pulumi:"optionalScopes"`
-	RealmId string `pulumi:"realmId"`
+	RealmId        string   `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a ClientOptionalScopes resource.
 type ClientOptionalScopesArgs struct {
-	ClientId pulumi.StringInput
+	ClientId       pulumi.StringInput
 	OptionalScopes pulumi.StringArrayInput
-	RealmId pulumi.StringInput
+	RealmId        pulumi.StringInput
 }
 
 func (ClientOptionalScopesArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientOptionalScopesArgs)(nil)).Elem()
 }
-

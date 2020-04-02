@@ -14,14 +14,14 @@ import (
 type ClientRolePolicy struct {
 	pulumi.CustomResourceState
 
-	DecisionStrategy pulumi.StringPtrOutput `pulumi:"decisionStrategy"`
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	Logic pulumi.StringPtrOutput `pulumi:"logic"`
-	Name pulumi.StringOutput `pulumi:"name"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	ResourceServerId pulumi.StringOutput `pulumi:"resourceServerId"`
-	Roles ClientRolePolicyRoleArrayOutput `pulumi:"roles"`
-	Type pulumi.StringOutput `pulumi:"type"`
+	DecisionStrategy pulumi.StringPtrOutput          `pulumi:"decisionStrategy"`
+	Description      pulumi.StringPtrOutput          `pulumi:"description"`
+	Logic            pulumi.StringPtrOutput          `pulumi:"logic"`
+	Name             pulumi.StringOutput             `pulumi:"name"`
+	RealmId          pulumi.StringOutput             `pulumi:"realmId"`
+	ResourceServerId pulumi.StringOutput             `pulumi:"resourceServerId"`
+	Roles            ClientRolePolicyRoleArrayOutput `pulumi:"roles"`
+	Type             pulumi.StringOutput             `pulumi:"type"`
 }
 
 // NewClientRolePolicy registers a new resource with the given unique name, arguments, and options.
@@ -64,25 +64,25 @@ func GetClientRolePolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ClientRolePolicy resources.
 type clientRolePolicyState struct {
-	DecisionStrategy *string `pulumi:"decisionStrategy"`
-	Description *string `pulumi:"description"`
-	Logic *string `pulumi:"logic"`
-	Name *string `pulumi:"name"`
-	RealmId *string `pulumi:"realmId"`
-	ResourceServerId *string `pulumi:"resourceServerId"`
-	Roles []ClientRolePolicyRole `pulumi:"roles"`
-	Type *string `pulumi:"type"`
+	DecisionStrategy *string                `pulumi:"decisionStrategy"`
+	Description      *string                `pulumi:"description"`
+	Logic            *string                `pulumi:"logic"`
+	Name             *string                `pulumi:"name"`
+	RealmId          *string                `pulumi:"realmId"`
+	ResourceServerId *string                `pulumi:"resourceServerId"`
+	Roles            []ClientRolePolicyRole `pulumi:"roles"`
+	Type             *string                `pulumi:"type"`
 }
 
 type ClientRolePolicyState struct {
 	DecisionStrategy pulumi.StringPtrInput
-	Description pulumi.StringPtrInput
-	Logic pulumi.StringPtrInput
-	Name pulumi.StringPtrInput
-	RealmId pulumi.StringPtrInput
+	Description      pulumi.StringPtrInput
+	Logic            pulumi.StringPtrInput
+	Name             pulumi.StringPtrInput
+	RealmId          pulumi.StringPtrInput
 	ResourceServerId pulumi.StringPtrInput
-	Roles ClientRolePolicyRoleArrayInput
-	Type pulumi.StringPtrInput
+	Roles            ClientRolePolicyRoleArrayInput
+	Type             pulumi.StringPtrInput
 }
 
 func (ClientRolePolicyState) ElementType() reflect.Type {
@@ -90,29 +90,28 @@ func (ClientRolePolicyState) ElementType() reflect.Type {
 }
 
 type clientRolePolicyArgs struct {
-	DecisionStrategy *string `pulumi:"decisionStrategy"`
-	Description *string `pulumi:"description"`
-	Logic *string `pulumi:"logic"`
-	Name *string `pulumi:"name"`
-	RealmId string `pulumi:"realmId"`
-	ResourceServerId string `pulumi:"resourceServerId"`
-	Roles []ClientRolePolicyRole `pulumi:"roles"`
-	Type string `pulumi:"type"`
+	DecisionStrategy *string                `pulumi:"decisionStrategy"`
+	Description      *string                `pulumi:"description"`
+	Logic            *string                `pulumi:"logic"`
+	Name             *string                `pulumi:"name"`
+	RealmId          string                 `pulumi:"realmId"`
+	ResourceServerId string                 `pulumi:"resourceServerId"`
+	Roles            []ClientRolePolicyRole `pulumi:"roles"`
+	Type             string                 `pulumi:"type"`
 }
 
 // The set of arguments for constructing a ClientRolePolicy resource.
 type ClientRolePolicyArgs struct {
 	DecisionStrategy pulumi.StringPtrInput
-	Description pulumi.StringPtrInput
-	Logic pulumi.StringPtrInput
-	Name pulumi.StringPtrInput
-	RealmId pulumi.StringInput
+	Description      pulumi.StringPtrInput
+	Logic            pulumi.StringPtrInput
+	Name             pulumi.StringPtrInput
+	RealmId          pulumi.StringInput
 	ResourceServerId pulumi.StringInput
-	Roles ClientRolePolicyRoleArrayInput
-	Type pulumi.StringInput
+	Roles            ClientRolePolicyRoleArrayInput
+	Type             pulumi.StringInput
 }
 
 func (ClientRolePolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientRolePolicyArgs)(nil)).Elem()
 }
-

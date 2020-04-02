@@ -14,10 +14,10 @@ import (
 type Execution struct {
 	pulumi.CustomResourceState
 
-	Authenticator pulumi.StringOutput `pulumi:"authenticator"`
-	ParentFlowAlias pulumi.StringOutput `pulumi:"parentFlowAlias"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	Requirement pulumi.StringPtrOutput `pulumi:"requirement"`
+	Authenticator   pulumi.StringOutput    `pulumi:"authenticator"`
+	ParentFlowAlias pulumi.StringOutput    `pulumi:"parentFlowAlias"`
+	RealmId         pulumi.StringOutput    `pulumi:"realmId"`
+	Requirement     pulumi.StringPtrOutput `pulumi:"requirement"`
 }
 
 // NewExecution registers a new resource with the given unique name, arguments, and options.
@@ -57,17 +57,17 @@ func GetExecution(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Execution resources.
 type executionState struct {
-	Authenticator *string `pulumi:"authenticator"`
+	Authenticator   *string `pulumi:"authenticator"`
 	ParentFlowAlias *string `pulumi:"parentFlowAlias"`
-	RealmId *string `pulumi:"realmId"`
-	Requirement *string `pulumi:"requirement"`
+	RealmId         *string `pulumi:"realmId"`
+	Requirement     *string `pulumi:"requirement"`
 }
 
 type ExecutionState struct {
-	Authenticator pulumi.StringPtrInput
+	Authenticator   pulumi.StringPtrInput
 	ParentFlowAlias pulumi.StringPtrInput
-	RealmId pulumi.StringPtrInput
-	Requirement pulumi.StringPtrInput
+	RealmId         pulumi.StringPtrInput
+	Requirement     pulumi.StringPtrInput
 }
 
 func (ExecutionState) ElementType() reflect.Type {
@@ -75,21 +75,20 @@ func (ExecutionState) ElementType() reflect.Type {
 }
 
 type executionArgs struct {
-	Authenticator string `pulumi:"authenticator"`
-	ParentFlowAlias string `pulumi:"parentFlowAlias"`
-	RealmId string `pulumi:"realmId"`
-	Requirement *string `pulumi:"requirement"`
+	Authenticator   string  `pulumi:"authenticator"`
+	ParentFlowAlias string  `pulumi:"parentFlowAlias"`
+	RealmId         string  `pulumi:"realmId"`
+	Requirement     *string `pulumi:"requirement"`
 }
 
 // The set of arguments for constructing a Execution resource.
 type ExecutionArgs struct {
-	Authenticator pulumi.StringInput
+	Authenticator   pulumi.StringInput
 	ParentFlowAlias pulumi.StringInput
-	RealmId pulumi.StringInput
-	Requirement pulumi.StringPtrInput
+	RealmId         pulumi.StringInput
+	Requirement     pulumi.StringPtrInput
 }
 
 func (ExecutionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*executionArgs)(nil)).Elem()
 }
-

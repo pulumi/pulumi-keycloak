@@ -47,7 +47,7 @@ type UserAttributeProtocolMapper struct {
 	AddToIdToken pulumi.BoolPtrOutput `pulumi:"addToIdToken"`
 	// Indicates if the attribute should appear in the userinfo response body.
 	AddToUserinfo pulumi.BoolPtrOutput `pulumi:"addToUserinfo"`
-	ClaimName pulumi.StringOutput `pulumi:"claimName"`
+	ClaimName     pulumi.StringOutput  `pulumi:"claimName"`
 	// Claim type used when serializing tokens.
 	ClaimValueType pulumi.StringPtrOutput `pulumi:"claimValueType"`
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
@@ -59,7 +59,7 @@ type UserAttributeProtocolMapper struct {
 	// A human-friendly name that will appear in the Keycloak console.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm id where the associated client or client scope exists.
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	RealmId       pulumi.StringOutput `pulumi:"realmId"`
 	UserAttribute pulumi.StringOutput `pulumi:"userAttribute"`
 }
 
@@ -105,8 +105,8 @@ type userAttributeProtocolMapperState struct {
 	// Indicates if the attribute should be a claim in the id token.
 	AddToIdToken *bool `pulumi:"addToIdToken"`
 	// Indicates if the attribute should appear in the userinfo response body.
-	AddToUserinfo *bool `pulumi:"addToUserinfo"`
-	ClaimName *string `pulumi:"claimName"`
+	AddToUserinfo *bool   `pulumi:"addToUserinfo"`
+	ClaimName     *string `pulumi:"claimName"`
 	// Claim type used when serializing tokens.
 	ClaimValueType *string `pulumi:"claimValueType"`
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
@@ -118,7 +118,7 @@ type userAttributeProtocolMapperState struct {
 	// A human-friendly name that will appear in the Keycloak console.
 	Name *string `pulumi:"name"`
 	// The realm id where the associated client or client scope exists.
-	RealmId *string `pulumi:"realmId"`
+	RealmId       *string `pulumi:"realmId"`
 	UserAttribute *string `pulumi:"userAttribute"`
 }
 
@@ -129,7 +129,7 @@ type UserAttributeProtocolMapperState struct {
 	AddToIdToken pulumi.BoolPtrInput
 	// Indicates if the attribute should appear in the userinfo response body.
 	AddToUserinfo pulumi.BoolPtrInput
-	ClaimName pulumi.StringPtrInput
+	ClaimName     pulumi.StringPtrInput
 	// Claim type used when serializing tokens.
 	ClaimValueType pulumi.StringPtrInput
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
@@ -141,7 +141,7 @@ type UserAttributeProtocolMapperState struct {
 	// A human-friendly name that will appear in the Keycloak console.
 	Name pulumi.StringPtrInput
 	// The realm id where the associated client or client scope exists.
-	RealmId pulumi.StringPtrInput
+	RealmId       pulumi.StringPtrInput
 	UserAttribute pulumi.StringPtrInput
 }
 
@@ -155,8 +155,8 @@ type userAttributeProtocolMapperArgs struct {
 	// Indicates if the attribute should be a claim in the id token.
 	AddToIdToken *bool `pulumi:"addToIdToken"`
 	// Indicates if the attribute should appear in the userinfo response body.
-	AddToUserinfo *bool `pulumi:"addToUserinfo"`
-	ClaimName string `pulumi:"claimName"`
+	AddToUserinfo *bool  `pulumi:"addToUserinfo"`
+	ClaimName     string `pulumi:"claimName"`
 	// Claim type used when serializing tokens.
 	ClaimValueType *string `pulumi:"claimValueType"`
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
@@ -168,7 +168,7 @@ type userAttributeProtocolMapperArgs struct {
 	// A human-friendly name that will appear in the Keycloak console.
 	Name *string `pulumi:"name"`
 	// The realm id where the associated client or client scope exists.
-	RealmId string `pulumi:"realmId"`
+	RealmId       string `pulumi:"realmId"`
 	UserAttribute string `pulumi:"userAttribute"`
 }
 
@@ -180,7 +180,7 @@ type UserAttributeProtocolMapperArgs struct {
 	AddToIdToken pulumi.BoolPtrInput
 	// Indicates if the attribute should appear in the userinfo response body.
 	AddToUserinfo pulumi.BoolPtrInput
-	ClaimName pulumi.StringInput
+	ClaimName     pulumi.StringInput
 	// Claim type used when serializing tokens.
 	ClaimValueType pulumi.StringPtrInput
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
@@ -192,11 +192,10 @@ type UserAttributeProtocolMapperArgs struct {
 	// A human-friendly name that will appear in the Keycloak console.
 	Name pulumi.StringPtrInput
 	// The realm id where the associated client or client scope exists.
-	RealmId pulumi.StringInput
+	RealmId       pulumi.StringInput
 	UserAttribute pulumi.StringInput
 }
 
 func (UserAttributeProtocolMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*userAttributeProtocolMapperArgs)(nil)).Elem()
 }
-

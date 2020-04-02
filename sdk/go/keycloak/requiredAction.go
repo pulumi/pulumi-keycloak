@@ -14,12 +14,12 @@ import (
 type RequiredAction struct {
 	pulumi.CustomResourceState
 
-	Alias pulumi.StringOutput `pulumi:"alias"`
+	Alias         pulumi.StringOutput  `pulumi:"alias"`
 	DefaultAction pulumi.BoolPtrOutput `pulumi:"defaultAction"`
-	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
-	Name pulumi.StringOutput `pulumi:"name"`
-	Priority pulumi.IntOutput `pulumi:"priority"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	Enabled       pulumi.BoolPtrOutput `pulumi:"enabled"`
+	Name          pulumi.StringOutput  `pulumi:"name"`
+	Priority      pulumi.IntOutput     `pulumi:"priority"`
+	RealmId       pulumi.StringOutput  `pulumi:"realmId"`
 }
 
 // NewRequiredAction registers a new resource with the given unique name, arguments, and options.
@@ -56,21 +56,21 @@ func GetRequiredAction(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RequiredAction resources.
 type requiredActionState struct {
-	Alias *string `pulumi:"alias"`
-	DefaultAction *bool `pulumi:"defaultAction"`
-	Enabled *bool `pulumi:"enabled"`
-	Name *string `pulumi:"name"`
-	Priority *int `pulumi:"priority"`
-	RealmId *string `pulumi:"realmId"`
+	Alias         *string `pulumi:"alias"`
+	DefaultAction *bool   `pulumi:"defaultAction"`
+	Enabled       *bool   `pulumi:"enabled"`
+	Name          *string `pulumi:"name"`
+	Priority      *int    `pulumi:"priority"`
+	RealmId       *string `pulumi:"realmId"`
 }
 
 type RequiredActionState struct {
-	Alias pulumi.StringPtrInput
+	Alias         pulumi.StringPtrInput
 	DefaultAction pulumi.BoolPtrInput
-	Enabled pulumi.BoolPtrInput
-	Name pulumi.StringPtrInput
-	Priority pulumi.IntPtrInput
-	RealmId pulumi.StringPtrInput
+	Enabled       pulumi.BoolPtrInput
+	Name          pulumi.StringPtrInput
+	Priority      pulumi.IntPtrInput
+	RealmId       pulumi.StringPtrInput
 }
 
 func (RequiredActionState) ElementType() reflect.Type {
@@ -78,25 +78,24 @@ func (RequiredActionState) ElementType() reflect.Type {
 }
 
 type requiredActionArgs struct {
-	Alias string `pulumi:"alias"`
-	DefaultAction *bool `pulumi:"defaultAction"`
-	Enabled *bool `pulumi:"enabled"`
-	Name *string `pulumi:"name"`
-	Priority *int `pulumi:"priority"`
-	RealmId string `pulumi:"realmId"`
+	Alias         string  `pulumi:"alias"`
+	DefaultAction *bool   `pulumi:"defaultAction"`
+	Enabled       *bool   `pulumi:"enabled"`
+	Name          *string `pulumi:"name"`
+	Priority      *int    `pulumi:"priority"`
+	RealmId       string  `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a RequiredAction resource.
 type RequiredActionArgs struct {
-	Alias pulumi.StringInput
+	Alias         pulumi.StringInput
 	DefaultAction pulumi.BoolPtrInput
-	Enabled pulumi.BoolPtrInput
-	Name pulumi.StringPtrInput
-	Priority pulumi.IntPtrInput
-	RealmId pulumi.StringInput
+	Enabled       pulumi.BoolPtrInput
+	Name          pulumi.StringPtrInput
+	Priority      pulumi.IntPtrInput
+	RealmId       pulumi.StringInput
 }
 
 func (RequiredActionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*requiredActionArgs)(nil)).Elem()
 }
-

@@ -12,16 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+//go:generate go run ./generate.go
+
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfgen"
+	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfbridge"
 
-	keycloak "github.com/pulumi/pulumi-keycloak"
-	"github.com/pulumi/pulumi-keycloak/pkg/version"
+	keycloak "github.com/pulumi/pulumi-keycloak/provider"
+	"github.com/pulumi/pulumi-keycloak/provider/pkg/version"
 )
 
 func main() {
 	// Modify the path to point to the new provider
-	tfgen.Main("keycloak", version.Version, keycloak.Provider())
+	tfbridge.Main("keycloak", version.Version, keycloak.Provider(), pulumiSchema)
 }

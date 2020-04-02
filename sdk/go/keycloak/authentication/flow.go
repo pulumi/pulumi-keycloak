@@ -14,10 +14,10 @@ import (
 type Flow struct {
 	pulumi.CustomResourceState
 
-	Alias pulumi.StringOutput `pulumi:"alias"`
+	Alias       pulumi.StringOutput    `pulumi:"alias"`
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	ProviderId pulumi.StringPtrOutput `pulumi:"providerId"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	ProviderId  pulumi.StringPtrOutput `pulumi:"providerId"`
+	RealmId     pulumi.StringOutput    `pulumi:"realmId"`
 }
 
 // NewFlow registers a new resource with the given unique name, arguments, and options.
@@ -54,17 +54,17 @@ func GetFlow(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Flow resources.
 type flowState struct {
-	Alias *string `pulumi:"alias"`
+	Alias       *string `pulumi:"alias"`
 	Description *string `pulumi:"description"`
-	ProviderId *string `pulumi:"providerId"`
-	RealmId *string `pulumi:"realmId"`
+	ProviderId  *string `pulumi:"providerId"`
+	RealmId     *string `pulumi:"realmId"`
 }
 
 type FlowState struct {
-	Alias pulumi.StringPtrInput
+	Alias       pulumi.StringPtrInput
 	Description pulumi.StringPtrInput
-	ProviderId pulumi.StringPtrInput
-	RealmId pulumi.StringPtrInput
+	ProviderId  pulumi.StringPtrInput
+	RealmId     pulumi.StringPtrInput
 }
 
 func (FlowState) ElementType() reflect.Type {
@@ -72,21 +72,20 @@ func (FlowState) ElementType() reflect.Type {
 }
 
 type flowArgs struct {
-	Alias string `pulumi:"alias"`
+	Alias       string  `pulumi:"alias"`
 	Description *string `pulumi:"description"`
-	ProviderId *string `pulumi:"providerId"`
-	RealmId string `pulumi:"realmId"`
+	ProviderId  *string `pulumi:"providerId"`
+	RealmId     string  `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a Flow resource.
 type FlowArgs struct {
-	Alias pulumi.StringInput
+	Alias       pulumi.StringInput
 	Description pulumi.StringPtrInput
-	ProviderId pulumi.StringPtrInput
-	RealmId pulumi.StringInput
+	ProviderId  pulumi.StringPtrInput
+	RealmId     pulumi.StringInput
 }
 
 func (FlowArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*flowArgs)(nil)).Elem()
 }
-

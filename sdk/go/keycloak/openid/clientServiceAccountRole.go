@@ -14,9 +14,9 @@ import (
 type ClientServiceAccountRole struct {
 	pulumi.CustomResourceState
 
-	ClientId pulumi.StringOutput `pulumi:"clientId"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	Role pulumi.StringOutput `pulumi:"role"`
+	ClientId             pulumi.StringOutput `pulumi:"clientId"`
+	RealmId              pulumi.StringOutput `pulumi:"realmId"`
+	Role                 pulumi.StringOutput `pulumi:"role"`
 	ServiceAccountUserId pulumi.StringOutput `pulumi:"serviceAccountUserId"`
 }
 
@@ -60,16 +60,16 @@ func GetClientServiceAccountRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ClientServiceAccountRole resources.
 type clientServiceAccountRoleState struct {
-	ClientId *string `pulumi:"clientId"`
-	RealmId *string `pulumi:"realmId"`
-	Role *string `pulumi:"role"`
+	ClientId             *string `pulumi:"clientId"`
+	RealmId              *string `pulumi:"realmId"`
+	Role                 *string `pulumi:"role"`
 	ServiceAccountUserId *string `pulumi:"serviceAccountUserId"`
 }
 
 type ClientServiceAccountRoleState struct {
-	ClientId pulumi.StringPtrInput
-	RealmId pulumi.StringPtrInput
-	Role pulumi.StringPtrInput
+	ClientId             pulumi.StringPtrInput
+	RealmId              pulumi.StringPtrInput
+	Role                 pulumi.StringPtrInput
 	ServiceAccountUserId pulumi.StringPtrInput
 }
 
@@ -78,21 +78,20 @@ func (ClientServiceAccountRoleState) ElementType() reflect.Type {
 }
 
 type clientServiceAccountRoleArgs struct {
-	ClientId string `pulumi:"clientId"`
-	RealmId string `pulumi:"realmId"`
-	Role string `pulumi:"role"`
+	ClientId             string `pulumi:"clientId"`
+	RealmId              string `pulumi:"realmId"`
+	Role                 string `pulumi:"role"`
 	ServiceAccountUserId string `pulumi:"serviceAccountUserId"`
 }
 
 // The set of arguments for constructing a ClientServiceAccountRole resource.
 type ClientServiceAccountRoleArgs struct {
-	ClientId pulumi.StringInput
-	RealmId pulumi.StringInput
-	Role pulumi.StringInput
+	ClientId             pulumi.StringInput
+	RealmId              pulumi.StringInput
+	Role                 pulumi.StringInput
 	ServiceAccountUserId pulumi.StringInput
 }
 
 func (ClientServiceAccountRoleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientServiceAccountRoleArgs)(nil)).Elem()
 }
-

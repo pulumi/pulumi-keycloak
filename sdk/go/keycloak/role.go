@@ -35,11 +35,11 @@ import (
 type Role struct {
 	pulumi.CustomResourceState
 
-	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
+	ClientId       pulumi.StringPtrOutput   `pulumi:"clientId"`
 	CompositeRoles pulumi.StringArrayOutput `pulumi:"compositeRoles"`
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	Name pulumi.StringOutput `pulumi:"name"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	Description    pulumi.StringPtrOutput   `pulumi:"description"`
+	Name           pulumi.StringOutput      `pulumi:"name"`
+	RealmId        pulumi.StringOutput      `pulumi:"realmId"`
 }
 
 // NewRole registers a new resource with the given unique name, arguments, and options.
@@ -73,19 +73,19 @@ func GetRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Role resources.
 type roleState struct {
-	ClientId *string `pulumi:"clientId"`
+	ClientId       *string  `pulumi:"clientId"`
 	CompositeRoles []string `pulumi:"compositeRoles"`
-	Description *string `pulumi:"description"`
-	Name *string `pulumi:"name"`
-	RealmId *string `pulumi:"realmId"`
+	Description    *string  `pulumi:"description"`
+	Name           *string  `pulumi:"name"`
+	RealmId        *string  `pulumi:"realmId"`
 }
 
 type RoleState struct {
-	ClientId pulumi.StringPtrInput
+	ClientId       pulumi.StringPtrInput
 	CompositeRoles pulumi.StringArrayInput
-	Description pulumi.StringPtrInput
-	Name pulumi.StringPtrInput
-	RealmId pulumi.StringPtrInput
+	Description    pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	RealmId        pulumi.StringPtrInput
 }
 
 func (RoleState) ElementType() reflect.Type {
@@ -93,23 +93,22 @@ func (RoleState) ElementType() reflect.Type {
 }
 
 type roleArgs struct {
-	ClientId *string `pulumi:"clientId"`
+	ClientId       *string  `pulumi:"clientId"`
 	CompositeRoles []string `pulumi:"compositeRoles"`
-	Description *string `pulumi:"description"`
-	Name *string `pulumi:"name"`
-	RealmId string `pulumi:"realmId"`
+	Description    *string  `pulumi:"description"`
+	Name           *string  `pulumi:"name"`
+	RealmId        string   `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a Role resource.
 type RoleArgs struct {
-	ClientId pulumi.StringPtrInput
+	ClientId       pulumi.StringPtrInput
 	CompositeRoles pulumi.StringArrayInput
-	Description pulumi.StringPtrInput
-	Name pulumi.StringPtrInput
-	RealmId pulumi.StringInput
+	Description    pulumi.StringPtrInput
+	Name           pulumi.StringPtrInput
+	RealmId        pulumi.StringInput
 }
 
 func (RoleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*roleArgs)(nil)).Elem()
 }
-

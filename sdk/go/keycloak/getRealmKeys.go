@@ -39,18 +39,16 @@ func GetRealmKeys(ctx *pulumi.Context, args *GetRealmKeysArgs, opts ...pulumi.In
 // A collection of arguments for invoking getRealmKeys.
 type GetRealmKeysArgs struct {
 	Algorithms []string `pulumi:"algorithms"`
-	RealmId string `pulumi:"realmId"`
-	Statuses []string `pulumi:"statuses"`
+	RealmId    string   `pulumi:"realmId"`
+	Statuses   []string `pulumi:"statuses"`
 }
-
 
 // A collection of values returned by getRealmKeys.
 type GetRealmKeysResult struct {
 	Algorithms []string `pulumi:"algorithms"`
 	// id is the provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	Keys []GetRealmKeysKey `pulumi:"keys"`
-	RealmId string `pulumi:"realmId"`
-	Statuses []string `pulumi:"statuses"`
+	Id       string            `pulumi:"id"`
+	Keys     []GetRealmKeysKey `pulumi:"keys"`
+	RealmId  string            `pulumi:"realmId"`
+	Statuses []string          `pulumi:"statuses"`
 }
-

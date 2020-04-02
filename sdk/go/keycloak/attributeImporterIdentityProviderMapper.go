@@ -159,4 +159,3 @@ type AttributeImporterIdentityProviderMapperArgs struct {
 func (AttributeImporterIdentityProviderMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*attributeImporterIdentityProviderMapperArgs)(nil)).Elem()
 }
-

@@ -36,9 +36,9 @@ type ClientScope struct {
 	pulumi.CustomResourceState
 
 	ConsentScreenText pulumi.StringPtrOutput `pulumi:"consentScreenText"`
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	Name pulumi.StringOutput `pulumi:"name"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	Description       pulumi.StringPtrOutput `pulumi:"description"`
+	Name              pulumi.StringOutput    `pulumi:"name"`
+	RealmId           pulumi.StringOutput    `pulumi:"realmId"`
 }
 
 // NewClientScope registers a new resource with the given unique name, arguments, and options.
@@ -73,16 +73,16 @@ func GetClientScope(ctx *pulumi.Context,
 // Input properties used for looking up and filtering ClientScope resources.
 type clientScopeState struct {
 	ConsentScreenText *string `pulumi:"consentScreenText"`
-	Description *string `pulumi:"description"`
-	Name *string `pulumi:"name"`
-	RealmId *string `pulumi:"realmId"`
+	Description       *string `pulumi:"description"`
+	Name              *string `pulumi:"name"`
+	RealmId           *string `pulumi:"realmId"`
 }
 
 type ClientScopeState struct {
 	ConsentScreenText pulumi.StringPtrInput
-	Description pulumi.StringPtrInput
-	Name pulumi.StringPtrInput
-	RealmId pulumi.StringPtrInput
+	Description       pulumi.StringPtrInput
+	Name              pulumi.StringPtrInput
+	RealmId           pulumi.StringPtrInput
 }
 
 func (ClientScopeState) ElementType() reflect.Type {
@@ -91,20 +91,19 @@ func (ClientScopeState) ElementType() reflect.Type {
 
 type clientScopeArgs struct {
 	ConsentScreenText *string `pulumi:"consentScreenText"`
-	Description *string `pulumi:"description"`
-	Name *string `pulumi:"name"`
-	RealmId string `pulumi:"realmId"`
+	Description       *string `pulumi:"description"`
+	Name              *string `pulumi:"name"`
+	RealmId           string  `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a ClientScope resource.
 type ClientScopeArgs struct {
 	ConsentScreenText pulumi.StringPtrInput
-	Description pulumi.StringPtrInput
-	Name pulumi.StringPtrInput
-	RealmId pulumi.StringInput
+	Description       pulumi.StringPtrInput
+	Name              pulumi.StringPtrInput
+	RealmId           pulumi.StringInput
 }
 
 func (ClientScopeArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientScopeArgs)(nil)).Elem()
 }
-

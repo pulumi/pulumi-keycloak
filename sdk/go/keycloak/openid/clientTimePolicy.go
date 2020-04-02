@@ -14,24 +14,24 @@ import (
 type ClientTimePolicy struct {
 	pulumi.CustomResourceState
 
-	DayMonth pulumi.StringPtrOutput `pulumi:"dayMonth"`
-	DayMonthEnd pulumi.StringPtrOutput `pulumi:"dayMonthEnd"`
-	DecisionStrategy pulumi.StringOutput `pulumi:"decisionStrategy"`
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	Hour pulumi.StringPtrOutput `pulumi:"hour"`
-	HourEnd pulumi.StringPtrOutput `pulumi:"hourEnd"`
-	Logic pulumi.StringPtrOutput `pulumi:"logic"`
-	Minute pulumi.StringPtrOutput `pulumi:"minute"`
-	MinuteEnd pulumi.StringPtrOutput `pulumi:"minuteEnd"`
-	Month pulumi.StringPtrOutput `pulumi:"month"`
-	MonthEnd pulumi.StringPtrOutput `pulumi:"monthEnd"`
-	Name pulumi.StringOutput `pulumi:"name"`
-	NotBefore pulumi.StringPtrOutput `pulumi:"notBefore"`
-	NotOnOrAfter pulumi.StringPtrOutput `pulumi:"notOnOrAfter"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	ResourceServerId pulumi.StringOutput `pulumi:"resourceServerId"`
-	Year pulumi.StringPtrOutput `pulumi:"year"`
-	YearEnd pulumi.StringPtrOutput `pulumi:"yearEnd"`
+	DayMonth         pulumi.StringPtrOutput `pulumi:"dayMonth"`
+	DayMonthEnd      pulumi.StringPtrOutput `pulumi:"dayMonthEnd"`
+	DecisionStrategy pulumi.StringOutput    `pulumi:"decisionStrategy"`
+	Description      pulumi.StringPtrOutput `pulumi:"description"`
+	Hour             pulumi.StringPtrOutput `pulumi:"hour"`
+	HourEnd          pulumi.StringPtrOutput `pulumi:"hourEnd"`
+	Logic            pulumi.StringPtrOutput `pulumi:"logic"`
+	Minute           pulumi.StringPtrOutput `pulumi:"minute"`
+	MinuteEnd        pulumi.StringPtrOutput `pulumi:"minuteEnd"`
+	Month            pulumi.StringPtrOutput `pulumi:"month"`
+	MonthEnd         pulumi.StringPtrOutput `pulumi:"monthEnd"`
+	Name             pulumi.StringOutput    `pulumi:"name"`
+	NotBefore        pulumi.StringPtrOutput `pulumi:"notBefore"`
+	NotOnOrAfter     pulumi.StringPtrOutput `pulumi:"notOnOrAfter"`
+	RealmId          pulumi.StringOutput    `pulumi:"realmId"`
+	ResourceServerId pulumi.StringOutput    `pulumi:"resourceServerId"`
+	Year             pulumi.StringPtrOutput `pulumi:"year"`
+	YearEnd          pulumi.StringPtrOutput `pulumi:"yearEnd"`
 }
 
 // NewClientTimePolicy registers a new resource with the given unique name, arguments, and options.
@@ -71,45 +71,45 @@ func GetClientTimePolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ClientTimePolicy resources.
 type clientTimePolicyState struct {
-	DayMonth *string `pulumi:"dayMonth"`
-	DayMonthEnd *string `pulumi:"dayMonthEnd"`
+	DayMonth         *string `pulumi:"dayMonth"`
+	DayMonthEnd      *string `pulumi:"dayMonthEnd"`
 	DecisionStrategy *string `pulumi:"decisionStrategy"`
-	Description *string `pulumi:"description"`
-	Hour *string `pulumi:"hour"`
-	HourEnd *string `pulumi:"hourEnd"`
-	Logic *string `pulumi:"logic"`
-	Minute *string `pulumi:"minute"`
-	MinuteEnd *string `pulumi:"minuteEnd"`
-	Month *string `pulumi:"month"`
-	MonthEnd *string `pulumi:"monthEnd"`
-	Name *string `pulumi:"name"`
-	NotBefore *string `pulumi:"notBefore"`
-	NotOnOrAfter *string `pulumi:"notOnOrAfter"`
-	RealmId *string `pulumi:"realmId"`
+	Description      *string `pulumi:"description"`
+	Hour             *string `pulumi:"hour"`
+	HourEnd          *string `pulumi:"hourEnd"`
+	Logic            *string `pulumi:"logic"`
+	Minute           *string `pulumi:"minute"`
+	MinuteEnd        *string `pulumi:"minuteEnd"`
+	Month            *string `pulumi:"month"`
+	MonthEnd         *string `pulumi:"monthEnd"`
+	Name             *string `pulumi:"name"`
+	NotBefore        *string `pulumi:"notBefore"`
+	NotOnOrAfter     *string `pulumi:"notOnOrAfter"`
+	RealmId          *string `pulumi:"realmId"`
 	ResourceServerId *string `pulumi:"resourceServerId"`
-	Year *string `pulumi:"year"`
-	YearEnd *string `pulumi:"yearEnd"`
+	Year             *string `pulumi:"year"`
+	YearEnd          *string `pulumi:"yearEnd"`
 }
 
 type ClientTimePolicyState struct {
-	DayMonth pulumi.StringPtrInput
-	DayMonthEnd pulumi.StringPtrInput
+	DayMonth         pulumi.StringPtrInput
+	DayMonthEnd      pulumi.StringPtrInput
 	DecisionStrategy pulumi.StringPtrInput
-	Description pulumi.StringPtrInput
-	Hour pulumi.StringPtrInput
-	HourEnd pulumi.StringPtrInput
-	Logic pulumi.StringPtrInput
-	Minute pulumi.StringPtrInput
-	MinuteEnd pulumi.StringPtrInput
-	Month pulumi.StringPtrInput
-	MonthEnd pulumi.StringPtrInput
-	Name pulumi.StringPtrInput
-	NotBefore pulumi.StringPtrInput
-	NotOnOrAfter pulumi.StringPtrInput
-	RealmId pulumi.StringPtrInput
+	Description      pulumi.StringPtrInput
+	Hour             pulumi.StringPtrInput
+	HourEnd          pulumi.StringPtrInput
+	Logic            pulumi.StringPtrInput
+	Minute           pulumi.StringPtrInput
+	MinuteEnd        pulumi.StringPtrInput
+	Month            pulumi.StringPtrInput
+	MonthEnd         pulumi.StringPtrInput
+	Name             pulumi.StringPtrInput
+	NotBefore        pulumi.StringPtrInput
+	NotOnOrAfter     pulumi.StringPtrInput
+	RealmId          pulumi.StringPtrInput
 	ResourceServerId pulumi.StringPtrInput
-	Year pulumi.StringPtrInput
-	YearEnd pulumi.StringPtrInput
+	Year             pulumi.StringPtrInput
+	YearEnd          pulumi.StringPtrInput
 }
 
 func (ClientTimePolicyState) ElementType() reflect.Type {
@@ -117,49 +117,48 @@ func (ClientTimePolicyState) ElementType() reflect.Type {
 }
 
 type clientTimePolicyArgs struct {
-	DayMonth *string `pulumi:"dayMonth"`
-	DayMonthEnd *string `pulumi:"dayMonthEnd"`
-	DecisionStrategy string `pulumi:"decisionStrategy"`
-	Description *string `pulumi:"description"`
-	Hour *string `pulumi:"hour"`
-	HourEnd *string `pulumi:"hourEnd"`
-	Logic *string `pulumi:"logic"`
-	Minute *string `pulumi:"minute"`
-	MinuteEnd *string `pulumi:"minuteEnd"`
-	Month *string `pulumi:"month"`
-	MonthEnd *string `pulumi:"monthEnd"`
-	Name *string `pulumi:"name"`
-	NotBefore *string `pulumi:"notBefore"`
-	NotOnOrAfter *string `pulumi:"notOnOrAfter"`
-	RealmId string `pulumi:"realmId"`
-	ResourceServerId string `pulumi:"resourceServerId"`
-	Year *string `pulumi:"year"`
-	YearEnd *string `pulumi:"yearEnd"`
+	DayMonth         *string `pulumi:"dayMonth"`
+	DayMonthEnd      *string `pulumi:"dayMonthEnd"`
+	DecisionStrategy string  `pulumi:"decisionStrategy"`
+	Description      *string `pulumi:"description"`
+	Hour             *string `pulumi:"hour"`
+	HourEnd          *string `pulumi:"hourEnd"`
+	Logic            *string `pulumi:"logic"`
+	Minute           *string `pulumi:"minute"`
+	MinuteEnd        *string `pulumi:"minuteEnd"`
+	Month            *string `pulumi:"month"`
+	MonthEnd         *string `pulumi:"monthEnd"`
+	Name             *string `pulumi:"name"`
+	NotBefore        *string `pulumi:"notBefore"`
+	NotOnOrAfter     *string `pulumi:"notOnOrAfter"`
+	RealmId          string  `pulumi:"realmId"`
+	ResourceServerId string  `pulumi:"resourceServerId"`
+	Year             *string `pulumi:"year"`
+	YearEnd          *string `pulumi:"yearEnd"`
 }
 
 // The set of arguments for constructing a ClientTimePolicy resource.
 type ClientTimePolicyArgs struct {
-	DayMonth pulumi.StringPtrInput
-	DayMonthEnd pulumi.StringPtrInput
+	DayMonth         pulumi.StringPtrInput
+	DayMonthEnd      pulumi.StringPtrInput
 	DecisionStrategy pulumi.StringInput
-	Description pulumi.StringPtrInput
-	Hour pulumi.StringPtrInput
-	HourEnd pulumi.StringPtrInput
-	Logic pulumi.StringPtrInput
-	Minute pulumi.StringPtrInput
-	MinuteEnd pulumi.StringPtrInput
-	Month pulumi.StringPtrInput
-	MonthEnd pulumi.StringPtrInput
-	Name pulumi.StringPtrInput
-	NotBefore pulumi.StringPtrInput
-	NotOnOrAfter pulumi.StringPtrInput
-	RealmId pulumi.StringInput
+	Description      pulumi.StringPtrInput
+	Hour             pulumi.StringPtrInput
+	HourEnd          pulumi.StringPtrInput
+	Logic            pulumi.StringPtrInput
+	Minute           pulumi.StringPtrInput
+	MinuteEnd        pulumi.StringPtrInput
+	Month            pulumi.StringPtrInput
+	MonthEnd         pulumi.StringPtrInput
+	Name             pulumi.StringPtrInput
+	NotBefore        pulumi.StringPtrInput
+	NotOnOrAfter     pulumi.StringPtrInput
+	RealmId          pulumi.StringInput
 	ResourceServerId pulumi.StringInput
-	Year pulumi.StringPtrInput
-	YearEnd pulumi.StringPtrInput
+	Year             pulumi.StringPtrInput
+	YearEnd          pulumi.StringPtrInput
 }
 
 func (ClientTimePolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientTimePolicyArgs)(nil)).Elem()
 }
-

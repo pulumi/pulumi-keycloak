@@ -177,4 +177,3 @@ type UserAttributeMapperArgs struct {
 func (UserAttributeMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*userAttributeMapperArgs)(nil)).Elem()
 }
-

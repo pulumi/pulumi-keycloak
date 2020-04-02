@@ -31,13 +31,13 @@ import (
 type RealmEvents struct {
 	pulumi.CustomResourceState
 
-	AdminEventsDetailsEnabled pulumi.BoolPtrOutput `pulumi:"adminEventsDetailsEnabled"`
-	AdminEventsEnabled pulumi.BoolPtrOutput `pulumi:"adminEventsEnabled"`
-	EnabledEventTypes pulumi.StringArrayOutput `pulumi:"enabledEventTypes"`
-	EventsEnabled pulumi.BoolPtrOutput `pulumi:"eventsEnabled"`
-	EventsExpiration pulumi.IntPtrOutput `pulumi:"eventsExpiration"`
-	EventsListeners pulumi.StringArrayOutput `pulumi:"eventsListeners"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	AdminEventsDetailsEnabled pulumi.BoolPtrOutput     `pulumi:"adminEventsDetailsEnabled"`
+	AdminEventsEnabled        pulumi.BoolPtrOutput     `pulumi:"adminEventsEnabled"`
+	EnabledEventTypes         pulumi.StringArrayOutput `pulumi:"enabledEventTypes"`
+	EventsEnabled             pulumi.BoolPtrOutput     `pulumi:"eventsEnabled"`
+	EventsExpiration          pulumi.IntPtrOutput      `pulumi:"eventsExpiration"`
+	EventsListeners           pulumi.StringArrayOutput `pulumi:"eventsListeners"`
+	RealmId                   pulumi.StringOutput      `pulumi:"realmId"`
 }
 
 // NewRealmEvents registers a new resource with the given unique name, arguments, and options.
@@ -71,23 +71,23 @@ func GetRealmEvents(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RealmEvents resources.
 type realmEventsState struct {
-	AdminEventsDetailsEnabled *bool `pulumi:"adminEventsDetailsEnabled"`
-	AdminEventsEnabled *bool `pulumi:"adminEventsEnabled"`
-	EnabledEventTypes []string `pulumi:"enabledEventTypes"`
-	EventsEnabled *bool `pulumi:"eventsEnabled"`
-	EventsExpiration *int `pulumi:"eventsExpiration"`
-	EventsListeners []string `pulumi:"eventsListeners"`
-	RealmId *string `pulumi:"realmId"`
+	AdminEventsDetailsEnabled *bool    `pulumi:"adminEventsDetailsEnabled"`
+	AdminEventsEnabled        *bool    `pulumi:"adminEventsEnabled"`
+	EnabledEventTypes         []string `pulumi:"enabledEventTypes"`
+	EventsEnabled             *bool    `pulumi:"eventsEnabled"`
+	EventsExpiration          *int     `pulumi:"eventsExpiration"`
+	EventsListeners           []string `pulumi:"eventsListeners"`
+	RealmId                   *string  `pulumi:"realmId"`
 }
 
 type RealmEventsState struct {
 	AdminEventsDetailsEnabled pulumi.BoolPtrInput
-	AdminEventsEnabled pulumi.BoolPtrInput
-	EnabledEventTypes pulumi.StringArrayInput
-	EventsEnabled pulumi.BoolPtrInput
-	EventsExpiration pulumi.IntPtrInput
-	EventsListeners pulumi.StringArrayInput
-	RealmId pulumi.StringPtrInput
+	AdminEventsEnabled        pulumi.BoolPtrInput
+	EnabledEventTypes         pulumi.StringArrayInput
+	EventsEnabled             pulumi.BoolPtrInput
+	EventsExpiration          pulumi.IntPtrInput
+	EventsListeners           pulumi.StringArrayInput
+	RealmId                   pulumi.StringPtrInput
 }
 
 func (RealmEventsState) ElementType() reflect.Type {
@@ -95,27 +95,26 @@ func (RealmEventsState) ElementType() reflect.Type {
 }
 
 type realmEventsArgs struct {
-	AdminEventsDetailsEnabled *bool `pulumi:"adminEventsDetailsEnabled"`
-	AdminEventsEnabled *bool `pulumi:"adminEventsEnabled"`
-	EnabledEventTypes []string `pulumi:"enabledEventTypes"`
-	EventsEnabled *bool `pulumi:"eventsEnabled"`
-	EventsExpiration *int `pulumi:"eventsExpiration"`
-	EventsListeners []string `pulumi:"eventsListeners"`
-	RealmId string `pulumi:"realmId"`
+	AdminEventsDetailsEnabled *bool    `pulumi:"adminEventsDetailsEnabled"`
+	AdminEventsEnabled        *bool    `pulumi:"adminEventsEnabled"`
+	EnabledEventTypes         []string `pulumi:"enabledEventTypes"`
+	EventsEnabled             *bool    `pulumi:"eventsEnabled"`
+	EventsExpiration          *int     `pulumi:"eventsExpiration"`
+	EventsListeners           []string `pulumi:"eventsListeners"`
+	RealmId                   string   `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a RealmEvents resource.
 type RealmEventsArgs struct {
 	AdminEventsDetailsEnabled pulumi.BoolPtrInput
-	AdminEventsEnabled pulumi.BoolPtrInput
-	EnabledEventTypes pulumi.StringArrayInput
-	EventsEnabled pulumi.BoolPtrInput
-	EventsExpiration pulumi.IntPtrInput
-	EventsListeners pulumi.StringArrayInput
-	RealmId pulumi.StringInput
+	AdminEventsEnabled        pulumi.BoolPtrInput
+	EnabledEventTypes         pulumi.StringArrayInput
+	EventsEnabled             pulumi.BoolPtrInput
+	EventsExpiration          pulumi.IntPtrInput
+	EventsListeners           pulumi.StringArrayInput
+	RealmId                   pulumi.StringInput
 }
 
 func (RealmEventsArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*realmEventsArgs)(nil)).Elem()
 }
-

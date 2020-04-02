@@ -14,10 +14,10 @@ import (
 type ExecutionConfig struct {
 	pulumi.CustomResourceState
 
-	Alias pulumi.StringOutput `pulumi:"alias"`
-	Config pulumi.StringMapOutput `pulumi:"config"`
-	ExecutionId pulumi.StringOutput `pulumi:"executionId"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	Alias       pulumi.StringOutput    `pulumi:"alias"`
+	Config      pulumi.StringMapOutput `pulumi:"config"`
+	ExecutionId pulumi.StringOutput    `pulumi:"executionId"`
+	RealmId     pulumi.StringOutput    `pulumi:"realmId"`
 }
 
 // NewExecutionConfig registers a new resource with the given unique name, arguments, and options.
@@ -60,17 +60,17 @@ func GetExecutionConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ExecutionConfig resources.
 type executionConfigState struct {
-	Alias *string `pulumi:"alias"`
-	Config map[string]string `pulumi:"config"`
-	ExecutionId *string `pulumi:"executionId"`
-	RealmId *string `pulumi:"realmId"`
+	Alias       *string           `pulumi:"alias"`
+	Config      map[string]string `pulumi:"config"`
+	ExecutionId *string           `pulumi:"executionId"`
+	RealmId     *string           `pulumi:"realmId"`
 }
 
 type ExecutionConfigState struct {
-	Alias pulumi.StringPtrInput
-	Config pulumi.StringMapInput
+	Alias       pulumi.StringPtrInput
+	Config      pulumi.StringMapInput
 	ExecutionId pulumi.StringPtrInput
-	RealmId pulumi.StringPtrInput
+	RealmId     pulumi.StringPtrInput
 }
 
 func (ExecutionConfigState) ElementType() reflect.Type {
@@ -78,21 +78,20 @@ func (ExecutionConfigState) ElementType() reflect.Type {
 }
 
 type executionConfigArgs struct {
-	Alias string `pulumi:"alias"`
-	Config map[string]string `pulumi:"config"`
-	ExecutionId string `pulumi:"executionId"`
-	RealmId string `pulumi:"realmId"`
+	Alias       string            `pulumi:"alias"`
+	Config      map[string]string `pulumi:"config"`
+	ExecutionId string            `pulumi:"executionId"`
+	RealmId     string            `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a ExecutionConfig resource.
 type ExecutionConfigArgs struct {
-	Alias pulumi.StringInput
-	Config pulumi.StringMapInput
+	Alias       pulumi.StringInput
+	Config      pulumi.StringMapInput
 	ExecutionId pulumi.StringInput
-	RealmId pulumi.StringInput
+	RealmId     pulumi.StringInput
 }
 
 func (ExecutionConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*executionConfigArgs)(nil)).Elem()
 }
-

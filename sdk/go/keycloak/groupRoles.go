@@ -14,8 +14,8 @@ import (
 type GroupRoles struct {
 	pulumi.CustomResourceState
 
-	GroupId pulumi.StringPtrOutput `pulumi:"groupId"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	GroupId pulumi.StringPtrOutput   `pulumi:"groupId"`
+	RealmId pulumi.StringOutput      `pulumi:"realmId"`
 	RoleIds pulumi.StringArrayOutput `pulumi:"roleIds"`
 }
 
@@ -53,8 +53,8 @@ func GetGroupRoles(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GroupRoles resources.
 type groupRolesState struct {
-	GroupId *string `pulumi:"groupId"`
-	RealmId *string `pulumi:"realmId"`
+	GroupId *string  `pulumi:"groupId"`
+	RealmId *string  `pulumi:"realmId"`
 	RoleIds []string `pulumi:"roleIds"`
 }
 
@@ -69,8 +69,8 @@ func (GroupRolesState) ElementType() reflect.Type {
 }
 
 type groupRolesArgs struct {
-	GroupId *string `pulumi:"groupId"`
-	RealmId string `pulumi:"realmId"`
+	GroupId *string  `pulumi:"groupId"`
+	RealmId string   `pulumi:"realmId"`
 	RoleIds []string `pulumi:"roleIds"`
 }
 
@@ -84,4 +84,3 @@ type GroupRolesArgs struct {
 func (GroupRolesArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupRolesArgs)(nil)).Elem()
 }
-

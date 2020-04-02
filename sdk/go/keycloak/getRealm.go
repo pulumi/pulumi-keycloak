@@ -35,58 +35,56 @@ func LookupRealm(ctx *pulumi.Context, args *LookupRealmArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getRealm.
 type LookupRealmArgs struct {
-	Attributes map[string]interface{} `pulumi:"attributes"`
-	DisplayNameHtml *string `pulumi:"displayNameHtml"`
+	Attributes            map[string]interface{}         `pulumi:"attributes"`
+	DisplayNameHtml       *string                        `pulumi:"displayNameHtml"`
 	Internationalizations []GetRealmInternationalization `pulumi:"internationalizations"`
-	Realm string `pulumi:"realm"`
-	SecurityDefenses []GetRealmSecurityDefense `pulumi:"securityDefenses"`
-	SmtpServers []GetRealmSmtpServer `pulumi:"smtpServers"`
+	Realm                 string                         `pulumi:"realm"`
+	SecurityDefenses      []GetRealmSecurityDefense      `pulumi:"securityDefenses"`
+	SmtpServers           []GetRealmSmtpServer           `pulumi:"smtpServers"`
 }
-
 
 // A collection of values returned by getRealm.
 type LookupRealmResult struct {
-	AccessCodeLifespan string `pulumi:"accessCodeLifespan"`
-	AccessCodeLifespanLogin string `pulumi:"accessCodeLifespanLogin"`
-	AccessCodeLifespanUserAction string `pulumi:"accessCodeLifespanUserAction"`
-	AccessTokenLifespan string `pulumi:"accessTokenLifespan"`
-	AccessTokenLifespanForImplicitFlow string `pulumi:"accessTokenLifespanForImplicitFlow"`
-	AccountTheme string `pulumi:"accountTheme"`
-	ActionTokenGeneratedByAdminLifespan string `pulumi:"actionTokenGeneratedByAdminLifespan"`
-	ActionTokenGeneratedByUserLifespan string `pulumi:"actionTokenGeneratedByUserLifespan"`
-	AdminTheme string `pulumi:"adminTheme"`
-	Attributes map[string]interface{} `pulumi:"attributes"`
-	BrowserFlow string `pulumi:"browserFlow"`
-	ClientAuthenticationFlow string `pulumi:"clientAuthenticationFlow"`
-	DirectGrantFlow string `pulumi:"directGrantFlow"`
-	DisplayName string `pulumi:"displayName"`
-	DisplayNameHtml *string `pulumi:"displayNameHtml"`
-	DockerAuthenticationFlow string `pulumi:"dockerAuthenticationFlow"`
-	DuplicateEmailsAllowed bool `pulumi:"duplicateEmailsAllowed"`
-	EditUsernameAllowed bool `pulumi:"editUsernameAllowed"`
-	EmailTheme string `pulumi:"emailTheme"`
-	Enabled bool `pulumi:"enabled"`
+	AccessCodeLifespan                  string                 `pulumi:"accessCodeLifespan"`
+	AccessCodeLifespanLogin             string                 `pulumi:"accessCodeLifespanLogin"`
+	AccessCodeLifespanUserAction        string                 `pulumi:"accessCodeLifespanUserAction"`
+	AccessTokenLifespan                 string                 `pulumi:"accessTokenLifespan"`
+	AccessTokenLifespanForImplicitFlow  string                 `pulumi:"accessTokenLifespanForImplicitFlow"`
+	AccountTheme                        string                 `pulumi:"accountTheme"`
+	ActionTokenGeneratedByAdminLifespan string                 `pulumi:"actionTokenGeneratedByAdminLifespan"`
+	ActionTokenGeneratedByUserLifespan  string                 `pulumi:"actionTokenGeneratedByUserLifespan"`
+	AdminTheme                          string                 `pulumi:"adminTheme"`
+	Attributes                          map[string]interface{} `pulumi:"attributes"`
+	BrowserFlow                         string                 `pulumi:"browserFlow"`
+	ClientAuthenticationFlow            string                 `pulumi:"clientAuthenticationFlow"`
+	DirectGrantFlow                     string                 `pulumi:"directGrantFlow"`
+	DisplayName                         string                 `pulumi:"displayName"`
+	DisplayNameHtml                     *string                `pulumi:"displayNameHtml"`
+	DockerAuthenticationFlow            string                 `pulumi:"dockerAuthenticationFlow"`
+	DuplicateEmailsAllowed              bool                   `pulumi:"duplicateEmailsAllowed"`
+	EditUsernameAllowed                 bool                   `pulumi:"editUsernameAllowed"`
+	EmailTheme                          string                 `pulumi:"emailTheme"`
+	Enabled                             bool                   `pulumi:"enabled"`
 	// id is the provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	Internationalizations []GetRealmInternationalization `pulumi:"internationalizations"`
-	LoginTheme string `pulumi:"loginTheme"`
-	LoginWithEmailAllowed bool `pulumi:"loginWithEmailAllowed"`
-	OfflineSessionIdleTimeout string `pulumi:"offlineSessionIdleTimeout"`
-	OfflineSessionMaxLifespan string `pulumi:"offlineSessionMaxLifespan"`
-	PasswordPolicy string `pulumi:"passwordPolicy"`
-	Realm string `pulumi:"realm"`
-	RefreshTokenMaxReuse int `pulumi:"refreshTokenMaxReuse"`
-	RegistrationAllowed bool `pulumi:"registrationAllowed"`
-	RegistrationEmailAsUsername bool `pulumi:"registrationEmailAsUsername"`
-	RegistrationFlow string `pulumi:"registrationFlow"`
-	RememberMe bool `pulumi:"rememberMe"`
-	ResetCredentialsFlow string `pulumi:"resetCredentialsFlow"`
-	ResetPasswordAllowed bool `pulumi:"resetPasswordAllowed"`
-	SecurityDefenses []GetRealmSecurityDefense `pulumi:"securityDefenses"`
-	SmtpServers []GetRealmSmtpServer `pulumi:"smtpServers"`
-	SslRequired string `pulumi:"sslRequired"`
-	SsoSessionIdleTimeout string `pulumi:"ssoSessionIdleTimeout"`
-	SsoSessionMaxLifespan string `pulumi:"ssoSessionMaxLifespan"`
-	VerifyEmail bool `pulumi:"verifyEmail"`
+	Id                          string                         `pulumi:"id"`
+	Internationalizations       []GetRealmInternationalization `pulumi:"internationalizations"`
+	LoginTheme                  string                         `pulumi:"loginTheme"`
+	LoginWithEmailAllowed       bool                           `pulumi:"loginWithEmailAllowed"`
+	OfflineSessionIdleTimeout   string                         `pulumi:"offlineSessionIdleTimeout"`
+	OfflineSessionMaxLifespan   string                         `pulumi:"offlineSessionMaxLifespan"`
+	PasswordPolicy              string                         `pulumi:"passwordPolicy"`
+	Realm                       string                         `pulumi:"realm"`
+	RefreshTokenMaxReuse        int                            `pulumi:"refreshTokenMaxReuse"`
+	RegistrationAllowed         bool                           `pulumi:"registrationAllowed"`
+	RegistrationEmailAsUsername bool                           `pulumi:"registrationEmailAsUsername"`
+	RegistrationFlow            string                         `pulumi:"registrationFlow"`
+	RememberMe                  bool                           `pulumi:"rememberMe"`
+	ResetCredentialsFlow        string                         `pulumi:"resetCredentialsFlow"`
+	ResetPasswordAllowed        bool                           `pulumi:"resetPasswordAllowed"`
+	SecurityDefenses            []GetRealmSecurityDefense      `pulumi:"securityDefenses"`
+	SmtpServers                 []GetRealmSmtpServer           `pulumi:"smtpServers"`
+	SslRequired                 string                         `pulumi:"sslRequired"`
+	SsoSessionIdleTimeout       string                         `pulumi:"ssoSessionIdleTimeout"`
+	SsoSessionMaxLifespan       string                         `pulumi:"ssoSessionMaxLifespan"`
+	VerifyEmail                 bool                           `pulumi:"verifyEmail"`
 }
-

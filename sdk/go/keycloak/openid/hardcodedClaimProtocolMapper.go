@@ -46,8 +46,8 @@ type HardcodedClaimProtocolMapper struct {
 	AddToIdToken pulumi.BoolPtrOutput `pulumi:"addToIdToken"`
 	// Indicates if the attribute should appear in the userinfo response body.
 	AddToUserinfo pulumi.BoolPtrOutput `pulumi:"addToUserinfo"`
-	ClaimName pulumi.StringOutput `pulumi:"claimName"`
-	ClaimValue pulumi.StringOutput `pulumi:"claimValue"`
+	ClaimName     pulumi.StringOutput  `pulumi:"claimName"`
+	ClaimValue    pulumi.StringOutput  `pulumi:"claimValue"`
 	// Claim type used when serializing tokens.
 	ClaimValueType pulumi.StringPtrOutput `pulumi:"claimValueType"`
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
@@ -102,9 +102,9 @@ type hardcodedClaimProtocolMapperState struct {
 	// Indicates if the attribute should be a claim in the id token.
 	AddToIdToken *bool `pulumi:"addToIdToken"`
 	// Indicates if the attribute should appear in the userinfo response body.
-	AddToUserinfo *bool `pulumi:"addToUserinfo"`
-	ClaimName *string `pulumi:"claimName"`
-	ClaimValue *string `pulumi:"claimValue"`
+	AddToUserinfo *bool   `pulumi:"addToUserinfo"`
+	ClaimName     *string `pulumi:"claimName"`
+	ClaimValue    *string `pulumi:"claimValue"`
 	// Claim type used when serializing tokens.
 	ClaimValueType *string `pulumi:"claimValueType"`
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
@@ -124,8 +124,8 @@ type HardcodedClaimProtocolMapperState struct {
 	AddToIdToken pulumi.BoolPtrInput
 	// Indicates if the attribute should appear in the userinfo response body.
 	AddToUserinfo pulumi.BoolPtrInput
-	ClaimName pulumi.StringPtrInput
-	ClaimValue pulumi.StringPtrInput
+	ClaimName     pulumi.StringPtrInput
+	ClaimValue    pulumi.StringPtrInput
 	// Claim type used when serializing tokens.
 	ClaimValueType pulumi.StringPtrInput
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
@@ -148,9 +148,9 @@ type hardcodedClaimProtocolMapperArgs struct {
 	// Indicates if the attribute should be a claim in the id token.
 	AddToIdToken *bool `pulumi:"addToIdToken"`
 	// Indicates if the attribute should appear in the userinfo response body.
-	AddToUserinfo *bool `pulumi:"addToUserinfo"`
-	ClaimName string `pulumi:"claimName"`
-	ClaimValue string `pulumi:"claimValue"`
+	AddToUserinfo *bool  `pulumi:"addToUserinfo"`
+	ClaimName     string `pulumi:"claimName"`
+	ClaimValue    string `pulumi:"claimValue"`
 	// Claim type used when serializing tokens.
 	ClaimValueType *string `pulumi:"claimValueType"`
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
@@ -171,8 +171,8 @@ type HardcodedClaimProtocolMapperArgs struct {
 	AddToIdToken pulumi.BoolPtrInput
 	// Indicates if the attribute should appear in the userinfo response body.
 	AddToUserinfo pulumi.BoolPtrInput
-	ClaimName pulumi.StringInput
-	ClaimValue pulumi.StringInput
+	ClaimName     pulumi.StringInput
+	ClaimValue    pulumi.StringInput
 	// Claim type used when serializing tokens.
 	ClaimValueType pulumi.StringPtrInput
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
@@ -188,4 +188,3 @@ type HardcodedClaimProtocolMapperArgs struct {
 func (HardcodedClaimProtocolMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*hardcodedClaimProtocolMapperArgs)(nil)).Elem()
 }
-

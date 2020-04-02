@@ -46,25 +46,25 @@ import (
 type GroupMapper struct {
 	pulumi.CustomResourceState
 
-	DropNonExistingGroupsDuringSync pulumi.BoolPtrOutput `pulumi:"dropNonExistingGroupsDuringSync"`
-	GroupNameLdapAttribute pulumi.StringOutput `pulumi:"groupNameLdapAttribute"`
-	GroupObjectClasses pulumi.StringArrayOutput `pulumi:"groupObjectClasses"`
-	GroupsLdapFilter pulumi.StringPtrOutput `pulumi:"groupsLdapFilter"`
-	IgnoreMissingGroups pulumi.BoolPtrOutput `pulumi:"ignoreMissingGroups"`
-	LdapGroupsDn pulumi.StringOutput `pulumi:"ldapGroupsDn"`
+	DropNonExistingGroupsDuringSync pulumi.BoolPtrOutput     `pulumi:"dropNonExistingGroupsDuringSync"`
+	GroupNameLdapAttribute          pulumi.StringOutput      `pulumi:"groupNameLdapAttribute"`
+	GroupObjectClasses              pulumi.StringArrayOutput `pulumi:"groupObjectClasses"`
+	GroupsLdapFilter                pulumi.StringPtrOutput   `pulumi:"groupsLdapFilter"`
+	IgnoreMissingGroups             pulumi.BoolPtrOutput     `pulumi:"ignoreMissingGroups"`
+	LdapGroupsDn                    pulumi.StringOutput      `pulumi:"ldapGroupsDn"`
 	// The ldap user federation provider to attach this mapper to.
-	LdapUserFederationId pulumi.StringOutput `pulumi:"ldapUserFederationId"`
-	MappedGroupAttributes pulumi.StringArrayOutput `pulumi:"mappedGroupAttributes"`
-	MemberofLdapAttribute pulumi.StringPtrOutput `pulumi:"memberofLdapAttribute"`
-	MembershipAttributeType pulumi.StringPtrOutput `pulumi:"membershipAttributeType"`
-	MembershipLdapAttribute pulumi.StringOutput `pulumi:"membershipLdapAttribute"`
-	MembershipUserLdapAttribute pulumi.StringOutput `pulumi:"membershipUserLdapAttribute"`
-	Mode pulumi.StringPtrOutput `pulumi:"mode"`
+	LdapUserFederationId        pulumi.StringOutput      `pulumi:"ldapUserFederationId"`
+	MappedGroupAttributes       pulumi.StringArrayOutput `pulumi:"mappedGroupAttributes"`
+	MemberofLdapAttribute       pulumi.StringPtrOutput   `pulumi:"memberofLdapAttribute"`
+	MembershipAttributeType     pulumi.StringPtrOutput   `pulumi:"membershipAttributeType"`
+	MembershipLdapAttribute     pulumi.StringOutput      `pulumi:"membershipLdapAttribute"`
+	MembershipUserLdapAttribute pulumi.StringOutput      `pulumi:"membershipUserLdapAttribute"`
+	Mode                        pulumi.StringPtrOutput   `pulumi:"mode"`
 	// Display name of the mapper when displayed in the console.
-	Name pulumi.StringOutput `pulumi:"name"`
+	Name                     pulumi.StringOutput  `pulumi:"name"`
 	PreserveGroupInheritance pulumi.BoolPtrOutput `pulumi:"preserveGroupInheritance"`
 	// The realm in which the ldap user federation provider exists.
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	RealmId                   pulumi.StringOutput    `pulumi:"realmId"`
 	UserRolesRetrieveStrategy pulumi.StringPtrOutput `pulumi:"userRolesRetrieveStrategy"`
 }
 
@@ -117,48 +117,48 @@ func GetGroupMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GroupMapper resources.
 type groupMapperState struct {
-	DropNonExistingGroupsDuringSync *bool `pulumi:"dropNonExistingGroupsDuringSync"`
-	GroupNameLdapAttribute *string `pulumi:"groupNameLdapAttribute"`
-	GroupObjectClasses []string `pulumi:"groupObjectClasses"`
-	GroupsLdapFilter *string `pulumi:"groupsLdapFilter"`
-	IgnoreMissingGroups *bool `pulumi:"ignoreMissingGroups"`
-	LdapGroupsDn *string `pulumi:"ldapGroupsDn"`
+	DropNonExistingGroupsDuringSync *bool    `pulumi:"dropNonExistingGroupsDuringSync"`
+	GroupNameLdapAttribute          *string  `pulumi:"groupNameLdapAttribute"`
+	GroupObjectClasses              []string `pulumi:"groupObjectClasses"`
+	GroupsLdapFilter                *string  `pulumi:"groupsLdapFilter"`
+	IgnoreMissingGroups             *bool    `pulumi:"ignoreMissingGroups"`
+	LdapGroupsDn                    *string  `pulumi:"ldapGroupsDn"`
 	// The ldap user federation provider to attach this mapper to.
-	LdapUserFederationId *string `pulumi:"ldapUserFederationId"`
-	MappedGroupAttributes []string `pulumi:"mappedGroupAttributes"`
-	MemberofLdapAttribute *string `pulumi:"memberofLdapAttribute"`
-	MembershipAttributeType *string `pulumi:"membershipAttributeType"`
-	MembershipLdapAttribute *string `pulumi:"membershipLdapAttribute"`
-	MembershipUserLdapAttribute *string `pulumi:"membershipUserLdapAttribute"`
-	Mode *string `pulumi:"mode"`
+	LdapUserFederationId        *string  `pulumi:"ldapUserFederationId"`
+	MappedGroupAttributes       []string `pulumi:"mappedGroupAttributes"`
+	MemberofLdapAttribute       *string  `pulumi:"memberofLdapAttribute"`
+	MembershipAttributeType     *string  `pulumi:"membershipAttributeType"`
+	MembershipLdapAttribute     *string  `pulumi:"membershipLdapAttribute"`
+	MembershipUserLdapAttribute *string  `pulumi:"membershipUserLdapAttribute"`
+	Mode                        *string  `pulumi:"mode"`
 	// Display name of the mapper when displayed in the console.
-	Name *string `pulumi:"name"`
-	PreserveGroupInheritance *bool `pulumi:"preserveGroupInheritance"`
+	Name                     *string `pulumi:"name"`
+	PreserveGroupInheritance *bool   `pulumi:"preserveGroupInheritance"`
 	// The realm in which the ldap user federation provider exists.
-	RealmId *string `pulumi:"realmId"`
+	RealmId                   *string `pulumi:"realmId"`
 	UserRolesRetrieveStrategy *string `pulumi:"userRolesRetrieveStrategy"`
 }
 
 type GroupMapperState struct {
 	DropNonExistingGroupsDuringSync pulumi.BoolPtrInput
-	GroupNameLdapAttribute pulumi.StringPtrInput
-	GroupObjectClasses pulumi.StringArrayInput
-	GroupsLdapFilter pulumi.StringPtrInput
-	IgnoreMissingGroups pulumi.BoolPtrInput
-	LdapGroupsDn pulumi.StringPtrInput
+	GroupNameLdapAttribute          pulumi.StringPtrInput
+	GroupObjectClasses              pulumi.StringArrayInput
+	GroupsLdapFilter                pulumi.StringPtrInput
+	IgnoreMissingGroups             pulumi.BoolPtrInput
+	LdapGroupsDn                    pulumi.StringPtrInput
 	// The ldap user federation provider to attach this mapper to.
-	LdapUserFederationId pulumi.StringPtrInput
-	MappedGroupAttributes pulumi.StringArrayInput
-	MemberofLdapAttribute pulumi.StringPtrInput
-	MembershipAttributeType pulumi.StringPtrInput
-	MembershipLdapAttribute pulumi.StringPtrInput
+	LdapUserFederationId        pulumi.StringPtrInput
+	MappedGroupAttributes       pulumi.StringArrayInput
+	MemberofLdapAttribute       pulumi.StringPtrInput
+	MembershipAttributeType     pulumi.StringPtrInput
+	MembershipLdapAttribute     pulumi.StringPtrInput
 	MembershipUserLdapAttribute pulumi.StringPtrInput
-	Mode pulumi.StringPtrInput
+	Mode                        pulumi.StringPtrInput
 	// Display name of the mapper when displayed in the console.
-	Name pulumi.StringPtrInput
+	Name                     pulumi.StringPtrInput
 	PreserveGroupInheritance pulumi.BoolPtrInput
 	// The realm in which the ldap user federation provider exists.
-	RealmId pulumi.StringPtrInput
+	RealmId                   pulumi.StringPtrInput
 	UserRolesRetrieveStrategy pulumi.StringPtrInput
 }
 
@@ -167,53 +167,52 @@ func (GroupMapperState) ElementType() reflect.Type {
 }
 
 type groupMapperArgs struct {
-	DropNonExistingGroupsDuringSync *bool `pulumi:"dropNonExistingGroupsDuringSync"`
-	GroupNameLdapAttribute string `pulumi:"groupNameLdapAttribute"`
-	GroupObjectClasses []string `pulumi:"groupObjectClasses"`
-	GroupsLdapFilter *string `pulumi:"groupsLdapFilter"`
-	IgnoreMissingGroups *bool `pulumi:"ignoreMissingGroups"`
-	LdapGroupsDn string `pulumi:"ldapGroupsDn"`
+	DropNonExistingGroupsDuringSync *bool    `pulumi:"dropNonExistingGroupsDuringSync"`
+	GroupNameLdapAttribute          string   `pulumi:"groupNameLdapAttribute"`
+	GroupObjectClasses              []string `pulumi:"groupObjectClasses"`
+	GroupsLdapFilter                *string  `pulumi:"groupsLdapFilter"`
+	IgnoreMissingGroups             *bool    `pulumi:"ignoreMissingGroups"`
+	LdapGroupsDn                    string   `pulumi:"ldapGroupsDn"`
 	// The ldap user federation provider to attach this mapper to.
-	LdapUserFederationId string `pulumi:"ldapUserFederationId"`
-	MappedGroupAttributes []string `pulumi:"mappedGroupAttributes"`
-	MemberofLdapAttribute *string `pulumi:"memberofLdapAttribute"`
-	MembershipAttributeType *string `pulumi:"membershipAttributeType"`
-	MembershipLdapAttribute string `pulumi:"membershipLdapAttribute"`
-	MembershipUserLdapAttribute string `pulumi:"membershipUserLdapAttribute"`
-	Mode *string `pulumi:"mode"`
+	LdapUserFederationId        string   `pulumi:"ldapUserFederationId"`
+	MappedGroupAttributes       []string `pulumi:"mappedGroupAttributes"`
+	MemberofLdapAttribute       *string  `pulumi:"memberofLdapAttribute"`
+	MembershipAttributeType     *string  `pulumi:"membershipAttributeType"`
+	MembershipLdapAttribute     string   `pulumi:"membershipLdapAttribute"`
+	MembershipUserLdapAttribute string   `pulumi:"membershipUserLdapAttribute"`
+	Mode                        *string  `pulumi:"mode"`
 	// Display name of the mapper when displayed in the console.
-	Name *string `pulumi:"name"`
-	PreserveGroupInheritance *bool `pulumi:"preserveGroupInheritance"`
+	Name                     *string `pulumi:"name"`
+	PreserveGroupInheritance *bool   `pulumi:"preserveGroupInheritance"`
 	// The realm in which the ldap user federation provider exists.
-	RealmId string `pulumi:"realmId"`
+	RealmId                   string  `pulumi:"realmId"`
 	UserRolesRetrieveStrategy *string `pulumi:"userRolesRetrieveStrategy"`
 }
 
 // The set of arguments for constructing a GroupMapper resource.
 type GroupMapperArgs struct {
 	DropNonExistingGroupsDuringSync pulumi.BoolPtrInput
-	GroupNameLdapAttribute pulumi.StringInput
-	GroupObjectClasses pulumi.StringArrayInput
-	GroupsLdapFilter pulumi.StringPtrInput
-	IgnoreMissingGroups pulumi.BoolPtrInput
-	LdapGroupsDn pulumi.StringInput
+	GroupNameLdapAttribute          pulumi.StringInput
+	GroupObjectClasses              pulumi.StringArrayInput
+	GroupsLdapFilter                pulumi.StringPtrInput
+	IgnoreMissingGroups             pulumi.BoolPtrInput
+	LdapGroupsDn                    pulumi.StringInput
 	// The ldap user federation provider to attach this mapper to.
-	LdapUserFederationId pulumi.StringInput
-	MappedGroupAttributes pulumi.StringArrayInput
-	MemberofLdapAttribute pulumi.StringPtrInput
-	MembershipAttributeType pulumi.StringPtrInput
-	MembershipLdapAttribute pulumi.StringInput
+	LdapUserFederationId        pulumi.StringInput
+	MappedGroupAttributes       pulumi.StringArrayInput
+	MemberofLdapAttribute       pulumi.StringPtrInput
+	MembershipAttributeType     pulumi.StringPtrInput
+	MembershipLdapAttribute     pulumi.StringInput
 	MembershipUserLdapAttribute pulumi.StringInput
-	Mode pulumi.StringPtrInput
+	Mode                        pulumi.StringPtrInput
 	// Display name of the mapper when displayed in the console.
-	Name pulumi.StringPtrInput
+	Name                     pulumi.StringPtrInput
 	PreserveGroupInheritance pulumi.BoolPtrInput
 	// The realm in which the ldap user federation provider exists.
-	RealmId pulumi.StringInput
+	RealmId                   pulumi.StringInput
 	UserRolesRetrieveStrategy pulumi.StringPtrInput
 }
 
 func (GroupMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupMapperArgs)(nil)).Elem()
 }
-

@@ -14,13 +14,13 @@ import (
 type ClientUserPolicy struct {
 	pulumi.CustomResourceState
 
-	DecisionStrategy pulumi.StringOutput `pulumi:"decisionStrategy"`
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	Logic pulumi.StringPtrOutput `pulumi:"logic"`
-	Name pulumi.StringOutput `pulumi:"name"`
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	ResourceServerId pulumi.StringOutput `pulumi:"resourceServerId"`
-	Users pulumi.StringArrayOutput `pulumi:"users"`
+	DecisionStrategy pulumi.StringOutput      `pulumi:"decisionStrategy"`
+	Description      pulumi.StringPtrOutput   `pulumi:"description"`
+	Logic            pulumi.StringPtrOutput   `pulumi:"logic"`
+	Name             pulumi.StringOutput      `pulumi:"name"`
+	RealmId          pulumi.StringOutput      `pulumi:"realmId"`
+	ResourceServerId pulumi.StringOutput      `pulumi:"resourceServerId"`
+	Users            pulumi.StringArrayOutput `pulumi:"users"`
 }
 
 // NewClientUserPolicy registers a new resource with the given unique name, arguments, and options.
@@ -63,23 +63,23 @@ func GetClientUserPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ClientUserPolicy resources.
 type clientUserPolicyState struct {
-	DecisionStrategy *string `pulumi:"decisionStrategy"`
-	Description *string `pulumi:"description"`
-	Logic *string `pulumi:"logic"`
-	Name *string `pulumi:"name"`
-	RealmId *string `pulumi:"realmId"`
-	ResourceServerId *string `pulumi:"resourceServerId"`
-	Users []string `pulumi:"users"`
+	DecisionStrategy *string  `pulumi:"decisionStrategy"`
+	Description      *string  `pulumi:"description"`
+	Logic            *string  `pulumi:"logic"`
+	Name             *string  `pulumi:"name"`
+	RealmId          *string  `pulumi:"realmId"`
+	ResourceServerId *string  `pulumi:"resourceServerId"`
+	Users            []string `pulumi:"users"`
 }
 
 type ClientUserPolicyState struct {
 	DecisionStrategy pulumi.StringPtrInput
-	Description pulumi.StringPtrInput
-	Logic pulumi.StringPtrInput
-	Name pulumi.StringPtrInput
-	RealmId pulumi.StringPtrInput
+	Description      pulumi.StringPtrInput
+	Logic            pulumi.StringPtrInput
+	Name             pulumi.StringPtrInput
+	RealmId          pulumi.StringPtrInput
 	ResourceServerId pulumi.StringPtrInput
-	Users pulumi.StringArrayInput
+	Users            pulumi.StringArrayInput
 }
 
 func (ClientUserPolicyState) ElementType() reflect.Type {
@@ -87,27 +87,26 @@ func (ClientUserPolicyState) ElementType() reflect.Type {
 }
 
 type clientUserPolicyArgs struct {
-	DecisionStrategy string `pulumi:"decisionStrategy"`
-	Description *string `pulumi:"description"`
-	Logic *string `pulumi:"logic"`
-	Name *string `pulumi:"name"`
-	RealmId string `pulumi:"realmId"`
-	ResourceServerId string `pulumi:"resourceServerId"`
-	Users []string `pulumi:"users"`
+	DecisionStrategy string   `pulumi:"decisionStrategy"`
+	Description      *string  `pulumi:"description"`
+	Logic            *string  `pulumi:"logic"`
+	Name             *string  `pulumi:"name"`
+	RealmId          string   `pulumi:"realmId"`
+	ResourceServerId string   `pulumi:"resourceServerId"`
+	Users            []string `pulumi:"users"`
 }
 
 // The set of arguments for constructing a ClientUserPolicy resource.
 type ClientUserPolicyArgs struct {
 	DecisionStrategy pulumi.StringInput
-	Description pulumi.StringPtrInput
-	Logic pulumi.StringPtrInput
-	Name pulumi.StringPtrInput
-	RealmId pulumi.StringInput
+	Description      pulumi.StringPtrInput
+	Logic            pulumi.StringPtrInput
+	Name             pulumi.StringPtrInput
+	RealmId          pulumi.StringInput
 	ResourceServerId pulumi.StringInput
-	Users pulumi.StringArrayInput
+	Users            pulumi.StringArrayInput
 }
 
 func (ClientUserPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientUserPolicyArgs)(nil)).Elem()
 }
-

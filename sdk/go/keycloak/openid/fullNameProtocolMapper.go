@@ -38,8 +38,8 @@ type FullNameProtocolMapper struct {
 	pulumi.CustomResourceState
 
 	AddToAccessToken pulumi.BoolPtrOutput `pulumi:"addToAccessToken"`
-	AddToIdToken pulumi.BoolPtrOutput `pulumi:"addToIdToken"`
-	AddToUserinfo pulumi.BoolPtrOutput `pulumi:"addToUserinfo"`
+	AddToIdToken     pulumi.BoolPtrOutput `pulumi:"addToIdToken"`
+	AddToUserinfo    pulumi.BoolPtrOutput `pulumi:"addToUserinfo"`
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
 	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
@@ -82,8 +82,8 @@ func GetFullNameProtocolMapper(ctx *pulumi.Context,
 // Input properties used for looking up and filtering FullNameProtocolMapper resources.
 type fullNameProtocolMapperState struct {
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`
-	AddToIdToken *bool `pulumi:"addToIdToken"`
-	AddToUserinfo *bool `pulumi:"addToUserinfo"`
+	AddToIdToken     *bool `pulumi:"addToIdToken"`
+	AddToUserinfo    *bool `pulumi:"addToUserinfo"`
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
 	ClientId *string `pulumi:"clientId"`
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
@@ -96,8 +96,8 @@ type fullNameProtocolMapperState struct {
 
 type FullNameProtocolMapperState struct {
 	AddToAccessToken pulumi.BoolPtrInput
-	AddToIdToken pulumi.BoolPtrInput
-	AddToUserinfo pulumi.BoolPtrInput
+	AddToIdToken     pulumi.BoolPtrInput
+	AddToUserinfo    pulumi.BoolPtrInput
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
 	ClientId pulumi.StringPtrInput
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
@@ -114,8 +114,8 @@ func (FullNameProtocolMapperState) ElementType() reflect.Type {
 
 type fullNameProtocolMapperArgs struct {
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`
-	AddToIdToken *bool `pulumi:"addToIdToken"`
-	AddToUserinfo *bool `pulumi:"addToUserinfo"`
+	AddToIdToken     *bool `pulumi:"addToIdToken"`
+	AddToUserinfo    *bool `pulumi:"addToUserinfo"`
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
 	ClientId *string `pulumi:"clientId"`
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
@@ -129,8 +129,8 @@ type fullNameProtocolMapperArgs struct {
 // The set of arguments for constructing a FullNameProtocolMapper resource.
 type FullNameProtocolMapperArgs struct {
 	AddToAccessToken pulumi.BoolPtrInput
-	AddToIdToken pulumi.BoolPtrInput
-	AddToUserinfo pulumi.BoolPtrInput
+	AddToIdToken     pulumi.BoolPtrInput
+	AddToUserinfo    pulumi.BoolPtrInput
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
 	ClientId pulumi.StringPtrInput
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
@@ -144,4 +144,3 @@ type FullNameProtocolMapperArgs struct {
 func (FullNameProtocolMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*fullNameProtocolMapperArgs)(nil)).Elem()
 }
-

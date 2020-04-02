@@ -21,7 +21,7 @@ import (
 // - `clientId` - (Optional) When specified, this role is assumed to be a
 //   client role belonging to the client with the provided ID
 // - `name` - (Required) The name of the role
-//   
+//
 // ### Attributes Reference
 //
 // In addition to the arguments listed above, the following computed attributes are exported:
@@ -43,18 +43,16 @@ func LookupRole(ctx *pulumi.Context, args *LookupRoleArgs, opts ...pulumi.Invoke
 // A collection of arguments for invoking getRole.
 type LookupRoleArgs struct {
 	ClientId *string `pulumi:"clientId"`
-	Name string `pulumi:"name"`
-	RealmId string `pulumi:"realmId"`
+	Name     string  `pulumi:"name"`
+	RealmId  string  `pulumi:"realmId"`
 }
-
 
 // A collection of values returned by getRole.
 type LookupRoleResult struct {
-	ClientId *string `pulumi:"clientId"`
-	Description string `pulumi:"description"`
+	ClientId    *string `pulumi:"clientId"`
+	Description string  `pulumi:"description"`
 	// id is the provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	Name string `pulumi:"name"`
+	Id      string `pulumi:"id"`
+	Name    string `pulumi:"name"`
 	RealmId string `pulumi:"realmId"`
 }
-

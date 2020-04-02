@@ -11,7 +11,13 @@ namespace Pulumi.Keycloak.OpenId
 {
     public static partial class Invokes
     {
+        [Obsolete("Use GetClientServiceAccountUser.InvokeAsync() instead")]
         public static Task<GetClientServiceAccountUserResult> GetClientServiceAccountUser(GetClientServiceAccountUserArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetClientServiceAccountUserResult>("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetClientServiceAccountUser
+    {
+        public static Task<GetClientServiceAccountUserResult> InvokeAsync(GetClientServiceAccountUserArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetClientServiceAccountUserResult>("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 
