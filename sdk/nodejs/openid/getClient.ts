@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  *
  * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_openid_client.html.markdown.
  */
-export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Promise<GetClientResult> & GetClientResult {
+export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Promise<GetClientResult> {
     if (!opts) {
         opts = {}
     }
@@ -32,12 +32,10 @@ export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Pro
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetClientResult> = pulumi.runtime.invoke("keycloak:openid/getClient:getClient", {
+    return pulumi.runtime.invoke("keycloak:openid/getClient:getClient", {
         "clientId": args.clientId,
         "realmId": args.realmId,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

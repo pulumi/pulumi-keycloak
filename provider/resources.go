@@ -244,6 +244,7 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_openid_client_service_account_user": {Tok: makeDataSource(openIDMod, "getClientServiceAccountUser")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
+			AsyncDataSources: true,
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^2.0.0-beta.2",

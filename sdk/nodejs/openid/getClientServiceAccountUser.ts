@@ -6,7 +6,7 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-export function getClientServiceAccountUser(args: GetClientServiceAccountUserArgs, opts?: pulumi.InvokeOptions): Promise<GetClientServiceAccountUserResult> & GetClientServiceAccountUserResult {
+export function getClientServiceAccountUser(args: GetClientServiceAccountUserArgs, opts?: pulumi.InvokeOptions): Promise<GetClientServiceAccountUserResult> {
     if (!opts) {
         opts = {}
     }
@@ -14,12 +14,10 @@ export function getClientServiceAccountUser(args: GetClientServiceAccountUserArg
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetClientServiceAccountUserResult> = pulumi.runtime.invoke("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", {
+    return pulumi.runtime.invoke("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", {
         "clientId": args.clientId,
         "realmId": args.realmId,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

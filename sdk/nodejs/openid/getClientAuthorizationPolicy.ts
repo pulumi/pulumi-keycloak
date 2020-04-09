@@ -6,7 +6,7 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-export function getClientAuthorizationPolicy(args: GetClientAuthorizationPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetClientAuthorizationPolicyResult> & GetClientAuthorizationPolicyResult {
+export function getClientAuthorizationPolicy(args: GetClientAuthorizationPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetClientAuthorizationPolicyResult> {
     if (!opts) {
         opts = {}
     }
@@ -14,14 +14,12 @@ export function getClientAuthorizationPolicy(args: GetClientAuthorizationPolicyA
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetClientAuthorizationPolicyResult> = pulumi.runtime.invoke("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", {
+    return pulumi.runtime.invoke("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", {
         "logic": args.logic,
         "name": args.name,
         "realmId": args.realmId,
         "resourceServerId": args.resourceServerId,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

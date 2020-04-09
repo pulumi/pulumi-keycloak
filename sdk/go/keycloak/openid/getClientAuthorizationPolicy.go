@@ -5,7 +5,7 @@
 package openid
 
 import (
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 func GetClientAuthorizationPolicy(ctx *pulumi.Context, args *GetClientAuthorizationPolicyArgs, opts ...pulumi.InvokeOption) (*GetClientAuthorizationPolicyResult, error) {
