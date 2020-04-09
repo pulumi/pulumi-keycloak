@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-keycloak/provider
+module github.com/pulumi/pulumi-keycloak/provider/v2
 
 go 1.13
 
@@ -11,6 +11,7 @@ replace (
 require (
 	github.com/hashicorp/terraform-plugin-sdk v1.7.0
 	github.com/mrparkers/terraform-provider-keycloak v0.0.0-00010101000000-000000000000
-	github.com/pulumi/pulumi-terraform-bridge v1.8.4
-	github.com/pulumi/pulumi/sdk v1.14.0
+	github.com/pulumi/pulumi-keycloak/provider v0.0.0-20200407182846-f0eeae522d7c // indirect
+	github.com/pulumi/pulumi-terraform-bridge/v2 v2.0.0-20200402101519-95d9d3e2b896
+	github.com/pulumi/pulumi/sdk/v2 v2.0.0-beta.2.0.20200402101052-1dbf088db686
 )

@@ -17,10 +17,10 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
 
-	keycloak "github.com/pulumi/pulumi-keycloak/provider"
-	"github.com/pulumi/pulumi-keycloak/provider/pkg/version"
+	keycloak "github.com/pulumi/pulumi-keycloak/provider/v2"
+	"github.com/pulumi/pulumi-keycloak/provider/v2/pkg/version"
 )
 
 func main() {

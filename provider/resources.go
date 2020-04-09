@@ -20,9 +20,9 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-sdk/terraform"
 	"github.com/mrparkers/terraform-provider-keycloak/provider"
-	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfbridge"
-	"github.com/pulumi/pulumi/sdk/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/go/common/tokens"
+	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
+	"github.com/pulumi/pulumi/sdk/v2/go/common/resource"
+	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
 )
 
 // all of the token components used below.
@@ -246,7 +246,7 @@ func Provider() tfbridge.ProviderInfo {
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
-				"@pulumi/pulumi": "latest",
+				"@pulumi/pulumi": "^2.0.0-beta.2",
 			},
 			DevDependencies: map[string]string{
 				"@types/node": "^8.0.25", // so we can access strongly typed node definitions.
@@ -256,12 +256,12 @@ func Provider() tfbridge.ProviderInfo {
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
-				"pulumi": ">=1.0.0,<2.0.0",
+				"pulumi": ">=2.0.0b2,<3.0.0",
 			},
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{
-				"Pulumi":                       "1.12.1-preview",
+				"Pulumi":                       "2.0.0-beta.2",
 				"System.Collections.Immutable": "1.6.0",
 			},
 			Namespaces: namespaceMap,
