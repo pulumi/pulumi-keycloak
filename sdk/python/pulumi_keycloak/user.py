@@ -44,8 +44,6 @@ class User(pulumi.CustomResource):
         - `first_name` - (Optional) The user's first name.
         - `last_name` - (Optional) The user's last name.
 
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_user.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
 

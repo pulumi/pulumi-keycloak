@@ -56,8 +56,6 @@ def get_group(name=None,realm_id=None,opts=None):
 
     - `id` - The unique ID of the group, which can be used as an argument to
       other resources supported by this provider.
-
-    > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_group.html.markdown.
     """
     __args__ = dict()
 

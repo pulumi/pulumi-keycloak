@@ -46,8 +46,6 @@ class FullNameMapper(pulumi.CustomResource):
         - `read_only` - (Optional) When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
         - `write_only` - (Optional) When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
 
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_ldap_full_name_mapper.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.

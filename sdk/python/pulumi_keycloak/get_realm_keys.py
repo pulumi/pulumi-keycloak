@@ -63,8 +63,6 @@ def get_realm_keys(algorithms=None,realm_id=None,statuses=None,opts=None):
     - `realm_id` - (Required) The realm of which the keys are retrieved.
     - `algorithms` - (Optional) When specified, keys are filtered by algorithm (values for algorithm: `HS256`, `RS256`,`AES`, ...)
     - `status` - (Optional) When specified, keys are filtered by status (values for status: `ACTIVE`, `DISABLED` and `PASSIVE`)
-
-    > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_realm_keys.html.markdown.
     """
     __args__ = dict()
 

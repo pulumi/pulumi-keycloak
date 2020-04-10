@@ -28,8 +28,6 @@ class DefaultGroups(pulumi.CustomResource):
         - `realm_id` - (Required) The realm this group exists in.
         - `group_ids` - (Required) A set of group ids that should be default groups on the realm referenced by `realm_id`.
 
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_default_groups.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """

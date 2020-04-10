@@ -50,8 +50,6 @@ class HardcodedRoleProtocolMapper(pulumi.CustomResource):
           GUI.
         - `role_id` - (Required) The ID of the role to map to an access token.
 
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_openid_hardcoded_role_protocol_mapper.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.

@@ -37,8 +37,6 @@ class Role(pulumi.CustomResource):
           composite role, composed of all roles that have an ID present within
           this list.
 
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_role.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """

@@ -165,8 +165,6 @@ class IdentityProvider(pulumi.CustomResource):
         - `signature_algorithm` - (Optional) Signing Algorithm. Defaults to empty.
         - `xml_sign_key_info_key_name_transformer` - (Optional) Sign Key Transformer. Defaults to empty.
 
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_saml_identity_provider.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] add_read_token_role_on_create: Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.

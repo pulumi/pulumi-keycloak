@@ -67,8 +67,6 @@ def get_role(client_id=None,name=None,realm_id=None,opts=None):
     - `id` - The unique ID of the role, which can be used as an argument to
       other resources supported by this provider.
     - `description` - The description of the role.
-
-    > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_role.html.markdown.
     """
     __args__ = dict()
 

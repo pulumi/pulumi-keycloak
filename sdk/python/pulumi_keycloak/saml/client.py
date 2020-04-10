@@ -75,8 +75,6 @@ class Client(pulumi.CustomResource):
         - `logout_service_redirect_binding_url` - (Optional) SAML Redirect Binding URL for the client's single logout service.
         - `full_scope_allowed` - (Optional) - Allow to include all roles mappings in the access token
 
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_saml_client.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """

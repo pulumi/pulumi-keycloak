@@ -41,8 +41,6 @@ class HardcodedRoleMapper(pulumi.CustomResource):
         - `name` - (Required) Display name of this mapper when displayed in the console.
         - `role` - (Required) The role which should be assigned to the users.
 
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_ldap_hardcoded_role_mapper.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
