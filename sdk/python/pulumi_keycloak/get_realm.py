@@ -205,8 +205,6 @@ def get_realm(attributes=None,display_name_html=None,internationalizations=None,
 
     See the docs for the `.Realm` resource for details on the exported attributes.
 
-    > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_realm.html.markdown.
-
 
 
     The **internationalizations** object supports the following:

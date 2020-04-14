@@ -36,8 +36,6 @@ class ClientScope(pulumi.CustomResource):
         authenticating to clients with this scope attached. The consent screen will display the string
         value of this attribute.
 
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_openid_client_scope.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """

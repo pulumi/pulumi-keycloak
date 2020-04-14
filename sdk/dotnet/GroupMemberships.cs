@@ -29,7 +29,7 @@ namespace Pulumi.Keycloak
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public GroupMemberships(string name, GroupMembershipsArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:index/groupMemberships:GroupMemberships", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:index/groupMemberships:GroupMemberships", name, args ?? new GroupMembershipsArgs(), MakeResourceOptions(options, ""))
         {
         }
 

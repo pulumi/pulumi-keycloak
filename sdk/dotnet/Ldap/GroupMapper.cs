@@ -40,8 +40,6 @@ namespace Pulumi.Keycloak.Ldap
     /// - `memberof_ldap_attribute` - (Optional) Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
     /// - `mapped_group_attributes` - (Optional) Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
     /// - `drop_non_existing_groups_during_sync` - (Optional) When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
-    /// 
-    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_ldap_group_mapper.html.markdown.
     /// </summary>
     public partial class GroupMapper : Pulumi.CustomResource
     {
@@ -114,7 +112,7 @@ namespace Pulumi.Keycloak.Ldap
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public GroupMapper(string name, GroupMapperArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:ldap/groupMapper:GroupMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:ldap/groupMapper:GroupMapper", name, args ?? new GroupMapperArgs(), MakeResourceOptions(options, ""))
         {
         }
 

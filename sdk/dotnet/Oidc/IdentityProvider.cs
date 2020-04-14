@@ -12,10 +12,9 @@ namespace Pulumi.Keycloak.Oidc
     public partial class IdentityProvider : Pulumi.CustomResource
     {
         /// <summary>
-        /// This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity
-        /// provider. In case that client sends a request with prompt=none and user is not yet authenticated, the error
-        /// will not be directly returned to client, but the request with prompt=none will be forwarded to this identity
-        /// provider.
+        /// This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
+        /// case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
+        /// returned to client, but the request with prompt=none will be forwarded to this identity provider.
         /// </summary>
         [Output("acceptsPromptNoneForwardFromClient")]
         public Output<bool?> AcceptsPromptNoneForwardFromClient { get; private set; } = null!;
@@ -63,8 +62,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string> ClientSecret { get; private set; } = null!;
 
         /// <summary>
-        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to
-        /// 'openid'.
+        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to 'openid'.
         /// </summary>
         [Output("defaultScopes")]
         public Output<string?> DefaultScopes { get; private set; } = null!;
@@ -85,9 +83,8 @@ namespace Pulumi.Keycloak.Oidc
         public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First
-        /// Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider
-        /// account.
+        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+        /// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
         /// </summary>
         [Output("firstBrokerLoginFlowAlias")]
         public Output<string?> FirstBrokerLoginFlowAlias { get; private set; } = null!;
@@ -111,8 +108,8 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string?> JwksUrl { get; private set; } = null!;
 
         /// <summary>
-        /// If true, users cannot log in through this provider. They can only link to this provider. This is useful if
-        /// you don't want to allow login from the provider, but want to integrate with a provider
+        /// If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
+        /// want to allow login from the provider, but want to integrate with a provider
         /// </summary>
         [Output("linkOnly")]
         public Output<bool?> LinkOnly { get; private set; } = null!;
@@ -130,11 +127,10 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string?> LogoutUrl { get; private set; } = null!;
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you
-        /// want additional verification of each user authenticated with this identity provider (for example OTP). Leave
-        /// this empty if you don't want any additional authenticators to be triggered after login with this identity
-        /// provider. Also note, that authenticator implementations must assume that user is already set in
-        /// ClientSession as identity provider already set it.
+        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
+        /// additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+        /// you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+        /// authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
         /// </summary>
         [Output("postBrokerLoginFlowAlias")]
         public Output<string?> PostBrokerLoginFlowAlias { get; private set; } = null!;
@@ -164,8 +160,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string> TokenUrl { get; private set; } = null!;
 
         /// <summary>
-        /// If enabled then email provided by this provider is not verified even if verification is enabled for the
-        /// realm.
+        /// If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
         /// </summary>
         [Output("trustEmail")]
         public Output<bool?> TrustEmail { get; private set; } = null!;
@@ -197,7 +192,7 @@ namespace Pulumi.Keycloak.Oidc
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public IdentityProvider(string name, IdentityProviderArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:oidc/identityProvider:IdentityProvider", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:oidc/identityProvider:IdentityProvider", name, args ?? new IdentityProviderArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -235,10 +230,9 @@ namespace Pulumi.Keycloak.Oidc
     public sealed class IdentityProviderArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity
-        /// provider. In case that client sends a request with prompt=none and user is not yet authenticated, the error
-        /// will not be directly returned to client, but the request with prompt=none will be forwarded to this identity
-        /// provider.
+        /// This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
+        /// case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
+        /// returned to client, but the request with prompt=none will be forwarded to this identity provider.
         /// </summary>
         [Input("acceptsPromptNoneForwardFromClient")]
         public Input<bool>? AcceptsPromptNoneForwardFromClient { get; set; }
@@ -286,8 +280,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string> ClientSecret { get; set; } = null!;
 
         /// <summary>
-        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to
-        /// 'openid'.
+        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to 'openid'.
         /// </summary>
         [Input("defaultScopes")]
         public Input<string>? DefaultScopes { get; set; }
@@ -313,9 +306,8 @@ namespace Pulumi.Keycloak.Oidc
         }
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First
-        /// Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider
-        /// account.
+        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+        /// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
         /// </summary>
         [Input("firstBrokerLoginFlowAlias")]
         public Input<string>? FirstBrokerLoginFlowAlias { get; set; }
@@ -333,8 +325,8 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? JwksUrl { get; set; }
 
         /// <summary>
-        /// If true, users cannot log in through this provider. They can only link to this provider. This is useful if
-        /// you don't want to allow login from the provider, but want to integrate with a provider
+        /// If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
+        /// want to allow login from the provider, but want to integrate with a provider
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
@@ -352,11 +344,10 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? LogoutUrl { get; set; }
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you
-        /// want additional verification of each user authenticated with this identity provider (for example OTP). Leave
-        /// this empty if you don't want any additional authenticators to be triggered after login with this identity
-        /// provider. Also note, that authenticator implementations must assume that user is already set in
-        /// ClientSession as identity provider already set it.
+        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
+        /// additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+        /// you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+        /// authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
         /// </summary>
         [Input("postBrokerLoginFlowAlias")]
         public Input<string>? PostBrokerLoginFlowAlias { get; set; }
@@ -386,8 +377,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string> TokenUrl { get; set; } = null!;
 
         /// <summary>
-        /// If enabled then email provided by this provider is not verified even if verification is enabled for the
-        /// realm.
+        /// If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
         /// </summary>
         [Input("trustEmail")]
         public Input<bool>? TrustEmail { get; set; }
@@ -418,10 +408,9 @@ namespace Pulumi.Keycloak.Oidc
     public sealed class IdentityProviderState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity
-        /// provider. In case that client sends a request with prompt=none and user is not yet authenticated, the error
-        /// will not be directly returned to client, but the request with prompt=none will be forwarded to this identity
-        /// provider.
+        /// This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
+        /// case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
+        /// returned to client, but the request with prompt=none will be forwarded to this identity provider.
         /// </summary>
         [Input("acceptsPromptNoneForwardFromClient")]
         public Input<bool>? AcceptsPromptNoneForwardFromClient { get; set; }
@@ -469,8 +458,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? ClientSecret { get; set; }
 
         /// <summary>
-        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to
-        /// 'openid'.
+        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to 'openid'.
         /// </summary>
         [Input("defaultScopes")]
         public Input<string>? DefaultScopes { get; set; }
@@ -496,9 +484,8 @@ namespace Pulumi.Keycloak.Oidc
         }
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First
-        /// Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider
-        /// account.
+        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+        /// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
         /// </summary>
         [Input("firstBrokerLoginFlowAlias")]
         public Input<string>? FirstBrokerLoginFlowAlias { get; set; }
@@ -522,8 +509,8 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? JwksUrl { get; set; }
 
         /// <summary>
-        /// If true, users cannot log in through this provider. They can only link to this provider. This is useful if
-        /// you don't want to allow login from the provider, but want to integrate with a provider
+        /// If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
+        /// want to allow login from the provider, but want to integrate with a provider
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
@@ -541,11 +528,10 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? LogoutUrl { get; set; }
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you
-        /// want additional verification of each user authenticated with this identity provider (for example OTP). Leave
-        /// this empty if you don't want any additional authenticators to be triggered after login with this identity
-        /// provider. Also note, that authenticator implementations must assume that user is already set in
-        /// ClientSession as identity provider already set it.
+        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
+        /// additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+        /// you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+        /// authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
         /// </summary>
         [Input("postBrokerLoginFlowAlias")]
         public Input<string>? PostBrokerLoginFlowAlias { get; set; }
@@ -575,8 +561,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? TokenUrl { get; set; }
 
         /// <summary>
-        /// If enabled then email provided by this provider is not verified even if verification is enabled for the
-        /// realm.
+        /// If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
         /// </summary>
         [Input("trustEmail")]
         public Input<bool>? TrustEmail { get; set; }

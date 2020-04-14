@@ -32,8 +32,6 @@ namespace Pulumi.Keycloak
     /// - `email` - (Optional) The user's email.
     /// - `first_name` - (Optional) The user's first name.
     /// - `last_name` - (Optional) The user's last name.
-    /// 
-    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_user.html.markdown.
     /// </summary>
     public partial class User : Pulumi.CustomResource
     {
@@ -47,7 +45,7 @@ namespace Pulumi.Keycloak
         public Output<bool?> Enabled { get; private set; } = null!;
 
         [Output("federatedIdentities")]
-        public Output<ImmutableArray<Outputs.UserFederatedIdentities>> FederatedIdentities { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.UserFederatedIdentity>> FederatedIdentities { get; private set; } = null!;
 
         [Output("firstName")]
         public Output<string?> FirstName { get; private set; } = null!;
@@ -73,7 +71,7 @@ namespace Pulumi.Keycloak
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public User(string name, UserArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:index/user:User", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:index/user:User", name, args ?? new UserArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -125,10 +123,10 @@ namespace Pulumi.Keycloak
         public Input<bool>? Enabled { get; set; }
 
         [Input("federatedIdentities")]
-        private InputList<Inputs.UserFederatedIdentitiesArgs>? _federatedIdentities;
-        public InputList<Inputs.UserFederatedIdentitiesArgs> FederatedIdentities
+        private InputList<Inputs.UserFederatedIdentityArgs>? _federatedIdentities;
+        public InputList<Inputs.UserFederatedIdentityArgs> FederatedIdentities
         {
-            get => _federatedIdentities ?? (_federatedIdentities = new InputList<Inputs.UserFederatedIdentitiesArgs>());
+            get => _federatedIdentities ?? (_federatedIdentities = new InputList<Inputs.UserFederatedIdentityArgs>());
             set => _federatedIdentities = value;
         }
 
@@ -169,10 +167,10 @@ namespace Pulumi.Keycloak
         public Input<bool>? Enabled { get; set; }
 
         [Input("federatedIdentities")]
-        private InputList<Inputs.UserFederatedIdentitiesGetArgs>? _federatedIdentities;
-        public InputList<Inputs.UserFederatedIdentitiesGetArgs> FederatedIdentities
+        private InputList<Inputs.UserFederatedIdentityGetArgs>? _federatedIdentities;
+        public InputList<Inputs.UserFederatedIdentityGetArgs> FederatedIdentities
         {
-            get => _federatedIdentities ?? (_federatedIdentities = new InputList<Inputs.UserFederatedIdentitiesGetArgs>());
+            get => _federatedIdentities ?? (_federatedIdentities = new InputList<Inputs.UserFederatedIdentityGetArgs>());
             set => _federatedIdentities = value;
         }
 
@@ -194,106 +192,5 @@ namespace Pulumi.Keycloak
         public UserState()
         {
         }
-    }
-
-    namespace Inputs
-    {
-
-    public sealed class UserFederatedIdentitiesArgs : Pulumi.ResourceArgs
-    {
-        [Input("identityProvider", required: true)]
-        public Input<string> IdentityProvider { get; set; } = null!;
-
-        [Input("userId", required: true)]
-        public Input<string> UserId { get; set; } = null!;
-
-        [Input("userName", required: true)]
-        public Input<string> UserName { get; set; } = null!;
-
-        public UserFederatedIdentitiesArgs()
-        {
-        }
-    }
-
-    public sealed class UserFederatedIdentitiesGetArgs : Pulumi.ResourceArgs
-    {
-        [Input("identityProvider", required: true)]
-        public Input<string> IdentityProvider { get; set; } = null!;
-
-        [Input("userId", required: true)]
-        public Input<string> UserId { get; set; } = null!;
-
-        [Input("userName", required: true)]
-        public Input<string> UserName { get; set; } = null!;
-
-        public UserFederatedIdentitiesGetArgs()
-        {
-        }
-    }
-
-    public sealed class UserInitialPasswordArgs : Pulumi.ResourceArgs
-    {
-        [Input("temporary")]
-        public Input<bool>? Temporary { get; set; }
-
-        [Input("value", required: true)]
-        public Input<string> Value { get; set; } = null!;
-
-        public UserInitialPasswordArgs()
-        {
-        }
-    }
-
-    public sealed class UserInitialPasswordGetArgs : Pulumi.ResourceArgs
-    {
-        [Input("temporary")]
-        public Input<bool>? Temporary { get; set; }
-
-        [Input("value", required: true)]
-        public Input<string> Value { get; set; } = null!;
-
-        public UserInitialPasswordGetArgs()
-        {
-        }
-    }
-    }
-
-    namespace Outputs
-    {
-
-    [OutputType]
-    public sealed class UserFederatedIdentities
-    {
-        public readonly string IdentityProvider;
-        public readonly string UserId;
-        public readonly string UserName;
-
-        [OutputConstructor]
-        private UserFederatedIdentities(
-            string identityProvider,
-            string userId,
-            string userName)
-        {
-            IdentityProvider = identityProvider;
-            UserId = userId;
-            UserName = userName;
-        }
-    }
-
-    [OutputType]
-    public sealed class UserInitialPassword
-    {
-        public readonly bool? Temporary;
-        public readonly string Value;
-
-        [OutputConstructor]
-        private UserInitialPassword(
-            bool? temporary,
-            string value)
-        {
-            Temporary = temporary;
-            Value = value;
-        }
-    }
     }
 }

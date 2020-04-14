@@ -45,8 +45,6 @@ class Group(pulumi.CustomResource):
 
         - `path` - The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
 
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_group.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """

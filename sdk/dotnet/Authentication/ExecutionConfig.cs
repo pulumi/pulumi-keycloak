@@ -32,7 +32,7 @@ namespace Pulumi.Keycloak.Authentication
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public ExecutionConfig(string name, ExecutionConfigArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:authentication/executionConfig:ExecutionConfig", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:authentication/executionConfig:ExecutionConfig", name, args ?? new ExecutionConfigArgs(), MakeResourceOptions(options, ""))
         {
         }
 

@@ -44,7 +44,7 @@ namespace Pulumi.Keycloak
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public HardcodedRoleIdentityMapper(string name, HardcodedRoleIdentityMapperArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper", name, args ?? new HardcodedRoleIdentityMapperArgs(), MakeResourceOptions(options, ""))
         {
         }
 

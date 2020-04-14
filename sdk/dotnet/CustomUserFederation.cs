@@ -36,8 +36,8 @@ namespace Pulumi.Keycloak
         public Output<int?> Priority { get; private set; } = null!;
 
         /// <summary>
-        /// The unique ID of the custom provider, specified in the `getId` implementation for the
-        /// UserStorageProviderFactory interface
+        /// The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
+        /// interface
         /// </summary>
         [Output("providerId")]
         public Output<string> ProviderId { get; private set; } = null!;
@@ -57,7 +57,7 @@ namespace Pulumi.Keycloak
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public CustomUserFederation(string name, CustomUserFederationArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:index/customUserFederation:CustomUserFederation", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:index/customUserFederation:CustomUserFederation", name, args ?? new CustomUserFederationArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -124,8 +124,8 @@ namespace Pulumi.Keycloak
         public Input<int>? Priority { get; set; }
 
         /// <summary>
-        /// The unique ID of the custom provider, specified in the `getId` implementation for the
-        /// UserStorageProviderFactory interface
+        /// The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
+        /// interface
         /// </summary>
         [Input("providerId", required: true)]
         public Input<string> ProviderId { get; set; } = null!;
@@ -173,8 +173,8 @@ namespace Pulumi.Keycloak
         public Input<int>? Priority { get; set; }
 
         /// <summary>
-        /// The unique ID of the custom provider, specified in the `getId` implementation for the
-        /// UserStorageProviderFactory interface
+        /// The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
+        /// interface
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }

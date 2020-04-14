@@ -28,8 +28,6 @@ namespace Pulumi.Keycloak.Ldap
     /// - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
     /// - `name` - (Required) Display name of this mapper when displayed in the console.
     /// - `ldap_password_policy_hints_enabled` - (Optional) When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
-    /// 
-    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_ldap_msad_user_account_control_mapper.html.markdown.
     /// </summary>
     public partial class MsadUserAccountControlMapper : Pulumi.CustomResource
     {
@@ -63,7 +61,7 @@ namespace Pulumi.Keycloak.Ldap
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public MsadUserAccountControlMapper(string name, MsadUserAccountControlMapperArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper", name, args ?? new MsadUserAccountControlMapperArgs(), MakeResourceOptions(options, ""))
         {
         }
 

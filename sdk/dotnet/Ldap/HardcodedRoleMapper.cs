@@ -22,8 +22,6 @@ namespace Pulumi.Keycloak.Ldap
     /// - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
     /// - `name` - (Required) Display name of this mapper when displayed in the console.
     /// - `role` - (Required) The role which should be assigned to the users.
-    /// 
-    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_ldap_hardcoded_role_mapper.html.markdown.
     /// </summary>
     public partial class HardcodedRoleMapper : Pulumi.CustomResource
     {
@@ -60,7 +58,7 @@ namespace Pulumi.Keycloak.Ldap
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public HardcodedRoleMapper(string name, HardcodedRoleMapperArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper", name, args ?? new HardcodedRoleMapperArgs(), MakeResourceOptions(options, ""))
         {
         }
 

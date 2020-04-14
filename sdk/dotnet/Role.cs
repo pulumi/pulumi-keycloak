@@ -29,8 +29,6 @@ namespace Pulumi.Keycloak
     /// - `composite_roles` - (Optional) When specified, this role will be a
     ///   composite role, composed of all roles that have an ID present within
     ///   this list.
-    /// 
-    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_role.html.markdown.
     /// </summary>
     public partial class Role : Pulumi.CustomResource
     {
@@ -58,7 +56,7 @@ namespace Pulumi.Keycloak
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Role(string name, RoleArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:index/role:Role", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:index/role:Role", name, args ?? new RoleArgs(), MakeResourceOptions(options, ""))
         {
         }
 

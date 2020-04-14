@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  *
  * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_realm.html.markdown.
  */
-export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmResult> & GetRealmResult {
+export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmResult> {
     if (!opts) {
         opts = {}
     }
@@ -32,7 +32,7 @@ export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promi
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetRealmResult> = pulumi.runtime.invoke("keycloak:index/getRealm:getRealm", {
+    return pulumi.runtime.invoke("keycloak:index/getRealm:getRealm", {
         "attributes": args.attributes,
         "displayNameHtml": args.displayNameHtml,
         "internationalizations": args.internationalizations,
@@ -40,8 +40,6 @@ export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promi
         "securityDefenses": args.securityDefenses,
         "smtpServers": args.smtpServers,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

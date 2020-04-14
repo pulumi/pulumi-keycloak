@@ -43,8 +43,6 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
         - `saml_attribute_name` - (Required) The name of the SAML attribute.
         - `saml_attribute_name_format` - (Required) The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
 
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_saml_user_property_protocol_mapper.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """

@@ -55,7 +55,7 @@ import * as utilities from "./utilities";
  *
  * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_role.html.markdown.
  */
-export function getRole(args: GetRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetRoleResult> & GetRoleResult {
+export function getRole(args: GetRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetRoleResult> {
     if (!opts) {
         opts = {}
     }
@@ -63,13 +63,11 @@ export function getRole(args: GetRoleArgs, opts?: pulumi.InvokeOptions): Promise
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetRoleResult> = pulumi.runtime.invoke("keycloak:index/getRole:getRole", {
+    return pulumi.runtime.invoke("keycloak:index/getRole:getRole", {
         "clientId": args.clientId,
         "name": args.name,
         "realmId": args.realmId,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

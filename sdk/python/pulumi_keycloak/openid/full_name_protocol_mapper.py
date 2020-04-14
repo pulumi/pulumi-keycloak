@@ -53,8 +53,6 @@ class FullNameProtocolMapper(pulumi.CustomResource):
         - `add_to_access_token` - (Optional) Indicates if the user's full name should be added as a claim to the access token. Defaults to `true`.
         - `add_to_userinfo` - (Optional) Indicates if the user's full name should be added as a claim to the UserInfo response body. Defaults to `true`.
 
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_openid_full_name_protocol_mapper.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.

@@ -32,8 +32,6 @@ namespace Pulumi.Keycloak
     /// - `protocol_mapper` - (Required) The name of the protocol mapper. The protocol mapper must be
     ///    compatible with the specified client.
     /// - `config` - (Required) A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-    /// 
-    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_generic_client_protocol_mapper.html.markdown.
     /// </summary>
     public partial class GenericClientProtocolMapper : Pulumi.CustomResource
     {
@@ -85,7 +83,7 @@ namespace Pulumi.Keycloak
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public GenericClientProtocolMapper(string name, GenericClientProtocolMapperArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper", name, args ?? new GenericClientProtocolMapperArgs(), MakeResourceOptions(options, ""))
         {
         }
 

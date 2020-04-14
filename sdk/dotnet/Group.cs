@@ -37,8 +37,6 @@ namespace Pulumi.Keycloak
     /// In addition to the arguments listed above, the following computed attributes are exported:
     /// 
     /// - `path` - The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
-    /// 
-    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_group.html.markdown.
     /// </summary>
     public partial class Group : Pulumi.CustomResource
     {
@@ -66,7 +64,7 @@ namespace Pulumi.Keycloak
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Group(string name, GroupArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:index/group:Group", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:index/group:Group", name, args ?? new GroupArgs(), MakeResourceOptions(options, ""))
         {
         }
 

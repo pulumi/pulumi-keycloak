@@ -49,8 +49,6 @@ namespace Pulumi.Keycloak.Saml
     /// - `signing_certificate` - (Optional) Signing Certificate.
     /// - `signature_algorithm` - (Optional) Signing Algorithm. Defaults to empty.
     /// - `xml_sign_key_info_key_name_transformer` - (Optional) Sign Key Transformer. Defaults to empty.
-    /// 
-    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_saml_identity_provider.html.markdown.
     /// </summary>
     public partial class IdentityProvider : Pulumi.CustomResource
     {
@@ -91,9 +89,8 @@ namespace Pulumi.Keycloak.Saml
         public Output<bool?> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First
-        /// Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider
-        /// account.
+        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+        /// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
         /// </summary>
         [Output("firstBrokerLoginFlowAlias")]
         public Output<string?> FirstBrokerLoginFlowAlias { get; private set; } = null!;
@@ -117,8 +114,8 @@ namespace Pulumi.Keycloak.Saml
         public Output<string> InternalId { get; private set; } = null!;
 
         /// <summary>
-        /// If true, users cannot log in through this provider. They can only link to this provider. This is useful if
-        /// you don't want to allow login from the provider, but want to integrate with a provider
+        /// If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
+        /// want to allow login from the provider, but want to integrate with a provider
         /// </summary>
         [Output("linkOnly")]
         public Output<bool?> LinkOnly { get; private set; } = null!;
@@ -148,11 +145,10 @@ namespace Pulumi.Keycloak.Saml
         public Output<bool?> PostBindingResponse { get; private set; } = null!;
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you
-        /// want additional verification of each user authenticated with this identity provider (for example OTP). Leave
-        /// this empty if you don't want any additional authenticators to be triggered after login with this identity
-        /// provider. Also note, that authenticator implementations must assume that user is already set in
-        /// ClientSession as identity provider already set it.
+        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
+        /// additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+        /// you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+        /// authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
         /// </summary>
         [Output("postBrokerLoginFlowAlias")]
         public Output<string?> PostBrokerLoginFlowAlias { get; private set; } = null!;
@@ -194,8 +190,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<bool?> StoreToken { get; private set; } = null!;
 
         /// <summary>
-        /// If enabled then email provided by this provider is not verified even if verification is enabled for the
-        /// realm.
+        /// If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
         /// </summary>
         [Output("trustEmail")]
         public Output<bool?> TrustEmail { get; private set; } = null!;
@@ -233,7 +228,7 @@ namespace Pulumi.Keycloak.Saml
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public IdentityProvider(string name, IdentityProviderArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:saml/identityProvider:IdentityProvider", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:saml/identityProvider:IdentityProvider", name, args ?? new IdentityProviderArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -307,9 +302,8 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First
-        /// Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider
-        /// account.
+        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+        /// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
         /// </summary>
         [Input("firstBrokerLoginFlowAlias")]
         public Input<string>? FirstBrokerLoginFlowAlias { get; set; }
@@ -327,8 +321,8 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? HideOnLoginPage { get; set; }
 
         /// <summary>
-        /// If true, users cannot log in through this provider. They can only link to this provider. This is useful if
-        /// you don't want to allow login from the provider, but want to integrate with a provider
+        /// If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
+        /// want to allow login from the provider, but want to integrate with a provider
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
@@ -358,11 +352,10 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? PostBindingResponse { get; set; }
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you
-        /// want additional verification of each user authenticated with this identity provider (for example OTP). Leave
-        /// this empty if you don't want any additional authenticators to be triggered after login with this identity
-        /// provider. Also note, that authenticator implementations must assume that user is already set in
-        /// ClientSession as identity provider already set it.
+        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
+        /// additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+        /// you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+        /// authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
         /// </summary>
         [Input("postBrokerLoginFlowAlias")]
         public Input<string>? PostBrokerLoginFlowAlias { get; set; }
@@ -404,8 +397,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? StoreToken { get; set; }
 
         /// <summary>
-        /// If enabled then email provided by this provider is not verified even if verification is enabled for the
-        /// realm.
+        /// If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
         /// </summary>
         [Input("trustEmail")]
         public Input<bool>? TrustEmail { get; set; }
@@ -478,9 +470,8 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First
-        /// Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider
-        /// account.
+        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+        /// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
         /// </summary>
         [Input("firstBrokerLoginFlowAlias")]
         public Input<string>? FirstBrokerLoginFlowAlias { get; set; }
@@ -504,8 +495,8 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? InternalId { get; set; }
 
         /// <summary>
-        /// If true, users cannot log in through this provider. They can only link to this provider. This is useful if
-        /// you don't want to allow login from the provider, but want to integrate with a provider
+        /// If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
+        /// want to allow login from the provider, but want to integrate with a provider
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
@@ -535,11 +526,10 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? PostBindingResponse { get; set; }
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you
-        /// want additional verification of each user authenticated with this identity provider (for example OTP). Leave
-        /// this empty if you don't want any additional authenticators to be triggered after login with this identity
-        /// provider. Also note, that authenticator implementations must assume that user is already set in
-        /// ClientSession as identity provider already set it.
+        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
+        /// additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+        /// you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+        /// authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
         /// </summary>
         [Input("postBrokerLoginFlowAlias")]
         public Input<string>? PostBrokerLoginFlowAlias { get; set; }
@@ -581,8 +571,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? StoreToken { get; set; }
 
         /// <summary>
-        /// If enabled then email provided by this provider is not verified even if verification is enabled for the
-        /// realm.
+        /// If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
         /// </summary>
         [Input("trustEmail")]
         public Input<bool>? TrustEmail { get; set; }

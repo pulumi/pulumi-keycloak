@@ -44,7 +44,7 @@ namespace Pulumi.Keycloak
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public UserTemplateImporterIdentityProviderMapper(string name, UserTemplateImporterIdentityProviderMapperArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper", name, args ?? new UserTemplateImporterIdentityProviderMapperArgs(), MakeResourceOptions(options, ""))
         {
         }
 

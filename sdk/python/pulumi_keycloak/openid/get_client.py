@@ -112,8 +112,6 @@ def get_client(client_id=None,realm_id=None,opts=None):
     ### Attributes Reference
 
     See the docs for the `openid.Client` resource for details on the exported attributes.
-
-    > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_openid_client.html.markdown.
     """
     __args__ = dict()
 

@@ -47,8 +47,6 @@ namespace Pulumi.Keycloak.Saml
     /// - `logout_service_post_binding_url` - (Optional) SAML POST Binding URL for the client's single logout service.
     /// - `logout_service_redirect_binding_url` - (Optional) SAML Redirect Binding URL for the client's single logout service.
     /// - `full_scope_allowed` - (Optional) - Allow to include all roles mappings in the access token
-    /// 
-    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_saml_client.html.markdown.
     /// </summary>
     public partial class Client : Pulumi.CustomResource
     {
@@ -136,7 +134,7 @@ namespace Pulumi.Keycloak.Saml
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Client(string name, ClientArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:saml/client:Client", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:saml/client:Client", name, args ?? new ClientArgs(), MakeResourceOptions(options, ""))
         {
         }
 

@@ -23,8 +23,6 @@ namespace Pulumi.Keycloak
     /// 
     /// - `realm_id` - (Required) The realm this group exists in.
     /// - `group_ids` - (Required) A set of group ids that should be default groups on the realm referenced by `realm_id`.
-    /// 
-    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_default_groups.html.markdown.
     /// </summary>
     public partial class DefaultGroups : Pulumi.CustomResource
     {
@@ -43,7 +41,7 @@ namespace Pulumi.Keycloak
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public DefaultGroups(string name, DefaultGroupsArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:index/defaultGroups:DefaultGroups", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:index/defaultGroups:DefaultGroups", name, args ?? new DefaultGroupsArgs(), MakeResourceOptions(options, ""))
         {
         }
 

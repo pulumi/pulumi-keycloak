@@ -56,8 +56,6 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
         - `attribute_friendly_name` - (Optional) The friendly name of attribute to search for in assertion.  You can leave this blank and specify an attribute name instead.
         - `claim_name` - (Optional) The claim name.
 
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_attribute_importer_identity_provider_mapper.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] attribute_friendly_name: Attribute Friendly Name

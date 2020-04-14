@@ -30,8 +30,6 @@ namespace Pulumi.Keycloak.Ldap
     /// - `read_only` - (Optional) When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
     /// - `always_read_value_from_ldap` - (Optional) When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
     /// - `is_mandatory_in_ldap` - (Optional) When `true`, this attribute must exist in LDAP. Defaults to `false`.
-    /// 
-    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_ldap_user_attribute_mapper.html.markdown.
     /// </summary>
     public partial class UserAttributeMapper : Pulumi.CustomResource
     {
@@ -92,7 +90,7 @@ namespace Pulumi.Keycloak.Ldap
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public UserAttributeMapper(string name, UserAttributeMapperArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:ldap/userAttributeMapper:UserAttributeMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:ldap/userAttributeMapper:UserAttributeMapper", name, args ?? new UserAttributeMapperArgs(), MakeResourceOptions(options, ""))
         {
         }
 

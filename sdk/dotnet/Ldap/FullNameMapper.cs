@@ -28,8 +28,6 @@ namespace Pulumi.Keycloak.Ldap
     /// - `ldap_full_name_attribute` - (Required) The name of the LDAP attribute containing the user's full name.
     /// - `read_only` - (Optional) When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
     /// - `write_only` - (Optional) When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
-    /// 
-    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_ldap_full_name_mapper.html.markdown.
     /// </summary>
     public partial class FullNameMapper : Pulumi.CustomResource
     {
@@ -69,7 +67,7 @@ namespace Pulumi.Keycloak.Ldap
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public FullNameMapper(string name, FullNameMapperArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:ldap/fullNameMapper:FullNameMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:ldap/fullNameMapper:FullNameMapper", name, args ?? new FullNameMapperArgs(), MakeResourceOptions(options, ""))
         {
         }
 

@@ -25,8 +25,6 @@ namespace Pulumi.Keycloak
     /// - `events_expiration` - (Optional) The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
     /// - `enabled_event_types` - (Optional) The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
     /// - `events_listeners` - (Optional) The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
-    /// 
-    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_realm_events.html.markdown.
     /// </summary>
     public partial class RealmEvents : Pulumi.CustomResource
     {
@@ -60,7 +58,7 @@ namespace Pulumi.Keycloak
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public RealmEvents(string name, RealmEventsArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:index/realmEvents:RealmEvents", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:index/realmEvents:RealmEvents", name, args ?? new RealmEventsArgs(), MakeResourceOptions(options, ""))
         {
         }
 

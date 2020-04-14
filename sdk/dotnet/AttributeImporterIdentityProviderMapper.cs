@@ -25,8 +25,6 @@ namespace Pulumi.Keycloak
     /// - `attribute_name` - (Optional) The Name of attribute to search for in assertion. You can leave this blank and specify a friendly name instead.
     /// - `attribute_friendly_name` - (Optional) The friendly name of attribute to search for in assertion.  You can leave this blank and specify an attribute name instead.
     /// - `claim_name` - (Optional) The claim name.
-    /// 
-    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_attribute_importer_identity_provider_mapper.html.markdown.
     /// </summary>
     public partial class AttributeImporterIdentityProviderMapper : Pulumi.CustomResource
     {
@@ -81,7 +79,7 @@ namespace Pulumi.Keycloak
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AttributeImporterIdentityProviderMapper(string name, AttributeImporterIdentityProviderMapperArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:index/attributeImporterIdentityProviderMapper:AttributeImporterIdentityProviderMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:index/attributeImporterIdentityProviderMapper:AttributeImporterIdentityProviderMapper", name, args ?? new AttributeImporterIdentityProviderMapperArgs(), MakeResourceOptions(options, ""))
         {
         }
 

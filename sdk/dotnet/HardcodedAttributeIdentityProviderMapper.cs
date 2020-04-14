@@ -56,7 +56,7 @@ namespace Pulumi.Keycloak
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public HardcodedAttributeIdentityProviderMapper(string name, HardcodedAttributeIdentityProviderMapperArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper", name, args ?? new HardcodedAttributeIdentityProviderMapperArgs(), MakeResourceOptions(options, ""))
         {
         }
 

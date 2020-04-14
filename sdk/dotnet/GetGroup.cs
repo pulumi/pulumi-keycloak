@@ -9,34 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
-    public static partial class Invokes
-    {
-        /// <summary>
-        /// ## # keycloak..Group data source
-        /// 
-        /// This data source can be used to fetch properties of a Keycloak group for
-        /// usage with other resources, such as `keycloak..GroupRoles`.
-        /// 
-        /// ### Argument Reference
-        /// 
-        /// The following arguments are supported:
-        /// 
-        /// - `realm_id` - (Required) The realm this group exists within.
-        /// - `name` - (Required) The name of the group
-        /// 
-        /// ### Attributes Reference
-        /// 
-        /// In addition to the arguments listed above, the following computed attributes are exported:
-        /// 
-        /// - `id` - The unique ID of the group, which can be used as an argument to
-        ///   other resources supported by this provider.
-        /// 
-        /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_group.html.markdown.
-        /// </summary>
-        [Obsolete("Use GetGroup.InvokeAsync() instead")]
-        public static Task<GetGroupResult> GetGroup(GetGroupArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetGroupResult>("keycloak:index/getGroup:getGroup", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetGroup
     {
         /// <summary>
@@ -58,12 +30,11 @@ namespace Pulumi.Keycloak
         /// 
         /// - `id` - The unique ID of the group, which can be used as an argument to
         ///   other resources supported by this provider.
-        /// 
-        /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_group.html.markdown.
         /// </summary>
         public static Task<GetGroupResult> InvokeAsync(GetGroupArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetGroupResult>("keycloak:index/getGroup:getGroup", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetGroupResult>("keycloak:index/getGroup:getGroup", args ?? new GetGroupArgs(), options.WithVersion());
     }
+
 
     public sealed class GetGroupArgs : Pulumi.InvokeArgs
     {
@@ -78,25 +49,28 @@ namespace Pulumi.Keycloak
         }
     }
 
+
     [OutputType]
     public sealed class GetGroupResult
     {
-        public readonly string Name;
-        public readonly string RealmId;
         /// <summary>
         /// id is the provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string Name;
+        public readonly string RealmId;
 
         [OutputConstructor]
         private GetGroupResult(
+            string id,
+
             string name,
-            string realmId,
-            string id)
+
+            string realmId)
         {
+            Id = id;
             Name = name;
             RealmId = realmId;
-            Id = id;
         }
     }
 }

@@ -60,8 +60,6 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
            compatible with the specified client.
         - `config` - (Required) A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
 
-        > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_generic_client_protocol_mapper.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.

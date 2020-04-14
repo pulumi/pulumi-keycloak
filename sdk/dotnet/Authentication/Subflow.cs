@@ -15,8 +15,7 @@ namespace Pulumi.Keycloak.Authentication
         public Output<string> Alias { get; private set; } = null!;
 
         /// <summary>
-        /// Might be needed to be set with certain custom subflow with specific authenticator, in general this will
-        /// remain empty
+        /// Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
         /// </summary>
         [Output("authenticator")]
         public Output<string?> Authenticator { get; private set; } = null!;
@@ -45,7 +44,7 @@ namespace Pulumi.Keycloak.Authentication
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Subflow(string name, SubflowArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:authentication/subflow:Subflow", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:authentication/subflow:Subflow", name, args ?? new SubflowArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -86,8 +85,7 @@ namespace Pulumi.Keycloak.Authentication
         public Input<string> Alias { get; set; } = null!;
 
         /// <summary>
-        /// Might be needed to be set with certain custom subflow with specific authenticator, in general this will
-        /// remain empty
+        /// Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
         /// </summary>
         [Input("authenticator")]
         public Input<string>? Authenticator { get; set; }
@@ -118,8 +116,7 @@ namespace Pulumi.Keycloak.Authentication
         public Input<string>? Alias { get; set; }
 
         /// <summary>
-        /// Might be needed to be set with certain custom subflow with specific authenticator, in general this will
-        /// remain empty
+        /// Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
         /// </summary>
         [Input("authenticator")]
         public Input<string>? Authenticator { get; set; }

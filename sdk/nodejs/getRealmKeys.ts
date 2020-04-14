@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  *
  * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_realm_keys.html.markdown.
  */
-export function getRealmKeys(args: GetRealmKeysArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmKeysResult> & GetRealmKeysResult {
+export function getRealmKeys(args: GetRealmKeysArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmKeysResult> {
     if (!opts) {
         opts = {}
     }
@@ -35,13 +35,11 @@ export function getRealmKeys(args: GetRealmKeysArgs, opts?: pulumi.InvokeOptions
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetRealmKeysResult> = pulumi.runtime.invoke("keycloak:index/getRealmKeys:getRealmKeys", {
+    return pulumi.runtime.invoke("keycloak:index/getRealmKeys:getRealmKeys", {
         "algorithms": args.algorithms,
         "realmId": args.realmId,
         "statuses": args.statuses,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

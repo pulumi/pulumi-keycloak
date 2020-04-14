@@ -55,8 +55,6 @@ namespace Pulumi.Keycloak.Ldap
     /// - `full_sync_period` - (Optional) How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
     /// - `changed_sync_period` - (Optional) How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
     /// - `cache_policy` - (Optional) Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-    /// 
-    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_ldap_user_federation.html.markdown.
     /// </summary>
     public partial class UserFederation : Pulumi.CustomResource
     {
@@ -82,8 +80,8 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string?> CachePolicy { get; private set; } = null!;
 
         /// <summary>
-        /// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic
-        /// changed users sync.
+        /// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
+        /// sync.
         /// </summary>
         [Output("changedSyncPeriod")]
         public Output<int?> ChangedSyncPeriod { get; private set; } = null!;
@@ -107,8 +105,7 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string?> CustomUserSearchFilter { get; private set; } = null!;
 
         /// <summary>
-        /// READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to
-        /// LDAP.
+        /// READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to LDAP.
         /// </summary>
         [Output("editMode")]
         public Output<string?> EditMode { get; private set; } = null!;
@@ -120,8 +117,7 @@ namespace Pulumi.Keycloak.Ldap
         public Output<bool?> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full
-        /// sync.
+        /// How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
         /// </summary>
         [Output("fullSyncPeriod")]
         public Output<int?> FullSyncPeriod { get; private set; } = null!;
@@ -228,7 +224,7 @@ namespace Pulumi.Keycloak.Ldap
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public UserFederation(string name, UserFederationArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:ldap/userFederation:UserFederation", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:ldap/userFederation:UserFederation", name, args ?? new UserFederationArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -287,8 +283,8 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? CachePolicy { get; set; }
 
         /// <summary>
-        /// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic
-        /// changed users sync.
+        /// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
+        /// sync.
         /// </summary>
         [Input("changedSyncPeriod")]
         public Input<int>? ChangedSyncPeriod { get; set; }
@@ -312,8 +308,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? CustomUserSearchFilter { get; set; }
 
         /// <summary>
-        /// READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to
-        /// LDAP.
+        /// READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to LDAP.
         /// </summary>
         [Input("editMode")]
         public Input<string>? EditMode { get; set; }
@@ -325,8 +320,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full
-        /// sync.
+        /// How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
         /// </summary>
         [Input("fullSyncPeriod")]
         public Input<int>? FullSyncPeriod { get; set; }
@@ -459,8 +453,8 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? CachePolicy { get; set; }
 
         /// <summary>
-        /// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic
-        /// changed users sync.
+        /// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
+        /// sync.
         /// </summary>
         [Input("changedSyncPeriod")]
         public Input<int>? ChangedSyncPeriod { get; set; }
@@ -484,8 +478,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? CustomUserSearchFilter { get; set; }
 
         /// <summary>
-        /// READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to
-        /// LDAP.
+        /// READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to LDAP.
         /// </summary>
         [Input("editMode")]
         public Input<string>? EditMode { get; set; }
@@ -497,8 +490,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full
-        /// sync.
+        /// How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
         /// </summary>
         [Input("fullSyncPeriod")]
         public Input<int>? FullSyncPeriod { get; set; }

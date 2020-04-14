@@ -32,8 +32,6 @@ namespace Pulumi.Keycloak.Saml
     /// - `friendly_name` - (Optional) An optional human-friendly name for this attribute.
     /// - `saml_attribute_name` - (Required) The name of the SAML attribute.
     /// - `saml_attribute_name_format` - (Required) The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
-    /// 
-    /// &gt; This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_saml_user_attribute_protocol_mapper.html.markdown.
     /// </summary>
     public partial class UserAttributeProtocolMapper : Pulumi.CustomResource
     {
@@ -70,7 +68,7 @@ namespace Pulumi.Keycloak.Saml
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public UserAttributeProtocolMapper(string name, UserAttributeProtocolMapperArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper", name, args ?? new UserAttributeProtocolMapperArgs(), MakeResourceOptions(options, ""))
         {
         }
 

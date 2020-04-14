@@ -74,7 +74,7 @@ namespace Pulumi.Keycloak
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AttributeToRoleIdentityMapper(string name, AttributeToRoleIdentityMapperArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper", name, args ?? new AttributeToRoleIdentityMapperArgs(), MakeResourceOptions(options, ""))
         {
         }
 
