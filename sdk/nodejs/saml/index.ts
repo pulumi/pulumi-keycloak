@@ -3,6 +3,7 @@
 
 // Export members:
 export * from "./client";
+export * from "./getClientInstallationProvider";
 export * from "./identityProvider";
 export * from "./userAttributeProtocolMapper";
 export * from "./userPropertyProtocolMapper";

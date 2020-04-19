@@ -34,6 +34,12 @@ root_ca_certificate = __config__.get('rootCaCertificate')
 Allows x509 calls using an unknown CA certificate (for development purposes)
 """
 
+tls_insecure_skip_verify = __config__.get('tlsInsecureSkipVerify')
+"""
+Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
+should be avoided.
+"""
+
 url = __config__.get('url') or utilities.get_env('KEYCLOAK_URL')
 """
 The base URL of the Keycloak instance, before `/auth`

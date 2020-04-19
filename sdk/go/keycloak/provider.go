@@ -63,6 +63,9 @@ type providerArgs struct {
 	Realm        *string `pulumi:"realm"`
 	// Allows x509 calls using an unknown CA certificate (for development purposes)
 	RootCaCertificate *string `pulumi:"rootCaCertificate"`
+	// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
+	// should be avoided.
+	TlsInsecureSkipVerify *bool `pulumi:"tlsInsecureSkipVerify"`
 	// The base URL of the Keycloak instance, before `/auth`
 	Url      *string `pulumi:"url"`
 	Username *string `pulumi:"username"`
@@ -80,6 +83,9 @@ type ProviderArgs struct {
 	Realm        pulumi.StringPtrInput
 	// Allows x509 calls using an unknown CA certificate (for development purposes)
 	RootCaCertificate pulumi.StringPtrInput
+	// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
+	// should be avoided.
+	TlsInsecureSkipVerify pulumi.BoolPtrInput
 	// The base URL of the Keycloak instance, before `/auth`
 	Url      pulumi.StringPtrInput
 	Username pulumi.StringPtrInput

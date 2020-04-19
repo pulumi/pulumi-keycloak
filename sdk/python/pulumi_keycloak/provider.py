@@ -10,7 +10,7 @@ from typing import Union
 from . import utilities, tables
 
 class Provider(pulumi.ProviderResource):
-    def __init__(__self__, resource_name, opts=None, client_id=None, client_secret=None, client_timeout=None, initial_login=None, password=None, realm=None, root_ca_certificate=None, url=None, username=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, client_id=None, client_secret=None, client_timeout=None, initial_login=None, password=None, realm=None, root_ca_certificate=None, tls_insecure_skip_verify=None, url=None, username=None, __props__=None, __name__=None, __opts__=None):
         """
         The provider type for the keycloak package. By default, resources use package-wide configuration
         settings, however an explicit `Provider` instance may be created and passed during resource
@@ -22,6 +22,8 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[float] client_timeout: Timeout (in seconds) of the Keycloak client
         :param pulumi.Input[bool] initial_login: Whether or not to login to Keycloak instance on provider initialization
         :param pulumi.Input[str] root_ca_certificate: Allows x509 calls using an unknown CA certificate (for development purposes)
+        :param pulumi.Input[bool] tls_insecure_skip_verify: Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
+               should be avoided.
         :param pulumi.Input[str] url: The base URL of the Keycloak instance, before `/auth`
         """
         if __name__ is not None:
@@ -58,6 +60,7 @@ class Provider(pulumi.ProviderResource):
                 realm = (utilities.get_env('KEYCLOAK_REALM') or 'master')
             __props__['realm'] = realm
             __props__['root_ca_certificate'] = root_ca_certificate
+            __props__['tls_insecure_skip_verify'] = pulumi.Output.from_input(tls_insecure_skip_verify).apply(json.dumps) if tls_insecure_skip_verify is not None else None
             if url is None:
                 url = utilities.get_env('KEYCLOAK_URL')
             __props__['url'] = url

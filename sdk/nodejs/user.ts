@@ -93,6 +93,7 @@ export class User extends pulumi.CustomResource {
 
     public readonly attributes!: pulumi.Output<{[key: string]: any} | undefined>;
     public readonly email!: pulumi.Output<string | undefined>;
+    public readonly emailVerified!: pulumi.Output<boolean | undefined>;
     public readonly enabled!: pulumi.Output<boolean | undefined>;
     public readonly federatedIdentities!: pulumi.Output<outputs.UserFederatedIdentity[] | undefined>;
     public readonly firstName!: pulumi.Output<string | undefined>;
@@ -115,6 +116,7 @@ export class User extends pulumi.CustomResource {
             const state = argsOrState as UserState | undefined;
             inputs["attributes"] = state ? state.attributes : undefined;
             inputs["email"] = state ? state.email : undefined;
+            inputs["emailVerified"] = state ? state.emailVerified : undefined;
             inputs["enabled"] = state ? state.enabled : undefined;
             inputs["federatedIdentities"] = state ? state.federatedIdentities : undefined;
             inputs["firstName"] = state ? state.firstName : undefined;
@@ -132,6 +134,7 @@ export class User extends pulumi.CustomResource {
             }
             inputs["attributes"] = args ? args.attributes : undefined;
             inputs["email"] = args ? args.email : undefined;
+            inputs["emailVerified"] = args ? args.emailVerified : undefined;
             inputs["enabled"] = args ? args.enabled : undefined;
             inputs["federatedIdentities"] = args ? args.federatedIdentities : undefined;
             inputs["firstName"] = args ? args.firstName : undefined;
@@ -157,6 +160,7 @@ export class User extends pulumi.CustomResource {
 export interface UserState {
     readonly attributes?: pulumi.Input<{[key: string]: any}>;
     readonly email?: pulumi.Input<string>;
+    readonly emailVerified?: pulumi.Input<boolean>;
     readonly enabled?: pulumi.Input<boolean>;
     readonly federatedIdentities?: pulumi.Input<pulumi.Input<inputs.UserFederatedIdentity>[]>;
     readonly firstName?: pulumi.Input<string>;
@@ -172,6 +176,7 @@ export interface UserState {
 export interface UserArgs {
     readonly attributes?: pulumi.Input<{[key: string]: any}>;
     readonly email?: pulumi.Input<string>;
+    readonly emailVerified?: pulumi.Input<boolean>;
     readonly enabled?: pulumi.Input<boolean>;
     readonly federatedIdentities?: pulumi.Input<pulumi.Input<inputs.UserFederatedIdentity>[]>;
     readonly firstName?: pulumi.Input<string>;

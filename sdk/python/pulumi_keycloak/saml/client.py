@@ -17,6 +17,7 @@ class Client(pulumi.CustomResource):
     client_signature_required: pulumi.Output[bool]
     description: pulumi.Output[str]
     enabled: pulumi.Output[bool]
+    force_name_id_format: pulumi.Output[bool]
     force_post_binding: pulumi.Output[bool]
     front_channel_logout: pulumi.Output[bool]
     full_scope_allowed: pulumi.Output[bool]
@@ -35,7 +36,7 @@ class Client(pulumi.CustomResource):
     signing_certificate: pulumi.Output[str]
     signing_private_key: pulumi.Output[str]
     valid_redirect_uris: pulumi.Output[list]
-    def __init__(__self__, resource_name, opts=None, assertion_consumer_post_url=None, assertion_consumer_redirect_url=None, base_url=None, client_id=None, client_signature_required=None, description=None, enabled=None, force_post_binding=None, front_channel_logout=None, full_scope_allowed=None, idp_initiated_sso_relay_state=None, idp_initiated_sso_url_name=None, include_authn_statement=None, logout_service_post_binding_url=None, logout_service_redirect_binding_url=None, master_saml_processing_url=None, name=None, name_id_format=None, realm_id=None, root_url=None, sign_assertions=None, sign_documents=None, signing_certificate=None, signing_private_key=None, valid_redirect_uris=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, assertion_consumer_post_url=None, assertion_consumer_redirect_url=None, base_url=None, client_id=None, client_signature_required=None, description=None, enabled=None, force_name_id_format=None, force_post_binding=None, front_channel_logout=None, full_scope_allowed=None, idp_initiated_sso_relay_state=None, idp_initiated_sso_url_name=None, include_authn_statement=None, logout_service_post_binding_url=None, logout_service_redirect_binding_url=None, master_saml_processing_url=None, name=None, name_id_format=None, realm_id=None, root_url=None, sign_assertions=None, sign_documents=None, signing_certificate=None, signing_private_key=None, valid_redirect_uris=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # saml.Client
 
@@ -104,6 +105,7 @@ class Client(pulumi.CustomResource):
             __props__['client_signature_required'] = client_signature_required
             __props__['description'] = description
             __props__['enabled'] = enabled
+            __props__['force_name_id_format'] = force_name_id_format
             __props__['force_post_binding'] = force_post_binding
             __props__['front_channel_logout'] = front_channel_logout
             __props__['full_scope_allowed'] = full_scope_allowed
@@ -131,7 +133,7 @@ class Client(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, assertion_consumer_post_url=None, assertion_consumer_redirect_url=None, base_url=None, client_id=None, client_signature_required=None, description=None, enabled=None, force_post_binding=None, front_channel_logout=None, full_scope_allowed=None, idp_initiated_sso_relay_state=None, idp_initiated_sso_url_name=None, include_authn_statement=None, logout_service_post_binding_url=None, logout_service_redirect_binding_url=None, master_saml_processing_url=None, name=None, name_id_format=None, realm_id=None, root_url=None, sign_assertions=None, sign_documents=None, signing_certificate=None, signing_private_key=None, valid_redirect_uris=None):
+    def get(resource_name, id, opts=None, assertion_consumer_post_url=None, assertion_consumer_redirect_url=None, base_url=None, client_id=None, client_signature_required=None, description=None, enabled=None, force_name_id_format=None, force_post_binding=None, front_channel_logout=None, full_scope_allowed=None, idp_initiated_sso_relay_state=None, idp_initiated_sso_url_name=None, include_authn_statement=None, logout_service_post_binding_url=None, logout_service_redirect_binding_url=None, master_saml_processing_url=None, name=None, name_id_format=None, realm_id=None, root_url=None, sign_assertions=None, sign_documents=None, signing_certificate=None, signing_private_key=None, valid_redirect_uris=None):
         """
         Get an existing Client resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -151,6 +153,7 @@ class Client(pulumi.CustomResource):
         __props__["client_signature_required"] = client_signature_required
         __props__["description"] = description
         __props__["enabled"] = enabled
+        __props__["force_name_id_format"] = force_name_id_format
         __props__["force_post_binding"] = force_post_binding
         __props__["front_channel_logout"] = front_channel_logout
         __props__["full_scope_allowed"] = full_scope_allowed

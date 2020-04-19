@@ -178,6 +178,8 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_ldap_msad_lds_user_account_control_mapper": {
 				Tok: makeResource(ldapMod, "MsadLdsUserAccountControlMapper"),
 			},
+			"keycloak_ldap_hardcoded_group_mapper": {Tok: makeResource(ldapMod, "HardcodedGroupMapper")},
+			"keycloak_ldap_role_mapper":            {Tok: makeResource(ldapMod, "RoleMapper")},
 
 			"keycloak_oidc_identity_provider":        {Tok: makeResource(oidcMod, "IdentityProvider")},
 			"keycloak_oidc_google_identity_provider": {Tok: makeResource(oidcMod, "GoogleIdentityProvider")},
@@ -242,6 +244,8 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_openid_client":                      {Tok: makeDataSource(openIDMod, "getClient")},
 			"keycloak_openid_client_authorization_policy": {Tok: makeDataSource(openIDMod, "getClientAuthorizationPolicy")},
 			"keycloak_openid_client_service_account_user": {Tok: makeDataSource(openIDMod, "getClientServiceAccountUser")},
+
+			"keycloak_saml_client_installation_provider": {Tok: makeDataSource(samlMod, "getClientInstallationProvider")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			AsyncDataSources: true,

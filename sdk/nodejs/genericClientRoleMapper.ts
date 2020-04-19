@@ -31,8 +31,21 @@ export class GenericClientRoleMapper extends pulumi.CustomResource {
         return obj['__pulumiType'] === GenericClientRoleMapper.__pulumiType;
     }
 
-    public readonly clientId!: pulumi.Output<string>;
+    /**
+     * The destination client of the client role. Cannot be used at the same time as client_scope_id.
+     */
+    public readonly clientId!: pulumi.Output<string | undefined>;
+    /**
+     * The destination client scope of the client role. Cannot be used at the same time as client_id.
+     */
+    public readonly clientScopeId!: pulumi.Output<string | undefined>;
+    /**
+     * The realm id where the associated client or client scope exists.
+     */
     public readonly realmId!: pulumi.Output<string>;
+    /**
+     * Id of the role to assign
+     */
     public readonly roleId!: pulumi.Output<string>;
 
     /**
@@ -48,13 +61,11 @@ export class GenericClientRoleMapper extends pulumi.CustomResource {
         if (opts && opts.id) {
             const state = argsOrState as GenericClientRoleMapperState | undefined;
             inputs["clientId"] = state ? state.clientId : undefined;
+            inputs["clientScopeId"] = state ? state.clientScopeId : undefined;
             inputs["realmId"] = state ? state.realmId : undefined;
             inputs["roleId"] = state ? state.roleId : undefined;
         } else {
             const args = argsOrState as GenericClientRoleMapperArgs | undefined;
-            if (!args || args.clientId === undefined) {
-                throw new Error("Missing required property 'clientId'");
-            }
             if (!args || args.realmId === undefined) {
                 throw new Error("Missing required property 'realmId'");
             }
@@ -62,6 +73,7 @@ export class GenericClientRoleMapper extends pulumi.CustomResource {
                 throw new Error("Missing required property 'roleId'");
             }
             inputs["clientId"] = args ? args.clientId : undefined;
+            inputs["clientScopeId"] = args ? args.clientScopeId : undefined;
             inputs["realmId"] = args ? args.realmId : undefined;
             inputs["roleId"] = args ? args.roleId : undefined;
         }
@@ -80,8 +92,21 @@ export class GenericClientRoleMapper extends pulumi.CustomResource {
  * Input properties used for looking up and filtering GenericClientRoleMapper resources.
  */
 export interface GenericClientRoleMapperState {
+    /**
+     * The destination client of the client role. Cannot be used at the same time as client_scope_id.
+     */
     readonly clientId?: pulumi.Input<string>;
+    /**
+     * The destination client scope of the client role. Cannot be used at the same time as client_id.
+     */
+    readonly clientScopeId?: pulumi.Input<string>;
+    /**
+     * The realm id where the associated client or client scope exists.
+     */
     readonly realmId?: pulumi.Input<string>;
+    /**
+     * Id of the role to assign
+     */
     readonly roleId?: pulumi.Input<string>;
 }
 
@@ -89,7 +114,20 @@ export interface GenericClientRoleMapperState {
  * The set of arguments for constructing a GenericClientRoleMapper resource.
  */
 export interface GenericClientRoleMapperArgs {
-    readonly clientId: pulumi.Input<string>;
+    /**
+     * The destination client of the client role. Cannot be used at the same time as client_scope_id.
+     */
+    readonly clientId?: pulumi.Input<string>;
+    /**
+     * The destination client scope of the client role. Cannot be used at the same time as client_id.
+     */
+    readonly clientScopeId?: pulumi.Input<string>;
+    /**
+     * The realm id where the associated client or client scope exists.
+     */
     readonly realmId: pulumi.Input<string>;
+    /**
+     * Id of the role to assign
+     */
     readonly roleId: pulumi.Input<string>;
 }

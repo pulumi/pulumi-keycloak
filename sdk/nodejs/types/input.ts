@@ -112,6 +112,11 @@ export interface UserInitialPassword {
 }
 
 export namespace openid {
+    export interface ClientAuthenticationFlowBindingOverrides {
+        browserId?: pulumi.Input<string>;
+        directGrantId?: pulumi.Input<string>;
+    }
+
     export interface ClientAuthorization {
         allowRemoteResourceManagement?: pulumi.Input<boolean>;
         keepDefaults?: pulumi.Input<boolean>;

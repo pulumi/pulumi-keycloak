@@ -123,6 +123,11 @@ export interface UserInitialPassword {
 }
 
 export namespace openid {
+    export interface ClientAuthenticationFlowBindingOverrides {
+        browserId?: string;
+        directGrantId?: string;
+    }
+
     export interface ClientAuthorization {
         allowRemoteResourceManagement?: boolean;
         keepDefaults?: boolean;
@@ -138,6 +143,11 @@ export namespace openid {
     export interface ClientRolePolicyRole {
         id: string;
         required: boolean;
+    }
+
+    export interface GetClientAuthenticationFlowBindingOverrides {
+        browserId: string;
+        directGrantId: string;
     }
 
     export interface GetClientAuthorization {

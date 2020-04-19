@@ -57,6 +57,7 @@ type Client struct {
 	ClientSignatureRequired         pulumi.BoolOutput        `pulumi:"clientSignatureRequired"`
 	Description                     pulumi.StringPtrOutput   `pulumi:"description"`
 	Enabled                         pulumi.BoolPtrOutput     `pulumi:"enabled"`
+	ForceNameIdFormat               pulumi.BoolOutput        `pulumi:"forceNameIdFormat"`
 	ForcePostBinding                pulumi.BoolOutput        `pulumi:"forcePostBinding"`
 	FrontChannelLogout              pulumi.BoolOutput        `pulumi:"frontChannelLogout"`
 	FullScopeAllowed                pulumi.BoolPtrOutput     `pulumi:"fullScopeAllowed"`
@@ -118,6 +119,7 @@ type clientState struct {
 	ClientSignatureRequired         *bool    `pulumi:"clientSignatureRequired"`
 	Description                     *string  `pulumi:"description"`
 	Enabled                         *bool    `pulumi:"enabled"`
+	ForceNameIdFormat               *bool    `pulumi:"forceNameIdFormat"`
 	ForcePostBinding                *bool    `pulumi:"forcePostBinding"`
 	FrontChannelLogout              *bool    `pulumi:"frontChannelLogout"`
 	FullScopeAllowed                *bool    `pulumi:"fullScopeAllowed"`
@@ -146,6 +148,7 @@ type ClientState struct {
 	ClientSignatureRequired         pulumi.BoolPtrInput
 	Description                     pulumi.StringPtrInput
 	Enabled                         pulumi.BoolPtrInput
+	ForceNameIdFormat               pulumi.BoolPtrInput
 	ForcePostBinding                pulumi.BoolPtrInput
 	FrontChannelLogout              pulumi.BoolPtrInput
 	FullScopeAllowed                pulumi.BoolPtrInput
@@ -178,6 +181,7 @@ type clientArgs struct {
 	ClientSignatureRequired         *bool    `pulumi:"clientSignatureRequired"`
 	Description                     *string  `pulumi:"description"`
 	Enabled                         *bool    `pulumi:"enabled"`
+	ForceNameIdFormat               *bool    `pulumi:"forceNameIdFormat"`
 	ForcePostBinding                *bool    `pulumi:"forcePostBinding"`
 	FrontChannelLogout              *bool    `pulumi:"frontChannelLogout"`
 	FullScopeAllowed                *bool    `pulumi:"fullScopeAllowed"`
@@ -207,6 +211,7 @@ type ClientArgs struct {
 	ClientSignatureRequired         pulumi.BoolPtrInput
 	Description                     pulumi.StringPtrInput
 	Enabled                         pulumi.BoolPtrInput
+	ForceNameIdFormat               pulumi.BoolPtrInput
 	ForcePostBinding                pulumi.BoolPtrInput
 	FrontChannelLogout              pulumi.BoolPtrInput
 	FullScopeAllowed                pulumi.BoolPtrInput

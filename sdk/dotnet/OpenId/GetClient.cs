@@ -50,9 +50,11 @@ namespace Pulumi.Keycloak.OpenId
     public sealed class GetClientResult
     {
         public readonly string AccessType;
+        public readonly Outputs.GetClientAuthenticationFlowBindingOverridesResult AuthenticationFlowBindingOverrides;
         public readonly Outputs.GetClientAuthorizationResult Authorization;
         public readonly string ClientId;
         public readonly string ClientSecret;
+        public readonly bool ConsentRequired;
         public readonly string Description;
         public readonly bool DirectAccessGrantsEnabled;
         public readonly bool Enabled;
@@ -65,6 +67,7 @@ namespace Pulumi.Keycloak.OpenId
         public readonly string Name;
         public readonly string RealmId;
         public readonly string ResourceServerId;
+        public readonly string RootUrl;
         public readonly string ServiceAccountUserId;
         public readonly bool ServiceAccountsEnabled;
         public readonly bool StandardFlowEnabled;
@@ -75,11 +78,15 @@ namespace Pulumi.Keycloak.OpenId
         private GetClientResult(
             string accessType,
 
+            Outputs.GetClientAuthenticationFlowBindingOverridesResult authenticationFlowBindingOverrides,
+
             Outputs.GetClientAuthorizationResult authorization,
 
             string clientId,
 
             string clientSecret,
+
+            bool consentRequired,
 
             string description,
 
@@ -99,6 +106,8 @@ namespace Pulumi.Keycloak.OpenId
 
             string resourceServerId,
 
+            string rootUrl,
+
             string serviceAccountUserId,
 
             bool serviceAccountsEnabled,
@@ -110,9 +119,11 @@ namespace Pulumi.Keycloak.OpenId
             ImmutableArray<string> webOrigins)
         {
             AccessType = accessType;
+            AuthenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
             Authorization = authorization;
             ClientId = clientId;
             ClientSecret = clientSecret;
+            ConsentRequired = consentRequired;
             Description = description;
             DirectAccessGrantsEnabled = directAccessGrantsEnabled;
             Enabled = enabled;
@@ -122,6 +133,7 @@ namespace Pulumi.Keycloak.OpenId
             Name = name;
             RealmId = realmId;
             ResourceServerId = resourceServerId;
+            RootUrl = rootUrl;
             ServiceAccountUserId = serviceAccountUserId;
             ServiceAccountsEnabled = serviceAccountsEnabled;
             StandardFlowEnabled = standardFlowEnabled;

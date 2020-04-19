@@ -38,20 +38,23 @@ type LookupClientArgs struct {
 
 // A collection of values returned by getClient.
 type LookupClientResult struct {
-	AccessType                string                 `pulumi:"accessType"`
-	Authorization             GetClientAuthorization `pulumi:"authorization"`
-	ClientId                  string                 `pulumi:"clientId"`
-	ClientSecret              string                 `pulumi:"clientSecret"`
-	Description               string                 `pulumi:"description"`
-	DirectAccessGrantsEnabled bool                   `pulumi:"directAccessGrantsEnabled"`
-	Enabled                   bool                   `pulumi:"enabled"`
-	FullScopeAllowed          bool                   `pulumi:"fullScopeAllowed"`
+	AccessType                         string                                      `pulumi:"accessType"`
+	AuthenticationFlowBindingOverrides GetClientAuthenticationFlowBindingOverrides `pulumi:"authenticationFlowBindingOverrides"`
+	Authorization                      GetClientAuthorization                      `pulumi:"authorization"`
+	ClientId                           string                                      `pulumi:"clientId"`
+	ClientSecret                       string                                      `pulumi:"clientSecret"`
+	ConsentRequired                    bool                                        `pulumi:"consentRequired"`
+	Description                        string                                      `pulumi:"description"`
+	DirectAccessGrantsEnabled          bool                                        `pulumi:"directAccessGrantsEnabled"`
+	Enabled                            bool                                        `pulumi:"enabled"`
+	FullScopeAllowed                   bool                                        `pulumi:"fullScopeAllowed"`
 	// id is the provider-assigned unique ID for this managed resource.
 	Id                     string   `pulumi:"id"`
 	ImplicitFlowEnabled    bool     `pulumi:"implicitFlowEnabled"`
 	Name                   string   `pulumi:"name"`
 	RealmId                string   `pulumi:"realmId"`
 	ResourceServerId       string   `pulumi:"resourceServerId"`
+	RootUrl                string   `pulumi:"rootUrl"`
 	ServiceAccountUserId   string   `pulumi:"serviceAccountUserId"`
 	ServiceAccountsEnabled bool     `pulumi:"serviceAccountsEnabled"`
 	StandardFlowEnabled    bool     `pulumi:"standardFlowEnabled"`

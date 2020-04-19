@@ -11,13 +11,30 @@ from . import utilities, tables
 
 class GenericClientRoleMapper(pulumi.CustomResource):
     client_id: pulumi.Output[str]
+    """
+    The destination client of the client role. Cannot be used at the same time as client_scope_id.
+    """
+    client_scope_id: pulumi.Output[str]
+    """
+    The destination client scope of the client role. Cannot be used at the same time as client_id.
+    """
     realm_id: pulumi.Output[str]
+    """
+    The realm id where the associated client or client scope exists.
+    """
     role_id: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, client_id=None, realm_id=None, role_id=None, __props__=None, __name__=None, __opts__=None):
+    """
+    Id of the role to assign
+    """
+    def __init__(__self__, resource_name, opts=None, client_id=None, client_scope_id=None, realm_id=None, role_id=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a GenericClientRoleMapper resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] client_id: The destination client of the client role. Cannot be used at the same time as client_scope_id.
+        :param pulumi.Input[str] client_scope_id: The destination client scope of the client role. Cannot be used at the same time as client_id.
+        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
+        :param pulumi.Input[str] role_id: Id of the role to assign
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -36,9 +53,8 @@ class GenericClientRoleMapper(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if client_id is None:
-                raise TypeError("Missing required property 'client_id'")
             __props__['client_id'] = client_id
+            __props__['client_scope_id'] = client_scope_id
             if realm_id is None:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
@@ -52,7 +68,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, client_id=None, realm_id=None, role_id=None):
+    def get(resource_name, id, opts=None, client_id=None, client_scope_id=None, realm_id=None, role_id=None):
         """
         Get an existing GenericClientRoleMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -60,12 +76,17 @@ class GenericClientRoleMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] client_id: The destination client of the client role. Cannot be used at the same time as client_scope_id.
+        :param pulumi.Input[str] client_scope_id: The destination client scope of the client role. Cannot be used at the same time as client_id.
+        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
+        :param pulumi.Input[str] role_id: Id of the role to assign
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
 
         __props__["client_id"] = client_id
+        __props__["client_scope_id"] = client_scope_id
         __props__["realm_id"] = realm_id
         __props__["role_id"] = role_id
         return GenericClientRoleMapper(resource_name, opts=opts, __props__=__props__)

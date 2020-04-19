@@ -12,6 +12,7 @@ from . import utilities, tables
 class User(pulumi.CustomResource):
     attributes: pulumi.Output[dict]
     email: pulumi.Output[str]
+    email_verified: pulumi.Output[bool]
     enabled: pulumi.Output[bool]
     federated_identities: pulumi.Output[list]
     first_name: pulumi.Output[str]
@@ -19,7 +20,7 @@ class User(pulumi.CustomResource):
     last_name: pulumi.Output[str]
     realm_id: pulumi.Output[str]
     username: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, attributes=None, email=None, enabled=None, federated_identities=None, first_name=None, initial_password=None, last_name=None, realm_id=None, username=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, attributes=None, email=None, email_verified=None, enabled=None, federated_identities=None, first_name=None, initial_password=None, last_name=None, realm_id=None, username=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # .User
 
@@ -77,6 +78,7 @@ class User(pulumi.CustomResource):
 
             __props__['attributes'] = attributes
             __props__['email'] = email
+            __props__['email_verified'] = email_verified
             __props__['enabled'] = enabled
             __props__['federated_identities'] = federated_identities
             __props__['first_name'] = first_name
@@ -95,7 +97,7 @@ class User(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, attributes=None, email=None, enabled=None, federated_identities=None, first_name=None, initial_password=None, last_name=None, realm_id=None, username=None):
+    def get(resource_name, id, opts=None, attributes=None, email=None, email_verified=None, enabled=None, federated_identities=None, first_name=None, initial_password=None, last_name=None, realm_id=None, username=None):
         """
         Get an existing User resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -121,6 +123,7 @@ class User(pulumi.CustomResource):
 
         __props__["attributes"] = attributes
         __props__["email"] = email
+        __props__["email_verified"] = email_verified
         __props__["enabled"] = enabled
         __props__["federated_identities"] = federated_identities
         __props__["first_name"] = first_name

@@ -13,17 +13,19 @@ import (
 type GenericClientRoleMapper struct {
 	pulumi.CustomResourceState
 
-	ClientId pulumi.StringOutput `pulumi:"clientId"`
-	RealmId  pulumi.StringOutput `pulumi:"realmId"`
-	RoleId   pulumi.StringOutput `pulumi:"roleId"`
+	// The destination client of the client role. Cannot be used at the same time as client_scope_id.
+	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
+	// The destination client scope of the client role. Cannot be used at the same time as client_id.
+	ClientScopeId pulumi.StringPtrOutput `pulumi:"clientScopeId"`
+	// The realm id where the associated client or client scope exists.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// Id of the role to assign
+	RoleId pulumi.StringOutput `pulumi:"roleId"`
 }
 
 // NewGenericClientRoleMapper registers a new resource with the given unique name, arguments, and options.
 func NewGenericClientRoleMapper(ctx *pulumi.Context,
 	name string, args *GenericClientRoleMapperArgs, opts ...pulumi.ResourceOption) (*GenericClientRoleMapper, error) {
-	if args == nil || args.ClientId == nil {
-		return nil, errors.New("missing required argument 'ClientId'")
-	}
 	if args == nil || args.RealmId == nil {
 		return nil, errors.New("missing required argument 'RealmId'")
 	}
@@ -55,15 +57,25 @@ func GetGenericClientRoleMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GenericClientRoleMapper resources.
 type genericClientRoleMapperState struct {
+	// The destination client of the client role. Cannot be used at the same time as client_scope_id.
 	ClientId *string `pulumi:"clientId"`
-	RealmId  *string `pulumi:"realmId"`
-	RoleId   *string `pulumi:"roleId"`
+	// The destination client scope of the client role. Cannot be used at the same time as client_id.
+	ClientScopeId *string `pulumi:"clientScopeId"`
+	// The realm id where the associated client or client scope exists.
+	RealmId *string `pulumi:"realmId"`
+	// Id of the role to assign
+	RoleId *string `pulumi:"roleId"`
 }
 
 type GenericClientRoleMapperState struct {
+	// The destination client of the client role. Cannot be used at the same time as client_scope_id.
 	ClientId pulumi.StringPtrInput
-	RealmId  pulumi.StringPtrInput
-	RoleId   pulumi.StringPtrInput
+	// The destination client scope of the client role. Cannot be used at the same time as client_id.
+	ClientScopeId pulumi.StringPtrInput
+	// The realm id where the associated client or client scope exists.
+	RealmId pulumi.StringPtrInput
+	// Id of the role to assign
+	RoleId pulumi.StringPtrInput
 }
 
 func (GenericClientRoleMapperState) ElementType() reflect.Type {
@@ -71,16 +83,26 @@ func (GenericClientRoleMapperState) ElementType() reflect.Type {
 }
 
 type genericClientRoleMapperArgs struct {
-	ClientId string `pulumi:"clientId"`
-	RealmId  string `pulumi:"realmId"`
-	RoleId   string `pulumi:"roleId"`
+	// The destination client of the client role. Cannot be used at the same time as client_scope_id.
+	ClientId *string `pulumi:"clientId"`
+	// The destination client scope of the client role. Cannot be used at the same time as client_id.
+	ClientScopeId *string `pulumi:"clientScopeId"`
+	// The realm id where the associated client or client scope exists.
+	RealmId string `pulumi:"realmId"`
+	// Id of the role to assign
+	RoleId string `pulumi:"roleId"`
 }
 
 // The set of arguments for constructing a GenericClientRoleMapper resource.
 type GenericClientRoleMapperArgs struct {
-	ClientId pulumi.StringInput
-	RealmId  pulumi.StringInput
-	RoleId   pulumi.StringInput
+	// The destination client of the client role. Cannot be used at the same time as client_scope_id.
+	ClientId pulumi.StringPtrInput
+	// The destination client scope of the client role. Cannot be used at the same time as client_id.
+	ClientScopeId pulumi.StringPtrInput
+	// The realm id where the associated client or client scope exists.
+	RealmId pulumi.StringInput
+	// Id of the role to assign
+	RoleId pulumi.StringInput
 }
 
 func (GenericClientRoleMapperArgs) ElementType() reflect.Type {

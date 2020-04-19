@@ -13,10 +13,13 @@ class GetClientResult:
     """
     A collection of values returned by getClient.
     """
-    def __init__(__self__, access_type=None, authorization=None, client_id=None, client_secret=None, description=None, direct_access_grants_enabled=None, enabled=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, name=None, realm_id=None, resource_server_id=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None):
+    def __init__(__self__, access_type=None, authentication_flow_binding_overrides=None, authorization=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, name=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None):
         if access_type and not isinstance(access_type, str):
             raise TypeError("Expected argument 'access_type' to be a str")
         __self__.access_type = access_type
+        if authentication_flow_binding_overrides and not isinstance(authentication_flow_binding_overrides, dict):
+            raise TypeError("Expected argument 'authentication_flow_binding_overrides' to be a dict")
+        __self__.authentication_flow_binding_overrides = authentication_flow_binding_overrides
         if authorization and not isinstance(authorization, dict):
             raise TypeError("Expected argument 'authorization' to be a dict")
         __self__.authorization = authorization
@@ -26,6 +29,9 @@ class GetClientResult:
         if client_secret and not isinstance(client_secret, str):
             raise TypeError("Expected argument 'client_secret' to be a str")
         __self__.client_secret = client_secret
+        if consent_required and not isinstance(consent_required, bool):
+            raise TypeError("Expected argument 'consent_required' to be a bool")
+        __self__.consent_required = consent_required
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         __self__.description = description
@@ -56,6 +62,9 @@ class GetClientResult:
         if resource_server_id and not isinstance(resource_server_id, str):
             raise TypeError("Expected argument 'resource_server_id' to be a str")
         __self__.resource_server_id = resource_server_id
+        if root_url and not isinstance(root_url, str):
+            raise TypeError("Expected argument 'root_url' to be a str")
+        __self__.root_url = root_url
         if service_account_user_id and not isinstance(service_account_user_id, str):
             raise TypeError("Expected argument 'service_account_user_id' to be a str")
         __self__.service_account_user_id = service_account_user_id
@@ -78,9 +87,11 @@ class AwaitableGetClientResult(GetClientResult):
             yield self
         return GetClientResult(
             access_type=self.access_type,
+            authentication_flow_binding_overrides=self.authentication_flow_binding_overrides,
             authorization=self.authorization,
             client_id=self.client_id,
             client_secret=self.client_secret,
+            consent_required=self.consent_required,
             description=self.description,
             direct_access_grants_enabled=self.direct_access_grants_enabled,
             enabled=self.enabled,
@@ -90,6 +101,7 @@ class AwaitableGetClientResult(GetClientResult):
             name=self.name,
             realm_id=self.realm_id,
             resource_server_id=self.resource_server_id,
+            root_url=self.root_url,
             service_account_user_id=self.service_account_user_id,
             service_accounts_enabled=self.service_accounts_enabled,
             standard_flow_enabled=self.standard_flow_enabled,
@@ -126,9 +138,11 @@ def get_client(client_id=None,realm_id=None,opts=None):
 
     return AwaitableGetClientResult(
         access_type=__ret__.get('accessType'),
+        authentication_flow_binding_overrides=__ret__.get('authenticationFlowBindingOverrides'),
         authorization=__ret__.get('authorization'),
         client_id=__ret__.get('clientId'),
         client_secret=__ret__.get('clientSecret'),
+        consent_required=__ret__.get('consentRequired'),
         description=__ret__.get('description'),
         direct_access_grants_enabled=__ret__.get('directAccessGrantsEnabled'),
         enabled=__ret__.get('enabled'),
@@ -138,6 +152,7 @@ def get_client(client_id=None,realm_id=None,opts=None):
         name=__ret__.get('name'),
         realm_id=__ret__.get('realmId'),
         resource_server_id=__ret__.get('resourceServerId'),
+        root_url=__ret__.get('rootUrl'),
         service_account_user_id=__ret__.get('serviceAccountUserId'),
         service_accounts_enabled=__ret__.get('serviceAccountsEnabled'),
         standard_flow_enabled=__ret__.get('standardFlowEnabled'),

@@ -4,6 +4,7 @@
 
 # Export this package's modules as members:
 from .client import *
+from .get_client_installation_provider import *
 from .identity_provider import *
 from .user_attribute_protocol_mapper import *
 from .user_property_protocol_mapper import *

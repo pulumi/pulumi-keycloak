@@ -75,6 +75,13 @@ namespace Pulumi.Keycloak
         public Input<string>? RootCaCertificate { get; set; }
 
         /// <summary>
+        /// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
+        /// should be avoided.
+        /// </summary>
+        [Input("tlsInsecureSkipVerify", json: true)]
+        public Input<bool>? TlsInsecureSkipVerify { get; set; }
+
+        /// <summary>
         /// The base URL of the Keycloak instance, before `/auth`
         /// </summary>
         [Input("url")]

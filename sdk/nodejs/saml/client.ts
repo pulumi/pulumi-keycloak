@@ -101,6 +101,7 @@ export class Client extends pulumi.CustomResource {
     public readonly clientSignatureRequired!: pulumi.Output<boolean>;
     public readonly description!: pulumi.Output<string | undefined>;
     public readonly enabled!: pulumi.Output<boolean | undefined>;
+    public readonly forceNameIdFormat!: pulumi.Output<boolean>;
     public readonly forcePostBinding!: pulumi.Output<boolean>;
     public readonly frontChannelLogout!: pulumi.Output<boolean>;
     public readonly fullScopeAllowed!: pulumi.Output<boolean | undefined>;
@@ -139,6 +140,7 @@ export class Client extends pulumi.CustomResource {
             inputs["clientSignatureRequired"] = state ? state.clientSignatureRequired : undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["enabled"] = state ? state.enabled : undefined;
+            inputs["forceNameIdFormat"] = state ? state.forceNameIdFormat : undefined;
             inputs["forcePostBinding"] = state ? state.forcePostBinding : undefined;
             inputs["frontChannelLogout"] = state ? state.frontChannelLogout : undefined;
             inputs["fullScopeAllowed"] = state ? state.fullScopeAllowed : undefined;
@@ -172,6 +174,7 @@ export class Client extends pulumi.CustomResource {
             inputs["clientSignatureRequired"] = args ? args.clientSignatureRequired : undefined;
             inputs["description"] = args ? args.description : undefined;
             inputs["enabled"] = args ? args.enabled : undefined;
+            inputs["forceNameIdFormat"] = args ? args.forceNameIdFormat : undefined;
             inputs["forcePostBinding"] = args ? args.forcePostBinding : undefined;
             inputs["frontChannelLogout"] = args ? args.frontChannelLogout : undefined;
             inputs["fullScopeAllowed"] = args ? args.fullScopeAllowed : undefined;
@@ -213,6 +216,7 @@ export interface ClientState {
     readonly clientSignatureRequired?: pulumi.Input<boolean>;
     readonly description?: pulumi.Input<string>;
     readonly enabled?: pulumi.Input<boolean>;
+    readonly forceNameIdFormat?: pulumi.Input<boolean>;
     readonly forcePostBinding?: pulumi.Input<boolean>;
     readonly frontChannelLogout?: pulumi.Input<boolean>;
     readonly fullScopeAllowed?: pulumi.Input<boolean>;
@@ -244,6 +248,7 @@ export interface ClientArgs {
     readonly clientSignatureRequired?: pulumi.Input<boolean>;
     readonly description?: pulumi.Input<string>;
     readonly enabled?: pulumi.Input<boolean>;
+    readonly forceNameIdFormat?: pulumi.Input<boolean>;
     readonly forcePostBinding?: pulumi.Input<boolean>;
     readonly frontChannelLogout?: pulumi.Input<boolean>;
     readonly fullScopeAllowed?: pulumi.Input<boolean>;

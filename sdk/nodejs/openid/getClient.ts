@@ -51,9 +51,11 @@ export interface GetClientArgs {
  */
 export interface GetClientResult {
     readonly accessType: string;
+    readonly authenticationFlowBindingOverrides: outputs.openid.GetClientAuthenticationFlowBindingOverrides;
     readonly authorization: outputs.openid.GetClientAuthorization;
     readonly clientId: string;
     readonly clientSecret: string;
+    readonly consentRequired: boolean;
     readonly description: string;
     readonly directAccessGrantsEnabled: boolean;
     readonly enabled: boolean;
@@ -62,6 +64,7 @@ export interface GetClientResult {
     readonly name: string;
     readonly realmId: string;
     readonly resourceServerId: string;
+    readonly rootUrl: string;
     readonly serviceAccountUserId: string;
     readonly serviceAccountsEnabled: boolean;
     readonly standardFlowEnabled: boolean;
