@@ -56,6 +56,12 @@ func GetRootCaCertificate(ctx *pulumi.Context) string {
 	return config.Get(ctx, "keycloak:rootCaCertificate")
 }
 
+// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
+// should be avoided.
+func GetTlsInsecureSkipVerify(ctx *pulumi.Context) bool {
+	return config.GetBool(ctx, "keycloak:tlsInsecureSkipVerify")
+}
+
 // The base URL of the Keycloak instance, before `/auth`
 func GetUrl(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "keycloak:url")

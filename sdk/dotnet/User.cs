@@ -41,6 +41,9 @@ namespace Pulumi.Keycloak
         [Output("email")]
         public Output<string?> Email { get; private set; } = null!;
 
+        [Output("emailVerified")]
+        public Output<bool?> EmailVerified { get; private set; } = null!;
+
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
@@ -119,6 +122,9 @@ namespace Pulumi.Keycloak
         [Input("email")]
         public Input<string>? Email { get; set; }
 
+        [Input("emailVerified")]
+        public Input<bool>? EmailVerified { get; set; }
+
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
@@ -162,6 +168,9 @@ namespace Pulumi.Keycloak
 
         [Input("email")]
         public Input<string>? Email { get; set; }
+
+        [Input("emailVerified")]
+        public Input<bool>? EmailVerified { get; set; }
 
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }

@@ -65,6 +65,9 @@ namespace Pulumi.Keycloak.OpenId
         [Output("adminUrl")]
         public Output<string?> AdminUrl { get; private set; } = null!;
 
+        [Output("authenticationFlowBindingOverrides")]
+        public Output<Outputs.ClientAuthenticationFlowBindingOverrides?> AuthenticationFlowBindingOverrides { get; private set; } = null!;
+
         [Output("authorization")]
         public Output<Outputs.ClientAuthorization?> Authorization { get; private set; } = null!;
 
@@ -109,6 +112,9 @@ namespace Pulumi.Keycloak.OpenId
 
         [Output("resourceServerId")]
         public Output<string> ResourceServerId { get; private set; } = null!;
+
+        [Output("rootUrl")]
+        public Output<string?> RootUrl { get; private set; } = null!;
 
         [Output("serviceAccountUserId")]
         public Output<string> ServiceAccountUserId { get; private set; } = null!;
@@ -180,6 +186,9 @@ namespace Pulumi.Keycloak.OpenId
         [Input("adminUrl")]
         public Input<string>? AdminUrl { get; set; }
 
+        [Input("authenticationFlowBindingOverrides")]
+        public Input<Inputs.ClientAuthenticationFlowBindingOverridesArgs>? AuthenticationFlowBindingOverrides { get; set; }
+
         [Input("authorization")]
         public Input<Inputs.ClientAuthorizationArgs>? Authorization { get; set; }
 
@@ -222,6 +231,9 @@ namespace Pulumi.Keycloak.OpenId
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
+        [Input("rootUrl")]
+        public Input<string>? RootUrl { get; set; }
+
         [Input("serviceAccountsEnabled")]
         public Input<bool>? ServiceAccountsEnabled { get; set; }
 
@@ -259,6 +271,9 @@ namespace Pulumi.Keycloak.OpenId
 
         [Input("adminUrl")]
         public Input<string>? AdminUrl { get; set; }
+
+        [Input("authenticationFlowBindingOverrides")]
+        public Input<Inputs.ClientAuthenticationFlowBindingOverridesGetArgs>? AuthenticationFlowBindingOverrides { get; set; }
 
         [Input("authorization")]
         public Input<Inputs.ClientAuthorizationGetArgs>? Authorization { get; set; }
@@ -304,6 +319,9 @@ namespace Pulumi.Keycloak.OpenId
 
         [Input("resourceServerId")]
         public Input<string>? ResourceServerId { get; set; }
+
+        [Input("rootUrl")]
+        public Input<string>? RootUrl { get; set; }
 
         [Input("serviceAccountUserId")]
         public Input<string>? ServiceAccountUserId { get; set; }

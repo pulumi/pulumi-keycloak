@@ -32,6 +32,12 @@ namespace Pulumi.Keycloak
         public static string? RootCaCertificate { get; set; } = __config.Get("rootCaCertificate");
 
         /// <summary>
+        /// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
+        /// should be avoided.
+        /// </summary>
+        public static bool? TlsInsecureSkipVerify { get; set; } = __config.GetBoolean("tlsInsecureSkipVerify");
+
+        /// <summary>
         /// The base URL of the Keycloak instance, before `/auth`
         /// </summary>
         public static string? Url { get; set; } = __config.Get("url") ?? Utilities.GetEnv("KEYCLOAK_URL");

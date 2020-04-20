@@ -11,12 +11,27 @@ namespace Pulumi.Keycloak
 {
     public partial class GenericClientRoleMapper : Pulumi.CustomResource
     {
+        /// <summary>
+        /// The destination client of the client role. Cannot be used at the same time as client_scope_id.
+        /// </summary>
         [Output("clientId")]
-        public Output<string> ClientId { get; private set; } = null!;
+        public Output<string?> ClientId { get; private set; } = null!;
 
+        /// <summary>
+        /// The destination client scope of the client role. Cannot be used at the same time as client_id.
+        /// </summary>
+        [Output("clientScopeId")]
+        public Output<string?> ClientScopeId { get; private set; } = null!;
+
+        /// <summary>
+        /// The realm id where the associated client or client scope exists.
+        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
+        /// <summary>
+        /// Id of the role to assign
+        /// </summary>
         [Output("roleId")]
         public Output<string> RoleId { get; private set; } = null!;
 
@@ -66,12 +81,27 @@ namespace Pulumi.Keycloak
 
     public sealed class GenericClientRoleMapperArgs : Pulumi.ResourceArgs
     {
-        [Input("clientId", required: true)]
-        public Input<string> ClientId { get; set; } = null!;
+        /// <summary>
+        /// The destination client of the client role. Cannot be used at the same time as client_scope_id.
+        /// </summary>
+        [Input("clientId")]
+        public Input<string>? ClientId { get; set; }
 
+        /// <summary>
+        /// The destination client scope of the client role. Cannot be used at the same time as client_id.
+        /// </summary>
+        [Input("clientScopeId")]
+        public Input<string>? ClientScopeId { get; set; }
+
+        /// <summary>
+        /// The realm id where the associated client or client scope exists.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
+        /// <summary>
+        /// Id of the role to assign
+        /// </summary>
         [Input("roleId", required: true)]
         public Input<string> RoleId { get; set; } = null!;
 
@@ -82,12 +112,27 @@ namespace Pulumi.Keycloak
 
     public sealed class GenericClientRoleMapperState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The destination client of the client role. Cannot be used at the same time as client_scope_id.
+        /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
+        /// <summary>
+        /// The destination client scope of the client role. Cannot be used at the same time as client_id.
+        /// </summary>
+        [Input("clientScopeId")]
+        public Input<string>? ClientScopeId { get; set; }
+
+        /// <summary>
+        /// The realm id where the associated client or client scope exists.
+        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
+        /// <summary>
+        /// Id of the role to assign
+        /// </summary>
         [Input("roleId")]
         public Input<string>? RoleId { get; set; }
 

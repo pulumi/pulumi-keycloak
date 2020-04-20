@@ -102,6 +102,7 @@ export class Client extends pulumi.CustomResource {
     public readonly accessTokenLifespan!: pulumi.Output<string | undefined>;
     public readonly accessType!: pulumi.Output<string>;
     public readonly adminUrl!: pulumi.Output<string | undefined>;
+    public readonly authenticationFlowBindingOverrides!: pulumi.Output<outputs.openid.ClientAuthenticationFlowBindingOverrides | undefined>;
     public readonly authorization!: pulumi.Output<outputs.openid.ClientAuthorization | undefined>;
     public readonly baseUrl!: pulumi.Output<string | undefined>;
     public readonly clientId!: pulumi.Output<string>;
@@ -117,6 +118,7 @@ export class Client extends pulumi.CustomResource {
     public readonly pkceCodeChallengeMethod!: pulumi.Output<string | undefined>;
     public readonly realmId!: pulumi.Output<string>;
     public /*out*/ readonly resourceServerId!: pulumi.Output<string>;
+    public readonly rootUrl!: pulumi.Output<string | undefined>;
     public /*out*/ readonly serviceAccountUserId!: pulumi.Output<string>;
     public readonly serviceAccountsEnabled!: pulumi.Output<boolean | undefined>;
     public readonly standardFlowEnabled!: pulumi.Output<boolean | undefined>;
@@ -138,6 +140,7 @@ export class Client extends pulumi.CustomResource {
             inputs["accessTokenLifespan"] = state ? state.accessTokenLifespan : undefined;
             inputs["accessType"] = state ? state.accessType : undefined;
             inputs["adminUrl"] = state ? state.adminUrl : undefined;
+            inputs["authenticationFlowBindingOverrides"] = state ? state.authenticationFlowBindingOverrides : undefined;
             inputs["authorization"] = state ? state.authorization : undefined;
             inputs["baseUrl"] = state ? state.baseUrl : undefined;
             inputs["clientId"] = state ? state.clientId : undefined;
@@ -153,6 +156,7 @@ export class Client extends pulumi.CustomResource {
             inputs["pkceCodeChallengeMethod"] = state ? state.pkceCodeChallengeMethod : undefined;
             inputs["realmId"] = state ? state.realmId : undefined;
             inputs["resourceServerId"] = state ? state.resourceServerId : undefined;
+            inputs["rootUrl"] = state ? state.rootUrl : undefined;
             inputs["serviceAccountUserId"] = state ? state.serviceAccountUserId : undefined;
             inputs["serviceAccountsEnabled"] = state ? state.serviceAccountsEnabled : undefined;
             inputs["standardFlowEnabled"] = state ? state.standardFlowEnabled : undefined;
@@ -172,6 +176,7 @@ export class Client extends pulumi.CustomResource {
             inputs["accessTokenLifespan"] = args ? args.accessTokenLifespan : undefined;
             inputs["accessType"] = args ? args.accessType : undefined;
             inputs["adminUrl"] = args ? args.adminUrl : undefined;
+            inputs["authenticationFlowBindingOverrides"] = args ? args.authenticationFlowBindingOverrides : undefined;
             inputs["authorization"] = args ? args.authorization : undefined;
             inputs["baseUrl"] = args ? args.baseUrl : undefined;
             inputs["clientId"] = args ? args.clientId : undefined;
@@ -186,6 +191,7 @@ export class Client extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["pkceCodeChallengeMethod"] = args ? args.pkceCodeChallengeMethod : undefined;
             inputs["realmId"] = args ? args.realmId : undefined;
+            inputs["rootUrl"] = args ? args.rootUrl : undefined;
             inputs["serviceAccountsEnabled"] = args ? args.serviceAccountsEnabled : undefined;
             inputs["standardFlowEnabled"] = args ? args.standardFlowEnabled : undefined;
             inputs["validRedirectUris"] = args ? args.validRedirectUris : undefined;
@@ -211,6 +217,7 @@ export interface ClientState {
     readonly accessTokenLifespan?: pulumi.Input<string>;
     readonly accessType?: pulumi.Input<string>;
     readonly adminUrl?: pulumi.Input<string>;
+    readonly authenticationFlowBindingOverrides?: pulumi.Input<inputs.openid.ClientAuthenticationFlowBindingOverrides>;
     readonly authorization?: pulumi.Input<inputs.openid.ClientAuthorization>;
     readonly baseUrl?: pulumi.Input<string>;
     readonly clientId?: pulumi.Input<string>;
@@ -226,6 +233,7 @@ export interface ClientState {
     readonly pkceCodeChallengeMethod?: pulumi.Input<string>;
     readonly realmId?: pulumi.Input<string>;
     readonly resourceServerId?: pulumi.Input<string>;
+    readonly rootUrl?: pulumi.Input<string>;
     readonly serviceAccountUserId?: pulumi.Input<string>;
     readonly serviceAccountsEnabled?: pulumi.Input<boolean>;
     readonly standardFlowEnabled?: pulumi.Input<boolean>;
@@ -240,6 +248,7 @@ export interface ClientArgs {
     readonly accessTokenLifespan?: pulumi.Input<string>;
     readonly accessType: pulumi.Input<string>;
     readonly adminUrl?: pulumi.Input<string>;
+    readonly authenticationFlowBindingOverrides?: pulumi.Input<inputs.openid.ClientAuthenticationFlowBindingOverrides>;
     readonly authorization?: pulumi.Input<inputs.openid.ClientAuthorization>;
     readonly baseUrl?: pulumi.Input<string>;
     readonly clientId: pulumi.Input<string>;
@@ -254,6 +263,7 @@ export interface ClientArgs {
     readonly name?: pulumi.Input<string>;
     readonly pkceCodeChallengeMethod?: pulumi.Input<string>;
     readonly realmId: pulumi.Input<string>;
+    readonly rootUrl?: pulumi.Input<string>;
     readonly serviceAccountsEnabled?: pulumi.Input<boolean>;
     readonly standardFlowEnabled?: pulumi.Input<boolean>;
     readonly validRedirectUris?: pulumi.Input<pulumi.Input<string>[]>;

@@ -47,6 +47,7 @@ export class Provider extends pulumi.ProviderResource {
             inputs["password"] = (args ? args.password : undefined) || utilities.getEnv("KEYCLOAK_PASSWORD");
             inputs["realm"] = (args ? args.realm : undefined) || (utilities.getEnv("KEYCLOAK_REALM") || "master");
             inputs["rootCaCertificate"] = args ? args.rootCaCertificate : undefined;
+            inputs["tlsInsecureSkipVerify"] = pulumi.output(args ? args.tlsInsecureSkipVerify : undefined).apply(JSON.stringify);
             inputs["url"] = (args ? args.url : undefined) || utilities.getEnv("KEYCLOAK_URL");
             inputs["username"] = (args ? args.username : undefined) || utilities.getEnv("KEYCLOAK_USER");
         }
@@ -81,6 +82,11 @@ export interface ProviderArgs {
      * Allows x509 calls using an unknown CA certificate (for development purposes)
      */
     readonly rootCaCertificate?: pulumi.Input<string>;
+    /**
+     * Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
+     * should be avoided.
+     */
+    readonly tlsInsecureSkipVerify?: pulumi.Input<boolean>;
     /**
      * The base URL of the Keycloak instance, before `/auth`
      */

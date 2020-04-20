@@ -71,6 +71,9 @@ namespace Pulumi.Keycloak.Saml
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
+        [Output("forceNameIdFormat")]
+        public Output<bool> ForceNameIdFormat { get; private set; } = null!;
+
         [Output("forcePostBinding")]
         public Output<bool> ForcePostBinding { get; private set; } = null!;
 
@@ -192,6 +195,9 @@ namespace Pulumi.Keycloak.Saml
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        [Input("forceNameIdFormat")]
+        public Input<bool>? ForceNameIdFormat { get; set; }
+
         [Input("forcePostBinding")]
         public Input<bool>? ForcePostBinding { get; set; }
 
@@ -278,6 +284,9 @@ namespace Pulumi.Keycloak.Saml
 
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
+
+        [Input("forceNameIdFormat")]
+        public Input<bool>? ForceNameIdFormat { get; set; }
 
         [Input("forcePostBinding")]
         public Input<bool>? ForcePostBinding { get; set; }

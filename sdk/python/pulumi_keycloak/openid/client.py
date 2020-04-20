@@ -13,6 +13,7 @@ class Client(pulumi.CustomResource):
     access_token_lifespan: pulumi.Output[str]
     access_type: pulumi.Output[str]
     admin_url: pulumi.Output[str]
+    authentication_flow_binding_overrides: pulumi.Output[dict]
     authorization: pulumi.Output[dict]
     base_url: pulumi.Output[str]
     client_id: pulumi.Output[str]
@@ -28,12 +29,13 @@ class Client(pulumi.CustomResource):
     pkce_code_challenge_method: pulumi.Output[str]
     realm_id: pulumi.Output[str]
     resource_server_id: pulumi.Output[str]
+    root_url: pulumi.Output[str]
     service_account_user_id: pulumi.Output[str]
     service_accounts_enabled: pulumi.Output[bool]
     standard_flow_enabled: pulumi.Output[bool]
     valid_redirect_uris: pulumi.Output[list]
     web_origins: pulumi.Output[list]
-    def __init__(__self__, resource_name, opts=None, access_token_lifespan=None, access_type=None, admin_url=None, authorization=None, base_url=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, implicit_flow_enabled=None, name=None, pkce_code_challenge_method=None, realm_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, access_token_lifespan=None, access_type=None, admin_url=None, authentication_flow_binding_overrides=None, authorization=None, base_url=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, implicit_flow_enabled=None, name=None, pkce_code_challenge_method=None, realm_id=None, root_url=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # openid.Client
 
@@ -82,6 +84,11 @@ class Client(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
 
+        The **authentication_flow_binding_overrides** object supports the following:
+
+          * `browserId` (`pulumi.Input[str]`)
+          * `directGrantId` (`pulumi.Input[str]`)
+
         The **authorization** object supports the following:
 
           * `allowRemoteResourceManagement` (`pulumi.Input[bool]`)
@@ -110,6 +117,7 @@ class Client(pulumi.CustomResource):
                 raise TypeError("Missing required property 'access_type'")
             __props__['access_type'] = access_type
             __props__['admin_url'] = admin_url
+            __props__['authentication_flow_binding_overrides'] = authentication_flow_binding_overrides
             __props__['authorization'] = authorization
             __props__['base_url'] = base_url
             if client_id is None:
@@ -128,6 +136,7 @@ class Client(pulumi.CustomResource):
             if realm_id is None:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
+            __props__['root_url'] = root_url
             __props__['service_accounts_enabled'] = service_accounts_enabled
             __props__['standard_flow_enabled'] = standard_flow_enabled
             __props__['valid_redirect_uris'] = valid_redirect_uris
@@ -141,7 +150,7 @@ class Client(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, access_token_lifespan=None, access_type=None, admin_url=None, authorization=None, base_url=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, implicit_flow_enabled=None, name=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None):
+    def get(resource_name, id, opts=None, access_token_lifespan=None, access_type=None, admin_url=None, authentication_flow_binding_overrides=None, authorization=None, base_url=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, implicit_flow_enabled=None, name=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None):
         """
         Get an existing Client resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -149,6 +158,11 @@ class Client(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+
+        The **authentication_flow_binding_overrides** object supports the following:
+
+          * `browserId` (`pulumi.Input[str]`)
+          * `directGrantId` (`pulumi.Input[str]`)
 
         The **authorization** object supports the following:
 
@@ -163,6 +177,7 @@ class Client(pulumi.CustomResource):
         __props__["access_token_lifespan"] = access_token_lifespan
         __props__["access_type"] = access_type
         __props__["admin_url"] = admin_url
+        __props__["authentication_flow_binding_overrides"] = authentication_flow_binding_overrides
         __props__["authorization"] = authorization
         __props__["base_url"] = base_url
         __props__["client_id"] = client_id
@@ -178,6 +193,7 @@ class Client(pulumi.CustomResource):
         __props__["pkce_code_challenge_method"] = pkce_code_challenge_method
         __props__["realm_id"] = realm_id
         __props__["resource_server_id"] = resource_server_id
+        __props__["root_url"] = root_url
         __props__["service_account_user_id"] = service_account_user_id
         __props__["service_accounts_enabled"] = service_accounts_enabled
         __props__["standard_flow_enabled"] = standard_flow_enabled

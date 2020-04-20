@@ -37,6 +37,7 @@ type User struct {
 
 	Attributes          pulumi.MapOutput                 `pulumi:"attributes"`
 	Email               pulumi.StringPtrOutput           `pulumi:"email"`
+	EmailVerified       pulumi.BoolPtrOutput             `pulumi:"emailVerified"`
 	Enabled             pulumi.BoolPtrOutput             `pulumi:"enabled"`
 	FederatedIdentities UserFederatedIdentityArrayOutput `pulumi:"federatedIdentities"`
 	FirstName           pulumi.StringPtrOutput           `pulumi:"firstName"`
@@ -82,6 +83,7 @@ func GetUser(ctx *pulumi.Context,
 type userState struct {
 	Attributes          map[string]interface{}  `pulumi:"attributes"`
 	Email               *string                 `pulumi:"email"`
+	EmailVerified       *bool                   `pulumi:"emailVerified"`
 	Enabled             *bool                   `pulumi:"enabled"`
 	FederatedIdentities []UserFederatedIdentity `pulumi:"federatedIdentities"`
 	FirstName           *string                 `pulumi:"firstName"`
@@ -94,6 +96,7 @@ type userState struct {
 type UserState struct {
 	Attributes          pulumi.MapInput
 	Email               pulumi.StringPtrInput
+	EmailVerified       pulumi.BoolPtrInput
 	Enabled             pulumi.BoolPtrInput
 	FederatedIdentities UserFederatedIdentityArrayInput
 	FirstName           pulumi.StringPtrInput
@@ -110,6 +113,7 @@ func (UserState) ElementType() reflect.Type {
 type userArgs struct {
 	Attributes          map[string]interface{}  `pulumi:"attributes"`
 	Email               *string                 `pulumi:"email"`
+	EmailVerified       *bool                   `pulumi:"emailVerified"`
 	Enabled             *bool                   `pulumi:"enabled"`
 	FederatedIdentities []UserFederatedIdentity `pulumi:"federatedIdentities"`
 	FirstName           *string                 `pulumi:"firstName"`
@@ -123,6 +127,7 @@ type userArgs struct {
 type UserArgs struct {
 	Attributes          pulumi.MapInput
 	Email               pulumi.StringPtrInput
+	EmailVerified       pulumi.BoolPtrInput
 	Enabled             pulumi.BoolPtrInput
 	FederatedIdentities UserFederatedIdentityArrayInput
 	FirstName           pulumi.StringPtrInput
