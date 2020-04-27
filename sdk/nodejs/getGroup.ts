@@ -25,11 +25,11 @@ import * as utilities from "./utilities";
  * const offlineAccess = realm.id.apply(id => keycloak.getRole({
  *     name: "offlineAccess",
  *     realmId: id,
- * }));
+ * }, { async: true }));
  * const group = realm.id.apply(id => keycloak.getGroup({
  *     name: "group",
  *     realmId: id,
- * }));
+ * }, { async: true }));
  * const groupRoles = new keycloak.GroupRoles("groupRoles", {
  *     groupId: group.id,
  *     realmId: realm.id,
