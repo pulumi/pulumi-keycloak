@@ -27,7 +27,7 @@ type GetClientAuthorizationPolicyArgs struct {
 // A collection of values returned by getClientAuthorizationPolicy.
 type GetClientAuthorizationPolicyResult struct {
 	DecisionStrategy string `pulumi:"decisionStrategy"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id               string   `pulumi:"id"`
 	Logic            *string  `pulumi:"logic"`
 	Name             string   `pulumi:"name"`
