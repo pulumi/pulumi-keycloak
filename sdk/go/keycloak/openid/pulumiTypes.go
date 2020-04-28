@@ -136,11 +136,21 @@ func (o ClientAuthenticationFlowBindingOverridesPtrOutput) Elem() ClientAuthenti
 }
 
 func (o ClientAuthenticationFlowBindingOverridesPtrOutput) BrowserId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClientAuthenticationFlowBindingOverrides) *string { return v.BrowserId }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClientAuthenticationFlowBindingOverrides) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BrowserId
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o ClientAuthenticationFlowBindingOverridesPtrOutput) DirectGrantId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClientAuthenticationFlowBindingOverrides) *string { return v.DirectGrantId }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClientAuthenticationFlowBindingOverrides) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DirectGrantId
+	}).(pulumi.StringPtrOutput)
 }
 
 type ClientAuthorization struct {
@@ -275,15 +285,30 @@ func (o ClientAuthorizationPtrOutput) Elem() ClientAuthorizationOutput {
 }
 
 func (o ClientAuthorizationPtrOutput) AllowRemoteResourceManagement() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ClientAuthorization) *bool { return v.AllowRemoteResourceManagement }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *ClientAuthorization) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AllowRemoteResourceManagement
+	}).(pulumi.BoolPtrOutput)
 }
 
 func (o ClientAuthorizationPtrOutput) KeepDefaults() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ClientAuthorization) *bool { return v.KeepDefaults }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *ClientAuthorization) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.KeepDefaults
+	}).(pulumi.BoolPtrOutput)
 }
 
-func (o ClientAuthorizationPtrOutput) PolicyEnforcementMode() pulumi.StringOutput {
-	return o.ApplyT(func(v ClientAuthorization) string { return v.PolicyEnforcementMode }).(pulumi.StringOutput)
+func (o ClientAuthorizationPtrOutput) PolicyEnforcementMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientAuthorization) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PolicyEnforcementMode
+	}).(pulumi.StringPtrOutput)
 }
 
 type ClientGroupPolicyGroup struct {

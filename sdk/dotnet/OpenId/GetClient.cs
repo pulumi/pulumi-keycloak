@@ -60,7 +60,7 @@ namespace Pulumi.Keycloak.OpenId
         public readonly bool Enabled;
         public readonly bool FullScopeAllowed;
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly bool ImplicitFlowEnabled;

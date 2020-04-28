@@ -30,7 +30,7 @@ type GetClientServiceAccountUserResult struct {
 	Enabled             bool                                           `pulumi:"enabled"`
 	FederatedIdentities []GetClientServiceAccountUserFederatedIdentity `pulumi:"federatedIdentities"`
 	FirstName           string                                         `pulumi:"firstName"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id       string `pulumi:"id"`
 	LastName string `pulumi:"lastName"`
 	RealmId  string `pulumi:"realmId"`

@@ -26,7 +26,7 @@ type GetClientInstallationProviderArgs struct {
 // A collection of values returned by getClientInstallationProvider.
 type GetClientInstallationProviderResult struct {
 	ClientId string `pulumi:"clientId"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id         string `pulumi:"id"`
 	ProviderId string `pulumi:"providerId"`
 	RealmId    string `pulumi:"realmId"`

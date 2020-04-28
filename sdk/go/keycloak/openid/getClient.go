@@ -48,7 +48,7 @@ type LookupClientResult struct {
 	DirectAccessGrantsEnabled          bool                                        `pulumi:"directAccessGrantsEnabled"`
 	Enabled                            bool                                        `pulumi:"enabled"`
 	FullScopeAllowed                   bool                                        `pulumi:"fullScopeAllowed"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id                     string   `pulumi:"id"`
 	ImplicitFlowEnabled    bool     `pulumi:"implicitFlowEnabled"`
 	Name                   string   `pulumi:"name"`

@@ -62,7 +62,7 @@ type LookupRealmResult struct {
 	EditUsernameAllowed                 bool                   `pulumi:"editUsernameAllowed"`
 	EmailTheme                          string                 `pulumi:"emailTheme"`
 	Enabled                             bool                   `pulumi:"enabled"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id                          string                         `pulumi:"id"`
 	Internationalizations       []GetRealmInternationalization `pulumi:"internationalizations"`
 	LoginTheme                  string                         `pulumi:"loginTheme"`

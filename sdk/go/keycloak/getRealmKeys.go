@@ -43,7 +43,7 @@ type GetRealmKeysArgs struct {
 // A collection of values returned by getRealmKeys.
 type GetRealmKeysResult struct {
 	Algorithms []string `pulumi:"algorithms"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id       string            `pulumi:"id"`
 	Keys     []GetRealmKeysKey `pulumi:"keys"`
 	RealmId  string            `pulumi:"realmId"`

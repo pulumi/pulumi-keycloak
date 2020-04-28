@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  * const offlineAccess = realm.id.apply(id => keycloak.getRole({
  *     name: "offlineAccess",
  *     realmId: id,
- * }));
+ * }, { async: true }));
  * const group = new keycloak.Group("group", {
  *     realmId: realm.id,
  * });
@@ -88,7 +88,7 @@ export interface GetRoleResult {
     readonly name: string;
     readonly realmId: string;
     /**
-     * id is the provider-assigned unique ID for this managed resource.
+     * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
 }

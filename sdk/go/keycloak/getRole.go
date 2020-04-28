@@ -48,7 +48,7 @@ type LookupRoleArgs struct {
 type LookupRoleResult struct {
 	ClientId    *string `pulumi:"clientId"`
 	Description string  `pulumi:"description"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id      string `pulumi:"id"`
 	Name    string `pulumi:"name"`
 	RealmId string `pulumi:"realmId"`
