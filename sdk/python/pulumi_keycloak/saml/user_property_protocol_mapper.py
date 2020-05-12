@@ -30,6 +30,26 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
         can be defined for a single client, or they can be defined for a client scope which
         can be shared between multiple different clients.
 
+        ### Example Usage (Client)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            enabled=True,
+            realm="my-realm")
+        saml_client = keycloak.saml.Client("samlClient",
+            client_id="test-saml-client",
+            realm_id=keycloak_realm["test"]["id"])
+        saml_user_property_mapper = keycloak.saml.UserPropertyProtocolMapper("samlUserPropertyMapper",
+            client_id=saml_client.id,
+            realm_id=keycloak_realm["test"]["id"],
+            saml_attribute_name="email",
+            saml_attribute_name_format="Unspecified",
+            user_property="email")
+        ```
+
         ### Argument Reference
 
         The following arguments are supported:

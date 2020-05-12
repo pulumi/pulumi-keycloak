@@ -23,6 +23,26 @@ class RealmEvents(pulumi.CustomResource):
 
         Allows for managing Realm Events settings within Keycloak.
 
+        ### Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="test")
+        realm_events = keycloak.RealmEvents("realmEvents",
+            admin_events_details_enabled=True,
+            admin_events_enabled=True,
+            enabled_event_types=[
+                "LOGIN",
+                "LOGOUT",
+            ],
+            events_enabled=True,
+            events_expiration=3600,
+            events_listeners=["jboss-logging"],
+            realm_id=realm.id)
+        ```
+
         ### Argument Reference
 
         The following arguments are supported:

@@ -12,6 +12,18 @@ import * as utilities from "./utilities";
  * This data source can be used to fetch properties of a Keycloak realm for
  * usage with other resources.
  * 
+ * ### Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * 
+ * const realm = keycloak.getRealm({
+ *     realm: "my-realm",
+ * });
+ * const group = new keycloak.Role("group", {realmId: data.keycloak_realm.id});
+ * ```
+ * 
  * ### Argument Reference
  * 
  * The following arguments are supported:

@@ -11,6 +11,23 @@ import * as utilities from "../utilities";
  * 
  * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
  * 
+ * ### Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * 
+ * const realmManagement = keycloak.openid.getClient({
+ *     realmId: "my-realm",
+ *     clientId: "realm-management",
+ * });
+ * const admin = realmManagement.then(realmManagement => keycloak.getRole({
+ *     realmId: "my-realm",
+ *     clientId: realmManagement.id,
+ *     name: "realm-admin",
+ * }));
+ * ```
+ * 
  * ### Argument Reference
  * 
  * The following arguments are supported:

@@ -44,6 +44,19 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
 
         Allows to create and manage identity provider mappers within Keycloak.
 
+        ### Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        test_mapper = keycloak.AttributeImporterIdentityProviderMapper("testMapper",
+            attribute_name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
+            identity_provider_alias="idp_alias",
+            realm="my-realm",
+            user_attribute="lastName")
+        ```
+
         ### Argument Reference
 
         The following arguments are supported:

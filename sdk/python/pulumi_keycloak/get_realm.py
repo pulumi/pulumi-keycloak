@@ -195,6 +195,16 @@ def get_realm(attributes=None,display_name_html=None,internationalizations=None,
     This data source can be used to fetch properties of a Keycloak realm for
     usage with other resources.
 
+    ### Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.get_realm(realm="my-realm")
+    group = keycloak.Role("group", realm_id=data[".Realm"]["id"])
+    ```
+
     ### Argument Reference
 
     The following arguments are supported:

@@ -248,7 +248,6 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_saml_client_installation_provider": {Tok: makeDataSource(samlMod, "getClientInstallationProvider")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
-			AsyncDataSources: true,
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^2.0.0",

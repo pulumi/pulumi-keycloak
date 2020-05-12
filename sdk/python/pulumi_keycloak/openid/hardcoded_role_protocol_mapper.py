@@ -39,6 +39,45 @@ class HardcodedRoleProtocolMapper(pulumi.CustomResource):
         defined for a single client, or they can be defined for a client scope
         which can be shared between multiple different clients.
 
+        ### Example Usage (Client)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            enabled=True,
+            realm="my-realm")
+        role = keycloak.Role("role", realm_id=realm.id)
+        openid_client = keycloak.openid.Client("openidClient",
+            access_type="CONFIDENTIAL",
+            client_id="test-client",
+            enabled=True,
+            realm_id=realm.id,
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
+        hardcoded_role_mapper = keycloak.openid.HardcodedRoleProtocolMapper("hardcodedRoleMapper",
+            client_id=openid_client.id,
+            realm_id=realm.id,
+            role_id=role.id)
+        ```
+
+        ### Example Usage (Client Scope)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            enabled=True,
+            realm="my-realm")
+        role = keycloak.Role("role", realm_id=realm.id)
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        hardcoded_role_mapper = keycloak.openid.HardcodedRoleProtocolMapper("hardcodedRoleMapper",
+            client_scope_id=client_scope.id,
+            realm_id=realm.id,
+            role_id=role.id)
+        ```
+
         ### Argument Reference
 
         The following arguments are supported:
