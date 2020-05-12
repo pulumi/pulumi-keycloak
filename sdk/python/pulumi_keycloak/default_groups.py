@@ -21,6 +21,21 @@ class DefaultGroups(pulumi.CustomResource):
         Note that you should not use `.DefaultGroups` with a group with memberships managed
         by `.GroupMemberships`.
 
+        ### Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            enabled=True,
+            realm="my-realm")
+        group = keycloak.Group("group", realm_id=realm.id)
+        default = keycloak.DefaultGroups("default",
+            group_ids=[group.id],
+            realm_id=realm.id)
+        ```
+
         ### Argument Reference
 
         The following arguments are supported:

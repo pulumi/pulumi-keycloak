@@ -56,6 +56,45 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
         defined for a single client, or they can be defined for a client scope which
         can be shared between multiple different clients.
 
+        ### Example Usage (Client)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            enabled=True,
+            realm="my-realm")
+        openid_client = keycloak.openid.Client("openidClient",
+            access_type="CONFIDENTIAL",
+            client_id="test-client",
+            enabled=True,
+            realm_id=realm.id,
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
+        user_property_mapper = keycloak.openid.UserPropertyProtocolMapper("userPropertyMapper",
+            claim_name="email",
+            client_id=openid_client.id,
+            realm_id=realm.id,
+            user_property="email")
+        ```
+
+        ### Example Usage (Client Scope)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            enabled=True,
+            realm="my-realm")
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        user_property_mapper = keycloak.openid.UserPropertyProtocolMapper("userPropertyMapper",
+            claim_name="email",
+            client_scope_id=client_scope.id,
+            realm_id=realm.id,
+            user_property="email")
+        ```
+
         ### Argument Reference
 
         The following arguments are supported:

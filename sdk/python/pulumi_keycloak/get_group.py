@@ -43,6 +43,25 @@ def get_group(name=None,realm_id=None,opts=None):
     This data source can be used to fetch properties of a Keycloak group for
     usage with other resources, such as `.GroupRoles`.
 
+    ### Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.Realm("realm",
+        enabled=True,
+        realm="my-realm")
+    offline_access = realm.id.apply(lambda id: keycloak.get_role(name="offline_access",
+        realm_id=id))
+    group = realm.id.apply(lambda id: keycloak.get_group(name="group",
+        realm_id=id))
+    group_roles = keycloak.GroupRoles("groupRoles",
+        group_id=group.id,
+        realm_id=realm.id,
+        roles=[offline_access.id])
+    ```
+
     ### Argument Reference
 
     The following arguments are supported:

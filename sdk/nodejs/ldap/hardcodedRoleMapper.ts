@@ -9,6 +9,37 @@ import * as utilities from "../utilities";
  * 
  * This mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
  * 
+ * ### Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * 
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "test",
+ *     enabled: true,
+ * });
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
+ *     realmId: realm.id,
+ *     usernameLdapAttribute: "cn",
+ *     rdnLdapAttribute: "cn",
+ *     uuidLdapAttribute: "entryDN",
+ *     userObjectClasses: [
+ *         "simpleSecurityObject",
+ *         "organizationalRole",
+ *     ],
+ *     connectionUrl: "ldap://openldap",
+ *     usersDn: "dc=example,dc=org",
+ *     bindDn: "cn=admin,dc=example,dc=org",
+ *     bindCredential: "admin",
+ * });
+ * const assignAdminRoleToAllUsers = new keycloak.ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers", {
+ *     realmId: realm.id,
+ *     ldapUserFederationId: ldapUserFederation.id,
+ *     role: "admin",
+ * });
+ * ```
+ * 
  * ### Argument Reference
  * 
  * The following arguments are supported:
