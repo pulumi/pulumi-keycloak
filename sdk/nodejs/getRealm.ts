@@ -8,33 +8,31 @@ import * as utilities from "./utilities";
 
 /**
  * ## # keycloak..Realm data source
- * 
+ *
  * This data source can be used to fetch properties of a Keycloak realm for
  * usage with other resources.
- * 
+ *
  * ### Example Usage
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
- * 
+ *
  * const realm = keycloak.getRealm({
  *     realm: "my-realm",
  * });
  * const group = new keycloak.Role("group", {realmId: data.keycloak_realm.id});
  * ```
- * 
- * ### Argument Reference
- * 
- * The following arguments are supported:
- * 
- * - `realm` - (Required) The realm name.
- * 
- * ### Attributes Reference
- * 
- * See the docs for the `keycloak..Realm` resource for details on the exported attributes.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_realm.html.markdown.
+ * ### Argument Reference
+ *
+ * The following arguments are supported:
+ *
+ * - `realm` - (Required) The realm name.
+ *
+ * ### Attributes Reference
+ *
+ * See the docs for the `keycloak..Realm` resource for details on the exported attributes.
  */
 export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmResult> {
     if (!opts) {

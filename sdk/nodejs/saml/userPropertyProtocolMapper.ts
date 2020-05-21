@@ -6,21 +6,21 @@ import * as utilities from "../utilities";
 
 /**
  * ## # keycloak.saml.UserPropertyProtocolMapper
- * 
+ *
  * Allows for creating and managing user property protocol mappers for
  * SAML clients within Keycloak.
- * 
+ *
  * SAML user property protocol mappers allow you to map properties of the Keycloak
  * user model to an attribute in a SAML assertion. Protocol mappers
  * can be defined for a single client, or they can be defined for a client scope which
  * can be shared between multiple different clients.
- * 
+ *
  * ### Example Usage (Client)
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
- * 
+ *
  * const realm = new keycloak.Realm("realm", {
  *     enabled: true,
  *     realm: "my-realm",
@@ -37,11 +37,11 @@ import * as utilities from "../utilities";
  *     userProperty: "email",
  * });
  * ```
- * 
+ *
  * ### Argument Reference
- * 
+ *
  * The following arguments are supported:
- * 
+ *
  * - `realmId` - (Required) The realm this protocol mapper exists within.
  * - `clientId` - (Required if `clientScopeId` is not specified) The SAML client this protocol mapper is attached to.
  * - `clientScopeId` - (Required if `clientId` is not specified) The SAML client scope this protocol mapper is attached to.
@@ -50,8 +50,6 @@ import * as utilities from "../utilities";
  * - `friendlyName` - (Optional) An optional human-friendly name for this attribute.
  * - `samlAttributeName` - (Required) The name of the SAML attribute.
  * - `samlAttributeNameFormat` - (Required) The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
- *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_saml_user_property_protocol_mapper.html.markdown.
  */
 export class UserPropertyProtocolMapper extends pulumi.CustomResource {
     /**

@@ -8,21 +8,21 @@ import * as utilities from "../utilities";
 
 /**
  * ## # keycloak.openid.GroupMembershipProtocolMapper
- * 
+ *
  * Allows for creating and managing group membership protocol mappers within
  * Keycloak.
- * 
+ *
  * Group membership protocol mappers allow you to map a user's group memberships
  * to a claim in a token. Protocol mappers can be defined for a single client,
  * or they can be defined for a client scope which can be shared between multiple
  * different clients.
- * 
+ *
  * ### Example Usage (Client)
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
- * 
+ *
  * const realm = new keycloak.Realm("realm", {
  *     enabled: true,
  *     realm: "my-realm",
@@ -40,13 +40,13 @@ import * as utilities from "../utilities";
  *     realmId: realm.id,
  * });
  * ```
- * 
+ *
  * ### Example Usage (Client Scope)
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
- * 
+ *
  * const realm = new keycloak.Realm("realm", {
  *     enabled: true,
  *     realm: "my-realm",
@@ -60,11 +60,11 @@ import * as utilities from "../utilities";
  *     realmId: realm.id,
  * });
  * ```
- * 
+ *
  * ### Argument Reference
- * 
+ *
  * The following arguments are supported:
- * 
+ *
  * - `realmId` - (Required) The realm this protocol mapper exists within.
  * - `clientId` - (Required if `clientScopeId` is not specified) The client this protocol mapper is attached to.
  * - `clientScopeId` - (Required if `clientId` is not specified) The client scope this protocol mapper is attached to.
@@ -74,8 +74,6 @@ import * as utilities from "../utilities";
  * - `addToIdToken` - (Optional) Indicates if the property should be added as a claim to the id token. Defaults to `true`.
  * - `addToAccessToken` - (Optional) Indicates if the property should be added as a claim to the access token. Defaults to `true`.
  * - `addToUserinfo` - (Optional) Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
- *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_openid_group_membership_protocol_mapper.html.markdown.
  */
 export class GroupMembershipProtocolMapper extends pulumi.CustomResource {
     /**

@@ -6,15 +6,15 @@ import * as utilities from "./utilities";
 
 /**
  * ## # keycloak..AttributeImporterIdentityProviderMapper
- * 
+ *
  * Allows to create and manage identity provider mappers within Keycloak.
- * 
+ *
  * ### Example Usage
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
- * 
+ *
  * const testMapper = new keycloak.AttributeImporterIdentityProviderMapper("testMapper", {
  *     attributeName: "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
  *     identityProviderAlias: "idpAlias",
@@ -22,11 +22,11 @@ import * as utilities from "./utilities";
  *     userAttribute: "lastName",
  * });
  * ```
- * 
+ *
  * ### Argument Reference
- * 
+ *
  * The following arguments are supported:
- * 
+ *
  * - `realm` - (Required) The name of the realm.
  * - `name` - (Required) The name of the mapper.
  * - `identityProviderAlias` - (Required) The alias of the associated identity provider.
@@ -34,8 +34,6 @@ import * as utilities from "./utilities";
  * - `attributeName` - (Optional) The Name of attribute to search for in assertion. You can leave this blank and specify a friendly name instead.
  * - `attributeFriendlyName` - (Optional) The friendly name of attribute to search for in assertion.  You can leave this blank and specify an attribute name instead.
  * - `claimName` - (Optional) The claim name.
- *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_attribute_importer_identity_provider_mapper.html.markdown.
  */
 export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResource {
     /**

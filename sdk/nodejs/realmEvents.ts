@@ -8,15 +8,15 @@ import * as utilities from "./utilities";
 
 /**
  * ## # keycloak..RealmEvents
- * 
+ *
  * Allows for managing Realm Events settings within Keycloak.
- * 
+ *
  * ### Example Usage
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
- * 
+ *
  * const realm = new keycloak.Realm("realm", {
  *     realm: "test",
  * });
@@ -34,11 +34,11 @@ import * as utilities from "./utilities";
  *     realmId: realm.id,
  * });
  * ```
- * 
+ *
  * ### Argument Reference
- * 
+ *
  * The following arguments are supported:
- * 
+ *
  * - `realmId` - (Required) The name of the realm the event settings apply to.
  * - `adminEventsEnabled` - (Optional) When true, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
  * - `adminEventsDetailsEnabled` - (Optional) When true, saved admin events will included detailed information for create/update requests. Defaults to `false`.
@@ -46,8 +46,6 @@ import * as utilities from "./utilities";
  * - `eventsExpiration` - (Optional) The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
  * - `enabledEventTypes` - (Optional) The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
  * - `eventsListeners` - (Optional) The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
- *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_realm_events.html.markdown.
  */
 export class RealmEvents extends pulumi.CustomResource {
     /**

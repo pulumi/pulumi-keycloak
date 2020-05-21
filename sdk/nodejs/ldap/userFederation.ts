@@ -6,20 +6,20 @@ import * as utilities from "../utilities";
 
 /**
  * ## # keycloak.ldap.UserFederation
- * 
+ *
  * Allows for creating and managing LDAP user federation providers within Keycloak.
- * 
+ *
  * Keycloak can use an LDAP user federation provider to federate users to Keycloak
  * from a directory system such as LDAP or Active Directory. Federated users
  * will exist within the realm and will be able to log in to clients. Federated
  * users can have their attributes defined using mappers.
- * 
+ *
  * ### Example Usage
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
- * 
+ *
  * const realm = new keycloak.Realm("realm", {
  *     enabled: true,
  *     realm: "test",
@@ -42,11 +42,11 @@ import * as utilities from "../utilities";
  *     uuidLdapAttribute: "entryDN",
  * });
  * ```
- * 
+ *
  * ### Argument Reference
- * 
+ *
  * The following arguments are supported:
- * 
+ *
  * - `realmId` - (Required) The realm that this provider will provide user federation for.
  * - `name` - (Required) Display name of the provider when displayed in the console.
  * - `enabled` - (Optional) When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
@@ -79,8 +79,6 @@ import * as utilities from "../utilities";
  * - `fullSyncPeriod` - (Optional) How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
  * - `changedSyncPeriod` - (Optional) How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
  * - `cachePolicy` - (Optional) Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
- *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_ldap_user_federation.html.markdown.
  */
 export class UserFederation extends pulumi.CustomResource {
     /**
