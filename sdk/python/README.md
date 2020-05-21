@@ -31,6 +31,12 @@ To use from Go, use `go get` to grab the latest version of the library
 
     $ go get github.com/pulumi/pulumi-keycloak/sdk/go/...
 
+### .NET
+
+To use from .NET, install using `dotnet add package`:
+
+    $ dotnet add package Pulumi.Keycloak
+
 ## Configuration
 
 The following configuration points are available:
@@ -57,4 +63,4 @@ The following configuration points are available:
 
 ## Reference
 
-For detailed reference documentation, please visit [the API docs](https://pulumi.io/reference/pkg/nodejs/@pulumi/keycloak/index.html).
+For further information, please visit [the Keycloak provider docs](https://www.pulumi.com/docs/intro/cloud-providers/keycloak) or for detailed reference documentation, please visit [the API docs](https://www.pulumi.com/docs/reference/pkg/keycloak).
