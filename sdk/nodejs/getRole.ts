@@ -8,16 +8,16 @@ import * as utilities from "./utilities";
 
 /**
  * ## # keycloak..Role data source
- * 
+ *
  * This data source can be used to fetch properties of a Keycloak role for
  * usage with other resources, such as `keycloak..GroupRoles`.
- * 
+ *
  * ### Example Usage
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
- * 
+ *
  * const realm = new keycloak.Realm("realm", {
  *     enabled: true,
  *     realm: "my-realm",
@@ -35,25 +35,23 @@ import * as utilities from "./utilities";
  *     roles: [offlineAccess.id],
  * });
  * ```
- * 
+ *
  * ### Argument Reference
- * 
+ *
  * The following arguments are supported:
- * 
+ *
  * - `realmId` - (Required) The realm this role exists within.
  * - `clientId` - (Optional) When specified, this role is assumed to be a
  *   client role belonging to the client with the provided ID
  * - `name` - (Required) The name of the role
  *   
  * ### Attributes Reference
- * 
+ *
  * In addition to the arguments listed above, the following computed attributes are exported:
- * 
+ *
  * - `id` - The unique ID of the role, which can be used as an argument to
  *   other resources supported by this provider.
  * - `description` - The description of the role.
- *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_role.html.markdown.
  */
 export function getRole(args: GetRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetRoleResult> {
     if (!opts) {

@@ -8,18 +8,18 @@ import * as utilities from "./utilities";
 
 /**
  * ## # keycloak..Role
- * 
+ *
  * Allows for creating and managing roles within Keycloak.
- * 
+ *
  * Roles allow you define privileges within Keycloak and map them to users
  * and groups.
- * 
+ *
  * ### Example Usage (Realm role)
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
- * 
+ *
  * const realm = new keycloak.Realm("realm", {
  *     enabled: true,
  *     realm: "my-realm",
@@ -29,13 +29,13 @@ import * as utilities from "./utilities";
  *     realmId: realm.id,
  * });
  * ```
- * 
+ *
  * ### Example Usage (Client role)
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
- * 
+ *
  * const realm = new keycloak.Realm("realm", {
  *     enabled: true,
  *     realm: "my-realm",
@@ -52,13 +52,13 @@ import * as utilities from "./utilities";
  *     realmId: realm.id,
  * });
  * ```
- * 
+ *
  * ### Example Usage (Composite role)
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
- * 
+ *
  * const realm = new keycloak.Realm("realm", {
  *     enabled: true,
  *     realm: "my-realm",
@@ -97,11 +97,11 @@ import * as utilities from "./utilities";
  *     realmId: realm.id,
  * });
  * ```
- * 
+ *
  * ### Argument Reference
- * 
+ *
  * The following arguments are supported:
- * 
+ *
  * - `realmId` - (Required) The realm this role exists within.
  * - `clientId` - (Optional) When specified, this role will be created as
  *   a client role attached to the client with the provided ID
@@ -110,8 +110,6 @@ import * as utilities from "./utilities";
  * - `compositeRoles` - (Optional) When specified, this role will be a
  *   composite role, composed of all roles that have an ID present within
  *   this list.
- *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_role.html.markdown.
  */
 export class Role extends pulumi.CustomResource {
     /**

@@ -8,19 +8,19 @@ import * as utilities from "../utilities";
 
 /**
  * ## # keycloak.openid.Client
- * 
+ *
  * Allows for creating and managing Keycloak clients that use the OpenID Connect protocol.
- * 
+ *
  * Clients are entities that can use Keycloak for user authentication. Typically,
  * clients are applications that redirect users to Keycloak for authentication
  * in order to take advantage of Keycloak's user sessions for SSO.
- * 
+ *
  * ### Example Usage
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
- * 
+ *
  * const realm = new keycloak.Realm("realm", {
  *     enabled: true,
  *     realm: "my-realm",
@@ -33,11 +33,11 @@ import * as utilities from "../utilities";
  *     validRedirectUris: ["http://localhost:8080/openid-callback"],
  * });
  * ```
- * 
+ *
  * ### Argument Reference
- * 
+ *
  * The following arguments are supported:
- * 
+ *
  * - `realmId` - (Required) The realm this client is attached to.
  * - `clientId` - (Required) The unique ID of this client, referenced in the URI during authentication and in issued tokens.
  * - `name` - (Optional) The display name of this client in the GUI.
@@ -63,14 +63,12 @@ import * as utilities from "../utilities";
  * - `baseUrl` - (Optional) Default URL to use when the auth server needs to redirect or link back to the client.
  * - `pkceCodeChallengeMethod` - (Optional) The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
  * - `fullScopeAllowed` - (Optional) - Allow to include all roles mappings in the access token.
- * 
- * ### Attributes Reference
- * 
- * In addition to the arguments listed above, the following computed attributes are exported:
- * 
- * - `serviceAccountUserId` - When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_openid_client.html.markdown.
+ * ### Attributes Reference
+ *
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ *
+ * - `serviceAccountUserId` - When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
  */
 export class Client extends pulumi.CustomResource {
     /**

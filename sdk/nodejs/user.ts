@@ -8,19 +8,19 @@ import * as utilities from "./utilities";
 
 /**
  * ## # keycloak..User
- * 
+ *
  * Allows for creating and managing Users within Keycloak.
- * 
+ *
  * This resource was created primarily to enable the acceptance tests for the `keycloak..Group` resource.
  * Creating users within Keycloak is not recommended. Instead, users should be federated from external sources
  * by configuring user federation providers or identity providers.
- * 
+ *
  * ### Example Usage
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
- * 
+ *
  * const realm = new keycloak.Realm("realm", {
  *     enabled: true,
  *     realm: "my-realm",
@@ -46,11 +46,11 @@ import * as utilities from "./utilities";
  *     username: "alice",
  * });
  * ```
- * 
+ *
  * ### Argument Reference
- * 
+ *
  * The following arguments are supported:
- * 
+ *
  * - `realmId` - (Required) The realm this user belongs to.
  * - `username` - (Required) The unique username of this user.
  * - `initialPassword` (Optional) When given, the user's initial password will be set.
@@ -61,8 +61,6 @@ import * as utilities from "./utilities";
  * - `email` - (Optional) The user's email.
  * - `firstName` - (Optional) The user's first name.
  * - `lastName` - (Optional) The user's last name.
- *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/r/keycloak_user.html.markdown.
  */
 export class User extends pulumi.CustomResource {
     /**

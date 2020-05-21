@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * ## # keycloak.openid.Client data source
- * 
+ *
  * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
- * 
+ *
  * ### Example Usage
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
- * 
+ *
  * const realmManagement = keycloak.openid.getClient({
  *     realmId: "my-realm",
  *     clientId: "realm-management",
@@ -27,19 +27,17 @@ import * as utilities from "../utilities";
  *     name: "realm-admin",
  * }));
  * ```
- * 
+ *
  * ### Argument Reference
- * 
+ *
  * The following arguments are supported:
- * 
+ *
  * - `realmId` - (Required) The realm id.
  * - `clientId` - (Required) The client id.
- * 
- * ### Attributes Reference
- * 
- * See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
  *
- * > This content is derived from https://github.com/mrparkers/terraform-provider-keycloak/blob/master/website/docs/d/keycloak_openid_client.html.markdown.
+ * ### Attributes Reference
+ *
+ * See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
  */
 export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Promise<GetClientResult> {
     if (!opts) {
