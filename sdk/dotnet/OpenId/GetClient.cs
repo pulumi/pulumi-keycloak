@@ -16,6 +16,32 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
         /// 
+        /// ### Example Usage
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var realmManagement = Output.Create(Keycloak.OpenId.GetClient.InvokeAsync(new Keycloak.OpenId.GetClientArgs
+        ///         {
+        ///             RealmId = "my-realm",
+        ///             ClientId = "realm-management",
+        ///         }));
+        ///         var admin = realmManagement.Apply(realmManagement =&gt; Output.Create(Keycloak.GetRole.InvokeAsync(new Keycloak.GetRoleArgs
+        ///         {
+        ///             RealmId = "my-realm",
+        ///             ClientId = realmManagement.Id,
+        ///             Name = "realm-admin",
+        ///         })));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// 
         /// ### Argument Reference
         /// 
         /// The following arguments are supported:

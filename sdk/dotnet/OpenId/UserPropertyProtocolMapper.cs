@@ -20,6 +20,75 @@ namespace Pulumi.Keycloak.OpenId
     /// defined for a single client, or they can be defined for a client scope which
     /// can be shared between multiple different clients.
     /// 
+    /// ### Example Usage (Client)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var openidClient = new Keycloak.OpenId.Client("openidClient", new Keycloak.OpenId.ClientArgs
+    ///         {
+    ///             AccessType = "CONFIDENTIAL",
+    ///             ClientId = "test-client",
+    ///             Enabled = true,
+    ///             RealmId = realm.Id,
+    ///             ValidRedirectUris = 
+    ///             {
+    ///                 "http://localhost:8080/openid-callback",
+    ///             },
+    ///         });
+    ///         var userPropertyMapper = new Keycloak.OpenId.UserPropertyProtocolMapper("userPropertyMapper", new Keycloak.OpenId.UserPropertyProtocolMapperArgs
+    ///         {
+    ///             ClaimName = "email",
+    ///             ClientId = openidClient.Id,
+    ///             RealmId = realm.Id,
+    ///             UserProperty = "email",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Example Usage (Client Scope)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new Keycloak.OpenId.ClientScopeArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var userPropertyMapper = new Keycloak.OpenId.UserPropertyProtocolMapper("userPropertyMapper", new Keycloak.OpenId.UserPropertyProtocolMapperArgs
+    ///         {
+    ///             ClaimName = "email",
+    ///             ClientScopeId = clientScope.Id,
+    ///             RealmId = realm.Id,
+    ///             UserProperty = "email",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:

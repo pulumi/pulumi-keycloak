@@ -18,6 +18,49 @@ namespace Pulumi.Keycloak.Ldap
     /// The LDAP user attribute mapper can be used to map a single LDAP attribute
     /// to an attribute on the Keycloak user model.
     /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "test",
+    ///         });
+    ///         var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new Keycloak.Ldap.UserFederationArgs
+    ///         {
+    ///             BindCredential = "admin",
+    ///             BindDn = "cn=admin,dc=example,dc=org",
+    ///             ConnectionUrl = "ldap://openldap",
+    ///             RdnLdapAttribute = "cn",
+    ///             RealmId = realm.Id,
+    ///             UserObjectClasses = 
+    ///             {
+    ///                 "simpleSecurityObject",
+    ///                 "organizationalRole",
+    ///             },
+    ///             UsernameLdapAttribute = "cn",
+    ///             UsersDn = "dc=example,dc=org",
+    ///             UuidLdapAttribute = "entryDN",
+    ///         });
+    ///         var ldapUserAttributeMapper = new Keycloak.Ldap.UserAttributeMapper("ldapUserAttributeMapper", new Keycloak.Ldap.UserAttributeMapperArgs
+    ///         {
+    ///             LdapAttribute = "bar",
+    ///             LdapUserFederationId = ldapUserFederation.Id,
+    ///             RealmId = realm.Id,
+    ///             UserModelAttribute = "foo",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:

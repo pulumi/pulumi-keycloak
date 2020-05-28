@@ -19,6 +19,45 @@ namespace Pulumi.Keycloak.Ldap
     /// will exist within the realm and will be able to log in to clients. Federated
     /// users can have their attributes defined using mappers.
     /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "test",
+    ///         });
+    ///         var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new Keycloak.Ldap.UserFederationArgs
+    ///         {
+    ///             BindCredential = "admin",
+    ///             BindDn = "cn=admin,dc=example,dc=org",
+    ///             ConnectionTimeout = "5s",
+    ///             ConnectionUrl = "ldap://openldap",
+    ///             Enabled = true,
+    ///             RdnLdapAttribute = "cn",
+    ///             ReadTimeout = "10s",
+    ///             RealmId = realm.Id,
+    ///             UserObjectClasses = 
+    ///             {
+    ///                 "simpleSecurityObject",
+    ///                 "organizationalRole",
+    ///             },
+    ///             UsernameLdapAttribute = "cn",
+    ///             UsersDn = "dc=example,dc=org",
+    ///             UuidLdapAttribute = "entryDN",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:

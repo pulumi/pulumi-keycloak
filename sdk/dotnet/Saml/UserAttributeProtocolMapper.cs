@@ -20,6 +20,39 @@ namespace Pulumi.Keycloak.Saml
     /// can be defined for a single client, or they can be defined for a client scope which
     /// can be shared between multiple different clients.
     /// 
+    /// ### Example Usage (Client)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var samlClient = new Keycloak.Saml.Client("samlClient", new Keycloak.Saml.ClientArgs
+    ///         {
+    ///             ClientId = "test-saml-client",
+    ///             RealmId = keycloak_realm.Test.Id,
+    ///         });
+    ///         var samlUserAttributeMapper = new Keycloak.Saml.UserAttributeProtocolMapper("samlUserAttributeMapper", new Keycloak.Saml.UserAttributeProtocolMapperArgs
+    ///         {
+    ///             ClientId = samlClient.Id,
+    ///             RealmId = keycloak_realm.Test.Id,
+    ///             SamlAttributeName = "displayName",
+    ///             SamlAttributeNameFormat = "Unspecified",
+    ///             UserAttribute = "displayName",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:

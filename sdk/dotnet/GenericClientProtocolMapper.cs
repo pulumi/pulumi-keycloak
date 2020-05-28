@@ -21,6 +21,45 @@ namespace Pulumi.Keycloak
     /// Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors. 
     /// Therefore, if possible, a specific mapper should be used.
     /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var samlClient = new Keycloak.Saml.Client("samlClient", new Keycloak.Saml.ClientArgs
+    ///         {
+    ///             ClientId = "test-client",
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var samlHardcodeAttributeMapper = new Keycloak.GenericClientProtocolMapper("samlHardcodeAttributeMapper", new Keycloak.GenericClientProtocolMapperArgs
+    ///         {
+    ///             ClientId = samlClient.Id,
+    ///             Config = 
+    ///             {
+    ///                 { "attribute.name", "name" },
+    ///                 { "attribute.nameformat", "Basic" },
+    ///                 { "attribute.value", "value" },
+    ///                 { "friendly.name", "display name" },
+    ///             },
+    ///             Protocol = "saml",
+    ///             ProtocolMapper = "saml-hardcode-attribute-mapper",
+    ///             RealmId = realm.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:

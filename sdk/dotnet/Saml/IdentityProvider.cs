@@ -16,6 +16,35 @@ namespace Pulumi.Keycloak.Saml
     /// 
     /// SAML (Security Assertion Markup Language) identity providers allows to authenticate through a third-party system, using SAML standard.
     /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realmIdentityProvider = new Keycloak.Saml.IdentityProvider("realmIdentityProvider", new Keycloak.Saml.IdentityProviderArgs
+    ///         {
+    ///             Alias = "my-idp",
+    ///             BackchannelSupported = true,
+    ///             ForceAuthn = true,
+    ///             PostBindingAuthnRequest = true,
+    ///             PostBindingLogout = true,
+    ///             PostBindingResponse = true,
+    ///             Realm = "my-realm",
+    ///             SingleLogoutServiceUrl = "https://domain.com/adfs/ls/?wa=wsignout1.0",
+    ///             SingleSignOnServiceUrl = "https://domain.com/adfs/ls/",
+    ///             StoreToken = false,
+    ///             TrustEmail = true,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:

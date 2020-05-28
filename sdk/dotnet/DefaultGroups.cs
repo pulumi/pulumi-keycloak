@@ -17,6 +17,38 @@ namespace Pulumi.Keycloak
     /// Note that you should not use `keycloak..DefaultGroups` with a group with memberships managed
     /// by `keycloak..GroupMemberships`.
     /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var @group = new Keycloak.Group("group", new Keycloak.GroupArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var @default = new Keycloak.DefaultGroups("default", new Keycloak.DefaultGroupsArgs
+    ///         {
+    ///             GroupIds = 
+    ///             {
+    ///                 @group.Id,
+    ///             },
+    ///             RealmId = realm.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:

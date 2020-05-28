@@ -17,6 +17,125 @@ namespace Pulumi.Keycloak
     /// Roles allow you define privileges within Keycloak and map them to users
     /// and groups.
     /// 
+    /// ### Example Usage (Realm role)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var realmRole = new Keycloak.Role("realmRole", new Keycloak.RoleArgs
+    ///         {
+    ///             Description = "My Realm Role",
+    ///             RealmId = realm.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Example Usage (Client role)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var client = new Keycloak.OpenId.Client("client", new Keycloak.OpenId.ClientArgs
+    ///         {
+    ///             AccessType = "BEARER-ONLY",
+    ///             ClientId = "client",
+    ///             Enabled = true,
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var clientRole = new Keycloak.Role("clientRole", new Keycloak.RoleArgs
+    ///         {
+    ///             ClientId = keycloak_client.Client.Id,
+    ///             Description = "My Client Role",
+    ///             RealmId = realm.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Example Usage (Composite role)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var createRole = new Keycloak.Role("createRole", new Keycloak.RoleArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var readRole = new Keycloak.Role("readRole", new Keycloak.RoleArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var updateRole = new Keycloak.Role("updateRole", new Keycloak.RoleArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var deleteRole = new Keycloak.Role("deleteRole", new Keycloak.RoleArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var client = new Keycloak.OpenId.Client("client", new Keycloak.OpenId.ClientArgs
+    ///         {
+    ///             AccessType = "BEARER-ONLY",
+    ///             ClientId = "client",
+    ///             Enabled = true,
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var clientRole = new Keycloak.Role("clientRole", new Keycloak.RoleArgs
+    ///         {
+    ///             ClientId = keycloak_client.Client.Id,
+    ///             Description = "My Client Role",
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var adminRole = new Keycloak.Role("adminRole", new Keycloak.RoleArgs
+    ///         {
+    ///             CompositeRoles = 
+    ///             {
+    ///                 "{keycloak_role.create_role.id}",
+    ///                 "{keycloak_role.read_role.id}",
+    ///                 "{keycloak_role.update_role.id}",
+    ///                 "{keycloak_role.delete_role.id}",
+    ///                 "{keycloak_role.client_role.id}",
+    ///             },
+    ///             RealmId = realm.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:

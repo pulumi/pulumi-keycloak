@@ -20,6 +20,48 @@ namespace Pulumi.Keycloak.Ldap
     /// AD user state to Keycloak in order to enforce settings like expired passwords
     /// or disabled accounts.
     /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "test",
+    ///         });
+    ///         var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new Keycloak.Ldap.UserFederationArgs
+    ///         {
+    ///             BindCredential = "admin",
+    ///             BindDn = "cn=admin,dc=example,dc=org",
+    ///             ConnectionUrl = "ldap://my-ad-server",
+    ///             RdnLdapAttribute = "cn",
+    ///             RealmId = realm.Id,
+    ///             UserObjectClasses = 
+    ///             {
+    ///                 "person",
+    ///                 "organizationalPerson",
+    ///                 "user",
+    ///             },
+    ///             UsernameLdapAttribute = "cn",
+    ///             UsersDn = "dc=example,dc=org",
+    ///             UuidLdapAttribute = "objectGUID",
+    ///         });
+    ///         var msadUserAccountControlMapper = new Keycloak.Ldap.MsadUserAccountControlMapper("msadUserAccountControlMapper", new Keycloak.Ldap.MsadUserAccountControlMapperArgs
+    ///         {
+    ///             LdapUserFederationId = ldapUserFederation.Id,
+    ///             RealmId = realm.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:
