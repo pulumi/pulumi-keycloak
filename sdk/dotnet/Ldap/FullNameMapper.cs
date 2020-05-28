@@ -18,6 +18,48 @@ namespace Pulumi.Keycloak.Ldap
     /// The LDAP full name mapper can map a user's full name from an LDAP attribute
     /// to the first and last name attributes of a Keycloak user.
     /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "test",
+    ///         });
+    ///         var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new Keycloak.Ldap.UserFederationArgs
+    ///         {
+    ///             BindCredential = "admin",
+    ///             BindDn = "cn=admin,dc=example,dc=org",
+    ///             ConnectionUrl = "ldap://openldap",
+    ///             RdnLdapAttribute = "cn",
+    ///             RealmId = realm.Id,
+    ///             UserObjectClasses = 
+    ///             {
+    ///                 "simpleSecurityObject",
+    ///                 "organizationalRole",
+    ///             },
+    ///             UsernameLdapAttribute = "cn",
+    ///             UsersDn = "dc=example,dc=org",
+    ///             UuidLdapAttribute = "entryDN",
+    ///         });
+    ///         var ldapFullNameMapper = new Keycloak.Ldap.FullNameMapper("ldapFullNameMapper", new Keycloak.Ldap.FullNameMapperArgs
+    ///         {
+    ///             LdapFullNameAttribute = "cn",
+    ///             LdapUserFederationId = ldapUserFederation.Id,
+    ///             RealmId = realm.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:

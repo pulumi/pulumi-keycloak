@@ -23,6 +23,45 @@ namespace Pulumi.Keycloak
     /// Groups can also be federated from external data sources, such as LDAP or Active Directory.
     /// This resource **should not** be used to manage groups that were created this way.
     /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var parentGroup = new Keycloak.Group("parentGroup", new Keycloak.GroupArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var childGroup = new Keycloak.Group("childGroup", new Keycloak.GroupArgs
+    ///         {
+    ///             ParentId = parentGroup.Id,
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var childGroupWithOptionalAttributes = new Keycloak.Group("childGroupWithOptionalAttributes", new Keycloak.GroupArgs
+    ///         {
+    ///             Attributes = 
+    ///             {
+    ///                 { "key1", "value1" },
+    ///                 { "key2", "value2" },
+    ///             },
+    ///             ParentId = parentGroup.Id,
+    ///             RealmId = realm.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:

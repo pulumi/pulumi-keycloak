@@ -19,6 +19,57 @@ namespace Pulumi.Keycloak.Ldap
     /// to Keycloak groups. This group mapper will also create the groups within Keycloak
     /// if they do not already exist.
     /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "test",
+    ///         });
+    ///         var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new Keycloak.Ldap.UserFederationArgs
+    ///         {
+    ///             BindCredential = "admin",
+    ///             BindDn = "cn=admin,dc=example,dc=org",
+    ///             ConnectionUrl = "ldap://openldap",
+    ///             RdnLdapAttribute = "cn",
+    ///             RealmId = realm.Id,
+    ///             UserObjectClasses = 
+    ///             {
+    ///                 "simpleSecurityObject",
+    ///                 "organizationalRole",
+    ///             },
+    ///             UsernameLdapAttribute = "cn",
+    ///             UsersDn = "dc=example,dc=org",
+    ///             UuidLdapAttribute = "entryDN",
+    ///         });
+    ///         var ldapGroupMapper = new Keycloak.Ldap.GroupMapper("ldapGroupMapper", new Keycloak.Ldap.GroupMapperArgs
+    ///         {
+    ///             GroupNameLdapAttribute = "cn",
+    ///             GroupObjectClasses = 
+    ///             {
+    ///                 "groupOfNames",
+    ///             },
+    ///             LdapGroupsDn = "dc=example,dc=org",
+    ///             LdapUserFederationId = ldapUserFederation.Id,
+    ///             MemberofLdapAttribute = "memberOf",
+    ///             MembershipAttributeType = "DN",
+    ///             MembershipLdapAttribute = "member",
+    ///             MembershipUserLdapAttribute = "cn",
+    ///             RealmId = realm.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:

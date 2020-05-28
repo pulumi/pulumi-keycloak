@@ -20,6 +20,73 @@ namespace Pulumi.Keycloak.OpenId
     /// or they can be defined for a client scope which can be shared between multiple
     /// different clients.
     /// 
+    /// ### Example Usage (Client)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var openidClient = new Keycloak.OpenId.Client("openidClient", new Keycloak.OpenId.ClientArgs
+    ///         {
+    ///             AccessType = "CONFIDENTIAL",
+    ///             ClientId = "test-client",
+    ///             Enabled = true,
+    ///             RealmId = realm.Id,
+    ///             ValidRedirectUris = 
+    ///             {
+    ///                 "http://localhost:8080/openid-callback",
+    ///             },
+    ///         });
+    ///         var groupMembershipMapper = new Keycloak.OpenId.GroupMembershipProtocolMapper("groupMembershipMapper", new Keycloak.OpenId.GroupMembershipProtocolMapperArgs
+    ///         {
+    ///             ClaimName = "groups",
+    ///             ClientId = openidClient.Id,
+    ///             RealmId = realm.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Example Usage (Client Scope)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new Keycloak.OpenId.ClientScopeArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var groupMembershipMapper = new Keycloak.OpenId.GroupMembershipProtocolMapper("groupMembershipMapper", new Keycloak.OpenId.GroupMembershipProtocolMapperArgs
+    ///         {
+    ///             ClaimName = "groups",
+    ///             ClientScopeId = clientScope.Id,
+    ///             RealmId = realm.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:

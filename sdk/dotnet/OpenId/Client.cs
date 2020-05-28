@@ -18,6 +18,37 @@ namespace Pulumi.Keycloak.OpenId
     /// clients are applications that redirect users to Keycloak for authentication
     /// in order to take advantage of Keycloak's user sessions for SSO.
     /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var openidClient = new Keycloak.OpenId.Client("openidClient", new Keycloak.OpenId.ClientArgs
+    ///         {
+    ///             AccessType = "CONFIDENTIAL",
+    ///             ClientId = "test-client",
+    ///             Enabled = true,
+    ///             RealmId = realm.Id,
+    ///             ValidRedirectUris = 
+    ///             {
+    ///                 "http://localhost:8080/openid-callback",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:

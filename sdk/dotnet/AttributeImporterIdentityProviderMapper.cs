@@ -14,6 +14,28 @@ namespace Pulumi.Keycloak
     /// 
     /// Allows to create and manage identity provider mappers within Keycloak.
     /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var testMapper = new Keycloak.AttributeImporterIdentityProviderMapper("testMapper", new Keycloak.AttributeImporterIdentityProviderMapperArgs
+    ///         {
+    ///             AttributeName = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
+    ///             IdentityProviderAlias = "idp_alias",
+    ///             Realm = "my-realm",
+    ///             UserAttribute = "lastName",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:

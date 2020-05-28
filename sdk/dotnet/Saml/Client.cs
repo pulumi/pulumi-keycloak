@@ -18,6 +18,37 @@ namespace Pulumi.Keycloak.Saml
     /// clients are applications that redirect users to Keycloak for authentication
     /// in order to take advantage of Keycloak's user sessions for SSO.
     /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using System.IO;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var samlClient = new Keycloak.Saml.Client("samlClient", new Keycloak.Saml.ClientArgs
+    ///         {
+    ///             ClientId = "test-saml-client",
+    ///             IncludeAuthnStatement = true,
+    ///             RealmId = realm.Id,
+    ///             SignAssertions = true,
+    ///             SignDocuments = false,
+    ///             SigningCertificate = File.ReadAllText("saml-cert.pem"),
+    ///             SigningPrivateKey = File.ReadAllText("saml-key.pem"),
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:

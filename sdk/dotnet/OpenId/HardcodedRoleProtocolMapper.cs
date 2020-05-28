@@ -20,6 +20,81 @@ namespace Pulumi.Keycloak.OpenId
     /// defined for a single client, or they can be defined for a client scope
     /// which can be shared between multiple different clients.
     /// 
+    /// ### Example Usage (Client)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var role = new Keycloak.Role("role", new Keycloak.RoleArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var openidClient = new Keycloak.OpenId.Client("openidClient", new Keycloak.OpenId.ClientArgs
+    ///         {
+    ///             AccessType = "CONFIDENTIAL",
+    ///             ClientId = "test-client",
+    ///             Enabled = true,
+    ///             RealmId = realm.Id,
+    ///             ValidRedirectUris = 
+    ///             {
+    ///                 "http://localhost:8080/openid-callback",
+    ///             },
+    ///         });
+    ///         var hardcodedRoleMapper = new Keycloak.OpenId.HardcodedRoleProtocolMapper("hardcodedRoleMapper", new Keycloak.OpenId.HardcodedRoleProtocolMapperArgs
+    ///         {
+    ///             ClientId = openidClient.Id,
+    ///             RealmId = realm.Id,
+    ///             RoleId = role.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Example Usage (Client Scope)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var role = new Keycloak.Role("role", new Keycloak.RoleArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new Keycloak.OpenId.ClientScopeArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var hardcodedRoleMapper = new Keycloak.OpenId.HardcodedRoleProtocolMapper("hardcodedRoleMapper", new Keycloak.OpenId.HardcodedRoleProtocolMapperArgs
+    ///         {
+    ///             ClientScopeId = clientScope.Id,
+    ///             RealmId = realm.Id,
+    ///             RoleId = role.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:

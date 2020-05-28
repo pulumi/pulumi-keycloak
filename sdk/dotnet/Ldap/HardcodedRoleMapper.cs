@@ -14,6 +14,48 @@ namespace Pulumi.Keycloak.Ldap
     /// 
     /// This mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
     /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "test",
+    ///             Enabled = true,
+    ///         });
+    ///         var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new Keycloak.Ldap.UserFederationArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             UsernameLdapAttribute = "cn",
+    ///             RdnLdapAttribute = "cn",
+    ///             UuidLdapAttribute = "entryDN",
+    ///             UserObjectClasses = 
+    ///             {
+    ///                 "simpleSecurityObject",
+    ///                 "organizationalRole",
+    ///             },
+    ///             ConnectionUrl = "ldap://openldap",
+    ///             UsersDn = "dc=example,dc=org",
+    ///             BindDn = "cn=admin,dc=example,dc=org",
+    ///             BindCredential = "admin",
+    ///         });
+    ///         var assignAdminRoleToAllUsers = new Keycloak.Ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers", new Keycloak.Ldap.HardcodedRoleMapperArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             LdapUserFederationId = ldapUserFederation.Id,
+    ///             Role = "admin",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:

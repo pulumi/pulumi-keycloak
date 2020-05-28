@@ -14,6 +14,42 @@ namespace Pulumi.Keycloak
     /// 
     /// Allows for managing Realm Events settings within Keycloak.
     /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "test",
+    ///         });
+    ///         var realmEvents = new Keycloak.RealmEvents("realmEvents", new Keycloak.RealmEventsArgs
+    ///         {
+    ///             AdminEventsDetailsEnabled = true,
+    ///             AdminEventsEnabled = true,
+    ///             EnabledEventTypes = 
+    ///             {
+    ///                 "LOGIN",
+    ///                 "LOGOUT",
+    ///             },
+    ///             EventsEnabled = true,
+    ///             EventsExpiration = 3600,
+    ///             EventsListeners = 
+    ///             {
+    ///                 "jboss-logging",
+    ///             },
+    ///             RealmId = realm.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:

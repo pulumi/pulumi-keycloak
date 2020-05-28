@@ -18,6 +18,49 @@ namespace Pulumi.Keycloak
     /// Creating users within Keycloak is not recommended. Instead, users should be federated from external sources
     /// by configuring user federation providers or identity providers.
     /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var user = new Keycloak.User("user", new Keycloak.UserArgs
+    ///         {
+    ///             Email = "bob@domain.com",
+    ///             Enabled = true,
+    ///             FirstName = "Bob",
+    ///             LastName = "Bobson",
+    ///             RealmId = realm.Id,
+    ///             Username = "bob",
+    ///         });
+    ///         var userWithInitialPassword = new Keycloak.User("userWithInitialPassword", new Keycloak.UserArgs
+    ///         {
+    ///             Email = "alice@domain.com",
+    ///             Enabled = true,
+    ///             FirstName = "Alice",
+    ///             InitialPassword = new Keycloak.Inputs.UserInitialPasswordArgs
+    ///             {
+    ///                 Temporary = true,
+    ///                 Value = "some password",
+    ///             },
+    ///             LastName = "Aliceberg",
+    ///             RealmId = realm.Id,
+    ///             Username = "alice",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:
