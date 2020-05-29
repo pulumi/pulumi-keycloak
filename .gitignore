@@ -12,3 +12,7 @@ sdk/nodejs/node_modules
 
 yarn.lock
 **/pulumiManifest.go
+
+ci-scripts
+**/schema.go
+**/version.txt
