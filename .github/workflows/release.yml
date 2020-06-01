@@ -221,6 +221,8 @@ jobs:
       uses: dschep/install-pipenv-action@v1
     - name: Install dependencies
       run: make -f Makefile.github install_${{ matrix.language}}_sdk
+    - name: Run setup script
+      run: testing/setup.sh
     - name: Run tests
       run: cd examples && go test -v -count=1 -cover -timeout 2h -tags=${{ matrix.language
         }} -parallel 4 .
