@@ -9,27 +9,34 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+// +build python all
 
 package examples
 
 import (
-	"os"
+	"path"
+	"path/filepath"
 	"testing"
 
 	"github.com/pulumi/pulumi/pkg/v2/testing/integration"
 )
 
-func getCwd(t *testing.T) string {
-	cwd, err := os.Getwd()
-	if err != nil {
-		t.FailNow()
-	}
+func getPythonBaseOptions() integration.ProgramTestOptions {
+	base := getBaseOptions()
+	basePython := base.With(integration.ProgramTestOptions{
+		Dependencies: []string{
+			filepath.Join("..", "sdk", "python", "bin"),
+		},
+	})
 
-	return cwd
+	return basePython
 }
 
-func getBaseOptions() integration.ProgramTestOptions {
-	return integration.ProgramTestOptions{
-		ExpectRefreshChanges: true,
-	}
+func TestAccRealmPython(t *testing.T) {
+	test := getPythonBaseOptions().
+		With(integration.ProgramTestOptions{
+			Dir: path.Join(getCwd(t), "realm", "python"),
+		})
+
+	integration.ProgramTest(t, &test)
 }

@@ -9,27 +9,33 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+// +build dotnet all
 
 package examples
 
 import (
-	"os"
+	"path"
 	"testing"
 
 	"github.com/pulumi/pulumi/pkg/v2/testing/integration"
 )
 
-func getCwd(t *testing.T) string {
-	cwd, err := os.Getwd()
-	if err != nil {
-		t.FailNow()
-	}
+func getCSBaseOptions() integration.ProgramTestOptions {
+	base := getBaseOptions()
+	csharpBase := base.With(integration.ProgramTestOptions{
+		Dependencies: []string{
+			"Pulumi.Keycloak",
+		},
+	})
 
-	return cwd
+	return csharpBase
 }
 
-func getBaseOptions() integration.ProgramTestOptions {
-	return integration.ProgramTestOptions{
-		ExpectRefreshChanges: true,
-	}
+func TestAccRealmCsharp(t *testing.T) {
+	test := getCSBaseOptions().
+		With(integration.ProgramTestOptions{
+			Dir: path.Join(getCwd(t), "realm", "csharp"),
+		})
+
+	integration.ProgramTest(t, &test)
 }
