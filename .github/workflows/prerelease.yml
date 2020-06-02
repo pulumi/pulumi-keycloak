@@ -221,6 +221,8 @@ jobs:
       uses: dschep/install-pipenv-action@v1
     - name: Install dependencies
       run: make -f Makefile.github install_${{ matrix.language}}_sdk
+    - name: Run docker-compose
+      run: docker-compose -f testing/docker-compose.yml up --build -d
     - name: Run setup script
       run: testing/setup.sh
     - name: Run tests
