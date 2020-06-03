@@ -6,10 +6,15 @@ env:
   KEYCLOAK_PASSWORD: password
   KEYCLOAK_URL: http://localhost:8080
   KEYCLOAK_USER: keycloak
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
   PROVIDER: keycloak
   PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
   PULUMI_API: https://api.pulumi-staging.io
   PULUMI_LOCAL_NUGET: ${{ github.workspace }}/nuget
+  PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+  TRAVIS_OS_NAME: linux
 jobs:
   build_sdk:
     name: build_sdk
@@ -243,11 +248,8 @@ jobs:
         - 13.x
         pythonversion:
         - "3.7"
-name: branches
+name: pull-request
 "on":
   pull_request:
-    branches:
-    - master
-  push:
     branches:
     - master
