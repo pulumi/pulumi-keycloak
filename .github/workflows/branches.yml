@@ -76,6 +76,7 @@ jobs:
         - nodejs
         - python
         - dotnet
+        - go
         nodeversion:
         - 13.x
         pythonversion:
@@ -106,6 +107,33 @@ jobs:
       uses: pulumi/action-install-pulumi-cli@releases/v1
     - name: Run golangci
       run: make -f Makefile.github lint_provider
+  lint_sdk:
+    container: golangci/golangci-lint:v1.25.1
+    name: lint-sdk
+    needs: build_sdk
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+    - name: Checkout Scripts Repo
+      uses: actions/checkout@v2
+      with:
+        path: ci-scripts
+        repository: pulumi/scripts
+    - name: Unshallow clone for tags
+      run: git fetch --prune --unshallow
+    - name: Install Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{ matrix.goversion }}
+    - name: Install pulumictl
+      uses: jaxxstorm/action-install-gh-release@release/v1-alpha
+      with:
+        repo: pulumi/pulumictl
+    - name: Install Pulumi CLI
+      uses: pulumi/action-install-pulumi-cli@releases/v1
+    - name: Run golangci
+      run: cd sdk/go/keycloak && golangci-lint run -c ../../../.golangci.yml
   prerequisites:
     name: prerequisites
     runs-on: ubuntu-latest
@@ -210,6 +238,7 @@ jobs:
         - nodejs
         - python
         - dotnet
+        - go
         nodeversion:
         - 13.x
         pythonversion:

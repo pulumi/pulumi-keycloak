@@ -15,7 +15,7 @@ before_install:
   - git clone https://github.com/pulumi/scripts ${GOPATH}/src/github.com/pulumi/scripts
   - source ${GOPATH}/src/github.com/pulumi/scripts/ci/prepare-environment.sh
   - source ${PULUMI_SCRIPTS}/ci/keep-failed-tests.sh
-  - docker-compose -f testing/docker-compose.yaml up --build -d
+  - docker-compose -f testing/docker-compose.yml up --build -d
   - ./testing/wait-for-local-keycloak.sh
   - ./testing/create-terraform-client.sh
 install:
