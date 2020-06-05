@@ -450,8 +450,8 @@ github.com/pulumi/pulumi/sdk/v2 v2.0.0/go.mod h1:W7k1UDYerc5o97mHnlHHp5iQZKEby+o
 github.com/pulumi/pulumi/sdk/v2 v2.2.2-0.20200519081838-f66100ce28b0/go.mod h1:QNbWpL4gvf3X0lUFT7TXA2Jo1ff/Ti2l97AyFGYwvW4=
 github.com/pulumi/pulumi/sdk/v2 v2.3.0 h1:uvRYCmoHILKlyyIbXa5CcLSKKt9n2s8j+GKTffpXQf4=
 github.com/pulumi/pulumi/sdk/v2 v2.3.0/go.mod h1:cvivzHVRA5Xu3NSE/obmHzO3L693IJSd5QccQuBOMUE=
-github.com/pulumi/terraform-provider-keycloak v0.0.0-20200419211253-72ddfec45c74 h1:u3GYFiaVVhQzB8avHxHLYLnH5+mk0WhLvkdnVhmNRnU=
-github.com/pulumi/terraform-provider-keycloak v0.0.0-20200419211253-72ddfec45c74/go.mod h1:q1krA85sGCNuxTOIcH9WSFf4nEO7he+IDDf5SW+xs1s=
+github.com/pulumi/terraform-provider-keycloak v0.0.0-20200605161740-baa6f31d03ac h1:pLGO0M01tr5fy+NO4yiQNKvoo7Z3L68SvnUwAszQKZM=
+github.com/pulumi/terraform-provider-keycloak v0.0.0-20200605161740-baa6f31d03ac/go.mod h1:IOzgVXiG7SfPsRV2Acb8D9UeMevV9yALFml2evTtd5U=
 github.com/pulumi/tf2pulumi v0.8.1-0.20200519092335-cb56a4dfa88d h1:1JtzB9Gx0YX2UgKKkqJwTgBXxfg2cbLUEqTJKwKBK7s=
 github.com/pulumi/tf2pulumi v0.8.1-0.20200519092335-cb56a4dfa88d/go.mod h1:yv9XozKsue9ZELHQbrBGgIaFtE3OX3Q4m7koTzTqgpE=
 github.com/rjeczalik/notify v0.9.2/go.mod h1:aErll2f0sUX9PXZnVNyeiObbmTlk5jnMoCa4QEjJeqM=
