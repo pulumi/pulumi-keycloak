@@ -13,7 +13,7 @@ class GetClientResult:
     """
     A collection of values returned by getClient.
     """
-    def __init__(__self__, access_type=None, authentication_flow_binding_overrides=None, authorization=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, name=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None):
+    def __init__(__self__, access_type=None, authentication_flow_binding_overrides=None, authorization=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None):
         if access_type and not isinstance(access_type, str):
             raise TypeError("Expected argument 'access_type' to be a str")
         __self__.access_type = access_type
@@ -53,6 +53,9 @@ class GetClientResult:
         if implicit_flow_enabled and not isinstance(implicit_flow_enabled, bool):
             raise TypeError("Expected argument 'implicit_flow_enabled' to be a bool")
         __self__.implicit_flow_enabled = implicit_flow_enabled
+        if login_theme and not isinstance(login_theme, str):
+            raise TypeError("Expected argument 'login_theme' to be a str")
+        __self__.login_theme = login_theme
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         __self__.name = name
@@ -98,6 +101,7 @@ class AwaitableGetClientResult(GetClientResult):
             full_scope_allowed=self.full_scope_allowed,
             id=self.id,
             implicit_flow_enabled=self.implicit_flow_enabled,
+            login_theme=self.login_theme,
             name=self.name,
             realm_id=self.realm_id,
             resource_server_id=self.resource_server_id,
@@ -162,6 +166,7 @@ def get_client(client_id=None,realm_id=None,opts=None):
         full_scope_allowed=__ret__.get('fullScopeAllowed'),
         id=__ret__.get('id'),
         implicit_flow_enabled=__ret__.get('implicitFlowEnabled'),
+        login_theme=__ret__.get('loginTheme'),
         name=__ret__.get('name'),
         realm_id=__ret__.get('realmId'),
         resource_server_id=__ret__.get('resourceServerId'),

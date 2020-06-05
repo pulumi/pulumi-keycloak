@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -154,6 +156,10 @@ export class UserFederation extends pulumi.CustomResource {
      */
     public readonly importEnabled!: pulumi.Output<boolean | undefined>;
     /**
+     * Settings regarding kerberos authentication for this realm.
+     */
+    public readonly kerberos!: pulumi.Output<outputs.ldap.UserFederationKerberos | undefined>;
+    /**
      * Display name of the provider when displayed in the console.
      */
     public readonly name!: pulumi.Output<string>;
@@ -235,6 +241,7 @@ export class UserFederation extends pulumi.CustomResource {
             inputs["enabled"] = state ? state.enabled : undefined;
             inputs["fullSyncPeriod"] = state ? state.fullSyncPeriod : undefined;
             inputs["importEnabled"] = state ? state.importEnabled : undefined;
+            inputs["kerberos"] = state ? state.kerberos : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["pagination"] = state ? state.pagination : undefined;
             inputs["priority"] = state ? state.priority : undefined;
@@ -285,6 +292,7 @@ export class UserFederation extends pulumi.CustomResource {
             inputs["enabled"] = args ? args.enabled : undefined;
             inputs["fullSyncPeriod"] = args ? args.fullSyncPeriod : undefined;
             inputs["importEnabled"] = args ? args.importEnabled : undefined;
+            inputs["kerberos"] = args ? args.kerberos : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["pagination"] = args ? args.pagination : undefined;
             inputs["priority"] = args ? args.priority : undefined;
@@ -362,6 +370,10 @@ export interface UserFederationState {
      * When true, LDAP users will be imported into the Keycloak database.
      */
     readonly importEnabled?: pulumi.Input<boolean>;
+    /**
+     * Settings regarding kerberos authentication for this realm.
+     */
+    readonly kerberos?: pulumi.Input<inputs.ldap.UserFederationKerberos>;
     /**
      * Display name of the provider when displayed in the console.
      */
@@ -471,6 +483,10 @@ export interface UserFederationArgs {
      * When true, LDAP users will be imported into the Keycloak database.
      */
     readonly importEnabled?: pulumi.Input<boolean>;
+    /**
+     * Settings regarding kerberos authentication for this realm.
+     */
+    readonly kerberos?: pulumi.Input<inputs.ldap.UserFederationKerberos>;
     /**
      * Display name of the provider when displayed in the console.
      */

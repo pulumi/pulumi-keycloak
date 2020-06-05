@@ -65,6 +65,7 @@ export class Realm extends pulumi.CustomResource {
     public readonly editUsernameAllowed!: pulumi.Output<boolean>;
     public readonly emailTheme!: pulumi.Output<string | undefined>;
     public readonly enabled!: pulumi.Output<boolean | undefined>;
+    public /*out*/ readonly internalId!: pulumi.Output<string>;
     public readonly internationalization!: pulumi.Output<outputs.RealmInternationalization | undefined>;
     public readonly loginTheme!: pulumi.Output<string | undefined>;
     public readonly loginWithEmailAllowed!: pulumi.Output<boolean>;
@@ -99,6 +100,7 @@ export class Realm extends pulumi.CustomResource {
     public readonly sslRequired!: pulumi.Output<string | undefined>;
     public readonly ssoSessionIdleTimeout!: pulumi.Output<string>;
     public readonly ssoSessionMaxLifespan!: pulumi.Output<string>;
+    public readonly userManagedAccess!: pulumi.Output<boolean | undefined>;
     public readonly verifyEmail!: pulumi.Output<boolean>;
 
     /**
@@ -133,6 +135,7 @@ export class Realm extends pulumi.CustomResource {
             inputs["editUsernameAllowed"] = state ? state.editUsernameAllowed : undefined;
             inputs["emailTheme"] = state ? state.emailTheme : undefined;
             inputs["enabled"] = state ? state.enabled : undefined;
+            inputs["internalId"] = state ? state.internalId : undefined;
             inputs["internationalization"] = state ? state.internationalization : undefined;
             inputs["loginTheme"] = state ? state.loginTheme : undefined;
             inputs["loginWithEmailAllowed"] = state ? state.loginWithEmailAllowed : undefined;
@@ -153,6 +156,7 @@ export class Realm extends pulumi.CustomResource {
             inputs["sslRequired"] = state ? state.sslRequired : undefined;
             inputs["ssoSessionIdleTimeout"] = state ? state.ssoSessionIdleTimeout : undefined;
             inputs["ssoSessionMaxLifespan"] = state ? state.ssoSessionMaxLifespan : undefined;
+            inputs["userManagedAccess"] = state ? state.userManagedAccess : undefined;
             inputs["verifyEmail"] = state ? state.verifyEmail : undefined;
         } else {
             const args = argsOrState as RealmArgs | undefined;
@@ -199,7 +203,9 @@ export class Realm extends pulumi.CustomResource {
             inputs["sslRequired"] = args ? args.sslRequired : undefined;
             inputs["ssoSessionIdleTimeout"] = args ? args.ssoSessionIdleTimeout : undefined;
             inputs["ssoSessionMaxLifespan"] = args ? args.ssoSessionMaxLifespan : undefined;
+            inputs["userManagedAccess"] = args ? args.userManagedAccess : undefined;
             inputs["verifyEmail"] = args ? args.verifyEmail : undefined;
+            inputs["internalId"] = undefined /*out*/;
         }
         if (!opts) {
             opts = {}
@@ -248,6 +254,7 @@ export interface RealmState {
     readonly editUsernameAllowed?: pulumi.Input<boolean>;
     readonly emailTheme?: pulumi.Input<string>;
     readonly enabled?: pulumi.Input<boolean>;
+    readonly internalId?: pulumi.Input<string>;
     readonly internationalization?: pulumi.Input<inputs.RealmInternationalization>;
     readonly loginTheme?: pulumi.Input<string>;
     readonly loginWithEmailAllowed?: pulumi.Input<boolean>;
@@ -282,6 +289,7 @@ export interface RealmState {
     readonly sslRequired?: pulumi.Input<string>;
     readonly ssoSessionIdleTimeout?: pulumi.Input<string>;
     readonly ssoSessionMaxLifespan?: pulumi.Input<string>;
+    readonly userManagedAccess?: pulumi.Input<boolean>;
     readonly verifyEmail?: pulumi.Input<boolean>;
 }
 
@@ -355,5 +363,6 @@ export interface RealmArgs {
     readonly sslRequired?: pulumi.Input<string>;
     readonly ssoSessionIdleTimeout?: pulumi.Input<string>;
     readonly ssoSessionMaxLifespan?: pulumi.Input<string>;
+    readonly userManagedAccess?: pulumi.Input<boolean>;
     readonly verifyEmail?: pulumi.Input<boolean>;
 }

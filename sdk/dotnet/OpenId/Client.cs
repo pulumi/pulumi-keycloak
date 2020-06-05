@@ -132,6 +132,9 @@ namespace Pulumi.Keycloak.OpenId
         [Output("implicitFlowEnabled")]
         public Output<bool?> ImplicitFlowEnabled { get; private set; } = null!;
 
+        [Output("loginTheme")]
+        public Output<string?> LoginTheme { get; private set; } = null!;
+
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
@@ -253,6 +256,9 @@ namespace Pulumi.Keycloak.OpenId
         [Input("implicitFlowEnabled")]
         public Input<bool>? ImplicitFlowEnabled { get; set; }
 
+        [Input("loginTheme")]
+        public Input<string>? LoginTheme { get; set; }
+
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -338,6 +344,9 @@ namespace Pulumi.Keycloak.OpenId
 
         [Input("implicitFlowEnabled")]
         public Input<bool>? ImplicitFlowEnabled { get; set; }
+
+        [Input("loginTheme")]
+        public Input<string>? LoginTheme { get; set; }
 
         [Input("name")]
         public Input<string>? Name { get; set; }

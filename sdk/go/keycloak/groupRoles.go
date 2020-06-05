@@ -13,7 +13,7 @@ import (
 type GroupRoles struct {
 	pulumi.CustomResourceState
 
-	GroupId pulumi.StringPtrOutput   `pulumi:"groupId"`
+	GroupId pulumi.StringOutput      `pulumi:"groupId"`
 	RealmId pulumi.StringOutput      `pulumi:"realmId"`
 	RoleIds pulumi.StringArrayOutput `pulumi:"roleIds"`
 }
@@ -21,6 +21,9 @@ type GroupRoles struct {
 // NewGroupRoles registers a new resource with the given unique name, arguments, and options.
 func NewGroupRoles(ctx *pulumi.Context,
 	name string, args *GroupRolesArgs, opts ...pulumi.ResourceOption) (*GroupRoles, error) {
+	if args == nil || args.GroupId == nil {
+		return nil, errors.New("missing required argument 'GroupId'")
+	}
 	if args == nil || args.RealmId == nil {
 		return nil, errors.New("missing required argument 'RealmId'")
 	}
@@ -68,14 +71,14 @@ func (GroupRolesState) ElementType() reflect.Type {
 }
 
 type groupRolesArgs struct {
-	GroupId *string  `pulumi:"groupId"`
+	GroupId string   `pulumi:"groupId"`
 	RealmId string   `pulumi:"realmId"`
 	RoleIds []string `pulumi:"roleIds"`
 }
 
 // The set of arguments for constructing a GroupRoles resource.
 type GroupRolesArgs struct {
-	GroupId pulumi.StringPtrInput
+	GroupId pulumi.StringInput
 	RealmId pulumi.StringInput
 	RoleIds pulumi.StringArrayInput
 }

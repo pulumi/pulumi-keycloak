@@ -83,6 +83,9 @@ namespace Pulumi.Keycloak
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
+        [Output("internalId")]
+        public Output<string> InternalId { get; private set; } = null!;
+
         [Output("internationalization")]
         public Output<Outputs.RealmInternationalization?> Internationalization { get; private set; } = null!;
 
@@ -156,6 +159,9 @@ namespace Pulumi.Keycloak
 
         [Output("ssoSessionMaxLifespan")]
         public Output<string> SsoSessionMaxLifespan { get; private set; } = null!;
+
+        [Output("userManagedAccess")]
+        public Output<bool?> UserManagedAccess { get; private set; } = null!;
 
         [Output("verifyEmail")]
         public Output<bool> VerifyEmail { get; private set; } = null!;
@@ -357,6 +363,9 @@ namespace Pulumi.Keycloak
         [Input("ssoSessionMaxLifespan")]
         public Input<string>? SsoSessionMaxLifespan { get; set; }
 
+        [Input("userManagedAccess")]
+        public Input<bool>? UserManagedAccess { get; set; }
+
         [Input("verifyEmail")]
         public Input<bool>? VerifyEmail { get; set; }
 
@@ -444,6 +453,9 @@ namespace Pulumi.Keycloak
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        [Input("internalId")]
+        public Input<string>? InternalId { get; set; }
+
         [Input("internationalization")]
         public Input<Inputs.RealmInternationalizationGetArgs>? Internationalization { get; set; }
 
@@ -517,6 +529,9 @@ namespace Pulumi.Keycloak
 
         [Input("ssoSessionMaxLifespan")]
         public Input<string>? SsoSessionMaxLifespan { get; set; }
+
+        [Input("userManagedAccess")]
+        public Input<bool>? UserManagedAccess { get; set; }
 
         [Input("verifyEmail")]
         public Input<bool>? VerifyEmail { get; set; }

@@ -82,6 +82,8 @@ type UserFederation struct {
 	FullSyncPeriod pulumi.IntPtrOutput `pulumi:"fullSyncPeriod"`
 	// When true, LDAP users will be imported into the Keycloak database.
 	ImportEnabled pulumi.BoolPtrOutput `pulumi:"importEnabled"`
+	// Settings regarding kerberos authentication for this realm.
+	Kerberos UserFederationKerberosPtrOutput `pulumi:"kerberos"`
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// When true, Keycloak assumes the LDAP server supports pagination.
@@ -186,6 +188,8 @@ type userFederationState struct {
 	FullSyncPeriod *int `pulumi:"fullSyncPeriod"`
 	// When true, LDAP users will be imported into the Keycloak database.
 	ImportEnabled *bool `pulumi:"importEnabled"`
+	// Settings regarding kerberos authentication for this realm.
+	Kerberos *UserFederationKerberos `pulumi:"kerberos"`
 	// Display name of the provider when displayed in the console.
 	Name *string `pulumi:"name"`
 	// When true, Keycloak assumes the LDAP server supports pagination.
@@ -242,6 +246,8 @@ type UserFederationState struct {
 	FullSyncPeriod pulumi.IntPtrInput
 	// When true, LDAP users will be imported into the Keycloak database.
 	ImportEnabled pulumi.BoolPtrInput
+	// Settings regarding kerberos authentication for this realm.
+	Kerberos UserFederationKerberosPtrInput
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringPtrInput
 	// When true, Keycloak assumes the LDAP server supports pagination.
@@ -302,6 +308,8 @@ type userFederationArgs struct {
 	FullSyncPeriod *int `pulumi:"fullSyncPeriod"`
 	// When true, LDAP users will be imported into the Keycloak database.
 	ImportEnabled *bool `pulumi:"importEnabled"`
+	// Settings regarding kerberos authentication for this realm.
+	Kerberos *UserFederationKerberos `pulumi:"kerberos"`
 	// Display name of the provider when displayed in the console.
 	Name *string `pulumi:"name"`
 	// When true, Keycloak assumes the LDAP server supports pagination.
@@ -359,6 +367,8 @@ type UserFederationArgs struct {
 	FullSyncPeriod pulumi.IntPtrInput
 	// When true, LDAP users will be imported into the Keycloak database.
 	ImportEnabled pulumi.BoolPtrInput
+	// Settings regarding kerberos authentication for this realm.
+	Kerberos UserFederationKerberosPtrInput
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringPtrInput
 	// When true, Keycloak assumes the LDAP server supports pagination.

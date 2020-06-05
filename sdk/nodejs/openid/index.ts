@@ -27,5 +27,7 @@ export * from "./groupMembershipProtocolMapper";
 export * from "./hardcodedClaimProtocolMapper";
 export * from "./hardcodedRoleProtocolMapper";
 export * from "./userAttributeProtocolMapper";
+export * from "./userClientRoleProtocolMapper";
 export * from "./userPropertyProtocolMapper";
 export * from "./userRealmRoleProtocolMapper";
+export * from "./userSessionNoteProtocolMapper";

@@ -71,6 +71,7 @@ type Client struct {
 	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrOutput                              `pulumi:"excludeSessionStateFromAuthResponse"`
 	FullScopeAllowed                    pulumi.BoolPtrOutput                              `pulumi:"fullScopeAllowed"`
 	ImplicitFlowEnabled                 pulumi.BoolPtrOutput                              `pulumi:"implicitFlowEnabled"`
+	LoginTheme                          pulumi.StringPtrOutput                            `pulumi:"loginTheme"`
 	Name                                pulumi.StringOutput                               `pulumi:"name"`
 	PkceCodeChallengeMethod             pulumi.StringPtrOutput                            `pulumi:"pkceCodeChallengeMethod"`
 	RealmId                             pulumi.StringOutput                               `pulumi:"realmId"`
@@ -135,6 +136,7 @@ type clientState struct {
 	ExcludeSessionStateFromAuthResponse *bool                                     `pulumi:"excludeSessionStateFromAuthResponse"`
 	FullScopeAllowed                    *bool                                     `pulumi:"fullScopeAllowed"`
 	ImplicitFlowEnabled                 *bool                                     `pulumi:"implicitFlowEnabled"`
+	LoginTheme                          *string                                   `pulumi:"loginTheme"`
 	Name                                *string                                   `pulumi:"name"`
 	PkceCodeChallengeMethod             *string                                   `pulumi:"pkceCodeChallengeMethod"`
 	RealmId                             *string                                   `pulumi:"realmId"`
@@ -163,6 +165,7 @@ type ClientState struct {
 	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrInput
 	FullScopeAllowed                    pulumi.BoolPtrInput
 	ImplicitFlowEnabled                 pulumi.BoolPtrInput
+	LoginTheme                          pulumi.StringPtrInput
 	Name                                pulumi.StringPtrInput
 	PkceCodeChallengeMethod             pulumi.StringPtrInput
 	RealmId                             pulumi.StringPtrInput
@@ -195,6 +198,7 @@ type clientArgs struct {
 	ExcludeSessionStateFromAuthResponse *bool                                     `pulumi:"excludeSessionStateFromAuthResponse"`
 	FullScopeAllowed                    *bool                                     `pulumi:"fullScopeAllowed"`
 	ImplicitFlowEnabled                 *bool                                     `pulumi:"implicitFlowEnabled"`
+	LoginTheme                          *string                                   `pulumi:"loginTheme"`
 	Name                                *string                                   `pulumi:"name"`
 	PkceCodeChallengeMethod             *string                                   `pulumi:"pkceCodeChallengeMethod"`
 	RealmId                             string                                    `pulumi:"realmId"`
@@ -222,6 +226,7 @@ type ClientArgs struct {
 	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrInput
 	FullScopeAllowed                    pulumi.BoolPtrInput
 	ImplicitFlowEnabled                 pulumi.BoolPtrInput
+	LoginTheme                          pulumi.StringPtrInput
 	Name                                pulumi.StringPtrInput
 	PkceCodeChallengeMethod             pulumi.StringPtrInput
 	RealmId                             pulumi.StringInput

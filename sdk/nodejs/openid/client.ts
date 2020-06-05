@@ -112,6 +112,7 @@ export class Client extends pulumi.CustomResource {
     public readonly excludeSessionStateFromAuthResponse!: pulumi.Output<boolean | undefined>;
     public readonly fullScopeAllowed!: pulumi.Output<boolean | undefined>;
     public readonly implicitFlowEnabled!: pulumi.Output<boolean | undefined>;
+    public readonly loginTheme!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly pkceCodeChallengeMethod!: pulumi.Output<string | undefined>;
     public readonly realmId!: pulumi.Output<string>;
@@ -150,6 +151,7 @@ export class Client extends pulumi.CustomResource {
             inputs["excludeSessionStateFromAuthResponse"] = state ? state.excludeSessionStateFromAuthResponse : undefined;
             inputs["fullScopeAllowed"] = state ? state.fullScopeAllowed : undefined;
             inputs["implicitFlowEnabled"] = state ? state.implicitFlowEnabled : undefined;
+            inputs["loginTheme"] = state ? state.loginTheme : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["pkceCodeChallengeMethod"] = state ? state.pkceCodeChallengeMethod : undefined;
             inputs["realmId"] = state ? state.realmId : undefined;
@@ -186,6 +188,7 @@ export class Client extends pulumi.CustomResource {
             inputs["excludeSessionStateFromAuthResponse"] = args ? args.excludeSessionStateFromAuthResponse : undefined;
             inputs["fullScopeAllowed"] = args ? args.fullScopeAllowed : undefined;
             inputs["implicitFlowEnabled"] = args ? args.implicitFlowEnabled : undefined;
+            inputs["loginTheme"] = args ? args.loginTheme : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["pkceCodeChallengeMethod"] = args ? args.pkceCodeChallengeMethod : undefined;
             inputs["realmId"] = args ? args.realmId : undefined;
@@ -227,6 +230,7 @@ export interface ClientState {
     readonly excludeSessionStateFromAuthResponse?: pulumi.Input<boolean>;
     readonly fullScopeAllowed?: pulumi.Input<boolean>;
     readonly implicitFlowEnabled?: pulumi.Input<boolean>;
+    readonly loginTheme?: pulumi.Input<string>;
     readonly name?: pulumi.Input<string>;
     readonly pkceCodeChallengeMethod?: pulumi.Input<string>;
     readonly realmId?: pulumi.Input<string>;
@@ -258,6 +262,7 @@ export interface ClientArgs {
     readonly excludeSessionStateFromAuthResponse?: pulumi.Input<boolean>;
     readonly fullScopeAllowed?: pulumi.Input<boolean>;
     readonly implicitFlowEnabled?: pulumi.Input<boolean>;
+    readonly loginTheme?: pulumi.Input<string>;
     readonly name?: pulumi.Input<string>;
     readonly pkceCodeChallengeMethod?: pulumi.Input<string>;
     readonly realmId: pulumi.Input<string>;

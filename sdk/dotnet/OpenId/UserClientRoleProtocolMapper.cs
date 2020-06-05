@@ -9,103 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
-    /// <summary>
-    /// ## # keycloak.openid.UserAttributeProtocolMapper
-    /// 
-    /// Allows for creating and managing user attribute protocol mappers within
-    /// Keycloak.
-    /// 
-    /// User attribute protocol mappers allow you to map custom attributes defined
-    /// for a user within Keycloak to a claim in a token. Protocol mappers can be
-    /// defined for a single client, or they can be defined for a client scope which
-    /// can be shared between multiple different clients.
-    /// 
-    /// ### Example Usage (Client)
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Keycloak = Pulumi.Keycloak;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             Enabled = true,
-    ///             Realm = "my-realm",
-    ///         });
-    ///         var openidClient = new Keycloak.OpenId.Client("openidClient", new Keycloak.OpenId.ClientArgs
-    ///         {
-    ///             AccessType = "CONFIDENTIAL",
-    ///             ClientId = "test-client",
-    ///             Enabled = true,
-    ///             RealmId = realm.Id,
-    ///             ValidRedirectUris = 
-    ///             {
-    ///                 "http://localhost:8080/openid-callback",
-    ///             },
-    ///         });
-    ///         var userAttributeMapper = new Keycloak.OpenId.UserAttributeProtocolMapper("userAttributeMapper", new Keycloak.OpenId.UserAttributeProtocolMapperArgs
-    ///         {
-    ///             ClaimName = "bar",
-    ///             ClientId = openidClient.Id,
-    ///             RealmId = realm.Id,
-    ///             UserAttribute = "foo",
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ### Example Usage (Client Scope)
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Keycloak = Pulumi.Keycloak;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             Enabled = true,
-    ///             Realm = "my-realm",
-    ///         });
-    ///         var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new Keycloak.OpenId.ClientScopeArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///         });
-    ///         var userAttributeMapper = new Keycloak.OpenId.UserAttributeProtocolMapper("userAttributeMapper", new Keycloak.OpenId.UserAttributeProtocolMapperArgs
-    ///         {
-    ///             ClaimName = "bar",
-    ///             ClientScopeId = clientScope.Id,
-    ///             RealmId = realm.Id,
-    ///             UserAttribute = "foo",
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ### Argument Reference
-    /// 
-    /// The following arguments are supported:
-    /// 
-    /// - `realm_id` - (Required) The realm this protocol mapper exists within.
-    /// - `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
-    /// - `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
-    /// - `name` - (Required) The display name of this protocol mapper in the GUI.
-    /// - `user_attribute` - (Required) The custom user attribute to map a claim for.
-    /// - `claim_name` - (Required) The name of the claim to insert into a token.
-    /// - `claim_value_type` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `long`, `int`, or `boolean`. Defaults to `String`.
-    /// - `multivalued` - (Optional) Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
-    /// - `add_to_id_token` - (Optional) Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
-    /// - `add_to_access_token` - (Optional) Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
-    /// - `add_to_userinfo` - (Optional) Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
-    /// </summary>
-    public partial class UserAttributeProtocolMapper : Pulumi.CustomResource
+    public partial class UserClientRoleProtocolMapper : Pulumi.CustomResource
     {
         /// <summary>
         /// Indicates if the attribute should be a claim in the access token.
@@ -125,12 +29,6 @@ namespace Pulumi.Keycloak.OpenId
         [Output("addToUserinfo")]
         public Output<bool?> AddToUserinfo { get; private set; } = null!;
 
-        /// <summary>
-        /// Indicates if attribute values should be aggregated within the group attributes
-        /// </summary>
-        [Output("aggregateAttributes")]
-        public Output<bool?> AggregateAttributes { get; private set; } = null!;
-
         [Output("claimName")]
         public Output<string> ClaimName { get; private set; } = null!;
 
@@ -145,6 +43,18 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Output("clientId")]
         public Output<string?> ClientId { get; private set; } = null!;
+
+        /// <summary>
+        /// Client ID for role mappings.
+        /// </summary>
+        [Output("clientIdForRoleMappings")]
+        public Output<string?> ClientIdForRoleMappings { get; private set; } = null!;
+
+        /// <summary>
+        /// Prefix that will be added to each client role.
+        /// </summary>
+        [Output("clientRolePrefix")]
+        public Output<string?> ClientRolePrefix { get; private set; } = null!;
 
         /// <summary>
         /// The mapper's associated client scope. Cannot be used at the same time as client_id.
@@ -170,24 +80,21 @@ namespace Pulumi.Keycloak.OpenId
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
-        [Output("userAttribute")]
-        public Output<string> UserAttribute { get; private set; } = null!;
-
 
         /// <summary>
-        /// Create a UserAttributeProtocolMapper resource with the given unique name, arguments, and options.
+        /// Create a UserClientRoleProtocolMapper resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public UserAttributeProtocolMapper(string name, UserAttributeProtocolMapperArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper", name, args ?? new UserAttributeProtocolMapperArgs(), MakeResourceOptions(options, ""))
+        public UserClientRoleProtocolMapper(string name, UserClientRoleProtocolMapperArgs args, CustomResourceOptions? options = null)
+            : base("keycloak:openid/userClientRoleProtocolMapper:UserClientRoleProtocolMapper", name, args ?? new UserClientRoleProtocolMapperArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private UserAttributeProtocolMapper(string name, Input<string> id, UserAttributeProtocolMapperState? state = null, CustomResourceOptions? options = null)
-            : base("keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper", name, state, MakeResourceOptions(options, id))
+        private UserClientRoleProtocolMapper(string name, Input<string> id, UserClientRoleProtocolMapperState? state = null, CustomResourceOptions? options = null)
+            : base("keycloak:openid/userClientRoleProtocolMapper:UserClientRoleProtocolMapper", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -203,7 +110,7 @@ namespace Pulumi.Keycloak.OpenId
             return merged;
         }
         /// <summary>
-        /// Get an existing UserAttributeProtocolMapper resource's state with the given name, ID, and optional extra
+        /// Get an existing UserClientRoleProtocolMapper resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -211,13 +118,13 @@ namespace Pulumi.Keycloak.OpenId
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static UserAttributeProtocolMapper Get(string name, Input<string> id, UserAttributeProtocolMapperState? state = null, CustomResourceOptions? options = null)
+        public static UserClientRoleProtocolMapper Get(string name, Input<string> id, UserClientRoleProtocolMapperState? state = null, CustomResourceOptions? options = null)
         {
-            return new UserAttributeProtocolMapper(name, id, state, options);
+            return new UserClientRoleProtocolMapper(name, id, state, options);
         }
     }
 
-    public sealed class UserAttributeProtocolMapperArgs : Pulumi.ResourceArgs
+    public sealed class UserClientRoleProtocolMapperArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates if the attribute should be a claim in the access token.
@@ -237,12 +144,6 @@ namespace Pulumi.Keycloak.OpenId
         [Input("addToUserinfo")]
         public Input<bool>? AddToUserinfo { get; set; }
 
-        /// <summary>
-        /// Indicates if attribute values should be aggregated within the group attributes
-        /// </summary>
-        [Input("aggregateAttributes")]
-        public Input<bool>? AggregateAttributes { get; set; }
-
         [Input("claimName", required: true)]
         public Input<string> ClaimName { get; set; } = null!;
 
@@ -257,6 +158,18 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
+
+        /// <summary>
+        /// Client ID for role mappings.
+        /// </summary>
+        [Input("clientIdForRoleMappings")]
+        public Input<string>? ClientIdForRoleMappings { get; set; }
+
+        /// <summary>
+        /// Prefix that will be added to each client role.
+        /// </summary>
+        [Input("clientRolePrefix")]
+        public Input<string>? ClientRolePrefix { get; set; }
 
         /// <summary>
         /// The mapper's associated client scope. Cannot be used at the same time as client_id.
@@ -282,15 +195,12 @@ namespace Pulumi.Keycloak.OpenId
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
-        [Input("userAttribute", required: true)]
-        public Input<string> UserAttribute { get; set; } = null!;
-
-        public UserAttributeProtocolMapperArgs()
+        public UserClientRoleProtocolMapperArgs()
         {
         }
     }
 
-    public sealed class UserAttributeProtocolMapperState : Pulumi.ResourceArgs
+    public sealed class UserClientRoleProtocolMapperState : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates if the attribute should be a claim in the access token.
@@ -310,12 +220,6 @@ namespace Pulumi.Keycloak.OpenId
         [Input("addToUserinfo")]
         public Input<bool>? AddToUserinfo { get; set; }
 
-        /// <summary>
-        /// Indicates if attribute values should be aggregated within the group attributes
-        /// </summary>
-        [Input("aggregateAttributes")]
-        public Input<bool>? AggregateAttributes { get; set; }
-
         [Input("claimName")]
         public Input<string>? ClaimName { get; set; }
 
@@ -330,6 +234,18 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
+
+        /// <summary>
+        /// Client ID for role mappings.
+        /// </summary>
+        [Input("clientIdForRoleMappings")]
+        public Input<string>? ClientIdForRoleMappings { get; set; }
+
+        /// <summary>
+        /// Prefix that will be added to each client role.
+        /// </summary>
+        [Input("clientRolePrefix")]
+        public Input<string>? ClientRolePrefix { get; set; }
 
         /// <summary>
         /// The mapper's associated client scope. Cannot be used at the same time as client_id.
@@ -355,10 +271,7 @@ namespace Pulumi.Keycloak.OpenId
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
-        [Input("userAttribute")]
-        public Input<string>? UserAttribute { get; set; }
-
-        public UserAttributeProtocolMapperState()
+        public UserClientRoleProtocolMapperState()
         {
         }
     }
