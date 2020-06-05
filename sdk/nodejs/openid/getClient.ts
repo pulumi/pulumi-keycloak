@@ -76,6 +76,7 @@ export interface GetClientResult {
     readonly enabled: boolean;
     readonly fullScopeAllowed: boolean;
     readonly implicitFlowEnabled: boolean;
+    readonly loginTheme: string;
     readonly name: string;
     readonly realmId: string;
     readonly resourceServerId: string;

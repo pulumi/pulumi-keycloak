@@ -90,6 +90,7 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         public readonly string Id;
         public readonly bool ImplicitFlowEnabled;
+        public readonly string LoginTheme;
         public readonly string Name;
         public readonly string RealmId;
         public readonly string ResourceServerId;
@@ -126,6 +127,8 @@ namespace Pulumi.Keycloak.OpenId
 
             bool implicitFlowEnabled,
 
+            string loginTheme,
+
             string name,
 
             string realmId,
@@ -156,6 +159,7 @@ namespace Pulumi.Keycloak.OpenId
             FullScopeAllowed = fullScopeAllowed;
             Id = id;
             ImplicitFlowEnabled = implicitFlowEnabled;
+            LoginTheme = loginTheme;
             Name = name;
             RealmId = realmId;
             ResourceServerId = resourceServerId;

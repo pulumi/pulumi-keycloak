@@ -88,6 +88,7 @@ export interface GetRealmResult {
     readonly editUsernameAllowed: boolean;
     readonly emailTheme: string;
     readonly enabled: boolean;
+    readonly internalId: string;
     readonly internationalizations: outputs.GetRealmInternationalization[];
     readonly loginTheme: string;
     readonly loginWithEmailAllowed: boolean;
@@ -107,6 +108,7 @@ export interface GetRealmResult {
     readonly sslRequired: string;
     readonly ssoSessionIdleTimeout: string;
     readonly ssoSessionMaxLifespan: string;
+    readonly userManagedAccess: boolean;
     readonly verifyEmail: boolean;
     /**
      * The provider-assigned unique ID for this managed resource.

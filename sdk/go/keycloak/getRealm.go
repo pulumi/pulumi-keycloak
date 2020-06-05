@@ -64,6 +64,7 @@ type LookupRealmResult struct {
 	Enabled                             bool                   `pulumi:"enabled"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                          string                         `pulumi:"id"`
+	InternalId                  string                         `pulumi:"internalId"`
 	Internationalizations       []GetRealmInternationalization `pulumi:"internationalizations"`
 	LoginTheme                  string                         `pulumi:"loginTheme"`
 	LoginWithEmailAllowed       bool                           `pulumi:"loginWithEmailAllowed"`
@@ -83,5 +84,6 @@ type LookupRealmResult struct {
 	SslRequired                 string                         `pulumi:"sslRequired"`
 	SsoSessionIdleTimeout       string                         `pulumi:"ssoSessionIdleTimeout"`
 	SsoSessionMaxLifespan       string                         `pulumi:"ssoSessionMaxLifespan"`
+	UserManagedAccess           bool                           `pulumi:"userManagedAccess"`
 	VerifyEmail                 bool                           `pulumi:"verifyEmail"`
 }

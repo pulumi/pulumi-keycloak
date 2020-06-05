@@ -25,6 +25,7 @@ class Client(pulumi.CustomResource):
     exclude_session_state_from_auth_response: pulumi.Output[bool]
     full_scope_allowed: pulumi.Output[bool]
     implicit_flow_enabled: pulumi.Output[bool]
+    login_theme: pulumi.Output[str]
     name: pulumi.Output[str]
     pkce_code_challenge_method: pulumi.Output[str]
     realm_id: pulumi.Output[str]
@@ -35,7 +36,7 @@ class Client(pulumi.CustomResource):
     standard_flow_enabled: pulumi.Output[bool]
     valid_redirect_uris: pulumi.Output[list]
     web_origins: pulumi.Output[list]
-    def __init__(__self__, resource_name, opts=None, access_token_lifespan=None, access_type=None, admin_url=None, authentication_flow_binding_overrides=None, authorization=None, base_url=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, implicit_flow_enabled=None, name=None, pkce_code_challenge_method=None, realm_id=None, root_url=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, access_token_lifespan=None, access_type=None, admin_url=None, authentication_flow_binding_overrides=None, authorization=None, base_url=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, implicit_flow_enabled=None, login_theme=None, name=None, pkce_code_challenge_method=None, realm_id=None, root_url=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # openid.Client
 
@@ -148,6 +149,7 @@ class Client(pulumi.CustomResource):
             __props__['exclude_session_state_from_auth_response'] = exclude_session_state_from_auth_response
             __props__['full_scope_allowed'] = full_scope_allowed
             __props__['implicit_flow_enabled'] = implicit_flow_enabled
+            __props__['login_theme'] = login_theme
             __props__['name'] = name
             __props__['pkce_code_challenge_method'] = pkce_code_challenge_method
             if realm_id is None:
@@ -167,7 +169,7 @@ class Client(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, access_token_lifespan=None, access_type=None, admin_url=None, authentication_flow_binding_overrides=None, authorization=None, base_url=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, implicit_flow_enabled=None, name=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None):
+    def get(resource_name, id, opts=None, access_token_lifespan=None, access_type=None, admin_url=None, authentication_flow_binding_overrides=None, authorization=None, base_url=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, implicit_flow_enabled=None, login_theme=None, name=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None):
         """
         Get an existing Client resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -206,6 +208,7 @@ class Client(pulumi.CustomResource):
         __props__["exclude_session_state_from_auth_response"] = exclude_session_state_from_auth_response
         __props__["full_scope_allowed"] = full_scope_allowed
         __props__["implicit_flow_enabled"] = implicit_flow_enabled
+        __props__["login_theme"] = login_theme
         __props__["name"] = name
         __props__["pkce_code_challenge_method"] = pkce_code_challenge_method
         __props__["realm_id"] = realm_id

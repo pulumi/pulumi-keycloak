@@ -66,7 +66,7 @@ lint::
 
 install_plugins::
 	[ -x $(shell which pulumi) ] || curl -fsSL https://get.pulumi.com | sh
-	pulumi plugin install resource $(PACK) 2.2.1
+	pulumi plugin install resource $(PACK) $(PROVIDER_VERSION)
 
 install:: tfgen provider
 	[ ! -e "$(PULUMI_NODE_MODULES)/$(NODE_MODULE_NAME)" ] || rm -rf "$(PULUMI_NODE_MODULES)/$(NODE_MODULE_NAME)"

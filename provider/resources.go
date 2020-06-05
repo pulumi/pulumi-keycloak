@@ -224,6 +224,12 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_openid_client_role_policy":      {Tok: makeResource(openIDMod, "ClientRolePolicy")},
 			"keycloak_openid_client_time_policy":      {Tok: makeResource(openIDMod, "ClientTimePolicy")},
 			"keycloak_openid_client_user_policy":      {Tok: makeResource(openIDMod, "ClientUserPolicy")},
+			"keycloak_openid_user_client_role_protocol_mapper": {
+				Tok: makeResource(openIDMod, "UserClientRoleProtocolMapper"),
+			},
+			"keycloak_openid_user_session_note_protocol_mapper": {
+				Tok: makeResource(openIDMod, "UserSessionNoteProtocolMapper"),
+			},
 
 			"keycloak_saml_client":                         {Tok: makeResource(samlMod, "Client")},
 			"keycloak_saml_identity_provider":              {Tok: makeResource(samlMod, "IdentityProvider")},

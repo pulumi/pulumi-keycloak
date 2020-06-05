@@ -51,6 +51,7 @@ type LookupClientResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id                     string   `pulumi:"id"`
 	ImplicitFlowEnabled    bool     `pulumi:"implicitFlowEnabled"`
+	LoginTheme             string   `pulumi:"loginTheme"`
 	Name                   string   `pulumi:"name"`
 	RealmId                string   `pulumi:"realmId"`
 	ResourceServerId       string   `pulumi:"resourceServerId"`

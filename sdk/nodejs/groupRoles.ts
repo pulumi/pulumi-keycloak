@@ -31,7 +31,7 @@ export class GroupRoles extends pulumi.CustomResource {
         return obj['__pulumiType'] === GroupRoles.__pulumiType;
     }
 
-    public readonly groupId!: pulumi.Output<string | undefined>;
+    public readonly groupId!: pulumi.Output<string>;
     public readonly realmId!: pulumi.Output<string>;
     public readonly roleIds!: pulumi.Output<string[]>;
 
@@ -52,6 +52,9 @@ export class GroupRoles extends pulumi.CustomResource {
             inputs["roleIds"] = state ? state.roleIds : undefined;
         } else {
             const args = argsOrState as GroupRolesArgs | undefined;
+            if (!args || args.groupId === undefined) {
+                throw new Error("Missing required property 'groupId'");
+            }
             if (!args || args.realmId === undefined) {
                 throw new Error("Missing required property 'realmId'");
             }
@@ -86,7 +89,7 @@ export interface GroupRolesState {
  * The set of arguments for constructing a GroupRoles resource.
  */
 export interface GroupRolesArgs {
-    readonly groupId?: pulumi.Input<string>;
+    readonly groupId: pulumi.Input<string>;
     readonly realmId: pulumi.Input<string>;
     readonly roleIds: pulumi.Input<pulumi.Input<string>[]>;
 }

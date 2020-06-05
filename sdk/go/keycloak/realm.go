@@ -37,6 +37,7 @@ type Realm struct {
 	EditUsernameAllowed       pulumi.BoolOutput                  `pulumi:"editUsernameAllowed"`
 	EmailTheme                pulumi.StringPtrOutput             `pulumi:"emailTheme"`
 	Enabled                   pulumi.BoolPtrOutput               `pulumi:"enabled"`
+	InternalId                pulumi.StringOutput                `pulumi:"internalId"`
 	Internationalization      RealmInternationalizationPtrOutput `pulumi:"internationalization"`
 	LoginTheme                pulumi.StringPtrOutput             `pulumi:"loginTheme"`
 	LoginWithEmailAllowed     pulumi.BoolOutput                  `pulumi:"loginWithEmailAllowed"`
@@ -63,6 +64,7 @@ type Realm struct {
 	SslRequired           pulumi.StringPtrOutput `pulumi:"sslRequired"`
 	SsoSessionIdleTimeout pulumi.StringOutput    `pulumi:"ssoSessionIdleTimeout"`
 	SsoSessionMaxLifespan pulumi.StringOutput    `pulumi:"ssoSessionMaxLifespan"`
+	UserManagedAccess     pulumi.BoolPtrOutput   `pulumi:"userManagedAccess"`
 	VerifyEmail           pulumi.BoolOutput      `pulumi:"verifyEmail"`
 }
 
@@ -121,6 +123,7 @@ type realmState struct {
 	EditUsernameAllowed       *bool                      `pulumi:"editUsernameAllowed"`
 	EmailTheme                *string                    `pulumi:"emailTheme"`
 	Enabled                   *bool                      `pulumi:"enabled"`
+	InternalId                *string                    `pulumi:"internalId"`
 	Internationalization      *RealmInternationalization `pulumi:"internationalization"`
 	LoginTheme                *string                    `pulumi:"loginTheme"`
 	LoginWithEmailAllowed     *bool                      `pulumi:"loginWithEmailAllowed"`
@@ -147,6 +150,7 @@ type realmState struct {
 	SslRequired           *string `pulumi:"sslRequired"`
 	SsoSessionIdleTimeout *string `pulumi:"ssoSessionIdleTimeout"`
 	SsoSessionMaxLifespan *string `pulumi:"ssoSessionMaxLifespan"`
+	UserManagedAccess     *bool   `pulumi:"userManagedAccess"`
 	VerifyEmail           *bool   `pulumi:"verifyEmail"`
 }
 
@@ -175,6 +179,7 @@ type RealmState struct {
 	EditUsernameAllowed       pulumi.BoolPtrInput
 	EmailTheme                pulumi.StringPtrInput
 	Enabled                   pulumi.BoolPtrInput
+	InternalId                pulumi.StringPtrInput
 	Internationalization      RealmInternationalizationPtrInput
 	LoginTheme                pulumi.StringPtrInput
 	LoginWithEmailAllowed     pulumi.BoolPtrInput
@@ -201,6 +206,7 @@ type RealmState struct {
 	SslRequired           pulumi.StringPtrInput
 	SsoSessionIdleTimeout pulumi.StringPtrInput
 	SsoSessionMaxLifespan pulumi.StringPtrInput
+	UserManagedAccess     pulumi.BoolPtrInput
 	VerifyEmail           pulumi.BoolPtrInput
 }
 
@@ -259,6 +265,7 @@ type realmArgs struct {
 	SslRequired           *string `pulumi:"sslRequired"`
 	SsoSessionIdleTimeout *string `pulumi:"ssoSessionIdleTimeout"`
 	SsoSessionMaxLifespan *string `pulumi:"ssoSessionMaxLifespan"`
+	UserManagedAccess     *bool   `pulumi:"userManagedAccess"`
 	VerifyEmail           *bool   `pulumi:"verifyEmail"`
 }
 
@@ -314,6 +321,7 @@ type RealmArgs struct {
 	SslRequired           pulumi.StringPtrInput
 	SsoSessionIdleTimeout pulumi.StringPtrInput
 	SsoSessionMaxLifespan pulumi.StringPtrInput
+	UserManagedAccess     pulumi.BoolPtrInput
 	VerifyEmail           pulumi.BoolPtrInput
 }
 

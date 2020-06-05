@@ -168,6 +168,12 @@ namespace Pulumi.Keycloak.Ldap
         public Output<bool?> ImportEnabled { get; private set; } = null!;
 
         /// <summary>
+        /// Settings regarding kerberos authentication for this realm.
+        /// </summary>
+        [Output("kerberos")]
+        public Output<Outputs.UserFederationKerberos?> Kerberos { get; private set; } = null!;
+
+        /// <summary>
         /// Display name of the provider when displayed in the console.
         /// </summary>
         [Output("name")]
@@ -371,6 +377,12 @@ namespace Pulumi.Keycloak.Ldap
         public Input<bool>? ImportEnabled { get; set; }
 
         /// <summary>
+        /// Settings regarding kerberos authentication for this realm.
+        /// </summary>
+        [Input("kerberos")]
+        public Input<Inputs.UserFederationKerberosArgs>? Kerberos { get; set; }
+
+        /// <summary>
         /// Display name of the provider when displayed in the console.
         /// </summary>
         [Input("name")]
@@ -539,6 +551,12 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Input("importEnabled")]
         public Input<bool>? ImportEnabled { get; set; }
+
+        /// <summary>
+        /// Settings regarding kerberos authentication for this realm.
+        /// </summary>
+        [Input("kerberos")]
+        public Input<Inputs.UserFederationKerberosGetArgs>? Kerberos { get; set; }
 
         /// <summary>
         /// Display name of the provider when displayed in the console.

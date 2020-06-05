@@ -12,7 +12,7 @@ namespace Pulumi.Keycloak
     public partial class GroupRoles : Pulumi.CustomResource
     {
         [Output("groupId")]
-        public Output<string?> GroupId { get; private set; } = null!;
+        public Output<string> GroupId { get; private set; } = null!;
 
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
@@ -66,8 +66,8 @@ namespace Pulumi.Keycloak
 
     public sealed class GroupRolesArgs : Pulumi.ResourceArgs
     {
-        [Input("groupId")]
-        public Input<string>? GroupId { get; set; }
+        [Input("groupId", required: true)]
+        public Input<string> GroupId { get; set; } = null!;
 
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;

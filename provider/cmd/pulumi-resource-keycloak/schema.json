@@ -839,6 +839,48 @@
                 "username"
             ]
         },
+        "keycloak:ldap/UserFederationKerberos:UserFederationKerberos": {
+            "properties": {
+                "kerberosRealm": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "keyTab": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "serverPrincipal": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "useKerberosForPasswordAuthentication": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "kerberosRealm",
+                "keyTab",
+                "serverPrincipal"
+            ]
+        },
         "keycloak:openid/ClientAuthenticationFlowBindingOverrides:ClientAuthenticationFlowBindingOverrides": {
             "properties": {
                 "browserId": {
@@ -2108,6 +2150,7 @@
                 }
             },
             "required": [
+                "groupId",
                 "realmId",
                 "roleIds"
             ],
@@ -2126,6 +2169,7 @@
                 }
             },
             "requiredInputs": [
+                "groupId",
                 "realmId",
                 "roleIds"
             ],
@@ -2381,6 +2425,9 @@
                 "enabled": {
                     "type": "boolean"
                 },
+                "internalId": {
+                    "type": "string"
+                },
                 "internationalization": {
                     "$ref": "#/types/keycloak:/RealmInternationalization:RealmInternationalization"
                 },
@@ -2450,6 +2497,9 @@
                 "ssoSessionMaxLifespan": {
                     "type": "string"
                 },
+                "userManagedAccess": {
+                    "type": "boolean"
+                },
                 "verifyEmail": {
                     "type": "boolean"
                 }
@@ -2464,6 +2514,7 @@
                 "actionTokenGeneratedByUserLifespan",
                 "duplicateEmailsAllowed",
                 "editUsernameAllowed",
+                "internalId",
                 "loginWithEmailAllowed",
                 "offlineSessionIdleTimeout",
                 "offlineSessionMaxLifespan",
@@ -2613,6 +2664,9 @@
                 "ssoSessionMaxLifespan": {
                     "type": "string"
                 },
+                "userManagedAccess": {
+                    "type": "boolean"
+                },
                 "verifyEmail": {
                     "type": "boolean"
                 }
@@ -2690,6 +2744,9 @@
                     "enabled": {
                         "type": "boolean"
                     },
+                    "internalId": {
+                        "type": "string"
+                    },
                     "internationalization": {
                         "$ref": "#/types/keycloak:/RealmInternationalization:RealmInternationalization"
                     },
@@ -2758,6 +2815,9 @@
                     },
                     "ssoSessionMaxLifespan": {
                         "type": "string"
+                    },
+                    "userManagedAccess": {
+                        "type": "boolean"
                     },
                     "verifyEmail": {
                         "type": "boolean"
@@ -4136,6 +4196,10 @@
                     "type": "boolean",
                     "description": "When true, LDAP users will be imported into the Keycloak database.\n"
                 },
+                "kerberos": {
+                    "$ref": "#/types/keycloak:ldap/UserFederationKerberos:UserFederationKerberos",
+                    "description": "Settings regarding kerberos authentication for this realm.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "Display name of the provider when displayed in the console.\n"
@@ -4256,6 +4320,10 @@
                 "importEnabled": {
                     "type": "boolean",
                     "description": "When true, LDAP users will be imported into the Keycloak database.\n"
+                },
+                "kerberos": {
+                    "$ref": "#/types/keycloak:ldap/UserFederationKerberos:UserFederationKerberos",
+                    "description": "Settings regarding kerberos authentication for this realm.\n"
                 },
                 "name": {
                     "type": "string",
@@ -4378,6 +4446,10 @@
                     "importEnabled": {
                         "type": "boolean",
                         "description": "When true, LDAP users will be imported into the Keycloak database.\n"
+                    },
+                    "kerberos": {
+                        "$ref": "#/types/keycloak:ldap/UserFederationKerberos:UserFederationKerberos",
+                        "description": "Settings regarding kerberos authentication for this realm.\n"
                     },
                     "name": {
                         "type": "string",
@@ -5271,6 +5343,9 @@
                 "implicitFlowEnabled": {
                     "type": "boolean"
                 },
+                "loginTheme": {
+                    "type": "string"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -5363,6 +5438,9 @@
                 "implicitFlowEnabled": {
                     "type": "boolean"
                 },
+                "loginTheme": {
+                    "type": "string"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -5446,6 +5524,9 @@
                     },
                     "implicitFlowEnabled": {
                         "type": "boolean"
+                    },
+                    "loginTheme": {
+                        "type": "string"
                     },
                     "name": {
                         "type": "string"
@@ -7326,6 +7407,10 @@
                     "type": "boolean",
                     "description": "Indicates if the attribute should appear in the userinfo response body.\n"
                 },
+                "aggregateAttributes": {
+                    "type": "boolean",
+                    "description": "Indicates if attribute values should be aggregated within the group attributes\n"
+                },
                 "claimName": {
                     "type": "string"
                 },
@@ -7375,6 +7460,10 @@
                 "addToUserinfo": {
                     "type": "boolean",
                     "description": "Indicates if the attribute should appear in the userinfo response body.\n"
+                },
+                "aggregateAttributes": {
+                    "type": "boolean",
+                    "description": "Indicates if attribute values should be aggregated within the group attributes\n"
                 },
                 "claimName": {
                     "type": "string"
@@ -7427,6 +7516,10 @@
                         "type": "boolean",
                         "description": "Indicates if the attribute should appear in the userinfo response body.\n"
                     },
+                    "aggregateAttributes": {
+                        "type": "boolean",
+                        "description": "Indicates if attribute values should be aggregated within the group attributes\n"
+                    },
                     "claimName": {
                         "type": "string"
                     },
@@ -7456,6 +7549,168 @@
                     },
                     "userAttribute": {
                         "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:openid/userClientRoleProtocolMapper:UserClientRoleProtocolMapper": {
+            "properties": {
+                "addToAccessToken": {
+                    "type": "boolean",
+                    "description": "Indicates if the attribute should be a claim in the access token.\n"
+                },
+                "addToIdToken": {
+                    "type": "boolean",
+                    "description": "Indicates if the attribute should be a claim in the id token.\n"
+                },
+                "addToUserinfo": {
+                    "type": "boolean",
+                    "description": "Indicates if the attribute should appear in the userinfo response body.\n"
+                },
+                "claimName": {
+                    "type": "string"
+                },
+                "claimValueType": {
+                    "type": "string",
+                    "description": "Claim type used when serializing tokens.\n"
+                },
+                "clientId": {
+                    "type": "string",
+                    "description": "The mapper's associated client. Cannot be used at the same time as client_scope_id.\n"
+                },
+                "clientIdForRoleMappings": {
+                    "type": "string",
+                    "description": "Client ID for role mappings.\n"
+                },
+                "clientRolePrefix": {
+                    "type": "string",
+                    "description": "Prefix that will be added to each client role.\n"
+                },
+                "clientScopeId": {
+                    "type": "string",
+                    "description": "The mapper's associated client scope. Cannot be used at the same time as client_id.\n"
+                },
+                "multivalued": {
+                    "type": "boolean",
+                    "description": "Indicates whether this attribute is a single value or an array of values.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A human-friendly name that will appear in the Keycloak console.\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm id where the associated client or client scope exists.\n"
+                }
+            },
+            "required": [
+                "claimName",
+                "name",
+                "realmId"
+            ],
+            "inputProperties": {
+                "addToAccessToken": {
+                    "type": "boolean",
+                    "description": "Indicates if the attribute should be a claim in the access token.\n"
+                },
+                "addToIdToken": {
+                    "type": "boolean",
+                    "description": "Indicates if the attribute should be a claim in the id token.\n"
+                },
+                "addToUserinfo": {
+                    "type": "boolean",
+                    "description": "Indicates if the attribute should appear in the userinfo response body.\n"
+                },
+                "claimName": {
+                    "type": "string"
+                },
+                "claimValueType": {
+                    "type": "string",
+                    "description": "Claim type used when serializing tokens.\n"
+                },
+                "clientId": {
+                    "type": "string",
+                    "description": "The mapper's associated client. Cannot be used at the same time as client_scope_id.\n"
+                },
+                "clientIdForRoleMappings": {
+                    "type": "string",
+                    "description": "Client ID for role mappings.\n"
+                },
+                "clientRolePrefix": {
+                    "type": "string",
+                    "description": "Prefix that will be added to each client role.\n"
+                },
+                "clientScopeId": {
+                    "type": "string",
+                    "description": "The mapper's associated client scope. Cannot be used at the same time as client_id.\n"
+                },
+                "multivalued": {
+                    "type": "boolean",
+                    "description": "Indicates whether this attribute is a single value or an array of values.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A human-friendly name that will appear in the Keycloak console.\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm id where the associated client or client scope exists.\n"
+                }
+            },
+            "requiredInputs": [
+                "claimName",
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering UserClientRoleProtocolMapper resources.\n",
+                "properties": {
+                    "addToAccessToken": {
+                        "type": "boolean",
+                        "description": "Indicates if the attribute should be a claim in the access token.\n"
+                    },
+                    "addToIdToken": {
+                        "type": "boolean",
+                        "description": "Indicates if the attribute should be a claim in the id token.\n"
+                    },
+                    "addToUserinfo": {
+                        "type": "boolean",
+                        "description": "Indicates if the attribute should appear in the userinfo response body.\n"
+                    },
+                    "claimName": {
+                        "type": "string"
+                    },
+                    "claimValueType": {
+                        "type": "string",
+                        "description": "Claim type used when serializing tokens.\n"
+                    },
+                    "clientId": {
+                        "type": "string",
+                        "description": "The mapper's associated client. Cannot be used at the same time as client_scope_id.\n"
+                    },
+                    "clientIdForRoleMappings": {
+                        "type": "string",
+                        "description": "Client ID for role mappings.\n"
+                    },
+                    "clientRolePrefix": {
+                        "type": "string",
+                        "description": "Prefix that will be added to each client role.\n"
+                    },
+                    "clientScopeId": {
+                        "type": "string",
+                        "description": "The mapper's associated client scope. Cannot be used at the same time as client_id.\n"
+                    },
+                    "multivalued": {
+                        "type": "boolean",
+                        "description": "Indicates whether this attribute is a single value or an array of values.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "A human-friendly name that will appear in the Keycloak console.\n"
+                    },
+                    "realmId": {
+                        "type": "string",
+                        "description": "The realm id where the associated client or client scope exists.\n"
                     }
                 },
                 "type": "object"
@@ -7745,6 +8000,132 @@
                     "realmRolePrefix": {
                         "type": "string",
                         "description": "Prefix that will be added to each realm role.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper": {
+            "properties": {
+                "addToAccessToken": {
+                    "type": "boolean",
+                    "description": "Indicates if the attribute should be a claim in the access token.\n"
+                },
+                "addToIdToken": {
+                    "type": "boolean",
+                    "description": "Indicates if the attribute should be a claim in the id token.\n"
+                },
+                "claimName": {
+                    "type": "string"
+                },
+                "claimValueType": {
+                    "type": "string",
+                    "description": "Claim type used when serializing tokens.\n"
+                },
+                "clientId": {
+                    "type": "string",
+                    "description": "The mapper's associated client. Cannot be used at the same time as client_scope_id.\n"
+                },
+                "clientScopeId": {
+                    "type": "string",
+                    "description": "The mapper's associated client scope. Cannot be used at the same time as client_id.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A human-friendly name that will appear in the Keycloak console.\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm id where the associated client or client scope exists.\n"
+                },
+                "sessionNoteLabel": {
+                    "type": "string",
+                    "description": "String value being the name of stored user session note within the UserSessionModel.note map.\n"
+                }
+            },
+            "required": [
+                "claimName",
+                "name",
+                "realmId"
+            ],
+            "inputProperties": {
+                "addToAccessToken": {
+                    "type": "boolean",
+                    "description": "Indicates if the attribute should be a claim in the access token.\n"
+                },
+                "addToIdToken": {
+                    "type": "boolean",
+                    "description": "Indicates if the attribute should be a claim in the id token.\n"
+                },
+                "claimName": {
+                    "type": "string"
+                },
+                "claimValueType": {
+                    "type": "string",
+                    "description": "Claim type used when serializing tokens.\n"
+                },
+                "clientId": {
+                    "type": "string",
+                    "description": "The mapper's associated client. Cannot be used at the same time as client_scope_id.\n"
+                },
+                "clientScopeId": {
+                    "type": "string",
+                    "description": "The mapper's associated client scope. Cannot be used at the same time as client_id.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A human-friendly name that will appear in the Keycloak console.\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm id where the associated client or client scope exists.\n"
+                },
+                "sessionNoteLabel": {
+                    "type": "string",
+                    "description": "String value being the name of stored user session note within the UserSessionModel.note map.\n"
+                }
+            },
+            "requiredInputs": [
+                "claimName",
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering UserSessionNoteProtocolMapper resources.\n",
+                "properties": {
+                    "addToAccessToken": {
+                        "type": "boolean",
+                        "description": "Indicates if the attribute should be a claim in the access token.\n"
+                    },
+                    "addToIdToken": {
+                        "type": "boolean",
+                        "description": "Indicates if the attribute should be a claim in the id token.\n"
+                    },
+                    "claimName": {
+                        "type": "string"
+                    },
+                    "claimValueType": {
+                        "type": "string",
+                        "description": "Claim type used when serializing tokens.\n"
+                    },
+                    "clientId": {
+                        "type": "string",
+                        "description": "The mapper's associated client. Cannot be used at the same time as client_scope_id.\n"
+                    },
+                    "clientScopeId": {
+                        "type": "string",
+                        "description": "The mapper's associated client scope. Cannot be used at the same time as client_id.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "A human-friendly name that will appear in the Keycloak console.\n"
+                    },
+                    "realmId": {
+                        "type": "string",
+                        "description": "The realm id where the associated client or client scope exists.\n"
+                    },
+                    "sessionNoteLabel": {
+                        "type": "string",
+                        "description": "String value being the name of stored user session note within the UserSessionModel.note map.\n"
                     }
                 },
                 "type": "object"
@@ -8716,6 +9097,9 @@
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
+                    "internalId": {
+                        "type": "string"
+                    },
                     "internationalizations": {
                         "type": "array",
                         "items": {
@@ -8782,6 +9166,9 @@
                     "ssoSessionMaxLifespan": {
                         "type": "string"
                     },
+                    "userManagedAccess": {
+                        "type": "boolean"
+                    },
                     "verifyEmail": {
                         "type": "boolean"
                     }
@@ -8807,6 +9194,7 @@
                     "editUsernameAllowed",
                     "emailTheme",
                     "enabled",
+                    "internalId",
                     "internationalizations",
                     "loginTheme",
                     "loginWithEmailAllowed",
@@ -8826,6 +9214,7 @@
                     "sslRequired",
                     "ssoSessionIdleTimeout",
                     "ssoSessionMaxLifespan",
+                    "userManagedAccess",
                     "verifyEmail",
                     "id"
                 ]
@@ -9002,6 +9391,9 @@
                     "implicitFlowEnabled": {
                         "type": "boolean"
                     },
+                    "loginTheme": {
+                        "type": "string"
+                    },
                     "name": {
                         "type": "string"
                     },
@@ -9049,6 +9441,7 @@
                     "enabled",
                     "fullScopeAllowed",
                     "implicitFlowEnabled",
+                    "loginTheme",
                     "name",
                     "realmId",
                     "resourceServerId",

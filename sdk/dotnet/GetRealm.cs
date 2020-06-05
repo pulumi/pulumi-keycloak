@@ -128,6 +128,7 @@ namespace Pulumi.Keycloak
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string InternalId;
         public readonly ImmutableArray<Outputs.GetRealmInternationalizationResult> Internationalizations;
         public readonly string LoginTheme;
         public readonly bool LoginWithEmailAllowed;
@@ -147,6 +148,7 @@ namespace Pulumi.Keycloak
         public readonly string SslRequired;
         public readonly string SsoSessionIdleTimeout;
         public readonly string SsoSessionMaxLifespan;
+        public readonly bool UserManagedAccess;
         public readonly bool VerifyEmail;
 
         [OutputConstructor]
@@ -193,6 +195,8 @@ namespace Pulumi.Keycloak
 
             string id,
 
+            string internalId,
+
             ImmutableArray<Outputs.GetRealmInternationalizationResult> internationalizations,
 
             string loginTheme,
@@ -231,6 +235,8 @@ namespace Pulumi.Keycloak
 
             string ssoSessionMaxLifespan,
 
+            bool userManagedAccess,
+
             bool verifyEmail)
         {
             AccessCodeLifespan = accessCodeLifespan;
@@ -254,6 +260,7 @@ namespace Pulumi.Keycloak
             EmailTheme = emailTheme;
             Enabled = enabled;
             Id = id;
+            InternalId = internalId;
             Internationalizations = internationalizations;
             LoginTheme = loginTheme;
             LoginWithEmailAllowed = loginWithEmailAllowed;
@@ -273,6 +280,7 @@ namespace Pulumi.Keycloak
             SslRequired = sslRequired;
             SsoSessionIdleTimeout = ssoSessionIdleTimeout;
             SsoSessionMaxLifespan = ssoSessionMaxLifespan;
+            UserManagedAccess = userManagedAccess;
             VerifyEmail = verifyEmail;
         }
     }

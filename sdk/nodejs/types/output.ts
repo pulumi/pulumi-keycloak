@@ -122,6 +122,15 @@ export interface UserInitialPassword {
     value: string;
 }
 
+export namespace ldap {
+    export interface UserFederationKerberos {
+        kerberosRealm: string;
+        keyTab: string;
+        serverPrincipal: string;
+        useKerberosForPasswordAuthentication?: boolean;
+    }
+}
+
 export namespace openid {
     export interface ClientAuthenticationFlowBindingOverrides {
         browserId?: string;

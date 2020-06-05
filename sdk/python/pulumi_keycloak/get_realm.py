@@ -13,7 +13,7 @@ class GetRealmResult:
     """
     A collection of values returned by getRealm.
     """
-    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, id=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, security_defenses=None, smtp_servers=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_max_lifespan=None, verify_email=None):
+    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, id=None, internal_id=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, security_defenses=None, smtp_servers=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_max_lifespan=None, user_managed_access=None, verify_email=None):
         if access_code_lifespan and not isinstance(access_code_lifespan, str):
             raise TypeError("Expected argument 'access_code_lifespan' to be a str")
         __self__.access_code_lifespan = access_code_lifespan
@@ -80,6 +80,9 @@ class GetRealmResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
+        if internal_id and not isinstance(internal_id, str):
+            raise TypeError("Expected argument 'internal_id' to be a str")
+        __self__.internal_id = internal_id
         if internationalizations and not isinstance(internationalizations, list):
             raise TypeError("Expected argument 'internationalizations' to be a list")
         __self__.internationalizations = internationalizations
@@ -137,6 +140,9 @@ class GetRealmResult:
         if sso_session_max_lifespan and not isinstance(sso_session_max_lifespan, str):
             raise TypeError("Expected argument 'sso_session_max_lifespan' to be a str")
         __self__.sso_session_max_lifespan = sso_session_max_lifespan
+        if user_managed_access and not isinstance(user_managed_access, bool):
+            raise TypeError("Expected argument 'user_managed_access' to be a bool")
+        __self__.user_managed_access = user_managed_access
         if verify_email and not isinstance(verify_email, bool):
             raise TypeError("Expected argument 'verify_email' to be a bool")
         __self__.verify_email = verify_email
@@ -167,6 +173,7 @@ class AwaitableGetRealmResult(GetRealmResult):
             email_theme=self.email_theme,
             enabled=self.enabled,
             id=self.id,
+            internal_id=self.internal_id,
             internationalizations=self.internationalizations,
             login_theme=self.login_theme,
             login_with_email_allowed=self.login_with_email_allowed,
@@ -186,6 +193,7 @@ class AwaitableGetRealmResult(GetRealmResult):
             ssl_required=self.ssl_required,
             sso_session_idle_timeout=self.sso_session_idle_timeout,
             sso_session_max_lifespan=self.sso_session_max_lifespan,
+            user_managed_access=self.user_managed_access,
             verify_email=self.verify_email)
 
 def get_realm(attributes=None,display_name_html=None,internationalizations=None,realm=None,security_defenses=None,smtp_servers=None,opts=None):
@@ -295,6 +303,7 @@ def get_realm(attributes=None,display_name_html=None,internationalizations=None,
         email_theme=__ret__.get('emailTheme'),
         enabled=__ret__.get('enabled'),
         id=__ret__.get('id'),
+        internal_id=__ret__.get('internalId'),
         internationalizations=__ret__.get('internationalizations'),
         login_theme=__ret__.get('loginTheme'),
         login_with_email_allowed=__ret__.get('loginWithEmailAllowed'),
@@ -314,4 +323,5 @@ def get_realm(attributes=None,display_name_html=None,internationalizations=None,
         ssl_required=__ret__.get('sslRequired'),
         sso_session_idle_timeout=__ret__.get('ssoSessionIdleTimeout'),
         sso_session_max_lifespan=__ret__.get('ssoSessionMaxLifespan'),
+        user_managed_access=__ret__.get('userManagedAccess'),
         verify_email=__ret__.get('verifyEmail'))

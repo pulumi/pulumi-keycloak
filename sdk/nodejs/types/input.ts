@@ -111,6 +111,15 @@ export interface UserInitialPassword {
     value: pulumi.Input<string>;
 }
 
+export namespace ldap {
+    export interface UserFederationKerberos {
+        kerberosRealm: pulumi.Input<string>;
+        keyTab: pulumi.Input<string>;
+        serverPrincipal: pulumi.Input<string>;
+        useKerberosForPasswordAuthentication?: pulumi.Input<boolean>;
+    }
+}
+
 export namespace openid {
     export interface ClientAuthenticationFlowBindingOverrides {
         browserId?: pulumi.Input<string>;
