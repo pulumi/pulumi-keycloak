@@ -93,6 +93,17 @@ jobs:
         - 13.x
         pythonversion:
         - "3.7"
+  create_docs_build:
+    name: Create docs build
+    needs: publish_sdk
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install pulumictl
+      uses: jaxxstorm/action-install-gh-release@release/v1-alpha
+      with:
+        repo: pulumi/pulumictl
+    - name: Dispatch event
+      run: pulumictl create docs-build ${{ env.PROVIDER}} ${{ github.ref }}
   lint:
     container: golangci/golangci-lint:latest
     name: lint
@@ -195,7 +206,8 @@ jobs:
         fields: repo,commit,author
         status: ${{ job.status }}
   publish:
-    needs: build_sdk
+    name: publish
+    needs: test
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v2
@@ -225,7 +237,7 @@ jobs:
         version: latest
   publish_sdk:
     name: publish_sdk
-    needs: test
+    needs: publish
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
