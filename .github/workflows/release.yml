@@ -208,6 +208,7 @@ jobs:
   publish:
     name: publish
     needs: test
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v2
@@ -230,6 +231,12 @@ jobs:
       uses: actions/setup-go@v2
       with:
         go-version: ${{ matrix.goversion }}
+    - name: Install pulumictl
+      uses: jaxxstorm/action-install-gh-release@release/v1-alpha
+      with:
+        repo: pulumi/pulumictl
+    - name: Install Pulumi CLI
+      uses: pulumi/action-install-pulumi-cli@releases/v1
     - name: Run GoReleaser
       uses: goreleaser/goreleaser-action@v2
       with:
