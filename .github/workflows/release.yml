@@ -217,6 +217,8 @@ jobs:
       with:
         path: ci-scripts
         repository: pulumi/scripts
+    - name: Unshallow
+      run: git fetch --prune --unshallow
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -229,12 +231,16 @@ jobs:
         role-to-assume: ${{ secrets.AWS_UPLOAD_ROLE_ARN }}
     - name: Setup Go
       uses: actions/setup-go@v2
+    - name: Install pulumictl
+      uses: jaxxstorm/action-install-gh-release@release/v1-alpha
       with:
-        go-version: ${{ matrix.goversion }}
+        repo: pulumi/pulumictl
+    - name: Install Pulumi CLI
+      uses: pulumi/action-install-pulumi-cli@releases/v1
     - name: Run GoReleaser
       uses: goreleaser/goreleaser-action@v2
       with:
-        args: release --rm-dist
+        args: release --rm-dist --snapshot --debug
         version: latest
   publish_sdk:
     name: publish_sdk
@@ -383,6 +389,9 @@ jobs:
         - "3.7"
 name: release
 "on":
+  pull_request:
+    branches:
+      - master
   push:
     tags:
     - v*.*.*
