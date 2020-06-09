@@ -38,11 +38,11 @@ export interface GetClientServiceAccountUserResult {
     readonly enabled: boolean;
     readonly federatedIdentities: outputs.openid.GetClientServiceAccountUserFederatedIdentity[];
     readonly firstName: string;
-    readonly lastName: string;
-    readonly realmId: string;
-    readonly username: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly lastName: string;
+    readonly realmId: string;
+    readonly username: string;
 }

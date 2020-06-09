@@ -75,6 +75,10 @@ export interface GetClientResult {
     readonly directAccessGrantsEnabled: boolean;
     readonly enabled: boolean;
     readonly fullScopeAllowed: boolean;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly implicitFlowEnabled: boolean;
     readonly loginTheme: string;
     readonly name: string;
@@ -86,8 +90,4 @@ export interface GetClientResult {
     readonly standardFlowEnabled: boolean;
     readonly validRedirectUris: string[];
     readonly webOrigins: string[];
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

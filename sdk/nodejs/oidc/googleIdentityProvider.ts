@@ -12,6 +12,7 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: GoogleIdentityProviderState, opts?: pulumi.CustomResourceOptions): GoogleIdentityProvider {
         return new GoogleIdentityProvider(name, <any>state, { ...opts, id: id });
@@ -32,9 +33,9 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
     }
 
     /**
-     * This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity
-     * provider. In case that client sends a request with prompt=none and user is not yet authenticated, the error will not
-     * be directly returned to client, but the request with prompt=none will be forwarded to this identity provider.
+     * This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
+     * case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
+     * returned to client, but the request with prompt=none will be forwarded to this identity provider.
      */
     public readonly acceptsPromptNoneForwardFromClient!: pulumi.Output<boolean | undefined>;
     /**
@@ -42,8 +43,8 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
      */
     public readonly addReadTokenRoleOnCreate!: pulumi.Output<boolean | undefined>;
     /**
-     * The alias uniquely identifies an identity provider and it is also used to build the redirect uri. In case of google
-     * this is computed and always google
+     * The alias uniquely identifies an identity provider and it is also used to build the redirect uri. In case of google this
+     * is computed and always google
      */
     public /*out*/ readonly alias!: pulumi.Output<string>;
     /**
@@ -59,8 +60,8 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
      */
     public readonly clientSecret!: pulumi.Output<string>;
     /**
-     * The scopes to be sent when asking for authorization. See the documentation for possible values, separator and
-     * default value'. Default: 'openid profile email'
+     * The scopes to be sent when asking for authorization. See the documentation for possible values, separator and default
+     * value'. Default: 'openid profile email'
      */
     public readonly defaultScopes!: pulumi.Output<string | undefined>;
     /**
@@ -77,8 +78,8 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
     public readonly enabled!: pulumi.Output<boolean | undefined>;
     public readonly extraConfig!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login'
-     * means that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+     * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+     * that there is not yet existing Keycloak account linked with the authenticated identity provider account.
      */
     public readonly firstBrokerLoginFlowAlias!: pulumi.Output<string | undefined>;
     /**
@@ -86,9 +87,8 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
      */
     public readonly hideOnLoginPage!: pulumi.Output<boolean | undefined>;
     /**
-     * Set 'hd' query parameter when logging in with Google. Google will list accounts only for this domain. Keycloak
-     * validates that the returned identity token has a claim for this domain. When '*' is entered, any hosted account can
-     * be used.
+     * Set 'hd' query parameter when logging in with Google. Google will list accounts only for this domain. Keycloak validates
+     * that the returned identity token has a claim for this domain. When '*' is entered, any hosted account can be used.
      */
     public readonly hostedDomain!: pulumi.Output<string | undefined>;
     /**
@@ -102,10 +102,9 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
     public readonly linkOnly!: pulumi.Output<boolean | undefined>;
     /**
      * Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty
-     * if you don't want any additional authenticators to be triggered after login with this identity provider. Also note,
-     * that authenticator implementations must assume that user is already set in ClientSession as identity provider
-     * already set it.
+     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+     * you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+     * authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
      */
     public readonly postBrokerLoginFlowAlias!: pulumi.Output<string | undefined>;
     /**
@@ -117,9 +116,9 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
      */
     public readonly realm!: pulumi.Output<string>;
     /**
-     * Set 'access_type' query parameter to 'offline' when redirecting to google authorization endpoint, to get a refresh
-     * token back. Useful if planning to use Token Exchange to retrieve Google token to access Google APIs when the user is
-     * not at the browser.
+     * Set 'access_type' query parameter to 'offline' when redirecting to google authorization endpoint, to get a refresh token
+     * back. Useful if planning to use Token Exchange to retrieve Google token to access Google APIs when the user is not at
+     * the browser.
      */
     public readonly requestRefreshToken!: pulumi.Output<boolean | undefined>;
     /**
@@ -131,8 +130,8 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
      */
     public readonly trustEmail!: pulumi.Output<boolean | undefined>;
     /**
-     * Set 'userIp' query parameter when invoking on Google's User Info service. This will use the user's ip address.
-     * Useful if Google is throttling access to the User Info service.
+     * Set 'userIp' query parameter when invoking on Google's User Info service. This will use the user's ip address. Useful if
+     * Google is throttling access to the User Info service.
      */
     public readonly useUserIpParam!: pulumi.Output<boolean | undefined>;
 
@@ -222,9 +221,9 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
  */
 export interface GoogleIdentityProviderState {
     /**
-     * This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity
-     * provider. In case that client sends a request with prompt=none and user is not yet authenticated, the error will not
-     * be directly returned to client, but the request with prompt=none will be forwarded to this identity provider.
+     * This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
+     * case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
+     * returned to client, but the request with prompt=none will be forwarded to this identity provider.
      */
     readonly acceptsPromptNoneForwardFromClient?: pulumi.Input<boolean>;
     /**
@@ -232,8 +231,8 @@ export interface GoogleIdentityProviderState {
      */
     readonly addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
     /**
-     * The alias uniquely identifies an identity provider and it is also used to build the redirect uri. In case of google
-     * this is computed and always google
+     * The alias uniquely identifies an identity provider and it is also used to build the redirect uri. In case of google this
+     * is computed and always google
      */
     readonly alias?: pulumi.Input<string>;
     /**
@@ -249,8 +248,8 @@ export interface GoogleIdentityProviderState {
      */
     readonly clientSecret?: pulumi.Input<string>;
     /**
-     * The scopes to be sent when asking for authorization. See the documentation for possible values, separator and
-     * default value'. Default: 'openid profile email'
+     * The scopes to be sent when asking for authorization. See the documentation for possible values, separator and default
+     * value'. Default: 'openid profile email'
      */
     readonly defaultScopes?: pulumi.Input<string>;
     /**
@@ -267,8 +266,8 @@ export interface GoogleIdentityProviderState {
     readonly enabled?: pulumi.Input<boolean>;
     readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
-     * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login'
-     * means that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+     * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+     * that there is not yet existing Keycloak account linked with the authenticated identity provider account.
      */
     readonly firstBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
@@ -276,9 +275,8 @@ export interface GoogleIdentityProviderState {
      */
     readonly hideOnLoginPage?: pulumi.Input<boolean>;
     /**
-     * Set 'hd' query parameter when logging in with Google. Google will list accounts only for this domain. Keycloak
-     * validates that the returned identity token has a claim for this domain. When '*' is entered, any hosted account can
-     * be used.
+     * Set 'hd' query parameter when logging in with Google. Google will list accounts only for this domain. Keycloak validates
+     * that the returned identity token has a claim for this domain. When '*' is entered, any hosted account can be used.
      */
     readonly hostedDomain?: pulumi.Input<string>;
     /**
@@ -292,10 +290,9 @@ export interface GoogleIdentityProviderState {
     readonly linkOnly?: pulumi.Input<boolean>;
     /**
      * Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty
-     * if you don't want any additional authenticators to be triggered after login with this identity provider. Also note,
-     * that authenticator implementations must assume that user is already set in ClientSession as identity provider
-     * already set it.
+     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+     * you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+     * authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
      */
     readonly postBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
@@ -307,9 +304,9 @@ export interface GoogleIdentityProviderState {
      */
     readonly realm?: pulumi.Input<string>;
     /**
-     * Set 'access_type' query parameter to 'offline' when redirecting to google authorization endpoint, to get a refresh
-     * token back. Useful if planning to use Token Exchange to retrieve Google token to access Google APIs when the user is
-     * not at the browser.
+     * Set 'access_type' query parameter to 'offline' when redirecting to google authorization endpoint, to get a refresh token
+     * back. Useful if planning to use Token Exchange to retrieve Google token to access Google APIs when the user is not at
+     * the browser.
      */
     readonly requestRefreshToken?: pulumi.Input<boolean>;
     /**
@@ -321,8 +318,8 @@ export interface GoogleIdentityProviderState {
      */
     readonly trustEmail?: pulumi.Input<boolean>;
     /**
-     * Set 'userIp' query parameter when invoking on Google's User Info service. This will use the user's ip address.
-     * Useful if Google is throttling access to the User Info service.
+     * Set 'userIp' query parameter when invoking on Google's User Info service. This will use the user's ip address. Useful if
+     * Google is throttling access to the User Info service.
      */
     readonly useUserIpParam?: pulumi.Input<boolean>;
 }
@@ -332,9 +329,9 @@ export interface GoogleIdentityProviderState {
  */
 export interface GoogleIdentityProviderArgs {
     /**
-     * This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity
-     * provider. In case that client sends a request with prompt=none and user is not yet authenticated, the error will not
-     * be directly returned to client, but the request with prompt=none will be forwarded to this identity provider.
+     * This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
+     * case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
+     * returned to client, but the request with prompt=none will be forwarded to this identity provider.
      */
     readonly acceptsPromptNoneForwardFromClient?: pulumi.Input<boolean>;
     /**
@@ -354,8 +351,8 @@ export interface GoogleIdentityProviderArgs {
      */
     readonly clientSecret: pulumi.Input<string>;
     /**
-     * The scopes to be sent when asking for authorization. See the documentation for possible values, separator and
-     * default value'. Default: 'openid profile email'
+     * The scopes to be sent when asking for authorization. See the documentation for possible values, separator and default
+     * value'. Default: 'openid profile email'
      */
     readonly defaultScopes?: pulumi.Input<string>;
     /**
@@ -368,8 +365,8 @@ export interface GoogleIdentityProviderArgs {
     readonly enabled?: pulumi.Input<boolean>;
     readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
-     * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login'
-     * means that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+     * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+     * that there is not yet existing Keycloak account linked with the authenticated identity provider account.
      */
     readonly firstBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
@@ -377,9 +374,8 @@ export interface GoogleIdentityProviderArgs {
      */
     readonly hideOnLoginPage?: pulumi.Input<boolean>;
     /**
-     * Set 'hd' query parameter when logging in with Google. Google will list accounts only for this domain. Keycloak
-     * validates that the returned identity token has a claim for this domain. When '*' is entered, any hosted account can
-     * be used.
+     * Set 'hd' query parameter when logging in with Google. Google will list accounts only for this domain. Keycloak validates
+     * that the returned identity token has a claim for this domain. When '*' is entered, any hosted account can be used.
      */
     readonly hostedDomain?: pulumi.Input<string>;
     /**
@@ -389,10 +385,9 @@ export interface GoogleIdentityProviderArgs {
     readonly linkOnly?: pulumi.Input<boolean>;
     /**
      * Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty
-     * if you don't want any additional authenticators to be triggered after login with this identity provider. Also note,
-     * that authenticator implementations must assume that user is already set in ClientSession as identity provider
-     * already set it.
+     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+     * you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+     * authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
      */
     readonly postBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
@@ -404,9 +399,9 @@ export interface GoogleIdentityProviderArgs {
      */
     readonly realm: pulumi.Input<string>;
     /**
-     * Set 'access_type' query parameter to 'offline' when redirecting to google authorization endpoint, to get a refresh
-     * token back. Useful if planning to use Token Exchange to retrieve Google token to access Google APIs when the user is
-     * not at the browser.
+     * Set 'access_type' query parameter to 'offline' when redirecting to google authorization endpoint, to get a refresh token
+     * back. Useful if planning to use Token Exchange to retrieve Google token to access Google APIs when the user is not at
+     * the browser.
      */
     readonly requestRefreshToken?: pulumi.Input<boolean>;
     /**
@@ -418,8 +413,8 @@ export interface GoogleIdentityProviderArgs {
      */
     readonly trustEmail?: pulumi.Input<boolean>;
     /**
-     * Set 'userIp' query parameter when invoking on Google's User Info service. This will use the user's ip address.
-     * Useful if Google is throttling access to the User Info service.
+     * Set 'userIp' query parameter when invoking on Google's User Info service. This will use the user's ip address. Useful if
+     * Google is throttling access to the User Info service.
      */
     readonly useUserIpParam?: pulumi.Input<boolean>;
 }

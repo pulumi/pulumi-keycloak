@@ -77,10 +77,10 @@ export interface GetGroupArgs {
  * A collection of values returned by getGroup.
  */
 export interface GetGroupResult {
-    readonly name: string;
-    readonly realmId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly name: string;
+    readonly realmId: string;
 }

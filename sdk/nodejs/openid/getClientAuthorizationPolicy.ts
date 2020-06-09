@@ -37,6 +37,10 @@ export interface GetClientAuthorizationPolicyArgs {
  */
 export interface GetClientAuthorizationPolicyResult {
     readonly decisionStrategy: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly logic?: string;
     readonly name: string;
     readonly owner: string;
@@ -46,8 +50,4 @@ export interface GetClientAuthorizationPolicyResult {
     readonly resources: string[];
     readonly scopes: string[];
     readonly type: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

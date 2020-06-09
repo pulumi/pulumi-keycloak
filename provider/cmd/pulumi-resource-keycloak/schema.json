@@ -462,7 +462,12 @@
             "required": [
                 "defaultLocale",
                 "supportedLocales"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "keycloak:/getRealmKeysKey:getRealmKeysKey": {
             "properties": {
@@ -541,7 +546,12 @@
                 "publicKey",
                 "status",
                 "type"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "keycloak:/getRealmSecurityDefense:getRealmSecurityDefense": {
             "properties": {
@@ -572,7 +582,12 @@
             "required": [
                 "bruteForceDetections",
                 "headers"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "keycloak:/getRealmSecurityDefenseBruteForceDetection:getRealmSecurityDefenseBruteForceDetection": {
             "properties": {
@@ -642,7 +657,12 @@
                 "permanentLockout",
                 "quickLoginCheckMilliSeconds",
                 "waitIncrementSeconds"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "keycloak:/getRealmSecurityDefenseHeader:getRealmSecurityDefenseHeader": {
             "properties": {
@@ -712,7 +732,12 @@
                 "xFrameOptions",
                 "xRobotsTag",
                 "xXssProtection"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "keycloak:/getRealmSmtpServer:getRealmSmtpServer": {
             "properties": {
@@ -812,7 +837,12 @@
                 "replyToDisplayName",
                 "ssl",
                 "starttls"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "keycloak:/getRealmSmtpServerAuth:getRealmSmtpServerAuth": {
             "properties": {
@@ -837,7 +867,12 @@
             "required": [
                 "password",
                 "username"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "keycloak:ldap/UserFederationKerberos:UserFederationKerberos": {
             "properties": {
@@ -1016,7 +1051,12 @@
             "required": [
                 "browserId",
                 "directGrantId"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "keycloak:openid/getClientAuthorization:getClientAuthorization": {
             "properties": {
@@ -1041,7 +1081,12 @@
             "required": [
                 "allowRemoteResourceManagement",
                 "policyEnforcementMode"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "keycloak:openid/getClientServiceAccountUserFederatedIdentity:getClientServiceAccountUserFederatedIdentity": {
             "properties": {
@@ -1075,7 +1120,12 @@
                 "identityProvider",
                 "userId",
                 "userName"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         }
     },
     "provider": {
@@ -9690,8 +9740,10 @@
                 "@types/mime": "^2.0.0",
                 "@types/node": "^8.0.25"
             },
+            "disableUnionOutputTypes": true,
             "packageDescription": "A Pulumi package for creating and managing keycloak cloud resources.",
             "packageName": "",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/mrparkers/terraform-provider-keycloak)\n\u003e distributed under [MIT](https://mit-license.org/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-keycloak` repo](https://github.com/pulumi/pulumi-keycloak/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`mrparkers/terraform-provider-keycloak` repo](https://github.com/mrparkers/terraform-provider-keycloak/issues).",
             "typescriptVersion": ""
         },
         "python": {

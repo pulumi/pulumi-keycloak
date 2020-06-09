@@ -74,6 +74,7 @@ export class IdentityProvider extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IdentityProviderState, opts?: pulumi.CustomResourceOptions): IdentityProvider {
         return new IdentityProvider(name, <any>state, { ...opts, id: id });
@@ -118,8 +119,8 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
     /**
-     * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login'
-     * means that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+     * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+     * that there is not yet existing Keycloak account linked with the authenticated identity provider account.
      */
     public readonly firstBrokerLoginFlowAlias!: pulumi.Output<string | undefined>;
     /**
@@ -157,10 +158,9 @@ export class IdentityProvider extends pulumi.CustomResource {
     public readonly postBindingResponse!: pulumi.Output<boolean | undefined>;
     /**
      * Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty
-     * if you don't want any additional authenticators to be triggered after login with this identity provider. Also note,
-     * that authenticator implementations must assume that user is already set in ClientSession as identity provider
-     * already set it.
+     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+     * you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+     * authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
      */
     public readonly postBrokerLoginFlowAlias!: pulumi.Output<string | undefined>;
     /**
@@ -326,8 +326,8 @@ export interface IdentityProviderState {
      */
     readonly enabled?: pulumi.Input<boolean>;
     /**
-     * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login'
-     * means that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+     * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+     * that there is not yet existing Keycloak account linked with the authenticated identity provider account.
      */
     readonly firstBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
@@ -365,10 +365,9 @@ export interface IdentityProviderState {
     readonly postBindingResponse?: pulumi.Input<boolean>;
     /**
      * Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty
-     * if you don't want any additional authenticators to be triggered after login with this identity provider. Also note,
-     * that authenticator implementations must assume that user is already set in ClientSession as identity provider
-     * already set it.
+     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+     * you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+     * authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
      */
     readonly postBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
@@ -446,8 +445,8 @@ export interface IdentityProviderArgs {
      */
     readonly enabled?: pulumi.Input<boolean>;
     /**
-     * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login'
-     * means that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+     * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+     * that there is not yet existing Keycloak account linked with the authenticated identity provider account.
      */
     readonly firstBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
@@ -481,10 +480,9 @@ export interface IdentityProviderArgs {
     readonly postBindingResponse?: pulumi.Input<boolean>;
     /**
      * Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty
-     * if you don't want any additional authenticators to be triggered after login with this identity provider. Also note,
-     * that authenticator implementations must assume that user is already set in ClientSession as identity provider
-     * already set it.
+     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+     * you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+     * authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
      */
     readonly postBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
