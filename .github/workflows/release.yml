@@ -103,7 +103,7 @@ jobs:
       with:
         repo: pulumi/pulumictl
     - name: Dispatch event
-      run: pulumictl create docs-build ${{ env.PROVIDER}} ${{ github.ref }}
+      run: pulumictl create docs-build pulumi-${{ env.PROVIDER }} ${{ github.ref }}
   lint:
     container: golangci/golangci-lint:latest
     name: lint
