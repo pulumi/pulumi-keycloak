@@ -9,7 +9,7 @@ archives:
     amd64: x64
 before:
   hooks:
-  - cd provider && go mod download
+  - make -f Makefile.github tfgen
 blobs:
 - bucket: get.pulumi.com
   folder: releases/plugins
