@@ -93,6 +93,17 @@ jobs:
         - 13.x
         pythonversion:
         - "3.7"
+  create_docs_build:
+    name: Create docs build
+    needs: publish_sdk
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install pulumictl
+      uses: jaxxstorm/action-install-gh-release@release/v1-alpha
+      with:
+        repo: pulumi/pulumictl
+    - name: Dispatch event
+      run: pulumictl create docs-build ${{ env.PROVIDER}} ${{ github.ref }}
   lint:
     container: golangci/golangci-lint:latest
     name: lint
