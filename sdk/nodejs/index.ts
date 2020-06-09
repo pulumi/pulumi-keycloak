@@ -26,11 +26,11 @@ export * from "./user";
 export * from "./userTemplateImporterIdentityProviderMapper";
 
 // Export sub-modules:
-import * as authentication from "./authentication/index";
-import * as config from "./config/index";
-import * as ldap from "./ldap/index";
-import * as oidc from "./oidc/index";
-import * as openid from "./openid/index";
-import * as saml from "./saml/index";
-import * as types from "./types/index";
+import * as authentication from "./authentication";
+import * as config from "./config";
+import * as ldap from "./ldap";
+import * as oidc from "./oidc";
+import * as openid from "./openid";
+import * as saml from "./saml";
+import * as types from "./types";
 export {authentication, config, ldap, oidc, openid, saml, types};

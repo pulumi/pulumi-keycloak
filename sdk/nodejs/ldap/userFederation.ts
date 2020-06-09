@@ -90,6 +90,7 @@ export class UserFederation extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: UserFederationState, opts?: pulumi.CustomResourceOptions): UserFederation {
         return new UserFederation(name, <any>state, { ...opts, id: id });
@@ -123,8 +124,8 @@ export class UserFederation extends pulumi.CustomResource {
     public readonly bindDn!: pulumi.Output<string | undefined>;
     public readonly cachePolicy!: pulumi.Output<string | undefined>;
     /**
-     * How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed
-     * users sync.
+     * How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
+     * sync.
      */
     public readonly changedSyncPeriod!: pulumi.Output<number | undefined>;
     /**
@@ -338,8 +339,8 @@ export interface UserFederationState {
     readonly bindDn?: pulumi.Input<string>;
     readonly cachePolicy?: pulumi.Input<string>;
     /**
-     * How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed
-     * users sync.
+     * How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
+     * sync.
      */
     readonly changedSyncPeriod?: pulumi.Input<number>;
     /**
@@ -451,8 +452,8 @@ export interface UserFederationArgs {
     readonly bindDn?: pulumi.Input<string>;
     readonly cachePolicy?: pulumi.Input<string>;
     /**
-     * How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed
-     * users sync.
+     * How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
+     * sync.
      */
     readonly changedSyncPeriod?: pulumi.Input<number>;
     /**

@@ -14,6 +14,7 @@ export class Realm extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RealmState, opts?: pulumi.CustomResourceOptions): Realm {
         return new Realm(name, <any>state, { ...opts, id: id });
@@ -72,9 +73,9 @@ export class Realm extends pulumi.CustomResource {
     public readonly offlineSessionIdleTimeout!: pulumi.Output<string>;
     public readonly offlineSessionMaxLifespan!: pulumi.Output<string>;
     /**
-     * String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported
-     * policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and
-     * forceExpiredPasswordChange(365) and notUsername(undefined)"
+     * String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
+     * can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
+     * and notUsername(undefined)"
      */
     public readonly passwordPolicy!: pulumi.Output<string | undefined>;
     public readonly realm!: pulumi.Output<string>;
@@ -261,9 +262,9 @@ export interface RealmState {
     readonly offlineSessionIdleTimeout?: pulumi.Input<string>;
     readonly offlineSessionMaxLifespan?: pulumi.Input<string>;
     /**
-     * String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported
-     * policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and
-     * forceExpiredPasswordChange(365) and notUsername(undefined)"
+     * String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
+     * can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
+     * and notUsername(undefined)"
      */
     readonly passwordPolicy?: pulumi.Input<string>;
     readonly realm?: pulumi.Input<string>;
@@ -335,9 +336,9 @@ export interface RealmArgs {
     readonly offlineSessionIdleTimeout?: pulumi.Input<string>;
     readonly offlineSessionMaxLifespan?: pulumi.Input<string>;
     /**
-     * String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported
-     * policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and
-     * forceExpiredPasswordChange(365) and notUsername(undefined)"
+     * String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
+     * can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
+     * and notUsername(undefined)"
      */
     readonly passwordPolicy?: pulumi.Input<string>;
     readonly realm: pulumi.Input<string>;

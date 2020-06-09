@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 let __config = new pulumi.Config("keycloak");
@@ -11,7 +13,7 @@ export let clientSecret: string | undefined = __config.get("clientSecret") || ut
 /**
  * Timeout (in seconds) of the Keycloak client
  */
-export let clientTimeout: number | undefined = __config.getObject<number>("clientTimeout") || (utilities.getEnvNumber("KEYCLOAK_CLIENT_TIMEOUT") || 5);
+export let clientTimeout: number | undefined = __config.getObject<number>("clientTimeout") || (<any>utilities.getEnvNumber("KEYCLOAK_CLIENT_TIMEOUT") || 5);
 /**
  * Whether or not to login to Keycloak instance on provider initialization
  */

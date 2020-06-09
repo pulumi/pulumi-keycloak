@@ -12,6 +12,7 @@ export class IdentityProvider extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IdentityProviderState, opts?: pulumi.CustomResourceOptions): IdentityProvider {
         return new IdentityProvider(name, <any>state, { ...opts, id: id });
@@ -32,9 +33,9 @@ export class IdentityProvider extends pulumi.CustomResource {
     }
 
     /**
-     * This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity
-     * provider. In case that client sends a request with prompt=none and user is not yet authenticated, the error will not
-     * be directly returned to client, but the request with prompt=none will be forwarded to this identity provider.
+     * This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
+     * case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
+     * returned to client, but the request with prompt=none will be forwarded to this identity provider.
      */
     public readonly acceptsPromptNoneForwardFromClient!: pulumi.Output<boolean | undefined>;
     /**
@@ -66,8 +67,7 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly clientSecret!: pulumi.Output<string>;
     /**
-     * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to
-     * 'openid'.
+     * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to 'openid'.
      */
     public readonly defaultScopes!: pulumi.Output<string | undefined>;
     /**
@@ -80,8 +80,8 @@ export class IdentityProvider extends pulumi.CustomResource {
     public readonly enabled!: pulumi.Output<boolean | undefined>;
     public readonly extraConfig!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login'
-     * means that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+     * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+     * that there is not yet existing Keycloak account linked with the authenticated identity provider account.
      */
     public readonly firstBrokerLoginFlowAlias!: pulumi.Output<string | undefined>;
     /**
@@ -111,10 +111,9 @@ export class IdentityProvider extends pulumi.CustomResource {
     public readonly logoutUrl!: pulumi.Output<string | undefined>;
     /**
      * Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty
-     * if you don't want any additional authenticators to be triggered after login with this identity provider. Also note,
-     * that authenticator implementations must assume that user is already set in ClientSession as identity provider
-     * already set it.
+     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+     * you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+     * authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
      */
     public readonly postBrokerLoginFlowAlias!: pulumi.Output<string | undefined>;
     /**
@@ -255,9 +254,9 @@ export class IdentityProvider extends pulumi.CustomResource {
  */
 export interface IdentityProviderState {
     /**
-     * This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity
-     * provider. In case that client sends a request with prompt=none and user is not yet authenticated, the error will not
-     * be directly returned to client, but the request with prompt=none will be forwarded to this identity provider.
+     * This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
+     * case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
+     * returned to client, but the request with prompt=none will be forwarded to this identity provider.
      */
     readonly acceptsPromptNoneForwardFromClient?: pulumi.Input<boolean>;
     /**
@@ -289,8 +288,7 @@ export interface IdentityProviderState {
      */
     readonly clientSecret?: pulumi.Input<string>;
     /**
-     * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to
-     * 'openid'.
+     * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to 'openid'.
      */
     readonly defaultScopes?: pulumi.Input<string>;
     /**
@@ -303,8 +301,8 @@ export interface IdentityProviderState {
     readonly enabled?: pulumi.Input<boolean>;
     readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
-     * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login'
-     * means that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+     * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+     * that there is not yet existing Keycloak account linked with the authenticated identity provider account.
      */
     readonly firstBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
@@ -334,10 +332,9 @@ export interface IdentityProviderState {
     readonly logoutUrl?: pulumi.Input<string>;
     /**
      * Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty
-     * if you don't want any additional authenticators to be triggered after login with this identity provider. Also note,
-     * that authenticator implementations must assume that user is already set in ClientSession as identity provider
-     * already set it.
+     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+     * you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+     * authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
      */
     readonly postBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
@@ -379,9 +376,9 @@ export interface IdentityProviderState {
  */
 export interface IdentityProviderArgs {
     /**
-     * This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity
-     * provider. In case that client sends a request with prompt=none and user is not yet authenticated, the error will not
-     * be directly returned to client, but the request with prompt=none will be forwarded to this identity provider.
+     * This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
+     * case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
+     * returned to client, but the request with prompt=none will be forwarded to this identity provider.
      */
     readonly acceptsPromptNoneForwardFromClient?: pulumi.Input<boolean>;
     /**
@@ -413,8 +410,7 @@ export interface IdentityProviderArgs {
      */
     readonly clientSecret: pulumi.Input<string>;
     /**
-     * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to
-     * 'openid'.
+     * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to 'openid'.
      */
     readonly defaultScopes?: pulumi.Input<string>;
     /**
@@ -427,8 +423,8 @@ export interface IdentityProviderArgs {
     readonly enabled?: pulumi.Input<boolean>;
     readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
-     * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login'
-     * means that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+     * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+     * that there is not yet existing Keycloak account linked with the authenticated identity provider account.
      */
     readonly firstBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
@@ -454,10 +450,9 @@ export interface IdentityProviderArgs {
     readonly logoutUrl?: pulumi.Input<string>;
     /**
      * Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty
-     * if you don't want any additional authenticators to be triggered after login with this identity provider. Also note,
-     * that authenticator implementations must assume that user is already set in ClientSession as identity provider
-     * already set it.
+     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+     * you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+     * authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
      */
     readonly postBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**

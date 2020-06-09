@@ -54,11 +54,11 @@ export interface GetRealmKeysArgs {
  */
 export interface GetRealmKeysResult {
     readonly algorithms?: string[];
-    readonly keys: outputs.GetRealmKeysKey[];
-    readonly realmId: string;
-    readonly statuses?: string[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly keys: outputs.GetRealmKeysKey[];
+    readonly realmId: string;
+    readonly statuses?: string[];
 }

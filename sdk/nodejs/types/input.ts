@@ -3,6 +3,7 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface GetRealmInternationalization {
     defaultLocale?: string;
@@ -110,7 +111,6 @@ export interface UserInitialPassword {
     temporary?: pulumi.Input<boolean>;
     value: pulumi.Input<string>;
 }
-
 export namespace ldap {
     export interface UserFederationKerberos {
         kerberosRealm: pulumi.Input<string>;
@@ -142,4 +142,6 @@ export namespace openid {
         id: pulumi.Input<string>;
         required: pulumi.Input<boolean>;
     }
+
 }
+

@@ -2,8 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -37,18 +35,16 @@ export class Provider extends pulumi.ProviderResource {
      */
     constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        {
-            inputs["clientId"] = (args ? args.clientId : undefined) || utilities.getEnv("KEYCLOAK_CLIENT_ID");
-            inputs["clientSecret"] = (args ? args.clientSecret : undefined) || utilities.getEnv("KEYCLOAK_CLIENT_SECRET");
-            inputs["clientTimeout"] = pulumi.output((args ? args.clientTimeout : undefined) || (utilities.getEnvNumber("KEYCLOAK_CLIENT_TIMEOUT") || 5)).apply(JSON.stringify);
-            inputs["initialLogin"] = pulumi.output(args ? args.initialLogin : undefined).apply(JSON.stringify);
-            inputs["password"] = (args ? args.password : undefined) || utilities.getEnv("KEYCLOAK_PASSWORD");
-            inputs["realm"] = (args ? args.realm : undefined) || (utilities.getEnv("KEYCLOAK_REALM") || "master");
-            inputs["rootCaCertificate"] = args ? args.rootCaCertificate : undefined;
-            inputs["tlsInsecureSkipVerify"] = pulumi.output(args ? args.tlsInsecureSkipVerify : undefined).apply(JSON.stringify);
-            inputs["url"] = (args ? args.url : undefined) || utilities.getEnv("KEYCLOAK_URL");
-            inputs["username"] = (args ? args.username : undefined) || utilities.getEnv("KEYCLOAK_USER");
-        }
+        inputs["clientId"] = (args ? args.clientId : undefined) || utilities.getEnv("KEYCLOAK_CLIENT_ID");
+        inputs["clientSecret"] = (args ? args.clientSecret : undefined) || utilities.getEnv("KEYCLOAK_CLIENT_SECRET");
+        inputs["clientTimeout"] = pulumi.output((args ? args.clientTimeout : undefined) || (<any>utilities.getEnvNumber("KEYCLOAK_CLIENT_TIMEOUT") || 5)).apply(JSON.stringify);
+        inputs["initialLogin"] = pulumi.output(args ? args.initialLogin : undefined).apply(JSON.stringify);
+        inputs["password"] = (args ? args.password : undefined) || utilities.getEnv("KEYCLOAK_PASSWORD");
+        inputs["realm"] = (args ? args.realm : undefined) || (utilities.getEnv("KEYCLOAK_REALM") || "master");
+        inputs["rootCaCertificate"] = args ? args.rootCaCertificate : undefined;
+        inputs["tlsInsecureSkipVerify"] = pulumi.output(args ? args.tlsInsecureSkipVerify : undefined).apply(JSON.stringify);
+        inputs["url"] = (args ? args.url : undefined) || utilities.getEnv("KEYCLOAK_URL");
+        inputs["username"] = (args ? args.username : undefined) || utilities.getEnv("KEYCLOAK_USER");
         if (!opts) {
             opts = {}
         }

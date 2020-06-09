@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 export function getClientInstallationProvider(args: GetClientInstallationProviderArgs, opts?: pulumi.InvokeOptions): Promise<GetClientInstallationProviderResult> {
@@ -33,11 +35,11 @@ export interface GetClientInstallationProviderArgs {
  */
 export interface GetClientInstallationProviderResult {
     readonly clientId: string;
-    readonly providerId: string;
-    readonly realmId: string;
-    readonly value: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly providerId: string;
+    readonly realmId: string;
+    readonly value: string;
 }
