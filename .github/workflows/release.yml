@@ -206,7 +206,7 @@ jobs:
         fields: repo,commit,author
         status: ${{ job.status }}
   publish:
-    name: publish binaries
+    name: publish
     needs: test
     steps:
     - name: Checkout Repo
