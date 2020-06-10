@@ -71,11 +71,12 @@ jobs:
       with:
         name: ${{ matrix.language  }}-sdk
         path: ${{ github.workspace}}/sdk/${{ matrix.language }}
-    - if: '!success()'
+    - if: failure()
       name: Notify Slack
       uses: 8398a7/action-slack@v3
       with:
-        fields: repo,commit,author
+        author_name: Failure in building ${{ matrix.language }} sdk
+        fields: repo,commit,author,action
         status: ${{ job.status }}
     strategy:
       fail-fast: true
@@ -119,11 +120,12 @@ jobs:
       uses: pulumi/action-install-pulumi-cli@releases/v1
     - name: Run golangci
       run: make -f Makefile.github lint_provider
-    - if: '!success()'
+    - if: failure()
       name: Notify Slack
       uses: 8398a7/action-slack@v3
       with:
-        fields: repo,commit,author
+        author_name: Failure in linting provider
+        fields: repo,commit,author,action
         status: ${{ job.status }}
   lint_sdk:
     container: golangci/golangci-lint:latest
@@ -152,11 +154,12 @@ jobs:
       uses: pulumi/action-install-pulumi-cli@releases/v1
     - name: Run golangci
       run: cd sdk/go/keycloak && golangci-lint run -c ../../../.golangci.yml
-    - if: '!success()'
+    - if: failure()
       name: Notify Slack
       uses: 8398a7/action-slack@v3
       with:
-        fields: repo,commit,author
+        author_name: Failure in linting go sdk
+        fields: repo,commit,author,action
         status: ${{ job.status }}
   prerequisites:
     name: prerequisites
@@ -188,11 +191,12 @@ jobs:
       with:
         name: pulumi-${{ env.PROVIDER }}
         path: ${{ github.workspace }}/bin
-    - if: '!success()'
+    - if: failure()
       name: Notify Slack
       uses: 8398a7/action-slack@v3
       with:
-        fields: repo,commit,author
+        author_name: Failure in building provider prerequisites
+        fields: repo,commit,author,action
         status: ${{ job.status }}
   publish:
     needs: test
@@ -278,11 +282,12 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       name: Publish SDKs
       run: ./ci-scripts/ci/publish-tfgen-package ${{ github.workspace }}
-    - if: '!success()'
+    - if: failure()
       name: Notify Slack
       uses: 8398a7/action-slack@v3
       with:
-        fields: repo,commit,author
+        author_name: Failure in publishing SDK
+        fields: repo,commit,author,action
         status: ${{ job.status }}
   test:
     name: test
@@ -347,11 +352,12 @@ jobs:
     - name: Run tests
       run: cd examples && go test -v -count=1 -cover -timeout 2h -tags=${{ matrix.language
         }} -parallel 4 .
-    - if: '!success()'
+    - if: failure()
       name: Notify Slack
       uses: 8398a7/action-slack@v3
       with:
-        fields: repo,commit,author
+        author_name: Failure in running ${{ matrix.language }} tests
+        fields: repo,commit,author,action
         status: ${{ job.status }}
     strategy:
       fail-fast: true
