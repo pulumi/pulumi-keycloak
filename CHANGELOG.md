@@ -2,9 +2,18 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v1.19.0 of the KeyCloak Terraform Provider
+_(none)_
 
 ---
+
+## 2.3.2 (2020-06-09)
+* GitHub action build process improvements
+
+## 2.3.1 (2020-06-09
+* Switch to GitHub actions for releases
+
+## 2.3.0 (2020-06-09)
+* Upgrade to v1.19.0 of the KeyCloak Terraform Provider
 
 ## 2.2.2 (2020-05-28)
 * Upgrade to Pulumi v2.3.0
