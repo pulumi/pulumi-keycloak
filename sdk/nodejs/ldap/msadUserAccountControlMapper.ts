@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  *     enabled: true,
  *     realm: "test",
  * });
- * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldap_user_federation", {
  *     bindCredential: "admin",
  *     bindDn: "cn=admin,dc=example,dc=org",
  *     connectionUrl: "ldap://my-ad-server",
@@ -40,7 +40,7 @@ import * as utilities from "../utilities";
  *     usersDn: "dc=example,dc=org",
  *     uuidLdapAttribute: "objectGUID",
  * });
- * const msadUserAccountControlMapper = new keycloak.ldap.MsadUserAccountControlMapper("msadUserAccountControlMapper", {
+ * const msadUserAccountControlMapper = new keycloak.ldap.MsadUserAccountControlMapper("msad_user_account_control_mapper", {
  *     ldapUserFederationId: ldapUserFederation.id,
  *     realmId: realm.id,
  * });

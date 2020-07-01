@@ -19,6 +19,51 @@ import (
 // will exist within the realm and will be able to log in to clients. Federated
 // users can have their attributes defined using mappers.
 //
+// ### Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/ldap"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Enabled: pulumi.Bool(true),
+// 			Realm:   pulumi.String("test"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
+// 			BindCredential:    pulumi.String("admin"),
+// 			BindDn:            pulumi.String("cn=admin,dc=example,dc=org"),
+// 			ConnectionTimeout: pulumi.String("5s"),
+// 			ConnectionUrl:     pulumi.String("ldap://openldap"),
+// 			Enabled:           pulumi.Bool(true),
+// 			RdnLdapAttribute:  pulumi.String("cn"),
+// 			ReadTimeout:       pulumi.String("10s"),
+// 			RealmId:           realm.ID(),
+// 			UserObjectClasses: pulumi.StringArray{
+// 				pulumi.String("simpleSecurityObject"),
+// 				pulumi.String("organizationalRole"),
+// 			},
+// 			UsernameLdapAttribute: pulumi.String("cn"),
+// 			UsersDn:               pulumi.String("dc=example,dc=org"),
+// 			UuidLdapAttribute:     pulumi.String("entryDN"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ### Argument Reference
 //
 // The following arguments are supported:

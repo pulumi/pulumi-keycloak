@@ -10,11 +10,11 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// ## # keycloak..User
+    /// ## # keycloak.User
     /// 
     /// Allows for creating and managing Users within Keycloak.
     /// 
-    /// This resource was created primarily to enable the acceptance tests for the `keycloak..Group` resource.
+    /// This resource was created primarily to enable the acceptance tests for the `keycloak.Group` resource.
     /// Creating users within Keycloak is not recommended. Instead, users should be federated from external sources
     /// by configuring user federation providers or identity providers.
     /// 

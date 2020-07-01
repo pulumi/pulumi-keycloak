@@ -12,10 +12,10 @@ namespace Pulumi.Keycloak
     public static class GetRole
     {
         /// <summary>
-        /// ## # keycloak..Role data source
+        /// ## # keycloak.Role data source
         /// 
         /// This data source can be used to fetch properties of a Keycloak role for
-        /// usage with other resources, such as `keycloak..GroupRoles`.
+        /// usage with other resources, such as `keycloak.GroupRoles`.
         /// 
         /// ### Argument Reference
         /// 

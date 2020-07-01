@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// ## # keycloak..GenericClientProtocolMapper
+    /// ## # keycloak.GenericClientProtocolMapper
     /// 
     /// Allows for creating and managing protocol mapper for both types of clients (openid-connect and saml) within Keycloak.
     /// 
@@ -18,7 +18,7 @@ namespace Pulumi.Keycloak
     /// * If you implemented a custom protocol mapper, this resource can be used to configure it
     /// * If the provider doesn't support a particular protocol mapper, this resource can be used instead.
     /// 
-    /// Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors. 
+    /// Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors.
     /// Therefore, if possible, a specific mapper should be used.
     /// 
     /// ### Example Usage

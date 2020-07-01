@@ -7,10 +7,10 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak..Group data source
+ * ## # keycloak.Group data source
  *
  * This data source can be used to fetch properties of a Keycloak group for
- * usage with other resources, such as `keycloak..GroupRoles`.
+ * usage with other resources, such as `keycloak.GroupRoles`.
  *
  * ### Example Usage
  *
@@ -23,14 +23,14 @@ import * as utilities from "./utilities";
  *     realm: "my-realm",
  * });
  * const offlineAccess = realm.id.apply(id => keycloak.getRole({
- *     name: "offlineAccess",
+ *     name: "offline_access",
  *     realmId: id,
  * }, { async: true }));
  * const group = realm.id.apply(id => keycloak.getGroup({
  *     name: "group",
  *     realmId: id,
  * }, { async: true }));
- * const groupRoles = new keycloak.GroupRoles("groupRoles", {
+ * const groupRoles = new keycloak.GroupRoles("group_roles", {
  *     groupId: group.id,
  *     realmId: realm.id,
  *     roles: [offlineAccess.id],

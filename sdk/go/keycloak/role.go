@@ -10,12 +10,164 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// ## # .Role
+// ## # Role
 //
 // Allows for creating and managing roles within Keycloak.
 //
 // Roles allow you define privileges within Keycloak and map them to users
 // and groups.
+//
+// ### Example Usage (Realm role)
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Enabled: pulumi.Bool(true),
+// 			Realm:   pulumi.String("my-realm"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewRole(ctx, "realmRole", &keycloak.RoleArgs{
+// 			Description: pulumi.String("My Realm Role"),
+// 			RealmId:     realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ### Example Usage (Client role)
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/openid"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Enabled: pulumi.Bool(true),
+// 			Realm:   pulumi.String("my-realm"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = openid.NewClient(ctx, "client", &openid.ClientArgs{
+// 			AccessType: pulumi.String("BEARER-ONLY"),
+// 			ClientId:   pulumi.String("client"),
+// 			Enabled:    pulumi.Bool(true),
+// 			RealmId:    realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewRole(ctx, "clientRole", &keycloak.RoleArgs{
+// 			ClientId:    pulumi.String(keycloak_client.Client.Id),
+// 			Description: pulumi.String("My Client Role"),
+// 			RealmId:     realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ### Example Usage (Composite role)
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/openid"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Enabled: pulumi.Bool(true),
+// 			Realm:   pulumi.String("my-realm"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewRole(ctx, "createRole", &keycloak.RoleArgs{
+// 			RealmId: realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewRole(ctx, "readRole", &keycloak.RoleArgs{
+// 			RealmId: realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewRole(ctx, "updateRole", &keycloak.RoleArgs{
+// 			RealmId: realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewRole(ctx, "deleteRole", &keycloak.RoleArgs{
+// 			RealmId: realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = openid.NewClient(ctx, "client", &openid.ClientArgs{
+// 			AccessType: pulumi.String("BEARER-ONLY"),
+// 			ClientId:   pulumi.String("client"),
+// 			Enabled:    pulumi.Bool(true),
+// 			RealmId:    realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewRole(ctx, "clientRole", &keycloak.RoleArgs{
+// 			ClientId:    pulumi.String(keycloak_client.Client.Id),
+// 			Description: pulumi.String("My Client Role"),
+// 			RealmId:     realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewRole(ctx, "adminRole", &keycloak.RoleArgs{
+// 			CompositeRoles: pulumi.StringArray{
+// 				pulumi.String("{keycloak_role.create_role.id}"),
+// 				pulumi.String("{keycloak_role.read_role.id}"),
+// 				pulumi.String("{keycloak_role.update_role.id}"),
+// 				pulumi.String("{keycloak_role.delete_role.id}"),
+// 				pulumi.String("{keycloak_role.client_role.id}"),
+// 			},
+// 			RealmId: realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 //
 // ### Argument Reference
 //

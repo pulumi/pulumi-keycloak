@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// ## # keycloak..AttributeImporterIdentityProviderMapper
+    /// ## # keycloak.AttributeImporterIdentityProviderMapper
     /// 
     /// Allows to create and manage identity provider mappers within Keycloak.
     /// 

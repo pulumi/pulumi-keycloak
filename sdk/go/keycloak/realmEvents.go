@@ -10,9 +10,49 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// ## # .RealmEvents
+// ## # RealmEvents
 //
 // Allows for managing Realm Events settings within Keycloak.
+//
+// ### Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Realm: pulumi.String("test"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewRealmEvents(ctx, "realmEvents", &keycloak.RealmEventsArgs{
+// 			AdminEventsDetailsEnabled: pulumi.Bool(true),
+// 			AdminEventsEnabled:        pulumi.Bool(true),
+// 			EnabledEventTypes: pulumi.StringArray{
+// 				pulumi.String("LOGIN"),
+// 				pulumi.String("LOGOUT"),
+// 			},
+// 			EventsEnabled:    pulumi.Bool(true),
+// 			EventsExpiration: pulumi.Int(3600),
+// 			EventsListeners: pulumi.StringArray{
+// 				pulumi.String("jboss-logging"),
+// 			},
+// 			RealmId: realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 //
 // ### Argument Reference
 //

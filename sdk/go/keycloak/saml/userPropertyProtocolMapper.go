@@ -20,6 +20,48 @@ import (
 // can be defined for a single client, or they can be defined for a client scope which
 // can be shared between multiple different clients.
 //
+// ### Example Usage (Client)
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/saml"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Enabled: pulumi.Bool(true),
+// 			Realm:   pulumi.String("my-realm"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		samlClient, err := saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
+// 			ClientId: pulumi.String("test-saml-client"),
+// 			RealmId:  pulumi.String(keycloak_realm.Test.Id),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = saml.NewUserPropertyProtocolMapper(ctx, "samlUserPropertyMapper", &saml.UserPropertyProtocolMapperArgs{
+// 			ClientId:                samlClient.ID(),
+// 			RealmId:                 pulumi.String(keycloak_realm.Test.Id),
+// 			SamlAttributeName:       pulumi.String("email"),
+// 			SamlAttributeNameFormat: pulumi.String("Unspecified"),
+// 			UserProperty:            pulumi.String("email"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ### Argument Reference
 //
 // The following arguments are supported:

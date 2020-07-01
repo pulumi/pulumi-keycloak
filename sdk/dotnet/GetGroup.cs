@@ -12,10 +12,10 @@ namespace Pulumi.Keycloak
     public static class GetGroup
     {
         /// <summary>
-        /// ## # keycloak..Group data source
+        /// ## # keycloak.Group data source
         /// 
         /// This data source can be used to fetch properties of a Keycloak group for
-        /// usage with other resources, such as `keycloak..GroupRoles`.
+        /// usage with other resources, such as `keycloak.GroupRoles`.
         /// 
         /// ### Argument Reference
         /// 

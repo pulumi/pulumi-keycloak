@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// ## # .GenericClientProtocolMapper
+// ## # GenericClientProtocolMapper
 //
 // Allows for creating and managing protocol mapper for both types of clients (openid-connect and saml) within Keycloak.
 //
@@ -20,6 +20,53 @@ import (
 //
 // Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors.
 // Therefore, if possible, a specific mapper should be used.
+//
+// ### Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/saml"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Enabled: pulumi.Bool(true),
+// 			Realm:   pulumi.String("my-realm"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		samlClient, err := saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
+// 			ClientId: pulumi.String("test-client"),
+// 			RealmId:  realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewGenericClientProtocolMapper(ctx, "samlHardcodeAttributeMapper", &keycloak.GenericClientProtocolMapperArgs{
+// 			ClientId: samlClient.ID(),
+// 			Config: pulumi.StringMap{
+// 				"attribute.name":       pulumi.String("name"),
+// 				"attribute.nameformat": pulumi.String("Basic"),
+// 				"attribute.value":      pulumi.String("value"),
+// 				"friendly.name":        pulumi.String("display name"),
+// 			},
+// 			Protocol:       pulumi.String("saml"),
+// 			ProtocolMapper: pulumi.String("saml-hardcode-attribute-mapper"),
+// 			RealmId:        realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 //
 // ### Argument Reference
 //

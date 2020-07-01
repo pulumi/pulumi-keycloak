@@ -10,9 +10,35 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// ## # .AttributeImporterIdentityProviderMapper
+// ## # AttributeImporterIdentityProviderMapper
 //
 // Allows to create and manage identity provider mappers within Keycloak.
+//
+// ### Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := keycloak.NewAttributeImporterIdentityProviderMapper(ctx, "testMapper", &keycloak.AttributeImporterIdentityProviderMapperArgs{
+// 			AttributeName:         pulumi.String("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname"),
+// 			IdentityProviderAlias: pulumi.String("idp_alias"),
+// 			Realm:                 pulumi.String("my-realm"),
+// 			UserAttribute:         pulumi.String("lastName"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 //
 // ### Argument Reference
 //

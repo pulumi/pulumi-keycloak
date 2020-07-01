@@ -19,6 +19,64 @@ import (
 // to Keycloak groups. This group mapper will also create the groups within Keycloak
 // if they do not already exist.
 //
+// ### Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/ldap"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Enabled: pulumi.Bool(true),
+// 			Realm:   pulumi.String("test"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
+// 			BindCredential:   pulumi.String("admin"),
+// 			BindDn:           pulumi.String("cn=admin,dc=example,dc=org"),
+// 			ConnectionUrl:    pulumi.String("ldap://openldap"),
+// 			RdnLdapAttribute: pulumi.String("cn"),
+// 			RealmId:          realm.ID(),
+// 			UserObjectClasses: pulumi.StringArray{
+// 				pulumi.String("simpleSecurityObject"),
+// 				pulumi.String("organizationalRole"),
+// 			},
+// 			UsernameLdapAttribute: pulumi.String("cn"),
+// 			UsersDn:               pulumi.String("dc=example,dc=org"),
+// 			UuidLdapAttribute:     pulumi.String("entryDN"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = ldap.NewGroupMapper(ctx, "ldapGroupMapper", &ldap.GroupMapperArgs{
+// 			GroupNameLdapAttribute: pulumi.String("cn"),
+// 			GroupObjectClasses: pulumi.StringArray{
+// 				pulumi.String("groupOfNames"),
+// 			},
+// 			LdapGroupsDn:                pulumi.String("dc=example,dc=org"),
+// 			LdapUserFederationId:        ldapUserFederation.ID(),
+// 			MemberofLdapAttribute:       pulumi.String("memberOf"),
+// 			MembershipAttributeType:     pulumi.String("DN"),
+// 			MembershipLdapAttribute:     pulumi.String("member"),
+// 			MembershipUserLdapAttribute: pulumi.String("cn"),
+// 			RealmId:                     realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ### Argument Reference
 //
 // The following arguments are supported:

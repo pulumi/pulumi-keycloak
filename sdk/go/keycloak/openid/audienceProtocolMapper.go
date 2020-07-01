@@ -19,6 +19,90 @@ import (
 // within issued tokens. The audience can be a custom string, or it can be
 // mapped to the ID of a pre-existing client.
 //
+// ### Example Usage (Client)
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/openid"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Enabled: pulumi.Bool(true),
+// 			Realm:   pulumi.String("my-realm"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		openidClient, err := openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
+// 			AccessType: pulumi.String("CONFIDENTIAL"),
+// 			ClientId:   pulumi.String("test-client"),
+// 			Enabled:    pulumi.Bool(true),
+// 			RealmId:    realm.ID(),
+// 			ValidRedirectUris: pulumi.StringArray{
+// 				pulumi.String("http://localhost:8080/openid-callback"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = openid.NewAudienceProtocolMapper(ctx, "audienceMapper", &openid.AudienceProtocolMapperArgs{
+// 			ClientId:               openidClient.ID(),
+// 			IncludedCustomAudience: pulumi.String("foo"),
+// 			RealmId:                realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ### Example Usage (Client Scope)
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/openid"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Enabled: pulumi.Bool(true),
+// 			Realm:   pulumi.String("my-realm"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		clientScope, err := openid.NewClientScope(ctx, "clientScope", &openid.ClientScopeArgs{
+// 			RealmId: realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = openid.NewAudienceProtocolMapper(ctx, "audienceMapper", &openid.AudienceProtocolMapperArgs{
+// 			ClientScopeId:          clientScope.ID(),
+// 			IncludedCustomAudience: pulumi.String("foo"),
+// 			RealmId:                realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ### Argument Reference
 //
 // The following arguments are supported:

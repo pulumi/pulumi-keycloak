@@ -10,12 +10,51 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// ## # .DefaultGroups
+// ## # DefaultGroups
 //
 // Allows for managing a realm's default groups.
 //
-// Note that you should not use `.DefaultGroups` with a group with memberships managed
-// by `.GroupMemberships`.
+// Note that you should not use `DefaultGroups` with a group with memberships managed
+// by `GroupMemberships`.
+//
+// ### Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Enabled: pulumi.Bool(true),
+// 			Realm:   pulumi.String("my-realm"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
+// 			RealmId: realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewDefaultGroups(ctx, "_default", &keycloak.DefaultGroupsArgs{
+// 			GroupIds: pulumi.StringArray{
+// 				group.ID(),
+// 			},
+// 			RealmId: realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 //
 // ### Argument Reference
 //

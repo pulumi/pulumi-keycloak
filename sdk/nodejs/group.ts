@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak..Group
+ * ## # keycloak.Group
  *
  * Allows for creating and managing Groups within Keycloak.
  *
@@ -28,14 +28,14 @@ import * as utilities from "./utilities";
  *     enabled: true,
  *     realm: "my-realm",
  * });
- * const parentGroup = new keycloak.Group("parentGroup", {
+ * const parentGroup = new keycloak.Group("parent_group", {
  *     realmId: realm.id,
  * });
- * const childGroup = new keycloak.Group("childGroup", {
+ * const childGroup = new keycloak.Group("child_group", {
  *     parentId: parentGroup.id,
  *     realmId: realm.id,
  * });
- * const childGroupWithOptionalAttributes = new keycloak.Group("childGroupWithOptionalAttributes", {
+ * const childGroupWithOptionalAttributes = new keycloak.Group("child_group_with_optional_attributes", {
  *     attributes: {
  *         key1: "value1",
  *         key2: "value2",

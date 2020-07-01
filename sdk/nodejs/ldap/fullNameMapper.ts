@@ -23,7 +23,7 @@ import * as utilities from "../utilities";
  *     enabled: true,
  *     realm: "test",
  * });
- * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldap_user_federation", {
  *     bindCredential: "admin",
  *     bindDn: "cn=admin,dc=example,dc=org",
  *     connectionUrl: "ldap://openldap",
@@ -37,7 +37,7 @@ import * as utilities from "../utilities";
  *     usersDn: "dc=example,dc=org",
  *     uuidLdapAttribute: "entryDN",
  * });
- * const ldapFullNameMapper = new keycloak.ldap.FullNameMapper("ldapFullNameMapper", {
+ * const ldapFullNameMapper = new keycloak.ldap.FullNameMapper("ldap_full_name_mapper", {
  *     ldapFullNameAttribute: "cn",
  *     ldapUserFederationId: ldapUserFederation.id,
  *     realmId: realm.id,

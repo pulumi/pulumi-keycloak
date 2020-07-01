@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak..Role
+ * ## # keycloak.Role
  *
  * Allows for creating and managing roles within Keycloak.
  *
@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  *     enabled: true,
  *     realm: "my-realm",
  * });
- * const realmRole = new keycloak.Role("realmRole", {
+ * const realmRole = new keycloak.Role("realm_role", {
  *     description: "My Realm Role",
  *     realmId: realm.id,
  * });
@@ -44,7 +44,7 @@ import * as utilities from "./utilities";
  *     enabled: true,
  *     realmId: realm.id,
  * });
- * const clientRole = new keycloak.Role("clientRole", {
+ * const clientRole = new keycloak.Role("client_role", {
  *     clientId: keycloak_client_client.id,
  *     description: "My Client Role",
  *     realmId: realm.id,
@@ -61,16 +61,16 @@ import * as utilities from "./utilities";
  *     enabled: true,
  *     realm: "my-realm",
  * });
- * const createRole = new keycloak.Role("createRole", {
+ * const createRole = new keycloak.Role("create_role", {
  *     realmId: realm.id,
  * });
- * const readRole = new keycloak.Role("readRole", {
+ * const readRole = new keycloak.Role("read_role", {
  *     realmId: realm.id,
  * });
- * const updateRole = new keycloak.Role("updateRole", {
+ * const updateRole = new keycloak.Role("update_role", {
  *     realmId: realm.id,
  * });
- * const deleteRole = new keycloak.Role("deleteRole", {
+ * const deleteRole = new keycloak.Role("delete_role", {
  *     realmId: realm.id,
  * });
  * const client = new keycloak.openid.Client("client", {
@@ -79,12 +79,12 @@ import * as utilities from "./utilities";
  *     enabled: true,
  *     realmId: realm.id,
  * });
- * const clientRole = new keycloak.Role("clientRole", {
+ * const clientRole = new keycloak.Role("client_role", {
  *     clientId: keycloak_client_client.id,
  *     description: "My Client Role",
  *     realmId: realm.id,
  * });
- * const adminRole = new keycloak.Role("adminRole", {
+ * const adminRole = new keycloak.Role("admin_role", {
  *     compositeRoles: [
  *         "{keycloak_role.create_role.id}",
  *         "{keycloak_role.read_role.id}",

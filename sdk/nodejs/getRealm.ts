@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak..Realm data source
+ * ## # keycloak.Realm data source
  *
  * This data source can be used to fetch properties of a Keycloak realm for
  * usage with other resources.
@@ -32,7 +32,7 @@ import * as utilities from "./utilities";
  *
  * ### Attributes Reference
  *
- * See the docs for the `keycloak..Realm` resource for details on the exported attributes.
+ * See the docs for the `keycloak.Realm` resource for details on the exported attributes.
  */
 export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmResult> {
     if (!opts) {

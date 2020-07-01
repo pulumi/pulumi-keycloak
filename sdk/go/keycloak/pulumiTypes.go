@@ -18,8 +18,7 @@ type RealmInternationalization struct {
 // RealmInternationalizationInput is an input type that accepts RealmInternationalizationArgs and RealmInternationalizationOutput values.
 // You can construct a concrete instance of `RealmInternationalizationInput` via:
 //
-// 		 RealmInternationalizationArgs{...}
-//
+//          RealmInternationalizationArgs{...}
 type RealmInternationalizationInput interface {
 	pulumi.Input
 
@@ -55,12 +54,11 @@ func (i RealmInternationalizationArgs) ToRealmInternationalizationPtrOutputWithC
 // RealmInternationalizationPtrInput is an input type that accepts RealmInternationalizationArgs, RealmInternationalizationPtr and RealmInternationalizationPtrOutput values.
 // You can construct a concrete instance of `RealmInternationalizationPtrInput` via:
 //
-// 		 RealmInternationalizationArgs{...}
+//          RealmInternationalizationArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type RealmInternationalizationPtrInput interface {
 	pulumi.Input
 
@@ -161,8 +159,7 @@ type RealmSecurityDefenses struct {
 // RealmSecurityDefensesInput is an input type that accepts RealmSecurityDefensesArgs and RealmSecurityDefensesOutput values.
 // You can construct a concrete instance of `RealmSecurityDefensesInput` via:
 //
-// 		 RealmSecurityDefensesArgs{...}
-//
+//          RealmSecurityDefensesArgs{...}
 type RealmSecurityDefensesInput interface {
 	pulumi.Input
 
@@ -198,12 +195,11 @@ func (i RealmSecurityDefensesArgs) ToRealmSecurityDefensesPtrOutputWithContext(c
 // RealmSecurityDefensesPtrInput is an input type that accepts RealmSecurityDefensesArgs, RealmSecurityDefensesPtr and RealmSecurityDefensesPtrOutput values.
 // You can construct a concrete instance of `RealmSecurityDefensesPtrInput` via:
 //
-// 		 RealmSecurityDefensesArgs{...}
+//          RealmSecurityDefensesArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type RealmSecurityDefensesPtrInput interface {
 	pulumi.Input
 
@@ -309,8 +305,7 @@ type RealmSecurityDefensesBruteForceDetection struct {
 // RealmSecurityDefensesBruteForceDetectionInput is an input type that accepts RealmSecurityDefensesBruteForceDetectionArgs and RealmSecurityDefensesBruteForceDetectionOutput values.
 // You can construct a concrete instance of `RealmSecurityDefensesBruteForceDetectionInput` via:
 //
-// 		 RealmSecurityDefensesBruteForceDetectionArgs{...}
-//
+//          RealmSecurityDefensesBruteForceDetectionArgs{...}
 type RealmSecurityDefensesBruteForceDetectionInput interface {
 	pulumi.Input
 
@@ -351,12 +346,11 @@ func (i RealmSecurityDefensesBruteForceDetectionArgs) ToRealmSecurityDefensesBru
 // RealmSecurityDefensesBruteForceDetectionPtrInput is an input type that accepts RealmSecurityDefensesBruteForceDetectionArgs, RealmSecurityDefensesBruteForceDetectionPtr and RealmSecurityDefensesBruteForceDetectionPtrOutput values.
 // You can construct a concrete instance of `RealmSecurityDefensesBruteForceDetectionPtrInput` via:
 //
-// 		 RealmSecurityDefensesBruteForceDetectionArgs{...}
+//          RealmSecurityDefensesBruteForceDetectionArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type RealmSecurityDefensesBruteForceDetectionPtrInput interface {
 	pulumi.Input
 
@@ -527,8 +521,7 @@ type RealmSecurityDefensesHeaders struct {
 // RealmSecurityDefensesHeadersInput is an input type that accepts RealmSecurityDefensesHeadersArgs and RealmSecurityDefensesHeadersOutput values.
 // You can construct a concrete instance of `RealmSecurityDefensesHeadersInput` via:
 //
-// 		 RealmSecurityDefensesHeadersArgs{...}
-//
+//          RealmSecurityDefensesHeadersArgs{...}
 type RealmSecurityDefensesHeadersInput interface {
 	pulumi.Input
 
@@ -569,12 +562,11 @@ func (i RealmSecurityDefensesHeadersArgs) ToRealmSecurityDefensesHeadersPtrOutpu
 // RealmSecurityDefensesHeadersPtrInput is an input type that accepts RealmSecurityDefensesHeadersArgs, RealmSecurityDefensesHeadersPtr and RealmSecurityDefensesHeadersPtrOutput values.
 // You can construct a concrete instance of `RealmSecurityDefensesHeadersPtrInput` via:
 //
-// 		 RealmSecurityDefensesHeadersArgs{...}
+//          RealmSecurityDefensesHeadersArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type RealmSecurityDefensesHeadersPtrInput interface {
 	pulumi.Input
 
@@ -748,8 +740,7 @@ type RealmSmtpServer struct {
 // RealmSmtpServerInput is an input type that accepts RealmSmtpServerArgs and RealmSmtpServerOutput values.
 // You can construct a concrete instance of `RealmSmtpServerInput` via:
 //
-// 		 RealmSmtpServerArgs{...}
-//
+//          RealmSmtpServerArgs{...}
 type RealmSmtpServerInput interface {
 	pulumi.Input
 
@@ -793,12 +784,11 @@ func (i RealmSmtpServerArgs) ToRealmSmtpServerPtrOutputWithContext(ctx context.C
 // RealmSmtpServerPtrInput is an input type that accepts RealmSmtpServerArgs, RealmSmtpServerPtr and RealmSmtpServerPtrOutput values.
 // You can construct a concrete instance of `RealmSmtpServerPtrInput` via:
 //
-// 		 RealmSmtpServerArgs{...}
+//          RealmSmtpServerArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type RealmSmtpServerPtrInput interface {
 	pulumi.Input
 
@@ -1003,8 +993,7 @@ type RealmSmtpServerAuth struct {
 // RealmSmtpServerAuthInput is an input type that accepts RealmSmtpServerAuthArgs and RealmSmtpServerAuthOutput values.
 // You can construct a concrete instance of `RealmSmtpServerAuthInput` via:
 //
-// 		 RealmSmtpServerAuthArgs{...}
-//
+//          RealmSmtpServerAuthArgs{...}
 type RealmSmtpServerAuthInput interface {
 	pulumi.Input
 
@@ -1040,12 +1029,11 @@ func (i RealmSmtpServerAuthArgs) ToRealmSmtpServerAuthPtrOutputWithContext(ctx c
 // RealmSmtpServerAuthPtrInput is an input type that accepts RealmSmtpServerAuthArgs, RealmSmtpServerAuthPtr and RealmSmtpServerAuthPtrOutput values.
 // You can construct a concrete instance of `RealmSmtpServerAuthPtrInput` via:
 //
-// 		 RealmSmtpServerAuthArgs{...}
+//          RealmSmtpServerAuthArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type RealmSmtpServerAuthPtrInput interface {
 	pulumi.Input
 
@@ -1147,8 +1135,7 @@ type UserFederatedIdentity struct {
 // UserFederatedIdentityInput is an input type that accepts UserFederatedIdentityArgs and UserFederatedIdentityOutput values.
 // You can construct a concrete instance of `UserFederatedIdentityInput` via:
 //
-// 		 UserFederatedIdentityArgs{...}
-//
+//          UserFederatedIdentityArgs{...}
 type UserFederatedIdentityInput interface {
 	pulumi.Input
 
@@ -1177,8 +1164,7 @@ func (i UserFederatedIdentityArgs) ToUserFederatedIdentityOutputWithContext(ctx 
 // UserFederatedIdentityArrayInput is an input type that accepts UserFederatedIdentityArray and UserFederatedIdentityArrayOutput values.
 // You can construct a concrete instance of `UserFederatedIdentityArrayInput` via:
 //
-// 		 UserFederatedIdentityArray{ UserFederatedIdentityArgs{...} }
-//
+//          UserFederatedIdentityArray{ UserFederatedIdentityArgs{...} }
 type UserFederatedIdentityArrayInput interface {
 	pulumi.Input
 
@@ -1254,8 +1240,7 @@ type UserInitialPassword struct {
 // UserInitialPasswordInput is an input type that accepts UserInitialPasswordArgs and UserInitialPasswordOutput values.
 // You can construct a concrete instance of `UserInitialPasswordInput` via:
 //
-// 		 UserInitialPasswordArgs{...}
-//
+//          UserInitialPasswordArgs{...}
 type UserInitialPasswordInput interface {
 	pulumi.Input
 
@@ -1291,12 +1276,11 @@ func (i UserInitialPasswordArgs) ToUserInitialPasswordPtrOutputWithContext(ctx c
 // UserInitialPasswordPtrInput is an input type that accepts UserInitialPasswordArgs, UserInitialPasswordPtr and UserInitialPasswordPtrOutput values.
 // You can construct a concrete instance of `UserInitialPasswordPtrInput` via:
 //
-// 		 UserInitialPasswordArgs{...}
+//          UserInitialPasswordArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type UserInitialPasswordPtrInput interface {
 	pulumi.Input
 
@@ -1397,8 +1381,7 @@ type GetRealmInternationalization struct {
 // GetRealmInternationalizationInput is an input type that accepts GetRealmInternationalizationArgs and GetRealmInternationalizationOutput values.
 // You can construct a concrete instance of `GetRealmInternationalizationInput` via:
 //
-// 		 GetRealmInternationalizationArgs{...}
-//
+//          GetRealmInternationalizationArgs{...}
 type GetRealmInternationalizationInput interface {
 	pulumi.Input
 
@@ -1426,8 +1409,7 @@ func (i GetRealmInternationalizationArgs) ToGetRealmInternationalizationOutputWi
 // GetRealmInternationalizationArrayInput is an input type that accepts GetRealmInternationalizationArray and GetRealmInternationalizationArrayOutput values.
 // You can construct a concrete instance of `GetRealmInternationalizationArrayInput` via:
 //
-// 		 GetRealmInternationalizationArray{ GetRealmInternationalizationArgs{...} }
-//
+//          GetRealmInternationalizationArray{ GetRealmInternationalizationArgs{...} }
 type GetRealmInternationalizationArrayInput interface {
 	pulumi.Input
 
@@ -1505,8 +1487,7 @@ type GetRealmKeysKey struct {
 // GetRealmKeysKeyInput is an input type that accepts GetRealmKeysKeyArgs and GetRealmKeysKeyOutput values.
 // You can construct a concrete instance of `GetRealmKeysKeyInput` via:
 //
-// 		 GetRealmKeysKeyArgs{...}
-//
+//          GetRealmKeysKeyArgs{...}
 type GetRealmKeysKeyInput interface {
 	pulumi.Input
 
@@ -1540,8 +1521,7 @@ func (i GetRealmKeysKeyArgs) ToGetRealmKeysKeyOutputWithContext(ctx context.Cont
 // GetRealmKeysKeyArrayInput is an input type that accepts GetRealmKeysKeyArray and GetRealmKeysKeyArrayOutput values.
 // You can construct a concrete instance of `GetRealmKeysKeyArrayInput` via:
 //
-// 		 GetRealmKeysKeyArray{ GetRealmKeysKeyArgs{...} }
-//
+//          GetRealmKeysKeyArray{ GetRealmKeysKeyArgs{...} }
 type GetRealmKeysKeyArrayInput interface {
 	pulumi.Input
 
@@ -1637,8 +1617,7 @@ type GetRealmSecurityDefense struct {
 // GetRealmSecurityDefenseInput is an input type that accepts GetRealmSecurityDefenseArgs and GetRealmSecurityDefenseOutput values.
 // You can construct a concrete instance of `GetRealmSecurityDefenseInput` via:
 //
-// 		 GetRealmSecurityDefenseArgs{...}
-//
+//          GetRealmSecurityDefenseArgs{...}
 type GetRealmSecurityDefenseInput interface {
 	pulumi.Input
 
@@ -1666,8 +1645,7 @@ func (i GetRealmSecurityDefenseArgs) ToGetRealmSecurityDefenseOutputWithContext(
 // GetRealmSecurityDefenseArrayInput is an input type that accepts GetRealmSecurityDefenseArray and GetRealmSecurityDefenseArrayOutput values.
 // You can construct a concrete instance of `GetRealmSecurityDefenseArrayInput` via:
 //
-// 		 GetRealmSecurityDefenseArray{ GetRealmSecurityDefenseArgs{...} }
-//
+//          GetRealmSecurityDefenseArray{ GetRealmSecurityDefenseArgs{...} }
 type GetRealmSecurityDefenseArrayInput interface {
 	pulumi.Input
 
@@ -1746,8 +1724,7 @@ type GetRealmSecurityDefenseBruteForceDetection struct {
 // GetRealmSecurityDefenseBruteForceDetectionInput is an input type that accepts GetRealmSecurityDefenseBruteForceDetectionArgs and GetRealmSecurityDefenseBruteForceDetectionOutput values.
 // You can construct a concrete instance of `GetRealmSecurityDefenseBruteForceDetectionInput` via:
 //
-// 		 GetRealmSecurityDefenseBruteForceDetectionArgs{...}
-//
+//          GetRealmSecurityDefenseBruteForceDetectionArgs{...}
 type GetRealmSecurityDefenseBruteForceDetectionInput interface {
 	pulumi.Input
 
@@ -1780,8 +1757,7 @@ func (i GetRealmSecurityDefenseBruteForceDetectionArgs) ToGetRealmSecurityDefens
 // GetRealmSecurityDefenseBruteForceDetectionArrayInput is an input type that accepts GetRealmSecurityDefenseBruteForceDetectionArray and GetRealmSecurityDefenseBruteForceDetectionArrayOutput values.
 // You can construct a concrete instance of `GetRealmSecurityDefenseBruteForceDetectionArrayInput` via:
 //
-// 		 GetRealmSecurityDefenseBruteForceDetectionArray{ GetRealmSecurityDefenseBruteForceDetectionArgs{...} }
-//
+//          GetRealmSecurityDefenseBruteForceDetectionArray{ GetRealmSecurityDefenseBruteForceDetectionArgs{...} }
 type GetRealmSecurityDefenseBruteForceDetectionArrayInput interface {
 	pulumi.Input
 
@@ -1878,8 +1854,7 @@ type GetRealmSecurityDefenseHeader struct {
 // GetRealmSecurityDefenseHeaderInput is an input type that accepts GetRealmSecurityDefenseHeaderArgs and GetRealmSecurityDefenseHeaderOutput values.
 // You can construct a concrete instance of `GetRealmSecurityDefenseHeaderInput` via:
 //
-// 		 GetRealmSecurityDefenseHeaderArgs{...}
-//
+//          GetRealmSecurityDefenseHeaderArgs{...}
 type GetRealmSecurityDefenseHeaderInput interface {
 	pulumi.Input
 
@@ -1912,8 +1887,7 @@ func (i GetRealmSecurityDefenseHeaderArgs) ToGetRealmSecurityDefenseHeaderOutput
 // GetRealmSecurityDefenseHeaderArrayInput is an input type that accepts GetRealmSecurityDefenseHeaderArray and GetRealmSecurityDefenseHeaderArrayOutput values.
 // You can construct a concrete instance of `GetRealmSecurityDefenseHeaderArrayInput` via:
 //
-// 		 GetRealmSecurityDefenseHeaderArray{ GetRealmSecurityDefenseHeaderArgs{...} }
-//
+//          GetRealmSecurityDefenseHeaderArray{ GetRealmSecurityDefenseHeaderArgs{...} }
 type GetRealmSecurityDefenseHeaderArrayInput interface {
 	pulumi.Input
 
@@ -2013,8 +1987,7 @@ type GetRealmSmtpServer struct {
 // GetRealmSmtpServerInput is an input type that accepts GetRealmSmtpServerArgs and GetRealmSmtpServerOutput values.
 // You can construct a concrete instance of `GetRealmSmtpServerInput` via:
 //
-// 		 GetRealmSmtpServerArgs{...}
-//
+//          GetRealmSmtpServerArgs{...}
 type GetRealmSmtpServerInput interface {
 	pulumi.Input
 
@@ -2050,8 +2023,7 @@ func (i GetRealmSmtpServerArgs) ToGetRealmSmtpServerOutputWithContext(ctx contex
 // GetRealmSmtpServerArrayInput is an input type that accepts GetRealmSmtpServerArray and GetRealmSmtpServerArrayOutput values.
 // You can construct a concrete instance of `GetRealmSmtpServerArrayInput` via:
 //
-// 		 GetRealmSmtpServerArray{ GetRealmSmtpServerArgs{...} }
-//
+//          GetRealmSmtpServerArray{ GetRealmSmtpServerArgs{...} }
 type GetRealmSmtpServerArrayInput interface {
 	pulumi.Input
 
@@ -2155,8 +2127,7 @@ type GetRealmSmtpServerAuth struct {
 // GetRealmSmtpServerAuthInput is an input type that accepts GetRealmSmtpServerAuthArgs and GetRealmSmtpServerAuthOutput values.
 // You can construct a concrete instance of `GetRealmSmtpServerAuthInput` via:
 //
-// 		 GetRealmSmtpServerAuthArgs{...}
-//
+//          GetRealmSmtpServerAuthArgs{...}
 type GetRealmSmtpServerAuthInput interface {
 	pulumi.Input
 
@@ -2184,8 +2155,7 @@ func (i GetRealmSmtpServerAuthArgs) ToGetRealmSmtpServerAuthOutputWithContext(ct
 // GetRealmSmtpServerAuthArrayInput is an input type that accepts GetRealmSmtpServerAuthArray and GetRealmSmtpServerAuthArrayOutput values.
 // You can construct a concrete instance of `GetRealmSmtpServerAuthArrayInput` via:
 //
-// 		 GetRealmSmtpServerAuthArray{ GetRealmSmtpServerAuthArgs{...} }
-//
+//          GetRealmSmtpServerAuthArray{ GetRealmSmtpServerAuthArgs{...} }
 type GetRealmSmtpServerAuthArrayInput interface {
 	pulumi.Input
 

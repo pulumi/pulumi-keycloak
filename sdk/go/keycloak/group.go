@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// ## # .Group
+// ## # Group
 //
 // Allows for creating and managing Groups within Keycloak.
 //
@@ -22,6 +22,54 @@ import (
 //
 // Groups can also be federated from external data sources, such as LDAP or Active Directory.
 // This resource **should not** be used to manage groups that were created this way.
+//
+// ### Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Enabled: pulumi.Bool(true),
+// 			Realm:   pulumi.String("my-realm"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		parentGroup, err := keycloak.NewGroup(ctx, "parentGroup", &keycloak.GroupArgs{
+// 			RealmId: realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewGroup(ctx, "childGroup", &keycloak.GroupArgs{
+// 			ParentId: parentGroup.ID(),
+// 			RealmId:  realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewGroup(ctx, "childGroupWithOptionalAttributes", &keycloak.GroupArgs{
+// 			Attributes: pulumi.StringMap{
+// 				"key1": pulumi.String("value1"),
+// 				"key2": pulumi.String("value2"),
+// 			},
+// 			ParentId: parentGroup.ID(),
+// 			RealmId:  realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 //
 // ### Argument Reference
 //

@@ -19,6 +19,38 @@ import (
 // clients within a realm. They can also be used by clients to conditionally request
 // claims or roles for a user based on the OAuth 2.0 `scope` parameter.
 //
+// ### Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/openid"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Enabled: pulumi.Bool(true),
+// 			Realm:   pulumi.String("my-realm"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = openid.NewClientScope(ctx, "openidClientScope", &openid.ClientScopeArgs{
+// 			Description: pulumi.String("When requested, this scope will map a user's group memberships to a claim"),
+// 			RealmId:     realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ### Argument Reference
 //
 // The following arguments are supported:
@@ -27,8 +59,8 @@ import (
 // - `name` - (Required) The display name of this client scope in the GUI.
 // - `description` - (Optional) The description of this client scope in the GUI.
 // - `consentScreenText` - (Optional) When set, a consent screen will be displayed to users
-// authenticating to clients with this scope attached. The consent screen will display the string
-// value of this attribute.
+//   authenticating to clients with this scope attached. The consent screen will display the string
+//   value of this attribute.
 type ClientScope struct {
 	pulumi.CustomResourceState
 

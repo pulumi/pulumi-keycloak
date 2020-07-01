@@ -26,7 +26,7 @@ import * as utilities from "../utilities";
  *     enabled: true,
  *     realm: "test",
  * });
- * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldap_user_federation", {
  *     bindCredential: "admin",
  *     bindDn: "cn=admin,dc=example,dc=org",
  *     connectionTimeout: "5s",

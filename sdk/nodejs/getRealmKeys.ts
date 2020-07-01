@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak..getRealmKeys data source
+ * ## # keycloak.getRealmKeys data source
  *
  * Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
  *

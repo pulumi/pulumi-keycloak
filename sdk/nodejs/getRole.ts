@@ -7,10 +7,10 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak..Role data source
+ * ## # keycloak.Role data source
  *
  * This data source can be used to fetch properties of a Keycloak role for
- * usage with other resources, such as `keycloak..GroupRoles`.
+ * usage with other resources, such as `keycloak.GroupRoles`.
  *
  * ### Example Usage
  *
@@ -23,13 +23,13 @@ import * as utilities from "./utilities";
  *     realm: "my-realm",
  * });
  * const offlineAccess = realm.id.apply(id => keycloak.getRole({
- *     name: "offlineAccess",
+ *     name: "offline_access",
  *     realmId: id,
  * }, { async: true }));
  * const group = new keycloak.Group("group", {
  *     realmId: realm.id,
  * });
- * const groupRoles = new keycloak.GroupRoles("groupRoles", {
+ * const groupRoles = new keycloak.GroupRoles("group_roles", {
  *     groupId: group.id,
  *     realmId: realm.id,
  *     roles: [offlineAccess.id],
@@ -44,7 +44,7 @@ import * as utilities from "./utilities";
  * - `clientId` - (Optional) When specified, this role is assumed to be a
  *   client role belonging to the client with the provided ID
  * - `name` - (Required) The name of the role
- *   
+ *
  * ### Attributes Reference
  *
  * In addition to the arguments listed above, the following computed attributes are exported:

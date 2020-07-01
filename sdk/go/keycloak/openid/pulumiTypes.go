@@ -18,8 +18,7 @@ type ClientAuthenticationFlowBindingOverrides struct {
 // ClientAuthenticationFlowBindingOverridesInput is an input type that accepts ClientAuthenticationFlowBindingOverridesArgs and ClientAuthenticationFlowBindingOverridesOutput values.
 // You can construct a concrete instance of `ClientAuthenticationFlowBindingOverridesInput` via:
 //
-// 		 ClientAuthenticationFlowBindingOverridesArgs{...}
-//
+//          ClientAuthenticationFlowBindingOverridesArgs{...}
 type ClientAuthenticationFlowBindingOverridesInput interface {
 	pulumi.Input
 
@@ -55,12 +54,11 @@ func (i ClientAuthenticationFlowBindingOverridesArgs) ToClientAuthenticationFlow
 // ClientAuthenticationFlowBindingOverridesPtrInput is an input type that accepts ClientAuthenticationFlowBindingOverridesArgs, ClientAuthenticationFlowBindingOverridesPtr and ClientAuthenticationFlowBindingOverridesPtrOutput values.
 // You can construct a concrete instance of `ClientAuthenticationFlowBindingOverridesPtrInput` via:
 //
-// 		 ClientAuthenticationFlowBindingOverridesArgs{...}
+//          ClientAuthenticationFlowBindingOverridesArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type ClientAuthenticationFlowBindingOverridesPtrInput interface {
 	pulumi.Input
 
@@ -162,8 +160,7 @@ type ClientAuthorization struct {
 // ClientAuthorizationInput is an input type that accepts ClientAuthorizationArgs and ClientAuthorizationOutput values.
 // You can construct a concrete instance of `ClientAuthorizationInput` via:
 //
-// 		 ClientAuthorizationArgs{...}
-//
+//          ClientAuthorizationArgs{...}
 type ClientAuthorizationInput interface {
 	pulumi.Input
 
@@ -200,12 +197,11 @@ func (i ClientAuthorizationArgs) ToClientAuthorizationPtrOutputWithContext(ctx c
 // ClientAuthorizationPtrInput is an input type that accepts ClientAuthorizationArgs, ClientAuthorizationPtr and ClientAuthorizationPtrOutput values.
 // You can construct a concrete instance of `ClientAuthorizationPtrInput` via:
 //
-// 		 ClientAuthorizationArgs{...}
+//          ClientAuthorizationArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type ClientAuthorizationPtrInput interface {
 	pulumi.Input
 
@@ -320,8 +316,7 @@ type ClientGroupPolicyGroup struct {
 // ClientGroupPolicyGroupInput is an input type that accepts ClientGroupPolicyGroupArgs and ClientGroupPolicyGroupOutput values.
 // You can construct a concrete instance of `ClientGroupPolicyGroupInput` via:
 //
-// 		 ClientGroupPolicyGroupArgs{...}
-//
+//          ClientGroupPolicyGroupArgs{...}
 type ClientGroupPolicyGroupInput interface {
 	pulumi.Input
 
@@ -350,8 +345,7 @@ func (i ClientGroupPolicyGroupArgs) ToClientGroupPolicyGroupOutputWithContext(ct
 // ClientGroupPolicyGroupArrayInput is an input type that accepts ClientGroupPolicyGroupArray and ClientGroupPolicyGroupArrayOutput values.
 // You can construct a concrete instance of `ClientGroupPolicyGroupArrayInput` via:
 //
-// 		 ClientGroupPolicyGroupArray{ ClientGroupPolicyGroupArgs{...} }
-//
+//          ClientGroupPolicyGroupArray{ ClientGroupPolicyGroupArgs{...} }
 type ClientGroupPolicyGroupArrayInput interface {
 	pulumi.Input
 
@@ -427,8 +421,7 @@ type ClientRolePolicyRole struct {
 // ClientRolePolicyRoleInput is an input type that accepts ClientRolePolicyRoleArgs and ClientRolePolicyRoleOutput values.
 // You can construct a concrete instance of `ClientRolePolicyRoleInput` via:
 //
-// 		 ClientRolePolicyRoleArgs{...}
-//
+//          ClientRolePolicyRoleArgs{...}
 type ClientRolePolicyRoleInput interface {
 	pulumi.Input
 
@@ -456,8 +449,7 @@ func (i ClientRolePolicyRoleArgs) ToClientRolePolicyRoleOutputWithContext(ctx co
 // ClientRolePolicyRoleArrayInput is an input type that accepts ClientRolePolicyRoleArray and ClientRolePolicyRoleArrayOutput values.
 // You can construct a concrete instance of `ClientRolePolicyRoleArrayInput` via:
 //
-// 		 ClientRolePolicyRoleArray{ ClientRolePolicyRoleArgs{...} }
-//
+//          ClientRolePolicyRoleArray{ ClientRolePolicyRoleArgs{...} }
 type ClientRolePolicyRoleArrayInput interface {
 	pulumi.Input
 
@@ -529,8 +521,7 @@ type GetClientAuthenticationFlowBindingOverrides struct {
 // GetClientAuthenticationFlowBindingOverridesInput is an input type that accepts GetClientAuthenticationFlowBindingOverridesArgs and GetClientAuthenticationFlowBindingOverridesOutput values.
 // You can construct a concrete instance of `GetClientAuthenticationFlowBindingOverridesInput` via:
 //
-// 		 GetClientAuthenticationFlowBindingOverridesArgs{...}
-//
+//          GetClientAuthenticationFlowBindingOverridesArgs{...}
 type GetClientAuthenticationFlowBindingOverridesInput interface {
 	pulumi.Input
 
@@ -585,8 +576,7 @@ type GetClientAuthorization struct {
 // GetClientAuthorizationInput is an input type that accepts GetClientAuthorizationArgs and GetClientAuthorizationOutput values.
 // You can construct a concrete instance of `GetClientAuthorizationInput` via:
 //
-// 		 GetClientAuthorizationArgs{...}
-//
+//          GetClientAuthorizationArgs{...}
 type GetClientAuthorizationInput interface {
 	pulumi.Input
 
@@ -642,8 +632,7 @@ type GetClientServiceAccountUserFederatedIdentity struct {
 // GetClientServiceAccountUserFederatedIdentityInput is an input type that accepts GetClientServiceAccountUserFederatedIdentityArgs and GetClientServiceAccountUserFederatedIdentityOutput values.
 // You can construct a concrete instance of `GetClientServiceAccountUserFederatedIdentityInput` via:
 //
-// 		 GetClientServiceAccountUserFederatedIdentityArgs{...}
-//
+//          GetClientServiceAccountUserFederatedIdentityArgs{...}
 type GetClientServiceAccountUserFederatedIdentityInput interface {
 	pulumi.Input
 
@@ -672,8 +661,7 @@ func (i GetClientServiceAccountUserFederatedIdentityArgs) ToGetClientServiceAcco
 // GetClientServiceAccountUserFederatedIdentityArrayInput is an input type that accepts GetClientServiceAccountUserFederatedIdentityArray and GetClientServiceAccountUserFederatedIdentityArrayOutput values.
 // You can construct a concrete instance of `GetClientServiceAccountUserFederatedIdentityArrayInput` via:
 //
-// 		 GetClientServiceAccountUserFederatedIdentityArray{ GetClientServiceAccountUserFederatedIdentityArgs{...} }
-//
+//          GetClientServiceAccountUserFederatedIdentityArray{ GetClientServiceAccountUserFederatedIdentityArgs{...} }
 type GetClientServiceAccountUserFederatedIdentityArrayInput interface {
 	pulumi.Input
 

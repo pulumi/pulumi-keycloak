@@ -12,7 +12,7 @@ namespace Pulumi.Keycloak
     public static class GetRealm
     {
         /// <summary>
-        /// ## # keycloak..Realm data source
+        /// ## # keycloak.Realm data source
         /// 
         /// This data source can be used to fetch properties of a Keycloak realm for
         /// usage with other resources.
@@ -48,7 +48,7 @@ namespace Pulumi.Keycloak
         /// 
         /// ### Attributes Reference
         /// 
-        /// See the docs for the `keycloak..Realm` resource for details on the exported attributes.
+        /// See the docs for the `keycloak.Realm` resource for details on the exported attributes.
         /// </summary>
         public static Task<GetRealmResult> InvokeAsync(GetRealmArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetRealmResult>("keycloak:index/getRealm:getRealm", args ?? new GetRealmArgs(), options.WithVersion());
