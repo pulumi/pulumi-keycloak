@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak..RealmEvents
+ * ## # keycloak.RealmEvents
  *
  * Allows for managing Realm Events settings within Keycloak.
  *
@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * const realm = new keycloak.Realm("realm", {
  *     realm: "test",
  * });
- * const realmEvents = new keycloak.RealmEvents("realmEvents", {
+ * const realmEvents = new keycloak.RealmEvents("realm_events", {
  *     adminEventsDetailsEnabled: true,
  *     adminEventsEnabled: true,
  *     // When omitted or left empty, keycloak will enable all event types

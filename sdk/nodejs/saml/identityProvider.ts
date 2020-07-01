@@ -17,7 +17,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
- * const realmIdentityProvider = new keycloak.saml.IdentityProvider("realmIdentityProvider", {
+ * const realmIdentityProvider = new keycloak.saml.IdentityProvider("realm_identity_provider", {
  *     alias: "my-idp",
  *     backchannelSupported: true,
  *     forceAuthn: true,

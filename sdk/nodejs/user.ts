@@ -7,11 +7,11 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak..User
+ * ## # keycloak.User
  *
  * Allows for creating and managing Users within Keycloak.
  *
- * This resource was created primarily to enable the acceptance tests for the `keycloak..Group` resource.
+ * This resource was created primarily to enable the acceptance tests for the `keycloak.Group` resource.
  * Creating users within Keycloak is not recommended. Instead, users should be federated from external sources
  * by configuring user federation providers or identity providers.
  *
@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  *     realmId: realm.id,
  *     username: "bob",
  * });
- * const userWithInitialPassword = new keycloak.User("userWithInitialPassword", {
+ * const userWithInitialPassword = new keycloak.User("user_with_initial_password", {
  *     email: "alice@domain.com",
  *     enabled: true,
  *     firstName: "Alice",

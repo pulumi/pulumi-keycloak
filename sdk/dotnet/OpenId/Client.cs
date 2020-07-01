@@ -65,14 +65,14 @@ namespace Pulumi.Keycloak.OpenId
     ///       URIs for security. This client should be used for applications using the Implicit grant flow.
     ///     - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
     /// - `client_secret` - (Optional) The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and
-    /// should be treated with the same care as a password. If omitted, Keycloak will generate a GUID for this attribute.
+    ///   should be treated with the same care as a password. If omitted, Keycloak will generate a GUID for this attribute.
     /// - `standard_flow_enabled` - (Optional) When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
     /// - `implicit_flow_enabled` - (Optional) When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
     /// - `direct_access_grants_enabled` - (Optional) When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
     /// - `service_accounts_enabled` - (Optional) When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
     /// - `valid_redirect_uris` - (Optional) A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
-    /// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
-    /// is set to `true`.
+    ///   wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
+    ///   is set to `true`.
     /// - `web_origins` - (Optional) A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
     /// - `admin_url` - (Optional) URL to the admin interface of the client.
     /// - `base_url` - (Optional) Default URL to use when the auth server needs to redirect or link back to the client.

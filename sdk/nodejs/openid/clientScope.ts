@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  *     enabled: true,
  *     realm: "my-realm",
  * });
- * const openidClientScope = new keycloak.openid.ClientScope("openidClientScope", {
+ * const openidClientScope = new keycloak.openid.ClientScope("openid_client_scope", {
  *     description: "When requested, this scope will map a user's group memberships to a claim",
  *     realmId: realm.id,
  * });
@@ -38,8 +38,8 @@ import * as utilities from "../utilities";
  * - `name` - (Required) The display name of this client scope in the GUI.
  * - `description` - (Optional) The description of this client scope in the GUI.
  * - `consentScreenText` - (Optional) When set, a consent screen will be displayed to users
- * authenticating to clients with this scope attached. The consent screen will display the string
- * value of this attribute.
+ *   authenticating to clients with this scope attached. The consent screen will display the string
+ *   value of this attribute.
  */
 export class ClientScope extends pulumi.CustomResource {
     /**

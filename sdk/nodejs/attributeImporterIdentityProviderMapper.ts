@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak..AttributeImporterIdentityProviderMapper
+ * ## # keycloak.AttributeImporterIdentityProviderMapper
  *
  * Allows to create and manage identity provider mappers within Keycloak.
  *
@@ -15,9 +15,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
- * const testMapper = new keycloak.AttributeImporterIdentityProviderMapper("testMapper", {
+ * const testMapper = new keycloak.AttributeImporterIdentityProviderMapper("test_mapper", {
  *     attributeName: "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
- *     identityProviderAlias: "idpAlias",
+ *     identityProviderAlias: "idp_alias",
  *     realm: "my-realm",
  *     userAttribute: "lastName",
  * });

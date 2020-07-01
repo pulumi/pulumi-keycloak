@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak..GenericClientProtocolMapper
+ * ## # keycloak.GenericClientProtocolMapper
  *
  * Allows for creating and managing protocol mapper for both types of clients (openid-connect and saml) within Keycloak.
  *
@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * * If you implemented a custom protocol mapper, this resource can be used to configure it
  * * If the provider doesn't support a particular protocol mapper, this resource can be used instead.
  *
- * Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors. 
+ * Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors.
  * Therefore, if possible, a specific mapper should be used.
  *
  * ### Example Usage
@@ -26,11 +26,11 @@ import * as utilities from "./utilities";
  *     enabled: true,
  *     realm: "my-realm",
  * });
- * const samlClient = new keycloak.saml.Client("samlClient", {
+ * const samlClient = new keycloak.saml.Client("saml_client", {
  *     clientId: "test-client",
  *     realmId: realm.id,
  * });
- * const samlHardcodeAttributeMapper = new keycloak.GenericClientProtocolMapper("samlHardcodeAttributeMapper", {
+ * const samlHardcodeAttributeMapper = new keycloak.GenericClientProtocolMapper("saml_hardcode_attribute_mapper", {
  *     clientId: samlClient.id,
  *     config: {
  *         "attribute.name": "name",

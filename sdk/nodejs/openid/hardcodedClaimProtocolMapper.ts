@@ -25,14 +25,14 @@ import * as utilities from "../utilities";
  *     enabled: true,
  *     realm: "my-realm",
  * });
- * const openidClient = new keycloak.openid.Client("openidClient", {
+ * const openidClient = new keycloak.openid.Client("openid_client", {
  *     accessType: "CONFIDENTIAL",
  *     clientId: "test-client",
  *     enabled: true,
  *     realmId: realm.id,
  *     validRedirectUris: ["http://localhost:8080/openid-callback"],
  * });
- * const hardcodedClaimMapper = new keycloak.openid.HardcodedClaimProtocolMapper("hardcodedClaimMapper", {
+ * const hardcodedClaimMapper = new keycloak.openid.HardcodedClaimProtocolMapper("hardcoded_claim_mapper", {
  *     claimName: "foo",
  *     claimValue: "bar",
  *     clientId: openidClient.id,
@@ -50,10 +50,10 @@ import * as utilities from "../utilities";
  *     enabled: true,
  *     realm: "my-realm",
  * });
- * const clientScope = new keycloak.openid.ClientScope("clientScope", {
+ * const clientScope = new keycloak.openid.ClientScope("client_scope", {
  *     realmId: realm.id,
  * });
- * const hardcodedClaimMapper = new keycloak.openid.HardcodedClaimProtocolMapper("hardcodedClaimMapper", {
+ * const hardcodedClaimMapper = new keycloak.openid.HardcodedClaimProtocolMapper("hardcoded_claim_mapper", {
  *     claimName: "foo",
  *     claimValue: "bar",
  *     clientScopeId: clientScope.id,

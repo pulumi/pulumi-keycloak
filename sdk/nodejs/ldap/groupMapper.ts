@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  *     enabled: true,
  *     realm: "test",
  * });
- * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldap_user_federation", {
  *     bindCredential: "admin",
  *     bindDn: "cn=admin,dc=example,dc=org",
  *     connectionUrl: "ldap://openldap",
@@ -38,7 +38,7 @@ import * as utilities from "../utilities";
  *     usersDn: "dc=example,dc=org",
  *     uuidLdapAttribute: "entryDN",
  * });
- * const ldapGroupMapper = new keycloak.ldap.GroupMapper("ldapGroupMapper", {
+ * const ldapGroupMapper = new keycloak.ldap.GroupMapper("ldap_group_mapper", {
  *     groupNameLdapAttribute: "cn",
  *     groupObjectClasses: ["groupOfNames"],
  *     ldapGroupsDn: "dc=example,dc=org",

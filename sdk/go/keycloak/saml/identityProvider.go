@@ -16,6 +16,39 @@ import (
 //
 // SAML (Security Assertion Markup Language) identity providers allows to authenticate through a third-party system, using SAML standard.
 //
+// ### Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/saml"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := saml.NewIdentityProvider(ctx, "realmIdentityProvider", &saml.IdentityProviderArgs{
+// 			Alias:                   pulumi.String("my-idp"),
+// 			BackchannelSupported:    pulumi.Bool(true),
+// 			ForceAuthn:              pulumi.Bool(true),
+// 			PostBindingAuthnRequest: pulumi.Bool(true),
+// 			PostBindingLogout:       pulumi.Bool(true),
+// 			PostBindingResponse:     pulumi.Bool(true),
+// 			Realm:                   pulumi.String("my-realm"),
+// 			SingleLogoutServiceUrl:  pulumi.String("https://domain.com/adfs/ls/?wa=wsignout1.0"),
+// 			SingleSignOnServiceUrl:  pulumi.String("https://domain.com/adfs/ls/"),
+// 			StoreToken:              pulumi.Bool(false),
+// 			TrustEmail:              pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ### Argument Reference
 //
 // The following arguments are supported:

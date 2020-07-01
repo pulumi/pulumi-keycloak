@@ -20,8 +20,7 @@ type UserFederationKerberos struct {
 // UserFederationKerberosInput is an input type that accepts UserFederationKerberosArgs and UserFederationKerberosOutput values.
 // You can construct a concrete instance of `UserFederationKerberosInput` via:
 //
-// 		 UserFederationKerberosArgs{...}
-//
+//          UserFederationKerberosArgs{...}
 type UserFederationKerberosInput interface {
 	pulumi.Input
 
@@ -59,12 +58,11 @@ func (i UserFederationKerberosArgs) ToUserFederationKerberosPtrOutputWithContext
 // UserFederationKerberosPtrInput is an input type that accepts UserFederationKerberosArgs, UserFederationKerberosPtr and UserFederationKerberosPtrOutput values.
 // You can construct a concrete instance of `UserFederationKerberosPtrInput` via:
 //
-// 		 UserFederationKerberosArgs{...}
+//          UserFederationKerberosArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type UserFederationKerberosPtrInput interface {
 	pulumi.Input
 

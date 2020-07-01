@@ -18,6 +18,43 @@ import (
 // clients are applications that redirect users to Keycloak for authentication
 // in order to take advantage of Keycloak's user sessions for SSO.
 //
+// ### Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/openid"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Enabled: pulumi.Bool(true),
+// 			Realm:   pulumi.String("my-realm"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
+// 			AccessType: pulumi.String("CONFIDENTIAL"),
+// 			ClientId:   pulumi.String("test-client"),
+// 			Enabled:    pulumi.Bool(true),
+// 			RealmId:    realm.ID(),
+// 			ValidRedirectUris: pulumi.StringArray{
+// 				pulumi.String("http://localhost:8080/openid-callback"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ### Argument Reference
 //
 // The following arguments are supported:
@@ -34,14 +71,14 @@ import (
 //       URIs for security. This client should be used for applications using the Implicit grant flow.
 //     - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
 // - `clientSecret` - (Optional) The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and
-// should be treated with the same care as a password. If omitted, Keycloak will generate a GUID for this attribute.
+//   should be treated with the same care as a password. If omitted, Keycloak will generate a GUID for this attribute.
 // - `standardFlowEnabled` - (Optional) When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
 // - `implicitFlowEnabled` - (Optional) When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
 // - `directAccessGrantsEnabled` - (Optional) When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
 // - `serviceAccountsEnabled` - (Optional) When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
 // - `validRedirectUris` - (Optional) A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
-// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
-// is set to `true`.
+//   wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
+//   is set to `true`.
 // - `webOrigins` - (Optional) A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
 // - `adminUrl` - (Optional) URL to the admin interface of the client.
 // - `baseUrl` - (Optional) Default URL to use when the auth server needs to redirect or link back to the client.

@@ -7,7 +7,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// ## # .getRealmKeys data source
+// ## # getRealmKeys data source
 //
 // Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
 //

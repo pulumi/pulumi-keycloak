@@ -3,12 +3,6 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import importlib
-# Make subpackages available:
-__all__ = ['authentication', 'config', 'ldap', 'oidc', 'openid', 'saml']
-for pkg in __all__:
-    if pkg != 'config':
-        importlib.import_module(f'{__name__}.{pkg}')
-
 # Export this package's modules as members:
 from .attribute_importer_identity_provider_mapper import *
 from .attribute_to_role_identity_mapper import *
@@ -32,3 +26,16 @@ from .required_action import *
 from .role import *
 from .user import *
 from .user_template_importer_identity_provider_mapper import *
+
+# Make subpackages available:
+_submodules = [
+    'authentication',
+    'config',
+    'ldap',
+    'oidc',
+    'openid',
+    'saml',
+]
+for pkg in _submodules:
+    if pkg != 'config':
+        importlib.import_module(f'{__name__}.{pkg}')
