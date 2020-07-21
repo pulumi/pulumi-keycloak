@@ -4,43 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * ## # keycloak.openid.ClientScope
- *
- * Allows for creating and managing Keycloak client scopes that can be attached to
- * clients that use the OpenID Connect protocol.
- *
- * Client Scopes can be used to share common protocol and role mappings between multiple
- * clients within a realm. They can also be used by clients to conditionally request
- * claims or roles for a user based on the OAuth 2.0 `scope` parameter.
- *
- * ### Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
- *     realm: "my-realm",
- * });
- * const openidClientScope = new keycloak.openid.ClientScope("openid_client_scope", {
- *     description: "When requested, this scope will map a user's group memberships to a claim",
- *     realmId: realm.id,
- * });
- * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realmId` - (Required) The realm this client scope belongs to.
- * - `name` - (Required) The display name of this client scope in the GUI.
- * - `description` - (Optional) The description of this client scope in the GUI.
- * - `consentScreenText` - (Optional) When set, a consent screen will be displayed to users
- *   authenticating to clients with this scope attached. The consent screen will display the string
- *   value of this attribute.
- */
 export class ClientScope extends pulumi.CustomResource {
     /**
      * Get an existing ClientScope resource's state with the given name, ID, and optional extra
@@ -56,7 +19,7 @@ export class ClientScope extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'keycloak:openid/clientScope:ClientScope';
+    public static readonly __pulumiType = 'keycloak:saml/clientScope:ClientScope';
 
     /**
      * Returns true if the given object is an instance of ClientScope.  This is designed to work even
@@ -72,7 +35,6 @@ export class ClientScope extends pulumi.CustomResource {
     public readonly consentScreenText!: pulumi.Output<string | undefined>;
     public readonly description!: pulumi.Output<string | undefined>;
     public readonly guiOrder!: pulumi.Output<number | undefined>;
-    public readonly includeInTokenScope!: pulumi.Output<boolean | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly realmId!: pulumi.Output<string>;
 
@@ -91,7 +53,6 @@ export class ClientScope extends pulumi.CustomResource {
             inputs["consentScreenText"] = state ? state.consentScreenText : undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["guiOrder"] = state ? state.guiOrder : undefined;
-            inputs["includeInTokenScope"] = state ? state.includeInTokenScope : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["realmId"] = state ? state.realmId : undefined;
         } else {
@@ -102,7 +63,6 @@ export class ClientScope extends pulumi.CustomResource {
             inputs["consentScreenText"] = args ? args.consentScreenText : undefined;
             inputs["description"] = args ? args.description : undefined;
             inputs["guiOrder"] = args ? args.guiOrder : undefined;
-            inputs["includeInTokenScope"] = args ? args.includeInTokenScope : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["realmId"] = args ? args.realmId : undefined;
         }
@@ -124,7 +84,6 @@ export interface ClientScopeState {
     readonly consentScreenText?: pulumi.Input<string>;
     readonly description?: pulumi.Input<string>;
     readonly guiOrder?: pulumi.Input<number>;
-    readonly includeInTokenScope?: pulumi.Input<boolean>;
     readonly name?: pulumi.Input<string>;
     readonly realmId?: pulumi.Input<string>;
 }
@@ -136,7 +95,6 @@ export interface ClientScopeArgs {
     readonly consentScreenText?: pulumi.Input<string>;
     readonly description?: pulumi.Input<string>;
     readonly guiOrder?: pulumi.Input<number>;
-    readonly includeInTokenScope?: pulumi.Input<boolean>;
     readonly name?: pulumi.Input<string>;
     readonly realmId: pulumi.Input<string>;
 }

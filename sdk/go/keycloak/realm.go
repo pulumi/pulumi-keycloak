@@ -26,7 +26,8 @@ type Realm struct {
 	// Which flow should be used for BrowserFlow
 	BrowserFlow pulumi.StringPtrOutput `pulumi:"browserFlow"`
 	// Which flow should be used for ClientAuthenticationFlow
-	ClientAuthenticationFlow pulumi.StringPtrOutput `pulumi:"clientAuthenticationFlow"`
+	ClientAuthenticationFlow  pulumi.StringPtrOutput `pulumi:"clientAuthenticationFlow"`
+	DefaultSignatureAlgorithm pulumi.StringPtrOutput `pulumi:"defaultSignatureAlgorithm"`
 	// Which flow should be used for DirectGrantFlow
 	DirectGrantFlow pulumi.StringPtrOutput `pulumi:"directGrantFlow"`
 	DisplayName     pulumi.StringPtrOutput `pulumi:"displayName"`
@@ -112,7 +113,8 @@ type realmState struct {
 	// Which flow should be used for BrowserFlow
 	BrowserFlow *string `pulumi:"browserFlow"`
 	// Which flow should be used for ClientAuthenticationFlow
-	ClientAuthenticationFlow *string `pulumi:"clientAuthenticationFlow"`
+	ClientAuthenticationFlow  *string `pulumi:"clientAuthenticationFlow"`
+	DefaultSignatureAlgorithm *string `pulumi:"defaultSignatureAlgorithm"`
 	// Which flow should be used for DirectGrantFlow
 	DirectGrantFlow *string `pulumi:"directGrantFlow"`
 	DisplayName     *string `pulumi:"displayName"`
@@ -168,7 +170,8 @@ type RealmState struct {
 	// Which flow should be used for BrowserFlow
 	BrowserFlow pulumi.StringPtrInput
 	// Which flow should be used for ClientAuthenticationFlow
-	ClientAuthenticationFlow pulumi.StringPtrInput
+	ClientAuthenticationFlow  pulumi.StringPtrInput
+	DefaultSignatureAlgorithm pulumi.StringPtrInput
 	// Which flow should be used for DirectGrantFlow
 	DirectGrantFlow pulumi.StringPtrInput
 	DisplayName     pulumi.StringPtrInput
@@ -228,7 +231,8 @@ type realmArgs struct {
 	// Which flow should be used for BrowserFlow
 	BrowserFlow *string `pulumi:"browserFlow"`
 	// Which flow should be used for ClientAuthenticationFlow
-	ClientAuthenticationFlow *string `pulumi:"clientAuthenticationFlow"`
+	ClientAuthenticationFlow  *string `pulumi:"clientAuthenticationFlow"`
+	DefaultSignatureAlgorithm *string `pulumi:"defaultSignatureAlgorithm"`
 	// Which flow should be used for DirectGrantFlow
 	DirectGrantFlow *string `pulumi:"directGrantFlow"`
 	DisplayName     *string `pulumi:"displayName"`
@@ -284,7 +288,8 @@ type RealmArgs struct {
 	// Which flow should be used for BrowserFlow
 	BrowserFlow pulumi.StringPtrInput
 	// Which flow should be used for ClientAuthenticationFlow
-	ClientAuthenticationFlow pulumi.StringPtrInput
+	ClientAuthenticationFlow  pulumi.StringPtrInput
+	DefaultSignatureAlgorithm pulumi.StringPtrInput
 	// Which flow should be used for DirectGrantFlow
 	DirectGrantFlow pulumi.StringPtrInput
 	DisplayName     pulumi.StringPtrInput

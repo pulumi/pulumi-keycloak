@@ -13,6 +13,7 @@ import (
 type HardcodedRoleIdentityMapper struct {
 	pulumi.CustomResourceState
 
+	ExtraConfig pulumi.MapOutput `pulumi:"extraConfig"`
 	// IDP Alias
 	IdentityProviderAlias pulumi.StringOutput `pulumi:"identityProviderAlias"`
 	// IDP Mapper Name
@@ -57,6 +58,7 @@ func GetHardcodedRoleIdentityMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering HardcodedRoleIdentityMapper resources.
 type hardcodedRoleIdentityMapperState struct {
+	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
 	// IDP Alias
 	IdentityProviderAlias *string `pulumi:"identityProviderAlias"`
 	// IDP Mapper Name
@@ -68,6 +70,7 @@ type hardcodedRoleIdentityMapperState struct {
 }
 
 type HardcodedRoleIdentityMapperState struct {
+	ExtraConfig pulumi.MapInput
 	// IDP Alias
 	IdentityProviderAlias pulumi.StringPtrInput
 	// IDP Mapper Name
@@ -83,6 +86,7 @@ func (HardcodedRoleIdentityMapperState) ElementType() reflect.Type {
 }
 
 type hardcodedRoleIdentityMapperArgs struct {
+	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
 	// IDP Alias
 	IdentityProviderAlias string `pulumi:"identityProviderAlias"`
 	// IDP Mapper Name
@@ -95,6 +99,7 @@ type hardcodedRoleIdentityMapperArgs struct {
 
 // The set of arguments for constructing a HardcodedRoleIdentityMapper resource.
 type HardcodedRoleIdentityMapperArgs struct {
+	ExtraConfig pulumi.MapInput
 	// IDP Alias
 	IdentityProviderAlias pulumi.StringInput
 	// IDP Mapper Name

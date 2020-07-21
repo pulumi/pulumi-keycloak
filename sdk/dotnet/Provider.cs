@@ -44,6 +44,9 @@ namespace Pulumi.Keycloak
 
     public sealed class ProviderArgs : Pulumi.ResourceArgs
     {
+        [Input("basePath")]
+        public Input<string>? BasePath { get; set; }
+
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 

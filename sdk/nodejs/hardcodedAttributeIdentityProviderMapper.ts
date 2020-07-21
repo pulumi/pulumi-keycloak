@@ -40,6 +40,7 @@ export class HardcodedAttributeIdentityProviderMapper extends pulumi.CustomResou
      * User Attribute
      */
     public readonly attributeValue!: pulumi.Output<string | undefined>;
+    public readonly extraConfig!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
      * IDP Alias
      */
@@ -71,6 +72,7 @@ export class HardcodedAttributeIdentityProviderMapper extends pulumi.CustomResou
             const state = argsOrState as HardcodedAttributeIdentityProviderMapperState | undefined;
             inputs["attributeName"] = state ? state.attributeName : undefined;
             inputs["attributeValue"] = state ? state.attributeValue : undefined;
+            inputs["extraConfig"] = state ? state.extraConfig : undefined;
             inputs["identityProviderAlias"] = state ? state.identityProviderAlias : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["realm"] = state ? state.realm : undefined;
@@ -88,6 +90,7 @@ export class HardcodedAttributeIdentityProviderMapper extends pulumi.CustomResou
             }
             inputs["attributeName"] = args ? args.attributeName : undefined;
             inputs["attributeValue"] = args ? args.attributeValue : undefined;
+            inputs["extraConfig"] = args ? args.extraConfig : undefined;
             inputs["identityProviderAlias"] = args ? args.identityProviderAlias : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["realm"] = args ? args.realm : undefined;
@@ -116,6 +119,7 @@ export interface HardcodedAttributeIdentityProviderMapperState {
      * User Attribute
      */
     readonly attributeValue?: pulumi.Input<string>;
+    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * IDP Alias
      */
@@ -146,6 +150,7 @@ export interface HardcodedAttributeIdentityProviderMapperArgs {
      * User Attribute
      */
     readonly attributeValue?: pulumi.Input<string>;
+    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * IDP Alias
      */

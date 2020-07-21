@@ -64,10 +64,12 @@ import (
 type ClientScope struct {
 	pulumi.CustomResourceState
 
-	ConsentScreenText pulumi.StringPtrOutput `pulumi:"consentScreenText"`
-	Description       pulumi.StringPtrOutput `pulumi:"description"`
-	Name              pulumi.StringOutput    `pulumi:"name"`
-	RealmId           pulumi.StringOutput    `pulumi:"realmId"`
+	ConsentScreenText   pulumi.StringPtrOutput `pulumi:"consentScreenText"`
+	Description         pulumi.StringPtrOutput `pulumi:"description"`
+	GuiOrder            pulumi.IntPtrOutput    `pulumi:"guiOrder"`
+	IncludeInTokenScope pulumi.BoolPtrOutput   `pulumi:"includeInTokenScope"`
+	Name                pulumi.StringOutput    `pulumi:"name"`
+	RealmId             pulumi.StringOutput    `pulumi:"realmId"`
 }
 
 // NewClientScope registers a new resource with the given unique name, arguments, and options.
@@ -101,17 +103,21 @@ func GetClientScope(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ClientScope resources.
 type clientScopeState struct {
-	ConsentScreenText *string `pulumi:"consentScreenText"`
-	Description       *string `pulumi:"description"`
-	Name              *string `pulumi:"name"`
-	RealmId           *string `pulumi:"realmId"`
+	ConsentScreenText   *string `pulumi:"consentScreenText"`
+	Description         *string `pulumi:"description"`
+	GuiOrder            *int    `pulumi:"guiOrder"`
+	IncludeInTokenScope *bool   `pulumi:"includeInTokenScope"`
+	Name                *string `pulumi:"name"`
+	RealmId             *string `pulumi:"realmId"`
 }
 
 type ClientScopeState struct {
-	ConsentScreenText pulumi.StringPtrInput
-	Description       pulumi.StringPtrInput
-	Name              pulumi.StringPtrInput
-	RealmId           pulumi.StringPtrInput
+	ConsentScreenText   pulumi.StringPtrInput
+	Description         pulumi.StringPtrInput
+	GuiOrder            pulumi.IntPtrInput
+	IncludeInTokenScope pulumi.BoolPtrInput
+	Name                pulumi.StringPtrInput
+	RealmId             pulumi.StringPtrInput
 }
 
 func (ClientScopeState) ElementType() reflect.Type {
@@ -119,18 +125,22 @@ func (ClientScopeState) ElementType() reflect.Type {
 }
 
 type clientScopeArgs struct {
-	ConsentScreenText *string `pulumi:"consentScreenText"`
-	Description       *string `pulumi:"description"`
-	Name              *string `pulumi:"name"`
-	RealmId           string  `pulumi:"realmId"`
+	ConsentScreenText   *string `pulumi:"consentScreenText"`
+	Description         *string `pulumi:"description"`
+	GuiOrder            *int    `pulumi:"guiOrder"`
+	IncludeInTokenScope *bool   `pulumi:"includeInTokenScope"`
+	Name                *string `pulumi:"name"`
+	RealmId             string  `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a ClientScope resource.
 type ClientScopeArgs struct {
-	ConsentScreenText pulumi.StringPtrInput
-	Description       pulumi.StringPtrInput
-	Name              pulumi.StringPtrInput
-	RealmId           pulumi.StringInput
+	ConsentScreenText   pulumi.StringPtrInput
+	Description         pulumi.StringPtrInput
+	GuiOrder            pulumi.IntPtrInput
+	IncludeInTokenScope pulumi.BoolPtrInput
+	Name                pulumi.StringPtrInput
+	RealmId             pulumi.StringInput
 }
 
 func (ClientScopeArgs) ElementType() reflect.Type {

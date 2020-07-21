@@ -35,6 +35,7 @@ export class Provider extends pulumi.ProviderResource {
      */
     constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let inputs: pulumi.Inputs = {};
+        inputs["basePath"] = args ? args.basePath : undefined;
         inputs["clientId"] = (args ? args.clientId : undefined) || utilities.getEnv("KEYCLOAK_CLIENT_ID");
         inputs["clientSecret"] = (args ? args.clientSecret : undefined) || utilities.getEnv("KEYCLOAK_CLIENT_SECRET");
         inputs["clientTimeout"] = pulumi.output((args ? args.clientTimeout : undefined) || (<any>utilities.getEnvNumber("KEYCLOAK_CLIENT_TIMEOUT") || 5)).apply(JSON.stringify);
@@ -60,6 +61,7 @@ export class Provider extends pulumi.ProviderResource {
  * The set of arguments for constructing a Provider resource.
  */
 export interface ProviderArgs {
+    readonly basePath?: pulumi.Input<string>;
     readonly clientId?: pulumi.Input<string>;
     readonly clientSecret?: pulumi.Input<string>;
     /**

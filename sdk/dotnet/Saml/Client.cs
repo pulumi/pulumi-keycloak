@@ -102,6 +102,12 @@ namespace Pulumi.Keycloak.Saml
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
+        [Output("encryptAssertions")]
+        public Output<bool> EncryptAssertions { get; private set; } = null!;
+
+        [Output("encryptionCertificate")]
+        public Output<string?> EncryptionCertificate { get; private set; } = null!;
+
         [Output("forceNameIdFormat")]
         public Output<bool> ForceNameIdFormat { get; private set; } = null!;
 
@@ -149,6 +155,9 @@ namespace Pulumi.Keycloak.Saml
 
         [Output("signDocuments")]
         public Output<bool> SignDocuments { get; private set; } = null!;
+
+        [Output("signatureAlgorithm")]
+        public Output<string?> SignatureAlgorithm { get; private set; } = null!;
 
         [Output("signingCertificate")]
         public Output<string?> SigningCertificate { get; private set; } = null!;
@@ -226,6 +235,12 @@ namespace Pulumi.Keycloak.Saml
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        [Input("encryptAssertions")]
+        public Input<bool>? EncryptAssertions { get; set; }
+
+        [Input("encryptionCertificate")]
+        public Input<string>? EncryptionCertificate { get; set; }
+
         [Input("forceNameIdFormat")]
         public Input<bool>? ForceNameIdFormat { get; set; }
 
@@ -274,6 +289,9 @@ namespace Pulumi.Keycloak.Saml
         [Input("signDocuments")]
         public Input<bool>? SignDocuments { get; set; }
 
+        [Input("signatureAlgorithm")]
+        public Input<string>? SignatureAlgorithm { get; set; }
+
         [Input("signingCertificate")]
         public Input<string>? SigningCertificate { get; set; }
 
@@ -315,6 +333,12 @@ namespace Pulumi.Keycloak.Saml
 
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
+
+        [Input("encryptAssertions")]
+        public Input<bool>? EncryptAssertions { get; set; }
+
+        [Input("encryptionCertificate")]
+        public Input<string>? EncryptionCertificate { get; set; }
 
         [Input("forceNameIdFormat")]
         public Input<bool>? ForceNameIdFormat { get; set; }
@@ -363,6 +387,9 @@ namespace Pulumi.Keycloak.Saml
 
         [Input("signDocuments")]
         public Input<bool>? SignDocuments { get; set; }
+
+        [Input("signatureAlgorithm")]
+        public Input<string>? SignatureAlgorithm { get; set; }
 
         [Input("signingCertificate")]
         public Input<string>? SigningCertificate { get; set; }

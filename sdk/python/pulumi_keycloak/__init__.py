@@ -19,12 +19,14 @@ from .group_memberships import *
 from .group_roles import *
 from .hardcoded_attribute_identity_provider_mapper import *
 from .hardcoded_role_identity_mapper import *
+from .identity_provider_token_exchange_scope_permission import *
 from .provider import *
 from .realm import *
 from .realm_events import *
 from .required_action import *
 from .role import *
 from .user import *
+from .user_roles import *
 from .user_template_importer_identity_provider_mapper import *
 
 # Make subpackages available:

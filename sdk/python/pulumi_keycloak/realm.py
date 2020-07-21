@@ -28,6 +28,7 @@ class Realm(pulumi.CustomResource):
     """
     Which flow should be used for ClientAuthenticationFlow
     """
+    default_signature_algorithm: pulumi.Output[str]
     direct_grant_flow: pulumi.Output[str]
     """
     Which flow should be used for DirectGrantFlow
@@ -79,7 +80,7 @@ class Realm(pulumi.CustomResource):
     sso_session_max_lifespan: pulumi.Output[str]
     user_managed_access: pulumi.Output[bool]
     verify_email: pulumi.Output[bool]
-    def __init__(__self__, resource_name, opts=None, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, internationalization=None, login_theme=None, login_with_email_allowed=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, revoke_refresh_token=None, security_defenses=None, smtp_server=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_max_lifespan=None, user_managed_access=None, verify_email=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, default_signature_algorithm=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, internationalization=None, login_theme=None, login_with_email_allowed=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, revoke_refresh_token=None, security_defenses=None, smtp_server=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_max_lifespan=None, user_managed_access=None, verify_email=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a Realm resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -165,6 +166,7 @@ class Realm(pulumi.CustomResource):
             __props__['attributes'] = attributes
             __props__['browser_flow'] = browser_flow
             __props__['client_authentication_flow'] = client_authentication_flow
+            __props__['default_signature_algorithm'] = default_signature_algorithm
             __props__['direct_grant_flow'] = direct_grant_flow
             __props__['display_name'] = display_name
             __props__['display_name_html'] = display_name_html
@@ -205,7 +207,7 @@ class Realm(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, internal_id=None, internationalization=None, login_theme=None, login_with_email_allowed=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, revoke_refresh_token=None, security_defenses=None, smtp_server=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_max_lifespan=None, user_managed_access=None, verify_email=None):
+    def get(resource_name, id, opts=None, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, default_signature_algorithm=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, internal_id=None, internationalization=None, login_theme=None, login_with_email_allowed=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, revoke_refresh_token=None, security_defenses=None, smtp_server=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_max_lifespan=None, user_managed_access=None, verify_email=None):
         """
         Get an existing Realm resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -281,6 +283,7 @@ class Realm(pulumi.CustomResource):
         __props__["attributes"] = attributes
         __props__["browser_flow"] = browser_flow
         __props__["client_authentication_flow"] = client_authentication_flow
+        __props__["default_signature_algorithm"] = default_signature_algorithm
         __props__["direct_grant_flow"] = direct_grant_flow
         __props__["display_name"] = display_name
         __props__["display_name_html"] = display_name_html

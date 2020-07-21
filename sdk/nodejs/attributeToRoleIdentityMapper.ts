@@ -52,6 +52,7 @@ export class AttributeToRoleIdentityMapper extends pulumi.CustomResource {
      * OIDC Claim Value
      */
     public readonly claimValue!: pulumi.Output<string | undefined>;
+    public readonly extraConfig!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
      * IDP Alias
      */
@@ -86,6 +87,7 @@ export class AttributeToRoleIdentityMapper extends pulumi.CustomResource {
             inputs["attributeValue"] = state ? state.attributeValue : undefined;
             inputs["claimName"] = state ? state.claimName : undefined;
             inputs["claimValue"] = state ? state.claimValue : undefined;
+            inputs["extraConfig"] = state ? state.extraConfig : undefined;
             inputs["identityProviderAlias"] = state ? state.identityProviderAlias : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["realm"] = state ? state.realm : undefined;
@@ -106,6 +108,7 @@ export class AttributeToRoleIdentityMapper extends pulumi.CustomResource {
             inputs["attributeValue"] = args ? args.attributeValue : undefined;
             inputs["claimName"] = args ? args.claimName : undefined;
             inputs["claimValue"] = args ? args.claimValue : undefined;
+            inputs["extraConfig"] = args ? args.extraConfig : undefined;
             inputs["identityProviderAlias"] = args ? args.identityProviderAlias : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["realm"] = args ? args.realm : undefined;
@@ -146,6 +149,7 @@ export interface AttributeToRoleIdentityMapperState {
      * OIDC Claim Value
      */
     readonly claimValue?: pulumi.Input<string>;
+    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * IDP Alias
      */
@@ -188,6 +192,7 @@ export interface AttributeToRoleIdentityMapperArgs {
      * OIDC Claim Value
      */
     readonly claimValue?: pulumi.Input<string>;
+    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * IDP Alias
      */

@@ -100,6 +100,8 @@ export class Client extends pulumi.CustomResource {
     public readonly clientSignatureRequired!: pulumi.Output<boolean>;
     public readonly description!: pulumi.Output<string | undefined>;
     public readonly enabled!: pulumi.Output<boolean | undefined>;
+    public readonly encryptAssertions!: pulumi.Output<boolean>;
+    public readonly encryptionCertificate!: pulumi.Output<string | undefined>;
     public readonly forceNameIdFormat!: pulumi.Output<boolean>;
     public readonly forcePostBinding!: pulumi.Output<boolean>;
     public readonly frontChannelLogout!: pulumi.Output<boolean>;
@@ -116,6 +118,7 @@ export class Client extends pulumi.CustomResource {
     public readonly rootUrl!: pulumi.Output<string | undefined>;
     public readonly signAssertions!: pulumi.Output<boolean>;
     public readonly signDocuments!: pulumi.Output<boolean>;
+    public readonly signatureAlgorithm!: pulumi.Output<string | undefined>;
     public readonly signingCertificate!: pulumi.Output<string | undefined>;
     public readonly signingPrivateKey!: pulumi.Output<string | undefined>;
     public readonly validRedirectUris!: pulumi.Output<string[] | undefined>;
@@ -139,6 +142,8 @@ export class Client extends pulumi.CustomResource {
             inputs["clientSignatureRequired"] = state ? state.clientSignatureRequired : undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["enabled"] = state ? state.enabled : undefined;
+            inputs["encryptAssertions"] = state ? state.encryptAssertions : undefined;
+            inputs["encryptionCertificate"] = state ? state.encryptionCertificate : undefined;
             inputs["forceNameIdFormat"] = state ? state.forceNameIdFormat : undefined;
             inputs["forcePostBinding"] = state ? state.forcePostBinding : undefined;
             inputs["frontChannelLogout"] = state ? state.frontChannelLogout : undefined;
@@ -155,6 +160,7 @@ export class Client extends pulumi.CustomResource {
             inputs["rootUrl"] = state ? state.rootUrl : undefined;
             inputs["signAssertions"] = state ? state.signAssertions : undefined;
             inputs["signDocuments"] = state ? state.signDocuments : undefined;
+            inputs["signatureAlgorithm"] = state ? state.signatureAlgorithm : undefined;
             inputs["signingCertificate"] = state ? state.signingCertificate : undefined;
             inputs["signingPrivateKey"] = state ? state.signingPrivateKey : undefined;
             inputs["validRedirectUris"] = state ? state.validRedirectUris : undefined;
@@ -173,6 +179,8 @@ export class Client extends pulumi.CustomResource {
             inputs["clientSignatureRequired"] = args ? args.clientSignatureRequired : undefined;
             inputs["description"] = args ? args.description : undefined;
             inputs["enabled"] = args ? args.enabled : undefined;
+            inputs["encryptAssertions"] = args ? args.encryptAssertions : undefined;
+            inputs["encryptionCertificate"] = args ? args.encryptionCertificate : undefined;
             inputs["forceNameIdFormat"] = args ? args.forceNameIdFormat : undefined;
             inputs["forcePostBinding"] = args ? args.forcePostBinding : undefined;
             inputs["frontChannelLogout"] = args ? args.frontChannelLogout : undefined;
@@ -189,6 +197,7 @@ export class Client extends pulumi.CustomResource {
             inputs["rootUrl"] = args ? args.rootUrl : undefined;
             inputs["signAssertions"] = args ? args.signAssertions : undefined;
             inputs["signDocuments"] = args ? args.signDocuments : undefined;
+            inputs["signatureAlgorithm"] = args ? args.signatureAlgorithm : undefined;
             inputs["signingCertificate"] = args ? args.signingCertificate : undefined;
             inputs["signingPrivateKey"] = args ? args.signingPrivateKey : undefined;
             inputs["validRedirectUris"] = args ? args.validRedirectUris : undefined;
@@ -215,6 +224,8 @@ export interface ClientState {
     readonly clientSignatureRequired?: pulumi.Input<boolean>;
     readonly description?: pulumi.Input<string>;
     readonly enabled?: pulumi.Input<boolean>;
+    readonly encryptAssertions?: pulumi.Input<boolean>;
+    readonly encryptionCertificate?: pulumi.Input<string>;
     readonly forceNameIdFormat?: pulumi.Input<boolean>;
     readonly forcePostBinding?: pulumi.Input<boolean>;
     readonly frontChannelLogout?: pulumi.Input<boolean>;
@@ -231,6 +242,7 @@ export interface ClientState {
     readonly rootUrl?: pulumi.Input<string>;
     readonly signAssertions?: pulumi.Input<boolean>;
     readonly signDocuments?: pulumi.Input<boolean>;
+    readonly signatureAlgorithm?: pulumi.Input<string>;
     readonly signingCertificate?: pulumi.Input<string>;
     readonly signingPrivateKey?: pulumi.Input<string>;
     readonly validRedirectUris?: pulumi.Input<pulumi.Input<string>[]>;
@@ -247,6 +259,8 @@ export interface ClientArgs {
     readonly clientSignatureRequired?: pulumi.Input<boolean>;
     readonly description?: pulumi.Input<string>;
     readonly enabled?: pulumi.Input<boolean>;
+    readonly encryptAssertions?: pulumi.Input<boolean>;
+    readonly encryptionCertificate?: pulumi.Input<string>;
     readonly forceNameIdFormat?: pulumi.Input<boolean>;
     readonly forcePostBinding?: pulumi.Input<boolean>;
     readonly frontChannelLogout?: pulumi.Input<boolean>;
@@ -263,6 +277,7 @@ export interface ClientArgs {
     readonly rootUrl?: pulumi.Input<string>;
     readonly signAssertions?: pulumi.Input<boolean>;
     readonly signDocuments?: pulumi.Input<boolean>;
+    readonly signatureAlgorithm?: pulumi.Input<string>;
     readonly signingCertificate?: pulumi.Input<string>;
     readonly signingPrivateKey?: pulumi.Input<string>;
     readonly validRedirectUris?: pulumi.Input<pulumi.Input<string>[]>;

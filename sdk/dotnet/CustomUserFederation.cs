@@ -30,6 +30,12 @@ namespace Pulumi.Keycloak
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The parent_id of the generated component. will use realm_id if not specified.
+        /// </summary>
+        [Output("parentId")]
+        public Output<string?> ParentId { get; private set; } = null!;
+
+        /// <summary>
         /// Priority of this provider when looking up users. Lower values are first.
         /// </summary>
         [Output("priority")]
@@ -43,7 +49,7 @@ namespace Pulumi.Keycloak
         public Output<string> ProviderId { get; private set; } = null!;
 
         /// <summary>
-        /// The realm this provider will provide user federation for.
+        /// The realm (name) this provider will provide user federation for.
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
@@ -118,6 +124,12 @@ namespace Pulumi.Keycloak
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The parent_id of the generated component. will use realm_id if not specified.
+        /// </summary>
+        [Input("parentId")]
+        public Input<string>? ParentId { get; set; }
+
+        /// <summary>
         /// Priority of this provider when looking up users. Lower values are first.
         /// </summary>
         [Input("priority")]
@@ -131,7 +143,7 @@ namespace Pulumi.Keycloak
         public Input<string> ProviderId { get; set; } = null!;
 
         /// <summary>
-        /// The realm this provider will provide user federation for.
+        /// The realm (name) this provider will provide user federation for.
         /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
@@ -167,6 +179,12 @@ namespace Pulumi.Keycloak
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The parent_id of the generated component. will use realm_id if not specified.
+        /// </summary>
+        [Input("parentId")]
+        public Input<string>? ParentId { get; set; }
+
+        /// <summary>
         /// Priority of this provider when looking up users. Lower values are first.
         /// </summary>
         [Input("priority")]
@@ -180,7 +198,7 @@ namespace Pulumi.Keycloak
         public Input<string>? ProviderId { get; set; }
 
         /// <summary>
-        /// The realm this provider will provide user federation for.
+        /// The realm (name) this provider will provide user federation for.
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }

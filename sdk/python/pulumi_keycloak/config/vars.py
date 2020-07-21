@@ -10,6 +10,8 @@ from .. import utilities, tables
 
 __config__ = pulumi.Config('keycloak')
 
+base_path = __config__.get('basePath')
+
 client_id = __config__.get('clientId') or utilities.get_env('KEYCLOAK_CLIENT_ID')
 
 client_secret = __config__.get('clientSecret') or utilities.get_env('KEYCLOAK_CLIENT_SECRET')

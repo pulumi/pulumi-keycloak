@@ -17,12 +17,14 @@ export * from "./groupMemberships";
 export * from "./groupRoles";
 export * from "./hardcodedAttributeIdentityProviderMapper";
 export * from "./hardcodedRoleIdentityMapper";
+export * from "./identityProviderTokenExchangeScopePermission";
 export * from "./provider";
 export * from "./realm";
 export * from "./realmEvents";
 export * from "./requiredAction";
 export * from "./role";
 export * from "./user";
+export * from "./userRoles";
 export * from "./userTemplateImporterIdentityProviderMapper";
 
 // Export sub-modules:

@@ -7,54 +7,8 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Keycloak.OpenId
+namespace Pulumi.Keycloak.Saml
 {
-    /// <summary>
-    /// ## # keycloak.openid.ClientScope
-    /// 
-    /// Allows for creating and managing Keycloak client scopes that can be attached to
-    /// clients that use the OpenID Connect protocol.
-    /// 
-    /// Client Scopes can be used to share common protocol and role mappings between multiple
-    /// clients within a realm. They can also be used by clients to conditionally request
-    /// claims or roles for a user based on the OAuth 2.0 `scope` parameter.
-    /// 
-    /// ### Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Keycloak = Pulumi.Keycloak;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             Enabled = true,
-    ///             Realm = "my-realm",
-    ///         });
-    ///         var openidClientScope = new Keycloak.OpenId.ClientScope("openidClientScope", new Keycloak.OpenId.ClientScopeArgs
-    ///         {
-    ///             Description = "When requested, this scope will map a user's group memberships to a claim",
-    ///             RealmId = realm.Id,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ### Argument Reference
-    /// 
-    /// The following arguments are supported:
-    /// 
-    /// - `realm_id` - (Required) The realm this client scope belongs to.
-    /// - `name` - (Required) The display name of this client scope in the GUI.
-    /// - `description` - (Optional) The description of this client scope in the GUI.
-    /// - `consent_screen_text` - (Optional) When set, a consent screen will be displayed to users
-    ///   authenticating to clients with this scope attached. The consent screen will display the string
-    ///   value of this attribute.
-    /// </summary>
     public partial class ClientScope : Pulumi.CustomResource
     {
         [Output("consentScreenText")]
@@ -65,9 +19,6 @@ namespace Pulumi.Keycloak.OpenId
 
         [Output("guiOrder")]
         public Output<int?> GuiOrder { get; private set; } = null!;
-
-        [Output("includeInTokenScope")]
-        public Output<bool?> IncludeInTokenScope { get; private set; } = null!;
 
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -84,12 +35,12 @@ namespace Pulumi.Keycloak.OpenId
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public ClientScope(string name, ClientScopeArgs args, CustomResourceOptions? options = null)
-            : base("keycloak:openid/clientScope:ClientScope", name, args ?? new ClientScopeArgs(), MakeResourceOptions(options, ""))
+            : base("keycloak:saml/clientScope:ClientScope", name, args ?? new ClientScopeArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private ClientScope(string name, Input<string> id, ClientScopeState? state = null, CustomResourceOptions? options = null)
-            : base("keycloak:openid/clientScope:ClientScope", name, state, MakeResourceOptions(options, id))
+            : base("keycloak:saml/clientScope:ClientScope", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -130,9 +81,6 @@ namespace Pulumi.Keycloak.OpenId
         [Input("guiOrder")]
         public Input<int>? GuiOrder { get; set; }
 
-        [Input("includeInTokenScope")]
-        public Input<bool>? IncludeInTokenScope { get; set; }
-
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -154,9 +102,6 @@ namespace Pulumi.Keycloak.OpenId
 
         [Input("guiOrder")]
         public Input<int>? GuiOrder { get; set; }
-
-        [Input("includeInTokenScope")]
-        public Input<bool>? IncludeInTokenScope { get; set; }
 
         [Input("name")]
         public Input<string>? Name { get; set; }

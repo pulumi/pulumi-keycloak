@@ -8,6 +8,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi/config"
 )
 
+func GetBasePath(ctx *pulumi.Context) string {
+	return config.Get(ctx, "keycloak:basePath")
+}
 func GetClientId(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "keycloak:clientId")
 	if err == nil {

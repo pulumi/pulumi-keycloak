@@ -75,6 +75,7 @@ export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResour
      * Claim Name
      */
     public readonly claimName!: pulumi.Output<string | undefined>;
+    public readonly extraConfig!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
      * IDP Alias
      */
@@ -107,6 +108,7 @@ export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResour
             inputs["attributeFriendlyName"] = state ? state.attributeFriendlyName : undefined;
             inputs["attributeName"] = state ? state.attributeName : undefined;
             inputs["claimName"] = state ? state.claimName : undefined;
+            inputs["extraConfig"] = state ? state.extraConfig : undefined;
             inputs["identityProviderAlias"] = state ? state.identityProviderAlias : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["realm"] = state ? state.realm : undefined;
@@ -125,6 +127,7 @@ export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResour
             inputs["attributeFriendlyName"] = args ? args.attributeFriendlyName : undefined;
             inputs["attributeName"] = args ? args.attributeName : undefined;
             inputs["claimName"] = args ? args.claimName : undefined;
+            inputs["extraConfig"] = args ? args.extraConfig : undefined;
             inputs["identityProviderAlias"] = args ? args.identityProviderAlias : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["realm"] = args ? args.realm : undefined;
@@ -157,6 +160,7 @@ export interface AttributeImporterIdentityProviderMapperState {
      * Claim Name
      */
     readonly claimName?: pulumi.Input<string>;
+    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * IDP Alias
      */
@@ -191,6 +195,7 @@ export interface AttributeImporterIdentityProviderMapperArgs {
      * Claim Name
      */
     readonly claimName?: pulumi.Input<string>;
+    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * IDP Alias
      */

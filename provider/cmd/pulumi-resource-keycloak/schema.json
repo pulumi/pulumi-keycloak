@@ -14,6 +14,9 @@
     },
     "config": {
         "variables": {
+            "basePath": {
+                "type": "string"
+            },
             "clientId": {
                 "type": "string",
                 "defaultInfo": {
@@ -1131,6 +1134,9 @@
     "provider": {
         "description": "The provider type for the keycloak package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
         "inputProperties": {
+            "basePath": {
+                "type": "string"
+            },
             "clientId": {
                 "type": "string",
                 "defaultInfo": {
@@ -1492,6 +1498,12 @@
                     "type": "string",
                     "description": "Claim Name\n"
                 },
+                "extraConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
                 "identityProviderAlias": {
                     "type": "string",
                     "description": "IDP Alias\n"
@@ -1527,6 +1539,12 @@
                 "claimName": {
                     "type": "string",
                     "description": "Claim Name\n"
+                },
+                "extraConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
                 },
                 "identityProviderAlias": {
                     "type": "string",
@@ -1564,6 +1582,12 @@
                     "claimName": {
                         "type": "string",
                         "description": "Claim Name\n"
+                    },
+                    "extraConfig": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
                     },
                     "identityProviderAlias": {
                         "type": "string",
@@ -1606,6 +1630,12 @@
                 "claimValue": {
                     "type": "string",
                     "description": "OIDC Claim Value\n"
+                },
+                "extraConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
                 },
                 "identityProviderAlias": {
                     "type": "string",
@@ -1650,6 +1680,12 @@
                 "claimValue": {
                     "type": "string",
                     "description": "OIDC Claim Value\n"
+                },
+                "extraConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
                 },
                 "identityProviderAlias": {
                     "type": "string",
@@ -1696,6 +1732,12 @@
                         "type": "string",
                         "description": "OIDC Claim Value\n"
                     },
+                    "extraConfig": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
                     "identityProviderAlias": {
                         "type": "string",
                         "description": "IDP Alias\n"
@@ -1735,6 +1777,10 @@
                     "type": "string",
                     "description": "Display name of the provider when displayed in the console.\n"
                 },
+                "parentId": {
+                    "type": "string",
+                    "description": "The parent_id of the generated component. will use realm_id if not specified.\n"
+                },
                 "priority": {
                     "type": "integer",
                     "description": "Priority of this provider when looking up users. Lower values are first.\n"
@@ -1745,7 +1791,7 @@
                 },
                 "realmId": {
                     "type": "string",
-                    "description": "The realm this provider will provide user federation for.\n"
+                    "description": "The realm (name) this provider will provide user federation for.\n"
                 }
             },
             "required": [
@@ -1771,6 +1817,10 @@
                     "type": "string",
                     "description": "Display name of the provider when displayed in the console.\n"
                 },
+                "parentId": {
+                    "type": "string",
+                    "description": "The parent_id of the generated component. will use realm_id if not specified.\n"
+                },
                 "priority": {
                     "type": "integer",
                     "description": "Priority of this provider when looking up users. Lower values are first.\n"
@@ -1781,7 +1831,7 @@
                 },
                 "realmId": {
                     "type": "string",
-                    "description": "The realm this provider will provide user federation for.\n"
+                    "description": "The realm (name) this provider will provide user federation for.\n"
                 }
             },
             "requiredInputs": [
@@ -1808,6 +1858,10 @@
                         "type": "string",
                         "description": "Display name of the provider when displayed in the console.\n"
                     },
+                    "parentId": {
+                        "type": "string",
+                        "description": "The parent_id of the generated component. will use realm_id if not specified.\n"
+                    },
                     "priority": {
                         "type": "integer",
                         "description": "Priority of this provider when looking up users. Lower values are first.\n"
@@ -1818,7 +1872,7 @@
                     },
                     "realmId": {
                         "type": "string",
-                        "description": "The realm this provider will provide user federation for.\n"
+                        "description": "The realm (name) this provider will provide user federation for.\n"
                     }
                 },
                 "type": "object"
@@ -2252,6 +2306,12 @@
                     "type": "string",
                     "description": "User Attribute\n"
                 },
+                "extraConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
                 "identityProviderAlias": {
                     "type": "string",
                     "description": "IDP Alias\n"
@@ -2283,6 +2343,12 @@
                 "attributeValue": {
                     "type": "string",
                     "description": "User Attribute\n"
+                },
+                "extraConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
                 },
                 "identityProviderAlias": {
                     "type": "string",
@@ -2317,6 +2383,12 @@
                         "type": "string",
                         "description": "User Attribute\n"
                     },
+                    "extraConfig": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
                     "identityProviderAlias": {
                         "type": "string",
                         "description": "IDP Alias\n"
@@ -2339,6 +2411,12 @@
         },
         "keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper": {
             "properties": {
+                "extraConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
                 "identityProviderAlias": {
                     "type": "string",
                     "description": "IDP Alias\n"
@@ -2362,6 +2440,12 @@
                 "realm"
             ],
             "inputProperties": {
+                "extraConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
                 "identityProviderAlias": {
                     "type": "string",
                     "description": "IDP Alias\n"
@@ -2386,6 +2470,12 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering HardcodedRoleIdentityMapper resources.\n",
                 "properties": {
+                    "extraConfig": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
                     "identityProviderAlias": {
                         "type": "string",
                         "description": "IDP Alias\n"
@@ -2401,6 +2491,115 @@
                     "role": {
                         "type": "string",
                         "description": "Role Name\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission": {
+            "properties": {
+                "authorizationIdpResourceId": {
+                    "type": "string",
+                    "description": "Resource id representing the identity provider, this automatically created by keycloak\n"
+                },
+                "authorizationResourceServerId": {
+                    "type": "string",
+                    "description": "Resource server id representing the realm management client on which this permission is managed\n"
+                },
+                "authorizationTokenExchangeScopePermissionId": {
+                    "type": "string",
+                    "description": "Permission id representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id',\nthis automatically created by keycloak, the policy id will be set on this permission\n"
+                },
+                "clients": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Ids of the clients for which a policy will be created and set on scope based token exchange permission\n"
+                },
+                "policyId": {
+                    "type": "string",
+                    "description": "Policy id that will be set on the scope based token exchange permission automatically created by enabling permissions on\nthe reference identity provider\n"
+                },
+                "policyType": {
+                    "type": "string",
+                    "description": "Type of policy that is created. At the moment only 'client' type is supported\n"
+                },
+                "providerAlias": {
+                    "type": "string"
+                },
+                "realmId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "authorizationIdpResourceId",
+                "authorizationResourceServerId",
+                "authorizationTokenExchangeScopePermissionId",
+                "clients",
+                "policyId",
+                "providerAlias",
+                "realmId"
+            ],
+            "inputProperties": {
+                "clients": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Ids of the clients for which a policy will be created and set on scope based token exchange permission\n"
+                },
+                "policyType": {
+                    "type": "string",
+                    "description": "Type of policy that is created. At the moment only 'client' type is supported\n"
+                },
+                "providerAlias": {
+                    "type": "string"
+                },
+                "realmId": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "clients",
+                "providerAlias",
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering IdentityProviderTokenExchangeScopePermission resources.\n",
+                "properties": {
+                    "authorizationIdpResourceId": {
+                        "type": "string",
+                        "description": "Resource id representing the identity provider, this automatically created by keycloak\n"
+                    },
+                    "authorizationResourceServerId": {
+                        "type": "string",
+                        "description": "Resource server id representing the realm management client on which this permission is managed\n"
+                    },
+                    "authorizationTokenExchangeScopePermissionId": {
+                        "type": "string",
+                        "description": "Permission id representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id',\nthis automatically created by keycloak, the policy id will be set on this permission\n"
+                    },
+                    "clients": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Ids of the clients for which a policy will be created and set on scope based token exchange permission\n"
+                    },
+                    "policyId": {
+                        "type": "string",
+                        "description": "Policy id that will be set on the scope based token exchange permission automatically created by enabling permissions on\nthe reference identity provider\n"
+                    },
+                    "policyType": {
+                        "type": "string",
+                        "description": "Type of policy that is created. At the moment only 'client' type is supported\n"
+                    },
+                    "providerAlias": {
+                        "type": "string"
+                    },
+                    "realmId": {
+                        "type": "string"
                     }
                 },
                 "type": "object"
@@ -2448,6 +2647,9 @@
                 "clientAuthenticationFlow": {
                     "type": "string",
                     "description": "Which flow should be used for ClientAuthenticationFlow\n"
+                },
+                "defaultSignatureAlgorithm": {
+                    "type": "string"
                 },
                 "directGrantFlow": {
                     "type": "string",
@@ -2619,6 +2821,9 @@
                     "type": "string",
                     "description": "Which flow should be used for ClientAuthenticationFlow\n"
                 },
+                "defaultSignatureAlgorithm": {
+                    "type": "string"
+                },
                 "directGrantFlow": {
                     "type": "string",
                     "description": "Which flow should be used for DirectGrantFlow\n"
@@ -2767,6 +2972,9 @@
                     "clientAuthenticationFlow": {
                         "type": "string",
                         "description": "Which flow should be used for ClientAuthenticationFlow\n"
+                    },
+                    "defaultSignatureAlgorithm": {
+                        "type": "string"
                     },
                     "directGrantFlow": {
                         "type": "string",
@@ -3255,8 +3463,72 @@
                 "type": "object"
             }
         },
+        "keycloak:index/userRoles:UserRoles": {
+            "properties": {
+                "realmId": {
+                    "type": "string"
+                },
+                "roleIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "userId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "realmId",
+                "roleIds",
+                "userId"
+            ],
+            "inputProperties": {
+                "realmId": {
+                    "type": "string"
+                },
+                "roleIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "userId": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "realmId",
+                "roleIds",
+                "userId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering UserRoles resources.\n",
+                "properties": {
+                    "realmId": {
+                        "type": "string"
+                    },
+                    "roleIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "userId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper": {
             "properties": {
+                "extraConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
                 "identityProviderAlias": {
                     "type": "string",
                     "description": "IDP Alias\n"
@@ -3280,6 +3552,12 @@
                 "realm"
             ],
             "inputProperties": {
+                "extraConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
                 "identityProviderAlias": {
                     "type": "string",
                     "description": "IDP Alias\n"
@@ -3304,6 +3582,12 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering UserTemplateImporterIdentityProviderMapper resources.\n",
                 "properties": {
+                    "extraConfig": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
                     "identityProviderAlias": {
                         "type": "string",
                         "description": "IDP Alias\n"
@@ -6577,6 +6861,12 @@
                 "description": {
                     "type": "string"
                 },
+                "guiOrder": {
+                    "type": "integer"
+                },
+                "includeInTokenScope": {
+                    "type": "boolean"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -6594,6 +6884,12 @@
                 },
                 "description": {
                     "type": "string"
+                },
+                "guiOrder": {
+                    "type": "integer"
+                },
+                "includeInTokenScope": {
+                    "type": "boolean"
                 },
                 "name": {
                     "type": "string"
@@ -6613,6 +6909,12 @@
                     },
                     "description": {
                         "type": "string"
+                    },
+                    "guiOrder": {
+                        "type": "integer"
+                    },
+                    "includeInTokenScope": {
+                        "type": "boolean"
                     },
                     "name": {
                         "type": "string"
@@ -8205,6 +8507,12 @@
                 "enabled": {
                     "type": "boolean"
                 },
+                "encryptAssertions": {
+                    "type": "boolean"
+                },
+                "encryptionCertificate": {
+                    "type": "string"
+                },
                 "forceNameIdFormat": {
                     "type": "boolean"
                 },
@@ -8253,6 +8561,9 @@
                 "signDocuments": {
                     "type": "boolean"
                 },
+                "signatureAlgorithm": {
+                    "type": "string"
+                },
                 "signingCertificate": {
                     "type": "string"
                 },
@@ -8269,6 +8580,7 @@
             "required": [
                 "clientId",
                 "clientSignatureRequired",
+                "encryptAssertions",
                 "forceNameIdFormat",
                 "forcePostBinding",
                 "frontChannelLogout",
@@ -8301,6 +8613,12 @@
                 "enabled": {
                     "type": "boolean"
                 },
+                "encryptAssertions": {
+                    "type": "boolean"
+                },
+                "encryptionCertificate": {
+                    "type": "string"
+                },
                 "forceNameIdFormat": {
                     "type": "boolean"
                 },
@@ -8348,6 +8666,9 @@
                 },
                 "signDocuments": {
                     "type": "boolean"
+                },
+                "signatureAlgorithm": {
+                    "type": "string"
                 },
                 "signingCertificate": {
                     "type": "string"
@@ -8389,6 +8710,12 @@
                     },
                     "enabled": {
                         "type": "boolean"
+                    },
+                    "encryptAssertions": {
+                        "type": "boolean"
+                    },
+                    "encryptionCertificate": {
+                        "type": "string"
                     },
                     "forceNameIdFormat": {
                         "type": "boolean"
@@ -8438,6 +8765,9 @@
                     "signDocuments": {
                         "type": "boolean"
                     },
+                    "signatureAlgorithm": {
+                        "type": "string"
+                    },
                     "signingCertificate": {
                         "type": "string"
                     },
@@ -8449,6 +8779,128 @@
                         "items": {
                             "type": "string"
                         }
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:saml/clientDefaultScope:ClientDefaultScope": {
+            "properties": {
+                "clientId": {
+                    "type": "string"
+                },
+                "defaultScopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "realmId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "clientId",
+                "defaultScopes",
+                "realmId"
+            ],
+            "inputProperties": {
+                "clientId": {
+                    "type": "string"
+                },
+                "defaultScopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "realmId": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "clientId",
+                "defaultScopes",
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ClientDefaultScope resources.\n",
+                "properties": {
+                    "clientId": {
+                        "type": "string"
+                    },
+                    "defaultScopes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "realmId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:saml/clientScope:ClientScope": {
+            "properties": {
+                "consentScreenText": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "guiOrder": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "realmId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "realmId"
+            ],
+            "inputProperties": {
+                "consentScreenText": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "guiOrder": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "realmId": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ClientScope resources.\n",
+                "properties": {
+                    "consentScreenText": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "guiOrder": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "realmId": {
+                        "type": "string"
                     }
                 },
                 "type": "object"
