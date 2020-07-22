@@ -17,6 +17,7 @@ type HardcodedAttributeIdentityProviderMapper struct {
 	AttributeName pulumi.StringPtrOutput `pulumi:"attributeName"`
 	// User Attribute
 	AttributeValue pulumi.StringPtrOutput `pulumi:"attributeValue"`
+	ExtraConfig    pulumi.MapOutput       `pulumi:"extraConfig"`
 	// IDP Alias
 	IdentityProviderAlias pulumi.StringOutput `pulumi:"identityProviderAlias"`
 	// IDP Mapper Name
@@ -67,7 +68,8 @@ type hardcodedAttributeIdentityProviderMapperState struct {
 	// OIDC Claim
 	AttributeName *string `pulumi:"attributeName"`
 	// User Attribute
-	AttributeValue *string `pulumi:"attributeValue"`
+	AttributeValue *string                `pulumi:"attributeValue"`
+	ExtraConfig    map[string]interface{} `pulumi:"extraConfig"`
 	// IDP Alias
 	IdentityProviderAlias *string `pulumi:"identityProviderAlias"`
 	// IDP Mapper Name
@@ -83,6 +85,7 @@ type HardcodedAttributeIdentityProviderMapperState struct {
 	AttributeName pulumi.StringPtrInput
 	// User Attribute
 	AttributeValue pulumi.StringPtrInput
+	ExtraConfig    pulumi.MapInput
 	// IDP Alias
 	IdentityProviderAlias pulumi.StringPtrInput
 	// IDP Mapper Name
@@ -101,7 +104,8 @@ type hardcodedAttributeIdentityProviderMapperArgs struct {
 	// OIDC Claim
 	AttributeName *string `pulumi:"attributeName"`
 	// User Attribute
-	AttributeValue *string `pulumi:"attributeValue"`
+	AttributeValue *string                `pulumi:"attributeValue"`
+	ExtraConfig    map[string]interface{} `pulumi:"extraConfig"`
 	// IDP Alias
 	IdentityProviderAlias string `pulumi:"identityProviderAlias"`
 	// IDP Mapper Name
@@ -118,6 +122,7 @@ type HardcodedAttributeIdentityProviderMapperArgs struct {
 	AttributeName pulumi.StringPtrInput
 	// User Attribute
 	AttributeValue pulumi.StringPtrInput
+	ExtraConfig    pulumi.MapInput
 	// IDP Alias
 	IdentityProviderAlias pulumi.StringInput
 	// IDP Mapper Name

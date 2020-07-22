@@ -22,7 +22,8 @@ type AttributeToRoleIdentityMapper struct {
 	// OIDC Claim Name
 	ClaimName pulumi.StringPtrOutput `pulumi:"claimName"`
 	// OIDC Claim Value
-	ClaimValue pulumi.StringPtrOutput `pulumi:"claimValue"`
+	ClaimValue  pulumi.StringPtrOutput `pulumi:"claimValue"`
+	ExtraConfig pulumi.MapOutput       `pulumi:"extraConfig"`
 	// IDP Alias
 	IdentityProviderAlias pulumi.StringOutput `pulumi:"identityProviderAlias"`
 	// IDP Mapper Name
@@ -79,7 +80,8 @@ type attributeToRoleIdentityMapperState struct {
 	// OIDC Claim Name
 	ClaimName *string `pulumi:"claimName"`
 	// OIDC Claim Value
-	ClaimValue *string `pulumi:"claimValue"`
+	ClaimValue  *string                `pulumi:"claimValue"`
+	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
 	// IDP Alias
 	IdentityProviderAlias *string `pulumi:"identityProviderAlias"`
 	// IDP Mapper Name
@@ -100,7 +102,8 @@ type AttributeToRoleIdentityMapperState struct {
 	// OIDC Claim Name
 	ClaimName pulumi.StringPtrInput
 	// OIDC Claim Value
-	ClaimValue pulumi.StringPtrInput
+	ClaimValue  pulumi.StringPtrInput
+	ExtraConfig pulumi.MapInput
 	// IDP Alias
 	IdentityProviderAlias pulumi.StringPtrInput
 	// IDP Mapper Name
@@ -125,7 +128,8 @@ type attributeToRoleIdentityMapperArgs struct {
 	// OIDC Claim Name
 	ClaimName *string `pulumi:"claimName"`
 	// OIDC Claim Value
-	ClaimValue *string `pulumi:"claimValue"`
+	ClaimValue  *string                `pulumi:"claimValue"`
+	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
 	// IDP Alias
 	IdentityProviderAlias string `pulumi:"identityProviderAlias"`
 	// IDP Mapper Name
@@ -147,7 +151,8 @@ type AttributeToRoleIdentityMapperArgs struct {
 	// OIDC Claim Name
 	ClaimName pulumi.StringPtrInput
 	// OIDC Claim Value
-	ClaimValue pulumi.StringPtrInput
+	ClaimValue  pulumi.StringPtrInput
+	ExtraConfig pulumi.MapInput
 	// IDP Alias
 	IdentityProviderAlias pulumi.StringInput
 	// IDP Mapper Name

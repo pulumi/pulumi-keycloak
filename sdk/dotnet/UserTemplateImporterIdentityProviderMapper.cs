@@ -11,6 +11,9 @@ namespace Pulumi.Keycloak
 {
     public partial class UserTemplateImporterIdentityProviderMapper : Pulumi.CustomResource
     {
+        [Output("extraConfig")]
+        public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
+
         /// <summary>
         /// IDP Alias
         /// </summary>
@@ -81,6 +84,14 @@ namespace Pulumi.Keycloak
 
     public sealed class UserTemplateImporterIdentityProviderMapperArgs : Pulumi.ResourceArgs
     {
+        [Input("extraConfig")]
+        private InputMap<object>? _extraConfig;
+        public InputMap<object> ExtraConfig
+        {
+            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            set => _extraConfig = value;
+        }
+
         /// <summary>
         /// IDP Alias
         /// </summary>
@@ -112,6 +123,14 @@ namespace Pulumi.Keycloak
 
     public sealed class UserTemplateImporterIdentityProviderMapperState : Pulumi.ResourceArgs
     {
+        [Input("extraConfig")]
+        private InputMap<object>? _extraConfig;
+        public InputMap<object> ExtraConfig
+        {
+            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            set => _extraConfig = value;
+        }
+
         /// <summary>
         /// IDP Alias
         /// </summary>

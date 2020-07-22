@@ -22,6 +22,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
     """
     Claim Name
     """
+    extra_config: pulumi.Output[dict]
     identity_provider_alias: pulumi.Output[str]
     """
     IDP Alias
@@ -38,7 +39,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
     """
     User Attribute
     """
-    def __init__(__self__, resource_name, opts=None, attribute_friendly_name=None, attribute_name=None, claim_name=None, identity_provider_alias=None, name=None, realm=None, user_attribute=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, attribute_friendly_name=None, attribute_name=None, claim_name=None, extra_config=None, identity_provider_alias=None, name=None, realm=None, user_attribute=None, __props__=None, __name__=None, __opts__=None):
         """
         ## # AttributeImporterIdentityProviderMapper
 
@@ -99,6 +100,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
             __props__['attribute_friendly_name'] = attribute_friendly_name
             __props__['attribute_name'] = attribute_name
             __props__['claim_name'] = claim_name
+            __props__['extra_config'] = extra_config
             if identity_provider_alias is None:
                 raise TypeError("Missing required property 'identity_provider_alias'")
             __props__['identity_provider_alias'] = identity_provider_alias
@@ -116,7 +118,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, attribute_friendly_name=None, attribute_name=None, claim_name=None, identity_provider_alias=None, name=None, realm=None, user_attribute=None):
+    def get(resource_name, id, opts=None, attribute_friendly_name=None, attribute_name=None, claim_name=None, extra_config=None, identity_provider_alias=None, name=None, realm=None, user_attribute=None):
         """
         Get an existing AttributeImporterIdentityProviderMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -139,6 +141,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
         __props__["attribute_friendly_name"] = attribute_friendly_name
         __props__["attribute_name"] = attribute_name
         __props__["claim_name"] = claim_name
+        __props__["extra_config"] = extra_config
         __props__["identity_provider_alias"] = identity_provider_alias
         __props__["name"] = name
         __props__["realm"] = realm

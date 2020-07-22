@@ -8,6 +8,8 @@ namespace Pulumi.Keycloak
     public static class Config
     {
         private static readonly Pulumi.Config __config = new Pulumi.Config("keycloak");
+        public static string? BasePath { get; set; } = __config.Get("basePath");
+
         public static string? ClientId { get; set; } = __config.Get("clientId") ?? Utilities.GetEnv("KEYCLOAK_CLIENT_ID");
 
         public static string? ClientSecret { get; set; } = __config.Get("clientSecret") ?? Utilities.GetEnv("KEYCLOAK_CLIENT_SECRET");

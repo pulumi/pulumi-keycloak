@@ -57,6 +57,8 @@ type Client struct {
 	ClientSignatureRequired         pulumi.BoolOutput        `pulumi:"clientSignatureRequired"`
 	Description                     pulumi.StringPtrOutput   `pulumi:"description"`
 	Enabled                         pulumi.BoolPtrOutput     `pulumi:"enabled"`
+	EncryptAssertions               pulumi.BoolOutput        `pulumi:"encryptAssertions"`
+	EncryptionCertificate           pulumi.StringPtrOutput   `pulumi:"encryptionCertificate"`
 	ForceNameIdFormat               pulumi.BoolOutput        `pulumi:"forceNameIdFormat"`
 	ForcePostBinding                pulumi.BoolOutput        `pulumi:"forcePostBinding"`
 	FrontChannelLogout              pulumi.BoolOutput        `pulumi:"frontChannelLogout"`
@@ -73,6 +75,7 @@ type Client struct {
 	RootUrl                         pulumi.StringPtrOutput   `pulumi:"rootUrl"`
 	SignAssertions                  pulumi.BoolOutput        `pulumi:"signAssertions"`
 	SignDocuments                   pulumi.BoolOutput        `pulumi:"signDocuments"`
+	SignatureAlgorithm              pulumi.StringPtrOutput   `pulumi:"signatureAlgorithm"`
 	SigningCertificate              pulumi.StringPtrOutput   `pulumi:"signingCertificate"`
 	SigningPrivateKey               pulumi.StringPtrOutput   `pulumi:"signingPrivateKey"`
 	ValidRedirectUris               pulumi.StringArrayOutput `pulumi:"validRedirectUris"`
@@ -119,6 +122,8 @@ type clientState struct {
 	ClientSignatureRequired         *bool    `pulumi:"clientSignatureRequired"`
 	Description                     *string  `pulumi:"description"`
 	Enabled                         *bool    `pulumi:"enabled"`
+	EncryptAssertions               *bool    `pulumi:"encryptAssertions"`
+	EncryptionCertificate           *string  `pulumi:"encryptionCertificate"`
 	ForceNameIdFormat               *bool    `pulumi:"forceNameIdFormat"`
 	ForcePostBinding                *bool    `pulumi:"forcePostBinding"`
 	FrontChannelLogout              *bool    `pulumi:"frontChannelLogout"`
@@ -135,6 +140,7 @@ type clientState struct {
 	RootUrl                         *string  `pulumi:"rootUrl"`
 	SignAssertions                  *bool    `pulumi:"signAssertions"`
 	SignDocuments                   *bool    `pulumi:"signDocuments"`
+	SignatureAlgorithm              *string  `pulumi:"signatureAlgorithm"`
 	SigningCertificate              *string  `pulumi:"signingCertificate"`
 	SigningPrivateKey               *string  `pulumi:"signingPrivateKey"`
 	ValidRedirectUris               []string `pulumi:"validRedirectUris"`
@@ -148,6 +154,8 @@ type ClientState struct {
 	ClientSignatureRequired         pulumi.BoolPtrInput
 	Description                     pulumi.StringPtrInput
 	Enabled                         pulumi.BoolPtrInput
+	EncryptAssertions               pulumi.BoolPtrInput
+	EncryptionCertificate           pulumi.StringPtrInput
 	ForceNameIdFormat               pulumi.BoolPtrInput
 	ForcePostBinding                pulumi.BoolPtrInput
 	FrontChannelLogout              pulumi.BoolPtrInput
@@ -164,6 +172,7 @@ type ClientState struct {
 	RootUrl                         pulumi.StringPtrInput
 	SignAssertions                  pulumi.BoolPtrInput
 	SignDocuments                   pulumi.BoolPtrInput
+	SignatureAlgorithm              pulumi.StringPtrInput
 	SigningCertificate              pulumi.StringPtrInput
 	SigningPrivateKey               pulumi.StringPtrInput
 	ValidRedirectUris               pulumi.StringArrayInput
@@ -181,6 +190,8 @@ type clientArgs struct {
 	ClientSignatureRequired         *bool    `pulumi:"clientSignatureRequired"`
 	Description                     *string  `pulumi:"description"`
 	Enabled                         *bool    `pulumi:"enabled"`
+	EncryptAssertions               *bool    `pulumi:"encryptAssertions"`
+	EncryptionCertificate           *string  `pulumi:"encryptionCertificate"`
 	ForceNameIdFormat               *bool    `pulumi:"forceNameIdFormat"`
 	ForcePostBinding                *bool    `pulumi:"forcePostBinding"`
 	FrontChannelLogout              *bool    `pulumi:"frontChannelLogout"`
@@ -197,6 +208,7 @@ type clientArgs struct {
 	RootUrl                         *string  `pulumi:"rootUrl"`
 	SignAssertions                  *bool    `pulumi:"signAssertions"`
 	SignDocuments                   *bool    `pulumi:"signDocuments"`
+	SignatureAlgorithm              *string  `pulumi:"signatureAlgorithm"`
 	SigningCertificate              *string  `pulumi:"signingCertificate"`
 	SigningPrivateKey               *string  `pulumi:"signingPrivateKey"`
 	ValidRedirectUris               []string `pulumi:"validRedirectUris"`
@@ -211,6 +223,8 @@ type ClientArgs struct {
 	ClientSignatureRequired         pulumi.BoolPtrInput
 	Description                     pulumi.StringPtrInput
 	Enabled                         pulumi.BoolPtrInput
+	EncryptAssertions               pulumi.BoolPtrInput
+	EncryptionCertificate           pulumi.StringPtrInput
 	ForceNameIdFormat               pulumi.BoolPtrInput
 	ForcePostBinding                pulumi.BoolPtrInput
 	FrontChannelLogout              pulumi.BoolPtrInput
@@ -227,6 +241,7 @@ type ClientArgs struct {
 	RootUrl                         pulumi.StringPtrInput
 	SignAssertions                  pulumi.BoolPtrInput
 	SignDocuments                   pulumi.BoolPtrInput
+	SignatureAlgorithm              pulumi.StringPtrInput
 	SigningCertificate              pulumi.StringPtrInput
 	SigningPrivateKey               pulumi.StringPtrInput
 	ValidRedirectUris               pulumi.StringArrayInput

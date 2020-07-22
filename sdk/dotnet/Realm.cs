@@ -53,6 +53,9 @@ namespace Pulumi.Keycloak
         [Output("clientAuthenticationFlow")]
         public Output<string?> ClientAuthenticationFlow { get; private set; } = null!;
 
+        [Output("defaultSignatureAlgorithm")]
+        public Output<string?> DefaultSignatureAlgorithm { get; private set; } = null!;
+
         /// <summary>
         /// Which flow should be used for DirectGrantFlow
         /// </summary>
@@ -259,6 +262,9 @@ namespace Pulumi.Keycloak
         [Input("clientAuthenticationFlow")]
         public Input<string>? ClientAuthenticationFlow { get; set; }
 
+        [Input("defaultSignatureAlgorithm")]
+        public Input<string>? DefaultSignatureAlgorithm { get; set; }
+
         /// <summary>
         /// Which flow should be used for DirectGrantFlow
         /// </summary>
@@ -422,6 +428,9 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("clientAuthenticationFlow")]
         public Input<string>? ClientAuthenticationFlow { get; set; }
+
+        [Input("defaultSignatureAlgorithm")]
+        public Input<string>? DefaultSignatureAlgorithm { get; set; }
 
         /// <summary>
         /// Which flow should be used for DirectGrantFlow

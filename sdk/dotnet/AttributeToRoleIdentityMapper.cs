@@ -41,6 +41,9 @@ namespace Pulumi.Keycloak
         [Output("claimValue")]
         public Output<string?> ClaimValue { get; private set; } = null!;
 
+        [Output("extraConfig")]
+        public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
+
         /// <summary>
         /// IDP Alias
         /// </summary>
@@ -141,6 +144,14 @@ namespace Pulumi.Keycloak
         [Input("claimValue")]
         public Input<string>? ClaimValue { get; set; }
 
+        [Input("extraConfig")]
+        private InputMap<object>? _extraConfig;
+        public InputMap<object> ExtraConfig
+        {
+            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            set => _extraConfig = value;
+        }
+
         /// <summary>
         /// IDP Alias
         /// </summary>
@@ -201,6 +212,14 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("claimValue")]
         public Input<string>? ClaimValue { get; set; }
+
+        [Input("extraConfig")]
+        private InputMap<object>? _extraConfig;
+        public InputMap<object> ExtraConfig
+        {
+            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            set => _extraConfig = value;
+        }
 
         /// <summary>
         /// IDP Alias

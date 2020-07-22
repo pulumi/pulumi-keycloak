@@ -19,12 +19,14 @@ type CustomUserFederation struct {
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The parent_id of the generated component. will use realm_id if not specified.
+	ParentId pulumi.StringPtrOutput `pulumi:"parentId"`
 	// Priority of this provider when looking up users. Lower values are first.
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
 	// The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
 	// interface
 	ProviderId pulumi.StringOutput `pulumi:"providerId"`
-	// The realm this provider will provide user federation for.
+	// The realm (name) this provider will provide user federation for.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
@@ -68,12 +70,14 @@ type customUserFederationState struct {
 	Enabled *bool `pulumi:"enabled"`
 	// Display name of the provider when displayed in the console.
 	Name *string `pulumi:"name"`
+	// The parent_id of the generated component. will use realm_id if not specified.
+	ParentId *string `pulumi:"parentId"`
 	// Priority of this provider when looking up users. Lower values are first.
 	Priority *int `pulumi:"priority"`
 	// The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
 	// interface
 	ProviderId *string `pulumi:"providerId"`
-	// The realm this provider will provide user federation for.
+	// The realm (name) this provider will provide user federation for.
 	RealmId *string `pulumi:"realmId"`
 }
 
@@ -84,12 +88,14 @@ type CustomUserFederationState struct {
 	Enabled pulumi.BoolPtrInput
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringPtrInput
+	// The parent_id of the generated component. will use realm_id if not specified.
+	ParentId pulumi.StringPtrInput
 	// Priority of this provider when looking up users. Lower values are first.
 	Priority pulumi.IntPtrInput
 	// The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
 	// interface
 	ProviderId pulumi.StringPtrInput
-	// The realm this provider will provide user federation for.
+	// The realm (name) this provider will provide user federation for.
 	RealmId pulumi.StringPtrInput
 }
 
@@ -104,12 +110,14 @@ type customUserFederationArgs struct {
 	Enabled *bool `pulumi:"enabled"`
 	// Display name of the provider when displayed in the console.
 	Name *string `pulumi:"name"`
+	// The parent_id of the generated component. will use realm_id if not specified.
+	ParentId *string `pulumi:"parentId"`
 	// Priority of this provider when looking up users. Lower values are first.
 	Priority *int `pulumi:"priority"`
 	// The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
 	// interface
 	ProviderId string `pulumi:"providerId"`
-	// The realm this provider will provide user federation for.
+	// The realm (name) this provider will provide user federation for.
 	RealmId string `pulumi:"realmId"`
 }
 
@@ -121,12 +129,14 @@ type CustomUserFederationArgs struct {
 	Enabled pulumi.BoolPtrInput
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringPtrInput
+	// The parent_id of the generated component. will use realm_id if not specified.
+	ParentId pulumi.StringPtrInput
 	// Priority of this provider when looking up users. Lower values are first.
 	Priority pulumi.IntPtrInput
 	// The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
 	// interface
 	ProviderId pulumi.StringInput
-	// The realm this provider will provide user federation for.
+	// The realm (name) this provider will provide user federation for.
 	RealmId pulumi.StringInput
 }
 

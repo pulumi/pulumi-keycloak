@@ -10,6 +10,7 @@ from . import utilities, tables
 
 
 class HardcodedRoleIdentityMapper(pulumi.CustomResource):
+    extra_config: pulumi.Output[dict]
     identity_provider_alias: pulumi.Output[str]
     """
     IDP Alias
@@ -26,7 +27,7 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
     """
     Role Name
     """
-    def __init__(__self__, resource_name, opts=None, identity_provider_alias=None, name=None, realm=None, role=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, extra_config=None, identity_provider_alias=None, name=None, realm=None, role=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a HardcodedRoleIdentityMapper resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -53,6 +54,7 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
+            __props__['extra_config'] = extra_config
             if identity_provider_alias is None:
                 raise TypeError("Missing required property 'identity_provider_alias'")
             __props__['identity_provider_alias'] = identity_provider_alias
@@ -68,7 +70,7 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, identity_provider_alias=None, name=None, realm=None, role=None):
+    def get(resource_name, id, opts=None, extra_config=None, identity_provider_alias=None, name=None, realm=None, role=None):
         """
         Get an existing HardcodedRoleIdentityMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -85,6 +87,7 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
 
         __props__ = dict()
 
+        __props__["extra_config"] = extra_config
         __props__["identity_provider_alias"] = identity_provider_alias
         __props__["name"] = name
         __props__["realm"] = realm

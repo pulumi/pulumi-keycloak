@@ -32,6 +32,7 @@ export class UserTemplateImporterIdentityProviderMapper extends pulumi.CustomRes
         return obj['__pulumiType'] === UserTemplateImporterIdentityProviderMapper.__pulumiType;
     }
 
+    public readonly extraConfig!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
      * IDP Alias
      */
@@ -61,6 +62,7 @@ export class UserTemplateImporterIdentityProviderMapper extends pulumi.CustomRes
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
             const state = argsOrState as UserTemplateImporterIdentityProviderMapperState | undefined;
+            inputs["extraConfig"] = state ? state.extraConfig : undefined;
             inputs["identityProviderAlias"] = state ? state.identityProviderAlias : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["realm"] = state ? state.realm : undefined;
@@ -73,6 +75,7 @@ export class UserTemplateImporterIdentityProviderMapper extends pulumi.CustomRes
             if (!args || args.realm === undefined) {
                 throw new Error("Missing required property 'realm'");
             }
+            inputs["extraConfig"] = args ? args.extraConfig : undefined;
             inputs["identityProviderAlias"] = args ? args.identityProviderAlias : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["realm"] = args ? args.realm : undefined;
@@ -93,6 +96,7 @@ export class UserTemplateImporterIdentityProviderMapper extends pulumi.CustomRes
  * Input properties used for looking up and filtering UserTemplateImporterIdentityProviderMapper resources.
  */
 export interface UserTemplateImporterIdentityProviderMapperState {
+    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * IDP Alias
      */
@@ -115,6 +119,7 @@ export interface UserTemplateImporterIdentityProviderMapperState {
  * The set of arguments for constructing a UserTemplateImporterIdentityProviderMapper resource.
  */
 export interface UserTemplateImporterIdentityProviderMapperArgs {
+    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * IDP Alias
      */

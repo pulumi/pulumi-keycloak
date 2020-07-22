@@ -52,6 +52,7 @@ export class Realm extends pulumi.CustomResource {
      * Which flow should be used for ClientAuthenticationFlow
      */
     public readonly clientAuthenticationFlow!: pulumi.Output<string | undefined>;
+    public readonly defaultSignatureAlgorithm!: pulumi.Output<string | undefined>;
     /**
      * Which flow should be used for DirectGrantFlow
      */
@@ -128,6 +129,7 @@ export class Realm extends pulumi.CustomResource {
             inputs["attributes"] = state ? state.attributes : undefined;
             inputs["browserFlow"] = state ? state.browserFlow : undefined;
             inputs["clientAuthenticationFlow"] = state ? state.clientAuthenticationFlow : undefined;
+            inputs["defaultSignatureAlgorithm"] = state ? state.defaultSignatureAlgorithm : undefined;
             inputs["directGrantFlow"] = state ? state.directGrantFlow : undefined;
             inputs["displayName"] = state ? state.displayName : undefined;
             inputs["displayNameHtml"] = state ? state.displayNameHtml : undefined;
@@ -176,6 +178,7 @@ export class Realm extends pulumi.CustomResource {
             inputs["attributes"] = args ? args.attributes : undefined;
             inputs["browserFlow"] = args ? args.browserFlow : undefined;
             inputs["clientAuthenticationFlow"] = args ? args.clientAuthenticationFlow : undefined;
+            inputs["defaultSignatureAlgorithm"] = args ? args.defaultSignatureAlgorithm : undefined;
             inputs["directGrantFlow"] = args ? args.directGrantFlow : undefined;
             inputs["displayName"] = args ? args.displayName : undefined;
             inputs["displayNameHtml"] = args ? args.displayNameHtml : undefined;
@@ -241,6 +244,7 @@ export interface RealmState {
      * Which flow should be used for ClientAuthenticationFlow
      */
     readonly clientAuthenticationFlow?: pulumi.Input<string>;
+    readonly defaultSignatureAlgorithm?: pulumi.Input<string>;
     /**
      * Which flow should be used for DirectGrantFlow
      */
@@ -316,6 +320,7 @@ export interface RealmArgs {
      * Which flow should be used for ClientAuthenticationFlow
      */
     readonly clientAuthenticationFlow?: pulumi.Input<string>;
+    readonly defaultSignatureAlgorithm?: pulumi.Input<string>;
     /**
      * Which flow should be used for DirectGrantFlow
      */

@@ -11,7 +11,7 @@ from . import utilities, tables
 
 
 class Provider(pulumi.ProviderResource):
-    def __init__(__self__, resource_name, opts=None, client_id=None, client_secret=None, client_timeout=None, initial_login=None, password=None, realm=None, root_ca_certificate=None, tls_insecure_skip_verify=None, url=None, username=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, base_path=None, client_id=None, client_secret=None, client_timeout=None, initial_login=None, password=None, realm=None, root_ca_certificate=None, tls_insecure_skip_verify=None, url=None, username=None, __props__=None, __name__=None, __opts__=None):
         """
         The provider type for the keycloak package. By default, resources use package-wide configuration
         settings, however an explicit `Provider` instance may be created and passed during resource
@@ -44,6 +44,7 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
+            __props__['base_path'] = base_path
             if client_id is None:
                 client_id = utilities.get_env('KEYCLOAK_CLIENT_ID')
             __props__['client_id'] = client_id

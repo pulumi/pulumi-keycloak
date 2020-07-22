@@ -161,11 +161,15 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_required_action": {Tok: makeResource(mainMod, "RequiredAction")},
 			"keycloak_role":            {Tok: makeResource(mainMod, "Role")},
 			"keycloak_user":            {Tok: makeResource(mainMod, "User")},
+			"keycloak_user_roles":      {Tok: makeResource(mainMod, "UserRoles")},
 			"keycloak_user_template_importer_identity_provider_mapper": {
 				Tok: makeResource(mainMod, "UserTemplateImporterIdentityProviderMapper"),
 			},
 			"keycloak_realm_events":               {Tok: makeResource(mainMod, "RealmEvents")},
 			"keycloak_generic_client_role_mapper": {Tok: makeResource(mainMod, "GenericClientRoleMapper")},
+			"keycloak_identity_provider_token_exchange_scope_permission": {
+				Tok: makeResource(mainMod, "IdentityProviderTokenExchangeScopePermission"),
+			},
 
 			"keycloak_ldap_full_name_mapper": {Tok: makeResource(ldapMod, "FullNameMapper")},
 			"keycloak_ldap_group_mapper":     {Tok: makeResource(ldapMod, "GroupMapper")},
@@ -235,6 +239,8 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_saml_identity_provider":              {Tok: makeResource(samlMod, "IdentityProvider")},
 			"keycloak_saml_user_attribute_protocol_mapper": {Tok: makeResource(samlMod, "UserAttributeProtocolMapper")},
 			"keycloak_saml_user_property_protocol_mapper":  {Tok: makeResource(samlMod, "UserPropertyProtocolMapper")},
+			"keycloak_saml_client_scope":                   {Tok: makeResource(samlMod, "ClientScope")},
+			"keycloak_saml_client_default_scopes":          {Tok: makeResource(samlMod, "ClientDefaultScope")},
 
 			"keycloak_authentication_execution":        {Tok: makeResource(authenticationMod, "Execution")},
 			"keycloak_authentication_execution_config": {Tok: makeResource(authenticationMod, "ExecutionConfig")},

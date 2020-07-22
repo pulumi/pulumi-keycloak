@@ -43,6 +43,10 @@ export class CustomUserFederation extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The parent_id of the generated component. will use realm_id if not specified.
+     */
+    public readonly parentId!: pulumi.Output<string | undefined>;
+    /**
      * Priority of this provider when looking up users. Lower values are first.
      */
     public readonly priority!: pulumi.Output<number | undefined>;
@@ -52,7 +56,7 @@ export class CustomUserFederation extends pulumi.CustomResource {
      */
     public readonly providerId!: pulumi.Output<string>;
     /**
-     * The realm this provider will provide user federation for.
+     * The realm (name) this provider will provide user federation for.
      */
     public readonly realmId!: pulumi.Output<string>;
 
@@ -72,6 +76,7 @@ export class CustomUserFederation extends pulumi.CustomResource {
             inputs["config"] = state ? state.config : undefined;
             inputs["enabled"] = state ? state.enabled : undefined;
             inputs["name"] = state ? state.name : undefined;
+            inputs["parentId"] = state ? state.parentId : undefined;
             inputs["priority"] = state ? state.priority : undefined;
             inputs["providerId"] = state ? state.providerId : undefined;
             inputs["realmId"] = state ? state.realmId : undefined;
@@ -87,6 +92,7 @@ export class CustomUserFederation extends pulumi.CustomResource {
             inputs["config"] = args ? args.config : undefined;
             inputs["enabled"] = args ? args.enabled : undefined;
             inputs["name"] = args ? args.name : undefined;
+            inputs["parentId"] = args ? args.parentId : undefined;
             inputs["priority"] = args ? args.priority : undefined;
             inputs["providerId"] = args ? args.providerId : undefined;
             inputs["realmId"] = args ? args.realmId : undefined;
@@ -117,6 +123,10 @@ export interface CustomUserFederationState {
      */
     readonly name?: pulumi.Input<string>;
     /**
+     * The parent_id of the generated component. will use realm_id if not specified.
+     */
+    readonly parentId?: pulumi.Input<string>;
+    /**
      * Priority of this provider when looking up users. Lower values are first.
      */
     readonly priority?: pulumi.Input<number>;
@@ -126,7 +136,7 @@ export interface CustomUserFederationState {
      */
     readonly providerId?: pulumi.Input<string>;
     /**
-     * The realm this provider will provide user federation for.
+     * The realm (name) this provider will provide user federation for.
      */
     readonly realmId?: pulumi.Input<string>;
 }
@@ -146,6 +156,10 @@ export interface CustomUserFederationArgs {
      */
     readonly name?: pulumi.Input<string>;
     /**
+     * The parent_id of the generated component. will use realm_id if not specified.
+     */
+    readonly parentId?: pulumi.Input<string>;
+    /**
      * Priority of this provider when looking up users. Lower values are first.
      */
     readonly priority?: pulumi.Input<number>;
@@ -155,7 +169,7 @@ export interface CustomUserFederationArgs {
      */
     readonly providerId: pulumi.Input<string>;
     /**
-     * The realm this provider will provide user federation for.
+     * The realm (name) this provider will provide user federation for.
      */
     readonly realmId: pulumi.Input<string>;
 }

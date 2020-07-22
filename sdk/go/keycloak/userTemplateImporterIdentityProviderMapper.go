@@ -13,6 +13,7 @@ import (
 type UserTemplateImporterIdentityProviderMapper struct {
 	pulumi.CustomResourceState
 
+	ExtraConfig pulumi.MapOutput `pulumi:"extraConfig"`
 	// IDP Alias
 	IdentityProviderAlias pulumi.StringOutput `pulumi:"identityProviderAlias"`
 	// IDP Mapper Name
@@ -57,6 +58,7 @@ func GetUserTemplateImporterIdentityProviderMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserTemplateImporterIdentityProviderMapper resources.
 type userTemplateImporterIdentityProviderMapperState struct {
+	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
 	// IDP Alias
 	IdentityProviderAlias *string `pulumi:"identityProviderAlias"`
 	// IDP Mapper Name
@@ -68,6 +70,7 @@ type userTemplateImporterIdentityProviderMapperState struct {
 }
 
 type UserTemplateImporterIdentityProviderMapperState struct {
+	ExtraConfig pulumi.MapInput
 	// IDP Alias
 	IdentityProviderAlias pulumi.StringPtrInput
 	// IDP Mapper Name
@@ -83,6 +86,7 @@ func (UserTemplateImporterIdentityProviderMapperState) ElementType() reflect.Typ
 }
 
 type userTemplateImporterIdentityProviderMapperArgs struct {
+	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
 	// IDP Alias
 	IdentityProviderAlias string `pulumi:"identityProviderAlias"`
 	// IDP Mapper Name
@@ -95,6 +99,7 @@ type userTemplateImporterIdentityProviderMapperArgs struct {
 
 // The set of arguments for constructing a UserTemplateImporterIdentityProviderMapper resource.
 type UserTemplateImporterIdentityProviderMapperArgs struct {
+	ExtraConfig pulumi.MapInput
 	// IDP Alias
 	IdentityProviderAlias pulumi.StringInput
 	// IDP Mapper Name

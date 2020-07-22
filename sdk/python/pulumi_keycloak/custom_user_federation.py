@@ -20,6 +20,10 @@ class CustomUserFederation(pulumi.CustomResource):
     """
     Display name of the provider when displayed in the console.
     """
+    parent_id: pulumi.Output[str]
+    """
+    The parent_id of the generated component. will use realm_id if not specified.
+    """
     priority: pulumi.Output[float]
     """
     Priority of this provider when looking up users. Lower values are first.
@@ -31,19 +35,20 @@ class CustomUserFederation(pulumi.CustomResource):
     """
     realm_id: pulumi.Output[str]
     """
-    The realm this provider will provide user federation for.
+    The realm (name) this provider will provide user federation for.
     """
-    def __init__(__self__, resource_name, opts=None, cache_policy=None, config=None, enabled=None, name=None, priority=None, provider_id=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, cache_policy=None, config=None, enabled=None, name=None, parent_id=None, priority=None, provider_id=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a CustomUserFederation resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] enabled: When false, this provider will not be used when performing queries for users.
         :param pulumi.Input[str] name: Display name of the provider when displayed in the console.
+        :param pulumi.Input[str] parent_id: The parent_id of the generated component. will use realm_id if not specified.
         :param pulumi.Input[float] priority: Priority of this provider when looking up users. Lower values are first.
         :param pulumi.Input[str] provider_id: The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
                interface
-        :param pulumi.Input[str] realm_id: The realm this provider will provide user federation for.
+        :param pulumi.Input[str] realm_id: The realm (name) this provider will provide user federation for.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -66,6 +71,7 @@ class CustomUserFederation(pulumi.CustomResource):
             __props__['config'] = config
             __props__['enabled'] = enabled
             __props__['name'] = name
+            __props__['parent_id'] = parent_id
             __props__['priority'] = priority
             if provider_id is None:
                 raise TypeError("Missing required property 'provider_id'")
@@ -80,7 +86,7 @@ class CustomUserFederation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, cache_policy=None, config=None, enabled=None, name=None, priority=None, provider_id=None, realm_id=None):
+    def get(resource_name, id, opts=None, cache_policy=None, config=None, enabled=None, name=None, parent_id=None, priority=None, provider_id=None, realm_id=None):
         """
         Get an existing CustomUserFederation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -90,10 +96,11 @@ class CustomUserFederation(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] enabled: When false, this provider will not be used when performing queries for users.
         :param pulumi.Input[str] name: Display name of the provider when displayed in the console.
+        :param pulumi.Input[str] parent_id: The parent_id of the generated component. will use realm_id if not specified.
         :param pulumi.Input[float] priority: Priority of this provider when looking up users. Lower values are first.
         :param pulumi.Input[str] provider_id: The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
                interface
-        :param pulumi.Input[str] realm_id: The realm this provider will provide user federation for.
+        :param pulumi.Input[str] realm_id: The realm (name) this provider will provide user federation for.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -103,6 +110,7 @@ class CustomUserFederation(pulumi.CustomResource):
         __props__["config"] = config
         __props__["enabled"] = enabled
         __props__["name"] = name
+        __props__["parent_id"] = parent_id
         __props__["priority"] = priority
         __props__["provider_id"] = provider_id
         __props__["realm_id"] = realm_id

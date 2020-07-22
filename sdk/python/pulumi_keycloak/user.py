@@ -80,7 +80,7 @@ class User(pulumi.CustomResource):
         The **federated_identities** object supports the following:
 
           * `identityProvider` (`pulumi.Input[str]`)
-          * `userId` (`pulumi.Input[str]`)
+          * `user_id` (`pulumi.Input[str]`)
           * `userName` (`pulumi.Input[str]`)
 
         The **initial_password** object supports the following:
@@ -138,7 +138,7 @@ class User(pulumi.CustomResource):
         The **federated_identities** object supports the following:
 
           * `identityProvider` (`pulumi.Input[str]`)
-          * `userId` (`pulumi.Input[str]`)
+          * `user_id` (`pulumi.Input[str]`)
           * `userName` (`pulumi.Input[str]`)
 
         The **initial_password** object supports the following:
