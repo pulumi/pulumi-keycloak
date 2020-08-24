@@ -5,19 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['RealmEvents']
 
 
 class RealmEvents(pulumi.CustomResource):
-    admin_events_details_enabled: pulumi.Output[bool]
-    admin_events_enabled: pulumi.Output[bool]
-    enabled_event_types: pulumi.Output[list]
-    events_enabled: pulumi.Output[bool]
-    events_expiration: pulumi.Output[float]
-    events_listeners: pulumi.Output[list]
-    realm_id: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, admin_events_details_enabled=None, admin_events_enabled=None, enabled_event_types=None, events_enabled=None, events_expiration=None, events_listeners=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 admin_events_details_enabled: Optional[pulumi.Input[bool]] = None,
+                 admin_events_enabled: Optional[pulumi.Input[bool]] = None,
+                 enabled_event_types: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 events_enabled: Optional[pulumi.Input[bool]] = None,
+                 events_expiration: Optional[pulumi.Input[float]] = None,
+                 events_listeners: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         ## # RealmEvents
 
@@ -69,7 +76,7 @@ class RealmEvents(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -91,13 +98,22 @@ class RealmEvents(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, admin_events_details_enabled=None, admin_events_enabled=None, enabled_event_types=None, events_enabled=None, events_expiration=None, events_listeners=None, realm_id=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            admin_events_details_enabled: Optional[pulumi.Input[bool]] = None,
+            admin_events_enabled: Optional[pulumi.Input[bool]] = None,
+            enabled_event_types: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            events_enabled: Optional[pulumi.Input[bool]] = None,
+            events_expiration: Optional[pulumi.Input[float]] = None,
+            events_listeners: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            realm_id: Optional[pulumi.Input[str]] = None) -> 'RealmEvents':
         """
         Get an existing RealmEvents resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -113,8 +129,44 @@ class RealmEvents(pulumi.CustomResource):
         __props__["realm_id"] = realm_id
         return RealmEvents(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="adminEventsDetailsEnabled")
+    def admin_events_details_enabled(self) -> Optional[bool]:
+        return pulumi.get(self, "admin_events_details_enabled")
+
+    @property
+    @pulumi.getter(name="adminEventsEnabled")
+    def admin_events_enabled(self) -> Optional[bool]:
+        return pulumi.get(self, "admin_events_enabled")
+
+    @property
+    @pulumi.getter(name="enabledEventTypes")
+    def enabled_event_types(self) -> Optional[List[str]]:
+        return pulumi.get(self, "enabled_event_types")
+
+    @property
+    @pulumi.getter(name="eventsEnabled")
+    def events_enabled(self) -> Optional[bool]:
+        return pulumi.get(self, "events_enabled")
+
+    @property
+    @pulumi.getter(name="eventsExpiration")
+    def events_expiration(self) -> Optional[float]:
+        return pulumi.get(self, "events_expiration")
+
+    @property
+    @pulumi.getter(name="eventsListeners")
+    def events_listeners(self) -> Optional[List[str]]:
+        return pulumi.get(self, "events_listeners")
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> str:
+        return pulumi.get(self, "realm_id")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

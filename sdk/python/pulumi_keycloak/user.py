@@ -5,22 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['User']
 
 
 class User(pulumi.CustomResource):
-    attributes: pulumi.Output[dict]
-    email: pulumi.Output[str]
-    email_verified: pulumi.Output[bool]
-    enabled: pulumi.Output[bool]
-    federated_identities: pulumi.Output[list]
-    first_name: pulumi.Output[str]
-    initial_password: pulumi.Output[dict]
-    last_name: pulumi.Output[str]
-    realm_id: pulumi.Output[str]
-    username: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, attributes=None, email=None, email_verified=None, enabled=None, federated_identities=None, first_name=None, initial_password=None, last_name=None, realm_id=None, username=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 email: Optional[pulumi.Input[str]] = None,
+                 email_verified: Optional[pulumi.Input[bool]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 federated_identities: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['UserFederatedIdentityArgs']]]]] = None,
+                 first_name: Optional[pulumi.Input[str]] = None,
+                 initial_password: Optional[pulumi.Input[pulumi.InputType['UserInitialPasswordArgs']]] = None,
+                 last_name: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         ## # User
 
@@ -50,10 +59,10 @@ class User(pulumi.CustomResource):
             email="alice@domain.com",
             enabled=True,
             first_name="Alice",
-            initial_password={
-                "temporary": True,
-                "value": "some password",
-            },
+            initial_password=keycloak.UserInitialPasswordArgs(
+                temporary=True,
+                value="some password",
+            ),
             last_name="Aliceberg",
             realm_id=realm.id,
             username="alice")
@@ -76,17 +85,6 @@ class User(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        The **federated_identities** object supports the following:
-
-          * `identityProvider` (`pulumi.Input[str]`)
-          * `user_id` (`pulumi.Input[str]`)
-          * `userName` (`pulumi.Input[str]`)
-
-        The **initial_password** object supports the following:
-
-          * `temporary` (`pulumi.Input[bool]`)
-          * `value` (`pulumi.Input[str]`)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -99,7 +97,7 @@ class User(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -126,25 +124,26 @@ class User(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, attributes=None, email=None, email_verified=None, enabled=None, federated_identities=None, first_name=None, initial_password=None, last_name=None, realm_id=None, username=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            email: Optional[pulumi.Input[str]] = None,
+            email_verified: Optional[pulumi.Input[bool]] = None,
+            enabled: Optional[pulumi.Input[bool]] = None,
+            federated_identities: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['UserFederatedIdentityArgs']]]]] = None,
+            first_name: Optional[pulumi.Input[str]] = None,
+            initial_password: Optional[pulumi.Input[pulumi.InputType['UserInitialPasswordArgs']]] = None,
+            last_name: Optional[pulumi.Input[str]] = None,
+            realm_id: Optional[pulumi.Input[str]] = None,
+            username: Optional[pulumi.Input[str]] = None) -> 'User':
         """
         Get an existing User resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        The **federated_identities** object supports the following:
-
-          * `identityProvider` (`pulumi.Input[str]`)
-          * `user_id` (`pulumi.Input[str]`)
-          * `userName` (`pulumi.Input[str]`)
-
-        The **initial_password** object supports the following:
-
-          * `temporary` (`pulumi.Input[bool]`)
-          * `value` (`pulumi.Input[str]`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -162,8 +161,59 @@ class User(pulumi.CustomResource):
         __props__["username"] = username
         return User(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def attributes(self) -> Optional[Mapping[str, Any]]:
+        return pulumi.get(self, "attributes")
+
+    @property
+    @pulumi.getter
+    def email(self) -> Optional[str]:
+        return pulumi.get(self, "email")
+
+    @property
+    @pulumi.getter(name="emailVerified")
+    def email_verified(self) -> Optional[bool]:
+        return pulumi.get(self, "email_verified")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="federatedIdentities")
+    def federated_identities(self) -> Optional[List['outputs.UserFederatedIdentity']]:
+        return pulumi.get(self, "federated_identities")
+
+    @property
+    @pulumi.getter(name="firstName")
+    def first_name(self) -> Optional[str]:
+        return pulumi.get(self, "first_name")
+
+    @property
+    @pulumi.getter(name="initialPassword")
+    def initial_password(self) -> Optional['outputs.UserInitialPassword']:
+        return pulumi.get(self, "initial_password")
+
+    @property
+    @pulumi.getter(name="lastName")
+    def last_name(self) -> Optional[str]:
+        return pulumi.get(self, "last_name")
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> str:
+        return pulumi.get(self, "realm_id")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        return pulumi.get(self, "username")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

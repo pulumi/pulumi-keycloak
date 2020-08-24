@@ -5,18 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['ClientScope']
 
 
 class ClientScope(pulumi.CustomResource):
-    consent_screen_text: pulumi.Output[str]
-    description: pulumi.Output[str]
-    gui_order: pulumi.Output[float]
-    include_in_token_scope: pulumi.Output[bool]
-    name: pulumi.Output[str]
-    realm_id: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, consent_screen_text=None, description=None, gui_order=None, include_in_token_scope=None, name=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 consent_screen_text: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 gui_order: Optional[pulumi.Input[float]] = None,
+                 include_in_token_scope: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         ## # openid.ClientScope
 
@@ -66,7 +73,7 @@ class ClientScope(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -87,13 +94,21 @@ class ClientScope(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, consent_screen_text=None, description=None, gui_order=None, include_in_token_scope=None, name=None, realm_id=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            consent_screen_text: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            gui_order: Optional[pulumi.Input[float]] = None,
+            include_in_token_scope: Optional[pulumi.Input[bool]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            realm_id: Optional[pulumi.Input[str]] = None) -> 'ClientScope':
         """
         Get an existing ClientScope resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -108,8 +123,39 @@ class ClientScope(pulumi.CustomResource):
         __props__["realm_id"] = realm_id
         return ClientScope(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="consentScreenText")
+    def consent_screen_text(self) -> Optional[str]:
+        return pulumi.get(self, "consent_screen_text")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="guiOrder")
+    def gui_order(self) -> Optional[float]:
+        return pulumi.get(self, "gui_order")
+
+    @property
+    @pulumi.getter(name="includeInTokenScope")
+    def include_in_token_scope(self) -> Optional[bool]:
+        return pulumi.get(self, "include_in_token_scope")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> str:
+        return pulumi.get(self, "realm_id")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

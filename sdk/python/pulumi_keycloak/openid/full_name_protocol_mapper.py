@@ -5,31 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['FullNameProtocolMapper']
 
 
 class FullNameProtocolMapper(pulumi.CustomResource):
-    add_to_access_token: pulumi.Output[bool]
-    add_to_id_token: pulumi.Output[bool]
-    add_to_userinfo: pulumi.Output[bool]
-    client_id: pulumi.Output[str]
-    """
-    The mapper's associated client. Cannot be used at the same time as client_scope_id.
-    """
-    client_scope_id: pulumi.Output[str]
-    """
-    The mapper's associated client scope. Cannot be used at the same time as client_id.
-    """
-    name: pulumi.Output[str]
-    """
-    A human-friendly name that will appear in the Keycloak console.
-    """
-    realm_id: pulumi.Output[str]
-    """
-    The realm id where the associated client or client scope exists.
-    """
-    def __init__(__self__, resource_name, opts=None, add_to_access_token=None, add_to_id_token=None, add_to_userinfo=None, client_id=None, client_scope_id=None, name=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 add_to_access_token: Optional[pulumi.Input[bool]] = None,
+                 add_to_id_token: Optional[pulumi.Input[bool]] = None,
+                 add_to_userinfo: Optional[pulumi.Input[bool]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 client_scope_id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         ## # openid.FullNameProtocolMapper
 
@@ -106,7 +101,7 @@ class FullNameProtocolMapper(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -128,13 +123,22 @@ class FullNameProtocolMapper(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, add_to_access_token=None, add_to_id_token=None, add_to_userinfo=None, client_id=None, client_scope_id=None, name=None, realm_id=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            add_to_access_token: Optional[pulumi.Input[bool]] = None,
+            add_to_id_token: Optional[pulumi.Input[bool]] = None,
+            add_to_userinfo: Optional[pulumi.Input[bool]] = None,
+            client_id: Optional[pulumi.Input[str]] = None,
+            client_scope_id: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            realm_id: Optional[pulumi.Input[str]] = None) -> 'FullNameProtocolMapper':
         """
         Get an existing FullNameProtocolMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
         :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
@@ -154,8 +158,56 @@ class FullNameProtocolMapper(pulumi.CustomResource):
         __props__["realm_id"] = realm_id
         return FullNameProtocolMapper(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="addToAccessToken")
+    def add_to_access_token(self) -> Optional[bool]:
+        return pulumi.get(self, "add_to_access_token")
+
+    @property
+    @pulumi.getter(name="addToIdToken")
+    def add_to_id_token(self) -> Optional[bool]:
+        return pulumi.get(self, "add_to_id_token")
+
+    @property
+    @pulumi.getter(name="addToUserinfo")
+    def add_to_userinfo(self) -> Optional[bool]:
+        return pulumi.get(self, "add_to_userinfo")
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[str]:
+        """
+        The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="clientScopeId")
+    def client_scope_id(self) -> Optional[str]:
+        """
+        The mapper's associated client scope. Cannot be used at the same time as client_id.
+        """
+        return pulumi.get(self, "client_scope_id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A human-friendly name that will appear in the Keycloak console.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> str:
+        """
+        The realm id where the associated client or client scope exists.
+        """
+        return pulumi.get(self, "realm_id")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,37 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['HardcodedAttributeIdentityProviderMapper']
 
 
 class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
-    attribute_name: pulumi.Output[str]
-    """
-    OIDC Claim
-    """
-    attribute_value: pulumi.Output[str]
-    """
-    User Attribute
-    """
-    extra_config: pulumi.Output[dict]
-    identity_provider_alias: pulumi.Output[str]
-    """
-    IDP Alias
-    """
-    name: pulumi.Output[str]
-    """
-    IDP Mapper Name
-    """
-    realm: pulumi.Output[str]
-    """
-    Realm Name
-    """
-    user_session: pulumi.Output[bool]
-    """
-    Is Attribute Related To a User Session
-    """
-    def __init__(__self__, resource_name, opts=None, attribute_name=None, attribute_value=None, extra_config=None, identity_provider_alias=None, name=None, realm=None, user_session=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 attribute_name: Optional[pulumi.Input[str]] = None,
+                 attribute_value: Optional[pulumi.Input[str]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 identity_provider_alias: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm: Optional[pulumi.Input[str]] = None,
+                 user_session: Optional[pulumi.Input[bool]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a HardcodedAttributeIdentityProviderMapper resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -58,7 +47,7 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -84,13 +73,22 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, attribute_name=None, attribute_value=None, extra_config=None, identity_provider_alias=None, name=None, realm=None, user_session=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            attribute_name: Optional[pulumi.Input[str]] = None,
+            attribute_value: Optional[pulumi.Input[str]] = None,
+            extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            identity_provider_alias: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            realm: Optional[pulumi.Input[str]] = None,
+            user_session: Optional[pulumi.Input[bool]] = None) -> 'HardcodedAttributeIdentityProviderMapper':
         """
         Get an existing HardcodedAttributeIdentityProviderMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] attribute_name: OIDC Claim
         :param pulumi.Input[str] attribute_value: User Attribute
@@ -112,8 +110,62 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
         __props__["user_session"] = user_session
         return HardcodedAttributeIdentityProviderMapper(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="attributeName")
+    def attribute_name(self) -> Optional[str]:
+        """
+        OIDC Claim
+        """
+        return pulumi.get(self, "attribute_name")
+
+    @property
+    @pulumi.getter(name="attributeValue")
+    def attribute_value(self) -> Optional[str]:
+        """
+        User Attribute
+        """
+        return pulumi.get(self, "attribute_value")
+
+    @property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> Optional[Mapping[str, Any]]:
+        return pulumi.get(self, "extra_config")
+
+    @property
+    @pulumi.getter(name="identityProviderAlias")
+    def identity_provider_alias(self) -> str:
+        """
+        IDP Alias
+        """
+        return pulumi.get(self, "identity_provider_alias")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        IDP Mapper Name
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def realm(self) -> str:
+        """
+        Realm Name
+        """
+        return pulumi.get(self, "realm")
+
+    @property
+    @pulumi.getter(name="userSession")
+    def user_session(self) -> bool:
+        """
+        Is Attribute Related To a User Session
+        """
+        return pulumi.get(self, "user_session")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

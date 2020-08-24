@@ -5,114 +5,39 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['GoogleIdentityProvider']
 
 
 class GoogleIdentityProvider(pulumi.CustomResource):
-    accepts_prompt_none_forward_from_client: pulumi.Output[bool]
-    """
-    This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
-    case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
-    returned to client, but the request with prompt=none will be forwarded to this identity provider.
-    """
-    add_read_token_role_on_create: pulumi.Output[bool]
-    """
-    Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
-    """
-    alias: pulumi.Output[str]
-    """
-    The alias uniquely identifies an identity provider and it is also used to build the redirect uri. In case of google this
-    is computed and always google
-    """
-    authenticate_by_default: pulumi.Output[bool]
-    """
-    Enable/disable authenticate users by default.
-    """
-    client_id: pulumi.Output[str]
-    """
-    Client ID.
-    """
-    client_secret: pulumi.Output[str]
-    """
-    Client Secret.
-    """
-    default_scopes: pulumi.Output[str]
-    """
-    The scopes to be sent when asking for authorization. See the documentation for possible values, separator and default
-    value'. Default: 'openid profile email'
-    """
-    disable_user_info: pulumi.Output[bool]
-    """
-    Disable usage of User Info service to obtain additional user information? Default is to use this OIDC service.
-    """
-    display_name: pulumi.Output[str]
-    """
-    Not used by this provider, Will be implicitly Google
-    """
-    enabled: pulumi.Output[bool]
-    """
-    Enable/disable this identity provider.
-    """
-    extra_config: pulumi.Output[dict]
-    first_broker_login_flow_alias: pulumi.Output[str]
-    """
-    Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
-    that there is not yet existing Keycloak account linked with the authenticated identity provider account.
-    """
-    hide_on_login_page: pulumi.Output[bool]
-    """
-    Hide On Login Page.
-    """
-    hosted_domain: pulumi.Output[str]
-    """
-    Set 'hd' query parameter when logging in with Google. Google will list accounts only for this domain. Keycloak validates
-    that the returned identity token has a claim for this domain. When '*' is entered, any hosted account can be used.
-    """
-    internal_id: pulumi.Output[str]
-    """
-    Internal Identity Provider Id
-    """
-    link_only: pulumi.Output[bool]
-    """
-    If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
-    want to allow login from the provider, but want to integrate with a provider
-    """
-    post_broker_login_flow_alias: pulumi.Output[str]
-    """
-    Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-    additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-    you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
-    authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
-    """
-    provider_id: pulumi.Output[str]
-    """
-    provider id, is always google, unless you have a extended custom implementation
-    """
-    realm: pulumi.Output[str]
-    """
-    Realm Name
-    """
-    request_refresh_token: pulumi.Output[bool]
-    """
-    Set 'access_type' query parameter to 'offline' when redirecting to google authorization endpoint, to get a refresh token
-    back. Useful if planning to use Token Exchange to retrieve Google token to access Google APIs when the user is not at
-    the browser.
-    """
-    store_token: pulumi.Output[bool]
-    """
-    Enable/disable if tokens must be stored after authenticating users.
-    """
-    trust_email: pulumi.Output[bool]
-    """
-    If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
-    """
-    use_user_ip_param: pulumi.Output[bool]
-    """
-    Set 'userIp' query parameter when invoking on Google's User Info service. This will use the user's ip address. Useful if
-    Google is throttling access to the User Info service.
-    """
-    def __init__(__self__, resource_name, opts=None, accepts_prompt_none_forward_from_client=None, add_read_token_role_on_create=None, authenticate_by_default=None, client_id=None, client_secret=None, default_scopes=None, disable_user_info=None, enabled=None, extra_config=None, first_broker_login_flow_alias=None, hide_on_login_page=None, hosted_domain=None, link_only=None, post_broker_login_flow_alias=None, provider_id=None, realm=None, request_refresh_token=None, store_token=None, trust_email=None, use_user_ip_param=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 accepts_prompt_none_forward_from_client: Optional[pulumi.Input[bool]] = None,
+                 add_read_token_role_on_create: Optional[pulumi.Input[bool]] = None,
+                 authenticate_by_default: Optional[pulumi.Input[bool]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 client_secret: Optional[pulumi.Input[str]] = None,
+                 default_scopes: Optional[pulumi.Input[str]] = None,
+                 disable_user_info: Optional[pulumi.Input[bool]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+                 hide_on_login_page: Optional[pulumi.Input[bool]] = None,
+                 hosted_domain: Optional[pulumi.Input[str]] = None,
+                 link_only: Optional[pulumi.Input[bool]] = None,
+                 post_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+                 provider_id: Optional[pulumi.Input[str]] = None,
+                 realm: Optional[pulumi.Input[str]] = None,
+                 request_refresh_token: Optional[pulumi.Input[bool]] = None,
+                 store_token: Optional[pulumi.Input[bool]] = None,
+                 trust_email: Optional[pulumi.Input[bool]] = None,
+                 use_user_ip_param: Optional[pulumi.Input[bool]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a GoogleIdentityProvider resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -160,7 +85,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -202,13 +127,38 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, accepts_prompt_none_forward_from_client=None, add_read_token_role_on_create=None, alias=None, authenticate_by_default=None, client_id=None, client_secret=None, default_scopes=None, disable_user_info=None, display_name=None, enabled=None, extra_config=None, first_broker_login_flow_alias=None, hide_on_login_page=None, hosted_domain=None, internal_id=None, link_only=None, post_broker_login_flow_alias=None, provider_id=None, realm=None, request_refresh_token=None, store_token=None, trust_email=None, use_user_ip_param=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accepts_prompt_none_forward_from_client: Optional[pulumi.Input[bool]] = None,
+            add_read_token_role_on_create: Optional[pulumi.Input[bool]] = None,
+            alias: Optional[pulumi.Input[str]] = None,
+            authenticate_by_default: Optional[pulumi.Input[bool]] = None,
+            client_id: Optional[pulumi.Input[str]] = None,
+            client_secret: Optional[pulumi.Input[str]] = None,
+            default_scopes: Optional[pulumi.Input[str]] = None,
+            disable_user_info: Optional[pulumi.Input[bool]] = None,
+            display_name: Optional[pulumi.Input[str]] = None,
+            enabled: Optional[pulumi.Input[bool]] = None,
+            extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+            hide_on_login_page: Optional[pulumi.Input[bool]] = None,
+            hosted_domain: Optional[pulumi.Input[str]] = None,
+            internal_id: Optional[pulumi.Input[str]] = None,
+            link_only: Optional[pulumi.Input[bool]] = None,
+            post_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+            provider_id: Optional[pulumi.Input[str]] = None,
+            realm: Optional[pulumi.Input[str]] = None,
+            request_refresh_token: Optional[pulumi.Input[bool]] = None,
+            store_token: Optional[pulumi.Input[bool]] = None,
+            trust_email: Optional[pulumi.Input[bool]] = None,
+            use_user_ip_param: Optional[pulumi.Input[bool]] = None) -> 'GoogleIdentityProvider':
         """
         Get an existing GoogleIdentityProvider resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] accepts_prompt_none_forward_from_client: This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
                case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
@@ -275,8 +225,203 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         __props__["use_user_ip_param"] = use_user_ip_param
         return GoogleIdentityProvider(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="acceptsPromptNoneForwardFromClient")
+    def accepts_prompt_none_forward_from_client(self) -> Optional[bool]:
+        """
+        This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
+        case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
+        returned to client, but the request with prompt=none will be forwarded to this identity provider.
+        """
+        return pulumi.get(self, "accepts_prompt_none_forward_from_client")
+
+    @property
+    @pulumi.getter(name="addReadTokenRoleOnCreate")
+    def add_read_token_role_on_create(self) -> Optional[bool]:
+        """
+        Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+        """
+        return pulumi.get(self, "add_read_token_role_on_create")
+
+    @property
+    @pulumi.getter
+    def alias(self) -> str:
+        """
+        The alias uniquely identifies an identity provider and it is also used to build the redirect uri. In case of google this
+        is computed and always google
+        """
+        return pulumi.get(self, "alias")
+
+    @property
+    @pulumi.getter(name="authenticateByDefault")
+    def authenticate_by_default(self) -> Optional[bool]:
+        """
+        Enable/disable authenticate users by default.
+        """
+        return pulumi.get(self, "authenticate_by_default")
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> str:
+        """
+        Client ID.
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> str:
+        """
+        Client Secret.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @property
+    @pulumi.getter(name="defaultScopes")
+    def default_scopes(self) -> Optional[str]:
+        """
+        The scopes to be sent when asking for authorization. See the documentation for possible values, separator and default
+        value'. Default: 'openid profile email'
+        """
+        return pulumi.get(self, "default_scopes")
+
+    @property
+    @pulumi.getter(name="disableUserInfo")
+    def disable_user_info(self) -> Optional[bool]:
+        """
+        Disable usage of User Info service to obtain additional user information? Default is to use this OIDC service.
+        """
+        return pulumi.get(self, "disable_user_info")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        Not used by this provider, Will be implicitly Google
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Enable/disable this identity provider.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> Optional[Mapping[str, Any]]:
+        return pulumi.get(self, "extra_config")
+
+    @property
+    @pulumi.getter(name="firstBrokerLoginFlowAlias")
+    def first_broker_login_flow_alias(self) -> Optional[str]:
+        """
+        Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+        that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+        """
+        return pulumi.get(self, "first_broker_login_flow_alias")
+
+    @property
+    @pulumi.getter(name="hideOnLoginPage")
+    def hide_on_login_page(self) -> Optional[bool]:
+        """
+        Hide On Login Page.
+        """
+        return pulumi.get(self, "hide_on_login_page")
+
+    @property
+    @pulumi.getter(name="hostedDomain")
+    def hosted_domain(self) -> Optional[str]:
+        """
+        Set 'hd' query parameter when logging in with Google. Google will list accounts only for this domain. Keycloak validates
+        that the returned identity token has a claim for this domain. When '*' is entered, any hosted account can be used.
+        """
+        return pulumi.get(self, "hosted_domain")
+
+    @property
+    @pulumi.getter(name="internalId")
+    def internal_id(self) -> str:
+        """
+        Internal Identity Provider Id
+        """
+        return pulumi.get(self, "internal_id")
+
+    @property
+    @pulumi.getter(name="linkOnly")
+    def link_only(self) -> Optional[bool]:
+        """
+        If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
+        want to allow login from the provider, but want to integrate with a provider
+        """
+        return pulumi.get(self, "link_only")
+
+    @property
+    @pulumi.getter(name="postBrokerLoginFlowAlias")
+    def post_broker_login_flow_alias(self) -> Optional[str]:
+        """
+        Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
+        additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+        you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+        authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+        """
+        return pulumi.get(self, "post_broker_login_flow_alias")
+
+    @property
+    @pulumi.getter(name="providerId")
+    def provider_id(self) -> Optional[str]:
+        """
+        provider id, is always google, unless you have a extended custom implementation
+        """
+        return pulumi.get(self, "provider_id")
+
+    @property
+    @pulumi.getter
+    def realm(self) -> str:
+        """
+        Realm Name
+        """
+        return pulumi.get(self, "realm")
+
+    @property
+    @pulumi.getter(name="requestRefreshToken")
+    def request_refresh_token(self) -> Optional[bool]:
+        """
+        Set 'access_type' query parameter to 'offline' when redirecting to google authorization endpoint, to get a refresh token
+        back. Useful if planning to use Token Exchange to retrieve Google token to access Google APIs when the user is not at
+        the browser.
+        """
+        return pulumi.get(self, "request_refresh_token")
+
+    @property
+    @pulumi.getter(name="storeToken")
+    def store_token(self) -> Optional[bool]:
+        """
+        Enable/disable if tokens must be stored after authenticating users.
+        """
+        return pulumi.get(self, "store_token")
+
+    @property
+    @pulumi.getter(name="trustEmail")
+    def trust_email(self) -> Optional[bool]:
+        """
+        If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+        """
+        return pulumi.get(self, "trust_email")
+
+    @property
+    @pulumi.getter(name="useUserIpParam")
+    def use_user_ip_param(self) -> Optional[bool]:
+        """
+        Set 'userIp' query parameter when invoking on Google's User Info service. This will use the user's ip address. Useful if
+        Google is throttling access to the User Info service.
+        """
+        return pulumi.get(self, "use_user_ip_param")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

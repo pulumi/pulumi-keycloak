@@ -5,45 +5,28 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['IdentityProviderTokenExchangeScopePermission']
 
 
 class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
-    authorization_idp_resource_id: pulumi.Output[str]
-    """
-    Resource id representing the identity provider, this automatically created by keycloak
-    """
-    authorization_resource_server_id: pulumi.Output[str]
-    """
-    Resource server id representing the realm management client on which this permission is managed
-    """
-    authorization_token_exchange_scope_permission_id: pulumi.Output[str]
-    """
-    Permission id representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id',
-    this automatically created by keycloak, the policy id will be set on this permission
-    """
-    clients: pulumi.Output[list]
-    """
-    Ids of the clients for which a policy will be created and set on scope based token exchange permission
-    """
-    policy_id: pulumi.Output[str]
-    """
-    Policy id that will be set on the scope based token exchange permission automatically created by enabling permissions on
-    the reference identity provider
-    """
-    policy_type: pulumi.Output[str]
-    """
-    Type of policy that is created. At the moment only 'client' type is supported
-    """
-    provider_alias: pulumi.Output[str]
-    realm_id: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, clients=None, policy_type=None, provider_alias=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 clients: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 policy_type: Optional[pulumi.Input[str]] = None,
+                 provider_alias: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a IdentityProviderTokenExchangeScopePermission resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] clients: Ids of the clients for which a policy will be created and set on scope based token exchange permission
+        :param pulumi.Input[List[pulumi.Input[str]]] clients: Ids of the clients for which a policy will be created and set on scope based token exchange permission
         :param pulumi.Input[str] policy_type: Type of policy that is created. At the moment only 'client' type is supported
         """
         if __name__ is not None:
@@ -57,7 +40,7 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -84,19 +67,29 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, authorization_idp_resource_id=None, authorization_resource_server_id=None, authorization_token_exchange_scope_permission_id=None, clients=None, policy_id=None, policy_type=None, provider_alias=None, realm_id=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            authorization_idp_resource_id: Optional[pulumi.Input[str]] = None,
+            authorization_resource_server_id: Optional[pulumi.Input[str]] = None,
+            authorization_token_exchange_scope_permission_id: Optional[pulumi.Input[str]] = None,
+            clients: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            policy_id: Optional[pulumi.Input[str]] = None,
+            policy_type: Optional[pulumi.Input[str]] = None,
+            provider_alias: Optional[pulumi.Input[str]] = None,
+            realm_id: Optional[pulumi.Input[str]] = None) -> 'IdentityProviderTokenExchangeScopePermission':
         """
         Get an existing IdentityProviderTokenExchangeScopePermission resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] authorization_idp_resource_id: Resource id representing the identity provider, this automatically created by keycloak
         :param pulumi.Input[str] authorization_resource_server_id: Resource server id representing the realm management client on which this permission is managed
         :param pulumi.Input[str] authorization_token_exchange_scope_permission_id: Permission id representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id',
                this automatically created by keycloak, the policy id will be set on this permission
-        :param pulumi.Input[list] clients: Ids of the clients for which a policy will be created and set on scope based token exchange permission
+        :param pulumi.Input[List[pulumi.Input[str]]] clients: Ids of the clients for which a policy will be created and set on scope based token exchange permission
         :param pulumi.Input[str] policy_id: Policy id that will be set on the scope based token exchange permission automatically created by enabling permissions on
                the reference identity provider
         :param pulumi.Input[str] policy_type: Type of policy that is created. At the moment only 'client' type is supported
@@ -115,8 +108,69 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
         __props__["realm_id"] = realm_id
         return IdentityProviderTokenExchangeScopePermission(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="authorizationIdpResourceId")
+    def authorization_idp_resource_id(self) -> str:
+        """
+        Resource id representing the identity provider, this automatically created by keycloak
+        """
+        return pulumi.get(self, "authorization_idp_resource_id")
+
+    @property
+    @pulumi.getter(name="authorizationResourceServerId")
+    def authorization_resource_server_id(self) -> str:
+        """
+        Resource server id representing the realm management client on which this permission is managed
+        """
+        return pulumi.get(self, "authorization_resource_server_id")
+
+    @property
+    @pulumi.getter(name="authorizationTokenExchangeScopePermissionId")
+    def authorization_token_exchange_scope_permission_id(self) -> str:
+        """
+        Permission id representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id',
+        this automatically created by keycloak, the policy id will be set on this permission
+        """
+        return pulumi.get(self, "authorization_token_exchange_scope_permission_id")
+
+    @property
+    @pulumi.getter
+    def clients(self) -> List[str]:
+        """
+        Ids of the clients for which a policy will be created and set on scope based token exchange permission
+        """
+        return pulumi.get(self, "clients")
+
+    @property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> str:
+        """
+        Policy id that will be set on the scope based token exchange permission automatically created by enabling permissions on
+        the reference identity provider
+        """
+        return pulumi.get(self, "policy_id")
+
+    @property
+    @pulumi.getter(name="policyType")
+    def policy_type(self) -> Optional[str]:
+        """
+        Type of policy that is created. At the moment only 'client' type is supported
+        """
+        return pulumi.get(self, "policy_type")
+
+    @property
+    @pulumi.getter(name="providerAlias")
+    def provider_alias(self) -> str:
+        return pulumi.get(self, "provider_alias")
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> str:
+        return pulumi.get(self, "realm_id")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

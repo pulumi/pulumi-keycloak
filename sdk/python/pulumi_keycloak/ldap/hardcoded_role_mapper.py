@@ -5,28 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['HardcodedRoleMapper']
 
 
 class HardcodedRoleMapper(pulumi.CustomResource):
-    ldap_user_federation_id: pulumi.Output[str]
-    """
-    The ldap user federation provider to attach this mapper to.
-    """
-    name: pulumi.Output[str]
-    """
-    Display name of the mapper when displayed in the console.
-    """
-    realm_id: pulumi.Output[str]
-    """
-    The realm in which the ldap user federation provider exists.
-    """
-    role: pulumi.Output[str]
-    """
-    Role to grant to user.
-    """
-    def __init__(__self__, resource_name, opts=None, ldap_user_federation_id=None, name=None, realm_id=None, role=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         ## # ldap.HardcodedRoleMapper
 
@@ -87,7 +82,7 @@ class HardcodedRoleMapper(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -110,13 +105,19 @@ class HardcodedRoleMapper(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, ldap_user_federation_id=None, name=None, realm_id=None, role=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            realm_id: Optional[pulumi.Input[str]] = None,
+            role: Optional[pulumi.Input[str]] = None) -> 'HardcodedRoleMapper':
         """
         Get an existing HardcodedRoleMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
         :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
@@ -133,8 +134,41 @@ class HardcodedRoleMapper(pulumi.CustomResource):
         __props__["role"] = role
         return HardcodedRoleMapper(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="ldapUserFederationId")
+    def ldap_user_federation_id(self) -> str:
+        """
+        The ldap user federation provider to attach this mapper to.
+        """
+        return pulumi.get(self, "ldap_user_federation_id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Display name of the mapper when displayed in the console.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> str:
+        """
+        The realm in which the ldap user federation provider exists.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        Role to grant to user.
+        """
+        return pulumi.get(self, "role")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

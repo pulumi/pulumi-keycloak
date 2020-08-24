@@ -5,9 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
 
+__all__ = [
+    'GetGroupResult',
+    'AwaitableGetGroupResult',
+    'get_group',
+]
+
+@pulumi.output_type
 class GetGroupResult:
     """
     A collection of values returned by getGroup.
@@ -15,16 +22,33 @@ class GetGroupResult:
     def __init__(__self__, id=None, name=None, realm_id=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if realm_id and not isinstance(realm_id, str):
+            raise TypeError("Expected argument 'realm_id' to be a str")
+        pulumi.set(__self__, "realm_id", realm_id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if realm_id and not isinstance(realm_id, str):
-            raise TypeError("Expected argument 'realm_id' to be a str")
-        __self__.realm_id = realm_id
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> str:
+        return pulumi.get(self, "realm_id")
+
+
 class AwaitableGetGroupResult(GetGroupResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -35,31 +59,15 @@ class AwaitableGetGroupResult(GetGroupResult):
             name=self.name,
             realm_id=self.realm_id)
 
-def get_group(name=None,realm_id=None,opts=None):
+
+def get_group(name: Optional[str] = None,
+              realm_id: Optional[str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupResult:
     """
     ## # Group data source
 
     This data source can be used to fetch properties of a Keycloak group for
     usage with other resources, such as `GroupRoles`.
-
-    ### Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_keycloak as keycloak
-
-    realm = keycloak.Realm("realm",
-        enabled=True,
-        realm="my-realm")
-    offline_access = realm.id.apply(lambda id: keycloak.get_role(name="offline_access",
-        realm_id=id))
-    group = realm.id.apply(lambda id: keycloak.get_group(name="group",
-        realm_id=id))
-    group_roles = keycloak.GroupRoles("groupRoles",
-        group_id=group.id,
-        realm_id=realm.id,
-        roles=[offline_access.id])
-    ```
 
     ### Argument Reference
 
@@ -76,17 +84,15 @@ def get_group(name=None,realm_id=None,opts=None):
       other resources supported by this provider.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['realmId'] = realm_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('keycloak:index/getGroup:getGroup', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('keycloak:index/getGroup:getGroup', __args__, opts=opts, typ=GetGroupResult).value
 
     return AwaitableGetGroupResult(
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        realm_id=__ret__.get('realmId'))
+        id=__ret__.id,
+        name=__ret__.name,
+        realm_id=__ret__.realm_id)

@@ -5,39 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['CustomUserFederation']
 
 
 class CustomUserFederation(pulumi.CustomResource):
-    cache_policy: pulumi.Output[str]
-    config: pulumi.Output[dict]
-    enabled: pulumi.Output[bool]
-    """
-    When false, this provider will not be used when performing queries for users.
-    """
-    name: pulumi.Output[str]
-    """
-    Display name of the provider when displayed in the console.
-    """
-    parent_id: pulumi.Output[str]
-    """
-    The parent_id of the generated component. will use realm_id if not specified.
-    """
-    priority: pulumi.Output[float]
-    """
-    Priority of this provider when looking up users. Lower values are first.
-    """
-    provider_id: pulumi.Output[str]
-    """
-    The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
-    interface
-    """
-    realm_id: pulumi.Output[str]
-    """
-    The realm (name) this provider will provide user federation for.
-    """
-    def __init__(__self__, resource_name, opts=None, cache_policy=None, config=None, enabled=None, name=None, parent_id=None, priority=None, provider_id=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 cache_policy: Optional[pulumi.Input[str]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 parent_id: Optional[pulumi.Input[str]] = None,
+                 priority: Optional[pulumi.Input[float]] = None,
+                 provider_id: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a CustomUserFederation resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -61,7 +49,7 @@ class CustomUserFederation(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -86,13 +74,23 @@ class CustomUserFederation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, cache_policy=None, config=None, enabled=None, name=None, parent_id=None, priority=None, provider_id=None, realm_id=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cache_policy: Optional[pulumi.Input[str]] = None,
+            config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            enabled: Optional[pulumi.Input[bool]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            parent_id: Optional[pulumi.Input[str]] = None,
+            priority: Optional[pulumi.Input[float]] = None,
+            provider_id: Optional[pulumi.Input[str]] = None,
+            realm_id: Optional[pulumi.Input[str]] = None) -> 'CustomUserFederation':
         """
         Get an existing CustomUserFederation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] enabled: When false, this provider will not be used when performing queries for users.
         :param pulumi.Input[str] name: Display name of the provider when displayed in the console.
@@ -116,8 +114,68 @@ class CustomUserFederation(pulumi.CustomResource):
         __props__["realm_id"] = realm_id
         return CustomUserFederation(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="cachePolicy")
+    def cache_policy(self) -> Optional[str]:
+        return pulumi.get(self, "cache_policy")
+
+    @property
+    @pulumi.getter
+    def config(self) -> Optional[Mapping[str, Any]]:
+        return pulumi.get(self, "config")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        When false, this provider will not be used when performing queries for users.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Display name of the provider when displayed in the console.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="parentId")
+    def parent_id(self) -> Optional[str]:
+        """
+        The parent_id of the generated component. will use realm_id if not specified.
+        """
+        return pulumi.get(self, "parent_id")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[float]:
+        """
+        Priority of this provider when looking up users. Lower values are first.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter(name="providerId")
+    def provider_id(self) -> str:
+        """
+        The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
+        interface
+        """
+        return pulumi.get(self, "provider_id")
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> str:
+        """
+        The realm (name) this provider will provide user federation for.
+        """
+        return pulumi.get(self, "realm_id")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

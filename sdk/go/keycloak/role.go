@@ -78,7 +78,7 @@ import (
 // 			return err
 // 		}
 // 		_, err = keycloak.NewRole(ctx, "clientRole", &keycloak.RoleArgs{
-// 			ClientId:    pulumi.String(keycloak_client.Client.Id),
+// 			ClientId:    pulumi.Any(keycloak_client.Client.Id),
 // 			Description: pulumi.String("My Client Role"),
 // 			RealmId:     realm.ID(),
 // 		})
@@ -144,7 +144,7 @@ import (
 // 			return err
 // 		}
 // 		_, err = keycloak.NewRole(ctx, "clientRole", &keycloak.RoleArgs{
-// 			ClientId:    pulumi.String(keycloak_client.Client.Id),
+// 			ClientId:    pulumi.Any(keycloak_client.Client.Id),
 // 			Description: pulumi.String("My Client Role"),
 // 			RealmId:     realm.ID(),
 // 		})

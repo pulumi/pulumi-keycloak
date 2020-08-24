@@ -5,9 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
 
+__all__ = [
+    'GetClientResult',
+    'AwaitableGetClientResult',
+    'get_client',
+]
+
+@pulumi.output_type
 class GetClientResult:
     """
     A collection of values returned by getClient.
@@ -15,73 +23,185 @@ class GetClientResult:
     def __init__(__self__, access_type=None, authentication_flow_binding_overrides=None, authorization=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None):
         if access_type and not isinstance(access_type, str):
             raise TypeError("Expected argument 'access_type' to be a str")
-        __self__.access_type = access_type
+        pulumi.set(__self__, "access_type", access_type)
         if authentication_flow_binding_overrides and not isinstance(authentication_flow_binding_overrides, dict):
             raise TypeError("Expected argument 'authentication_flow_binding_overrides' to be a dict")
-        __self__.authentication_flow_binding_overrides = authentication_flow_binding_overrides
+        pulumi.set(__self__, "authentication_flow_binding_overrides", authentication_flow_binding_overrides)
         if authorization and not isinstance(authorization, dict):
             raise TypeError("Expected argument 'authorization' to be a dict")
-        __self__.authorization = authorization
+        pulumi.set(__self__, "authorization", authorization)
         if client_id and not isinstance(client_id, str):
             raise TypeError("Expected argument 'client_id' to be a str")
-        __self__.client_id = client_id
+        pulumi.set(__self__, "client_id", client_id)
         if client_secret and not isinstance(client_secret, str):
             raise TypeError("Expected argument 'client_secret' to be a str")
-        __self__.client_secret = client_secret
+        pulumi.set(__self__, "client_secret", client_secret)
         if consent_required and not isinstance(consent_required, bool):
             raise TypeError("Expected argument 'consent_required' to be a bool")
-        __self__.consent_required = consent_required
+        pulumi.set(__self__, "consent_required", consent_required)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        pulumi.set(__self__, "description", description)
         if direct_access_grants_enabled and not isinstance(direct_access_grants_enabled, bool):
             raise TypeError("Expected argument 'direct_access_grants_enabled' to be a bool")
-        __self__.direct_access_grants_enabled = direct_access_grants_enabled
+        pulumi.set(__self__, "direct_access_grants_enabled", direct_access_grants_enabled)
         if enabled and not isinstance(enabled, bool):
             raise TypeError("Expected argument 'enabled' to be a bool")
-        __self__.enabled = enabled
+        pulumi.set(__self__, "enabled", enabled)
         if full_scope_allowed and not isinstance(full_scope_allowed, bool):
             raise TypeError("Expected argument 'full_scope_allowed' to be a bool")
-        __self__.full_scope_allowed = full_scope_allowed
+        pulumi.set(__self__, "full_scope_allowed", full_scope_allowed)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if implicit_flow_enabled and not isinstance(implicit_flow_enabled, bool):
+            raise TypeError("Expected argument 'implicit_flow_enabled' to be a bool")
+        pulumi.set(__self__, "implicit_flow_enabled", implicit_flow_enabled)
+        if login_theme and not isinstance(login_theme, str):
+            raise TypeError("Expected argument 'login_theme' to be a str")
+        pulumi.set(__self__, "login_theme", login_theme)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if realm_id and not isinstance(realm_id, str):
+            raise TypeError("Expected argument 'realm_id' to be a str")
+        pulumi.set(__self__, "realm_id", realm_id)
+        if resource_server_id and not isinstance(resource_server_id, str):
+            raise TypeError("Expected argument 'resource_server_id' to be a str")
+        pulumi.set(__self__, "resource_server_id", resource_server_id)
+        if root_url and not isinstance(root_url, str):
+            raise TypeError("Expected argument 'root_url' to be a str")
+        pulumi.set(__self__, "root_url", root_url)
+        if service_account_user_id and not isinstance(service_account_user_id, str):
+            raise TypeError("Expected argument 'service_account_user_id' to be a str")
+        pulumi.set(__self__, "service_account_user_id", service_account_user_id)
+        if service_accounts_enabled and not isinstance(service_accounts_enabled, bool):
+            raise TypeError("Expected argument 'service_accounts_enabled' to be a bool")
+        pulumi.set(__self__, "service_accounts_enabled", service_accounts_enabled)
+        if standard_flow_enabled and not isinstance(standard_flow_enabled, bool):
+            raise TypeError("Expected argument 'standard_flow_enabled' to be a bool")
+        pulumi.set(__self__, "standard_flow_enabled", standard_flow_enabled)
+        if valid_redirect_uris and not isinstance(valid_redirect_uris, list):
+            raise TypeError("Expected argument 'valid_redirect_uris' to be a list")
+        pulumi.set(__self__, "valid_redirect_uris", valid_redirect_uris)
+        if web_origins and not isinstance(web_origins, list):
+            raise TypeError("Expected argument 'web_origins' to be a list")
+        pulumi.set(__self__, "web_origins", web_origins)
+
+    @property
+    @pulumi.getter(name="accessType")
+    def access_type(self) -> str:
+        return pulumi.get(self, "access_type")
+
+    @property
+    @pulumi.getter(name="authenticationFlowBindingOverrides")
+    def authentication_flow_binding_overrides(self) -> 'outputs.GetClientAuthenticationFlowBindingOverridesResult':
+        return pulumi.get(self, "authentication_flow_binding_overrides")
+
+    @property
+    @pulumi.getter
+    def authorization(self) -> 'outputs.GetClientAuthorizationResult':
+        return pulumi.get(self, "authorization")
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> str:
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> str:
+        return pulumi.get(self, "client_secret")
+
+    @property
+    @pulumi.getter(name="consentRequired")
+    def consent_required(self) -> bool:
+        return pulumi.get(self, "consent_required")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="directAccessGrantsEnabled")
+    def direct_access_grants_enabled(self) -> bool:
+        return pulumi.get(self, "direct_access_grants_enabled")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="fullScopeAllowed")
+    def full_scope_allowed(self) -> bool:
+        return pulumi.get(self, "full_scope_allowed")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if implicit_flow_enabled and not isinstance(implicit_flow_enabled, bool):
-            raise TypeError("Expected argument 'implicit_flow_enabled' to be a bool")
-        __self__.implicit_flow_enabled = implicit_flow_enabled
-        if login_theme and not isinstance(login_theme, str):
-            raise TypeError("Expected argument 'login_theme' to be a str")
-        __self__.login_theme = login_theme
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if realm_id and not isinstance(realm_id, str):
-            raise TypeError("Expected argument 'realm_id' to be a str")
-        __self__.realm_id = realm_id
-        if resource_server_id and not isinstance(resource_server_id, str):
-            raise TypeError("Expected argument 'resource_server_id' to be a str")
-        __self__.resource_server_id = resource_server_id
-        if root_url and not isinstance(root_url, str):
-            raise TypeError("Expected argument 'root_url' to be a str")
-        __self__.root_url = root_url
-        if service_account_user_id and not isinstance(service_account_user_id, str):
-            raise TypeError("Expected argument 'service_account_user_id' to be a str")
-        __self__.service_account_user_id = service_account_user_id
-        if service_accounts_enabled and not isinstance(service_accounts_enabled, bool):
-            raise TypeError("Expected argument 'service_accounts_enabled' to be a bool")
-        __self__.service_accounts_enabled = service_accounts_enabled
-        if standard_flow_enabled and not isinstance(standard_flow_enabled, bool):
-            raise TypeError("Expected argument 'standard_flow_enabled' to be a bool")
-        __self__.standard_flow_enabled = standard_flow_enabled
-        if valid_redirect_uris and not isinstance(valid_redirect_uris, list):
-            raise TypeError("Expected argument 'valid_redirect_uris' to be a list")
-        __self__.valid_redirect_uris = valid_redirect_uris
-        if web_origins and not isinstance(web_origins, list):
-            raise TypeError("Expected argument 'web_origins' to be a list")
-        __self__.web_origins = web_origins
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="implicitFlowEnabled")
+    def implicit_flow_enabled(self) -> bool:
+        return pulumi.get(self, "implicit_flow_enabled")
+
+    @property
+    @pulumi.getter(name="loginTheme")
+    def login_theme(self) -> str:
+        return pulumi.get(self, "login_theme")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> str:
+        return pulumi.get(self, "realm_id")
+
+    @property
+    @pulumi.getter(name="resourceServerId")
+    def resource_server_id(self) -> str:
+        return pulumi.get(self, "resource_server_id")
+
+    @property
+    @pulumi.getter(name="rootUrl")
+    def root_url(self) -> str:
+        return pulumi.get(self, "root_url")
+
+    @property
+    @pulumi.getter(name="serviceAccountUserId")
+    def service_account_user_id(self) -> str:
+        return pulumi.get(self, "service_account_user_id")
+
+    @property
+    @pulumi.getter(name="serviceAccountsEnabled")
+    def service_accounts_enabled(self) -> bool:
+        return pulumi.get(self, "service_accounts_enabled")
+
+    @property
+    @pulumi.getter(name="standardFlowEnabled")
+    def standard_flow_enabled(self) -> bool:
+        return pulumi.get(self, "standard_flow_enabled")
+
+    @property
+    @pulumi.getter(name="validRedirectUris")
+    def valid_redirect_uris(self) -> List[str]:
+        return pulumi.get(self, "valid_redirect_uris")
+
+    @property
+    @pulumi.getter(name="webOrigins")
+    def web_origins(self) -> List[str]:
+        return pulumi.get(self, "web_origins")
+
+
 class AwaitableGetClientResult(GetClientResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -111,7 +231,10 @@ class AwaitableGetClientResult(GetClientResult):
             valid_redirect_uris=self.valid_redirect_uris,
             web_origins=self.web_origins)
 
-def get_client(client_id=None,realm_id=None,opts=None):
+
+def get_client(client_id: Optional[str] = None,
+               realm_id: Optional[str] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientResult:
     """
     ## # openid.Client data source
 
@@ -142,36 +265,34 @@ def get_client(client_id=None,realm_id=None,opts=None):
     See the docs for the `openid.Client` resource for details on the exported attributes.
     """
     __args__ = dict()
-
-
     __args__['clientId'] = client_id
     __args__['realmId'] = realm_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('keycloak:openid/getClient:getClient', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('keycloak:openid/getClient:getClient', __args__, opts=opts, typ=GetClientResult).value
 
     return AwaitableGetClientResult(
-        access_type=__ret__.get('accessType'),
-        authentication_flow_binding_overrides=__ret__.get('authenticationFlowBindingOverrides'),
-        authorization=__ret__.get('authorization'),
-        client_id=__ret__.get('clientId'),
-        client_secret=__ret__.get('clientSecret'),
-        consent_required=__ret__.get('consentRequired'),
-        description=__ret__.get('description'),
-        direct_access_grants_enabled=__ret__.get('directAccessGrantsEnabled'),
-        enabled=__ret__.get('enabled'),
-        full_scope_allowed=__ret__.get('fullScopeAllowed'),
-        id=__ret__.get('id'),
-        implicit_flow_enabled=__ret__.get('implicitFlowEnabled'),
-        login_theme=__ret__.get('loginTheme'),
-        name=__ret__.get('name'),
-        realm_id=__ret__.get('realmId'),
-        resource_server_id=__ret__.get('resourceServerId'),
-        root_url=__ret__.get('rootUrl'),
-        service_account_user_id=__ret__.get('serviceAccountUserId'),
-        service_accounts_enabled=__ret__.get('serviceAccountsEnabled'),
-        standard_flow_enabled=__ret__.get('standardFlowEnabled'),
-        valid_redirect_uris=__ret__.get('validRedirectUris'),
-        web_origins=__ret__.get('webOrigins'))
+        access_type=__ret__.access_type,
+        authentication_flow_binding_overrides=__ret__.authentication_flow_binding_overrides,
+        authorization=__ret__.authorization,
+        client_id=__ret__.client_id,
+        client_secret=__ret__.client_secret,
+        consent_required=__ret__.consent_required,
+        description=__ret__.description,
+        direct_access_grants_enabled=__ret__.direct_access_grants_enabled,
+        enabled=__ret__.enabled,
+        full_scope_allowed=__ret__.full_scope_allowed,
+        id=__ret__.id,
+        implicit_flow_enabled=__ret__.implicit_flow_enabled,
+        login_theme=__ret__.login_theme,
+        name=__ret__.name,
+        realm_id=__ret__.realm_id,
+        resource_server_id=__ret__.resource_server_id,
+        root_url=__ret__.root_url,
+        service_account_user_id=__ret__.service_account_user_id,
+        service_accounts_enabled=__ret__.service_accounts_enabled,
+        standard_flow_enabled=__ret__.standard_flow_enabled,
+        valid_redirect_uris=__ret__.valid_redirect_uris,
+        web_origins=__ret__.web_origins)
