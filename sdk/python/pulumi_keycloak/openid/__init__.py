@@ -32,3 +32,5 @@ from .user_client_role_protocol_mapper import *
 from .user_property_protocol_mapper import *
 from .user_realm_role_protocol_mapper import *
 from .user_session_note_protocol_mapper import *
+from ._inputs import *
+from . import outputs

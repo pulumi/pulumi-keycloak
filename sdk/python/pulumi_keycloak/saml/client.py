@@ -5,41 +5,48 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['Client']
 
 
 class Client(pulumi.CustomResource):
-    assertion_consumer_post_url: pulumi.Output[str]
-    assertion_consumer_redirect_url: pulumi.Output[str]
-    base_url: pulumi.Output[str]
-    client_id: pulumi.Output[str]
-    client_signature_required: pulumi.Output[bool]
-    description: pulumi.Output[str]
-    enabled: pulumi.Output[bool]
-    encrypt_assertions: pulumi.Output[bool]
-    encryption_certificate: pulumi.Output[str]
-    force_name_id_format: pulumi.Output[bool]
-    force_post_binding: pulumi.Output[bool]
-    front_channel_logout: pulumi.Output[bool]
-    full_scope_allowed: pulumi.Output[bool]
-    idp_initiated_sso_relay_state: pulumi.Output[str]
-    idp_initiated_sso_url_name: pulumi.Output[str]
-    include_authn_statement: pulumi.Output[bool]
-    logout_service_post_binding_url: pulumi.Output[str]
-    logout_service_redirect_binding_url: pulumi.Output[str]
-    master_saml_processing_url: pulumi.Output[str]
-    name: pulumi.Output[str]
-    name_id_format: pulumi.Output[str]
-    realm_id: pulumi.Output[str]
-    root_url: pulumi.Output[str]
-    sign_assertions: pulumi.Output[bool]
-    sign_documents: pulumi.Output[bool]
-    signature_algorithm: pulumi.Output[str]
-    signing_certificate: pulumi.Output[str]
-    signing_private_key: pulumi.Output[str]
-    valid_redirect_uris: pulumi.Output[list]
-    def __init__(__self__, resource_name, opts=None, assertion_consumer_post_url=None, assertion_consumer_redirect_url=None, base_url=None, client_id=None, client_signature_required=None, description=None, enabled=None, encrypt_assertions=None, encryption_certificate=None, force_name_id_format=None, force_post_binding=None, front_channel_logout=None, full_scope_allowed=None, idp_initiated_sso_relay_state=None, idp_initiated_sso_url_name=None, include_authn_statement=None, logout_service_post_binding_url=None, logout_service_redirect_binding_url=None, master_saml_processing_url=None, name=None, name_id_format=None, realm_id=None, root_url=None, sign_assertions=None, sign_documents=None, signature_algorithm=None, signing_certificate=None, signing_private_key=None, valid_redirect_uris=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 assertion_consumer_post_url: Optional[pulumi.Input[str]] = None,
+                 assertion_consumer_redirect_url: Optional[pulumi.Input[str]] = None,
+                 base_url: Optional[pulumi.Input[str]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 client_signature_required: Optional[pulumi.Input[bool]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 encrypt_assertions: Optional[pulumi.Input[bool]] = None,
+                 encryption_certificate: Optional[pulumi.Input[str]] = None,
+                 force_name_id_format: Optional[pulumi.Input[bool]] = None,
+                 force_post_binding: Optional[pulumi.Input[bool]] = None,
+                 front_channel_logout: Optional[pulumi.Input[bool]] = None,
+                 full_scope_allowed: Optional[pulumi.Input[bool]] = None,
+                 idp_initiated_sso_relay_state: Optional[pulumi.Input[str]] = None,
+                 idp_initiated_sso_url_name: Optional[pulumi.Input[str]] = None,
+                 include_authn_statement: Optional[pulumi.Input[bool]] = None,
+                 logout_service_post_binding_url: Optional[pulumi.Input[str]] = None,
+                 logout_service_redirect_binding_url: Optional[pulumi.Input[str]] = None,
+                 master_saml_processing_url: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 name_id_format: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 root_url: Optional[pulumi.Input[str]] = None,
+                 sign_assertions: Optional[pulumi.Input[bool]] = None,
+                 sign_documents: Optional[pulumi.Input[bool]] = None,
+                 signature_algorithm: Optional[pulumi.Input[str]] = None,
+                 signing_certificate: Optional[pulumi.Input[str]] = None,
+                 signing_private_key: Optional[pulumi.Input[str]] = None,
+                 valid_redirect_uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         ## # saml.Client
 
@@ -112,7 +119,7 @@ class Client(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -158,13 +165,44 @@ class Client(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, assertion_consumer_post_url=None, assertion_consumer_redirect_url=None, base_url=None, client_id=None, client_signature_required=None, description=None, enabled=None, encrypt_assertions=None, encryption_certificate=None, force_name_id_format=None, force_post_binding=None, front_channel_logout=None, full_scope_allowed=None, idp_initiated_sso_relay_state=None, idp_initiated_sso_url_name=None, include_authn_statement=None, logout_service_post_binding_url=None, logout_service_redirect_binding_url=None, master_saml_processing_url=None, name=None, name_id_format=None, realm_id=None, root_url=None, sign_assertions=None, sign_documents=None, signature_algorithm=None, signing_certificate=None, signing_private_key=None, valid_redirect_uris=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            assertion_consumer_post_url: Optional[pulumi.Input[str]] = None,
+            assertion_consumer_redirect_url: Optional[pulumi.Input[str]] = None,
+            base_url: Optional[pulumi.Input[str]] = None,
+            client_id: Optional[pulumi.Input[str]] = None,
+            client_signature_required: Optional[pulumi.Input[bool]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            enabled: Optional[pulumi.Input[bool]] = None,
+            encrypt_assertions: Optional[pulumi.Input[bool]] = None,
+            encryption_certificate: Optional[pulumi.Input[str]] = None,
+            force_name_id_format: Optional[pulumi.Input[bool]] = None,
+            force_post_binding: Optional[pulumi.Input[bool]] = None,
+            front_channel_logout: Optional[pulumi.Input[bool]] = None,
+            full_scope_allowed: Optional[pulumi.Input[bool]] = None,
+            idp_initiated_sso_relay_state: Optional[pulumi.Input[str]] = None,
+            idp_initiated_sso_url_name: Optional[pulumi.Input[str]] = None,
+            include_authn_statement: Optional[pulumi.Input[bool]] = None,
+            logout_service_post_binding_url: Optional[pulumi.Input[str]] = None,
+            logout_service_redirect_binding_url: Optional[pulumi.Input[str]] = None,
+            master_saml_processing_url: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            name_id_format: Optional[pulumi.Input[str]] = None,
+            realm_id: Optional[pulumi.Input[str]] = None,
+            root_url: Optional[pulumi.Input[str]] = None,
+            sign_assertions: Optional[pulumi.Input[bool]] = None,
+            sign_documents: Optional[pulumi.Input[bool]] = None,
+            signature_algorithm: Optional[pulumi.Input[str]] = None,
+            signing_certificate: Optional[pulumi.Input[str]] = None,
+            signing_private_key: Optional[pulumi.Input[str]] = None,
+            valid_redirect_uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'Client':
         """
         Get an existing Client resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -202,8 +240,154 @@ class Client(pulumi.CustomResource):
         __props__["valid_redirect_uris"] = valid_redirect_uris
         return Client(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="assertionConsumerPostUrl")
+    def assertion_consumer_post_url(self) -> Optional[str]:
+        return pulumi.get(self, "assertion_consumer_post_url")
+
+    @property
+    @pulumi.getter(name="assertionConsumerRedirectUrl")
+    def assertion_consumer_redirect_url(self) -> Optional[str]:
+        return pulumi.get(self, "assertion_consumer_redirect_url")
+
+    @property
+    @pulumi.getter(name="baseUrl")
+    def base_url(self) -> Optional[str]:
+        return pulumi.get(self, "base_url")
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> str:
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="clientSignatureRequired")
+    def client_signature_required(self) -> bool:
+        return pulumi.get(self, "client_signature_required")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="encryptAssertions")
+    def encrypt_assertions(self) -> bool:
+        return pulumi.get(self, "encrypt_assertions")
+
+    @property
+    @pulumi.getter(name="encryptionCertificate")
+    def encryption_certificate(self) -> Optional[str]:
+        return pulumi.get(self, "encryption_certificate")
+
+    @property
+    @pulumi.getter(name="forceNameIdFormat")
+    def force_name_id_format(self) -> bool:
+        return pulumi.get(self, "force_name_id_format")
+
+    @property
+    @pulumi.getter(name="forcePostBinding")
+    def force_post_binding(self) -> bool:
+        return pulumi.get(self, "force_post_binding")
+
+    @property
+    @pulumi.getter(name="frontChannelLogout")
+    def front_channel_logout(self) -> bool:
+        return pulumi.get(self, "front_channel_logout")
+
+    @property
+    @pulumi.getter(name="fullScopeAllowed")
+    def full_scope_allowed(self) -> Optional[bool]:
+        return pulumi.get(self, "full_scope_allowed")
+
+    @property
+    @pulumi.getter(name="idpInitiatedSsoRelayState")
+    def idp_initiated_sso_relay_state(self) -> Optional[str]:
+        return pulumi.get(self, "idp_initiated_sso_relay_state")
+
+    @property
+    @pulumi.getter(name="idpInitiatedSsoUrlName")
+    def idp_initiated_sso_url_name(self) -> Optional[str]:
+        return pulumi.get(self, "idp_initiated_sso_url_name")
+
+    @property
+    @pulumi.getter(name="includeAuthnStatement")
+    def include_authn_statement(self) -> bool:
+        return pulumi.get(self, "include_authn_statement")
+
+    @property
+    @pulumi.getter(name="logoutServicePostBindingUrl")
+    def logout_service_post_binding_url(self) -> Optional[str]:
+        return pulumi.get(self, "logout_service_post_binding_url")
+
+    @property
+    @pulumi.getter(name="logoutServiceRedirectBindingUrl")
+    def logout_service_redirect_binding_url(self) -> Optional[str]:
+        return pulumi.get(self, "logout_service_redirect_binding_url")
+
+    @property
+    @pulumi.getter(name="masterSamlProcessingUrl")
+    def master_saml_processing_url(self) -> Optional[str]:
+        return pulumi.get(self, "master_saml_processing_url")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nameIdFormat")
+    def name_id_format(self) -> str:
+        return pulumi.get(self, "name_id_format")
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> str:
+        return pulumi.get(self, "realm_id")
+
+    @property
+    @pulumi.getter(name="rootUrl")
+    def root_url(self) -> Optional[str]:
+        return pulumi.get(self, "root_url")
+
+    @property
+    @pulumi.getter(name="signAssertions")
+    def sign_assertions(self) -> bool:
+        return pulumi.get(self, "sign_assertions")
+
+    @property
+    @pulumi.getter(name="signDocuments")
+    def sign_documents(self) -> bool:
+        return pulumi.get(self, "sign_documents")
+
+    @property
+    @pulumi.getter(name="signatureAlgorithm")
+    def signature_algorithm(self) -> Optional[str]:
+        return pulumi.get(self, "signature_algorithm")
+
+    @property
+    @pulumi.getter(name="signingCertificate")
+    def signing_certificate(self) -> Optional[str]:
+        return pulumi.get(self, "signing_certificate")
+
+    @property
+    @pulumi.getter(name="signingPrivateKey")
+    def signing_private_key(self) -> Optional[str]:
+        return pulumi.get(self, "signing_private_key")
+
+    @property
+    @pulumi.getter(name="validRedirectUris")
+    def valid_redirect_uris(self) -> Optional[List[str]]:
+        return pulumi.get(self, "valid_redirect_uris")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

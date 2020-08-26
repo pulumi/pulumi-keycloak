@@ -5,44 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['AudienceProtocolMapper']
 
 
 class AudienceProtocolMapper(pulumi.CustomResource):
-    add_to_access_token: pulumi.Output[bool]
-    """
-    Indicates if this claim should be added to the access token.
-    """
-    add_to_id_token: pulumi.Output[bool]
-    """
-    Indicates if this claim should be added to the id token.
-    """
-    client_id: pulumi.Output[str]
-    """
-    The mapper's associated client. Cannot be used at the same time as client_scope_id.
-    """
-    client_scope_id: pulumi.Output[str]
-    """
-    The mapper's associated client scope. Cannot be used at the same time as client_id.
-    """
-    included_client_audience: pulumi.Output[str]
-    """
-    A client ID to include within the token's `aud` claim. Cannot be used with included_custom_audience
-    """
-    included_custom_audience: pulumi.Output[str]
-    """
-    A custom audience to include within the token's `aud` claim. Cannot be used with included_custom_audience
-    """
-    name: pulumi.Output[str]
-    """
-    A human-friendly name that will appear in the Keycloak console.
-    """
-    realm_id: pulumi.Output[str]
-    """
-    The realm id where the associated client or client scope exists.
-    """
-    def __init__(__self__, resource_name, opts=None, add_to_access_token=None, add_to_id_token=None, client_id=None, client_scope_id=None, included_client_audience=None, included_custom_audience=None, name=None, realm_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 add_to_access_token: Optional[pulumi.Input[bool]] = None,
+                 add_to_id_token: Optional[pulumi.Input[bool]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 client_scope_id: Optional[pulumi.Input[str]] = None,
+                 included_client_audience: Optional[pulumi.Input[str]] = None,
+                 included_custom_audience: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         ## # openid.AudienceProtocolMapper
 
@@ -125,7 +108,7 @@ class AudienceProtocolMapper(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -148,13 +131,23 @@ class AudienceProtocolMapper(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, add_to_access_token=None, add_to_id_token=None, client_id=None, client_scope_id=None, included_client_audience=None, included_custom_audience=None, name=None, realm_id=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            add_to_access_token: Optional[pulumi.Input[bool]] = None,
+            add_to_id_token: Optional[pulumi.Input[bool]] = None,
+            client_id: Optional[pulumi.Input[str]] = None,
+            client_scope_id: Optional[pulumi.Input[str]] = None,
+            included_client_audience: Optional[pulumi.Input[str]] = None,
+            included_custom_audience: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            realm_id: Optional[pulumi.Input[str]] = None) -> 'AudienceProtocolMapper':
         """
         Get an existing AudienceProtocolMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] add_to_access_token: Indicates if this claim should be added to the access token.
         :param pulumi.Input[bool] add_to_id_token: Indicates if this claim should be added to the id token.
@@ -179,8 +172,73 @@ class AudienceProtocolMapper(pulumi.CustomResource):
         __props__["realm_id"] = realm_id
         return AudienceProtocolMapper(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="addToAccessToken")
+    def add_to_access_token(self) -> Optional[bool]:
+        """
+        Indicates if this claim should be added to the access token.
+        """
+        return pulumi.get(self, "add_to_access_token")
+
+    @property
+    @pulumi.getter(name="addToIdToken")
+    def add_to_id_token(self) -> Optional[bool]:
+        """
+        Indicates if this claim should be added to the id token.
+        """
+        return pulumi.get(self, "add_to_id_token")
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[str]:
+        """
+        The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="clientScopeId")
+    def client_scope_id(self) -> Optional[str]:
+        """
+        The mapper's associated client scope. Cannot be used at the same time as client_id.
+        """
+        return pulumi.get(self, "client_scope_id")
+
+    @property
+    @pulumi.getter(name="includedClientAudience")
+    def included_client_audience(self) -> Optional[str]:
+        """
+        A client ID to include within the token's `aud` claim. Cannot be used with included_custom_audience
+        """
+        return pulumi.get(self, "included_client_audience")
+
+    @property
+    @pulumi.getter(name="includedCustomAudience")
+    def included_custom_audience(self) -> Optional[str]:
+        """
+        A custom audience to include within the token's `aud` claim. Cannot be used with included_custom_audience
+        """
+        return pulumi.get(self, "included_custom_audience")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A human-friendly name that will appear in the Keycloak console.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> str:
+        """
+        The realm id where the associated client or client scope exists.
+        """
+        return pulumi.get(self, "realm_id")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

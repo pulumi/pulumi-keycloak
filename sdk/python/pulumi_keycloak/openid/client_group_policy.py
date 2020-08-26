@@ -5,30 +5,33 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['ClientGroupPolicy']
 
 
 class ClientGroupPolicy(pulumi.CustomResource):
-    decision_strategy: pulumi.Output[str]
-    description: pulumi.Output[str]
-    groups: pulumi.Output[list]
-    groups_claim: pulumi.Output[str]
-    logic: pulumi.Output[str]
-    name: pulumi.Output[str]
-    realm_id: pulumi.Output[str]
-    resource_server_id: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, decision_strategy=None, description=None, groups=None, groups_claim=None, logic=None, name=None, realm_id=None, resource_server_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 decision_strategy: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 groups: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ClientGroupPolicyGroupArgs']]]]] = None,
+                 groups_claim: Optional[pulumi.Input[str]] = None,
+                 logic: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 resource_server_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a ClientGroupPolicy resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        The **groups** object supports the following:
-
-          * `extendChildren` (`pulumi.Input[bool]`)
-          * `id` (`pulumi.Input[str]`)
-          * `path` (`pulumi.Input[str]`)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -41,7 +44,7 @@ class ClientGroupPolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -70,20 +73,24 @@ class ClientGroupPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, decision_strategy=None, description=None, groups=None, groups_claim=None, logic=None, name=None, realm_id=None, resource_server_id=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            decision_strategy: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            groups: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ClientGroupPolicyGroupArgs']]]]] = None,
+            groups_claim: Optional[pulumi.Input[str]] = None,
+            logic: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            realm_id: Optional[pulumi.Input[str]] = None,
+            resource_server_id: Optional[pulumi.Input[str]] = None) -> 'ClientGroupPolicy':
         """
         Get an existing ClientGroupPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        The **groups** object supports the following:
-
-          * `extendChildren` (`pulumi.Input[bool]`)
-          * `id` (`pulumi.Input[str]`)
-          * `path` (`pulumi.Input[str]`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -99,8 +106,49 @@ class ClientGroupPolicy(pulumi.CustomResource):
         __props__["resource_server_id"] = resource_server_id
         return ClientGroupPolicy(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> str:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def groups(self) -> List['outputs.ClientGroupPolicyGroup']:
+        return pulumi.get(self, "groups")
+
+    @property
+    @pulumi.getter(name="groupsClaim")
+    def groups_claim(self) -> Optional[str]:
+        return pulumi.get(self, "groups_claim")
+
+    @property
+    @pulumi.getter
+    def logic(self) -> Optional[str]:
+        return pulumi.get(self, "logic")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> str:
+        return pulumi.get(self, "realm_id")
+
+    @property
+    @pulumi.getter(name="resourceServerId")
+    def resource_server_id(self) -> str:
+        return pulumi.get(self, "resource_server_id")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,49 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['AttributeToRoleIdentityMapper']
 
 
 class AttributeToRoleIdentityMapper(pulumi.CustomResource):
-    attribute_friendly_name: pulumi.Output[str]
-    """
-    Attribute Friendly Name
-    """
-    attribute_name: pulumi.Output[str]
-    """
-    Attribute Name
-    """
-    attribute_value: pulumi.Output[str]
-    """
-    Attribute Value
-    """
-    claim_name: pulumi.Output[str]
-    """
-    OIDC Claim Name
-    """
-    claim_value: pulumi.Output[str]
-    """
-    OIDC Claim Value
-    """
-    extra_config: pulumi.Output[dict]
-    identity_provider_alias: pulumi.Output[str]
-    """
-    IDP Alias
-    """
-    name: pulumi.Output[str]
-    """
-    IDP Mapper Name
-    """
-    realm: pulumi.Output[str]
-    """
-    Realm Name
-    """
-    role: pulumi.Output[str]
-    """
-    Role Name
-    """
-    def __init__(__self__, resource_name, opts=None, attribute_friendly_name=None, attribute_name=None, attribute_value=None, claim_name=None, claim_value=None, extra_config=None, identity_provider_alias=None, name=None, realm=None, role=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 attribute_friendly_name: Optional[pulumi.Input[str]] = None,
+                 attribute_name: Optional[pulumi.Input[str]] = None,
+                 attribute_value: Optional[pulumi.Input[str]] = None,
+                 claim_name: Optional[pulumi.Input[str]] = None,
+                 claim_value: Optional[pulumi.Input[str]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 identity_provider_alias: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a AttributeToRoleIdentityMapper resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -73,7 +53,7 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -102,13 +82,25 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, attribute_friendly_name=None, attribute_name=None, attribute_value=None, claim_name=None, claim_value=None, extra_config=None, identity_provider_alias=None, name=None, realm=None, role=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            attribute_friendly_name: Optional[pulumi.Input[str]] = None,
+            attribute_name: Optional[pulumi.Input[str]] = None,
+            attribute_value: Optional[pulumi.Input[str]] = None,
+            claim_name: Optional[pulumi.Input[str]] = None,
+            claim_value: Optional[pulumi.Input[str]] = None,
+            extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            identity_provider_alias: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            realm: Optional[pulumi.Input[str]] = None,
+            role: Optional[pulumi.Input[str]] = None) -> 'AttributeToRoleIdentityMapper':
         """
         Get an existing AttributeToRoleIdentityMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] attribute_friendly_name: Attribute Friendly Name
         :param pulumi.Input[str] attribute_name: Attribute Name
@@ -136,8 +128,86 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
         __props__["role"] = role
         return AttributeToRoleIdentityMapper(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="attributeFriendlyName")
+    def attribute_friendly_name(self) -> Optional[str]:
+        """
+        Attribute Friendly Name
+        """
+        return pulumi.get(self, "attribute_friendly_name")
+
+    @property
+    @pulumi.getter(name="attributeName")
+    def attribute_name(self) -> Optional[str]:
+        """
+        Attribute Name
+        """
+        return pulumi.get(self, "attribute_name")
+
+    @property
+    @pulumi.getter(name="attributeValue")
+    def attribute_value(self) -> Optional[str]:
+        """
+        Attribute Value
+        """
+        return pulumi.get(self, "attribute_value")
+
+    @property
+    @pulumi.getter(name="claimName")
+    def claim_name(self) -> Optional[str]:
+        """
+        OIDC Claim Name
+        """
+        return pulumi.get(self, "claim_name")
+
+    @property
+    @pulumi.getter(name="claimValue")
+    def claim_value(self) -> Optional[str]:
+        """
+        OIDC Claim Value
+        """
+        return pulumi.get(self, "claim_value")
+
+    @property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> Optional[Mapping[str, Any]]:
+        return pulumi.get(self, "extra_config")
+
+    @property
+    @pulumi.getter(name="identityProviderAlias")
+    def identity_provider_alias(self) -> str:
+        """
+        IDP Alias
+        """
+        return pulumi.get(self, "identity_provider_alias")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        IDP Mapper Name
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def realm(self) -> str:
+        """
+        Realm Name
+        """
+        return pulumi.get(self, "realm")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        Role Name
+        """
+        return pulumi.get(self, "role")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

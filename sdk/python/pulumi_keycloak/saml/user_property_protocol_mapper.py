@@ -5,20 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['UserPropertyProtocolMapper']
 
 
 class UserPropertyProtocolMapper(pulumi.CustomResource):
-    client_id: pulumi.Output[str]
-    client_scope_id: pulumi.Output[str]
-    friendly_name: pulumi.Output[str]
-    name: pulumi.Output[str]
-    realm_id: pulumi.Output[str]
-    saml_attribute_name: pulumi.Output[str]
-    saml_attribute_name_format: pulumi.Output[str]
-    user_property: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, client_id=None, client_scope_id=None, friendly_name=None, name=None, realm_id=None, saml_attribute_name=None, saml_attribute_name_format=None, user_property=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 client_scope_id: Optional[pulumi.Input[str]] = None,
+                 friendly_name: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 saml_attribute_name: Optional[pulumi.Input[str]] = None,
+                 saml_attribute_name_format: Optional[pulumi.Input[str]] = None,
+                 user_property: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         ## # saml.UserPropertyProtocolMapper
 
@@ -77,7 +84,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -106,13 +113,23 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, client_id=None, client_scope_id=None, friendly_name=None, name=None, realm_id=None, saml_attribute_name=None, saml_attribute_name_format=None, user_property=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            client_id: Optional[pulumi.Input[str]] = None,
+            client_scope_id: Optional[pulumi.Input[str]] = None,
+            friendly_name: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            realm_id: Optional[pulumi.Input[str]] = None,
+            saml_attribute_name: Optional[pulumi.Input[str]] = None,
+            saml_attribute_name_format: Optional[pulumi.Input[str]] = None,
+            user_property: Optional[pulumi.Input[str]] = None) -> 'UserPropertyProtocolMapper':
         """
         Get an existing UserPropertyProtocolMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -129,8 +146,49 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
         __props__["user_property"] = user_property
         return UserPropertyProtocolMapper(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[str]:
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="clientScopeId")
+    def client_scope_id(self) -> Optional[str]:
+        return pulumi.get(self, "client_scope_id")
+
+    @property
+    @pulumi.getter(name="friendlyName")
+    def friendly_name(self) -> Optional[str]:
+        return pulumi.get(self, "friendly_name")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> str:
+        return pulumi.get(self, "realm_id")
+
+    @property
+    @pulumi.getter(name="samlAttributeName")
+    def saml_attribute_name(self) -> str:
+        return pulumi.get(self, "saml_attribute_name")
+
+    @property
+    @pulumi.getter(name="samlAttributeNameFormat")
+    def saml_attribute_name_format(self) -> str:
+        return pulumi.get(self, "saml_attribute_name_format")
+
+    @property
+    @pulumi.getter(name="userProperty")
+    def user_property(self) -> str:
+        return pulumi.get(self, "user_property")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

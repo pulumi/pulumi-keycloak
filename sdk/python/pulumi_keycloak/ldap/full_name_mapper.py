@@ -5,27 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['FullNameMapper']
 
 
 class FullNameMapper(pulumi.CustomResource):
-    ldap_full_name_attribute: pulumi.Output[str]
-    ldap_user_federation_id: pulumi.Output[str]
-    """
-    The ldap user federation provider to attach this mapper to.
-    """
-    name: pulumi.Output[str]
-    """
-    Display name of the mapper when displayed in the console.
-    """
-    read_only: pulumi.Output[bool]
-    realm_id: pulumi.Output[str]
-    """
-    The realm in which the ldap user federation provider exists.
-    """
-    write_only: pulumi.Output[bool]
-    def __init__(__self__, resource_name, opts=None, ldap_full_name_attribute=None, ldap_user_federation_id=None, name=None, read_only=None, realm_id=None, write_only=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 ldap_full_name_attribute: Optional[pulumi.Input[str]] = None,
+                 ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 read_only: Optional[pulumi.Input[bool]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 write_only: Optional[pulumi.Input[bool]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         ## # ldap.FullNameMapper
 
@@ -91,7 +89,7 @@ class FullNameMapper(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -116,13 +114,21 @@ class FullNameMapper(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, ldap_full_name_attribute=None, ldap_user_federation_id=None, name=None, read_only=None, realm_id=None, write_only=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            ldap_full_name_attribute: Optional[pulumi.Input[str]] = None,
+            ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            read_only: Optional[pulumi.Input[bool]] = None,
+            realm_id: Optional[pulumi.Input[str]] = None,
+            write_only: Optional[pulumi.Input[bool]] = None) -> 'FullNameMapper':
         """
         Get an existing FullNameMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
         :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
@@ -140,8 +146,48 @@ class FullNameMapper(pulumi.CustomResource):
         __props__["write_only"] = write_only
         return FullNameMapper(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="ldapFullNameAttribute")
+    def ldap_full_name_attribute(self) -> str:
+        return pulumi.get(self, "ldap_full_name_attribute")
+
+    @property
+    @pulumi.getter(name="ldapUserFederationId")
+    def ldap_user_federation_id(self) -> str:
+        """
+        The ldap user federation provider to attach this mapper to.
+        """
+        return pulumi.get(self, "ldap_user_federation_id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Display name of the mapper when displayed in the console.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="readOnly")
+    def read_only(self) -> Optional[bool]:
+        return pulumi.get(self, "read_only")
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> str:
+        """
+        The realm in which the ldap user federation provider exists.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @property
+    @pulumi.getter(name="writeOnly")
+    def write_only(self) -> Optional[bool]:
+        return pulumi.get(self, "write_only")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

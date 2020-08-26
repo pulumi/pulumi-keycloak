@@ -5,38 +5,45 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Client']
 
 
 class Client(pulumi.CustomResource):
-    access_token_lifespan: pulumi.Output[str]
-    access_type: pulumi.Output[str]
-    admin_url: pulumi.Output[str]
-    authentication_flow_binding_overrides: pulumi.Output[dict]
-    authorization: pulumi.Output[dict]
-    base_url: pulumi.Output[str]
-    client_id: pulumi.Output[str]
-    client_secret: pulumi.Output[str]
-    consent_required: pulumi.Output[bool]
-    description: pulumi.Output[str]
-    direct_access_grants_enabled: pulumi.Output[bool]
-    enabled: pulumi.Output[bool]
-    exclude_session_state_from_auth_response: pulumi.Output[bool]
-    full_scope_allowed: pulumi.Output[bool]
-    implicit_flow_enabled: pulumi.Output[bool]
-    login_theme: pulumi.Output[str]
-    name: pulumi.Output[str]
-    pkce_code_challenge_method: pulumi.Output[str]
-    realm_id: pulumi.Output[str]
-    resource_server_id: pulumi.Output[str]
-    root_url: pulumi.Output[str]
-    service_account_user_id: pulumi.Output[str]
-    service_accounts_enabled: pulumi.Output[bool]
-    standard_flow_enabled: pulumi.Output[bool]
-    valid_redirect_uris: pulumi.Output[list]
-    web_origins: pulumi.Output[list]
-    def __init__(__self__, resource_name, opts=None, access_token_lifespan=None, access_type=None, admin_url=None, authentication_flow_binding_overrides=None, authorization=None, base_url=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, implicit_flow_enabled=None, login_theme=None, name=None, pkce_code_challenge_method=None, realm_id=None, root_url=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 access_token_lifespan: Optional[pulumi.Input[str]] = None,
+                 access_type: Optional[pulumi.Input[str]] = None,
+                 admin_url: Optional[pulumi.Input[str]] = None,
+                 authentication_flow_binding_overrides: Optional[pulumi.Input[pulumi.InputType['ClientAuthenticationFlowBindingOverridesArgs']]] = None,
+                 authorization: Optional[pulumi.Input[pulumi.InputType['ClientAuthorizationArgs']]] = None,
+                 base_url: Optional[pulumi.Input[str]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 client_secret: Optional[pulumi.Input[str]] = None,
+                 consent_required: Optional[pulumi.Input[bool]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 direct_access_grants_enabled: Optional[pulumi.Input[bool]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 exclude_session_state_from_auth_response: Optional[pulumi.Input[bool]] = None,
+                 full_scope_allowed: Optional[pulumi.Input[bool]] = None,
+                 implicit_flow_enabled: Optional[pulumi.Input[bool]] = None,
+                 login_theme: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 pkce_code_challenge_method: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 root_url: Optional[pulumi.Input[str]] = None,
+                 service_accounts_enabled: Optional[pulumi.Input[bool]] = None,
+                 standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
+                 valid_redirect_uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 web_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         ## # openid.Client
 
@@ -101,17 +108,6 @@ class Client(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        The **authentication_flow_binding_overrides** object supports the following:
-
-          * `browserId` (`pulumi.Input[str]`)
-          * `directGrantId` (`pulumi.Input[str]`)
-
-        The **authorization** object supports the following:
-
-          * `allowRemoteResourceManagement` (`pulumi.Input[bool]`)
-          * `keepDefaults` (`pulumi.Input[bool]`)
-          * `policyEnforcementMode` (`pulumi.Input[str]`)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -124,7 +120,7 @@ class Client(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -169,25 +165,42 @@ class Client(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, access_token_lifespan=None, access_type=None, admin_url=None, authentication_flow_binding_overrides=None, authorization=None, base_url=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, implicit_flow_enabled=None, login_theme=None, name=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_token_lifespan: Optional[pulumi.Input[str]] = None,
+            access_type: Optional[pulumi.Input[str]] = None,
+            admin_url: Optional[pulumi.Input[str]] = None,
+            authentication_flow_binding_overrides: Optional[pulumi.Input[pulumi.InputType['ClientAuthenticationFlowBindingOverridesArgs']]] = None,
+            authorization: Optional[pulumi.Input[pulumi.InputType['ClientAuthorizationArgs']]] = None,
+            base_url: Optional[pulumi.Input[str]] = None,
+            client_id: Optional[pulumi.Input[str]] = None,
+            client_secret: Optional[pulumi.Input[str]] = None,
+            consent_required: Optional[pulumi.Input[bool]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            direct_access_grants_enabled: Optional[pulumi.Input[bool]] = None,
+            enabled: Optional[pulumi.Input[bool]] = None,
+            exclude_session_state_from_auth_response: Optional[pulumi.Input[bool]] = None,
+            full_scope_allowed: Optional[pulumi.Input[bool]] = None,
+            implicit_flow_enabled: Optional[pulumi.Input[bool]] = None,
+            login_theme: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            pkce_code_challenge_method: Optional[pulumi.Input[str]] = None,
+            realm_id: Optional[pulumi.Input[str]] = None,
+            resource_server_id: Optional[pulumi.Input[str]] = None,
+            root_url: Optional[pulumi.Input[str]] = None,
+            service_account_user_id: Optional[pulumi.Input[str]] = None,
+            service_accounts_enabled: Optional[pulumi.Input[bool]] = None,
+            standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
+            valid_redirect_uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            web_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'Client':
         """
         Get an existing Client resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        The **authentication_flow_binding_overrides** object supports the following:
-
-          * `browserId` (`pulumi.Input[str]`)
-          * `directGrantId` (`pulumi.Input[str]`)
-
-        The **authorization** object supports the following:
-
-          * `allowRemoteResourceManagement` (`pulumi.Input[bool]`)
-          * `keepDefaults` (`pulumi.Input[bool]`)
-          * `policyEnforcementMode` (`pulumi.Input[str]`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -221,8 +234,139 @@ class Client(pulumi.CustomResource):
         __props__["web_origins"] = web_origins
         return Client(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="accessTokenLifespan")
+    def access_token_lifespan(self) -> Optional[str]:
+        return pulumi.get(self, "access_token_lifespan")
+
+    @property
+    @pulumi.getter(name="accessType")
+    def access_type(self) -> str:
+        return pulumi.get(self, "access_type")
+
+    @property
+    @pulumi.getter(name="adminUrl")
+    def admin_url(self) -> Optional[str]:
+        return pulumi.get(self, "admin_url")
+
+    @property
+    @pulumi.getter(name="authenticationFlowBindingOverrides")
+    def authentication_flow_binding_overrides(self) -> Optional['outputs.ClientAuthenticationFlowBindingOverrides']:
+        return pulumi.get(self, "authentication_flow_binding_overrides")
+
+    @property
+    @pulumi.getter
+    def authorization(self) -> Optional['outputs.ClientAuthorization']:
+        return pulumi.get(self, "authorization")
+
+    @property
+    @pulumi.getter(name="baseUrl")
+    def base_url(self) -> Optional[str]:
+        return pulumi.get(self, "base_url")
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> str:
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> str:
+        return pulumi.get(self, "client_secret")
+
+    @property
+    @pulumi.getter(name="consentRequired")
+    def consent_required(self) -> Optional[bool]:
+        return pulumi.get(self, "consent_required")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="directAccessGrantsEnabled")
+    def direct_access_grants_enabled(self) -> Optional[bool]:
+        return pulumi.get(self, "direct_access_grants_enabled")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="excludeSessionStateFromAuthResponse")
+    def exclude_session_state_from_auth_response(self) -> Optional[bool]:
+        return pulumi.get(self, "exclude_session_state_from_auth_response")
+
+    @property
+    @pulumi.getter(name="fullScopeAllowed")
+    def full_scope_allowed(self) -> Optional[bool]:
+        return pulumi.get(self, "full_scope_allowed")
+
+    @property
+    @pulumi.getter(name="implicitFlowEnabled")
+    def implicit_flow_enabled(self) -> Optional[bool]:
+        return pulumi.get(self, "implicit_flow_enabled")
+
+    @property
+    @pulumi.getter(name="loginTheme")
+    def login_theme(self) -> Optional[str]:
+        return pulumi.get(self, "login_theme")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="pkceCodeChallengeMethod")
+    def pkce_code_challenge_method(self) -> Optional[str]:
+        return pulumi.get(self, "pkce_code_challenge_method")
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> str:
+        return pulumi.get(self, "realm_id")
+
+    @property
+    @pulumi.getter(name="resourceServerId")
+    def resource_server_id(self) -> str:
+        return pulumi.get(self, "resource_server_id")
+
+    @property
+    @pulumi.getter(name="rootUrl")
+    def root_url(self) -> Optional[str]:
+        return pulumi.get(self, "root_url")
+
+    @property
+    @pulumi.getter(name="serviceAccountUserId")
+    def service_account_user_id(self) -> str:
+        return pulumi.get(self, "service_account_user_id")
+
+    @property
+    @pulumi.getter(name="serviceAccountsEnabled")
+    def service_accounts_enabled(self) -> Optional[bool]:
+        return pulumi.get(self, "service_accounts_enabled")
+
+    @property
+    @pulumi.getter(name="standardFlowEnabled")
+    def standard_flow_enabled(self) -> Optional[bool]:
+        return pulumi.get(self, "standard_flow_enabled")
+
+    @property
+    @pulumi.getter(name="validRedirectUris")
+    def valid_redirect_uris(self) -> Optional[List[str]]:
+        return pulumi.get(self, "valid_redirect_uris")
+
+    @property
+    @pulumi.getter(name="webOrigins")
+    def web_origins(self) -> Optional[List[str]]:
+        return pulumi.get(self, "web_origins")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

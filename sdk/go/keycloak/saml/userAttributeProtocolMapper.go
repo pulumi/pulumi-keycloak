@@ -42,14 +42,14 @@ import (
 // 		}
 // 		samlClient, err := saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
 // 			ClientId: pulumi.String("test-saml-client"),
-// 			RealmId:  pulumi.String(keycloak_realm.Test.Id),
+// 			RealmId:  pulumi.Any(keycloak_realm.Test.Id),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = saml.NewUserAttributeProtocolMapper(ctx, "samlUserAttributeMapper", &saml.UserAttributeProtocolMapperArgs{
 // 			ClientId:                samlClient.ID(),
-// 			RealmId:                 pulumi.String(keycloak_realm.Test.Id),
+// 			RealmId:                 pulumi.Any(keycloak_realm.Test.Id),
 // 			SamlAttributeName:       pulumi.String("displayName"),
 // 			SamlAttributeNameFormat: pulumi.String("Unspecified"),
 // 			UserAttribute:           pulumi.String("displayName"),

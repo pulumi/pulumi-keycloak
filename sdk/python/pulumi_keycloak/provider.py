@@ -6,12 +6,30 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['Provider']
 
 
 class Provider(pulumi.ProviderResource):
-    def __init__(__self__, resource_name, opts=None, base_path=None, client_id=None, client_secret=None, client_timeout=None, initial_login=None, password=None, realm=None, root_ca_certificate=None, tls_insecure_skip_verify=None, url=None, username=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 base_path: Optional[pulumi.Input[str]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 client_secret: Optional[pulumi.Input[str]] = None,
+                 client_timeout: Optional[pulumi.Input[float]] = None,
+                 initial_login: Optional[pulumi.Input[bool]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 realm: Optional[pulumi.Input[str]] = None,
+                 root_ca_certificate: Optional[pulumi.Input[str]] = None,
+                 tls_insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
+                 url: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         The provider type for the keycloak package. By default, resources use package-wide configuration
         settings, however an explicit `Provider` instance may be created and passed during resource
@@ -38,7 +56,7 @@ class Provider(pulumi.ProviderResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -46,28 +64,28 @@ class Provider(pulumi.ProviderResource):
 
             __props__['base_path'] = base_path
             if client_id is None:
-                client_id = utilities.get_env('KEYCLOAK_CLIENT_ID')
+                client_id = _utilities.get_env('KEYCLOAK_CLIENT_ID')
             __props__['client_id'] = client_id
             if client_secret is None:
-                client_secret = utilities.get_env('KEYCLOAK_CLIENT_SECRET')
+                client_secret = _utilities.get_env('KEYCLOAK_CLIENT_SECRET')
             __props__['client_secret'] = client_secret
             if client_timeout is None:
-                client_timeout = (utilities.get_env_int('KEYCLOAK_CLIENT_TIMEOUT') or 5)
+                client_timeout = (_utilities.get_env_int('KEYCLOAK_CLIENT_TIMEOUT') or 5)
             __props__['client_timeout'] = pulumi.Output.from_input(client_timeout).apply(json.dumps) if client_timeout is not None else None
             __props__['initial_login'] = pulumi.Output.from_input(initial_login).apply(json.dumps) if initial_login is not None else None
             if password is None:
-                password = utilities.get_env('KEYCLOAK_PASSWORD')
+                password = _utilities.get_env('KEYCLOAK_PASSWORD')
             __props__['password'] = password
             if realm is None:
-                realm = (utilities.get_env('KEYCLOAK_REALM') or 'master')
+                realm = (_utilities.get_env('KEYCLOAK_REALM') or 'master')
             __props__['realm'] = realm
             __props__['root_ca_certificate'] = root_ca_certificate
             __props__['tls_insecure_skip_verify'] = pulumi.Output.from_input(tls_insecure_skip_verify).apply(json.dumps) if tls_insecure_skip_verify is not None else None
             if url is None:
-                url = utilities.get_env('KEYCLOAK_URL')
+                url = _utilities.get_env('KEYCLOAK_URL')
             __props__['url'] = url
             if username is None:
-                username = utilities.get_env('KEYCLOAK_USER')
+                username = _utilities.get_env('KEYCLOAK_USER')
             __props__['username'] = username
         super(Provider, __self__).__init__(
             'keycloak',
@@ -76,7 +94,8 @@ class Provider(pulumi.ProviderResource):
             opts)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

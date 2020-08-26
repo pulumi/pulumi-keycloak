@@ -5,30 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['ClientTimePolicy']
 
 
 class ClientTimePolicy(pulumi.CustomResource):
-    day_month: pulumi.Output[str]
-    day_month_end: pulumi.Output[str]
-    decision_strategy: pulumi.Output[str]
-    description: pulumi.Output[str]
-    hour: pulumi.Output[str]
-    hour_end: pulumi.Output[str]
-    logic: pulumi.Output[str]
-    minute: pulumi.Output[str]
-    minute_end: pulumi.Output[str]
-    month: pulumi.Output[str]
-    month_end: pulumi.Output[str]
-    name: pulumi.Output[str]
-    not_before: pulumi.Output[str]
-    not_on_or_after: pulumi.Output[str]
-    realm_id: pulumi.Output[str]
-    resource_server_id: pulumi.Output[str]
-    year: pulumi.Output[str]
-    year_end: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, day_month=None, day_month_end=None, decision_strategy=None, description=None, hour=None, hour_end=None, logic=None, minute=None, minute_end=None, month=None, month_end=None, name=None, not_before=None, not_on_or_after=None, realm_id=None, resource_server_id=None, year=None, year_end=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 day_month: Optional[pulumi.Input[str]] = None,
+                 day_month_end: Optional[pulumi.Input[str]] = None,
+                 decision_strategy: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 hour: Optional[pulumi.Input[str]] = None,
+                 hour_end: Optional[pulumi.Input[str]] = None,
+                 logic: Optional[pulumi.Input[str]] = None,
+                 minute: Optional[pulumi.Input[str]] = None,
+                 minute_end: Optional[pulumi.Input[str]] = None,
+                 month: Optional[pulumi.Input[str]] = None,
+                 month_end: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 not_before: Optional[pulumi.Input[str]] = None,
+                 not_on_or_after: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 resource_server_id: Optional[pulumi.Input[str]] = None,
+                 year: Optional[pulumi.Input[str]] = None,
+                 year_end: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a ClientTimePolicy resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -45,7 +52,7 @@ class ClientTimePolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -82,13 +89,33 @@ class ClientTimePolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, day_month=None, day_month_end=None, decision_strategy=None, description=None, hour=None, hour_end=None, logic=None, minute=None, minute_end=None, month=None, month_end=None, name=None, not_before=None, not_on_or_after=None, realm_id=None, resource_server_id=None, year=None, year_end=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            day_month: Optional[pulumi.Input[str]] = None,
+            day_month_end: Optional[pulumi.Input[str]] = None,
+            decision_strategy: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            hour: Optional[pulumi.Input[str]] = None,
+            hour_end: Optional[pulumi.Input[str]] = None,
+            logic: Optional[pulumi.Input[str]] = None,
+            minute: Optional[pulumi.Input[str]] = None,
+            minute_end: Optional[pulumi.Input[str]] = None,
+            month: Optional[pulumi.Input[str]] = None,
+            month_end: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            not_before: Optional[pulumi.Input[str]] = None,
+            not_on_or_after: Optional[pulumi.Input[str]] = None,
+            realm_id: Optional[pulumi.Input[str]] = None,
+            resource_server_id: Optional[pulumi.Input[str]] = None,
+            year: Optional[pulumi.Input[str]] = None,
+            year_end: Optional[pulumi.Input[str]] = None) -> 'ClientTimePolicy':
         """
         Get an existing ClientTimePolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -115,8 +142,99 @@ class ClientTimePolicy(pulumi.CustomResource):
         __props__["year_end"] = year_end
         return ClientTimePolicy(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="dayMonth")
+    def day_month(self) -> Optional[str]:
+        return pulumi.get(self, "day_month")
+
+    @property
+    @pulumi.getter(name="dayMonthEnd")
+    def day_month_end(self) -> Optional[str]:
+        return pulumi.get(self, "day_month_end")
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> str:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def hour(self) -> Optional[str]:
+        return pulumi.get(self, "hour")
+
+    @property
+    @pulumi.getter(name="hourEnd")
+    def hour_end(self) -> Optional[str]:
+        return pulumi.get(self, "hour_end")
+
+    @property
+    @pulumi.getter
+    def logic(self) -> Optional[str]:
+        return pulumi.get(self, "logic")
+
+    @property
+    @pulumi.getter
+    def minute(self) -> Optional[str]:
+        return pulumi.get(self, "minute")
+
+    @property
+    @pulumi.getter(name="minuteEnd")
+    def minute_end(self) -> Optional[str]:
+        return pulumi.get(self, "minute_end")
+
+    @property
+    @pulumi.getter
+    def month(self) -> Optional[str]:
+        return pulumi.get(self, "month")
+
+    @property
+    @pulumi.getter(name="monthEnd")
+    def month_end(self) -> Optional[str]:
+        return pulumi.get(self, "month_end")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="notBefore")
+    def not_before(self) -> Optional[str]:
+        return pulumi.get(self, "not_before")
+
+    @property
+    @pulumi.getter(name="notOnOrAfter")
+    def not_on_or_after(self) -> Optional[str]:
+        return pulumi.get(self, "not_on_or_after")
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> str:
+        return pulumi.get(self, "realm_id")
+
+    @property
+    @pulumi.getter(name="resourceServerId")
+    def resource_server_id(self) -> str:
+        return pulumi.get(self, "resource_server_id")
+
+    @property
+    @pulumi.getter
+    def year(self) -> Optional[str]:
+        return pulumi.get(self, "year")
+
+    @property
+    @pulumi.getter(name="yearEnd")
+    def year_end(self) -> Optional[str]:
+        return pulumi.get(self, "year_end")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,9 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
 
+__all__ = [
+    'GetRealmKeysResult',
+    'AwaitableGetRealmKeysResult',
+    'get_realm_keys',
+]
+
+@pulumi.output_type
 class GetRealmKeysResult:
     """
     A collection of values returned by getRealmKeys.
@@ -15,22 +23,49 @@ class GetRealmKeysResult:
     def __init__(__self__, algorithms=None, id=None, keys=None, realm_id=None, statuses=None):
         if algorithms and not isinstance(algorithms, list):
             raise TypeError("Expected argument 'algorithms' to be a list")
-        __self__.algorithms = algorithms
+        pulumi.set(__self__, "algorithms", algorithms)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if keys and not isinstance(keys, list):
+            raise TypeError("Expected argument 'keys' to be a list")
+        pulumi.set(__self__, "keys", keys)
+        if realm_id and not isinstance(realm_id, str):
+            raise TypeError("Expected argument 'realm_id' to be a str")
+        pulumi.set(__self__, "realm_id", realm_id)
+        if statuses and not isinstance(statuses, list):
+            raise TypeError("Expected argument 'statuses' to be a list")
+        pulumi.set(__self__, "statuses", statuses)
+
+    @property
+    @pulumi.getter
+    def algorithms(self) -> Optional[List[str]]:
+        return pulumi.get(self, "algorithms")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if keys and not isinstance(keys, list):
-            raise TypeError("Expected argument 'keys' to be a list")
-        __self__.keys = keys
-        if realm_id and not isinstance(realm_id, str):
-            raise TypeError("Expected argument 'realm_id' to be a str")
-        __self__.realm_id = realm_id
-        if statuses and not isinstance(statuses, list):
-            raise TypeError("Expected argument 'statuses' to be a list")
-        __self__.statuses = statuses
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def keys(self) -> List['outputs.GetRealmKeysKeyResult']:
+        return pulumi.get(self, "keys")
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> str:
+        return pulumi.get(self, "realm_id")
+
+    @property
+    @pulumi.getter
+    def statuses(self) -> Optional[List[str]]:
+        return pulumi.get(self, "statuses")
+
+
 class AwaitableGetRealmKeysResult(GetRealmKeysResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -43,7 +78,11 @@ class AwaitableGetRealmKeysResult(GetRealmKeysResult):
             realm_id=self.realm_id,
             statuses=self.statuses)
 
-def get_realm_keys(algorithms=None,realm_id=None,statuses=None,opts=None):
+
+def get_realm_keys(algorithms: Optional[List[str]] = None,
+                   realm_id: Optional[str] = None,
+                   statuses: Optional[List[str]] = None,
+                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRealmKeysResult:
     """
     ## # getRealmKeys data source
 
@@ -64,20 +103,18 @@ def get_realm_keys(algorithms=None,realm_id=None,statuses=None,opts=None):
     - `status` - (Optional) When specified, keys are filtered by status (values for status: `ACTIVE`, `DISABLED` and `PASSIVE`)
     """
     __args__ = dict()
-
-
     __args__['algorithms'] = algorithms
     __args__['realmId'] = realm_id
     __args__['statuses'] = statuses
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('keycloak:index/getRealmKeys:getRealmKeys', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('keycloak:index/getRealmKeys:getRealmKeys', __args__, opts=opts, typ=GetRealmKeysResult).value
 
     return AwaitableGetRealmKeysResult(
-        algorithms=__ret__.get('algorithms'),
-        id=__ret__.get('id'),
-        keys=__ret__.get('keys'),
-        realm_id=__ret__.get('realmId'),
-        statuses=__ret__.get('statuses'))
+        algorithms=__ret__.algorithms,
+        id=__ret__.id,
+        keys=__ret__.keys,
+        realm_id=__ret__.realm_id,
+        statuses=__ret__.statuses)

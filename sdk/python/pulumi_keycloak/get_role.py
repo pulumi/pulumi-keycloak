@@ -5,9 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
 
+__all__ = [
+    'GetRoleResult',
+    'AwaitableGetRoleResult',
+    'get_role',
+]
+
+@pulumi.output_type
 class GetRoleResult:
     """
     A collection of values returned by getRole.
@@ -15,22 +22,49 @@ class GetRoleResult:
     def __init__(__self__, client_id=None, description=None, id=None, name=None, realm_id=None):
         if client_id and not isinstance(client_id, str):
             raise TypeError("Expected argument 'client_id' to be a str")
-        __self__.client_id = client_id
+        pulumi.set(__self__, "client_id", client_id)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        pulumi.set(__self__, "description", description)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if realm_id and not isinstance(realm_id, str):
+            raise TypeError("Expected argument 'realm_id' to be a str")
+        pulumi.set(__self__, "realm_id", realm_id)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[str]:
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if realm_id and not isinstance(realm_id, str):
-            raise TypeError("Expected argument 'realm_id' to be a str")
-        __self__.realm_id = realm_id
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> str:
+        return pulumi.get(self, "realm_id")
+
+
 class AwaitableGetRoleResult(GetRoleResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -43,30 +77,16 @@ class AwaitableGetRoleResult(GetRoleResult):
             name=self.name,
             realm_id=self.realm_id)
 
-def get_role(client_id=None,name=None,realm_id=None,opts=None):
+
+def get_role(client_id: Optional[str] = None,
+             name: Optional[str] = None,
+             realm_id: Optional[str] = None,
+             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRoleResult:
     """
     ## # Role data source
 
     This data source can be used to fetch properties of a Keycloak role for
     usage with other resources, such as `GroupRoles`.
-
-    ### Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_keycloak as keycloak
-
-    realm = keycloak.Realm("realm",
-        enabled=True,
-        realm="my-realm")
-    offline_access = realm.id.apply(lambda id: keycloak.get_role(name="offline_access",
-        realm_id=id))
-    group = keycloak.Group("group", realm_id=realm.id)
-    group_roles = keycloak.GroupRoles("groupRoles",
-        group_id=group.id,
-        realm_id=realm.id,
-        roles=[offline_access.id])
-    ```
 
     ### Argument Reference
 
@@ -86,20 +106,18 @@ def get_role(client_id=None,name=None,realm_id=None,opts=None):
     - `description` - The description of the role.
     """
     __args__ = dict()
-
-
     __args__['clientId'] = client_id
     __args__['name'] = name
     __args__['realmId'] = realm_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('keycloak:index/getRole:getRole', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('keycloak:index/getRole:getRole', __args__, opts=opts, typ=GetRoleResult).value
 
     return AwaitableGetRoleResult(
-        client_id=__ret__.get('clientId'),
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        realm_id=__ret__.get('realmId'))
+        client_id=__ret__.client_id,
+        description=__ret__.description,
+        id=__ret__.id,
+        name=__ret__.name,
+        realm_id=__ret__.realm_id)
