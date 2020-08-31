@@ -15,7 +15,7 @@ __all__ = ['ClientGroupPolicy']
 
 class ClientGroupPolicy(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -108,42 +108,42 @@ class ClientGroupPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> str:
+    def decision_strategy(self) -> pulumi.Output[str]:
         return pulumi.get(self, "decision_strategy")
 
     @property
     @pulumi.getter
-    def description(self) -> Optional[str]:
+    def description(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
-    def groups(self) -> List['outputs.ClientGroupPolicyGroup']:
+    def groups(self) -> pulumi.Output[List['outputs.ClientGroupPolicyGroup']]:
         return pulumi.get(self, "groups")
 
     @property
     @pulumi.getter(name="groupsClaim")
-    def groups_claim(self) -> Optional[str]:
+    def groups_claim(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "groups_claim")
 
     @property
     @pulumi.getter
-    def logic(self) -> Optional[str]:
+    def logic(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "logic")
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter(name="resourceServerId")
-    def resource_server_id(self) -> str:
+    def resource_server_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "resource_server_id")
 
     def translate_output_property(self, prop):

@@ -13,7 +13,7 @@ __all__ = ['ClientOptionalScopes']
 
 class ClientOptionalScopes(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  optional_scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
@@ -84,17 +84,17 @@ class ClientOptionalScopes(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> str:
+    def client_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "client_id")
 
     @property
     @pulumi.getter(name="optionalScopes")
-    def optional_scopes(self) -> List[str]:
+    def optional_scopes(self) -> pulumi.Output[List[str]]:
         return pulumi.get(self, "optional_scopes")
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm_id")
 
     def translate_output_property(self, prop):

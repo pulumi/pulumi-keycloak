@@ -13,7 +13,7 @@ __all__ = ['HardcodedRoleMapper']
 
 class HardcodedRoleMapper(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -136,7 +136,7 @@ class HardcodedRoleMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ldapUserFederationId")
-    def ldap_user_federation_id(self) -> str:
+    def ldap_user_federation_id(self) -> pulumi.Output[str]:
         """
         The ldap user federation provider to attach this mapper to.
         """
@@ -144,7 +144,7 @@ class HardcodedRoleMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         Display name of the mapper when displayed in the console.
         """
@@ -152,7 +152,7 @@ class HardcodedRoleMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         """
         The realm in which the ldap user federation provider exists.
         """
@@ -160,7 +160,7 @@ class HardcodedRoleMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def role(self) -> str:
+    def role(self) -> pulumi.Output[str]:
         """
         Role to grant to user.
         """

@@ -13,7 +13,7 @@ __all__ = ['UserRoles']
 
 class UserRoles(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  role_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
@@ -84,17 +84,17 @@ class UserRoles(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter(name="roleIds")
-    def role_ids(self) -> List[str]:
+    def role_ids(self) -> pulumi.Output[List[str]]:
         return pulumi.get(self, "role_ids")
 
     @property
     @pulumi.getter(name="userId")
-    def user_id(self) -> str:
+    def user_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "user_id")
 
     def translate_output_property(self, prop):

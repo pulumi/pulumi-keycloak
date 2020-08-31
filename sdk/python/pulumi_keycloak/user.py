@@ -15,7 +15,7 @@ __all__ = ['User']
 
 class User(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  email: Optional[pulumi.Input[str]] = None,
@@ -163,52 +163,52 @@ class User(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def attributes(self) -> Optional[Mapping[str, Any]]:
+    def attributes(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         return pulumi.get(self, "attributes")
 
     @property
     @pulumi.getter
-    def email(self) -> Optional[str]:
+    def email(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "email")
 
     @property
     @pulumi.getter(name="emailVerified")
-    def email_verified(self) -> Optional[bool]:
+    def email_verified(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "email_verified")
 
     @property
     @pulumi.getter
-    def enabled(self) -> Optional[bool]:
+    def enabled(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="federatedIdentities")
-    def federated_identities(self) -> Optional[List['outputs.UserFederatedIdentity']]:
+    def federated_identities(self) -> pulumi.Output[Optional[List['outputs.UserFederatedIdentity']]]:
         return pulumi.get(self, "federated_identities")
 
     @property
     @pulumi.getter(name="firstName")
-    def first_name(self) -> Optional[str]:
+    def first_name(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "first_name")
 
     @property
     @pulumi.getter(name="initialPassword")
-    def initial_password(self) -> Optional['outputs.UserInitialPassword']:
+    def initial_password(self) -> pulumi.Output[Optional['outputs.UserInitialPassword']]:
         return pulumi.get(self, "initial_password")
 
     @property
     @pulumi.getter(name="lastName")
-    def last_name(self) -> Optional[str]:
+    def last_name(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "last_name")
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter
-    def username(self) -> str:
+    def username(self) -> pulumi.Output[str]:
         return pulumi.get(self, "username")
 
     def translate_output_property(self, prop):

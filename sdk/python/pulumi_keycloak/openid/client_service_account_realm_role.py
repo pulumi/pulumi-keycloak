@@ -13,7 +13,7 @@ __all__ = ['ClientServiceAccountRealmRole']
 
 class ClientServiceAccountRealmRole(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
@@ -84,17 +84,17 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter
-    def role(self) -> str:
+    def role(self) -> pulumi.Output[str]:
         return pulumi.get(self, "role")
 
     @property
     @pulumi.getter(name="serviceAccountUserId")
-    def service_account_user_id(self) -> str:
+    def service_account_user_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "service_account_user_id")
 
     def translate_output_property(self, prop):

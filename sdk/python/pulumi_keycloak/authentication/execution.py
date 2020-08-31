@@ -13,7 +13,7 @@ __all__ = ['Execution']
 
 class Execution(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  authenticator: Optional[pulumi.Input[str]] = None,
                  parent_flow_alias: Optional[pulumi.Input[str]] = None,
@@ -88,22 +88,22 @@ class Execution(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def authenticator(self) -> str:
+    def authenticator(self) -> pulumi.Output[str]:
         return pulumi.get(self, "authenticator")
 
     @property
     @pulumi.getter(name="parentFlowAlias")
-    def parent_flow_alias(self) -> str:
+    def parent_flow_alias(self) -> pulumi.Output[str]:
         return pulumi.get(self, "parent_flow_alias")
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter
-    def requirement(self) -> Optional[str]:
+    def requirement(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "requirement")
 
     def translate_output_property(self, prop):

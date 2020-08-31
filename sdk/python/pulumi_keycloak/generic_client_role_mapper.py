@@ -13,7 +13,7 @@ __all__ = ['GenericClientRoleMapper']
 
 class GenericClientRoleMapper(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_scope_id: Optional[pulumi.Input[str]] = None,
@@ -94,7 +94,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[str]:
+    def client_id(self) -> pulumi.Output[Optional[str]]:
         """
         The destination client of the client role. Cannot be used at the same time as client_scope_id.
         """
@@ -102,7 +102,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientScopeId")
-    def client_scope_id(self) -> Optional[str]:
+    def client_scope_id(self) -> pulumi.Output[Optional[str]]:
         """
         The destination client scope of the client role. Cannot be used at the same time as client_id.
         """
@@ -110,7 +110,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         """
         The realm id where the associated client or client scope exists.
         """
@@ -118,7 +118,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="roleId")
-    def role_id(self) -> str:
+    def role_id(self) -> pulumi.Output[str]:
         """
         Id of the role to assign
         """

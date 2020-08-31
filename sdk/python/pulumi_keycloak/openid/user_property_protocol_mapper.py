@@ -13,7 +13,7 @@ __all__ = ['UserPropertyProtocolMapper']
 
 class UserPropertyProtocolMapper(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_to_access_token: Optional[pulumi.Input[bool]] = None,
                  add_to_id_token: Optional[pulumi.Input[bool]] = None,
@@ -191,7 +191,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="addToAccessToken")
-    def add_to_access_token(self) -> Optional[bool]:
+    def add_to_access_token(self) -> pulumi.Output[Optional[bool]]:
         """
         Indicates if the property should be a claim in the access token.
         """
@@ -199,7 +199,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="addToIdToken")
-    def add_to_id_token(self) -> Optional[bool]:
+    def add_to_id_token(self) -> pulumi.Output[Optional[bool]]:
         """
         Indicates if the property should be a claim in the id token.
         """
@@ -207,7 +207,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="addToUserinfo")
-    def add_to_userinfo(self) -> Optional[bool]:
+    def add_to_userinfo(self) -> pulumi.Output[Optional[bool]]:
         """
         Indicates if the property should appear in the userinfo response body.
         """
@@ -215,12 +215,12 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="claimName")
-    def claim_name(self) -> str:
+    def claim_name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "claim_name")
 
     @property
     @pulumi.getter(name="claimValueType")
-    def claim_value_type(self) -> Optional[str]:
+    def claim_value_type(self) -> pulumi.Output[Optional[str]]:
         """
         Claim type used when serializing tokens.
         """
@@ -228,7 +228,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[str]:
+    def client_id(self) -> pulumi.Output[Optional[str]]:
         """
         The mapper's associated client. Cannot be used at the same time as client_scope_id.
         """
@@ -236,7 +236,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientScopeId")
-    def client_scope_id(self) -> Optional[str]:
+    def client_scope_id(self) -> pulumi.Output[Optional[str]]:
         """
         The mapper's associated client scope. Cannot be used at the same time as client_id.
         """
@@ -244,7 +244,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         A human-friendly name that will appear in the Keycloak console.
         """
@@ -252,7 +252,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         """
         The realm id where the associated client or client scope exists.
         """
@@ -260,7 +260,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="userProperty")
-    def user_property(self) -> str:
+    def user_property(self) -> pulumi.Output[str]:
         return pulumi.get(self, "user_property")
 
     def translate_output_property(self, prop):

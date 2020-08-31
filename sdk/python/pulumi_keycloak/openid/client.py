@@ -15,7 +15,7 @@ __all__ = ['Client']
 
 class Client(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_token_lifespan: Optional[pulumi.Input[str]] = None,
                  access_type: Optional[pulumi.Input[str]] = None,
@@ -236,132 +236,132 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="accessTokenLifespan")
-    def access_token_lifespan(self) -> Optional[str]:
+    def access_token_lifespan(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "access_token_lifespan")
 
     @property
     @pulumi.getter(name="accessType")
-    def access_type(self) -> str:
+    def access_type(self) -> pulumi.Output[str]:
         return pulumi.get(self, "access_type")
 
     @property
     @pulumi.getter(name="adminUrl")
-    def admin_url(self) -> Optional[str]:
+    def admin_url(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "admin_url")
 
     @property
     @pulumi.getter(name="authenticationFlowBindingOverrides")
-    def authentication_flow_binding_overrides(self) -> Optional['outputs.ClientAuthenticationFlowBindingOverrides']:
+    def authentication_flow_binding_overrides(self) -> pulumi.Output[Optional['outputs.ClientAuthenticationFlowBindingOverrides']]:
         return pulumi.get(self, "authentication_flow_binding_overrides")
 
     @property
     @pulumi.getter
-    def authorization(self) -> Optional['outputs.ClientAuthorization']:
+    def authorization(self) -> pulumi.Output[Optional['outputs.ClientAuthorization']]:
         return pulumi.get(self, "authorization")
 
     @property
     @pulumi.getter(name="baseUrl")
-    def base_url(self) -> Optional[str]:
+    def base_url(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "base_url")
 
     @property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> str:
+    def client_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "client_id")
 
     @property
     @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> str:
+    def client_secret(self) -> pulumi.Output[str]:
         return pulumi.get(self, "client_secret")
 
     @property
     @pulumi.getter(name="consentRequired")
-    def consent_required(self) -> Optional[bool]:
+    def consent_required(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "consent_required")
 
     @property
     @pulumi.getter
-    def description(self) -> Optional[str]:
+    def description(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="directAccessGrantsEnabled")
-    def direct_access_grants_enabled(self) -> Optional[bool]:
+    def direct_access_grants_enabled(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "direct_access_grants_enabled")
 
     @property
     @pulumi.getter
-    def enabled(self) -> Optional[bool]:
+    def enabled(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="excludeSessionStateFromAuthResponse")
-    def exclude_session_state_from_auth_response(self) -> Optional[bool]:
+    def exclude_session_state_from_auth_response(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "exclude_session_state_from_auth_response")
 
     @property
     @pulumi.getter(name="fullScopeAllowed")
-    def full_scope_allowed(self) -> Optional[bool]:
+    def full_scope_allowed(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "full_scope_allowed")
 
     @property
     @pulumi.getter(name="implicitFlowEnabled")
-    def implicit_flow_enabled(self) -> Optional[bool]:
+    def implicit_flow_enabled(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "implicit_flow_enabled")
 
     @property
     @pulumi.getter(name="loginTheme")
-    def login_theme(self) -> Optional[str]:
+    def login_theme(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "login_theme")
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="pkceCodeChallengeMethod")
-    def pkce_code_challenge_method(self) -> Optional[str]:
+    def pkce_code_challenge_method(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "pkce_code_challenge_method")
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter(name="resourceServerId")
-    def resource_server_id(self) -> str:
+    def resource_server_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "resource_server_id")
 
     @property
     @pulumi.getter(name="rootUrl")
-    def root_url(self) -> Optional[str]:
+    def root_url(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "root_url")
 
     @property
     @pulumi.getter(name="serviceAccountUserId")
-    def service_account_user_id(self) -> str:
+    def service_account_user_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "service_account_user_id")
 
     @property
     @pulumi.getter(name="serviceAccountsEnabled")
-    def service_accounts_enabled(self) -> Optional[bool]:
+    def service_accounts_enabled(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "service_accounts_enabled")
 
     @property
     @pulumi.getter(name="standardFlowEnabled")
-    def standard_flow_enabled(self) -> Optional[bool]:
+    def standard_flow_enabled(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "standard_flow_enabled")
 
     @property
     @pulumi.getter(name="validRedirectUris")
-    def valid_redirect_uris(self) -> Optional[List[str]]:
+    def valid_redirect_uris(self) -> pulumi.Output[Optional[List[str]]]:
         return pulumi.get(self, "valid_redirect_uris")
 
     @property
     @pulumi.getter(name="webOrigins")
-    def web_origins(self) -> Optional[List[str]]:
+    def web_origins(self) -> pulumi.Output[Optional[List[str]]]:
         return pulumi.get(self, "web_origins")
 
     def translate_output_property(self, prop):

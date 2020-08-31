@@ -13,7 +13,7 @@ __all__ = ['Flow']
 
 class Flow(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -86,22 +86,22 @@ class Flow(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def alias(self) -> str:
+    def alias(self) -> pulumi.Output[str]:
         return pulumi.get(self, "alias")
 
     @property
     @pulumi.getter
-    def description(self) -> Optional[str]:
+    def description(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="providerId")
-    def provider_id(self) -> Optional[str]:
+    def provider_id(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "provider_id")
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm_id")
 
     def translate_output_property(self, prop):

@@ -15,7 +15,7 @@ __all__ = ['Realm']
 
 class Realm(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_code_lifespan: Optional[pulumi.Input[str]] = None,
                  access_code_lifespan_login: Optional[pulumi.Input[str]] = None,
@@ -265,57 +265,57 @@ class Realm(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="accessCodeLifespan")
-    def access_code_lifespan(self) -> str:
+    def access_code_lifespan(self) -> pulumi.Output[str]:
         return pulumi.get(self, "access_code_lifespan")
 
     @property
     @pulumi.getter(name="accessCodeLifespanLogin")
-    def access_code_lifespan_login(self) -> str:
+    def access_code_lifespan_login(self) -> pulumi.Output[str]:
         return pulumi.get(self, "access_code_lifespan_login")
 
     @property
     @pulumi.getter(name="accessCodeLifespanUserAction")
-    def access_code_lifespan_user_action(self) -> str:
+    def access_code_lifespan_user_action(self) -> pulumi.Output[str]:
         return pulumi.get(self, "access_code_lifespan_user_action")
 
     @property
     @pulumi.getter(name="accessTokenLifespan")
-    def access_token_lifespan(self) -> str:
+    def access_token_lifespan(self) -> pulumi.Output[str]:
         return pulumi.get(self, "access_token_lifespan")
 
     @property
     @pulumi.getter(name="accessTokenLifespanForImplicitFlow")
-    def access_token_lifespan_for_implicit_flow(self) -> str:
+    def access_token_lifespan_for_implicit_flow(self) -> pulumi.Output[str]:
         return pulumi.get(self, "access_token_lifespan_for_implicit_flow")
 
     @property
     @pulumi.getter(name="accountTheme")
-    def account_theme(self) -> Optional[str]:
+    def account_theme(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "account_theme")
 
     @property
     @pulumi.getter(name="actionTokenGeneratedByAdminLifespan")
-    def action_token_generated_by_admin_lifespan(self) -> str:
+    def action_token_generated_by_admin_lifespan(self) -> pulumi.Output[str]:
         return pulumi.get(self, "action_token_generated_by_admin_lifespan")
 
     @property
     @pulumi.getter(name="actionTokenGeneratedByUserLifespan")
-    def action_token_generated_by_user_lifespan(self) -> str:
+    def action_token_generated_by_user_lifespan(self) -> pulumi.Output[str]:
         return pulumi.get(self, "action_token_generated_by_user_lifespan")
 
     @property
     @pulumi.getter(name="adminTheme")
-    def admin_theme(self) -> Optional[str]:
+    def admin_theme(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "admin_theme")
 
     @property
     @pulumi.getter
-    def attributes(self) -> Optional[Mapping[str, Any]]:
+    def attributes(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         return pulumi.get(self, "attributes")
 
     @property
     @pulumi.getter(name="browserFlow")
-    def browser_flow(self) -> Optional[str]:
+    def browser_flow(self) -> pulumi.Output[Optional[str]]:
         """
         Which flow should be used for BrowserFlow
         """
@@ -323,7 +323,7 @@ class Realm(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientAuthenticationFlow")
-    def client_authentication_flow(self) -> Optional[str]:
+    def client_authentication_flow(self) -> pulumi.Output[Optional[str]]:
         """
         Which flow should be used for ClientAuthenticationFlow
         """
@@ -331,12 +331,12 @@ class Realm(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="defaultSignatureAlgorithm")
-    def default_signature_algorithm(self) -> Optional[str]:
+    def default_signature_algorithm(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "default_signature_algorithm")
 
     @property
     @pulumi.getter(name="directGrantFlow")
-    def direct_grant_flow(self) -> Optional[str]:
+    def direct_grant_flow(self) -> pulumi.Output[Optional[str]]:
         """
         Which flow should be used for DirectGrantFlow
         """
@@ -344,17 +344,17 @@ class Realm(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[str]:
+    def display_name(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "display_name")
 
     @property
     @pulumi.getter(name="displayNameHtml")
-    def display_name_html(self) -> Optional[str]:
+    def display_name_html(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "display_name_html")
 
     @property
     @pulumi.getter(name="dockerAuthenticationFlow")
-    def docker_authentication_flow(self) -> Optional[str]:
+    def docker_authentication_flow(self) -> pulumi.Output[Optional[str]]:
         """
         Which flow should be used for DockerAuthenticationFlow
         """
@@ -362,57 +362,57 @@ class Realm(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="duplicateEmailsAllowed")
-    def duplicate_emails_allowed(self) -> bool:
+    def duplicate_emails_allowed(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "duplicate_emails_allowed")
 
     @property
     @pulumi.getter(name="editUsernameAllowed")
-    def edit_username_allowed(self) -> bool:
+    def edit_username_allowed(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "edit_username_allowed")
 
     @property
     @pulumi.getter(name="emailTheme")
-    def email_theme(self) -> Optional[str]:
+    def email_theme(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "email_theme")
 
     @property
     @pulumi.getter
-    def enabled(self) -> Optional[bool]:
+    def enabled(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="internalId")
-    def internal_id(self) -> str:
+    def internal_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "internal_id")
 
     @property
     @pulumi.getter
-    def internationalization(self) -> Optional['outputs.RealmInternationalization']:
+    def internationalization(self) -> pulumi.Output[Optional['outputs.RealmInternationalization']]:
         return pulumi.get(self, "internationalization")
 
     @property
     @pulumi.getter(name="loginTheme")
-    def login_theme(self) -> Optional[str]:
+    def login_theme(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "login_theme")
 
     @property
     @pulumi.getter(name="loginWithEmailAllowed")
-    def login_with_email_allowed(self) -> bool:
+    def login_with_email_allowed(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "login_with_email_allowed")
 
     @property
     @pulumi.getter(name="offlineSessionIdleTimeout")
-    def offline_session_idle_timeout(self) -> str:
+    def offline_session_idle_timeout(self) -> pulumi.Output[str]:
         return pulumi.get(self, "offline_session_idle_timeout")
 
     @property
     @pulumi.getter(name="offlineSessionMaxLifespan")
-    def offline_session_max_lifespan(self) -> str:
+    def offline_session_max_lifespan(self) -> pulumi.Output[str]:
         return pulumi.get(self, "offline_session_max_lifespan")
 
     @property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[str]:
+    def password_policy(self) -> pulumi.Output[Optional[str]]:
         """
         String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
         can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
@@ -422,27 +422,27 @@ class Realm(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def realm(self) -> str:
+    def realm(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm")
 
     @property
     @pulumi.getter(name="refreshTokenMaxReuse")
-    def refresh_token_max_reuse(self) -> Optional[float]:
+    def refresh_token_max_reuse(self) -> pulumi.Output[Optional[float]]:
         return pulumi.get(self, "refresh_token_max_reuse")
 
     @property
     @pulumi.getter(name="registrationAllowed")
-    def registration_allowed(self) -> bool:
+    def registration_allowed(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "registration_allowed")
 
     @property
     @pulumi.getter(name="registrationEmailAsUsername")
-    def registration_email_as_username(self) -> bool:
+    def registration_email_as_username(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "registration_email_as_username")
 
     @property
     @pulumi.getter(name="registrationFlow")
-    def registration_flow(self) -> Optional[str]:
+    def registration_flow(self) -> pulumi.Output[Optional[str]]:
         """
         Which flow should be used for RegistrationFlow
         """
@@ -450,12 +450,12 @@ class Realm(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="rememberMe")
-    def remember_me(self) -> bool:
+    def remember_me(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "remember_me")
 
     @property
     @pulumi.getter(name="resetCredentialsFlow")
-    def reset_credentials_flow(self) -> Optional[str]:
+    def reset_credentials_flow(self) -> pulumi.Output[Optional[str]]:
         """
         Which flow should be used for ResetCredentialsFlow
         """
@@ -463,27 +463,27 @@ class Realm(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="resetPasswordAllowed")
-    def reset_password_allowed(self) -> bool:
+    def reset_password_allowed(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "reset_password_allowed")
 
     @property
     @pulumi.getter(name="revokeRefreshToken")
-    def revoke_refresh_token(self) -> Optional[bool]:
+    def revoke_refresh_token(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "revoke_refresh_token")
 
     @property
     @pulumi.getter(name="securityDefenses")
-    def security_defenses(self) -> Optional['outputs.RealmSecurityDefenses']:
+    def security_defenses(self) -> pulumi.Output[Optional['outputs.RealmSecurityDefenses']]:
         return pulumi.get(self, "security_defenses")
 
     @property
     @pulumi.getter(name="smtpServer")
-    def smtp_server(self) -> Optional['outputs.RealmSmtpServer']:
+    def smtp_server(self) -> pulumi.Output[Optional['outputs.RealmSmtpServer']]:
         return pulumi.get(self, "smtp_server")
 
     @property
     @pulumi.getter(name="sslRequired")
-    def ssl_required(self) -> Optional[str]:
+    def ssl_required(self) -> pulumi.Output[Optional[str]]:
         """
         SSL Required: Values can be 'none', 'external' or 'all'.
         """
@@ -491,22 +491,22 @@ class Realm(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ssoSessionIdleTimeout")
-    def sso_session_idle_timeout(self) -> str:
+    def sso_session_idle_timeout(self) -> pulumi.Output[str]:
         return pulumi.get(self, "sso_session_idle_timeout")
 
     @property
     @pulumi.getter(name="ssoSessionMaxLifespan")
-    def sso_session_max_lifespan(self) -> str:
+    def sso_session_max_lifespan(self) -> pulumi.Output[str]:
         return pulumi.get(self, "sso_session_max_lifespan")
 
     @property
     @pulumi.getter(name="userManagedAccess")
-    def user_managed_access(self) -> Optional[bool]:
+    def user_managed_access(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "user_managed_access")
 
     @property
     @pulumi.getter(name="verifyEmail")
-    def verify_email(self) -> bool:
+    def verify_email(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "verify_email")
 
     def translate_output_property(self, prop):

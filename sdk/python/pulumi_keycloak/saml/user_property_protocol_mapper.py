@@ -13,7 +13,7 @@ __all__ = ['UserPropertyProtocolMapper']
 
 class UserPropertyProtocolMapper(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_scope_id: Optional[pulumi.Input[str]] = None,
@@ -148,42 +148,42 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[str]:
+    def client_id(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "client_id")
 
     @property
     @pulumi.getter(name="clientScopeId")
-    def client_scope_id(self) -> Optional[str]:
+    def client_scope_id(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "client_scope_id")
 
     @property
     @pulumi.getter(name="friendlyName")
-    def friendly_name(self) -> Optional[str]:
+    def friendly_name(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "friendly_name")
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter(name="samlAttributeName")
-    def saml_attribute_name(self) -> str:
+    def saml_attribute_name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "saml_attribute_name")
 
     @property
     @pulumi.getter(name="samlAttributeNameFormat")
-    def saml_attribute_name_format(self) -> str:
+    def saml_attribute_name_format(self) -> pulumi.Output[str]:
         return pulumi.get(self, "saml_attribute_name_format")
 
     @property
     @pulumi.getter(name="userProperty")
-    def user_property(self) -> str:
+    def user_property(self) -> pulumi.Output[str]:
         return pulumi.get(self, "user_property")
 
     def translate_output_property(self, prop):

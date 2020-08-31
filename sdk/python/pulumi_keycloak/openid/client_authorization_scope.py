@@ -13,7 +13,7 @@ __all__ = ['ClientAuthorizationScope']
 
 class ClientAuthorizationScope(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  icon_uri: Optional[pulumi.Input[str]] = None,
@@ -90,27 +90,27 @@ class ClientAuthorizationScope(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[str]:
+    def display_name(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "display_name")
 
     @property
     @pulumi.getter(name="iconUri")
-    def icon_uri(self) -> Optional[str]:
+    def icon_uri(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "icon_uri")
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter(name="resourceServerId")
-    def resource_server_id(self) -> str:
+    def resource_server_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "resource_server_id")
 
     def translate_output_property(self, prop):

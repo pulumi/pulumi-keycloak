@@ -13,7 +13,7 @@ __all__ = ['Client']
 
 class Client(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  assertion_consumer_post_url: Optional[pulumi.Input[str]] = None,
                  assertion_consumer_redirect_url: Optional[pulumi.Input[str]] = None,
@@ -242,147 +242,147 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="assertionConsumerPostUrl")
-    def assertion_consumer_post_url(self) -> Optional[str]:
+    def assertion_consumer_post_url(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "assertion_consumer_post_url")
 
     @property
     @pulumi.getter(name="assertionConsumerRedirectUrl")
-    def assertion_consumer_redirect_url(self) -> Optional[str]:
+    def assertion_consumer_redirect_url(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "assertion_consumer_redirect_url")
 
     @property
     @pulumi.getter(name="baseUrl")
-    def base_url(self) -> Optional[str]:
+    def base_url(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "base_url")
 
     @property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> str:
+    def client_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "client_id")
 
     @property
     @pulumi.getter(name="clientSignatureRequired")
-    def client_signature_required(self) -> bool:
+    def client_signature_required(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "client_signature_required")
 
     @property
     @pulumi.getter
-    def description(self) -> Optional[str]:
+    def description(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
-    def enabled(self) -> Optional[bool]:
+    def enabled(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="encryptAssertions")
-    def encrypt_assertions(self) -> bool:
+    def encrypt_assertions(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "encrypt_assertions")
 
     @property
     @pulumi.getter(name="encryptionCertificate")
-    def encryption_certificate(self) -> Optional[str]:
+    def encryption_certificate(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "encryption_certificate")
 
     @property
     @pulumi.getter(name="forceNameIdFormat")
-    def force_name_id_format(self) -> bool:
+    def force_name_id_format(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "force_name_id_format")
 
     @property
     @pulumi.getter(name="forcePostBinding")
-    def force_post_binding(self) -> bool:
+    def force_post_binding(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "force_post_binding")
 
     @property
     @pulumi.getter(name="frontChannelLogout")
-    def front_channel_logout(self) -> bool:
+    def front_channel_logout(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "front_channel_logout")
 
     @property
     @pulumi.getter(name="fullScopeAllowed")
-    def full_scope_allowed(self) -> Optional[bool]:
+    def full_scope_allowed(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "full_scope_allowed")
 
     @property
     @pulumi.getter(name="idpInitiatedSsoRelayState")
-    def idp_initiated_sso_relay_state(self) -> Optional[str]:
+    def idp_initiated_sso_relay_state(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "idp_initiated_sso_relay_state")
 
     @property
     @pulumi.getter(name="idpInitiatedSsoUrlName")
-    def idp_initiated_sso_url_name(self) -> Optional[str]:
+    def idp_initiated_sso_url_name(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "idp_initiated_sso_url_name")
 
     @property
     @pulumi.getter(name="includeAuthnStatement")
-    def include_authn_statement(self) -> bool:
+    def include_authn_statement(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "include_authn_statement")
 
     @property
     @pulumi.getter(name="logoutServicePostBindingUrl")
-    def logout_service_post_binding_url(self) -> Optional[str]:
+    def logout_service_post_binding_url(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "logout_service_post_binding_url")
 
     @property
     @pulumi.getter(name="logoutServiceRedirectBindingUrl")
-    def logout_service_redirect_binding_url(self) -> Optional[str]:
+    def logout_service_redirect_binding_url(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "logout_service_redirect_binding_url")
 
     @property
     @pulumi.getter(name="masterSamlProcessingUrl")
-    def master_saml_processing_url(self) -> Optional[str]:
+    def master_saml_processing_url(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "master_saml_processing_url")
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nameIdFormat")
-    def name_id_format(self) -> str:
+    def name_id_format(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name_id_format")
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter(name="rootUrl")
-    def root_url(self) -> Optional[str]:
+    def root_url(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "root_url")
 
     @property
     @pulumi.getter(name="signAssertions")
-    def sign_assertions(self) -> bool:
+    def sign_assertions(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "sign_assertions")
 
     @property
     @pulumi.getter(name="signDocuments")
-    def sign_documents(self) -> bool:
+    def sign_documents(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "sign_documents")
 
     @property
     @pulumi.getter(name="signatureAlgorithm")
-    def signature_algorithm(self) -> Optional[str]:
+    def signature_algorithm(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "signature_algorithm")
 
     @property
     @pulumi.getter(name="signingCertificate")
-    def signing_certificate(self) -> Optional[str]:
+    def signing_certificate(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "signing_certificate")
 
     @property
     @pulumi.getter(name="signingPrivateKey")
-    def signing_private_key(self) -> Optional[str]:
+    def signing_private_key(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "signing_private_key")
 
     @property
     @pulumi.getter(name="validRedirectUris")
-    def valid_redirect_uris(self) -> Optional[List[str]]:
+    def valid_redirect_uris(self) -> pulumi.Output[Optional[List[str]]]:
         return pulumi.get(self, "valid_redirect_uris")
 
     def translate_output_property(self, prop):

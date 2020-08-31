@@ -13,7 +13,7 @@ __all__ = ['UserSessionNoteProtocolMapper']
 
 class UserSessionNoteProtocolMapper(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_to_access_token: Optional[pulumi.Input[bool]] = None,
                  add_to_id_token: Optional[pulumi.Input[bool]] = None,
@@ -122,7 +122,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="addToAccessToken")
-    def add_to_access_token(self) -> Optional[bool]:
+    def add_to_access_token(self) -> pulumi.Output[Optional[bool]]:
         """
         Indicates if the attribute should be a claim in the access token.
         """
@@ -130,7 +130,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="addToIdToken")
-    def add_to_id_token(self) -> Optional[bool]:
+    def add_to_id_token(self) -> pulumi.Output[Optional[bool]]:
         """
         Indicates if the attribute should be a claim in the id token.
         """
@@ -138,12 +138,12 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="claimName")
-    def claim_name(self) -> str:
+    def claim_name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "claim_name")
 
     @property
     @pulumi.getter(name="claimValueType")
-    def claim_value_type(self) -> Optional[str]:
+    def claim_value_type(self) -> pulumi.Output[Optional[str]]:
         """
         Claim type used when serializing tokens.
         """
@@ -151,7 +151,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[str]:
+    def client_id(self) -> pulumi.Output[Optional[str]]:
         """
         The mapper's associated client. Cannot be used at the same time as client_scope_id.
         """
@@ -159,7 +159,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientScopeId")
-    def client_scope_id(self) -> Optional[str]:
+    def client_scope_id(self) -> pulumi.Output[Optional[str]]:
         """
         The mapper's associated client scope. Cannot be used at the same time as client_id.
         """
@@ -167,7 +167,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         A human-friendly name that will appear in the Keycloak console.
         """
@@ -175,7 +175,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         """
         The realm id where the associated client or client scope exists.
         """
@@ -183,7 +183,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="sessionNoteLabel")
-    def session_note_label(self) -> Optional[str]:
+    def session_note_label(self) -> pulumi.Output[Optional[str]]:
         """
         String value being the name of stored user session note within the UserSessionModel.note map.
         """
