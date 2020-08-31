@@ -13,7 +13,7 @@ __all__ = ['RequiredAction']
 
 class RequiredAction(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: Optional[pulumi.Input[str]] = None,
                  default_action: Optional[pulumi.Input[bool]] = None,
@@ -94,32 +94,32 @@ class RequiredAction(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def alias(self) -> str:
+    def alias(self) -> pulumi.Output[str]:
         return pulumi.get(self, "alias")
 
     @property
     @pulumi.getter(name="defaultAction")
-    def default_action(self) -> Optional[bool]:
+    def default_action(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "default_action")
 
     @property
     @pulumi.getter
-    def enabled(self) -> Optional[bool]:
+    def enabled(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
-    def priority(self) -> float:
+    def priority(self) -> pulumi.Output[float]:
         return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm_id")
 
     def translate_output_property(self, prop):

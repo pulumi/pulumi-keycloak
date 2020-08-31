@@ -13,7 +13,7 @@ __all__ = ['DefaultGroups']
 
 class DefaultGroups(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  group_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
@@ -106,12 +106,12 @@ class DefaultGroups(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="groupIds")
-    def group_ids(self) -> List[str]:
+    def group_ids(self) -> pulumi.Output[List[str]]:
         return pulumi.get(self, "group_ids")
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm_id")
 
     def translate_output_property(self, prop):

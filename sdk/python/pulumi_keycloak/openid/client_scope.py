@@ -13,7 +13,7 @@ __all__ = ['ClientScope']
 
 class ClientScope(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  consent_screen_text: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -125,32 +125,32 @@ class ClientScope(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="consentScreenText")
-    def consent_screen_text(self) -> Optional[str]:
+    def consent_screen_text(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "consent_screen_text")
 
     @property
     @pulumi.getter
-    def description(self) -> Optional[str]:
+    def description(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="guiOrder")
-    def gui_order(self) -> Optional[float]:
+    def gui_order(self) -> pulumi.Output[Optional[float]]:
         return pulumi.get(self, "gui_order")
 
     @property
     @pulumi.getter(name="includeInTokenScope")
-    def include_in_token_scope(self) -> Optional[bool]:
+    def include_in_token_scope(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "include_in_token_scope")
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm_id")
 
     def translate_output_property(self, prop):

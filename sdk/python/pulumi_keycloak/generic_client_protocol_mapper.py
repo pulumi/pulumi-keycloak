@@ -13,7 +13,7 @@ __all__ = ['GenericClientProtocolMapper']
 
 class GenericClientProtocolMapper(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_scope_id: Optional[pulumi.Input[str]] = None,
@@ -161,7 +161,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[str]:
+    def client_id(self) -> pulumi.Output[Optional[str]]:
         """
         The mapper's associated client. Cannot be used at the same time as client_scope_id.
         """
@@ -169,7 +169,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientScopeId")
-    def client_scope_id(self) -> Optional[str]:
+    def client_scope_id(self) -> pulumi.Output[Optional[str]]:
         """
         The mapper's associated client scope. Cannot be used at the same time as client_id.
         """
@@ -177,12 +177,12 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def config(self) -> Mapping[str, Any]:
+    def config(self) -> pulumi.Output[Mapping[str, Any]]:
         return pulumi.get(self, "config")
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         A human-friendly name that will appear in the Keycloak console.
         """
@@ -190,7 +190,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def protocol(self) -> str:
+    def protocol(self) -> pulumi.Output[str]:
         """
         The protocol of the client (openid-connect / saml).
         """
@@ -198,7 +198,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="protocolMapper")
-    def protocol_mapper(self) -> str:
+    def protocol_mapper(self) -> pulumi.Output[str]:
         """
         The type of the protocol mapper.
         """
@@ -206,7 +206,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         """
         The realm id where the associated client or client scope exists.
         """

@@ -13,7 +13,7 @@ __all__ = ['RealmEvents']
 
 class RealmEvents(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  admin_events_details_enabled: Optional[pulumi.Input[bool]] = None,
                  admin_events_enabled: Optional[pulumi.Input[bool]] = None,
@@ -131,37 +131,37 @@ class RealmEvents(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="adminEventsDetailsEnabled")
-    def admin_events_details_enabled(self) -> Optional[bool]:
+    def admin_events_details_enabled(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "admin_events_details_enabled")
 
     @property
     @pulumi.getter(name="adminEventsEnabled")
-    def admin_events_enabled(self) -> Optional[bool]:
+    def admin_events_enabled(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "admin_events_enabled")
 
     @property
     @pulumi.getter(name="enabledEventTypes")
-    def enabled_event_types(self) -> Optional[List[str]]:
+    def enabled_event_types(self) -> pulumi.Output[Optional[List[str]]]:
         return pulumi.get(self, "enabled_event_types")
 
     @property
     @pulumi.getter(name="eventsEnabled")
-    def events_enabled(self) -> Optional[bool]:
+    def events_enabled(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "events_enabled")
 
     @property
     @pulumi.getter(name="eventsExpiration")
-    def events_expiration(self) -> Optional[float]:
+    def events_expiration(self) -> pulumi.Output[Optional[float]]:
         return pulumi.get(self, "events_expiration")
 
     @property
     @pulumi.getter(name="eventsListeners")
-    def events_listeners(self) -> Optional[List[str]]:
+    def events_listeners(self) -> pulumi.Output[Optional[List[str]]]:
         return pulumi.get(self, "events_listeners")
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm_id")
 
     def translate_output_property(self, prop):

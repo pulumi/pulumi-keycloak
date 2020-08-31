@@ -13,7 +13,7 @@ __all__ = ['HardcodedRoleIdentityMapper']
 
 class HardcodedRoleIdentityMapper(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  identity_provider_alias: Optional[pulumi.Input[str]] = None,
@@ -98,12 +98,12 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[Mapping[str, Any]]:
+    def extra_config(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         return pulumi.get(self, "extra_config")
 
     @property
     @pulumi.getter(name="identityProviderAlias")
-    def identity_provider_alias(self) -> str:
+    def identity_provider_alias(self) -> pulumi.Output[str]:
         """
         IDP Alias
         """
@@ -111,7 +111,7 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         IDP Mapper Name
         """
@@ -119,7 +119,7 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def realm(self) -> str:
+    def realm(self) -> pulumi.Output[str]:
         """
         Realm Name
         """
@@ -127,7 +127,7 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def role(self) -> Optional[str]:
+    def role(self) -> pulumi.Output[Optional[str]]:
         """
         Role Name
         """

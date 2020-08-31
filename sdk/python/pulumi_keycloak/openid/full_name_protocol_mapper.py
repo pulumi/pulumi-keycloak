@@ -13,7 +13,7 @@ __all__ = ['FullNameProtocolMapper']
 
 class FullNameProtocolMapper(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_to_access_token: Optional[pulumi.Input[bool]] = None,
                  add_to_id_token: Optional[pulumi.Input[bool]] = None,
@@ -160,22 +160,22 @@ class FullNameProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="addToAccessToken")
-    def add_to_access_token(self) -> Optional[bool]:
+    def add_to_access_token(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "add_to_access_token")
 
     @property
     @pulumi.getter(name="addToIdToken")
-    def add_to_id_token(self) -> Optional[bool]:
+    def add_to_id_token(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "add_to_id_token")
 
     @property
     @pulumi.getter(name="addToUserinfo")
-    def add_to_userinfo(self) -> Optional[bool]:
+    def add_to_userinfo(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "add_to_userinfo")
 
     @property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[str]:
+    def client_id(self) -> pulumi.Output[Optional[str]]:
         """
         The mapper's associated client. Cannot be used at the same time as client_scope_id.
         """
@@ -183,7 +183,7 @@ class FullNameProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientScopeId")
-    def client_scope_id(self) -> Optional[str]:
+    def client_scope_id(self) -> pulumi.Output[Optional[str]]:
         """
         The mapper's associated client scope. Cannot be used at the same time as client_id.
         """
@@ -191,7 +191,7 @@ class FullNameProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         A human-friendly name that will appear in the Keycloak console.
         """
@@ -199,7 +199,7 @@ class FullNameProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         """
         The realm id where the associated client or client scope exists.
         """

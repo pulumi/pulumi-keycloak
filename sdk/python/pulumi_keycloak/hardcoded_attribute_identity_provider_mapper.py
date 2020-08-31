@@ -13,7 +13,7 @@ __all__ = ['HardcodedAttributeIdentityProviderMapper']
 
 class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attribute_name: Optional[pulumi.Input[str]] = None,
                  attribute_value: Optional[pulumi.Input[str]] = None,
@@ -112,7 +112,7 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="attributeName")
-    def attribute_name(self) -> Optional[str]:
+    def attribute_name(self) -> pulumi.Output[Optional[str]]:
         """
         OIDC Claim
         """
@@ -120,7 +120,7 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="attributeValue")
-    def attribute_value(self) -> Optional[str]:
+    def attribute_value(self) -> pulumi.Output[Optional[str]]:
         """
         User Attribute
         """
@@ -128,12 +128,12 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[Mapping[str, Any]]:
+    def extra_config(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         return pulumi.get(self, "extra_config")
 
     @property
     @pulumi.getter(name="identityProviderAlias")
-    def identity_provider_alias(self) -> str:
+    def identity_provider_alias(self) -> pulumi.Output[str]:
         """
         IDP Alias
         """
@@ -141,7 +141,7 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         IDP Mapper Name
         """
@@ -149,7 +149,7 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def realm(self) -> str:
+    def realm(self) -> pulumi.Output[str]:
         """
         Realm Name
         """
@@ -157,7 +157,7 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="userSession")
-    def user_session(self) -> bool:
+    def user_session(self) -> pulumi.Output[bool]:
         """
         Is Attribute Related To a User Session
         """

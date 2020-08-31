@@ -13,7 +13,7 @@ __all__ = ['FullNameMapper']
 
 class FullNameMapper(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  ldap_full_name_attribute: Optional[pulumi.Input[str]] = None,
                  ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
@@ -148,12 +148,12 @@ class FullNameMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ldapFullNameAttribute")
-    def ldap_full_name_attribute(self) -> str:
+    def ldap_full_name_attribute(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ldap_full_name_attribute")
 
     @property
     @pulumi.getter(name="ldapUserFederationId")
-    def ldap_user_federation_id(self) -> str:
+    def ldap_user_federation_id(self) -> pulumi.Output[str]:
         """
         The ldap user federation provider to attach this mapper to.
         """
@@ -161,7 +161,7 @@ class FullNameMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         Display name of the mapper when displayed in the console.
         """
@@ -169,12 +169,12 @@ class FullNameMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="readOnly")
-    def read_only(self) -> Optional[bool]:
+    def read_only(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         """
         The realm in which the ldap user federation provider exists.
         """
@@ -182,7 +182,7 @@ class FullNameMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="writeOnly")
-    def write_only(self) -> Optional[bool]:
+    def write_only(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "write_only")
 
     def translate_output_property(self, prop):

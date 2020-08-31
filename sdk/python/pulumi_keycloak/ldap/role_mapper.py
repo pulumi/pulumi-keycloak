@@ -13,7 +13,7 @@ __all__ = ['RoleMapper']
 
 class RoleMapper(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  ldap_roles_dn: Optional[pulumi.Input[str]] = None,
@@ -146,17 +146,17 @@ class RoleMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[str]:
+    def client_id(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "client_id")
 
     @property
     @pulumi.getter(name="ldapRolesDn")
-    def ldap_roles_dn(self) -> str:
+    def ldap_roles_dn(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ldap_roles_dn")
 
     @property
     @pulumi.getter(name="ldapUserFederationId")
-    def ldap_user_federation_id(self) -> str:
+    def ldap_user_federation_id(self) -> pulumi.Output[str]:
         """
         The ldap user federation provider to attach this mapper to.
         """
@@ -164,32 +164,32 @@ class RoleMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="memberofLdapAttribute")
-    def memberof_ldap_attribute(self) -> Optional[str]:
+    def memberof_ldap_attribute(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "memberof_ldap_attribute")
 
     @property
     @pulumi.getter(name="membershipAttributeType")
-    def membership_attribute_type(self) -> Optional[str]:
+    def membership_attribute_type(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "membership_attribute_type")
 
     @property
     @pulumi.getter(name="membershipLdapAttribute")
-    def membership_ldap_attribute(self) -> str:
+    def membership_ldap_attribute(self) -> pulumi.Output[str]:
         return pulumi.get(self, "membership_ldap_attribute")
 
     @property
     @pulumi.getter(name="membershipUserLdapAttribute")
-    def membership_user_ldap_attribute(self) -> str:
+    def membership_user_ldap_attribute(self) -> pulumi.Output[str]:
         return pulumi.get(self, "membership_user_ldap_attribute")
 
     @property
     @pulumi.getter
-    def mode(self) -> Optional[str]:
+    def mode(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         Display name of the mapper when displayed in the console.
         """
@@ -197,7 +197,7 @@ class RoleMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         """
         The realm in which the ldap user federation provider exists.
         """
@@ -205,27 +205,27 @@ class RoleMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="roleNameLdapAttribute")
-    def role_name_ldap_attribute(self) -> str:
+    def role_name_ldap_attribute(self) -> pulumi.Output[str]:
         return pulumi.get(self, "role_name_ldap_attribute")
 
     @property
     @pulumi.getter(name="roleObjectClasses")
-    def role_object_classes(self) -> List[str]:
+    def role_object_classes(self) -> pulumi.Output[List[str]]:
         return pulumi.get(self, "role_object_classes")
 
     @property
     @pulumi.getter(name="rolesLdapFilter")
-    def roles_ldap_filter(self) -> Optional[str]:
+    def roles_ldap_filter(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "roles_ldap_filter")
 
     @property
     @pulumi.getter(name="useRealmRolesMapping")
-    def use_realm_roles_mapping(self) -> Optional[bool]:
+    def use_realm_roles_mapping(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "use_realm_roles_mapping")
 
     @property
     @pulumi.getter(name="userRolesRetrieveStrategy")
-    def user_roles_retrieve_strategy(self) -> Optional[str]:
+    def user_roles_retrieve_strategy(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "user_roles_retrieve_strategy")
 
     def translate_output_property(self, prop):

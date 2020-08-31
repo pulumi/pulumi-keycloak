@@ -13,7 +13,7 @@ __all__ = ['ExecutionConfig']
 
 class ExecutionConfig(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: Optional[pulumi.Input[str]] = None,
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -90,22 +90,22 @@ class ExecutionConfig(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def alias(self) -> str:
+    def alias(self) -> pulumi.Output[str]:
         return pulumi.get(self, "alias")
 
     @property
     @pulumi.getter
-    def config(self) -> Mapping[str, str]:
+    def config(self) -> pulumi.Output[Mapping[str, str]]:
         return pulumi.get(self, "config")
 
     @property
     @pulumi.getter(name="executionId")
-    def execution_id(self) -> str:
+    def execution_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "execution_id")
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm_id")
 
     def translate_output_property(self, prop):

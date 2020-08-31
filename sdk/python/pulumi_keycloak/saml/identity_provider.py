@@ -13,7 +13,7 @@ __all__ = ['IdentityProvider']
 
 class IdentityProvider(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_read_token_role_on_create: Optional[pulumi.Input[bool]] = None,
                  alias: Optional[pulumi.Input[str]] = None,
@@ -301,7 +301,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="addReadTokenRoleOnCreate")
-    def add_read_token_role_on_create(self) -> Optional[bool]:
+    def add_read_token_role_on_create(self) -> pulumi.Output[Optional[bool]]:
         """
         Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
         """
@@ -309,7 +309,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def alias(self) -> str:
+    def alias(self) -> pulumi.Output[str]:
         """
         The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
         """
@@ -317,7 +317,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="authenticateByDefault")
-    def authenticate_by_default(self) -> Optional[bool]:
+    def authenticate_by_default(self) -> pulumi.Output[Optional[bool]]:
         """
         Enable/disable authenticate users by default.
         """
@@ -325,7 +325,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="backchannelSupported")
-    def backchannel_supported(self) -> Optional[bool]:
+    def backchannel_supported(self) -> pulumi.Output[Optional[bool]]:
         """
         Does the external IDP support backchannel logout?
         """
@@ -333,7 +333,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[str]:
+    def display_name(self) -> pulumi.Output[Optional[str]]:
         """
         Friendly name for Identity Providers.
         """
@@ -341,7 +341,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def enabled(self) -> Optional[bool]:
+    def enabled(self) -> pulumi.Output[Optional[bool]]:
         """
         Enable/disable this identity provider.
         """
@@ -349,7 +349,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="firstBrokerLoginFlowAlias")
-    def first_broker_login_flow_alias(self) -> Optional[str]:
+    def first_broker_login_flow_alias(self) -> pulumi.Output[Optional[str]]:
         """
         Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
         that there is not yet existing Keycloak account linked with the authenticated identity provider account.
@@ -358,7 +358,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="forceAuthn")
-    def force_authn(self) -> Optional[bool]:
+    def force_authn(self) -> pulumi.Output[Optional[bool]]:
         """
         Require Force Authn.
         """
@@ -366,7 +366,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="hideOnLoginPage")
-    def hide_on_login_page(self) -> Optional[bool]:
+    def hide_on_login_page(self) -> pulumi.Output[Optional[bool]]:
         """
         Hide On Login Page.
         """
@@ -374,7 +374,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="internalId")
-    def internal_id(self) -> str:
+    def internal_id(self) -> pulumi.Output[str]:
         """
         Internal Identity Provider Id
         """
@@ -382,7 +382,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="linkOnly")
-    def link_only(self) -> Optional[bool]:
+    def link_only(self) -> pulumi.Output[Optional[bool]]:
         """
         If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
         want to allow login from the provider, but want to integrate with a provider
@@ -391,7 +391,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="nameIdPolicyFormat")
-    def name_id_policy_format(self) -> Optional[str]:
+    def name_id_policy_format(self) -> pulumi.Output[Optional[str]]:
         """
         Name ID Policy Format.
         """
@@ -399,7 +399,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="postBindingAuthnRequest")
-    def post_binding_authn_request(self) -> Optional[bool]:
+    def post_binding_authn_request(self) -> pulumi.Output[Optional[bool]]:
         """
         Post Binding Authn Request.
         """
@@ -407,7 +407,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="postBindingLogout")
-    def post_binding_logout(self) -> Optional[bool]:
+    def post_binding_logout(self) -> pulumi.Output[Optional[bool]]:
         """
         Post Binding Logout.
         """
@@ -415,7 +415,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="postBindingResponse")
-    def post_binding_response(self) -> Optional[bool]:
+    def post_binding_response(self) -> pulumi.Output[Optional[bool]]:
         """
         Post Binding Response.
         """
@@ -423,7 +423,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="postBrokerLoginFlowAlias")
-    def post_broker_login_flow_alias(self) -> Optional[str]:
+    def post_broker_login_flow_alias(self) -> pulumi.Output[Optional[str]]:
         """
         Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
         additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
@@ -434,7 +434,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def realm(self) -> str:
+    def realm(self) -> pulumi.Output[str]:
         """
         Realm Name
         """
@@ -442,7 +442,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="signatureAlgorithm")
-    def signature_algorithm(self) -> Optional[str]:
+    def signature_algorithm(self) -> pulumi.Output[Optional[str]]:
         """
         Signing Algorithm.
         """
@@ -450,7 +450,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="signingCertificate")
-    def signing_certificate(self) -> Optional[str]:
+    def signing_certificate(self) -> pulumi.Output[Optional[str]]:
         """
         Signing Certificate.
         """
@@ -458,7 +458,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="singleLogoutServiceUrl")
-    def single_logout_service_url(self) -> Optional[str]:
+    def single_logout_service_url(self) -> pulumi.Output[Optional[str]]:
         """
         Logout URL.
         """
@@ -466,7 +466,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="singleSignOnServiceUrl")
-    def single_sign_on_service_url(self) -> str:
+    def single_sign_on_service_url(self) -> pulumi.Output[str]:
         """
         SSO Logout URL.
         """
@@ -474,7 +474,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="storeToken")
-    def store_token(self) -> Optional[bool]:
+    def store_token(self) -> pulumi.Output[Optional[bool]]:
         """
         Enable/disable if tokens must be stored after authenticating users.
         """
@@ -482,7 +482,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="trustEmail")
-    def trust_email(self) -> Optional[bool]:
+    def trust_email(self) -> pulumi.Output[Optional[bool]]:
         """
         If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
         """
@@ -490,7 +490,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="validateSignature")
-    def validate_signature(self) -> Optional[bool]:
+    def validate_signature(self) -> pulumi.Output[Optional[bool]]:
         """
         Enable/disable signature validation of SAML responses.
         """
@@ -498,7 +498,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="wantAssertionsEncrypted")
-    def want_assertions_encrypted(self) -> Optional[bool]:
+    def want_assertions_encrypted(self) -> pulumi.Output[Optional[bool]]:
         """
         Want Assertions Encrypted.
         """
@@ -506,7 +506,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="wantAssertionsSigned")
-    def want_assertions_signed(self) -> Optional[bool]:
+    def want_assertions_signed(self) -> pulumi.Output[Optional[bool]]:
         """
         Want Assertions Signed.
         """
@@ -514,7 +514,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="xmlSignKeyInfoKeyNameTransformer")
-    def xml_sign_key_info_key_name_transformer(self) -> Optional[str]:
+    def xml_sign_key_info_key_name_transformer(self) -> pulumi.Output[Optional[str]]:
         """
         Sign Key Transformer.
         """

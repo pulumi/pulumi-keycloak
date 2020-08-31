@@ -13,7 +13,7 @@ __all__ = ['ClientAuthorizationResource']
 
 class ClientAuthorizationResource(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
@@ -110,52 +110,52 @@ class ClientAuthorizationResource(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def attributes(self) -> Optional[Mapping[str, Any]]:
+    def attributes(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         return pulumi.get(self, "attributes")
 
     @property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[str]:
+    def display_name(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "display_name")
 
     @property
     @pulumi.getter(name="iconUri")
-    def icon_uri(self) -> Optional[str]:
+    def icon_uri(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "icon_uri")
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="ownerManagedAccess")
-    def owner_managed_access(self) -> Optional[bool]:
+    def owner_managed_access(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "owner_managed_access")
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter(name="resourceServerId")
-    def resource_server_id(self) -> str:
+    def resource_server_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "resource_server_id")
 
     @property
     @pulumi.getter
-    def scopes(self) -> Optional[List[str]]:
+    def scopes(self) -> pulumi.Output[Optional[List[str]]]:
         return pulumi.get(self, "scopes")
 
     @property
     @pulumi.getter
-    def type(self) -> Optional[str]:
+    def type(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
-    def uris(self) -> Optional[List[str]]:
+    def uris(self) -> pulumi.Output[Optional[List[str]]]:
         return pulumi.get(self, "uris")
 
     def translate_output_property(self, prop):

@@ -13,7 +13,7 @@ __all__ = ['CustomUserFederation']
 
 class CustomUserFederation(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cache_policy: Optional[pulumi.Input[str]] = None,
                  config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
@@ -116,17 +116,17 @@ class CustomUserFederation(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="cachePolicy")
-    def cache_policy(self) -> Optional[str]:
+    def cache_policy(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "cache_policy")
 
     @property
     @pulumi.getter
-    def config(self) -> Optional[Mapping[str, Any]]:
+    def config(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         return pulumi.get(self, "config")
 
     @property
     @pulumi.getter
-    def enabled(self) -> Optional[bool]:
+    def enabled(self) -> pulumi.Output[Optional[bool]]:
         """
         When false, this provider will not be used when performing queries for users.
         """
@@ -134,7 +134,7 @@ class CustomUserFederation(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         Display name of the provider when displayed in the console.
         """
@@ -142,7 +142,7 @@ class CustomUserFederation(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="parentId")
-    def parent_id(self) -> Optional[str]:
+    def parent_id(self) -> pulumi.Output[Optional[str]]:
         """
         The parent_id of the generated component. will use realm_id if not specified.
         """
@@ -150,7 +150,7 @@ class CustomUserFederation(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def priority(self) -> Optional[float]:
+    def priority(self) -> pulumi.Output[Optional[float]]:
         """
         Priority of this provider when looking up users. Lower values are first.
         """
@@ -158,7 +158,7 @@ class CustomUserFederation(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="providerId")
-    def provider_id(self) -> str:
+    def provider_id(self) -> pulumi.Output[str]:
         """
         The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
         interface
@@ -167,7 +167,7 @@ class CustomUserFederation(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         """
         The realm (name) this provider will provide user federation for.
         """

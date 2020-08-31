@@ -13,7 +13,7 @@ __all__ = ['GroupMapper']
 
 class GroupMapper(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  drop_non_existing_groups_during_sync: Optional[pulumi.Input[bool]] = None,
                  group_name_ldap_attribute: Optional[pulumi.Input[str]] = None,
@@ -218,37 +218,37 @@ class GroupMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="dropNonExistingGroupsDuringSync")
-    def drop_non_existing_groups_during_sync(self) -> Optional[bool]:
+    def drop_non_existing_groups_during_sync(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "drop_non_existing_groups_during_sync")
 
     @property
     @pulumi.getter(name="groupNameLdapAttribute")
-    def group_name_ldap_attribute(self) -> str:
+    def group_name_ldap_attribute(self) -> pulumi.Output[str]:
         return pulumi.get(self, "group_name_ldap_attribute")
 
     @property
     @pulumi.getter(name="groupObjectClasses")
-    def group_object_classes(self) -> List[str]:
+    def group_object_classes(self) -> pulumi.Output[List[str]]:
         return pulumi.get(self, "group_object_classes")
 
     @property
     @pulumi.getter(name="groupsLdapFilter")
-    def groups_ldap_filter(self) -> Optional[str]:
+    def groups_ldap_filter(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "groups_ldap_filter")
 
     @property
     @pulumi.getter(name="ignoreMissingGroups")
-    def ignore_missing_groups(self) -> Optional[bool]:
+    def ignore_missing_groups(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "ignore_missing_groups")
 
     @property
     @pulumi.getter(name="ldapGroupsDn")
-    def ldap_groups_dn(self) -> str:
+    def ldap_groups_dn(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ldap_groups_dn")
 
     @property
     @pulumi.getter(name="ldapUserFederationId")
-    def ldap_user_federation_id(self) -> str:
+    def ldap_user_federation_id(self) -> pulumi.Output[str]:
         """
         The ldap user federation provider to attach this mapper to.
         """
@@ -256,37 +256,37 @@ class GroupMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="mappedGroupAttributes")
-    def mapped_group_attributes(self) -> Optional[List[str]]:
+    def mapped_group_attributes(self) -> pulumi.Output[Optional[List[str]]]:
         return pulumi.get(self, "mapped_group_attributes")
 
     @property
     @pulumi.getter(name="memberofLdapAttribute")
-    def memberof_ldap_attribute(self) -> Optional[str]:
+    def memberof_ldap_attribute(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "memberof_ldap_attribute")
 
     @property
     @pulumi.getter(name="membershipAttributeType")
-    def membership_attribute_type(self) -> Optional[str]:
+    def membership_attribute_type(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "membership_attribute_type")
 
     @property
     @pulumi.getter(name="membershipLdapAttribute")
-    def membership_ldap_attribute(self) -> str:
+    def membership_ldap_attribute(self) -> pulumi.Output[str]:
         return pulumi.get(self, "membership_ldap_attribute")
 
     @property
     @pulumi.getter(name="membershipUserLdapAttribute")
-    def membership_user_ldap_attribute(self) -> str:
+    def membership_user_ldap_attribute(self) -> pulumi.Output[str]:
         return pulumi.get(self, "membership_user_ldap_attribute")
 
     @property
     @pulumi.getter
-    def mode(self) -> Optional[str]:
+    def mode(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         Display name of the mapper when displayed in the console.
         """
@@ -294,12 +294,12 @@ class GroupMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="preserveGroupInheritance")
-    def preserve_group_inheritance(self) -> Optional[bool]:
+    def preserve_group_inheritance(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "preserve_group_inheritance")
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         """
         The realm in which the ldap user federation provider exists.
         """
@@ -307,7 +307,7 @@ class GroupMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="userRolesRetrieveStrategy")
-    def user_roles_retrieve_strategy(self) -> Optional[str]:
+    def user_roles_retrieve_strategy(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "user_roles_retrieve_strategy")
 
     def translate_output_property(self, prop):

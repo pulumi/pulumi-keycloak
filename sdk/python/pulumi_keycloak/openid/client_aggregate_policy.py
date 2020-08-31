@@ -13,7 +13,7 @@ __all__ = ['ClientAggregatePolicy']
 
 class ClientAggregatePolicy(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -102,37 +102,37 @@ class ClientAggregatePolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> str:
+    def decision_strategy(self) -> pulumi.Output[str]:
         return pulumi.get(self, "decision_strategy")
 
     @property
     @pulumi.getter
-    def description(self) -> Optional[str]:
+    def description(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
-    def logic(self) -> Optional[str]:
+    def logic(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "logic")
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
-    def policies(self) -> List[str]:
+    def policies(self) -> pulumi.Output[List[str]]:
         return pulumi.get(self, "policies")
 
     @property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> str:
+    def realm_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter(name="resourceServerId")
-    def resource_server_id(self) -> str:
+    def resource_server_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "resource_server_id")
 
     def translate_output_property(self, prop):
