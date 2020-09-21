@@ -10,6 +10,75 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## # openid.ClientServiceAccountRole
+//
+// Allows for assigning roles to the service account of an openid client.
+//
+// You need to set `serviceAccountsEnabled` to `true` for the openid client that should be assigned the role.
+//
+// ### Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/openid"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		client1, err := openid.NewClient(ctx, "client1", &openid.ClientArgs{
+// 			RealmId: realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		client1Role, err := keycloak.NewRole(ctx, "client1Role", &keycloak.RoleArgs{
+// 			RealmId:     realm.ID(),
+// 			ClientId:    client1.ID(),
+// 			Description: pulumi.String("A role that client1 provides"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		client2, err := openid.NewClient(ctx, "client2", &openid.ClientArgs{
+// 			RealmId:                realm.ID(),
+// 			ServiceAccountsEnabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = openid.NewClientServiceAccountRole(ctx, "client2ServiceAccountRole", &openid.ClientServiceAccountRoleArgs{
+// 			RealmId:              realm.ID(),
+// 			ServiceAccountUserId: client2.ServiceAccountUserId,
+// 			ClientId:             client1.ID(),
+// 			Role:                 client1Role.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ### Argument Reference
+//
+// The following arguments are supported:
+//
+// - `realmId` - (Required) The realm the clients and roles belong to.
+// - `serviceAccountUserId` - (Required) The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
+// - `clientId` - (Required) The id of the client that provides the role.
+// - `role` - (Required) The name of the role that is assigned.
 type ClientServiceAccountRole struct {
 	pulumi.CustomResourceState
 

@@ -84,23 +84,7 @@ def get_realm_keys(algorithms: Optional[List[str]] = None,
                    statuses: Optional[List[str]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRealmKeysResult:
     """
-    ## # getRealmKeys data source
-
-    Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
-
-    Remarks:
-
-    - A key must meet all filter criteria
-    - This datasource may return more than one value.
-    - If no key matches the filter criteria, then an error is returned.
-
-    ### Argument Reference
-
-    The following arguments are supported:
-
-    - `realm_id` - (Required) The realm of which the keys are retrieved.
-    - `algorithms` - (Optional) When specified, keys are filtered by algorithm (values for algorithm: `HS256`, `RS256`,`AES`, ...)
-    - `status` - (Optional) When specified, keys are filtered by status (values for status: `ACTIVE`, `DISABLED` and `PASSIVE`)
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['algorithms'] = algorithms

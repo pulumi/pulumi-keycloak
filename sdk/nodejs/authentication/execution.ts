@@ -4,6 +4,45 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## # keycloak.authentication.Execution
+ *
+ * Allows for managing an authentication execution.
+ *
+ * ### Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     enabled: true,
+ *     realm: "my-realm",
+ * });
+ * const flow = new keycloak.authentication.Flow("flow", {
+ *     alias: "my-flow-alias",
+ *     realmId: realm.id,
+ * });
+ * const execution = new keycloak.authentication.Execution("execution", {
+ *     authenticator: "identity-provider-redirector",
+ *     parentFlowAlias: flow.alias,
+ *     realmId: realm.id,
+ *     requirement: "REQUIRED",
+ * });
+ * ```
+ *
+ * ### Argument Reference
+ *
+ * The following arguments are supported:
+ *
+ * - `realmId` - (Required) The realm the authentication execution exists in.
+ * - `parentFlowAlias` - (Required) The flow this execution is attached to.
+ * - `authenticator` - (Required) The name of the authenticator.
+ * - `requirement`- (Optional) The requirement setting, which can be one of the following:
+ *   - - `REQUIRED`
+ *   - - `ALTERNATIVE`
+ *   - - `DISABLED`
+ */
 export class Execution extends pulumi.CustomResource {
     /**
      * Get an existing Execution resource's state with the given name, ID, and optional extra

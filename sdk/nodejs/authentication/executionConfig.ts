@@ -4,6 +4,49 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## # keycloak.authentication.ExecutionConfig
+ *
+ * Allows for managing an authentication execution configuration.
+ *
+ * ### Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     enabled: true,
+ *     realm: "my-realm",
+ * });
+ * const flow = new keycloak.authentication.Flow("flow", {
+ *     alias: "my-flow-alias",
+ *     realmId: realm.id,
+ * });
+ * const execution = new keycloak.authentication.Execution("execution", {
+ *     authenticator: "identity-provider-redirector",
+ *     parentFlowAlias: flow.alias,
+ *     realmId: realm.id,
+ * });
+ * const config = new keycloak.authentication.ExecutionConfig("config", {
+ *     alias: "my-config-alias",
+ *     config: {
+ *         defaultProvider: "my-config-default-idp",
+ *     },
+ *     executionId: execution.id,
+ *     realmId: realm.id,
+ * });
+ * ```
+ *
+ * ### Argument Reference
+ *
+ * The following arguments are supported:
+ *
+ * - `realmId` - (Required) The realm the authentication execution exists in.
+ * - `executionId` - (Required) The authentication execution this configuration is attached to.
+ * - `alias` - (Required) The name of the configuration.
+ * - `config` - (Optional) The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+ */
 export class ExecutionConfig extends pulumi.CustomResource {
     /**
      * Get an existing ExecutionConfig resource's state with the given name, ID, and optional extra

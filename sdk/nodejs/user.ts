@@ -6,62 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * ## # keycloak.User
- *
- * Allows for creating and managing Users within Keycloak.
- *
- * This resource was created primarily to enable the acceptance tests for the `keycloak.Group` resource.
- * Creating users within Keycloak is not recommended. Instead, users should be federated from external sources
- * by configuring user federation providers or identity providers.
- *
- * ### Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
- *     realm: "my-realm",
- * });
- * const user = new keycloak.User("user", {
- *     email: "bob@domain.com",
- *     enabled: true,
- *     firstName: "Bob",
- *     lastName: "Bobson",
- *     realmId: realm.id,
- *     username: "bob",
- * });
- * const userWithInitialPassword = new keycloak.User("user_with_initial_password", {
- *     email: "alice@domain.com",
- *     enabled: true,
- *     firstName: "Alice",
- *     initialPassword: {
- *         temporary: true,
- *         value: "some password",
- *     },
- *     lastName: "Aliceberg",
- *     realmId: realm.id,
- *     username: "alice",
- * });
- * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realmId` - (Required) The realm this user belongs to.
- * - `username` - (Required) The unique username of this user.
- * - `initialPassword` (Optional) When given, the user's initial password will be set.
- *    This attribute is only respected during initial user creation.
- *     - `value` (Required) The initial password.
- *     - `temporary` (Optional) If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
- * - `enabled` - (Optional) When false, this user cannot log in. Defaults to `true`.
- * - `email` - (Optional) The user's email.
- * - `firstName` - (Optional) The user's first name.
- * - `lastName` - (Optional) The user's last name.
- */
 export class User extends pulumi.CustomResource {
     /**
      * Get an existing User resource's state with the given name, ID, and optional extra

@@ -116,11 +116,12 @@ import (
 // - `name` - (Required) The display name of this protocol mapper in the GUI.
 // - `userAttribute` - (Required) The custom user attribute to map a claim for.
 // - `claimName` - (Required) The name of the claim to insert into a token.
-// - `claimValueType` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `long`, `int`, or `boolean`. Defaults to `String`.
+// - `claimValueType` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
 // - `multivalued` - (Optional) Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
 // - `addToIdToken` - (Optional) Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
 // - `addToAccessToken` - (Optional) Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
 // - `addToUserinfo` - (Optional) Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
+// - `aggregateAttributes`- (Optional) Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
 type UserAttributeProtocolMapper struct {
 	pulumi.CustomResourceState
 

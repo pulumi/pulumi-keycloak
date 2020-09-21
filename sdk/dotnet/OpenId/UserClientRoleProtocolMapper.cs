@@ -9,6 +9,101 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    /// <summary>
+    /// ## # keycloak.openid.UserClientRoleProtocolMapper
+    /// 
+    /// Allows for creating and managing user client role protocol mappers within
+    /// Keycloak.
+    /// 
+    /// User client role protocol mappers allow you to define a claim containing the list of a client roles.
+    /// Protocol mappers can be defined for a single client, or they can
+    /// be defined for a client scope which can be shared between multiple different
+    /// clients.
+    /// 
+    /// ### Example Usage (Client)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var openidClient = new Keycloak.OpenId.Client("openidClient", new Keycloak.OpenId.ClientArgs
+    ///         {
+    ///             AccessType = "CONFIDENTIAL",
+    ///             ClientId = "test-client",
+    ///             Enabled = true,
+    ///             RealmId = realm.Id,
+    ///             ValidRedirectUris = 
+    ///             {
+    ///                 "http://localhost:8080/openid-callback",
+    ///             },
+    ///         });
+    ///         var userClientRoleMapper = new Keycloak.OpenId.UserClientRoleProtocolMapper("userClientRoleMapper", new Keycloak.OpenId.UserClientRoleProtocolMapperArgs
+    ///         {
+    ///             ClaimName = "foo",
+    ///             ClientId = openidClient.Id,
+    ///             RealmId = realm.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Example Usage (Client Scope)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new Keycloak.OpenId.ClientScopeArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var userClientRoleMapper = new Keycloak.OpenId.UserClientRoleProtocolMapper("userClientRoleMapper", new Keycloak.OpenId.UserClientRoleProtocolMapperArgs
+    ///         {
+    ///             ClaimName = "foo",
+    ///             ClientScopeId = clientScope.Id,
+    ///             RealmId = realm.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm this protocol mapper exists within.
+    /// - `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
+    /// - `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
+    /// - `name` - (Required) The display name of this protocol mapper in the GUI.
+    /// - `claim_name` - (Required) The name of the claim to insert into a token.
+    /// - `claim_value_type` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+    /// - `multivalued` - (Optional) Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
+    /// - `client_id_for_role_mappings` - (Optional) The Client ID for role mappings. Just client roles of this client will be added to the token. If this is unset, client roles of all clients will be added to the token.
+    /// - `client_role_prefix` - (Optional) A prefix for each Client Role.
+    /// - `add_to_id_token` - (Optional) Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+    /// - `add_to_access_token` - (Optional) Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+    /// - `add_to_userinfo` - (Optional) Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+    /// </summary>
     public partial class UserClientRoleProtocolMapper : Pulumi.CustomResource
     {
         /// <summary>

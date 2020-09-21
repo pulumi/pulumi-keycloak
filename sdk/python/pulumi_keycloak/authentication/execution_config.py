@@ -23,7 +23,44 @@ class ExecutionConfig(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a ExecutionConfig resource with the given unique name, props, and options.
+        ## # authentication.ExecutionConfig
+
+        Allows for managing an authentication execution configuration.
+
+        ### Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            enabled=True,
+            realm="my-realm")
+        flow = keycloak.authentication.Flow("flow",
+            alias="my-flow-alias",
+            realm_id=realm.id)
+        execution = keycloak.authentication.Execution("execution",
+            authenticator="identity-provider-redirector",
+            parent_flow_alias=flow.alias,
+            realm_id=realm.id)
+        config = keycloak.authentication.ExecutionConfig("config",
+            alias="my-config-alias",
+            config={
+                "defaultProvider": "my-config-default-idp",
+            },
+            execution_id=execution.id,
+            realm_id=realm.id)
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm the authentication execution exists in.
+        - `execution_id` - (Required) The authentication execution this configuration is attached to.
+        - `alias` - (Required) The name of the configuration.
+        - `config` - (Optional) The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """

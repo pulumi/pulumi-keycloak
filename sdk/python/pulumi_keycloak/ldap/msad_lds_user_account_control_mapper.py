@@ -22,7 +22,52 @@ class MsadLdsUserAccountControlMapper(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a MsadLdsUserAccountControlMapper resource with the given unique name, props, and options.
+        ## # ldap.MsadLdsUserAccountControlMapper
+
+        Allows for creating and managing MSAD-LDS user account control mappers for Keycloak
+        users federated via LDAP.
+
+        The MSAD-LDS (Microsoft Active Directory Lightweight Directory Service) user account control mapper is specific
+        to LDAP user federation providers that are pulling from AD-LDS, and it can propagate
+        AD-LDS user state to Keycloak in order to enforce settings like expired passwords
+        or disabled accounts.
+
+        ### Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            enabled=True,
+            realm="test")
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            bind_credential="admin",
+            bind_dn="cn=admin,dc=example,dc=org",
+            connection_url="ldap://my-ad-server",
+            rdn_ldap_attribute="cn",
+            realm_id=realm.id,
+            user_object_classes=[
+                "person",
+                "organizationalPerson",
+                "user",
+            ],
+            username_ldap_attribute="cn",
+            users_dn="dc=example,dc=org",
+            uuid_ldap_attribute="objectGUID")
+        msad_lds_user_account_control_mapper = keycloak.ldap.MsadLdsUserAccountControlMapper("msadLdsUserAccountControlMapper",
+            ldap_user_federation_id=ldap_user_federation.id,
+            realm_id=realm.id)
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
+        - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
+        - `name` - (Required) Display name of this mapper when displayed in the console.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.

@@ -23,7 +23,47 @@ class ClientServiceAccountRole(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a ClientServiceAccountRole resource with the given unique name, props, and options.
+        ## # openid.ClientServiceAccountRole
+
+        Allows for assigning roles to the service account of an openid client.
+
+        You need to set `service_accounts_enabled` to `true` for the openid client that should be assigned the role.
+
+        ### Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        # client1 provides a role to other clients
+        client1 = keycloak.openid.Client("client1", realm_id=realm.id)
+        client1_role = keycloak.Role("client1Role",
+            realm_id=realm.id,
+            client_id=client1.id,
+            description="A role that client1 provides")
+        # client2 is assigned the role of client1
+        client2 = keycloak.openid.Client("client2",
+            realm_id=realm.id,
+            service_accounts_enabled=True)
+        client2_service_account_role = keycloak.openid.ClientServiceAccountRole("client2ServiceAccountRole",
+            realm_id=realm.id,
+            service_account_user_id=client2.service_account_user_id,
+            client_id=client1.id,
+            role=client1_role.name)
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm the clients and roles belong to.
+        - `service_account_user_id` - (Required) The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
+        - `client_id` - (Required) The id of the client that provides the role.
+        - `role` - (Required) The name of the role that is assigned.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """

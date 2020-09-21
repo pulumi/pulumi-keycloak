@@ -9,6 +9,61 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.Authentication
 {
+    /// <summary>
+    /// ## # keycloak.authentication.ExecutionConfig
+    /// 
+    /// Allows for managing an authentication execution configuration.
+    /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var flow = new Keycloak.Authentication.Flow("flow", new Keycloak.Authentication.FlowArgs
+    ///         {
+    ///             Alias = "my-flow-alias",
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var execution = new Keycloak.Authentication.Execution("execution", new Keycloak.Authentication.ExecutionArgs
+    ///         {
+    ///             Authenticator = "identity-provider-redirector",
+    ///             ParentFlowAlias = flow.Alias,
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var config = new Keycloak.Authentication.ExecutionConfig("config", new Keycloak.Authentication.ExecutionConfigArgs
+    ///         {
+    ///             Alias = "my-config-alias",
+    ///             Config = 
+    ///             {
+    ///                 { "defaultProvider", "my-config-default-idp" },
+    ///             },
+    ///             ExecutionId = execution.Id,
+    ///             RealmId = realm.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm the authentication execution exists in.
+    /// - `execution_id` - (Required) The authentication execution this configuration is attached to.
+    /// - `alias` - (Required) The name of the configuration.
+    /// - `config` - (Optional) The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+    /// </summary>
     public partial class ExecutionConfig : Pulumi.CustomResource
     {
         [Output("alias")]

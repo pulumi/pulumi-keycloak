@@ -24,7 +24,41 @@ class ClientScope(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a ClientScope resource with the given unique name, props, and options.
+        ## # saml.ClientScope
+
+        Allows for creating and managing Keycloak client scopes that can be attached to
+        clients that use the SAML protocol.
+
+        Client Scopes can be used to share common protocol and role mappings between multiple
+        clients within a realm.
+
+        ### Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            enabled=True,
+            realm="my-realm")
+        saml_client_scope = keycloak.saml.ClientScope("samlClientScope",
+            description="This scope will map a user's group memberships to SAML assertion",
+            gui_order=1,
+            realm_id=realm.id)
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this client scope belongs to.
+        - `name` - (Required) The display name of this client scope in the GUI.
+        - `description` - (Optional) The description of this client scope in the GUI.
+        - `consent_screen_text` - (Optional) When set, a consent screen will be displayed to users
+          authenticating to clients with this scope attached. The consent screen will display the string
+          value of this attribute.
+        - `gui_order` - (Optional) Specify order of the client scope in GUI (such as in Consent page) as integer.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """

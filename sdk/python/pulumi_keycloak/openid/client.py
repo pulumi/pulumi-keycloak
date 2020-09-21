@@ -66,6 +66,7 @@ class Client(pulumi.CustomResource):
             access_type="CONFIDENTIAL",
             client_id="test-client",
             enabled=True,
+            login_theme="keycloak",
             realm_id=realm.id,
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
         ```
@@ -95,10 +96,18 @@ class Client(pulumi.CustomResource):
           wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
           is set to `true`.
         - `web_origins` - (Optional) A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+        - `root_url` - (Optional) When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`.
+            - NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
         - `admin_url` - (Optional) URL to the admin interface of the client.
         - `base_url` - (Optional) Default URL to use when the auth server needs to redirect or link back to the client.
         - `pkce_code_challenge_method` - (Optional) The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
         - `full_scope_allowed` - (Optional) - Allow to include all roles mappings in the access token.
+        - `access_token_lifespan` - (Optional) - Allow to set the lifespan of the access token
+        - `consent_required` - (Optional) - Consent Required: If enabled, users have to consent to client access.
+        - `authentication_flow_binding_overrides` - (Optional) - Override realm authentication flow bindings
+            - `browers_id` - (Optional) - Browser flow id, (flow needs to exist)
+            - `direct_grant_id` - (Optional) - Direct grant flow id (flow needs to exist)
+        - `login_theme` - (Optional) - Override realm login theme
 
         ### Attributes Reference
 

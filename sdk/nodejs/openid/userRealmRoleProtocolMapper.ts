@@ -68,8 +68,8 @@ import * as utilities from "../utilities";
  * - `clientScopeId` - (Required if `clientId` is not specified) The client scope this protocol mapper is attached to.
  * - `name` - (Required) The display name of this protocol mapper in the GUI.
  * - `claimName` - (Required) The name of the claim to insert into a token.
- * - `claimValueType` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `long`, `int`, or `boolean`. Defaults to `String`.
- * - `multivalued` - (Optional) Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `true`.
+ * - `claimValueType` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+ * - `multivalued` - (Optional) Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
  * - `realmRolePrefix` - (Optional) A prefix for each Realm Role.
  * - `addToIdToken` - (Optional) Indicates if the property should be added as a claim to the id token. Defaults to `true`.
  * - `addToAccessToken` - (Optional) Indicates if the property should be added as a claim to the access token. Defaults to `true`.

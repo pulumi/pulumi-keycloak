@@ -10,6 +10,116 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## # openid.UserClientRoleProtocolMapper
+//
+// Allows for creating and managing user client role protocol mappers within
+// Keycloak.
+//
+// User client role protocol mappers allow you to define a claim containing the list of a client roles.
+// Protocol mappers can be defined for a single client, or they can
+// be defined for a client scope which can be shared between multiple different
+// clients.
+//
+// ### Example Usage (Client)
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/openid"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Enabled: pulumi.Bool(true),
+// 			Realm:   pulumi.String("my-realm"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		openidClient, err := openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
+// 			AccessType: pulumi.String("CONFIDENTIAL"),
+// 			ClientId:   pulumi.String("test-client"),
+// 			Enabled:    pulumi.Bool(true),
+// 			RealmId:    realm.ID(),
+// 			ValidRedirectUris: pulumi.StringArray{
+// 				pulumi.String("http://localhost:8080/openid-callback"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = openid.NewUserClientRoleProtocolMapper(ctx, "userClientRoleMapper", &openid.UserClientRoleProtocolMapperArgs{
+// 			ClaimName: pulumi.String("foo"),
+// 			ClientId:  openidClient.ID(),
+// 			RealmId:   realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ### Example Usage (Client Scope)
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/openid"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Enabled: pulumi.Bool(true),
+// 			Realm:   pulumi.String("my-realm"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		clientScope, err := openid.NewClientScope(ctx, "clientScope", &openid.ClientScopeArgs{
+// 			RealmId: realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = openid.NewUserClientRoleProtocolMapper(ctx, "userClientRoleMapper", &openid.UserClientRoleProtocolMapperArgs{
+// 			ClaimName:     pulumi.String("foo"),
+// 			ClientScopeId: clientScope.ID(),
+// 			RealmId:       realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ### Argument Reference
+//
+// The following arguments are supported:
+//
+// - `realmId` - (Required) The realm this protocol mapper exists within.
+// - `clientId` - (Required if `clientScopeId` is not specified) The client this protocol mapper is attached to.
+// - `clientScopeId` - (Required if `clientId` is not specified) The client scope this protocol mapper is attached to.
+// - `name` - (Required) The display name of this protocol mapper in the GUI.
+// - `claimName` - (Required) The name of the claim to insert into a token.
+// - `claimValueType` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+// - `multivalued` - (Optional) Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
+// - `clientIdForRoleMappings` - (Optional) The Client ID for role mappings. Just client roles of this client will be added to the token. If this is unset, client roles of all clients will be added to the token.
+// - `clientRolePrefix` - (Optional) A prefix for each Client Role.
+// - `addToIdToken` - (Optional) Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+// - `addToAccessToken` - (Optional) Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+// - `addToUserinfo` - (Optional) Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
 type UserClientRoleProtocolMapper struct {
 	pulumi.CustomResourceState
 

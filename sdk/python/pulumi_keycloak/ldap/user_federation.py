@@ -73,6 +73,11 @@ class UserFederation(pulumi.CustomResource):
             connection_timeout="5s",
             connection_url="ldap://openldap",
             enabled=True,
+            kerberos=keycloak.ldap.UserFederationKerberosArgs(
+                kerberos_realm="FOO.LOCAL",
+                keytab="/etc/host.keytab",
+                server_principal="HTTP/host.foo.com@FOO.LOCAL",
+            ),
             rdn_ldap_attribute="cn",
             read_timeout="10s",
             realm_id=realm.id,
@@ -96,7 +101,7 @@ class UserFederation(pulumi.CustomResource):
         - `import_enabled` - (Optional) When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
         - `edit_mode` - (Optional) Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
         - `sync_registrations` - (Optional) When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
-        - `vendor` - (Optional) Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OPTIONAL`.
+        - `vendor` - (Optional) Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
         - `username_ldap_attribute` - (Required) Name of the LDAP attribute to use as the Keycloak username.
         - `rdn_ldap_attribute` - (Required) Name of the LDAP attribute to use as the relative distinguished name.
         - `uuid_ldap_attribute` - (Required) Name of the LDAP attribute to use as a unique object identifier for objects in LDAP.
@@ -121,6 +126,11 @@ class UserFederation(pulumi.CustomResource):
         - `full_sync_period` - (Optional) How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
         - `changed_sync_period` - (Optional) How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
         - `cache_policy` - (Optional) Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+        - `kerberos` - (Optional) A block containing the kerberos settings.
+          - `kerberos_realm` - (Required) The name of the kerberos realm, e.g. FOO.LOCAL.
+          - `server_principal` - (Required) The kerberos server principal, e.g. 'HTTP/host.foo.com@FOO.LOCAL'.
+          - `key_tab` - (Required) Path to the kerberos keytab file on the server with credentials of the service principal.
+          - `use_kerberos_for_password_authentication` - (Optional) Use kerberos login module instead of ldap service api. Defaults to `false`.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -47,14 +47,18 @@ import * as utilities from "../utilities";
  * - `includeAuthnStatement` - (Optional) When `true`, an `AuthnStatement` will be included in the SAML response.
  * - `signDocuments` - (Optional) When `true`, the SAML document will be signed by Keycloak using the realm's private key.
  * - `signAssertions` - (Optional) When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.
+ * - `encryptAssertions` - (Optional) When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key.
  * - `clientSignatureRequired` - (Optional) When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`.
  * - `forcePostBinding` - (Optional) When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.
  * - `frontChannelLogout` - (Optional) When `true`, this client will require a browser redirect in order to perform a logout.
  * - `nameIdFormat` - (Optional) Sets the Name ID format for the subject.
+ * - `forceNameIdFormat` - (Optional) Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead.
+ * - `signatureAlgorithm` - (Optional) The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
  * - `rootUrl` - (Optional) When specified, this value is prepended to all relative URLs.
  * - `validRedirectUris` - (Optional) When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
  * - `baseUrl` - (Optional) When specified, this URL will be used whenever Keycloak needs to link to this client.
  * - `masterSamlProcessingUrl` - (Optional) When specified, this URL will be used for all SAML requests.
+ * - `encryptionCertificate` - (Optional) If assertions for the client are encrypted, this certificate will be used for encryption.
  * - `signingCertificate` - (Optional) If documents or assertions from the client are signed, this certificate will be used to verify the signature.
  * - `signingPrivateKey` - (Optional) If documents or assertions from the client are signed, this private key will be used to verify the signature.
  * - `idpInitiatedSsoUrlName` - (Optional) URL fragment name to reference client when you want to do IDP Initiated SSO.

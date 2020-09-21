@@ -144,4 +144,3 @@ export namespace openid {
     }
 
 }
-

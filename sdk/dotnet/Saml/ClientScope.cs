@@ -9,6 +9,53 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.Saml
 {
+    /// <summary>
+    /// ## # keycloak.saml.ClientScope
+    /// 
+    /// Allows for creating and managing Keycloak client scopes that can be attached to
+    /// clients that use the SAML protocol.
+    /// 
+    /// Client Scopes can be used to share common protocol and role mappings between multiple
+    /// clients within a realm.
+    /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var samlClientScope = new Keycloak.Saml.ClientScope("samlClientScope", new Keycloak.Saml.ClientScopeArgs
+    ///         {
+    ///             Description = "This scope will map a user's group memberships to SAML assertion",
+    ///             GuiOrder = 1,
+    ///             RealmId = realm.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm this client scope belongs to.
+    /// - `name` - (Required) The display name of this client scope in the GUI.
+    /// - `description` - (Optional) The description of this client scope in the GUI.
+    /// - `consent_screen_text` - (Optional) When set, a consent screen will be displayed to users
+    ///   authenticating to clients with this scope attached. The consent screen will display the string
+    ///   value of this attribute.
+    /// - `gui_order` - (Optional) Specify order of the client scope in GUI (such as in Consent page) as integer.
+    /// </summary>
     public partial class ClientScope : Pulumi.CustomResource
     {
         [Output("consentScreenText")]

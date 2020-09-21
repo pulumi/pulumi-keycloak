@@ -7,24 +7,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// ## # Group data source
-//
-// This data source can be used to fetch properties of a Keycloak group for
-// usage with other resources, such as `GroupRoles`.
-//
-// ### Argument Reference
-//
-// The following arguments are supported:
-//
-// - `realmId` - (Required) The realm this group exists within.
-// - `name` - (Required) The name of the group
-//
-// ### Attributes Reference
-//
-// In addition to the arguments listed above, the following computed attributes are exported:
-//
-// - `id` - The unique ID of the group, which can be used as an argument to
-//   other resources supported by this provider.
 func LookupGroup(ctx *pulumi.Context, args *LookupGroupArgs, opts ...pulumi.InvokeOption) (*LookupGroupResult, error) {
 	var rv LookupGroupResult
 	err := ctx.Invoke("keycloak:index/getGroup:getGroup", args, &rv, opts...)

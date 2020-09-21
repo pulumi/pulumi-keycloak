@@ -10,6 +10,58 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## # saml.ClientScope
+//
+// Allows for creating and managing Keycloak client scopes that can be attached to
+// clients that use the SAML protocol.
+//
+// Client Scopes can be used to share common protocol and role mappings between multiple
+// clients within a realm.
+//
+// ### Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/saml"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Enabled: pulumi.Bool(true),
+// 			Realm:   pulumi.String("my-realm"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = saml.NewClientScope(ctx, "samlClientScope", &saml.ClientScopeArgs{
+// 			Description: pulumi.String("This scope will map a user's group memberships to SAML assertion"),
+// 			GuiOrder:    pulumi.Int(1),
+// 			RealmId:     realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ### Argument Reference
+//
+// The following arguments are supported:
+//
+// - `realmId` - (Required) The realm this client scope belongs to.
+// - `name` - (Required) The display name of this client scope in the GUI.
+// - `description` - (Optional) The description of this client scope in the GUI.
+// - `consentScreenText` - (Optional) When set, a consent screen will be displayed to users
+//   authenticating to clients with this scope attached. The consent screen will display the string
+//   value of this attribute.
+// - `guiOrder` - (Optional) Specify order of the client scope in GUI (such as in Consent page) as integer.
 type ClientScope struct {
 	pulumi.CustomResourceState
 

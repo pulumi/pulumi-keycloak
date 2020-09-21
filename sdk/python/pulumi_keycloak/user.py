@@ -31,58 +31,7 @@ class User(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        ## # User
-
-        Allows for creating and managing Users within Keycloak.
-
-        This resource was created primarily to enable the acceptance tests for the `Group` resource.
-        Creating users within Keycloak is not recommended. Instead, users should be federated from external sources
-        by configuring user federation providers or identity providers.
-
-        ### Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        user = keycloak.User("user",
-            email="bob@domain.com",
-            enabled=True,
-            first_name="Bob",
-            last_name="Bobson",
-            realm_id=realm.id,
-            username="bob")
-        user_with_initial_password = keycloak.User("userWithInitialPassword",
-            email="alice@domain.com",
-            enabled=True,
-            first_name="Alice",
-            initial_password=keycloak.UserInitialPasswordArgs(
-                temporary=True,
-                value="some password",
-            ),
-            last_name="Aliceberg",
-            realm_id=realm.id,
-            username="alice")
-        ```
-
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm_id` - (Required) The realm this user belongs to.
-        - `username` - (Required) The unique username of this user.
-        - `initial_password` (Optional) When given, the user's initial password will be set.
-           This attribute is only respected during initial user creation.
-            - `value` (Required) The initial password.
-            - `temporary` (Optional) If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
-        - `enabled` - (Optional) When false, this user cannot log in. Defaults to `true`.
-        - `email` - (Optional) The user's email.
-        - `first_name` - (Optional) The user's first name.
-        - `last_name` - (Optional) The user's last name.
-
+        Create a User resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """

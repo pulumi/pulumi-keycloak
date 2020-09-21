@@ -11,48 +11,6 @@ namespace Pulumi.Keycloak.OpenId
 {
     public static class GetClient
     {
-        /// <summary>
-        /// ## # keycloak.openid.Client data source
-        /// 
-        /// This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
-        /// 
-        /// ### Example Usage
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Keycloak = Pulumi.Keycloak;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var realmManagement = Output.Create(Keycloak.OpenId.GetClient.InvokeAsync(new Keycloak.OpenId.GetClientArgs
-        ///         {
-        ///             RealmId = "my-realm",
-        ///             ClientId = "realm-management",
-        ///         }));
-        ///         var admin = realmManagement.Apply(realmManagement =&gt; Output.Create(Keycloak.GetRole.InvokeAsync(new Keycloak.GetRoleArgs
-        ///         {
-        ///             RealmId = "my-realm",
-        ///             ClientId = realmManagement.Id,
-        ///             Name = "realm-admin",
-        ///         })));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// 
-        /// ### Argument Reference
-        /// 
-        /// The following arguments are supported:
-        /// 
-        /// - `realm_id` - (Required) The realm id.
-        /// - `client_id` - (Required) The client id.
-        /// 
-        /// ### Attributes Reference
-        /// 
-        /// See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
-        /// </summary>
         public static Task<GetClientResult> InvokeAsync(GetClientArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetClientResult>("keycloak:openid/getClient:getClient", args ?? new GetClientArgs(), options.WithVersion());
     }

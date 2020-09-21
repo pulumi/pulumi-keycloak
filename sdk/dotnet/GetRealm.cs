@@ -11,45 +11,6 @@ namespace Pulumi.Keycloak
 {
     public static class GetRealm
     {
-        /// <summary>
-        /// ## # keycloak.Realm data source
-        /// 
-        /// This data source can be used to fetch properties of a Keycloak realm for
-        /// usage with other resources.
-        /// 
-        /// ### Example Usage
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Keycloak = Pulumi.Keycloak;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var realm = Output.Create(Keycloak.GetRealm.InvokeAsync(new Keycloak.GetRealmArgs
-        ///         {
-        ///             Realm = "my-realm",
-        ///         }));
-        ///         var @group = new Keycloak.Role("group", new Keycloak.RoleArgs
-        ///         {
-        ///             RealmId = data.Keycloak_realm.Id,
-        ///         });
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// 
-        /// ### Argument Reference
-        /// 
-        /// The following arguments are supported:
-        /// 
-        /// - `realm` - (Required) The realm name.
-        /// 
-        /// ### Attributes Reference
-        /// 
-        /// See the docs for the `keycloak.Realm` resource for details on the exported attributes.
-        /// </summary>
         public static Task<GetRealmResult> InvokeAsync(GetRealmArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetRealmResult>("keycloak:index/getRealm:getRealm", args ?? new GetRealmArgs(), options.WithVersion());
     }

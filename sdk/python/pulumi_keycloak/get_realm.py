@@ -430,30 +430,7 @@ def get_realm(attributes: Optional[Mapping[str, Any]] = None,
               smtp_servers: Optional[List[pulumi.InputType['GetRealmSmtpServerArgs']]] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRealmResult:
     """
-    ## # Realm data source
-
-    This data source can be used to fetch properties of a Keycloak realm for
-    usage with other resources.
-
-    ### Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_keycloak as keycloak
-
-    realm = keycloak.get_realm(realm="my-realm")
-    group = keycloak.Role("group", realm_id=data["keycloak_realm"]["id"])
-    ```
-
-    ### Argument Reference
-
-    The following arguments are supported:
-
-    - `realm` - (Required) The realm name.
-
-    ### Attributes Reference
-
-    See the docs for the `Realm` resource for details on the exported attributes.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['attributes'] = attributes

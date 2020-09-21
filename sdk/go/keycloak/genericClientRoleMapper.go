@@ -10,6 +10,241 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## # GenericClientRoleMapper
+//
+// Allow for creating and managing a client's scope mappings within Keycloak.
+//
+// By default, all the user role mappings of the user are added as claims within
+// the token or assertion. When `fullScopeAllowed` is set to `false` for a
+// client, role scope mapping allows you to limit the roles that get declared
+// inside an access token for a client.
+//
+// ### Example Usage (Realm Role to Client)
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/openid"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		client, err := openid.NewClient(ctx, "client", &openid.ClientArgs{
+// 			RealmId:    realm.ID(),
+// 			ClientId:   pulumi.String("client"),
+// 			Enabled:    pulumi.Bool(true),
+// 			AccessType: pulumi.String("BEARER-ONLY"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		realmRole, err := keycloak.NewRole(ctx, "realmRole", &keycloak.RoleArgs{
+// 			RealmId:     realm.ID(),
+// 			Description: pulumi.String("My Realm Role"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewGenericClientRoleMapper(ctx, "clientRoleMapper", &keycloak.GenericClientRoleMapperArgs{
+// 			RealmId:  realm.ID(),
+// 			ClientId: client.ID(),
+// 			RoleId:   realmRole.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ### Example Usage (Client Role to Client)
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/openid"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		clientA, err := openid.NewClient(ctx, "clientA", &openid.ClientArgs{
+// 			RealmId:    realm.ID(),
+// 			ClientId:   pulumi.String("client-a"),
+// 			Enabled:    pulumi.Bool(true),
+// 			AccessType: pulumi.String("BEARER-ONLY"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		clientRoleA, err := keycloak.NewRole(ctx, "clientRoleA", &keycloak.RoleArgs{
+// 			RealmId:     realm.ID(),
+// 			ClientId:    clientA.ID(),
+// 			Description: pulumi.String("My Client Role"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		clientB, err := openid.NewClient(ctx, "clientB", &openid.ClientArgs{
+// 			RealmId:    realm.ID(),
+// 			ClientId:   pulumi.String("client-b"),
+// 			Enabled:    pulumi.Bool(true),
+// 			AccessType: pulumi.String("BEARER-ONLY"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewRole(ctx, "clientRoleB", &keycloak.RoleArgs{
+// 			RealmId:     realm.ID(),
+// 			ClientId:    clientB.ID(),
+// 			Description: pulumi.String("My Client Role"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewGenericClientRoleMapper(ctx, "clientBRoleMapper", &keycloak.GenericClientRoleMapperArgs{
+// 			RealmId:  realm.ID(),
+// 			ClientId: pulumi.Any(keycloak_client.Client_b.Id),
+// 			RoleId:   clientRoleA.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ### Example Usage (Realm Role to Client Scope)
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/openid"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		clientScope, err := openid.NewClientScope(ctx, "clientScope", &openid.ClientScopeArgs{
+// 			RealmId: realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		realmRole, err := keycloak.NewRole(ctx, "realmRole", &keycloak.RoleArgs{
+// 			RealmId:     realm.ID(),
+// 			Description: pulumi.String("My Realm Role"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewGenericClientRoleMapper(ctx, "clientRoleMapper", &keycloak.GenericClientRoleMapperArgs{
+// 			RealmId:       realm.ID(),
+// 			ClientScopeId: clientScope.ID(),
+// 			RoleId:        realmRole.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ### Example Usage (Client Role to Client Scope)
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/openid"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		client, err := openid.NewClient(ctx, "client", &openid.ClientArgs{
+// 			RealmId:    realm.ID(),
+// 			ClientId:   pulumi.String("client"),
+// 			Enabled:    pulumi.Bool(true),
+// 			AccessType: pulumi.String("BEARER-ONLY"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		clientRole, err := keycloak.NewRole(ctx, "clientRole", &keycloak.RoleArgs{
+// 			RealmId:     realm.ID(),
+// 			ClientId:    client.ID(),
+// 			Description: pulumi.String("My Client Role"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = openid.NewClientScope(ctx, "clientScope", &openid.ClientScopeArgs{
+// 			RealmId: realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewGenericClientRoleMapper(ctx, "clientBRoleMapper", &keycloak.GenericClientRoleMapperArgs{
+// 			RealmId:       realm.ID(),
+// 			ClientScopeId: pulumi.Any(keycloak_client_scope.Client_scope.Id),
+// 			RoleId:        clientRole.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ### Argument Reference
+//
+// The following arugments are supported:
+//
+// - `realmId` - (Required) The realm this role mapper exists within
+// - `clientId` - (Optional) The ID of the client this role mapper is added to
+// - `clientScopeId` - (Optional) The ID of the client scope this role mapper is added to
+// - `roleId` - (Required) The ID of the role to be added to this role mapper
 type GenericClientRoleMapper struct {
 	pulumi.CustomResourceState
 

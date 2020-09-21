@@ -4,6 +4,52 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## # keycloak.openid.ClientServiceAccountRole
+ *
+ * Allows for assigning roles to the service account of an openid client.
+ *
+ * You need to set `serviceAccountsEnabled` to `true` for the openid client that should be assigned the role.
+ *
+ * ### Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * // client1 provides a role to other clients
+ * const client1 = new keycloak.openid.Client("client1", {realmId: realm.id});
+ * const client1Role = new keycloak.Role("client1Role", {
+ *     realmId: realm.id,
+ *     clientId: client1.id,
+ *     description: "A role that client1 provides",
+ * });
+ * // client2 is assigned the role of client1
+ * const client2 = new keycloak.openid.Client("client2", {
+ *     realmId: realm.id,
+ *     serviceAccountsEnabled: true,
+ * });
+ * const client2ServiceAccountRole = new keycloak.openid.ClientServiceAccountRole("client2ServiceAccountRole", {
+ *     realmId: realm.id,
+ *     serviceAccountUserId: client2.serviceAccountUserId,
+ *     clientId: client1.id,
+ *     role: client1Role.name,
+ * });
+ * ```
+ *
+ * ### Argument Reference
+ *
+ * The following arguments are supported:
+ *
+ * - `realmId` - (Required) The realm the clients and roles belong to.
+ * - `serviceAccountUserId` - (Required) The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
+ * - `clientId` - (Required) The id of the client that provides the role.
+ * - `role` - (Required) The name of the role that is assigned.
+ */
 export class ClientServiceAccountRole extends pulumi.CustomResource {
     /**
      * Get an existing ClientServiceAccountRole resource's state with the given name, ID, and optional extra

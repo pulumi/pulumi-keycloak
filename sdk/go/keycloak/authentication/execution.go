@@ -10,6 +10,62 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## # authentication.Execution
+//
+// Allows for managing an authentication execution.
+//
+// ### Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/authentication"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Enabled: pulumi.Bool(true),
+// 			Realm:   pulumi.String("my-realm"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		flow, err := authentication.NewFlow(ctx, "flow", &authentication.FlowArgs{
+// 			Alias:   pulumi.String("my-flow-alias"),
+// 			RealmId: realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = authentication.NewExecution(ctx, "execution", &authentication.ExecutionArgs{
+// 			Authenticator:   pulumi.String("identity-provider-redirector"),
+// 			ParentFlowAlias: flow.Alias,
+// 			RealmId:         realm.ID(),
+// 			Requirement:     pulumi.String("REQUIRED"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ### Argument Reference
+//
+// The following arguments are supported:
+//
+// - `realmId` - (Required) The realm the authentication execution exists in.
+// - `parentFlowAlias` - (Required) The flow this execution is attached to.
+// - `authenticator` - (Required) The name of the authenticator.
+// - `requirement`- (Optional) The requirement setting, which can be one of the following:
+//   - - `REQUIRED`
+//   - - `ALTERNATIVE`
+//   - - `DISABLED`
 type Execution struct {
 	pulumi.CustomResourceState
 

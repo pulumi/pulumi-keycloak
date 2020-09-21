@@ -31,7 +31,70 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a UserClientRoleProtocolMapper resource with the given unique name, props, and options.
+        ## # openid.UserClientRoleProtocolMapper
+
+        Allows for creating and managing user client role protocol mappers within
+        Keycloak.
+
+        User client role protocol mappers allow you to define a claim containing the list of a client roles.
+        Protocol mappers can be defined for a single client, or they can
+        be defined for a client scope which can be shared between multiple different
+        clients.
+
+        ### Example Usage (Client)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            enabled=True,
+            realm="my-realm")
+        openid_client = keycloak.openid.Client("openidClient",
+            access_type="CONFIDENTIAL",
+            client_id="test-client",
+            enabled=True,
+            realm_id=realm.id,
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
+        user_client_role_mapper = keycloak.openid.UserClientRoleProtocolMapper("userClientRoleMapper",
+            claim_name="foo",
+            client_id=openid_client.id,
+            realm_id=realm.id)
+        ```
+
+        ### Example Usage (Client Scope)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            enabled=True,
+            realm="my-realm")
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        user_client_role_mapper = keycloak.openid.UserClientRoleProtocolMapper("userClientRoleMapper",
+            claim_name="foo",
+            client_scope_id=client_scope.id,
+            realm_id=realm.id)
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this protocol mapper exists within.
+        - `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
+        - `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
+        - `name` - (Required) The display name of this protocol mapper in the GUI.
+        - `claim_name` - (Required) The name of the claim to insert into a token.
+        - `claim_value_type` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+        - `multivalued` - (Optional) Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
+        - `client_id_for_role_mappings` - (Optional) The Client ID for role mappings. Just client roles of this client will be added to the token. If this is unset, client roles of all clients will be added to the token.
+        - `client_role_prefix` - (Optional) A prefix for each Client Role.
+        - `add_to_id_token` - (Optional) Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        - `add_to_access_token` - (Optional) Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+        - `add_to_userinfo` - (Optional) Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] add_to_access_token: Indicates if the attribute should be a claim in the access token.

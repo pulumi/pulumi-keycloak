@@ -4,6 +4,142 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## # keycloak.GenericClientRoleMapper
+ *
+ * Allow for creating and managing a client's scope mappings within Keycloak.
+ *
+ * By default, all the user role mappings of the user are added as claims within
+ * the token or assertion. When `fullScopeAllowed` is set to `false` for a
+ * client, role scope mapping allows you to limit the roles that get declared
+ * inside an access token for a client.
+ *
+ * ### Example Usage (Realm Role to Client)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const client = new keycloak.openid.Client("client", {
+ *     realmId: realm.id,
+ *     clientId: "client",
+ *     enabled: true,
+ *     accessType: "BEARER-ONLY",
+ * });
+ * const realmRole = new keycloak.Role("realmRole", {
+ *     realmId: realm.id,
+ *     description: "My Realm Role",
+ * });
+ * const clientRoleMapper = new keycloak.GenericClientRoleMapper("clientRoleMapper", {
+ *     realmId: realm.id,
+ *     clientId: client.id,
+ *     roleId: realmRole.id,
+ * });
+ * ```
+ *
+ * ### Example Usage (Client Role to Client)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const clientA = new keycloak.openid.Client("clientA", {
+ *     realmId: realm.id,
+ *     clientId: "client-a",
+ *     enabled: true,
+ *     accessType: "BEARER-ONLY",
+ * });
+ * const clientRoleA = new keycloak.Role("clientRoleA", {
+ *     realmId: realm.id,
+ *     clientId: clientA.id,
+ *     description: "My Client Role",
+ * });
+ * const clientB = new keycloak.openid.Client("clientB", {
+ *     realmId: realm.id,
+ *     clientId: "client-b",
+ *     enabled: true,
+ *     accessType: "BEARER-ONLY",
+ * });
+ * const clientRoleB = new keycloak.Role("clientRoleB", {
+ *     realmId: realm.id,
+ *     clientId: clientB.id,
+ *     description: "My Client Role",
+ * });
+ * const clientBRoleMapper = new keycloak.GenericClientRoleMapper("clientBRoleMapper", {
+ *     realmId: realm.id,
+ *     clientId: keycloak_client.client_b.id,
+ *     roleId: clientRoleA.id,
+ * });
+ * ```
+ *
+ * ### Example Usage (Realm Role to Client Scope)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
+ * const realmRole = new keycloak.Role("realmRole", {
+ *     realmId: realm.id,
+ *     description: "My Realm Role",
+ * });
+ * const clientRoleMapper = new keycloak.GenericClientRoleMapper("clientRoleMapper", {
+ *     realmId: realm.id,
+ *     clientScopeId: clientScope.id,
+ *     roleId: realmRole.id,
+ * });
+ * ```
+ *
+ * ### Example Usage (Client Role to Client Scope)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const client = new keycloak.openid.Client("client", {
+ *     realmId: realm.id,
+ *     clientId: "client",
+ *     enabled: true,
+ *     accessType: "BEARER-ONLY",
+ * });
+ * const clientRole = new keycloak.Role("clientRole", {
+ *     realmId: realm.id,
+ *     clientId: client.id,
+ *     description: "My Client Role",
+ * });
+ * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
+ * const clientBRoleMapper = new keycloak.GenericClientRoleMapper("clientBRoleMapper", {
+ *     realmId: realm.id,
+ *     clientScopeId: keycloak_client_scope.client_scope.id,
+ *     roleId: clientRole.id,
+ * });
+ * ```
+ *
+ * ### Argument Reference
+ *
+ * The following arugments are supported:
+ *
+ * - `realmId` - (Required) The realm this role mapper exists within
+ * - `clientId` - (Optional) The ID of the client this role mapper is added to
+ * - `clientScopeId` - (Optional) The ID of the client scope this role mapper is added to
+ * - `roleId` - (Required) The ID of the role to be added to this role mapper
+ */
 export class GenericClientRoleMapper extends pulumi.CustomResource {
     /**
      * Get an existing GenericClientRoleMapper resource's state with the given name, ID, and optional extra

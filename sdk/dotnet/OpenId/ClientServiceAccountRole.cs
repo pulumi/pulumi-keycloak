@@ -9,6 +9,66 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    /// <summary>
+    /// ## # keycloak.openid.ClientServiceAccountRole
+    /// 
+    /// Allows for assigning roles to the service account of an openid client.
+    /// 
+    /// You need to set `service_accounts_enabled` to `true` for the openid client that should be assigned the role.
+    /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "my-realm",
+    ///             Enabled = true,
+    ///         });
+    ///         // client1 provides a role to other clients
+    ///         var client1 = new Keycloak.OpenId.Client("client1", new Keycloak.OpenId.ClientArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var client1Role = new Keycloak.Role("client1Role", new Keycloak.RoleArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             ClientId = client1.Id,
+    ///             Description = "A role that client1 provides",
+    ///         });
+    ///         // client2 is assigned the role of client1
+    ///         var client2 = new Keycloak.OpenId.Client("client2", new Keycloak.OpenId.ClientArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             ServiceAccountsEnabled = true,
+    ///         });
+    ///         var client2ServiceAccountRole = new Keycloak.OpenId.ClientServiceAccountRole("client2ServiceAccountRole", new Keycloak.OpenId.ClientServiceAccountRoleArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             ServiceAccountUserId = client2.ServiceAccountUserId,
+    ///             ClientId = client1.Id,
+    ///             Role = client1Role.Name,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm the clients and roles belong to.
+    /// - `service_account_user_id` - (Required) The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
+    /// - `client_id` - (Required) The id of the client that provides the role.
+    /// - `role` - (Required) The name of the role that is assigned.
+    /// </summary>
     public partial class ClientServiceAccountRole : Pulumi.CustomResource
     {
         [Output("clientId")]

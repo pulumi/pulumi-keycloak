@@ -10,6 +10,69 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## # authentication.ExecutionConfig
+//
+// Allows for managing an authentication execution configuration.
+//
+// ### Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/authentication"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Enabled: pulumi.Bool(true),
+// 			Realm:   pulumi.String("my-realm"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		flow, err := authentication.NewFlow(ctx, "flow", &authentication.FlowArgs{
+// 			Alias:   pulumi.String("my-flow-alias"),
+// 			RealmId: realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		execution, err := authentication.NewExecution(ctx, "execution", &authentication.ExecutionArgs{
+// 			Authenticator:   pulumi.String("identity-provider-redirector"),
+// 			ParentFlowAlias: flow.Alias,
+// 			RealmId:         realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = authentication.NewExecutionConfig(ctx, "config", &authentication.ExecutionConfigArgs{
+// 			Alias: pulumi.String("my-config-alias"),
+// 			Config: pulumi.StringMap{
+// 				"defaultProvider": pulumi.String("my-config-default-idp"),
+// 			},
+// 			ExecutionId: execution.ID(),
+// 			RealmId:     realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ### Argument Reference
+//
+// The following arguments are supported:
+//
+// - `realmId` - (Required) The realm the authentication execution exists in.
+// - `executionId` - (Required) The authentication execution this configuration is attached to.
+// - `alias` - (Required) The name of the configuration.
+// - `config` - (Optional) The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
 type ExecutionConfig struct {
 	pulumi.CustomResourceState
 

@@ -170,4 +170,3 @@ export namespace openid {
         userName: string;
     }
 }
-

@@ -64,24 +64,7 @@ def get_group(name: Optional[str] = None,
               realm_id: Optional[str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupResult:
     """
-    ## # Group data source
-
-    This data source can be used to fetch properties of a Keycloak group for
-    usage with other resources, such as `GroupRoles`.
-
-    ### Argument Reference
-
-    The following arguments are supported:
-
-    - `realm_id` - (Required) The realm this group exists within.
-    - `name` - (Required) The name of the group
-
-    ### Attributes Reference
-
-    In addition to the arguments listed above, the following computed attributes are exported:
-
-    - `id` - The unique ID of the group, which can be used as an argument to
-      other resources supported by this provider.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['name'] = name

@@ -9,6 +9,55 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.Authentication
 {
+    /// <summary>
+    /// ## # keycloak.authentication.Execution
+    /// 
+    /// Allows for managing an authentication execution.
+    /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Realm = "my-realm",
+    ///         });
+    ///         var flow = new Keycloak.Authentication.Flow("flow", new Keycloak.Authentication.FlowArgs
+    ///         {
+    ///             Alias = "my-flow-alias",
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var execution = new Keycloak.Authentication.Execution("execution", new Keycloak.Authentication.ExecutionArgs
+    ///         {
+    ///             Authenticator = "identity-provider-redirector",
+    ///             ParentFlowAlias = flow.Alias,
+    ///             RealmId = realm.Id,
+    ///             Requirement = "REQUIRED",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm the authentication execution exists in.
+    /// - `parent_flow_alias` - (Required) The flow this execution is attached to.
+    /// - `authenticator` - (Required) The name of the authenticator.
+    /// - `requirement`- (Optional) The requirement setting, which can be one of the following:
+    ///   - - `REQUIRED`
+    ///   - - `ALTERNATIVE`
+    ///   - - `DISABLED`
+    /// </summary>
     public partial class Execution : Pulumi.CustomResource
     {
         [Output("authenticator")]

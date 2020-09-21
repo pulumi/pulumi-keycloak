@@ -45,6 +45,8 @@ class ClientScope(pulumi.CustomResource):
             realm="my-realm")
         openid_client_scope = keycloak.openid.ClientScope("openidClientScope",
             description="When requested, this scope will map a user's group memberships to a claim",
+            gui_order=1,
+            include_in_token_scope=True,
             realm_id=realm.id)
         ```
 
@@ -58,6 +60,8 @@ class ClientScope(pulumi.CustomResource):
         - `consent_screen_text` - (Optional) When set, a consent screen will be displayed to users
           authenticating to clients with this scope attached. The consent screen will display the string
           value of this attribute.
+        - `include_in_token_scope` - (Optional) When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        - `gui_order` - (Optional) Specify order of the client scope in GUI (such as in Consent page) as integer.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -37,6 +37,8 @@ namespace Pulumi.Keycloak.OpenId
     ///         var openidClientScope = new Keycloak.OpenId.ClientScope("openidClientScope", new Keycloak.OpenId.ClientScopeArgs
     ///         {
     ///             Description = "When requested, this scope will map a user's group memberships to a claim",
+    ///             GuiOrder = 1,
+    ///             IncludeInTokenScope = true,
     ///             RealmId = realm.Id,
     ///         });
     ///     }
@@ -54,6 +56,8 @@ namespace Pulumi.Keycloak.OpenId
     /// - `consent_screen_text` - (Optional) When set, a consent screen will be displayed to users
     ///   authenticating to clients with this scope attached. The consent screen will display the string
     ///   value of this attribute.
+    /// - `include_in_token_scope` - (Optional) When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+    /// - `gui_order` - (Optional) Specify order of the client scope in GUI (such as in Consent page) as integer.
     /// </summary>
     public partial class ClientScope : Pulumi.CustomResource
     {

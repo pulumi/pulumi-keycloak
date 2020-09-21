@@ -236,33 +236,7 @@ def get_client(client_id: Optional[str] = None,
                realm_id: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientResult:
     """
-    ## # openid.Client data source
-
-    This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
-
-    ### Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_keycloak as keycloak
-
-    realm_management = keycloak.openid.get_client(realm_id="my-realm",
-        client_id="realm-management")
-    admin = keycloak.get_role(realm_id="my-realm",
-        client_id=realm_management.id,
-        name="realm-admin")
-    ```
-
-    ### Argument Reference
-
-    The following arguments are supported:
-
-    - `realm_id` - (Required) The realm id.
-    - `client_id` - (Required) The client id.
-
-    ### Attributes Reference
-
-    See the docs for the `openid.Client` resource for details on the exported attributes.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['clientId'] = client_id

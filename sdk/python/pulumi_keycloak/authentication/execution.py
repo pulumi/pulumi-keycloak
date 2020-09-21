@@ -23,7 +23,41 @@ class Execution(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a Execution resource with the given unique name, props, and options.
+        ## # authentication.Execution
+
+        Allows for managing an authentication execution.
+
+        ### Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            enabled=True,
+            realm="my-realm")
+        flow = keycloak.authentication.Flow("flow",
+            alias="my-flow-alias",
+            realm_id=realm.id)
+        execution = keycloak.authentication.Execution("execution",
+            authenticator="identity-provider-redirector",
+            parent_flow_alias=flow.alias,
+            realm_id=realm.id,
+            requirement="REQUIRED")
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm the authentication execution exists in.
+        - `parent_flow_alias` - (Required) The flow this execution is attached to.
+        - `authenticator` - (Required) The name of the authenticator.
+        - `requirement`- (Optional) The requirement setting, which can be one of the following:
+          - - `REQUIRED`
+          - - `ALTERNATIVE`
+          - - `DISABLED`
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """

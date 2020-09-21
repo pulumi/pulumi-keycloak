@@ -4,6 +4,62 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## # keycloak.oidc.IdentityProvider
+ *
+ * Allows to create and manage OIDC Identity Providers within Keycloak.
+ *
+ * OIDC (OpenID Connect) identity providers allows to authenticate through a third-party system, using OIDC standard.
+ *
+ * ### Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const my_realm = new keycloak.Realm("my-realm", {
+ *     displayName: "my-realm",
+ *     enabled: true,
+ *     realm: "my-realm",
+ * });
+ * const realmIdentityProvider = new keycloak.oidc.IdentityProvider("realm_identity_provider", {
+ *     alias: "my-idp",
+ *     authorizationUrl: "https://authorizationurl.com",
+ *     clientId: "clientID",
+ *     clientSecret: "clientSecret", // or "$${vault.ID}"
+ *     extraConfig: {
+ *         clientAuthMethod: "client_secret_post",
+ *     },
+ *     realm: "my-realm",
+ *     tokenUrl: "https://tokenurl.com",
+ * });
+ * ```
+ *
+ * ### Argument Reference
+ *
+ * The following arguments are supported:
+ *
+ * - `realm` - (Required) The name of the realm. This is unique across Keycloak.
+ * - `alias` - (Required) The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+ * - `authorizationUrl` - (Required) The Authorization Url.
+ * - `clientId` - (Required) The client or client identifier registered within the identity provider.
+ * - `clientSecret` - (Required) The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+ * - `tokenUrl` - (Required) The Token URL.
+ * - `extraConfig` - (Optional) this block is needed to set extra configuration (Not yet supported variables or custom extensions)
+ *     - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created over the Keycloak Userinterface.
+ *         It accepts the values `clientSecretPost` (Client secret sent as post), `clientSecretBasic` (Client secret sent as basic auth), `clientSecretJwt` (Client secret as jwt) and ` privateKeyJwt  ` (JTW signed with private key)
+ * - `providerId` - (Optional) The Provider id, defaults to `oidc`, unless you have a custom implementation.
+ * - `backchannelSupported` - (Optional) Does the external IDP support backchannel logout ? Defaults to `true`.
+ * - `validateSignature` - (Optional) Enable/disable signature validation of external IDP signatures. Defaults to `false`.
+ * - `userInfoUrl` - (Optional) User Info URL.
+ * - `jwksUrl` - (Optional) JSON Web Key Set URL.
+ * - `hideOnLoginPage` - (Optional) Hide On Login Page. Defaults to `false`.
+ * - `logoutUrl` - (Optional) The Logout URL is the end session endpoint to use to logout user from external identity provider.
+ * - `loginHint` - (Optional) Pass login hint to identity provider.
+ * - `uiLocales` - (Optional) Pass current locale to identity provider. Defaults to `false`.
+ * - `acceptsPromptNoneForwardFromClient` (Optional) Specifies whether the IDP accepts forwarded authentication requests that contain the prompt=none query parameter or not
+ * - `defaultScopes` - (Optional) The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to 'openid'.
+ */
 export class IdentityProvider extends pulumi.CustomResource {
     /**
      * Get an existing IdentityProvider resource's state with the given name, ID, and optional extra
