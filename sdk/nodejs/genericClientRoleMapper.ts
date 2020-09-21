@@ -5,16 +5,14 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak.GenericClientRoleMapper
- *
  * Allow for creating and managing a client's scope mappings within Keycloak.
  *
- * By default, all the user role mappings of the user are added as claims within
- * the token or assertion. When `fullScopeAllowed` is set to `false` for a
- * client, role scope mapping allows you to limit the roles that get declared
+ * By default, all the user role mappings of the user are added as claims within the token (OIDC) or assertion (SAML). When
+ * `fullScopeAllowed` is set to `false` for a client, role scope mapping allows you to limit the roles that get declared
  * inside an access token for a client.
  *
- * ### Example Usage (Realm Role to Client)
+ * ## Example Usage
+ * ### Realm Role To Client)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -40,8 +38,7 @@ import * as utilities from "./utilities";
  *     roleId: realmRole.id,
  * });
  * ```
- *
- * ### Example Usage (Client Role to Client)
+ * ### Client Role To Client)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -56,6 +53,7 @@ import * as utilities from "./utilities";
  *     clientId: "client-a",
  *     enabled: true,
  *     accessType: "BEARER-ONLY",
+ *     fullScopeAllowed: false,
  * });
  * const clientRoleA = new keycloak.Role("clientRoleA", {
  *     realmId: realm.id,
@@ -79,8 +77,7 @@ import * as utilities from "./utilities";
  *     roleId: clientRoleA.id,
  * });
  * ```
- *
- * ### Example Usage (Realm Role to Client Scope)
+ * ### Realm Role To Client Scope)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -101,8 +98,7 @@ import * as utilities from "./utilities";
  *     roleId: realmRole.id,
  * });
  * ```
- *
- * ### Example Usage (Client Role to Client Scope)
+ * ### Client Role To Client Scope)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -130,15 +126,6 @@ import * as utilities from "./utilities";
  *     roleId: clientRole.id,
  * });
  * ```
- *
- * ### Argument Reference
- *
- * The following arugments are supported:
- *
- * - `realmId` - (Required) The realm this role mapper exists within
- * - `clientId` - (Optional) The ID of the client this role mapper is added to
- * - `clientScopeId` - (Optional) The ID of the client scope this role mapper is added to
- * - `roleId` - (Required) The ID of the role to be added to this role mapper
  */
 export class GenericClientRoleMapper extends pulumi.CustomResource {
     /**
@@ -169,19 +156,19 @@ export class GenericClientRoleMapper extends pulumi.CustomResource {
     }
 
     /**
-     * The destination client of the client role. Cannot be used at the same time as client_scope_id.
+     * The ID of the client this role mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
      */
     public readonly clientId!: pulumi.Output<string | undefined>;
     /**
-     * The destination client scope of the client role. Cannot be used at the same time as client_id.
+     * The ID of the client scope this role mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
      */
     public readonly clientScopeId!: pulumi.Output<string | undefined>;
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this role mapper exists within.
      */
     public readonly realmId!: pulumi.Output<string>;
     /**
-     * Id of the role to assign
+     * The ID of the role to be added to this role mapper.
      */
     public readonly roleId!: pulumi.Output<string>;
 
@@ -230,19 +217,19 @@ export class GenericClientRoleMapper extends pulumi.CustomResource {
  */
 export interface GenericClientRoleMapperState {
     /**
-     * The destination client of the client role. Cannot be used at the same time as client_scope_id.
+     * The ID of the client this role mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
      */
     readonly clientId?: pulumi.Input<string>;
     /**
-     * The destination client scope of the client role. Cannot be used at the same time as client_id.
+     * The ID of the client scope this role mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
      */
     readonly clientScopeId?: pulumi.Input<string>;
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this role mapper exists within.
      */
     readonly realmId?: pulumi.Input<string>;
     /**
-     * Id of the role to assign
+     * The ID of the role to be added to this role mapper.
      */
     readonly roleId?: pulumi.Input<string>;
 }
@@ -252,19 +239,19 @@ export interface GenericClientRoleMapperState {
  */
 export interface GenericClientRoleMapperArgs {
     /**
-     * The destination client of the client role. Cannot be used at the same time as client_scope_id.
+     * The ID of the client this role mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
      */
     readonly clientId?: pulumi.Input<string>;
     /**
-     * The destination client scope of the client role. Cannot be used at the same time as client_id.
+     * The ID of the client scope this role mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
      */
     readonly clientScopeId?: pulumi.Input<string>;
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this role mapper exists within.
      */
     readonly realmId: pulumi.Input<string>;
     /**
-     * Id of the role to assign
+     * The ID of the role to be added to this role mapper.
      */
     readonly roleId: pulumi.Input<string>;
 }

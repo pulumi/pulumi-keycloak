@@ -5,76 +5,56 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.openid.HardcodedClaimProtocolMapper
+ * Allows for creating and managing hardcoded claim protocol mappers within Keycloak.
  *
- * Allows for creating and managing hardcoded claim protocol mappers within
- * Keycloak.
+ * Hardcoded claim protocol mappers allow you to define a claim with a hardcoded value.
  *
- * Hardcoded claim protocol mappers allow you to define a claim with a hardcoded
- * value. Protocol mappers can be defined for a single client, or they can
- * be defined for a client scope which can be shared between multiple different
- * clients.
+ * Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
+ * multiple different clients.
  *
- * ### Example Usage (Client)
+ * ## Example Usage
+ * ### Client)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
- * });
- * const openidClient = new keycloak.openid.Client("openid_client", {
- *     accessType: "CONFIDENTIAL",
- *     clientId: "test-client",
  *     enabled: true,
+ * });
+ * const openidClient = new keycloak.openid.Client("openidClient", {
  *     realmId: realm.id,
+ *     clientId: "client",
+ *     enabled: true,
+ *     accessType: "CONFIDENTIAL",
  *     validRedirectUris: ["http://localhost:8080/openid-callback"],
  * });
- * const hardcodedClaimMapper = new keycloak.openid.HardcodedClaimProtocolMapper("hardcoded_claim_mapper", {
+ * const hardcodedClaimMapper = new keycloak.openid.HardcodedClaimProtocolMapper("hardcodedClaimMapper", {
+ *     realmId: realm.id,
+ *     clientId: openidClient.id,
  *     claimName: "foo",
  *     claimValue: "bar",
- *     clientId: openidClient.id,
- *     realmId: realm.id,
  * });
  * ```
- *
- * ### Example Usage (Client Scope)
+ * ### Client Scope)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
- * const clientScope = new keycloak.openid.ClientScope("client_scope", {
+ * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
+ * const hardcodedClaimMapper = new keycloak.openid.HardcodedClaimProtocolMapper("hardcodedClaimMapper", {
  *     realmId: realm.id,
- * });
- * const hardcodedClaimMapper = new keycloak.openid.HardcodedClaimProtocolMapper("hardcoded_claim_mapper", {
+ *     clientScopeId: clientScope.id,
  *     claimName: "foo",
  *     claimValue: "bar",
- *     clientScopeId: clientScope.id,
- *     realmId: realm.id,
  * });
  * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realmId` - (Required) The realm this protocol mapper exists within.
- * - `clientId` - (Required if `clientScopeId` is not specified) The client this protocol mapper is attached to.
- * - `clientScopeId` - (Required if `clientId` is not specified) The client scope this protocol mapper is attached to.
- * - `name` - (Required) The display name of this protocol mapper in the GUI.
- * - `claimName` - (Required) The name of the claim to insert into a token.
- * - `claimValue` - (Required) The hardcoded value of the claim.
- * - `claimValueType` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
- * - `addToIdToken` - (Optional) Indicates if the property should be added as a claim to the id token. Defaults to `true`.
- * - `addToAccessToken` - (Optional) Indicates if the property should be added as a claim to the access token. Defaults to `true`.
- * - `addToUserinfo` - (Optional) Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
  */
 export class HardcodedClaimProtocolMapper extends pulumi.CustomResource {
     /**
@@ -105,37 +85,43 @@ export class HardcodedClaimProtocolMapper extends pulumi.CustomResource {
     }
 
     /**
-     * Indicates if the attribute should be a claim in the access token.
+     * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      */
     public readonly addToAccessToken!: pulumi.Output<boolean | undefined>;
     /**
-     * Indicates if the attribute should be a claim in the id token.
+     * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
     public readonly addToIdToken!: pulumi.Output<boolean | undefined>;
     /**
-     * Indicates if the attribute should appear in the userinfo response body.
+     * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
     public readonly addToUserinfo!: pulumi.Output<boolean | undefined>;
+    /**
+     * The name of the claim to insert into a token.
+     */
     public readonly claimName!: pulumi.Output<string>;
+    /**
+     * The hardcoded value of the claim.
+     */
     public readonly claimValue!: pulumi.Output<string>;
     /**
-     * Claim type used when serializing tokens.
+     * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
      */
     public readonly claimValueType!: pulumi.Output<string | undefined>;
     /**
-     * The mapper's associated client. Cannot be used at the same time as client_scope_id.
+     * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
     public readonly clientId!: pulumi.Output<string | undefined>;
     /**
-     * The mapper's associated client scope. Cannot be used at the same time as client_id.
+     * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
     public readonly clientScopeId!: pulumi.Output<string | undefined>;
     /**
-     * A human-friendly name that will appear in the Keycloak console.
+     * The display name of this protocol mapper in the GUI.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this protocol mapper exists within.
      */
     public readonly realmId!: pulumi.Output<string>;
 
@@ -199,37 +185,43 @@ export class HardcodedClaimProtocolMapper extends pulumi.CustomResource {
  */
 export interface HardcodedClaimProtocolMapperState {
     /**
-     * Indicates if the attribute should be a claim in the access token.
+     * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      */
     readonly addToAccessToken?: pulumi.Input<boolean>;
     /**
-     * Indicates if the attribute should be a claim in the id token.
+     * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
     readonly addToIdToken?: pulumi.Input<boolean>;
     /**
-     * Indicates if the attribute should appear in the userinfo response body.
+     * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
     readonly addToUserinfo?: pulumi.Input<boolean>;
+    /**
+     * The name of the claim to insert into a token.
+     */
     readonly claimName?: pulumi.Input<string>;
+    /**
+     * The hardcoded value of the claim.
+     */
     readonly claimValue?: pulumi.Input<string>;
     /**
-     * Claim type used when serializing tokens.
+     * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
      */
     readonly claimValueType?: pulumi.Input<string>;
     /**
-     * The mapper's associated client. Cannot be used at the same time as client_scope_id.
+     * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
     readonly clientId?: pulumi.Input<string>;
     /**
-     * The mapper's associated client scope. Cannot be used at the same time as client_id.
+     * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
     readonly clientScopeId?: pulumi.Input<string>;
     /**
-     * A human-friendly name that will appear in the Keycloak console.
+     * The display name of this protocol mapper in the GUI.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this protocol mapper exists within.
      */
     readonly realmId?: pulumi.Input<string>;
 }
@@ -239,37 +231,43 @@ export interface HardcodedClaimProtocolMapperState {
  */
 export interface HardcodedClaimProtocolMapperArgs {
     /**
-     * Indicates if the attribute should be a claim in the access token.
+     * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      */
     readonly addToAccessToken?: pulumi.Input<boolean>;
     /**
-     * Indicates if the attribute should be a claim in the id token.
+     * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
     readonly addToIdToken?: pulumi.Input<boolean>;
     /**
-     * Indicates if the attribute should appear in the userinfo response body.
+     * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
     readonly addToUserinfo?: pulumi.Input<boolean>;
+    /**
+     * The name of the claim to insert into a token.
+     */
     readonly claimName: pulumi.Input<string>;
+    /**
+     * The hardcoded value of the claim.
+     */
     readonly claimValue: pulumi.Input<string>;
     /**
-     * Claim type used when serializing tokens.
+     * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
      */
     readonly claimValueType?: pulumi.Input<string>;
     /**
-     * The mapper's associated client. Cannot be used at the same time as client_scope_id.
+     * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
     readonly clientId?: pulumi.Input<string>;
     /**
-     * The mapper's associated client scope. Cannot be used at the same time as client_id.
+     * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
     readonly clientScopeId?: pulumi.Input<string>;
     /**
-     * A human-friendly name that will appear in the Keycloak console.
+     * The display name of this protocol mapper in the GUI.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this protocol mapper exists within.
      */
     readonly realmId: pulumi.Input<string>;
 }

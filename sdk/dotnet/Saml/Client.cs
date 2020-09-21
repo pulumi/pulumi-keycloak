@@ -10,15 +10,12 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Saml
 {
     /// <summary>
-    /// ## # keycloak.saml.Client
-    /// 
     /// Allows for creating and managing Keycloak clients that use the SAML protocol.
     /// 
-    /// Clients are entities that can use Keycloak for user authentication. Typically,
-    /// clients are applications that redirect users to Keycloak for authentication
-    /// in order to take advantage of Keycloak's user sessions for SSO.
+    /// Clients are entities that can use Keycloak for user authentication. Typically, clients are applications that redirect users
+    /// to Keycloak for authentication in order to take advantage of Keycloak's user sessions for SSO.
     /// 
-    /// ### Example Usage
+    /// ## Example Usage
     /// 
     /// ```csharp
     /// using System.IO;
@@ -31,16 +28,16 @@ namespace Pulumi.Keycloak.Saml
     ///     {
     ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
     ///         {
-    ///             Enabled = true,
     ///             Realm = "my-realm",
+    ///             Enabled = true,
     ///         });
     ///         var samlClient = new Keycloak.Saml.Client("samlClient", new Keycloak.Saml.ClientArgs
     ///         {
-    ///             ClientId = "test-saml-client",
-    ///             IncludeAuthnStatement = true,
     ///             RealmId = realm.Id,
-    ///             SignAssertions = true,
+    ///             ClientId = "saml-client",
     ///             SignDocuments = false,
+    ///             SignAssertions = true,
+    ///             IncludeAuthnStatement = true,
     ///             SigningCertificate = File.ReadAllText("saml-cert.pem"),
     ///             SigningPrivateKey = File.ReadAllText("saml-key.pem"),
     ///         });
@@ -48,127 +45,180 @@ namespace Pulumi.Keycloak.Saml
     /// 
     /// }
     /// ```
-    /// 
-    /// ### Argument Reference
-    /// 
-    /// The following arguments are supported:
-    /// 
-    /// - `realm_id` - (Required) The realm this client is attached to.
-    /// - `client_id` - (Required) The unique ID of this client, referenced in the URI during authentication and in issued tokens.
-    /// - `name` - (Optional) The display name of this client in the GUI.
-    /// - `enabled` - (Optional) When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
-    /// - `description` - (Optional) The description of this client in the GUI.
-    /// - `include_authn_statement` - (Optional) When `true`, an `AuthnStatement` will be included in the SAML response.
-    /// - `sign_documents` - (Optional) When `true`, the SAML document will be signed by Keycloak using the realm's private key.
-    /// - `sign_assertions` - (Optional) When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.
-    /// - `encrypt_assertions` - (Optional) When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key.
-    /// - `client_signature_required` - (Optional) When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`.
-    /// - `force_post_binding` - (Optional) When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.
-    /// - `front_channel_logout` - (Optional) When `true`, this client will require a browser redirect in order to perform a logout.
-    /// - `name_id_format` - (Optional) Sets the Name ID format for the subject.
-    /// - `force_name_id_format` - (Optional) Ignore requested NameID subject format and use the one defined in `name_id_format` instead.
-    /// - `signature_algorithm` - (Optional) The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
-    /// - `root_url` - (Optional) When specified, this value is prepended to all relative URLs.
-    /// - `valid_redirect_uris` - (Optional) When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
-    /// - `base_url` - (Optional) When specified, this URL will be used whenever Keycloak needs to link to this client.
-    /// - `master_saml_processing_url` - (Optional) When specified, this URL will be used for all SAML requests.
-    /// - `encryption_certificate` - (Optional) If assertions for the client are encrypted, this certificate will be used for encryption.
-    /// - `signing_certificate` - (Optional) If documents or assertions from the client are signed, this certificate will be used to verify the signature.
-    /// - `signing_private_key` - (Optional) If documents or assertions from the client are signed, this private key will be used to verify the signature.
-    /// - `idp_initiated_sso_url_name` - (Optional) URL fragment name to reference client when you want to do IDP Initiated SSO.
-    /// - `idp_initiated_sso_relay_state` - (Optional) Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
-    /// - `assertion_consumer_post_url` - (Optional) SAML POST Binding URL for the client's assertion consumer service (login responses).
-    /// - `assertion_consumer_redirect_url` - (Optional) SAML Redirect Binding URL for the client's assertion consumer service (login responses).
-    /// - `logout_service_post_binding_url` - (Optional) SAML POST Binding URL for the client's single logout service.
-    /// - `logout_service_redirect_binding_url` - (Optional) SAML Redirect Binding URL for the client's single logout service.
-    /// - `full_scope_allowed` - (Optional) - Allow to include all roles mappings in the access token
     /// </summary>
     public partial class Client : Pulumi.CustomResource
     {
+        /// <summary>
+        /// SAML POST Binding URL for the client's assertion consumer service (login responses).
+        /// </summary>
         [Output("assertionConsumerPostUrl")]
         public Output<string?> AssertionConsumerPostUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// SAML Redirect Binding URL for the client's assertion consumer service (login responses).
+        /// </summary>
         [Output("assertionConsumerRedirectUrl")]
         public Output<string?> AssertionConsumerRedirectUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// When specified, this URL will be used whenever Keycloak needs to link to this client.
+        /// </summary>
         [Output("baseUrl")]
         public Output<string?> BaseUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+        /// </summary>
         [Output("clientId")]
         public Output<string> ClientId { get; private set; } = null!;
 
+        /// <summary>
+        /// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`.
+        /// </summary>
         [Output("clientSignatureRequired")]
         public Output<bool> ClientSignatureRequired { get; private set; } = null!;
 
+        /// <summary>
+        /// The description of this client in the GUI.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
+        /// <summary>
+        /// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key.
+        /// </summary>
         [Output("encryptAssertions")]
         public Output<bool> EncryptAssertions { get; private set; } = null!;
 
+        /// <summary>
+        /// If assertions for the client are encrypted, this certificate will be used for encryption.
+        /// </summary>
         [Output("encryptionCertificate")]
         public Output<string?> EncryptionCertificate { get; private set; } = null!;
 
+        /// <summary>
+        /// Ignore requested NameID subject format and use the one defined in `name_id_format` instead.
+        /// </summary>
         [Output("forceNameIdFormat")]
         public Output<bool> ForceNameIdFormat { get; private set; } = null!;
 
+        /// <summary>
+        /// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.
+        /// </summary>
         [Output("forcePostBinding")]
         public Output<bool> ForcePostBinding { get; private set; } = null!;
 
+        /// <summary>
+        /// When `true`, this client will require a browser redirect in order to perform a logout.
+        /// </summary>
         [Output("frontChannelLogout")]
         public Output<bool> FrontChannelLogout { get; private set; } = null!;
 
+        /// <summary>
+        /// - Allow to include all roles mappings in the access token
+        /// </summary>
         [Output("fullScopeAllowed")]
         public Output<bool?> FullScopeAllowed { get; private set; } = null!;
 
+        /// <summary>
+        /// Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+        /// </summary>
         [Output("idpInitiatedSsoRelayState")]
         public Output<string?> IdpInitiatedSsoRelayState { get; private set; } = null!;
 
+        /// <summary>
+        /// URL fragment name to reference client when you want to do IDP Initiated SSO.
+        /// </summary>
         [Output("idpInitiatedSsoUrlName")]
         public Output<string?> IdpInitiatedSsoUrlName { get; private set; } = null!;
 
+        /// <summary>
+        /// When `true`, an `AuthnStatement` will be included in the SAML response.
+        /// </summary>
         [Output("includeAuthnStatement")]
         public Output<bool> IncludeAuthnStatement { get; private set; } = null!;
 
+        /// <summary>
+        /// SAML POST Binding URL for the client's single logout service.
+        /// </summary>
         [Output("logoutServicePostBindingUrl")]
         public Output<string?> LogoutServicePostBindingUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// SAML Redirect Binding URL for the client's single logout service.
+        /// </summary>
         [Output("logoutServiceRedirectBindingUrl")]
         public Output<string?> LogoutServiceRedirectBindingUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// When specified, this URL will be used for all SAML requests.
+        /// </summary>
         [Output("masterSamlProcessingUrl")]
         public Output<string?> MasterSamlProcessingUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// The display name of this client in the GUI.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Sets the Name ID format for the subject.
+        /// </summary>
         [Output("nameIdFormat")]
         public Output<string> NameIdFormat { get; private set; } = null!;
 
+        /// <summary>
+        /// The realm this client is attached to.
+        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
+        /// <summary>
+        /// When specified, this value is prepended to all relative URLs.
+        /// </summary>
         [Output("rootUrl")]
         public Output<string?> RootUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.
+        /// </summary>
         [Output("signAssertions")]
         public Output<bool> SignAssertions { get; private set; } = null!;
 
+        /// <summary>
+        /// When `true`, the SAML document will be signed by Keycloak using the realm's private key.
+        /// </summary>
         [Output("signDocuments")]
         public Output<bool> SignDocuments { get; private set; } = null!;
 
+        /// <summary>
+        /// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+        /// </summary>
         [Output("signatureAlgorithm")]
         public Output<string?> SignatureAlgorithm { get; private set; } = null!;
 
+        /// <summary>
+        /// If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+        /// </summary>
         [Output("signingCertificate")]
         public Output<string?> SigningCertificate { get; private set; } = null!;
 
+        /// <summary>
+        /// If documents or assertions from the client are signed, this private key will be used to verify the signature.
+        /// </summary>
         [Output("signingPrivateKey")]
         public Output<string?> SigningPrivateKey { get; private set; } = null!;
 
+        /// <summary>
+        /// When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
+        /// </summary>
         [Output("validRedirectUris")]
         public Output<ImmutableArray<string>> ValidRedirectUris { get; private set; } = null!;
 
@@ -218,92 +268,180 @@ namespace Pulumi.Keycloak.Saml
 
     public sealed class ClientArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// SAML POST Binding URL for the client's assertion consumer service (login responses).
+        /// </summary>
         [Input("assertionConsumerPostUrl")]
         public Input<string>? AssertionConsumerPostUrl { get; set; }
 
+        /// <summary>
+        /// SAML Redirect Binding URL for the client's assertion consumer service (login responses).
+        /// </summary>
         [Input("assertionConsumerRedirectUrl")]
         public Input<string>? AssertionConsumerRedirectUrl { get; set; }
 
+        /// <summary>
+        /// When specified, this URL will be used whenever Keycloak needs to link to this client.
+        /// </summary>
         [Input("baseUrl")]
         public Input<string>? BaseUrl { get; set; }
 
+        /// <summary>
+        /// The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+        /// </summary>
         [Input("clientId", required: true)]
         public Input<string> ClientId { get; set; } = null!;
 
+        /// <summary>
+        /// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`.
+        /// </summary>
         [Input("clientSignatureRequired")]
         public Input<bool>? ClientSignatureRequired { get; set; }
 
+        /// <summary>
+        /// The description of this client in the GUI.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        /// <summary>
+        /// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key.
+        /// </summary>
         [Input("encryptAssertions")]
         public Input<bool>? EncryptAssertions { get; set; }
 
+        /// <summary>
+        /// If assertions for the client are encrypted, this certificate will be used for encryption.
+        /// </summary>
         [Input("encryptionCertificate")]
         public Input<string>? EncryptionCertificate { get; set; }
 
+        /// <summary>
+        /// Ignore requested NameID subject format and use the one defined in `name_id_format` instead.
+        /// </summary>
         [Input("forceNameIdFormat")]
         public Input<bool>? ForceNameIdFormat { get; set; }
 
+        /// <summary>
+        /// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.
+        /// </summary>
         [Input("forcePostBinding")]
         public Input<bool>? ForcePostBinding { get; set; }
 
+        /// <summary>
+        /// When `true`, this client will require a browser redirect in order to perform a logout.
+        /// </summary>
         [Input("frontChannelLogout")]
         public Input<bool>? FrontChannelLogout { get; set; }
 
+        /// <summary>
+        /// - Allow to include all roles mappings in the access token
+        /// </summary>
         [Input("fullScopeAllowed")]
         public Input<bool>? FullScopeAllowed { get; set; }
 
+        /// <summary>
+        /// Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+        /// </summary>
         [Input("idpInitiatedSsoRelayState")]
         public Input<string>? IdpInitiatedSsoRelayState { get; set; }
 
+        /// <summary>
+        /// URL fragment name to reference client when you want to do IDP Initiated SSO.
+        /// </summary>
         [Input("idpInitiatedSsoUrlName")]
         public Input<string>? IdpInitiatedSsoUrlName { get; set; }
 
+        /// <summary>
+        /// When `true`, an `AuthnStatement` will be included in the SAML response.
+        /// </summary>
         [Input("includeAuthnStatement")]
         public Input<bool>? IncludeAuthnStatement { get; set; }
 
+        /// <summary>
+        /// SAML POST Binding URL for the client's single logout service.
+        /// </summary>
         [Input("logoutServicePostBindingUrl")]
         public Input<string>? LogoutServicePostBindingUrl { get; set; }
 
+        /// <summary>
+        /// SAML Redirect Binding URL for the client's single logout service.
+        /// </summary>
         [Input("logoutServiceRedirectBindingUrl")]
         public Input<string>? LogoutServiceRedirectBindingUrl { get; set; }
 
+        /// <summary>
+        /// When specified, this URL will be used for all SAML requests.
+        /// </summary>
         [Input("masterSamlProcessingUrl")]
         public Input<string>? MasterSamlProcessingUrl { get; set; }
 
+        /// <summary>
+        /// The display name of this client in the GUI.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Sets the Name ID format for the subject.
+        /// </summary>
         [Input("nameIdFormat")]
         public Input<string>? NameIdFormat { get; set; }
 
+        /// <summary>
+        /// The realm this client is attached to.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
+        /// <summary>
+        /// When specified, this value is prepended to all relative URLs.
+        /// </summary>
         [Input("rootUrl")]
         public Input<string>? RootUrl { get; set; }
 
+        /// <summary>
+        /// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.
+        /// </summary>
         [Input("signAssertions")]
         public Input<bool>? SignAssertions { get; set; }
 
+        /// <summary>
+        /// When `true`, the SAML document will be signed by Keycloak using the realm's private key.
+        /// </summary>
         [Input("signDocuments")]
         public Input<bool>? SignDocuments { get; set; }
 
+        /// <summary>
+        /// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+        /// </summary>
         [Input("signatureAlgorithm")]
         public Input<string>? SignatureAlgorithm { get; set; }
 
+        /// <summary>
+        /// If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+        /// </summary>
         [Input("signingCertificate")]
         public Input<string>? SigningCertificate { get; set; }
 
+        /// <summary>
+        /// If documents or assertions from the client are signed, this private key will be used to verify the signature.
+        /// </summary>
         [Input("signingPrivateKey")]
         public Input<string>? SigningPrivateKey { get; set; }
 
         [Input("validRedirectUris")]
         private InputList<string>? _validRedirectUris;
+
+        /// <summary>
+        /// When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
+        /// </summary>
         public InputList<string> ValidRedirectUris
         {
             get => _validRedirectUris ?? (_validRedirectUris = new InputList<string>());
@@ -317,92 +455,180 @@ namespace Pulumi.Keycloak.Saml
 
     public sealed class ClientState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// SAML POST Binding URL for the client's assertion consumer service (login responses).
+        /// </summary>
         [Input("assertionConsumerPostUrl")]
         public Input<string>? AssertionConsumerPostUrl { get; set; }
 
+        /// <summary>
+        /// SAML Redirect Binding URL for the client's assertion consumer service (login responses).
+        /// </summary>
         [Input("assertionConsumerRedirectUrl")]
         public Input<string>? AssertionConsumerRedirectUrl { get; set; }
 
+        /// <summary>
+        /// When specified, this URL will be used whenever Keycloak needs to link to this client.
+        /// </summary>
         [Input("baseUrl")]
         public Input<string>? BaseUrl { get; set; }
 
+        /// <summary>
+        /// The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+        /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
+        /// <summary>
+        /// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`.
+        /// </summary>
         [Input("clientSignatureRequired")]
         public Input<bool>? ClientSignatureRequired { get; set; }
 
+        /// <summary>
+        /// The description of this client in the GUI.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        /// <summary>
+        /// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key.
+        /// </summary>
         [Input("encryptAssertions")]
         public Input<bool>? EncryptAssertions { get; set; }
 
+        /// <summary>
+        /// If assertions for the client are encrypted, this certificate will be used for encryption.
+        /// </summary>
         [Input("encryptionCertificate")]
         public Input<string>? EncryptionCertificate { get; set; }
 
+        /// <summary>
+        /// Ignore requested NameID subject format and use the one defined in `name_id_format` instead.
+        /// </summary>
         [Input("forceNameIdFormat")]
         public Input<bool>? ForceNameIdFormat { get; set; }
 
+        /// <summary>
+        /// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.
+        /// </summary>
         [Input("forcePostBinding")]
         public Input<bool>? ForcePostBinding { get; set; }
 
+        /// <summary>
+        /// When `true`, this client will require a browser redirect in order to perform a logout.
+        /// </summary>
         [Input("frontChannelLogout")]
         public Input<bool>? FrontChannelLogout { get; set; }
 
+        /// <summary>
+        /// - Allow to include all roles mappings in the access token
+        /// </summary>
         [Input("fullScopeAllowed")]
         public Input<bool>? FullScopeAllowed { get; set; }
 
+        /// <summary>
+        /// Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+        /// </summary>
         [Input("idpInitiatedSsoRelayState")]
         public Input<string>? IdpInitiatedSsoRelayState { get; set; }
 
+        /// <summary>
+        /// URL fragment name to reference client when you want to do IDP Initiated SSO.
+        /// </summary>
         [Input("idpInitiatedSsoUrlName")]
         public Input<string>? IdpInitiatedSsoUrlName { get; set; }
 
+        /// <summary>
+        /// When `true`, an `AuthnStatement` will be included in the SAML response.
+        /// </summary>
         [Input("includeAuthnStatement")]
         public Input<bool>? IncludeAuthnStatement { get; set; }
 
+        /// <summary>
+        /// SAML POST Binding URL for the client's single logout service.
+        /// </summary>
         [Input("logoutServicePostBindingUrl")]
         public Input<string>? LogoutServicePostBindingUrl { get; set; }
 
+        /// <summary>
+        /// SAML Redirect Binding URL for the client's single logout service.
+        /// </summary>
         [Input("logoutServiceRedirectBindingUrl")]
         public Input<string>? LogoutServiceRedirectBindingUrl { get; set; }
 
+        /// <summary>
+        /// When specified, this URL will be used for all SAML requests.
+        /// </summary>
         [Input("masterSamlProcessingUrl")]
         public Input<string>? MasterSamlProcessingUrl { get; set; }
 
+        /// <summary>
+        /// The display name of this client in the GUI.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Sets the Name ID format for the subject.
+        /// </summary>
         [Input("nameIdFormat")]
         public Input<string>? NameIdFormat { get; set; }
 
+        /// <summary>
+        /// The realm this client is attached to.
+        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
+        /// <summary>
+        /// When specified, this value is prepended to all relative URLs.
+        /// </summary>
         [Input("rootUrl")]
         public Input<string>? RootUrl { get; set; }
 
+        /// <summary>
+        /// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.
+        /// </summary>
         [Input("signAssertions")]
         public Input<bool>? SignAssertions { get; set; }
 
+        /// <summary>
+        /// When `true`, the SAML document will be signed by Keycloak using the realm's private key.
+        /// </summary>
         [Input("signDocuments")]
         public Input<bool>? SignDocuments { get; set; }
 
+        /// <summary>
+        /// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+        /// </summary>
         [Input("signatureAlgorithm")]
         public Input<string>? SignatureAlgorithm { get; set; }
 
+        /// <summary>
+        /// If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+        /// </summary>
         [Input("signingCertificate")]
         public Input<string>? SigningCertificate { get; set; }
 
+        /// <summary>
+        /// If documents or assertions from the client are signed, this private key will be used to verify the signature.
+        /// </summary>
         [Input("signingPrivateKey")]
         public Input<string>? SigningPrivateKey { get; set; }
 
         [Input("validRedirectUris")]
         private InputList<string>? _validRedirectUris;
+
+        /// <summary>
+        /// When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
+        /// </summary>
         public InputList<string> ValidRedirectUris
         {
             get => _validRedirectUris ?? (_validRedirectUris = new InputList<string>());

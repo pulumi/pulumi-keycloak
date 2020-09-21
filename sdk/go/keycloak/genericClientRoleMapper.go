@@ -10,16 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// ## # GenericClientRoleMapper
-//
 // Allow for creating and managing a client's scope mappings within Keycloak.
 //
-// By default, all the user role mappings of the user are added as claims within
-// the token or assertion. When `fullScopeAllowed` is set to `false` for a
-// client, role scope mapping allows you to limit the roles that get declared
+// By default, all the user role mappings of the user are added as claims within the token (OIDC) or assertion (SAML). When
+// `fullScopeAllowed` is set to `false` for a client, role scope mapping allows you to limit the roles that get declared
 // inside an access token for a client.
 //
-// ### Example Usage (Realm Role to Client)
+// ## Example Usage
+// ### Realm Role To Client)
 //
 // ```go
 // package main
@@ -67,8 +65,7 @@ import (
 // 	})
 // }
 // ```
-//
-// ### Example Usage (Client Role to Client)
+// ### Client Role To Client)
 //
 // ```go
 // package main
@@ -89,10 +86,11 @@ import (
 // 			return err
 // 		}
 // 		clientA, err := openid.NewClient(ctx, "clientA", &openid.ClientArgs{
-// 			RealmId:    realm.ID(),
-// 			ClientId:   pulumi.String("client-a"),
-// 			Enabled:    pulumi.Bool(true),
-// 			AccessType: pulumi.String("BEARER-ONLY"),
+// 			RealmId:          realm.ID(),
+// 			ClientId:         pulumi.String("client-a"),
+// 			Enabled:          pulumi.Bool(true),
+// 			AccessType:       pulumi.String("BEARER-ONLY"),
+// 			FullScopeAllowed: pulumi.Bool(false),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -134,8 +132,7 @@ import (
 // 	})
 // }
 // ```
-//
-// ### Example Usage (Realm Role to Client Scope)
+// ### Realm Role To Client Scope)
 //
 // ```go
 // package main
@@ -180,8 +177,7 @@ import (
 // 	})
 // }
 // ```
-//
-// ### Example Usage (Client Role to Client Scope)
+// ### Client Role To Client Scope)
 //
 // ```go
 // package main
@@ -236,25 +232,16 @@ import (
 // 	})
 // }
 // ```
-//
-// ### Argument Reference
-//
-// The following arugments are supported:
-//
-// - `realmId` - (Required) The realm this role mapper exists within
-// - `clientId` - (Optional) The ID of the client this role mapper is added to
-// - `clientScopeId` - (Optional) The ID of the client scope this role mapper is added to
-// - `roleId` - (Required) The ID of the role to be added to this role mapper
 type GenericClientRoleMapper struct {
 	pulumi.CustomResourceState
 
-	// The destination client of the client role. Cannot be used at the same time as client_scope_id.
+	// The ID of the client this role mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
 	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
-	// The destination client scope of the client role. Cannot be used at the same time as client_id.
+	// The ID of the client scope this role mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
 	ClientScopeId pulumi.StringPtrOutput `pulumi:"clientScopeId"`
-	// The realm id where the associated client or client scope exists.
+	// The realm this role mapper exists within.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	// Id of the role to assign
+	// The ID of the role to be added to this role mapper.
 	RoleId pulumi.StringOutput `pulumi:"roleId"`
 }
 
@@ -292,24 +279,24 @@ func GetGenericClientRoleMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GenericClientRoleMapper resources.
 type genericClientRoleMapperState struct {
-	// The destination client of the client role. Cannot be used at the same time as client_scope_id.
+	// The ID of the client this role mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
 	ClientId *string `pulumi:"clientId"`
-	// The destination client scope of the client role. Cannot be used at the same time as client_id.
+	// The ID of the client scope this role mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
 	ClientScopeId *string `pulumi:"clientScopeId"`
-	// The realm id where the associated client or client scope exists.
+	// The realm this role mapper exists within.
 	RealmId *string `pulumi:"realmId"`
-	// Id of the role to assign
+	// The ID of the role to be added to this role mapper.
 	RoleId *string `pulumi:"roleId"`
 }
 
 type GenericClientRoleMapperState struct {
-	// The destination client of the client role. Cannot be used at the same time as client_scope_id.
+	// The ID of the client this role mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
 	ClientId pulumi.StringPtrInput
-	// The destination client scope of the client role. Cannot be used at the same time as client_id.
+	// The ID of the client scope this role mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
 	ClientScopeId pulumi.StringPtrInput
-	// The realm id where the associated client or client scope exists.
+	// The realm this role mapper exists within.
 	RealmId pulumi.StringPtrInput
-	// Id of the role to assign
+	// The ID of the role to be added to this role mapper.
 	RoleId pulumi.StringPtrInput
 }
 
@@ -318,25 +305,25 @@ func (GenericClientRoleMapperState) ElementType() reflect.Type {
 }
 
 type genericClientRoleMapperArgs struct {
-	// The destination client of the client role. Cannot be used at the same time as client_scope_id.
+	// The ID of the client this role mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
 	ClientId *string `pulumi:"clientId"`
-	// The destination client scope of the client role. Cannot be used at the same time as client_id.
+	// The ID of the client scope this role mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
 	ClientScopeId *string `pulumi:"clientScopeId"`
-	// The realm id where the associated client or client scope exists.
+	// The realm this role mapper exists within.
 	RealmId string `pulumi:"realmId"`
-	// Id of the role to assign
+	// The ID of the role to be added to this role mapper.
 	RoleId string `pulumi:"roleId"`
 }
 
 // The set of arguments for constructing a GenericClientRoleMapper resource.
 type GenericClientRoleMapperArgs struct {
-	// The destination client of the client role. Cannot be used at the same time as client_scope_id.
+	// The ID of the client this role mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
 	ClientId pulumi.StringPtrInput
-	// The destination client scope of the client role. Cannot be used at the same time as client_id.
+	// The ID of the client scope this role mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
 	ClientScopeId pulumi.StringPtrInput
-	// The realm id where the associated client or client scope exists.
+	// The realm this role mapper exists within.
 	RealmId pulumi.StringInput
-	// Id of the role to assign
+	// The ID of the role to be added to this role mapper.
 	RoleId pulumi.StringInput
 }
 

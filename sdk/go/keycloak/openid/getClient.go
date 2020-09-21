@@ -7,6 +7,41 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/openid"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realmManagement, err := openid.LookupClient(ctx, &openid.LookupClientArgs{
+// 			RealmId:  "my-realm",
+// 			ClientId: "realm-management",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		opt0 := realmManagement.Id
+// 		_, err = keycloak.LookupRole(ctx, &keycloak.LookupRoleArgs{
+// 			RealmId:  "my-realm",
+// 			ClientId: &opt0,
+// 			Name:     "realm-admin",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func LookupClient(ctx *pulumi.Context, args *LookupClientArgs, opts ...pulumi.InvokeOption) (*LookupClientResult, error) {
 	var rv LookupClientResult
 	err := ctx.Invoke("keycloak:openid/getClient:getClient", args, &rv, opts...)
@@ -18,33 +53,40 @@ func LookupClient(ctx *pulumi.Context, args *LookupClientArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getClient.
 type LookupClientArgs struct {
+	// The client id (not its unique ID).
 	ClientId string `pulumi:"clientId"`
-	RealmId  string `pulumi:"realmId"`
+	// The realm id.
+	RealmId string `pulumi:"realmId"`
 }
 
 // A collection of values returned by getClient.
 type LookupClientResult struct {
-	AccessType                         string                                      `pulumi:"accessType"`
-	AuthenticationFlowBindingOverrides GetClientAuthenticationFlowBindingOverrides `pulumi:"authenticationFlowBindingOverrides"`
-	Authorization                      GetClientAuthorization                      `pulumi:"authorization"`
-	ClientId                           string                                      `pulumi:"clientId"`
-	ClientSecret                       string                                      `pulumi:"clientSecret"`
-	ConsentRequired                    bool                                        `pulumi:"consentRequired"`
-	Description                        string                                      `pulumi:"description"`
-	DirectAccessGrantsEnabled          bool                                        `pulumi:"directAccessGrantsEnabled"`
-	Enabled                            bool                                        `pulumi:"enabled"`
-	FullScopeAllowed                   bool                                        `pulumi:"fullScopeAllowed"`
+	AccessTokenLifespan                 string                                       `pulumi:"accessTokenLifespan"`
+	AccessType                          string                                       `pulumi:"accessType"`
+	AdminUrl                            string                                       `pulumi:"adminUrl"`
+	AuthenticationFlowBindingOverrides  []GetClientAuthenticationFlowBindingOverride `pulumi:"authenticationFlowBindingOverrides"`
+	Authorizations                      []GetClientAuthorization                     `pulumi:"authorizations"`
+	BaseUrl                             string                                       `pulumi:"baseUrl"`
+	ClientId                            string                                       `pulumi:"clientId"`
+	ClientSecret                        string                                       `pulumi:"clientSecret"`
+	ConsentRequired                     bool                                         `pulumi:"consentRequired"`
+	Description                         string                                       `pulumi:"description"`
+	DirectAccessGrantsEnabled           bool                                         `pulumi:"directAccessGrantsEnabled"`
+	Enabled                             bool                                         `pulumi:"enabled"`
+	ExcludeSessionStateFromAuthResponse bool                                         `pulumi:"excludeSessionStateFromAuthResponse"`
+	FullScopeAllowed                    bool                                         `pulumi:"fullScopeAllowed"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                     string   `pulumi:"id"`
-	ImplicitFlowEnabled    bool     `pulumi:"implicitFlowEnabled"`
-	LoginTheme             string   `pulumi:"loginTheme"`
-	Name                   string   `pulumi:"name"`
-	RealmId                string   `pulumi:"realmId"`
-	ResourceServerId       string   `pulumi:"resourceServerId"`
-	RootUrl                string   `pulumi:"rootUrl"`
-	ServiceAccountUserId   string   `pulumi:"serviceAccountUserId"`
-	ServiceAccountsEnabled bool     `pulumi:"serviceAccountsEnabled"`
-	StandardFlowEnabled    bool     `pulumi:"standardFlowEnabled"`
-	ValidRedirectUris      []string `pulumi:"validRedirectUris"`
-	WebOrigins             []string `pulumi:"webOrigins"`
+	Id                      string   `pulumi:"id"`
+	ImplicitFlowEnabled     bool     `pulumi:"implicitFlowEnabled"`
+	LoginTheme              string   `pulumi:"loginTheme"`
+	Name                    string   `pulumi:"name"`
+	PkceCodeChallengeMethod string   `pulumi:"pkceCodeChallengeMethod"`
+	RealmId                 string   `pulumi:"realmId"`
+	ResourceServerId        string   `pulumi:"resourceServerId"`
+	RootUrl                 string   `pulumi:"rootUrl"`
+	ServiceAccountUserId    string   `pulumi:"serviceAccountUserId"`
+	ServiceAccountsEnabled  bool     `pulumi:"serviceAccountsEnabled"`
+	StandardFlowEnabled     bool     `pulumi:"standardFlowEnabled"`
+	ValidRedirectUris       []string `pulumi:"validRedirectUris"`
+	WebOrigins              []string `pulumi:"webOrigins"`
 }

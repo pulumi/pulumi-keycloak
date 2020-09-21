@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -57,6 +57,9 @@ class GetClientAuthorizationPolicyResult:
     @property
     @pulumi.getter(name="decisionStrategy")
     def decision_strategy(self) -> str:
+        """
+        (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
+        """
         return pulumi.get(self, "decision_strategy")
 
     @property
@@ -69,7 +72,10 @@ class GetClientAuthorizationPolicyResult:
 
     @property
     @pulumi.getter
-    def logic(self) -> Optional[str]:
+    def logic(self) -> str:
+        """
+        (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
+        """
         return pulumi.get(self, "logic")
 
     @property
@@ -80,11 +86,17 @@ class GetClientAuthorizationPolicyResult:
     @property
     @pulumi.getter
     def owner(self) -> str:
+        """
+        (Computed) The ID of the owning resource. Applies to resources.
+        """
         return pulumi.get(self, "owner")
 
     @property
     @pulumi.getter
-    def policies(self) -> List[str]:
+    def policies(self) -> Sequence[str]:
+        """
+        (Computed) The IDs of the policies that must be applied to scopes/resources for this policy/permission. Applies to policies and permissions.
+        """
         return pulumi.get(self, "policies")
 
     @property
@@ -99,17 +111,26 @@ class GetClientAuthorizationPolicyResult:
 
     @property
     @pulumi.getter
-    def resources(self) -> List[str]:
+    def resources(self) -> Sequence[str]:
+        """
+        (Computed) The IDs of the resources that this permission applies to. Applies to resource-based permissions.
+        """
         return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter
-    def scopes(self) -> List[str]:
+    def scopes(self) -> Sequence[str]:
+        """
+        (Computed) The IDs of the scopes that this permission applies to. Applies to scope-based permissions.
+        """
         return pulumi.get(self, "scopes")
 
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        (Computed) The type of this policy / permission. For permissions, this could be `resource` or `scope`. For policies, this could be any type of authorization policy, such as `js`.
+        """
         return pulumi.get(self, "type")
 
 
@@ -132,16 +153,57 @@ class AwaitableGetClientAuthorizationPolicyResult(GetClientAuthorizationPolicyRe
             type=self.type)
 
 
-def get_client_authorization_policy(logic: Optional[str] = None,
-                                    name: Optional[str] = None,
+def get_client_authorization_policy(name: Optional[str] = None,
                                     realm_id: Optional[str] = None,
                                     resource_server_id: Optional[str] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientAuthorizationPolicyResult:
     """
-    Use this data source to access information about an existing resource.
+    This data source can be used to fetch policy and permission information for an OpenID client that has authorization enabled.
+
+    ## Example Usage
+
+    In this example, we'll create a new OpenID client with authorization enabled. This will cause Keycloak to create a default
+    permission for this client called "Default Permission". We'll use the `openid.getClientAuthorizationPolicy` data
+    source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.Realm("realm",
+        realm="my-realm",
+        enabled=True)
+    client_with_authz = keycloak.openid.Client("clientWithAuthz",
+        client_id="client-with-authz",
+        realm_id=realm.id,
+        access_type="CONFIDENTIAL",
+        service_accounts_enabled=True,
+        authorization=keycloak.openid.ClientAuthorizationArgs(
+            policy_enforcement_mode="ENFORCING",
+        ))
+    default_permission = client_with_authz.resource_server_id.apply(lambda resource_server_id: keycloak.openid.get_client_authorization_policy(realm_id=keycloak_realm["test"]["id"],
+        resource_server_id=resource_server_id,
+        name="Default Permission"))
+    resource = keycloak.openid.ClientAuthorizationResource("resource",
+        resource_server_id=client_with_authz.resource_server_id,
+        realm_id=keycloak_realm["test"]["id"],
+        uris=["/endpoint/*"],
+        attributes={
+            "foo": "bar",
+        })
+    permission = keycloak.openid.ClientAuthorizationPermission("permission",
+        resource_server_id=client_with_authz.resource_server_id,
+        realm_id=keycloak_realm["test"]["id"],
+        policies=[default_permission.id],
+        resources=[resource.id])
+    ```
+
+
+    :param str name: The name of the authorization policy.
+    :param str realm_id: The realm this authorization policy exists within.
+    :param str resource_server_id: The ID of the resource server this authorization policy is attached to.
     """
     __args__ = dict()
-    __args__['logic'] = logic
     __args__['name'] = name
     __args__['realmId'] = realm_id
     __args__['resourceServerId'] = resource_server_id

@@ -7,6 +7,60 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// This data source can be used to fetch information about the service account user that is associated with an OpenID client
+// that has service accounts enabled.
+//
+// ## Example Usage
+//
+// In this example, we'll create an OpenID client with service accounts enabled. This causes Keycloak to create a special user
+// that represents the service account. We'll use this data source to grab this user's ID in order to assign some roles to this
+// user, using the `UserRoles` resource.
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/openid"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		client, err := openid.NewClient(ctx, "client", &openid.ClientArgs{
+// 			RealmId:                realm.ID(),
+// 			ClientId:               pulumi.String("client"),
+// 			AccessType:             pulumi.String("CONFIDENTIAL"),
+// 			ServiceAccountsEnabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewUserRoles(ctx, "serviceAccountUserRoles", &keycloak.UserRolesArgs{
+// 			RealmId: realm.ID(),
+// 			UserId: serviceAccountUser.ApplyT(func(serviceAccountUser openid.GetClientServiceAccountUserResult) (string, error) {
+// 				return serviceAccountUser.Id, nil
+// 			}).(pulumi.StringOutput),
+// 			RoleIds: pulumi.StringArray{
+// 				offlineAccess.ApplyT(func(offlineAccess keycloak.LookupRoleResult) (string, error) {
+// 					return offlineAccess.Id, nil
+// 				}).(pulumi.StringOutput),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func GetClientServiceAccountUser(ctx *pulumi.Context, args *GetClientServiceAccountUserArgs, opts ...pulumi.InvokeOption) (*GetClientServiceAccountUserResult, error) {
 	var rv GetClientServiceAccountUserResult
 	err := ctx.Invoke("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", args, &rv, opts...)
@@ -18,8 +72,10 @@ func GetClientServiceAccountUser(ctx *pulumi.Context, args *GetClientServiceAcco
 
 // A collection of arguments for invoking getClientServiceAccountUser.
 type GetClientServiceAccountUserArgs struct {
+	// The ID of the OpenID client with service accounts enabled.
 	ClientId string `pulumi:"clientId"`
-	RealmId  string `pulumi:"realmId"`
+	// The realm that the OpenID client exists within.
+	RealmId string `pulumi:"realmId"`
 }
 
 // A collection of values returned by getClientServiceAccountUser.
@@ -27,6 +83,7 @@ type GetClientServiceAccountUserResult struct {
 	Attributes          map[string]interface{}                         `pulumi:"attributes"`
 	ClientId            string                                         `pulumi:"clientId"`
 	Email               string                                         `pulumi:"email"`
+	EmailVerified       bool                                           `pulumi:"emailVerified"`
 	Enabled             bool                                           `pulumi:"enabled"`
 	FederatedIdentities []GetClientServiceAccountUserFederatedIdentity `pulumi:"federatedIdentities"`
 	FirstName           string                                         `pulumi:"firstName"`

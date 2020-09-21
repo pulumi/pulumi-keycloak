@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 
@@ -20,7 +20,7 @@ class GetClientServiceAccountUserResult:
     """
     A collection of values returned by getClientServiceAccountUser.
     """
-    def __init__(__self__, attributes=None, client_id=None, email=None, enabled=None, federated_identities=None, first_name=None, id=None, last_name=None, realm_id=None, username=None):
+    def __init__(__self__, attributes=None, client_id=None, email=None, email_verified=None, enabled=None, federated_identities=None, first_name=None, id=None, last_name=None, realm_id=None, username=None):
         if attributes and not isinstance(attributes, dict):
             raise TypeError("Expected argument 'attributes' to be a dict")
         pulumi.set(__self__, "attributes", attributes)
@@ -30,6 +30,9 @@ class GetClientServiceAccountUserResult:
         if email and not isinstance(email, str):
             raise TypeError("Expected argument 'email' to be a str")
         pulumi.set(__self__, "email", email)
+        if email_verified and not isinstance(email_verified, bool):
+            raise TypeError("Expected argument 'email_verified' to be a bool")
+        pulumi.set(__self__, "email_verified", email_verified)
         if enabled and not isinstance(enabled, bool):
             raise TypeError("Expected argument 'enabled' to be a bool")
         pulumi.set(__self__, "enabled", enabled)
@@ -68,13 +71,18 @@ class GetClientServiceAccountUserResult:
         return pulumi.get(self, "email")
 
     @property
+    @pulumi.getter(name="emailVerified")
+    def email_verified(self) -> bool:
+        return pulumi.get(self, "email_verified")
+
+    @property
     @pulumi.getter
     def enabled(self) -> bool:
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="federatedIdentities")
-    def federated_identities(self) -> List['outputs.GetClientServiceAccountUserFederatedIdentityResult']:
+    def federated_identities(self) -> Sequence['outputs.GetClientServiceAccountUserFederatedIdentityResult']:
         return pulumi.get(self, "federated_identities")
 
     @property
@@ -115,6 +123,7 @@ class AwaitableGetClientServiceAccountUserResult(GetClientServiceAccountUserResu
             attributes=self.attributes,
             client_id=self.client_id,
             email=self.email,
+            email_verified=self.email_verified,
             enabled=self.enabled,
             federated_identities=self.federated_identities,
             first_name=self.first_name,
@@ -128,7 +137,40 @@ def get_client_service_account_user(client_id: Optional[str] = None,
                                     realm_id: Optional[str] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientServiceAccountUserResult:
     """
-    Use this data source to access information about an existing resource.
+    This data source can be used to fetch information about the service account user that is associated with an OpenID client
+    that has service accounts enabled.
+
+    ## Example Usage
+
+    In this example, we'll create an OpenID client with service accounts enabled. This causes Keycloak to create a special user
+    that represents the service account. We'll use this data source to grab this user's ID in order to assign some roles to this
+    user, using the `UserRoles` resource.
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.Realm("realm",
+        realm="my-realm",
+        enabled=True)
+    client = keycloak.openid.Client("client",
+        realm_id=realm.id,
+        client_id="client",
+        access_type="CONFIDENTIAL",
+        service_accounts_enabled=True)
+    service_account_user = pulumi.Output.all(realm.id, client.id).apply(lambda realmId, clientId: keycloak.openid.get_client_service_account_user(realm_id=realm_id,
+        client_id=client_id))
+    offline_access = realm.id.apply(lambda id: keycloak.get_role(realm_id=id,
+        name="offline_access"))
+    service_account_user_roles = keycloak.UserRoles("serviceAccountUserRoles",
+        realm_id=realm.id,
+        user_id=service_account_user.id,
+        role_ids=[offline_access.id])
+    ```
+
+
+    :param str client_id: The ID of the OpenID client with service accounts enabled.
+    :param str realm_id: The realm that the OpenID client exists within.
     """
     __args__ = dict()
     __args__['clientId'] = client_id
@@ -143,6 +185,7 @@ def get_client_service_account_user(client_id: Optional[str] = None,
         attributes=__ret__.attributes,
         client_id=__ret__.client_id,
         email=__ret__.email,
+        email_verified=__ret__.email_verified,
         enabled=__ret__.enabled,
         federated_identities=__ret__.federated_identities,
         first_name=__ret__.first_name,

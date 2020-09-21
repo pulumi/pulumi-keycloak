@@ -32,8 +32,17 @@ export class GroupMemberships extends pulumi.CustomResource {
         return obj['__pulumiType'] === GroupMemberships.__pulumiType;
     }
 
+    /**
+     * The ID of the group this resource should manage memberships for.
+     */
     public readonly groupId!: pulumi.Output<string | undefined>;
+    /**
+     * A list of usernames that belong to this group.
+     */
     public readonly members!: pulumi.Output<string[]>;
+    /**
+     * The realm this group exists in.
+     */
     public readonly realmId!: pulumi.Output<string>;
 
     /**
@@ -78,8 +87,17 @@ export class GroupMemberships extends pulumi.CustomResource {
  * Input properties used for looking up and filtering GroupMemberships resources.
  */
 export interface GroupMembershipsState {
+    /**
+     * The ID of the group this resource should manage memberships for.
+     */
     readonly groupId?: pulumi.Input<string>;
+    /**
+     * A list of usernames that belong to this group.
+     */
     readonly members?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The realm this group exists in.
+     */
     readonly realmId?: pulumi.Input<string>;
 }
 
@@ -87,7 +105,16 @@ export interface GroupMembershipsState {
  * The set of arguments for constructing a GroupMemberships resource.
  */
 export interface GroupMembershipsArgs {
+    /**
+     * The ID of the group this resource should manage memberships for.
+     */
     readonly groupId?: pulumi.Input<string>;
+    /**
+     * A list of usernames that belong to this group.
+     */
     readonly members: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The realm this group exists in.
+     */
     readonly realmId: pulumi.Input<string>;
 }

@@ -13,8 +13,17 @@ namespace Pulumi.Keycloak.Outputs
     [OutputType]
     public sealed class UserFederatedIdentity
     {
+        /// <summary>
+        /// The name of the identity provider
+        /// </summary>
         public readonly string IdentityProvider;
+        /// <summary>
+        /// The ID of the user defined in the identity provider
+        /// </summary>
         public readonly string UserId;
+        /// <summary>
+        /// The user name of the user defined in the identity provider
+        /// </summary>
         public readonly string UserName;
 
         [OutputConstructor]

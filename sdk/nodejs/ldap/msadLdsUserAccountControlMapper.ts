@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.ldap.MsadLdsUserAccountControlMapper
- *
  * Allows for creating and managing MSAD-LDS user account control mappers for Keycloak
  * users federated via LDAP.
  *
@@ -15,44 +13,36 @@ import * as utilities from "../utilities";
  * AD-LDS user state to Keycloak in order to enforce settings like expired passwords
  * or disabled accounts.
  *
- * ### Example Usage
+ * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
  *     enabled: true,
- *     realm: "test",
  * });
- * const ldapUserFederation = new keycloak.ldap.UserFederation("ldap_user_federation", {
- *     bindCredential: "admin",
- *     bindDn: "cn=admin,dc=example,dc=org",
- *     connectionUrl: "ldap://my-ad-server",
- *     rdnLdapAttribute: "cn",
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
  *     realmId: realm.id,
+ *     usernameLdapAttribute: "cn",
+ *     rdnLdapAttribute: "cn",
+ *     uuidLdapAttribute: "objectGUID",
  *     userObjectClasses: [
  *         "person",
  *         "organizationalPerson",
  *         "user",
  *     ],
- *     usernameLdapAttribute: "cn",
+ *     connectionUrl: "ldap://my-ad-server",
  *     usersDn: "dc=example,dc=org",
- *     uuidLdapAttribute: "objectGUID",
+ *     bindDn: "cn=admin,dc=example,dc=org",
+ *     bindCredential: "admin",
  * });
- * const msadLdsUserAccountControlMapper = new keycloak.ldap.MsadLdsUserAccountControlMapper("msad_lds_user_account_control_mapper", {
- *     ldapUserFederationId: ldapUserFederation.id,
+ * const msadLdsUserAccountControlMapper = new keycloak.ldap.MsadLdsUserAccountControlMapper("msadLdsUserAccountControlMapper", {
  *     realmId: realm.id,
+ *     ldapUserFederationId: ldapUserFederation.id,
  * });
  * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realmId` - (Required) The realm that this LDAP mapper will exist in.
- * - `ldapUserFederationId` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
- * - `name` - (Required) Display name of this mapper when displayed in the console.
  */
 export class MsadLdsUserAccountControlMapper extends pulumi.CustomResource {
     /**
@@ -83,15 +73,15 @@ export class MsadLdsUserAccountControlMapper extends pulumi.CustomResource {
     }
 
     /**
-     * The ldap user federation provider to attach this mapper to.
+     * The ID of the LDAP user federation provider to attach this mapper to.
      */
     public readonly ldapUserFederationId!: pulumi.Output<string>;
     /**
-     * Display name of the mapper when displayed in the console.
+     * Display name of this mapper when displayed in the console.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The realm in which the ldap user federation provider exists.
+     * The realm that this LDAP mapper will exist in.
      */
     public readonly realmId!: pulumi.Output<string>;
 
@@ -138,15 +128,15 @@ export class MsadLdsUserAccountControlMapper extends pulumi.CustomResource {
  */
 export interface MsadLdsUserAccountControlMapperState {
     /**
-     * The ldap user federation provider to attach this mapper to.
+     * The ID of the LDAP user federation provider to attach this mapper to.
      */
     readonly ldapUserFederationId?: pulumi.Input<string>;
     /**
-     * Display name of the mapper when displayed in the console.
+     * Display name of this mapper when displayed in the console.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The realm in which the ldap user federation provider exists.
+     * The realm that this LDAP mapper will exist in.
      */
     readonly realmId?: pulumi.Input<string>;
 }
@@ -156,15 +146,15 @@ export interface MsadLdsUserAccountControlMapperState {
  */
 export interface MsadLdsUserAccountControlMapperArgs {
     /**
-     * The ldap user federation provider to attach this mapper to.
+     * The ID of the LDAP user federation provider to attach this mapper to.
      */
     readonly ldapUserFederationId: pulumi.Input<string>;
     /**
-     * Display name of the mapper when displayed in the console.
+     * Display name of this mapper when displayed in the console.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The realm in which the ldap user federation provider exists.
+     * The realm that this LDAP mapper will exist in.
      */
     readonly realmId: pulumi.Input<string>;
 }

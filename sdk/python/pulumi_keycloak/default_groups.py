@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['DefaultGroups']
@@ -15,43 +15,35 @@ class DefaultGroups(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 group_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
         """
-        ## # DefaultGroups
-
         Allows for managing a realm's default groups.
 
-        Note that you should not use `DefaultGroups` with a group with memberships managed
-        by `GroupMemberships`.
+        > You should not use `DefaultGroups` with a group whose members are managed by `GroupMemberships`.
 
-        ### Example Usage
+        ## Example Usage
 
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
+            realm="my-realm",
+            enabled=True)
         group = keycloak.Group("group", realm_id=realm.id)
         default = keycloak.DefaultGroups("default",
-            group_ids=[group.id],
-            realm_id=realm.id)
+            realm_id=realm.id,
+            group_ids=[group.id])
         ```
-
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm_id` - (Required) The realm this group exists in.
-        - `group_ids` - (Required) A set of group ids that should be default groups on the realm referenced by `realm_id`.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_ids: A set of group ids that should be default groups on the realm referenced by `realm_id`.
+        :param pulumi.Input[str] realm_id: The realm this group exists in.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -86,7 +78,7 @@ class DefaultGroups(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            group_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             realm_id: Optional[pulumi.Input[str]] = None) -> 'DefaultGroups':
         """
         Get an existing DefaultGroups resource's state with the given name, id, and optional extra
@@ -95,6 +87,8 @@ class DefaultGroups(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_ids: A set of group ids that should be default groups on the realm referenced by `realm_id`.
+        :param pulumi.Input[str] realm_id: The realm this group exists in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -106,12 +100,18 @@ class DefaultGroups(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="groupIds")
-    def group_ids(self) -> pulumi.Output[List[str]]:
+    def group_ids(self) -> pulumi.Output[Sequence[str]]:
+        """
+        A set of group ids that should be default groups on the realm referenced by `realm_id`.
+        """
         return pulumi.get(self, "group_ids")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
+        """
+        The realm this group exists in.
+        """
         return pulumi.get(self, "realm_id")
 
     def translate_output_property(self, prop):

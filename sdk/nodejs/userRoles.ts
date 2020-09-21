@@ -32,8 +32,17 @@ export class UserRoles extends pulumi.CustomResource {
         return obj['__pulumiType'] === UserRoles.__pulumiType;
     }
 
+    /**
+     * The realm this user exists in.
+     */
     public readonly realmId!: pulumi.Output<string>;
+    /**
+     * A list of role IDs to map to the user
+     */
     public readonly roleIds!: pulumi.Output<string[]>;
+    /**
+     * The ID of the user this resource should manage roles for.
+     */
     public readonly userId!: pulumi.Output<string>;
 
     /**
@@ -81,8 +90,17 @@ export class UserRoles extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserRoles resources.
  */
 export interface UserRolesState {
+    /**
+     * The realm this user exists in.
+     */
     readonly realmId?: pulumi.Input<string>;
+    /**
+     * A list of role IDs to map to the user
+     */
     readonly roleIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The ID of the user this resource should manage roles for.
+     */
     readonly userId?: pulumi.Input<string>;
 }
 
@@ -90,7 +108,16 @@ export interface UserRolesState {
  * The set of arguments for constructing a UserRoles resource.
  */
 export interface UserRolesArgs {
+    /**
+     * The realm this user exists in.
+     */
     readonly realmId: pulumi.Input<string>;
+    /**
+     * A list of role IDs to map to the user
+     */
     readonly roleIds: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The ID of the user this resource should manage roles for.
+     */
     readonly userId: pulumi.Input<string>;
 }

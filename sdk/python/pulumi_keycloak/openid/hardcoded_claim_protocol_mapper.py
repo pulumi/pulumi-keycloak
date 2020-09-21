@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['HardcodedClaimProtocolMapper']
@@ -29,80 +29,64 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        ## # openid.HardcodedClaimProtocolMapper
+        Allows for creating and managing hardcoded claim protocol mappers within Keycloak.
 
-        Allows for creating and managing hardcoded claim protocol mappers within
-        Keycloak.
+        Hardcoded claim protocol mappers allow you to define a claim with a hardcoded value.
 
-        Hardcoded claim protocol mappers allow you to define a claim with a hardcoded
-        value. Protocol mappers can be defined for a single client, or they can
-        be defined for a client scope which can be shared between multiple different
-        clients.
+        Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
+        multiple different clients.
 
-        ### Example Usage (Client)
+        ## Example Usage
+        ### Client)
 
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
+            realm="my-realm",
+            enabled=True)
         openid_client = keycloak.openid.Client("openidClient",
-            access_type="CONFIDENTIAL",
-            client_id="test-client",
-            enabled=True,
             realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
         hardcoded_claim_mapper = keycloak.openid.HardcodedClaimProtocolMapper("hardcodedClaimMapper",
-            claim_name="foo",
-            claim_value="bar",
+            realm_id=realm.id,
             client_id=openid_client.id,
-            realm_id=realm.id)
+            claim_name="foo",
+            claim_value="bar")
         ```
-
-        ### Example Usage (Client Scope)
+        ### Client Scope)
 
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
+            realm="my-realm",
+            enabled=True)
         client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
         hardcoded_claim_mapper = keycloak.openid.HardcodedClaimProtocolMapper("hardcodedClaimMapper",
-            claim_name="foo",
-            claim_value="bar",
+            realm_id=realm.id,
             client_scope_id=client_scope.id,
-            realm_id=realm.id)
+            claim_name="foo",
+            claim_value="bar")
         ```
-
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm_id` - (Required) The realm this protocol mapper exists within.
-        - `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
-        - `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
-        - `name` - (Required) The display name of this protocol mapper in the GUI.
-        - `claim_name` - (Required) The name of the claim to insert into a token.
-        - `claim_value` - (Required) The hardcoded value of the claim.
-        - `claim_value_type` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
-        - `add_to_id_token` - (Optional) Indicates if the property should be added as a claim to the id token. Defaults to `true`.
-        - `add_to_access_token` - (Optional) Indicates if the property should be added as a claim to the access token. Defaults to `true`.
-        - `add_to_userinfo` - (Optional) Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] add_to_access_token: Indicates if the attribute should be a claim in the access token.
-        :param pulumi.Input[bool] add_to_id_token: Indicates if the attribute should be a claim in the id token.
-        :param pulumi.Input[bool] add_to_userinfo: Indicates if the attribute should appear in the userinfo response body.
-        :param pulumi.Input[str] claim_value_type: Claim type used when serializing tokens.
-        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
-        :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
-        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
-        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
+        :param pulumi.Input[bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+        :param pulumi.Input[bool] add_to_id_token: Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[bool] add_to_userinfo: Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+        :param pulumi.Input[str] claim_name: The name of the claim to insert into a token.
+        :param pulumi.Input[str] claim_value: The hardcoded value of the claim.
+        :param pulumi.Input[str] claim_value_type: The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+        :param pulumi.Input[str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
+        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -164,14 +148,16 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] add_to_access_token: Indicates if the attribute should be a claim in the access token.
-        :param pulumi.Input[bool] add_to_id_token: Indicates if the attribute should be a claim in the id token.
-        :param pulumi.Input[bool] add_to_userinfo: Indicates if the attribute should appear in the userinfo response body.
-        :param pulumi.Input[str] claim_value_type: Claim type used when serializing tokens.
-        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
-        :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
-        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
-        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
+        :param pulumi.Input[bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+        :param pulumi.Input[bool] add_to_id_token: Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[bool] add_to_userinfo: Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+        :param pulumi.Input[str] claim_name: The name of the claim to insert into a token.
+        :param pulumi.Input[str] claim_value: The hardcoded value of the claim.
+        :param pulumi.Input[str] claim_value_type: The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+        :param pulumi.Input[str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
+        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -193,7 +179,7 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="addToAccessToken")
     def add_to_access_token(self) -> pulumi.Output[Optional[bool]]:
         """
-        Indicates if the attribute should be a claim in the access token.
+        Indicates if the property should be added as a claim to the access token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_access_token")
 
@@ -201,7 +187,7 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="addToIdToken")
     def add_to_id_token(self) -> pulumi.Output[Optional[bool]]:
         """
-        Indicates if the attribute should be a claim in the id token.
+        Indicates if the property should be added as a claim to the id token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_id_token")
 
@@ -209,25 +195,31 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="addToUserinfo")
     def add_to_userinfo(self) -> pulumi.Output[Optional[bool]]:
         """
-        Indicates if the attribute should appear in the userinfo response body.
+        Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_userinfo")
 
     @property
     @pulumi.getter(name="claimName")
     def claim_name(self) -> pulumi.Output[str]:
+        """
+        The name of the claim to insert into a token.
+        """
         return pulumi.get(self, "claim_name")
 
     @property
     @pulumi.getter(name="claimValue")
     def claim_value(self) -> pulumi.Output[str]:
+        """
+        The hardcoded value of the claim.
+        """
         return pulumi.get(self, "claim_value")
 
     @property
     @pulumi.getter(name="claimValueType")
     def claim_value_type(self) -> pulumi.Output[Optional[str]]:
         """
-        Claim type used when serializing tokens.
+        The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
         """
         return pulumi.get(self, "claim_value_type")
 
@@ -235,7 +227,7 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_id")
 
@@ -243,7 +235,7 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="clientScopeId")
     def client_scope_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The mapper's associated client scope. Cannot be used at the same time as client_id.
+        The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_scope_id")
 
@@ -251,7 +243,7 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        A human-friendly name that will appear in the Keycloak console.
+        The display name of this protocol mapper in the GUI.
         """
         return pulumi.get(self, "name")
 
@@ -259,7 +251,7 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
         """
-        The realm id where the associated client or client scope exists.
+        The realm this protocol mapper exists within.
         """
         return pulumi.get(self, "realm_id")
 

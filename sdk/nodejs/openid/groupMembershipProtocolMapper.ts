@@ -5,73 +5,54 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.openid.GroupMembershipProtocolMapper
+ * Allows for creating and managing group membership protocol mappers within Keycloak.
  *
- * Allows for creating and managing group membership protocol mappers within
- * Keycloak.
+ * Group membership protocol mappers allow you to map a user's group memberships to a claim in a token.
  *
- * Group membership protocol mappers allow you to map a user's group memberships
- * to a claim in a token. Protocol mappers can be defined for a single client,
- * or they can be defined for a client scope which can be shared between multiple
- * different clients.
+ * Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
+ * multiple different clients.
  *
- * ### Example Usage (Client)
+ * ## Example Usage
+ * ### Client)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
- * });
- * const openidClient = new keycloak.openid.Client("openid_client", {
- *     accessType: "CONFIDENTIAL",
- *     clientId: "test-client",
  *     enabled: true,
+ * });
+ * const openidClient = new keycloak.openid.Client("openidClient", {
  *     realmId: realm.id,
+ *     clientId: "client",
+ *     enabled: true,
+ *     accessType: "CONFIDENTIAL",
  *     validRedirectUris: ["http://localhost:8080/openid-callback"],
  * });
- * const groupMembershipMapper = new keycloak.openid.GroupMembershipProtocolMapper("group_membership_mapper", {
- *     claimName: "groups",
- *     clientId: openidClient.id,
+ * const groupMembershipMapper = new keycloak.openid.GroupMembershipProtocolMapper("groupMembershipMapper", {
  *     realmId: realm.id,
+ *     clientId: openidClient.id,
+ *     claimName: "groups",
  * });
  * ```
- *
- * ### Example Usage (Client Scope)
+ * ### Client Scope)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
- * const clientScope = new keycloak.openid.ClientScope("client_scope", {
+ * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
+ * const groupMembershipMapper = new keycloak.openid.GroupMembershipProtocolMapper("groupMembershipMapper", {
  *     realmId: realm.id,
- * });
- * const groupMembershipMapper = new keycloak.openid.GroupMembershipProtocolMapper("group_membership_mapper", {
- *     claimName: "groups",
  *     clientScopeId: clientScope.id,
- *     realmId: realm.id,
+ *     claimName: "groups",
  * });
  * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realmId` - (Required) The realm this protocol mapper exists within.
- * - `clientId` - (Required if `clientScopeId` is not specified) The client this protocol mapper is attached to.
- * - `clientScopeId` - (Required if `clientId` is not specified) The client scope this protocol mapper is attached to.
- * - `name` - (Required) The display name of this protocol mapper in the GUI.
- * - `claimName` - (Required) The name of the claim to insert into a token.
- * - `fullPath` - (Optional) Indicates whether the full path of the group including its parents will be used. Defaults to `true`.
- * - `addToIdToken` - (Optional) Indicates if the property should be added as a claim to the id token. Defaults to `true`.
- * - `addToAccessToken` - (Optional) Indicates if the property should be added as a claim to the access token. Defaults to `true`.
- * - `addToUserinfo` - (Optional) Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
  */
 export class GroupMembershipProtocolMapper extends pulumi.CustomResource {
     /**
@@ -101,25 +82,40 @@ export class GroupMembershipProtocolMapper extends pulumi.CustomResource {
         return obj['__pulumiType'] === GroupMembershipProtocolMapper.__pulumiType;
     }
 
+    /**
+     * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+     */
     public readonly addToAccessToken!: pulumi.Output<boolean | undefined>;
+    /**
+     * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+     */
     public readonly addToIdToken!: pulumi.Output<boolean | undefined>;
+    /**
+     * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+     */
     public readonly addToUserinfo!: pulumi.Output<boolean | undefined>;
+    /**
+     * The name of the claim to insert into a token.
+     */
     public readonly claimName!: pulumi.Output<string>;
     /**
-     * The mapper's associated client. Cannot be used at the same time as client_scope_id.
+     * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
     public readonly clientId!: pulumi.Output<string | undefined>;
     /**
-     * The mapper's associated client scope. Cannot be used at the same time as client_id.
+     * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
     public readonly clientScopeId!: pulumi.Output<string | undefined>;
+    /**
+     * Indicates whether the full path of the group including its parents will be used. Defaults to `true`.
+     */
     public readonly fullPath!: pulumi.Output<boolean | undefined>;
     /**
-     * A human-friendly name that will appear in the Keycloak console.
+     * The display name of this protocol mapper in the GUI.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this protocol mapper exists within.
      */
     public readonly realmId!: pulumi.Output<string>;
 
@@ -177,25 +173,40 @@ export class GroupMembershipProtocolMapper extends pulumi.CustomResource {
  * Input properties used for looking up and filtering GroupMembershipProtocolMapper resources.
  */
 export interface GroupMembershipProtocolMapperState {
+    /**
+     * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+     */
     readonly addToAccessToken?: pulumi.Input<boolean>;
+    /**
+     * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+     */
     readonly addToIdToken?: pulumi.Input<boolean>;
+    /**
+     * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+     */
     readonly addToUserinfo?: pulumi.Input<boolean>;
+    /**
+     * The name of the claim to insert into a token.
+     */
     readonly claimName?: pulumi.Input<string>;
     /**
-     * The mapper's associated client. Cannot be used at the same time as client_scope_id.
+     * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
     readonly clientId?: pulumi.Input<string>;
     /**
-     * The mapper's associated client scope. Cannot be used at the same time as client_id.
+     * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
     readonly clientScopeId?: pulumi.Input<string>;
+    /**
+     * Indicates whether the full path of the group including its parents will be used. Defaults to `true`.
+     */
     readonly fullPath?: pulumi.Input<boolean>;
     /**
-     * A human-friendly name that will appear in the Keycloak console.
+     * The display name of this protocol mapper in the GUI.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this protocol mapper exists within.
      */
     readonly realmId?: pulumi.Input<string>;
 }
@@ -204,25 +215,40 @@ export interface GroupMembershipProtocolMapperState {
  * The set of arguments for constructing a GroupMembershipProtocolMapper resource.
  */
 export interface GroupMembershipProtocolMapperArgs {
+    /**
+     * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+     */
     readonly addToAccessToken?: pulumi.Input<boolean>;
+    /**
+     * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+     */
     readonly addToIdToken?: pulumi.Input<boolean>;
+    /**
+     * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+     */
     readonly addToUserinfo?: pulumi.Input<boolean>;
+    /**
+     * The name of the claim to insert into a token.
+     */
     readonly claimName: pulumi.Input<string>;
     /**
-     * The mapper's associated client. Cannot be used at the same time as client_scope_id.
+     * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
     readonly clientId?: pulumi.Input<string>;
     /**
-     * The mapper's associated client scope. Cannot be used at the same time as client_id.
+     * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
     readonly clientScopeId?: pulumi.Input<string>;
+    /**
+     * Indicates whether the full path of the group including its parents will be used. Defaults to `true`.
+     */
     readonly fullPath?: pulumi.Input<boolean>;
     /**
-     * A human-friendly name that will appear in the Keycloak console.
+     * The display name of this protocol mapper in the GUI.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this protocol mapper exists within.
      */
     readonly realmId: pulumi.Input<string>;
 }

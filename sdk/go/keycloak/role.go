@@ -10,14 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// ## # Role
-//
 // Allows for creating and managing roles within Keycloak.
 //
-// Roles allow you define privileges within Keycloak and map them to users
-// and groups.
+// Roles allow you define privileges within Keycloak and map them to users and groups.
 //
-// ### Example Usage (Realm role)
+// ## Example Usage
+// ### Realm Role)
 //
 // ```go
 // package main
@@ -30,15 +28,15 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Enabled: pulumi.Bool(true),
 // 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = keycloak.NewRole(ctx, "realmRole", &keycloak.RoleArgs{
+// 			RealmId:     realm.ID(),
 // 			Description: pulumi.String("My Realm Role"),
-// 			RealmId:     realm.ID(),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -47,8 +45,7 @@ import (
 // 	})
 // }
 // ```
-//
-// ### Example Usage (Client role)
+// ### Client Role)
 //
 // ```go
 // package main
@@ -62,25 +59,28 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Enabled: pulumi.Bool(true),
 // 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = openid.NewClient(ctx, "client", &openid.ClientArgs{
-// 			AccessType: pulumi.String("BEARER-ONLY"),
+// 		_, err = openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
+// 			RealmId:    realm.ID(),
 // 			ClientId:   pulumi.String("client"),
 // 			Enabled:    pulumi.Bool(true),
-// 			RealmId:    realm.ID(),
+// 			AccessType: pulumi.String("CONFIDENTIAL"),
+// 			ValidRedirectUris: pulumi.StringArray{
+// 				pulumi.String("http://localhost:8080/openid-callback"),
+// 			},
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = keycloak.NewRole(ctx, "clientRole", &keycloak.RoleArgs{
-// 			ClientId:    pulumi.Any(keycloak_client.Client.Id),
-// 			Description: pulumi.String("My Client Role"),
 // 			RealmId:     realm.ID(),
+// 			ClientId:    pulumi.Any(keycloak_client.Openid_client.Id),
+// 			Description: pulumi.String("My Client Role"),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -89,8 +89,7 @@ import (
 // 	})
 // }
 // ```
-//
-// ### Example Usage (Composite role)
+// ### Composite Role)
 //
 // ```go
 // package main
@@ -104,62 +103,65 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Enabled: pulumi.Bool(true),
 // 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = keycloak.NewRole(ctx, "createRole", &keycloak.RoleArgs{
+// 		createRole, err := keycloak.NewRole(ctx, "createRole", &keycloak.RoleArgs{
 // 			RealmId: realm.ID(),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = keycloak.NewRole(ctx, "readRole", &keycloak.RoleArgs{
+// 		readRole, err := keycloak.NewRole(ctx, "readRole", &keycloak.RoleArgs{
 // 			RealmId: realm.ID(),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = keycloak.NewRole(ctx, "updateRole", &keycloak.RoleArgs{
+// 		updateRole, err := keycloak.NewRole(ctx, "updateRole", &keycloak.RoleArgs{
 // 			RealmId: realm.ID(),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = keycloak.NewRole(ctx, "deleteRole", &keycloak.RoleArgs{
+// 		deleteRole, err := keycloak.NewRole(ctx, "deleteRole", &keycloak.RoleArgs{
 // 			RealmId: realm.ID(),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = openid.NewClient(ctx, "client", &openid.ClientArgs{
-// 			AccessType: pulumi.String("BEARER-ONLY"),
+// 		_, err = openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
+// 			RealmId:    realm.ID(),
 // 			ClientId:   pulumi.String("client"),
 // 			Enabled:    pulumi.Bool(true),
-// 			RealmId:    realm.ID(),
+// 			AccessType: pulumi.String("CONFIDENTIAL"),
+// 			ValidRedirectUris: pulumi.StringArray{
+// 				pulumi.String("http://localhost:8080/openid-callback"),
+// 			},
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = keycloak.NewRole(ctx, "clientRole", &keycloak.RoleArgs{
-// 			ClientId:    pulumi.Any(keycloak_client.Client.Id),
-// 			Description: pulumi.String("My Client Role"),
+// 		clientRole, err := keycloak.NewRole(ctx, "clientRole", &keycloak.RoleArgs{
 // 			RealmId:     realm.ID(),
+// 			ClientId:    pulumi.Any(keycloak_client.Openid_client.Id),
+// 			Description: pulumi.String("My Client Role"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = keycloak.NewRole(ctx, "adminRole", &keycloak.RoleArgs{
-// 			CompositeRoles: pulumi.StringArray{
-// 				pulumi.String("{keycloak_role.create_role.id}"),
-// 				pulumi.String("{keycloak_role.read_role.id}"),
-// 				pulumi.String("{keycloak_role.update_role.id}"),
-// 				pulumi.String("{keycloak_role.delete_role.id}"),
-// 				pulumi.String("{keycloak_role.client_role.id}"),
-// 			},
 // 			RealmId: realm.ID(),
+// 			CompositeRoles: pulumi.StringArray{
+// 				createRole.ID(),
+// 				readRole.ID(),
+// 				updateRole.ID(),
+// 				deleteRole.ID(),
+// 				clientRole.ID(),
+// 			},
 // 		})
 // 		if err != nil {
 // 			return err
@@ -168,27 +170,19 @@ import (
 // 	})
 // }
 // ```
-//
-// ### Argument Reference
-//
-// The following arguments are supported:
-//
-// - `realmId` - (Required) The realm this role exists within.
-// - `clientId` - (Optional) When specified, this role will be created as
-//   a client role attached to the client with the provided ID
-// - `name` - (Required) The name of the role
-// - `description` - (Optional) The description of the role
-// - `compositeRoles` - (Optional) When specified, this role will be a
-//   composite role, composed of all roles that have an ID present within
-//   this list.
 type Role struct {
 	pulumi.CustomResourceState
 
-	ClientId       pulumi.StringPtrOutput   `pulumi:"clientId"`
+	// When specified, this role will be created as a client role attached to the client with the provided ID
+	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
+	// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
 	CompositeRoles pulumi.StringArrayOutput `pulumi:"compositeRoles"`
-	Description    pulumi.StringPtrOutput   `pulumi:"description"`
-	Name           pulumi.StringOutput      `pulumi:"name"`
-	RealmId        pulumi.StringOutput      `pulumi:"realmId"`
+	// The description of the role
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The name of the role
+	Name pulumi.StringOutput `pulumi:"name"`
+	// The realm this role exists within.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
 // NewRole registers a new resource with the given unique name, arguments, and options.
@@ -222,19 +216,29 @@ func GetRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Role resources.
 type roleState struct {
-	ClientId       *string  `pulumi:"clientId"`
+	// When specified, this role will be created as a client role attached to the client with the provided ID
+	ClientId *string `pulumi:"clientId"`
+	// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
 	CompositeRoles []string `pulumi:"compositeRoles"`
-	Description    *string  `pulumi:"description"`
-	Name           *string  `pulumi:"name"`
-	RealmId        *string  `pulumi:"realmId"`
+	// The description of the role
+	Description *string `pulumi:"description"`
+	// The name of the role
+	Name *string `pulumi:"name"`
+	// The realm this role exists within.
+	RealmId *string `pulumi:"realmId"`
 }
 
 type RoleState struct {
-	ClientId       pulumi.StringPtrInput
+	// When specified, this role will be created as a client role attached to the client with the provided ID
+	ClientId pulumi.StringPtrInput
+	// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
 	CompositeRoles pulumi.StringArrayInput
-	Description    pulumi.StringPtrInput
-	Name           pulumi.StringPtrInput
-	RealmId        pulumi.StringPtrInput
+	// The description of the role
+	Description pulumi.StringPtrInput
+	// The name of the role
+	Name pulumi.StringPtrInput
+	// The realm this role exists within.
+	RealmId pulumi.StringPtrInput
 }
 
 func (RoleState) ElementType() reflect.Type {
@@ -242,20 +246,30 @@ func (RoleState) ElementType() reflect.Type {
 }
 
 type roleArgs struct {
-	ClientId       *string  `pulumi:"clientId"`
+	// When specified, this role will be created as a client role attached to the client with the provided ID
+	ClientId *string `pulumi:"clientId"`
+	// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
 	CompositeRoles []string `pulumi:"compositeRoles"`
-	Description    *string  `pulumi:"description"`
-	Name           *string  `pulumi:"name"`
-	RealmId        string   `pulumi:"realmId"`
+	// The description of the role
+	Description *string `pulumi:"description"`
+	// The name of the role
+	Name *string `pulumi:"name"`
+	// The realm this role exists within.
+	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a Role resource.
 type RoleArgs struct {
-	ClientId       pulumi.StringPtrInput
+	// When specified, this role will be created as a client role attached to the client with the provided ID
+	ClientId pulumi.StringPtrInput
+	// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
 	CompositeRoles pulumi.StringArrayInput
-	Description    pulumi.StringPtrInput
-	Name           pulumi.StringPtrInput
-	RealmId        pulumi.StringInput
+	// The description of the role
+	Description pulumi.StringPtrInput
+	// The name of the role
+	Name pulumi.StringPtrInput
+	// The realm this role exists within.
+	RealmId pulumi.StringInput
 }
 
 func (RoleArgs) ElementType() reflect.Type {

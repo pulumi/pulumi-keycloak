@@ -6,6 +6,35 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * This data source can be used to fetch properties of a Keycloak group for
+ * usage with other resources, such as `keycloak.GroupRoles`.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const offlineAccess = realm.id.apply(id => keycloak.getRole({
+ *     realmId: id,
+ *     name: "offline_access",
+ * }));
+ * const group = realm.id.apply(id => keycloak.getGroup({
+ *     realmId: id,
+ *     name: "group",
+ * }));
+ * const groupRoles = new keycloak.GroupRoles("groupRoles", {
+ *     realmId: realm.id,
+ *     groupId: group.id,
+ *     roleIds: [offlineAccess.id],
+ * });
+ * ```
+ */
 export function getGroup(args: GetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetGroupResult> {
     if (!opts) {
         opts = {}
@@ -24,7 +53,13 @@ export function getGroup(args: GetGroupArgs, opts?: pulumi.InvokeOptions): Promi
  * A collection of arguments for invoking getGroup.
  */
 export interface GetGroupArgs {
+    /**
+     * The name of the group. If there are multiple groups match `name`, the first result will be returned.
+     */
     readonly name: string;
+    /**
+     * The realm this group exists within.
+     */
     readonly realmId: string;
 }
 
@@ -32,10 +67,13 @@ export interface GetGroupArgs {
  * A collection of values returned by getGroup.
  */
 export interface GetGroupResult {
+    readonly attributes: {[key: string]: any};
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly name: string;
+    readonly parentId: string;
+    readonly path: string;
     readonly realmId: string;
 }

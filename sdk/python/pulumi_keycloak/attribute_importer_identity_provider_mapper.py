@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['AttributeImporterIdentityProviderMapper']
@@ -27,44 +27,52 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        ## # AttributeImporterIdentityProviderMapper
+        Allows for creating and managing an attribute importer identity provider mapper within Keycloak.
 
-        Allows to create and manage identity provider mappers within Keycloak.
+        The attribute importer mapper can be used to map attributes from externally defined users to attributes or properties of the imported Keycloak user:
+        - For the OIDC identity provider, this will map a claim on the ID or access token to an attribute for the imported Keycloak user.
+        - For the SAML identity provider, this will map a SAML attribute found within the assertion to an attribute for the imported Keycloak user.
+        - For social identity providers, this will map a JSON field from the user profile to an attribute for the imported Keycloak user.
 
-        ### Example Usage
+        > If you are using Keycloak 10 or higher, you will need to specify the `extra_config` argument in order to define a `syncMode` for the mapper.
+
+        ## Example Usage
 
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
-        test_mapper = keycloak.AttributeImporterIdentityProviderMapper("testMapper",
-            attribute_name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
-            identity_provider_alias="idp_alias",
+        realm = keycloak.Realm("realm",
             realm="my-realm",
-            user_attribute="lastName")
+            enabled=True)
+        oidc_identity_provider = keycloak.oidc.IdentityProvider("oidcIdentityProvider",
+            realm=realm.id,
+            alias="oidc",
+            authorization_url="https://example.com/auth",
+            token_url="https://example.com/token",
+            client_id="example_id",
+            client_secret="example_token",
+            default_scopes="openid random profile")
+        oidc_attribute_importer_identity_provider_mapper = keycloak.AttributeImporterIdentityProviderMapper("oidcAttributeImporterIdentityProviderMapper",
+            realm=realm.id,
+            claim_name="my-email-claim",
+            identity_provider_alias=oidc_identity_provider.alias,
+            user_attribute="email",
+            extra_config={
+                "syncMode": "INHERIT",
+            })
         ```
-
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm` - (Required) The name of the realm.
-        - `name` - (Required) The name of the mapper.
-        - `identity_provider_alias` - (Required) The alias of the associated identity provider.
-        - `user_attribute` - (Required) The user attribute name to store SAML attribute.
-        - `attribute_name` - (Optional) The Name of attribute to search for in assertion. You can leave this blank and specify a friendly name instead.
-        - `attribute_friendly_name` - (Optional) The friendly name of attribute to search for in assertion.  You can leave this blank and specify an attribute name instead.
-        - `claim_name` - (Optional) The claim name.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] attribute_friendly_name: Attribute Friendly Name
-        :param pulumi.Input[str] attribute_name: Attribute Name
-        :param pulumi.Input[str] claim_name: Claim Name
-        :param pulumi.Input[str] identity_provider_alias: IDP Alias
-        :param pulumi.Input[str] name: IDP Mapper Name
-        :param pulumi.Input[str] realm: Realm Name
-        :param pulumi.Input[str] user_attribute: User Attribute
+        :param pulumi.Input[str] attribute_friendly_name: For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
+        :param pulumi.Input[str] attribute_name: For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
+        :param pulumi.Input[str] claim_name: For OIDC based providers, this is the name of the claim to use.
+        :param pulumi.Input[Mapping[str, Any]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        :param pulumi.Input[str] identity_provider_alias: The alias of the associated identity provider.
+        :param pulumi.Input[str] name: The name of the mapper.
+        :param pulumi.Input[str] realm: The name of the realm.
+        :param pulumi.Input[str] user_attribute: The user attribute or property name to store the mapped result.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -122,13 +130,14 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] attribute_friendly_name: Attribute Friendly Name
-        :param pulumi.Input[str] attribute_name: Attribute Name
-        :param pulumi.Input[str] claim_name: Claim Name
-        :param pulumi.Input[str] identity_provider_alias: IDP Alias
-        :param pulumi.Input[str] name: IDP Mapper Name
-        :param pulumi.Input[str] realm: Realm Name
-        :param pulumi.Input[str] user_attribute: User Attribute
+        :param pulumi.Input[str] attribute_friendly_name: For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
+        :param pulumi.Input[str] attribute_name: For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
+        :param pulumi.Input[str] claim_name: For OIDC based providers, this is the name of the claim to use.
+        :param pulumi.Input[Mapping[str, Any]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        :param pulumi.Input[str] identity_provider_alias: The alias of the associated identity provider.
+        :param pulumi.Input[str] name: The name of the mapper.
+        :param pulumi.Input[str] realm: The name of the realm.
+        :param pulumi.Input[str] user_attribute: The user attribute or property name to store the mapped result.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -148,7 +157,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
     @pulumi.getter(name="attributeFriendlyName")
     def attribute_friendly_name(self) -> pulumi.Output[Optional[str]]:
         """
-        Attribute Friendly Name
+        For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
         """
         return pulumi.get(self, "attribute_friendly_name")
 
@@ -156,7 +165,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
     @pulumi.getter(name="attributeName")
     def attribute_name(self) -> pulumi.Output[Optional[str]]:
         """
-        Attribute Name
+        For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
         """
         return pulumi.get(self, "attribute_name")
 
@@ -164,20 +173,23 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
     @pulumi.getter(name="claimName")
     def claim_name(self) -> pulumi.Output[Optional[str]]:
         """
-        Claim Name
+        For OIDC based providers, this is the name of the claim to use.
         """
         return pulumi.get(self, "claim_name")
 
     @property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+        """
+        Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        """
         return pulumi.get(self, "extra_config")
 
     @property
     @pulumi.getter(name="identityProviderAlias")
     def identity_provider_alias(self) -> pulumi.Output[str]:
         """
-        IDP Alias
+        The alias of the associated identity provider.
         """
         return pulumi.get(self, "identity_provider_alias")
 
@@ -185,7 +197,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        IDP Mapper Name
+        The name of the mapper.
         """
         return pulumi.get(self, "name")
 
@@ -193,7 +205,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
     @pulumi.getter
     def realm(self) -> pulumi.Output[str]:
         """
-        Realm Name
+        The name of the realm.
         """
         return pulumi.get(self, "realm")
 
@@ -201,7 +213,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
     @pulumi.getter(name="userAttribute")
     def user_attribute(self) -> pulumi.Output[str]:
         """
-        User Attribute
+        The user attribute or property name to store the mapped result.
         """
         return pulumi.get(self, "user_attribute")
 

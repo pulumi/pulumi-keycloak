@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['ClientScope']
@@ -17,50 +17,39 @@ class ClientScope(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  consent_screen_text: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 gui_order: Optional[pulumi.Input[float]] = None,
+                 gui_order: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
         """
-        ## # saml.ClientScope
+        Allows for creating and managing Keycloak client scopes that can be attached to clients that use the SAML protocol.
 
-        Allows for creating and managing Keycloak client scopes that can be attached to
-        clients that use the SAML protocol.
+        Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm.
 
-        Client Scopes can be used to share common protocol and role mappings between multiple
-        clients within a realm.
-
-        ### Example Usage
+        ## Example Usage
 
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
+            realm="my-realm",
+            enabled=True)
         saml_client_scope = keycloak.saml.ClientScope("samlClientScope",
+            realm_id=realm.id,
             description="This scope will map a user's group memberships to SAML assertion",
-            gui_order=1,
-            realm_id=realm.id)
+            gui_order=1)
         ```
-
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm_id` - (Required) The realm this client scope belongs to.
-        - `name` - (Required) The display name of this client scope in the GUI.
-        - `description` - (Optional) The description of this client scope in the GUI.
-        - `consent_screen_text` - (Optional) When set, a consent screen will be displayed to users
-          authenticating to clients with this scope attached. The consent screen will display the string
-          value of this attribute.
-        - `gui_order` - (Optional) Specify order of the client scope in GUI (such as in Consent page) as integer.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        :param pulumi.Input[str] description: The description of this client scope in the GUI.
+        :param pulumi.Input[int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
+        :param pulumi.Input[str] name: The display name of this client scope in the GUI.
+        :param pulumi.Input[str] realm_id: The realm this client scope belongs to.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -98,7 +87,7 @@ class ClientScope(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             consent_screen_text: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
-            gui_order: Optional[pulumi.Input[float]] = None,
+            gui_order: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             realm_id: Optional[pulumi.Input[str]] = None) -> 'ClientScope':
         """
@@ -108,6 +97,11 @@ class ClientScope(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        :param pulumi.Input[str] description: The description of this client scope in the GUI.
+        :param pulumi.Input[int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
+        :param pulumi.Input[str] name: The display name of this client scope in the GUI.
+        :param pulumi.Input[str] realm_id: The realm this client scope belongs to.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -123,26 +117,41 @@ class ClientScope(pulumi.CustomResource):
     @property
     @pulumi.getter(name="consentScreenText")
     def consent_screen_text(self) -> pulumi.Output[Optional[str]]:
+        """
+        When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        """
         return pulumi.get(self, "consent_screen_text")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        The description of this client scope in the GUI.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="guiOrder")
-    def gui_order(self) -> pulumi.Output[Optional[float]]:
+    def gui_order(self) -> pulumi.Output[Optional[int]]:
+        """
+        Specify order of the client scope in GUI (such as in Consent page) as integer.
+        """
         return pulumi.get(self, "gui_order")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        The display name of this client scope in the GUI.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
+        """
+        The realm this client scope belongs to.
+        """
         return pulumi.get(self, "realm_id")
 
     def translate_output_property(self, prop):

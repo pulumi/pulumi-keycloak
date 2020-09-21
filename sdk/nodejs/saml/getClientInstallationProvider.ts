@@ -6,6 +6,9 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * This data source can be used to retrieve Installation Provider of a SAML Client.
+ */
 export function getClientInstallationProvider(args: GetClientInstallationProviderArgs, opts?: pulumi.InvokeOptions): Promise<GetClientInstallationProviderResult> {
     if (!opts) {
         opts = {}
@@ -25,8 +28,17 @@ export function getClientInstallationProvider(args: GetClientInstallationProvide
  * A collection of arguments for invoking getClientInstallationProvider.
  */
 export interface GetClientInstallationProviderArgs {
+    /**
+     * The ID of the SAML client. The `id` attribute of a `keycloakClient` resource should be used here.
+     */
     readonly clientId: string;
+    /**
+     * The ID of the SAML installation provider. Could be one of `saml-idp-descriptor`, `keycloak-saml`, `saml-sp-descriptor`, `keycloak-saml-subsystem`, `mod-auth-mellon`, etc.
+     */
     readonly providerId: string;
+    /**
+     * The realm that the SAML client exists within.
+     */
     readonly realmId: string;
 }
 
@@ -41,5 +53,8 @@ export interface GetClientInstallationProviderResult {
     readonly id: string;
     readonly providerId: string;
     readonly realmId: string;
+    /**
+     * (Computed) The returned document needed for SAML installation.
+     */
     readonly value: string;
 }

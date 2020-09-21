@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['RequiredAction']
@@ -19,7 +19,7 @@ class RequiredAction(pulumi.CustomResource):
                  default_action: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 priority: Optional[pulumi.Input[float]] = None,
+                 priority: Optional[pulumi.Input[int]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
@@ -70,7 +70,7 @@ class RequiredAction(pulumi.CustomResource):
             default_action: Optional[pulumi.Input[bool]] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            priority: Optional[pulumi.Input[float]] = None,
+            priority: Optional[pulumi.Input[int]] = None,
             realm_id: Optional[pulumi.Input[str]] = None) -> 'RequiredAction':
         """
         Get an existing RequiredAction resource's state with the given name, id, and optional extra
@@ -114,7 +114,7 @@ class RequiredAction(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def priority(self) -> pulumi.Output[float]:
+    def priority(self) -> pulumi.Output[int]:
         return pulumi.get(self, "priority")
 
     @property

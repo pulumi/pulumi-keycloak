@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Ldap
 {
     /// <summary>
-    /// ## # keycloak.ldap.MsadLdsUserAccountControlMapper
-    /// 
     /// Allows for creating and managing MSAD-LDS user account control mappers for Keycloak
     /// users federated via LDAP.
     /// 
@@ -20,7 +18,7 @@ namespace Pulumi.Keycloak.Ldap
     /// AD-LDS user state to Keycloak in order to enforce settings like expired passwords
     /// or disabled accounts.
     /// 
-    /// ### Example Usage
+    /// ## Example Usage
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -32,60 +30,52 @@ namespace Pulumi.Keycloak.Ldap
     ///     {
     ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
     ///         {
+    ///             Realm = "my-realm",
     ///             Enabled = true,
-    ///             Realm = "test",
     ///         });
     ///         var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new Keycloak.Ldap.UserFederationArgs
     ///         {
-    ///             BindCredential = "admin",
-    ///             BindDn = "cn=admin,dc=example,dc=org",
-    ///             ConnectionUrl = "ldap://my-ad-server",
-    ///             RdnLdapAttribute = "cn",
     ///             RealmId = realm.Id,
+    ///             UsernameLdapAttribute = "cn",
+    ///             RdnLdapAttribute = "cn",
+    ///             UuidLdapAttribute = "objectGUID",
     ///             UserObjectClasses = 
     ///             {
     ///                 "person",
     ///                 "organizationalPerson",
     ///                 "user",
     ///             },
-    ///             UsernameLdapAttribute = "cn",
+    ///             ConnectionUrl = "ldap://my-ad-server",
     ///             UsersDn = "dc=example,dc=org",
-    ///             UuidLdapAttribute = "objectGUID",
+    ///             BindDn = "cn=admin,dc=example,dc=org",
+    ///             BindCredential = "admin",
     ///         });
     ///         var msadLdsUserAccountControlMapper = new Keycloak.Ldap.MsadLdsUserAccountControlMapper("msadLdsUserAccountControlMapper", new Keycloak.Ldap.MsadLdsUserAccountControlMapperArgs
     ///         {
-    ///             LdapUserFederationId = ldapUserFederation.Id,
     ///             RealmId = realm.Id,
+    ///             LdapUserFederationId = ldapUserFederation.Id,
     ///         });
     ///     }
     /// 
     /// }
     /// ```
-    /// 
-    /// ### Argument Reference
-    /// 
-    /// The following arguments are supported:
-    /// 
-    /// - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
-    /// - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
-    /// - `name` - (Required) Display name of this mapper when displayed in the console.
     /// </summary>
     public partial class MsadLdsUserAccountControlMapper : Pulumi.CustomResource
     {
         /// <summary>
-        /// The ldap user federation provider to attach this mapper to.
+        /// The ID of the LDAP user federation provider to attach this mapper to.
         /// </summary>
         [Output("ldapUserFederationId")]
         public Output<string> LdapUserFederationId { get; private set; } = null!;
 
         /// <summary>
-        /// Display name of the mapper when displayed in the console.
+        /// Display name of this mapper when displayed in the console.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The realm in which the ldap user federation provider exists.
+        /// The realm that this LDAP mapper will exist in.
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
@@ -137,19 +127,19 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class MsadLdsUserAccountControlMapperArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ldap user federation provider to attach this mapper to.
+        /// The ID of the LDAP user federation provider to attach this mapper to.
         /// </summary>
         [Input("ldapUserFederationId", required: true)]
         public Input<string> LdapUserFederationId { get; set; } = null!;
 
         /// <summary>
-        /// Display name of the mapper when displayed in the console.
+        /// Display name of this mapper when displayed in the console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm in which the ldap user federation provider exists.
+        /// The realm that this LDAP mapper will exist in.
         /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
@@ -162,19 +152,19 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class MsadLdsUserAccountControlMapperState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ldap user federation provider to attach this mapper to.
+        /// The ID of the LDAP user federation provider to attach this mapper to.
         /// </summary>
         [Input("ldapUserFederationId")]
         public Input<string>? LdapUserFederationId { get; set; }
 
         /// <summary>
-        /// Display name of the mapper when displayed in the console.
+        /// Display name of this mapper when displayed in the console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm in which the ldap user federation provider exists.
+        /// The realm that this LDAP mapper will exist in.
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }

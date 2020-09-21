@@ -13,22 +13,22 @@ import (
 type IdentityProviderTokenExchangeScopePermission struct {
 	pulumi.CustomResourceState
 
-	// Resource id representing the identity provider, this automatically created by keycloak
+	// (Computed) Resource ID representing the identity provider, this automatically created by keycloak.
 	AuthorizationIdpResourceId pulumi.StringOutput `pulumi:"authorizationIdpResourceId"`
-	// Resource server id representing the realm management client on which this permission is managed
+	// (Computed) Resource server ID representing the realm management client on which this permission is managed.
 	AuthorizationResourceServerId pulumi.StringOutput `pulumi:"authorizationResourceServerId"`
-	// Permission id representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id',
-	// this automatically created by keycloak, the policy id will be set on this permission
+	// (Computed) Permission ID representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id', this automatically created by keycloak, the policy ID will be set on this permission.
 	AuthorizationTokenExchangeScopePermissionId pulumi.StringOutput `pulumi:"authorizationTokenExchangeScopePermissionId"`
-	// Ids of the clients for which a policy will be created and set on scope based token exchange permission
+	// A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
 	Clients pulumi.StringArrayOutput `pulumi:"clients"`
-	// Policy id that will be set on the scope based token exchange permission automatically created by enabling permissions on
-	// the reference identity provider
+	// (Computed) Policy ID that will be set on the scope based token exchange permission automatically created by enabling permissions on the reference identity provider.
 	PolicyId pulumi.StringOutput `pulumi:"policyId"`
-	// Type of policy that is created. At the moment only 'client' type is supported
-	PolicyType    pulumi.StringPtrOutput `pulumi:"policyType"`
-	ProviderAlias pulumi.StringOutput    `pulumi:"providerAlias"`
-	RealmId       pulumi.StringOutput    `pulumi:"realmId"`
+	// Defaults to "client" This is also the only value policy type supported by this provider.
+	PolicyType pulumi.StringPtrOutput `pulumi:"policyType"`
+	// Alias of the identity provider.
+	ProviderAlias pulumi.StringOutput `pulumi:"providerAlias"`
+	// The realm that the identity provider exists in.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
 // NewIdentityProviderTokenExchangeScopePermission registers a new resource with the given unique name, arguments, and options.
@@ -68,41 +68,41 @@ func GetIdentityProviderTokenExchangeScopePermission(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IdentityProviderTokenExchangeScopePermission resources.
 type identityProviderTokenExchangeScopePermissionState struct {
-	// Resource id representing the identity provider, this automatically created by keycloak
+	// (Computed) Resource ID representing the identity provider, this automatically created by keycloak.
 	AuthorizationIdpResourceId *string `pulumi:"authorizationIdpResourceId"`
-	// Resource server id representing the realm management client on which this permission is managed
+	// (Computed) Resource server ID representing the realm management client on which this permission is managed.
 	AuthorizationResourceServerId *string `pulumi:"authorizationResourceServerId"`
-	// Permission id representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id',
-	// this automatically created by keycloak, the policy id will be set on this permission
+	// (Computed) Permission ID representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id', this automatically created by keycloak, the policy ID will be set on this permission.
 	AuthorizationTokenExchangeScopePermissionId *string `pulumi:"authorizationTokenExchangeScopePermissionId"`
-	// Ids of the clients for which a policy will be created and set on scope based token exchange permission
+	// A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
 	Clients []string `pulumi:"clients"`
-	// Policy id that will be set on the scope based token exchange permission automatically created by enabling permissions on
-	// the reference identity provider
+	// (Computed) Policy ID that will be set on the scope based token exchange permission automatically created by enabling permissions on the reference identity provider.
 	PolicyId *string `pulumi:"policyId"`
-	// Type of policy that is created. At the moment only 'client' type is supported
-	PolicyType    *string `pulumi:"policyType"`
+	// Defaults to "client" This is also the only value policy type supported by this provider.
+	PolicyType *string `pulumi:"policyType"`
+	// Alias of the identity provider.
 	ProviderAlias *string `pulumi:"providerAlias"`
-	RealmId       *string `pulumi:"realmId"`
+	// The realm that the identity provider exists in.
+	RealmId *string `pulumi:"realmId"`
 }
 
 type IdentityProviderTokenExchangeScopePermissionState struct {
-	// Resource id representing the identity provider, this automatically created by keycloak
+	// (Computed) Resource ID representing the identity provider, this automatically created by keycloak.
 	AuthorizationIdpResourceId pulumi.StringPtrInput
-	// Resource server id representing the realm management client on which this permission is managed
+	// (Computed) Resource server ID representing the realm management client on which this permission is managed.
 	AuthorizationResourceServerId pulumi.StringPtrInput
-	// Permission id representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id',
-	// this automatically created by keycloak, the policy id will be set on this permission
+	// (Computed) Permission ID representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id', this automatically created by keycloak, the policy ID will be set on this permission.
 	AuthorizationTokenExchangeScopePermissionId pulumi.StringPtrInput
-	// Ids of the clients for which a policy will be created and set on scope based token exchange permission
+	// A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
 	Clients pulumi.StringArrayInput
-	// Policy id that will be set on the scope based token exchange permission automatically created by enabling permissions on
-	// the reference identity provider
+	// (Computed) Policy ID that will be set on the scope based token exchange permission automatically created by enabling permissions on the reference identity provider.
 	PolicyId pulumi.StringPtrInput
-	// Type of policy that is created. At the moment only 'client' type is supported
-	PolicyType    pulumi.StringPtrInput
+	// Defaults to "client" This is also the only value policy type supported by this provider.
+	PolicyType pulumi.StringPtrInput
+	// Alias of the identity provider.
 	ProviderAlias pulumi.StringPtrInput
-	RealmId       pulumi.StringPtrInput
+	// The realm that the identity provider exists in.
+	RealmId pulumi.StringPtrInput
 }
 
 func (IdentityProviderTokenExchangeScopePermissionState) ElementType() reflect.Type {
@@ -110,22 +110,26 @@ func (IdentityProviderTokenExchangeScopePermissionState) ElementType() reflect.T
 }
 
 type identityProviderTokenExchangeScopePermissionArgs struct {
-	// Ids of the clients for which a policy will be created and set on scope based token exchange permission
+	// A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
 	Clients []string `pulumi:"clients"`
-	// Type of policy that is created. At the moment only 'client' type is supported
-	PolicyType    *string `pulumi:"policyType"`
-	ProviderAlias string  `pulumi:"providerAlias"`
-	RealmId       string  `pulumi:"realmId"`
+	// Defaults to "client" This is also the only value policy type supported by this provider.
+	PolicyType *string `pulumi:"policyType"`
+	// Alias of the identity provider.
+	ProviderAlias string `pulumi:"providerAlias"`
+	// The realm that the identity provider exists in.
+	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a IdentityProviderTokenExchangeScopePermission resource.
 type IdentityProviderTokenExchangeScopePermissionArgs struct {
-	// Ids of the clients for which a policy will be created and set on scope based token exchange permission
+	// A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
 	Clients pulumi.StringArrayInput
-	// Type of policy that is created. At the moment only 'client' type is supported
-	PolicyType    pulumi.StringPtrInput
+	// Defaults to "client" This is also the only value policy type supported by this provider.
+	PolicyType pulumi.StringPtrInput
+	// Alias of the identity provider.
 	ProviderAlias pulumi.StringInput
-	RealmId       pulumi.StringInput
+	// The realm that the identity provider exists in.
+	RealmId pulumi.StringInput
 }
 
 func (IdentityProviderTokenExchangeScopePermissionArgs) ElementType() reflect.Type {

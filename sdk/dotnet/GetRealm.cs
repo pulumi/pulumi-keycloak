@@ -11,6 +11,37 @@ namespace Pulumi.Keycloak
 {
     public static class GetRealm
     {
+        /// <summary>
+        /// This data source can be used to fetch properties of a Keycloak realm for
+        /// usage with other resources.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var realm = Output.Create(Keycloak.GetRealm.InvokeAsync(new Keycloak.GetRealmArgs
+        ///         {
+        ///             Realm = "my-realm",
+        ///         }));
+        ///         var @group = new Keycloak.Role("group", new Keycloak.RoleArgs
+        ///         {
+        ///             RealmId = realm.Apply(realm =&gt; realm.Id),
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetRealmResult> InvokeAsync(GetRealmArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetRealmResult>("keycloak:index/getRealm:getRealm", args ?? new GetRealmArgs(), options.WithVersion());
     }
@@ -37,6 +68,9 @@ namespace Pulumi.Keycloak
             set => _internationalizations = value;
         }
 
+        /// <summary>
+        /// The realm name.
+        /// </summary>
         [Input("realm", required: true)]
         public string Realm { get; set; } = null!;
 
@@ -55,6 +89,12 @@ namespace Pulumi.Keycloak
             get => _smtpServers ?? (_smtpServers = new List<Inputs.GetRealmSmtpServerArgs>());
             set => _smtpServers = value;
         }
+
+        [Input("webAuthnPasswordlessPolicy")]
+        public Inputs.GetRealmWebAuthnPasswordlessPolicyArgs? WebAuthnPasswordlessPolicy { get; set; }
+
+        [Input("webAuthnPolicy")]
+        public Inputs.GetRealmWebAuthnPolicyArgs? WebAuthnPolicy { get; set; }
 
         public GetRealmArgs()
         {
@@ -77,6 +117,7 @@ namespace Pulumi.Keycloak
         public readonly ImmutableDictionary<string, object> Attributes;
         public readonly string BrowserFlow;
         public readonly string ClientAuthenticationFlow;
+        public readonly string DefaultSignatureAlgorithm;
         public readonly string DirectGrantFlow;
         public readonly string DisplayName;
         public readonly string? DisplayNameHtml;
@@ -95,6 +136,7 @@ namespace Pulumi.Keycloak
         public readonly bool LoginWithEmailAllowed;
         public readonly string OfflineSessionIdleTimeout;
         public readonly string OfflineSessionMaxLifespan;
+        public readonly bool OfflineSessionMaxLifespanEnabled;
         public readonly string PasswordPolicy;
         public readonly string Realm;
         public readonly int RefreshTokenMaxReuse;
@@ -104,13 +146,18 @@ namespace Pulumi.Keycloak
         public readonly bool RememberMe;
         public readonly string ResetCredentialsFlow;
         public readonly bool ResetPasswordAllowed;
+        public readonly bool RevokeRefreshToken;
         public readonly ImmutableArray<Outputs.GetRealmSecurityDefenseResult> SecurityDefenses;
         public readonly ImmutableArray<Outputs.GetRealmSmtpServerResult> SmtpServers;
         public readonly string SslRequired;
         public readonly string SsoSessionIdleTimeout;
+        public readonly string SsoSessionIdleTimeoutRememberMe;
         public readonly string SsoSessionMaxLifespan;
+        public readonly string SsoSessionMaxLifespanRememberMe;
         public readonly bool UserManagedAccess;
         public readonly bool VerifyEmail;
+        public readonly Outputs.GetRealmWebAuthnPasswordlessPolicyResult WebAuthnPasswordlessPolicy;
+        public readonly Outputs.GetRealmWebAuthnPolicyResult WebAuthnPolicy;
 
         [OutputConstructor]
         private GetRealmResult(
@@ -137,6 +184,8 @@ namespace Pulumi.Keycloak
             string browserFlow,
 
             string clientAuthenticationFlow,
+
+            string defaultSignatureAlgorithm,
 
             string directGrantFlow,
 
@@ -168,6 +217,8 @@ namespace Pulumi.Keycloak
 
             string offlineSessionMaxLifespan,
 
+            bool offlineSessionMaxLifespanEnabled,
+
             string passwordPolicy,
 
             string realm,
@@ -186,6 +237,8 @@ namespace Pulumi.Keycloak
 
             bool resetPasswordAllowed,
 
+            bool revokeRefreshToken,
+
             ImmutableArray<Outputs.GetRealmSecurityDefenseResult> securityDefenses,
 
             ImmutableArray<Outputs.GetRealmSmtpServerResult> smtpServers,
@@ -194,11 +247,19 @@ namespace Pulumi.Keycloak
 
             string ssoSessionIdleTimeout,
 
+            string ssoSessionIdleTimeoutRememberMe,
+
             string ssoSessionMaxLifespan,
+
+            string ssoSessionMaxLifespanRememberMe,
 
             bool userManagedAccess,
 
-            bool verifyEmail)
+            bool verifyEmail,
+
+            Outputs.GetRealmWebAuthnPasswordlessPolicyResult webAuthnPasswordlessPolicy,
+
+            Outputs.GetRealmWebAuthnPolicyResult webAuthnPolicy)
         {
             AccessCodeLifespan = accessCodeLifespan;
             AccessCodeLifespanLogin = accessCodeLifespanLogin;
@@ -212,6 +273,7 @@ namespace Pulumi.Keycloak
             Attributes = attributes;
             BrowserFlow = browserFlow;
             ClientAuthenticationFlow = clientAuthenticationFlow;
+            DefaultSignatureAlgorithm = defaultSignatureAlgorithm;
             DirectGrantFlow = directGrantFlow;
             DisplayName = displayName;
             DisplayNameHtml = displayNameHtml;
@@ -227,6 +289,7 @@ namespace Pulumi.Keycloak
             LoginWithEmailAllowed = loginWithEmailAllowed;
             OfflineSessionIdleTimeout = offlineSessionIdleTimeout;
             OfflineSessionMaxLifespan = offlineSessionMaxLifespan;
+            OfflineSessionMaxLifespanEnabled = offlineSessionMaxLifespanEnabled;
             PasswordPolicy = passwordPolicy;
             Realm = realm;
             RefreshTokenMaxReuse = refreshTokenMaxReuse;
@@ -236,13 +299,18 @@ namespace Pulumi.Keycloak
             RememberMe = rememberMe;
             ResetCredentialsFlow = resetCredentialsFlow;
             ResetPasswordAllowed = resetPasswordAllowed;
+            RevokeRefreshToken = revokeRefreshToken;
             SecurityDefenses = securityDefenses;
             SmtpServers = smtpServers;
             SslRequired = sslRequired;
             SsoSessionIdleTimeout = ssoSessionIdleTimeout;
+            SsoSessionIdleTimeoutRememberMe = ssoSessionIdleTimeoutRememberMe;
             SsoSessionMaxLifespan = ssoSessionMaxLifespan;
+            SsoSessionMaxLifespanRememberMe = ssoSessionMaxLifespanRememberMe;
             UserManagedAccess = userManagedAccess;
             VerifyEmail = verifyEmail;
+            WebAuthnPasswordlessPolicy = webAuthnPasswordlessPolicy;
+            WebAuthnPolicy = webAuthnPolicy;
         }
     }
 }

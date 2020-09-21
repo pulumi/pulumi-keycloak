@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['Flow']
@@ -23,9 +23,37 @@ class Flow(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a Flow resource with the given unique name, props, and options.
+        Allows for creating and managing an authentication flow within Keycloak.
+
+        [Authentication flows](https://www.keycloak.org/docs/11.0/server_admin/index.html#_authentication-flows) describe a sequence
+        of actions that a user or service must perform in order to be authenticated to Keycloak. The authentication flow itself
+        is a container for these actions, which are otherwise known as executions.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        flow = keycloak.authentication.Flow("flow",
+            realm_id=realm.id,
+            alias="my-flow-alias")
+        execution = keycloak.authentication.Execution("execution",
+            realm_id=realm.id,
+            parent_flow_alias=flow.alias,
+            authenticator="identity-provider-redirector",
+            requirement="REQUIRED")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] alias: The alias for this authentication flow.
+        :param pulumi.Input[str] description: A description for the authentication flow.
+        :param pulumi.Input[str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+        :param pulumi.Input[str] realm_id: The realm that the authentication flow exists in.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -73,6 +101,10 @@ class Flow(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] alias: The alias for this authentication flow.
+        :param pulumi.Input[str] description: A description for the authentication flow.
+        :param pulumi.Input[str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+        :param pulumi.Input[str] realm_id: The realm that the authentication flow exists in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -87,21 +119,33 @@ class Flow(pulumi.CustomResource):
     @property
     @pulumi.getter
     def alias(self) -> pulumi.Output[str]:
+        """
+        The alias for this authentication flow.
+        """
         return pulumi.get(self, "alias")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        A description for the authentication flow.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="providerId")
     def provider_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+        """
         return pulumi.get(self, "provider_id")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
+        """
+        The realm that the authentication flow exists in.
+        """
         return pulumi.get(self, "realm_id")
 
     def translate_output_property(self, prop):

@@ -7,6 +7,50 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// This data source can be used to fetch properties of a Keycloak role for
+// usage with other resources, such as `GroupRoles`.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
+// 			RealmId: realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewGroupRoles(ctx, "groupRoles", &keycloak.GroupRolesArgs{
+// 			RealmId: realm.ID(),
+// 			GroupId: group.ID(),
+// 			RoleIds: pulumi.StringArray{
+// 				offlineAccess.ApplyT(func(offlineAccess keycloak.LookupRoleResult) (string, error) {
+// 					return offlineAccess.Id, nil
+// 				}).(pulumi.StringOutput),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func LookupRole(ctx *pulumi.Context, args *LookupRoleArgs, opts ...pulumi.InvokeOption) (*LookupRoleResult, error) {
 	var rv LookupRoleResult
 	err := ctx.Invoke("keycloak:index/getRole:getRole", args, &rv, opts...)
@@ -18,15 +62,19 @@ func LookupRole(ctx *pulumi.Context, args *LookupRoleArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getRole.
 type LookupRoleArgs struct {
+	// When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloakClient` resource should be used here.
 	ClientId *string `pulumi:"clientId"`
-	Name     string  `pulumi:"name"`
-	RealmId  string  `pulumi:"realmId"`
+	// The name of the role.
+	Name string `pulumi:"name"`
+	// The realm this role exists within.
+	RealmId string `pulumi:"realmId"`
 }
 
 // A collection of values returned by getRole.
 type LookupRoleResult struct {
-	ClientId    *string `pulumi:"clientId"`
-	Description string  `pulumi:"description"`
+	ClientId *string `pulumi:"clientId"`
+	// (Computed) The description of the role.
+	Description string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
 	Id      string `pulumi:"id"`
 	Name    string `pulumi:"name"`

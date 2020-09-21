@@ -5,81 +5,58 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.openid.UserSessionNoteProtocolMapper
- *
- * Allows for creating and managing user session note protocol mappers within
- * Keycloak.
+ * Allows for creating and managing user session note protocol mappers within Keycloak.
  *
  * User session note protocol mappers map a custom user session note to a token claim.
- * Protocol mappers can be defined for a single client, or they can
- * be defined for a client scope which can be shared between multiple different
- * clients.
  *
- * ### Example Usage (Client)
+ * Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
+ * multiple different clients.
+ *
+ * ## Example Usage
+ * ### Client)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
- * });
- * const openidClient = new keycloak.openid.Client("openid_client", {
- *     accessType: "CONFIDENTIAL",
- *     clientId: "test-client",
  *     enabled: true,
+ * });
+ * const openidClient = new keycloak.openid.Client("openidClient", {
  *     realmId: realm.id,
+ *     clientId: "client",
+ *     enabled: true,
+ *     accessType: "CONFIDENTIAL",
  *     validRedirectUris: ["http://localhost:8080/openid-callback"],
  * });
- * const userSessionNoteClient = new keycloak.openid.UserSessionNoteProtocolMapper("user_session_note_client", {
- *     addToAccessToken: false,
- *     addToIdToken: true,
+ * const userSessionNoteMapper = new keycloak.openid.UserSessionNoteProtocolMapper("userSessionNoteMapper", {
+ *     realmId: realm.id,
+ *     clientId: openidClient.id,
  *     claimName: "foo",
  *     claimValueType: "String",
- *     clientId: openidClient.id,
- *     realmId: realm.id,
- *     sessionNoteLabel: "bar",
+ *     sessionNote: "bar",
  * });
  * ```
- *
- * ### Example Usage (Client Scope)
+ * ### Client Scope)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
- * const clientScope = new keycloak.openid.ClientScope("client_scope", {
+ * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
+ * const userSessionNoteMapper = new keycloak.openid.UserSessionNoteProtocolMapper("userSessionNoteMapper", {
  *     realmId: realm.id,
- * });
- * const userSessionNoteClientScope = new keycloak.openid.UserSessionNoteProtocolMapper("user_session_note_client_scope", {
- *     addToAccessToken: false,
- *     addToIdToken: true,
+ *     clientScopeId: clientScope.id,
  *     claimName: "foo",
  *     claimValueType: "String",
- *     clientScopeId: clientScope.id,
- *     realmId: realm.id,
- *     sessionNoteLabel: "bar",
+ *     sessionNote: "bar",
  * });
  * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realmId` - (Required) The realm this protocol mapper exists within.
- * - `clientId` - (Required if `clientScopeId` is not specified) The client this protocol mapper is attached to.
- * - `clientScopeId` - (Required if `clientId` is not specified) The client scope this protocol mapper is attached to.
- * - `name` - (Required) The display name of this protocol mapper in the GUI.
- * - `claimName` - (Required) The name of the claim to insert into a token.
- * - `claimValueType` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
- * - `sessionNoteLabel` - (Optional) String value being the name of stored user session note within the UserSessionModel.note map.
- * - `addToIdToken` - (Optional) Indicates if the property should be added as a claim to the id token. Defaults to `true`.
- * - `addToAccessToken` - (Optional) Indicates if the property should be added as a claim to the access token. Defaults to `true`.
  */
 export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
     /**
@@ -110,36 +87,45 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
     }
 
     /**
-     * Indicates if the attribute should be a claim in the access token.
+     * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      */
     public readonly addToAccessToken!: pulumi.Output<boolean | undefined>;
     /**
-     * Indicates if the attribute should be a claim in the id token.
+     * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
     public readonly addToIdToken!: pulumi.Output<boolean | undefined>;
+    /**
+     * The name of the claim to insert into a token.
+     */
     public readonly claimName!: pulumi.Output<string>;
     /**
-     * Claim type used when serializing tokens.
+     * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
      */
     public readonly claimValueType!: pulumi.Output<string | undefined>;
     /**
-     * The mapper's associated client. Cannot be used at the same time as client_scope_id.
+     * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
     public readonly clientId!: pulumi.Output<string | undefined>;
     /**
-     * The mapper's associated client scope. Cannot be used at the same time as client_id.
+     * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
     public readonly clientScopeId!: pulumi.Output<string | undefined>;
     /**
-     * A human-friendly name that will appear in the Keycloak console.
+     * The display name of this protocol mapper in the GUI.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this protocol mapper exists within.
      */
     public readonly realmId!: pulumi.Output<string>;
     /**
      * String value being the name of stored user session note within the UserSessionModel.note map.
+     */
+    public readonly sessionNote!: pulumi.Output<string | undefined>;
+    /**
+     * **Deprecated** Use `sessionNote` instead.
+     *
+     * @deprecated use session_note instead
      */
     public readonly sessionNoteLabel!: pulumi.Output<string | undefined>;
 
@@ -163,6 +149,7 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
             inputs["clientScopeId"] = state ? state.clientScopeId : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["realmId"] = state ? state.realmId : undefined;
+            inputs["sessionNote"] = state ? state.sessionNote : undefined;
             inputs["sessionNoteLabel"] = state ? state.sessionNoteLabel : undefined;
         } else {
             const args = argsOrState as UserSessionNoteProtocolMapperArgs | undefined;
@@ -180,6 +167,7 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
             inputs["clientScopeId"] = args ? args.clientScopeId : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["realmId"] = args ? args.realmId : undefined;
+            inputs["sessionNote"] = args ? args.sessionNote : undefined;
             inputs["sessionNoteLabel"] = args ? args.sessionNoteLabel : undefined;
         }
         if (!opts) {
@@ -198,36 +186,45 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
  */
 export interface UserSessionNoteProtocolMapperState {
     /**
-     * Indicates if the attribute should be a claim in the access token.
+     * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      */
     readonly addToAccessToken?: pulumi.Input<boolean>;
     /**
-     * Indicates if the attribute should be a claim in the id token.
+     * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
     readonly addToIdToken?: pulumi.Input<boolean>;
+    /**
+     * The name of the claim to insert into a token.
+     */
     readonly claimName?: pulumi.Input<string>;
     /**
-     * Claim type used when serializing tokens.
+     * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
      */
     readonly claimValueType?: pulumi.Input<string>;
     /**
-     * The mapper's associated client. Cannot be used at the same time as client_scope_id.
+     * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
     readonly clientId?: pulumi.Input<string>;
     /**
-     * The mapper's associated client scope. Cannot be used at the same time as client_id.
+     * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
     readonly clientScopeId?: pulumi.Input<string>;
     /**
-     * A human-friendly name that will appear in the Keycloak console.
+     * The display name of this protocol mapper in the GUI.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this protocol mapper exists within.
      */
     readonly realmId?: pulumi.Input<string>;
     /**
      * String value being the name of stored user session note within the UserSessionModel.note map.
+     */
+    readonly sessionNote?: pulumi.Input<string>;
+    /**
+     * **Deprecated** Use `sessionNote` instead.
+     *
+     * @deprecated use session_note instead
      */
     readonly sessionNoteLabel?: pulumi.Input<string>;
 }
@@ -237,36 +234,45 @@ export interface UserSessionNoteProtocolMapperState {
  */
 export interface UserSessionNoteProtocolMapperArgs {
     /**
-     * Indicates if the attribute should be a claim in the access token.
+     * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      */
     readonly addToAccessToken?: pulumi.Input<boolean>;
     /**
-     * Indicates if the attribute should be a claim in the id token.
+     * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
     readonly addToIdToken?: pulumi.Input<boolean>;
+    /**
+     * The name of the claim to insert into a token.
+     */
     readonly claimName: pulumi.Input<string>;
     /**
-     * Claim type used when serializing tokens.
+     * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
      */
     readonly claimValueType?: pulumi.Input<string>;
     /**
-     * The mapper's associated client. Cannot be used at the same time as client_scope_id.
+     * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
     readonly clientId?: pulumi.Input<string>;
     /**
-     * The mapper's associated client scope. Cannot be used at the same time as client_id.
+     * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
     readonly clientScopeId?: pulumi.Input<string>;
     /**
-     * A human-friendly name that will appear in the Keycloak console.
+     * The display name of this protocol mapper in the GUI.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this protocol mapper exists within.
      */
     readonly realmId: pulumi.Input<string>;
     /**
      * String value being the name of stored user session note within the UserSessionModel.note map.
+     */
+    readonly sessionNote?: pulumi.Input<string>;
+    /**
+     * **Deprecated** Use `sessionNote` instead.
+     *
+     * @deprecated use session_note instead
      */
     readonly sessionNoteLabel?: pulumi.Input<string>;
 }

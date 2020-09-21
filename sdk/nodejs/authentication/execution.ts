@@ -5,43 +5,44 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.authentication.Execution
+ * Allows for creating and managing an authentication execution within Keycloak.
  *
- * Allows for managing an authentication execution.
+ * An authentication execution is an action that the user or service may or may not take when authenticating through an authentication
+ * flow.
  *
- * ### Example Usage
+ * > Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `dependsOn`. Authentication executions that are created first will appear first within the flow.
+ *
+ * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
  * const flow = new keycloak.authentication.Flow("flow", {
+ *     realmId: realm.id,
  *     alias: "my-flow-alias",
- *     realmId: realm.id,
  * });
- * const execution = new keycloak.authentication.Execution("execution", {
- *     authenticator: "identity-provider-redirector",
- *     parentFlowAlias: flow.alias,
+ * // first execution
+ * const executionOne = new keycloak.authentication.Execution("executionOne", {
  *     realmId: realm.id,
- *     requirement: "REQUIRED",
+ *     parentFlowAlias: flow.alias,
+ *     authenticator: "auth-cookie",
+ *     requirement: "ALTERNATIVE",
+ * });
+ * // second execution
+ * const executionTwo = new keycloak.authentication.Execution("executionTwo", {
+ *     realmId: realm.id,
+ *     parentFlowAlias: flow.alias,
+ *     authenticator: "identity-provider-redirector",
+ *     requirement: "ALTERNATIVE",
+ * }, {
+ *     dependsOn: [executionOne],
  * });
  * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realmId` - (Required) The realm the authentication execution exists in.
- * - `parentFlowAlias` - (Required) The flow this execution is attached to.
- * - `authenticator` - (Required) The name of the authenticator.
- * - `requirement`- (Optional) The requirement setting, which can be one of the following:
- *   - - `REQUIRED`
- *   - - `ALTERNATIVE`
- *   - - `DISABLED`
  */
 export class Execution extends pulumi.CustomResource {
     /**
@@ -71,9 +72,21 @@ export class Execution extends pulumi.CustomResource {
         return obj['__pulumiType'] === Execution.__pulumiType;
     }
 
+    /**
+     * The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
+     */
     public readonly authenticator!: pulumi.Output<string>;
+    /**
+     * The alias of the flow this execution is attached to.
+     */
     public readonly parentFlowAlias!: pulumi.Output<string>;
+    /**
+     * The realm the authentication execution exists in.
+     */
     public readonly realmId!: pulumi.Output<string>;
+    /**
+     * The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
+     */
     public readonly requirement!: pulumi.Output<string | undefined>;
 
     /**
@@ -123,9 +136,21 @@ export class Execution extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Execution resources.
  */
 export interface ExecutionState {
+    /**
+     * The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
+     */
     readonly authenticator?: pulumi.Input<string>;
+    /**
+     * The alias of the flow this execution is attached to.
+     */
     readonly parentFlowAlias?: pulumi.Input<string>;
+    /**
+     * The realm the authentication execution exists in.
+     */
     readonly realmId?: pulumi.Input<string>;
+    /**
+     * The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
+     */
     readonly requirement?: pulumi.Input<string>;
 }
 
@@ -133,8 +158,20 @@ export interface ExecutionState {
  * The set of arguments for constructing a Execution resource.
  */
 export interface ExecutionArgs {
+    /**
+     * The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
+     */
     readonly authenticator: pulumi.Input<string>;
+    /**
+     * The alias of the flow this execution is attached to.
+     */
     readonly parentFlowAlias: pulumi.Input<string>;
+    /**
+     * The realm the authentication execution exists in.
+     */
     readonly realmId: pulumi.Input<string>;
+    /**
+     * The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
+     */
     readonly requirement?: pulumi.Input<string>;
 }

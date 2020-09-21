@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['RealmEvents']
@@ -17,53 +17,48 @@ class RealmEvents(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  admin_events_details_enabled: Optional[pulumi.Input[bool]] = None,
                  admin_events_enabled: Optional[pulumi.Input[bool]] = None,
-                 enabled_event_types: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 enabled_event_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  events_enabled: Optional[pulumi.Input[bool]] = None,
-                 events_expiration: Optional[pulumi.Input[float]] = None,
-                 events_listeners: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 events_expiration: Optional[pulumi.Input[int]] = None,
+                 events_listeners: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
         """
-        ## # RealmEvents
-
         Allows for managing Realm Events settings within Keycloak.
 
-        ### Example Usage
+        ## Example Usage
 
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
-        realm = keycloak.Realm("realm", realm="test")
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
         realm_events = keycloak.RealmEvents("realmEvents",
-            admin_events_details_enabled=True,
+            realm_id=realm.id,
+            events_enabled=True,
+            events_expiration=3600,
             admin_events_enabled=True,
+            admin_events_details_enabled=True,
             enabled_event_types=[
                 "LOGIN",
                 "LOGOUT",
             ],
-            events_enabled=True,
-            events_expiration=3600,
-            events_listeners=["jboss-logging"],
-            realm_id=realm.id)
+            events_listeners=["jboss-logging"])
         ```
-
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm_id` - (Required) The name of the realm the event settings apply to.
-        - `admin_events_enabled` - (Optional) When true, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
-        - `admin_events_details_enabled` - (Optional) When true, saved admin events will included detailed information for create/update requests. Defaults to `false`.
-        - `events_enabled` - (Optional) When true, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
-        - `events_expiration` - (Optional) The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
-        - `enabled_event_types` - (Optional) The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
-        - `events_listeners` - (Optional) The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] admin_events_details_enabled: When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
+        :param pulumi.Input[bool] admin_events_enabled: When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] enabled_event_types: The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
+        :param pulumi.Input[bool] events_enabled: When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
+        :param pulumi.Input[int] events_expiration: The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] events_listeners: The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
+        :param pulumi.Input[str] realm_id: The name of the realm the event settings apply to.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -103,10 +98,10 @@ class RealmEvents(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             admin_events_details_enabled: Optional[pulumi.Input[bool]] = None,
             admin_events_enabled: Optional[pulumi.Input[bool]] = None,
-            enabled_event_types: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            enabled_event_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             events_enabled: Optional[pulumi.Input[bool]] = None,
-            events_expiration: Optional[pulumi.Input[float]] = None,
-            events_listeners: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            events_expiration: Optional[pulumi.Input[int]] = None,
+            events_listeners: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             realm_id: Optional[pulumi.Input[str]] = None) -> 'RealmEvents':
         """
         Get an existing RealmEvents resource's state with the given name, id, and optional extra
@@ -115,6 +110,13 @@ class RealmEvents(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] admin_events_details_enabled: When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
+        :param pulumi.Input[bool] admin_events_enabled: When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] enabled_event_types: The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
+        :param pulumi.Input[bool] events_enabled: When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
+        :param pulumi.Input[int] events_expiration: The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] events_listeners: The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
+        :param pulumi.Input[str] realm_id: The name of the realm the event settings apply to.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -132,36 +134,57 @@ class RealmEvents(pulumi.CustomResource):
     @property
     @pulumi.getter(name="adminEventsDetailsEnabled")
     def admin_events_details_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
+        """
         return pulumi.get(self, "admin_events_details_enabled")
 
     @property
     @pulumi.getter(name="adminEventsEnabled")
     def admin_events_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
+        """
         return pulumi.get(self, "admin_events_enabled")
 
     @property
     @pulumi.getter(name="enabledEventTypes")
-    def enabled_event_types(self) -> pulumi.Output[Optional[List[str]]]:
+    def enabled_event_types(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
+        """
         return pulumi.get(self, "enabled_event_types")
 
     @property
     @pulumi.getter(name="eventsEnabled")
     def events_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
+        """
         return pulumi.get(self, "events_enabled")
 
     @property
     @pulumi.getter(name="eventsExpiration")
-    def events_expiration(self) -> pulumi.Output[Optional[float]]:
+    def events_expiration(self) -> pulumi.Output[Optional[int]]:
+        """
+        The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
+        """
         return pulumi.get(self, "events_expiration")
 
     @property
     @pulumi.getter(name="eventsListeners")
-    def events_listeners(self) -> pulumi.Output[Optional[List[str]]]:
+    def events_listeners(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
+        """
         return pulumi.get(self, "events_listeners")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
+        """
+        The name of the realm the event settings apply to.
+        """
         return pulumi.get(self, "realm_id")
 
     def translate_output_property(self, prop):

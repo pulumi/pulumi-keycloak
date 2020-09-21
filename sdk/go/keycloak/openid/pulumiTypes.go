@@ -11,7 +11,9 @@ import (
 )
 
 type ClientAuthenticationFlowBindingOverrides struct {
-	BrowserId     *string `pulumi:"browserId"`
+	// Browser flow id, (flow needs to exist)
+	BrowserId *string `pulumi:"browserId"`
+	// Direct grant flow id (flow needs to exist)
 	DirectGrantId *string `pulumi:"directGrantId"`
 }
 
@@ -27,7 +29,9 @@ type ClientAuthenticationFlowBindingOverridesInput interface {
 }
 
 type ClientAuthenticationFlowBindingOverridesArgs struct {
-	BrowserId     pulumi.StringPtrInput `pulumi:"browserId"`
+	// Browser flow id, (flow needs to exist)
+	BrowserId pulumi.StringPtrInput `pulumi:"browserId"`
+	// Direct grant flow id (flow needs to exist)
 	DirectGrantId pulumi.StringPtrInput `pulumi:"directGrantId"`
 }
 
@@ -107,10 +111,13 @@ func (o ClientAuthenticationFlowBindingOverridesOutput) ToClientAuthenticationFl
 		return &v
 	}).(ClientAuthenticationFlowBindingOverridesPtrOutput)
 }
+
+// Browser flow id, (flow needs to exist)
 func (o ClientAuthenticationFlowBindingOverridesOutput) BrowserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClientAuthenticationFlowBindingOverrides) *string { return v.BrowserId }).(pulumi.StringPtrOutput)
 }
 
+// Direct grant flow id (flow needs to exist)
 func (o ClientAuthenticationFlowBindingOverridesOutput) DirectGrantId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClientAuthenticationFlowBindingOverrides) *string { return v.DirectGrantId }).(pulumi.StringPtrOutput)
 }
@@ -133,6 +140,7 @@ func (o ClientAuthenticationFlowBindingOverridesPtrOutput) Elem() ClientAuthenti
 	return o.ApplyT(func(v *ClientAuthenticationFlowBindingOverrides) ClientAuthenticationFlowBindingOverrides { return *v }).(ClientAuthenticationFlowBindingOverridesOutput)
 }
 
+// Browser flow id, (flow needs to exist)
 func (o ClientAuthenticationFlowBindingOverridesPtrOutput) BrowserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClientAuthenticationFlowBindingOverrides) *string {
 		if v == nil {
@@ -142,6 +150,7 @@ func (o ClientAuthenticationFlowBindingOverridesPtrOutput) BrowserId() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
+// Direct grant flow id (flow needs to exist)
 func (o ClientAuthenticationFlowBindingOverridesPtrOutput) DirectGrantId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClientAuthenticationFlowBindingOverrides) *string {
 		if v == nil {
@@ -152,9 +161,12 @@ func (o ClientAuthenticationFlowBindingOverridesPtrOutput) DirectGrantId() pulum
 }
 
 type ClientAuthorization struct {
-	AllowRemoteResourceManagement *bool  `pulumi:"allowRemoteResourceManagement"`
-	KeepDefaults                  *bool  `pulumi:"keepDefaults"`
-	PolicyEnforcementMode         string `pulumi:"policyEnforcementMode"`
+	// When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
+	AllowRemoteResourceManagement *bool `pulumi:"allowRemoteResourceManagement"`
+	// When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
+	KeepDefaults *bool `pulumi:"keepDefaults"`
+	// Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
+	PolicyEnforcementMode string `pulumi:"policyEnforcementMode"`
 }
 
 // ClientAuthorizationInput is an input type that accepts ClientAuthorizationArgs and ClientAuthorizationOutput values.
@@ -169,9 +181,12 @@ type ClientAuthorizationInput interface {
 }
 
 type ClientAuthorizationArgs struct {
+	// When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
 	AllowRemoteResourceManagement pulumi.BoolPtrInput `pulumi:"allowRemoteResourceManagement"`
-	KeepDefaults                  pulumi.BoolPtrInput `pulumi:"keepDefaults"`
-	PolicyEnforcementMode         pulumi.StringInput  `pulumi:"policyEnforcementMode"`
+	// When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
+	KeepDefaults pulumi.BoolPtrInput `pulumi:"keepDefaults"`
+	// Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
+	PolicyEnforcementMode pulumi.StringInput `pulumi:"policyEnforcementMode"`
 }
 
 func (ClientAuthorizationArgs) ElementType() reflect.Type {
@@ -250,14 +265,18 @@ func (o ClientAuthorizationOutput) ToClientAuthorizationPtrOutputWithContext(ctx
 		return &v
 	}).(ClientAuthorizationPtrOutput)
 }
+
+// When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
 func (o ClientAuthorizationOutput) AllowRemoteResourceManagement() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ClientAuthorization) *bool { return v.AllowRemoteResourceManagement }).(pulumi.BoolPtrOutput)
 }
 
+// When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
 func (o ClientAuthorizationOutput) KeepDefaults() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ClientAuthorization) *bool { return v.KeepDefaults }).(pulumi.BoolPtrOutput)
 }
 
+// Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
 func (o ClientAuthorizationOutput) PolicyEnforcementMode() pulumi.StringOutput {
 	return o.ApplyT(func(v ClientAuthorization) string { return v.PolicyEnforcementMode }).(pulumi.StringOutput)
 }
@@ -280,6 +299,7 @@ func (o ClientAuthorizationPtrOutput) Elem() ClientAuthorizationOutput {
 	return o.ApplyT(func(v *ClientAuthorization) ClientAuthorization { return *v }).(ClientAuthorizationOutput)
 }
 
+// When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
 func (o ClientAuthorizationPtrOutput) AllowRemoteResourceManagement() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ClientAuthorization) *bool {
 		if v == nil {
@@ -289,6 +309,7 @@ func (o ClientAuthorizationPtrOutput) AllowRemoteResourceManagement() pulumi.Boo
 	}).(pulumi.BoolPtrOutput)
 }
 
+// When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
 func (o ClientAuthorizationPtrOutput) KeepDefaults() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ClientAuthorization) *bool {
 		if v == nil {
@@ -298,6 +319,7 @@ func (o ClientAuthorizationPtrOutput) KeepDefaults() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
 func (o ClientAuthorizationPtrOutput) PolicyEnforcementMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClientAuthorization) *string {
 		if v == nil {
@@ -513,63 +535,109 @@ func (o ClientRolePolicyRoleArrayOutput) Index(i pulumi.IntInput) ClientRolePoli
 	}).(ClientRolePolicyRoleOutput)
 }
 
-type GetClientAuthenticationFlowBindingOverrides struct {
+type GetClientAuthenticationFlowBindingOverride struct {
 	BrowserId     string `pulumi:"browserId"`
 	DirectGrantId string `pulumi:"directGrantId"`
 }
 
-// GetClientAuthenticationFlowBindingOverridesInput is an input type that accepts GetClientAuthenticationFlowBindingOverridesArgs and GetClientAuthenticationFlowBindingOverridesOutput values.
-// You can construct a concrete instance of `GetClientAuthenticationFlowBindingOverridesInput` via:
+// GetClientAuthenticationFlowBindingOverrideInput is an input type that accepts GetClientAuthenticationFlowBindingOverrideArgs and GetClientAuthenticationFlowBindingOverrideOutput values.
+// You can construct a concrete instance of `GetClientAuthenticationFlowBindingOverrideInput` via:
 //
-//          GetClientAuthenticationFlowBindingOverridesArgs{...}
-type GetClientAuthenticationFlowBindingOverridesInput interface {
+//          GetClientAuthenticationFlowBindingOverrideArgs{...}
+type GetClientAuthenticationFlowBindingOverrideInput interface {
 	pulumi.Input
 
-	ToGetClientAuthenticationFlowBindingOverridesOutput() GetClientAuthenticationFlowBindingOverridesOutput
-	ToGetClientAuthenticationFlowBindingOverridesOutputWithContext(context.Context) GetClientAuthenticationFlowBindingOverridesOutput
+	ToGetClientAuthenticationFlowBindingOverrideOutput() GetClientAuthenticationFlowBindingOverrideOutput
+	ToGetClientAuthenticationFlowBindingOverrideOutputWithContext(context.Context) GetClientAuthenticationFlowBindingOverrideOutput
 }
 
-type GetClientAuthenticationFlowBindingOverridesArgs struct {
+type GetClientAuthenticationFlowBindingOverrideArgs struct {
 	BrowserId     pulumi.StringInput `pulumi:"browserId"`
 	DirectGrantId pulumi.StringInput `pulumi:"directGrantId"`
 }
 
-func (GetClientAuthenticationFlowBindingOverridesArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClientAuthenticationFlowBindingOverrides)(nil)).Elem()
+func (GetClientAuthenticationFlowBindingOverrideArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClientAuthenticationFlowBindingOverride)(nil)).Elem()
 }
 
-func (i GetClientAuthenticationFlowBindingOverridesArgs) ToGetClientAuthenticationFlowBindingOverridesOutput() GetClientAuthenticationFlowBindingOverridesOutput {
-	return i.ToGetClientAuthenticationFlowBindingOverridesOutputWithContext(context.Background())
+func (i GetClientAuthenticationFlowBindingOverrideArgs) ToGetClientAuthenticationFlowBindingOverrideOutput() GetClientAuthenticationFlowBindingOverrideOutput {
+	return i.ToGetClientAuthenticationFlowBindingOverrideOutputWithContext(context.Background())
 }
 
-func (i GetClientAuthenticationFlowBindingOverridesArgs) ToGetClientAuthenticationFlowBindingOverridesOutputWithContext(ctx context.Context) GetClientAuthenticationFlowBindingOverridesOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetClientAuthenticationFlowBindingOverridesOutput)
+func (i GetClientAuthenticationFlowBindingOverrideArgs) ToGetClientAuthenticationFlowBindingOverrideOutputWithContext(ctx context.Context) GetClientAuthenticationFlowBindingOverrideOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClientAuthenticationFlowBindingOverrideOutput)
 }
 
-type GetClientAuthenticationFlowBindingOverridesOutput struct{ *pulumi.OutputState }
+// GetClientAuthenticationFlowBindingOverrideArrayInput is an input type that accepts GetClientAuthenticationFlowBindingOverrideArray and GetClientAuthenticationFlowBindingOverrideArrayOutput values.
+// You can construct a concrete instance of `GetClientAuthenticationFlowBindingOverrideArrayInput` via:
+//
+//          GetClientAuthenticationFlowBindingOverrideArray{ GetClientAuthenticationFlowBindingOverrideArgs{...} }
+type GetClientAuthenticationFlowBindingOverrideArrayInput interface {
+	pulumi.Input
 
-func (GetClientAuthenticationFlowBindingOverridesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClientAuthenticationFlowBindingOverrides)(nil)).Elem()
+	ToGetClientAuthenticationFlowBindingOverrideArrayOutput() GetClientAuthenticationFlowBindingOverrideArrayOutput
+	ToGetClientAuthenticationFlowBindingOverrideArrayOutputWithContext(context.Context) GetClientAuthenticationFlowBindingOverrideArrayOutput
 }
 
-func (o GetClientAuthenticationFlowBindingOverridesOutput) ToGetClientAuthenticationFlowBindingOverridesOutput() GetClientAuthenticationFlowBindingOverridesOutput {
+type GetClientAuthenticationFlowBindingOverrideArray []GetClientAuthenticationFlowBindingOverrideInput
+
+func (GetClientAuthenticationFlowBindingOverrideArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClientAuthenticationFlowBindingOverride)(nil)).Elem()
+}
+
+func (i GetClientAuthenticationFlowBindingOverrideArray) ToGetClientAuthenticationFlowBindingOverrideArrayOutput() GetClientAuthenticationFlowBindingOverrideArrayOutput {
+	return i.ToGetClientAuthenticationFlowBindingOverrideArrayOutputWithContext(context.Background())
+}
+
+func (i GetClientAuthenticationFlowBindingOverrideArray) ToGetClientAuthenticationFlowBindingOverrideArrayOutputWithContext(ctx context.Context) GetClientAuthenticationFlowBindingOverrideArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClientAuthenticationFlowBindingOverrideArrayOutput)
+}
+
+type GetClientAuthenticationFlowBindingOverrideOutput struct{ *pulumi.OutputState }
+
+func (GetClientAuthenticationFlowBindingOverrideOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClientAuthenticationFlowBindingOverride)(nil)).Elem()
+}
+
+func (o GetClientAuthenticationFlowBindingOverrideOutput) ToGetClientAuthenticationFlowBindingOverrideOutput() GetClientAuthenticationFlowBindingOverrideOutput {
 	return o
 }
 
-func (o GetClientAuthenticationFlowBindingOverridesOutput) ToGetClientAuthenticationFlowBindingOverridesOutputWithContext(ctx context.Context) GetClientAuthenticationFlowBindingOverridesOutput {
+func (o GetClientAuthenticationFlowBindingOverrideOutput) ToGetClientAuthenticationFlowBindingOverrideOutputWithContext(ctx context.Context) GetClientAuthenticationFlowBindingOverrideOutput {
 	return o
 }
 
-func (o GetClientAuthenticationFlowBindingOverridesOutput) BrowserId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClientAuthenticationFlowBindingOverrides) string { return v.BrowserId }).(pulumi.StringOutput)
+func (o GetClientAuthenticationFlowBindingOverrideOutput) BrowserId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientAuthenticationFlowBindingOverride) string { return v.BrowserId }).(pulumi.StringOutput)
 }
 
-func (o GetClientAuthenticationFlowBindingOverridesOutput) DirectGrantId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClientAuthenticationFlowBindingOverrides) string { return v.DirectGrantId }).(pulumi.StringOutput)
+func (o GetClientAuthenticationFlowBindingOverrideOutput) DirectGrantId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientAuthenticationFlowBindingOverride) string { return v.DirectGrantId }).(pulumi.StringOutput)
+}
+
+type GetClientAuthenticationFlowBindingOverrideArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClientAuthenticationFlowBindingOverrideArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClientAuthenticationFlowBindingOverride)(nil)).Elem()
+}
+
+func (o GetClientAuthenticationFlowBindingOverrideArrayOutput) ToGetClientAuthenticationFlowBindingOverrideArrayOutput() GetClientAuthenticationFlowBindingOverrideArrayOutput {
+	return o
+}
+
+func (o GetClientAuthenticationFlowBindingOverrideArrayOutput) ToGetClientAuthenticationFlowBindingOverrideArrayOutputWithContext(ctx context.Context) GetClientAuthenticationFlowBindingOverrideArrayOutput {
+	return o
+}
+
+func (o GetClientAuthenticationFlowBindingOverrideArrayOutput) Index(i pulumi.IntInput) GetClientAuthenticationFlowBindingOverrideOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClientAuthenticationFlowBindingOverride {
+		return vs[0].([]GetClientAuthenticationFlowBindingOverride)[vs[1].(int)]
+	}).(GetClientAuthenticationFlowBindingOverrideOutput)
 }
 
 type GetClientAuthorization struct {
 	AllowRemoteResourceManagement bool   `pulumi:"allowRemoteResourceManagement"`
+	KeepDefaults                  bool   `pulumi:"keepDefaults"`
 	PolicyEnforcementMode         string `pulumi:"policyEnforcementMode"`
 }
 
@@ -586,6 +654,7 @@ type GetClientAuthorizationInput interface {
 
 type GetClientAuthorizationArgs struct {
 	AllowRemoteResourceManagement pulumi.BoolInput   `pulumi:"allowRemoteResourceManagement"`
+	KeepDefaults                  pulumi.BoolInput   `pulumi:"keepDefaults"`
 	PolicyEnforcementMode         pulumi.StringInput `pulumi:"policyEnforcementMode"`
 }
 
@@ -599,6 +668,31 @@ func (i GetClientAuthorizationArgs) ToGetClientAuthorizationOutput() GetClientAu
 
 func (i GetClientAuthorizationArgs) ToGetClientAuthorizationOutputWithContext(ctx context.Context) GetClientAuthorizationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetClientAuthorizationOutput)
+}
+
+// GetClientAuthorizationArrayInput is an input type that accepts GetClientAuthorizationArray and GetClientAuthorizationArrayOutput values.
+// You can construct a concrete instance of `GetClientAuthorizationArrayInput` via:
+//
+//          GetClientAuthorizationArray{ GetClientAuthorizationArgs{...} }
+type GetClientAuthorizationArrayInput interface {
+	pulumi.Input
+
+	ToGetClientAuthorizationArrayOutput() GetClientAuthorizationArrayOutput
+	ToGetClientAuthorizationArrayOutputWithContext(context.Context) GetClientAuthorizationArrayOutput
+}
+
+type GetClientAuthorizationArray []GetClientAuthorizationInput
+
+func (GetClientAuthorizationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClientAuthorization)(nil)).Elem()
+}
+
+func (i GetClientAuthorizationArray) ToGetClientAuthorizationArrayOutput() GetClientAuthorizationArrayOutput {
+	return i.ToGetClientAuthorizationArrayOutputWithContext(context.Background())
+}
+
+func (i GetClientAuthorizationArray) ToGetClientAuthorizationArrayOutputWithContext(ctx context.Context) GetClientAuthorizationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClientAuthorizationArrayOutput)
 }
 
 type GetClientAuthorizationOutput struct{ *pulumi.OutputState }
@@ -619,8 +713,32 @@ func (o GetClientAuthorizationOutput) AllowRemoteResourceManagement() pulumi.Boo
 	return o.ApplyT(func(v GetClientAuthorization) bool { return v.AllowRemoteResourceManagement }).(pulumi.BoolOutput)
 }
 
+func (o GetClientAuthorizationOutput) KeepDefaults() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClientAuthorization) bool { return v.KeepDefaults }).(pulumi.BoolOutput)
+}
+
 func (o GetClientAuthorizationOutput) PolicyEnforcementMode() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClientAuthorization) string { return v.PolicyEnforcementMode }).(pulumi.StringOutput)
+}
+
+type GetClientAuthorizationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClientAuthorizationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClientAuthorization)(nil)).Elem()
+}
+
+func (o GetClientAuthorizationArrayOutput) ToGetClientAuthorizationArrayOutput() GetClientAuthorizationArrayOutput {
+	return o
+}
+
+func (o GetClientAuthorizationArrayOutput) ToGetClientAuthorizationArrayOutputWithContext(ctx context.Context) GetClientAuthorizationArrayOutput {
+	return o
+}
+
+func (o GetClientAuthorizationArrayOutput) Index(i pulumi.IntInput) GetClientAuthorizationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClientAuthorization {
+		return vs[0].([]GetClientAuthorization)[vs[1].(int)]
+	}).(GetClientAuthorizationOutput)
 }
 
 type GetClientServiceAccountUserFederatedIdentity struct {
@@ -738,8 +856,10 @@ func init() {
 	pulumi.RegisterOutputType(ClientGroupPolicyGroupArrayOutput{})
 	pulumi.RegisterOutputType(ClientRolePolicyRoleOutput{})
 	pulumi.RegisterOutputType(ClientRolePolicyRoleArrayOutput{})
-	pulumi.RegisterOutputType(GetClientAuthenticationFlowBindingOverridesOutput{})
+	pulumi.RegisterOutputType(GetClientAuthenticationFlowBindingOverrideOutput{})
+	pulumi.RegisterOutputType(GetClientAuthenticationFlowBindingOverrideArrayOutput{})
 	pulumi.RegisterOutputType(GetClientAuthorizationOutput{})
+	pulumi.RegisterOutputType(GetClientAuthorizationArrayOutput{})
 	pulumi.RegisterOutputType(GetClientServiceAccountUserFederatedIdentityOutput{})
 	pulumi.RegisterOutputType(GetClientServiceAccountUserFederatedIdentityArrayOutput{})
 }

@@ -13,9 +13,21 @@ namespace Pulumi.Keycloak.Ldap.Outputs
     [OutputType]
     public sealed class UserFederationKerberos
     {
+        /// <summary>
+        /// The name of the kerberos realm, e.g. FOO.LOCAL.
+        /// </summary>
         public readonly string KerberosRealm;
+        /// <summary>
+        /// Path to the kerberos keytab file on the server with credentials of the service principal.
+        /// </summary>
         public readonly string KeyTab;
+        /// <summary>
+        /// The kerberos server principal, e.g. 'HTTP/host.foo.com@FOO.LOCAL'.
+        /// </summary>
         public readonly string ServerPrincipal;
+        /// <summary>
+        /// Use kerberos login module instead of ldap service api. Defaults to `false`.
+        /// </summary>
         public readonly bool? UseKerberosForPasswordAuthentication;
 
         [OutputConstructor]

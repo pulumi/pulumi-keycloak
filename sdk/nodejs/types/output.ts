@@ -11,13 +11,37 @@ export interface GetRealmInternationalization {
 }
 
 export interface GetRealmKeysKey {
+    /**
+     * Key algorithm (string)
+     */
     algorithm: string;
+    /**
+     * Key certificate (string)
+     */
     certificate: string;
+    /**
+     * Key ID (string)
+     */
     kid: string;
+    /**
+     * Key provider ID (string)
+     */
     providerId: string;
+    /**
+     * Key provider priority (int64)
+     */
     providerPriority: number;
+    /**
+     * Key public key (string)
+     */
     publicKey: string;
+    /**
+     * When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+     */
     status: string;
+    /**
+     * Key type (string)
+     */
     type: string;
 }
 
@@ -64,8 +88,40 @@ export interface GetRealmSmtpServerAuth {
     username: string;
 }
 
+export interface GetRealmWebAuthnPasswordlessPolicy {
+    acceptableAaguids: string[];
+    attestationConveyancePreference: string;
+    authenticatorAttachment: string;
+    avoidSameAuthenticatorRegister: boolean;
+    createTimeout: number;
+    relyingPartyEntityName: string;
+    relyingPartyId: string;
+    requireResidentKey: string;
+    signatureAlgorithms: string[];
+    userVerificationRequirement: string;
+}
+
+export interface GetRealmWebAuthnPolicy {
+    acceptableAaguids: string[];
+    attestationConveyancePreference: string;
+    authenticatorAttachment: string;
+    avoidSameAuthenticatorRegister: boolean;
+    createTimeout: number;
+    relyingPartyEntityName: string;
+    relyingPartyId: string;
+    requireResidentKey: string;
+    signatureAlgorithms: string[];
+    userVerificationRequirement: string;
+}
+
 export interface RealmInternationalization {
+    /**
+     * The locale to use by default. This locale code must be present within the `supportedLocales` list.
+     */
     defaultLocale: string;
+    /**
+     * A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
+     */
     supportedLocales: string[];
 }
 
@@ -75,71 +131,295 @@ export interface RealmSecurityDefenses {
 }
 
 export interface RealmSecurityDefensesBruteForceDetection {
+    /**
+     * When will failure count be reset?
+     */
     failureResetTimeSeconds?: number;
     maxFailureWaitSeconds?: number;
+    /**
+     * How many failures before wait is triggered.
+     */
     maxLoginFailures?: number;
+    /**
+     * How long to wait after a quick login failure.
+     * - `maxFailureWaitSeconds ` - (Optional) Max. time a user will be locked out.
+     */
     minimumQuickLoginWaitSeconds?: number;
+    /**
+     * When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
+     */
     permanentLockout?: boolean;
+    /**
+     * Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
+     */
     quickLoginCheckMilliSeconds?: number;
+    /**
+     * This represents the amount of time a user should be locked out when the login failure threshold has been met.
+     */
     waitIncrementSeconds?: number;
 }
 
 export interface RealmSecurityDefensesHeaders {
+    /**
+     * Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
+     */
     contentSecurityPolicy?: string;
+    /**
+     * Used for testing Content Security Policies.
+     */
     contentSecurityPolicyReportOnly?: string;
+    /**
+     * The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
+     */
     strictTransportSecurity?: string;
+    /**
+     * Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type
+     */
     xContentTypeOptions?: string;
+    /**
+     * Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the [RFC7034](https://tools.ietf.org/html/rfc7034)
+     */
     xFrameOptions?: string;
+    /**
+     * Prevent pages from appearing in search engines.
+     */
     xRobotsTag?: string;
+    /**
+     * This header configures the Cross-site scripting (XSS) filter in your browser.
+     */
     xXssProtection?: string;
 }
 
 export interface RealmSmtpServer {
+    /**
+     * Enables authentication to the SMTP server.  This block supports the following arguments:
+     */
     auth?: outputs.RealmSmtpServerAuth;
+    /**
+     * The email address uses for bounces.
+     */
     envelopeFrom?: string;
+    /**
+     * The email address for the sender.
+     */
     from: string;
+    /**
+     * The display name of the sender email address.
+     */
     fromDisplayName?: string;
+    /**
+     * The host of the SMTP server.
+     */
     host: string;
+    /**
+     * The port of the SMTP server (defaults to 25).
+     */
     port?: string;
+    /**
+     * The "reply to" email address.
+     */
     replyTo?: string;
+    /**
+     * The display name of the "reply to" email address.
+     */
     replyToDisplayName?: string;
+    /**
+     * When `true`, enables SSL. Defaults to `false`.
+     */
     ssl?: boolean;
+    /**
+     * When `true`, enables StartTLS. Defaults to `false`.
+     */
     starttls?: boolean;
 }
 
 export interface RealmSmtpServerAuth {
+    /**
+     * The SMTP server password.
+     */
     password: string;
+    /**
+     * The SMTP server username.
+     */
     username: string;
 }
 
+export interface RealmWebAuthnPasswordlessPolicy {
+    /**
+     * A set of AAGUIDs for which an authenticator can be registered.
+     */
+    acceptableAaguids?: string[];
+    /**
+     * The preference of how to generate a WebAuthn attestation statement. Valid options are `not specified`, `none`, `indirect`, `direct`, or `enterprise`. Defaults to `not specified`.
+     */
+    attestationConveyancePreference?: string;
+    /**
+     * The acceptable attachment pattern for the WebAuthn authenticator. Valid options are `not specified`, `platform`, or `cross-platform`. Defaults to `not specified`.
+     */
+    authenticatorAttachment?: string;
+    /**
+     * When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
+     */
+    avoidSameAuthenticatorRegister?: boolean;
+    /**
+     * The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+     */
+    createTimeout?: number;
+    /**
+     * A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+     */
+    relyingPartyEntityName?: string;
+    /**
+     * The WebAuthn relying party ID.
+     */
+    relyingPartyId?: string;
+    /**
+     * Specifies whether or not a public key should be created to represent the resident key. Valid options are `not specified`, `Yes`, or `No`. Defaults to `not specified`.
+     */
+    requireResidentKey?: string;
+    /**
+     * A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are `ES256`, `ES384`, `ES512`, `RS256`, `RS384`, `RS512`, and `RS1`.
+     */
+    signatureAlgorithms: string[];
+    /**
+     * Specifies the policy for verifying a user logging in via WebAuthn. Valid options are `not specified`, `required`, `preferred`, or `discouraged`. Defaults to `not specified`.
+     */
+    userVerificationRequirement?: string;
+}
+
+export interface RealmWebAuthnPolicy {
+    /**
+     * A set of AAGUIDs for which an authenticator can be registered.
+     */
+    acceptableAaguids?: string[];
+    /**
+     * The preference of how to generate a WebAuthn attestation statement. Valid options are `not specified`, `none`, `indirect`, `direct`, or `enterprise`. Defaults to `not specified`.
+     */
+    attestationConveyancePreference?: string;
+    /**
+     * The acceptable attachment pattern for the WebAuthn authenticator. Valid options are `not specified`, `platform`, or `cross-platform`. Defaults to `not specified`.
+     */
+    authenticatorAttachment?: string;
+    /**
+     * When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
+     */
+    avoidSameAuthenticatorRegister?: boolean;
+    /**
+     * The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+     */
+    createTimeout?: number;
+    /**
+     * A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+     */
+    relyingPartyEntityName?: string;
+    /**
+     * The WebAuthn relying party ID.
+     */
+    relyingPartyId?: string;
+    /**
+     * Specifies whether or not a public key should be created to represent the resident key. Valid options are `not specified`, `Yes`, or `No`. Defaults to `not specified`.
+     */
+    requireResidentKey?: string;
+    /**
+     * A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are `ES256`, `ES384`, `ES512`, `RS256`, `RS384`, `RS512`, and `RS1`.
+     */
+    signatureAlgorithms: string[];
+    /**
+     * Specifies the policy for verifying a user logging in via WebAuthn. Valid options are `not specified`, `required`, `preferred`, or `discouraged`. Defaults to `not specified`.
+     */
+    userVerificationRequirement?: string;
+}
+
 export interface UserFederatedIdentity {
+    /**
+     * The name of the identity provider
+     */
     identityProvider: string;
+    /**
+     * The ID of the user defined in the identity provider
+     */
     userId: string;
+    /**
+     * The user name of the user defined in the identity provider
+     */
     userName: string;
 }
 
 export interface UserInitialPassword {
+    /**
+     * If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
+     */
     temporary?: boolean;
+    /**
+     * The initial password.
+     */
     value: string;
 }
 export namespace ldap {
+    export interface UserFederationCache {
+        /**
+         * Minute of day the entry will become invalid on.
+         */
+        evictionDay?: number;
+        /**
+         * Hour of day the entry will become invalid on.
+         */
+        evictionHour?: number;
+        evictionMinute?: number;
+        /**
+         * Max lifespan of cache entry (duration string).
+         */
+        maxLifespan?: string;
+        /**
+         * Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+         */
+        policy?: string;
+    }
+
     export interface UserFederationKerberos {
+        /**
+         * The name of the kerberos realm, e.g. FOO.LOCAL.
+         */
         kerberosRealm: string;
+        /**
+         * Path to the kerberos keytab file on the server with credentials of the service principal.
+         */
         keyTab: string;
+        /**
+         * The kerberos server principal, e.g. 'HTTP/host.foo.com@FOO.LOCAL'.
+         */
         serverPrincipal: string;
+        /**
+         * Use kerberos login module instead of ldap service api. Defaults to `false`.
+         */
         useKerberosForPasswordAuthentication?: boolean;
     }
 }
 
 export namespace openid {
     export interface ClientAuthenticationFlowBindingOverrides {
+        /**
+         * Browser flow id, (flow needs to exist)
+         */
         browserId?: string;
+        /**
+         * Direct grant flow id (flow needs to exist)
+         */
         directGrantId?: string;
     }
 
     export interface ClientAuthorization {
+        /**
+         * When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
+         */
         allowRemoteResourceManagement?: boolean;
+        /**
+         * When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
+         */
         keepDefaults?: boolean;
+        /**
+         * Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
+         */
         policyEnforcementMode: string;
     }
 
@@ -154,13 +434,14 @@ export namespace openid {
         required: boolean;
     }
 
-    export interface GetClientAuthenticationFlowBindingOverrides {
+    export interface GetClientAuthenticationFlowBindingOverride {
         browserId: string;
         directGrantId: string;
     }
 
     export interface GetClientAuthorization {
         allowRemoteResourceManagement: boolean;
+        keepDefaults: boolean;
         policyEnforcementMode: string;
     }
 

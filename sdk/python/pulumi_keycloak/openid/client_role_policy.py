@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -23,7 +23,7 @@ class ClientRolePolicy(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  resource_server_id: Optional[pulumi.Input[str]] = None,
-                 roles: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ClientRolePolicyRoleArgs']]]]] = None,
+                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClientRolePolicyRoleArgs']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
@@ -82,7 +82,7 @@ class ClientRolePolicy(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             realm_id: Optional[pulumi.Input[str]] = None,
             resource_server_id: Optional[pulumi.Input[str]] = None,
-            roles: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ClientRolePolicyRoleArgs']]]]] = None,
+            roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClientRolePolicyRoleArgs']]]]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'ClientRolePolicy':
         """
         Get an existing ClientRolePolicy resource's state with the given name, id, and optional extra
@@ -138,7 +138,7 @@ class ClientRolePolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def roles(self) -> pulumi.Output[List['outputs.ClientRolePolicyRole']]:
+    def roles(self) -> pulumi.Output[Sequence['outputs.ClientRolePolicyRole']]:
         return pulumi.get(self, "roles")
 
     @property

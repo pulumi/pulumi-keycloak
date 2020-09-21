@@ -5,13 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.openid.ClientServiceAccountRole
- *
- * Allows for assigning roles to the service account of an openid client.
- *
+ * Allows for assigning client roles to the service account of an openid client.
  * You need to set `serviceAccountsEnabled` to `true` for the openid client that should be assigned the role.
  *
- * ### Example Usage
+ * If you'd like to attach realm roles to a service account, please use the `keycloak.openid.ClientServiceAccountRealmRole`
+ * resource.
+ *
+ * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -40,15 +40,6 @@ import * as utilities from "../utilities";
  *     role: client1Role.name,
  * });
  * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realmId` - (Required) The realm the clients and roles belong to.
- * - `serviceAccountUserId` - (Required) The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
- * - `clientId` - (Required) The id of the client that provides the role.
- * - `role` - (Required) The name of the role that is assigned.
  */
 export class ClientServiceAccountRole extends pulumi.CustomResource {
     /**
@@ -78,9 +69,21 @@ export class ClientServiceAccountRole extends pulumi.CustomResource {
         return obj['__pulumiType'] === ClientServiceAccountRole.__pulumiType;
     }
 
+    /**
+     * The id of the client that provides the role.
+     */
     public readonly clientId!: pulumi.Output<string>;
+    /**
+     * The realm the clients and roles belong to.
+     */
     public readonly realmId!: pulumi.Output<string>;
+    /**
+     * The name of the role that is assigned.
+     */
     public readonly role!: pulumi.Output<string>;
+    /**
+     * The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
+     */
     public readonly serviceAccountUserId!: pulumi.Output<string>;
 
     /**
@@ -133,9 +136,21 @@ export class ClientServiceAccountRole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ClientServiceAccountRole resources.
  */
 export interface ClientServiceAccountRoleState {
+    /**
+     * The id of the client that provides the role.
+     */
     readonly clientId?: pulumi.Input<string>;
+    /**
+     * The realm the clients and roles belong to.
+     */
     readonly realmId?: pulumi.Input<string>;
+    /**
+     * The name of the role that is assigned.
+     */
     readonly role?: pulumi.Input<string>;
+    /**
+     * The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
+     */
     readonly serviceAccountUserId?: pulumi.Input<string>;
 }
 
@@ -143,8 +158,20 @@ export interface ClientServiceAccountRoleState {
  * The set of arguments for constructing a ClientServiceAccountRole resource.
  */
 export interface ClientServiceAccountRoleArgs {
+    /**
+     * The id of the client that provides the role.
+     */
     readonly clientId: pulumi.Input<string>;
+    /**
+     * The realm the clients and roles belong to.
+     */
     readonly realmId: pulumi.Input<string>;
+    /**
+     * The name of the role that is assigned.
+     */
     readonly role: pulumi.Input<string>;
+    /**
+     * The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
+     */
     readonly serviceAccountUserId: pulumi.Input<string>;
 }

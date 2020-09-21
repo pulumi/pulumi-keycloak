@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['FullNameMapper']
@@ -25,58 +25,47 @@ class FullNameMapper(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        ## # ldap.FullNameMapper
+        Allows for creating and managing full name mappers for Keycloak users federated via LDAP.
 
-        Allows for creating and managing full name mappers for Keycloak users federated
-        via LDAP.
+        The LDAP full name mapper can map a user's full name from an LDAP attribute to the first and last name attributes of a
+        Keycloak user.
 
-        The LDAP full name mapper can map a user's full name from an LDAP attribute
-        to the first and last name attributes of a Keycloak user.
-
-        ### Example Usage
+        ## Example Usage
 
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="test")
+            realm="my-realm",
+            enabled=True)
         ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            bind_credential="admin",
-            bind_dn="cn=admin,dc=example,dc=org",
-            connection_url="ldap://openldap",
-            rdn_ldap_attribute="cn",
             realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
             user_object_classes=[
                 "simpleSecurityObject",
                 "organizationalRole",
             ],
-            username_ldap_attribute="cn",
+            connection_url="ldap://openldap",
             users_dn="dc=example,dc=org",
-            uuid_ldap_attribute="entryDN")
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
         ldap_full_name_mapper = keycloak.ldap.FullNameMapper("ldapFullNameMapper",
-            ldap_full_name_attribute="cn",
+            realm_id=realm.id,
             ldap_user_federation_id=ldap_user_federation.id,
-            realm_id=realm.id)
+            ldap_full_name_attribute="cn")
         ```
-
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
-        - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
-        - `name` - (Required) Display name of this mapper when displayed in the console.
-        - `ldap_full_name_attribute` - (Required) The name of the LDAP attribute containing the user's full name.
-        - `read_only` - (Optional) When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
-        - `write_only` - (Optional) When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
-        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
-        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
+        :param pulumi.Input[str] ldap_full_name_attribute: The name of the LDAP attribute containing the user's full name.
+        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[bool] read_only: When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
+        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[bool] write_only: When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -130,9 +119,12 @@ class FullNameMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
-        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
-        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
+        :param pulumi.Input[str] ldap_full_name_attribute: The name of the LDAP attribute containing the user's full name.
+        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[bool] read_only: When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
+        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[bool] write_only: When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -149,13 +141,16 @@ class FullNameMapper(pulumi.CustomResource):
     @property
     @pulumi.getter(name="ldapFullNameAttribute")
     def ldap_full_name_attribute(self) -> pulumi.Output[str]:
+        """
+        The name of the LDAP attribute containing the user's full name.
+        """
         return pulumi.get(self, "ldap_full_name_attribute")
 
     @property
     @pulumi.getter(name="ldapUserFederationId")
     def ldap_user_federation_id(self) -> pulumi.Output[str]:
         """
-        The ldap user federation provider to attach this mapper to.
+        The ID of the LDAP user federation provider to attach this mapper to.
         """
         return pulumi.get(self, "ldap_user_federation_id")
 
@@ -163,26 +158,32 @@ class FullNameMapper(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Display name of the mapper when displayed in the console.
+        Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="readOnly")
     def read_only(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
+        """
         return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
         """
-        The realm in which the ldap user federation provider exists.
+        The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter(name="writeOnly")
     def write_only(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
+        """
         return pulumi.get(self, "write_only")
 
     def translate_output_property(self, prop):

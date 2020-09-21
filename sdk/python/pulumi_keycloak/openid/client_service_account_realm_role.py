@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['ClientServiceAccountRealmRole']
@@ -22,9 +22,36 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a ClientServiceAccountRealmRole resource with the given unique name, props, and options.
+        Allows for assigning realm roles to the service account of an openid client.
+        You need to set `service_accounts_enabled` to `true` for the openid client that should be assigned the role.
+
+        If you'd like to attach client roles to a service account, please use the `openid.ClientServiceAccountRole`
+        resource.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        realm_role = keycloak.Role("realmRole", realm_id=realm.id)
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            service_accounts_enabled=True)
+        client_service_account_role = keycloak.openid.ClientServiceAccountRealmRole("clientServiceAccountRole",
+            realm_id=realm.id,
+            service_account_user_id=client.service_account_user_id,
+            role=realm_role.name)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] realm_id: The realm that the client and role belong to.
+        :param pulumi.Input[str] role: The name of the role that is assigned.
+        :param pulumi.Input[str] service_account_user_id: The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -72,6 +99,9 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] realm_id: The realm that the client and role belong to.
+        :param pulumi.Input[str] role: The name of the role that is assigned.
+        :param pulumi.Input[str] service_account_user_id: The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -85,16 +115,25 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
+        """
+        The realm that the client and role belong to.
+        """
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter
     def role(self) -> pulumi.Output[str]:
+        """
+        The name of the role that is assigned.
+        """
         return pulumi.get(self, "role")
 
     @property
     @pulumi.getter(name="serviceAccountUserId")
     def service_account_user_id(self) -> pulumi.Output[str]:
+        """
+        The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
+        """
         return pulumi.get(self, "service_account_user_id")
 
     def translate_output_property(self, prop):

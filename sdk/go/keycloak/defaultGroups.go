@@ -10,14 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// ## # DefaultGroups
-//
 // Allows for managing a realm's default groups.
 //
-// Note that you should not use `DefaultGroups` with a group with memberships managed
-// by `GroupMemberships`.
+// > You should not use `DefaultGroups` with a group whose members are managed by `GroupMemberships`.
 //
-// ### Example Usage
+// ## Example Usage
 //
 // ```go
 // package main
@@ -30,8 +27,8 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Enabled: pulumi.Bool(true),
 // 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -43,10 +40,10 @@ import (
 // 			return err
 // 		}
 // 		_, err = keycloak.NewDefaultGroups(ctx, "_default", &keycloak.DefaultGroupsArgs{
+// 			RealmId: realm.ID(),
 // 			GroupIds: pulumi.StringArray{
 // 				group.ID(),
 // 			},
-// 			RealmId: realm.ID(),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -55,18 +52,13 @@ import (
 // 	})
 // }
 // ```
-//
-// ### Argument Reference
-//
-// The following arguments are supported:
-//
-// - `realmId` - (Required) The realm this group exists in.
-// - `groupIds` - (Required) A set of group ids that should be default groups on the realm referenced by `realmId`.
 type DefaultGroups struct {
 	pulumi.CustomResourceState
 
+	// A set of group ids that should be default groups on the realm referenced by `realmId`.
 	GroupIds pulumi.StringArrayOutput `pulumi:"groupIds"`
-	RealmId  pulumi.StringOutput      `pulumi:"realmId"`
+	// The realm this group exists in.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
 // NewDefaultGroups registers a new resource with the given unique name, arguments, and options.
@@ -103,13 +95,17 @@ func GetDefaultGroups(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DefaultGroups resources.
 type defaultGroupsState struct {
+	// A set of group ids that should be default groups on the realm referenced by `realmId`.
 	GroupIds []string `pulumi:"groupIds"`
-	RealmId  *string  `pulumi:"realmId"`
+	// The realm this group exists in.
+	RealmId *string `pulumi:"realmId"`
 }
 
 type DefaultGroupsState struct {
+	// A set of group ids that should be default groups on the realm referenced by `realmId`.
 	GroupIds pulumi.StringArrayInput
-	RealmId  pulumi.StringPtrInput
+	// The realm this group exists in.
+	RealmId pulumi.StringPtrInput
 }
 
 func (DefaultGroupsState) ElementType() reflect.Type {
@@ -117,14 +113,18 @@ func (DefaultGroupsState) ElementType() reflect.Type {
 }
 
 type defaultGroupsArgs struct {
+	// A set of group ids that should be default groups on the realm referenced by `realmId`.
 	GroupIds []string `pulumi:"groupIds"`
-	RealmId  string   `pulumi:"realmId"`
+	// The realm this group exists in.
+	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a DefaultGroups resource.
 type DefaultGroupsArgs struct {
+	// A set of group ids that should be default groups on the realm referenced by `realmId`.
 	GroupIds pulumi.StringArrayInput
-	RealmId  pulumi.StringInput
+	// The realm this group exists in.
+	RealmId pulumi.StringInput
 }
 
 func (DefaultGroupsArgs) ElementType() reflect.Type {

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['ClientUserPolicy']
@@ -21,7 +21,7 @@ class ClientUserPolicy(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  resource_server_id: Optional[pulumi.Input[str]] = None,
-                 users: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 users: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -78,7 +78,7 @@ class ClientUserPolicy(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             realm_id: Optional[pulumi.Input[str]] = None,
             resource_server_id: Optional[pulumi.Input[str]] = None,
-            users: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'ClientUserPolicy':
+            users: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'ClientUserPolicy':
         """
         Get an existing ClientUserPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -132,7 +132,7 @@ class ClientUserPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def users(self) -> pulumi.Output[List[str]]:
+    def users(self) -> pulumi.Output[Sequence[str]]:
         return pulumi.get(self, "users")
 
     def translate_output_property(self, prop):

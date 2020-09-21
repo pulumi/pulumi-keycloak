@@ -9,14 +9,65 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    /// <summary>
+    /// Allows for assigning realm roles to the service account of an openid client.
+    /// You need to set `service_accounts_enabled` to `true` for the openid client that should be assigned the role.
+    /// 
+    /// If you'd like to attach client roles to a service account, please use the `keycloak.openid.ClientServiceAccountRole`
+    /// resource.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "my-realm",
+    ///             Enabled = true,
+    ///         });
+    ///         var realmRole = new Keycloak.Role("realmRole", new Keycloak.RoleArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var client = new Keycloak.OpenId.Client("client", new Keycloak.OpenId.ClientArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             ServiceAccountsEnabled = true,
+    ///         });
+    ///         var clientServiceAccountRole = new Keycloak.OpenId.ClientServiceAccountRealmRole("clientServiceAccountRole", new Keycloak.OpenId.ClientServiceAccountRealmRoleArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             ServiceAccountUserId = client.ServiceAccountUserId,
+    ///             Role = realmRole.Name,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     public partial class ClientServiceAccountRealmRole : Pulumi.CustomResource
     {
+        /// <summary>
+        /// The realm that the client and role belong to.
+        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the role that is assigned.
+        /// </summary>
         [Output("role")]
         public Output<string> Role { get; private set; } = null!;
 
+        /// <summary>
+        /// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
+        /// </summary>
         [Output("serviceAccountUserId")]
         public Output<string> ServiceAccountUserId { get; private set; } = null!;
 
@@ -66,12 +117,21 @@ namespace Pulumi.Keycloak.OpenId
 
     public sealed class ClientServiceAccountRealmRoleArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The realm that the client and role belong to.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the role that is assigned.
+        /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 
+        /// <summary>
+        /// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
+        /// </summary>
         [Input("serviceAccountUserId", required: true)]
         public Input<string> ServiceAccountUserId { get; set; } = null!;
 
@@ -82,12 +142,21 @@ namespace Pulumi.Keycloak.OpenId
 
     public sealed class ClientServiceAccountRealmRoleState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The realm that the client and role belong to.
+        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
+        /// <summary>
+        /// The name of the role that is assigned.
+        /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
 
+        /// <summary>
+        /// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
+        /// </summary>
         [Input("serviceAccountUserId")]
         public Input<string>? ServiceAccountUserId { get; set; }
 

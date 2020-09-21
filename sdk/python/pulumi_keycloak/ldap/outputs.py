@@ -5,12 +5,79 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
+    'UserFederationCache',
     'UserFederationKerberos',
 ]
+
+@pulumi.output_type
+class UserFederationCache(dict):
+    def __init__(__self__, *,
+                 eviction_day: Optional[int] = None,
+                 eviction_hour: Optional[int] = None,
+                 eviction_minute: Optional[int] = None,
+                 max_lifespan: Optional[str] = None,
+                 policy: Optional[str] = None):
+        """
+        :param int eviction_day: Minute of day the entry will become invalid on.
+        :param int eviction_hour: Hour of day the entry will become invalid on.
+        :param str max_lifespan: Max lifespan of cache entry (duration string).
+        :param str policy: Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+        """
+        if eviction_day is not None:
+            pulumi.set(__self__, "eviction_day", eviction_day)
+        if eviction_hour is not None:
+            pulumi.set(__self__, "eviction_hour", eviction_hour)
+        if eviction_minute is not None:
+            pulumi.set(__self__, "eviction_minute", eviction_minute)
+        if max_lifespan is not None:
+            pulumi.set(__self__, "max_lifespan", max_lifespan)
+        if policy is not None:
+            pulumi.set(__self__, "policy", policy)
+
+    @property
+    @pulumi.getter(name="evictionDay")
+    def eviction_day(self) -> Optional[int]:
+        """
+        Minute of day the entry will become invalid on.
+        """
+        return pulumi.get(self, "eviction_day")
+
+    @property
+    @pulumi.getter(name="evictionHour")
+    def eviction_hour(self) -> Optional[int]:
+        """
+        Hour of day the entry will become invalid on.
+        """
+        return pulumi.get(self, "eviction_hour")
+
+    @property
+    @pulumi.getter(name="evictionMinute")
+    def eviction_minute(self) -> Optional[int]:
+        return pulumi.get(self, "eviction_minute")
+
+    @property
+    @pulumi.getter(name="maxLifespan")
+    def max_lifespan(self) -> Optional[str]:
+        """
+        Max lifespan of cache entry (duration string).
+        """
+        return pulumi.get(self, "max_lifespan")
+
+    @property
+    @pulumi.getter
+    def policy(self) -> Optional[str]:
+        """
+        Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+        """
+        return pulumi.get(self, "policy")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
 
 @pulumi.output_type
 class UserFederationKerberos(dict):
@@ -19,6 +86,12 @@ class UserFederationKerberos(dict):
                  key_tab: str,
                  server_principal: str,
                  use_kerberos_for_password_authentication: Optional[bool] = None):
+        """
+        :param str kerberos_realm: The name of the kerberos realm, e.g. FOO.LOCAL.
+        :param str key_tab: Path to the kerberos keytab file on the server with credentials of the service principal.
+        :param str server_principal: The kerberos server principal, e.g. 'HTTP/host.foo.com@FOO.LOCAL'.
+        :param bool use_kerberos_for_password_authentication: Use kerberos login module instead of ldap service api. Defaults to `false`.
+        """
         pulumi.set(__self__, "kerberos_realm", kerberos_realm)
         pulumi.set(__self__, "key_tab", key_tab)
         pulumi.set(__self__, "server_principal", server_principal)
@@ -28,21 +101,33 @@ class UserFederationKerberos(dict):
     @property
     @pulumi.getter(name="kerberosRealm")
     def kerberos_realm(self) -> str:
+        """
+        The name of the kerberos realm, e.g. FOO.LOCAL.
+        """
         return pulumi.get(self, "kerberos_realm")
 
     @property
     @pulumi.getter(name="keyTab")
     def key_tab(self) -> str:
+        """
+        Path to the kerberos keytab file on the server with credentials of the service principal.
+        """
         return pulumi.get(self, "key_tab")
 
     @property
     @pulumi.getter(name="serverPrincipal")
     def server_principal(self) -> str:
+        """
+        The kerberos server principal, e.g. 'HTTP/host.foo.com@FOO.LOCAL'.
+        """
         return pulumi.get(self, "server_principal")
 
     @property
     @pulumi.getter(name="useKerberosForPasswordAuthentication")
     def use_kerberos_for_password_authentication(self) -> Optional[bool]:
+        """
+        Use kerberos login module instead of ldap service api. Defaults to `false`.
+        """
         return pulumi.get(self, "use_kerberos_for_password_authentication")
 
     def _translate_property(self, prop):

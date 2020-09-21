@@ -11,6 +11,80 @@ namespace Pulumi.Keycloak.OpenId
 {
     public static class GetClientAuthorizationPolicy
     {
+        /// <summary>
+        /// This data source can be used to fetch policy and permission information for an OpenID client that has authorization enabled.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// In this example, we'll create a new OpenID client with authorization enabled. This will cause Keycloak to create a default
+        /// permission for this client called "Default Permission". We'll use the `keycloak.openid.getClientAuthorizationPolicy` data
+        /// source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+        ///         {
+        ///             Realm = "my-realm",
+        ///             Enabled = true,
+        ///         });
+        ///         var clientWithAuthz = new Keycloak.OpenId.Client("clientWithAuthz", new Keycloak.OpenId.ClientArgs
+        ///         {
+        ///             ClientId = "client-with-authz",
+        ///             RealmId = realm.Id,
+        ///             AccessType = "CONFIDENTIAL",
+        ///             ServiceAccountsEnabled = true,
+        ///             Authorization = new Keycloak.OpenId.Inputs.ClientAuthorizationArgs
+        ///             {
+        ///                 PolicyEnforcementMode = "ENFORCING",
+        ///             },
+        ///         });
+        ///         var defaultPermission = clientWithAuthz.ResourceServerId.Apply(resourceServerId =&gt; Keycloak.OpenId.GetClientAuthorizationPolicy.InvokeAsync(new Keycloak.OpenId.GetClientAuthorizationPolicyArgs
+        ///         {
+        ///             RealmId = keycloak_realm.Test.Id,
+        ///             ResourceServerId = resourceServerId,
+        ///             Name = "Default Permission",
+        ///         }));
+        ///         var resource = new Keycloak.OpenId.ClientAuthorizationResource("resource", new Keycloak.OpenId.ClientAuthorizationResourceArgs
+        ///         {
+        ///             ResourceServerId = clientWithAuthz.ResourceServerId,
+        ///             RealmId = keycloak_realm.Test.Id,
+        ///             Uris = 
+        ///             {
+        ///                 "/endpoint/*",
+        ///             },
+        ///             Attributes = 
+        ///             {
+        ///                 { "foo", "bar" },
+        ///             },
+        ///         });
+        ///         var permission = new Keycloak.OpenId.ClientAuthorizationPermission("permission", new Keycloak.OpenId.ClientAuthorizationPermissionArgs
+        ///         {
+        ///             ResourceServerId = clientWithAuthz.ResourceServerId,
+        ///             RealmId = keycloak_realm.Test.Id,
+        ///             Policies = 
+        ///             {
+        ///                 defaultPermission.Apply(defaultPermission =&gt; defaultPermission.Id),
+        ///             },
+        ///             Resources = 
+        ///             {
+        ///                 resource.Id,
+        ///             },
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetClientAuthorizationPolicyResult> InvokeAsync(GetClientAuthorizationPolicyArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetClientAuthorizationPolicyResult>("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", args ?? new GetClientAuthorizationPolicyArgs(), options.WithVersion());
     }
@@ -18,15 +92,21 @@ namespace Pulumi.Keycloak.OpenId
 
     public sealed class GetClientAuthorizationPolicyArgs : Pulumi.InvokeArgs
     {
-        [Input("logic")]
-        public string? Logic { get; set; }
-
+        /// <summary>
+        /// The name of the authorization policy.
+        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
+        /// <summary>
+        /// The realm this authorization policy exists within.
+        /// </summary>
         [Input("realmId", required: true)]
         public string RealmId { get; set; } = null!;
 
+        /// <summary>
+        /// The ID of the resource server this authorization policy is attached to.
+        /// </summary>
         [Input("resourceServerId", required: true)]
         public string ResourceServerId { get; set; } = null!;
 
@@ -39,19 +119,40 @@ namespace Pulumi.Keycloak.OpenId
     [OutputType]
     public sealed class GetClientAuthorizationPolicyResult
     {
+        /// <summary>
+        /// (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
+        /// </summary>
         public readonly string DecisionStrategy;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        public readonly string? Logic;
+        /// <summary>
+        /// (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
+        /// </summary>
+        public readonly string Logic;
         public readonly string Name;
+        /// <summary>
+        /// (Computed) The ID of the owning resource. Applies to resources.
+        /// </summary>
         public readonly string Owner;
+        /// <summary>
+        /// (Computed) The IDs of the policies that must be applied to scopes/resources for this policy/permission. Applies to policies and permissions.
+        /// </summary>
         public readonly ImmutableArray<string> Policies;
         public readonly string RealmId;
         public readonly string ResourceServerId;
+        /// <summary>
+        /// (Computed) The IDs of the resources that this permission applies to. Applies to resource-based permissions.
+        /// </summary>
         public readonly ImmutableArray<string> Resources;
+        /// <summary>
+        /// (Computed) The IDs of the scopes that this permission applies to. Applies to scope-based permissions.
+        /// </summary>
         public readonly ImmutableArray<string> Scopes;
+        /// <summary>
+        /// (Computed) The type of this policy / permission. For permissions, this could be `resource` or `scope`. For policies, this could be any type of authorization policy, such as `js`.
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]
@@ -60,7 +161,7 @@ namespace Pulumi.Keycloak.OpenId
 
             string id,
 
-            string? logic,
+            string logic,
 
             string name,
 

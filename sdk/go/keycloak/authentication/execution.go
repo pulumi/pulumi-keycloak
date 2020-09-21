@@ -10,11 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// ## # authentication.Execution
+// Allows for creating and managing an authentication execution within Keycloak.
 //
-// Allows for managing an authentication execution.
+// An authentication execution is an action that the user or service may or may not take when authenticating through an authentication
+// flow.
 //
-// ### Example Usage
+// > Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `dependsOn`. Authentication executions that are created first will appear first within the flow.
+//
+// ## Example Usage
 //
 // ```go
 // package main
@@ -28,25 +31,36 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Enabled: pulumi.Bool(true),
 // 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		flow, err := authentication.NewFlow(ctx, "flow", &authentication.FlowArgs{
-// 			Alias:   pulumi.String("my-flow-alias"),
 // 			RealmId: realm.ID(),
+// 			Alias:   pulumi.String("my-flow-alias"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = authentication.NewExecution(ctx, "execution", &authentication.ExecutionArgs{
-// 			Authenticator:   pulumi.String("identity-provider-redirector"),
-// 			ParentFlowAlias: flow.Alias,
+// 		executionOne, err := authentication.NewExecution(ctx, "executionOne", &authentication.ExecutionArgs{
 // 			RealmId:         realm.ID(),
-// 			Requirement:     pulumi.String("REQUIRED"),
+// 			ParentFlowAlias: flow.Alias,
+// 			Authenticator:   pulumi.String("auth-cookie"),
+// 			Requirement:     pulumi.String("ALTERNATIVE"),
 // 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = authentication.NewExecution(ctx, "executionTwo", &authentication.ExecutionArgs{
+// 			RealmId:         realm.ID(),
+// 			ParentFlowAlias: flow.Alias,
+// 			Authenticator:   pulumi.String("identity-provider-redirector"),
+// 			Requirement:     pulumi.String("ALTERNATIVE"),
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			executionOne,
+// 		}))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -54,25 +68,17 @@ import (
 // 	})
 // }
 // ```
-//
-// ### Argument Reference
-//
-// The following arguments are supported:
-//
-// - `realmId` - (Required) The realm the authentication execution exists in.
-// - `parentFlowAlias` - (Required) The flow this execution is attached to.
-// - `authenticator` - (Required) The name of the authenticator.
-// - `requirement`- (Optional) The requirement setting, which can be one of the following:
-//   - - `REQUIRED`
-//   - - `ALTERNATIVE`
-//   - - `DISABLED`
 type Execution struct {
 	pulumi.CustomResourceState
 
-	Authenticator   pulumi.StringOutput    `pulumi:"authenticator"`
-	ParentFlowAlias pulumi.StringOutput    `pulumi:"parentFlowAlias"`
-	RealmId         pulumi.StringOutput    `pulumi:"realmId"`
-	Requirement     pulumi.StringPtrOutput `pulumi:"requirement"`
+	// The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
+	Authenticator pulumi.StringOutput `pulumi:"authenticator"`
+	// The alias of the flow this execution is attached to.
+	ParentFlowAlias pulumi.StringOutput `pulumi:"parentFlowAlias"`
+	// The realm the authentication execution exists in.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
+	Requirement pulumi.StringPtrOutput `pulumi:"requirement"`
 }
 
 // NewExecution registers a new resource with the given unique name, arguments, and options.
@@ -112,17 +118,25 @@ func GetExecution(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Execution resources.
 type executionState struct {
-	Authenticator   *string `pulumi:"authenticator"`
+	// The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
+	Authenticator *string `pulumi:"authenticator"`
+	// The alias of the flow this execution is attached to.
 	ParentFlowAlias *string `pulumi:"parentFlowAlias"`
-	RealmId         *string `pulumi:"realmId"`
-	Requirement     *string `pulumi:"requirement"`
+	// The realm the authentication execution exists in.
+	RealmId *string `pulumi:"realmId"`
+	// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
+	Requirement *string `pulumi:"requirement"`
 }
 
 type ExecutionState struct {
-	Authenticator   pulumi.StringPtrInput
+	// The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
+	Authenticator pulumi.StringPtrInput
+	// The alias of the flow this execution is attached to.
 	ParentFlowAlias pulumi.StringPtrInput
-	RealmId         pulumi.StringPtrInput
-	Requirement     pulumi.StringPtrInput
+	// The realm the authentication execution exists in.
+	RealmId pulumi.StringPtrInput
+	// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
+	Requirement pulumi.StringPtrInput
 }
 
 func (ExecutionState) ElementType() reflect.Type {
@@ -130,18 +144,26 @@ func (ExecutionState) ElementType() reflect.Type {
 }
 
 type executionArgs struct {
-	Authenticator   string  `pulumi:"authenticator"`
-	ParentFlowAlias string  `pulumi:"parentFlowAlias"`
-	RealmId         string  `pulumi:"realmId"`
-	Requirement     *string `pulumi:"requirement"`
+	// The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
+	Authenticator string `pulumi:"authenticator"`
+	// The alias of the flow this execution is attached to.
+	ParentFlowAlias string `pulumi:"parentFlowAlias"`
+	// The realm the authentication execution exists in.
+	RealmId string `pulumi:"realmId"`
+	// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
+	Requirement *string `pulumi:"requirement"`
 }
 
 // The set of arguments for constructing a Execution resource.
 type ExecutionArgs struct {
-	Authenticator   pulumi.StringInput
+	// The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
+	Authenticator pulumi.StringInput
+	// The alias of the flow this execution is attached to.
 	ParentFlowAlias pulumi.StringInput
-	RealmId         pulumi.StringInput
-	Requirement     pulumi.StringPtrInput
+	// The realm the authentication execution exists in.
+	RealmId pulumi.StringInput
+	// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
+	Requirement pulumi.StringPtrInput
 }
 
 func (ExecutionArgs) ElementType() reflect.Type {

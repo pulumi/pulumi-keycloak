@@ -11,6 +11,39 @@ namespace Pulumi.Keycloak.OpenId
 {
     public static class GetClient
     {
+        /// <summary>
+        /// This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var realmManagement = Output.Create(Keycloak.OpenId.GetClient.InvokeAsync(new Keycloak.OpenId.GetClientArgs
+        ///         {
+        ///             RealmId = "my-realm",
+        ///             ClientId = "realm-management",
+        ///         }));
+        ///         var admin = realmManagement.Apply(realmManagement =&gt; Output.Create(Keycloak.GetRole.InvokeAsync(new Keycloak.GetRoleArgs
+        ///         {
+        ///             RealmId = "my-realm",
+        ///             ClientId = realmManagement.Id,
+        ///             Name = "realm-admin",
+        ///         })));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetClientResult> InvokeAsync(GetClientArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetClientResult>("keycloak:openid/getClient:getClient", args ?? new GetClientArgs(), options.WithVersion());
     }
@@ -18,9 +51,15 @@ namespace Pulumi.Keycloak.OpenId
 
     public sealed class GetClientArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The client id (not its unique ID).
+        /// </summary>
         [Input("clientId", required: true)]
         public string ClientId { get; set; } = null!;
 
+        /// <summary>
+        /// The realm id.
+        /// </summary>
         [Input("realmId", required: true)]
         public string RealmId { get; set; } = null!;
 
@@ -33,15 +72,19 @@ namespace Pulumi.Keycloak.OpenId
     [OutputType]
     public sealed class GetClientResult
     {
+        public readonly string AccessTokenLifespan;
         public readonly string AccessType;
-        public readonly Outputs.GetClientAuthenticationFlowBindingOverridesResult AuthenticationFlowBindingOverrides;
-        public readonly Outputs.GetClientAuthorizationResult Authorization;
+        public readonly string AdminUrl;
+        public readonly ImmutableArray<Outputs.GetClientAuthenticationFlowBindingOverrideResult> AuthenticationFlowBindingOverrides;
+        public readonly ImmutableArray<Outputs.GetClientAuthorizationResult> Authorizations;
+        public readonly string BaseUrl;
         public readonly string ClientId;
         public readonly string ClientSecret;
         public readonly bool ConsentRequired;
         public readonly string Description;
         public readonly bool DirectAccessGrantsEnabled;
         public readonly bool Enabled;
+        public readonly bool ExcludeSessionStateFromAuthResponse;
         public readonly bool FullScopeAllowed;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -50,6 +93,7 @@ namespace Pulumi.Keycloak.OpenId
         public readonly bool ImplicitFlowEnabled;
         public readonly string LoginTheme;
         public readonly string Name;
+        public readonly string PkceCodeChallengeMethod;
         public readonly string RealmId;
         public readonly string ResourceServerId;
         public readonly string RootUrl;
@@ -61,11 +105,17 @@ namespace Pulumi.Keycloak.OpenId
 
         [OutputConstructor]
         private GetClientResult(
+            string accessTokenLifespan,
+
             string accessType,
 
-            Outputs.GetClientAuthenticationFlowBindingOverridesResult authenticationFlowBindingOverrides,
+            string adminUrl,
 
-            Outputs.GetClientAuthorizationResult authorization,
+            ImmutableArray<Outputs.GetClientAuthenticationFlowBindingOverrideResult> authenticationFlowBindingOverrides,
+
+            ImmutableArray<Outputs.GetClientAuthorizationResult> authorizations,
+
+            string baseUrl,
 
             string clientId,
 
@@ -79,6 +129,8 @@ namespace Pulumi.Keycloak.OpenId
 
             bool enabled,
 
+            bool excludeSessionStateFromAuthResponse,
+
             bool fullScopeAllowed,
 
             string id,
@@ -88,6 +140,8 @@ namespace Pulumi.Keycloak.OpenId
             string loginTheme,
 
             string name,
+
+            string pkceCodeChallengeMethod,
 
             string realmId,
 
@@ -105,20 +159,25 @@ namespace Pulumi.Keycloak.OpenId
 
             ImmutableArray<string> webOrigins)
         {
+            AccessTokenLifespan = accessTokenLifespan;
             AccessType = accessType;
+            AdminUrl = adminUrl;
             AuthenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
-            Authorization = authorization;
+            Authorizations = authorizations;
+            BaseUrl = baseUrl;
             ClientId = clientId;
             ClientSecret = clientSecret;
             ConsentRequired = consentRequired;
             Description = description;
             DirectAccessGrantsEnabled = directAccessGrantsEnabled;
             Enabled = enabled;
+            ExcludeSessionStateFromAuthResponse = excludeSessionStateFromAuthResponse;
             FullScopeAllowed = fullScopeAllowed;
             Id = id;
             ImplicitFlowEnabled = implicitFlowEnabled;
             LoginTheme = loginTheme;
             Name = name;
+            PkceCodeChallengeMethod = pkceCodeChallengeMethod;
             RealmId = realmId;
             ResourceServerId = resourceServerId;
             RootUrl = rootUrl;

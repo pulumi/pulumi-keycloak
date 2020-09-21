@@ -9,80 +9,220 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    /// <summary>
+    /// Allows for creating and managing Realms within Keycloak.
+    /// 
+    /// A realm manages a logical collection of users, credentials, roles, and groups. Users log in to realms and can be federated
+    /// from multiple sources.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             AccessCodeLifespan = "1h",
+    ///             Attributes = 
+    ///             {
+    ///                 { "mycustomAttribute", "myCustomValue" },
+    ///             },
+    ///             DisplayName = "my realm",
+    ///             DisplayNameHtml = "&lt;b&gt;my realm&lt;/b&gt;",
+    ///             Enabled = true,
+    ///             Internationalization = new Keycloak.Inputs.RealmInternationalizationArgs
+    ///             {
+    ///                 DefaultLocale = "en",
+    ///                 SupportedLocales = 
+    ///                 {
+    ///                     "en",
+    ///                     "de",
+    ///                     "es",
+    ///                 },
+    ///             },
+    ///             LoginTheme = "base",
+    ///             PasswordPolicy = "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername",
+    ///             Realm = "my-realm",
+    ///             SecurityDefenses = new Keycloak.Inputs.RealmSecurityDefensesArgs
+    ///             {
+    ///                 BruteForceDetection = new Keycloak.Inputs.RealmSecurityDefensesBruteForceDetectionArgs
+    ///                 {
+    ///                     FailureResetTimeSeconds = 43200,
+    ///                     MaxFailureWaitSeconds = 900,
+    ///                     MaxLoginFailures = 30,
+    ///                     MinimumQuickLoginWaitSeconds = 60,
+    ///                     PermanentLockout = false,
+    ///                     QuickLoginCheckMilliSeconds = 1000,
+    ///                     WaitIncrementSeconds = 60,
+    ///                 },
+    ///                 Headers = new Keycloak.Inputs.RealmSecurityDefensesHeadersArgs
+    ///                 {
+    ///                     ContentSecurityPolicy = "frame-src 'self'; frame-ancestors 'self'; object-src 'none';",
+    ///                     ContentSecurityPolicyReportOnly = "",
+    ///                     StrictTransportSecurity = "max-age=31536000; includeSubDomains",
+    ///                     XContentTypeOptions = "nosniff",
+    ///                     XFrameOptions = "DENY",
+    ///                     XRobotsTag = "none",
+    ///                     XXssProtection = "1; mode=block",
+    ///                 },
+    ///             },
+    ///             SmtpServer = new Keycloak.Inputs.RealmSmtpServerArgs
+    ///             {
+    ///                 Auth = new Keycloak.Inputs.RealmSmtpServerAuthArgs
+    ///                 {
+    ///                     Password = "password",
+    ///                     Username = "tom",
+    ///                 },
+    ///                 From = "example@example.com",
+    ///                 Host = "smtp.example.com",
+    ///             },
+    ///             SslRequired = "external",
+    ///             WebAuthnPolicy = new Keycloak.Inputs.RealmWebAuthnPolicyArgs
+    ///             {
+    ///                 RelyingPartyEntityName = "Example",
+    ///                 RelyingPartyId = "keycloak.example.com",
+    ///                 SignatureAlgorithms = 
+    ///                 {
+    ///                     "ES256",
+    ///                     "RS256",
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     public partial class Realm : Pulumi.CustomResource
     {
+        /// <summary>
+        /// The maximum amount of time a client has to finish the authorization code flow.
+        /// </summary>
         [Output("accessCodeLifespan")]
         public Output<string> AccessCodeLifespan { get; private set; } = null!;
 
+        /// <summary>
+        /// The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.
+        /// </summary>
         [Output("accessCodeLifespanLogin")]
         public Output<string> AccessCodeLifespanLogin { get; private set; } = null!;
 
+        /// <summary>
+        /// The maximum amount of time a user has to complete login related actions, such as updating a password.
+        /// </summary>
         [Output("accessCodeLifespanUserAction")]
         public Output<string> AccessCodeLifespanUserAction { get; private set; } = null!;
 
+        /// <summary>
+        /// The amount of time an access token can be used before it expires.
+        /// </summary>
         [Output("accessTokenLifespan")]
         public Output<string> AccessTokenLifespan { get; private set; } = null!;
 
+        /// <summary>
+        /// The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.
+        /// </summary>
         [Output("accessTokenLifespanForImplicitFlow")]
         public Output<string> AccessTokenLifespanForImplicitFlow { get; private set; } = null!;
 
+        /// <summary>
+        /// Used for account management pages.
+        /// </summary>
         [Output("accountTheme")]
         public Output<string?> AccountTheme { get; private set; } = null!;
 
+        /// <summary>
+        /// The maximum time a user has to use an admin-generated permit before it expires.
+        /// </summary>
         [Output("actionTokenGeneratedByAdminLifespan")]
         public Output<string> ActionTokenGeneratedByAdminLifespan { get; private set; } = null!;
 
+        /// <summary>
+        /// The maximum time a user has to use a user-generated permit before it expires.
+        /// </summary>
         [Output("actionTokenGeneratedByUserLifespan")]
         public Output<string> ActionTokenGeneratedByUserLifespan { get; private set; } = null!;
 
+        /// <summary>
+        /// Used for the admin console.
+        /// </summary>
         [Output("adminTheme")]
         public Output<string?> AdminTheme { get; private set; } = null!;
 
+        /// <summary>
+        /// A map of custom attributes to add to the realm.
+        /// </summary>
         [Output("attributes")]
         public Output<ImmutableDictionary<string, object>?> Attributes { get; private set; } = null!;
 
         /// <summary>
-        /// Which flow should be used for BrowserFlow
+        /// The desired flow for browser authentication. Defaults to `browser`.
         /// </summary>
         [Output("browserFlow")]
         public Output<string?> BrowserFlow { get; private set; } = null!;
 
         /// <summary>
-        /// Which flow should be used for ClientAuthenticationFlow
+        /// The desired flow for client authentication. Defaults to `clients`.
         /// </summary>
         [Output("clientAuthenticationFlow")]
         public Output<string?> ClientAuthenticationFlow { get; private set; } = null!;
 
+        /// <summary>
+        /// Default algorithm used to sign tokens for the realm.
+        /// </summary>
         [Output("defaultSignatureAlgorithm")]
         public Output<string?> DefaultSignatureAlgorithm { get; private set; } = null!;
 
         /// <summary>
-        /// Which flow should be used for DirectGrantFlow
+        /// The desired flow for direct access authentication. Defaults to `direct grant`.
         /// </summary>
         [Output("directGrantFlow")]
         public Output<string?> DirectGrantFlow { get; private set; } = null!;
 
+        /// <summary>
+        /// The display name for the realm that is shown when logging in to the admin console.
+        /// </summary>
         [Output("displayName")]
         public Output<string?> DisplayName { get; private set; } = null!;
 
+        /// <summary>
+        /// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+        /// </summary>
         [Output("displayNameHtml")]
         public Output<string?> DisplayNameHtml { get; private set; } = null!;
 
         /// <summary>
-        /// Which flow should be used for DockerAuthenticationFlow
+        /// The desired flow for Docker authentication. Defaults to `docker auth`.
         /// </summary>
         [Output("dockerAuthenticationFlow")]
         public Output<string?> DockerAuthenticationFlow { get; private set; } = null!;
 
+        /// <summary>
+        /// When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `login_with_email_allowed` is set to `true`.
+        /// </summary>
         [Output("duplicateEmailsAllowed")]
         public Output<bool> DuplicateEmailsAllowed { get; private set; } = null!;
 
+        /// <summary>
+        /// When true, the username field is editable.
+        /// </summary>
         [Output("editUsernameAllowed")]
         public Output<bool> EditUsernameAllowed { get; private set; } = null!;
 
+        /// <summary>
+        /// Used for emails that are sent by Keycloak.
+        /// </summary>
         [Output("emailTheme")]
         public Output<string?> EmailTheme { get; private set; } = null!;
 
+        /// <summary>
+        /// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
@@ -92,56 +232,93 @@ namespace Pulumi.Keycloak
         [Output("internationalization")]
         public Output<Outputs.RealmInternationalization?> Internationalization { get; private set; } = null!;
 
+        /// <summary>
+        /// Used for the login, forgot password, and registration pages.
+        /// </summary>
         [Output("loginTheme")]
         public Output<string?> LoginTheme { get; private set; } = null!;
 
+        /// <summary>
+        /// When true, users may log in with their email address.
+        /// </summary>
         [Output("loginWithEmailAllowed")]
         public Output<bool> LoginWithEmailAllowed { get; private set; } = null!;
 
+        /// <summary>
+        /// The amount of time an offline session can be idle before it expires.
+        /// </summary>
         [Output("offlineSessionIdleTimeout")]
         public Output<string> OfflineSessionIdleTimeout { get; private set; } = null!;
 
+        /// <summary>
+        /// The maximum amount of time before an offline session expires regardless of activity.
+        /// </summary>
         [Output("offlineSessionMaxLifespan")]
         public Output<string> OfflineSessionMaxLifespan { get; private set; } = null!;
 
         /// <summary>
-        /// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-        /// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-        /// and notUsername(undefined)"
+        /// Enable `offline_session_max_lifespan`.
+        /// </summary>
+        [Output("offlineSessionMaxLifespanEnabled")]
+        public Output<bool?> OfflineSessionMaxLifespanEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// The password policy for users within the realm.
         /// </summary>
         [Output("passwordPolicy")]
         public Output<string?> PasswordPolicy { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+        /// </summary>
         [Output("realm")]
         public Output<string> RealmName { get; private set; } = null!;
 
+        /// <summary>
+        /// Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
+        /// </summary>
         [Output("refreshTokenMaxReuse")]
         public Output<int?> RefreshTokenMaxReuse { get; private set; } = null!;
 
+        /// <summary>
+        /// When true, user registration will be enabled, and a link for registration will be displayed on the login page.
+        /// </summary>
         [Output("registrationAllowed")]
         public Output<bool> RegistrationAllowed { get; private set; } = null!;
 
+        /// <summary>
+        /// When true, the user's email will be used as their username during registration.
+        /// </summary>
         [Output("registrationEmailAsUsername")]
         public Output<bool> RegistrationEmailAsUsername { get; private set; } = null!;
 
         /// <summary>
-        /// Which flow should be used for RegistrationFlow
+        /// The desired flow for user registration. Defaults to `registration`.
         /// </summary>
         [Output("registrationFlow")]
         public Output<string?> RegistrationFlow { get; private set; } = null!;
 
+        /// <summary>
+        /// When true, a "remember me" checkbox will be displayed on the login page, and the user's session will not expire between browser restarts.
+        /// </summary>
         [Output("rememberMe")]
         public Output<bool> RememberMe { get; private set; } = null!;
 
         /// <summary>
-        /// Which flow should be used for ResetCredentialsFlow
+        /// The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
         /// </summary>
         [Output("resetCredentialsFlow")]
         public Output<string?> ResetCredentialsFlow { get; private set; } = null!;
 
+        /// <summary>
+        /// When true, a "forgot password" link will be displayed on the login page.
+        /// </summary>
         [Output("resetPasswordAllowed")]
         public Output<bool> ResetPasswordAllowed { get; private set; } = null!;
 
+        /// <summary>
+        /// If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.
+        /// </summary>
         [Output("revokeRefreshToken")]
         public Output<bool?> RevokeRefreshToken { get; private set; } = null!;
 
@@ -152,22 +329,52 @@ namespace Pulumi.Keycloak
         public Output<Outputs.RealmSmtpServer?> SmtpServer { get; private set; } = null!;
 
         /// <summary>
-        /// SSL Required: Values can be 'none', 'external' or 'all'.
+        /// Can be one of following values: 'none, 'external' or 'all'
         /// </summary>
         [Output("sslRequired")]
         public Output<string?> SslRequired { get; private set; } = null!;
 
+        /// <summary>
+        /// The amount of time a session can be idle before it expires.
+        /// </summary>
         [Output("ssoSessionIdleTimeout")]
         public Output<string> SsoSessionIdleTimeout { get; private set; } = null!;
 
+        [Output("ssoSessionIdleTimeoutRememberMe")]
+        public Output<string> SsoSessionIdleTimeoutRememberMe { get; private set; } = null!;
+
+        /// <summary>
+        /// The maximum amount of time before a session expires regardless of activity.
+        /// </summary>
         [Output("ssoSessionMaxLifespan")]
         public Output<string> SsoSessionMaxLifespan { get; private set; } = null!;
 
+        [Output("ssoSessionMaxLifespanRememberMe")]
+        public Output<string> SsoSessionMaxLifespanRememberMe { get; private set; } = null!;
+
+        /// <summary>
+        /// When `true`, users are allowed to manage their own resources. Defaults to `false`.
+        /// </summary>
         [Output("userManagedAccess")]
         public Output<bool?> UserManagedAccess { get; private set; } = null!;
 
+        /// <summary>
+        /// When true, users are required to verify their email address after registration and after email address changes.
+        /// </summary>
         [Output("verifyEmail")]
         public Output<bool> VerifyEmail { get; private set; } = null!;
+
+        /// <summary>
+        /// Configuration for WebAuthn Passwordless Policy authentication.
+        /// </summary>
+        [Output("webAuthnPasswordlessPolicy")]
+        public Output<Outputs.RealmWebAuthnPasswordlessPolicy> WebAuthnPasswordlessPolicy { get; private set; } = null!;
+
+        /// <summary>
+        /// Configuration for WebAuthn Policy authentication.
+        /// </summary>
+        [Output("webAuthnPolicy")]
+        public Output<Outputs.RealmWebAuthnPolicy> WebAuthnPolicy { get; private set; } = null!;
 
 
         /// <summary>
@@ -215,35 +422,66 @@ namespace Pulumi.Keycloak
 
     public sealed class RealmArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The maximum amount of time a client has to finish the authorization code flow.
+        /// </summary>
         [Input("accessCodeLifespan")]
         public Input<string>? AccessCodeLifespan { get; set; }
 
+        /// <summary>
+        /// The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.
+        /// </summary>
         [Input("accessCodeLifespanLogin")]
         public Input<string>? AccessCodeLifespanLogin { get; set; }
 
+        /// <summary>
+        /// The maximum amount of time a user has to complete login related actions, such as updating a password.
+        /// </summary>
         [Input("accessCodeLifespanUserAction")]
         public Input<string>? AccessCodeLifespanUserAction { get; set; }
 
+        /// <summary>
+        /// The amount of time an access token can be used before it expires.
+        /// </summary>
         [Input("accessTokenLifespan")]
         public Input<string>? AccessTokenLifespan { get; set; }
 
+        /// <summary>
+        /// The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.
+        /// </summary>
         [Input("accessTokenLifespanForImplicitFlow")]
         public Input<string>? AccessTokenLifespanForImplicitFlow { get; set; }
 
+        /// <summary>
+        /// Used for account management pages.
+        /// </summary>
         [Input("accountTheme")]
         public Input<string>? AccountTheme { get; set; }
 
+        /// <summary>
+        /// The maximum time a user has to use an admin-generated permit before it expires.
+        /// </summary>
         [Input("actionTokenGeneratedByAdminLifespan")]
         public Input<string>? ActionTokenGeneratedByAdminLifespan { get; set; }
 
+        /// <summary>
+        /// The maximum time a user has to use a user-generated permit before it expires.
+        /// </summary>
         [Input("actionTokenGeneratedByUserLifespan")]
         public Input<string>? ActionTokenGeneratedByUserLifespan { get; set; }
 
+        /// <summary>
+        /// Used for the admin console.
+        /// </summary>
         [Input("adminTheme")]
         public Input<string>? AdminTheme { get; set; }
 
         [Input("attributes")]
         private InputMap<object>? _attributes;
+
+        /// <summary>
+        /// A map of custom attributes to add to the realm.
+        /// </summary>
         public InputMap<object> Attributes
         {
             get => _attributes ?? (_attributes = new InputMap<object>());
@@ -251,103 +489,161 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// Which flow should be used for BrowserFlow
+        /// The desired flow for browser authentication. Defaults to `browser`.
         /// </summary>
         [Input("browserFlow")]
         public Input<string>? BrowserFlow { get; set; }
 
         /// <summary>
-        /// Which flow should be used for ClientAuthenticationFlow
+        /// The desired flow for client authentication. Defaults to `clients`.
         /// </summary>
         [Input("clientAuthenticationFlow")]
         public Input<string>? ClientAuthenticationFlow { get; set; }
 
+        /// <summary>
+        /// Default algorithm used to sign tokens for the realm.
+        /// </summary>
         [Input("defaultSignatureAlgorithm")]
         public Input<string>? DefaultSignatureAlgorithm { get; set; }
 
         /// <summary>
-        /// Which flow should be used for DirectGrantFlow
+        /// The desired flow for direct access authentication. Defaults to `direct grant`.
         /// </summary>
         [Input("directGrantFlow")]
         public Input<string>? DirectGrantFlow { get; set; }
 
+        /// <summary>
+        /// The display name for the realm that is shown when logging in to the admin console.
+        /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
+        /// <summary>
+        /// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+        /// </summary>
         [Input("displayNameHtml")]
         public Input<string>? DisplayNameHtml { get; set; }
 
         /// <summary>
-        /// Which flow should be used for DockerAuthenticationFlow
+        /// The desired flow for Docker authentication. Defaults to `docker auth`.
         /// </summary>
         [Input("dockerAuthenticationFlow")]
         public Input<string>? DockerAuthenticationFlow { get; set; }
 
+        /// <summary>
+        /// When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `login_with_email_allowed` is set to `true`.
+        /// </summary>
         [Input("duplicateEmailsAllowed")]
         public Input<bool>? DuplicateEmailsAllowed { get; set; }
 
+        /// <summary>
+        /// When true, the username field is editable.
+        /// </summary>
         [Input("editUsernameAllowed")]
         public Input<bool>? EditUsernameAllowed { get; set; }
 
+        /// <summary>
+        /// Used for emails that are sent by Keycloak.
+        /// </summary>
         [Input("emailTheme")]
         public Input<string>? EmailTheme { get; set; }
 
+        /// <summary>
+        /// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         [Input("internationalization")]
         public Input<Inputs.RealmInternationalizationArgs>? Internationalization { get; set; }
 
+        /// <summary>
+        /// Used for the login, forgot password, and registration pages.
+        /// </summary>
         [Input("loginTheme")]
         public Input<string>? LoginTheme { get; set; }
 
+        /// <summary>
+        /// When true, users may log in with their email address.
+        /// </summary>
         [Input("loginWithEmailAllowed")]
         public Input<bool>? LoginWithEmailAllowed { get; set; }
 
+        /// <summary>
+        /// The amount of time an offline session can be idle before it expires.
+        /// </summary>
         [Input("offlineSessionIdleTimeout")]
         public Input<string>? OfflineSessionIdleTimeout { get; set; }
 
+        /// <summary>
+        /// The maximum amount of time before an offline session expires regardless of activity.
+        /// </summary>
         [Input("offlineSessionMaxLifespan")]
         public Input<string>? OfflineSessionMaxLifespan { get; set; }
 
         /// <summary>
-        /// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-        /// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-        /// and notUsername(undefined)"
+        /// Enable `offline_session_max_lifespan`.
+        /// </summary>
+        [Input("offlineSessionMaxLifespanEnabled")]
+        public Input<bool>? OfflineSessionMaxLifespanEnabled { get; set; }
+
+        /// <summary>
+        /// The password policy for users within the realm.
         /// </summary>
         [Input("passwordPolicy")]
         public Input<string>? PasswordPolicy { get; set; }
 
+        /// <summary>
+        /// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+        /// </summary>
         [Input("realm", required: true)]
         public Input<string> RealmName { get; set; } = null!;
 
+        /// <summary>
+        /// Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
+        /// </summary>
         [Input("refreshTokenMaxReuse")]
         public Input<int>? RefreshTokenMaxReuse { get; set; }
 
+        /// <summary>
+        /// When true, user registration will be enabled, and a link for registration will be displayed on the login page.
+        /// </summary>
         [Input("registrationAllowed")]
         public Input<bool>? RegistrationAllowed { get; set; }
 
+        /// <summary>
+        /// When true, the user's email will be used as their username during registration.
+        /// </summary>
         [Input("registrationEmailAsUsername")]
         public Input<bool>? RegistrationEmailAsUsername { get; set; }
 
         /// <summary>
-        /// Which flow should be used for RegistrationFlow
+        /// The desired flow for user registration. Defaults to `registration`.
         /// </summary>
         [Input("registrationFlow")]
         public Input<string>? RegistrationFlow { get; set; }
 
+        /// <summary>
+        /// When true, a "remember me" checkbox will be displayed on the login page, and the user's session will not expire between browser restarts.
+        /// </summary>
         [Input("rememberMe")]
         public Input<bool>? RememberMe { get; set; }
 
         /// <summary>
-        /// Which flow should be used for ResetCredentialsFlow
+        /// The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
         /// </summary>
         [Input("resetCredentialsFlow")]
         public Input<string>? ResetCredentialsFlow { get; set; }
 
+        /// <summary>
+        /// When true, a "forgot password" link will be displayed on the login page.
+        /// </summary>
         [Input("resetPasswordAllowed")]
         public Input<bool>? ResetPasswordAllowed { get; set; }
 
+        /// <summary>
+        /// If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.
+        /// </summary>
         [Input("revokeRefreshToken")]
         public Input<bool>? RevokeRefreshToken { get; set; }
 
@@ -358,22 +654,52 @@ namespace Pulumi.Keycloak
         public Input<Inputs.RealmSmtpServerArgs>? SmtpServer { get; set; }
 
         /// <summary>
-        /// SSL Required: Values can be 'none', 'external' or 'all'.
+        /// Can be one of following values: 'none, 'external' or 'all'
         /// </summary>
         [Input("sslRequired")]
         public Input<string>? SslRequired { get; set; }
 
+        /// <summary>
+        /// The amount of time a session can be idle before it expires.
+        /// </summary>
         [Input("ssoSessionIdleTimeout")]
         public Input<string>? SsoSessionIdleTimeout { get; set; }
 
+        [Input("ssoSessionIdleTimeoutRememberMe")]
+        public Input<string>? SsoSessionIdleTimeoutRememberMe { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time before a session expires regardless of activity.
+        /// </summary>
         [Input("ssoSessionMaxLifespan")]
         public Input<string>? SsoSessionMaxLifespan { get; set; }
 
+        [Input("ssoSessionMaxLifespanRememberMe")]
+        public Input<string>? SsoSessionMaxLifespanRememberMe { get; set; }
+
+        /// <summary>
+        /// When `true`, users are allowed to manage their own resources. Defaults to `false`.
+        /// </summary>
         [Input("userManagedAccess")]
         public Input<bool>? UserManagedAccess { get; set; }
 
+        /// <summary>
+        /// When true, users are required to verify their email address after registration and after email address changes.
+        /// </summary>
         [Input("verifyEmail")]
         public Input<bool>? VerifyEmail { get; set; }
+
+        /// <summary>
+        /// Configuration for WebAuthn Passwordless Policy authentication.
+        /// </summary>
+        [Input("webAuthnPasswordlessPolicy")]
+        public Input<Inputs.RealmWebAuthnPasswordlessPolicyArgs>? WebAuthnPasswordlessPolicy { get; set; }
+
+        /// <summary>
+        /// Configuration for WebAuthn Policy authentication.
+        /// </summary>
+        [Input("webAuthnPolicy")]
+        public Input<Inputs.RealmWebAuthnPolicyArgs>? WebAuthnPolicy { get; set; }
 
         public RealmArgs()
         {
@@ -382,35 +708,66 @@ namespace Pulumi.Keycloak
 
     public sealed class RealmState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The maximum amount of time a client has to finish the authorization code flow.
+        /// </summary>
         [Input("accessCodeLifespan")]
         public Input<string>? AccessCodeLifespan { get; set; }
 
+        /// <summary>
+        /// The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.
+        /// </summary>
         [Input("accessCodeLifespanLogin")]
         public Input<string>? AccessCodeLifespanLogin { get; set; }
 
+        /// <summary>
+        /// The maximum amount of time a user has to complete login related actions, such as updating a password.
+        /// </summary>
         [Input("accessCodeLifespanUserAction")]
         public Input<string>? AccessCodeLifespanUserAction { get; set; }
 
+        /// <summary>
+        /// The amount of time an access token can be used before it expires.
+        /// </summary>
         [Input("accessTokenLifespan")]
         public Input<string>? AccessTokenLifespan { get; set; }
 
+        /// <summary>
+        /// The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.
+        /// </summary>
         [Input("accessTokenLifespanForImplicitFlow")]
         public Input<string>? AccessTokenLifespanForImplicitFlow { get; set; }
 
+        /// <summary>
+        /// Used for account management pages.
+        /// </summary>
         [Input("accountTheme")]
         public Input<string>? AccountTheme { get; set; }
 
+        /// <summary>
+        /// The maximum time a user has to use an admin-generated permit before it expires.
+        /// </summary>
         [Input("actionTokenGeneratedByAdminLifespan")]
         public Input<string>? ActionTokenGeneratedByAdminLifespan { get; set; }
 
+        /// <summary>
+        /// The maximum time a user has to use a user-generated permit before it expires.
+        /// </summary>
         [Input("actionTokenGeneratedByUserLifespan")]
         public Input<string>? ActionTokenGeneratedByUserLifespan { get; set; }
 
+        /// <summary>
+        /// Used for the admin console.
+        /// </summary>
         [Input("adminTheme")]
         public Input<string>? AdminTheme { get; set; }
 
         [Input("attributes")]
         private InputMap<object>? _attributes;
+
+        /// <summary>
+        /// A map of custom attributes to add to the realm.
+        /// </summary>
         public InputMap<object> Attributes
         {
             get => _attributes ?? (_attributes = new InputMap<object>());
@@ -418,47 +775,68 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// Which flow should be used for BrowserFlow
+        /// The desired flow for browser authentication. Defaults to `browser`.
         /// </summary>
         [Input("browserFlow")]
         public Input<string>? BrowserFlow { get; set; }
 
         /// <summary>
-        /// Which flow should be used for ClientAuthenticationFlow
+        /// The desired flow for client authentication. Defaults to `clients`.
         /// </summary>
         [Input("clientAuthenticationFlow")]
         public Input<string>? ClientAuthenticationFlow { get; set; }
 
+        /// <summary>
+        /// Default algorithm used to sign tokens for the realm.
+        /// </summary>
         [Input("defaultSignatureAlgorithm")]
         public Input<string>? DefaultSignatureAlgorithm { get; set; }
 
         /// <summary>
-        /// Which flow should be used for DirectGrantFlow
+        /// The desired flow for direct access authentication. Defaults to `direct grant`.
         /// </summary>
         [Input("directGrantFlow")]
         public Input<string>? DirectGrantFlow { get; set; }
 
+        /// <summary>
+        /// The display name for the realm that is shown when logging in to the admin console.
+        /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
+        /// <summary>
+        /// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+        /// </summary>
         [Input("displayNameHtml")]
         public Input<string>? DisplayNameHtml { get; set; }
 
         /// <summary>
-        /// Which flow should be used for DockerAuthenticationFlow
+        /// The desired flow for Docker authentication. Defaults to `docker auth`.
         /// </summary>
         [Input("dockerAuthenticationFlow")]
         public Input<string>? DockerAuthenticationFlow { get; set; }
 
+        /// <summary>
+        /// When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `login_with_email_allowed` is set to `true`.
+        /// </summary>
         [Input("duplicateEmailsAllowed")]
         public Input<bool>? DuplicateEmailsAllowed { get; set; }
 
+        /// <summary>
+        /// When true, the username field is editable.
+        /// </summary>
         [Input("editUsernameAllowed")]
         public Input<bool>? EditUsernameAllowed { get; set; }
 
+        /// <summary>
+        /// Used for emails that are sent by Keycloak.
+        /// </summary>
         [Input("emailTheme")]
         public Input<string>? EmailTheme { get; set; }
 
+        /// <summary>
+        /// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
@@ -468,56 +846,93 @@ namespace Pulumi.Keycloak
         [Input("internationalization")]
         public Input<Inputs.RealmInternationalizationGetArgs>? Internationalization { get; set; }
 
+        /// <summary>
+        /// Used for the login, forgot password, and registration pages.
+        /// </summary>
         [Input("loginTheme")]
         public Input<string>? LoginTheme { get; set; }
 
+        /// <summary>
+        /// When true, users may log in with their email address.
+        /// </summary>
         [Input("loginWithEmailAllowed")]
         public Input<bool>? LoginWithEmailAllowed { get; set; }
 
+        /// <summary>
+        /// The amount of time an offline session can be idle before it expires.
+        /// </summary>
         [Input("offlineSessionIdleTimeout")]
         public Input<string>? OfflineSessionIdleTimeout { get; set; }
 
+        /// <summary>
+        /// The maximum amount of time before an offline session expires regardless of activity.
+        /// </summary>
         [Input("offlineSessionMaxLifespan")]
         public Input<string>? OfflineSessionMaxLifespan { get; set; }
 
         /// <summary>
-        /// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-        /// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-        /// and notUsername(undefined)"
+        /// Enable `offline_session_max_lifespan`.
+        /// </summary>
+        [Input("offlineSessionMaxLifespanEnabled")]
+        public Input<bool>? OfflineSessionMaxLifespanEnabled { get; set; }
+
+        /// <summary>
+        /// The password policy for users within the realm.
         /// </summary>
         [Input("passwordPolicy")]
         public Input<string>? PasswordPolicy { get; set; }
 
+        /// <summary>
+        /// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+        /// </summary>
         [Input("realm")]
         public Input<string>? RealmName { get; set; }
 
+        /// <summary>
+        /// Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
+        /// </summary>
         [Input("refreshTokenMaxReuse")]
         public Input<int>? RefreshTokenMaxReuse { get; set; }
 
+        /// <summary>
+        /// When true, user registration will be enabled, and a link for registration will be displayed on the login page.
+        /// </summary>
         [Input("registrationAllowed")]
         public Input<bool>? RegistrationAllowed { get; set; }
 
+        /// <summary>
+        /// When true, the user's email will be used as their username during registration.
+        /// </summary>
         [Input("registrationEmailAsUsername")]
         public Input<bool>? RegistrationEmailAsUsername { get; set; }
 
         /// <summary>
-        /// Which flow should be used for RegistrationFlow
+        /// The desired flow for user registration. Defaults to `registration`.
         /// </summary>
         [Input("registrationFlow")]
         public Input<string>? RegistrationFlow { get; set; }
 
+        /// <summary>
+        /// When true, a "remember me" checkbox will be displayed on the login page, and the user's session will not expire between browser restarts.
+        /// </summary>
         [Input("rememberMe")]
         public Input<bool>? RememberMe { get; set; }
 
         /// <summary>
-        /// Which flow should be used for ResetCredentialsFlow
+        /// The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
         /// </summary>
         [Input("resetCredentialsFlow")]
         public Input<string>? ResetCredentialsFlow { get; set; }
 
+        /// <summary>
+        /// When true, a "forgot password" link will be displayed on the login page.
+        /// </summary>
         [Input("resetPasswordAllowed")]
         public Input<bool>? ResetPasswordAllowed { get; set; }
 
+        /// <summary>
+        /// If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.
+        /// </summary>
         [Input("revokeRefreshToken")]
         public Input<bool>? RevokeRefreshToken { get; set; }
 
@@ -528,22 +943,52 @@ namespace Pulumi.Keycloak
         public Input<Inputs.RealmSmtpServerGetArgs>? SmtpServer { get; set; }
 
         /// <summary>
-        /// SSL Required: Values can be 'none', 'external' or 'all'.
+        /// Can be one of following values: 'none, 'external' or 'all'
         /// </summary>
         [Input("sslRequired")]
         public Input<string>? SslRequired { get; set; }
 
+        /// <summary>
+        /// The amount of time a session can be idle before it expires.
+        /// </summary>
         [Input("ssoSessionIdleTimeout")]
         public Input<string>? SsoSessionIdleTimeout { get; set; }
 
+        [Input("ssoSessionIdleTimeoutRememberMe")]
+        public Input<string>? SsoSessionIdleTimeoutRememberMe { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time before a session expires regardless of activity.
+        /// </summary>
         [Input("ssoSessionMaxLifespan")]
         public Input<string>? SsoSessionMaxLifespan { get; set; }
 
+        [Input("ssoSessionMaxLifespanRememberMe")]
+        public Input<string>? SsoSessionMaxLifespanRememberMe { get; set; }
+
+        /// <summary>
+        /// When `true`, users are allowed to manage their own resources. Defaults to `false`.
+        /// </summary>
         [Input("userManagedAccess")]
         public Input<bool>? UserManagedAccess { get; set; }
 
+        /// <summary>
+        /// When true, users are required to verify their email address after registration and after email address changes.
+        /// </summary>
         [Input("verifyEmail")]
         public Input<bool>? VerifyEmail { get; set; }
+
+        /// <summary>
+        /// Configuration for WebAuthn Passwordless Policy authentication.
+        /// </summary>
+        [Input("webAuthnPasswordlessPolicy")]
+        public Input<Inputs.RealmWebAuthnPasswordlessPolicyGetArgs>? WebAuthnPasswordlessPolicy { get; set; }
+
+        /// <summary>
+        /// Configuration for WebAuthn Policy authentication.
+        /// </summary>
+        [Input("webAuthnPolicy")]
+        public Input<Inputs.RealmWebAuthnPolicyGetArgs>? WebAuthnPolicy { get; set; }
 
         public RealmState()
         {

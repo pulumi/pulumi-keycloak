@@ -12,9 +12,15 @@ namespace Pulumi.Keycloak.Inputs
 
     public sealed class UserInitialPasswordArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
+        /// </summary>
         [Input("temporary")]
         public Input<bool>? Temporary { get; set; }
 
+        /// <summary>
+        /// The initial password.
+        /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 

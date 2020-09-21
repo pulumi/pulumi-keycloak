@@ -6,6 +6,22 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * This data source can be used to fetch properties of a Keycloak realm for
+ * usage with other resources.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = keycloak.getRealm({
+ *     realm: "my-realm",
+ * });
+ * const group = new keycloak.Role("group", {realmId: realm.then(realm => realm.id)});
+ * ```
+ */
 export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmResult> {
     if (!opts) {
         opts = {}
@@ -21,6 +37,8 @@ export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promi
         "realm": args.realm,
         "securityDefenses": args.securityDefenses,
         "smtpServers": args.smtpServers,
+        "webAuthnPasswordlessPolicy": args.webAuthnPasswordlessPolicy,
+        "webAuthnPolicy": args.webAuthnPolicy,
     }, opts);
 }
 
@@ -31,9 +49,14 @@ export interface GetRealmArgs {
     readonly attributes?: {[key: string]: any};
     readonly displayNameHtml?: string;
     readonly internationalizations?: inputs.GetRealmInternationalization[];
+    /**
+     * The realm name.
+     */
     readonly realm: string;
     readonly securityDefenses?: inputs.GetRealmSecurityDefense[];
     readonly smtpServers?: inputs.GetRealmSmtpServer[];
+    readonly webAuthnPasswordlessPolicy?: inputs.GetRealmWebAuthnPasswordlessPolicy;
+    readonly webAuthnPolicy?: inputs.GetRealmWebAuthnPolicy;
 }
 
 /**
@@ -52,6 +75,7 @@ export interface GetRealmResult {
     readonly attributes: {[key: string]: any};
     readonly browserFlow: string;
     readonly clientAuthenticationFlow: string;
+    readonly defaultSignatureAlgorithm: string;
     readonly directGrantFlow: string;
     readonly displayName: string;
     readonly displayNameHtml?: string;
@@ -70,6 +94,7 @@ export interface GetRealmResult {
     readonly loginWithEmailAllowed: boolean;
     readonly offlineSessionIdleTimeout: string;
     readonly offlineSessionMaxLifespan: string;
+    readonly offlineSessionMaxLifespanEnabled: boolean;
     readonly passwordPolicy: string;
     readonly realm: string;
     readonly refreshTokenMaxReuse: number;
@@ -79,11 +104,16 @@ export interface GetRealmResult {
     readonly rememberMe: boolean;
     readonly resetCredentialsFlow: string;
     readonly resetPasswordAllowed: boolean;
+    readonly revokeRefreshToken: boolean;
     readonly securityDefenses: outputs.GetRealmSecurityDefense[];
     readonly smtpServers: outputs.GetRealmSmtpServer[];
     readonly sslRequired: string;
     readonly ssoSessionIdleTimeout: string;
+    readonly ssoSessionIdleTimeoutRememberMe: string;
     readonly ssoSessionMaxLifespan: string;
+    readonly ssoSessionMaxLifespanRememberMe: string;
     readonly userManagedAccess: boolean;
     readonly verifyEmail: boolean;
+    readonly webAuthnPasswordlessPolicy: outputs.GetRealmWebAuthnPasswordlessPolicy;
+    readonly webAuthnPolicy: outputs.GetRealmWebAuthnPolicy;
 }

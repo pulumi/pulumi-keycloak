@@ -13,20 +13,21 @@ import (
 type CustomUserFederation struct {
 	pulumi.CustomResourceState
 
+	// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
 	CachePolicy pulumi.StringPtrOutput `pulumi:"cachePolicy"`
-	Config      pulumi.MapOutput       `pulumi:"config"`
-	// When false, this provider will not be used when performing queries for users.
+	// The provider configuration handed over to your custom user federation provider.
+	Config pulumi.MapOutput `pulumi:"config"`
+	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The parent_id of the generated component. will use realm_id if not specified.
+	// Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
 	ParentId pulumi.StringPtrOutput `pulumi:"parentId"`
-	// Priority of this provider when looking up users. Lower values are first.
+	// Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
-	// The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
-	// interface
+	// The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
 	ProviderId pulumi.StringOutput `pulumi:"providerId"`
-	// The realm (name) this provider will provide user federation for.
+	// The realm that this provider will provide user federation for.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
@@ -64,38 +65,40 @@ func GetCustomUserFederation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CustomUserFederation resources.
 type customUserFederationState struct {
-	CachePolicy *string                `pulumi:"cachePolicy"`
-	Config      map[string]interface{} `pulumi:"config"`
-	// When false, this provider will not be used when performing queries for users.
+	// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+	CachePolicy *string `pulumi:"cachePolicy"`
+	// The provider configuration handed over to your custom user federation provider.
+	Config map[string]interface{} `pulumi:"config"`
+	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
 	// Display name of the provider when displayed in the console.
 	Name *string `pulumi:"name"`
-	// The parent_id of the generated component. will use realm_id if not specified.
+	// Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
 	ParentId *string `pulumi:"parentId"`
-	// Priority of this provider when looking up users. Lower values are first.
+	// Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
 	Priority *int `pulumi:"priority"`
-	// The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
-	// interface
+	// The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
 	ProviderId *string `pulumi:"providerId"`
-	// The realm (name) this provider will provide user federation for.
+	// The realm that this provider will provide user federation for.
 	RealmId *string `pulumi:"realmId"`
 }
 
 type CustomUserFederationState struct {
+	// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
 	CachePolicy pulumi.StringPtrInput
-	Config      pulumi.MapInput
-	// When false, this provider will not be used when performing queries for users.
+	// The provider configuration handed over to your custom user federation provider.
+	Config pulumi.MapInput
+	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringPtrInput
-	// The parent_id of the generated component. will use realm_id if not specified.
+	// Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
 	ParentId pulumi.StringPtrInput
-	// Priority of this provider when looking up users. Lower values are first.
+	// Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
 	Priority pulumi.IntPtrInput
-	// The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
-	// interface
+	// The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
 	ProviderId pulumi.StringPtrInput
-	// The realm (name) this provider will provide user federation for.
+	// The realm that this provider will provide user federation for.
 	RealmId pulumi.StringPtrInput
 }
 
@@ -104,39 +107,41 @@ func (CustomUserFederationState) ElementType() reflect.Type {
 }
 
 type customUserFederationArgs struct {
-	CachePolicy *string                `pulumi:"cachePolicy"`
-	Config      map[string]interface{} `pulumi:"config"`
-	// When false, this provider will not be used when performing queries for users.
+	// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+	CachePolicy *string `pulumi:"cachePolicy"`
+	// The provider configuration handed over to your custom user federation provider.
+	Config map[string]interface{} `pulumi:"config"`
+	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
 	// Display name of the provider when displayed in the console.
 	Name *string `pulumi:"name"`
-	// The parent_id of the generated component. will use realm_id if not specified.
+	// Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
 	ParentId *string `pulumi:"parentId"`
-	// Priority of this provider when looking up users. Lower values are first.
+	// Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
 	Priority *int `pulumi:"priority"`
-	// The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
-	// interface
+	// The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
 	ProviderId string `pulumi:"providerId"`
-	// The realm (name) this provider will provide user federation for.
+	// The realm that this provider will provide user federation for.
 	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a CustomUserFederation resource.
 type CustomUserFederationArgs struct {
+	// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
 	CachePolicy pulumi.StringPtrInput
-	Config      pulumi.MapInput
-	// When false, this provider will not be used when performing queries for users.
+	// The provider configuration handed over to your custom user federation provider.
+	Config pulumi.MapInput
+	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringPtrInput
-	// The parent_id of the generated component. will use realm_id if not specified.
+	// Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
 	ParentId pulumi.StringPtrInput
-	// Priority of this provider when looking up users. Lower values are first.
+	// Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
 	Priority pulumi.IntPtrInput
-	// The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
-	// interface
+	// The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
 	ProviderId pulumi.StringInput
-	// The realm (name) this provider will provide user federation for.
+	// The realm that this provider will provide user federation for.
 	RealmId pulumi.StringInput
 }
 

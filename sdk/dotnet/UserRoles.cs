@@ -11,12 +11,21 @@ namespace Pulumi.Keycloak
 {
     public partial class UserRoles : Pulumi.CustomResource
     {
+        /// <summary>
+        /// The realm this user exists in.
+        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
+        /// <summary>
+        /// A list of role IDs to map to the user
+        /// </summary>
         [Output("roleIds")]
         public Output<ImmutableArray<string>> RoleIds { get; private set; } = null!;
 
+        /// <summary>
+        /// The ID of the user this resource should manage roles for.
+        /// </summary>
         [Output("userId")]
         public Output<string> UserId { get; private set; } = null!;
 
@@ -66,17 +75,27 @@ namespace Pulumi.Keycloak
 
     public sealed class UserRolesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The realm this user exists in.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
         [Input("roleIds", required: true)]
         private InputList<string>? _roleIds;
+
+        /// <summary>
+        /// A list of role IDs to map to the user
+        /// </summary>
         public InputList<string> RoleIds
         {
             get => _roleIds ?? (_roleIds = new InputList<string>());
             set => _roleIds = value;
         }
 
+        /// <summary>
+        /// The ID of the user this resource should manage roles for.
+        /// </summary>
         [Input("userId", required: true)]
         public Input<string> UserId { get; set; } = null!;
 
@@ -87,17 +106,27 @@ namespace Pulumi.Keycloak
 
     public sealed class UserRolesState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The realm this user exists in.
+        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
         [Input("roleIds")]
         private InputList<string>? _roleIds;
+
+        /// <summary>
+        /// A list of role IDs to map to the user
+        /// </summary>
         public InputList<string> RoleIds
         {
             get => _roleIds ?? (_roleIds = new InputList<string>());
             set => _roleIds = value;
         }
 
+        /// <summary>
+        /// The ID of the user this resource should manage roles for.
+        /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }
 

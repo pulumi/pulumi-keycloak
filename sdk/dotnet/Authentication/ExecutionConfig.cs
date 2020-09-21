@@ -10,11 +10,10 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Authentication
 {
     /// <summary>
-    /// ## # keycloak.authentication.ExecutionConfig
+    /// Allows for managing an authentication execution's configuration. If a particular authentication execution supports additional
+    /// configuration (such as with the `identity-provider-redirector` execution), this can be managed with this resource.
     /// 
-    /// Allows for managing an authentication execution configuration.
-    /// 
-    /// ### Example Usage
+    /// ## Example Usage
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -26,55 +25,58 @@ namespace Pulumi.Keycloak.Authentication
     ///     {
     ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
     ///         {
-    ///             Enabled = true,
     ///             Realm = "my-realm",
+    ///             Enabled = true,
     ///         });
     ///         var flow = new Keycloak.Authentication.Flow("flow", new Keycloak.Authentication.FlowArgs
     ///         {
-    ///             Alias = "my-flow-alias",
     ///             RealmId = realm.Id,
+    ///             Alias = "my-flow-alias",
     ///         });
     ///         var execution = new Keycloak.Authentication.Execution("execution", new Keycloak.Authentication.ExecutionArgs
     ///         {
-    ///             Authenticator = "identity-provider-redirector",
-    ///             ParentFlowAlias = flow.Alias,
     ///             RealmId = realm.Id,
+    ///             ParentFlowAlias = flow.Alias,
+    ///             Authenticator = "identity-provider-redirector",
     ///         });
     ///         var config = new Keycloak.Authentication.ExecutionConfig("config", new Keycloak.Authentication.ExecutionConfigArgs
     ///         {
+    ///             RealmId = realm.Id,
+    ///             ExecutionId = execution.Id,
     ///             Alias = "my-config-alias",
     ///             Config = 
     ///             {
     ///                 { "defaultProvider", "my-config-default-idp" },
     ///             },
-    ///             ExecutionId = execution.Id,
-    ///             RealmId = realm.Id,
     ///         });
     ///     }
     /// 
     /// }
     /// ```
-    /// 
-    /// ### Argument Reference
-    /// 
-    /// The following arguments are supported:
-    /// 
-    /// - `realm_id` - (Required) The realm the authentication execution exists in.
-    /// - `execution_id` - (Required) The authentication execution this configuration is attached to.
-    /// - `alias` - (Required) The name of the configuration.
-    /// - `config` - (Optional) The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
     /// </summary>
     public partial class ExecutionConfig : Pulumi.CustomResource
     {
+        /// <summary>
+        /// The name of the configuration.
+        /// </summary>
         [Output("alias")]
         public Output<string> Alias { get; private set; } = null!;
 
+        /// <summary>
+        /// The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+        /// </summary>
         [Output("config")]
         public Output<ImmutableDictionary<string, string>> Config { get; private set; } = null!;
 
+        /// <summary>
+        /// The authentication execution this configuration is attached to.
+        /// </summary>
         [Output("executionId")]
         public Output<string> ExecutionId { get; private set; } = null!;
 
+        /// <summary>
+        /// The realm the authentication execution exists in.
+        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
@@ -124,20 +126,33 @@ namespace Pulumi.Keycloak.Authentication
 
     public sealed class ExecutionConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the configuration.
+        /// </summary>
         [Input("alias", required: true)]
         public Input<string> Alias { get; set; } = null!;
 
         [Input("config", required: true)]
         private InputMap<string>? _config;
+
+        /// <summary>
+        /// The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+        /// </summary>
         public InputMap<string> Config
         {
             get => _config ?? (_config = new InputMap<string>());
             set => _config = value;
         }
 
+        /// <summary>
+        /// The authentication execution this configuration is attached to.
+        /// </summary>
         [Input("executionId", required: true)]
         public Input<string> ExecutionId { get; set; } = null!;
 
+        /// <summary>
+        /// The realm the authentication execution exists in.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
@@ -148,20 +163,33 @@ namespace Pulumi.Keycloak.Authentication
 
     public sealed class ExecutionConfigState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the configuration.
+        /// </summary>
         [Input("alias")]
         public Input<string>? Alias { get; set; }
 
         [Input("config")]
         private InputMap<string>? _config;
+
+        /// <summary>
+        /// The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+        /// </summary>
         public InputMap<string> Config
         {
             get => _config ?? (_config = new InputMap<string>());
             set => _config = value;
         }
 
+        /// <summary>
+        /// The authentication execution this configuration is attached to.
+        /// </summary>
         [Input("executionId")]
         public Input<string>? ExecutionId { get; set; }
 
+        /// <summary>
+        /// The realm the authentication execution exists in.
+        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 

@@ -11,13 +11,13 @@ namespace Pulumi.Keycloak.OpenId.Outputs
 {
 
     [OutputType]
-    public sealed class GetClientAuthenticationFlowBindingOverridesResult
+    public sealed class GetClientAuthenticationFlowBindingOverrideResult
     {
         public readonly string BrowserId;
         public readonly string DirectGrantId;
 
         [OutputConstructor]
-        private GetClientAuthenticationFlowBindingOverridesResult(
+        private GetClientAuthenticationFlowBindingOverrideResult(
             string browserId,
 
             string directGrantId)

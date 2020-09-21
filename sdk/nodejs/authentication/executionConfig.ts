@@ -5,47 +5,37 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.authentication.ExecutionConfig
+ * Allows for managing an authentication execution's configuration. If a particular authentication execution supports additional
+ * configuration (such as with the `identity-provider-redirector` execution), this can be managed with this resource.
  *
- * Allows for managing an authentication execution configuration.
- *
- * ### Example Usage
+ * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
  * const flow = new keycloak.authentication.Flow("flow", {
- *     alias: "my-flow-alias",
  *     realmId: realm.id,
+ *     alias: "my-flow-alias",
  * });
  * const execution = new keycloak.authentication.Execution("execution", {
- *     authenticator: "identity-provider-redirector",
- *     parentFlowAlias: flow.alias,
  *     realmId: realm.id,
+ *     parentFlowAlias: flow.alias,
+ *     authenticator: "identity-provider-redirector",
  * });
  * const config = new keycloak.authentication.ExecutionConfig("config", {
+ *     realmId: realm.id,
+ *     executionId: execution.id,
  *     alias: "my-config-alias",
  *     config: {
  *         defaultProvider: "my-config-default-idp",
  *     },
- *     executionId: execution.id,
- *     realmId: realm.id,
  * });
  * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realmId` - (Required) The realm the authentication execution exists in.
- * - `executionId` - (Required) The authentication execution this configuration is attached to.
- * - `alias` - (Required) The name of the configuration.
- * - `config` - (Optional) The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
  */
 export class ExecutionConfig extends pulumi.CustomResource {
     /**
@@ -75,9 +65,21 @@ export class ExecutionConfig extends pulumi.CustomResource {
         return obj['__pulumiType'] === ExecutionConfig.__pulumiType;
     }
 
+    /**
+     * The name of the configuration.
+     */
     public readonly alias!: pulumi.Output<string>;
+    /**
+     * The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+     */
     public readonly config!: pulumi.Output<{[key: string]: string}>;
+    /**
+     * The authentication execution this configuration is attached to.
+     */
     public readonly executionId!: pulumi.Output<string>;
+    /**
+     * The realm the authentication execution exists in.
+     */
     public readonly realmId!: pulumi.Output<string>;
 
     /**
@@ -130,9 +132,21 @@ export class ExecutionConfig extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ExecutionConfig resources.
  */
 export interface ExecutionConfigState {
+    /**
+     * The name of the configuration.
+     */
     readonly alias?: pulumi.Input<string>;
+    /**
+     * The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+     */
     readonly config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The authentication execution this configuration is attached to.
+     */
     readonly executionId?: pulumi.Input<string>;
+    /**
+     * The realm the authentication execution exists in.
+     */
     readonly realmId?: pulumi.Input<string>;
 }
 
@@ -140,8 +154,20 @@ export interface ExecutionConfigState {
  * The set of arguments for constructing a ExecutionConfig resource.
  */
 export interface ExecutionConfigArgs {
+    /**
+     * The name of the configuration.
+     */
     readonly alias: pulumi.Input<string>;
+    /**
+     * The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+     */
     readonly config: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The authentication execution this configuration is attached to.
+     */
     readonly executionId: pulumi.Input<string>;
+    /**
+     * The realm the authentication execution exists in.
+     */
     readonly realmId: pulumi.Input<string>;
 }

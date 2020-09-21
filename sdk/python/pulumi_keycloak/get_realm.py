@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -21,7 +21,7 @@ class GetRealmResult:
     """
     A collection of values returned by getRealm.
     """
-    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, id=None, internal_id=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, security_defenses=None, smtp_servers=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_max_lifespan=None, user_managed_access=None, verify_email=None):
+    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, default_signature_algorithm=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, id=None, internal_id=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, offline_session_max_lifespan_enabled=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, revoke_refresh_token=None, security_defenses=None, smtp_servers=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_idle_timeout_remember_me=None, sso_session_max_lifespan=None, sso_session_max_lifespan_remember_me=None, user_managed_access=None, verify_email=None, web_authn_passwordless_policy=None, web_authn_policy=None):
         if access_code_lifespan and not isinstance(access_code_lifespan, str):
             raise TypeError("Expected argument 'access_code_lifespan' to be a str")
         pulumi.set(__self__, "access_code_lifespan", access_code_lifespan)
@@ -58,6 +58,9 @@ class GetRealmResult:
         if client_authentication_flow and not isinstance(client_authentication_flow, str):
             raise TypeError("Expected argument 'client_authentication_flow' to be a str")
         pulumi.set(__self__, "client_authentication_flow", client_authentication_flow)
+        if default_signature_algorithm and not isinstance(default_signature_algorithm, str):
+            raise TypeError("Expected argument 'default_signature_algorithm' to be a str")
+        pulumi.set(__self__, "default_signature_algorithm", default_signature_algorithm)
         if direct_grant_flow and not isinstance(direct_grant_flow, str):
             raise TypeError("Expected argument 'direct_grant_flow' to be a str")
         pulumi.set(__self__, "direct_grant_flow", direct_grant_flow)
@@ -103,14 +106,17 @@ class GetRealmResult:
         if offline_session_max_lifespan and not isinstance(offline_session_max_lifespan, str):
             raise TypeError("Expected argument 'offline_session_max_lifespan' to be a str")
         pulumi.set(__self__, "offline_session_max_lifespan", offline_session_max_lifespan)
+        if offline_session_max_lifespan_enabled and not isinstance(offline_session_max_lifespan_enabled, bool):
+            raise TypeError("Expected argument 'offline_session_max_lifespan_enabled' to be a bool")
+        pulumi.set(__self__, "offline_session_max_lifespan_enabled", offline_session_max_lifespan_enabled)
         if password_policy and not isinstance(password_policy, str):
             raise TypeError("Expected argument 'password_policy' to be a str")
         pulumi.set(__self__, "password_policy", password_policy)
         if realm and not isinstance(realm, str):
             raise TypeError("Expected argument 'realm' to be a str")
         pulumi.set(__self__, "realm", realm)
-        if refresh_token_max_reuse and not isinstance(refresh_token_max_reuse, float):
-            raise TypeError("Expected argument 'refresh_token_max_reuse' to be a float")
+        if refresh_token_max_reuse and not isinstance(refresh_token_max_reuse, int):
+            raise TypeError("Expected argument 'refresh_token_max_reuse' to be a int")
         pulumi.set(__self__, "refresh_token_max_reuse", refresh_token_max_reuse)
         if registration_allowed and not isinstance(registration_allowed, bool):
             raise TypeError("Expected argument 'registration_allowed' to be a bool")
@@ -130,6 +136,9 @@ class GetRealmResult:
         if reset_password_allowed and not isinstance(reset_password_allowed, bool):
             raise TypeError("Expected argument 'reset_password_allowed' to be a bool")
         pulumi.set(__self__, "reset_password_allowed", reset_password_allowed)
+        if revoke_refresh_token and not isinstance(revoke_refresh_token, bool):
+            raise TypeError("Expected argument 'revoke_refresh_token' to be a bool")
+        pulumi.set(__self__, "revoke_refresh_token", revoke_refresh_token)
         if security_defenses and not isinstance(security_defenses, list):
             raise TypeError("Expected argument 'security_defenses' to be a list")
         pulumi.set(__self__, "security_defenses", security_defenses)
@@ -142,15 +151,27 @@ class GetRealmResult:
         if sso_session_idle_timeout and not isinstance(sso_session_idle_timeout, str):
             raise TypeError("Expected argument 'sso_session_idle_timeout' to be a str")
         pulumi.set(__self__, "sso_session_idle_timeout", sso_session_idle_timeout)
+        if sso_session_idle_timeout_remember_me and not isinstance(sso_session_idle_timeout_remember_me, str):
+            raise TypeError("Expected argument 'sso_session_idle_timeout_remember_me' to be a str")
+        pulumi.set(__self__, "sso_session_idle_timeout_remember_me", sso_session_idle_timeout_remember_me)
         if sso_session_max_lifespan and not isinstance(sso_session_max_lifespan, str):
             raise TypeError("Expected argument 'sso_session_max_lifespan' to be a str")
         pulumi.set(__self__, "sso_session_max_lifespan", sso_session_max_lifespan)
+        if sso_session_max_lifespan_remember_me and not isinstance(sso_session_max_lifespan_remember_me, str):
+            raise TypeError("Expected argument 'sso_session_max_lifespan_remember_me' to be a str")
+        pulumi.set(__self__, "sso_session_max_lifespan_remember_me", sso_session_max_lifespan_remember_me)
         if user_managed_access and not isinstance(user_managed_access, bool):
             raise TypeError("Expected argument 'user_managed_access' to be a bool")
         pulumi.set(__self__, "user_managed_access", user_managed_access)
         if verify_email and not isinstance(verify_email, bool):
             raise TypeError("Expected argument 'verify_email' to be a bool")
         pulumi.set(__self__, "verify_email", verify_email)
+        if web_authn_passwordless_policy and not isinstance(web_authn_passwordless_policy, dict):
+            raise TypeError("Expected argument 'web_authn_passwordless_policy' to be a dict")
+        pulumi.set(__self__, "web_authn_passwordless_policy", web_authn_passwordless_policy)
+        if web_authn_policy and not isinstance(web_authn_policy, dict):
+            raise TypeError("Expected argument 'web_authn_policy' to be a dict")
+        pulumi.set(__self__, "web_authn_policy", web_authn_policy)
 
     @property
     @pulumi.getter(name="accessCodeLifespan")
@@ -213,6 +234,11 @@ class GetRealmResult:
         return pulumi.get(self, "client_authentication_flow")
 
     @property
+    @pulumi.getter(name="defaultSignatureAlgorithm")
+    def default_signature_algorithm(self) -> str:
+        return pulumi.get(self, "default_signature_algorithm")
+
+    @property
     @pulumi.getter(name="directGrantFlow")
     def direct_grant_flow(self) -> str:
         return pulumi.get(self, "direct_grant_flow")
@@ -267,7 +293,7 @@ class GetRealmResult:
 
     @property
     @pulumi.getter
-    def internationalizations(self) -> List['outputs.GetRealmInternationalizationResult']:
+    def internationalizations(self) -> Sequence['outputs.GetRealmInternationalizationResult']:
         return pulumi.get(self, "internationalizations")
 
     @property
@@ -291,6 +317,11 @@ class GetRealmResult:
         return pulumi.get(self, "offline_session_max_lifespan")
 
     @property
+    @pulumi.getter(name="offlineSessionMaxLifespanEnabled")
+    def offline_session_max_lifespan_enabled(self) -> bool:
+        return pulumi.get(self, "offline_session_max_lifespan_enabled")
+
+    @property
     @pulumi.getter(name="passwordPolicy")
     def password_policy(self) -> str:
         return pulumi.get(self, "password_policy")
@@ -302,7 +333,7 @@ class GetRealmResult:
 
     @property
     @pulumi.getter(name="refreshTokenMaxReuse")
-    def refresh_token_max_reuse(self) -> float:
+    def refresh_token_max_reuse(self) -> int:
         return pulumi.get(self, "refresh_token_max_reuse")
 
     @property
@@ -336,13 +367,18 @@ class GetRealmResult:
         return pulumi.get(self, "reset_password_allowed")
 
     @property
+    @pulumi.getter(name="revokeRefreshToken")
+    def revoke_refresh_token(self) -> bool:
+        return pulumi.get(self, "revoke_refresh_token")
+
+    @property
     @pulumi.getter(name="securityDefenses")
-    def security_defenses(self) -> List['outputs.GetRealmSecurityDefenseResult']:
+    def security_defenses(self) -> Sequence['outputs.GetRealmSecurityDefenseResult']:
         return pulumi.get(self, "security_defenses")
 
     @property
     @pulumi.getter(name="smtpServers")
-    def smtp_servers(self) -> List['outputs.GetRealmSmtpServerResult']:
+    def smtp_servers(self) -> Sequence['outputs.GetRealmSmtpServerResult']:
         return pulumi.get(self, "smtp_servers")
 
     @property
@@ -356,9 +392,19 @@ class GetRealmResult:
         return pulumi.get(self, "sso_session_idle_timeout")
 
     @property
+    @pulumi.getter(name="ssoSessionIdleTimeoutRememberMe")
+    def sso_session_idle_timeout_remember_me(self) -> str:
+        return pulumi.get(self, "sso_session_idle_timeout_remember_me")
+
+    @property
     @pulumi.getter(name="ssoSessionMaxLifespan")
     def sso_session_max_lifespan(self) -> str:
         return pulumi.get(self, "sso_session_max_lifespan")
+
+    @property
+    @pulumi.getter(name="ssoSessionMaxLifespanRememberMe")
+    def sso_session_max_lifespan_remember_me(self) -> str:
+        return pulumi.get(self, "sso_session_max_lifespan_remember_me")
 
     @property
     @pulumi.getter(name="userManagedAccess")
@@ -369,6 +415,16 @@ class GetRealmResult:
     @pulumi.getter(name="verifyEmail")
     def verify_email(self) -> bool:
         return pulumi.get(self, "verify_email")
+
+    @property
+    @pulumi.getter(name="webAuthnPasswordlessPolicy")
+    def web_authn_passwordless_policy(self) -> 'outputs.GetRealmWebAuthnPasswordlessPolicyResult':
+        return pulumi.get(self, "web_authn_passwordless_policy")
+
+    @property
+    @pulumi.getter(name="webAuthnPolicy")
+    def web_authn_policy(self) -> 'outputs.GetRealmWebAuthnPolicyResult':
+        return pulumi.get(self, "web_authn_policy")
 
 
 class AwaitableGetRealmResult(GetRealmResult):
@@ -389,6 +445,7 @@ class AwaitableGetRealmResult(GetRealmResult):
             attributes=self.attributes,
             browser_flow=self.browser_flow,
             client_authentication_flow=self.client_authentication_flow,
+            default_signature_algorithm=self.default_signature_algorithm,
             direct_grant_flow=self.direct_grant_flow,
             display_name=self.display_name,
             display_name_html=self.display_name_html,
@@ -404,6 +461,7 @@ class AwaitableGetRealmResult(GetRealmResult):
             login_with_email_allowed=self.login_with_email_allowed,
             offline_session_idle_timeout=self.offline_session_idle_timeout,
             offline_session_max_lifespan=self.offline_session_max_lifespan,
+            offline_session_max_lifespan_enabled=self.offline_session_max_lifespan_enabled,
             password_policy=self.password_policy,
             realm=self.realm,
             refresh_token_max_reuse=self.refresh_token_max_reuse,
@@ -413,24 +471,45 @@ class AwaitableGetRealmResult(GetRealmResult):
             remember_me=self.remember_me,
             reset_credentials_flow=self.reset_credentials_flow,
             reset_password_allowed=self.reset_password_allowed,
+            revoke_refresh_token=self.revoke_refresh_token,
             security_defenses=self.security_defenses,
             smtp_servers=self.smtp_servers,
             ssl_required=self.ssl_required,
             sso_session_idle_timeout=self.sso_session_idle_timeout,
+            sso_session_idle_timeout_remember_me=self.sso_session_idle_timeout_remember_me,
             sso_session_max_lifespan=self.sso_session_max_lifespan,
+            sso_session_max_lifespan_remember_me=self.sso_session_max_lifespan_remember_me,
             user_managed_access=self.user_managed_access,
-            verify_email=self.verify_email)
+            verify_email=self.verify_email,
+            web_authn_passwordless_policy=self.web_authn_passwordless_policy,
+            web_authn_policy=self.web_authn_policy)
 
 
 def get_realm(attributes: Optional[Mapping[str, Any]] = None,
               display_name_html: Optional[str] = None,
-              internationalizations: Optional[List[pulumi.InputType['GetRealmInternationalizationArgs']]] = None,
+              internationalizations: Optional[Sequence[pulumi.InputType['GetRealmInternationalizationArgs']]] = None,
               realm: Optional[str] = None,
-              security_defenses: Optional[List[pulumi.InputType['GetRealmSecurityDefenseArgs']]] = None,
-              smtp_servers: Optional[List[pulumi.InputType['GetRealmSmtpServerArgs']]] = None,
+              security_defenses: Optional[Sequence[pulumi.InputType['GetRealmSecurityDefenseArgs']]] = None,
+              smtp_servers: Optional[Sequence[pulumi.InputType['GetRealmSmtpServerArgs']]] = None,
+              web_authn_passwordless_policy: Optional[pulumi.InputType['GetRealmWebAuthnPasswordlessPolicyArgs']] = None,
+              web_authn_policy: Optional[pulumi.InputType['GetRealmWebAuthnPolicyArgs']] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRealmResult:
     """
-    Use this data source to access information about an existing resource.
+    This data source can be used to fetch properties of a Keycloak realm for
+    usage with other resources.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.get_realm(realm="my-realm")
+    group = keycloak.Role("group", realm_id=realm.id)
+    ```
+
+
+    :param str realm: The realm name.
     """
     __args__ = dict()
     __args__['attributes'] = attributes
@@ -439,6 +518,8 @@ def get_realm(attributes: Optional[Mapping[str, Any]] = None,
     __args__['realm'] = realm
     __args__['securityDefenses'] = security_defenses
     __args__['smtpServers'] = smtp_servers
+    __args__['webAuthnPasswordlessPolicy'] = web_authn_passwordless_policy
+    __args__['webAuthnPolicy'] = web_authn_policy
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
@@ -458,6 +539,7 @@ def get_realm(attributes: Optional[Mapping[str, Any]] = None,
         attributes=__ret__.attributes,
         browser_flow=__ret__.browser_flow,
         client_authentication_flow=__ret__.client_authentication_flow,
+        default_signature_algorithm=__ret__.default_signature_algorithm,
         direct_grant_flow=__ret__.direct_grant_flow,
         display_name=__ret__.display_name,
         display_name_html=__ret__.display_name_html,
@@ -473,6 +555,7 @@ def get_realm(attributes: Optional[Mapping[str, Any]] = None,
         login_with_email_allowed=__ret__.login_with_email_allowed,
         offline_session_idle_timeout=__ret__.offline_session_idle_timeout,
         offline_session_max_lifespan=__ret__.offline_session_max_lifespan,
+        offline_session_max_lifespan_enabled=__ret__.offline_session_max_lifespan_enabled,
         password_policy=__ret__.password_policy,
         realm=__ret__.realm,
         refresh_token_max_reuse=__ret__.refresh_token_max_reuse,
@@ -482,10 +565,15 @@ def get_realm(attributes: Optional[Mapping[str, Any]] = None,
         remember_me=__ret__.remember_me,
         reset_credentials_flow=__ret__.reset_credentials_flow,
         reset_password_allowed=__ret__.reset_password_allowed,
+        revoke_refresh_token=__ret__.revoke_refresh_token,
         security_defenses=__ret__.security_defenses,
         smtp_servers=__ret__.smtp_servers,
         ssl_required=__ret__.ssl_required,
         sso_session_idle_timeout=__ret__.sso_session_idle_timeout,
+        sso_session_idle_timeout_remember_me=__ret__.sso_session_idle_timeout_remember_me,
         sso_session_max_lifespan=__ret__.sso_session_max_lifespan,
+        sso_session_max_lifespan_remember_me=__ret__.sso_session_max_lifespan_remember_me,
         user_managed_access=__ret__.user_managed_access,
-        verify_email=__ret__.verify_email)
+        verify_email=__ret__.verify_email,
+        web_authn_passwordless_policy=__ret__.web_authn_passwordless_policy,
+        web_authn_policy=__ret__.web_authn_policy)

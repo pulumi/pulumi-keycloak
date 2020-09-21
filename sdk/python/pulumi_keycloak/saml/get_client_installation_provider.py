@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -62,6 +62,9 @@ class GetClientInstallationProviderResult:
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        (Computed) The returned document needed for SAML installation.
+        """
         return pulumi.get(self, "value")
 
 
@@ -83,7 +86,12 @@ def get_client_installation_provider(client_id: Optional[str] = None,
                                      realm_id: Optional[str] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientInstallationProviderResult:
     """
-    Use this data source to access information about an existing resource.
+    This data source can be used to retrieve Installation Provider of a SAML Client.
+
+
+    :param str client_id: The ID of the SAML client. The `id` attribute of a `keycloak_client` resource should be used here.
+    :param str provider_id: The ID of the SAML installation provider. Could be one of `saml-idp-descriptor`, `keycloak-saml`, `saml-sp-descriptor`, `keycloak-saml-subsystem`, `mod-auth-mellon`, etc.
+    :param str realm_id: The realm that the SAML client exists within.
     """
     __args__ = dict()
     __args__['clientId'] = client_id

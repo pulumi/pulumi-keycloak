@@ -10,13 +10,13 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId
 {
     /// <summary>
-    /// ## # keycloak.openid.ClientServiceAccountRole
-    /// 
-    /// Allows for assigning roles to the service account of an openid client.
-    /// 
+    /// Allows for assigning client roles to the service account of an openid client.
     /// You need to set `service_accounts_enabled` to `true` for the openid client that should be assigned the role.
     /// 
-    /// ### Example Usage
+    /// If you'd like to attach realm roles to a service account, please use the `keycloak.openid.ClientServiceAccountRealmRole`
+    /// resource.
+    /// 
+    /// ## Example Usage
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -59,27 +59,30 @@ namespace Pulumi.Keycloak.OpenId
     /// 
     /// }
     /// ```
-    /// 
-    /// ### Argument Reference
-    /// 
-    /// The following arguments are supported:
-    /// 
-    /// - `realm_id` - (Required) The realm the clients and roles belong to.
-    /// - `service_account_user_id` - (Required) The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
-    /// - `client_id` - (Required) The id of the client that provides the role.
-    /// - `role` - (Required) The name of the role that is assigned.
     /// </summary>
     public partial class ClientServiceAccountRole : Pulumi.CustomResource
     {
+        /// <summary>
+        /// The id of the client that provides the role.
+        /// </summary>
         [Output("clientId")]
         public Output<string> ClientId { get; private set; } = null!;
 
+        /// <summary>
+        /// The realm the clients and roles belong to.
+        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the role that is assigned.
+        /// </summary>
         [Output("role")]
         public Output<string> Role { get; private set; } = null!;
 
+        /// <summary>
+        /// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
+        /// </summary>
         [Output("serviceAccountUserId")]
         public Output<string> ServiceAccountUserId { get; private set; } = null!;
 
@@ -129,15 +132,27 @@ namespace Pulumi.Keycloak.OpenId
 
     public sealed class ClientServiceAccountRoleArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The id of the client that provides the role.
+        /// </summary>
         [Input("clientId", required: true)]
         public Input<string> ClientId { get; set; } = null!;
 
+        /// <summary>
+        /// The realm the clients and roles belong to.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the role that is assigned.
+        /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 
+        /// <summary>
+        /// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
+        /// </summary>
         [Input("serviceAccountUserId", required: true)]
         public Input<string> ServiceAccountUserId { get; set; } = null!;
 
@@ -148,15 +163,27 @@ namespace Pulumi.Keycloak.OpenId
 
     public sealed class ClientServiceAccountRoleState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The id of the client that provides the role.
+        /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
+        /// <summary>
+        /// The realm the clients and roles belong to.
+        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
+        /// <summary>
+        /// The name of the role that is assigned.
+        /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
 
+        /// <summary>
+        /// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
+        /// </summary>
         [Input("serviceAccountUserId")]
         public Input<string>? ServiceAccountUserId { get; set; }
 

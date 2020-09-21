@@ -10,17 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// ## # openid.UserRealmRoleProtocolMapper
-//
-// Allows for creating and managing user realm role protocol mappers within
-// Keycloak.
+// Allows for creating and managing user realm role protocol mappers within Keycloak.
 //
 // User realm role protocol mappers allow you to define a claim containing the list of the realm roles.
-// Protocol mappers can be defined for a single client, or they can
-// be defined for a client scope which can be shared between multiple different
-// clients.
 //
-// ### Example Usage (Client)
+// Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
+// multiple different clients.
+//
+// ## Example Usage
+// ### Client)
 //
 // ```go
 // package main
@@ -34,17 +32,17 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Enabled: pulumi.Bool(true),
 // 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		openidClient, err := openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
-// 			AccessType: pulumi.String("CONFIDENTIAL"),
-// 			ClientId:   pulumi.String("test-client"),
-// 			Enabled:    pulumi.Bool(true),
 // 			RealmId:    realm.ID(),
+// 			ClientId:   pulumi.String("client"),
+// 			Enabled:    pulumi.Bool(true),
+// 			AccessType: pulumi.String("CONFIDENTIAL"),
 // 			ValidRedirectUris: pulumi.StringArray{
 // 				pulumi.String("http://localhost:8080/openid-callback"),
 // 			},
@@ -53,9 +51,9 @@ import (
 // 			return err
 // 		}
 // 		_, err = openid.NewUserRealmRoleProtocolMapper(ctx, "userRealmRoleMapper", &openid.UserRealmRoleProtocolMapperArgs{
-// 			ClaimName: pulumi.String("foo"),
-// 			ClientId:  openidClient.ID(),
 // 			RealmId:   realm.ID(),
+// 			ClientId:  openidClient.ID(),
+// 			ClaimName: pulumi.String("foo"),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -64,8 +62,7 @@ import (
 // 	})
 // }
 // ```
-//
-// ### Example Usage (Client Scope)
+// ### Client Scope)
 //
 // ```go
 // package main
@@ -79,8 +76,8 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Enabled: pulumi.Bool(true),
 // 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -92,9 +89,9 @@ import (
 // 			return err
 // 		}
 // 		_, err = openid.NewUserRealmRoleProtocolMapper(ctx, "userRealmRoleMapper", &openid.UserRealmRoleProtocolMapperArgs{
-// 			ClaimName:     pulumi.String("foo"),
-// 			ClientScopeId: clientScope.ID(),
 // 			RealmId:       realm.ID(),
+// 			ClientScopeId: clientScope.ID(),
+// 			ClaimName:     pulumi.String("foo"),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -103,45 +100,30 @@ import (
 // 	})
 // }
 // ```
-//
-// ### Argument Reference
-//
-// The following arguments are supported:
-//
-// - `realmId` - (Required) The realm this protocol mapper exists within.
-// - `clientId` - (Required if `clientScopeId` is not specified) The client this protocol mapper is attached to.
-// - `clientScopeId` - (Required if `clientId` is not specified) The client scope this protocol mapper is attached to.
-// - `name` - (Required) The display name of this protocol mapper in the GUI.
-// - `claimName` - (Required) The name of the claim to insert into a token.
-// - `claimValueType` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
-// - `multivalued` - (Optional) Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
-// - `realmRolePrefix` - (Optional) A prefix for each Realm Role.
-// - `addToIdToken` - (Optional) Indicates if the property should be added as a claim to the id token. Defaults to `true`.
-// - `addToAccessToken` - (Optional) Indicates if the property should be added as a claim to the access token. Defaults to `true`.
-// - `addToUserinfo` - (Optional) Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
 type UserRealmRoleProtocolMapper struct {
 	pulumi.CustomResourceState
 
-	// Indicates if the attribute should be a claim in the access token.
+	// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken pulumi.BoolPtrOutput `pulumi:"addToAccessToken"`
-	// Indicates if the attribute should be a claim in the id token.
+	// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken pulumi.BoolPtrOutput `pulumi:"addToIdToken"`
-	// Indicates if the attribute should appear in the userinfo response body.
+	// Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
 	AddToUserinfo pulumi.BoolPtrOutput `pulumi:"addToUserinfo"`
-	ClaimName     pulumi.StringOutput  `pulumi:"claimName"`
-	// Claim type used when serializing tokens.
+	// The name of the claim to insert into a token.
+	ClaimName pulumi.StringOutput `pulumi:"claimName"`
+	// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
 	ClaimValueType pulumi.StringPtrOutput `pulumi:"claimValueType"`
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId pulumi.StringPtrOutput `pulumi:"clientScopeId"`
-	// Indicates whether this attribute is a single value or an array of values.
+	// Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
 	Multivalued pulumi.BoolPtrOutput `pulumi:"multivalued"`
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	// Prefix that will be added to each realm role.
+	// A prefix for each Realm Role.
 	RealmRolePrefix pulumi.StringPtrOutput `pulumi:"realmRolePrefix"`
 }
 
@@ -179,50 +161,52 @@ func GetUserRealmRoleProtocolMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserRealmRoleProtocolMapper resources.
 type userRealmRoleProtocolMapperState struct {
-	// Indicates if the attribute should be a claim in the access token.
+	// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`
-	// Indicates if the attribute should be a claim in the id token.
+	// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken *bool `pulumi:"addToIdToken"`
-	// Indicates if the attribute should appear in the userinfo response body.
-	AddToUserinfo *bool   `pulumi:"addToUserinfo"`
-	ClaimName     *string `pulumi:"claimName"`
-	// Claim type used when serializing tokens.
+	// Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+	AddToUserinfo *bool `pulumi:"addToUserinfo"`
+	// The name of the claim to insert into a token.
+	ClaimName *string `pulumi:"claimName"`
+	// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
 	ClaimValueType *string `pulumi:"claimValueType"`
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId *string `pulumi:"clientId"`
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId *string `pulumi:"clientScopeId"`
-	// Indicates whether this attribute is a single value or an array of values.
+	// Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
 	Multivalued *bool `pulumi:"multivalued"`
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI.
 	Name *string `pulumi:"name"`
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId *string `pulumi:"realmId"`
-	// Prefix that will be added to each realm role.
+	// A prefix for each Realm Role.
 	RealmRolePrefix *string `pulumi:"realmRolePrefix"`
 }
 
 type UserRealmRoleProtocolMapperState struct {
-	// Indicates if the attribute should be a claim in the access token.
+	// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken pulumi.BoolPtrInput
-	// Indicates if the attribute should be a claim in the id token.
+	// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken pulumi.BoolPtrInput
-	// Indicates if the attribute should appear in the userinfo response body.
+	// Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
 	AddToUserinfo pulumi.BoolPtrInput
-	ClaimName     pulumi.StringPtrInput
-	// Claim type used when serializing tokens.
+	// The name of the claim to insert into a token.
+	ClaimName pulumi.StringPtrInput
+	// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
 	ClaimValueType pulumi.StringPtrInput
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId pulumi.StringPtrInput
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId pulumi.StringPtrInput
-	// Indicates whether this attribute is a single value or an array of values.
+	// Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
 	Multivalued pulumi.BoolPtrInput
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringPtrInput
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringPtrInput
-	// Prefix that will be added to each realm role.
+	// A prefix for each Realm Role.
 	RealmRolePrefix pulumi.StringPtrInput
 }
 
@@ -231,51 +215,53 @@ func (UserRealmRoleProtocolMapperState) ElementType() reflect.Type {
 }
 
 type userRealmRoleProtocolMapperArgs struct {
-	// Indicates if the attribute should be a claim in the access token.
+	// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`
-	// Indicates if the attribute should be a claim in the id token.
+	// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken *bool `pulumi:"addToIdToken"`
-	// Indicates if the attribute should appear in the userinfo response body.
-	AddToUserinfo *bool  `pulumi:"addToUserinfo"`
-	ClaimName     string `pulumi:"claimName"`
-	// Claim type used when serializing tokens.
+	// Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+	AddToUserinfo *bool `pulumi:"addToUserinfo"`
+	// The name of the claim to insert into a token.
+	ClaimName string `pulumi:"claimName"`
+	// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
 	ClaimValueType *string `pulumi:"claimValueType"`
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId *string `pulumi:"clientId"`
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId *string `pulumi:"clientScopeId"`
-	// Indicates whether this attribute is a single value or an array of values.
+	// Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
 	Multivalued *bool `pulumi:"multivalued"`
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI.
 	Name *string `pulumi:"name"`
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId string `pulumi:"realmId"`
-	// Prefix that will be added to each realm role.
+	// A prefix for each Realm Role.
 	RealmRolePrefix *string `pulumi:"realmRolePrefix"`
 }
 
 // The set of arguments for constructing a UserRealmRoleProtocolMapper resource.
 type UserRealmRoleProtocolMapperArgs struct {
-	// Indicates if the attribute should be a claim in the access token.
+	// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken pulumi.BoolPtrInput
-	// Indicates if the attribute should be a claim in the id token.
+	// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken pulumi.BoolPtrInput
-	// Indicates if the attribute should appear in the userinfo response body.
+	// Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
 	AddToUserinfo pulumi.BoolPtrInput
-	ClaimName     pulumi.StringInput
-	// Claim type used when serializing tokens.
+	// The name of the claim to insert into a token.
+	ClaimName pulumi.StringInput
+	// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
 	ClaimValueType pulumi.StringPtrInput
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId pulumi.StringPtrInput
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId pulumi.StringPtrInput
-	// Indicates whether this attribute is a single value or an array of values.
+	// Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
 	Multivalued pulumi.BoolPtrInput
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringPtrInput
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringInput
-	// Prefix that will be added to each realm role.
+	// A prefix for each Realm Role.
 	RealmRolePrefix pulumi.StringPtrInput
 }
 

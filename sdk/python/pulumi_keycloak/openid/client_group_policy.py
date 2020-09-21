@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -19,7 +19,7 @@ class ClientGroupPolicy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 groups: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ClientGroupPolicyGroupArgs']]]]] = None,
+                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClientGroupPolicyGroupArgs']]]]] = None,
                  groups_claim: Optional[pulumi.Input[str]] = None,
                  logic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -78,7 +78,7 @@ class ClientGroupPolicy(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             decision_strategy: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
-            groups: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ClientGroupPolicyGroupArgs']]]]] = None,
+            groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClientGroupPolicyGroupArgs']]]]] = None,
             groups_claim: Optional[pulumi.Input[str]] = None,
             logic: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -118,7 +118,7 @@ class ClientGroupPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def groups(self) -> pulumi.Output[List['outputs.ClientGroupPolicyGroup']]:
+    def groups(self) -> pulumi.Output[Sequence['outputs.ClientGroupPolicyGroup']]:
         return pulumi.get(self, "groups")
 
     @property

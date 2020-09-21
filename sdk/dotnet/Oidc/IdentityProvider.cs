@@ -10,13 +10,11 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Oidc
 {
     /// <summary>
-    /// ## # keycloak.oidc.IdentityProvider
+    /// Allows for creating and managing OIDC Identity Providers within Keycloak.
     /// 
-    /// Allows to create and manage OIDC Identity Providers within Keycloak.
+    /// OIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.
     /// 
-    /// OIDC (OpenID Connect) identity providers allows to authenticate through a third-party system, using OIDC standard.
-    /// 
-    /// ### Example Usage
+    /// ## Example Usage
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -26,67 +24,39 @@ namespace Pulumi.Keycloak.Oidc
     /// {
     ///     public MyStack()
     ///     {
-    ///         var my_realm = new Keycloak.Realm("my-realm", new Keycloak.RealmArgs
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
     ///         {
-    ///             DisplayName = "my-realm",
-    ///             Enabled = true,
     ///             Realm = "my-realm",
+    ///             Enabled = true,
     ///         });
     ///         var realmIdentityProvider = new Keycloak.Oidc.IdentityProvider("realmIdentityProvider", new Keycloak.Oidc.IdentityProviderArgs
     ///         {
+    ///             Realm = realm.Id,
     ///             Alias = "my-idp",
     ///             AuthorizationUrl = "https://authorizationurl.com",
     ///             ClientId = "clientID",
     ///             ClientSecret = "clientSecret",
+    ///             TokenUrl = "https://tokenurl.com",
     ///             ExtraConfig = 
     ///             {
     ///                 { "clientAuthMethod", "client_secret_post" },
     ///             },
-    ///             Realm = "my-realm",
-    ///             TokenUrl = "https://tokenurl.com",
     ///         });
     ///     }
     /// 
     /// }
     /// ```
-    /// 
-    /// ### Argument Reference
-    /// 
-    /// The following arguments are supported:
-    /// 
-    /// - `realm` - (Required) The name of the realm. This is unique across Keycloak.
-    /// - `alias` - (Required) The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
-    /// - `authorization_url` - (Required) The Authorization Url.
-    /// - `client_id` - (Required) The client or client identifier registered within the identity provider.
-    /// - `client_secret` - (Required) The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
-    /// - `token_url` - (Required) The Token URL.
-    /// - `extra_config` - (Optional) this block is needed to set extra configuration (Not yet supported variables or custom extensions)
-    ///     - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created over the Keycloak Userinterface.
-    ///         It accepts the values `client_secret_post` (Client secret sent as post), `client_secret_basic` (Client secret sent as basic auth), `client_secret_jwt` (Client secret as jwt) and ` private_key_jwt  ` (JTW signed with private key)
-    /// - `provider_id` - (Optional) The Provider id, defaults to `oidc`, unless you have a custom implementation.
-    /// - `backchannel_supported` - (Optional) Does the external IDP support backchannel logout ? Defaults to `true`.
-    /// - `validate_signature` - (Optional) Enable/disable signature validation of external IDP signatures. Defaults to `false`.
-    /// - `user_info_url` - (Optional) User Info URL.
-    /// - `jwks_url` - (Optional) JSON Web Key Set URL.
-    /// - `hide_on_login_page` - (Optional) Hide On Login Page. Defaults to `false`.
-    /// - `logout_url` - (Optional) The Logout URL is the end session endpoint to use to logout user from external identity provider.
-    /// - `login_hint` - (Optional) Pass login hint to identity provider.
-    /// - `ui_locales` - (Optional) Pass current locale to identity provider. Defaults to `false`.
-    /// - `accepts_prompt_none_forward_from_client` (Optional) Specifies whether the IDP accepts forwarded authentication requests that contain the prompt=none query parameter or not
-    /// - `default_scopes` - (Optional) The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to 'openid'.
     /// </summary>
     public partial class IdentityProvider : Pulumi.CustomResource
     {
         /// <summary>
-        /// This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
-        /// case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
-        /// returned to client, but the request with prompt=none will be forwarded to this identity provider.
+        /// When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
         /// </summary>
         [Output("acceptsPromptNoneForwardFromClient")]
         public Output<bool?> AcceptsPromptNoneForwardFromClient { get; private set; } = null!;
 
         /// <summary>
-        /// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+        /// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         /// </summary>
         [Output("addReadTokenRoleOnCreate")]
         public Output<bool?> AddReadTokenRoleOnCreate { get; private set; } = null!;
@@ -104,43 +74,49 @@ namespace Pulumi.Keycloak.Oidc
         public Output<bool?> AuthenticateByDefault { get; private set; } = null!;
 
         /// <summary>
-        /// OIDC authorization URL.
+        /// The Authorization Url.
         /// </summary>
         [Output("authorizationUrl")]
         public Output<string> AuthorizationUrl { get; private set; } = null!;
 
         /// <summary>
-        /// Does the external IDP support backchannel logout?
+        /// Does the external IDP support backchannel logout? Defaults to `true`.
         /// </summary>
         [Output("backchannelSupported")]
         public Output<bool?> BackchannelSupported { get; private set; } = null!;
 
         /// <summary>
-        /// Client ID.
+        /// The client or client identifier registered within the identity provider.
         /// </summary>
         [Output("clientId")]
         public Output<string> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// Client Secret.
+        /// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
         /// </summary>
         [Output("clientSecret")]
         public Output<string> ClientSecret { get; private set; } = null!;
 
         /// <summary>
-        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to 'openid'.
+        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         /// </summary>
         [Output("defaultScopes")]
         public Output<string?> DefaultScopes { get; private set; } = null!;
 
         /// <summary>
-        /// Friendly name for Identity Providers.
+        /// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
+        /// </summary>
+        [Output("disableUserInfo")]
+        public Output<bool?> DisableUserInfo { get; private set; } = null!;
+
+        /// <summary>
+        /// Display name for the identity provider in the GUI.
         /// </summary>
         [Output("displayName")]
         public Output<string?> DisplayName { get; private set; } = null!;
 
         /// <summary>
-        /// Enable/disable this identity provider.
+        /// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
@@ -149,102 +125,97 @@ namespace Pulumi.Keycloak.Oidc
         public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
-        /// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+        /// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         /// </summary>
         [Output("firstBrokerLoginFlowAlias")]
         public Output<string?> FirstBrokerLoginFlowAlias { get; private set; } = null!;
 
         /// <summary>
-        /// Hide On Login Page.
+        /// When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
         /// </summary>
         [Output("hideOnLoginPage")]
         public Output<bool?> HideOnLoginPage { get; private set; } = null!;
 
         /// <summary>
-        /// Internal Identity Provider Id
+        /// (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
         /// </summary>
         [Output("internalId")]
         public Output<string> InternalId { get; private set; } = null!;
 
         /// <summary>
-        /// JSON Web Key Set URL
+        /// JSON Web Key Set URL.
         /// </summary>
         [Output("jwksUrl")]
         public Output<string?> JwksUrl { get; private set; } = null!;
 
         /// <summary>
-        /// If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
-        /// want to allow login from the provider, but want to integrate with a provider
+        /// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         /// </summary>
         [Output("linkOnly")]
         public Output<bool?> LinkOnly { get; private set; } = null!;
 
         /// <summary>
-        /// Login Hint.
+        /// Pass login hint to identity provider.
         /// </summary>
         [Output("loginHint")]
         public Output<string?> LoginHint { get; private set; } = null!;
 
         /// <summary>
-        /// Logout URL
+        /// The Logout URL is the end session endpoint to use to logout user from external identity provider.
         /// </summary>
         [Output("logoutUrl")]
         public Output<string?> LogoutUrl { get; private set; } = null!;
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-        /// additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-        /// you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
-        /// authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+        /// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         /// </summary>
         [Output("postBrokerLoginFlowAlias")]
         public Output<string?> PostBrokerLoginFlowAlias { get; private set; } = null!;
 
         /// <summary>
-        /// provider id, is always oidc, unless you have a custom implementation
+        /// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         /// </summary>
         [Output("providerId")]
         public Output<string?> ProviderId { get; private set; } = null!;
 
         /// <summary>
-        /// Realm Name
+        /// The name of the realm. This is unique across Keycloak.
         /// </summary>
         [Output("realm")]
         public Output<string> Realm { get; private set; } = null!;
 
         /// <summary>
-        /// Enable/disable if tokens must be stored after authenticating users.
+        /// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         /// </summary>
         [Output("storeToken")]
         public Output<bool?> StoreToken { get; private set; } = null!;
 
         /// <summary>
-        /// Token URL.
+        /// The Token URL.
         /// </summary>
         [Output("tokenUrl")]
         public Output<string> TokenUrl { get; private set; } = null!;
 
         /// <summary>
-        /// If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+        /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         /// </summary>
         [Output("trustEmail")]
         public Output<bool?> TrustEmail { get; private set; } = null!;
 
         /// <summary>
-        /// Pass current locale to identity provider
+        /// Pass current locale to identity provider. Defaults to `false`.
         /// </summary>
         [Output("uiLocales")]
         public Output<bool?> UiLocales { get; private set; } = null!;
 
         /// <summary>
-        /// User Info URL
+        /// User Info URL.
         /// </summary>
         [Output("userInfoUrl")]
         public Output<string?> UserInfoUrl { get; private set; } = null!;
 
         /// <summary>
-        /// Enable/disable signature validation of external IDP signatures.
+        /// Enable/disable signature validation of external IDP signatures. Defaults to `false`.
         /// </summary>
         [Output("validateSignature")]
         public Output<bool?> ValidateSignature { get; private set; } = null!;
@@ -296,15 +267,13 @@ namespace Pulumi.Keycloak.Oidc
     public sealed class IdentityProviderArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
-        /// case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
-        /// returned to client, but the request with prompt=none will be forwarded to this identity provider.
+        /// When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
         /// </summary>
         [Input("acceptsPromptNoneForwardFromClient")]
         public Input<bool>? AcceptsPromptNoneForwardFromClient { get; set; }
 
         /// <summary>
-        /// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+        /// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         /// </summary>
         [Input("addReadTokenRoleOnCreate")]
         public Input<bool>? AddReadTokenRoleOnCreate { get; set; }
@@ -322,43 +291,49 @@ namespace Pulumi.Keycloak.Oidc
         public Input<bool>? AuthenticateByDefault { get; set; }
 
         /// <summary>
-        /// OIDC authorization URL.
+        /// The Authorization Url.
         /// </summary>
         [Input("authorizationUrl", required: true)]
         public Input<string> AuthorizationUrl { get; set; } = null!;
 
         /// <summary>
-        /// Does the external IDP support backchannel logout?
+        /// Does the external IDP support backchannel logout? Defaults to `true`.
         /// </summary>
         [Input("backchannelSupported")]
         public Input<bool>? BackchannelSupported { get; set; }
 
         /// <summary>
-        /// Client ID.
+        /// The client or client identifier registered within the identity provider.
         /// </summary>
         [Input("clientId", required: true)]
         public Input<string> ClientId { get; set; } = null!;
 
         /// <summary>
-        /// Client Secret.
+        /// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
         /// </summary>
         [Input("clientSecret", required: true)]
         public Input<string> ClientSecret { get; set; } = null!;
 
         /// <summary>
-        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to 'openid'.
+        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         /// </summary>
         [Input("defaultScopes")]
         public Input<string>? DefaultScopes { get; set; }
 
         /// <summary>
-        /// Friendly name for Identity Providers.
+        /// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
+        /// </summary>
+        [Input("disableUserInfo")]
+        public Input<bool>? DisableUserInfo { get; set; }
+
+        /// <summary>
+        /// Display name for the identity provider in the GUI.
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// Enable/disable this identity provider.
+        /// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -372,96 +347,91 @@ namespace Pulumi.Keycloak.Oidc
         }
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
-        /// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+        /// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         /// </summary>
         [Input("firstBrokerLoginFlowAlias")]
         public Input<string>? FirstBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
-        /// Hide On Login Page.
+        /// When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
         /// </summary>
         [Input("hideOnLoginPage")]
         public Input<bool>? HideOnLoginPage { get; set; }
 
         /// <summary>
-        /// JSON Web Key Set URL
+        /// JSON Web Key Set URL.
         /// </summary>
         [Input("jwksUrl")]
         public Input<string>? JwksUrl { get; set; }
 
         /// <summary>
-        /// If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
-        /// want to allow login from the provider, but want to integrate with a provider
+        /// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
 
         /// <summary>
-        /// Login Hint.
+        /// Pass login hint to identity provider.
         /// </summary>
         [Input("loginHint")]
         public Input<string>? LoginHint { get; set; }
 
         /// <summary>
-        /// Logout URL
+        /// The Logout URL is the end session endpoint to use to logout user from external identity provider.
         /// </summary>
         [Input("logoutUrl")]
         public Input<string>? LogoutUrl { get; set; }
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-        /// additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-        /// you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
-        /// authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+        /// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         /// </summary>
         [Input("postBrokerLoginFlowAlias")]
         public Input<string>? PostBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
-        /// provider id, is always oidc, unless you have a custom implementation
+        /// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }
 
         /// <summary>
-        /// Realm Name
+        /// The name of the realm. This is unique across Keycloak.
         /// </summary>
         [Input("realm", required: true)]
         public Input<string> Realm { get; set; } = null!;
 
         /// <summary>
-        /// Enable/disable if tokens must be stored after authenticating users.
+        /// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         /// </summary>
         [Input("storeToken")]
         public Input<bool>? StoreToken { get; set; }
 
         /// <summary>
-        /// Token URL.
+        /// The Token URL.
         /// </summary>
         [Input("tokenUrl", required: true)]
         public Input<string> TokenUrl { get; set; } = null!;
 
         /// <summary>
-        /// If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+        /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         /// </summary>
         [Input("trustEmail")]
         public Input<bool>? TrustEmail { get; set; }
 
         /// <summary>
-        /// Pass current locale to identity provider
+        /// Pass current locale to identity provider. Defaults to `false`.
         /// </summary>
         [Input("uiLocales")]
         public Input<bool>? UiLocales { get; set; }
 
         /// <summary>
-        /// User Info URL
+        /// User Info URL.
         /// </summary>
         [Input("userInfoUrl")]
         public Input<string>? UserInfoUrl { get; set; }
 
         /// <summary>
-        /// Enable/disable signature validation of external IDP signatures.
+        /// Enable/disable signature validation of external IDP signatures. Defaults to `false`.
         /// </summary>
         [Input("validateSignature")]
         public Input<bool>? ValidateSignature { get; set; }
@@ -474,15 +444,13 @@ namespace Pulumi.Keycloak.Oidc
     public sealed class IdentityProviderState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// This is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In
-        /// case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly
-        /// returned to client, but the request with prompt=none will be forwarded to this identity provider.
+        /// When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
         /// </summary>
         [Input("acceptsPromptNoneForwardFromClient")]
         public Input<bool>? AcceptsPromptNoneForwardFromClient { get; set; }
 
         /// <summary>
-        /// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+        /// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         /// </summary>
         [Input("addReadTokenRoleOnCreate")]
         public Input<bool>? AddReadTokenRoleOnCreate { get; set; }
@@ -500,43 +468,49 @@ namespace Pulumi.Keycloak.Oidc
         public Input<bool>? AuthenticateByDefault { get; set; }
 
         /// <summary>
-        /// OIDC authorization URL.
+        /// The Authorization Url.
         /// </summary>
         [Input("authorizationUrl")]
         public Input<string>? AuthorizationUrl { get; set; }
 
         /// <summary>
-        /// Does the external IDP support backchannel logout?
+        /// Does the external IDP support backchannel logout? Defaults to `true`.
         /// </summary>
         [Input("backchannelSupported")]
         public Input<bool>? BackchannelSupported { get; set; }
 
         /// <summary>
-        /// Client ID.
+        /// The client or client identifier registered within the identity provider.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// Client Secret.
+        /// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
         /// </summary>
         [Input("clientSecret")]
         public Input<string>? ClientSecret { get; set; }
 
         /// <summary>
-        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to 'openid'.
+        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         /// </summary>
         [Input("defaultScopes")]
         public Input<string>? DefaultScopes { get; set; }
 
         /// <summary>
-        /// Friendly name for Identity Providers.
+        /// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
+        /// </summary>
+        [Input("disableUserInfo")]
+        public Input<bool>? DisableUserInfo { get; set; }
+
+        /// <summary>
+        /// Display name for the identity provider in the GUI.
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// Enable/disable this identity provider.
+        /// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -550,102 +524,97 @@ namespace Pulumi.Keycloak.Oidc
         }
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
-        /// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+        /// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         /// </summary>
         [Input("firstBrokerLoginFlowAlias")]
         public Input<string>? FirstBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
-        /// Hide On Login Page.
+        /// When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
         /// </summary>
         [Input("hideOnLoginPage")]
         public Input<bool>? HideOnLoginPage { get; set; }
 
         /// <summary>
-        /// Internal Identity Provider Id
+        /// (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
         /// </summary>
         [Input("internalId")]
         public Input<string>? InternalId { get; set; }
 
         /// <summary>
-        /// JSON Web Key Set URL
+        /// JSON Web Key Set URL.
         /// </summary>
         [Input("jwksUrl")]
         public Input<string>? JwksUrl { get; set; }
 
         /// <summary>
-        /// If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
-        /// want to allow login from the provider, but want to integrate with a provider
+        /// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
 
         /// <summary>
-        /// Login Hint.
+        /// Pass login hint to identity provider.
         /// </summary>
         [Input("loginHint")]
         public Input<string>? LoginHint { get; set; }
 
         /// <summary>
-        /// Logout URL
+        /// The Logout URL is the end session endpoint to use to logout user from external identity provider.
         /// </summary>
         [Input("logoutUrl")]
         public Input<string>? LogoutUrl { get; set; }
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-        /// additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-        /// you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
-        /// authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+        /// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         /// </summary>
         [Input("postBrokerLoginFlowAlias")]
         public Input<string>? PostBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
-        /// provider id, is always oidc, unless you have a custom implementation
+        /// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }
 
         /// <summary>
-        /// Realm Name
+        /// The name of the realm. This is unique across Keycloak.
         /// </summary>
         [Input("realm")]
         public Input<string>? Realm { get; set; }
 
         /// <summary>
-        /// Enable/disable if tokens must be stored after authenticating users.
+        /// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         /// </summary>
         [Input("storeToken")]
         public Input<bool>? StoreToken { get; set; }
 
         /// <summary>
-        /// Token URL.
+        /// The Token URL.
         /// </summary>
         [Input("tokenUrl")]
         public Input<string>? TokenUrl { get; set; }
 
         /// <summary>
-        /// If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+        /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         /// </summary>
         [Input("trustEmail")]
         public Input<bool>? TrustEmail { get; set; }
 
         /// <summary>
-        /// Pass current locale to identity provider
+        /// Pass current locale to identity provider. Defaults to `false`.
         /// </summary>
         [Input("uiLocales")]
         public Input<bool>? UiLocales { get; set; }
 
         /// <summary>
-        /// User Info URL
+        /// User Info URL.
         /// </summary>
         [Input("userInfoUrl")]
         public Input<string>? UserInfoUrl { get; set; }
 
         /// <summary>
-        /// Enable/disable signature validation of external IDP signatures.
+        /// Enable/disable signature validation of external IDP signatures. Defaults to `false`.
         /// </summary>
         [Input("validateSignature")]
         public Input<bool>? ValidateSignature { get; set; }

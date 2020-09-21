@@ -13,12 +13,31 @@ namespace Pulumi.Keycloak.Outputs
     [OutputType]
     public sealed class RealmSecurityDefensesBruteForceDetection
     {
+        /// <summary>
+        /// When will failure count be reset?
+        /// </summary>
         public readonly int? FailureResetTimeSeconds;
         public readonly int? MaxFailureWaitSeconds;
+        /// <summary>
+        /// How many failures before wait is triggered.
+        /// </summary>
         public readonly int? MaxLoginFailures;
+        /// <summary>
+        /// How long to wait after a quick login failure.
+        /// - `max_failure_wait_seconds ` - (Optional) Max. time a user will be locked out.
+        /// </summary>
         public readonly int? MinimumQuickLoginWaitSeconds;
+        /// <summary>
+        /// When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
+        /// </summary>
         public readonly bool? PermanentLockout;
+        /// <summary>
+        /// Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
+        /// </summary>
         public readonly int? QuickLoginCheckMilliSeconds;
+        /// <summary>
+        /// This represents the amount of time a user should be locked out when the login failure threshold has been met.
+        /// </summary>
         public readonly int? WaitIncrementSeconds;
 
         [OutputConstructor]

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['ClientPolicy']
@@ -15,7 +15,7 @@ class ClientPolicy(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 clients: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 clients: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  logic: Optional[pulumi.Input[str]] = None,
@@ -70,7 +70,7 @@ class ClientPolicy(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            clients: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            clients: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             decision_strategy: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             logic: Optional[pulumi.Input[str]] = None,
@@ -100,7 +100,7 @@ class ClientPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def clients(self) -> pulumi.Output[List[str]]:
+    def clients(self) -> pulumi.Output[Sequence[str]]:
         return pulumi.get(self, "clients")
 
     @property
