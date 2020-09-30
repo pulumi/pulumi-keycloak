@@ -11,12 +11,21 @@ namespace Pulumi.Keycloak
 {
     public partial class GroupMemberships : Pulumi.CustomResource
     {
+        /// <summary>
+        /// The ID of the group this resource should manage memberships for.
+        /// </summary>
         [Output("groupId")]
         public Output<string?> GroupId { get; private set; } = null!;
 
+        /// <summary>
+        /// A list of usernames that belong to this group.
+        /// </summary>
         [Output("members")]
         public Output<ImmutableArray<string>> Members { get; private set; } = null!;
 
+        /// <summary>
+        /// The realm this group exists in.
+        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
@@ -66,17 +75,27 @@ namespace Pulumi.Keycloak
 
     public sealed class GroupMembershipsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The ID of the group this resource should manage memberships for.
+        /// </summary>
         [Input("groupId")]
         public Input<string>? GroupId { get; set; }
 
         [Input("members", required: true)]
         private InputList<string>? _members;
+
+        /// <summary>
+        /// A list of usernames that belong to this group.
+        /// </summary>
         public InputList<string> Members
         {
             get => _members ?? (_members = new InputList<string>());
             set => _members = value;
         }
 
+        /// <summary>
+        /// The realm this group exists in.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
@@ -87,17 +106,27 @@ namespace Pulumi.Keycloak
 
     public sealed class GroupMembershipsState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The ID of the group this resource should manage memberships for.
+        /// </summary>
         [Input("groupId")]
         public Input<string>? GroupId { get; set; }
 
         [Input("members")]
         private InputList<string>? _members;
+
+        /// <summary>
+        /// A list of usernames that belong to this group.
+        /// </summary>
         public InputList<string> Members
         {
             get => _members ?? (_members = new InputList<string>());
             set => _members = value;
         }
 
+        /// <summary>
+        /// The realm this group exists in.
+        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 

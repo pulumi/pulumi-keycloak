@@ -10,14 +10,12 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// ## # keycloak.Role
-    /// 
     /// Allows for creating and managing roles within Keycloak.
     /// 
-    /// Roles allow you define privileges within Keycloak and map them to users
-    /// and groups.
+    /// Roles allow you define privileges within Keycloak and map them to users and groups.
     /// 
-    /// ### Example Usage (Realm role)
+    /// ## Example Usage
+    /// ### Realm Role)
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -29,20 +27,19 @@ namespace Pulumi.Keycloak
     ///     {
     ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
     ///         {
-    ///             Enabled = true,
     ///             Realm = "my-realm",
+    ///             Enabled = true,
     ///         });
     ///         var realmRole = new Keycloak.Role("realmRole", new Keycloak.RoleArgs
     ///         {
-    ///             Description = "My Realm Role",
     ///             RealmId = realm.Id,
+    ///             Description = "My Realm Role",
     ///         });
     ///     }
     /// 
     /// }
     /// ```
-    /// 
-    /// ### Example Usage (Client role)
+    /// ### Client Role)
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -54,28 +51,31 @@ namespace Pulumi.Keycloak
     ///     {
     ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
     ///         {
-    ///             Enabled = true,
     ///             Realm = "my-realm",
+    ///             Enabled = true,
     ///         });
-    ///         var client = new Keycloak.OpenId.Client("client", new Keycloak.OpenId.ClientArgs
+    ///         var openidClient = new Keycloak.OpenId.Client("openidClient", new Keycloak.OpenId.ClientArgs
     ///         {
-    ///             AccessType = "BEARER-ONLY",
+    ///             RealmId = realm.Id,
     ///             ClientId = "client",
     ///             Enabled = true,
-    ///             RealmId = realm.Id,
+    ///             AccessType = "CONFIDENTIAL",
+    ///             ValidRedirectUris = 
+    ///             {
+    ///                 "http://localhost:8080/openid-callback",
+    ///             },
     ///         });
     ///         var clientRole = new Keycloak.Role("clientRole", new Keycloak.RoleArgs
     ///         {
-    ///             ClientId = keycloak_client.Client.Id,
-    ///             Description = "My Client Role",
     ///             RealmId = realm.Id,
+    ///             ClientId = keycloak_client.Openid_client.Id,
+    ///             Description = "My Client Role",
     ///         });
     ///     }
     /// 
     /// }
     /// ```
-    /// 
-    /// ### Example Usage (Composite role)
+    /// ### Composite Role)
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -87,9 +87,10 @@ namespace Pulumi.Keycloak
     ///     {
     ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
     ///         {
-    ///             Enabled = true,
     ///             Realm = "my-realm",
+    ///             Enabled = true,
     ///         });
+    ///         // realm roles
     ///         var createRole = new Keycloak.Role("createRole", new Keycloak.RoleArgs
     ///         {
     ///             RealmId = realm.Id,
@@ -106,63 +107,70 @@ namespace Pulumi.Keycloak
     ///         {
     ///             RealmId = realm.Id,
     ///         });
-    ///         var client = new Keycloak.OpenId.Client("client", new Keycloak.OpenId.ClientArgs
+    ///         // client role
+    ///         var openidClient = new Keycloak.OpenId.Client("openidClient", new Keycloak.OpenId.ClientArgs
     ///         {
-    ///             AccessType = "BEARER-ONLY",
+    ///             RealmId = realm.Id,
     ///             ClientId = "client",
     ///             Enabled = true,
-    ///             RealmId = realm.Id,
+    ///             AccessType = "CONFIDENTIAL",
+    ///             ValidRedirectUris = 
+    ///             {
+    ///                 "http://localhost:8080/openid-callback",
+    ///             },
     ///         });
     ///         var clientRole = new Keycloak.Role("clientRole", new Keycloak.RoleArgs
     ///         {
-    ///             ClientId = keycloak_client.Client.Id,
-    ///             Description = "My Client Role",
     ///             RealmId = realm.Id,
+    ///             ClientId = keycloak_client.Openid_client.Id,
+    ///             Description = "My Client Role",
     ///         });
     ///         var adminRole = new Keycloak.Role("adminRole", new Keycloak.RoleArgs
     ///         {
+    ///             RealmId = realm.Id,
     ///             CompositeRoles = 
     ///             {
-    ///                 "{keycloak_role.create_role.id}",
-    ///                 "{keycloak_role.read_role.id}",
-    ///                 "{keycloak_role.update_role.id}",
-    ///                 "{keycloak_role.delete_role.id}",
-    ///                 "{keycloak_role.client_role.id}",
+    ///                 createRole.Id,
+    ///                 readRole.Id,
+    ///                 updateRole.Id,
+    ///                 deleteRole.Id,
+    ///                 clientRole.Id,
     ///             },
-    ///             RealmId = realm.Id,
     ///         });
     ///     }
     /// 
     /// }
     /// ```
-    /// 
-    /// ### Argument Reference
-    /// 
-    /// The following arguments are supported:
-    /// 
-    /// - `realm_id` - (Required) The realm this role exists within.
-    /// - `client_id` - (Optional) When specified, this role will be created as
-    ///   a client role attached to the client with the provided ID
-    /// - `name` - (Required) The name of the role
-    /// - `description` - (Optional) The description of the role
-    /// - `composite_roles` - (Optional) When specified, this role will be a
-    ///   composite role, composed of all roles that have an ID present within
-    ///   this list.
     /// </summary>
     public partial class Role : Pulumi.CustomResource
     {
+        /// <summary>
+        /// When specified, this role will be created as a client role attached to the client with the provided ID
+        /// </summary>
         [Output("clientId")]
         public Output<string?> ClientId { get; private set; } = null!;
 
+        /// <summary>
+        /// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+        /// </summary>
         [Output("compositeRoles")]
         public Output<ImmutableArray<string>> CompositeRoles { get; private set; } = null!;
 
+        /// <summary>
+        /// The description of the role
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the role
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// The realm this role exists within.
+        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
@@ -212,23 +220,39 @@ namespace Pulumi.Keycloak
 
     public sealed class RoleArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// When specified, this role will be created as a client role attached to the client with the provided ID
+        /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         [Input("compositeRoles")]
         private InputList<string>? _compositeRoles;
+
+        /// <summary>
+        /// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+        /// </summary>
         public InputList<string> CompositeRoles
         {
             get => _compositeRoles ?? (_compositeRoles = new InputList<string>());
             set => _compositeRoles = value;
         }
 
+        /// <summary>
+        /// The description of the role
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The name of the role
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The realm this role exists within.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
@@ -239,23 +263,39 @@ namespace Pulumi.Keycloak
 
     public sealed class RoleState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// When specified, this role will be created as a client role attached to the client with the provided ID
+        /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         [Input("compositeRoles")]
         private InputList<string>? _compositeRoles;
+
+        /// <summary>
+        /// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+        /// </summary>
         public InputList<string> CompositeRoles
         {
             get => _compositeRoles ?? (_compositeRoles = new InputList<string>());
             set => _compositeRoles = value;
         }
 
+        /// <summary>
+        /// The description of the role
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The name of the role
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The realm this role exists within.
+        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 

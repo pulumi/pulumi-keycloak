@@ -7,11 +7,9 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.openid.Client data source
- *
  * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
  *
- * ### Example Usage
+ * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -27,17 +25,6 @@ import * as utilities from "../utilities";
  *     name: "realm-admin",
  * }));
  * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realmId` - (Required) The realm id.
- * - `clientId` - (Required) The client id.
- *
- * ### Attributes Reference
- *
- * See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
  */
 export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Promise<GetClientResult> {
     if (!opts) {
@@ -57,7 +44,13 @@ export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Pro
  * A collection of arguments for invoking getClient.
  */
 export interface GetClientArgs {
+    /**
+     * The client id (not its unique ID).
+     */
     readonly clientId: string;
+    /**
+     * The realm id.
+     */
     readonly realmId: string;
 }
 
@@ -65,15 +58,19 @@ export interface GetClientArgs {
  * A collection of values returned by getClient.
  */
 export interface GetClientResult {
+    readonly accessTokenLifespan: string;
     readonly accessType: string;
-    readonly authenticationFlowBindingOverrides: outputs.openid.GetClientAuthenticationFlowBindingOverrides;
-    readonly authorization: outputs.openid.GetClientAuthorization;
+    readonly adminUrl: string;
+    readonly authenticationFlowBindingOverrides: outputs.openid.GetClientAuthenticationFlowBindingOverride[];
+    readonly authorizations: outputs.openid.GetClientAuthorization[];
+    readonly baseUrl: string;
     readonly clientId: string;
     readonly clientSecret: string;
     readonly consentRequired: boolean;
     readonly description: string;
     readonly directAccessGrantsEnabled: boolean;
     readonly enabled: boolean;
+    readonly excludeSessionStateFromAuthResponse: boolean;
     readonly fullScopeAllowed: boolean;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -82,6 +79,7 @@ export interface GetClientResult {
     readonly implicitFlowEnabled: boolean;
     readonly loginTheme: string;
     readonly name: string;
+    readonly pkceCodeChallengeMethod: string;
     readonly realmId: string;
     readonly resourceServerId: string;
     readonly rootUrl: string;

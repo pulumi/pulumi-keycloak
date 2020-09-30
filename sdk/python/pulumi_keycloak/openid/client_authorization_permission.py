@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['ClientAuthorizationPermission']
@@ -18,11 +18,11 @@ class ClientAuthorizationPermission(pulumi.CustomResource):
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  resource_server_id: Optional[pulumi.Input[str]] = None,
-                 resources: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 resources: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
@@ -75,11 +75,11 @@ class ClientAuthorizationPermission(pulumi.CustomResource):
             decision_strategy: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             realm_id: Optional[pulumi.Input[str]] = None,
             resource_server_id: Optional[pulumi.Input[str]] = None,
-            resources: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            resources: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'ClientAuthorizationPermission':
         """
         Get an existing ClientAuthorizationPermission resource's state with the given name, id, and optional extra
@@ -121,7 +121,7 @@ class ClientAuthorizationPermission(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def policies(self) -> pulumi.Output[Optional[List[str]]]:
+    def policies(self) -> pulumi.Output[Optional[Sequence[str]]]:
         return pulumi.get(self, "policies")
 
     @property
@@ -136,12 +136,12 @@ class ClientAuthorizationPermission(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def resources(self) -> pulumi.Output[Optional[List[str]]]:
+    def resources(self) -> pulumi.Output[Optional[Sequence[str]]]:
         return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter
-    def scopes(self) -> pulumi.Output[Optional[List[str]]]:
+    def scopes(self) -> pulumi.Output[Optional[Sequence[str]]]:
         return pulumi.get(self, "scopes")
 
     @property

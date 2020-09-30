@@ -10,75 +10,71 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// ## # saml.Client
-//
 // Allows for creating and managing Keycloak clients that use the SAML protocol.
 //
-// Clients are entities that can use Keycloak for user authentication. Typically,
-// clients are applications that redirect users to Keycloak for authentication
-// in order to take advantage of Keycloak's user sessions for SSO.
-//
-// ### Argument Reference
-//
-// The following arguments are supported:
-//
-// - `realmId` - (Required) The realm this client is attached to.
-// - `clientId` - (Required) The unique ID of this client, referenced in the URI during authentication and in issued tokens.
-// - `name` - (Optional) The display name of this client in the GUI.
-// - `enabled` - (Optional) When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
-// - `description` - (Optional) The description of this client in the GUI.
-// - `includeAuthnStatement` - (Optional) When `true`, an `AuthnStatement` will be included in the SAML response.
-// - `signDocuments` - (Optional) When `true`, the SAML document will be signed by Keycloak using the realm's private key.
-// - `signAssertions` - (Optional) When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.
-// - `clientSignatureRequired` - (Optional) When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`.
-// - `forcePostBinding` - (Optional) When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.
-// - `frontChannelLogout` - (Optional) When `true`, this client will require a browser redirect in order to perform a logout.
-// - `nameIdFormat` - (Optional) Sets the Name ID format for the subject.
-// - `rootUrl` - (Optional) When specified, this value is prepended to all relative URLs.
-// - `validRedirectUris` - (Optional) When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
-// - `baseUrl` - (Optional) When specified, this URL will be used whenever Keycloak needs to link to this client.
-// - `masterSamlProcessingUrl` - (Optional) When specified, this URL will be used for all SAML requests.
-// - `signingCertificate` - (Optional) If documents or assertions from the client are signed, this certificate will be used to verify the signature.
-// - `signingPrivateKey` - (Optional) If documents or assertions from the client are signed, this private key will be used to verify the signature.
-// - `idpInitiatedSsoUrlName` - (Optional) URL fragment name to reference client when you want to do IDP Initiated SSO.
-// - `idpInitiatedSsoRelayState` - (Optional) Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
-// - `assertionConsumerPostUrl` - (Optional) SAML POST Binding URL for the client's assertion consumer service (login responses).
-// - `assertionConsumerRedirectUrl` - (Optional) SAML Redirect Binding URL for the client's assertion consumer service (login responses).
-// - `logoutServicePostBindingUrl` - (Optional) SAML POST Binding URL for the client's single logout service.
-// - `logoutServiceRedirectBindingUrl` - (Optional) SAML Redirect Binding URL for the client's single logout service.
-// - `fullScopeAllowed` - (Optional) - Allow to include all roles mappings in the access token
+// Clients are entities that can use Keycloak for user authentication. Typically, clients are applications that redirect users
+// to Keycloak for authentication in order to take advantage of Keycloak's user sessions for SSO.
 type Client struct {
 	pulumi.CustomResourceState
 
-	AssertionConsumerPostUrl        pulumi.StringPtrOutput   `pulumi:"assertionConsumerPostUrl"`
-	AssertionConsumerRedirectUrl    pulumi.StringPtrOutput   `pulumi:"assertionConsumerRedirectUrl"`
-	BaseUrl                         pulumi.StringPtrOutput   `pulumi:"baseUrl"`
-	ClientId                        pulumi.StringOutput      `pulumi:"clientId"`
-	ClientSignatureRequired         pulumi.BoolOutput        `pulumi:"clientSignatureRequired"`
-	Description                     pulumi.StringPtrOutput   `pulumi:"description"`
-	Enabled                         pulumi.BoolPtrOutput     `pulumi:"enabled"`
-	EncryptAssertions               pulumi.BoolOutput        `pulumi:"encryptAssertions"`
-	EncryptionCertificate           pulumi.StringPtrOutput   `pulumi:"encryptionCertificate"`
-	ForceNameIdFormat               pulumi.BoolOutput        `pulumi:"forceNameIdFormat"`
-	ForcePostBinding                pulumi.BoolOutput        `pulumi:"forcePostBinding"`
-	FrontChannelLogout              pulumi.BoolOutput        `pulumi:"frontChannelLogout"`
-	FullScopeAllowed                pulumi.BoolPtrOutput     `pulumi:"fullScopeAllowed"`
-	IdpInitiatedSsoRelayState       pulumi.StringPtrOutput   `pulumi:"idpInitiatedSsoRelayState"`
-	IdpInitiatedSsoUrlName          pulumi.StringPtrOutput   `pulumi:"idpInitiatedSsoUrlName"`
-	IncludeAuthnStatement           pulumi.BoolOutput        `pulumi:"includeAuthnStatement"`
-	LogoutServicePostBindingUrl     pulumi.StringPtrOutput   `pulumi:"logoutServicePostBindingUrl"`
-	LogoutServiceRedirectBindingUrl pulumi.StringPtrOutput   `pulumi:"logoutServiceRedirectBindingUrl"`
-	MasterSamlProcessingUrl         pulumi.StringPtrOutput   `pulumi:"masterSamlProcessingUrl"`
-	Name                            pulumi.StringOutput      `pulumi:"name"`
-	NameIdFormat                    pulumi.StringOutput      `pulumi:"nameIdFormat"`
-	RealmId                         pulumi.StringOutput      `pulumi:"realmId"`
-	RootUrl                         pulumi.StringPtrOutput   `pulumi:"rootUrl"`
-	SignAssertions                  pulumi.BoolOutput        `pulumi:"signAssertions"`
-	SignDocuments                   pulumi.BoolOutput        `pulumi:"signDocuments"`
-	SignatureAlgorithm              pulumi.StringPtrOutput   `pulumi:"signatureAlgorithm"`
-	SigningCertificate              pulumi.StringPtrOutput   `pulumi:"signingCertificate"`
-	SigningPrivateKey               pulumi.StringPtrOutput   `pulumi:"signingPrivateKey"`
-	ValidRedirectUris               pulumi.StringArrayOutput `pulumi:"validRedirectUris"`
+	// SAML POST Binding URL for the client's assertion consumer service (login responses).
+	AssertionConsumerPostUrl pulumi.StringPtrOutput `pulumi:"assertionConsumerPostUrl"`
+	// SAML Redirect Binding URL for the client's assertion consumer service (login responses).
+	AssertionConsumerRedirectUrl pulumi.StringPtrOutput `pulumi:"assertionConsumerRedirectUrl"`
+	// When specified, this URL will be used whenever Keycloak needs to link to this client.
+	BaseUrl pulumi.StringPtrOutput `pulumi:"baseUrl"`
+	// The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+	ClientId pulumi.StringOutput `pulumi:"clientId"`
+	// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`.
+	ClientSignatureRequired pulumi.BoolOutput `pulumi:"clientSignatureRequired"`
+	// The description of this client in the GUI.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
+	// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key.
+	EncryptAssertions pulumi.BoolOutput `pulumi:"encryptAssertions"`
+	// If assertions for the client are encrypted, this certificate will be used for encryption.
+	EncryptionCertificate pulumi.StringPtrOutput `pulumi:"encryptionCertificate"`
+	// Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead.
+	ForceNameIdFormat pulumi.BoolOutput `pulumi:"forceNameIdFormat"`
+	// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.
+	ForcePostBinding pulumi.BoolOutput `pulumi:"forcePostBinding"`
+	// When `true`, this client will require a browser redirect in order to perform a logout.
+	FrontChannelLogout pulumi.BoolOutput `pulumi:"frontChannelLogout"`
+	// - Allow to include all roles mappings in the access token
+	FullScopeAllowed pulumi.BoolPtrOutput `pulumi:"fullScopeAllowed"`
+	// Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+	IdpInitiatedSsoRelayState pulumi.StringPtrOutput `pulumi:"idpInitiatedSsoRelayState"`
+	// URL fragment name to reference client when you want to do IDP Initiated SSO.
+	IdpInitiatedSsoUrlName pulumi.StringPtrOutput `pulumi:"idpInitiatedSsoUrlName"`
+	// When `true`, an `AuthnStatement` will be included in the SAML response.
+	IncludeAuthnStatement pulumi.BoolOutput `pulumi:"includeAuthnStatement"`
+	// SAML POST Binding URL for the client's single logout service.
+	LogoutServicePostBindingUrl pulumi.StringPtrOutput `pulumi:"logoutServicePostBindingUrl"`
+	// SAML Redirect Binding URL for the client's single logout service.
+	LogoutServiceRedirectBindingUrl pulumi.StringPtrOutput `pulumi:"logoutServiceRedirectBindingUrl"`
+	// When specified, this URL will be used for all SAML requests.
+	MasterSamlProcessingUrl pulumi.StringPtrOutput `pulumi:"masterSamlProcessingUrl"`
+	// The display name of this client in the GUI.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Sets the Name ID format for the subject.
+	NameIdFormat pulumi.StringOutput `pulumi:"nameIdFormat"`
+	// The realm this client is attached to.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// When specified, this value is prepended to all relative URLs.
+	RootUrl pulumi.StringPtrOutput `pulumi:"rootUrl"`
+	// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.
+	SignAssertions pulumi.BoolOutput `pulumi:"signAssertions"`
+	// When `true`, the SAML document will be signed by Keycloak using the realm's private key.
+	SignDocuments pulumi.BoolOutput `pulumi:"signDocuments"`
+	// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+	SignatureAlgorithm pulumi.StringPtrOutput `pulumi:"signatureAlgorithm"`
+	// If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+	SigningCertificate pulumi.StringPtrOutput `pulumi:"signingCertificate"`
+	// If documents or assertions from the client are signed, this private key will be used to verify the signature.
+	SigningPrivateKey pulumi.StringPtrOutput `pulumi:"signingPrivateKey"`
+	// When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
+	ValidRedirectUris pulumi.StringArrayOutput `pulumi:"validRedirectUris"`
 }
 
 // NewClient registers a new resource with the given unique name, arguments, and options.
@@ -115,67 +111,125 @@ func GetClient(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Client resources.
 type clientState struct {
-	AssertionConsumerPostUrl        *string  `pulumi:"assertionConsumerPostUrl"`
-	AssertionConsumerRedirectUrl    *string  `pulumi:"assertionConsumerRedirectUrl"`
-	BaseUrl                         *string  `pulumi:"baseUrl"`
-	ClientId                        *string  `pulumi:"clientId"`
-	ClientSignatureRequired         *bool    `pulumi:"clientSignatureRequired"`
-	Description                     *string  `pulumi:"description"`
-	Enabled                         *bool    `pulumi:"enabled"`
-	EncryptAssertions               *bool    `pulumi:"encryptAssertions"`
-	EncryptionCertificate           *string  `pulumi:"encryptionCertificate"`
-	ForceNameIdFormat               *bool    `pulumi:"forceNameIdFormat"`
-	ForcePostBinding                *bool    `pulumi:"forcePostBinding"`
-	FrontChannelLogout              *bool    `pulumi:"frontChannelLogout"`
-	FullScopeAllowed                *bool    `pulumi:"fullScopeAllowed"`
-	IdpInitiatedSsoRelayState       *string  `pulumi:"idpInitiatedSsoRelayState"`
-	IdpInitiatedSsoUrlName          *string  `pulumi:"idpInitiatedSsoUrlName"`
-	IncludeAuthnStatement           *bool    `pulumi:"includeAuthnStatement"`
-	LogoutServicePostBindingUrl     *string  `pulumi:"logoutServicePostBindingUrl"`
-	LogoutServiceRedirectBindingUrl *string  `pulumi:"logoutServiceRedirectBindingUrl"`
-	MasterSamlProcessingUrl         *string  `pulumi:"masterSamlProcessingUrl"`
-	Name                            *string  `pulumi:"name"`
-	NameIdFormat                    *string  `pulumi:"nameIdFormat"`
-	RealmId                         *string  `pulumi:"realmId"`
-	RootUrl                         *string  `pulumi:"rootUrl"`
-	SignAssertions                  *bool    `pulumi:"signAssertions"`
-	SignDocuments                   *bool    `pulumi:"signDocuments"`
-	SignatureAlgorithm              *string  `pulumi:"signatureAlgorithm"`
-	SigningCertificate              *string  `pulumi:"signingCertificate"`
-	SigningPrivateKey               *string  `pulumi:"signingPrivateKey"`
-	ValidRedirectUris               []string `pulumi:"validRedirectUris"`
+	// SAML POST Binding URL for the client's assertion consumer service (login responses).
+	AssertionConsumerPostUrl *string `pulumi:"assertionConsumerPostUrl"`
+	// SAML Redirect Binding URL for the client's assertion consumer service (login responses).
+	AssertionConsumerRedirectUrl *string `pulumi:"assertionConsumerRedirectUrl"`
+	// When specified, this URL will be used whenever Keycloak needs to link to this client.
+	BaseUrl *string `pulumi:"baseUrl"`
+	// The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+	ClientId *string `pulumi:"clientId"`
+	// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`.
+	ClientSignatureRequired *bool `pulumi:"clientSignatureRequired"`
+	// The description of this client in the GUI.
+	Description *string `pulumi:"description"`
+	// When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+	Enabled *bool `pulumi:"enabled"`
+	// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key.
+	EncryptAssertions *bool `pulumi:"encryptAssertions"`
+	// If assertions for the client are encrypted, this certificate will be used for encryption.
+	EncryptionCertificate *string `pulumi:"encryptionCertificate"`
+	// Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead.
+	ForceNameIdFormat *bool `pulumi:"forceNameIdFormat"`
+	// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.
+	ForcePostBinding *bool `pulumi:"forcePostBinding"`
+	// When `true`, this client will require a browser redirect in order to perform a logout.
+	FrontChannelLogout *bool `pulumi:"frontChannelLogout"`
+	// - Allow to include all roles mappings in the access token
+	FullScopeAllowed *bool `pulumi:"fullScopeAllowed"`
+	// Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+	IdpInitiatedSsoRelayState *string `pulumi:"idpInitiatedSsoRelayState"`
+	// URL fragment name to reference client when you want to do IDP Initiated SSO.
+	IdpInitiatedSsoUrlName *string `pulumi:"idpInitiatedSsoUrlName"`
+	// When `true`, an `AuthnStatement` will be included in the SAML response.
+	IncludeAuthnStatement *bool `pulumi:"includeAuthnStatement"`
+	// SAML POST Binding URL for the client's single logout service.
+	LogoutServicePostBindingUrl *string `pulumi:"logoutServicePostBindingUrl"`
+	// SAML Redirect Binding URL for the client's single logout service.
+	LogoutServiceRedirectBindingUrl *string `pulumi:"logoutServiceRedirectBindingUrl"`
+	// When specified, this URL will be used for all SAML requests.
+	MasterSamlProcessingUrl *string `pulumi:"masterSamlProcessingUrl"`
+	// The display name of this client in the GUI.
+	Name *string `pulumi:"name"`
+	// Sets the Name ID format for the subject.
+	NameIdFormat *string `pulumi:"nameIdFormat"`
+	// The realm this client is attached to.
+	RealmId *string `pulumi:"realmId"`
+	// When specified, this value is prepended to all relative URLs.
+	RootUrl *string `pulumi:"rootUrl"`
+	// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.
+	SignAssertions *bool `pulumi:"signAssertions"`
+	// When `true`, the SAML document will be signed by Keycloak using the realm's private key.
+	SignDocuments *bool `pulumi:"signDocuments"`
+	// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+	SignatureAlgorithm *string `pulumi:"signatureAlgorithm"`
+	// If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+	SigningCertificate *string `pulumi:"signingCertificate"`
+	// If documents or assertions from the client are signed, this private key will be used to verify the signature.
+	SigningPrivateKey *string `pulumi:"signingPrivateKey"`
+	// When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
+	ValidRedirectUris []string `pulumi:"validRedirectUris"`
 }
 
 type ClientState struct {
-	AssertionConsumerPostUrl        pulumi.StringPtrInput
-	AssertionConsumerRedirectUrl    pulumi.StringPtrInput
-	BaseUrl                         pulumi.StringPtrInput
-	ClientId                        pulumi.StringPtrInput
-	ClientSignatureRequired         pulumi.BoolPtrInput
-	Description                     pulumi.StringPtrInput
-	Enabled                         pulumi.BoolPtrInput
-	EncryptAssertions               pulumi.BoolPtrInput
-	EncryptionCertificate           pulumi.StringPtrInput
-	ForceNameIdFormat               pulumi.BoolPtrInput
-	ForcePostBinding                pulumi.BoolPtrInput
-	FrontChannelLogout              pulumi.BoolPtrInput
-	FullScopeAllowed                pulumi.BoolPtrInput
-	IdpInitiatedSsoRelayState       pulumi.StringPtrInput
-	IdpInitiatedSsoUrlName          pulumi.StringPtrInput
-	IncludeAuthnStatement           pulumi.BoolPtrInput
-	LogoutServicePostBindingUrl     pulumi.StringPtrInput
+	// SAML POST Binding URL for the client's assertion consumer service (login responses).
+	AssertionConsumerPostUrl pulumi.StringPtrInput
+	// SAML Redirect Binding URL for the client's assertion consumer service (login responses).
+	AssertionConsumerRedirectUrl pulumi.StringPtrInput
+	// When specified, this URL will be used whenever Keycloak needs to link to this client.
+	BaseUrl pulumi.StringPtrInput
+	// The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+	ClientId pulumi.StringPtrInput
+	// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`.
+	ClientSignatureRequired pulumi.BoolPtrInput
+	// The description of this client in the GUI.
+	Description pulumi.StringPtrInput
+	// When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+	Enabled pulumi.BoolPtrInput
+	// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key.
+	EncryptAssertions pulumi.BoolPtrInput
+	// If assertions for the client are encrypted, this certificate will be used for encryption.
+	EncryptionCertificate pulumi.StringPtrInput
+	// Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead.
+	ForceNameIdFormat pulumi.BoolPtrInput
+	// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.
+	ForcePostBinding pulumi.BoolPtrInput
+	// When `true`, this client will require a browser redirect in order to perform a logout.
+	FrontChannelLogout pulumi.BoolPtrInput
+	// - Allow to include all roles mappings in the access token
+	FullScopeAllowed pulumi.BoolPtrInput
+	// Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+	IdpInitiatedSsoRelayState pulumi.StringPtrInput
+	// URL fragment name to reference client when you want to do IDP Initiated SSO.
+	IdpInitiatedSsoUrlName pulumi.StringPtrInput
+	// When `true`, an `AuthnStatement` will be included in the SAML response.
+	IncludeAuthnStatement pulumi.BoolPtrInput
+	// SAML POST Binding URL for the client's single logout service.
+	LogoutServicePostBindingUrl pulumi.StringPtrInput
+	// SAML Redirect Binding URL for the client's single logout service.
 	LogoutServiceRedirectBindingUrl pulumi.StringPtrInput
-	MasterSamlProcessingUrl         pulumi.StringPtrInput
-	Name                            pulumi.StringPtrInput
-	NameIdFormat                    pulumi.StringPtrInput
-	RealmId                         pulumi.StringPtrInput
-	RootUrl                         pulumi.StringPtrInput
-	SignAssertions                  pulumi.BoolPtrInput
-	SignDocuments                   pulumi.BoolPtrInput
-	SignatureAlgorithm              pulumi.StringPtrInput
-	SigningCertificate              pulumi.StringPtrInput
-	SigningPrivateKey               pulumi.StringPtrInput
-	ValidRedirectUris               pulumi.StringArrayInput
+	// When specified, this URL will be used for all SAML requests.
+	MasterSamlProcessingUrl pulumi.StringPtrInput
+	// The display name of this client in the GUI.
+	Name pulumi.StringPtrInput
+	// Sets the Name ID format for the subject.
+	NameIdFormat pulumi.StringPtrInput
+	// The realm this client is attached to.
+	RealmId pulumi.StringPtrInput
+	// When specified, this value is prepended to all relative URLs.
+	RootUrl pulumi.StringPtrInput
+	// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.
+	SignAssertions pulumi.BoolPtrInput
+	// When `true`, the SAML document will be signed by Keycloak using the realm's private key.
+	SignDocuments pulumi.BoolPtrInput
+	// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+	SignatureAlgorithm pulumi.StringPtrInput
+	// If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+	SigningCertificate pulumi.StringPtrInput
+	// If documents or assertions from the client are signed, this private key will be used to verify the signature.
+	SigningPrivateKey pulumi.StringPtrInput
+	// When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
+	ValidRedirectUris pulumi.StringArrayInput
 }
 
 func (ClientState) ElementType() reflect.Type {
@@ -183,68 +237,126 @@ func (ClientState) ElementType() reflect.Type {
 }
 
 type clientArgs struct {
-	AssertionConsumerPostUrl        *string  `pulumi:"assertionConsumerPostUrl"`
-	AssertionConsumerRedirectUrl    *string  `pulumi:"assertionConsumerRedirectUrl"`
-	BaseUrl                         *string  `pulumi:"baseUrl"`
-	ClientId                        string   `pulumi:"clientId"`
-	ClientSignatureRequired         *bool    `pulumi:"clientSignatureRequired"`
-	Description                     *string  `pulumi:"description"`
-	Enabled                         *bool    `pulumi:"enabled"`
-	EncryptAssertions               *bool    `pulumi:"encryptAssertions"`
-	EncryptionCertificate           *string  `pulumi:"encryptionCertificate"`
-	ForceNameIdFormat               *bool    `pulumi:"forceNameIdFormat"`
-	ForcePostBinding                *bool    `pulumi:"forcePostBinding"`
-	FrontChannelLogout              *bool    `pulumi:"frontChannelLogout"`
-	FullScopeAllowed                *bool    `pulumi:"fullScopeAllowed"`
-	IdpInitiatedSsoRelayState       *string  `pulumi:"idpInitiatedSsoRelayState"`
-	IdpInitiatedSsoUrlName          *string  `pulumi:"idpInitiatedSsoUrlName"`
-	IncludeAuthnStatement           *bool    `pulumi:"includeAuthnStatement"`
-	LogoutServicePostBindingUrl     *string  `pulumi:"logoutServicePostBindingUrl"`
-	LogoutServiceRedirectBindingUrl *string  `pulumi:"logoutServiceRedirectBindingUrl"`
-	MasterSamlProcessingUrl         *string  `pulumi:"masterSamlProcessingUrl"`
-	Name                            *string  `pulumi:"name"`
-	NameIdFormat                    *string  `pulumi:"nameIdFormat"`
-	RealmId                         string   `pulumi:"realmId"`
-	RootUrl                         *string  `pulumi:"rootUrl"`
-	SignAssertions                  *bool    `pulumi:"signAssertions"`
-	SignDocuments                   *bool    `pulumi:"signDocuments"`
-	SignatureAlgorithm              *string  `pulumi:"signatureAlgorithm"`
-	SigningCertificate              *string  `pulumi:"signingCertificate"`
-	SigningPrivateKey               *string  `pulumi:"signingPrivateKey"`
-	ValidRedirectUris               []string `pulumi:"validRedirectUris"`
+	// SAML POST Binding URL for the client's assertion consumer service (login responses).
+	AssertionConsumerPostUrl *string `pulumi:"assertionConsumerPostUrl"`
+	// SAML Redirect Binding URL for the client's assertion consumer service (login responses).
+	AssertionConsumerRedirectUrl *string `pulumi:"assertionConsumerRedirectUrl"`
+	// When specified, this URL will be used whenever Keycloak needs to link to this client.
+	BaseUrl *string `pulumi:"baseUrl"`
+	// The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+	ClientId string `pulumi:"clientId"`
+	// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`.
+	ClientSignatureRequired *bool `pulumi:"clientSignatureRequired"`
+	// The description of this client in the GUI.
+	Description *string `pulumi:"description"`
+	// When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+	Enabled *bool `pulumi:"enabled"`
+	// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key.
+	EncryptAssertions *bool `pulumi:"encryptAssertions"`
+	// If assertions for the client are encrypted, this certificate will be used for encryption.
+	EncryptionCertificate *string `pulumi:"encryptionCertificate"`
+	// Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead.
+	ForceNameIdFormat *bool `pulumi:"forceNameIdFormat"`
+	// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.
+	ForcePostBinding *bool `pulumi:"forcePostBinding"`
+	// When `true`, this client will require a browser redirect in order to perform a logout.
+	FrontChannelLogout *bool `pulumi:"frontChannelLogout"`
+	// - Allow to include all roles mappings in the access token
+	FullScopeAllowed *bool `pulumi:"fullScopeAllowed"`
+	// Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+	IdpInitiatedSsoRelayState *string `pulumi:"idpInitiatedSsoRelayState"`
+	// URL fragment name to reference client when you want to do IDP Initiated SSO.
+	IdpInitiatedSsoUrlName *string `pulumi:"idpInitiatedSsoUrlName"`
+	// When `true`, an `AuthnStatement` will be included in the SAML response.
+	IncludeAuthnStatement *bool `pulumi:"includeAuthnStatement"`
+	// SAML POST Binding URL for the client's single logout service.
+	LogoutServicePostBindingUrl *string `pulumi:"logoutServicePostBindingUrl"`
+	// SAML Redirect Binding URL for the client's single logout service.
+	LogoutServiceRedirectBindingUrl *string `pulumi:"logoutServiceRedirectBindingUrl"`
+	// When specified, this URL will be used for all SAML requests.
+	MasterSamlProcessingUrl *string `pulumi:"masterSamlProcessingUrl"`
+	// The display name of this client in the GUI.
+	Name *string `pulumi:"name"`
+	// Sets the Name ID format for the subject.
+	NameIdFormat *string `pulumi:"nameIdFormat"`
+	// The realm this client is attached to.
+	RealmId string `pulumi:"realmId"`
+	// When specified, this value is prepended to all relative URLs.
+	RootUrl *string `pulumi:"rootUrl"`
+	// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.
+	SignAssertions *bool `pulumi:"signAssertions"`
+	// When `true`, the SAML document will be signed by Keycloak using the realm's private key.
+	SignDocuments *bool `pulumi:"signDocuments"`
+	// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+	SignatureAlgorithm *string `pulumi:"signatureAlgorithm"`
+	// If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+	SigningCertificate *string `pulumi:"signingCertificate"`
+	// If documents or assertions from the client are signed, this private key will be used to verify the signature.
+	SigningPrivateKey *string `pulumi:"signingPrivateKey"`
+	// When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
+	ValidRedirectUris []string `pulumi:"validRedirectUris"`
 }
 
 // The set of arguments for constructing a Client resource.
 type ClientArgs struct {
-	AssertionConsumerPostUrl        pulumi.StringPtrInput
-	AssertionConsumerRedirectUrl    pulumi.StringPtrInput
-	BaseUrl                         pulumi.StringPtrInput
-	ClientId                        pulumi.StringInput
-	ClientSignatureRequired         pulumi.BoolPtrInput
-	Description                     pulumi.StringPtrInput
-	Enabled                         pulumi.BoolPtrInput
-	EncryptAssertions               pulumi.BoolPtrInput
-	EncryptionCertificate           pulumi.StringPtrInput
-	ForceNameIdFormat               pulumi.BoolPtrInput
-	ForcePostBinding                pulumi.BoolPtrInput
-	FrontChannelLogout              pulumi.BoolPtrInput
-	FullScopeAllowed                pulumi.BoolPtrInput
-	IdpInitiatedSsoRelayState       pulumi.StringPtrInput
-	IdpInitiatedSsoUrlName          pulumi.StringPtrInput
-	IncludeAuthnStatement           pulumi.BoolPtrInput
-	LogoutServicePostBindingUrl     pulumi.StringPtrInput
+	// SAML POST Binding URL for the client's assertion consumer service (login responses).
+	AssertionConsumerPostUrl pulumi.StringPtrInput
+	// SAML Redirect Binding URL for the client's assertion consumer service (login responses).
+	AssertionConsumerRedirectUrl pulumi.StringPtrInput
+	// When specified, this URL will be used whenever Keycloak needs to link to this client.
+	BaseUrl pulumi.StringPtrInput
+	// The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+	ClientId pulumi.StringInput
+	// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`.
+	ClientSignatureRequired pulumi.BoolPtrInput
+	// The description of this client in the GUI.
+	Description pulumi.StringPtrInput
+	// When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+	Enabled pulumi.BoolPtrInput
+	// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key.
+	EncryptAssertions pulumi.BoolPtrInput
+	// If assertions for the client are encrypted, this certificate will be used for encryption.
+	EncryptionCertificate pulumi.StringPtrInput
+	// Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead.
+	ForceNameIdFormat pulumi.BoolPtrInput
+	// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.
+	ForcePostBinding pulumi.BoolPtrInput
+	// When `true`, this client will require a browser redirect in order to perform a logout.
+	FrontChannelLogout pulumi.BoolPtrInput
+	// - Allow to include all roles mappings in the access token
+	FullScopeAllowed pulumi.BoolPtrInput
+	// Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+	IdpInitiatedSsoRelayState pulumi.StringPtrInput
+	// URL fragment name to reference client when you want to do IDP Initiated SSO.
+	IdpInitiatedSsoUrlName pulumi.StringPtrInput
+	// When `true`, an `AuthnStatement` will be included in the SAML response.
+	IncludeAuthnStatement pulumi.BoolPtrInput
+	// SAML POST Binding URL for the client's single logout service.
+	LogoutServicePostBindingUrl pulumi.StringPtrInput
+	// SAML Redirect Binding URL for the client's single logout service.
 	LogoutServiceRedirectBindingUrl pulumi.StringPtrInput
-	MasterSamlProcessingUrl         pulumi.StringPtrInput
-	Name                            pulumi.StringPtrInput
-	NameIdFormat                    pulumi.StringPtrInput
-	RealmId                         pulumi.StringInput
-	RootUrl                         pulumi.StringPtrInput
-	SignAssertions                  pulumi.BoolPtrInput
-	SignDocuments                   pulumi.BoolPtrInput
-	SignatureAlgorithm              pulumi.StringPtrInput
-	SigningCertificate              pulumi.StringPtrInput
-	SigningPrivateKey               pulumi.StringPtrInput
-	ValidRedirectUris               pulumi.StringArrayInput
+	// When specified, this URL will be used for all SAML requests.
+	MasterSamlProcessingUrl pulumi.StringPtrInput
+	// The display name of this client in the GUI.
+	Name pulumi.StringPtrInput
+	// Sets the Name ID format for the subject.
+	NameIdFormat pulumi.StringPtrInput
+	// The realm this client is attached to.
+	RealmId pulumi.StringInput
+	// When specified, this value is prepended to all relative URLs.
+	RootUrl pulumi.StringPtrInput
+	// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.
+	SignAssertions pulumi.BoolPtrInput
+	// When `true`, the SAML document will be signed by Keycloak using the realm's private key.
+	SignDocuments pulumi.BoolPtrInput
+	// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+	SignatureAlgorithm pulumi.StringPtrInput
+	// If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+	SigningCertificate pulumi.StringPtrInput
+	// If documents or assertions from the client are signed, this private key will be used to verify the signature.
+	SigningPrivateKey pulumi.StringPtrInput
+	// When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
+	ValidRedirectUris pulumi.StringArrayInput
 }
 
 func (ClientArgs) ElementType() reflect.Type {

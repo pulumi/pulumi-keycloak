@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Ldap
 {
     /// <summary>
-    /// ## # keycloak.ldap.UserFederation
-    /// 
     /// Allows for creating and managing LDAP user federation providers within Keycloak.
     /// 
     /// Keycloak can use an LDAP user federation provider to federate users to Keycloak
@@ -19,7 +17,7 @@ namespace Pulumi.Keycloak.Ldap
     /// will exist within the realm and will be able to log in to clients. Federated
     /// users can have their attributes defined using mappers.
     /// 
-    /// ### Example Usage
+    /// ## Example Usage
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -31,102 +29,79 @@ namespace Pulumi.Keycloak.Ldap
     ///     {
     ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
     ///         {
+    ///             Realm = "my-realm",
     ///             Enabled = true,
-    ///             Realm = "test",
     ///         });
     ///         var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new Keycloak.Ldap.UserFederationArgs
     ///         {
-    ///             BindCredential = "admin",
-    ///             BindDn = "cn=admin,dc=example,dc=org",
-    ///             ConnectionTimeout = "5s",
-    ///             ConnectionUrl = "ldap://openldap",
-    ///             Enabled = true,
-    ///             RdnLdapAttribute = "cn",
-    ///             ReadTimeout = "10s",
     ///             RealmId = realm.Id,
+    ///             Enabled = true,
+    ///             UsernameLdapAttribute = "cn",
+    ///             RdnLdapAttribute = "cn",
+    ///             UuidLdapAttribute = "entryDN",
     ///             UserObjectClasses = 
     ///             {
     ///                 "simpleSecurityObject",
     ///                 "organizationalRole",
     ///             },
-    ///             UsernameLdapAttribute = "cn",
+    ///             ConnectionUrl = "ldap://openldap",
     ///             UsersDn = "dc=example,dc=org",
-    ///             UuidLdapAttribute = "entryDN",
+    ///             BindDn = "cn=admin,dc=example,dc=org",
+    ///             BindCredential = "admin",
+    ///             ConnectionTimeout = "5s",
+    ///             ReadTimeout = "10s",
+    ///             Kerberos = new Keycloak.Ldap.Inputs.UserFederationKerberosArgs
+    ///             {
+    ///                 KerberosRealm = "FOO.LOCAL",
+    ///                 ServerPrincipal = "HTTP/host.foo.com@FOO.LOCAL",
+    ///                 Keytab = "/etc/host.keytab",
+    ///             },
     ///         });
     ///     }
     /// 
     /// }
     /// ```
-    /// 
-    /// ### Argument Reference
-    /// 
-    /// The following arguments are supported:
-    /// 
-    /// - `realm_id` - (Required) The realm that this provider will provide user federation for.
-    /// - `name` - (Required) Display name of the provider when displayed in the console.
-    /// - `enabled` - (Optional) When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
-    /// - `priority` - (Optional) Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
-    /// - `import_enabled` - (Optional) When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
-    /// - `edit_mode` - (Optional) Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
-    /// - `sync_registrations` - (Optional) When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
-    /// - `vendor` - (Optional) Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OPTIONAL`.
-    /// - `username_ldap_attribute` - (Required) Name of the LDAP attribute to use as the Keycloak username.
-    /// - `rdn_ldap_attribute` - (Required) Name of the LDAP attribute to use as the relative distinguished name.
-    /// - `uuid_ldap_attribute` - (Required) Name of the LDAP attribute to use as a unique object identifier for objects in LDAP.
-    /// - `user_object_classes` - (Required) Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
-    /// - `connection_url` - (Required) Connection URL to the LDAP server.
-    /// - `users_dn` - (Required) Full DN of LDAP tree where your users are.
-    /// - `bind_dn` - (Optional) DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
-    /// - `bind_credential` - (Optional) Password of LDAP admin. This attribute must be set if `bind_dn` is set.
-    /// - `custom_user_search_filter` - (Optional) Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
-    /// - `search_scope` - (Optional) Can be one of `ONE_LEVEL` or `SUBTREE`:
-    ///     - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
-    ///     - `SUBTREE`: Search entire LDAP subtree.
-    /// - `validate_password_policy` - (Optional) When `true`, Keycloak will validate passwords using the realm policy before updating it.
-    /// - `use_truststore_spi` - (Optional) Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
-    ///     - `ALWAYS` - Always use the truststore SPI for LDAP connections.
-    ///     - `NEVER` - Never use the truststore SPI for LDAP connections.
-    ///     - `ONLY_FOR_LDAPS` - Only use the truststore SPI if your LDAP connection uses the ldaps protocol.
-    /// - `connection_timeout` - (Optional) LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
-    /// - `read_timeout` - (Optional) LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
-    /// - `pagination` - (Optional) When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
-    /// - `batch_size_for_sync` - (Optional) The number of users to sync within a single transaction. Defaults to `1000`.
-    /// - `full_sync_period` - (Optional) How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
-    /// - `changed_sync_period` - (Optional) How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
-    /// - `cache_policy` - (Optional) Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
     /// </summary>
     public partial class UserFederation : Pulumi.CustomResource
     {
         /// <summary>
-        /// The number of users to sync within a single transaction.
+        /// The number of users to sync within a single transaction. Defaults to `1000`.
         /// </summary>
         [Output("batchSizeForSync")]
         public Output<int?> BatchSizeForSync { get; private set; } = null!;
 
         /// <summary>
-        /// Password of LDAP admin.
+        /// Password of LDAP admin. This attribute must be set if `bind_dn` is set.
         /// </summary>
         [Output("bindCredential")]
         public Output<string?> BindCredential { get; private set; } = null!;
 
         /// <summary>
-        /// DN of LDAP admin, which will be used by Keycloak to access LDAP server.
+        /// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
         /// </summary>
         [Output("bindDn")]
         public Output<string?> BindDn { get; private set; } = null!;
 
+        /// <summary>
+        /// A block containing the cache settings.
+        /// </summary>
+        [Output("cache")]
+        public Output<Outputs.UserFederationCache?> Cache { get; private set; } = null!;
+
+        /// <summary>
+        /// **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+        /// </summary>
         [Output("cachePolicy")]
         public Output<string?> CachePolicy { get; private set; } = null!;
 
         /// <summary>
-        /// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
-        /// sync.
+        /// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
         /// </summary>
         [Output("changedSyncPeriod")]
         public Output<int?> ChangedSyncPeriod { get; private set; } = null!;
 
         /// <summary>
-        /// LDAP connection timeout (duration string)
+        /// LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         /// </summary>
         [Output("connectionTimeout")]
         public Output<string?> ConnectionTimeout { get; private set; } = null!;
@@ -138,19 +113,19 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string> ConnectionUrl { get; private set; } = null!;
 
         /// <summary>
-        /// Additional LDAP filter for filtering searched users. Must begin with '(' and end with ')'.
+        /// Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
         /// </summary>
         [Output("customUserSearchFilter")]
         public Output<string?> CustomUserSearchFilter { get; private set; } = null!;
 
         /// <summary>
-        /// READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to LDAP.
+        /// Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
         /// </summary>
         [Output("editMode")]
         public Output<string?> EditMode { get; private set; } = null!;
 
         /// <summary>
-        /// When false, this provider will not be used when performing queries for users.
+        /// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
@@ -162,13 +137,13 @@ namespace Pulumi.Keycloak.Ldap
         public Output<int?> FullSyncPeriod { get; private set; } = null!;
 
         /// <summary>
-        /// When true, LDAP users will be imported into the Keycloak database.
+        /// When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
         /// </summary>
         [Output("importEnabled")]
         public Output<bool?> ImportEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// Settings regarding kerberos authentication for this realm.
+        /// A block containing the kerberos settings.
         /// </summary>
         [Output("kerberos")]
         public Output<Outputs.UserFederationKerberos?> Kerberos { get; private set; } = null!;
@@ -180,13 +155,13 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// When true, Keycloak assumes the LDAP server supports pagination.
+        /// When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
         /// </summary>
         [Output("pagination")]
         public Output<bool?> Pagination { get; private set; } = null!;
 
         /// <summary>
-        /// Priority of this provider when looking up users. Lower values are first.
+        /// Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
         /// </summary>
         [Output("priority")]
         public Output<int?> Priority { get; private set; } = null!;
@@ -198,34 +173,39 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string> RdnLdapAttribute { get; private set; } = null!;
 
         /// <summary>
-        /// LDAP read timeout (duration string)
+        /// LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         /// </summary>
         [Output("readTimeout")]
         public Output<string?> ReadTimeout { get; private set; } = null!;
 
         /// <summary>
-        /// The realm this provider will provide user federation for.
+        /// The realm that this provider will provide user federation for.
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
         /// <summary>
-        /// ONE_LEVEL: only search for users in the DN specified by user_dn. SUBTREE: search entire LDAP subtree.
+        /// Can be one of `ONE_LEVEL` or `SUBTREE`:
+        /// - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
+        /// - `SUBTREE`: Search entire LDAP subtree.
         /// </summary>
         [Output("searchScope")]
         public Output<string?> SearchScope { get; private set; } = null!;
 
         /// <summary>
-        /// When true, newly created users will be synced back to LDAP.
+        /// When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
         /// </summary>
         [Output("syncRegistrations")]
         public Output<bool?> SyncRegistrations { get; private set; } = null!;
 
+        /// <summary>
+        /// Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
+        /// </summary>
         [Output("useTruststoreSpi")]
         public Output<string?> UseTruststoreSpi { get; private set; } = null!;
 
         /// <summary>
-        /// All values of LDAP objectClass attribute for users in LDAP.
+        /// Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
         /// </summary>
         [Output("userObjectClasses")]
         public Output<ImmutableArray<string>> UserObjectClasses { get; private set; } = null!;
@@ -249,13 +229,13 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string> UuidLdapAttribute { get; private set; } = null!;
 
         /// <summary>
-        /// When true, Keycloak will validate passwords using the realm policy before updating it.
+        /// When `true`, Keycloak will validate passwords using the realm policy before updating it.
         /// </summary>
         [Output("validatePasswordPolicy")]
         public Output<bool?> ValidatePasswordPolicy { get; private set; } = null!;
 
         /// <summary>
-        /// LDAP vendor. I am almost certain this field does nothing, but the UI indicates that it is required.
+        /// Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
         /// </summary>
         [Output("vendor")]
         public Output<string?> Vendor { get; private set; } = null!;
@@ -307,35 +287,43 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class UserFederationArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The number of users to sync within a single transaction.
+        /// The number of users to sync within a single transaction. Defaults to `1000`.
         /// </summary>
         [Input("batchSizeForSync")]
         public Input<int>? BatchSizeForSync { get; set; }
 
         /// <summary>
-        /// Password of LDAP admin.
+        /// Password of LDAP admin. This attribute must be set if `bind_dn` is set.
         /// </summary>
         [Input("bindCredential")]
         public Input<string>? BindCredential { get; set; }
 
         /// <summary>
-        /// DN of LDAP admin, which will be used by Keycloak to access LDAP server.
+        /// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
         /// </summary>
         [Input("bindDn")]
         public Input<string>? BindDn { get; set; }
 
+        /// <summary>
+        /// A block containing the cache settings.
+        /// </summary>
+        [Input("cache")]
+        public Input<Inputs.UserFederationCacheArgs>? Cache { get; set; }
+
+        /// <summary>
+        /// **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+        /// </summary>
         [Input("cachePolicy")]
         public Input<string>? CachePolicy { get; set; }
 
         /// <summary>
-        /// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
-        /// sync.
+        /// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
         /// </summary>
         [Input("changedSyncPeriod")]
         public Input<int>? ChangedSyncPeriod { get; set; }
 
         /// <summary>
-        /// LDAP connection timeout (duration string)
+        /// LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         /// </summary>
         [Input("connectionTimeout")]
         public Input<string>? ConnectionTimeout { get; set; }
@@ -347,19 +335,19 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string> ConnectionUrl { get; set; } = null!;
 
         /// <summary>
-        /// Additional LDAP filter for filtering searched users. Must begin with '(' and end with ')'.
+        /// Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
         /// </summary>
         [Input("customUserSearchFilter")]
         public Input<string>? CustomUserSearchFilter { get; set; }
 
         /// <summary>
-        /// READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to LDAP.
+        /// Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
         /// </summary>
         [Input("editMode")]
         public Input<string>? EditMode { get; set; }
 
         /// <summary>
-        /// When false, this provider will not be used when performing queries for users.
+        /// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -371,13 +359,13 @@ namespace Pulumi.Keycloak.Ldap
         public Input<int>? FullSyncPeriod { get; set; }
 
         /// <summary>
-        /// When true, LDAP users will be imported into the Keycloak database.
+        /// When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
         /// </summary>
         [Input("importEnabled")]
         public Input<bool>? ImportEnabled { get; set; }
 
         /// <summary>
-        /// Settings regarding kerberos authentication for this realm.
+        /// A block containing the kerberos settings.
         /// </summary>
         [Input("kerberos")]
         public Input<Inputs.UserFederationKerberosArgs>? Kerberos { get; set; }
@@ -389,13 +377,13 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// When true, Keycloak assumes the LDAP server supports pagination.
+        /// When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
         /// </summary>
         [Input("pagination")]
         public Input<bool>? Pagination { get; set; }
 
         /// <summary>
-        /// Priority of this provider when looking up users. Lower values are first.
+        /// Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
@@ -407,29 +395,34 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string> RdnLdapAttribute { get; set; } = null!;
 
         /// <summary>
-        /// LDAP read timeout (duration string)
+        /// LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         /// </summary>
         [Input("readTimeout")]
         public Input<string>? ReadTimeout { get; set; }
 
         /// <summary>
-        /// The realm this provider will provide user federation for.
+        /// The realm that this provider will provide user federation for.
         /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
         /// <summary>
-        /// ONE_LEVEL: only search for users in the DN specified by user_dn. SUBTREE: search entire LDAP subtree.
+        /// Can be one of `ONE_LEVEL` or `SUBTREE`:
+        /// - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
+        /// - `SUBTREE`: Search entire LDAP subtree.
         /// </summary>
         [Input("searchScope")]
         public Input<string>? SearchScope { get; set; }
 
         /// <summary>
-        /// When true, newly created users will be synced back to LDAP.
+        /// When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
         /// </summary>
         [Input("syncRegistrations")]
         public Input<bool>? SyncRegistrations { get; set; }
 
+        /// <summary>
+        /// Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
+        /// </summary>
         [Input("useTruststoreSpi")]
         public Input<string>? UseTruststoreSpi { get; set; }
 
@@ -437,7 +430,7 @@ namespace Pulumi.Keycloak.Ldap
         private InputList<string>? _userObjectClasses;
 
         /// <summary>
-        /// All values of LDAP objectClass attribute for users in LDAP.
+        /// Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
         /// </summary>
         public InputList<string> UserObjectClasses
         {
@@ -464,13 +457,13 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string> UuidLdapAttribute { get; set; } = null!;
 
         /// <summary>
-        /// When true, Keycloak will validate passwords using the realm policy before updating it.
+        /// When `true`, Keycloak will validate passwords using the realm policy before updating it.
         /// </summary>
         [Input("validatePasswordPolicy")]
         public Input<bool>? ValidatePasswordPolicy { get; set; }
 
         /// <summary>
-        /// LDAP vendor. I am almost certain this field does nothing, but the UI indicates that it is required.
+        /// Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
         /// </summary>
         [Input("vendor")]
         public Input<string>? Vendor { get; set; }
@@ -483,35 +476,43 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class UserFederationState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The number of users to sync within a single transaction.
+        /// The number of users to sync within a single transaction. Defaults to `1000`.
         /// </summary>
         [Input("batchSizeForSync")]
         public Input<int>? BatchSizeForSync { get; set; }
 
         /// <summary>
-        /// Password of LDAP admin.
+        /// Password of LDAP admin. This attribute must be set if `bind_dn` is set.
         /// </summary>
         [Input("bindCredential")]
         public Input<string>? BindCredential { get; set; }
 
         /// <summary>
-        /// DN of LDAP admin, which will be used by Keycloak to access LDAP server.
+        /// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
         /// </summary>
         [Input("bindDn")]
         public Input<string>? BindDn { get; set; }
 
+        /// <summary>
+        /// A block containing the cache settings.
+        /// </summary>
+        [Input("cache")]
+        public Input<Inputs.UserFederationCacheGetArgs>? Cache { get; set; }
+
+        /// <summary>
+        /// **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+        /// </summary>
         [Input("cachePolicy")]
         public Input<string>? CachePolicy { get; set; }
 
         /// <summary>
-        /// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
-        /// sync.
+        /// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
         /// </summary>
         [Input("changedSyncPeriod")]
         public Input<int>? ChangedSyncPeriod { get; set; }
 
         /// <summary>
-        /// LDAP connection timeout (duration string)
+        /// LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         /// </summary>
         [Input("connectionTimeout")]
         public Input<string>? ConnectionTimeout { get; set; }
@@ -523,19 +524,19 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? ConnectionUrl { get; set; }
 
         /// <summary>
-        /// Additional LDAP filter for filtering searched users. Must begin with '(' and end with ')'.
+        /// Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
         /// </summary>
         [Input("customUserSearchFilter")]
         public Input<string>? CustomUserSearchFilter { get; set; }
 
         /// <summary>
-        /// READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to LDAP.
+        /// Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
         /// </summary>
         [Input("editMode")]
         public Input<string>? EditMode { get; set; }
 
         /// <summary>
-        /// When false, this provider will not be used when performing queries for users.
+        /// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -547,13 +548,13 @@ namespace Pulumi.Keycloak.Ldap
         public Input<int>? FullSyncPeriod { get; set; }
 
         /// <summary>
-        /// When true, LDAP users will be imported into the Keycloak database.
+        /// When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
         /// </summary>
         [Input("importEnabled")]
         public Input<bool>? ImportEnabled { get; set; }
 
         /// <summary>
-        /// Settings regarding kerberos authentication for this realm.
+        /// A block containing the kerberos settings.
         /// </summary>
         [Input("kerberos")]
         public Input<Inputs.UserFederationKerberosGetArgs>? Kerberos { get; set; }
@@ -565,13 +566,13 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// When true, Keycloak assumes the LDAP server supports pagination.
+        /// When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
         /// </summary>
         [Input("pagination")]
         public Input<bool>? Pagination { get; set; }
 
         /// <summary>
-        /// Priority of this provider when looking up users. Lower values are first.
+        /// Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
@@ -583,29 +584,34 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? RdnLdapAttribute { get; set; }
 
         /// <summary>
-        /// LDAP read timeout (duration string)
+        /// LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         /// </summary>
         [Input("readTimeout")]
         public Input<string>? ReadTimeout { get; set; }
 
         /// <summary>
-        /// The realm this provider will provide user federation for.
+        /// The realm that this provider will provide user federation for.
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
         /// <summary>
-        /// ONE_LEVEL: only search for users in the DN specified by user_dn. SUBTREE: search entire LDAP subtree.
+        /// Can be one of `ONE_LEVEL` or `SUBTREE`:
+        /// - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
+        /// - `SUBTREE`: Search entire LDAP subtree.
         /// </summary>
         [Input("searchScope")]
         public Input<string>? SearchScope { get; set; }
 
         /// <summary>
-        /// When true, newly created users will be synced back to LDAP.
+        /// When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
         /// </summary>
         [Input("syncRegistrations")]
         public Input<bool>? SyncRegistrations { get; set; }
 
+        /// <summary>
+        /// Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
+        /// </summary>
         [Input("useTruststoreSpi")]
         public Input<string>? UseTruststoreSpi { get; set; }
 
@@ -613,7 +619,7 @@ namespace Pulumi.Keycloak.Ldap
         private InputList<string>? _userObjectClasses;
 
         /// <summary>
-        /// All values of LDAP objectClass attribute for users in LDAP.
+        /// Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
         /// </summary>
         public InputList<string> UserObjectClasses
         {
@@ -640,13 +646,13 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? UuidLdapAttribute { get; set; }
 
         /// <summary>
-        /// When true, Keycloak will validate passwords using the realm policy before updating it.
+        /// When `true`, Keycloak will validate passwords using the realm policy before updating it.
         /// </summary>
         [Input("validatePasswordPolicy")]
         public Input<bool>? ValidatePasswordPolicy { get; set; }
 
         /// <summary>
-        /// LDAP vendor. I am almost certain this field does nothing, but the UI indicates that it is required.
+        /// Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
         /// </summary>
         [Input("vendor")]
         public Input<string>? Vendor { get; set; }

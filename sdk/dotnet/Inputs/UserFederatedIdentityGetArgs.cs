@@ -12,12 +12,21 @@ namespace Pulumi.Keycloak.Inputs
 
     public sealed class UserFederatedIdentityGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the identity provider
+        /// </summary>
         [Input("identityProvider", required: true)]
         public Input<string> IdentityProvider { get; set; } = null!;
 
+        /// <summary>
+        /// The ID of the user defined in the identity provider
+        /// </summary>
         [Input("userId", required: true)]
         public Input<string> UserId { get; set; } = null!;
 
+        /// <summary>
+        /// The user name of the user defined in the identity provider
+        /// </summary>
         [Input("userName", required: true)]
         public Input<string> UserName { get; set; } = null!;
 

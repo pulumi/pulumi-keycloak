@@ -13,9 +13,12 @@ import (
 type GroupMemberships struct {
 	pulumi.CustomResourceState
 
-	GroupId pulumi.StringPtrOutput   `pulumi:"groupId"`
+	// The ID of the group this resource should manage memberships for.
+	GroupId pulumi.StringPtrOutput `pulumi:"groupId"`
+	// A list of usernames that belong to this group.
 	Members pulumi.StringArrayOutput `pulumi:"members"`
-	RealmId pulumi.StringOutput      `pulumi:"realmId"`
+	// The realm this group exists in.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
 // NewGroupMemberships registers a new resource with the given unique name, arguments, and options.
@@ -52,14 +55,20 @@ func GetGroupMemberships(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GroupMemberships resources.
 type groupMembershipsState struct {
-	GroupId *string  `pulumi:"groupId"`
+	// The ID of the group this resource should manage memberships for.
+	GroupId *string `pulumi:"groupId"`
+	// A list of usernames that belong to this group.
 	Members []string `pulumi:"members"`
-	RealmId *string  `pulumi:"realmId"`
+	// The realm this group exists in.
+	RealmId *string `pulumi:"realmId"`
 }
 
 type GroupMembershipsState struct {
+	// The ID of the group this resource should manage memberships for.
 	GroupId pulumi.StringPtrInput
+	// A list of usernames that belong to this group.
 	Members pulumi.StringArrayInput
+	// The realm this group exists in.
 	RealmId pulumi.StringPtrInput
 }
 
@@ -68,15 +77,21 @@ func (GroupMembershipsState) ElementType() reflect.Type {
 }
 
 type groupMembershipsArgs struct {
-	GroupId *string  `pulumi:"groupId"`
+	// The ID of the group this resource should manage memberships for.
+	GroupId *string `pulumi:"groupId"`
+	// A list of usernames that belong to this group.
 	Members []string `pulumi:"members"`
-	RealmId string   `pulumi:"realmId"`
+	// The realm this group exists in.
+	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a GroupMemberships resource.
 type GroupMembershipsArgs struct {
+	// The ID of the group this resource should manage memberships for.
 	GroupId pulumi.StringPtrInput
+	// A list of usernames that belong to this group.
 	Members pulumi.StringArrayInput
+	// The realm this group exists in.
 	RealmId pulumi.StringInput
 }
 

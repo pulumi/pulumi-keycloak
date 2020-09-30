@@ -5,77 +5,56 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.openid.UserAttributeProtocolMapper
+ * Allows for creating and managing user attribute protocol mappers within Keycloak.
  *
- * Allows for creating and managing user attribute protocol mappers within
- * Keycloak.
+ * User attribute protocol mappers allow you to map custom attributes defined for a user within Keycloak to a claim in a token.
  *
- * User attribute protocol mappers allow you to map custom attributes defined
- * for a user within Keycloak to a claim in a token. Protocol mappers can be
- * defined for a single client, or they can be defined for a client scope which
- * can be shared between multiple different clients.
+ * Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
+ * multiple different clients.
  *
- * ### Example Usage (Client)
+ * ## Example Usage
+ * ### Client)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
- * });
- * const openidClient = new keycloak.openid.Client("openid_client", {
- *     accessType: "CONFIDENTIAL",
- *     clientId: "test-client",
  *     enabled: true,
+ * });
+ * const openidClient = new keycloak.openid.Client("openidClient", {
  *     realmId: realm.id,
+ *     clientId: "client",
+ *     enabled: true,
+ *     accessType: "CONFIDENTIAL",
  *     validRedirectUris: ["http://localhost:8080/openid-callback"],
  * });
- * const userAttributeMapper = new keycloak.openid.UserAttributeProtocolMapper("user_attribute_mapper", {
- *     claimName: "bar",
- *     clientId: openidClient.id,
+ * const userAttributeMapper = new keycloak.openid.UserAttributeProtocolMapper("userAttributeMapper", {
  *     realmId: realm.id,
+ *     clientId: openidClient.id,
  *     userAttribute: "foo",
+ *     claimName: "bar",
  * });
  * ```
- *
- * ### Example Usage (Client Scope)
+ * ### Client Scope)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
- * const clientScope = new keycloak.openid.ClientScope("client_scope", {
+ * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
+ * const userAttributeMapper = new keycloak.openid.UserAttributeProtocolMapper("userAttributeMapper", {
  *     realmId: realm.id,
- * });
- * const userAttributeMapper = new keycloak.openid.UserAttributeProtocolMapper("user_attribute_mapper", {
- *     claimName: "bar",
  *     clientScopeId: clientScope.id,
- *     realmId: realm.id,
  *     userAttribute: "foo",
+ *     claimName: "bar",
  * });
  * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realmId` - (Required) The realm this protocol mapper exists within.
- * - `clientId` - (Required if `clientScopeId` is not specified) The client this protocol mapper is attached to.
- * - `clientScopeId` - (Required if `clientId` is not specified) The client scope this protocol mapper is attached to.
- * - `name` - (Required) The display name of this protocol mapper in the GUI.
- * - `userAttribute` - (Required) The custom user attribute to map a claim for.
- * - `claimName` - (Required) The name of the claim to insert into a token.
- * - `claimValueType` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `long`, `int`, or `boolean`. Defaults to `String`.
- * - `multivalued` - (Optional) Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
- * - `addToIdToken` - (Optional) Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
- * - `addToAccessToken` - (Optional) Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
- * - `addToUserinfo` - (Optional) Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
  */
 export class UserAttributeProtocolMapper extends pulumi.CustomResource {
     /**
@@ -106,46 +85,52 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
     }
 
     /**
-     * Indicates if the attribute should be a claim in the access token.
+     * Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
      */
     public readonly addToAccessToken!: pulumi.Output<boolean | undefined>;
     /**
-     * Indicates if the attribute should be a claim in the id token.
+     * Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
      */
     public readonly addToIdToken!: pulumi.Output<boolean | undefined>;
     /**
-     * Indicates if the attribute should appear in the userinfo response body.
+     * Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
     public readonly addToUserinfo!: pulumi.Output<boolean | undefined>;
     /**
-     * Indicates if attribute values should be aggregated within the group attributes
+     * Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
      */
     public readonly aggregateAttributes!: pulumi.Output<boolean | undefined>;
+    /**
+     * The name of the claim to insert into a token.
+     */
     public readonly claimName!: pulumi.Output<string>;
     /**
-     * Claim type used when serializing tokens.
+     * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
      */
     public readonly claimValueType!: pulumi.Output<string | undefined>;
     /**
-     * The mapper's associated client. Cannot be used at the same time as client_scope_id.
+     * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
     public readonly clientId!: pulumi.Output<string | undefined>;
     /**
-     * The mapper's associated client scope. Cannot be used at the same time as client_id.
+     * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
     public readonly clientScopeId!: pulumi.Output<string | undefined>;
     /**
-     * Indicates whether this attribute is a single value or an array of values.
+     * Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
      */
     public readonly multivalued!: pulumi.Output<boolean | undefined>;
     /**
-     * A human-friendly name that will appear in the Keycloak console.
+     * The display name of this protocol mapper in the GUI.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this protocol mapper exists within.
      */
     public readonly realmId!: pulumi.Output<string>;
+    /**
+     * The custom user attribute to map a claim for.
+     */
     public readonly userAttribute!: pulumi.Output<string>;
 
     /**
@@ -212,46 +197,52 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
  */
 export interface UserAttributeProtocolMapperState {
     /**
-     * Indicates if the attribute should be a claim in the access token.
+     * Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
      */
     readonly addToAccessToken?: pulumi.Input<boolean>;
     /**
-     * Indicates if the attribute should be a claim in the id token.
+     * Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
      */
     readonly addToIdToken?: pulumi.Input<boolean>;
     /**
-     * Indicates if the attribute should appear in the userinfo response body.
+     * Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
     readonly addToUserinfo?: pulumi.Input<boolean>;
     /**
-     * Indicates if attribute values should be aggregated within the group attributes
+     * Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
      */
     readonly aggregateAttributes?: pulumi.Input<boolean>;
+    /**
+     * The name of the claim to insert into a token.
+     */
     readonly claimName?: pulumi.Input<string>;
     /**
-     * Claim type used when serializing tokens.
+     * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
      */
     readonly claimValueType?: pulumi.Input<string>;
     /**
-     * The mapper's associated client. Cannot be used at the same time as client_scope_id.
+     * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
     readonly clientId?: pulumi.Input<string>;
     /**
-     * The mapper's associated client scope. Cannot be used at the same time as client_id.
+     * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
     readonly clientScopeId?: pulumi.Input<string>;
     /**
-     * Indicates whether this attribute is a single value or an array of values.
+     * Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
      */
     readonly multivalued?: pulumi.Input<boolean>;
     /**
-     * A human-friendly name that will appear in the Keycloak console.
+     * The display name of this protocol mapper in the GUI.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this protocol mapper exists within.
      */
     readonly realmId?: pulumi.Input<string>;
+    /**
+     * The custom user attribute to map a claim for.
+     */
     readonly userAttribute?: pulumi.Input<string>;
 }
 
@@ -260,45 +251,51 @@ export interface UserAttributeProtocolMapperState {
  */
 export interface UserAttributeProtocolMapperArgs {
     /**
-     * Indicates if the attribute should be a claim in the access token.
+     * Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
      */
     readonly addToAccessToken?: pulumi.Input<boolean>;
     /**
-     * Indicates if the attribute should be a claim in the id token.
+     * Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
      */
     readonly addToIdToken?: pulumi.Input<boolean>;
     /**
-     * Indicates if the attribute should appear in the userinfo response body.
+     * Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
     readonly addToUserinfo?: pulumi.Input<boolean>;
     /**
-     * Indicates if attribute values should be aggregated within the group attributes
+     * Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
      */
     readonly aggregateAttributes?: pulumi.Input<boolean>;
+    /**
+     * The name of the claim to insert into a token.
+     */
     readonly claimName: pulumi.Input<string>;
     /**
-     * Claim type used when serializing tokens.
+     * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
      */
     readonly claimValueType?: pulumi.Input<string>;
     /**
-     * The mapper's associated client. Cannot be used at the same time as client_scope_id.
+     * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
     readonly clientId?: pulumi.Input<string>;
     /**
-     * The mapper's associated client scope. Cannot be used at the same time as client_id.
+     * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
     readonly clientScopeId?: pulumi.Input<string>;
     /**
-     * Indicates whether this attribute is a single value or an array of values.
+     * Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
      */
     readonly multivalued?: pulumi.Input<boolean>;
     /**
-     * A human-friendly name that will appear in the Keycloak console.
+     * The display name of this protocol mapper in the GUI.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this protocol mapper exists within.
      */
     readonly realmId: pulumi.Input<string>;
+    /**
+     * The custom user attribute to map a claim for.
+     */
     readonly userAttribute: pulumi.Input<string>;
 }

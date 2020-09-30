@@ -11,12 +11,21 @@ namespace Pulumi.Keycloak
 {
     public partial class GroupRoles : Pulumi.CustomResource
     {
+        /// <summary>
+        /// The ID of the group this resource should manage roles for.
+        /// </summary>
         [Output("groupId")]
         public Output<string> GroupId { get; private set; } = null!;
 
+        /// <summary>
+        /// The realm this group exists in.
+        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
+        /// <summary>
+        /// A list of role IDs to map to the group
+        /// </summary>
         [Output("roleIds")]
         public Output<ImmutableArray<string>> RoleIds { get; private set; } = null!;
 
@@ -66,14 +75,24 @@ namespace Pulumi.Keycloak
 
     public sealed class GroupRolesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The ID of the group this resource should manage roles for.
+        /// </summary>
         [Input("groupId", required: true)]
         public Input<string> GroupId { get; set; } = null!;
 
+        /// <summary>
+        /// The realm this group exists in.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
         [Input("roleIds", required: true)]
         private InputList<string>? _roleIds;
+
+        /// <summary>
+        /// A list of role IDs to map to the group
+        /// </summary>
         public InputList<string> RoleIds
         {
             get => _roleIds ?? (_roleIds = new InputList<string>());
@@ -87,14 +106,24 @@ namespace Pulumi.Keycloak
 
     public sealed class GroupRolesState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The ID of the group this resource should manage roles for.
+        /// </summary>
         [Input("groupId")]
         public Input<string>? GroupId { get; set; }
 
+        /// <summary>
+        /// The realm this group exists in.
+        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
         [Input("roleIds")]
         private InputList<string>? _roleIds;
+
+        /// <summary>
+        /// A list of role IDs to map to the group
+        /// </summary>
         public InputList<string> RoleIds
         {
             get => _roleIds ?? (_roleIds = new InputList<string>());

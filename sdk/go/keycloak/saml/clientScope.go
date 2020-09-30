@@ -10,14 +10,55 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// Allows for creating and managing Keycloak client scopes that can be attached to clients that use the SAML protocol.
+//
+// Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/saml"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = saml.NewClientScope(ctx, "samlClientScope", &saml.ClientScopeArgs{
+// 			RealmId:     realm.ID(),
+// 			Description: pulumi.String("This scope will map a user's group memberships to SAML assertion"),
+// 			GuiOrder:    pulumi.Int(1),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type ClientScope struct {
 	pulumi.CustomResourceState
 
+	// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
 	ConsentScreenText pulumi.StringPtrOutput `pulumi:"consentScreenText"`
-	Description       pulumi.StringPtrOutput `pulumi:"description"`
-	GuiOrder          pulumi.IntPtrOutput    `pulumi:"guiOrder"`
-	Name              pulumi.StringOutput    `pulumi:"name"`
-	RealmId           pulumi.StringOutput    `pulumi:"realmId"`
+	// The description of this client scope in the GUI.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Specify order of the client scope in GUI (such as in Consent page) as integer.
+	GuiOrder pulumi.IntPtrOutput `pulumi:"guiOrder"`
+	// The display name of this client scope in the GUI.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// The realm this client scope belongs to.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
 // NewClientScope registers a new resource with the given unique name, arguments, and options.
@@ -51,19 +92,29 @@ func GetClientScope(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ClientScope resources.
 type clientScopeState struct {
+	// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
 	ConsentScreenText *string `pulumi:"consentScreenText"`
-	Description       *string `pulumi:"description"`
-	GuiOrder          *int    `pulumi:"guiOrder"`
-	Name              *string `pulumi:"name"`
-	RealmId           *string `pulumi:"realmId"`
+	// The description of this client scope in the GUI.
+	Description *string `pulumi:"description"`
+	// Specify order of the client scope in GUI (such as in Consent page) as integer.
+	GuiOrder *int `pulumi:"guiOrder"`
+	// The display name of this client scope in the GUI.
+	Name *string `pulumi:"name"`
+	// The realm this client scope belongs to.
+	RealmId *string `pulumi:"realmId"`
 }
 
 type ClientScopeState struct {
+	// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
 	ConsentScreenText pulumi.StringPtrInput
-	Description       pulumi.StringPtrInput
-	GuiOrder          pulumi.IntPtrInput
-	Name              pulumi.StringPtrInput
-	RealmId           pulumi.StringPtrInput
+	// The description of this client scope in the GUI.
+	Description pulumi.StringPtrInput
+	// Specify order of the client scope in GUI (such as in Consent page) as integer.
+	GuiOrder pulumi.IntPtrInput
+	// The display name of this client scope in the GUI.
+	Name pulumi.StringPtrInput
+	// The realm this client scope belongs to.
+	RealmId pulumi.StringPtrInput
 }
 
 func (ClientScopeState) ElementType() reflect.Type {
@@ -71,20 +122,30 @@ func (ClientScopeState) ElementType() reflect.Type {
 }
 
 type clientScopeArgs struct {
+	// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
 	ConsentScreenText *string `pulumi:"consentScreenText"`
-	Description       *string `pulumi:"description"`
-	GuiOrder          *int    `pulumi:"guiOrder"`
-	Name              *string `pulumi:"name"`
-	RealmId           string  `pulumi:"realmId"`
+	// The description of this client scope in the GUI.
+	Description *string `pulumi:"description"`
+	// Specify order of the client scope in GUI (such as in Consent page) as integer.
+	GuiOrder *int `pulumi:"guiOrder"`
+	// The display name of this client scope in the GUI.
+	Name *string `pulumi:"name"`
+	// The realm this client scope belongs to.
+	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a ClientScope resource.
 type ClientScopeArgs struct {
+	// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
 	ConsentScreenText pulumi.StringPtrInput
-	Description       pulumi.StringPtrInput
-	GuiOrder          pulumi.IntPtrInput
-	Name              pulumi.StringPtrInput
-	RealmId           pulumi.StringInput
+	// The description of this client scope in the GUI.
+	Description pulumi.StringPtrInput
+	// Specify order of the client scope in GUI (such as in Consent page) as integer.
+	GuiOrder pulumi.IntPtrInput
+	// The display name of this client scope in the GUI.
+	Name pulumi.StringPtrInput
+	// The realm this client scope belongs to.
+	RealmId pulumi.StringInput
 }
 
 func (ClientScopeArgs) ElementType() reflect.Type {

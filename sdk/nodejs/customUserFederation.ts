@@ -32,10 +32,16 @@ export class CustomUserFederation extends pulumi.CustomResource {
         return obj['__pulumiType'] === CustomUserFederation.__pulumiType;
     }
 
+    /**
+     * Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+     */
     public readonly cachePolicy!: pulumi.Output<string | undefined>;
+    /**
+     * The provider configuration handed over to your custom user federation provider.
+     */
     public readonly config!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * When false, this provider will not be used when performing queries for users.
+     * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
     /**
@@ -43,20 +49,19 @@ export class CustomUserFederation extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The parent_id of the generated component. will use realm_id if not specified.
+     * Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
      */
     public readonly parentId!: pulumi.Output<string | undefined>;
     /**
-     * Priority of this provider when looking up users. Lower values are first.
+     * Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
      */
     public readonly priority!: pulumi.Output<number | undefined>;
     /**
-     * The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
-     * interface
+     * The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
      */
     public readonly providerId!: pulumi.Output<string>;
     /**
-     * The realm (name) this provider will provide user federation for.
+     * The realm that this provider will provide user federation for.
      */
     public readonly realmId!: pulumi.Output<string>;
 
@@ -112,10 +117,16 @@ export class CustomUserFederation extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CustomUserFederation resources.
  */
 export interface CustomUserFederationState {
+    /**
+     * Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+     */
     readonly cachePolicy?: pulumi.Input<string>;
+    /**
+     * The provider configuration handed over to your custom user federation provider.
+     */
     readonly config?: pulumi.Input<{[key: string]: any}>;
     /**
-     * When false, this provider will not be used when performing queries for users.
+     * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      */
     readonly enabled?: pulumi.Input<boolean>;
     /**
@@ -123,20 +134,19 @@ export interface CustomUserFederationState {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The parent_id of the generated component. will use realm_id if not specified.
+     * Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
      */
     readonly parentId?: pulumi.Input<string>;
     /**
-     * Priority of this provider when looking up users. Lower values are first.
+     * Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
      */
     readonly priority?: pulumi.Input<number>;
     /**
-     * The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
-     * interface
+     * The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
      */
     readonly providerId?: pulumi.Input<string>;
     /**
-     * The realm (name) this provider will provide user federation for.
+     * The realm that this provider will provide user federation for.
      */
     readonly realmId?: pulumi.Input<string>;
 }
@@ -145,10 +155,16 @@ export interface CustomUserFederationState {
  * The set of arguments for constructing a CustomUserFederation resource.
  */
 export interface CustomUserFederationArgs {
+    /**
+     * Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+     */
     readonly cachePolicy?: pulumi.Input<string>;
+    /**
+     * The provider configuration handed over to your custom user federation provider.
+     */
     readonly config?: pulumi.Input<{[key: string]: any}>;
     /**
-     * When false, this provider will not be used when performing queries for users.
+     * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      */
     readonly enabled?: pulumi.Input<boolean>;
     /**
@@ -156,20 +172,19 @@ export interface CustomUserFederationArgs {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The parent_id of the generated component. will use realm_id if not specified.
+     * Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
      */
     readonly parentId?: pulumi.Input<string>;
     /**
-     * Priority of this provider when looking up users. Lower values are first.
+     * Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
      */
     readonly priority?: pulumi.Input<number>;
     /**
-     * The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
-     * interface
+     * The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
      */
     readonly providerId: pulumi.Input<string>;
     /**
-     * The realm (name) this provider will provide user federation for.
+     * The realm that this provider will provide user federation for.
      */
     readonly realmId: pulumi.Input<string>;
 }

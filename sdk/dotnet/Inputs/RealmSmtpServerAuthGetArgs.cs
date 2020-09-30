@@ -12,9 +12,15 @@ namespace Pulumi.Keycloak.Inputs
 
     public sealed class RealmSmtpServerAuthGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The SMTP server password.
+        /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
 
+        /// <summary>
+        /// The SMTP server username.
+        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 

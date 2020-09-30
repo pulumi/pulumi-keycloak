@@ -4,6 +4,28 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * Allows for creating and managing Keycloak client scopes that can be attached to clients that use the SAML protocol.
+ *
+ * Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const samlClientScope = new keycloak.saml.ClientScope("samlClientScope", {
+ *     realmId: realm.id,
+ *     description: "This scope will map a user's group memberships to SAML assertion",
+ *     guiOrder: 1,
+ * });
+ * ```
+ */
 export class ClientScope extends pulumi.CustomResource {
     /**
      * Get an existing ClientScope resource's state with the given name, ID, and optional extra
@@ -32,10 +54,25 @@ export class ClientScope extends pulumi.CustomResource {
         return obj['__pulumiType'] === ClientScope.__pulumiType;
     }
 
+    /**
+     * When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+     */
     public readonly consentScreenText!: pulumi.Output<string | undefined>;
+    /**
+     * The description of this client scope in the GUI.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Specify order of the client scope in GUI (such as in Consent page) as integer.
+     */
     public readonly guiOrder!: pulumi.Output<number | undefined>;
+    /**
+     * The display name of this client scope in the GUI.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The realm this client scope belongs to.
+     */
     public readonly realmId!: pulumi.Output<string>;
 
     /**
@@ -81,10 +118,25 @@ export class ClientScope extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ClientScope resources.
  */
 export interface ClientScopeState {
+    /**
+     * When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+     */
     readonly consentScreenText?: pulumi.Input<string>;
+    /**
+     * The description of this client scope in the GUI.
+     */
     readonly description?: pulumi.Input<string>;
+    /**
+     * Specify order of the client scope in GUI (such as in Consent page) as integer.
+     */
     readonly guiOrder?: pulumi.Input<number>;
+    /**
+     * The display name of this client scope in the GUI.
+     */
     readonly name?: pulumi.Input<string>;
+    /**
+     * The realm this client scope belongs to.
+     */
     readonly realmId?: pulumi.Input<string>;
 }
 
@@ -92,9 +144,24 @@ export interface ClientScopeState {
  * The set of arguments for constructing a ClientScope resource.
  */
 export interface ClientScopeArgs {
+    /**
+     * When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+     */
     readonly consentScreenText?: pulumi.Input<string>;
+    /**
+     * The description of this client scope in the GUI.
+     */
     readonly description?: pulumi.Input<string>;
+    /**
+     * Specify order of the client scope in GUI (such as in Consent page) as integer.
+     */
     readonly guiOrder?: pulumi.Input<number>;
+    /**
+     * The display name of this client scope in the GUI.
+     */
     readonly name?: pulumi.Input<string>;
+    /**
+     * The realm this client scope belongs to.
+     */
     readonly realmId: pulumi.Input<string>;
 }

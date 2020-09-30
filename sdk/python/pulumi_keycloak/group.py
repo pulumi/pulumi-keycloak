@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['Group']
@@ -23,58 +23,44 @@ class Group(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        ## # Group
-
         Allows for creating and managing Groups within Keycloak.
 
-        Groups provide a logical wrapping for users within Keycloak. Users within a
-        group can share attributes and roles, and group membership can be mapped
-        to a claim.
+        Groups provide a logical wrapping for users within Keycloak. Users within a group can share attributes and roles, and
+        group membership can be mapped to a claim.
 
         Attributes can also be defined on Groups.
 
-        Groups can also be federated from external data sources, such as LDAP or Active Directory.
-        This resource **should not** be used to manage groups that were created this way.
+        Groups can also be federated from external data sources, such as LDAP or Active Directory. This resource **should not**
+        be used to manage groups that were created this way.
 
-        ### Example Usage
+        ## Example Usage
 
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
+            realm="my-realm",
+            enabled=True)
         parent_group = keycloak.Group("parentGroup", realm_id=realm.id)
         child_group = keycloak.Group("childGroup",
-            parent_id=parent_group.id,
-            realm_id=realm.id)
+            realm_id=realm.id,
+            parent_id=parent_group.id)
         child_group_with_optional_attributes = keycloak.Group("childGroupWithOptionalAttributes",
+            realm_id=realm.id,
+            parent_id=parent_group.id,
             attributes={
                 "key1": "value1",
                 "key2": "value2",
-            },
-            parent_id=parent_group.id,
-            realm_id=realm.id)
+            })
         ```
-
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm_id` - (Required) The realm this group exists in.
-        - `parent_id` - (Optional) The ID of this group's parent. If omitted, this group will be defined at the root level.
-        - `name` - (Required) The name of the group.
-        - `attributes` - (Optional) A dict of key/value pairs to set as custom attributes for the group.
-
-        ### Attributes Reference
-
-        In addition to the arguments listed above, the following computed attributes are exported:
-
-        - `path` - The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, Any]] attributes: A map of key/value pairs to set as custom attributes for the group.
+        :param pulumi.Input[str] name: The name of the group.
+        :param pulumi.Input[str] parent_id: The ID of this group's parent. If omitted, this group will be defined at the root level.
+        :param pulumi.Input[str] realm_id: The realm this group exists in.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -122,6 +108,11 @@ class Group(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, Any]] attributes: A map of key/value pairs to set as custom attributes for the group.
+        :param pulumi.Input[str] name: The name of the group.
+        :param pulumi.Input[str] parent_id: The ID of this group's parent. If omitted, this group will be defined at the root level.
+        :param pulumi.Input[str] path: (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
+        :param pulumi.Input[str] realm_id: The realm this group exists in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -137,26 +128,41 @@ class Group(pulumi.CustomResource):
     @property
     @pulumi.getter
     def attributes(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+        """
+        A map of key/value pairs to set as custom attributes for the group.
+        """
         return pulumi.get(self, "attributes")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        The name of the group.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="parentId")
     def parent_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ID of this group's parent. If omitted, this group will be defined at the root level.
+        """
         return pulumi.get(self, "parent_id")
 
     @property
     @pulumi.getter
     def path(self) -> pulumi.Output[str]:
+        """
+        (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
+        """
         return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
+        """
+        The realm this group exists in.
+        """
         return pulumi.get(self, "realm_id")
 
     def translate_output_property(self, prop):

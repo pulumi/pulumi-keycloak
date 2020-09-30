@@ -5,60 +5,40 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak.Group
- *
  * Allows for creating and managing Groups within Keycloak.
  *
- * Groups provide a logical wrapping for users within Keycloak. Users within a
- * group can share attributes and roles, and group membership can be mapped
- * to a claim.
+ * Groups provide a logical wrapping for users within Keycloak. Users within a group can share attributes and roles, and
+ * group membership can be mapped to a claim.
  *
  * Attributes can also be defined on Groups.
  *
- * Groups can also be federated from external data sources, such as LDAP or Active Directory.
- * This resource **should not** be used to manage groups that were created this way.
+ * Groups can also be federated from external data sources, such as LDAP or Active Directory. This resource **should not**
+ * be used to manage groups that were created this way.
  *
- * ### Example Usage
+ * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
- * const parentGroup = new keycloak.Group("parent_group", {
+ * const parentGroup = new keycloak.Group("parentGroup", {realmId: realm.id});
+ * const childGroup = new keycloak.Group("childGroup", {
  *     realmId: realm.id,
- * });
- * const childGroup = new keycloak.Group("child_group", {
  *     parentId: parentGroup.id,
- *     realmId: realm.id,
  * });
- * const childGroupWithOptionalAttributes = new keycloak.Group("child_group_with_optional_attributes", {
+ * const childGroupWithOptionalAttributes = new keycloak.Group("childGroupWithOptionalAttributes", {
+ *     realmId: realm.id,
+ *     parentId: parentGroup.id,
  *     attributes: {
  *         key1: "value1",
  *         key2: "value2",
  *     },
- *     parentId: parentGroup.id,
- *     realmId: realm.id,
  * });
  * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realmId` - (Required) The realm this group exists in.
- * - `parentId` - (Optional) The ID of this group's parent. If omitted, this group will be defined at the root level.
- * - `name` - (Required) The name of the group.
- * - `attributes` - (Optional) A dict of key/value pairs to set as custom attributes for the group.
- *
- * ### Attributes Reference
- *
- * In addition to the arguments listed above, the following computed attributes are exported:
- *
- * - `path` - The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
  */
 export class Group extends pulumi.CustomResource {
     /**
@@ -88,10 +68,25 @@ export class Group extends pulumi.CustomResource {
         return obj['__pulumiType'] === Group.__pulumiType;
     }
 
+    /**
+     * A map of key/value pairs to set as custom attributes for the group.
+     */
     public readonly attributes!: pulumi.Output<{[key: string]: any} | undefined>;
+    /**
+     * The name of the group.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The ID of this group's parent. If omitted, this group will be defined at the root level.
+     */
     public readonly parentId!: pulumi.Output<string | undefined>;
+    /**
+     * (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
+     */
     public /*out*/ readonly path!: pulumi.Output<string>;
+    /**
+     * The realm this group exists in.
+     */
     public readonly realmId!: pulumi.Output<string>;
 
     /**
@@ -137,10 +132,25 @@ export class Group extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Group resources.
  */
 export interface GroupState {
+    /**
+     * A map of key/value pairs to set as custom attributes for the group.
+     */
     readonly attributes?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * The name of the group.
+     */
     readonly name?: pulumi.Input<string>;
+    /**
+     * The ID of this group's parent. If omitted, this group will be defined at the root level.
+     */
     readonly parentId?: pulumi.Input<string>;
+    /**
+     * (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
+     */
     readonly path?: pulumi.Input<string>;
+    /**
+     * The realm this group exists in.
+     */
     readonly realmId?: pulumi.Input<string>;
 }
 
@@ -148,8 +158,20 @@ export interface GroupState {
  * The set of arguments for constructing a Group resource.
  */
 export interface GroupArgs {
+    /**
+     * A map of key/value pairs to set as custom attributes for the group.
+     */
     readonly attributes?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * The name of the group.
+     */
     readonly name?: pulumi.Input<string>;
+    /**
+     * The ID of this group's parent. If omitted, this group will be defined at the root level.
+     */
     readonly parentId?: pulumi.Input<string>;
+    /**
+     * The realm this group exists in.
+     */
     readonly realmId: pulumi.Input<string>;
 }

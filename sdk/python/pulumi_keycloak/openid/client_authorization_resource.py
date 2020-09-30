@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['ClientAuthorizationResource']
@@ -22,9 +22,9 @@ class ClientAuthorizationResource(pulumi.CustomResource):
                  owner_managed_access: Optional[pulumi.Input[bool]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  resource_server_id: Optional[pulumi.Input[str]] = None,
-                 scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
-                 uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -81,9 +81,9 @@ class ClientAuthorizationResource(pulumi.CustomResource):
             owner_managed_access: Optional[pulumi.Input[bool]] = None,
             realm_id: Optional[pulumi.Input[str]] = None,
             resource_server_id: Optional[pulumi.Input[str]] = None,
-            scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
-            uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'ClientAuthorizationResource':
+            uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'ClientAuthorizationResource':
         """
         Get an existing ClientAuthorizationResource resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -145,7 +145,7 @@ class ClientAuthorizationResource(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def scopes(self) -> pulumi.Output[Optional[List[str]]]:
+    def scopes(self) -> pulumi.Output[Optional[Sequence[str]]]:
         return pulumi.get(self, "scopes")
 
     @property
@@ -155,7 +155,7 @@ class ClientAuthorizationResource(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def uris(self) -> pulumi.Output[Optional[List[str]]]:
+    def uris(self) -> pulumi.Output[Optional[Sequence[str]]]:
         return pulumi.get(self, "uris")
 
     def translate_output_property(self, prop):

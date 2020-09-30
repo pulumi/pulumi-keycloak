@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -39,75 +39,64 @@ class Client(pulumi.CustomResource):
                  root_url: Optional[pulumi.Input[str]] = None,
                  service_accounts_enabled: Optional[pulumi.Input[bool]] = None,
                  standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
-                 valid_redirect_uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 web_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
         """
-        ## # openid.Client
-
         Allows for creating and managing Keycloak clients that use the OpenID Connect protocol.
 
         Clients are entities that can use Keycloak for user authentication. Typically,
         clients are applications that redirect users to Keycloak for authentication
         in order to take advantage of Keycloak's user sessions for SSO.
 
-        ### Example Usage
+        ## Example Usage
 
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
+            realm="my-realm",
+            enabled=True)
         openid_client = keycloak.openid.Client("openidClient",
-            access_type="CONFIDENTIAL",
+            realm_id=realm.id,
             client_id="test-client",
             enabled=True,
-            realm_id=realm.id,
-            valid_redirect_uris=["http://localhost:8080/openid-callback"])
+            access_type="CONFIDENTIAL",
+            valid_redirect_uris=["http://localhost:8080/openid-callback"],
+            login_theme="keycloak")
         ```
-
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm_id` - (Required) The realm this client is attached to.
-        - `client_id` - (Required) The unique ID of this client, referenced in the URI during authentication and in issued tokens.
-        - `name` - (Optional) The display name of this client in the GUI.
-        - `enabled` - (Optional) When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
-        - `description` - (Optional) The description of this client in the GUI.
-        - `access_type` - (Required) Specifies the type of client, which can be one of the following:
-            - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
-              This client should be used for applications using the Authorization Code or Client Credentials grant flows.
-            - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
-              URIs for security. This client should be used for applications using the Implicit grant flow.
-            - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
-        - `client_secret` - (Optional) The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and
-          should be treated with the same care as a password. If omitted, Keycloak will generate a GUID for this attribute.
-        - `standard_flow_enabled` - (Optional) When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
-        - `implicit_flow_enabled` - (Optional) When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
-        - `direct_access_grants_enabled` - (Optional) When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
-        - `service_accounts_enabled` - (Optional) When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
-        - `valid_redirect_uris` - (Optional) A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
-          wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
-          is set to `true`.
-        - `web_origins` - (Optional) A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
-        - `admin_url` - (Optional) URL to the admin interface of the client.
-        - `base_url` - (Optional) Default URL to use when the auth server needs to redirect or link back to the client.
-        - `pkce_code_challenge_method` - (Optional) The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
-        - `full_scope_allowed` - (Optional) - Allow to include all roles mappings in the access token.
-
-        ### Attributes Reference
-
-        In addition to the arguments listed above, the following computed attributes are exported:
-
-        - `service_account_user_id` - When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] access_token_lifespan: The amount of time in seconds before an access token expires. This will override the default for the realm.
+        :param pulumi.Input[str] access_type: Specifies the type of client, which can be one of the following:
+        :param pulumi.Input[str] admin_url: URL to the admin interface of the client.
+        :param pulumi.Input[pulumi.InputType['ClientAuthenticationFlowBindingOverridesArgs']] authentication_flow_binding_overrides: Override realm authentication flow bindings
+        :param pulumi.Input[pulumi.InputType['ClientAuthorizationArgs']] authorization: When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
+        :param pulumi.Input[str] base_url: Default URL to use when the auth server needs to redirect or link back to the client.
+        :param pulumi.Input[str] client_id: The Client ID for this client, referenced in the URI during authentication and in issued tokens.
+        :param pulumi.Input[str] client_secret: The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
+        :param pulumi.Input[bool] consent_required: When `true`, users have to consent to client access.
+        :param pulumi.Input[str] description: The description of this client in the GUI.
+        :param pulumi.Input[bool] direct_access_grants_enabled: When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[bool] enabled: When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        :param pulumi.Input[bool] exclude_session_state_from_auth_response: When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
+        :param pulumi.Input[bool] full_scope_allowed: Allow to include all roles mappings in the access token.
+        :param pulumi.Input[bool] implicit_flow_enabled: When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[str] login_theme: The client login theme. This will override the default theme for the realm.
+        :param pulumi.Input[str] name: The display name of this client in the GUI.
+        :param pulumi.Input[str] pkce_code_challenge_method: The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
+        :param pulumi.Input[str] realm_id: The realm this client is attached to.
+        :param pulumi.Input[str] root_url: When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
+        :param pulumi.Input[bool] service_accounts_enabled: When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
+               wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
+               is set to `true`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -192,8 +181,8 @@ class Client(pulumi.CustomResource):
             service_account_user_id: Optional[pulumi.Input[str]] = None,
             service_accounts_enabled: Optional[pulumi.Input[bool]] = None,
             standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
-            valid_redirect_uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            web_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'Client':
+            valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Client':
         """
         Get an existing Client resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -201,6 +190,34 @@ class Client(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] access_token_lifespan: The amount of time in seconds before an access token expires. This will override the default for the realm.
+        :param pulumi.Input[str] access_type: Specifies the type of client, which can be one of the following:
+        :param pulumi.Input[str] admin_url: URL to the admin interface of the client.
+        :param pulumi.Input[pulumi.InputType['ClientAuthenticationFlowBindingOverridesArgs']] authentication_flow_binding_overrides: Override realm authentication flow bindings
+        :param pulumi.Input[pulumi.InputType['ClientAuthorizationArgs']] authorization: When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
+        :param pulumi.Input[str] base_url: Default URL to use when the auth server needs to redirect or link back to the client.
+        :param pulumi.Input[str] client_id: The Client ID for this client, referenced in the URI during authentication and in issued tokens.
+        :param pulumi.Input[str] client_secret: The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
+        :param pulumi.Input[bool] consent_required: When `true`, users have to consent to client access.
+        :param pulumi.Input[str] description: The description of this client in the GUI.
+        :param pulumi.Input[bool] direct_access_grants_enabled: When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[bool] enabled: When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        :param pulumi.Input[bool] exclude_session_state_from_auth_response: When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
+        :param pulumi.Input[bool] full_scope_allowed: Allow to include all roles mappings in the access token.
+        :param pulumi.Input[bool] implicit_flow_enabled: When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[str] login_theme: The client login theme. This will override the default theme for the realm.
+        :param pulumi.Input[str] name: The display name of this client in the GUI.
+        :param pulumi.Input[str] pkce_code_challenge_method: The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
+        :param pulumi.Input[str] realm_id: The realm this client is attached to.
+        :param pulumi.Input[str] resource_server_id: (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
+        :param pulumi.Input[str] root_url: When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
+        :param pulumi.Input[str] service_account_user_id: (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
+        :param pulumi.Input[bool] service_accounts_enabled: When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
+               wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
+               is set to `true`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -237,131 +254,211 @@ class Client(pulumi.CustomResource):
     @property
     @pulumi.getter(name="accessTokenLifespan")
     def access_token_lifespan(self) -> pulumi.Output[Optional[str]]:
+        """
+        The amount of time in seconds before an access token expires. This will override the default for the realm.
+        """
         return pulumi.get(self, "access_token_lifespan")
 
     @property
     @pulumi.getter(name="accessType")
     def access_type(self) -> pulumi.Output[str]:
+        """
+        Specifies the type of client, which can be one of the following:
+        """
         return pulumi.get(self, "access_type")
 
     @property
     @pulumi.getter(name="adminUrl")
     def admin_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        URL to the admin interface of the client.
+        """
         return pulumi.get(self, "admin_url")
 
     @property
     @pulumi.getter(name="authenticationFlowBindingOverrides")
     def authentication_flow_binding_overrides(self) -> pulumi.Output[Optional['outputs.ClientAuthenticationFlowBindingOverrides']]:
+        """
+        Override realm authentication flow bindings
+        """
         return pulumi.get(self, "authentication_flow_binding_overrides")
 
     @property
     @pulumi.getter
     def authorization(self) -> pulumi.Output[Optional['outputs.ClientAuthorization']]:
+        """
+        When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
+        """
         return pulumi.get(self, "authorization")
 
     @property
     @pulumi.getter(name="baseUrl")
     def base_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        Default URL to use when the auth server needs to redirect or link back to the client.
+        """
         return pulumi.get(self, "base_url")
 
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Output[str]:
+        """
+        The Client ID for this client, referenced in the URI during authentication and in issued tokens.
+        """
         return pulumi.get(self, "client_id")
 
     @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> pulumi.Output[str]:
+        """
+        The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
+        """
         return pulumi.get(self, "client_secret")
 
     @property
     @pulumi.getter(name="consentRequired")
     def consent_required(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, users have to consent to client access.
+        """
         return pulumi.get(self, "consent_required")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        The description of this client in the GUI.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="directAccessGrantsEnabled")
     def direct_access_grants_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
+        """
         return pulumi.get(self, "direct_access_grants_enabled")
 
     @property
     @pulumi.getter
     def enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        """
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="excludeSessionStateFromAuthResponse")
     def exclude_session_state_from_auth_response(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
+        """
         return pulumi.get(self, "exclude_session_state_from_auth_response")
 
     @property
     @pulumi.getter(name="fullScopeAllowed")
     def full_scope_allowed(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Allow to include all roles mappings in the access token.
+        """
         return pulumi.get(self, "full_scope_allowed")
 
     @property
     @pulumi.getter(name="implicitFlowEnabled")
     def implicit_flow_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+        """
         return pulumi.get(self, "implicit_flow_enabled")
 
     @property
     @pulumi.getter(name="loginTheme")
     def login_theme(self) -> pulumi.Output[Optional[str]]:
+        """
+        The client login theme. This will override the default theme for the realm.
+        """
         return pulumi.get(self, "login_theme")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        The display name of this client in the GUI.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="pkceCodeChallengeMethod")
     def pkce_code_challenge_method(self) -> pulumi.Output[Optional[str]]:
+        """
+        The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
+        """
         return pulumi.get(self, "pkce_code_challenge_method")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
+        """
+        The realm this client is attached to.
+        """
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter(name="resourceServerId")
     def resource_server_id(self) -> pulumi.Output[str]:
+        """
+        (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
+        """
         return pulumi.get(self, "resource_server_id")
 
     @property
     @pulumi.getter(name="rootUrl")
     def root_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
+        """
         return pulumi.get(self, "root_url")
 
     @property
     @pulumi.getter(name="serviceAccountUserId")
     def service_account_user_id(self) -> pulumi.Output[str]:
+        """
+        (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
+        """
         return pulumi.get(self, "service_account_user_id")
 
     @property
     @pulumi.getter(name="serviceAccountsEnabled")
     def service_accounts_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
+        """
         return pulumi.get(self, "service_accounts_enabled")
 
     @property
     @pulumi.getter(name="standardFlowEnabled")
     def standard_flow_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+        """
         return pulumi.get(self, "standard_flow_enabled")
 
     @property
     @pulumi.getter(name="validRedirectUris")
-    def valid_redirect_uris(self) -> pulumi.Output[Optional[List[str]]]:
+    def valid_redirect_uris(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
+        wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
+        is set to `true`.
+        """
         return pulumi.get(self, "valid_redirect_uris")
 
     @property
     @pulumi.getter(name="webOrigins")
-    def web_origins(self) -> pulumi.Output[Optional[List[str]]]:
+    def web_origins(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+        """
         return pulumi.get(self, "web_origins")
 
     def translate_output_property(self, prop):

@@ -6,6 +6,53 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * This data source can be used to fetch policy and permission information for an OpenID client that has authorization enabled.
+ *
+ * ## Example Usage
+ *
+ * In this example, we'll create a new OpenID client with authorization enabled. This will cause Keycloak to create a default
+ * permission for this client called "Default Permission". We'll use the `keycloak.openid.getClientAuthorizationPolicy` data
+ * source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const clientWithAuthz = new keycloak.openid.Client("clientWithAuthz", {
+ *     clientId: "client-with-authz",
+ *     realmId: realm.id,
+ *     accessType: "CONFIDENTIAL",
+ *     serviceAccountsEnabled: true,
+ *     authorization: {
+ *         policyEnforcementMode: "ENFORCING",
+ *     },
+ * });
+ * const defaultPermission = clientWithAuthz.resourceServerId.apply(resourceServerId => keycloak.openid.getClientAuthorizationPolicy({
+ *     realmId: keycloak_realm.test.id,
+ *     resourceServerId: resourceServerId,
+ *     name: "Default Permission",
+ * }));
+ * const resource = new keycloak.openid.ClientAuthorizationResource("resource", {
+ *     resourceServerId: clientWithAuthz.resourceServerId,
+ *     realmId: keycloak_realm.test.id,
+ *     uris: ["/endpoint/*"],
+ *     attributes: {
+ *         foo: "bar",
+ *     },
+ * });
+ * const permission = new keycloak.openid.ClientAuthorizationPermission("permission", {
+ *     resourceServerId: clientWithAuthz.resourceServerId,
+ *     realmId: keycloak_realm.test.id,
+ *     policies: [defaultPermission.id],
+ *     resources: [resource.id],
+ * });
+ * ```
+ */
 export function getClientAuthorizationPolicy(args: GetClientAuthorizationPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetClientAuthorizationPolicyResult> {
     if (!opts) {
         opts = {}
@@ -15,7 +62,6 @@ export function getClientAuthorizationPolicy(args: GetClientAuthorizationPolicyA
         opts.version = utilities.getVersion();
     }
     return pulumi.runtime.invoke("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", {
-        "logic": args.logic,
         "name": args.name,
         "realmId": args.realmId,
         "resourceServerId": args.resourceServerId,
@@ -26,9 +72,17 @@ export function getClientAuthorizationPolicy(args: GetClientAuthorizationPolicyA
  * A collection of arguments for invoking getClientAuthorizationPolicy.
  */
 export interface GetClientAuthorizationPolicyArgs {
-    readonly logic?: string;
+    /**
+     * The name of the authorization policy.
+     */
     readonly name: string;
+    /**
+     * The realm this authorization policy exists within.
+     */
     readonly realmId: string;
+    /**
+     * The ID of the resource server this authorization policy is attached to.
+     */
     readonly resourceServerId: string;
 }
 
@@ -36,18 +90,39 @@ export interface GetClientAuthorizationPolicyArgs {
  * A collection of values returned by getClientAuthorizationPolicy.
  */
 export interface GetClientAuthorizationPolicyResult {
+    /**
+     * (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
+     */
     readonly decisionStrategy: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    readonly logic?: string;
+    /**
+     * (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
+     */
+    readonly logic: string;
     readonly name: string;
+    /**
+     * (Computed) The ID of the owning resource. Applies to resources.
+     */
     readonly owner: string;
+    /**
+     * (Computed) The IDs of the policies that must be applied to scopes/resources for this policy/permission. Applies to policies and permissions.
+     */
     readonly policies: string[];
     readonly realmId: string;
     readonly resourceServerId: string;
+    /**
+     * (Computed) The IDs of the resources that this permission applies to. Applies to resource-based permissions.
+     */
     readonly resources: string[];
+    /**
+     * (Computed) The IDs of the scopes that this permission applies to. Applies to scope-based permissions.
+     */
     readonly scopes: string[];
+    /**
+     * (Computed) The type of this policy / permission. For permissions, this could be `resource` or `scope`. For policies, this could be any type of authorization policy, such as `js`.
+     */
     readonly type: string;
 }

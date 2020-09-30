@@ -12,12 +12,21 @@ namespace Pulumi.Keycloak.OpenId.Inputs
 
     public sealed class ClientAuthorizationArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
+        /// </summary>
         [Input("allowRemoteResourceManagement")]
         public Input<bool>? AllowRemoteResourceManagement { get; set; }
 
+        /// <summary>
+        /// When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
+        /// </summary>
         [Input("keepDefaults")]
         public Input<bool>? KeepDefaults { get; set; }
 
+        /// <summary>
+        /// Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
+        /// </summary>
         [Input("policyEnforcementMode", required: true)]
         public Input<string> PolicyEnforcementMode { get; set; } = null!;
 

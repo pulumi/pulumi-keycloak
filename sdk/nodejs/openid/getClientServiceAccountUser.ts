@@ -6,6 +6,45 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * This data source can be used to fetch information about the service account user that is associated with an OpenID client
+ * that has service accounts enabled.
+ *
+ * ## Example Usage
+ *
+ * In this example, we'll create an OpenID client with service accounts enabled. This causes Keycloak to create a special user
+ * that represents the service account. We'll use this data source to grab this user's ID in order to assign some roles to this
+ * user, using the `keycloak.UserRoles` resource.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const client = new keycloak.openid.Client("client", {
+ *     realmId: realm.id,
+ *     clientId: "client",
+ *     accessType: "CONFIDENTIAL",
+ *     serviceAccountsEnabled: true,
+ * });
+ * const serviceAccountUser = pulumi.all([realm.id, client.id]).apply(([realmId, clientId]) => keycloak.openid.getClientServiceAccountUser({
+ *     realmId: realmId,
+ *     clientId: clientId,
+ * }));
+ * const offlineAccess = realm.id.apply(id => keycloak.getRole({
+ *     realmId: id,
+ *     name: "offline_access",
+ * }));
+ * const serviceAccountUserRoles = new keycloak.UserRoles("serviceAccountUserRoles", {
+ *     realmId: realm.id,
+ *     userId: serviceAccountUser.id,
+ *     roleIds: [offlineAccess.id],
+ * });
+ * ```
+ */
 export function getClientServiceAccountUser(args: GetClientServiceAccountUserArgs, opts?: pulumi.InvokeOptions): Promise<GetClientServiceAccountUserResult> {
     if (!opts) {
         opts = {}
@@ -24,7 +63,13 @@ export function getClientServiceAccountUser(args: GetClientServiceAccountUserArg
  * A collection of arguments for invoking getClientServiceAccountUser.
  */
 export interface GetClientServiceAccountUserArgs {
+    /**
+     * The ID of the OpenID client with service accounts enabled.
+     */
     readonly clientId: string;
+    /**
+     * The realm that the OpenID client exists within.
+     */
     readonly realmId: string;
 }
 
@@ -35,6 +80,7 @@ export interface GetClientServiceAccountUserResult {
     readonly attributes: {[key: string]: any};
     readonly clientId: string;
     readonly email: string;
+    readonly emailVerified: boolean;
     readonly enabled: boolean;
     readonly federatedIdentities: outputs.openid.GetClientServiceAccountUserFederatedIdentity[];
     readonly firstName: string;

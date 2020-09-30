@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['GroupMapper']
@@ -17,12 +17,12 @@ class GroupMapper(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  drop_non_existing_groups_during_sync: Optional[pulumi.Input[bool]] = None,
                  group_name_ldap_attribute: Optional[pulumi.Input[str]] = None,
-                 group_object_classes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 group_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  groups_ldap_filter: Optional[pulumi.Input[str]] = None,
                  ignore_missing_groups: Optional[pulumi.Input[bool]] = None,
                  ldap_groups_dn: Optional[pulumi.Input[str]] = None,
                  ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
-                 mapped_group_attributes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 mapped_group_attributes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  memberof_ldap_attribute: Optional[pulumi.Input[str]] = None,
                  membership_attribute_type: Optional[pulumi.Input[str]] = None,
                  membership_ldap_attribute: Optional[pulumi.Input[str]] = None,
@@ -36,76 +36,64 @@ class GroupMapper(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        ## # ldap.GroupMapper
+        Allows for creating and managing group mappers for Keycloak users federated via LDAP.
 
-        Allows for creating and managing group mappers for Keycloak users federated
-        via LDAP.
+        The LDAP group mapper can be used to map an LDAP user's groups from some DN to Keycloak groups. This group mapper will also
+        create the groups within Keycloak if they do not already exist.
 
-        The LDAP group mapper can be used to map an LDAP user's groups from some DN
-        to Keycloak groups. This group mapper will also create the groups within Keycloak
-        if they do not already exist.
-
-        ### Example Usage
+        ## Example Usage
 
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="test")
+            realm="my-realm",
+            enabled=True)
         ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            bind_credential="admin",
-            bind_dn="cn=admin,dc=example,dc=org",
-            connection_url="ldap://openldap",
-            rdn_ldap_attribute="cn",
             realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
             user_object_classes=[
                 "simpleSecurityObject",
                 "organizationalRole",
             ],
-            username_ldap_attribute="cn",
+            connection_url="ldap://openldap",
             users_dn="dc=example,dc=org",
-            uuid_ldap_attribute="entryDN")
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
         ldap_group_mapper = keycloak.ldap.GroupMapper("ldapGroupMapper",
+            realm_id=realm.id,
+            ldap_user_federation_id=ldap_user_federation.id,
+            ldap_groups_dn="dc=example,dc=org",
             group_name_ldap_attribute="cn",
             group_object_classes=["groupOfNames"],
-            ldap_groups_dn="dc=example,dc=org",
-            ldap_user_federation_id=ldap_user_federation.id,
-            memberof_ldap_attribute="memberOf",
             membership_attribute_type="DN",
             membership_ldap_attribute="member",
             membership_user_ldap_attribute="cn",
-            realm_id=realm.id)
+            memberof_ldap_attribute="memberOf")
         ```
-
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
-        - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
-        - `name` - (Required) Display name of this mapper when displayed in the console.
-        - `ldap_groups_dn` - (Required) The LDAP DN where groups can be found.
-        - `group_name_ldap_attribute` - (Required) The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
-        - `group_object_classes` - (Required) Array of strings representing the object classes for the group. Must contain at least one.
-        - `preserve_group_inheritance` - (Optional) When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
-        - `ignore_missing_groups` - (Optional) When `true`, missing groups in the hierarchy will be ignored.
-        - `membership_ldap_attribute` - (Required) The name of the LDAP attribute that is used for membership mappings.
-        - `membership_attribute_type` - (Optional) Can be one of `DN` or `UID`. Defaults to `DN`.
-        - `membership_user_ldap_attribute` - (Required) The name of the LDAP attribute on a user that is used for membership mappings.
-        - `groups_ldap_filter` - (Optional) When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
-        - `mode` - (Optional) Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
-        - `user_roles_retrieve_strategy` - (Optional) Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
-        - `memberof_ldap_attribute` - (Optional) Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
-        - `mapped_group_attributes` - (Optional) Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
-        - `drop_non_existing_groups_during_sync` - (Optional) When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
-        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
-        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
+        :param pulumi.Input[bool] drop_non_existing_groups_during_sync: When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
+        :param pulumi.Input[str] group_name_ldap_attribute: The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_object_classes: List of strings representing the object classes for the group. Must contain at least one.
+        :param pulumi.Input[str] groups_ldap_filter: When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+        :param pulumi.Input[bool] ignore_missing_groups: When `true`, missing groups in the hierarchy will be ignored.
+        :param pulumi.Input[str] ldap_groups_dn: The LDAP DN where groups can be found.
+        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] mapped_group_attributes: Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
+        :param pulumi.Input[str] memberof_ldap_attribute: Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
+        :param pulumi.Input[str] membership_attribute_type: Can be one of `DN` or `UID`. Defaults to `DN`.
+        :param pulumi.Input[str] membership_ldap_attribute: The name of the LDAP attribute that is used for membership mappings.
+        :param pulumi.Input[str] membership_user_ldap_attribute: The name of the LDAP attribute on a user that is used for membership mappings.
+        :param pulumi.Input[str] mode: Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[bool] preserve_group_inheritance: When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
+        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[str] user_roles_retrieve_strategy: Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -167,12 +155,12 @@ class GroupMapper(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             drop_non_existing_groups_during_sync: Optional[pulumi.Input[bool]] = None,
             group_name_ldap_attribute: Optional[pulumi.Input[str]] = None,
-            group_object_classes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            group_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             groups_ldap_filter: Optional[pulumi.Input[str]] = None,
             ignore_missing_groups: Optional[pulumi.Input[bool]] = None,
             ldap_groups_dn: Optional[pulumi.Input[str]] = None,
             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
-            mapped_group_attributes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            mapped_group_attributes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             memberof_ldap_attribute: Optional[pulumi.Input[str]] = None,
             membership_attribute_type: Optional[pulumi.Input[str]] = None,
             membership_ldap_attribute: Optional[pulumi.Input[str]] = None,
@@ -189,9 +177,23 @@ class GroupMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
-        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
-        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
+        :param pulumi.Input[bool] drop_non_existing_groups_during_sync: When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
+        :param pulumi.Input[str] group_name_ldap_attribute: The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_object_classes: List of strings representing the object classes for the group. Must contain at least one.
+        :param pulumi.Input[str] groups_ldap_filter: When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+        :param pulumi.Input[bool] ignore_missing_groups: When `true`, missing groups in the hierarchy will be ignored.
+        :param pulumi.Input[str] ldap_groups_dn: The LDAP DN where groups can be found.
+        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] mapped_group_attributes: Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
+        :param pulumi.Input[str] memberof_ldap_attribute: Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
+        :param pulumi.Input[str] membership_attribute_type: Can be one of `DN` or `UID`. Defaults to `DN`.
+        :param pulumi.Input[str] membership_ldap_attribute: The name of the LDAP attribute that is used for membership mappings.
+        :param pulumi.Input[str] membership_user_ldap_attribute: The name of the LDAP attribute on a user that is used for membership mappings.
+        :param pulumi.Input[str] mode: Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[bool] preserve_group_inheritance: When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
+        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[str] user_roles_retrieve_strategy: Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -219,95 +221,137 @@ class GroupMapper(pulumi.CustomResource):
     @property
     @pulumi.getter(name="dropNonExistingGroupsDuringSync")
     def drop_non_existing_groups_during_sync(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
+        """
         return pulumi.get(self, "drop_non_existing_groups_during_sync")
 
     @property
     @pulumi.getter(name="groupNameLdapAttribute")
     def group_name_ldap_attribute(self) -> pulumi.Output[str]:
+        """
+        The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
+        """
         return pulumi.get(self, "group_name_ldap_attribute")
 
     @property
     @pulumi.getter(name="groupObjectClasses")
-    def group_object_classes(self) -> pulumi.Output[List[str]]:
+    def group_object_classes(self) -> pulumi.Output[Sequence[str]]:
+        """
+        List of strings representing the object classes for the group. Must contain at least one.
+        """
         return pulumi.get(self, "group_object_classes")
 
     @property
     @pulumi.getter(name="groupsLdapFilter")
     def groups_ldap_filter(self) -> pulumi.Output[Optional[str]]:
+        """
+        When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+        """
         return pulumi.get(self, "groups_ldap_filter")
 
     @property
     @pulumi.getter(name="ignoreMissingGroups")
     def ignore_missing_groups(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, missing groups in the hierarchy will be ignored.
+        """
         return pulumi.get(self, "ignore_missing_groups")
 
     @property
     @pulumi.getter(name="ldapGroupsDn")
     def ldap_groups_dn(self) -> pulumi.Output[str]:
+        """
+        The LDAP DN where groups can be found.
+        """
         return pulumi.get(self, "ldap_groups_dn")
 
     @property
     @pulumi.getter(name="ldapUserFederationId")
     def ldap_user_federation_id(self) -> pulumi.Output[str]:
         """
-        The ldap user federation provider to attach this mapper to.
+        The ID of the LDAP user federation provider to attach this mapper to.
         """
         return pulumi.get(self, "ldap_user_federation_id")
 
     @property
     @pulumi.getter(name="mappedGroupAttributes")
-    def mapped_group_attributes(self) -> pulumi.Output[Optional[List[str]]]:
+    def mapped_group_attributes(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
+        """
         return pulumi.get(self, "mapped_group_attributes")
 
     @property
     @pulumi.getter(name="memberofLdapAttribute")
     def memberof_ldap_attribute(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
+        """
         return pulumi.get(self, "memberof_ldap_attribute")
 
     @property
     @pulumi.getter(name="membershipAttributeType")
     def membership_attribute_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        Can be one of `DN` or `UID`. Defaults to `DN`.
+        """
         return pulumi.get(self, "membership_attribute_type")
 
     @property
     @pulumi.getter(name="membershipLdapAttribute")
     def membership_ldap_attribute(self) -> pulumi.Output[str]:
+        """
+        The name of the LDAP attribute that is used for membership mappings.
+        """
         return pulumi.get(self, "membership_ldap_attribute")
 
     @property
     @pulumi.getter(name="membershipUserLdapAttribute")
     def membership_user_ldap_attribute(self) -> pulumi.Output[str]:
+        """
+        The name of the LDAP attribute on a user that is used for membership mappings.
+        """
         return pulumi.get(self, "membership_user_ldap_attribute")
 
     @property
     @pulumi.getter
     def mode(self) -> pulumi.Output[Optional[str]]:
+        """
+        Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+        """
         return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Display name of the mapper when displayed in the console.
+        Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="preserveGroupInheritance")
     def preserve_group_inheritance(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
+        """
         return pulumi.get(self, "preserve_group_inheritance")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
         """
-        The realm in which the ldap user federation provider exists.
+        The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter(name="userRolesRetrieveStrategy")
     def user_roles_retrieve_strategy(self) -> pulumi.Output[Optional[str]]:
+        """
+        Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
+        """
         return pulumi.get(self, "user_roles_retrieve_strategy")
 
     def translate_output_property(self, prop):

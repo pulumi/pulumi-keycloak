@@ -10,17 +10,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// ## # openid.FullNameProtocolMapper
+// Allows for creating and managing full name protocol mappers within Keycloak.
 //
-// Allows for creating and managing full name protocol mappers within
-// Keycloak.
+// Full name protocol mappers allow you to map a user's first and last name to the OpenID Connect `name` claim in a token.
 //
-// Full name protocol mappers allow you to map a user's first and last name
-// to the OpenID Connect `name` claim in a token. Protocol mappers can be defined
-// for a single client, or they can be defined for a client scope which can
-// be shared between multiple different clients.
+// Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
+// multiple different clients.
 //
-// ### Example Usage (Client)
+// ## Example Usage
+// ### Client)
 //
 // ```go
 // package main
@@ -34,17 +32,17 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Enabled: pulumi.Bool(true),
 // 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		openidClient, err := openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
-// 			AccessType: pulumi.String("CONFIDENTIAL"),
-// 			ClientId:   pulumi.String("test-client"),
-// 			Enabled:    pulumi.Bool(true),
 // 			RealmId:    realm.ID(),
+// 			ClientId:   pulumi.String("client"),
+// 			Enabled:    pulumi.Bool(true),
+// 			AccessType: pulumi.String("CONFIDENTIAL"),
 // 			ValidRedirectUris: pulumi.StringArray{
 // 				pulumi.String("http://localhost:8080/openid-callback"),
 // 			},
@@ -53,8 +51,8 @@ import (
 // 			return err
 // 		}
 // 		_, err = openid.NewFullNameProtocolMapper(ctx, "fullNameMapper", &openid.FullNameProtocolMapperArgs{
-// 			ClientId: openidClient.ID(),
 // 			RealmId:  realm.ID(),
+// 			ClientId: openidClient.ID(),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -63,8 +61,7 @@ import (
 // 	})
 // }
 // ```
-//
-// ### Example Usage (Client Scope)
+// ### Client Scope)
 //
 // ```go
 // package main
@@ -78,8 +75,8 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Enabled: pulumi.Bool(true),
 // 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -91,8 +88,8 @@ import (
 // 			return err
 // 		}
 // 		_, err = openid.NewFullNameProtocolMapper(ctx, "fullNameMapper", &openid.FullNameProtocolMapperArgs{
-// 			ClientScopeId: clientScope.ID(),
 // 			RealmId:       realm.ID(),
+// 			ClientScopeId: clientScope.ID(),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -101,31 +98,22 @@ import (
 // 	})
 // }
 // ```
-//
-// ### Argument Reference
-//
-// The following arguments are supported:
-//
-// - `realmId` - (Required) The realm this protocol mapper exists within.
-// - `clientId` - (Required if `clientScopeId` is not specified) The client this protocol mapper is attached to.
-// - `clientScopeId` - (Required if `clientId` is not specified) The client scope this protocol mapper is attached to.
-// - `name` - (Required) The display name of this protocol mapper in the GUI.
-// - `addToIdToken` - (Optional) Indicates if the user's full name should be added as a claim to the id token. Defaults to `true`.
-// - `addToAccessToken` - (Optional) Indicates if the user's full name should be added as a claim to the access token. Defaults to `true`.
-// - `addToUserinfo` - (Optional) Indicates if the user's full name should be added as a claim to the UserInfo response body. Defaults to `true`.
 type FullNameProtocolMapper struct {
 	pulumi.CustomResourceState
 
+	// Indicates if the user's full name should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken pulumi.BoolPtrOutput `pulumi:"addToAccessToken"`
-	AddToIdToken     pulumi.BoolPtrOutput `pulumi:"addToIdToken"`
-	AddToUserinfo    pulumi.BoolPtrOutput `pulumi:"addToUserinfo"`
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// Indicates if the user's full name should be added as a claim to the id token. Defaults to `true`.
+	AddToIdToken pulumi.BoolPtrOutput `pulumi:"addToIdToken"`
+	// Indicates if the user's full name should be added as a claim to the UserInfo response body. Defaults to `true`.
+	AddToUserinfo pulumi.BoolPtrOutput `pulumi:"addToUserinfo"`
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId pulumi.StringPtrOutput `pulumi:"clientScopeId"`
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
@@ -160,30 +148,36 @@ func GetFullNameProtocolMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FullNameProtocolMapper resources.
 type fullNameProtocolMapperState struct {
+	// Indicates if the user's full name should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`
-	AddToIdToken     *bool `pulumi:"addToIdToken"`
-	AddToUserinfo    *bool `pulumi:"addToUserinfo"`
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// Indicates if the user's full name should be added as a claim to the id token. Defaults to `true`.
+	AddToIdToken *bool `pulumi:"addToIdToken"`
+	// Indicates if the user's full name should be added as a claim to the UserInfo response body. Defaults to `true`.
+	AddToUserinfo *bool `pulumi:"addToUserinfo"`
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId *string `pulumi:"clientId"`
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId *string `pulumi:"clientScopeId"`
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI.
 	Name *string `pulumi:"name"`
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId *string `pulumi:"realmId"`
 }
 
 type FullNameProtocolMapperState struct {
+	// Indicates if the user's full name should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken pulumi.BoolPtrInput
-	AddToIdToken     pulumi.BoolPtrInput
-	AddToUserinfo    pulumi.BoolPtrInput
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// Indicates if the user's full name should be added as a claim to the id token. Defaults to `true`.
+	AddToIdToken pulumi.BoolPtrInput
+	// Indicates if the user's full name should be added as a claim to the UserInfo response body. Defaults to `true`.
+	AddToUserinfo pulumi.BoolPtrInput
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId pulumi.StringPtrInput
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId pulumi.StringPtrInput
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringPtrInput
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringPtrInput
 }
 
@@ -192,31 +186,37 @@ func (FullNameProtocolMapperState) ElementType() reflect.Type {
 }
 
 type fullNameProtocolMapperArgs struct {
+	// Indicates if the user's full name should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`
-	AddToIdToken     *bool `pulumi:"addToIdToken"`
-	AddToUserinfo    *bool `pulumi:"addToUserinfo"`
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// Indicates if the user's full name should be added as a claim to the id token. Defaults to `true`.
+	AddToIdToken *bool `pulumi:"addToIdToken"`
+	// Indicates if the user's full name should be added as a claim to the UserInfo response body. Defaults to `true`.
+	AddToUserinfo *bool `pulumi:"addToUserinfo"`
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId *string `pulumi:"clientId"`
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId *string `pulumi:"clientScopeId"`
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI.
 	Name *string `pulumi:"name"`
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a FullNameProtocolMapper resource.
 type FullNameProtocolMapperArgs struct {
+	// Indicates if the user's full name should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken pulumi.BoolPtrInput
-	AddToIdToken     pulumi.BoolPtrInput
-	AddToUserinfo    pulumi.BoolPtrInput
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// Indicates if the user's full name should be added as a claim to the id token. Defaults to `true`.
+	AddToIdToken pulumi.BoolPtrInput
+	// Indicates if the user's full name should be added as a claim to the UserInfo response body. Defaults to `true`.
+	AddToUserinfo pulumi.BoolPtrInput
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId pulumi.StringPtrInput
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId pulumi.StringPtrInput
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringPtrInput
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringInput
 }
 

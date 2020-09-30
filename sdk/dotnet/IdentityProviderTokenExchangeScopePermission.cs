@@ -12,46 +12,50 @@ namespace Pulumi.Keycloak
     public partial class IdentityProviderTokenExchangeScopePermission : Pulumi.CustomResource
     {
         /// <summary>
-        /// Resource id representing the identity provider, this automatically created by keycloak
+        /// (Computed) Resource ID representing the identity provider, this automatically created by keycloak.
         /// </summary>
         [Output("authorizationIdpResourceId")]
         public Output<string> AuthorizationIdpResourceId { get; private set; } = null!;
 
         /// <summary>
-        /// Resource server id representing the realm management client on which this permission is managed
+        /// (Computed) Resource server ID representing the realm management client on which this permission is managed.
         /// </summary>
         [Output("authorizationResourceServerId")]
         public Output<string> AuthorizationResourceServerId { get; private set; } = null!;
 
         /// <summary>
-        /// Permission id representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id',
-        /// this automatically created by keycloak, the policy id will be set on this permission
+        /// (Computed) Permission ID representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id', this automatically created by keycloak, the policy ID will be set on this permission.
         /// </summary>
         [Output("authorizationTokenExchangeScopePermissionId")]
         public Output<string> AuthorizationTokenExchangeScopePermissionId { get; private set; } = null!;
 
         /// <summary>
-        /// Ids of the clients for which a policy will be created and set on scope based token exchange permission
+        /// A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
         /// </summary>
         [Output("clients")]
         public Output<ImmutableArray<string>> Clients { get; private set; } = null!;
 
         /// <summary>
-        /// Policy id that will be set on the scope based token exchange permission automatically created by enabling permissions on
-        /// the reference identity provider
+        /// (Computed) Policy ID that will be set on the scope based token exchange permission automatically created by enabling permissions on the reference identity provider.
         /// </summary>
         [Output("policyId")]
         public Output<string> PolicyId { get; private set; } = null!;
 
         /// <summary>
-        /// Type of policy that is created. At the moment only 'client' type is supported
+        /// Defaults to "client" This is also the only value policy type supported by this provider.
         /// </summary>
         [Output("policyType")]
         public Output<string?> PolicyType { get; private set; } = null!;
 
+        /// <summary>
+        /// Alias of the identity provider.
+        /// </summary>
         [Output("providerAlias")]
         public Output<string> ProviderAlias { get; private set; } = null!;
 
+        /// <summary>
+        /// The realm that the identity provider exists in.
+        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
@@ -105,7 +109,7 @@ namespace Pulumi.Keycloak
         private InputList<string>? _clients;
 
         /// <summary>
-        /// Ids of the clients for which a policy will be created and set on scope based token exchange permission
+        /// A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
         /// </summary>
         public InputList<string> Clients
         {
@@ -114,14 +118,20 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// Type of policy that is created. At the moment only 'client' type is supported
+        /// Defaults to "client" This is also the only value policy type supported by this provider.
         /// </summary>
         [Input("policyType")]
         public Input<string>? PolicyType { get; set; }
 
+        /// <summary>
+        /// Alias of the identity provider.
+        /// </summary>
         [Input("providerAlias", required: true)]
         public Input<string> ProviderAlias { get; set; } = null!;
 
+        /// <summary>
+        /// The realm that the identity provider exists in.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
@@ -133,20 +143,19 @@ namespace Pulumi.Keycloak
     public sealed class IdentityProviderTokenExchangeScopePermissionState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Resource id representing the identity provider, this automatically created by keycloak
+        /// (Computed) Resource ID representing the identity provider, this automatically created by keycloak.
         /// </summary>
         [Input("authorizationIdpResourceId")]
         public Input<string>? AuthorizationIdpResourceId { get; set; }
 
         /// <summary>
-        /// Resource server id representing the realm management client on which this permission is managed
+        /// (Computed) Resource server ID representing the realm management client on which this permission is managed.
         /// </summary>
         [Input("authorizationResourceServerId")]
         public Input<string>? AuthorizationResourceServerId { get; set; }
 
         /// <summary>
-        /// Permission id representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id',
-        /// this automatically created by keycloak, the policy id will be set on this permission
+        /// (Computed) Permission ID representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id', this automatically created by keycloak, the policy ID will be set on this permission.
         /// </summary>
         [Input("authorizationTokenExchangeScopePermissionId")]
         public Input<string>? AuthorizationTokenExchangeScopePermissionId { get; set; }
@@ -155,7 +164,7 @@ namespace Pulumi.Keycloak
         private InputList<string>? _clients;
 
         /// <summary>
-        /// Ids of the clients for which a policy will be created and set on scope based token exchange permission
+        /// A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
         /// </summary>
         public InputList<string> Clients
         {
@@ -164,21 +173,26 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// Policy id that will be set on the scope based token exchange permission automatically created by enabling permissions on
-        /// the reference identity provider
+        /// (Computed) Policy ID that will be set on the scope based token exchange permission automatically created by enabling permissions on the reference identity provider.
         /// </summary>
         [Input("policyId")]
         public Input<string>? PolicyId { get; set; }
 
         /// <summary>
-        /// Type of policy that is created. At the moment only 'client' type is supported
+        /// Defaults to "client" This is also the only value policy type supported by this provider.
         /// </summary>
         [Input("policyType")]
         public Input<string>? PolicyType { get; set; }
 
+        /// <summary>
+        /// Alias of the identity provider.
+        /// </summary>
         [Input("providerAlias")]
         public Input<string>? ProviderAlias { get; set; }
 
+        /// <summary>
+        /// The realm that the identity provider exists in.
+        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 

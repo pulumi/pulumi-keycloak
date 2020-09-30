@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -39,7 +39,7 @@ class GetRealmKeysResult:
 
     @property
     @pulumi.getter
-    def algorithms(self) -> Optional[List[str]]:
+    def algorithms(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "algorithms")
 
     @property
@@ -52,7 +52,10 @@ class GetRealmKeysResult:
 
     @property
     @pulumi.getter
-    def keys(self) -> List['outputs.GetRealmKeysKeyResult']:
+    def keys(self) -> Sequence['outputs.GetRealmKeysKeyResult']:
+        """
+        (Computed) A list of keys that match the filter criteria. Each key has the following attributes:
+        """
         return pulumi.get(self, "keys")
 
     @property
@@ -62,7 +65,10 @@ class GetRealmKeysResult:
 
     @property
     @pulumi.getter
-    def statuses(self) -> Optional[List[str]]:
+    def statuses(self) -> Optional[Sequence[str]]:
+        """
+        Key status (string)
+        """
         return pulumi.get(self, "statuses")
 
 
@@ -79,28 +85,23 @@ class AwaitableGetRealmKeysResult(GetRealmKeysResult):
             statuses=self.statuses)
 
 
-def get_realm_keys(algorithms: Optional[List[str]] = None,
+def get_realm_keys(algorithms: Optional[Sequence[str]] = None,
                    realm_id: Optional[str] = None,
-                   statuses: Optional[List[str]] = None,
+                   statuses: Optional[Sequence[str]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRealmKeysResult:
     """
-    ## # getRealmKeys data source
-
     Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
 
     Remarks:
 
     - A key must meet all filter criteria
-    - This datasource may return more than one value.
-    - If no key matches the filter criteria, then an error is returned.
+    - This data source may return more than one value.
+    - If no key matches the filter criteria, then an error will be returned.
 
-    ### Argument Reference
 
-    The following arguments are supported:
-
-    - `realm_id` - (Required) The realm of which the keys are retrieved.
-    - `algorithms` - (Optional) When specified, keys are filtered by algorithm (values for algorithm: `HS256`, `RS256`,`AES`, ...)
-    - `status` - (Optional) When specified, keys are filtered by status (values for status: `ACTIVE`, `DISABLED` and `PASSIVE`)
+    :param Sequence[str] algorithms: When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
+    :param str realm_id: The realm from which the keys will be retrieved.
+    :param Sequence[str] statuses: When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
     """
     __args__ = dict()
     __args__['algorithms'] = algorithms

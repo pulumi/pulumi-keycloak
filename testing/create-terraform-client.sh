@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 
-KEYCLOAK_URL="http://localhost:8080"
-KEYCLOAK_USER="keycloak"
-KEYCLOAK_PASSWORD="password"
-KEYCLOAK_CLIENT_ID="terraform"
-KEYCLOAK_CLIENT_SECRET="884e0f95-0f42-4a63-9b1f-94274655669e"
+KEYCLOAK_URL="http://localhost:8080" KEYCLOAK_USER="keycloak" KEYCLOAK_PASSWORD="password" KEYCLOAK_CLIENT_ID="terraform" KEYCLOAK_CLIENT_SECRET="884e0f95-0f42-4a63-9b1f-94274655669e"
 
 echo "Creating initial terraform client"
 

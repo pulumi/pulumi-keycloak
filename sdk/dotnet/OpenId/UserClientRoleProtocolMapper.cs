@@ -9,73 +9,151 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    /// <summary>
+    /// Allows for creating and managing user client role protocol mappers within Keycloak.
+    /// 
+    /// User client role protocol mappers allow you to define a claim containing the list of a client roles.
+    /// 
+    /// Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
+    /// multiple different clients.
+    /// 
+    /// ## Example Usage
+    /// ### Client)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "my-realm",
+    ///             Enabled = true,
+    ///         });
+    ///         var openidClient = new Keycloak.OpenId.Client("openidClient", new Keycloak.OpenId.ClientArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             ClientId = "client",
+    ///             Enabled = true,
+    ///             AccessType = "CONFIDENTIAL",
+    ///             ValidRedirectUris = 
+    ///             {
+    ///                 "http://localhost:8080/openid-callback",
+    ///             },
+    ///         });
+    ///         var userClientRoleMapper = new Keycloak.OpenId.UserClientRoleProtocolMapper("userClientRoleMapper", new Keycloak.OpenId.UserClientRoleProtocolMapperArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             ClientId = openidClient.Id,
+    ///             ClaimName = "foo",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Client Scope)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "my-realm",
+    ///             Enabled = true,
+    ///         });
+    ///         var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new Keycloak.OpenId.ClientScopeArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var userClientRoleMapper = new Keycloak.OpenId.UserClientRoleProtocolMapper("userClientRoleMapper", new Keycloak.OpenId.UserClientRoleProtocolMapperArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             ClientScopeId = clientScope.Id,
+    ///             ClaimName = "foo",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     public partial class UserClientRoleProtocolMapper : Pulumi.CustomResource
     {
         /// <summary>
-        /// Indicates if the attribute should be a claim in the access token.
+        /// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
         /// </summary>
         [Output("addToAccessToken")]
         public Output<bool?> AddToAccessToken { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates if the attribute should be a claim in the id token.
+        /// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
         /// </summary>
         [Output("addToIdToken")]
         public Output<bool?> AddToIdToken { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates if the attribute should appear in the userinfo response body.
+        /// Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
         /// </summary>
         [Output("addToUserinfo")]
         public Output<bool?> AddToUserinfo { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the claim to insert into a token.
+        /// </summary>
         [Output("claimName")]
         public Output<string> ClaimName { get; private set; } = null!;
 
         /// <summary>
-        /// Claim type used when serializing tokens.
+        /// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
         /// </summary>
         [Output("claimValueType")]
         public Output<string?> ClaimValueType { get; private set; } = null!;
 
         /// <summary>
-        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Output("clientId")]
         public Output<string?> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// Client ID for role mappings.
+        /// The Client ID for role mappings. Just client roles of this client will be added to the token. If this is unset, client roles of all clients will be added to the token.
         /// </summary>
         [Output("clientIdForRoleMappings")]
         public Output<string?> ClientIdForRoleMappings { get; private set; } = null!;
 
         /// <summary>
-        /// Prefix that will be added to each client role.
+        /// A prefix for each Client Role.
         /// </summary>
         [Output("clientRolePrefix")]
         public Output<string?> ClientRolePrefix { get; private set; } = null!;
 
         /// <summary>
-        /// The mapper's associated client scope. Cannot be used at the same time as client_id.
+        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Output("clientScopeId")]
         public Output<string?> ClientScopeId { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether this attribute is a single value or an array of values.
+        /// Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
         /// </summary>
         [Output("multivalued")]
         public Output<bool?> Multivalued { get; private set; } = null!;
 
         /// <summary>
-        /// A human-friendly name that will appear in the Keycloak console.
+        /// The display name of this protocol mapper in the GUI.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The realm id where the associated client or client scope exists.
+        /// The realm this protocol mapper exists within.
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
@@ -127,70 +205,73 @@ namespace Pulumi.Keycloak.OpenId
     public sealed class UserClientRoleProtocolMapperArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates if the attribute should be a claim in the access token.
+        /// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
         /// </summary>
         [Input("addToAccessToken")]
         public Input<bool>? AddToAccessToken { get; set; }
 
         /// <summary>
-        /// Indicates if the attribute should be a claim in the id token.
+        /// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
         /// </summary>
         [Input("addToIdToken")]
         public Input<bool>? AddToIdToken { get; set; }
 
         /// <summary>
-        /// Indicates if the attribute should appear in the userinfo response body.
+        /// Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
         /// </summary>
         [Input("addToUserinfo")]
         public Input<bool>? AddToUserinfo { get; set; }
 
+        /// <summary>
+        /// The name of the claim to insert into a token.
+        /// </summary>
         [Input("claimName", required: true)]
         public Input<string> ClaimName { get; set; } = null!;
 
         /// <summary>
-        /// Claim type used when serializing tokens.
+        /// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
         /// </summary>
         [Input("claimValueType")]
         public Input<string>? ClaimValueType { get; set; }
 
         /// <summary>
-        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// Client ID for role mappings.
+        /// The Client ID for role mappings. Just client roles of this client will be added to the token. If this is unset, client roles of all clients will be added to the token.
         /// </summary>
         [Input("clientIdForRoleMappings")]
         public Input<string>? ClientIdForRoleMappings { get; set; }
 
         /// <summary>
-        /// Prefix that will be added to each client role.
+        /// A prefix for each Client Role.
         /// </summary>
         [Input("clientRolePrefix")]
         public Input<string>? ClientRolePrefix { get; set; }
 
         /// <summary>
-        /// The mapper's associated client scope. Cannot be used at the same time as client_id.
+        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }
 
         /// <summary>
-        /// Indicates whether this attribute is a single value or an array of values.
+        /// Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
         /// </summary>
         [Input("multivalued")]
         public Input<bool>? Multivalued { get; set; }
 
         /// <summary>
-        /// A human-friendly name that will appear in the Keycloak console.
+        /// The display name of this protocol mapper in the GUI.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm id where the associated client or client scope exists.
+        /// The realm this protocol mapper exists within.
         /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
@@ -203,70 +284,73 @@ namespace Pulumi.Keycloak.OpenId
     public sealed class UserClientRoleProtocolMapperState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates if the attribute should be a claim in the access token.
+        /// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
         /// </summary>
         [Input("addToAccessToken")]
         public Input<bool>? AddToAccessToken { get; set; }
 
         /// <summary>
-        /// Indicates if the attribute should be a claim in the id token.
+        /// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
         /// </summary>
         [Input("addToIdToken")]
         public Input<bool>? AddToIdToken { get; set; }
 
         /// <summary>
-        /// Indicates if the attribute should appear in the userinfo response body.
+        /// Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
         /// </summary>
         [Input("addToUserinfo")]
         public Input<bool>? AddToUserinfo { get; set; }
 
+        /// <summary>
+        /// The name of the claim to insert into a token.
+        /// </summary>
         [Input("claimName")]
         public Input<string>? ClaimName { get; set; }
 
         /// <summary>
-        /// Claim type used when serializing tokens.
+        /// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
         /// </summary>
         [Input("claimValueType")]
         public Input<string>? ClaimValueType { get; set; }
 
         /// <summary>
-        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// Client ID for role mappings.
+        /// The Client ID for role mappings. Just client roles of this client will be added to the token. If this is unset, client roles of all clients will be added to the token.
         /// </summary>
         [Input("clientIdForRoleMappings")]
         public Input<string>? ClientIdForRoleMappings { get; set; }
 
         /// <summary>
-        /// Prefix that will be added to each client role.
+        /// A prefix for each Client Role.
         /// </summary>
         [Input("clientRolePrefix")]
         public Input<string>? ClientRolePrefix { get; set; }
 
         /// <summary>
-        /// The mapper's associated client scope. Cannot be used at the same time as client_id.
+        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }
 
         /// <summary>
-        /// Indicates whether this attribute is a single value or an array of values.
+        /// Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
         /// </summary>
         [Input("multivalued")]
         public Input<bool>? Multivalued { get; set; }
 
         /// <summary>
-        /// A human-friendly name that will appear in the Keycloak console.
+        /// The display name of this protocol mapper in the GUI.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm id where the associated client or client scope exists.
+        /// The realm this protocol mapper exists within.
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }

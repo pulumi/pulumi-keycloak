@@ -10,13 +10,70 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// Allows for managing an authentication execution's configuration. If a particular authentication execution supports additional
+// configuration (such as with the `identity-provider-redirector` execution), this can be managed with this resource.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/authentication"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		flow, err := authentication.NewFlow(ctx, "flow", &authentication.FlowArgs{
+// 			RealmId: realm.ID(),
+// 			Alias:   pulumi.String("my-flow-alias"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		execution, err := authentication.NewExecution(ctx, "execution", &authentication.ExecutionArgs{
+// 			RealmId:         realm.ID(),
+// 			ParentFlowAlias: flow.Alias,
+// 			Authenticator:   pulumi.String("identity-provider-redirector"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = authentication.NewExecutionConfig(ctx, "config", &authentication.ExecutionConfigArgs{
+// 			RealmId:     realm.ID(),
+// 			ExecutionId: execution.ID(),
+// 			Alias:       pulumi.String("my-config-alias"),
+// 			Config: pulumi.StringMap{
+// 				"defaultProvider": pulumi.String("my-config-default-idp"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type ExecutionConfig struct {
 	pulumi.CustomResourceState
 
-	Alias       pulumi.StringOutput    `pulumi:"alias"`
-	Config      pulumi.StringMapOutput `pulumi:"config"`
-	ExecutionId pulumi.StringOutput    `pulumi:"executionId"`
-	RealmId     pulumi.StringOutput    `pulumi:"realmId"`
+	// The name of the configuration.
+	Alias pulumi.StringOutput `pulumi:"alias"`
+	// The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+	Config pulumi.StringMapOutput `pulumi:"config"`
+	// The authentication execution this configuration is attached to.
+	ExecutionId pulumi.StringOutput `pulumi:"executionId"`
+	// The realm the authentication execution exists in.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
 // NewExecutionConfig registers a new resource with the given unique name, arguments, and options.
@@ -59,17 +116,25 @@ func GetExecutionConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ExecutionConfig resources.
 type executionConfigState struct {
-	Alias       *string           `pulumi:"alias"`
-	Config      map[string]string `pulumi:"config"`
-	ExecutionId *string           `pulumi:"executionId"`
-	RealmId     *string           `pulumi:"realmId"`
+	// The name of the configuration.
+	Alias *string `pulumi:"alias"`
+	// The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+	Config map[string]string `pulumi:"config"`
+	// The authentication execution this configuration is attached to.
+	ExecutionId *string `pulumi:"executionId"`
+	// The realm the authentication execution exists in.
+	RealmId *string `pulumi:"realmId"`
 }
 
 type ExecutionConfigState struct {
-	Alias       pulumi.StringPtrInput
-	Config      pulumi.StringMapInput
+	// The name of the configuration.
+	Alias pulumi.StringPtrInput
+	// The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+	Config pulumi.StringMapInput
+	// The authentication execution this configuration is attached to.
 	ExecutionId pulumi.StringPtrInput
-	RealmId     pulumi.StringPtrInput
+	// The realm the authentication execution exists in.
+	RealmId pulumi.StringPtrInput
 }
 
 func (ExecutionConfigState) ElementType() reflect.Type {
@@ -77,18 +142,26 @@ func (ExecutionConfigState) ElementType() reflect.Type {
 }
 
 type executionConfigArgs struct {
-	Alias       string            `pulumi:"alias"`
-	Config      map[string]string `pulumi:"config"`
-	ExecutionId string            `pulumi:"executionId"`
-	RealmId     string            `pulumi:"realmId"`
+	// The name of the configuration.
+	Alias string `pulumi:"alias"`
+	// The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+	Config map[string]string `pulumi:"config"`
+	// The authentication execution this configuration is attached to.
+	ExecutionId string `pulumi:"executionId"`
+	// The realm the authentication execution exists in.
+	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a ExecutionConfig resource.
 type ExecutionConfigArgs struct {
-	Alias       pulumi.StringInput
-	Config      pulumi.StringMapInput
+	// The name of the configuration.
+	Alias pulumi.StringInput
+	// The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+	Config pulumi.StringMapInput
+	// The authentication execution this configuration is attached to.
 	ExecutionId pulumi.StringInput
-	RealmId     pulumi.StringInput
+	// The realm the authentication execution exists in.
+	RealmId pulumi.StringInput
 }
 
 func (ExecutionConfigArgs) ElementType() reflect.Type {

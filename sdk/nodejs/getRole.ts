@@ -7,51 +7,30 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak.Role data source
- *
  * This data source can be used to fetch properties of a Keycloak role for
  * usage with other resources, such as `keycloak.GroupRoles`.
  *
- * ### Example Usage
+ * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
  * const offlineAccess = realm.id.apply(id => keycloak.getRole({
- *     name: "offline_access",
  *     realmId: id,
- * }, { async: true }));
- * const group = new keycloak.Group("group", {
+ *     name: "offline_access",
+ * }));
+ * const group = new keycloak.Group("group", {realmId: realm.id});
+ * const groupRoles = new keycloak.GroupRoles("groupRoles", {
  *     realmId: realm.id,
- * });
- * const groupRoles = new keycloak.GroupRoles("group_roles", {
  *     groupId: group.id,
- *     realmId: realm.id,
- *     roles: [offlineAccess.id],
+ *     roleIds: [offlineAccess.id],
  * });
  * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realmId` - (Required) The realm this role exists within.
- * - `clientId` - (Optional) When specified, this role is assumed to be a
- *   client role belonging to the client with the provided ID
- * - `name` - (Required) The name of the role
- *
- * ### Attributes Reference
- *
- * In addition to the arguments listed above, the following computed attributes are exported:
- *
- * - `id` - The unique ID of the role, which can be used as an argument to
- *   other resources supported by this provider.
- * - `description` - The description of the role.
  */
 export function getRole(args: GetRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetRoleResult> {
     if (!opts) {
@@ -72,8 +51,17 @@ export function getRole(args: GetRoleArgs, opts?: pulumi.InvokeOptions): Promise
  * A collection of arguments for invoking getRole.
  */
 export interface GetRoleArgs {
+    /**
+     * When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloakClient` resource should be used here.
+     */
     readonly clientId?: string;
+    /**
+     * The name of the role.
+     */
     readonly name: string;
+    /**
+     * The realm this role exists within.
+     */
     readonly realmId: string;
 }
 
@@ -82,6 +70,9 @@ export interface GetRoleArgs {
  */
 export interface GetRoleResult {
     readonly clientId?: string;
+    /**
+     * (Computed) The description of the role.
+     */
     readonly description: string;
     /**
      * The provider-assigned unique ID for this managed resource.

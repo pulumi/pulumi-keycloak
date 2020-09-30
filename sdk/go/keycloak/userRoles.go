@@ -13,9 +13,12 @@ import (
 type UserRoles struct {
 	pulumi.CustomResourceState
 
-	RealmId pulumi.StringOutput      `pulumi:"realmId"`
+	// The realm this user exists in.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// A list of role IDs to map to the user
 	RoleIds pulumi.StringArrayOutput `pulumi:"roleIds"`
-	UserId  pulumi.StringOutput      `pulumi:"userId"`
+	// The ID of the user this resource should manage roles for.
+	UserId pulumi.StringOutput `pulumi:"userId"`
 }
 
 // NewUserRoles registers a new resource with the given unique name, arguments, and options.
@@ -55,15 +58,21 @@ func GetUserRoles(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserRoles resources.
 type userRolesState struct {
-	RealmId *string  `pulumi:"realmId"`
+	// The realm this user exists in.
+	RealmId *string `pulumi:"realmId"`
+	// A list of role IDs to map to the user
 	RoleIds []string `pulumi:"roleIds"`
-	UserId  *string  `pulumi:"userId"`
+	// The ID of the user this resource should manage roles for.
+	UserId *string `pulumi:"userId"`
 }
 
 type UserRolesState struct {
+	// The realm this user exists in.
 	RealmId pulumi.StringPtrInput
+	// A list of role IDs to map to the user
 	RoleIds pulumi.StringArrayInput
-	UserId  pulumi.StringPtrInput
+	// The ID of the user this resource should manage roles for.
+	UserId pulumi.StringPtrInput
 }
 
 func (UserRolesState) ElementType() reflect.Type {
@@ -71,16 +80,22 @@ func (UserRolesState) ElementType() reflect.Type {
 }
 
 type userRolesArgs struct {
-	RealmId string   `pulumi:"realmId"`
+	// The realm this user exists in.
+	RealmId string `pulumi:"realmId"`
+	// A list of role IDs to map to the user
 	RoleIds []string `pulumi:"roleIds"`
-	UserId  string   `pulumi:"userId"`
+	// The ID of the user this resource should manage roles for.
+	UserId string `pulumi:"userId"`
 }
 
 // The set of arguments for constructing a UserRoles resource.
 type UserRolesArgs struct {
+	// The realm this user exists in.
 	RealmId pulumi.StringInput
+	// A list of role IDs to map to the user
 	RoleIds pulumi.StringArrayInput
-	UserId  pulumi.StringInput
+	// The ID of the user this resource should manage roles for.
+	UserId pulumi.StringInput
 }
 
 func (UserRolesArgs) ElementType() reflect.Type {

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['RoleMapper']
@@ -26,7 +26,7 @@ class RoleMapper(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  role_name_ldap_attribute: Optional[pulumi.Input[str]] = None,
-                 role_object_classes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 role_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  roles_ldap_filter: Optional[pulumi.Input[str]] = None,
                  use_realm_roles_mapping: Optional[pulumi.Input[bool]] = None,
                  user_roles_retrieve_strategy: Optional[pulumi.Input[str]] = None,
@@ -108,7 +108,7 @@ class RoleMapper(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             realm_id: Optional[pulumi.Input[str]] = None,
             role_name_ldap_attribute: Optional[pulumi.Input[str]] = None,
-            role_object_classes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            role_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             roles_ldap_filter: Optional[pulumi.Input[str]] = None,
             use_realm_roles_mapping: Optional[pulumi.Input[bool]] = None,
             user_roles_retrieve_strategy: Optional[pulumi.Input[str]] = None) -> 'RoleMapper':
@@ -210,7 +210,7 @@ class RoleMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="roleObjectClasses")
-    def role_object_classes(self) -> pulumi.Output[List[str]]:
+    def role_object_classes(self) -> pulumi.Output[Sequence[str]]:
         return pulumi.get(self, "role_object_classes")
 
     @property

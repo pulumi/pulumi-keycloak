@@ -10,12 +10,76 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// Allows for assigning client roles to the service account of an openid client.
+// You need to set `serviceAccountsEnabled` to `true` for the openid client that should be assigned the role.
+//
+// If you'd like to attach realm roles to a service account, please use the `openid.ClientServiceAccountRealmRole`
+// resource.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v2/go/keycloak/openid"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		client1, err := openid.NewClient(ctx, "client1", &openid.ClientArgs{
+// 			RealmId: realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		client1Role, err := keycloak.NewRole(ctx, "client1Role", &keycloak.RoleArgs{
+// 			RealmId:     realm.ID(),
+// 			ClientId:    client1.ID(),
+// 			Description: pulumi.String("A role that client1 provides"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		client2, err := openid.NewClient(ctx, "client2", &openid.ClientArgs{
+// 			RealmId:                realm.ID(),
+// 			ServiceAccountsEnabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = openid.NewClientServiceAccountRole(ctx, "client2ServiceAccountRole", &openid.ClientServiceAccountRoleArgs{
+// 			RealmId:              realm.ID(),
+// 			ServiceAccountUserId: client2.ServiceAccountUserId,
+// 			ClientId:             client1.ID(),
+// 			Role:                 client1Role.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type ClientServiceAccountRole struct {
 	pulumi.CustomResourceState
 
-	ClientId             pulumi.StringOutput `pulumi:"clientId"`
-	RealmId              pulumi.StringOutput `pulumi:"realmId"`
-	Role                 pulumi.StringOutput `pulumi:"role"`
+	// The id of the client that provides the role.
+	ClientId pulumi.StringOutput `pulumi:"clientId"`
+	// The realm the clients and roles belong to.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The name of the role that is assigned.
+	Role pulumi.StringOutput `pulumi:"role"`
+	// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
 	ServiceAccountUserId pulumi.StringOutput `pulumi:"serviceAccountUserId"`
 }
 
@@ -59,16 +123,24 @@ func GetClientServiceAccountRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ClientServiceAccountRole resources.
 type clientServiceAccountRoleState struct {
-	ClientId             *string `pulumi:"clientId"`
-	RealmId              *string `pulumi:"realmId"`
-	Role                 *string `pulumi:"role"`
+	// The id of the client that provides the role.
+	ClientId *string `pulumi:"clientId"`
+	// The realm the clients and roles belong to.
+	RealmId *string `pulumi:"realmId"`
+	// The name of the role that is assigned.
+	Role *string `pulumi:"role"`
+	// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
 	ServiceAccountUserId *string `pulumi:"serviceAccountUserId"`
 }
 
 type ClientServiceAccountRoleState struct {
-	ClientId             pulumi.StringPtrInput
-	RealmId              pulumi.StringPtrInput
-	Role                 pulumi.StringPtrInput
+	// The id of the client that provides the role.
+	ClientId pulumi.StringPtrInput
+	// The realm the clients and roles belong to.
+	RealmId pulumi.StringPtrInput
+	// The name of the role that is assigned.
+	Role pulumi.StringPtrInput
+	// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
 	ServiceAccountUserId pulumi.StringPtrInput
 }
 
@@ -77,17 +149,25 @@ func (ClientServiceAccountRoleState) ElementType() reflect.Type {
 }
 
 type clientServiceAccountRoleArgs struct {
-	ClientId             string `pulumi:"clientId"`
-	RealmId              string `pulumi:"realmId"`
-	Role                 string `pulumi:"role"`
+	// The id of the client that provides the role.
+	ClientId string `pulumi:"clientId"`
+	// The realm the clients and roles belong to.
+	RealmId string `pulumi:"realmId"`
+	// The name of the role that is assigned.
+	Role string `pulumi:"role"`
+	// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
 	ServiceAccountUserId string `pulumi:"serviceAccountUserId"`
 }
 
 // The set of arguments for constructing a ClientServiceAccountRole resource.
 type ClientServiceAccountRoleArgs struct {
-	ClientId             pulumi.StringInput
-	RealmId              pulumi.StringInput
-	Role                 pulumi.StringInput
+	// The id of the client that provides the role.
+	ClientId pulumi.StringInput
+	// The realm the clients and roles belong to.
+	RealmId pulumi.StringInput
+	// The name of the role that is assigned.
+	Role pulumi.StringInput
+	// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
 	ServiceAccountUserId pulumi.StringInput
 }
 

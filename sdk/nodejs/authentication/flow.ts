@@ -4,6 +4,35 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * Allows for creating and managing an authentication flow within Keycloak.
+ *
+ * [Authentication flows](https://www.keycloak.org/docs/11.0/server_admin/index.html#_authentication-flows) describe a sequence
+ * of actions that a user or service must perform in order to be authenticated to Keycloak. The authentication flow itself
+ * is a container for these actions, which are otherwise known as executions.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const flow = new keycloak.authentication.Flow("flow", {
+ *     realmId: realm.id,
+ *     alias: "my-flow-alias",
+ * });
+ * const execution = new keycloak.authentication.Execution("execution", {
+ *     realmId: realm.id,
+ *     parentFlowAlias: flow.alias,
+ *     authenticator: "identity-provider-redirector",
+ *     requirement: "REQUIRED",
+ * });
+ * ```
+ */
 export class Flow extends pulumi.CustomResource {
     /**
      * Get an existing Flow resource's state with the given name, ID, and optional extra
@@ -32,9 +61,21 @@ export class Flow extends pulumi.CustomResource {
         return obj['__pulumiType'] === Flow.__pulumiType;
     }
 
+    /**
+     * The alias for this authentication flow.
+     */
     public readonly alias!: pulumi.Output<string>;
+    /**
+     * A description for the authentication flow.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+     */
     public readonly providerId!: pulumi.Output<string | undefined>;
+    /**
+     * The realm that the authentication flow exists in.
+     */
     public readonly realmId!: pulumi.Output<string>;
 
     /**
@@ -81,9 +122,21 @@ export class Flow extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Flow resources.
  */
 export interface FlowState {
+    /**
+     * The alias for this authentication flow.
+     */
     readonly alias?: pulumi.Input<string>;
+    /**
+     * A description for the authentication flow.
+     */
     readonly description?: pulumi.Input<string>;
+    /**
+     * The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+     */
     readonly providerId?: pulumi.Input<string>;
+    /**
+     * The realm that the authentication flow exists in.
+     */
     readonly realmId?: pulumi.Input<string>;
 }
 
@@ -91,8 +144,20 @@ export interface FlowState {
  * The set of arguments for constructing a Flow resource.
  */
 export interface FlowArgs {
+    /**
+     * The alias for this authentication flow.
+     */
     readonly alias: pulumi.Input<string>;
+    /**
+     * A description for the authentication flow.
+     */
     readonly description?: pulumi.Input<string>;
+    /**
+     * The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+     */
     readonly providerId?: pulumi.Input<string>;
+    /**
+     * The realm that the authentication flow exists in.
+     */
     readonly realmId: pulumi.Input<string>;
 }

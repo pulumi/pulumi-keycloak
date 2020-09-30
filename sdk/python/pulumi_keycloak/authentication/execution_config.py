@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['ExecutionConfig']
@@ -23,9 +23,40 @@ class ExecutionConfig(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a ExecutionConfig resource with the given unique name, props, and options.
+        Allows for managing an authentication execution's configuration. If a particular authentication execution supports additional
+        configuration (such as with the `identity-provider-redirector` execution), this can be managed with this resource.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        flow = keycloak.authentication.Flow("flow",
+            realm_id=realm.id,
+            alias="my-flow-alias")
+        execution = keycloak.authentication.Execution("execution",
+            realm_id=realm.id,
+            parent_flow_alias=flow.alias,
+            authenticator="identity-provider-redirector")
+        config = keycloak.authentication.ExecutionConfig("config",
+            realm_id=realm.id,
+            execution_id=execution.id,
+            alias="my-config-alias",
+            config={
+                "defaultProvider": "my-config-default-idp",
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] alias: The name of the configuration.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+        :param pulumi.Input[str] execution_id: The authentication execution this configuration is attached to.
+        :param pulumi.Input[str] realm_id: The realm the authentication execution exists in.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -77,6 +108,10 @@ class ExecutionConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] alias: The name of the configuration.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+        :param pulumi.Input[str] execution_id: The authentication execution this configuration is attached to.
+        :param pulumi.Input[str] realm_id: The realm the authentication execution exists in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -91,21 +126,33 @@ class ExecutionConfig(pulumi.CustomResource):
     @property
     @pulumi.getter
     def alias(self) -> pulumi.Output[str]:
+        """
+        The name of the configuration.
+        """
         return pulumi.get(self, "alias")
 
     @property
     @pulumi.getter
     def config(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+        """
         return pulumi.get(self, "config")
 
     @property
     @pulumi.getter(name="executionId")
     def execution_id(self) -> pulumi.Output[str]:
+        """
+        The authentication execution this configuration is attached to.
+        """
         return pulumi.get(self, "execution_id")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
+        """
+        The realm the authentication execution exists in.
+        """
         return pulumi.get(self, "realm_id")
 
     def translate_output_property(self, prop):

@@ -32,8 +32,17 @@ export class GroupRoles extends pulumi.CustomResource {
         return obj['__pulumiType'] === GroupRoles.__pulumiType;
     }
 
+    /**
+     * The ID of the group this resource should manage roles for.
+     */
     public readonly groupId!: pulumi.Output<string>;
+    /**
+     * The realm this group exists in.
+     */
     public readonly realmId!: pulumi.Output<string>;
+    /**
+     * A list of role IDs to map to the group
+     */
     public readonly roleIds!: pulumi.Output<string[]>;
 
     /**
@@ -81,8 +90,17 @@ export class GroupRoles extends pulumi.CustomResource {
  * Input properties used for looking up and filtering GroupRoles resources.
  */
 export interface GroupRolesState {
+    /**
+     * The ID of the group this resource should manage roles for.
+     */
     readonly groupId?: pulumi.Input<string>;
+    /**
+     * The realm this group exists in.
+     */
     readonly realmId?: pulumi.Input<string>;
+    /**
+     * A list of role IDs to map to the group
+     */
     readonly roleIds?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
@@ -90,7 +108,16 @@ export interface GroupRolesState {
  * The set of arguments for constructing a GroupRoles resource.
  */
 export interface GroupRolesArgs {
+    /**
+     * The ID of the group this resource should manage roles for.
+     */
     readonly groupId: pulumi.Input<string>;
+    /**
+     * The realm this group exists in.
+     */
     readonly realmId: pulumi.Input<string>;
+    /**
+     * A list of role IDs to map to the group
+     */
     readonly roleIds: pulumi.Input<pulumi.Input<string>[]>;
 }

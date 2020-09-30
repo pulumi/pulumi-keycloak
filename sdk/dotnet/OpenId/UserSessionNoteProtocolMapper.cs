@@ -9,55 +9,143 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    /// <summary>
+    /// Allows for creating and managing user session note protocol mappers within Keycloak.
+    /// 
+    /// User session note protocol mappers map a custom user session note to a token claim.
+    /// 
+    /// Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
+    /// multiple different clients.
+    /// 
+    /// ## Example Usage
+    /// ### Client)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "my-realm",
+    ///             Enabled = true,
+    ///         });
+    ///         var openidClient = new Keycloak.OpenId.Client("openidClient", new Keycloak.OpenId.ClientArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             ClientId = "client",
+    ///             Enabled = true,
+    ///             AccessType = "CONFIDENTIAL",
+    ///             ValidRedirectUris = 
+    ///             {
+    ///                 "http://localhost:8080/openid-callback",
+    ///             },
+    ///         });
+    ///         var userSessionNoteMapper = new Keycloak.OpenId.UserSessionNoteProtocolMapper("userSessionNoteMapper", new Keycloak.OpenId.UserSessionNoteProtocolMapperArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             ClientId = openidClient.Id,
+    ///             ClaimName = "foo",
+    ///             ClaimValueType = "String",
+    ///             SessionNote = "bar",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Client Scope)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "my-realm",
+    ///             Enabled = true,
+    ///         });
+    ///         var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new Keycloak.OpenId.ClientScopeArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var userSessionNoteMapper = new Keycloak.OpenId.UserSessionNoteProtocolMapper("userSessionNoteMapper", new Keycloak.OpenId.UserSessionNoteProtocolMapperArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             ClientScopeId = clientScope.Id,
+    ///             ClaimName = "foo",
+    ///             ClaimValueType = "String",
+    ///             SessionNote = "bar",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     public partial class UserSessionNoteProtocolMapper : Pulumi.CustomResource
     {
         /// <summary>
-        /// Indicates if the attribute should be a claim in the access token.
+        /// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
         /// </summary>
         [Output("addToAccessToken")]
         public Output<bool?> AddToAccessToken { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates if the attribute should be a claim in the id token.
+        /// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
         /// </summary>
         [Output("addToIdToken")]
         public Output<bool?> AddToIdToken { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the claim to insert into a token.
+        /// </summary>
         [Output("claimName")]
         public Output<string> ClaimName { get; private set; } = null!;
 
         /// <summary>
-        /// Claim type used when serializing tokens.
+        /// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
         /// </summary>
         [Output("claimValueType")]
         public Output<string?> ClaimValueType { get; private set; } = null!;
 
         /// <summary>
-        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Output("clientId")]
         public Output<string?> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// The mapper's associated client scope. Cannot be used at the same time as client_id.
+        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Output("clientScopeId")]
         public Output<string?> ClientScopeId { get; private set; } = null!;
 
         /// <summary>
-        /// A human-friendly name that will appear in the Keycloak console.
+        /// The display name of this protocol mapper in the GUI.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The realm id where the associated client or client scope exists.
+        /// The realm this protocol mapper exists within.
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
         /// <summary>
         /// String value being the name of stored user session note within the UserSessionModel.note map.
+        /// </summary>
+        [Output("sessionNote")]
+        public Output<string?> SessionNote { get; private set; } = null!;
+
+        /// <summary>
+        /// **Deprecated** Use `session_note` instead.
         /// </summary>
         [Output("sessionNoteLabel")]
         public Output<string?> SessionNoteLabel { get; private set; } = null!;
@@ -109,52 +197,61 @@ namespace Pulumi.Keycloak.OpenId
     public sealed class UserSessionNoteProtocolMapperArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates if the attribute should be a claim in the access token.
+        /// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
         /// </summary>
         [Input("addToAccessToken")]
         public Input<bool>? AddToAccessToken { get; set; }
 
         /// <summary>
-        /// Indicates if the attribute should be a claim in the id token.
+        /// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
         /// </summary>
         [Input("addToIdToken")]
         public Input<bool>? AddToIdToken { get; set; }
 
+        /// <summary>
+        /// The name of the claim to insert into a token.
+        /// </summary>
         [Input("claimName", required: true)]
         public Input<string> ClaimName { get; set; } = null!;
 
         /// <summary>
-        /// Claim type used when serializing tokens.
+        /// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
         /// </summary>
         [Input("claimValueType")]
         public Input<string>? ClaimValueType { get; set; }
 
         /// <summary>
-        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// The mapper's associated client scope. Cannot be used at the same time as client_id.
+        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }
 
         /// <summary>
-        /// A human-friendly name that will appear in the Keycloak console.
+        /// The display name of this protocol mapper in the GUI.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm id where the associated client or client scope exists.
+        /// The realm this protocol mapper exists within.
         /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
         /// <summary>
         /// String value being the name of stored user session note within the UserSessionModel.note map.
+        /// </summary>
+        [Input("sessionNote")]
+        public Input<string>? SessionNote { get; set; }
+
+        /// <summary>
+        /// **Deprecated** Use `session_note` instead.
         /// </summary>
         [Input("sessionNoteLabel")]
         public Input<string>? SessionNoteLabel { get; set; }
@@ -167,52 +264,61 @@ namespace Pulumi.Keycloak.OpenId
     public sealed class UserSessionNoteProtocolMapperState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates if the attribute should be a claim in the access token.
+        /// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
         /// </summary>
         [Input("addToAccessToken")]
         public Input<bool>? AddToAccessToken { get; set; }
 
         /// <summary>
-        /// Indicates if the attribute should be a claim in the id token.
+        /// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
         /// </summary>
         [Input("addToIdToken")]
         public Input<bool>? AddToIdToken { get; set; }
 
+        /// <summary>
+        /// The name of the claim to insert into a token.
+        /// </summary>
         [Input("claimName")]
         public Input<string>? ClaimName { get; set; }
 
         /// <summary>
-        /// Claim type used when serializing tokens.
+        /// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
         /// </summary>
         [Input("claimValueType")]
         public Input<string>? ClaimValueType { get; set; }
 
         /// <summary>
-        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// The mapper's associated client scope. Cannot be used at the same time as client_id.
+        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }
 
         /// <summary>
-        /// A human-friendly name that will appear in the Keycloak console.
+        /// The display name of this protocol mapper in the GUI.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm id where the associated client or client scope exists.
+        /// The realm this protocol mapper exists within.
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
         /// <summary>
         /// String value being the name of stored user session note within the UserSessionModel.note map.
+        /// </summary>
+        [Input("sessionNote")]
+        public Input<string>? SessionNote { get; set; }
+
+        /// <summary>
+        /// **Deprecated** Use `session_note` instead.
         /// </summary>
         [Input("sessionNoteLabel")]
         public Input<string>? SessionNoteLabel { get; set; }

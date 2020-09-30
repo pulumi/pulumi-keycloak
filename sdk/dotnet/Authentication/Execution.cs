@@ -9,17 +9,84 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.Authentication
 {
+    /// <summary>
+    /// Allows for creating and managing an authentication execution within Keycloak.
+    /// 
+    /// An authentication execution is an action that the user or service may or may not take when authenticating through an authentication
+    /// flow.
+    /// 
+    /// &gt; Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "my-realm",
+    ///             Enabled = true,
+    ///         });
+    ///         var flow = new Keycloak.Authentication.Flow("flow", new Keycloak.Authentication.FlowArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             Alias = "my-flow-alias",
+    ///         });
+    ///         // first execution
+    ///         var executionOne = new Keycloak.Authentication.Execution("executionOne", new Keycloak.Authentication.ExecutionArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             ParentFlowAlias = flow.Alias,
+    ///             Authenticator = "auth-cookie",
+    ///             Requirement = "ALTERNATIVE",
+    ///         });
+    ///         // second execution
+    ///         var executionTwo = new Keycloak.Authentication.Execution("executionTwo", new Keycloak.Authentication.ExecutionArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             ParentFlowAlias = flow.Alias,
+    ///             Authenticator = "identity-provider-redirector",
+    ///             Requirement = "ALTERNATIVE",
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn = 
+    ///             {
+    ///                 executionOne,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     public partial class Execution : Pulumi.CustomResource
     {
+        /// <summary>
+        /// The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
+        /// </summary>
         [Output("authenticator")]
         public Output<string> Authenticator { get; private set; } = null!;
 
+        /// <summary>
+        /// The alias of the flow this execution is attached to.
+        /// </summary>
         [Output("parentFlowAlias")]
         public Output<string> ParentFlowAlias { get; private set; } = null!;
 
+        /// <summary>
+        /// The realm the authentication execution exists in.
+        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
+        /// <summary>
+        /// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
+        /// </summary>
         [Output("requirement")]
         public Output<string?> Requirement { get; private set; } = null!;
 
@@ -69,15 +136,27 @@ namespace Pulumi.Keycloak.Authentication
 
     public sealed class ExecutionArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
+        /// </summary>
         [Input("authenticator", required: true)]
         public Input<string> Authenticator { get; set; } = null!;
 
+        /// <summary>
+        /// The alias of the flow this execution is attached to.
+        /// </summary>
         [Input("parentFlowAlias", required: true)]
         public Input<string> ParentFlowAlias { get; set; } = null!;
 
+        /// <summary>
+        /// The realm the authentication execution exists in.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
+        /// <summary>
+        /// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
+        /// </summary>
         [Input("requirement")]
         public Input<string>? Requirement { get; set; }
 
@@ -88,15 +167,27 @@ namespace Pulumi.Keycloak.Authentication
 
     public sealed class ExecutionState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
+        /// </summary>
         [Input("authenticator")]
         public Input<string>? Authenticator { get; set; }
 
+        /// <summary>
+        /// The alias of the flow this execution is attached to.
+        /// </summary>
         [Input("parentFlowAlias")]
         public Input<string>? ParentFlowAlias { get; set; }
 
+        /// <summary>
+        /// The realm the authentication execution exists in.
+        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
+        /// <summary>
+        /// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
+        /// </summary>
         [Input("requirement")]
         public Input<string>? Requirement { get; set; }
 

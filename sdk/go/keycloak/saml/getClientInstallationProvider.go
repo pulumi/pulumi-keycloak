@@ -7,6 +7,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// This data source can be used to retrieve Installation Provider of a SAML Client.
 func GetClientInstallationProvider(ctx *pulumi.Context, args *GetClientInstallationProviderArgs, opts ...pulumi.InvokeOption) (*GetClientInstallationProviderResult, error) {
 	var rv GetClientInstallationProviderResult
 	err := ctx.Invoke("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", args, &rv, opts...)
@@ -18,9 +19,12 @@ func GetClientInstallationProvider(ctx *pulumi.Context, args *GetClientInstallat
 
 // A collection of arguments for invoking getClientInstallationProvider.
 type GetClientInstallationProviderArgs struct {
-	ClientId   string `pulumi:"clientId"`
+	// The ID of the SAML client. The `id` attribute of a `keycloakClient` resource should be used here.
+	ClientId string `pulumi:"clientId"`
+	// The ID of the SAML installation provider. Could be one of `saml-idp-descriptor`, `keycloak-saml`, `saml-sp-descriptor`, `keycloak-saml-subsystem`, `mod-auth-mellon`, etc.
 	ProviderId string `pulumi:"providerId"`
-	RealmId    string `pulumi:"realmId"`
+	// The realm that the SAML client exists within.
+	RealmId string `pulumi:"realmId"`
 }
 
 // A collection of values returned by getClientInstallationProvider.
@@ -30,5 +34,6 @@ type GetClientInstallationProviderResult struct {
 	Id         string `pulumi:"id"`
 	ProviderId string `pulumi:"providerId"`
 	RealmId    string `pulumi:"realmId"`
-	Value      string `pulumi:"value"`
+	// (Computed) The returned document needed for SAML installation.
+	Value string `pulumi:"value"`
 }

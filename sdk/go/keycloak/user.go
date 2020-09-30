@@ -10,15 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// ## # User
-//
 // Allows for creating and managing Users within Keycloak.
 //
-// This resource was created primarily to enable the acceptance tests for the `Group` resource.
-// Creating users within Keycloak is not recommended. Instead, users should be federated from external sources
-// by configuring user federation providers or identity providers.
+// This resource was created primarily to enable the acceptance tests for the `Group` resource. Creating users within
+// Keycloak is not recommended. Instead, users should be federated from external sources by configuring user federation providers
+// or identity providers.
 //
-// ### Example Usage
+// ## Example Usage
 //
 // ```go
 // package main
@@ -31,34 +29,37 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Enabled: pulumi.Bool(true),
 // 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = keycloak.NewUser(ctx, "user", &keycloak.UserArgs{
-// 			Email:     pulumi.String("bob@domain.com"),
-// 			Enabled:   pulumi.Bool(true),
-// 			FirstName: pulumi.String("Bob"),
-// 			LastName:  pulumi.String("Bobson"),
 // 			RealmId:   realm.ID(),
 // 			Username:  pulumi.String("bob"),
+// 			Enabled:   pulumi.Bool(true),
+// 			Email:     pulumi.String("bob@domain.com"),
+// 			FirstName: pulumi.String("Bob"),
+// 			LastName:  pulumi.String("Bobson"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = keycloak.NewUser(ctx, "userWithInitialPassword", &keycloak.UserArgs{
-// 			Email:     pulumi.String("alice@domain.com"),
+// 			RealmId:   realm.ID(),
+// 			Username:  pulumi.String("alice"),
 // 			Enabled:   pulumi.Bool(true),
+// 			Email:     pulumi.String("alice@domain.com"),
 // 			FirstName: pulumi.String("Alice"),
-// 			InitialPassword: &keycloak.UserInitialPasswordArgs{
-// 				Temporary: pulumi.Bool(true),
-// 				Value:     pulumi.String("some password"),
+// 			LastName:  pulumi.String("Aliceberg"),
+// 			Attributes: pulumi.StringMap{
+// 				"foo": pulumi.String("bar"),
 // 			},
-// 			LastName: pulumi.String("Aliceberg"),
-// 			RealmId:  realm.ID(),
-// 			Username: pulumi.String("alice"),
+// 			InitialPassword: &keycloak.UserInitialPasswordArgs{
+// 				Value:     pulumi.String("some password"),
+// 				Temporary: pulumi.Bool(true),
+// 			},
 // 		})
 // 		if err != nil {
 // 			return err
@@ -67,34 +68,28 @@ import (
 // 	})
 // }
 // ```
-//
-// ### Argument Reference
-//
-// The following arguments are supported:
-//
-// - `realmId` - (Required) The realm this user belongs to.
-// - `username` - (Required) The unique username of this user.
-// - `initialPassword` (Optional) When given, the user's initial password will be set.
-//    This attribute is only respected during initial user creation.
-//     - `value` (Required) The initial password.
-//     - `temporary` (Optional) If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
-// - `enabled` - (Optional) When false, this user cannot log in. Defaults to `true`.
-// - `email` - (Optional) The user's email.
-// - `firstName` - (Optional) The user's first name.
-// - `lastName` - (Optional) The user's last name.
 type User struct {
 	pulumi.CustomResourceState
 
-	Attributes          pulumi.MapOutput                 `pulumi:"attributes"`
-	Email               pulumi.StringPtrOutput           `pulumi:"email"`
-	EmailVerified       pulumi.BoolPtrOutput             `pulumi:"emailVerified"`
+	// A map representing attributes for the user
+	Attributes pulumi.MapOutput `pulumi:"attributes"`
+	// The user's email.
+	Email pulumi.StringPtrOutput `pulumi:"email"`
+	// Whether the email address was validated or not. Default to `false`.
+	EmailVerified pulumi.BoolPtrOutput `pulumi:"emailVerified"`
+	// When false, this user cannot log in. Defaults to `true`.
 	Enabled             pulumi.BoolPtrOutput             `pulumi:"enabled"`
 	FederatedIdentities UserFederatedIdentityArrayOutput `pulumi:"federatedIdentities"`
-	FirstName           pulumi.StringPtrOutput           `pulumi:"firstName"`
-	InitialPassword     UserInitialPasswordPtrOutput     `pulumi:"initialPassword"`
-	LastName            pulumi.StringPtrOutput           `pulumi:"lastName"`
-	RealmId             pulumi.StringOutput              `pulumi:"realmId"`
-	Username            pulumi.StringOutput              `pulumi:"username"`
+	// The user's first name.
+	FirstName pulumi.StringPtrOutput `pulumi:"firstName"`
+	// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+	InitialPassword UserInitialPasswordPtrOutput `pulumi:"initialPassword"`
+	// The user's last name.
+	LastName pulumi.StringPtrOutput `pulumi:"lastName"`
+	// The realm this user belongs to.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The unique username of this user.
+	Username pulumi.StringOutput `pulumi:"username"`
 }
 
 // NewUser registers a new resource with the given unique name, arguments, and options.
@@ -131,29 +126,47 @@ func GetUser(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering User resources.
 type userState struct {
-	Attributes          map[string]interface{}  `pulumi:"attributes"`
-	Email               *string                 `pulumi:"email"`
-	EmailVerified       *bool                   `pulumi:"emailVerified"`
+	// A map representing attributes for the user
+	Attributes map[string]interface{} `pulumi:"attributes"`
+	// The user's email.
+	Email *string `pulumi:"email"`
+	// Whether the email address was validated or not. Default to `false`.
+	EmailVerified *bool `pulumi:"emailVerified"`
+	// When false, this user cannot log in. Defaults to `true`.
 	Enabled             *bool                   `pulumi:"enabled"`
 	FederatedIdentities []UserFederatedIdentity `pulumi:"federatedIdentities"`
-	FirstName           *string                 `pulumi:"firstName"`
-	InitialPassword     *UserInitialPassword    `pulumi:"initialPassword"`
-	LastName            *string                 `pulumi:"lastName"`
-	RealmId             *string                 `pulumi:"realmId"`
-	Username            *string                 `pulumi:"username"`
+	// The user's first name.
+	FirstName *string `pulumi:"firstName"`
+	// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+	InitialPassword *UserInitialPassword `pulumi:"initialPassword"`
+	// The user's last name.
+	LastName *string `pulumi:"lastName"`
+	// The realm this user belongs to.
+	RealmId *string `pulumi:"realmId"`
+	// The unique username of this user.
+	Username *string `pulumi:"username"`
 }
 
 type UserState struct {
-	Attributes          pulumi.MapInput
-	Email               pulumi.StringPtrInput
-	EmailVerified       pulumi.BoolPtrInput
+	// A map representing attributes for the user
+	Attributes pulumi.MapInput
+	// The user's email.
+	Email pulumi.StringPtrInput
+	// Whether the email address was validated or not. Default to `false`.
+	EmailVerified pulumi.BoolPtrInput
+	// When false, this user cannot log in. Defaults to `true`.
 	Enabled             pulumi.BoolPtrInput
 	FederatedIdentities UserFederatedIdentityArrayInput
-	FirstName           pulumi.StringPtrInput
-	InitialPassword     UserInitialPasswordPtrInput
-	LastName            pulumi.StringPtrInput
-	RealmId             pulumi.StringPtrInput
-	Username            pulumi.StringPtrInput
+	// The user's first name.
+	FirstName pulumi.StringPtrInput
+	// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+	InitialPassword UserInitialPasswordPtrInput
+	// The user's last name.
+	LastName pulumi.StringPtrInput
+	// The realm this user belongs to.
+	RealmId pulumi.StringPtrInput
+	// The unique username of this user.
+	Username pulumi.StringPtrInput
 }
 
 func (UserState) ElementType() reflect.Type {
@@ -161,30 +174,48 @@ func (UserState) ElementType() reflect.Type {
 }
 
 type userArgs struct {
-	Attributes          map[string]interface{}  `pulumi:"attributes"`
-	Email               *string                 `pulumi:"email"`
-	EmailVerified       *bool                   `pulumi:"emailVerified"`
+	// A map representing attributes for the user
+	Attributes map[string]interface{} `pulumi:"attributes"`
+	// The user's email.
+	Email *string `pulumi:"email"`
+	// Whether the email address was validated or not. Default to `false`.
+	EmailVerified *bool `pulumi:"emailVerified"`
+	// When false, this user cannot log in. Defaults to `true`.
 	Enabled             *bool                   `pulumi:"enabled"`
 	FederatedIdentities []UserFederatedIdentity `pulumi:"federatedIdentities"`
-	FirstName           *string                 `pulumi:"firstName"`
-	InitialPassword     *UserInitialPassword    `pulumi:"initialPassword"`
-	LastName            *string                 `pulumi:"lastName"`
-	RealmId             string                  `pulumi:"realmId"`
-	Username            string                  `pulumi:"username"`
+	// The user's first name.
+	FirstName *string `pulumi:"firstName"`
+	// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+	InitialPassword *UserInitialPassword `pulumi:"initialPassword"`
+	// The user's last name.
+	LastName *string `pulumi:"lastName"`
+	// The realm this user belongs to.
+	RealmId string `pulumi:"realmId"`
+	// The unique username of this user.
+	Username string `pulumi:"username"`
 }
 
 // The set of arguments for constructing a User resource.
 type UserArgs struct {
-	Attributes          pulumi.MapInput
-	Email               pulumi.StringPtrInput
-	EmailVerified       pulumi.BoolPtrInput
+	// A map representing attributes for the user
+	Attributes pulumi.MapInput
+	// The user's email.
+	Email pulumi.StringPtrInput
+	// Whether the email address was validated or not. Default to `false`.
+	EmailVerified pulumi.BoolPtrInput
+	// When false, this user cannot log in. Defaults to `true`.
 	Enabled             pulumi.BoolPtrInput
 	FederatedIdentities UserFederatedIdentityArrayInput
-	FirstName           pulumi.StringPtrInput
-	InitialPassword     UserInitialPasswordPtrInput
-	LastName            pulumi.StringPtrInput
-	RealmId             pulumi.StringInput
-	Username            pulumi.StringInput
+	// The user's first name.
+	FirstName pulumi.StringPtrInput
+	// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+	InitialPassword UserInitialPasswordPtrInput
+	// The user's last name.
+	LastName pulumi.StringPtrInput
+	// The realm this user belongs to.
+	RealmId pulumi.StringInput
+	// The unique username of this user.
+	Username pulumi.StringInput
 }
 
 func (UserArgs) ElementType() reflect.Type {

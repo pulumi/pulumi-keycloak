@@ -12,11 +12,18 @@ namespace Pulumi.Keycloak.Inputs
 
     public sealed class RealmInternationalizationGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The locale to use by default. This locale code must be present within the `supported_locales` list.
+        /// </summary>
         [Input("defaultLocale", required: true)]
         public Input<string> DefaultLocale { get; set; } = null!;
 
         [Input("supportedLocales", required: true)]
         private InputList<string>? _supportedLocales;
+
+        /// <summary>
+        /// A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
+        /// </summary>
         public InputList<string> SupportedLocales
         {
             get => _supportedLocales ?? (_supportedLocales = new InputList<string>());

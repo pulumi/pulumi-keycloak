@@ -10,15 +10,13 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// ## # keycloak.User
-    /// 
     /// Allows for creating and managing Users within Keycloak.
     /// 
-    /// This resource was created primarily to enable the acceptance tests for the `keycloak.Group` resource.
-    /// Creating users within Keycloak is not recommended. Instead, users should be federated from external sources
-    /// by configuring user federation providers or identity providers.
+    /// This resource was created primarily to enable the acceptance tests for the `keycloak.Group` resource. Creating users within
+    /// Keycloak is not recommended. Instead, users should be federated from external sources by configuring user federation providers
+    /// or identity providers.
     /// 
-    /// ### Example Usage
+    /// ## Example Usage
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -30,81 +28,97 @@ namespace Pulumi.Keycloak
     ///     {
     ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
     ///         {
-    ///             Enabled = true,
     ///             Realm = "my-realm",
+    ///             Enabled = true,
     ///         });
     ///         var user = new Keycloak.User("user", new Keycloak.UserArgs
     ///         {
-    ///             Email = "bob@domain.com",
-    ///             Enabled = true,
-    ///             FirstName = "Bob",
-    ///             LastName = "Bobson",
     ///             RealmId = realm.Id,
     ///             Username = "bob",
+    ///             Enabled = true,
+    ///             Email = "bob@domain.com",
+    ///             FirstName = "Bob",
+    ///             LastName = "Bobson",
     ///         });
     ///         var userWithInitialPassword = new Keycloak.User("userWithInitialPassword", new Keycloak.UserArgs
     ///         {
-    ///             Email = "alice@domain.com",
-    ///             Enabled = true,
-    ///             FirstName = "Alice",
-    ///             InitialPassword = new Keycloak.Inputs.UserInitialPasswordArgs
-    ///             {
-    ///                 Temporary = true,
-    ///                 Value = "some password",
-    ///             },
-    ///             LastName = "Aliceberg",
     ///             RealmId = realm.Id,
     ///             Username = "alice",
+    ///             Enabled = true,
+    ///             Email = "alice@domain.com",
+    ///             FirstName = "Alice",
+    ///             LastName = "Aliceberg",
+    ///             Attributes = 
+    ///             {
+    ///                 { "foo", "bar" },
+    ///             },
+    ///             InitialPassword = new Keycloak.Inputs.UserInitialPasswordArgs
+    ///             {
+    ///                 Value = "some password",
+    ///                 Temporary = true,
+    ///             },
     ///         });
     ///     }
     /// 
     /// }
     /// ```
-    /// 
-    /// ### Argument Reference
-    /// 
-    /// The following arguments are supported:
-    /// 
-    /// - `realm_id` - (Required) The realm this user belongs to.
-    /// - `username` - (Required) The unique username of this user.
-    /// - `initial_password` (Optional) When given, the user's initial password will be set.
-    ///    This attribute is only respected during initial user creation.
-    ///     - `value` (Required) The initial password.
-    ///     - `temporary` (Optional) If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
-    /// - `enabled` - (Optional) When false, this user cannot log in. Defaults to `true`.
-    /// - `email` - (Optional) The user's email.
-    /// - `first_name` - (Optional) The user's first name.
-    /// - `last_name` - (Optional) The user's last name.
     /// </summary>
     public partial class User : Pulumi.CustomResource
     {
+        /// <summary>
+        /// A map representing attributes for the user
+        /// </summary>
         [Output("attributes")]
         public Output<ImmutableDictionary<string, object>?> Attributes { get; private set; } = null!;
 
+        /// <summary>
+        /// The user's email.
+        /// </summary>
         [Output("email")]
         public Output<string?> Email { get; private set; } = null!;
 
+        /// <summary>
+        /// Whether the email address was validated or not. Default to `false`.
+        /// </summary>
         [Output("emailVerified")]
         public Output<bool?> EmailVerified { get; private set; } = null!;
 
+        /// <summary>
+        /// When false, this user cannot log in. Defaults to `true`.
+        /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
         [Output("federatedIdentities")]
         public Output<ImmutableArray<Outputs.UserFederatedIdentity>> FederatedIdentities { get; private set; } = null!;
 
+        /// <summary>
+        /// The user's first name.
+        /// </summary>
         [Output("firstName")]
         public Output<string?> FirstName { get; private set; } = null!;
 
+        /// <summary>
+        /// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+        /// </summary>
         [Output("initialPassword")]
         public Output<Outputs.UserInitialPassword?> InitialPassword { get; private set; } = null!;
 
+        /// <summary>
+        /// The user's last name.
+        /// </summary>
         [Output("lastName")]
         public Output<string?> LastName { get; private set; } = null!;
 
+        /// <summary>
+        /// The realm this user belongs to.
+        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
+        /// <summary>
+        /// The unique username of this user.
+        /// </summary>
         [Output("username")]
         public Output<string> Username { get; private set; } = null!;
 
@@ -156,18 +170,31 @@ namespace Pulumi.Keycloak
     {
         [Input("attributes")]
         private InputMap<object>? _attributes;
+
+        /// <summary>
+        /// A map representing attributes for the user
+        /// </summary>
         public InputMap<object> Attributes
         {
             get => _attributes ?? (_attributes = new InputMap<object>());
             set => _attributes = value;
         }
 
+        /// <summary>
+        /// The user's email.
+        /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
 
+        /// <summary>
+        /// Whether the email address was validated or not. Default to `false`.
+        /// </summary>
         [Input("emailVerified")]
         public Input<bool>? EmailVerified { get; set; }
 
+        /// <summary>
+        /// When false, this user cannot log in. Defaults to `true`.
+        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
@@ -179,18 +206,33 @@ namespace Pulumi.Keycloak
             set => _federatedIdentities = value;
         }
 
+        /// <summary>
+        /// The user's first name.
+        /// </summary>
         [Input("firstName")]
         public Input<string>? FirstName { get; set; }
 
+        /// <summary>
+        /// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+        /// </summary>
         [Input("initialPassword")]
         public Input<Inputs.UserInitialPasswordArgs>? InitialPassword { get; set; }
 
+        /// <summary>
+        /// The user's last name.
+        /// </summary>
         [Input("lastName")]
         public Input<string>? LastName { get; set; }
 
+        /// <summary>
+        /// The realm this user belongs to.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
+        /// <summary>
+        /// The unique username of this user.
+        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 
@@ -203,18 +245,31 @@ namespace Pulumi.Keycloak
     {
         [Input("attributes")]
         private InputMap<object>? _attributes;
+
+        /// <summary>
+        /// A map representing attributes for the user
+        /// </summary>
         public InputMap<object> Attributes
         {
             get => _attributes ?? (_attributes = new InputMap<object>());
             set => _attributes = value;
         }
 
+        /// <summary>
+        /// The user's email.
+        /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
 
+        /// <summary>
+        /// Whether the email address was validated or not. Default to `false`.
+        /// </summary>
         [Input("emailVerified")]
         public Input<bool>? EmailVerified { get; set; }
 
+        /// <summary>
+        /// When false, this user cannot log in. Defaults to `true`.
+        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
@@ -226,18 +281,33 @@ namespace Pulumi.Keycloak
             set => _federatedIdentities = value;
         }
 
+        /// <summary>
+        /// The user's first name.
+        /// </summary>
         [Input("firstName")]
         public Input<string>? FirstName { get; set; }
 
+        /// <summary>
+        /// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+        /// </summary>
         [Input("initialPassword")]
         public Input<Inputs.UserInitialPasswordGetArgs>? InitialPassword { get; set; }
 
+        /// <summary>
+        /// The user's last name.
+        /// </summary>
         [Input("lastName")]
         public Input<string>? LastName { get; set; }
 
+        /// <summary>
+        /// The realm this user belongs to.
+        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
+        /// <summary>
+        /// The unique username of this user.
+        /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
 

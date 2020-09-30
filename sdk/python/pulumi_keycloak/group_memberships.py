@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['GroupMemberships']
@@ -16,7 +16,7 @@ class GroupMemberships(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
-                 members: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 members: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
@@ -25,6 +25,9 @@ class GroupMemberships(pulumi.CustomResource):
         Create a GroupMemberships resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] group_id: The ID of the group this resource should manage memberships for.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: A list of usernames that belong to this group.
+        :param pulumi.Input[str] realm_id: The realm this group exists in.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -61,7 +64,7 @@ class GroupMemberships(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             group_id: Optional[pulumi.Input[str]] = None,
-            members: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            members: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             realm_id: Optional[pulumi.Input[str]] = None) -> 'GroupMemberships':
         """
         Get an existing GroupMemberships resource's state with the given name, id, and optional extra
@@ -70,6 +73,9 @@ class GroupMemberships(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] group_id: The ID of the group this resource should manage memberships for.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: A list of usernames that belong to this group.
+        :param pulumi.Input[str] realm_id: The realm this group exists in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -83,16 +89,25 @@ class GroupMemberships(pulumi.CustomResource):
     @property
     @pulumi.getter(name="groupId")
     def group_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ID of the group this resource should manage memberships for.
+        """
         return pulumi.get(self, "group_id")
 
     @property
     @pulumi.getter
-    def members(self) -> pulumi.Output[List[str]]:
+    def members(self) -> pulumi.Output[Sequence[str]]:
+        """
+        A list of usernames that belong to this group.
+        """
         return pulumi.get(self, "members")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
+        """
+        The realm this group exists in.
+        """
         return pulumi.get(self, "realm_id")
 
     def translate_output_property(self, prop):

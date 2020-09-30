@@ -10,15 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// ## # openid.Client
-//
 // Allows for creating and managing Keycloak clients that use the OpenID Connect protocol.
 //
 // Clients are entities that can use Keycloak for user authentication. Typically,
 // clients are applications that redirect users to Keycloak for authentication
 // in order to take advantage of Keycloak's user sessions for SSO.
 //
-// ### Example Usage
+// ## Example Usage
 //
 // ```go
 // package main
@@ -32,20 +30,21 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Enabled: pulumi.Bool(true),
 // 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
-// 			AccessType: pulumi.String("CONFIDENTIAL"),
+// 			RealmId:    realm.ID(),
 // 			ClientId:   pulumi.String("test-client"),
 // 			Enabled:    pulumi.Bool(true),
-// 			RealmId:    realm.ID(),
+// 			AccessType: pulumi.String("CONFIDENTIAL"),
 // 			ValidRedirectUris: pulumi.StringArray{
 // 				pulumi.String("http://localhost:8080/openid-callback"),
 // 			},
+// 			LoginTheme: pulumi.String("keycloak"),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -54,71 +53,63 @@ import (
 // 	})
 // }
 // ```
-//
-// ### Argument Reference
-//
-// The following arguments are supported:
-//
-// - `realmId` - (Required) The realm this client is attached to.
-// - `clientId` - (Required) The unique ID of this client, referenced in the URI during authentication and in issued tokens.
-// - `name` - (Optional) The display name of this client in the GUI.
-// - `enabled` - (Optional) When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
-// - `description` - (Optional) The description of this client in the GUI.
-// - `accessType` - (Required) Specifies the type of client, which can be one of the following:
-//     - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
-//       This client should be used for applications using the Authorization Code or Client Credentials grant flows.
-//     - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
-//       URIs for security. This client should be used for applications using the Implicit grant flow.
-//     - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
-// - `clientSecret` - (Optional) The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and
-//   should be treated with the same care as a password. If omitted, Keycloak will generate a GUID for this attribute.
-// - `standardFlowEnabled` - (Optional) When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
-// - `implicitFlowEnabled` - (Optional) When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
-// - `directAccessGrantsEnabled` - (Optional) When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
-// - `serviceAccountsEnabled` - (Optional) When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
-// - `validRedirectUris` - (Optional) A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
-//   wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
-//   is set to `true`.
-// - `webOrigins` - (Optional) A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
-// - `adminUrl` - (Optional) URL to the admin interface of the client.
-// - `baseUrl` - (Optional) Default URL to use when the auth server needs to redirect or link back to the client.
-// - `pkceCodeChallengeMethod` - (Optional) The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
-// - `fullScopeAllowed` - (Optional) - Allow to include all roles mappings in the access token.
-//
-// ### Attributes Reference
-//
-// In addition to the arguments listed above, the following computed attributes are exported:
-//
-// - `serviceAccountUserId` - When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
 type Client struct {
 	pulumi.CustomResourceState
 
-	AccessTokenLifespan                 pulumi.StringPtrOutput                            `pulumi:"accessTokenLifespan"`
-	AccessType                          pulumi.StringOutput                               `pulumi:"accessType"`
-	AdminUrl                            pulumi.StringPtrOutput                            `pulumi:"adminUrl"`
-	AuthenticationFlowBindingOverrides  ClientAuthenticationFlowBindingOverridesPtrOutput `pulumi:"authenticationFlowBindingOverrides"`
-	Authorization                       ClientAuthorizationPtrOutput                      `pulumi:"authorization"`
-	BaseUrl                             pulumi.StringPtrOutput                            `pulumi:"baseUrl"`
-	ClientId                            pulumi.StringOutput                               `pulumi:"clientId"`
-	ClientSecret                        pulumi.StringOutput                               `pulumi:"clientSecret"`
-	ConsentRequired                     pulumi.BoolPtrOutput                              `pulumi:"consentRequired"`
-	Description                         pulumi.StringPtrOutput                            `pulumi:"description"`
-	DirectAccessGrantsEnabled           pulumi.BoolPtrOutput                              `pulumi:"directAccessGrantsEnabled"`
-	Enabled                             pulumi.BoolPtrOutput                              `pulumi:"enabled"`
-	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrOutput                              `pulumi:"excludeSessionStateFromAuthResponse"`
-	FullScopeAllowed                    pulumi.BoolPtrOutput                              `pulumi:"fullScopeAllowed"`
-	ImplicitFlowEnabled                 pulumi.BoolPtrOutput                              `pulumi:"implicitFlowEnabled"`
-	LoginTheme                          pulumi.StringPtrOutput                            `pulumi:"loginTheme"`
-	Name                                pulumi.StringOutput                               `pulumi:"name"`
-	PkceCodeChallengeMethod             pulumi.StringPtrOutput                            `pulumi:"pkceCodeChallengeMethod"`
-	RealmId                             pulumi.StringOutput                               `pulumi:"realmId"`
-	ResourceServerId                    pulumi.StringOutput                               `pulumi:"resourceServerId"`
-	RootUrl                             pulumi.StringPtrOutput                            `pulumi:"rootUrl"`
-	ServiceAccountUserId                pulumi.StringOutput                               `pulumi:"serviceAccountUserId"`
-	ServiceAccountsEnabled              pulumi.BoolPtrOutput                              `pulumi:"serviceAccountsEnabled"`
-	StandardFlowEnabled                 pulumi.BoolPtrOutput                              `pulumi:"standardFlowEnabled"`
-	ValidRedirectUris                   pulumi.StringArrayOutput                          `pulumi:"validRedirectUris"`
-	WebOrigins                          pulumi.StringArrayOutput                          `pulumi:"webOrigins"`
+	// The amount of time in seconds before an access token expires. This will override the default for the realm.
+	AccessTokenLifespan pulumi.StringPtrOutput `pulumi:"accessTokenLifespan"`
+	// Specifies the type of client, which can be one of the following:
+	AccessType pulumi.StringOutput `pulumi:"accessType"`
+	// URL to the admin interface of the client.
+	AdminUrl pulumi.StringPtrOutput `pulumi:"adminUrl"`
+	// Override realm authentication flow bindings
+	AuthenticationFlowBindingOverrides ClientAuthenticationFlowBindingOverridesPtrOutput `pulumi:"authenticationFlowBindingOverrides"`
+	// When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
+	Authorization ClientAuthorizationPtrOutput `pulumi:"authorization"`
+	// Default URL to use when the auth server needs to redirect or link back to the client.
+	BaseUrl pulumi.StringPtrOutput `pulumi:"baseUrl"`
+	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
+	ClientId pulumi.StringOutput `pulumi:"clientId"`
+	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
+	ClientSecret pulumi.StringOutput `pulumi:"clientSecret"`
+	// When `true`, users have to consent to client access.
+	ConsentRequired pulumi.BoolPtrOutput `pulumi:"consentRequired"`
+	// The description of this client in the GUI.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
+	DirectAccessGrantsEnabled pulumi.BoolPtrOutput `pulumi:"directAccessGrantsEnabled"`
+	// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
+	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
+	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrOutput `pulumi:"excludeSessionStateFromAuthResponse"`
+	// Allow to include all roles mappings in the access token.
+	FullScopeAllowed pulumi.BoolPtrOutput `pulumi:"fullScopeAllowed"`
+	// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+	ImplicitFlowEnabled pulumi.BoolPtrOutput `pulumi:"implicitFlowEnabled"`
+	// The client login theme. This will override the default theme for the realm.
+	LoginTheme pulumi.StringPtrOutput `pulumi:"loginTheme"`
+	// The display name of this client in the GUI.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
+	PkceCodeChallengeMethod pulumi.StringPtrOutput `pulumi:"pkceCodeChallengeMethod"`
+	// The realm this client is attached to.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
+	ResourceServerId pulumi.StringOutput `pulumi:"resourceServerId"`
+	// When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
+	RootUrl pulumi.StringPtrOutput `pulumi:"rootUrl"`
+	// (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
+	ServiceAccountUserId pulumi.StringOutput `pulumi:"serviceAccountUserId"`
+	// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
+	ServiceAccountsEnabled pulumi.BoolPtrOutput `pulumi:"serviceAccountsEnabled"`
+	// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+	StandardFlowEnabled pulumi.BoolPtrOutput `pulumi:"standardFlowEnabled"`
+	// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
+	// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
+	// is set to `true`.
+	ValidRedirectUris pulumi.StringArrayOutput `pulumi:"validRedirectUris"`
+	// A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+	WebOrigins pulumi.StringArrayOutput `pulumi:"webOrigins"`
 }
 
 // NewClient registers a new resource with the given unique name, arguments, and options.
@@ -158,61 +149,117 @@ func GetClient(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Client resources.
 type clientState struct {
-	AccessTokenLifespan                 *string                                   `pulumi:"accessTokenLifespan"`
-	AccessType                          *string                                   `pulumi:"accessType"`
-	AdminUrl                            *string                                   `pulumi:"adminUrl"`
-	AuthenticationFlowBindingOverrides  *ClientAuthenticationFlowBindingOverrides `pulumi:"authenticationFlowBindingOverrides"`
-	Authorization                       *ClientAuthorization                      `pulumi:"authorization"`
-	BaseUrl                             *string                                   `pulumi:"baseUrl"`
-	ClientId                            *string                                   `pulumi:"clientId"`
-	ClientSecret                        *string                                   `pulumi:"clientSecret"`
-	ConsentRequired                     *bool                                     `pulumi:"consentRequired"`
-	Description                         *string                                   `pulumi:"description"`
-	DirectAccessGrantsEnabled           *bool                                     `pulumi:"directAccessGrantsEnabled"`
-	Enabled                             *bool                                     `pulumi:"enabled"`
-	ExcludeSessionStateFromAuthResponse *bool                                     `pulumi:"excludeSessionStateFromAuthResponse"`
-	FullScopeAllowed                    *bool                                     `pulumi:"fullScopeAllowed"`
-	ImplicitFlowEnabled                 *bool                                     `pulumi:"implicitFlowEnabled"`
-	LoginTheme                          *string                                   `pulumi:"loginTheme"`
-	Name                                *string                                   `pulumi:"name"`
-	PkceCodeChallengeMethod             *string                                   `pulumi:"pkceCodeChallengeMethod"`
-	RealmId                             *string                                   `pulumi:"realmId"`
-	ResourceServerId                    *string                                   `pulumi:"resourceServerId"`
-	RootUrl                             *string                                   `pulumi:"rootUrl"`
-	ServiceAccountUserId                *string                                   `pulumi:"serviceAccountUserId"`
-	ServiceAccountsEnabled              *bool                                     `pulumi:"serviceAccountsEnabled"`
-	StandardFlowEnabled                 *bool                                     `pulumi:"standardFlowEnabled"`
-	ValidRedirectUris                   []string                                  `pulumi:"validRedirectUris"`
-	WebOrigins                          []string                                  `pulumi:"webOrigins"`
+	// The amount of time in seconds before an access token expires. This will override the default for the realm.
+	AccessTokenLifespan *string `pulumi:"accessTokenLifespan"`
+	// Specifies the type of client, which can be one of the following:
+	AccessType *string `pulumi:"accessType"`
+	// URL to the admin interface of the client.
+	AdminUrl *string `pulumi:"adminUrl"`
+	// Override realm authentication flow bindings
+	AuthenticationFlowBindingOverrides *ClientAuthenticationFlowBindingOverrides `pulumi:"authenticationFlowBindingOverrides"`
+	// When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
+	Authorization *ClientAuthorization `pulumi:"authorization"`
+	// Default URL to use when the auth server needs to redirect or link back to the client.
+	BaseUrl *string `pulumi:"baseUrl"`
+	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
+	ClientId *string `pulumi:"clientId"`
+	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
+	ClientSecret *string `pulumi:"clientSecret"`
+	// When `true`, users have to consent to client access.
+	ConsentRequired *bool `pulumi:"consentRequired"`
+	// The description of this client in the GUI.
+	Description *string `pulumi:"description"`
+	// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
+	DirectAccessGrantsEnabled *bool `pulumi:"directAccessGrantsEnabled"`
+	// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+	Enabled *bool `pulumi:"enabled"`
+	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
+	ExcludeSessionStateFromAuthResponse *bool `pulumi:"excludeSessionStateFromAuthResponse"`
+	// Allow to include all roles mappings in the access token.
+	FullScopeAllowed *bool `pulumi:"fullScopeAllowed"`
+	// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+	ImplicitFlowEnabled *bool `pulumi:"implicitFlowEnabled"`
+	// The client login theme. This will override the default theme for the realm.
+	LoginTheme *string `pulumi:"loginTheme"`
+	// The display name of this client in the GUI.
+	Name *string `pulumi:"name"`
+	// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
+	PkceCodeChallengeMethod *string `pulumi:"pkceCodeChallengeMethod"`
+	// The realm this client is attached to.
+	RealmId *string `pulumi:"realmId"`
+	// (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
+	ResourceServerId *string `pulumi:"resourceServerId"`
+	// When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
+	RootUrl *string `pulumi:"rootUrl"`
+	// (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
+	ServiceAccountUserId *string `pulumi:"serviceAccountUserId"`
+	// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
+	ServiceAccountsEnabled *bool `pulumi:"serviceAccountsEnabled"`
+	// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+	StandardFlowEnabled *bool `pulumi:"standardFlowEnabled"`
+	// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
+	// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
+	// is set to `true`.
+	ValidRedirectUris []string `pulumi:"validRedirectUris"`
+	// A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+	WebOrigins []string `pulumi:"webOrigins"`
 }
 
 type ClientState struct {
-	AccessTokenLifespan                 pulumi.StringPtrInput
-	AccessType                          pulumi.StringPtrInput
-	AdminUrl                            pulumi.StringPtrInput
-	AuthenticationFlowBindingOverrides  ClientAuthenticationFlowBindingOverridesPtrInput
-	Authorization                       ClientAuthorizationPtrInput
-	BaseUrl                             pulumi.StringPtrInput
-	ClientId                            pulumi.StringPtrInput
-	ClientSecret                        pulumi.StringPtrInput
-	ConsentRequired                     pulumi.BoolPtrInput
-	Description                         pulumi.StringPtrInput
-	DirectAccessGrantsEnabled           pulumi.BoolPtrInput
-	Enabled                             pulumi.BoolPtrInput
+	// The amount of time in seconds before an access token expires. This will override the default for the realm.
+	AccessTokenLifespan pulumi.StringPtrInput
+	// Specifies the type of client, which can be one of the following:
+	AccessType pulumi.StringPtrInput
+	// URL to the admin interface of the client.
+	AdminUrl pulumi.StringPtrInput
+	// Override realm authentication flow bindings
+	AuthenticationFlowBindingOverrides ClientAuthenticationFlowBindingOverridesPtrInput
+	// When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
+	Authorization ClientAuthorizationPtrInput
+	// Default URL to use when the auth server needs to redirect or link back to the client.
+	BaseUrl pulumi.StringPtrInput
+	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
+	ClientId pulumi.StringPtrInput
+	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
+	ClientSecret pulumi.StringPtrInput
+	// When `true`, users have to consent to client access.
+	ConsentRequired pulumi.BoolPtrInput
+	// The description of this client in the GUI.
+	Description pulumi.StringPtrInput
+	// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
+	DirectAccessGrantsEnabled pulumi.BoolPtrInput
+	// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+	Enabled pulumi.BoolPtrInput
+	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
 	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrInput
-	FullScopeAllowed                    pulumi.BoolPtrInput
-	ImplicitFlowEnabled                 pulumi.BoolPtrInput
-	LoginTheme                          pulumi.StringPtrInput
-	Name                                pulumi.StringPtrInput
-	PkceCodeChallengeMethod             pulumi.StringPtrInput
-	RealmId                             pulumi.StringPtrInput
-	ResourceServerId                    pulumi.StringPtrInput
-	RootUrl                             pulumi.StringPtrInput
-	ServiceAccountUserId                pulumi.StringPtrInput
-	ServiceAccountsEnabled              pulumi.BoolPtrInput
-	StandardFlowEnabled                 pulumi.BoolPtrInput
-	ValidRedirectUris                   pulumi.StringArrayInput
-	WebOrigins                          pulumi.StringArrayInput
+	// Allow to include all roles mappings in the access token.
+	FullScopeAllowed pulumi.BoolPtrInput
+	// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+	ImplicitFlowEnabled pulumi.BoolPtrInput
+	// The client login theme. This will override the default theme for the realm.
+	LoginTheme pulumi.StringPtrInput
+	// The display name of this client in the GUI.
+	Name pulumi.StringPtrInput
+	// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
+	PkceCodeChallengeMethod pulumi.StringPtrInput
+	// The realm this client is attached to.
+	RealmId pulumi.StringPtrInput
+	// (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
+	ResourceServerId pulumi.StringPtrInput
+	// When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
+	RootUrl pulumi.StringPtrInput
+	// (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
+	ServiceAccountUserId pulumi.StringPtrInput
+	// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
+	ServiceAccountsEnabled pulumi.BoolPtrInput
+	// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+	StandardFlowEnabled pulumi.BoolPtrInput
+	// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
+	// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
+	// is set to `true`.
+	ValidRedirectUris pulumi.StringArrayInput
+	// A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+	WebOrigins pulumi.StringArrayInput
 }
 
 func (ClientState) ElementType() reflect.Type {
@@ -220,58 +267,110 @@ func (ClientState) ElementType() reflect.Type {
 }
 
 type clientArgs struct {
-	AccessTokenLifespan                 *string                                   `pulumi:"accessTokenLifespan"`
-	AccessType                          string                                    `pulumi:"accessType"`
-	AdminUrl                            *string                                   `pulumi:"adminUrl"`
-	AuthenticationFlowBindingOverrides  *ClientAuthenticationFlowBindingOverrides `pulumi:"authenticationFlowBindingOverrides"`
-	Authorization                       *ClientAuthorization                      `pulumi:"authorization"`
-	BaseUrl                             *string                                   `pulumi:"baseUrl"`
-	ClientId                            string                                    `pulumi:"clientId"`
-	ClientSecret                        *string                                   `pulumi:"clientSecret"`
-	ConsentRequired                     *bool                                     `pulumi:"consentRequired"`
-	Description                         *string                                   `pulumi:"description"`
-	DirectAccessGrantsEnabled           *bool                                     `pulumi:"directAccessGrantsEnabled"`
-	Enabled                             *bool                                     `pulumi:"enabled"`
-	ExcludeSessionStateFromAuthResponse *bool                                     `pulumi:"excludeSessionStateFromAuthResponse"`
-	FullScopeAllowed                    *bool                                     `pulumi:"fullScopeAllowed"`
-	ImplicitFlowEnabled                 *bool                                     `pulumi:"implicitFlowEnabled"`
-	LoginTheme                          *string                                   `pulumi:"loginTheme"`
-	Name                                *string                                   `pulumi:"name"`
-	PkceCodeChallengeMethod             *string                                   `pulumi:"pkceCodeChallengeMethod"`
-	RealmId                             string                                    `pulumi:"realmId"`
-	RootUrl                             *string                                   `pulumi:"rootUrl"`
-	ServiceAccountsEnabled              *bool                                     `pulumi:"serviceAccountsEnabled"`
-	StandardFlowEnabled                 *bool                                     `pulumi:"standardFlowEnabled"`
-	ValidRedirectUris                   []string                                  `pulumi:"validRedirectUris"`
-	WebOrigins                          []string                                  `pulumi:"webOrigins"`
+	// The amount of time in seconds before an access token expires. This will override the default for the realm.
+	AccessTokenLifespan *string `pulumi:"accessTokenLifespan"`
+	// Specifies the type of client, which can be one of the following:
+	AccessType string `pulumi:"accessType"`
+	// URL to the admin interface of the client.
+	AdminUrl *string `pulumi:"adminUrl"`
+	// Override realm authentication flow bindings
+	AuthenticationFlowBindingOverrides *ClientAuthenticationFlowBindingOverrides `pulumi:"authenticationFlowBindingOverrides"`
+	// When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
+	Authorization *ClientAuthorization `pulumi:"authorization"`
+	// Default URL to use when the auth server needs to redirect or link back to the client.
+	BaseUrl *string `pulumi:"baseUrl"`
+	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
+	ClientId string `pulumi:"clientId"`
+	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
+	ClientSecret *string `pulumi:"clientSecret"`
+	// When `true`, users have to consent to client access.
+	ConsentRequired *bool `pulumi:"consentRequired"`
+	// The description of this client in the GUI.
+	Description *string `pulumi:"description"`
+	// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
+	DirectAccessGrantsEnabled *bool `pulumi:"directAccessGrantsEnabled"`
+	// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+	Enabled *bool `pulumi:"enabled"`
+	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
+	ExcludeSessionStateFromAuthResponse *bool `pulumi:"excludeSessionStateFromAuthResponse"`
+	// Allow to include all roles mappings in the access token.
+	FullScopeAllowed *bool `pulumi:"fullScopeAllowed"`
+	// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+	ImplicitFlowEnabled *bool `pulumi:"implicitFlowEnabled"`
+	// The client login theme. This will override the default theme for the realm.
+	LoginTheme *string `pulumi:"loginTheme"`
+	// The display name of this client in the GUI.
+	Name *string `pulumi:"name"`
+	// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
+	PkceCodeChallengeMethod *string `pulumi:"pkceCodeChallengeMethod"`
+	// The realm this client is attached to.
+	RealmId string `pulumi:"realmId"`
+	// When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
+	RootUrl *string `pulumi:"rootUrl"`
+	// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
+	ServiceAccountsEnabled *bool `pulumi:"serviceAccountsEnabled"`
+	// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+	StandardFlowEnabled *bool `pulumi:"standardFlowEnabled"`
+	// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
+	// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
+	// is set to `true`.
+	ValidRedirectUris []string `pulumi:"validRedirectUris"`
+	// A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+	WebOrigins []string `pulumi:"webOrigins"`
 }
 
 // The set of arguments for constructing a Client resource.
 type ClientArgs struct {
-	AccessTokenLifespan                 pulumi.StringPtrInput
-	AccessType                          pulumi.StringInput
-	AdminUrl                            pulumi.StringPtrInput
-	AuthenticationFlowBindingOverrides  ClientAuthenticationFlowBindingOverridesPtrInput
-	Authorization                       ClientAuthorizationPtrInput
-	BaseUrl                             pulumi.StringPtrInput
-	ClientId                            pulumi.StringInput
-	ClientSecret                        pulumi.StringPtrInput
-	ConsentRequired                     pulumi.BoolPtrInput
-	Description                         pulumi.StringPtrInput
-	DirectAccessGrantsEnabled           pulumi.BoolPtrInput
-	Enabled                             pulumi.BoolPtrInput
+	// The amount of time in seconds before an access token expires. This will override the default for the realm.
+	AccessTokenLifespan pulumi.StringPtrInput
+	// Specifies the type of client, which can be one of the following:
+	AccessType pulumi.StringInput
+	// URL to the admin interface of the client.
+	AdminUrl pulumi.StringPtrInput
+	// Override realm authentication flow bindings
+	AuthenticationFlowBindingOverrides ClientAuthenticationFlowBindingOverridesPtrInput
+	// When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
+	Authorization ClientAuthorizationPtrInput
+	// Default URL to use when the auth server needs to redirect or link back to the client.
+	BaseUrl pulumi.StringPtrInput
+	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
+	ClientId pulumi.StringInput
+	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
+	ClientSecret pulumi.StringPtrInput
+	// When `true`, users have to consent to client access.
+	ConsentRequired pulumi.BoolPtrInput
+	// The description of this client in the GUI.
+	Description pulumi.StringPtrInput
+	// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
+	DirectAccessGrantsEnabled pulumi.BoolPtrInput
+	// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+	Enabled pulumi.BoolPtrInput
+	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
 	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrInput
-	FullScopeAllowed                    pulumi.BoolPtrInput
-	ImplicitFlowEnabled                 pulumi.BoolPtrInput
-	LoginTheme                          pulumi.StringPtrInput
-	Name                                pulumi.StringPtrInput
-	PkceCodeChallengeMethod             pulumi.StringPtrInput
-	RealmId                             pulumi.StringInput
-	RootUrl                             pulumi.StringPtrInput
-	ServiceAccountsEnabled              pulumi.BoolPtrInput
-	StandardFlowEnabled                 pulumi.BoolPtrInput
-	ValidRedirectUris                   pulumi.StringArrayInput
-	WebOrigins                          pulumi.StringArrayInput
+	// Allow to include all roles mappings in the access token.
+	FullScopeAllowed pulumi.BoolPtrInput
+	// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+	ImplicitFlowEnabled pulumi.BoolPtrInput
+	// The client login theme. This will override the default theme for the realm.
+	LoginTheme pulumi.StringPtrInput
+	// The display name of this client in the GUI.
+	Name pulumi.StringPtrInput
+	// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
+	PkceCodeChallengeMethod pulumi.StringPtrInput
+	// The realm this client is attached to.
+	RealmId pulumi.StringInput
+	// When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
+	RootUrl pulumi.StringPtrInput
+	// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
+	ServiceAccountsEnabled pulumi.BoolPtrInput
+	// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+	StandardFlowEnabled pulumi.BoolPtrInput
+	// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
+	// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
+	// is set to `true`.
+	ValidRedirectUris pulumi.StringArrayInput
+	// A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+	WebOrigins pulumi.StringArrayInput
 }
 
 func (ClientArgs) ElementType() reflect.Type {

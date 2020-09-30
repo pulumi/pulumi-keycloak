@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['Execution']
@@ -23,9 +23,46 @@ class Execution(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a Execution resource with the given unique name, props, and options.
+        Allows for creating and managing an authentication execution within Keycloak.
+
+        An authentication execution is an action that the user or service may or may not take when authenticating through an authentication
+        flow.
+
+        > Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        flow = keycloak.authentication.Flow("flow",
+            realm_id=realm.id,
+            alias="my-flow-alias")
+        # first execution
+        execution_one = keycloak.authentication.Execution("executionOne",
+            realm_id=realm.id,
+            parent_flow_alias=flow.alias,
+            authenticator="auth-cookie",
+            requirement="ALTERNATIVE")
+        # second execution
+        execution_two = keycloak.authentication.Execution("executionTwo",
+            realm_id=realm.id,
+            parent_flow_alias=flow.alias,
+            authenticator="identity-provider-redirector",
+            requirement="ALTERNATIVE",
+            opts=ResourceOptions(depends_on=[execution_one]))
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] authenticator: The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
+        :param pulumi.Input[str] parent_flow_alias: The alias of the flow this execution is attached to.
+        :param pulumi.Input[str] realm_id: The realm the authentication execution exists in.
+        :param pulumi.Input[str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -75,6 +112,10 @@ class Execution(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] authenticator: The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
+        :param pulumi.Input[str] parent_flow_alias: The alias of the flow this execution is attached to.
+        :param pulumi.Input[str] realm_id: The realm the authentication execution exists in.
+        :param pulumi.Input[str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -89,21 +130,33 @@ class Execution(pulumi.CustomResource):
     @property
     @pulumi.getter
     def authenticator(self) -> pulumi.Output[str]:
+        """
+        The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
+        """
         return pulumi.get(self, "authenticator")
 
     @property
     @pulumi.getter(name="parentFlowAlias")
     def parent_flow_alias(self) -> pulumi.Output[str]:
+        """
+        The alias of the flow this execution is attached to.
+        """
         return pulumi.get(self, "parent_flow_alias")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
+        """
+        The realm the authentication execution exists in.
+        """
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter
     def requirement(self) -> pulumi.Output[Optional[str]]:
+        """
+        The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
+        """
         return pulumi.get(self, "requirement")
 
     def translate_output_property(self, prop):

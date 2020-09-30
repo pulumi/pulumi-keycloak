@@ -7,49 +7,33 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak.Group data source
- *
  * This data source can be used to fetch properties of a Keycloak group for
  * usage with other resources, such as `keycloak.GroupRoles`.
  *
- * ### Example Usage
+ * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
  * const offlineAccess = realm.id.apply(id => keycloak.getRole({
+ *     realmId: id,
  *     name: "offline_access",
- *     realmId: id,
- * }, { async: true }));
+ * }));
  * const group = realm.id.apply(id => keycloak.getGroup({
- *     name: "group",
  *     realmId: id,
- * }, { async: true }));
- * const groupRoles = new keycloak.GroupRoles("group_roles", {
- *     groupId: group.id,
+ *     name: "group",
+ * }));
+ * const groupRoles = new keycloak.GroupRoles("groupRoles", {
  *     realmId: realm.id,
- *     roles: [offlineAccess.id],
+ *     groupId: group.id,
+ *     roleIds: [offlineAccess.id],
  * });
  * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realmId` - (Required) The realm this group exists within.
- * - `name` - (Required) The name of the group
- *
- * ### Attributes Reference
- *
- * In addition to the arguments listed above, the following computed attributes are exported:
- *
- * - `id` - The unique ID of the group, which can be used as an argument to
- *   other resources supported by this provider.
  */
 export function getGroup(args: GetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetGroupResult> {
     if (!opts) {
@@ -69,7 +53,13 @@ export function getGroup(args: GetGroupArgs, opts?: pulumi.InvokeOptions): Promi
  * A collection of arguments for invoking getGroup.
  */
 export interface GetGroupArgs {
+    /**
+     * The name of the group. If there are multiple groups match `name`, the first result will be returned.
+     */
     readonly name: string;
+    /**
+     * The realm this group exists within.
+     */
     readonly realmId: string;
 }
 
@@ -77,10 +67,13 @@ export interface GetGroupArgs {
  * A collection of values returned by getGroup.
  */
 export interface GetGroupResult {
+    readonly attributes: {[key: string]: any};
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly name: string;
+    readonly parentId: string;
+    readonly path: string;
     readonly realmId: string;
 }

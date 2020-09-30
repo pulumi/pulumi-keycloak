@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['GenericClientRoleMapper']
@@ -23,13 +23,117 @@ class GenericClientRoleMapper(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a GenericClientRoleMapper resource with the given unique name, props, and options.
+        Allow for creating and managing a client's scope mappings within Keycloak.
+
+        By default, all the user role mappings of the user are added as claims within the token (OIDC) or assertion (SAML). When
+        `full_scope_allowed` is set to `false` for a client, role scope mapping allows you to limit the roles that get declared
+        inside an access token for a client.
+
+        ## Example Usage
+        ### Realm Role To Client)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="BEARER-ONLY")
+        realm_role = keycloak.Role("realmRole",
+            realm_id=realm.id,
+            description="My Realm Role")
+        client_role_mapper = keycloak.GenericClientRoleMapper("clientRoleMapper",
+            realm_id=realm.id,
+            client_id=client.id,
+            role_id=realm_role.id)
+        ```
+        ### Client Role To Client)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client_a = keycloak.openid.Client("clientA",
+            realm_id=realm.id,
+            client_id="client-a",
+            enabled=True,
+            access_type="BEARER-ONLY",
+            full_scope_allowed=False)
+        client_role_a = keycloak.Role("clientRoleA",
+            realm_id=realm.id,
+            client_id=client_a.id,
+            description="My Client Role")
+        client_b = keycloak.openid.Client("clientB",
+            realm_id=realm.id,
+            client_id="client-b",
+            enabled=True,
+            access_type="BEARER-ONLY")
+        client_role_b = keycloak.Role("clientRoleB",
+            realm_id=realm.id,
+            client_id=client_b.id,
+            description="My Client Role")
+        client_b_role_mapper = keycloak.GenericClientRoleMapper("clientBRoleMapper",
+            realm_id=realm.id,
+            client_id=keycloak_client["client_b"]["id"],
+            role_id=client_role_a.id)
+        ```
+        ### Realm Role To Client Scope)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        realm_role = keycloak.Role("realmRole",
+            realm_id=realm.id,
+            description="My Realm Role")
+        client_role_mapper = keycloak.GenericClientRoleMapper("clientRoleMapper",
+            realm_id=realm.id,
+            client_scope_id=client_scope.id,
+            role_id=realm_role.id)
+        ```
+        ### Client Role To Client Scope)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="BEARER-ONLY")
+        client_role = keycloak.Role("clientRole",
+            realm_id=realm.id,
+            client_id=client.id,
+            description="My Client Role")
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        client_b_role_mapper = keycloak.GenericClientRoleMapper("clientBRoleMapper",
+            realm_id=realm.id,
+            client_scope_id=keycloak_client_scope["client_scope"]["id"],
+            role_id=client_role.id)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_id: The destination client of the client role. Cannot be used at the same time as client_scope_id.
-        :param pulumi.Input[str] client_scope_id: The destination client scope of the client role. Cannot be used at the same time as client_id.
-        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
-        :param pulumi.Input[str] role_id: Id of the role to assign
+        :param pulumi.Input[str] client_id: The ID of the client this role mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
+        :param pulumi.Input[str] client_scope_id: The ID of the client scope this role mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
+        :param pulumi.Input[str] realm_id: The realm this role mapper exists within.
+        :param pulumi.Input[str] role_id: The ID of the role to be added to this role mapper.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -77,10 +181,10 @@ class GenericClientRoleMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_id: The destination client of the client role. Cannot be used at the same time as client_scope_id.
-        :param pulumi.Input[str] client_scope_id: The destination client scope of the client role. Cannot be used at the same time as client_id.
-        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
-        :param pulumi.Input[str] role_id: Id of the role to assign
+        :param pulumi.Input[str] client_id: The ID of the client this role mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
+        :param pulumi.Input[str] client_scope_id: The ID of the client scope this role mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
+        :param pulumi.Input[str] realm_id: The realm this role mapper exists within.
+        :param pulumi.Input[str] role_id: The ID of the role to be added to this role mapper.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -96,7 +200,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The destination client of the client role. Cannot be used at the same time as client_scope_id.
+        The ID of the client this role mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
         """
         return pulumi.get(self, "client_id")
 
@@ -104,7 +208,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
     @pulumi.getter(name="clientScopeId")
     def client_scope_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The destination client scope of the client role. Cannot be used at the same time as client_id.
+        The ID of the client scope this role mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
         """
         return pulumi.get(self, "client_scope_id")
 
@@ -112,7 +216,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
         """
-        The realm id where the associated client or client scope exists.
+        The realm this role mapper exists within.
         """
         return pulumi.get(self, "realm_id")
 
@@ -120,7 +224,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
     @pulumi.getter(name="roleId")
     def role_id(self) -> pulumi.Output[str]:
         """
-        Id of the role to assign
+        The ID of the role to be added to this role mapper.
         """
         return pulumi.get(self, "role_id")
 

@@ -9,17 +9,68 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.Authentication
 {
+    /// <summary>
+    /// Allows for creating and managing an authentication flow within Keycloak.
+    /// 
+    /// [Authentication flows](https://www.keycloak.org/docs/11.0/server_admin/index.html#_authentication-flows) describe a sequence
+    /// of actions that a user or service must perform in order to be authenticated to Keycloak. The authentication flow itself
+    /// is a container for these actions, which are otherwise known as executions.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "my-realm",
+    ///             Enabled = true,
+    ///         });
+    ///         var flow = new Keycloak.Authentication.Flow("flow", new Keycloak.Authentication.FlowArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             Alias = "my-flow-alias",
+    ///         });
+    ///         var execution = new Keycloak.Authentication.Execution("execution", new Keycloak.Authentication.ExecutionArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             ParentFlowAlias = flow.Alias,
+    ///             Authenticator = "identity-provider-redirector",
+    ///             Requirement = "REQUIRED",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     public partial class Flow : Pulumi.CustomResource
     {
+        /// <summary>
+        /// The alias for this authentication flow.
+        /// </summary>
         [Output("alias")]
         public Output<string> Alias { get; private set; } = null!;
 
+        /// <summary>
+        /// A description for the authentication flow.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+        /// </summary>
         [Output("providerId")]
         public Output<string?> ProviderId { get; private set; } = null!;
 
+        /// <summary>
+        /// The realm that the authentication flow exists in.
+        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
@@ -69,15 +120,27 @@ namespace Pulumi.Keycloak.Authentication
 
     public sealed class FlowArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The alias for this authentication flow.
+        /// </summary>
         [Input("alias", required: true)]
         public Input<string> Alias { get; set; } = null!;
 
+        /// <summary>
+        /// A description for the authentication flow.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+        /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }
 
+        /// <summary>
+        /// The realm that the authentication flow exists in.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
@@ -88,15 +151,27 @@ namespace Pulumi.Keycloak.Authentication
 
     public sealed class FlowState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The alias for this authentication flow.
+        /// </summary>
         [Input("alias")]
         public Input<string>? Alias { get; set; }
 
+        /// <summary>
+        /// A description for the authentication flow.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+        /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }
 
+        /// <summary>
+        /// The realm that the authentication flow exists in.
+        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
