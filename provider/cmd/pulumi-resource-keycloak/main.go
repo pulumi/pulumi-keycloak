@@ -17,10 +17,9 @@
 package main
 
 import (
+	keycloak "github.com/pulumi/pulumi-keycloak/provider/v3"
+	"github.com/pulumi/pulumi-keycloak/provider/v3/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
-
-	keycloak "github.com/pulumi/pulumi-keycloak/provider/v2"
-	"github.com/pulumi/pulumi-keycloak/provider/v2/pkg/version"
 )
 
 func main() {

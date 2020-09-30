@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-keycloak/provider/v2
+module github.com/pulumi/pulumi-keycloak/provider/v3
 
 go 1.14
 
