@@ -18,6 +18,10 @@ WORKING_DIR     := $(shell pwd)
 
 development:: install_plugins provider lint_provider build_sdks install_sdks cleanup # Build the provider & SDKs for a development environment
 
+# Required for the codegen action that runs in pulumi/pulumi-terraform-bridge
+build:: install_plugins provider build_sdks install_sdks
+only_build:: build
+
 tfgen:: install_plugins
 	(cd provider && go build -a -o $(WORKING_DIR)/bin/${TFGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${TFGEN})
 	$(WORKING_DIR)/bin/${TFGEN} schema --out provider/cmd/${PROVIDER}
