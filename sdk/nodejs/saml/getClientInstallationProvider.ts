@@ -8,6 +8,37 @@ import * as utilities from "../utilities";
 
 /**
  * This data source can be used to retrieve Installation Provider of a SAML Client.
+ *
+ * ## Example Usage
+ *
+ * In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as keycloak from "@pulumi/keycloak";
+ * import * from "fs";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const samlClient = new keycloak.saml.Client("samlClient", {
+ *     realmId: realm.id,
+ *     clientId: "test-saml-client",
+ *     signDocuments: false,
+ *     signAssertions: true,
+ *     includeAuthnStatement: true,
+ *     signingCertificate: fs.readFileSync("saml-cert.pem"),
+ *     signingPrivateKey: fs.readFileSync("saml-key.pem"),
+ * });
+ * const samlIdpDescriptor = pulumi.all([realm.id, samlClient.id]).apply(([realmId, samlClientId]) => keycloak.saml.getClientInstallationProvider({
+ *     realmId: realmId,
+ *     clientId: samlClientId,
+ *     providerId: "saml-idp-descriptor",
+ * }));
+ * const _default = new aws.iam.SamlProvider("default", {samlMetadataDocument: samlIdpDescriptor.value});
+ * ```
  */
 export function getClientInstallationProvider(args: GetClientInstallationProviderArgs, opts?: pulumi.InvokeOptions): Promise<GetClientInstallationProviderResult> {
     if (!opts) {
