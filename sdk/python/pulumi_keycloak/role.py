@@ -98,6 +98,14 @@ class Role(pulumi.CustomResource):
             ])
         ```
 
+        ## Import
+
+        Roles can be imported using the format `{{realm_id}}/{{role_id}}`, where `role_id` is the unique ID that Keycloak assigns to the role. The ID is not easy to find in the GUI, but it appears in the URL when editing the role. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:index/role:Role role my-realm/7e8cf32a-8acb-4d34-89c4-04fb1d10ccad
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID

@@ -22,7 +22,14 @@ class UserRoles(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a UserRoles resource with the given unique name, props, and options.
+        ## Import
+
+        This resource can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak assigns to the user upon creation. This value can be found in the GUI when editing the user, and is typically a GUID. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:index/userRoles:UserRoles user_roles my-realm/b0ae6924-1bd5-4655-9e38-dae7c5e42924
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] realm_id: The realm this user exists in.

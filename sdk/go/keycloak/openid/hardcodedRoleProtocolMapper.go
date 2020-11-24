@@ -4,6 +4,7 @@
 package openid
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -112,6 +113,18 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper hardcoded_role_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+// ```
+//
+// ```sh
+//  $ pulumi import keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper hardcoded_role_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+// ```
 type HardcodedRoleProtocolMapper struct {
 	pulumi.CustomResourceState
 
@@ -219,4 +232,43 @@ type HardcodedRoleProtocolMapperArgs struct {
 
 func (HardcodedRoleProtocolMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*hardcodedRoleProtocolMapperArgs)(nil)).Elem()
+}
+
+type HardcodedRoleProtocolMapperInput interface {
+	pulumi.Input
+
+	ToHardcodedRoleProtocolMapperOutput() HardcodedRoleProtocolMapperOutput
+	ToHardcodedRoleProtocolMapperOutputWithContext(ctx context.Context) HardcodedRoleProtocolMapperOutput
+}
+
+func (HardcodedRoleProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*HardcodedRoleProtocolMapper)(nil)).Elem()
+}
+
+func (i HardcodedRoleProtocolMapper) ToHardcodedRoleProtocolMapperOutput() HardcodedRoleProtocolMapperOutput {
+	return i.ToHardcodedRoleProtocolMapperOutputWithContext(context.Background())
+}
+
+func (i HardcodedRoleProtocolMapper) ToHardcodedRoleProtocolMapperOutputWithContext(ctx context.Context) HardcodedRoleProtocolMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleProtocolMapperOutput)
+}
+
+type HardcodedRoleProtocolMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (HardcodedRoleProtocolMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HardcodedRoleProtocolMapperOutput)(nil)).Elem()
+}
+
+func (o HardcodedRoleProtocolMapperOutput) ToHardcodedRoleProtocolMapperOutput() HardcodedRoleProtocolMapperOutput {
+	return o
+}
+
+func (o HardcodedRoleProtocolMapperOutput) ToHardcodedRoleProtocolMapperOutputWithContext(ctx context.Context) HardcodedRoleProtocolMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(HardcodedRoleProtocolMapperOutput{})
 }

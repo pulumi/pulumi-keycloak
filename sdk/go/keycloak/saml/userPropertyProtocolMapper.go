@@ -4,6 +4,7 @@
 package saml
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -58,6 +59,18 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper saml_user_property_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+// ```
+//
+// ```sh
+//  $ pulumi import keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper saml_user_property_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
 // ```
 type UserPropertyProtocolMapper struct {
 	pulumi.CustomResourceState
@@ -202,4 +215,43 @@ type UserPropertyProtocolMapperArgs struct {
 
 func (UserPropertyProtocolMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*userPropertyProtocolMapperArgs)(nil)).Elem()
+}
+
+type UserPropertyProtocolMapperInput interface {
+	pulumi.Input
+
+	ToUserPropertyProtocolMapperOutput() UserPropertyProtocolMapperOutput
+	ToUserPropertyProtocolMapperOutputWithContext(ctx context.Context) UserPropertyProtocolMapperOutput
+}
+
+func (UserPropertyProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserPropertyProtocolMapper)(nil)).Elem()
+}
+
+func (i UserPropertyProtocolMapper) ToUserPropertyProtocolMapperOutput() UserPropertyProtocolMapperOutput {
+	return i.ToUserPropertyProtocolMapperOutputWithContext(context.Background())
+}
+
+func (i UserPropertyProtocolMapper) ToUserPropertyProtocolMapperOutputWithContext(ctx context.Context) UserPropertyProtocolMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserPropertyProtocolMapperOutput)
+}
+
+type UserPropertyProtocolMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (UserPropertyProtocolMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserPropertyProtocolMapperOutput)(nil)).Elem()
+}
+
+func (o UserPropertyProtocolMapperOutput) ToUserPropertyProtocolMapperOutput() UserPropertyProtocolMapperOutput {
+	return o
+}
+
+func (o UserPropertyProtocolMapperOutput) ToUserPropertyProtocolMapperOutputWithContext(ctx context.Context) UserPropertyProtocolMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(UserPropertyProtocolMapperOutput{})
 }

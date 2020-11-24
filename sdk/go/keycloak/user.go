@@ -4,6 +4,7 @@
 package keycloak
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -67,6 +68,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Users can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak assigns to the user upon creation. This value can be found in the GUI when editing the user. Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:index/user:User user my-realm/60c3f971-b1d3-4b3a-9035-d16d7540a5e4
 // ```
 type User struct {
 	pulumi.CustomResourceState
@@ -220,4 +229,43 @@ type UserArgs struct {
 
 func (UserArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*userArgs)(nil)).Elem()
+}
+
+type UserInput interface {
+	pulumi.Input
+
+	ToUserOutput() UserOutput
+	ToUserOutputWithContext(ctx context.Context) UserOutput
+}
+
+func (User) ElementType() reflect.Type {
+	return reflect.TypeOf((*User)(nil)).Elem()
+}
+
+func (i User) ToUserOutput() UserOutput {
+	return i.ToUserOutputWithContext(context.Background())
+}
+
+func (i User) ToUserOutputWithContext(ctx context.Context) UserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserOutput)
+}
+
+type UserOutput struct {
+	*pulumi.OutputState
+}
+
+func (UserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserOutput)(nil)).Elem()
+}
+
+func (o UserOutput) ToUserOutput() UserOutput {
+	return o
+}
+
+func (o UserOutput) ToUserOutputWithContext(ctx context.Context) UserOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(UserOutput{})
 }

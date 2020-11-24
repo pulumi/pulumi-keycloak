@@ -4,6 +4,7 @@
 package keycloak
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -135,4 +136,43 @@ type HardcodedAttributeIdentityProviderMapperArgs struct {
 
 func (HardcodedAttributeIdentityProviderMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*hardcodedAttributeIdentityProviderMapperArgs)(nil)).Elem()
+}
+
+type HardcodedAttributeIdentityProviderMapperInput interface {
+	pulumi.Input
+
+	ToHardcodedAttributeIdentityProviderMapperOutput() HardcodedAttributeIdentityProviderMapperOutput
+	ToHardcodedAttributeIdentityProviderMapperOutputWithContext(ctx context.Context) HardcodedAttributeIdentityProviderMapperOutput
+}
+
+func (HardcodedAttributeIdentityProviderMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*HardcodedAttributeIdentityProviderMapper)(nil)).Elem()
+}
+
+func (i HardcodedAttributeIdentityProviderMapper) ToHardcodedAttributeIdentityProviderMapperOutput() HardcodedAttributeIdentityProviderMapperOutput {
+	return i.ToHardcodedAttributeIdentityProviderMapperOutputWithContext(context.Background())
+}
+
+func (i HardcodedAttributeIdentityProviderMapper) ToHardcodedAttributeIdentityProviderMapperOutputWithContext(ctx context.Context) HardcodedAttributeIdentityProviderMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HardcodedAttributeIdentityProviderMapperOutput)
+}
+
+type HardcodedAttributeIdentityProviderMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (HardcodedAttributeIdentityProviderMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HardcodedAttributeIdentityProviderMapperOutput)(nil)).Elem()
+}
+
+func (o HardcodedAttributeIdentityProviderMapperOutput) ToHardcodedAttributeIdentityProviderMapperOutput() HardcodedAttributeIdentityProviderMapperOutput {
+	return o
+}
+
+func (o HardcodedAttributeIdentityProviderMapperOutput) ToHardcodedAttributeIdentityProviderMapperOutputWithContext(ctx context.Context) HardcodedAttributeIdentityProviderMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(HardcodedAttributeIdentityProviderMapperOutput{})
 }

@@ -4,6 +4,7 @@
 package openid
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -97,6 +98,18 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:openid/fullNameProtocolMapper:FullNameProtocolMapper full_name_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+// ```
+//
+// ```sh
+//  $ pulumi import keycloak:openid/fullNameProtocolMapper:FullNameProtocolMapper full_name_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
 // ```
 type FullNameProtocolMapper struct {
 	pulumi.CustomResourceState
@@ -222,4 +235,43 @@ type FullNameProtocolMapperArgs struct {
 
 func (FullNameProtocolMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*fullNameProtocolMapperArgs)(nil)).Elem()
+}
+
+type FullNameProtocolMapperInput interface {
+	pulumi.Input
+
+	ToFullNameProtocolMapperOutput() FullNameProtocolMapperOutput
+	ToFullNameProtocolMapperOutputWithContext(ctx context.Context) FullNameProtocolMapperOutput
+}
+
+func (FullNameProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*FullNameProtocolMapper)(nil)).Elem()
+}
+
+func (i FullNameProtocolMapper) ToFullNameProtocolMapperOutput() FullNameProtocolMapperOutput {
+	return i.ToFullNameProtocolMapperOutputWithContext(context.Background())
+}
+
+func (i FullNameProtocolMapper) ToFullNameProtocolMapperOutputWithContext(ctx context.Context) FullNameProtocolMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FullNameProtocolMapperOutput)
+}
+
+type FullNameProtocolMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (FullNameProtocolMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FullNameProtocolMapperOutput)(nil)).Elem()
+}
+
+func (o FullNameProtocolMapperOutput) ToFullNameProtocolMapperOutput() FullNameProtocolMapperOutput {
+	return o
+}
+
+func (o FullNameProtocolMapperOutput) ToFullNameProtocolMapperOutputWithContext(ctx context.Context) FullNameProtocolMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FullNameProtocolMapperOutput{})
 }

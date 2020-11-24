@@ -9,6 +9,11 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
+    /// </summary>
     public partial class ClientOptionalScopes : Pulumi.CustomResource
     {
         /// <summary>

@@ -4,6 +4,7 @@
 package keycloak
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -52,6 +53,10 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// This resource currently does not support importing.
 type RealmEvents struct {
 	pulumi.CustomResourceState
 
@@ -176,4 +181,43 @@ type RealmEventsArgs struct {
 
 func (RealmEventsArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*realmEventsArgs)(nil)).Elem()
+}
+
+type RealmEventsInput interface {
+	pulumi.Input
+
+	ToRealmEventsOutput() RealmEventsOutput
+	ToRealmEventsOutputWithContext(ctx context.Context) RealmEventsOutput
+}
+
+func (RealmEvents) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmEvents)(nil)).Elem()
+}
+
+func (i RealmEvents) ToRealmEventsOutput() RealmEventsOutput {
+	return i.ToRealmEventsOutputWithContext(context.Background())
+}
+
+func (i RealmEvents) ToRealmEventsOutputWithContext(ctx context.Context) RealmEventsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmEventsOutput)
+}
+
+type RealmEventsOutput struct {
+	*pulumi.OutputState
+}
+
+func (RealmEventsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmEventsOutput)(nil)).Elem()
+}
+
+func (o RealmEventsOutput) ToRealmEventsOutput() RealmEventsOutput {
+	return o
+}
+
+func (o RealmEventsOutput) ToRealmEventsOutputWithContext(ctx context.Context) RealmEventsOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RealmEventsOutput{})
 }

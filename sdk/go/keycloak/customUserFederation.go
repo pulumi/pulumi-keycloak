@@ -4,12 +4,20 @@
 package keycloak
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// Custom user federation providers can be imported using the format `{{realm_id}}/{{custom_user_federation_id}}`. The ID of the custom user federation provider can be found within the Keycloak GUI and is typically a GUIDbash
+//
+// ```sh
+//  $ pulumi import keycloak:index/customUserFederation:CustomUserFederation custom_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
+// ```
 type CustomUserFederation struct {
 	pulumi.CustomResourceState
 
@@ -147,4 +155,43 @@ type CustomUserFederationArgs struct {
 
 func (CustomUserFederationArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*customUserFederationArgs)(nil)).Elem()
+}
+
+type CustomUserFederationInput interface {
+	pulumi.Input
+
+	ToCustomUserFederationOutput() CustomUserFederationOutput
+	ToCustomUserFederationOutputWithContext(ctx context.Context) CustomUserFederationOutput
+}
+
+func (CustomUserFederation) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomUserFederation)(nil)).Elem()
+}
+
+func (i CustomUserFederation) ToCustomUserFederationOutput() CustomUserFederationOutput {
+	return i.ToCustomUserFederationOutputWithContext(context.Background())
+}
+
+func (i CustomUserFederation) ToCustomUserFederationOutputWithContext(ctx context.Context) CustomUserFederationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomUserFederationOutput)
+}
+
+type CustomUserFederationOutput struct {
+	*pulumi.OutputState
+}
+
+func (CustomUserFederationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomUserFederationOutput)(nil)).Elem()
+}
+
+func (o CustomUserFederationOutput) ToCustomUserFederationOutput() CustomUserFederationOutput {
+	return o
+}
+
+func (o CustomUserFederationOutput) ToCustomUserFederationOutputWithContext(ctx context.Context) CustomUserFederationOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CustomUserFederationOutput{})
 }

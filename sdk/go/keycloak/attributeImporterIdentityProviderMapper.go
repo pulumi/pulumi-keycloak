@@ -4,6 +4,7 @@
 package keycloak
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -66,6 +67,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Identity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID. Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:index/attributeImporterIdentityProviderMapper:AttributeImporterIdentityProviderMapper test_mapper my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
 // ```
 type AttributeImporterIdentityProviderMapper struct {
 	pulumi.CustomResourceState
@@ -207,4 +216,43 @@ type AttributeImporterIdentityProviderMapperArgs struct {
 
 func (AttributeImporterIdentityProviderMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*attributeImporterIdentityProviderMapperArgs)(nil)).Elem()
+}
+
+type AttributeImporterIdentityProviderMapperInput interface {
+	pulumi.Input
+
+	ToAttributeImporterIdentityProviderMapperOutput() AttributeImporterIdentityProviderMapperOutput
+	ToAttributeImporterIdentityProviderMapperOutputWithContext(ctx context.Context) AttributeImporterIdentityProviderMapperOutput
+}
+
+func (AttributeImporterIdentityProviderMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttributeImporterIdentityProviderMapper)(nil)).Elem()
+}
+
+func (i AttributeImporterIdentityProviderMapper) ToAttributeImporterIdentityProviderMapperOutput() AttributeImporterIdentityProviderMapperOutput {
+	return i.ToAttributeImporterIdentityProviderMapperOutputWithContext(context.Background())
+}
+
+func (i AttributeImporterIdentityProviderMapper) ToAttributeImporterIdentityProviderMapperOutputWithContext(ctx context.Context) AttributeImporterIdentityProviderMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttributeImporterIdentityProviderMapperOutput)
+}
+
+type AttributeImporterIdentityProviderMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (AttributeImporterIdentityProviderMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttributeImporterIdentityProviderMapperOutput)(nil)).Elem()
+}
+
+func (o AttributeImporterIdentityProviderMapperOutput) ToAttributeImporterIdentityProviderMapperOutput() AttributeImporterIdentityProviderMapperOutput {
+	return o
+}
+
+func (o AttributeImporterIdentityProviderMapperOutput) ToAttributeImporterIdentityProviderMapperOutputWithContext(ctx context.Context) AttributeImporterIdentityProviderMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AttributeImporterIdentityProviderMapperOutput{})
 }

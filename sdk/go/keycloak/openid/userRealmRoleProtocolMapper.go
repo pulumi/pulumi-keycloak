@@ -4,6 +4,7 @@
 package openid
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -99,6 +100,18 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:openid/userRealmRoleProtocolMapper:UserRealmRoleProtocolMapper user_realm_role_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+// ```
+//
+// ```sh
+//  $ pulumi import keycloak:openid/userRealmRoleProtocolMapper:UserRealmRoleProtocolMapper user_realm_role_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
 // ```
 type UserRealmRoleProtocolMapper struct {
 	pulumi.CustomResourceState
@@ -267,4 +280,43 @@ type UserRealmRoleProtocolMapperArgs struct {
 
 func (UserRealmRoleProtocolMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*userRealmRoleProtocolMapperArgs)(nil)).Elem()
+}
+
+type UserRealmRoleProtocolMapperInput interface {
+	pulumi.Input
+
+	ToUserRealmRoleProtocolMapperOutput() UserRealmRoleProtocolMapperOutput
+	ToUserRealmRoleProtocolMapperOutputWithContext(ctx context.Context) UserRealmRoleProtocolMapperOutput
+}
+
+func (UserRealmRoleProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserRealmRoleProtocolMapper)(nil)).Elem()
+}
+
+func (i UserRealmRoleProtocolMapper) ToUserRealmRoleProtocolMapperOutput() UserRealmRoleProtocolMapperOutput {
+	return i.ToUserRealmRoleProtocolMapperOutputWithContext(context.Background())
+}
+
+func (i UserRealmRoleProtocolMapper) ToUserRealmRoleProtocolMapperOutputWithContext(ctx context.Context) UserRealmRoleProtocolMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserRealmRoleProtocolMapperOutput)
+}
+
+type UserRealmRoleProtocolMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (UserRealmRoleProtocolMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserRealmRoleProtocolMapperOutput)(nil)).Elem()
+}
+
+func (o UserRealmRoleProtocolMapperOutput) ToUserRealmRoleProtocolMapperOutput() UserRealmRoleProtocolMapperOutput {
+	return o
+}
+
+func (o UserRealmRoleProtocolMapperOutput) ToUserRealmRoleProtocolMapperOutputWithContext(ctx context.Context) UserRealmRoleProtocolMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(UserRealmRoleProtocolMapperOutput{})
 }

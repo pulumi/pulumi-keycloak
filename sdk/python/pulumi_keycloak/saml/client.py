@@ -72,6 +72,14 @@ class Client(pulumi.CustomResource):
             signing_private_key=(lambda path: open(path).read())("saml-key.pem"))
         ```
 
+        ## Import
+
+        Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:saml/client:Client saml_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] assertion_consumer_post_url: SAML POST Binding URL for the client's assertion consumer service (login responses).

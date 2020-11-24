@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// This resource can be imported using the format `{{realm_id}}/{{provider_alias}}`, where `provider_alias` is the alias that you assign to the identity provider upon creation. Examplebash
+    /// 
+    /// ```sh
+    ///  $ pulumi import keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission oidc_idp_permission my-realm/myIdp
+    /// ```
+    /// </summary>
     public partial class IdentityProviderTokenExchangeScopePermission : Pulumi.CustomResource
     {
         /// <summary>

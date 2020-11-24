@@ -4,12 +4,16 @@
 package saml
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
 type ClientDefaultScope struct {
 	pulumi.CustomResourceState
 
@@ -100,4 +104,43 @@ type ClientDefaultScopeArgs struct {
 
 func (ClientDefaultScopeArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientDefaultScopeArgs)(nil)).Elem()
+}
+
+type ClientDefaultScopeInput interface {
+	pulumi.Input
+
+	ToClientDefaultScopeOutput() ClientDefaultScopeOutput
+	ToClientDefaultScopeOutputWithContext(ctx context.Context) ClientDefaultScopeOutput
+}
+
+func (ClientDefaultScope) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientDefaultScope)(nil)).Elem()
+}
+
+func (i ClientDefaultScope) ToClientDefaultScopeOutput() ClientDefaultScopeOutput {
+	return i.ToClientDefaultScopeOutputWithContext(context.Background())
+}
+
+func (i ClientDefaultScope) ToClientDefaultScopeOutputWithContext(ctx context.Context) ClientDefaultScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientDefaultScopeOutput)
+}
+
+type ClientDefaultScopeOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClientDefaultScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientDefaultScopeOutput)(nil)).Elem()
+}
+
+func (o ClientDefaultScopeOutput) ToClientDefaultScopeOutput() ClientDefaultScopeOutput {
+	return o
+}
+
+func (o ClientDefaultScopeOutput) ToClientDefaultScopeOutputWithContext(ctx context.Context) ClientDefaultScopeOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClientDefaultScopeOutput{})
 }

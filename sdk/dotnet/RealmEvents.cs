@@ -48,6 +48,10 @@ namespace Pulumi.Keycloak
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// This resource currently does not support importing.
     /// </summary>
     public partial class RealmEvents : Pulumi.CustomResource
     {

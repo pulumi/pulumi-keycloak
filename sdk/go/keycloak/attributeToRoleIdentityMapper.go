@@ -4,6 +4,7 @@
 package keycloak
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -165,4 +166,43 @@ type AttributeToRoleIdentityMapperArgs struct {
 
 func (AttributeToRoleIdentityMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*attributeToRoleIdentityMapperArgs)(nil)).Elem()
+}
+
+type AttributeToRoleIdentityMapperInput interface {
+	pulumi.Input
+
+	ToAttributeToRoleIdentityMapperOutput() AttributeToRoleIdentityMapperOutput
+	ToAttributeToRoleIdentityMapperOutputWithContext(ctx context.Context) AttributeToRoleIdentityMapperOutput
+}
+
+func (AttributeToRoleIdentityMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttributeToRoleIdentityMapper)(nil)).Elem()
+}
+
+func (i AttributeToRoleIdentityMapper) ToAttributeToRoleIdentityMapperOutput() AttributeToRoleIdentityMapperOutput {
+	return i.ToAttributeToRoleIdentityMapperOutputWithContext(context.Background())
+}
+
+func (i AttributeToRoleIdentityMapper) ToAttributeToRoleIdentityMapperOutputWithContext(ctx context.Context) AttributeToRoleIdentityMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttributeToRoleIdentityMapperOutput)
+}
+
+type AttributeToRoleIdentityMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (AttributeToRoleIdentityMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttributeToRoleIdentityMapperOutput)(nil)).Elem()
+}
+
+func (o AttributeToRoleIdentityMapperOutput) ToAttributeToRoleIdentityMapperOutput() AttributeToRoleIdentityMapperOutput {
+	return o
+}
+
+func (o AttributeToRoleIdentityMapperOutput) ToAttributeToRoleIdentityMapperOutputWithContext(ctx context.Context) AttributeToRoleIdentityMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AttributeToRoleIdentityMapperOutput{})
 }

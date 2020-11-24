@@ -57,6 +57,14 @@ class Execution(pulumi.CustomResource):
             opts=ResourceOptions(depends_on=[execution_one]))
         ```
 
+        ## Import
+
+        Authentication executions can be imported using the formats`{{realmId}}/{{parentFlowAlias}}/{{authenticationExecutionId}}`. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:authentication/execution:Execution keycloak_authentication_execution my-realm/my-flow/30559fcf-6fb8-45ea-8c46-2b86f46ebc17
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] authenticator: The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.

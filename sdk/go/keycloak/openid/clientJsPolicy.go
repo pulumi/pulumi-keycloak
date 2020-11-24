@@ -4,6 +4,7 @@
 package openid
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -113,4 +114,43 @@ type ClientJsPolicyArgs struct {
 
 func (ClientJsPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientJsPolicyArgs)(nil)).Elem()
+}
+
+type ClientJsPolicyInput interface {
+	pulumi.Input
+
+	ToClientJsPolicyOutput() ClientJsPolicyOutput
+	ToClientJsPolicyOutputWithContext(ctx context.Context) ClientJsPolicyOutput
+}
+
+func (ClientJsPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientJsPolicy)(nil)).Elem()
+}
+
+func (i ClientJsPolicy) ToClientJsPolicyOutput() ClientJsPolicyOutput {
+	return i.ToClientJsPolicyOutputWithContext(context.Background())
+}
+
+func (i ClientJsPolicy) ToClientJsPolicyOutputWithContext(ctx context.Context) ClientJsPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientJsPolicyOutput)
+}
+
+type ClientJsPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClientJsPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientJsPolicyOutput)(nil)).Elem()
+}
+
+func (o ClientJsPolicyOutput) ToClientJsPolicyOutput() ClientJsPolicyOutput {
+	return o
+}
+
+func (o ClientJsPolicyOutput) ToClientJsPolicyOutputWithContext(ctx context.Context) ClientJsPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClientJsPolicyOutput{})
 }

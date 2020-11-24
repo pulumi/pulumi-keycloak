@@ -4,6 +4,7 @@
 package keycloak
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -112,4 +113,43 @@ type HardcodedRoleIdentityMapperArgs struct {
 
 func (HardcodedRoleIdentityMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*hardcodedRoleIdentityMapperArgs)(nil)).Elem()
+}
+
+type HardcodedRoleIdentityMapperInput interface {
+	pulumi.Input
+
+	ToHardcodedRoleIdentityMapperOutput() HardcodedRoleIdentityMapperOutput
+	ToHardcodedRoleIdentityMapperOutputWithContext(ctx context.Context) HardcodedRoleIdentityMapperOutput
+}
+
+func (HardcodedRoleIdentityMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*HardcodedRoleIdentityMapper)(nil)).Elem()
+}
+
+func (i HardcodedRoleIdentityMapper) ToHardcodedRoleIdentityMapperOutput() HardcodedRoleIdentityMapperOutput {
+	return i.ToHardcodedRoleIdentityMapperOutputWithContext(context.Background())
+}
+
+func (i HardcodedRoleIdentityMapper) ToHardcodedRoleIdentityMapperOutputWithContext(ctx context.Context) HardcodedRoleIdentityMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleIdentityMapperOutput)
+}
+
+type HardcodedRoleIdentityMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (HardcodedRoleIdentityMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HardcodedRoleIdentityMapperOutput)(nil)).Elem()
+}
+
+func (o HardcodedRoleIdentityMapperOutput) ToHardcodedRoleIdentityMapperOutput() HardcodedRoleIdentityMapperOutput {
+	return o
+}
+
+func (o HardcodedRoleIdentityMapperOutput) ToHardcodedRoleIdentityMapperOutputWithContext(ctx context.Context) HardcodedRoleIdentityMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(HardcodedRoleIdentityMapperOutput{})
 }

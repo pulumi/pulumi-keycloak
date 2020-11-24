@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -31,6 +30,14 @@ import * as utilities from "../utilities";
  *     validRedirectUris: ["http://localhost:8080/openid-callback"],
  *     loginTheme: "keycloak",
  * });
+ * ```
+ *
+ * ## Import
+ *
+ * Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID. Examplebash
+ *
+ * ```sh
+ *  $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
  * ```
  */
 export class Client extends pulumi.CustomResource {

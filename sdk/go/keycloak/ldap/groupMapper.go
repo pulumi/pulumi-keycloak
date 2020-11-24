@@ -4,6 +4,7 @@
 package ldap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -71,6 +72,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:ldap/groupMapper:GroupMapper ldap_group_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
 // ```
 type GroupMapper struct {
 	pulumi.CustomResourceState
@@ -314,4 +323,43 @@ type GroupMapperArgs struct {
 
 func (GroupMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupMapperArgs)(nil)).Elem()
+}
+
+type GroupMapperInput interface {
+	pulumi.Input
+
+	ToGroupMapperOutput() GroupMapperOutput
+	ToGroupMapperOutputWithContext(ctx context.Context) GroupMapperOutput
+}
+
+func (GroupMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupMapper)(nil)).Elem()
+}
+
+func (i GroupMapper) ToGroupMapperOutput() GroupMapperOutput {
+	return i.ToGroupMapperOutputWithContext(context.Background())
+}
+
+func (i GroupMapper) ToGroupMapperOutputWithContext(ctx context.Context) GroupMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMapperOutput)
+}
+
+type GroupMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (GroupMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupMapperOutput)(nil)).Elem()
+}
+
+func (o GroupMapperOutput) ToGroupMapperOutput() GroupMapperOutput {
+	return o
+}
+
+func (o GroupMapperOutput) ToGroupMapperOutputWithContext(ctx context.Context) GroupMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GroupMapperOutput{})
 }

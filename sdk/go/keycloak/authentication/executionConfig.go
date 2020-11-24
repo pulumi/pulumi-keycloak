@@ -4,6 +4,7 @@
 package authentication
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -62,6 +63,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Configurations can be imported using the format `{{realm}}/{{authenticationExecutionId}}/{{authenticationExecutionConfigId}}`. If the `authenticationExecutionId` is incorrect, the import will still be successful. A subsequent apply will change the `authenticationExecutionId` to the correct one, which causes the configuration to be replaced. Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:authentication/executionConfig:ExecutionConfig config my-realm/be081463-ddbf-4b42-9eff-9c97886f24ff/30559fcf-6fb8-45ea-8c46-2b86f46ebc17
 // ```
 type ExecutionConfig struct {
 	pulumi.CustomResourceState
@@ -166,4 +175,43 @@ type ExecutionConfigArgs struct {
 
 func (ExecutionConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*executionConfigArgs)(nil)).Elem()
+}
+
+type ExecutionConfigInput interface {
+	pulumi.Input
+
+	ToExecutionConfigOutput() ExecutionConfigOutput
+	ToExecutionConfigOutputWithContext(ctx context.Context) ExecutionConfigOutput
+}
+
+func (ExecutionConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExecutionConfig)(nil)).Elem()
+}
+
+func (i ExecutionConfig) ToExecutionConfigOutput() ExecutionConfigOutput {
+	return i.ToExecutionConfigOutputWithContext(context.Background())
+}
+
+func (i ExecutionConfig) ToExecutionConfigOutputWithContext(ctx context.Context) ExecutionConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExecutionConfigOutput)
+}
+
+type ExecutionConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (ExecutionConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExecutionConfigOutput)(nil)).Elem()
+}
+
+func (o ExecutionConfigOutput) ToExecutionConfigOutput() ExecutionConfigOutput {
+	return o
+}
+
+func (o ExecutionConfigOutput) ToExecutionConfigOutputWithContext(ctx context.Context) ExecutionConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ExecutionConfigOutput{})
 }

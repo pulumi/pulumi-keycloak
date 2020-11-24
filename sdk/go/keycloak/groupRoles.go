@@ -4,12 +4,20 @@
 package keycloak
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID. Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+// ```
 type GroupRoles struct {
 	pulumi.CustomResourceState
 
@@ -100,4 +108,43 @@ type GroupRolesArgs struct {
 
 func (GroupRolesArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupRolesArgs)(nil)).Elem()
+}
+
+type GroupRolesInput interface {
+	pulumi.Input
+
+	ToGroupRolesOutput() GroupRolesOutput
+	ToGroupRolesOutputWithContext(ctx context.Context) GroupRolesOutput
+}
+
+func (GroupRoles) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupRoles)(nil)).Elem()
+}
+
+func (i GroupRoles) ToGroupRolesOutput() GroupRolesOutput {
+	return i.ToGroupRolesOutputWithContext(context.Background())
+}
+
+func (i GroupRoles) ToGroupRolesOutputWithContext(ctx context.Context) GroupRolesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupRolesOutput)
+}
+
+type GroupRolesOutput struct {
+	*pulumi.OutputState
+}
+
+func (GroupRolesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupRolesOutput)(nil)).Elem()
+}
+
+func (o GroupRolesOutput) ToGroupRolesOutput() GroupRolesOutput {
+	return o
+}
+
+func (o GroupRolesOutput) ToGroupRolesOutputWithContext(ctx context.Context) GroupRolesOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GroupRolesOutput{})
 }

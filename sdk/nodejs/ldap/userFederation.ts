@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -46,6 +45,14 @@ import * as utilities from "../utilities";
  *         keytab: "/etc/host.keytab",
  *     },
  * });
+ * ```
+ *
+ * ## Import
+ *
+ * LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`. The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUIDbash
+ *
+ * ```sh
+ *  $ pulumi import keycloak:ldap/userFederation:UserFederation ldap_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
  * ```
  */
 export class UserFederation extends pulumi.CustomResource {

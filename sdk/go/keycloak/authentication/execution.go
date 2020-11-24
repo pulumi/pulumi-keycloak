@@ -4,6 +4,7 @@
 package authentication
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -67,6 +68,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Authentication executions can be imported using the formats`{{realmId}}/{{parentFlowAlias}}/{{authenticationExecutionId}}`. Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:authentication/execution:Execution keycloak_authentication_execution my-realm/my-flow/30559fcf-6fb8-45ea-8c46-2b86f46ebc17
 // ```
 type Execution struct {
 	pulumi.CustomResourceState
@@ -168,4 +177,43 @@ type ExecutionArgs struct {
 
 func (ExecutionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*executionArgs)(nil)).Elem()
+}
+
+type ExecutionInput interface {
+	pulumi.Input
+
+	ToExecutionOutput() ExecutionOutput
+	ToExecutionOutputWithContext(ctx context.Context) ExecutionOutput
+}
+
+func (Execution) ElementType() reflect.Type {
+	return reflect.TypeOf((*Execution)(nil)).Elem()
+}
+
+func (i Execution) ToExecutionOutput() ExecutionOutput {
+	return i.ToExecutionOutputWithContext(context.Background())
+}
+
+func (i Execution) ToExecutionOutputWithContext(ctx context.Context) ExecutionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExecutionOutput)
+}
+
+type ExecutionOutput struct {
+	*pulumi.OutputState
+}
+
+func (ExecutionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExecutionOutput)(nil)).Elem()
+}
+
+func (o ExecutionOutput) ToExecutionOutput() ExecutionOutput {
+	return o
+}
+
+func (o ExecutionOutput) ToExecutionOutputWithContext(ctx context.Context) ExecutionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ExecutionOutput{})
 }

@@ -4,12 +4,20 @@
 package keycloak
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// This resource can be imported using the format `{{realm_id}}/{{provider_alias}}`, where `provider_alias` is the alias that you assign to the identity provider upon creation. Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission oidc_idp_permission my-realm/myIdp
+// ```
 type IdentityProviderTokenExchangeScopePermission struct {
 	pulumi.CustomResourceState
 
@@ -134,4 +142,43 @@ type IdentityProviderTokenExchangeScopePermissionArgs struct {
 
 func (IdentityProviderTokenExchangeScopePermissionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*identityProviderTokenExchangeScopePermissionArgs)(nil)).Elem()
+}
+
+type IdentityProviderTokenExchangeScopePermissionInput interface {
+	pulumi.Input
+
+	ToIdentityProviderTokenExchangeScopePermissionOutput() IdentityProviderTokenExchangeScopePermissionOutput
+	ToIdentityProviderTokenExchangeScopePermissionOutputWithContext(ctx context.Context) IdentityProviderTokenExchangeScopePermissionOutput
+}
+
+func (IdentityProviderTokenExchangeScopePermission) ElementType() reflect.Type {
+	return reflect.TypeOf((*IdentityProviderTokenExchangeScopePermission)(nil)).Elem()
+}
+
+func (i IdentityProviderTokenExchangeScopePermission) ToIdentityProviderTokenExchangeScopePermissionOutput() IdentityProviderTokenExchangeScopePermissionOutput {
+	return i.ToIdentityProviderTokenExchangeScopePermissionOutputWithContext(context.Background())
+}
+
+func (i IdentityProviderTokenExchangeScopePermission) ToIdentityProviderTokenExchangeScopePermissionOutputWithContext(ctx context.Context) IdentityProviderTokenExchangeScopePermissionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IdentityProviderTokenExchangeScopePermissionOutput)
+}
+
+type IdentityProviderTokenExchangeScopePermissionOutput struct {
+	*pulumi.OutputState
+}
+
+func (IdentityProviderTokenExchangeScopePermissionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IdentityProviderTokenExchangeScopePermissionOutput)(nil)).Elem()
+}
+
+func (o IdentityProviderTokenExchangeScopePermissionOutput) ToIdentityProviderTokenExchangeScopePermissionOutput() IdentityProviderTokenExchangeScopePermissionOutput {
+	return o
+}
+
+func (o IdentityProviderTokenExchangeScopePermissionOutput) ToIdentityProviderTokenExchangeScopePermissionOutputWithContext(ctx context.Context) IdentityProviderTokenExchangeScopePermissionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IdentityProviderTokenExchangeScopePermissionOutput{})
 }

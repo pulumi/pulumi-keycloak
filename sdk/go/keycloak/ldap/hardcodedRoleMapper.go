@@ -4,6 +4,7 @@
 package ldap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -127,6 +128,14 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper assign_admin_role_to_all_users my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+// ```
 type HardcodedRoleMapper struct {
 	pulumi.CustomResourceState
 
@@ -227,4 +236,43 @@ type HardcodedRoleMapperArgs struct {
 
 func (HardcodedRoleMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*hardcodedRoleMapperArgs)(nil)).Elem()
+}
+
+type HardcodedRoleMapperInput interface {
+	pulumi.Input
+
+	ToHardcodedRoleMapperOutput() HardcodedRoleMapperOutput
+	ToHardcodedRoleMapperOutputWithContext(ctx context.Context) HardcodedRoleMapperOutput
+}
+
+func (HardcodedRoleMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*HardcodedRoleMapper)(nil)).Elem()
+}
+
+func (i HardcodedRoleMapper) ToHardcodedRoleMapperOutput() HardcodedRoleMapperOutput {
+	return i.ToHardcodedRoleMapperOutputWithContext(context.Background())
+}
+
+func (i HardcodedRoleMapper) ToHardcodedRoleMapperOutputWithContext(ctx context.Context) HardcodedRoleMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleMapperOutput)
+}
+
+type HardcodedRoleMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (HardcodedRoleMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HardcodedRoleMapperOutput)(nil)).Elem()
+}
+
+func (o HardcodedRoleMapperOutput) ToHardcodedRoleMapperOutput() HardcodedRoleMapperOutput {
+	return o
+}
+
+func (o HardcodedRoleMapperOutput) ToHardcodedRoleMapperOutputWithContext(ctx context.Context) HardcodedRoleMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(HardcodedRoleMapperOutput{})
 }

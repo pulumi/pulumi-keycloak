@@ -4,6 +4,7 @@
 package keycloak
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -90,6 +91,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Realms can be imported using their name. Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:index/realm:Realm realm my-realm
 // ```
 type Realm struct {
 	pulumi.CustomResourceState
@@ -603,4 +612,43 @@ type RealmArgs struct {
 
 func (RealmArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*realmArgs)(nil)).Elem()
+}
+
+type RealmInput interface {
+	pulumi.Input
+
+	ToRealmOutput() RealmOutput
+	ToRealmOutputWithContext(ctx context.Context) RealmOutput
+}
+
+func (Realm) ElementType() reflect.Type {
+	return reflect.TypeOf((*Realm)(nil)).Elem()
+}
+
+func (i Realm) ToRealmOutput() RealmOutput {
+	return i.ToRealmOutputWithContext(context.Background())
+}
+
+func (i Realm) ToRealmOutputWithContext(ctx context.Context) RealmOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmOutput)
+}
+
+type RealmOutput struct {
+	*pulumi.OutputState
+}
+
+func (RealmOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmOutput)(nil)).Elem()
+}
+
+func (o RealmOutput) ToRealmOutput() RealmOutput {
+	return o
+}
+
+func (o RealmOutput) ToRealmOutputWithContext(ctx context.Context) RealmOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RealmOutput{})
 }

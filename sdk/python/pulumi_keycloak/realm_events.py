@@ -50,6 +50,10 @@ class RealmEvents(pulumi.CustomResource):
             events_listeners=["jboss-logging"])
         ```
 
+        ## Import
+
+        This resource currently does not support importing.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] admin_events_details_enabled: When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.

@@ -4,6 +4,7 @@
 package oidc
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -51,6 +52,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias. Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp
 // ```
 type IdentityProvider struct {
 	pulumi.CustomResourceState
@@ -402,4 +411,43 @@ type IdentityProviderArgs struct {
 
 func (IdentityProviderArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*identityProviderArgs)(nil)).Elem()
+}
+
+type IdentityProviderInput interface {
+	pulumi.Input
+
+	ToIdentityProviderOutput() IdentityProviderOutput
+	ToIdentityProviderOutputWithContext(ctx context.Context) IdentityProviderOutput
+}
+
+func (IdentityProvider) ElementType() reflect.Type {
+	return reflect.TypeOf((*IdentityProvider)(nil)).Elem()
+}
+
+func (i IdentityProvider) ToIdentityProviderOutput() IdentityProviderOutput {
+	return i.ToIdentityProviderOutputWithContext(context.Background())
+}
+
+func (i IdentityProvider) ToIdentityProviderOutputWithContext(ctx context.Context) IdentityProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IdentityProviderOutput)
+}
+
+type IdentityProviderOutput struct {
+	*pulumi.OutputState
+}
+
+func (IdentityProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IdentityProviderOutput)(nil)).Elem()
+}
+
+func (o IdentityProviderOutput) ToIdentityProviderOutput() IdentityProviderOutput {
+	return o
+}
+
+func (o IdentityProviderOutput) ToIdentityProviderOutputWithContext(ctx context.Context) IdentityProviderOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IdentityProviderOutput{})
 }

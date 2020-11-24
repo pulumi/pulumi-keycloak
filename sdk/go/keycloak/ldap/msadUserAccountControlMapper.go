@@ -4,6 +4,7 @@
 package ldap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -66,6 +67,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper msad_user_account_control_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
 // ```
 type MsadUserAccountControlMapper struct {
 	pulumi.CustomResourceState
@@ -164,4 +173,43 @@ type MsadUserAccountControlMapperArgs struct {
 
 func (MsadUserAccountControlMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*msadUserAccountControlMapperArgs)(nil)).Elem()
+}
+
+type MsadUserAccountControlMapperInput interface {
+	pulumi.Input
+
+	ToMsadUserAccountControlMapperOutput() MsadUserAccountControlMapperOutput
+	ToMsadUserAccountControlMapperOutputWithContext(ctx context.Context) MsadUserAccountControlMapperOutput
+}
+
+func (MsadUserAccountControlMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*MsadUserAccountControlMapper)(nil)).Elem()
+}
+
+func (i MsadUserAccountControlMapper) ToMsadUserAccountControlMapperOutput() MsadUserAccountControlMapperOutput {
+	return i.ToMsadUserAccountControlMapperOutputWithContext(context.Background())
+}
+
+func (i MsadUserAccountControlMapper) ToMsadUserAccountControlMapperOutputWithContext(ctx context.Context) MsadUserAccountControlMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MsadUserAccountControlMapperOutput)
+}
+
+type MsadUserAccountControlMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (MsadUserAccountControlMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MsadUserAccountControlMapperOutput)(nil)).Elem()
+}
+
+func (o MsadUserAccountControlMapperOutput) ToMsadUserAccountControlMapperOutput() MsadUserAccountControlMapperOutput {
+	return o
+}
+
+func (o MsadUserAccountControlMapperOutput) ToMsadUserAccountControlMapperOutputWithContext(ctx context.Context) MsadUserAccountControlMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(MsadUserAccountControlMapperOutput{})
 }

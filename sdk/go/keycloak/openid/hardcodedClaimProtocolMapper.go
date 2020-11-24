@@ -4,6 +4,7 @@
 package openid
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -101,6 +102,18 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:openid/hardcodedClaimProtocolMapper:HardcodedClaimProtocolMapper hardcoded_claim_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+// ```
+//
+// ```sh
+//  $ pulumi import keycloak:openid/hardcodedClaimProtocolMapper:HardcodedClaimProtocolMapper hardcoded_claim_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
 // ```
 type HardcodedClaimProtocolMapper struct {
 	pulumi.CustomResourceState
@@ -262,4 +275,43 @@ type HardcodedClaimProtocolMapperArgs struct {
 
 func (HardcodedClaimProtocolMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*hardcodedClaimProtocolMapperArgs)(nil)).Elem()
+}
+
+type HardcodedClaimProtocolMapperInput interface {
+	pulumi.Input
+
+	ToHardcodedClaimProtocolMapperOutput() HardcodedClaimProtocolMapperOutput
+	ToHardcodedClaimProtocolMapperOutputWithContext(ctx context.Context) HardcodedClaimProtocolMapperOutput
+}
+
+func (HardcodedClaimProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*HardcodedClaimProtocolMapper)(nil)).Elem()
+}
+
+func (i HardcodedClaimProtocolMapper) ToHardcodedClaimProtocolMapperOutput() HardcodedClaimProtocolMapperOutput {
+	return i.ToHardcodedClaimProtocolMapperOutputWithContext(context.Background())
+}
+
+func (i HardcodedClaimProtocolMapper) ToHardcodedClaimProtocolMapperOutputWithContext(ctx context.Context) HardcodedClaimProtocolMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HardcodedClaimProtocolMapperOutput)
+}
+
+type HardcodedClaimProtocolMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (HardcodedClaimProtocolMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HardcodedClaimProtocolMapperOutput)(nil)).Elem()
+}
+
+func (o HardcodedClaimProtocolMapperOutput) ToHardcodedClaimProtocolMapperOutput() HardcodedClaimProtocolMapperOutput {
+	return o
+}
+
+func (o HardcodedClaimProtocolMapperOutput) ToHardcodedClaimProtocolMapperOutputWithContext(ctx context.Context) HardcodedClaimProtocolMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(HardcodedClaimProtocolMapperOutput{})
 }

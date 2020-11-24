@@ -4,6 +4,7 @@
 package oidc
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -51,6 +52,10 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// This resource does not yet support importing.
 type GoogleIdentityProvider struct {
 	pulumi.CustomResourceState
 
@@ -324,4 +329,43 @@ type GoogleIdentityProviderArgs struct {
 
 func (GoogleIdentityProviderArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*googleIdentityProviderArgs)(nil)).Elem()
+}
+
+type GoogleIdentityProviderInput interface {
+	pulumi.Input
+
+	ToGoogleIdentityProviderOutput() GoogleIdentityProviderOutput
+	ToGoogleIdentityProviderOutputWithContext(ctx context.Context) GoogleIdentityProviderOutput
+}
+
+func (GoogleIdentityProvider) ElementType() reflect.Type {
+	return reflect.TypeOf((*GoogleIdentityProvider)(nil)).Elem()
+}
+
+func (i GoogleIdentityProvider) ToGoogleIdentityProviderOutput() GoogleIdentityProviderOutput {
+	return i.ToGoogleIdentityProviderOutputWithContext(context.Background())
+}
+
+func (i GoogleIdentityProvider) ToGoogleIdentityProviderOutputWithContext(ctx context.Context) GoogleIdentityProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GoogleIdentityProviderOutput)
+}
+
+type GoogleIdentityProviderOutput struct {
+	*pulumi.OutputState
+}
+
+func (GoogleIdentityProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GoogleIdentityProviderOutput)(nil)).Elem()
+}
+
+func (o GoogleIdentityProviderOutput) ToGoogleIdentityProviderOutput() GoogleIdentityProviderOutput {
+	return o
+}
+
+func (o GoogleIdentityProviderOutput) ToGoogleIdentityProviderOutputWithContext(ctx context.Context) GoogleIdentityProviderOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GoogleIdentityProviderOutput{})
 }

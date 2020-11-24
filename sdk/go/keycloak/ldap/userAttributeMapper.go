@@ -4,6 +4,7 @@
 package ldap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -65,6 +66,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:ldap/userAttributeMapper:UserAttributeMapper ldap_user_attribute_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
 // ```
 type UserAttributeMapper struct {
 	pulumi.CustomResourceState
@@ -209,4 +218,43 @@ type UserAttributeMapperArgs struct {
 
 func (UserAttributeMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*userAttributeMapperArgs)(nil)).Elem()
+}
+
+type UserAttributeMapperInput interface {
+	pulumi.Input
+
+	ToUserAttributeMapperOutput() UserAttributeMapperOutput
+	ToUserAttributeMapperOutputWithContext(ctx context.Context) UserAttributeMapperOutput
+}
+
+func (UserAttributeMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserAttributeMapper)(nil)).Elem()
+}
+
+func (i UserAttributeMapper) ToUserAttributeMapperOutput() UserAttributeMapperOutput {
+	return i.ToUserAttributeMapperOutputWithContext(context.Background())
+}
+
+func (i UserAttributeMapper) ToUserAttributeMapperOutputWithContext(ctx context.Context) UserAttributeMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserAttributeMapperOutput)
+}
+
+type UserAttributeMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (UserAttributeMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserAttributeMapperOutput)(nil)).Elem()
+}
+
+func (o UserAttributeMapperOutput) ToUserAttributeMapperOutput() UserAttributeMapperOutput {
+	return o
+}
+
+func (o UserAttributeMapperOutput) ToUserAttributeMapperOutputWithContext(ctx context.Context) UserAttributeMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(UserAttributeMapperOutput{})
 }

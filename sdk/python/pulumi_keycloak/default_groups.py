@@ -40,6 +40,14 @@ class DefaultGroups(pulumi.CustomResource):
             group_ids=[group.id])
         ```
 
+        ## Import
+
+        Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] group_ids: A set of group ids that should be default groups on the realm referenced by `realm_id`.

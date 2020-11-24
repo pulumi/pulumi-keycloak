@@ -4,6 +4,7 @@
 package saml
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -45,6 +46,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID. Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:saml/clientScope:ClientScope saml_client_scope my-realm/e8a5d115-6985-4de3-a0f5-732e1be4525e
 // ```
 type ClientScope struct {
 	pulumi.CustomResourceState
@@ -150,4 +159,43 @@ type ClientScopeArgs struct {
 
 func (ClientScopeArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientScopeArgs)(nil)).Elem()
+}
+
+type ClientScopeInput interface {
+	pulumi.Input
+
+	ToClientScopeOutput() ClientScopeOutput
+	ToClientScopeOutputWithContext(ctx context.Context) ClientScopeOutput
+}
+
+func (ClientScope) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientScope)(nil)).Elem()
+}
+
+func (i ClientScope) ToClientScopeOutput() ClientScopeOutput {
+	return i.ToClientScopeOutputWithContext(context.Background())
+}
+
+func (i ClientScope) ToClientScopeOutputWithContext(ctx context.Context) ClientScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientScopeOutput)
+}
+
+type ClientScopeOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClientScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientScopeOutput)(nil)).Elem()
+}
+
+func (o ClientScopeOutput) ToClientScopeOutput() ClientScopeOutput {
+	return o
+}
+
+func (o ClientScopeOutput) ToClientScopeOutputWithContext(ctx context.Context) ClientScopeOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClientScopeOutput{})
 }

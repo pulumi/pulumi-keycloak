@@ -4,12 +4,20 @@
 package keycloak
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// This resource can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak assigns to the user upon creation. This value can be found in the GUI when editing the user, and is typically a GUID. Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:index/userRoles:UserRoles user_roles my-realm/b0ae6924-1bd5-4655-9e38-dae7c5e42924
+// ```
 type UserRoles struct {
 	pulumi.CustomResourceState
 
@@ -100,4 +108,43 @@ type UserRolesArgs struct {
 
 func (UserRolesArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*userRolesArgs)(nil)).Elem()
+}
+
+type UserRolesInput interface {
+	pulumi.Input
+
+	ToUserRolesOutput() UserRolesOutput
+	ToUserRolesOutputWithContext(ctx context.Context) UserRolesOutput
+}
+
+func (UserRoles) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserRoles)(nil)).Elem()
+}
+
+func (i UserRoles) ToUserRolesOutput() UserRolesOutput {
+	return i.ToUserRolesOutputWithContext(context.Background())
+}
+
+func (i UserRoles) ToUserRolesOutputWithContext(ctx context.Context) UserRolesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserRolesOutput)
+}
+
+type UserRolesOutput struct {
+	*pulumi.OutputState
+}
+
+func (UserRolesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserRolesOutput)(nil)).Elem()
+}
+
+func (o UserRolesOutput) ToUserRolesOutput() UserRolesOutput {
+	return o
+}
+
+func (o UserRolesOutput) ToUserRolesOutputWithContext(ctx context.Context) UserRolesOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(UserRolesOutput{})
 }
