@@ -4,6 +4,7 @@
 package keycloak
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -51,6 +52,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in. Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm
 // ```
 type DefaultGroups struct {
 	pulumi.CustomResourceState
@@ -129,4 +138,43 @@ type DefaultGroupsArgs struct {
 
 func (DefaultGroupsArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultGroupsArgs)(nil)).Elem()
+}
+
+type DefaultGroupsInput interface {
+	pulumi.Input
+
+	ToDefaultGroupsOutput() DefaultGroupsOutput
+	ToDefaultGroupsOutputWithContext(ctx context.Context) DefaultGroupsOutput
+}
+
+func (DefaultGroups) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultGroups)(nil)).Elem()
+}
+
+func (i DefaultGroups) ToDefaultGroupsOutput() DefaultGroupsOutput {
+	return i.ToDefaultGroupsOutputWithContext(context.Background())
+}
+
+func (i DefaultGroups) ToDefaultGroupsOutputWithContext(ctx context.Context) DefaultGroupsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultGroupsOutput)
+}
+
+type DefaultGroupsOutput struct {
+	*pulumi.OutputState
+}
+
+func (DefaultGroupsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultGroupsOutput)(nil)).Elem()
+}
+
+func (o DefaultGroupsOutput) ToDefaultGroupsOutput() DefaultGroupsOutput {
+	return o
+}
+
+func (o DefaultGroupsOutput) ToDefaultGroupsOutputWithContext(ctx context.Context) DefaultGroupsOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DefaultGroupsOutput{})
 }

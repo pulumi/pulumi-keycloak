@@ -4,6 +4,11 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Import
+ *
+ * This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
+ */
 export class ClientDefaultScopes extends pulumi.CustomResource {
     /**
      * Get an existing ClientDefaultScopes resource's state with the given name, ID, and optional extra

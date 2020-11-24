@@ -22,7 +22,14 @@ class GroupRoles(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a GroupRoles resource with the given unique name, props, and options.
+        ## Import
+
+        This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] group_id: The ID of the group this resource should manage roles for.

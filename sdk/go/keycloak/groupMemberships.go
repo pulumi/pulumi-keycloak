@@ -4,12 +4,16 @@
 package keycloak
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
 type GroupMemberships struct {
 	pulumi.CustomResourceState
 
@@ -97,4 +101,43 @@ type GroupMembershipsArgs struct {
 
 func (GroupMembershipsArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupMembershipsArgs)(nil)).Elem()
+}
+
+type GroupMembershipsInput interface {
+	pulumi.Input
+
+	ToGroupMembershipsOutput() GroupMembershipsOutput
+	ToGroupMembershipsOutputWithContext(ctx context.Context) GroupMembershipsOutput
+}
+
+func (GroupMemberships) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupMemberships)(nil)).Elem()
+}
+
+func (i GroupMemberships) ToGroupMembershipsOutput() GroupMembershipsOutput {
+	return i.ToGroupMembershipsOutputWithContext(context.Background())
+}
+
+func (i GroupMemberships) ToGroupMembershipsOutputWithContext(ctx context.Context) GroupMembershipsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipsOutput)
+}
+
+type GroupMembershipsOutput struct {
+	*pulumi.OutputState
+}
+
+func (GroupMembershipsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupMembershipsOutput)(nil)).Elem()
+}
+
+func (o GroupMembershipsOutput) ToGroupMembershipsOutput() GroupMembershipsOutput {
+	return o
+}
+
+func (o GroupMembershipsOutput) ToGroupMembershipsOutputWithContext(ctx context.Context) GroupMembershipsOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GroupMembershipsOutput{})
 }

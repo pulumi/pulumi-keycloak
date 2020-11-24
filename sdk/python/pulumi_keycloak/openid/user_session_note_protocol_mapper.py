@@ -77,6 +77,18 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
             session_note="bar")
         ```
 
+        ## Import
+
+        Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
+
+        ```sh
+         $ pulumi import keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper user_session_note_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+        ```
+
+        ```sh
+         $ pulumi import keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper user_session_note_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
@@ -121,7 +133,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
             __props__['realm_id'] = realm_id
             __props__['session_note'] = session_note
             if session_note_label is not None:
-                warnings.warn("use session_note instead", DeprecationWarning)
+                warnings.warn("""use session_note instead""", DeprecationWarning)
                 pulumi.log.warn("session_note_label is deprecated: use session_note instead")
             __props__['session_note_label'] = session_note_label
         super(UserSessionNoteProtocolMapper, __self__).__init__(

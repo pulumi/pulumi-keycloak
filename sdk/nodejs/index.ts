@@ -35,4 +35,13 @@ import * as oidc from "./oidc";
 import * as openid from "./openid";
 import * as saml from "./saml";
 import * as types from "./types";
-export {authentication, config, ldap, oidc, openid, saml, types};
+
+export {
+    authentication,
+    config,
+    ldap,
+    oidc,
+    openid,
+    saml,
+    types,
+};

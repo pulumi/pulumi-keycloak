@@ -4,6 +4,7 @@
 package ldap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -110,4 +111,43 @@ type HardcodedGroupMapperArgs struct {
 
 func (HardcodedGroupMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*hardcodedGroupMapperArgs)(nil)).Elem()
+}
+
+type HardcodedGroupMapperInput interface {
+	pulumi.Input
+
+	ToHardcodedGroupMapperOutput() HardcodedGroupMapperOutput
+	ToHardcodedGroupMapperOutputWithContext(ctx context.Context) HardcodedGroupMapperOutput
+}
+
+func (HardcodedGroupMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*HardcodedGroupMapper)(nil)).Elem()
+}
+
+func (i HardcodedGroupMapper) ToHardcodedGroupMapperOutput() HardcodedGroupMapperOutput {
+	return i.ToHardcodedGroupMapperOutputWithContext(context.Background())
+}
+
+func (i HardcodedGroupMapper) ToHardcodedGroupMapperOutputWithContext(ctx context.Context) HardcodedGroupMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HardcodedGroupMapperOutput)
+}
+
+type HardcodedGroupMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (HardcodedGroupMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HardcodedGroupMapperOutput)(nil)).Elem()
+}
+
+func (o HardcodedGroupMapperOutput) ToHardcodedGroupMapperOutput() HardcodedGroupMapperOutput {
+	return o
+}
+
+func (o HardcodedGroupMapperOutput) ToHardcodedGroupMapperOutputWithContext(ctx context.Context) HardcodedGroupMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(HardcodedGroupMapperOutput{})
 }

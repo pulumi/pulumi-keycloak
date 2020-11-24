@@ -4,12 +4,16 @@
 package openid
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
 type ClientOptionalScopes struct {
 	pulumi.CustomResourceState
 
@@ -100,4 +104,43 @@ type ClientOptionalScopesArgs struct {
 
 func (ClientOptionalScopesArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientOptionalScopesArgs)(nil)).Elem()
+}
+
+type ClientOptionalScopesInput interface {
+	pulumi.Input
+
+	ToClientOptionalScopesOutput() ClientOptionalScopesOutput
+	ToClientOptionalScopesOutputWithContext(ctx context.Context) ClientOptionalScopesOutput
+}
+
+func (ClientOptionalScopes) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientOptionalScopes)(nil)).Elem()
+}
+
+func (i ClientOptionalScopes) ToClientOptionalScopesOutput() ClientOptionalScopesOutput {
+	return i.ToClientOptionalScopesOutputWithContext(context.Background())
+}
+
+func (i ClientOptionalScopes) ToClientOptionalScopesOutputWithContext(ctx context.Context) ClientOptionalScopesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientOptionalScopesOutput)
+}
+
+type ClientOptionalScopesOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClientOptionalScopesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientOptionalScopesOutput)(nil)).Elem()
+}
+
+func (o ClientOptionalScopesOutput) ToClientOptionalScopesOutput() ClientOptionalScopesOutput {
+	return o
+}
+
+func (o ClientOptionalScopesOutput) ToClientOptionalScopesOutputWithContext(ctx context.Context) ClientOptionalScopesOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClientOptionalScopesOutput{})
 }

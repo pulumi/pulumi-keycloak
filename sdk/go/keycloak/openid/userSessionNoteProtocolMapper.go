@@ -4,6 +4,7 @@
 package openid
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -103,6 +104,18 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper user_session_note_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+// ```
+//
+// ```sh
+//  $ pulumi import keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper user_session_note_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
 // ```
 type UserSessionNoteProtocolMapper struct {
 	pulumi.CustomResourceState
@@ -271,4 +284,43 @@ type UserSessionNoteProtocolMapperArgs struct {
 
 func (UserSessionNoteProtocolMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*userSessionNoteProtocolMapperArgs)(nil)).Elem()
+}
+
+type UserSessionNoteProtocolMapperInput interface {
+	pulumi.Input
+
+	ToUserSessionNoteProtocolMapperOutput() UserSessionNoteProtocolMapperOutput
+	ToUserSessionNoteProtocolMapperOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperOutput
+}
+
+func (UserSessionNoteProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserSessionNoteProtocolMapper)(nil)).Elem()
+}
+
+func (i UserSessionNoteProtocolMapper) ToUserSessionNoteProtocolMapperOutput() UserSessionNoteProtocolMapperOutput {
+	return i.ToUserSessionNoteProtocolMapperOutputWithContext(context.Background())
+}
+
+func (i UserSessionNoteProtocolMapper) ToUserSessionNoteProtocolMapperOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserSessionNoteProtocolMapperOutput)
+}
+
+type UserSessionNoteProtocolMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (UserSessionNoteProtocolMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserSessionNoteProtocolMapperOutput)(nil)).Elem()
+}
+
+func (o UserSessionNoteProtocolMapperOutput) ToUserSessionNoteProtocolMapperOutput() UserSessionNoteProtocolMapperOutput {
+	return o
+}
+
+func (o UserSessionNoteProtocolMapperOutput) ToUserSessionNoteProtocolMapperOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(UserSessionNoteProtocolMapperOutput{})
 }

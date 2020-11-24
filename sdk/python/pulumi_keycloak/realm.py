@@ -138,6 +138,14 @@ class Realm(pulumi.CustomResource):
             ))
         ```
 
+        ## Import
+
+        Realms can be imported using their name. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:index/realm:Realm realm my-realm
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_code_lifespan: The maximum amount of time a client has to finish the authorization code flow.

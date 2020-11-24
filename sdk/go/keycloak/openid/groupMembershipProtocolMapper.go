@@ -4,6 +4,7 @@
 package openid
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -99,6 +100,18 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:openid/groupMembershipProtocolMapper:GroupMembershipProtocolMapper group_membership_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+// ```
+//
+// ```sh
+//  $ pulumi import keycloak:openid/groupMembershipProtocolMapper:GroupMembershipProtocolMapper group_membership_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
 // ```
 type GroupMembershipProtocolMapper struct {
 	pulumi.CustomResourceState
@@ -247,4 +260,43 @@ type GroupMembershipProtocolMapperArgs struct {
 
 func (GroupMembershipProtocolMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupMembershipProtocolMapperArgs)(nil)).Elem()
+}
+
+type GroupMembershipProtocolMapperInput interface {
+	pulumi.Input
+
+	ToGroupMembershipProtocolMapperOutput() GroupMembershipProtocolMapperOutput
+	ToGroupMembershipProtocolMapperOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperOutput
+}
+
+func (GroupMembershipProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupMembershipProtocolMapper)(nil)).Elem()
+}
+
+func (i GroupMembershipProtocolMapper) ToGroupMembershipProtocolMapperOutput() GroupMembershipProtocolMapperOutput {
+	return i.ToGroupMembershipProtocolMapperOutputWithContext(context.Background())
+}
+
+func (i GroupMembershipProtocolMapper) ToGroupMembershipProtocolMapperOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipProtocolMapperOutput)
+}
+
+type GroupMembershipProtocolMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (GroupMembershipProtocolMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupMembershipProtocolMapperOutput)(nil)).Elem()
+}
+
+func (o GroupMembershipProtocolMapperOutput) ToGroupMembershipProtocolMapperOutput() GroupMembershipProtocolMapperOutput {
+	return o
+}
+
+func (o GroupMembershipProtocolMapperOutput) ToGroupMembershipProtocolMapperOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GroupMembershipProtocolMapperOutput{})
 }

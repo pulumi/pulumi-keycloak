@@ -46,6 +46,14 @@ namespace Pulumi.Keycloak.Oidc
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias. Examplebash
+    /// 
+    /// ```sh
+    ///  $ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp
+    /// ```
     /// </summary>
     public partial class IdentityProvider : Pulumi.CustomResource
     {

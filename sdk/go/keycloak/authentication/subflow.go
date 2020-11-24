@@ -4,6 +4,7 @@
 package authentication
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -110,4 +111,43 @@ type SubflowArgs struct {
 
 func (SubflowArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*subflowArgs)(nil)).Elem()
+}
+
+type SubflowInput interface {
+	pulumi.Input
+
+	ToSubflowOutput() SubflowOutput
+	ToSubflowOutputWithContext(ctx context.Context) SubflowOutput
+}
+
+func (Subflow) ElementType() reflect.Type {
+	return reflect.TypeOf((*Subflow)(nil)).Elem()
+}
+
+func (i Subflow) ToSubflowOutput() SubflowOutput {
+	return i.ToSubflowOutputWithContext(context.Background())
+}
+
+func (i Subflow) ToSubflowOutputWithContext(ctx context.Context) SubflowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubflowOutput)
+}
+
+type SubflowOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubflowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubflowOutput)(nil)).Elem()
+}
+
+func (o SubflowOutput) ToSubflowOutput() SubflowOutput {
+	return o
+}
+
+func (o SubflowOutput) ToSubflowOutputWithContext(ctx context.Context) SubflowOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SubflowOutput{})
 }

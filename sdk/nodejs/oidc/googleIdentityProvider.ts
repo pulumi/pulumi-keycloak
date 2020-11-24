@@ -30,6 +30,10 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * ## Import
+ *
+ * This resource does not yet support importing.
  */
 export class GoogleIdentityProvider extends pulumi.CustomResource {
     /**

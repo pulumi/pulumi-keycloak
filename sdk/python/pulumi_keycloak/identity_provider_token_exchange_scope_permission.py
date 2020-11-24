@@ -23,7 +23,14 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a IdentityProviderTokenExchangeScopePermission resource with the given unique name, props, and options.
+        ## Import
+
+        This resource can be imported using the format `{{realm_id}}/{{provider_alias}}`, where `provider_alias` is the alias that you assign to the identity provider upon creation. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission oidc_idp_permission my-realm/myIdp
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] clients: A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.

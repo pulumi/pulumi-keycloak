@@ -4,6 +4,7 @@
 package keycloak
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -97,4 +98,43 @@ type RequiredActionArgs struct {
 
 func (RequiredActionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*requiredActionArgs)(nil)).Elem()
+}
+
+type RequiredActionInput interface {
+	pulumi.Input
+
+	ToRequiredActionOutput() RequiredActionOutput
+	ToRequiredActionOutputWithContext(ctx context.Context) RequiredActionOutput
+}
+
+func (RequiredAction) ElementType() reflect.Type {
+	return reflect.TypeOf((*RequiredAction)(nil)).Elem()
+}
+
+func (i RequiredAction) ToRequiredActionOutput() RequiredActionOutput {
+	return i.ToRequiredActionOutputWithContext(context.Background())
+}
+
+func (i RequiredAction) ToRequiredActionOutputWithContext(ctx context.Context) RequiredActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RequiredActionOutput)
+}
+
+type RequiredActionOutput struct {
+	*pulumi.OutputState
+}
+
+func (RequiredActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RequiredActionOutput)(nil)).Elem()
+}
+
+func (o RequiredActionOutput) ToRequiredActionOutput() RequiredActionOutput {
+	return o
+}
+
+func (o RequiredActionOutput) ToRequiredActionOutputWithContext(ctx context.Context) RequiredActionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RequiredActionOutput{})
 }

@@ -4,6 +4,7 @@
 package saml
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -58,6 +59,18 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper saml_user_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+// ```
+//
+// ```sh
+//  $ pulumi import keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper saml_user_attribute_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
 // ```
 type UserAttributeProtocolMapper struct {
 	pulumi.CustomResourceState
@@ -202,4 +215,43 @@ type UserAttributeProtocolMapperArgs struct {
 
 func (UserAttributeProtocolMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*userAttributeProtocolMapperArgs)(nil)).Elem()
+}
+
+type UserAttributeProtocolMapperInput interface {
+	pulumi.Input
+
+	ToUserAttributeProtocolMapperOutput() UserAttributeProtocolMapperOutput
+	ToUserAttributeProtocolMapperOutputWithContext(ctx context.Context) UserAttributeProtocolMapperOutput
+}
+
+func (UserAttributeProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserAttributeProtocolMapper)(nil)).Elem()
+}
+
+func (i UserAttributeProtocolMapper) ToUserAttributeProtocolMapperOutput() UserAttributeProtocolMapperOutput {
+	return i.ToUserAttributeProtocolMapperOutputWithContext(context.Background())
+}
+
+func (i UserAttributeProtocolMapper) ToUserAttributeProtocolMapperOutputWithContext(ctx context.Context) UserAttributeProtocolMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserAttributeProtocolMapperOutput)
+}
+
+type UserAttributeProtocolMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (UserAttributeProtocolMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserAttributeProtocolMapperOutput)(nil)).Elem()
+}
+
+func (o UserAttributeProtocolMapperOutput) ToUserAttributeProtocolMapperOutput() UserAttributeProtocolMapperOutput {
+	return o
+}
+
+func (o UserAttributeProtocolMapperOutput) ToUserAttributeProtocolMapperOutputWithContext(ctx context.Context) UserAttributeProtocolMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(UserAttributeProtocolMapperOutput{})
 }

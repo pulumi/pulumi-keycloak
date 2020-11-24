@@ -97,6 +97,14 @@ namespace Pulumi.Keycloak
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Realms can be imported using their name. Examplebash
+    /// 
+    /// ```sh
+    ///  $ pulumi import keycloak:index/realm:Realm realm my-realm
+    /// ```
     /// </summary>
     public partial class Realm : Pulumi.CustomResource
     {

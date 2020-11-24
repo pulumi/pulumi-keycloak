@@ -4,6 +4,7 @@
 package ldap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -172,4 +173,43 @@ type RoleMapperArgs struct {
 
 func (RoleMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*roleMapperArgs)(nil)).Elem()
+}
+
+type RoleMapperInput interface {
+	pulumi.Input
+
+	ToRoleMapperOutput() RoleMapperOutput
+	ToRoleMapperOutputWithContext(ctx context.Context) RoleMapperOutput
+}
+
+func (RoleMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoleMapper)(nil)).Elem()
+}
+
+func (i RoleMapper) ToRoleMapperOutput() RoleMapperOutput {
+	return i.ToRoleMapperOutputWithContext(context.Background())
+}
+
+func (i RoleMapper) ToRoleMapperOutputWithContext(ctx context.Context) RoleMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoleMapperOutput)
+}
+
+type RoleMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (RoleMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoleMapperOutput)(nil)).Elem()
+}
+
+func (o RoleMapperOutput) ToRoleMapperOutput() RoleMapperOutput {
+	return o
+}
+
+func (o RoleMapperOutput) ToRoleMapperOutputWithContext(ctx context.Context) RoleMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RoleMapperOutput{})
 }

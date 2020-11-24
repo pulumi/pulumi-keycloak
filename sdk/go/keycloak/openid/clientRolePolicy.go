@@ -4,6 +4,7 @@
 package openid
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -113,4 +114,43 @@ type ClientRolePolicyArgs struct {
 
 func (ClientRolePolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientRolePolicyArgs)(nil)).Elem()
+}
+
+type ClientRolePolicyInput interface {
+	pulumi.Input
+
+	ToClientRolePolicyOutput() ClientRolePolicyOutput
+	ToClientRolePolicyOutputWithContext(ctx context.Context) ClientRolePolicyOutput
+}
+
+func (ClientRolePolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientRolePolicy)(nil)).Elem()
+}
+
+func (i ClientRolePolicy) ToClientRolePolicyOutput() ClientRolePolicyOutput {
+	return i.ToClientRolePolicyOutputWithContext(context.Background())
+}
+
+func (i ClientRolePolicy) ToClientRolePolicyOutputWithContext(ctx context.Context) ClientRolePolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientRolePolicyOutput)
+}
+
+type ClientRolePolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClientRolePolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientRolePolicyOutput)(nil)).Elem()
+}
+
+func (o ClientRolePolicyOutput) ToClientRolePolicyOutput() ClientRolePolicyOutput {
+	return o
+}
+
+func (o ClientRolePolicyOutput) ToClientRolePolicyOutputWithContext(ctx context.Context) ClientRolePolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClientRolePolicyOutput{})
 }

@@ -4,6 +4,7 @@
 package keycloak
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -112,4 +113,43 @@ type UserTemplateImporterIdentityProviderMapperArgs struct {
 
 func (UserTemplateImporterIdentityProviderMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*userTemplateImporterIdentityProviderMapperArgs)(nil)).Elem()
+}
+
+type UserTemplateImporterIdentityProviderMapperInput interface {
+	pulumi.Input
+
+	ToUserTemplateImporterIdentityProviderMapperOutput() UserTemplateImporterIdentityProviderMapperOutput
+	ToUserTemplateImporterIdentityProviderMapperOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperOutput
+}
+
+func (UserTemplateImporterIdentityProviderMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserTemplateImporterIdentityProviderMapper)(nil)).Elem()
+}
+
+func (i UserTemplateImporterIdentityProviderMapper) ToUserTemplateImporterIdentityProviderMapperOutput() UserTemplateImporterIdentityProviderMapperOutput {
+	return i.ToUserTemplateImporterIdentityProviderMapperOutputWithContext(context.Background())
+}
+
+func (i UserTemplateImporterIdentityProviderMapper) ToUserTemplateImporterIdentityProviderMapperOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserTemplateImporterIdentityProviderMapperOutput)
+}
+
+type UserTemplateImporterIdentityProviderMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (UserTemplateImporterIdentityProviderMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserTemplateImporterIdentityProviderMapperOutput)(nil)).Elem()
+}
+
+func (o UserTemplateImporterIdentityProviderMapperOutput) ToUserTemplateImporterIdentityProviderMapperOutput() UserTemplateImporterIdentityProviderMapperOutput {
+	return o
+}
+
+func (o UserTemplateImporterIdentityProviderMapperOutput) ToUserTemplateImporterIdentityProviderMapperOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(UserTemplateImporterIdentityProviderMapperOutput{})
 }

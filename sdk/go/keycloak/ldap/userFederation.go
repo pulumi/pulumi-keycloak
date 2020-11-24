@@ -4,6 +4,7 @@
 package ldap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -65,6 +66,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`. The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUIDbash
+//
+// ```sh
+//  $ pulumi import keycloak:ldap/userFederation:UserFederation ldap_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
 // ```
 type UserFederation struct {
 	pulumi.CustomResourceState
@@ -448,4 +457,43 @@ type UserFederationArgs struct {
 
 func (UserFederationArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*userFederationArgs)(nil)).Elem()
+}
+
+type UserFederationInput interface {
+	pulumi.Input
+
+	ToUserFederationOutput() UserFederationOutput
+	ToUserFederationOutputWithContext(ctx context.Context) UserFederationOutput
+}
+
+func (UserFederation) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserFederation)(nil)).Elem()
+}
+
+func (i UserFederation) ToUserFederationOutput() UserFederationOutput {
+	return i.ToUserFederationOutputWithContext(context.Background())
+}
+
+func (i UserFederation) ToUserFederationOutputWithContext(ctx context.Context) UserFederationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserFederationOutput)
+}
+
+type UserFederationOutput struct {
+	*pulumi.OutputState
+}
+
+func (UserFederationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserFederationOutput)(nil)).Elem()
+}
+
+func (o UserFederationOutput) ToUserFederationOutput() UserFederationOutput {
+	return o
+}
+
+func (o UserFederationOutput) ToUserFederationOutputWithContext(ctx context.Context) UserFederationOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(UserFederationOutput{})
 }

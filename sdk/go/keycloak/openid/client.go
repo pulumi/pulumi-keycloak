@@ -4,6 +4,7 @@
 package openid
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -52,6 +53,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID. Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
 // ```
 type Client struct {
 	pulumi.CustomResourceState
@@ -375,4 +384,43 @@ type ClientArgs struct {
 
 func (ClientArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientArgs)(nil)).Elem()
+}
+
+type ClientInput interface {
+	pulumi.Input
+
+	ToClientOutput() ClientOutput
+	ToClientOutputWithContext(ctx context.Context) ClientOutput
+}
+
+func (Client) ElementType() reflect.Type {
+	return reflect.TypeOf((*Client)(nil)).Elem()
+}
+
+func (i Client) ToClientOutput() ClientOutput {
+	return i.ToClientOutputWithContext(context.Background())
+}
+
+func (i Client) ToClientOutputWithContext(ctx context.Context) ClientOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientOutput)
+}
+
+type ClientOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClientOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientOutput)(nil)).Elem()
+}
+
+func (o ClientOutput) ToClientOutput() ClientOutput {
+	return o
+}
+
+func (o ClientOutput) ToClientOutputWithContext(ctx context.Context) ClientOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClientOutput{})
 }

@@ -4,6 +4,7 @@
 package openid
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -69,6 +70,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// This resource can be imported using the format `{{realmId}}/{{serviceAccountUserId}}/{{clientId}}/{{roleId}}`. Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:openid/clientServiceAccountRole:ClientServiceAccountRole client2_service_account_role my-realm/489ba513-1ceb-49ba-ae0b-1ab1f5099ebf/baf01820-0f8b-4494-9be2-fb3bc8a397a4/c7230ab7-8e4e-4135-995d-e81b50696ad8
 // ```
 type ClientServiceAccountRole struct {
 	pulumi.CustomResourceState
@@ -173,4 +182,43 @@ type ClientServiceAccountRoleArgs struct {
 
 func (ClientServiceAccountRoleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientServiceAccountRoleArgs)(nil)).Elem()
+}
+
+type ClientServiceAccountRoleInput interface {
+	pulumi.Input
+
+	ToClientServiceAccountRoleOutput() ClientServiceAccountRoleOutput
+	ToClientServiceAccountRoleOutputWithContext(ctx context.Context) ClientServiceAccountRoleOutput
+}
+
+func (ClientServiceAccountRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientServiceAccountRole)(nil)).Elem()
+}
+
+func (i ClientServiceAccountRole) ToClientServiceAccountRoleOutput() ClientServiceAccountRoleOutput {
+	return i.ToClientServiceAccountRoleOutputWithContext(context.Background())
+}
+
+func (i ClientServiceAccountRole) ToClientServiceAccountRoleOutputWithContext(ctx context.Context) ClientServiceAccountRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientServiceAccountRoleOutput)
+}
+
+type ClientServiceAccountRoleOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClientServiceAccountRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientServiceAccountRoleOutput)(nil)).Elem()
+}
+
+func (o ClientServiceAccountRoleOutput) ToClientServiceAccountRoleOutput() ClientServiceAccountRoleOutput {
+	return o
+}
+
+func (o ClientServiceAccountRoleOutput) ToClientServiceAccountRoleOutputWithContext(ctx context.Context) ClientServiceAccountRoleOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClientServiceAccountRoleOutput{})
 }

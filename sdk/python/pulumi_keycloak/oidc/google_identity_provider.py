@@ -63,6 +63,10 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             })
         ```
 
+        ## Import
+
+        This resource does not yet support importing.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] accepts_prompt_none_forward_from_client: When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.

@@ -30,6 +30,10 @@ import * as utilities from "./utilities";
  *     eventsListeners: ["jboss-logging"],
  * });
  * ```
+ *
+ * ## Import
+ *
+ * This resource currently does not support importing.
  */
 export class RealmEvents extends pulumi.CustomResource {
     /**

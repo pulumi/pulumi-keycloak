@@ -4,6 +4,7 @@
 package openid
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -92,4 +93,43 @@ type ClientAuthorizationScopeArgs struct {
 
 func (ClientAuthorizationScopeArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientAuthorizationScopeArgs)(nil)).Elem()
+}
+
+type ClientAuthorizationScopeInput interface {
+	pulumi.Input
+
+	ToClientAuthorizationScopeOutput() ClientAuthorizationScopeOutput
+	ToClientAuthorizationScopeOutputWithContext(ctx context.Context) ClientAuthorizationScopeOutput
+}
+
+func (ClientAuthorizationScope) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientAuthorizationScope)(nil)).Elem()
+}
+
+func (i ClientAuthorizationScope) ToClientAuthorizationScopeOutput() ClientAuthorizationScopeOutput {
+	return i.ToClientAuthorizationScopeOutputWithContext(context.Background())
+}
+
+func (i ClientAuthorizationScope) ToClientAuthorizationScopeOutputWithContext(ctx context.Context) ClientAuthorizationScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationScopeOutput)
+}
+
+type ClientAuthorizationScopeOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClientAuthorizationScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientAuthorizationScopeOutput)(nil)).Elem()
+}
+
+func (o ClientAuthorizationScopeOutput) ToClientAuthorizationScopeOutput() ClientAuthorizationScopeOutput {
+	return o
+}
+
+func (o ClientAuthorizationScopeOutput) ToClientAuthorizationScopeOutputWithContext(ctx context.Context) ClientAuthorizationScopeOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClientAuthorizationScopeOutput{})
 }

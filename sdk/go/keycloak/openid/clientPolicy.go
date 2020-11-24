@@ -4,6 +4,7 @@
 package openid
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -105,4 +106,43 @@ type ClientPolicyArgs struct {
 
 func (ClientPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientPolicyArgs)(nil)).Elem()
+}
+
+type ClientPolicyInput interface {
+	pulumi.Input
+
+	ToClientPolicyOutput() ClientPolicyOutput
+	ToClientPolicyOutputWithContext(ctx context.Context) ClientPolicyOutput
+}
+
+func (ClientPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientPolicy)(nil)).Elem()
+}
+
+func (i ClientPolicy) ToClientPolicyOutput() ClientPolicyOutput {
+	return i.ToClientPolicyOutputWithContext(context.Background())
+}
+
+func (i ClientPolicy) ToClientPolicyOutputWithContext(ctx context.Context) ClientPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientPolicyOutput)
+}
+
+type ClientPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClientPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientPolicyOutput)(nil)).Elem()
+}
+
+func (o ClientPolicyOutput) ToClientPolicyOutput() ClientPolicyOutput {
+	return o
+}
+
+func (o ClientPolicyOutput) ToClientPolicyOutputWithContext(ctx context.Context) ClientPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClientPolicyOutput{})
 }

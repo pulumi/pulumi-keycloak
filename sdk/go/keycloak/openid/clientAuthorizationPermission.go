@@ -4,6 +4,7 @@
 package openid
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -112,4 +113,43 @@ type ClientAuthorizationPermissionArgs struct {
 
 func (ClientAuthorizationPermissionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientAuthorizationPermissionArgs)(nil)).Elem()
+}
+
+type ClientAuthorizationPermissionInput interface {
+	pulumi.Input
+
+	ToClientAuthorizationPermissionOutput() ClientAuthorizationPermissionOutput
+	ToClientAuthorizationPermissionOutputWithContext(ctx context.Context) ClientAuthorizationPermissionOutput
+}
+
+func (ClientAuthorizationPermission) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientAuthorizationPermission)(nil)).Elem()
+}
+
+func (i ClientAuthorizationPermission) ToClientAuthorizationPermissionOutput() ClientAuthorizationPermissionOutput {
+	return i.ToClientAuthorizationPermissionOutputWithContext(context.Background())
+}
+
+func (i ClientAuthorizationPermission) ToClientAuthorizationPermissionOutputWithContext(ctx context.Context) ClientAuthorizationPermissionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationPermissionOutput)
+}
+
+type ClientAuthorizationPermissionOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClientAuthorizationPermissionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientAuthorizationPermissionOutput)(nil)).Elem()
+}
+
+func (o ClientAuthorizationPermissionOutput) ToClientAuthorizationPermissionOutput() ClientAuthorizationPermissionOutput {
+	return o
+}
+
+func (o ClientAuthorizationPermissionOutput) ToClientAuthorizationPermissionOutputWithContext(ctx context.Context) ClientAuthorizationPermissionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClientAuthorizationPermissionOutput{})
 }

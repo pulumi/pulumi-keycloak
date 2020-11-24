@@ -22,7 +22,10 @@ class GroupMemberships(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a GroupMemberships resource with the given unique name, props, and options.
+        ## Import
+
+        This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] group_id: The ID of the group this resource should manage memberships for.

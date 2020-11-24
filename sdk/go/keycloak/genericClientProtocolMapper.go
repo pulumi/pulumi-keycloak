@@ -4,6 +4,7 @@
 package keycloak
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -64,6 +65,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Protocol mappers can be imported using the following format`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper saml_hardcode_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
 // ```
 type GenericClientProtocolMapper struct {
 	pulumi.CustomResourceState
@@ -198,4 +207,43 @@ type GenericClientProtocolMapperArgs struct {
 
 func (GenericClientProtocolMapperArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*genericClientProtocolMapperArgs)(nil)).Elem()
+}
+
+type GenericClientProtocolMapperInput interface {
+	pulumi.Input
+
+	ToGenericClientProtocolMapperOutput() GenericClientProtocolMapperOutput
+	ToGenericClientProtocolMapperOutputWithContext(ctx context.Context) GenericClientProtocolMapperOutput
+}
+
+func (GenericClientProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*GenericClientProtocolMapper)(nil)).Elem()
+}
+
+func (i GenericClientProtocolMapper) ToGenericClientProtocolMapperOutput() GenericClientProtocolMapperOutput {
+	return i.ToGenericClientProtocolMapperOutputWithContext(context.Background())
+}
+
+func (i GenericClientProtocolMapper) ToGenericClientProtocolMapperOutputWithContext(ctx context.Context) GenericClientProtocolMapperOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GenericClientProtocolMapperOutput)
+}
+
+type GenericClientProtocolMapperOutput struct {
+	*pulumi.OutputState
+}
+
+func (GenericClientProtocolMapperOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GenericClientProtocolMapperOutput)(nil)).Elem()
+}
+
+func (o GenericClientProtocolMapperOutput) ToGenericClientProtocolMapperOutput() GenericClientProtocolMapperOutput {
+	return o
+}
+
+func (o GenericClientProtocolMapperOutput) ToGenericClientProtocolMapperOutputWithContext(ctx context.Context) GenericClientProtocolMapperOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GenericClientProtocolMapperOutput{})
 }
