@@ -61,13 +61,13 @@ export class ClientPolicy extends pulumi.CustomResource {
             inputs["resourceServerId"] = state ? state.resourceServerId : undefined;
         } else {
             const args = argsOrState as ClientPolicyArgs | undefined;
-            if (!args || args.clients === undefined) {
+            if ((!args || args.clients === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'clients'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if (!args || args.resourceServerId === undefined) {
+            if ((!args || args.resourceServerId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
             inputs["clients"] = args ? args.clients : undefined;

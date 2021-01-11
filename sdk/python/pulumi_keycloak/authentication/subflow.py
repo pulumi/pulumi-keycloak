@@ -48,16 +48,16 @@ class Subflow(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if alias is None:
+            if alias is None and not opts.urn:
                 raise TypeError("Missing required property 'alias'")
             __props__['alias'] = alias
             __props__['authenticator'] = authenticator
             __props__['description'] = description
-            if parent_flow_alias is None:
+            if parent_flow_alias is None and not opts.urn:
                 raise TypeError("Missing required property 'parent_flow_alias'")
             __props__['parent_flow_alias'] = parent_flow_alias
             __props__['provider_id'] = provider_id
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
             __props__['requirement'] = requirement

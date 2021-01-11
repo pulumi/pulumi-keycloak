@@ -61,16 +61,16 @@ export class ClientAggregatePolicy extends pulumi.CustomResource {
             inputs["resourceServerId"] = state ? state.resourceServerId : undefined;
         } else {
             const args = argsOrState as ClientAggregatePolicyArgs | undefined;
-            if (!args || args.decisionStrategy === undefined) {
+            if ((!args || args.decisionStrategy === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'decisionStrategy'");
             }
-            if (!args || args.policies === undefined) {
+            if ((!args || args.policies === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'policies'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if (!args || args.resourceServerId === undefined) {
+            if ((!args || args.resourceServerId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
             inputs["decisionStrategy"] = args ? args.decisionStrategy : undefined;

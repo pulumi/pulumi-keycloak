@@ -101,6 +101,12 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string?> GroupsLdapFilter { get; private set; } = null!;
 
         /// <summary>
+        /// Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
+        /// </summary>
+        [Output("groupsPath")]
+        public Output<string> GroupsPath { get; private set; } = null!;
+
+        /// <summary>
         /// When `true`, missing groups in the hierarchy will be ignored.
         /// </summary>
         [Output("ignoreMissingGroups")]
@@ -149,7 +155,7 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string> MembershipUserLdapAttribute { get; private set; } = null!;
 
         /// <summary>
-        /// Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+        /// Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
         /// </summary>
         [Output("mode")]
         public Output<string?> Mode { get; private set; } = null!;
@@ -255,6 +261,12 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? GroupsLdapFilter { get; set; }
 
         /// <summary>
+        /// Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
+        /// </summary>
+        [Input("groupsPath")]
+        public Input<string>? GroupsPath { get; set; }
+
+        /// <summary>
         /// When `true`, missing groups in the hierarchy will be ignored.
         /// </summary>
         [Input("ignoreMissingGroups")]
@@ -309,7 +321,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string> MembershipUserLdapAttribute { get; set; } = null!;
 
         /// <summary>
-        /// Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+        /// Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
         /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
@@ -376,6 +388,12 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? GroupsLdapFilter { get; set; }
 
         /// <summary>
+        /// Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
+        /// </summary>
+        [Input("groupsPath")]
+        public Input<string>? GroupsPath { get; set; }
+
+        /// <summary>
         /// When `true`, missing groups in the hierarchy will be ignored.
         /// </summary>
         [Input("ignoreMissingGroups")]
@@ -430,7 +448,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? MembershipUserLdapAttribute { get; set; }
 
         /// <summary>
-        /// Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+        /// Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
         /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }

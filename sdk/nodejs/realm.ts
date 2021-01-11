@@ -354,7 +354,7 @@ export class Realm extends pulumi.CustomResource {
             inputs["webAuthnPolicy"] = state ? state.webAuthnPolicy : undefined;
         } else {
             const args = argsOrState as RealmArgs | undefined;
-            if (!args || args.realm === undefined) {
+            if ((!args || args.realm === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realm'");
             }
             inputs["accessCodeLifespan"] = args ? args.accessCodeLifespan : undefined;

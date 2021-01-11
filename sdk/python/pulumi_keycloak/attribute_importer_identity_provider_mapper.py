@@ -103,14 +103,14 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
             __props__['attribute_name'] = attribute_name
             __props__['claim_name'] = claim_name
             __props__['extra_config'] = extra_config
-            if identity_provider_alias is None:
+            if identity_provider_alias is None and not opts.urn:
                 raise TypeError("Missing required property 'identity_provider_alias'")
             __props__['identity_provider_alias'] = identity_provider_alias
             __props__['name'] = name
-            if realm is None:
+            if realm is None and not opts.urn:
                 raise TypeError("Missing required property 'realm'")
             __props__['realm'] = realm
-            if user_attribute is None:
+            if user_attribute is None and not opts.urn:
                 raise TypeError("Missing required property 'user_attribute'")
             __props__['user_attribute'] = user_attribute
         super(AttributeImporterIdentityProviderMapper, __self__).__init__(

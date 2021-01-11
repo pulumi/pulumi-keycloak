@@ -14,6 +14,7 @@ namespace Pulumi.Keycloak.OpenId.Outputs
     public sealed class GetClientAuthorizationResult
     {
         public readonly bool AllowRemoteResourceManagement;
+        public readonly string DecisionStrategy;
         public readonly bool KeepDefaults;
         public readonly string PolicyEnforcementMode;
 
@@ -21,11 +22,14 @@ namespace Pulumi.Keycloak.OpenId.Outputs
         private GetClientAuthorizationResult(
             bool allowRemoteResourceManagement,
 
+            string decisionStrategy,
+
             bool keepDefaults,
 
             string policyEnforcementMode)
         {
             AllowRemoteResourceManagement = allowRemoteResourceManagement;
+            DecisionStrategy = decisionStrategy;
             KeepDefaults = keepDefaults;
             PolicyEnforcementMode = policyEnforcementMode;
         }

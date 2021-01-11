@@ -60,7 +60,7 @@ class ClientTimePolicy(pulumi.CustomResource):
 
             __props__['day_month'] = day_month
             __props__['day_month_end'] = day_month_end
-            if decision_strategy is None:
+            if decision_strategy is None and not opts.urn:
                 raise TypeError("Missing required property 'decision_strategy'")
             __props__['decision_strategy'] = decision_strategy
             __props__['description'] = description
@@ -74,10 +74,10 @@ class ClientTimePolicy(pulumi.CustomResource):
             __props__['name'] = name
             __props__['not_before'] = not_before
             __props__['not_on_or_after'] = not_on_or_after
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
-            if resource_server_id is None:
+            if resource_server_id is None and not opts.urn:
                 raise TypeError("Missing required property 'resource_server_id'")
             __props__['resource_server_id'] = resource_server_id
             __props__['year'] = year

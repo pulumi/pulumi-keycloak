@@ -87,7 +87,7 @@ class RealmEvents(pulumi.CustomResource):
             __props__['events_enabled'] = events_enabled
             __props__['events_expiration'] = events_expiration
             __props__['events_listeners'] = events_listeners
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
         super(RealmEvents, __self__).__init__(

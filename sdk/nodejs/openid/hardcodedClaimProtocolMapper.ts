@@ -161,13 +161,13 @@ export class HardcodedClaimProtocolMapper extends pulumi.CustomResource {
             inputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as HardcodedClaimProtocolMapperArgs | undefined;
-            if (!args || args.claimName === undefined) {
+            if ((!args || args.claimName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'claimName'");
             }
-            if (!args || args.claimValue === undefined) {
+            if ((!args || args.claimValue === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'claimValue'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["addToAccessToken"] = args ? args.addToAccessToken : undefined;

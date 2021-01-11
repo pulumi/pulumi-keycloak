@@ -99,16 +99,16 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
             __props__['client_scope_id'] = client_scope_id
             __props__['friendly_name'] = friendly_name
             __props__['name'] = name
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
-            if saml_attribute_name is None:
+            if saml_attribute_name is None and not opts.urn:
                 raise TypeError("Missing required property 'saml_attribute_name'")
             __props__['saml_attribute_name'] = saml_attribute_name
-            if saml_attribute_name_format is None:
+            if saml_attribute_name_format is None and not opts.urn:
                 raise TypeError("Missing required property 'saml_attribute_name_format'")
             __props__['saml_attribute_name_format'] = saml_attribute_name_format
-            if user_property is None:
+            if user_property is None and not opts.urn:
                 raise TypeError("Missing required property 'user_property'")
             __props__['user_property'] = user_property
         super(UserPropertyProtocolMapper, __self__).__init__(

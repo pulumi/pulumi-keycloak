@@ -121,17 +121,17 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
             __props__['add_to_access_token'] = add_to_access_token
             __props__['add_to_id_token'] = add_to_id_token
             __props__['add_to_userinfo'] = add_to_userinfo
-            if claim_name is None:
+            if claim_name is None and not opts.urn:
                 raise TypeError("Missing required property 'claim_name'")
             __props__['claim_name'] = claim_name
             __props__['claim_value_type'] = claim_value_type
             __props__['client_id'] = client_id
             __props__['client_scope_id'] = client_scope_id
             __props__['name'] = name
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
-            if user_property is None:
+            if user_property is None and not opts.urn:
                 raise TypeError("Missing required property 'user_property'")
             __props__['user_property'] = user_property
         super(UserPropertyProtocolMapper, __self__).__init__(

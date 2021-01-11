@@ -20,6 +20,12 @@ __all__ = [
     'RealmWebAuthnPolicy',
     'UserFederatedIdentity',
     'UserInitialPassword',
+    'UsersPermissionsImpersonateScope',
+    'UsersPermissionsManageGroupMembershipScope',
+    'UsersPermissionsManageScope',
+    'UsersPermissionsMapRolesScope',
+    'UsersPermissionsUserImpersonatedScope',
+    'UsersPermissionsViewScope',
     'GetRealmInternationalizationResult',
     'GetRealmKeysKeyResult',
     'GetRealmSecurityDefenseResult',
@@ -764,6 +770,198 @@ class UserInitialPassword(dict):
         If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
         """
         return pulumi.get(self, "temporary")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class UsersPermissionsImpersonateScope(dict):
+    def __init__(__self__, *,
+                 decision_strategy: Optional[str] = None,
+                 description: Optional[str] = None,
+                 policies: Optional[Sequence[str]] = None):
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[str]:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "policies")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class UsersPermissionsManageGroupMembershipScope(dict):
+    def __init__(__self__, *,
+                 decision_strategy: Optional[str] = None,
+                 description: Optional[str] = None,
+                 policies: Optional[Sequence[str]] = None):
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[str]:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "policies")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class UsersPermissionsManageScope(dict):
+    def __init__(__self__, *,
+                 decision_strategy: Optional[str] = None,
+                 description: Optional[str] = None,
+                 policies: Optional[Sequence[str]] = None):
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[str]:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "policies")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class UsersPermissionsMapRolesScope(dict):
+    def __init__(__self__, *,
+                 decision_strategy: Optional[str] = None,
+                 description: Optional[str] = None,
+                 policies: Optional[Sequence[str]] = None):
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[str]:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "policies")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class UsersPermissionsUserImpersonatedScope(dict):
+    def __init__(__self__, *,
+                 decision_strategy: Optional[str] = None,
+                 description: Optional[str] = None,
+                 policies: Optional[Sequence[str]] = None):
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[str]:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "policies")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class UsersPermissionsViewScope(dict):
+    def __init__(__self__, *,
+                 decision_strategy: Optional[str] = None,
+                 description: Optional[str] = None,
+                 policies: Optional[Sequence[str]] = None):
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[str]:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "policies")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

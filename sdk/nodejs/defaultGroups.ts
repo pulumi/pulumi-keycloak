@@ -87,10 +87,10 @@ export class DefaultGroups extends pulumi.CustomResource {
             inputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as DefaultGroupsArgs | undefined;
-            if (!args || args.groupIds === undefined) {
+            if ((!args || args.groupIds === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'groupIds'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["groupIds"] = args ? args.groupIds : undefined;

@@ -247,25 +247,25 @@ export class UserFederation extends pulumi.CustomResource {
             inputs["vendor"] = state ? state.vendor : undefined;
         } else {
             const args = argsOrState as UserFederationArgs | undefined;
-            if (!args || args.connectionUrl === undefined) {
+            if ((!args || args.connectionUrl === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'connectionUrl'");
             }
-            if (!args || args.rdnLdapAttribute === undefined) {
+            if ((!args || args.rdnLdapAttribute === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'rdnLdapAttribute'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if (!args || args.userObjectClasses === undefined) {
+            if ((!args || args.userObjectClasses === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'userObjectClasses'");
             }
-            if (!args || args.usernameLdapAttribute === undefined) {
+            if ((!args || args.usernameLdapAttribute === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'usernameLdapAttribute'");
             }
-            if (!args || args.usersDn === undefined) {
+            if ((!args || args.usersDn === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'usersDn'");
             }
-            if (!args || args.uuidLdapAttribute === undefined) {
+            if ((!args || args.uuidLdapAttribute === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'uuidLdapAttribute'");
             }
             inputs["batchSizeForSync"] = args ? args.batchSizeForSync : undefined;

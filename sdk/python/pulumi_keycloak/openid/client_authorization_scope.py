@@ -48,10 +48,10 @@ class ClientAuthorizationScope(pulumi.CustomResource):
             __props__['display_name'] = display_name
             __props__['icon_uri'] = icon_uri
             __props__['name'] = name
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
-            if resource_server_id is None:
+            if resource_server_id is None and not opts.urn:
                 raise TypeError("Missing required property 'resource_server_id'")
             __props__['resource_server_id'] = resource_server_id
         super(ClientAuthorizationScope, __self__).__init__(

@@ -115,10 +115,10 @@ export class MsadUserAccountControlMapper extends pulumi.CustomResource {
             inputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as MsadUserAccountControlMapperArgs | undefined;
-            if (!args || args.ldapUserFederationId === undefined) {
+            if ((!args || args.ldapUserFederationId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["ldapPasswordPolicyHintsEnabled"] = args ? args.ldapPasswordPolicyHintsEnabled : undefined;

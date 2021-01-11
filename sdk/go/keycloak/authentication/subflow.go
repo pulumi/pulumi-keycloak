@@ -27,17 +27,18 @@ type Subflow struct {
 // NewSubflow registers a new resource with the given unique name, arguments, and options.
 func NewSubflow(ctx *pulumi.Context,
 	name string, args *SubflowArgs, opts ...pulumi.ResourceOption) (*Subflow, error) {
-	if args == nil || args.Alias == nil {
-		return nil, errors.New("missing required argument 'Alias'")
-	}
-	if args == nil || args.ParentFlowAlias == nil {
-		return nil, errors.New("missing required argument 'ParentFlowAlias'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &SubflowArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Alias == nil {
+		return nil, errors.New("invalid value for required argument 'Alias'")
+	}
+	if args.ParentFlowAlias == nil {
+		return nil, errors.New("invalid value for required argument 'ParentFlowAlias'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource Subflow
 	err := ctx.RegisterResource("keycloak:authentication/subflow:Subflow", name, args, &resource, opts...)

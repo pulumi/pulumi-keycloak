@@ -63,16 +63,16 @@ export class ClientJsPolicy extends pulumi.CustomResource {
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as ClientJsPolicyArgs | undefined;
-            if (!args || args.code === undefined) {
+            if ((!args || args.code === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'code'");
             }
-            if (!args || args.decisionStrategy === undefined) {
+            if ((!args || args.decisionStrategy === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'decisionStrategy'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if (!args || args.resourceServerId === undefined) {
+            if ((!args || args.resourceServerId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
             inputs["code"] = args ? args.code : undefined;

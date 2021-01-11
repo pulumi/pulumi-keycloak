@@ -152,13 +152,13 @@ class UserFederation(pulumi.CustomResource):
             __props__['bind_credential'] = bind_credential
             __props__['bind_dn'] = bind_dn
             __props__['cache'] = cache
-            if cache_policy is not None:
+            if cache_policy is not None and not opts.urn:
                 warnings.warn("""use cache.policy instead""", DeprecationWarning)
                 pulumi.log.warn("cache_policy is deprecated: use cache.policy instead")
             __props__['cache_policy'] = cache_policy
             __props__['changed_sync_period'] = changed_sync_period
             __props__['connection_timeout'] = connection_timeout
-            if connection_url is None:
+            if connection_url is None and not opts.urn:
                 raise TypeError("Missing required property 'connection_url'")
             __props__['connection_url'] = connection_url
             __props__['custom_user_search_filter'] = custom_user_search_filter
@@ -170,26 +170,26 @@ class UserFederation(pulumi.CustomResource):
             __props__['name'] = name
             __props__['pagination'] = pagination
             __props__['priority'] = priority
-            if rdn_ldap_attribute is None:
+            if rdn_ldap_attribute is None and not opts.urn:
                 raise TypeError("Missing required property 'rdn_ldap_attribute'")
             __props__['rdn_ldap_attribute'] = rdn_ldap_attribute
             __props__['read_timeout'] = read_timeout
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
             __props__['search_scope'] = search_scope
             __props__['sync_registrations'] = sync_registrations
             __props__['use_truststore_spi'] = use_truststore_spi
-            if user_object_classes is None:
+            if user_object_classes is None and not opts.urn:
                 raise TypeError("Missing required property 'user_object_classes'")
             __props__['user_object_classes'] = user_object_classes
-            if username_ldap_attribute is None:
+            if username_ldap_attribute is None and not opts.urn:
                 raise TypeError("Missing required property 'username_ldap_attribute'")
             __props__['username_ldap_attribute'] = username_ldap_attribute
-            if users_dn is None:
+            if users_dn is None and not opts.urn:
                 raise TypeError("Missing required property 'users_dn'")
             __props__['users_dn'] = users_dn
-            if uuid_ldap_attribute is None:
+            if uuid_ldap_attribute is None and not opts.urn:
                 raise TypeError("Missing required property 'uuid_ldap_attribute'")
             __props__['uuid_ldap_attribute'] = uuid_ldap_attribute
             __props__['validate_password_policy'] = validate_password_policy

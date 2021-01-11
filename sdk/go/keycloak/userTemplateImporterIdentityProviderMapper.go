@@ -28,14 +28,15 @@ type UserTemplateImporterIdentityProviderMapper struct {
 // NewUserTemplateImporterIdentityProviderMapper registers a new resource with the given unique name, arguments, and options.
 func NewUserTemplateImporterIdentityProviderMapper(ctx *pulumi.Context,
 	name string, args *UserTemplateImporterIdentityProviderMapperArgs, opts ...pulumi.ResourceOption) (*UserTemplateImporterIdentityProviderMapper, error) {
-	if args == nil || args.IdentityProviderAlias == nil {
-		return nil, errors.New("missing required argument 'IdentityProviderAlias'")
-	}
-	if args == nil || args.Realm == nil {
-		return nil, errors.New("missing required argument 'Realm'")
-	}
 	if args == nil {
-		args = &UserTemplateImporterIdentityProviderMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.IdentityProviderAlias == nil {
+		return nil, errors.New("invalid value for required argument 'IdentityProviderAlias'")
+	}
+	if args.Realm == nil {
+		return nil, errors.New("invalid value for required argument 'Realm'")
 	}
 	var resource UserTemplateImporterIdentityProviderMapper
 	err := ctx.RegisterResource("keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper", name, args, &resource, opts...)

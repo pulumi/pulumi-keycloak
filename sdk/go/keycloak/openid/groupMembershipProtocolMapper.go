@@ -139,14 +139,15 @@ type GroupMembershipProtocolMapper struct {
 // NewGroupMembershipProtocolMapper registers a new resource with the given unique name, arguments, and options.
 func NewGroupMembershipProtocolMapper(ctx *pulumi.Context,
 	name string, args *GroupMembershipProtocolMapperArgs, opts ...pulumi.ResourceOption) (*GroupMembershipProtocolMapper, error) {
-	if args == nil || args.ClaimName == nil {
-		return nil, errors.New("missing required argument 'ClaimName'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &GroupMembershipProtocolMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ClaimName == nil {
+		return nil, errors.New("invalid value for required argument 'ClaimName'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource GroupMembershipProtocolMapper
 	err := ctx.RegisterResource("keycloak:openid/groupMembershipProtocolMapper:GroupMembershipProtocolMapper", name, args, &resource, opts...)

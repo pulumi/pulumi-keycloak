@@ -24,14 +24,15 @@ type ClientAuthorizationScope struct {
 // NewClientAuthorizationScope registers a new resource with the given unique name, arguments, and options.
 func NewClientAuthorizationScope(ctx *pulumi.Context,
 	name string, args *ClientAuthorizationScopeArgs, opts ...pulumi.ResourceOption) (*ClientAuthorizationScope, error) {
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
-	if args == nil || args.ResourceServerId == nil {
-		return nil, errors.New("missing required argument 'ResourceServerId'")
-	}
 	if args == nil {
-		args = &ClientAuthorizationScopeArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
+	}
+	if args.ResourceServerId == nil {
+		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
 	}
 	var resource ClientAuthorizationScope
 	err := ctx.RegisterResource("keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope", name, args, &resource, opts...)

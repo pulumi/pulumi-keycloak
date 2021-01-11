@@ -109,10 +109,10 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             __props__['accepts_prompt_none_forward_from_client'] = accepts_prompt_none_forward_from_client
             __props__['add_read_token_role_on_create'] = add_read_token_role_on_create
             __props__['authenticate_by_default'] = authenticate_by_default
-            if client_id is None:
+            if client_id is None and not opts.urn:
                 raise TypeError("Missing required property 'client_id'")
             __props__['client_id'] = client_id
-            if client_secret is None:
+            if client_secret is None and not opts.urn:
                 raise TypeError("Missing required property 'client_secret'")
             __props__['client_secret'] = client_secret
             __props__['default_scopes'] = default_scopes
@@ -125,7 +125,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             __props__['link_only'] = link_only
             __props__['post_broker_login_flow_alias'] = post_broker_login_flow_alias
             __props__['provider_id'] = provider_id
-            if realm is None:
+            if realm is None and not opts.urn:
                 raise TypeError("Missing required property 'realm'")
             __props__['realm'] = realm
             __props__['request_refresh_token'] = request_refresh_token

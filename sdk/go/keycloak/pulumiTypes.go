@@ -2112,6 +2112,944 @@ func (o UserInitialPasswordPtrOutput) Value() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type UsersPermissionsImpersonateScope struct {
+	DecisionStrategy *string  `pulumi:"decisionStrategy"`
+	Description      *string  `pulumi:"description"`
+	Policies         []string `pulumi:"policies"`
+}
+
+// UsersPermissionsImpersonateScopeInput is an input type that accepts UsersPermissionsImpersonateScopeArgs and UsersPermissionsImpersonateScopeOutput values.
+// You can construct a concrete instance of `UsersPermissionsImpersonateScopeInput` via:
+//
+//          UsersPermissionsImpersonateScopeArgs{...}
+type UsersPermissionsImpersonateScopeInput interface {
+	pulumi.Input
+
+	ToUsersPermissionsImpersonateScopeOutput() UsersPermissionsImpersonateScopeOutput
+	ToUsersPermissionsImpersonateScopeOutputWithContext(context.Context) UsersPermissionsImpersonateScopeOutput
+}
+
+type UsersPermissionsImpersonateScopeArgs struct {
+	DecisionStrategy pulumi.StringPtrInput   `pulumi:"decisionStrategy"`
+	Description      pulumi.StringPtrInput   `pulumi:"description"`
+	Policies         pulumi.StringArrayInput `pulumi:"policies"`
+}
+
+func (UsersPermissionsImpersonateScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UsersPermissionsImpersonateScope)(nil)).Elem()
+}
+
+func (i UsersPermissionsImpersonateScopeArgs) ToUsersPermissionsImpersonateScopeOutput() UsersPermissionsImpersonateScopeOutput {
+	return i.ToUsersPermissionsImpersonateScopeOutputWithContext(context.Background())
+}
+
+func (i UsersPermissionsImpersonateScopeArgs) ToUsersPermissionsImpersonateScopeOutputWithContext(ctx context.Context) UsersPermissionsImpersonateScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsImpersonateScopeOutput)
+}
+
+func (i UsersPermissionsImpersonateScopeArgs) ToUsersPermissionsImpersonateScopePtrOutput() UsersPermissionsImpersonateScopePtrOutput {
+	return i.ToUsersPermissionsImpersonateScopePtrOutputWithContext(context.Background())
+}
+
+func (i UsersPermissionsImpersonateScopeArgs) ToUsersPermissionsImpersonateScopePtrOutputWithContext(ctx context.Context) UsersPermissionsImpersonateScopePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsImpersonateScopeOutput).ToUsersPermissionsImpersonateScopePtrOutputWithContext(ctx)
+}
+
+// UsersPermissionsImpersonateScopePtrInput is an input type that accepts UsersPermissionsImpersonateScopeArgs, UsersPermissionsImpersonateScopePtr and UsersPermissionsImpersonateScopePtrOutput values.
+// You can construct a concrete instance of `UsersPermissionsImpersonateScopePtrInput` via:
+//
+//          UsersPermissionsImpersonateScopeArgs{...}
+//
+//  or:
+//
+//          nil
+type UsersPermissionsImpersonateScopePtrInput interface {
+	pulumi.Input
+
+	ToUsersPermissionsImpersonateScopePtrOutput() UsersPermissionsImpersonateScopePtrOutput
+	ToUsersPermissionsImpersonateScopePtrOutputWithContext(context.Context) UsersPermissionsImpersonateScopePtrOutput
+}
+
+type usersPermissionsImpersonateScopePtrType UsersPermissionsImpersonateScopeArgs
+
+func UsersPermissionsImpersonateScopePtr(v *UsersPermissionsImpersonateScopeArgs) UsersPermissionsImpersonateScopePtrInput {
+	return (*usersPermissionsImpersonateScopePtrType)(v)
+}
+
+func (*usersPermissionsImpersonateScopePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**UsersPermissionsImpersonateScope)(nil)).Elem()
+}
+
+func (i *usersPermissionsImpersonateScopePtrType) ToUsersPermissionsImpersonateScopePtrOutput() UsersPermissionsImpersonateScopePtrOutput {
+	return i.ToUsersPermissionsImpersonateScopePtrOutputWithContext(context.Background())
+}
+
+func (i *usersPermissionsImpersonateScopePtrType) ToUsersPermissionsImpersonateScopePtrOutputWithContext(ctx context.Context) UsersPermissionsImpersonateScopePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsImpersonateScopePtrOutput)
+}
+
+type UsersPermissionsImpersonateScopeOutput struct{ *pulumi.OutputState }
+
+func (UsersPermissionsImpersonateScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UsersPermissionsImpersonateScope)(nil)).Elem()
+}
+
+func (o UsersPermissionsImpersonateScopeOutput) ToUsersPermissionsImpersonateScopeOutput() UsersPermissionsImpersonateScopeOutput {
+	return o
+}
+
+func (o UsersPermissionsImpersonateScopeOutput) ToUsersPermissionsImpersonateScopeOutputWithContext(ctx context.Context) UsersPermissionsImpersonateScopeOutput {
+	return o
+}
+
+func (o UsersPermissionsImpersonateScopeOutput) ToUsersPermissionsImpersonateScopePtrOutput() UsersPermissionsImpersonateScopePtrOutput {
+	return o.ToUsersPermissionsImpersonateScopePtrOutputWithContext(context.Background())
+}
+
+func (o UsersPermissionsImpersonateScopeOutput) ToUsersPermissionsImpersonateScopePtrOutputWithContext(ctx context.Context) UsersPermissionsImpersonateScopePtrOutput {
+	return o.ApplyT(func(v UsersPermissionsImpersonateScope) *UsersPermissionsImpersonateScope {
+		return &v
+	}).(UsersPermissionsImpersonateScopePtrOutput)
+}
+func (o UsersPermissionsImpersonateScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UsersPermissionsImpersonateScope) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsImpersonateScopeOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UsersPermissionsImpersonateScope) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsImpersonateScopeOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v UsersPermissionsImpersonateScope) []string { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+type UsersPermissionsImpersonateScopePtrOutput struct{ *pulumi.OutputState }
+
+func (UsersPermissionsImpersonateScopePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**UsersPermissionsImpersonateScope)(nil)).Elem()
+}
+
+func (o UsersPermissionsImpersonateScopePtrOutput) ToUsersPermissionsImpersonateScopePtrOutput() UsersPermissionsImpersonateScopePtrOutput {
+	return o
+}
+
+func (o UsersPermissionsImpersonateScopePtrOutput) ToUsersPermissionsImpersonateScopePtrOutputWithContext(ctx context.Context) UsersPermissionsImpersonateScopePtrOutput {
+	return o
+}
+
+func (o UsersPermissionsImpersonateScopePtrOutput) Elem() UsersPermissionsImpersonateScopeOutput {
+	return o.ApplyT(func(v *UsersPermissionsImpersonateScope) UsersPermissionsImpersonateScope { return *v }).(UsersPermissionsImpersonateScopeOutput)
+}
+
+func (o UsersPermissionsImpersonateScopePtrOutput) DecisionStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UsersPermissionsImpersonateScope) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DecisionStrategy
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsImpersonateScopePtrOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UsersPermissionsImpersonateScope) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsImpersonateScopePtrOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *UsersPermissionsImpersonateScope) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Policies
+	}).(pulumi.StringArrayOutput)
+}
+
+type UsersPermissionsManageGroupMembershipScope struct {
+	DecisionStrategy *string  `pulumi:"decisionStrategy"`
+	Description      *string  `pulumi:"description"`
+	Policies         []string `pulumi:"policies"`
+}
+
+// UsersPermissionsManageGroupMembershipScopeInput is an input type that accepts UsersPermissionsManageGroupMembershipScopeArgs and UsersPermissionsManageGroupMembershipScopeOutput values.
+// You can construct a concrete instance of `UsersPermissionsManageGroupMembershipScopeInput` via:
+//
+//          UsersPermissionsManageGroupMembershipScopeArgs{...}
+type UsersPermissionsManageGroupMembershipScopeInput interface {
+	pulumi.Input
+
+	ToUsersPermissionsManageGroupMembershipScopeOutput() UsersPermissionsManageGroupMembershipScopeOutput
+	ToUsersPermissionsManageGroupMembershipScopeOutputWithContext(context.Context) UsersPermissionsManageGroupMembershipScopeOutput
+}
+
+type UsersPermissionsManageGroupMembershipScopeArgs struct {
+	DecisionStrategy pulumi.StringPtrInput   `pulumi:"decisionStrategy"`
+	Description      pulumi.StringPtrInput   `pulumi:"description"`
+	Policies         pulumi.StringArrayInput `pulumi:"policies"`
+}
+
+func (UsersPermissionsManageGroupMembershipScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UsersPermissionsManageGroupMembershipScope)(nil)).Elem()
+}
+
+func (i UsersPermissionsManageGroupMembershipScopeArgs) ToUsersPermissionsManageGroupMembershipScopeOutput() UsersPermissionsManageGroupMembershipScopeOutput {
+	return i.ToUsersPermissionsManageGroupMembershipScopeOutputWithContext(context.Background())
+}
+
+func (i UsersPermissionsManageGroupMembershipScopeArgs) ToUsersPermissionsManageGroupMembershipScopeOutputWithContext(ctx context.Context) UsersPermissionsManageGroupMembershipScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsManageGroupMembershipScopeOutput)
+}
+
+func (i UsersPermissionsManageGroupMembershipScopeArgs) ToUsersPermissionsManageGroupMembershipScopePtrOutput() UsersPermissionsManageGroupMembershipScopePtrOutput {
+	return i.ToUsersPermissionsManageGroupMembershipScopePtrOutputWithContext(context.Background())
+}
+
+func (i UsersPermissionsManageGroupMembershipScopeArgs) ToUsersPermissionsManageGroupMembershipScopePtrOutputWithContext(ctx context.Context) UsersPermissionsManageGroupMembershipScopePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsManageGroupMembershipScopeOutput).ToUsersPermissionsManageGroupMembershipScopePtrOutputWithContext(ctx)
+}
+
+// UsersPermissionsManageGroupMembershipScopePtrInput is an input type that accepts UsersPermissionsManageGroupMembershipScopeArgs, UsersPermissionsManageGroupMembershipScopePtr and UsersPermissionsManageGroupMembershipScopePtrOutput values.
+// You can construct a concrete instance of `UsersPermissionsManageGroupMembershipScopePtrInput` via:
+//
+//          UsersPermissionsManageGroupMembershipScopeArgs{...}
+//
+//  or:
+//
+//          nil
+type UsersPermissionsManageGroupMembershipScopePtrInput interface {
+	pulumi.Input
+
+	ToUsersPermissionsManageGroupMembershipScopePtrOutput() UsersPermissionsManageGroupMembershipScopePtrOutput
+	ToUsersPermissionsManageGroupMembershipScopePtrOutputWithContext(context.Context) UsersPermissionsManageGroupMembershipScopePtrOutput
+}
+
+type usersPermissionsManageGroupMembershipScopePtrType UsersPermissionsManageGroupMembershipScopeArgs
+
+func UsersPermissionsManageGroupMembershipScopePtr(v *UsersPermissionsManageGroupMembershipScopeArgs) UsersPermissionsManageGroupMembershipScopePtrInput {
+	return (*usersPermissionsManageGroupMembershipScopePtrType)(v)
+}
+
+func (*usersPermissionsManageGroupMembershipScopePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**UsersPermissionsManageGroupMembershipScope)(nil)).Elem()
+}
+
+func (i *usersPermissionsManageGroupMembershipScopePtrType) ToUsersPermissionsManageGroupMembershipScopePtrOutput() UsersPermissionsManageGroupMembershipScopePtrOutput {
+	return i.ToUsersPermissionsManageGroupMembershipScopePtrOutputWithContext(context.Background())
+}
+
+func (i *usersPermissionsManageGroupMembershipScopePtrType) ToUsersPermissionsManageGroupMembershipScopePtrOutputWithContext(ctx context.Context) UsersPermissionsManageGroupMembershipScopePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsManageGroupMembershipScopePtrOutput)
+}
+
+type UsersPermissionsManageGroupMembershipScopeOutput struct{ *pulumi.OutputState }
+
+func (UsersPermissionsManageGroupMembershipScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UsersPermissionsManageGroupMembershipScope)(nil)).Elem()
+}
+
+func (o UsersPermissionsManageGroupMembershipScopeOutput) ToUsersPermissionsManageGroupMembershipScopeOutput() UsersPermissionsManageGroupMembershipScopeOutput {
+	return o
+}
+
+func (o UsersPermissionsManageGroupMembershipScopeOutput) ToUsersPermissionsManageGroupMembershipScopeOutputWithContext(ctx context.Context) UsersPermissionsManageGroupMembershipScopeOutput {
+	return o
+}
+
+func (o UsersPermissionsManageGroupMembershipScopeOutput) ToUsersPermissionsManageGroupMembershipScopePtrOutput() UsersPermissionsManageGroupMembershipScopePtrOutput {
+	return o.ToUsersPermissionsManageGroupMembershipScopePtrOutputWithContext(context.Background())
+}
+
+func (o UsersPermissionsManageGroupMembershipScopeOutput) ToUsersPermissionsManageGroupMembershipScopePtrOutputWithContext(ctx context.Context) UsersPermissionsManageGroupMembershipScopePtrOutput {
+	return o.ApplyT(func(v UsersPermissionsManageGroupMembershipScope) *UsersPermissionsManageGroupMembershipScope {
+		return &v
+	}).(UsersPermissionsManageGroupMembershipScopePtrOutput)
+}
+func (o UsersPermissionsManageGroupMembershipScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UsersPermissionsManageGroupMembershipScope) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsManageGroupMembershipScopeOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UsersPermissionsManageGroupMembershipScope) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsManageGroupMembershipScopeOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v UsersPermissionsManageGroupMembershipScope) []string { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+type UsersPermissionsManageGroupMembershipScopePtrOutput struct{ *pulumi.OutputState }
+
+func (UsersPermissionsManageGroupMembershipScopePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**UsersPermissionsManageGroupMembershipScope)(nil)).Elem()
+}
+
+func (o UsersPermissionsManageGroupMembershipScopePtrOutput) ToUsersPermissionsManageGroupMembershipScopePtrOutput() UsersPermissionsManageGroupMembershipScopePtrOutput {
+	return o
+}
+
+func (o UsersPermissionsManageGroupMembershipScopePtrOutput) ToUsersPermissionsManageGroupMembershipScopePtrOutputWithContext(ctx context.Context) UsersPermissionsManageGroupMembershipScopePtrOutput {
+	return o
+}
+
+func (o UsersPermissionsManageGroupMembershipScopePtrOutput) Elem() UsersPermissionsManageGroupMembershipScopeOutput {
+	return o.ApplyT(func(v *UsersPermissionsManageGroupMembershipScope) UsersPermissionsManageGroupMembershipScope {
+		return *v
+	}).(UsersPermissionsManageGroupMembershipScopeOutput)
+}
+
+func (o UsersPermissionsManageGroupMembershipScopePtrOutput) DecisionStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UsersPermissionsManageGroupMembershipScope) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DecisionStrategy
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsManageGroupMembershipScopePtrOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UsersPermissionsManageGroupMembershipScope) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsManageGroupMembershipScopePtrOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *UsersPermissionsManageGroupMembershipScope) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Policies
+	}).(pulumi.StringArrayOutput)
+}
+
+type UsersPermissionsManageScope struct {
+	DecisionStrategy *string  `pulumi:"decisionStrategy"`
+	Description      *string  `pulumi:"description"`
+	Policies         []string `pulumi:"policies"`
+}
+
+// UsersPermissionsManageScopeInput is an input type that accepts UsersPermissionsManageScopeArgs and UsersPermissionsManageScopeOutput values.
+// You can construct a concrete instance of `UsersPermissionsManageScopeInput` via:
+//
+//          UsersPermissionsManageScopeArgs{...}
+type UsersPermissionsManageScopeInput interface {
+	pulumi.Input
+
+	ToUsersPermissionsManageScopeOutput() UsersPermissionsManageScopeOutput
+	ToUsersPermissionsManageScopeOutputWithContext(context.Context) UsersPermissionsManageScopeOutput
+}
+
+type UsersPermissionsManageScopeArgs struct {
+	DecisionStrategy pulumi.StringPtrInput   `pulumi:"decisionStrategy"`
+	Description      pulumi.StringPtrInput   `pulumi:"description"`
+	Policies         pulumi.StringArrayInput `pulumi:"policies"`
+}
+
+func (UsersPermissionsManageScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UsersPermissionsManageScope)(nil)).Elem()
+}
+
+func (i UsersPermissionsManageScopeArgs) ToUsersPermissionsManageScopeOutput() UsersPermissionsManageScopeOutput {
+	return i.ToUsersPermissionsManageScopeOutputWithContext(context.Background())
+}
+
+func (i UsersPermissionsManageScopeArgs) ToUsersPermissionsManageScopeOutputWithContext(ctx context.Context) UsersPermissionsManageScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsManageScopeOutput)
+}
+
+func (i UsersPermissionsManageScopeArgs) ToUsersPermissionsManageScopePtrOutput() UsersPermissionsManageScopePtrOutput {
+	return i.ToUsersPermissionsManageScopePtrOutputWithContext(context.Background())
+}
+
+func (i UsersPermissionsManageScopeArgs) ToUsersPermissionsManageScopePtrOutputWithContext(ctx context.Context) UsersPermissionsManageScopePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsManageScopeOutput).ToUsersPermissionsManageScopePtrOutputWithContext(ctx)
+}
+
+// UsersPermissionsManageScopePtrInput is an input type that accepts UsersPermissionsManageScopeArgs, UsersPermissionsManageScopePtr and UsersPermissionsManageScopePtrOutput values.
+// You can construct a concrete instance of `UsersPermissionsManageScopePtrInput` via:
+//
+//          UsersPermissionsManageScopeArgs{...}
+//
+//  or:
+//
+//          nil
+type UsersPermissionsManageScopePtrInput interface {
+	pulumi.Input
+
+	ToUsersPermissionsManageScopePtrOutput() UsersPermissionsManageScopePtrOutput
+	ToUsersPermissionsManageScopePtrOutputWithContext(context.Context) UsersPermissionsManageScopePtrOutput
+}
+
+type usersPermissionsManageScopePtrType UsersPermissionsManageScopeArgs
+
+func UsersPermissionsManageScopePtr(v *UsersPermissionsManageScopeArgs) UsersPermissionsManageScopePtrInput {
+	return (*usersPermissionsManageScopePtrType)(v)
+}
+
+func (*usersPermissionsManageScopePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**UsersPermissionsManageScope)(nil)).Elem()
+}
+
+func (i *usersPermissionsManageScopePtrType) ToUsersPermissionsManageScopePtrOutput() UsersPermissionsManageScopePtrOutput {
+	return i.ToUsersPermissionsManageScopePtrOutputWithContext(context.Background())
+}
+
+func (i *usersPermissionsManageScopePtrType) ToUsersPermissionsManageScopePtrOutputWithContext(ctx context.Context) UsersPermissionsManageScopePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsManageScopePtrOutput)
+}
+
+type UsersPermissionsManageScopeOutput struct{ *pulumi.OutputState }
+
+func (UsersPermissionsManageScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UsersPermissionsManageScope)(nil)).Elem()
+}
+
+func (o UsersPermissionsManageScopeOutput) ToUsersPermissionsManageScopeOutput() UsersPermissionsManageScopeOutput {
+	return o
+}
+
+func (o UsersPermissionsManageScopeOutput) ToUsersPermissionsManageScopeOutputWithContext(ctx context.Context) UsersPermissionsManageScopeOutput {
+	return o
+}
+
+func (o UsersPermissionsManageScopeOutput) ToUsersPermissionsManageScopePtrOutput() UsersPermissionsManageScopePtrOutput {
+	return o.ToUsersPermissionsManageScopePtrOutputWithContext(context.Background())
+}
+
+func (o UsersPermissionsManageScopeOutput) ToUsersPermissionsManageScopePtrOutputWithContext(ctx context.Context) UsersPermissionsManageScopePtrOutput {
+	return o.ApplyT(func(v UsersPermissionsManageScope) *UsersPermissionsManageScope {
+		return &v
+	}).(UsersPermissionsManageScopePtrOutput)
+}
+func (o UsersPermissionsManageScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UsersPermissionsManageScope) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsManageScopeOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UsersPermissionsManageScope) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsManageScopeOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v UsersPermissionsManageScope) []string { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+type UsersPermissionsManageScopePtrOutput struct{ *pulumi.OutputState }
+
+func (UsersPermissionsManageScopePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**UsersPermissionsManageScope)(nil)).Elem()
+}
+
+func (o UsersPermissionsManageScopePtrOutput) ToUsersPermissionsManageScopePtrOutput() UsersPermissionsManageScopePtrOutput {
+	return o
+}
+
+func (o UsersPermissionsManageScopePtrOutput) ToUsersPermissionsManageScopePtrOutputWithContext(ctx context.Context) UsersPermissionsManageScopePtrOutput {
+	return o
+}
+
+func (o UsersPermissionsManageScopePtrOutput) Elem() UsersPermissionsManageScopeOutput {
+	return o.ApplyT(func(v *UsersPermissionsManageScope) UsersPermissionsManageScope { return *v }).(UsersPermissionsManageScopeOutput)
+}
+
+func (o UsersPermissionsManageScopePtrOutput) DecisionStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UsersPermissionsManageScope) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DecisionStrategy
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsManageScopePtrOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UsersPermissionsManageScope) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsManageScopePtrOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *UsersPermissionsManageScope) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Policies
+	}).(pulumi.StringArrayOutput)
+}
+
+type UsersPermissionsMapRolesScope struct {
+	DecisionStrategy *string  `pulumi:"decisionStrategy"`
+	Description      *string  `pulumi:"description"`
+	Policies         []string `pulumi:"policies"`
+}
+
+// UsersPermissionsMapRolesScopeInput is an input type that accepts UsersPermissionsMapRolesScopeArgs and UsersPermissionsMapRolesScopeOutput values.
+// You can construct a concrete instance of `UsersPermissionsMapRolesScopeInput` via:
+//
+//          UsersPermissionsMapRolesScopeArgs{...}
+type UsersPermissionsMapRolesScopeInput interface {
+	pulumi.Input
+
+	ToUsersPermissionsMapRolesScopeOutput() UsersPermissionsMapRolesScopeOutput
+	ToUsersPermissionsMapRolesScopeOutputWithContext(context.Context) UsersPermissionsMapRolesScopeOutput
+}
+
+type UsersPermissionsMapRolesScopeArgs struct {
+	DecisionStrategy pulumi.StringPtrInput   `pulumi:"decisionStrategy"`
+	Description      pulumi.StringPtrInput   `pulumi:"description"`
+	Policies         pulumi.StringArrayInput `pulumi:"policies"`
+}
+
+func (UsersPermissionsMapRolesScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UsersPermissionsMapRolesScope)(nil)).Elem()
+}
+
+func (i UsersPermissionsMapRolesScopeArgs) ToUsersPermissionsMapRolesScopeOutput() UsersPermissionsMapRolesScopeOutput {
+	return i.ToUsersPermissionsMapRolesScopeOutputWithContext(context.Background())
+}
+
+func (i UsersPermissionsMapRolesScopeArgs) ToUsersPermissionsMapRolesScopeOutputWithContext(ctx context.Context) UsersPermissionsMapRolesScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsMapRolesScopeOutput)
+}
+
+func (i UsersPermissionsMapRolesScopeArgs) ToUsersPermissionsMapRolesScopePtrOutput() UsersPermissionsMapRolesScopePtrOutput {
+	return i.ToUsersPermissionsMapRolesScopePtrOutputWithContext(context.Background())
+}
+
+func (i UsersPermissionsMapRolesScopeArgs) ToUsersPermissionsMapRolesScopePtrOutputWithContext(ctx context.Context) UsersPermissionsMapRolesScopePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsMapRolesScopeOutput).ToUsersPermissionsMapRolesScopePtrOutputWithContext(ctx)
+}
+
+// UsersPermissionsMapRolesScopePtrInput is an input type that accepts UsersPermissionsMapRolesScopeArgs, UsersPermissionsMapRolesScopePtr and UsersPermissionsMapRolesScopePtrOutput values.
+// You can construct a concrete instance of `UsersPermissionsMapRolesScopePtrInput` via:
+//
+//          UsersPermissionsMapRolesScopeArgs{...}
+//
+//  or:
+//
+//          nil
+type UsersPermissionsMapRolesScopePtrInput interface {
+	pulumi.Input
+
+	ToUsersPermissionsMapRolesScopePtrOutput() UsersPermissionsMapRolesScopePtrOutput
+	ToUsersPermissionsMapRolesScopePtrOutputWithContext(context.Context) UsersPermissionsMapRolesScopePtrOutput
+}
+
+type usersPermissionsMapRolesScopePtrType UsersPermissionsMapRolesScopeArgs
+
+func UsersPermissionsMapRolesScopePtr(v *UsersPermissionsMapRolesScopeArgs) UsersPermissionsMapRolesScopePtrInput {
+	return (*usersPermissionsMapRolesScopePtrType)(v)
+}
+
+func (*usersPermissionsMapRolesScopePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**UsersPermissionsMapRolesScope)(nil)).Elem()
+}
+
+func (i *usersPermissionsMapRolesScopePtrType) ToUsersPermissionsMapRolesScopePtrOutput() UsersPermissionsMapRolesScopePtrOutput {
+	return i.ToUsersPermissionsMapRolesScopePtrOutputWithContext(context.Background())
+}
+
+func (i *usersPermissionsMapRolesScopePtrType) ToUsersPermissionsMapRolesScopePtrOutputWithContext(ctx context.Context) UsersPermissionsMapRolesScopePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsMapRolesScopePtrOutput)
+}
+
+type UsersPermissionsMapRolesScopeOutput struct{ *pulumi.OutputState }
+
+func (UsersPermissionsMapRolesScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UsersPermissionsMapRolesScope)(nil)).Elem()
+}
+
+func (o UsersPermissionsMapRolesScopeOutput) ToUsersPermissionsMapRolesScopeOutput() UsersPermissionsMapRolesScopeOutput {
+	return o
+}
+
+func (o UsersPermissionsMapRolesScopeOutput) ToUsersPermissionsMapRolesScopeOutputWithContext(ctx context.Context) UsersPermissionsMapRolesScopeOutput {
+	return o
+}
+
+func (o UsersPermissionsMapRolesScopeOutput) ToUsersPermissionsMapRolesScopePtrOutput() UsersPermissionsMapRolesScopePtrOutput {
+	return o.ToUsersPermissionsMapRolesScopePtrOutputWithContext(context.Background())
+}
+
+func (o UsersPermissionsMapRolesScopeOutput) ToUsersPermissionsMapRolesScopePtrOutputWithContext(ctx context.Context) UsersPermissionsMapRolesScopePtrOutput {
+	return o.ApplyT(func(v UsersPermissionsMapRolesScope) *UsersPermissionsMapRolesScope {
+		return &v
+	}).(UsersPermissionsMapRolesScopePtrOutput)
+}
+func (o UsersPermissionsMapRolesScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UsersPermissionsMapRolesScope) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsMapRolesScopeOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UsersPermissionsMapRolesScope) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsMapRolesScopeOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v UsersPermissionsMapRolesScope) []string { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+type UsersPermissionsMapRolesScopePtrOutput struct{ *pulumi.OutputState }
+
+func (UsersPermissionsMapRolesScopePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**UsersPermissionsMapRolesScope)(nil)).Elem()
+}
+
+func (o UsersPermissionsMapRolesScopePtrOutput) ToUsersPermissionsMapRolesScopePtrOutput() UsersPermissionsMapRolesScopePtrOutput {
+	return o
+}
+
+func (o UsersPermissionsMapRolesScopePtrOutput) ToUsersPermissionsMapRolesScopePtrOutputWithContext(ctx context.Context) UsersPermissionsMapRolesScopePtrOutput {
+	return o
+}
+
+func (o UsersPermissionsMapRolesScopePtrOutput) Elem() UsersPermissionsMapRolesScopeOutput {
+	return o.ApplyT(func(v *UsersPermissionsMapRolesScope) UsersPermissionsMapRolesScope { return *v }).(UsersPermissionsMapRolesScopeOutput)
+}
+
+func (o UsersPermissionsMapRolesScopePtrOutput) DecisionStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UsersPermissionsMapRolesScope) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DecisionStrategy
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsMapRolesScopePtrOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UsersPermissionsMapRolesScope) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsMapRolesScopePtrOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *UsersPermissionsMapRolesScope) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Policies
+	}).(pulumi.StringArrayOutput)
+}
+
+type UsersPermissionsUserImpersonatedScope struct {
+	DecisionStrategy *string  `pulumi:"decisionStrategy"`
+	Description      *string  `pulumi:"description"`
+	Policies         []string `pulumi:"policies"`
+}
+
+// UsersPermissionsUserImpersonatedScopeInput is an input type that accepts UsersPermissionsUserImpersonatedScopeArgs and UsersPermissionsUserImpersonatedScopeOutput values.
+// You can construct a concrete instance of `UsersPermissionsUserImpersonatedScopeInput` via:
+//
+//          UsersPermissionsUserImpersonatedScopeArgs{...}
+type UsersPermissionsUserImpersonatedScopeInput interface {
+	pulumi.Input
+
+	ToUsersPermissionsUserImpersonatedScopeOutput() UsersPermissionsUserImpersonatedScopeOutput
+	ToUsersPermissionsUserImpersonatedScopeOutputWithContext(context.Context) UsersPermissionsUserImpersonatedScopeOutput
+}
+
+type UsersPermissionsUserImpersonatedScopeArgs struct {
+	DecisionStrategy pulumi.StringPtrInput   `pulumi:"decisionStrategy"`
+	Description      pulumi.StringPtrInput   `pulumi:"description"`
+	Policies         pulumi.StringArrayInput `pulumi:"policies"`
+}
+
+func (UsersPermissionsUserImpersonatedScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UsersPermissionsUserImpersonatedScope)(nil)).Elem()
+}
+
+func (i UsersPermissionsUserImpersonatedScopeArgs) ToUsersPermissionsUserImpersonatedScopeOutput() UsersPermissionsUserImpersonatedScopeOutput {
+	return i.ToUsersPermissionsUserImpersonatedScopeOutputWithContext(context.Background())
+}
+
+func (i UsersPermissionsUserImpersonatedScopeArgs) ToUsersPermissionsUserImpersonatedScopeOutputWithContext(ctx context.Context) UsersPermissionsUserImpersonatedScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsUserImpersonatedScopeOutput)
+}
+
+func (i UsersPermissionsUserImpersonatedScopeArgs) ToUsersPermissionsUserImpersonatedScopePtrOutput() UsersPermissionsUserImpersonatedScopePtrOutput {
+	return i.ToUsersPermissionsUserImpersonatedScopePtrOutputWithContext(context.Background())
+}
+
+func (i UsersPermissionsUserImpersonatedScopeArgs) ToUsersPermissionsUserImpersonatedScopePtrOutputWithContext(ctx context.Context) UsersPermissionsUserImpersonatedScopePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsUserImpersonatedScopeOutput).ToUsersPermissionsUserImpersonatedScopePtrOutputWithContext(ctx)
+}
+
+// UsersPermissionsUserImpersonatedScopePtrInput is an input type that accepts UsersPermissionsUserImpersonatedScopeArgs, UsersPermissionsUserImpersonatedScopePtr and UsersPermissionsUserImpersonatedScopePtrOutput values.
+// You can construct a concrete instance of `UsersPermissionsUserImpersonatedScopePtrInput` via:
+//
+//          UsersPermissionsUserImpersonatedScopeArgs{...}
+//
+//  or:
+//
+//          nil
+type UsersPermissionsUserImpersonatedScopePtrInput interface {
+	pulumi.Input
+
+	ToUsersPermissionsUserImpersonatedScopePtrOutput() UsersPermissionsUserImpersonatedScopePtrOutput
+	ToUsersPermissionsUserImpersonatedScopePtrOutputWithContext(context.Context) UsersPermissionsUserImpersonatedScopePtrOutput
+}
+
+type usersPermissionsUserImpersonatedScopePtrType UsersPermissionsUserImpersonatedScopeArgs
+
+func UsersPermissionsUserImpersonatedScopePtr(v *UsersPermissionsUserImpersonatedScopeArgs) UsersPermissionsUserImpersonatedScopePtrInput {
+	return (*usersPermissionsUserImpersonatedScopePtrType)(v)
+}
+
+func (*usersPermissionsUserImpersonatedScopePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**UsersPermissionsUserImpersonatedScope)(nil)).Elem()
+}
+
+func (i *usersPermissionsUserImpersonatedScopePtrType) ToUsersPermissionsUserImpersonatedScopePtrOutput() UsersPermissionsUserImpersonatedScopePtrOutput {
+	return i.ToUsersPermissionsUserImpersonatedScopePtrOutputWithContext(context.Background())
+}
+
+func (i *usersPermissionsUserImpersonatedScopePtrType) ToUsersPermissionsUserImpersonatedScopePtrOutputWithContext(ctx context.Context) UsersPermissionsUserImpersonatedScopePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsUserImpersonatedScopePtrOutput)
+}
+
+type UsersPermissionsUserImpersonatedScopeOutput struct{ *pulumi.OutputState }
+
+func (UsersPermissionsUserImpersonatedScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UsersPermissionsUserImpersonatedScope)(nil)).Elem()
+}
+
+func (o UsersPermissionsUserImpersonatedScopeOutput) ToUsersPermissionsUserImpersonatedScopeOutput() UsersPermissionsUserImpersonatedScopeOutput {
+	return o
+}
+
+func (o UsersPermissionsUserImpersonatedScopeOutput) ToUsersPermissionsUserImpersonatedScopeOutputWithContext(ctx context.Context) UsersPermissionsUserImpersonatedScopeOutput {
+	return o
+}
+
+func (o UsersPermissionsUserImpersonatedScopeOutput) ToUsersPermissionsUserImpersonatedScopePtrOutput() UsersPermissionsUserImpersonatedScopePtrOutput {
+	return o.ToUsersPermissionsUserImpersonatedScopePtrOutputWithContext(context.Background())
+}
+
+func (o UsersPermissionsUserImpersonatedScopeOutput) ToUsersPermissionsUserImpersonatedScopePtrOutputWithContext(ctx context.Context) UsersPermissionsUserImpersonatedScopePtrOutput {
+	return o.ApplyT(func(v UsersPermissionsUserImpersonatedScope) *UsersPermissionsUserImpersonatedScope {
+		return &v
+	}).(UsersPermissionsUserImpersonatedScopePtrOutput)
+}
+func (o UsersPermissionsUserImpersonatedScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UsersPermissionsUserImpersonatedScope) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsUserImpersonatedScopeOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UsersPermissionsUserImpersonatedScope) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsUserImpersonatedScopeOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v UsersPermissionsUserImpersonatedScope) []string { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+type UsersPermissionsUserImpersonatedScopePtrOutput struct{ *pulumi.OutputState }
+
+func (UsersPermissionsUserImpersonatedScopePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**UsersPermissionsUserImpersonatedScope)(nil)).Elem()
+}
+
+func (o UsersPermissionsUserImpersonatedScopePtrOutput) ToUsersPermissionsUserImpersonatedScopePtrOutput() UsersPermissionsUserImpersonatedScopePtrOutput {
+	return o
+}
+
+func (o UsersPermissionsUserImpersonatedScopePtrOutput) ToUsersPermissionsUserImpersonatedScopePtrOutputWithContext(ctx context.Context) UsersPermissionsUserImpersonatedScopePtrOutput {
+	return o
+}
+
+func (o UsersPermissionsUserImpersonatedScopePtrOutput) Elem() UsersPermissionsUserImpersonatedScopeOutput {
+	return o.ApplyT(func(v *UsersPermissionsUserImpersonatedScope) UsersPermissionsUserImpersonatedScope { return *v }).(UsersPermissionsUserImpersonatedScopeOutput)
+}
+
+func (o UsersPermissionsUserImpersonatedScopePtrOutput) DecisionStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UsersPermissionsUserImpersonatedScope) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DecisionStrategy
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsUserImpersonatedScopePtrOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UsersPermissionsUserImpersonatedScope) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsUserImpersonatedScopePtrOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *UsersPermissionsUserImpersonatedScope) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Policies
+	}).(pulumi.StringArrayOutput)
+}
+
+type UsersPermissionsViewScope struct {
+	DecisionStrategy *string  `pulumi:"decisionStrategy"`
+	Description      *string  `pulumi:"description"`
+	Policies         []string `pulumi:"policies"`
+}
+
+// UsersPermissionsViewScopeInput is an input type that accepts UsersPermissionsViewScopeArgs and UsersPermissionsViewScopeOutput values.
+// You can construct a concrete instance of `UsersPermissionsViewScopeInput` via:
+//
+//          UsersPermissionsViewScopeArgs{...}
+type UsersPermissionsViewScopeInput interface {
+	pulumi.Input
+
+	ToUsersPermissionsViewScopeOutput() UsersPermissionsViewScopeOutput
+	ToUsersPermissionsViewScopeOutputWithContext(context.Context) UsersPermissionsViewScopeOutput
+}
+
+type UsersPermissionsViewScopeArgs struct {
+	DecisionStrategy pulumi.StringPtrInput   `pulumi:"decisionStrategy"`
+	Description      pulumi.StringPtrInput   `pulumi:"description"`
+	Policies         pulumi.StringArrayInput `pulumi:"policies"`
+}
+
+func (UsersPermissionsViewScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UsersPermissionsViewScope)(nil)).Elem()
+}
+
+func (i UsersPermissionsViewScopeArgs) ToUsersPermissionsViewScopeOutput() UsersPermissionsViewScopeOutput {
+	return i.ToUsersPermissionsViewScopeOutputWithContext(context.Background())
+}
+
+func (i UsersPermissionsViewScopeArgs) ToUsersPermissionsViewScopeOutputWithContext(ctx context.Context) UsersPermissionsViewScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsViewScopeOutput)
+}
+
+func (i UsersPermissionsViewScopeArgs) ToUsersPermissionsViewScopePtrOutput() UsersPermissionsViewScopePtrOutput {
+	return i.ToUsersPermissionsViewScopePtrOutputWithContext(context.Background())
+}
+
+func (i UsersPermissionsViewScopeArgs) ToUsersPermissionsViewScopePtrOutputWithContext(ctx context.Context) UsersPermissionsViewScopePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsViewScopeOutput).ToUsersPermissionsViewScopePtrOutputWithContext(ctx)
+}
+
+// UsersPermissionsViewScopePtrInput is an input type that accepts UsersPermissionsViewScopeArgs, UsersPermissionsViewScopePtr and UsersPermissionsViewScopePtrOutput values.
+// You can construct a concrete instance of `UsersPermissionsViewScopePtrInput` via:
+//
+//          UsersPermissionsViewScopeArgs{...}
+//
+//  or:
+//
+//          nil
+type UsersPermissionsViewScopePtrInput interface {
+	pulumi.Input
+
+	ToUsersPermissionsViewScopePtrOutput() UsersPermissionsViewScopePtrOutput
+	ToUsersPermissionsViewScopePtrOutputWithContext(context.Context) UsersPermissionsViewScopePtrOutput
+}
+
+type usersPermissionsViewScopePtrType UsersPermissionsViewScopeArgs
+
+func UsersPermissionsViewScopePtr(v *UsersPermissionsViewScopeArgs) UsersPermissionsViewScopePtrInput {
+	return (*usersPermissionsViewScopePtrType)(v)
+}
+
+func (*usersPermissionsViewScopePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**UsersPermissionsViewScope)(nil)).Elem()
+}
+
+func (i *usersPermissionsViewScopePtrType) ToUsersPermissionsViewScopePtrOutput() UsersPermissionsViewScopePtrOutput {
+	return i.ToUsersPermissionsViewScopePtrOutputWithContext(context.Background())
+}
+
+func (i *usersPermissionsViewScopePtrType) ToUsersPermissionsViewScopePtrOutputWithContext(ctx context.Context) UsersPermissionsViewScopePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsViewScopePtrOutput)
+}
+
+type UsersPermissionsViewScopeOutput struct{ *pulumi.OutputState }
+
+func (UsersPermissionsViewScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UsersPermissionsViewScope)(nil)).Elem()
+}
+
+func (o UsersPermissionsViewScopeOutput) ToUsersPermissionsViewScopeOutput() UsersPermissionsViewScopeOutput {
+	return o
+}
+
+func (o UsersPermissionsViewScopeOutput) ToUsersPermissionsViewScopeOutputWithContext(ctx context.Context) UsersPermissionsViewScopeOutput {
+	return o
+}
+
+func (o UsersPermissionsViewScopeOutput) ToUsersPermissionsViewScopePtrOutput() UsersPermissionsViewScopePtrOutput {
+	return o.ToUsersPermissionsViewScopePtrOutputWithContext(context.Background())
+}
+
+func (o UsersPermissionsViewScopeOutput) ToUsersPermissionsViewScopePtrOutputWithContext(ctx context.Context) UsersPermissionsViewScopePtrOutput {
+	return o.ApplyT(func(v UsersPermissionsViewScope) *UsersPermissionsViewScope {
+		return &v
+	}).(UsersPermissionsViewScopePtrOutput)
+}
+func (o UsersPermissionsViewScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UsersPermissionsViewScope) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsViewScopeOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UsersPermissionsViewScope) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsViewScopeOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v UsersPermissionsViewScope) []string { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+type UsersPermissionsViewScopePtrOutput struct{ *pulumi.OutputState }
+
+func (UsersPermissionsViewScopePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**UsersPermissionsViewScope)(nil)).Elem()
+}
+
+func (o UsersPermissionsViewScopePtrOutput) ToUsersPermissionsViewScopePtrOutput() UsersPermissionsViewScopePtrOutput {
+	return o
+}
+
+func (o UsersPermissionsViewScopePtrOutput) ToUsersPermissionsViewScopePtrOutputWithContext(ctx context.Context) UsersPermissionsViewScopePtrOutput {
+	return o
+}
+
+func (o UsersPermissionsViewScopePtrOutput) Elem() UsersPermissionsViewScopeOutput {
+	return o.ApplyT(func(v *UsersPermissionsViewScope) UsersPermissionsViewScope { return *v }).(UsersPermissionsViewScopeOutput)
+}
+
+func (o UsersPermissionsViewScopePtrOutput) DecisionStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UsersPermissionsViewScope) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DecisionStrategy
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsViewScopePtrOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UsersPermissionsViewScope) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o UsersPermissionsViewScopePtrOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *UsersPermissionsViewScope) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Policies
+	}).(pulumi.StringArrayOutput)
+}
+
 type GetRealmInternationalization struct {
 	DefaultLocale    string   `pulumi:"defaultLocale"`
 	SupportedLocales []string `pulumi:"supportedLocales"`
@@ -3209,6 +4147,18 @@ func init() {
 	pulumi.RegisterOutputType(UserFederatedIdentityArrayOutput{})
 	pulumi.RegisterOutputType(UserInitialPasswordOutput{})
 	pulumi.RegisterOutputType(UserInitialPasswordPtrOutput{})
+	pulumi.RegisterOutputType(UsersPermissionsImpersonateScopeOutput{})
+	pulumi.RegisterOutputType(UsersPermissionsImpersonateScopePtrOutput{})
+	pulumi.RegisterOutputType(UsersPermissionsManageGroupMembershipScopeOutput{})
+	pulumi.RegisterOutputType(UsersPermissionsManageGroupMembershipScopePtrOutput{})
+	pulumi.RegisterOutputType(UsersPermissionsManageScopeOutput{})
+	pulumi.RegisterOutputType(UsersPermissionsManageScopePtrOutput{})
+	pulumi.RegisterOutputType(UsersPermissionsMapRolesScopeOutput{})
+	pulumi.RegisterOutputType(UsersPermissionsMapRolesScopePtrOutput{})
+	pulumi.RegisterOutputType(UsersPermissionsUserImpersonatedScopeOutput{})
+	pulumi.RegisterOutputType(UsersPermissionsUserImpersonatedScopePtrOutput{})
+	pulumi.RegisterOutputType(UsersPermissionsViewScopeOutput{})
+	pulumi.RegisterOutputType(UsersPermissionsViewScopePtrOutput{})
 	pulumi.RegisterOutputType(GetRealmInternationalizationOutput{})
 	pulumi.RegisterOutputType(GetRealmInternationalizationArrayOutput{})
 	pulumi.RegisterOutputType(GetRealmKeysKeyOutput{})

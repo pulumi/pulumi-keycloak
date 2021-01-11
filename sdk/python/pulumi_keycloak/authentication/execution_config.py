@@ -83,16 +83,16 @@ class ExecutionConfig(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if alias is None:
+            if alias is None and not opts.urn:
                 raise TypeError("Missing required property 'alias'")
             __props__['alias'] = alias
-            if config is None:
+            if config is None and not opts.urn:
                 raise TypeError("Missing required property 'config'")
             __props__['config'] = config
-            if execution_id is None:
+            if execution_id is None and not opts.urn:
                 raise TypeError("Missing required property 'execution_id'")
             __props__['execution_id'] = execution_id
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
         super(ExecutionConfig, __self__).__init__(

@@ -64,13 +64,13 @@ export class Subflow extends pulumi.CustomResource {
             inputs["requirement"] = state ? state.requirement : undefined;
         } else {
             const args = argsOrState as SubflowArgs | undefined;
-            if (!args || args.alias === undefined) {
+            if ((!args || args.alias === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'alias'");
             }
-            if (!args || args.parentFlowAlias === undefined) {
+            if ((!args || args.parentFlowAlias === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'parentFlowAlias'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["alias"] = args ? args.alias : undefined;

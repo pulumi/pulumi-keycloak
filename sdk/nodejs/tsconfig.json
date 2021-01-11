@@ -26,10 +26,12 @@
         "defaultGroups.ts",
         "genericClientProtocolMapper.ts",
         "genericClientRoleMapper.ts",
+        "getAuthenticationExecution.ts",
         "getGroup.ts",
         "getRealm.ts",
         "getRealmKeys.ts",
         "getRole.ts",
+        "getUser.ts",
         "group.ts",
         "groupMemberships.ts",
         "groupRoles.ts",
@@ -60,6 +62,7 @@
         "openid/clientGroupPolicy.ts",
         "openid/clientJsPolicy.ts",
         "openid/clientOptionalScopes.ts",
+        "openid/clientPermissions.ts",
         "openid/clientPolicy.ts",
         "openid/clientRolePolicy.ts",
         "openid/clientScope.ts",
@@ -75,6 +78,7 @@
         "openid/hardcodedClaimProtocolMapper.ts",
         "openid/hardcodedRoleProtocolMapper.ts",
         "openid/index.ts",
+        "openid/scriptProtocolMapper.ts",
         "openid/userAttributeProtocolMapper.ts",
         "openid/userClientRoleProtocolMapper.ts",
         "openid/userPropertyProtocolMapper.ts",
@@ -99,6 +103,7 @@
         "user.ts",
         "userRoles.ts",
         "userTemplateImporterIdentityProviderMapper.ts",
+        "usersPermissions.ts",
         "utilities.ts"
     ]
 }

@@ -71,13 +71,13 @@ export class GroupRoles extends pulumi.CustomResource {
             inputs["roleIds"] = state ? state.roleIds : undefined;
         } else {
             const args = argsOrState as GroupRolesArgs | undefined;
-            if (!args || args.groupId === undefined) {
+            if ((!args || args.groupId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'groupId'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if (!args || args.roleIds === undefined) {
+            if ((!args || args.roleIds === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'roleIds'");
             }
             inputs["groupId"] = args ? args.groupId : undefined;

@@ -55,14 +55,14 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if clients is None:
+            if clients is None and not opts.urn:
                 raise TypeError("Missing required property 'clients'")
             __props__['clients'] = clients
             __props__['policy_type'] = policy_type
-            if provider_alias is None:
+            if provider_alias is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_alias'")
             __props__['provider_alias'] = provider_alias
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
             __props__['authorization_idp_resource_id'] = None

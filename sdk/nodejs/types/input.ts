@@ -319,6 +319,42 @@ export interface UserInitialPassword {
      */
     value: pulumi.Input<string>;
 }
+
+export interface UsersPermissionsImpersonateScope {
+    decisionStrategy?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface UsersPermissionsManageGroupMembershipScope {
+    decisionStrategy?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface UsersPermissionsManageScope {
+    decisionStrategy?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface UsersPermissionsMapRolesScope {
+    decisionStrategy?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface UsersPermissionsUserImpersonatedScope {
+    decisionStrategy?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface UsersPermissionsViewScope {
+    decisionStrategy?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
+}
 export namespace ldap {
     export interface UserFederationCache {
         /**
@@ -378,6 +414,10 @@ export namespace openid {
          */
         allowRemoteResourceManagement?: pulumi.Input<boolean>;
         /**
+         * Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
+         */
+        decisionStrategy?: pulumi.Input<string>;
+        /**
          * When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
          */
         keepDefaults?: pulumi.Input<boolean>;
@@ -393,9 +433,64 @@ export namespace openid {
         path: pulumi.Input<string>;
     }
 
+    export interface ClientPermissionsConfigureScope {
+        decisionStrategy?: pulumi.Input<string>;
+        description?: pulumi.Input<string>;
+        policies?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface ClientPermissionsManageScope {
+        decisionStrategy?: pulumi.Input<string>;
+        description?: pulumi.Input<string>;
+        policies?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface ClientPermissionsMapRolesClientScopeScope {
+        decisionStrategy?: pulumi.Input<string>;
+        description?: pulumi.Input<string>;
+        policies?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface ClientPermissionsMapRolesCompositeScope {
+        decisionStrategy?: pulumi.Input<string>;
+        description?: pulumi.Input<string>;
+        policies?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface ClientPermissionsMapRolesScope {
+        decisionStrategy?: pulumi.Input<string>;
+        description?: pulumi.Input<string>;
+        policies?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface ClientPermissionsTokenExchangeScope {
+        decisionStrategy?: pulumi.Input<string>;
+        description?: pulumi.Input<string>;
+        policies?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface ClientPermissionsViewScope {
+        decisionStrategy?: pulumi.Input<string>;
+        description?: pulumi.Input<string>;
+        policies?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
     export interface ClientRolePolicyRole {
         id: pulumi.Input<string>;
         required: pulumi.Input<boolean>;
     }
 
+}
+
+export namespace saml {
+    export interface ClientAuthenticationFlowBindingOverrides {
+        /**
+         * Browser flow id, (flow needs to exist)
+         */
+        browserId?: pulumi.Input<string>;
+        /**
+         * Direct grant flow id (flow needs to exist)
+         */
+        directGrantId?: pulumi.Input<string>;
+    }
 }

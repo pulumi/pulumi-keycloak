@@ -122,13 +122,13 @@ export class FullNameMapper extends pulumi.CustomResource {
             inputs["writeOnly"] = state ? state.writeOnly : undefined;
         } else {
             const args = argsOrState as FullNameMapperArgs | undefined;
-            if (!args || args.ldapFullNameAttribute === undefined) {
+            if ((!args || args.ldapFullNameAttribute === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'ldapFullNameAttribute'");
             }
-            if (!args || args.ldapUserFederationId === undefined) {
+            if ((!args || args.ldapUserFederationId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["ldapFullNameAttribute"] = args ? args.ldapFullNameAttribute : undefined;

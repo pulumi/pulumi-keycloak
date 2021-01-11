@@ -96,20 +96,21 @@ type GenericClientProtocolMapper struct {
 // NewGenericClientProtocolMapper registers a new resource with the given unique name, arguments, and options.
 func NewGenericClientProtocolMapper(ctx *pulumi.Context,
 	name string, args *GenericClientProtocolMapperArgs, opts ...pulumi.ResourceOption) (*GenericClientProtocolMapper, error) {
-	if args == nil || args.Config == nil {
-		return nil, errors.New("missing required argument 'Config'")
-	}
-	if args == nil || args.Protocol == nil {
-		return nil, errors.New("missing required argument 'Protocol'")
-	}
-	if args == nil || args.ProtocolMapper == nil {
-		return nil, errors.New("missing required argument 'ProtocolMapper'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &GenericClientProtocolMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Config == nil {
+		return nil, errors.New("invalid value for required argument 'Config'")
+	}
+	if args.Protocol == nil {
+		return nil, errors.New("invalid value for required argument 'Protocol'")
+	}
+	if args.ProtocolMapper == nil {
+		return nil, errors.New("invalid value for required argument 'ProtocolMapper'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource GenericClientProtocolMapper
 	err := ctx.RegisterResource("keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper", name, args, &resource, opts...)

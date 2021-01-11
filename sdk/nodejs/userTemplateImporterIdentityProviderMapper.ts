@@ -69,10 +69,10 @@ export class UserTemplateImporterIdentityProviderMapper extends pulumi.CustomRes
             inputs["template"] = state ? state.template : undefined;
         } else {
             const args = argsOrState as UserTemplateImporterIdentityProviderMapperArgs | undefined;
-            if (!args || args.identityProviderAlias === undefined) {
+            if ((!args || args.identityProviderAlias === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'identityProviderAlias'");
             }
-            if (!args || args.realm === undefined) {
+            if ((!args || args.realm === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realm'");
             }
             inputs["extraConfig"] = args ? args.extraConfig : undefined;

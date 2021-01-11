@@ -28,14 +28,15 @@ type HardcodedRoleIdentityMapper struct {
 // NewHardcodedRoleIdentityMapper registers a new resource with the given unique name, arguments, and options.
 func NewHardcodedRoleIdentityMapper(ctx *pulumi.Context,
 	name string, args *HardcodedRoleIdentityMapperArgs, opts ...pulumi.ResourceOption) (*HardcodedRoleIdentityMapper, error) {
-	if args == nil || args.IdentityProviderAlias == nil {
-		return nil, errors.New("missing required argument 'IdentityProviderAlias'")
-	}
-	if args == nil || args.Realm == nil {
-		return nil, errors.New("missing required argument 'Realm'")
-	}
 	if args == nil {
-		args = &HardcodedRoleIdentityMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.IdentityProviderAlias == nil {
+		return nil, errors.New("invalid value for required argument 'IdentityProviderAlias'")
+	}
+	if args.Realm == nil {
+		return nil, errors.New("invalid value for required argument 'Realm'")
 	}
 	var resource HardcodedRoleIdentityMapper
 	err := ctx.RegisterResource("keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper", name, args, &resource, opts...)

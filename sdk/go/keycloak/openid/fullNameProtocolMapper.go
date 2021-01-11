@@ -133,11 +133,12 @@ type FullNameProtocolMapper struct {
 // NewFullNameProtocolMapper registers a new resource with the given unique name, arguments, and options.
 func NewFullNameProtocolMapper(ctx *pulumi.Context,
 	name string, args *FullNameProtocolMapperArgs, opts ...pulumi.ResourceOption) (*FullNameProtocolMapper, error) {
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &FullNameProtocolMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource FullNameProtocolMapper
 	err := ctx.RegisterResource("keycloak:openid/fullNameProtocolMapper:FullNameProtocolMapper", name, args, &resource, opts...)

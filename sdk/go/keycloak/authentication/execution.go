@@ -93,17 +93,18 @@ type Execution struct {
 // NewExecution registers a new resource with the given unique name, arguments, and options.
 func NewExecution(ctx *pulumi.Context,
 	name string, args *ExecutionArgs, opts ...pulumi.ResourceOption) (*Execution, error) {
-	if args == nil || args.Authenticator == nil {
-		return nil, errors.New("missing required argument 'Authenticator'")
-	}
-	if args == nil || args.ParentFlowAlias == nil {
-		return nil, errors.New("missing required argument 'ParentFlowAlias'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &ExecutionArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Authenticator == nil {
+		return nil, errors.New("invalid value for required argument 'Authenticator'")
+	}
+	if args.ParentFlowAlias == nil {
+		return nil, errors.New("invalid value for required argument 'ParentFlowAlias'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource Execution
 	err := ctx.RegisterResource("keycloak:authentication/execution:Execution", name, args, &resource, opts...)

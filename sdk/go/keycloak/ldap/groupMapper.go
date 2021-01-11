@@ -92,6 +92,8 @@ type GroupMapper struct {
 	GroupObjectClasses pulumi.StringArrayOutput `pulumi:"groupObjectClasses"`
 	// When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
 	GroupsLdapFilter pulumi.StringPtrOutput `pulumi:"groupsLdapFilter"`
+	// Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
+	GroupsPath pulumi.StringOutput `pulumi:"groupsPath"`
 	// When `true`, missing groups in the hierarchy will be ignored.
 	IgnoreMissingGroups pulumi.BoolPtrOutput `pulumi:"ignoreMissingGroups"`
 	// The LDAP DN where groups can be found.
@@ -108,7 +110,7 @@ type GroupMapper struct {
 	MembershipLdapAttribute pulumi.StringOutput `pulumi:"membershipLdapAttribute"`
 	// The name of the LDAP attribute on a user that is used for membership mappings.
 	MembershipUserLdapAttribute pulumi.StringOutput `pulumi:"membershipUserLdapAttribute"`
-	// Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+	// Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
 	Mode pulumi.StringPtrOutput `pulumi:"mode"`
 	// Display name of this mapper when displayed in the console.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -123,29 +125,30 @@ type GroupMapper struct {
 // NewGroupMapper registers a new resource with the given unique name, arguments, and options.
 func NewGroupMapper(ctx *pulumi.Context,
 	name string, args *GroupMapperArgs, opts ...pulumi.ResourceOption) (*GroupMapper, error) {
-	if args == nil || args.GroupNameLdapAttribute == nil {
-		return nil, errors.New("missing required argument 'GroupNameLdapAttribute'")
-	}
-	if args == nil || args.GroupObjectClasses == nil {
-		return nil, errors.New("missing required argument 'GroupObjectClasses'")
-	}
-	if args == nil || args.LdapGroupsDn == nil {
-		return nil, errors.New("missing required argument 'LdapGroupsDn'")
-	}
-	if args == nil || args.LdapUserFederationId == nil {
-		return nil, errors.New("missing required argument 'LdapUserFederationId'")
-	}
-	if args == nil || args.MembershipLdapAttribute == nil {
-		return nil, errors.New("missing required argument 'MembershipLdapAttribute'")
-	}
-	if args == nil || args.MembershipUserLdapAttribute == nil {
-		return nil, errors.New("missing required argument 'MembershipUserLdapAttribute'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &GroupMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.GroupNameLdapAttribute == nil {
+		return nil, errors.New("invalid value for required argument 'GroupNameLdapAttribute'")
+	}
+	if args.GroupObjectClasses == nil {
+		return nil, errors.New("invalid value for required argument 'GroupObjectClasses'")
+	}
+	if args.LdapGroupsDn == nil {
+		return nil, errors.New("invalid value for required argument 'LdapGroupsDn'")
+	}
+	if args.LdapUserFederationId == nil {
+		return nil, errors.New("invalid value for required argument 'LdapUserFederationId'")
+	}
+	if args.MembershipLdapAttribute == nil {
+		return nil, errors.New("invalid value for required argument 'MembershipLdapAttribute'")
+	}
+	if args.MembershipUserLdapAttribute == nil {
+		return nil, errors.New("invalid value for required argument 'MembershipUserLdapAttribute'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource GroupMapper
 	err := ctx.RegisterResource("keycloak:ldap/groupMapper:GroupMapper", name, args, &resource, opts...)
@@ -177,6 +180,8 @@ type groupMapperState struct {
 	GroupObjectClasses []string `pulumi:"groupObjectClasses"`
 	// When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
 	GroupsLdapFilter *string `pulumi:"groupsLdapFilter"`
+	// Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
+	GroupsPath *string `pulumi:"groupsPath"`
 	// When `true`, missing groups in the hierarchy will be ignored.
 	IgnoreMissingGroups *bool `pulumi:"ignoreMissingGroups"`
 	// The LDAP DN where groups can be found.
@@ -193,7 +198,7 @@ type groupMapperState struct {
 	MembershipLdapAttribute *string `pulumi:"membershipLdapAttribute"`
 	// The name of the LDAP attribute on a user that is used for membership mappings.
 	MembershipUserLdapAttribute *string `pulumi:"membershipUserLdapAttribute"`
-	// Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+	// Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
 	Mode *string `pulumi:"mode"`
 	// Display name of this mapper when displayed in the console.
 	Name *string `pulumi:"name"`
@@ -214,6 +219,8 @@ type GroupMapperState struct {
 	GroupObjectClasses pulumi.StringArrayInput
 	// When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
 	GroupsLdapFilter pulumi.StringPtrInput
+	// Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
+	GroupsPath pulumi.StringPtrInput
 	// When `true`, missing groups in the hierarchy will be ignored.
 	IgnoreMissingGroups pulumi.BoolPtrInput
 	// The LDAP DN where groups can be found.
@@ -230,7 +237,7 @@ type GroupMapperState struct {
 	MembershipLdapAttribute pulumi.StringPtrInput
 	// The name of the LDAP attribute on a user that is used for membership mappings.
 	MembershipUserLdapAttribute pulumi.StringPtrInput
-	// Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+	// Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
 	Mode pulumi.StringPtrInput
 	// Display name of this mapper when displayed in the console.
 	Name pulumi.StringPtrInput
@@ -255,6 +262,8 @@ type groupMapperArgs struct {
 	GroupObjectClasses []string `pulumi:"groupObjectClasses"`
 	// When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
 	GroupsLdapFilter *string `pulumi:"groupsLdapFilter"`
+	// Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
+	GroupsPath *string `pulumi:"groupsPath"`
 	// When `true`, missing groups in the hierarchy will be ignored.
 	IgnoreMissingGroups *bool `pulumi:"ignoreMissingGroups"`
 	// The LDAP DN where groups can be found.
@@ -271,7 +280,7 @@ type groupMapperArgs struct {
 	MembershipLdapAttribute string `pulumi:"membershipLdapAttribute"`
 	// The name of the LDAP attribute on a user that is used for membership mappings.
 	MembershipUserLdapAttribute string `pulumi:"membershipUserLdapAttribute"`
-	// Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+	// Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
 	Mode *string `pulumi:"mode"`
 	// Display name of this mapper when displayed in the console.
 	Name *string `pulumi:"name"`
@@ -293,6 +302,8 @@ type GroupMapperArgs struct {
 	GroupObjectClasses pulumi.StringArrayInput
 	// When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
 	GroupsLdapFilter pulumi.StringPtrInput
+	// Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
+	GroupsPath pulumi.StringPtrInput
 	// When `true`, missing groups in the hierarchy will be ignored.
 	IgnoreMissingGroups pulumi.BoolPtrInput
 	// The LDAP DN where groups can be found.
@@ -309,7 +320,7 @@ type GroupMapperArgs struct {
 	MembershipLdapAttribute pulumi.StringInput
 	// The name of the LDAP attribute on a user that is used for membership mappings.
 	MembershipUserLdapAttribute pulumi.StringInput
-	// Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+	// Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
 	Mode pulumi.StringPtrInput
 	// Display name of this mapper when displayed in the console.
 	Name pulumi.StringPtrInput

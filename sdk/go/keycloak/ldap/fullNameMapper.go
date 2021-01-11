@@ -93,17 +93,18 @@ type FullNameMapper struct {
 // NewFullNameMapper registers a new resource with the given unique name, arguments, and options.
 func NewFullNameMapper(ctx *pulumi.Context,
 	name string, args *FullNameMapperArgs, opts ...pulumi.ResourceOption) (*FullNameMapper, error) {
-	if args == nil || args.LdapFullNameAttribute == nil {
-		return nil, errors.New("missing required argument 'LdapFullNameAttribute'")
-	}
-	if args == nil || args.LdapUserFederationId == nil {
-		return nil, errors.New("missing required argument 'LdapUserFederationId'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &FullNameMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.LdapFullNameAttribute == nil {
+		return nil, errors.New("invalid value for required argument 'LdapFullNameAttribute'")
+	}
+	if args.LdapUserFederationId == nil {
+		return nil, errors.New("invalid value for required argument 'LdapUserFederationId'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource FullNameMapper
 	err := ctx.RegisterResource("keycloak:ldap/fullNameMapper:FullNameMapper", name, args, &resource, opts...)

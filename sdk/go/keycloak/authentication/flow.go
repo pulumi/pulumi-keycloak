@@ -81,14 +81,15 @@ type Flow struct {
 // NewFlow registers a new resource with the given unique name, arguments, and options.
 func NewFlow(ctx *pulumi.Context,
 	name string, args *FlowArgs, opts ...pulumi.ResourceOption) (*Flow, error) {
-	if args == nil || args.Alias == nil {
-		return nil, errors.New("missing required argument 'Alias'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &FlowArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Alias == nil {
+		return nil, errors.New("invalid value for required argument 'Alias'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource Flow
 	err := ctx.RegisterResource("keycloak:authentication/flow:Flow", name, args, &resource, opts...)

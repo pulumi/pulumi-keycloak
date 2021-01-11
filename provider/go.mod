@@ -6,12 +6,11 @@ replace (
 	github.com/Azure/go-autorest => github.com/Azure/go-autorest v12.4.3+incompatible
 	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20200910230100-328eb4ff41df
 	github.com/hashicorp/vault => github.com/hashicorp/vault v1.2.0
-	github.com/mrparkers/terraform-provider-keycloak => github.com/pulumi/terraform-provider-keycloak v0.0.0-20200921100741-369e0d6ee4c2
+	github.com/mrparkers/terraform-provider-keycloak => github.com/pulumi/terraform-provider-keycloak v0.0.0-20210111124226-ef0c8883b1b7
 )
 
 require (
 	github.com/mrparkers/terraform-provider-keycloak v0.0.0-00010101000000-000000000000
-	github.com/pulumi/pulumi-terraform-bridge/v2 v2.13.2
-	github.com/pulumi/pulumi/sdk/v2 v2.13.3-0.20201109230029-a6f8b9b205cd
-	github.com/satori/go.uuid v1.2.0 // indirect
+	github.com/pulumi/pulumi-terraform-bridge/v2 v2.17.0
+	github.com/pulumi/pulumi/sdk/v2 v2.16.2
 )

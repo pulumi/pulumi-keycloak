@@ -46,14 +46,14 @@ class RequiredAction(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if alias is None:
+            if alias is None and not opts.urn:
                 raise TypeError("Missing required property 'alias'")
             __props__['alias'] = alias
             __props__['default_action'] = default_action
             __props__['enabled'] = enabled
             __props__['name'] = name
             __props__['priority'] = priority
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
         super(RequiredAction, __self__).__init__(

@@ -10,3 +10,43 @@ from .get_client_installation_provider import *
 from .identity_provider import *
 from .user_attribute_protocol_mapper import *
 from .user_property_protocol_mapper import *
+from ._inputs import *
+from . import outputs
+
+def _register_module():
+    import pulumi
+    from .. import _utilities
+
+
+    class Module(pulumi.runtime.ResourceModule):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Module._version
+
+        def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+            if typ == "keycloak:saml/client:Client":
+                return Client(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:saml/clientDefaultScope:ClientDefaultScope":
+                return ClientDefaultScope(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:saml/clientScope:ClientScope":
+                return ClientScope(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:saml/identityProvider:IdentityProvider":
+                return IdentityProvider(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper":
+                return UserAttributeProtocolMapper(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper":
+                return UserPropertyProtocolMapper(name, pulumi.ResourceOptions(urn=urn))
+            else:
+                raise Exception(f"unknown resource type {typ}")
+
+
+    _module_instance = Module()
+    pulumi.runtime.register_resource_module("keycloak", "saml/client", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "saml/clientDefaultScope", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "saml/clientScope", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "saml/identityProvider", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "saml/userAttributeProtocolMapper", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "saml/userPropertyProtocolMapper", _module_instance)
+
+_register_module()

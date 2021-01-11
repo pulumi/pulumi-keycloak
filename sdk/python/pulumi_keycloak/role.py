@@ -135,7 +135,7 @@ class Role(pulumi.CustomResource):
             __props__['composite_roles'] = composite_roles
             __props__['description'] = description
             __props__['name'] = name
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
         super(Role, __self__).__init__(

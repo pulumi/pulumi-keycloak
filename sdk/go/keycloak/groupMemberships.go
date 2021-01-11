@@ -28,14 +28,15 @@ type GroupMemberships struct {
 // NewGroupMemberships registers a new resource with the given unique name, arguments, and options.
 func NewGroupMemberships(ctx *pulumi.Context,
 	name string, args *GroupMembershipsArgs, opts ...pulumi.ResourceOption) (*GroupMemberships, error) {
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &GroupMembershipsArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource GroupMemberships
 	err := ctx.RegisterResource("keycloak:index/groupMemberships:GroupMemberships", name, args, &resource, opts...)

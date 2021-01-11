@@ -145,29 +145,30 @@ type UserFederation struct {
 // NewUserFederation registers a new resource with the given unique name, arguments, and options.
 func NewUserFederation(ctx *pulumi.Context,
 	name string, args *UserFederationArgs, opts ...pulumi.ResourceOption) (*UserFederation, error) {
-	if args == nil || args.ConnectionUrl == nil {
-		return nil, errors.New("missing required argument 'ConnectionUrl'")
-	}
-	if args == nil || args.RdnLdapAttribute == nil {
-		return nil, errors.New("missing required argument 'RdnLdapAttribute'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
-	if args == nil || args.UserObjectClasses == nil {
-		return nil, errors.New("missing required argument 'UserObjectClasses'")
-	}
-	if args == nil || args.UsernameLdapAttribute == nil {
-		return nil, errors.New("missing required argument 'UsernameLdapAttribute'")
-	}
-	if args == nil || args.UsersDn == nil {
-		return nil, errors.New("missing required argument 'UsersDn'")
-	}
-	if args == nil || args.UuidLdapAttribute == nil {
-		return nil, errors.New("missing required argument 'UuidLdapAttribute'")
-	}
 	if args == nil {
-		args = &UserFederationArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ConnectionUrl == nil {
+		return nil, errors.New("invalid value for required argument 'ConnectionUrl'")
+	}
+	if args.RdnLdapAttribute == nil {
+		return nil, errors.New("invalid value for required argument 'RdnLdapAttribute'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
+	}
+	if args.UserObjectClasses == nil {
+		return nil, errors.New("invalid value for required argument 'UserObjectClasses'")
+	}
+	if args.UsernameLdapAttribute == nil {
+		return nil, errors.New("invalid value for required argument 'UsernameLdapAttribute'")
+	}
+	if args.UsersDn == nil {
+		return nil, errors.New("invalid value for required argument 'UsersDn'")
+	}
+	if args.UuidLdapAttribute == nil {
+		return nil, errors.New("invalid value for required argument 'UuidLdapAttribute'")
 	}
 	var resource UserFederation
 	err := ctx.RegisterResource("keycloak:ldap/userFederation:UserFederation", name, args, &resource, opts...)

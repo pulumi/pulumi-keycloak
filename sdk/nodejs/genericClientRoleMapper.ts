@@ -198,10 +198,10 @@ export class GenericClientRoleMapper extends pulumi.CustomResource {
             inputs["roleId"] = state ? state.roleId : undefined;
         } else {
             const args = argsOrState as GenericClientRoleMapperArgs | undefined;
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if (!args || args.roleId === undefined) {
+            if ((!args || args.roleId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'roleId'");
             }
             inputs["clientId"] = args ? args.clientId : undefined;

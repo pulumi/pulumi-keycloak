@@ -20,9 +20,7 @@ import (
 
 	"github.com/mrparkers/terraform-provider-keycloak/provider"
 	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
-	shim "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim/sdk-v2"
-	"github.com/pulumi/pulumi/sdk/v2/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
 )
 
@@ -68,18 +66,10 @@ func refProviderLicense(license tfbridge.TFProviderLicense) *tfbridge.TFProvider
 	return &license
 }
 
-// preConfigureCallback is called before the providerConfigure function of the underlying provider.
-// It should validate that the provider can be configured, and provide actionable errors in the case
-// it cannot be. Configuration variables can be read from `vars` using the `stringValue` function -
-// for example `stringValue(vars, "accessKey")`.
-func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) error {
-	return nil
-}
-
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv2.NewProvider(provider.KeycloakProvider())
+	p := shimv2.NewProvider(provider.KeycloakProvider(nil))
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
@@ -131,7 +121,6 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 		},
-		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"keycloak_attribute_importer_identity_provider_mapper": {
 				Tok: makeResource(mainMod, "AttributeImporterIdentityProviderMapper"),
@@ -159,10 +148,11 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			"keycloak_required_action": {Tok: makeResource(mainMod, "RequiredAction")},
-			"keycloak_role":            {Tok: makeResource(mainMod, "Role")},
-			"keycloak_user":            {Tok: makeResource(mainMod, "User")},
-			"keycloak_user_roles":      {Tok: makeResource(mainMod, "UserRoles")},
+			"keycloak_required_action":   {Tok: makeResource(mainMod, "RequiredAction")},
+			"keycloak_role":              {Tok: makeResource(mainMod, "Role")},
+			"keycloak_user":              {Tok: makeResource(mainMod, "User")},
+			"keycloak_user_roles":        {Tok: makeResource(mainMod, "UserRoles")},
+			"keycloak_users_permissions": {Tok: makeResource(mainMod, "UsersPermissions")},
 			"keycloak_user_template_importer_identity_provider_mapper": {
 				Tok: makeResource(mainMod, "UserTemplateImporterIdentityProviderMapper"),
 			},
@@ -235,6 +225,10 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_openid_user_session_note_protocol_mapper": {
 				Tok: makeResource(openIDMod, "UserSessionNoteProtocolMapper"),
 			},
+			"keycloak_openid_client_permissions": {Tok: makeResource(openIDMod, "ClientPermissions")},
+			"keycloak_openid_script_protocol_mapper": {
+				Tok: makeResource(openIDMod, "ScriptProtocolMapper"),
+			},
 
 			"keycloak_saml_client":                         {Tok: makeResource(samlMod, "Client")},
 			"keycloak_saml_identity_provider":              {Tok: makeResource(samlMod, "IdentityProvider")},
@@ -249,10 +243,12 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_authentication_subflow":          {Tok: makeResource(authenticationMod, "Subflow")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"keycloak_group":      {Tok: makeDataSource(mainMod, "getGroup")},
-			"keycloak_realm":      {Tok: makeDataSource(mainMod, "getRealm")},
-			"keycloak_realm_keys": {Tok: makeDataSource(mainMod, "getRealmKeys")},
-			"keycloak_role":       {Tok: makeDataSource(mainMod, "getRole")},
+			"keycloak_group":                    {Tok: makeDataSource(mainMod, "getGroup")},
+			"keycloak_realm":                    {Tok: makeDataSource(mainMod, "getRealm")},
+			"keycloak_realm_keys":               {Tok: makeDataSource(mainMod, "getRealmKeys")},
+			"keycloak_role":                     {Tok: makeDataSource(mainMod, "getRole")},
+			"keycloak_authentication_execution": {Tok: makeDataSource(mainMod, "getAuthenticationExecution")},
+			"keycloak_user":                     {Tok: makeDataSource(mainMod, "getUser")},
 
 			"keycloak_openid_client":                      {Tok: makeDataSource(openIDMod, "getClient")},
 			"keycloak_openid_client_authorization_policy": {Tok: makeDataSource(openIDMod, "getClientAuthorizationPolicy")},

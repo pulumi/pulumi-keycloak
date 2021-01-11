@@ -116,7 +116,7 @@ class AudienceProtocolMapper(pulumi.CustomResource):
             __props__['included_client_audience'] = included_client_audience
             __props__['included_custom_audience'] = included_custom_audience
             __props__['name'] = name
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
         super(AudienceProtocolMapper, __self__).__init__(

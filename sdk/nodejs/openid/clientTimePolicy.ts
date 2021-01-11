@@ -83,13 +83,13 @@ export class ClientTimePolicy extends pulumi.CustomResource {
             inputs["yearEnd"] = state ? state.yearEnd : undefined;
         } else {
             const args = argsOrState as ClientTimePolicyArgs | undefined;
-            if (!args || args.decisionStrategy === undefined) {
+            if ((!args || args.decisionStrategy === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'decisionStrategy'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if (!args || args.resourceServerId === undefined) {
+            if ((!args || args.resourceServerId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
             inputs["dayMonth"] = args ? args.dayMonth : undefined;

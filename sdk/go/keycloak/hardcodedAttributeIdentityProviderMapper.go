@@ -32,17 +32,18 @@ type HardcodedAttributeIdentityProviderMapper struct {
 // NewHardcodedAttributeIdentityProviderMapper registers a new resource with the given unique name, arguments, and options.
 func NewHardcodedAttributeIdentityProviderMapper(ctx *pulumi.Context,
 	name string, args *HardcodedAttributeIdentityProviderMapperArgs, opts ...pulumi.ResourceOption) (*HardcodedAttributeIdentityProviderMapper, error) {
-	if args == nil || args.IdentityProviderAlias == nil {
-		return nil, errors.New("missing required argument 'IdentityProviderAlias'")
-	}
-	if args == nil || args.Realm == nil {
-		return nil, errors.New("missing required argument 'Realm'")
-	}
-	if args == nil || args.UserSession == nil {
-		return nil, errors.New("missing required argument 'UserSession'")
-	}
 	if args == nil {
-		args = &HardcodedAttributeIdentityProviderMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.IdentityProviderAlias == nil {
+		return nil, errors.New("invalid value for required argument 'IdentityProviderAlias'")
+	}
+	if args.Realm == nil {
+		return nil, errors.New("invalid value for required argument 'Realm'")
+	}
+	if args.UserSession == nil {
+		return nil, errors.New("invalid value for required argument 'UserSession'")
 	}
 	var resource HardcodedAttributeIdentityProviderMapper
 	err := ctx.RegisterResource("keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper", name, args, &resource, opts...)

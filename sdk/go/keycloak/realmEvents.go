@@ -79,11 +79,12 @@ type RealmEvents struct {
 // NewRealmEvents registers a new resource with the given unique name, arguments, and options.
 func NewRealmEvents(ctx *pulumi.Context,
 	name string, args *RealmEventsArgs, opts ...pulumi.ResourceOption) (*RealmEvents, error) {
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &RealmEventsArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource RealmEvents
 	err := ctx.RegisterResource("keycloak:index/realmEvents:RealmEvents", name, args, &resource, opts...)

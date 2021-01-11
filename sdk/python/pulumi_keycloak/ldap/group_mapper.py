@@ -19,6 +19,7 @@ class GroupMapper(pulumi.CustomResource):
                  group_name_ldap_attribute: Optional[pulumi.Input[str]] = None,
                  group_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  groups_ldap_filter: Optional[pulumi.Input[str]] = None,
+                 groups_path: Optional[pulumi.Input[str]] = None,
                  ignore_missing_groups: Optional[pulumi.Input[bool]] = None,
                  ldap_groups_dn: Optional[pulumi.Input[str]] = None,
                  ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
@@ -89,6 +90,7 @@ class GroupMapper(pulumi.CustomResource):
         :param pulumi.Input[str] group_name_ldap_attribute: The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] group_object_classes: List of strings representing the object classes for the group. Must contain at least one.
         :param pulumi.Input[str] groups_ldap_filter: When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+        :param pulumi.Input[str] groups_path: Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
         :param pulumi.Input[bool] ignore_missing_groups: When `true`, missing groups in the hierarchy will be ignored.
         :param pulumi.Input[str] ldap_groups_dn: The LDAP DN where groups can be found.
         :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
@@ -97,7 +99,7 @@ class GroupMapper(pulumi.CustomResource):
         :param pulumi.Input[str] membership_attribute_type: Can be one of `DN` or `UID`. Defaults to `DN`.
         :param pulumi.Input[str] membership_ldap_attribute: The name of the LDAP attribute that is used for membership mappings.
         :param pulumi.Input[str] membership_user_ldap_attribute: The name of the LDAP attribute on a user that is used for membership mappings.
-        :param pulumi.Input[str] mode: Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+        :param pulumi.Input[str] mode: Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
         :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[bool] preserve_group_inheritance: When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
         :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
@@ -121,33 +123,34 @@ class GroupMapper(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['drop_non_existing_groups_during_sync'] = drop_non_existing_groups_during_sync
-            if group_name_ldap_attribute is None:
+            if group_name_ldap_attribute is None and not opts.urn:
                 raise TypeError("Missing required property 'group_name_ldap_attribute'")
             __props__['group_name_ldap_attribute'] = group_name_ldap_attribute
-            if group_object_classes is None:
+            if group_object_classes is None and not opts.urn:
                 raise TypeError("Missing required property 'group_object_classes'")
             __props__['group_object_classes'] = group_object_classes
             __props__['groups_ldap_filter'] = groups_ldap_filter
+            __props__['groups_path'] = groups_path
             __props__['ignore_missing_groups'] = ignore_missing_groups
-            if ldap_groups_dn is None:
+            if ldap_groups_dn is None and not opts.urn:
                 raise TypeError("Missing required property 'ldap_groups_dn'")
             __props__['ldap_groups_dn'] = ldap_groups_dn
-            if ldap_user_federation_id is None:
+            if ldap_user_federation_id is None and not opts.urn:
                 raise TypeError("Missing required property 'ldap_user_federation_id'")
             __props__['ldap_user_federation_id'] = ldap_user_federation_id
             __props__['mapped_group_attributes'] = mapped_group_attributes
             __props__['memberof_ldap_attribute'] = memberof_ldap_attribute
             __props__['membership_attribute_type'] = membership_attribute_type
-            if membership_ldap_attribute is None:
+            if membership_ldap_attribute is None and not opts.urn:
                 raise TypeError("Missing required property 'membership_ldap_attribute'")
             __props__['membership_ldap_attribute'] = membership_ldap_attribute
-            if membership_user_ldap_attribute is None:
+            if membership_user_ldap_attribute is None and not opts.urn:
                 raise TypeError("Missing required property 'membership_user_ldap_attribute'")
             __props__['membership_user_ldap_attribute'] = membership_user_ldap_attribute
             __props__['mode'] = mode
             __props__['name'] = name
             __props__['preserve_group_inheritance'] = preserve_group_inheritance
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
             __props__['user_roles_retrieve_strategy'] = user_roles_retrieve_strategy
@@ -165,6 +168,7 @@ class GroupMapper(pulumi.CustomResource):
             group_name_ldap_attribute: Optional[pulumi.Input[str]] = None,
             group_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             groups_ldap_filter: Optional[pulumi.Input[str]] = None,
+            groups_path: Optional[pulumi.Input[str]] = None,
             ignore_missing_groups: Optional[pulumi.Input[bool]] = None,
             ldap_groups_dn: Optional[pulumi.Input[str]] = None,
             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
@@ -189,6 +193,7 @@ class GroupMapper(pulumi.CustomResource):
         :param pulumi.Input[str] group_name_ldap_attribute: The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] group_object_classes: List of strings representing the object classes for the group. Must contain at least one.
         :param pulumi.Input[str] groups_ldap_filter: When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+        :param pulumi.Input[str] groups_path: Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
         :param pulumi.Input[bool] ignore_missing_groups: When `true`, missing groups in the hierarchy will be ignored.
         :param pulumi.Input[str] ldap_groups_dn: The LDAP DN where groups can be found.
         :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
@@ -197,7 +202,7 @@ class GroupMapper(pulumi.CustomResource):
         :param pulumi.Input[str] membership_attribute_type: Can be one of `DN` or `UID`. Defaults to `DN`.
         :param pulumi.Input[str] membership_ldap_attribute: The name of the LDAP attribute that is used for membership mappings.
         :param pulumi.Input[str] membership_user_ldap_attribute: The name of the LDAP attribute on a user that is used for membership mappings.
-        :param pulumi.Input[str] mode: Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+        :param pulumi.Input[str] mode: Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
         :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[bool] preserve_group_inheritance: When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
         :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
@@ -211,6 +216,7 @@ class GroupMapper(pulumi.CustomResource):
         __props__["group_name_ldap_attribute"] = group_name_ldap_attribute
         __props__["group_object_classes"] = group_object_classes
         __props__["groups_ldap_filter"] = groups_ldap_filter
+        __props__["groups_path"] = groups_path
         __props__["ignore_missing_groups"] = ignore_missing_groups
         __props__["ldap_groups_dn"] = ldap_groups_dn
         __props__["ldap_user_federation_id"] = ldap_user_federation_id
@@ -257,6 +263,14 @@ class GroupMapper(pulumi.CustomResource):
         When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
         """
         return pulumi.get(self, "groups_ldap_filter")
+
+    @property
+    @pulumi.getter(name="groupsPath")
+    def groups_path(self) -> pulumi.Output[str]:
+        """
+        Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
+        """
+        return pulumi.get(self, "groups_path")
 
     @property
     @pulumi.getter(name="ignoreMissingGroups")
@@ -326,7 +340,7 @@ class GroupMapper(pulumi.CustomResource):
     @pulumi.getter
     def mode(self) -> pulumi.Output[Optional[str]]:
         """
-        Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+        Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
         """
         return pulumi.get(self, "mode")
 

@@ -162,13 +162,13 @@ export class UserPropertyProtocolMapper extends pulumi.CustomResource {
             inputs["userProperty"] = state ? state.userProperty : undefined;
         } else {
             const args = argsOrState as UserPropertyProtocolMapperArgs | undefined;
-            if (!args || args.claimName === undefined) {
+            if ((!args || args.claimName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'claimName'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if (!args || args.userProperty === undefined) {
+            if ((!args || args.userProperty === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'userProperty'");
             }
             inputs["addToAccessToken"] = args ? args.addToAccessToken : undefined;

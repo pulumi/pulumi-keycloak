@@ -27,20 +27,21 @@ type ClientJsPolicy struct {
 // NewClientJsPolicy registers a new resource with the given unique name, arguments, and options.
 func NewClientJsPolicy(ctx *pulumi.Context,
 	name string, args *ClientJsPolicyArgs, opts ...pulumi.ResourceOption) (*ClientJsPolicy, error) {
-	if args == nil || args.Code == nil {
-		return nil, errors.New("missing required argument 'Code'")
-	}
-	if args == nil || args.DecisionStrategy == nil {
-		return nil, errors.New("missing required argument 'DecisionStrategy'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
-	if args == nil || args.ResourceServerId == nil {
-		return nil, errors.New("missing required argument 'ResourceServerId'")
-	}
 	if args == nil {
-		args = &ClientJsPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Code == nil {
+		return nil, errors.New("invalid value for required argument 'Code'")
+	}
+	if args.DecisionStrategy == nil {
+		return nil, errors.New("invalid value for required argument 'DecisionStrategy'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
+	}
+	if args.ResourceServerId == nil {
+		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
 	}
 	var resource ClientJsPolicy
 	err := ctx.RegisterResource("keycloak:openid/clientJsPolicy:ClientJsPolicy", name, args, &resource, opts...)

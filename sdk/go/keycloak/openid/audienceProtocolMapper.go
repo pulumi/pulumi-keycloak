@@ -135,11 +135,12 @@ type AudienceProtocolMapper struct {
 // NewAudienceProtocolMapper registers a new resource with the given unique name, arguments, and options.
 func NewAudienceProtocolMapper(ctx *pulumi.Context,
 	name string, args *AudienceProtocolMapperArgs, opts ...pulumi.ResourceOption) (*AudienceProtocolMapper, error) {
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &AudienceProtocolMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource AudienceProtocolMapper
 	err := ctx.RegisterResource("keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper", name, args, &resource, opts...)

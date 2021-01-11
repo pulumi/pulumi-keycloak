@@ -37,29 +37,30 @@ type RoleMapper struct {
 // NewRoleMapper registers a new resource with the given unique name, arguments, and options.
 func NewRoleMapper(ctx *pulumi.Context,
 	name string, args *RoleMapperArgs, opts ...pulumi.ResourceOption) (*RoleMapper, error) {
-	if args == nil || args.LdapRolesDn == nil {
-		return nil, errors.New("missing required argument 'LdapRolesDn'")
-	}
-	if args == nil || args.LdapUserFederationId == nil {
-		return nil, errors.New("missing required argument 'LdapUserFederationId'")
-	}
-	if args == nil || args.MembershipLdapAttribute == nil {
-		return nil, errors.New("missing required argument 'MembershipLdapAttribute'")
-	}
-	if args == nil || args.MembershipUserLdapAttribute == nil {
-		return nil, errors.New("missing required argument 'MembershipUserLdapAttribute'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
-	if args == nil || args.RoleNameLdapAttribute == nil {
-		return nil, errors.New("missing required argument 'RoleNameLdapAttribute'")
-	}
-	if args == nil || args.RoleObjectClasses == nil {
-		return nil, errors.New("missing required argument 'RoleObjectClasses'")
-	}
 	if args == nil {
-		args = &RoleMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.LdapRolesDn == nil {
+		return nil, errors.New("invalid value for required argument 'LdapRolesDn'")
+	}
+	if args.LdapUserFederationId == nil {
+		return nil, errors.New("invalid value for required argument 'LdapUserFederationId'")
+	}
+	if args.MembershipLdapAttribute == nil {
+		return nil, errors.New("invalid value for required argument 'MembershipLdapAttribute'")
+	}
+	if args.MembershipUserLdapAttribute == nil {
+		return nil, errors.New("invalid value for required argument 'MembershipUserLdapAttribute'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
+	}
+	if args.RoleNameLdapAttribute == nil {
+		return nil, errors.New("invalid value for required argument 'RoleNameLdapAttribute'")
+	}
+	if args.RoleObjectClasses == nil {
+		return nil, errors.New("invalid value for required argument 'RoleObjectClasses'")
 	}
 	var resource RoleMapper
 	err := ctx.RegisterResource("keycloak:ldap/roleMapper:RoleMapper", name, args, &resource, opts...)

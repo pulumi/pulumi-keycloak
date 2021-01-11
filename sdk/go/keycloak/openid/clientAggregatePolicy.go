@@ -26,20 +26,21 @@ type ClientAggregatePolicy struct {
 // NewClientAggregatePolicy registers a new resource with the given unique name, arguments, and options.
 func NewClientAggregatePolicy(ctx *pulumi.Context,
 	name string, args *ClientAggregatePolicyArgs, opts ...pulumi.ResourceOption) (*ClientAggregatePolicy, error) {
-	if args == nil || args.DecisionStrategy == nil {
-		return nil, errors.New("missing required argument 'DecisionStrategy'")
-	}
-	if args == nil || args.Policies == nil {
-		return nil, errors.New("missing required argument 'Policies'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
-	if args == nil || args.ResourceServerId == nil {
-		return nil, errors.New("missing required argument 'ResourceServerId'")
-	}
 	if args == nil {
-		args = &ClientAggregatePolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DecisionStrategy == nil {
+		return nil, errors.New("invalid value for required argument 'DecisionStrategy'")
+	}
+	if args.Policies == nil {
+		return nil, errors.New("invalid value for required argument 'Policies'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
+	}
+	if args.ResourceServerId == nil {
+		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
 	}
 	var resource ClientAggregatePolicy
 	err := ctx.RegisterResource("keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy", name, args, &resource, opts...)

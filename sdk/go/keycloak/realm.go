@@ -200,11 +200,12 @@ type Realm struct {
 // NewRealm registers a new resource with the given unique name, arguments, and options.
 func NewRealm(ctx *pulumi.Context,
 	name string, args *RealmArgs, opts ...pulumi.ResourceOption) (*Realm, error) {
-	if args == nil || args.Realm == nil {
-		return nil, errors.New("missing required argument 'Realm'")
-	}
 	if args == nil {
-		args = &RealmArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Realm == nil {
+		return nil, errors.New("invalid value for required argument 'Realm'")
 	}
 	var resource Realm
 	err := ctx.RegisterResource("keycloak:index/realm:Realm", name, args, &resource, opts...)

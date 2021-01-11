@@ -115,13 +115,13 @@ export class Execution extends pulumi.CustomResource {
             inputs["requirement"] = state ? state.requirement : undefined;
         } else {
             const args = argsOrState as ExecutionArgs | undefined;
-            if (!args || args.authenticator === undefined) {
+            if ((!args || args.authenticator === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'authenticator'");
             }
-            if (!args || args.parentFlowAlias === undefined) {
+            if ((!args || args.parentFlowAlias === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'parentFlowAlias'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["authenticator"] = args ? args.authenticator : undefined;

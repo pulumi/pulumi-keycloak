@@ -28,17 +28,18 @@ type ClientDefaultScope struct {
 // NewClientDefaultScope registers a new resource with the given unique name, arguments, and options.
 func NewClientDefaultScope(ctx *pulumi.Context,
 	name string, args *ClientDefaultScopeArgs, opts ...pulumi.ResourceOption) (*ClientDefaultScope, error) {
-	if args == nil || args.ClientId == nil {
-		return nil, errors.New("missing required argument 'ClientId'")
-	}
-	if args == nil || args.DefaultScopes == nil {
-		return nil, errors.New("missing required argument 'DefaultScopes'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &ClientDefaultScopeArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ClientId == nil {
+		return nil, errors.New("invalid value for required argument 'ClientId'")
+	}
+	if args.DefaultScopes == nil {
+		return nil, errors.New("invalid value for required argument 'DefaultScopes'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource ClientDefaultScope
 	err := ctx.RegisterResource("keycloak:saml/clientDefaultScope:ClientDefaultScope", name, args, &resource, opts...)

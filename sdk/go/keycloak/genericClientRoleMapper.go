@@ -257,14 +257,15 @@ type GenericClientRoleMapper struct {
 // NewGenericClientRoleMapper registers a new resource with the given unique name, arguments, and options.
 func NewGenericClientRoleMapper(ctx *pulumi.Context,
 	name string, args *GenericClientRoleMapperArgs, opts ...pulumi.ResourceOption) (*GenericClientRoleMapper, error) {
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
-	if args == nil || args.RoleId == nil {
-		return nil, errors.New("missing required argument 'RoleId'")
-	}
 	if args == nil {
-		args = &GenericClientRoleMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
+	}
+	if args.RoleId == nil {
+		return nil, errors.New("invalid value for required argument 'RoleId'")
 	}
 	var resource GenericClientRoleMapper
 	err := ctx.RegisterResource("keycloak:index/genericClientRoleMapper:GenericClientRoleMapper", name, args, &resource, opts...)

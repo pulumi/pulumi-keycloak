@@ -85,7 +85,7 @@ class ClientScope(pulumi.CustomResource):
             __props__['gui_order'] = gui_order
             __props__['include_in_token_scope'] = include_in_token_scope
             __props__['name'] = name
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
         super(ClientScope, __self__).__init__(

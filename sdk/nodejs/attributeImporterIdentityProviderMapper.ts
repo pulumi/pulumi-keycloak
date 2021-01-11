@@ -135,13 +135,13 @@ export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResour
             inputs["userAttribute"] = state ? state.userAttribute : undefined;
         } else {
             const args = argsOrState as AttributeImporterIdentityProviderMapperArgs | undefined;
-            if (!args || args.identityProviderAlias === undefined) {
+            if ((!args || args.identityProviderAlias === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'identityProviderAlias'");
             }
-            if (!args || args.realm === undefined) {
+            if ((!args || args.realm === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realm'");
             }
-            if (!args || args.userAttribute === undefined) {
+            if ((!args || args.userAttribute === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'userAttribute'");
             }
             inputs["attributeFriendlyName"] = args ? args.attributeFriendlyName : undefined;

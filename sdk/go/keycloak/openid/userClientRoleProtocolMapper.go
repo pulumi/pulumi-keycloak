@@ -145,14 +145,15 @@ type UserClientRoleProtocolMapper struct {
 // NewUserClientRoleProtocolMapper registers a new resource with the given unique name, arguments, and options.
 func NewUserClientRoleProtocolMapper(ctx *pulumi.Context,
 	name string, args *UserClientRoleProtocolMapperArgs, opts ...pulumi.ResourceOption) (*UserClientRoleProtocolMapper, error) {
-	if args == nil || args.ClaimName == nil {
-		return nil, errors.New("missing required argument 'ClaimName'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &UserClientRoleProtocolMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ClaimName == nil {
+		return nil, errors.New("invalid value for required argument 'ClaimName'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource UserClientRoleProtocolMapper
 	err := ctx.RegisterResource("keycloak:openid/userClientRoleProtocolMapper:UserClientRoleProtocolMapper", name, args, &resource, opts...)

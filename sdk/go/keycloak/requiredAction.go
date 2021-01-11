@@ -25,14 +25,15 @@ type RequiredAction struct {
 // NewRequiredAction registers a new resource with the given unique name, arguments, and options.
 func NewRequiredAction(ctx *pulumi.Context,
 	name string, args *RequiredActionArgs, opts ...pulumi.ResourceOption) (*RequiredAction, error) {
-	if args == nil || args.Alias == nil {
-		return nil, errors.New("missing required argument 'Alias'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &RequiredActionArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Alias == nil {
+		return nil, errors.New("invalid value for required argument 'Alias'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource RequiredAction
 	err := ctx.RegisterResource("keycloak:index/requiredAction:RequiredAction", name, args, &resource, opts...)

@@ -96,20 +96,21 @@ type UserPropertyProtocolMapper struct {
 // NewUserPropertyProtocolMapper registers a new resource with the given unique name, arguments, and options.
 func NewUserPropertyProtocolMapper(ctx *pulumi.Context,
 	name string, args *UserPropertyProtocolMapperArgs, opts ...pulumi.ResourceOption) (*UserPropertyProtocolMapper, error) {
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
-	if args == nil || args.SamlAttributeName == nil {
-		return nil, errors.New("missing required argument 'SamlAttributeName'")
-	}
-	if args == nil || args.SamlAttributeNameFormat == nil {
-		return nil, errors.New("missing required argument 'SamlAttributeNameFormat'")
-	}
-	if args == nil || args.UserProperty == nil {
-		return nil, errors.New("missing required argument 'UserProperty'")
-	}
 	if args == nil {
-		args = &UserPropertyProtocolMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
+	}
+	if args.SamlAttributeName == nil {
+		return nil, errors.New("invalid value for required argument 'SamlAttributeName'")
+	}
+	if args.SamlAttributeNameFormat == nil {
+		return nil, errors.New("invalid value for required argument 'SamlAttributeNameFormat'")
+	}
+	if args.UserProperty == nil {
+		return nil, errors.New("invalid value for required argument 'UserProperty'")
 	}
 	var resource UserPropertyProtocolMapper
 	err := ctx.RegisterResource("keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper", name, args, &resource, opts...)

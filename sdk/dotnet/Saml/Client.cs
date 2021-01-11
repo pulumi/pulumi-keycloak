@@ -69,6 +69,12 @@ namespace Pulumi.Keycloak.Saml
         public Output<string?> AssertionConsumerRedirectUrl { get; private set; } = null!;
 
         /// <summary>
+        /// Override realm authentication flow bindings
+        /// </summary>
+        [Output("authenticationFlowBindingOverrides")]
+        public Output<Outputs.ClientAuthenticationFlowBindingOverrides?> AuthenticationFlowBindingOverrides { get; private set; } = null!;
+
+        /// <summary>
         /// When specified, this URL will be used whenever Keycloak needs to link to this client.
         /// </summary>
         [Output("baseUrl")]
@@ -289,6 +295,12 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? AssertionConsumerRedirectUrl { get; set; }
 
         /// <summary>
+        /// Override realm authentication flow bindings
+        /// </summary>
+        [Input("authenticationFlowBindingOverrides")]
+        public Input<Inputs.ClientAuthenticationFlowBindingOverridesArgs>? AuthenticationFlowBindingOverrides { get; set; }
+
+        /// <summary>
         /// When specified, this URL will be used whenever Keycloak needs to link to this client.
         /// </summary>
         [Input("baseUrl")]
@@ -474,6 +486,12 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Input("assertionConsumerRedirectUrl")]
         public Input<string>? AssertionConsumerRedirectUrl { get; set; }
+
+        /// <summary>
+        /// Override realm authentication flow bindings
+        /// </summary>
+        [Input("authenticationFlowBindingOverrides")]
+        public Input<Inputs.ClientAuthenticationFlowBindingOverridesGetArgs>? AuthenticationFlowBindingOverrides { get; set; }
 
         /// <summary>
         /// When specified, this URL will be used whenever Keycloak needs to link to this client.

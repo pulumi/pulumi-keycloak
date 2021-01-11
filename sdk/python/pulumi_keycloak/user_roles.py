@@ -53,13 +53,13 @@ class UserRoles(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
-            if role_ids is None:
+            if role_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'role_ids'")
             __props__['role_ids'] = role_ids
-            if user_id is None:
+            if user_id is None and not opts.urn:
                 raise TypeError("Missing required property 'user_id'")
             __props__['user_id'] = user_id
         super(UserRoles, __self__).__init__(

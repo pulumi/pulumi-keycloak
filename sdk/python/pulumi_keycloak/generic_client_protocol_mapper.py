@@ -97,17 +97,17 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
 
             __props__['client_id'] = client_id
             __props__['client_scope_id'] = client_scope_id
-            if config is None:
+            if config is None and not opts.urn:
                 raise TypeError("Missing required property 'config'")
             __props__['config'] = config
             __props__['name'] = name
-            if protocol is None:
+            if protocol is None and not opts.urn:
                 raise TypeError("Missing required property 'protocol'")
             __props__['protocol'] = protocol
-            if protocol_mapper is None:
+            if protocol_mapper is None and not opts.urn:
                 raise TypeError("Missing required property 'protocol_mapper'")
             __props__['protocol_mapper'] = protocol_mapper
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
         super(GenericClientProtocolMapper, __self__).__init__(

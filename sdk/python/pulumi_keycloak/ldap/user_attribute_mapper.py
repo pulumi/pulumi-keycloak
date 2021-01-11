@@ -100,18 +100,18 @@ class UserAttributeMapper(pulumi.CustomResource):
 
             __props__['always_read_value_from_ldap'] = always_read_value_from_ldap
             __props__['is_mandatory_in_ldap'] = is_mandatory_in_ldap
-            if ldap_attribute is None:
+            if ldap_attribute is None and not opts.urn:
                 raise TypeError("Missing required property 'ldap_attribute'")
             __props__['ldap_attribute'] = ldap_attribute
-            if ldap_user_federation_id is None:
+            if ldap_user_federation_id is None and not opts.urn:
                 raise TypeError("Missing required property 'ldap_user_federation_id'")
             __props__['ldap_user_federation_id'] = ldap_user_federation_id
             __props__['name'] = name
             __props__['read_only'] = read_only
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
-            if user_model_attribute is None:
+            if user_model_attribute is None and not opts.urn:
                 raise TypeError("Missing required property 'user_model_attribute'")
             __props__['user_model_attribute'] = user_model_attribute
         super(UserAttributeMapper, __self__).__init__(

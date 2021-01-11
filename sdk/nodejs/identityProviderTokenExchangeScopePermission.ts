@@ -96,13 +96,13 @@ export class IdentityProviderTokenExchangeScopePermission extends pulumi.CustomR
             inputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as IdentityProviderTokenExchangeScopePermissionArgs | undefined;
-            if (!args || args.clients === undefined) {
+            if ((!args || args.clients === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'clients'");
             }
-            if (!args || args.providerAlias === undefined) {
+            if ((!args || args.providerAlias === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'providerAlias'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["clients"] = args ? args.clients : undefined;
