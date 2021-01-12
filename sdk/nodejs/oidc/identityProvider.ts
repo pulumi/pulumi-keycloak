@@ -225,22 +225,22 @@ export class IdentityProvider extends pulumi.CustomResource {
             inputs["validateSignature"] = state ? state.validateSignature : undefined;
         } else {
             const args = argsOrState as IdentityProviderArgs | undefined;
-            if (!args || args.alias === undefined) {
+            if ((!args || args.alias === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'alias'");
             }
-            if (!args || args.authorizationUrl === undefined) {
+            if ((!args || args.authorizationUrl === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'authorizationUrl'");
             }
-            if (!args || args.clientId === undefined) {
+            if ((!args || args.clientId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'clientId'");
             }
-            if (!args || args.clientSecret === undefined) {
+            if ((!args || args.clientSecret === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'clientSecret'");
             }
-            if (!args || args.realm === undefined) {
+            if ((!args || args.realm === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realm'");
             }
-            if (!args || args.tokenUrl === undefined) {
+            if ((!args || args.tokenUrl === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'tokenUrl'");
             }
             inputs["acceptsPromptNoneForwardFromClient"] = args ? args.acceptsPromptNoneForwardFromClient : undefined;

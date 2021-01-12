@@ -92,11 +92,11 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['ldap_password_policy_hints_enabled'] = ldap_password_policy_hints_enabled
-            if ldap_user_federation_id is None:
+            if ldap_user_federation_id is None and not opts.urn:
                 raise TypeError("Missing required property 'ldap_user_federation_id'")
             __props__['ldap_user_federation_id'] = ldap_user_federation_id
             __props__['name'] = name
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
         super(MsadUserAccountControlMapper, __self__).__init__(

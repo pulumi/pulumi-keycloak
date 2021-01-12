@@ -47,19 +47,19 @@ class ClientUserPolicy(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if decision_strategy is None:
+            if decision_strategy is None and not opts.urn:
                 raise TypeError("Missing required property 'decision_strategy'")
             __props__['decision_strategy'] = decision_strategy
             __props__['description'] = description
             __props__['logic'] = logic
             __props__['name'] = name
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
-            if resource_server_id is None:
+            if resource_server_id is None and not opts.urn:
                 raise TypeError("Missing required property 'resource_server_id'")
             __props__['resource_server_id'] = resource_server_id
-            if users is None:
+            if users is None and not opts.urn:
                 raise TypeError("Missing required property 'users'")
             __props__['users'] = users
         super(ClientUserPolicy, __self__).__init__(

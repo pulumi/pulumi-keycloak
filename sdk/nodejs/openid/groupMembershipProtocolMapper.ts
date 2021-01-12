@@ -154,10 +154,10 @@ export class GroupMembershipProtocolMapper extends pulumi.CustomResource {
             inputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as GroupMembershipProtocolMapperArgs | undefined;
-            if (!args || args.claimName === undefined) {
+            if ((!args || args.claimName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'claimName'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["addToAccessToken"] = args ? args.addToAccessToken : undefined;

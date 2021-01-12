@@ -32,17 +32,18 @@ type GroupRoles struct {
 // NewGroupRoles registers a new resource with the given unique name, arguments, and options.
 func NewGroupRoles(ctx *pulumi.Context,
 	name string, args *GroupRolesArgs, opts ...pulumi.ResourceOption) (*GroupRoles, error) {
-	if args == nil || args.GroupId == nil {
-		return nil, errors.New("missing required argument 'GroupId'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
-	if args == nil || args.RoleIds == nil {
-		return nil, errors.New("missing required argument 'RoleIds'")
-	}
 	if args == nil {
-		args = &GroupRolesArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.GroupId == nil {
+		return nil, errors.New("invalid value for required argument 'GroupId'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
+	}
+	if args.RoleIds == nil {
+		return nil, errors.New("invalid value for required argument 'RoleIds'")
 	}
 	var resource GroupRoles
 	err := ctx.RegisterResource("keycloak:index/groupRoles:GroupRoles", name, args, &resource, opts...)

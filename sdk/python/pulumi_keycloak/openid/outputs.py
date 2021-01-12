@@ -12,6 +12,13 @@ __all__ = [
     'ClientAuthenticationFlowBindingOverrides',
     'ClientAuthorization',
     'ClientGroupPolicyGroup',
+    'ClientPermissionsConfigureScope',
+    'ClientPermissionsManageScope',
+    'ClientPermissionsMapRolesClientScopeScope',
+    'ClientPermissionsMapRolesCompositeScope',
+    'ClientPermissionsMapRolesScope',
+    'ClientPermissionsTokenExchangeScope',
+    'ClientPermissionsViewScope',
     'ClientRolePolicyRole',
     'GetClientAuthenticationFlowBindingOverrideResult',
     'GetClientAuthorizationResult',
@@ -57,15 +64,19 @@ class ClientAuthorization(dict):
     def __init__(__self__, *,
                  policy_enforcement_mode: str,
                  allow_remote_resource_management: Optional[bool] = None,
+                 decision_strategy: Optional[str] = None,
                  keep_defaults: Optional[bool] = None):
         """
         :param str policy_enforcement_mode: Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
         :param bool allow_remote_resource_management: When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
+        :param str decision_strategy: Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
         :param bool keep_defaults: When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
         """
         pulumi.set(__self__, "policy_enforcement_mode", policy_enforcement_mode)
         if allow_remote_resource_management is not None:
             pulumi.set(__self__, "allow_remote_resource_management", allow_remote_resource_management)
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
         if keep_defaults is not None:
             pulumi.set(__self__, "keep_defaults", keep_defaults)
 
@@ -84,6 +95,14 @@ class ClientAuthorization(dict):
         When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
         """
         return pulumi.get(self, "allow_remote_resource_management")
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[str]:
+        """
+        Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
+        """
+        return pulumi.get(self, "decision_strategy")
 
     @property
     @pulumi.getter(name="keepDefaults")
@@ -121,6 +140,230 @@ class ClientGroupPolicyGroup(dict):
     @pulumi.getter
     def path(self) -> str:
         return pulumi.get(self, "path")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class ClientPermissionsConfigureScope(dict):
+    def __init__(__self__, *,
+                 decision_strategy: Optional[str] = None,
+                 description: Optional[str] = None,
+                 policies: Optional[Sequence[str]] = None):
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[str]:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "policies")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class ClientPermissionsManageScope(dict):
+    def __init__(__self__, *,
+                 decision_strategy: Optional[str] = None,
+                 description: Optional[str] = None,
+                 policies: Optional[Sequence[str]] = None):
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[str]:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "policies")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class ClientPermissionsMapRolesClientScopeScope(dict):
+    def __init__(__self__, *,
+                 decision_strategy: Optional[str] = None,
+                 description: Optional[str] = None,
+                 policies: Optional[Sequence[str]] = None):
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[str]:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "policies")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class ClientPermissionsMapRolesCompositeScope(dict):
+    def __init__(__self__, *,
+                 decision_strategy: Optional[str] = None,
+                 description: Optional[str] = None,
+                 policies: Optional[Sequence[str]] = None):
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[str]:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "policies")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class ClientPermissionsMapRolesScope(dict):
+    def __init__(__self__, *,
+                 decision_strategy: Optional[str] = None,
+                 description: Optional[str] = None,
+                 policies: Optional[Sequence[str]] = None):
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[str]:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "policies")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class ClientPermissionsTokenExchangeScope(dict):
+    def __init__(__self__, *,
+                 decision_strategy: Optional[str] = None,
+                 description: Optional[str] = None,
+                 policies: Optional[Sequence[str]] = None):
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[str]:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "policies")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class ClientPermissionsViewScope(dict):
+    def __init__(__self__, *,
+                 decision_strategy: Optional[str] = None,
+                 description: Optional[str] = None,
+                 policies: Optional[Sequence[str]] = None):
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[str]:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "policies")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -171,9 +414,11 @@ class GetClientAuthenticationFlowBindingOverrideResult(dict):
 class GetClientAuthorizationResult(dict):
     def __init__(__self__, *,
                  allow_remote_resource_management: bool,
+                 decision_strategy: str,
                  keep_defaults: bool,
                  policy_enforcement_mode: str):
         pulumi.set(__self__, "allow_remote_resource_management", allow_remote_resource_management)
+        pulumi.set(__self__, "decision_strategy", decision_strategy)
         pulumi.set(__self__, "keep_defaults", keep_defaults)
         pulumi.set(__self__, "policy_enforcement_mode", policy_enforcement_mode)
 
@@ -181,6 +426,11 @@ class GetClientAuthorizationResult(dict):
     @pulumi.getter(name="allowRemoteResourceManagement")
     def allow_remote_resource_management(self) -> bool:
         return pulumi.get(self, "allow_remote_resource_management")
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> str:
+        return pulumi.get(self, "decision_strategy")
 
     @property
     @pulumi.getter(name="keepDefaults")

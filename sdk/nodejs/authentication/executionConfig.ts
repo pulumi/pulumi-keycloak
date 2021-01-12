@@ -108,16 +108,16 @@ export class ExecutionConfig extends pulumi.CustomResource {
             inputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as ExecutionConfigArgs | undefined;
-            if (!args || args.alias === undefined) {
+            if ((!args || args.alias === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'alias'");
             }
-            if (!args || args.config === undefined) {
+            if ((!args || args.config === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'config'");
             }
-            if (!args || args.executionId === undefined) {
+            if ((!args || args.executionId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'executionId'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["alias"] = args ? args.alias : undefined;

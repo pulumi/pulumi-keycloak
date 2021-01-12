@@ -42,14 +42,15 @@ type CustomUserFederation struct {
 // NewCustomUserFederation registers a new resource with the given unique name, arguments, and options.
 func NewCustomUserFederation(ctx *pulumi.Context,
 	name string, args *CustomUserFederationArgs, opts ...pulumi.ResourceOption) (*CustomUserFederation, error) {
-	if args == nil || args.ProviderId == nil {
-		return nil, errors.New("missing required argument 'ProviderId'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &CustomUserFederationArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ProviderId == nil {
+		return nil, errors.New("invalid value for required argument 'ProviderId'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource CustomUserFederation
 	err := ctx.RegisterResource("keycloak:index/customUserFederation:CustomUserFederation", name, args, &resource, opts...)

@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -76,6 +77,10 @@ export class Client extends pulumi.CustomResource {
      * SAML Redirect Binding URL for the client's assertion consumer service (login responses).
      */
     public readonly assertionConsumerRedirectUrl!: pulumi.Output<string | undefined>;
+    /**
+     * Override realm authentication flow bindings
+     */
+    public readonly authenticationFlowBindingOverrides!: pulumi.Output<outputs.saml.ClientAuthenticationFlowBindingOverrides | undefined>;
     /**
      * When specified, this URL will be used whenever Keycloak needs to link to this client.
      */
@@ -199,6 +204,7 @@ export class Client extends pulumi.CustomResource {
             const state = argsOrState as ClientState | undefined;
             inputs["assertionConsumerPostUrl"] = state ? state.assertionConsumerPostUrl : undefined;
             inputs["assertionConsumerRedirectUrl"] = state ? state.assertionConsumerRedirectUrl : undefined;
+            inputs["authenticationFlowBindingOverrides"] = state ? state.authenticationFlowBindingOverrides : undefined;
             inputs["baseUrl"] = state ? state.baseUrl : undefined;
             inputs["clientId"] = state ? state.clientId : undefined;
             inputs["clientSignatureRequired"] = state ? state.clientSignatureRequired : undefined;
@@ -228,14 +234,15 @@ export class Client extends pulumi.CustomResource {
             inputs["validRedirectUris"] = state ? state.validRedirectUris : undefined;
         } else {
             const args = argsOrState as ClientArgs | undefined;
-            if (!args || args.clientId === undefined) {
+            if ((!args || args.clientId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'clientId'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["assertionConsumerPostUrl"] = args ? args.assertionConsumerPostUrl : undefined;
             inputs["assertionConsumerRedirectUrl"] = args ? args.assertionConsumerRedirectUrl : undefined;
+            inputs["authenticationFlowBindingOverrides"] = args ? args.authenticationFlowBindingOverrides : undefined;
             inputs["baseUrl"] = args ? args.baseUrl : undefined;
             inputs["clientId"] = args ? args.clientId : undefined;
             inputs["clientSignatureRequired"] = args ? args.clientSignatureRequired : undefined;
@@ -287,6 +294,10 @@ export interface ClientState {
      * SAML Redirect Binding URL for the client's assertion consumer service (login responses).
      */
     readonly assertionConsumerRedirectUrl?: pulumi.Input<string>;
+    /**
+     * Override realm authentication flow bindings
+     */
+    readonly authenticationFlowBindingOverrides?: pulumi.Input<inputs.saml.ClientAuthenticationFlowBindingOverrides>;
     /**
      * When specified, this URL will be used whenever Keycloak needs to link to this client.
      */
@@ -409,6 +420,10 @@ export interface ClientArgs {
      * SAML Redirect Binding URL for the client's assertion consumer service (login responses).
      */
     readonly assertionConsumerRedirectUrl?: pulumi.Input<string>;
+    /**
+     * Override realm authentication flow bindings
+     */
+    readonly authenticationFlowBindingOverrides?: pulumi.Input<inputs.saml.ClientAuthenticationFlowBindingOverrides>;
     /**
      * When specified, this URL will be used whenever Keycloak needs to link to this client.
      */

@@ -99,20 +99,21 @@ type UserAttributeMapper struct {
 // NewUserAttributeMapper registers a new resource with the given unique name, arguments, and options.
 func NewUserAttributeMapper(ctx *pulumi.Context,
 	name string, args *UserAttributeMapperArgs, opts ...pulumi.ResourceOption) (*UserAttributeMapper, error) {
-	if args == nil || args.LdapAttribute == nil {
-		return nil, errors.New("missing required argument 'LdapAttribute'")
-	}
-	if args == nil || args.LdapUserFederationId == nil {
-		return nil, errors.New("missing required argument 'LdapUserFederationId'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
-	if args == nil || args.UserModelAttribute == nil {
-		return nil, errors.New("missing required argument 'UserModelAttribute'")
-	}
 	if args == nil {
-		args = &UserAttributeMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.LdapAttribute == nil {
+		return nil, errors.New("invalid value for required argument 'LdapAttribute'")
+	}
+	if args.LdapUserFederationId == nil {
+		return nil, errors.New("invalid value for required argument 'LdapUserFederationId'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
+	}
+	if args.UserModelAttribute == nil {
+		return nil, errors.New("invalid value for required argument 'UserModelAttribute'")
 	}
 	var resource UserAttributeMapper
 	err := ctx.RegisterResource("keycloak:ldap/userAttributeMapper:UserAttributeMapper", name, args, &resource, opts...)

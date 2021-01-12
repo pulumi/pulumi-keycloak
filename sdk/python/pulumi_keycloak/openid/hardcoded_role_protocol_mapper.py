@@ -110,10 +110,10 @@ class HardcodedRoleProtocolMapper(pulumi.CustomResource):
             __props__['client_id'] = client_id
             __props__['client_scope_id'] = client_scope_id
             __props__['name'] = name
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
-            if role_id is None:
+            if role_id is None and not opts.urn:
                 raise TypeError("Missing required property 'role_id'")
             __props__['role_id'] = role_id
         super(HardcodedRoleProtocolMapper, __self__).__init__(

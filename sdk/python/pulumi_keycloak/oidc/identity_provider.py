@@ -129,18 +129,18 @@ class IdentityProvider(pulumi.CustomResource):
 
             __props__['accepts_prompt_none_forward_from_client'] = accepts_prompt_none_forward_from_client
             __props__['add_read_token_role_on_create'] = add_read_token_role_on_create
-            if alias is None:
+            if alias is None and not opts.urn:
                 raise TypeError("Missing required property 'alias'")
             __props__['alias'] = alias
             __props__['authenticate_by_default'] = authenticate_by_default
-            if authorization_url is None:
+            if authorization_url is None and not opts.urn:
                 raise TypeError("Missing required property 'authorization_url'")
             __props__['authorization_url'] = authorization_url
             __props__['backchannel_supported'] = backchannel_supported
-            if client_id is None:
+            if client_id is None and not opts.urn:
                 raise TypeError("Missing required property 'client_id'")
             __props__['client_id'] = client_id
-            if client_secret is None:
+            if client_secret is None and not opts.urn:
                 raise TypeError("Missing required property 'client_secret'")
             __props__['client_secret'] = client_secret
             __props__['default_scopes'] = default_scopes
@@ -156,11 +156,11 @@ class IdentityProvider(pulumi.CustomResource):
             __props__['logout_url'] = logout_url
             __props__['post_broker_login_flow_alias'] = post_broker_login_flow_alias
             __props__['provider_id'] = provider_id
-            if realm is None:
+            if realm is None and not opts.urn:
                 raise TypeError("Missing required property 'realm'")
             __props__['realm'] = realm
             __props__['store_token'] = store_token
-            if token_url is None:
+            if token_url is None and not opts.urn:
                 raise TypeError("Missing required property 'token_url'")
             __props__['token_url'] = token_url
             __props__['trust_email'] = trust_email

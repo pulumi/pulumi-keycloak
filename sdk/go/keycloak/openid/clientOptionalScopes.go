@@ -28,17 +28,18 @@ type ClientOptionalScopes struct {
 // NewClientOptionalScopes registers a new resource with the given unique name, arguments, and options.
 func NewClientOptionalScopes(ctx *pulumi.Context,
 	name string, args *ClientOptionalScopesArgs, opts ...pulumi.ResourceOption) (*ClientOptionalScopes, error) {
-	if args == nil || args.ClientId == nil {
-		return nil, errors.New("missing required argument 'ClientId'")
-	}
-	if args == nil || args.OptionalScopes == nil {
-		return nil, errors.New("missing required argument 'OptionalScopes'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &ClientOptionalScopesArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ClientId == nil {
+		return nil, errors.New("invalid value for required argument 'ClientId'")
+	}
+	if args.OptionalScopes == nil {
+		return nil, errors.New("invalid value for required argument 'OptionalScopes'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource ClientOptionalScopes
 	err := ctx.RegisterResource("keycloak:openid/clientOptionalScopes:ClientOptionalScopes", name, args, &resource, opts...)

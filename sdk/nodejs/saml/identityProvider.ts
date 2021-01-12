@@ -220,13 +220,13 @@ export class IdentityProvider extends pulumi.CustomResource {
             inputs["xmlSignKeyInfoKeyNameTransformer"] = state ? state.xmlSignKeyInfoKeyNameTransformer : undefined;
         } else {
             const args = argsOrState as IdentityProviderArgs | undefined;
-            if (!args || args.alias === undefined) {
+            if ((!args || args.alias === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'alias'");
             }
-            if (!args || args.realm === undefined) {
+            if ((!args || args.realm === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realm'");
             }
-            if (!args || args.singleSignOnServiceUrl === undefined) {
+            if ((!args || args.singleSignOnServiceUrl === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'singleSignOnServiceUrl'");
             }
             inputs["addReadTokenRoleOnCreate"] = args ? args.addReadTokenRoleOnCreate : undefined;

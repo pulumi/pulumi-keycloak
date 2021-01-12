@@ -88,20 +88,21 @@ type ExecutionConfig struct {
 // NewExecutionConfig registers a new resource with the given unique name, arguments, and options.
 func NewExecutionConfig(ctx *pulumi.Context,
 	name string, args *ExecutionConfigArgs, opts ...pulumi.ResourceOption) (*ExecutionConfig, error) {
-	if args == nil || args.Alias == nil {
-		return nil, errors.New("missing required argument 'Alias'")
-	}
-	if args == nil || args.Config == nil {
-		return nil, errors.New("missing required argument 'Config'")
-	}
-	if args == nil || args.ExecutionId == nil {
-		return nil, errors.New("missing required argument 'ExecutionId'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &ExecutionConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Alias == nil {
+		return nil, errors.New("invalid value for required argument 'Alias'")
+	}
+	if args.Config == nil {
+		return nil, errors.New("invalid value for required argument 'Config'")
+	}
+	if args.ExecutionId == nil {
+		return nil, errors.New("invalid value for required argument 'ExecutionId'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource ExecutionConfig
 	err := ctx.RegisterResource("keycloak:authentication/executionConfig:ExecutionConfig", name, args, &resource, opts...)

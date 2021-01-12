@@ -7,6 +7,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 __all__ = ['Client']
 
@@ -17,6 +19,7 @@ class Client(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  assertion_consumer_post_url: Optional[pulumi.Input[str]] = None,
                  assertion_consumer_redirect_url: Optional[pulumi.Input[str]] = None,
+                 authentication_flow_binding_overrides: Optional[pulumi.Input[pulumi.InputType['ClientAuthenticationFlowBindingOverridesArgs']]] = None,
                  base_url: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_signature_required: Optional[pulumi.Input[bool]] = None,
@@ -84,6 +87,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] assertion_consumer_post_url: SAML POST Binding URL for the client's assertion consumer service (login responses).
         :param pulumi.Input[str] assertion_consumer_redirect_url: SAML Redirect Binding URL for the client's assertion consumer service (login responses).
+        :param pulumi.Input[pulumi.InputType['ClientAuthenticationFlowBindingOverridesArgs']] authentication_flow_binding_overrides: Override realm authentication flow bindings
         :param pulumi.Input[str] base_url: When specified, this URL will be used whenever Keycloak needs to link to this client.
         :param pulumi.Input[str] client_id: The unique ID of this client, referenced in the URI during authentication and in issued tokens.
         :param pulumi.Input[bool] client_signature_required: When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`.
@@ -131,8 +135,9 @@ class Client(pulumi.CustomResource):
 
             __props__['assertion_consumer_post_url'] = assertion_consumer_post_url
             __props__['assertion_consumer_redirect_url'] = assertion_consumer_redirect_url
+            __props__['authentication_flow_binding_overrides'] = authentication_flow_binding_overrides
             __props__['base_url'] = base_url
-            if client_id is None:
+            if client_id is None and not opts.urn:
                 raise TypeError("Missing required property 'client_id'")
             __props__['client_id'] = client_id
             __props__['client_signature_required'] = client_signature_required
@@ -152,7 +157,7 @@ class Client(pulumi.CustomResource):
             __props__['master_saml_processing_url'] = master_saml_processing_url
             __props__['name'] = name
             __props__['name_id_format'] = name_id_format
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
             __props__['root_url'] = root_url
@@ -174,6 +179,7 @@ class Client(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             assertion_consumer_post_url: Optional[pulumi.Input[str]] = None,
             assertion_consumer_redirect_url: Optional[pulumi.Input[str]] = None,
+            authentication_flow_binding_overrides: Optional[pulumi.Input[pulumi.InputType['ClientAuthenticationFlowBindingOverridesArgs']]] = None,
             base_url: Optional[pulumi.Input[str]] = None,
             client_id: Optional[pulumi.Input[str]] = None,
             client_signature_required: Optional[pulumi.Input[bool]] = None,
@@ -210,6 +216,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] assertion_consumer_post_url: SAML POST Binding URL for the client's assertion consumer service (login responses).
         :param pulumi.Input[str] assertion_consumer_redirect_url: SAML Redirect Binding URL for the client's assertion consumer service (login responses).
+        :param pulumi.Input[pulumi.InputType['ClientAuthenticationFlowBindingOverridesArgs']] authentication_flow_binding_overrides: Override realm authentication flow bindings
         :param pulumi.Input[str] base_url: When specified, this URL will be used whenever Keycloak needs to link to this client.
         :param pulumi.Input[str] client_id: The unique ID of this client, referenced in the URI during authentication and in issued tokens.
         :param pulumi.Input[bool] client_signature_required: When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`.
@@ -244,6 +251,7 @@ class Client(pulumi.CustomResource):
 
         __props__["assertion_consumer_post_url"] = assertion_consumer_post_url
         __props__["assertion_consumer_redirect_url"] = assertion_consumer_redirect_url
+        __props__["authentication_flow_binding_overrides"] = authentication_flow_binding_overrides
         __props__["base_url"] = base_url
         __props__["client_id"] = client_id
         __props__["client_signature_required"] = client_signature_required
@@ -288,6 +296,14 @@ class Client(pulumi.CustomResource):
         SAML Redirect Binding URL for the client's assertion consumer service (login responses).
         """
         return pulumi.get(self, "assertion_consumer_redirect_url")
+
+    @property
+    @pulumi.getter(name="authenticationFlowBindingOverrides")
+    def authentication_flow_binding_overrides(self) -> pulumi.Output[Optional['outputs.ClientAuthenticationFlowBindingOverrides']]:
+        """
+        Override realm authentication flow bindings
+        """
+        return pulumi.get(self, "authentication_flow_binding_overrides")
 
     @property
     @pulumi.getter(name="baseUrl")

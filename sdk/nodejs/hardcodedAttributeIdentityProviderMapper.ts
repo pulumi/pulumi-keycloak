@@ -79,13 +79,13 @@ export class HardcodedAttributeIdentityProviderMapper extends pulumi.CustomResou
             inputs["userSession"] = state ? state.userSession : undefined;
         } else {
             const args = argsOrState as HardcodedAttributeIdentityProviderMapperArgs | undefined;
-            if (!args || args.identityProviderAlias === undefined) {
+            if ((!args || args.identityProviderAlias === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'identityProviderAlias'");
             }
-            if (!args || args.realm === undefined) {
+            if ((!args || args.realm === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realm'");
             }
-            if (!args || args.userSession === undefined) {
+            if ((!args || args.userSession === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'userSession'");
             }
             inputs["attributeName"] = args ? args.attributeName : undefined;

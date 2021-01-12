@@ -134,16 +134,16 @@ export class UserAttributeMapper extends pulumi.CustomResource {
             inputs["userModelAttribute"] = state ? state.userModelAttribute : undefined;
         } else {
             const args = argsOrState as UserAttributeMapperArgs | undefined;
-            if (!args || args.ldapAttribute === undefined) {
+            if ((!args || args.ldapAttribute === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'ldapAttribute'");
             }
-            if (!args || args.ldapUserFederationId === undefined) {
+            if ((!args || args.ldapUserFederationId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if (!args || args.userModelAttribute === undefined) {
+            if ((!args || args.userModelAttribute === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'userModelAttribute'");
             }
             inputs["alwaysReadValueFromLdap"] = args ? args.alwaysReadValueFromLdap : undefined;

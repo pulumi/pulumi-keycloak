@@ -26,20 +26,21 @@ type ClientUserPolicy struct {
 // NewClientUserPolicy registers a new resource with the given unique name, arguments, and options.
 func NewClientUserPolicy(ctx *pulumi.Context,
 	name string, args *ClientUserPolicyArgs, opts ...pulumi.ResourceOption) (*ClientUserPolicy, error) {
-	if args == nil || args.DecisionStrategy == nil {
-		return nil, errors.New("missing required argument 'DecisionStrategy'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
-	if args == nil || args.ResourceServerId == nil {
-		return nil, errors.New("missing required argument 'ResourceServerId'")
-	}
-	if args == nil || args.Users == nil {
-		return nil, errors.New("missing required argument 'Users'")
-	}
 	if args == nil {
-		args = &ClientUserPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DecisionStrategy == nil {
+		return nil, errors.New("invalid value for required argument 'DecisionStrategy'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
+	}
+	if args.ResourceServerId == nil {
+		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
+	}
+	if args.Users == nil {
+		return nil, errors.New("invalid value for required argument 'Users'")
 	}
 	var resource ClientUserPolicy
 	err := ctx.RegisterResource("keycloak:openid/clientUserPolicy:ClientUserPolicy", name, args, &resource, opts...)

@@ -94,11 +94,12 @@ type Group struct {
 // NewGroup registers a new resource with the given unique name, arguments, and options.
 func NewGroup(ctx *pulumi.Context,
 	name string, args *GroupArgs, opts ...pulumi.ResourceOption) (*Group, error) {
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &GroupArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource Group
 	err := ctx.RegisterResource("keycloak:index/group:Group", name, args, &resource, opts...)

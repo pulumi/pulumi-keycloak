@@ -109,7 +109,7 @@ export class ClientScope extends pulumi.CustomResource {
             inputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as ClientScopeArgs | undefined;
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["consentScreenText"] = args ? args.consentScreenText : undefined;

@@ -27,20 +27,21 @@ type ClientRolePolicy struct {
 // NewClientRolePolicy registers a new resource with the given unique name, arguments, and options.
 func NewClientRolePolicy(ctx *pulumi.Context,
 	name string, args *ClientRolePolicyArgs, opts ...pulumi.ResourceOption) (*ClientRolePolicy, error) {
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
-	if args == nil || args.ResourceServerId == nil {
-		return nil, errors.New("missing required argument 'ResourceServerId'")
-	}
-	if args == nil || args.Roles == nil {
-		return nil, errors.New("missing required argument 'Roles'")
-	}
-	if args == nil || args.Type == nil {
-		return nil, errors.New("missing required argument 'Type'")
-	}
 	if args == nil {
-		args = &ClientRolePolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
+	}
+	if args.ResourceServerId == nil {
+		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
+	}
+	if args.Roles == nil {
+		return nil, errors.New("invalid value for required argument 'Roles'")
+	}
+	if args.Type == nil {
+		return nil, errors.New("invalid value for required argument 'Type'")
 	}
 	var resource ClientRolePolicy
 	err := ctx.RegisterResource("keycloak:openid/clientRolePolicy:ClientRolePolicy", name, args, &resource, opts...)

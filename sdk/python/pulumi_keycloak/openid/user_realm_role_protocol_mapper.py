@@ -120,7 +120,7 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
             __props__['add_to_access_token'] = add_to_access_token
             __props__['add_to_id_token'] = add_to_id_token
             __props__['add_to_userinfo'] = add_to_userinfo
-            if claim_name is None:
+            if claim_name is None and not opts.urn:
                 raise TypeError("Missing required property 'claim_name'")
             __props__['claim_name'] = claim_name
             __props__['claim_value_type'] = claim_value_type
@@ -128,7 +128,7 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
             __props__['client_scope_id'] = client_scope_id
             __props__['multivalued'] = multivalued
             __props__['name'] = name
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
             __props__['realm_role_prefix'] = realm_role_prefix

@@ -100,17 +100,18 @@ type AttributeImporterIdentityProviderMapper struct {
 // NewAttributeImporterIdentityProviderMapper registers a new resource with the given unique name, arguments, and options.
 func NewAttributeImporterIdentityProviderMapper(ctx *pulumi.Context,
 	name string, args *AttributeImporterIdentityProviderMapperArgs, opts ...pulumi.ResourceOption) (*AttributeImporterIdentityProviderMapper, error) {
-	if args == nil || args.IdentityProviderAlias == nil {
-		return nil, errors.New("missing required argument 'IdentityProviderAlias'")
-	}
-	if args == nil || args.Realm == nil {
-		return nil, errors.New("missing required argument 'Realm'")
-	}
-	if args == nil || args.UserAttribute == nil {
-		return nil, errors.New("missing required argument 'UserAttribute'")
-	}
 	if args == nil {
-		args = &AttributeImporterIdentityProviderMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.IdentityProviderAlias == nil {
+		return nil, errors.New("invalid value for required argument 'IdentityProviderAlias'")
+	}
+	if args.Realm == nil {
+		return nil, errors.New("invalid value for required argument 'Realm'")
+	}
+	if args.UserAttribute == nil {
+		return nil, errors.New("invalid value for required argument 'UserAttribute'")
 	}
 	var resource AttributeImporterIdentityProviderMapper
 	err := ctx.RegisterResource("keycloak:index/attributeImporterIdentityProviderMapper:AttributeImporterIdentityProviderMapper", name, args, &resource, opts...)

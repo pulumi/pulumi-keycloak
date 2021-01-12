@@ -90,7 +90,7 @@ class Group(pulumi.CustomResource):
             __props__['attributes'] = attributes
             __props__['name'] = name
             __props__['parent_id'] = parent_id
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
             __props__['path'] = None

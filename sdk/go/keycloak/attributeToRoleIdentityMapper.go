@@ -38,17 +38,18 @@ type AttributeToRoleIdentityMapper struct {
 // NewAttributeToRoleIdentityMapper registers a new resource with the given unique name, arguments, and options.
 func NewAttributeToRoleIdentityMapper(ctx *pulumi.Context,
 	name string, args *AttributeToRoleIdentityMapperArgs, opts ...pulumi.ResourceOption) (*AttributeToRoleIdentityMapper, error) {
-	if args == nil || args.IdentityProviderAlias == nil {
-		return nil, errors.New("missing required argument 'IdentityProviderAlias'")
-	}
-	if args == nil || args.Realm == nil {
-		return nil, errors.New("missing required argument 'Realm'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &AttributeToRoleIdentityMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.IdentityProviderAlias == nil {
+		return nil, errors.New("invalid value for required argument 'IdentityProviderAlias'")
+	}
+	if args.Realm == nil {
+		return nil, errors.New("invalid value for required argument 'Realm'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource AttributeToRoleIdentityMapper
 	err := ctx.RegisterResource("keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper", name, args, &resource, opts...)

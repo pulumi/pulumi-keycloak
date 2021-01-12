@@ -27,17 +27,18 @@ type HardcodedGroupMapper struct {
 // NewHardcodedGroupMapper registers a new resource with the given unique name, arguments, and options.
 func NewHardcodedGroupMapper(ctx *pulumi.Context,
 	name string, args *HardcodedGroupMapperArgs, opts ...pulumi.ResourceOption) (*HardcodedGroupMapper, error) {
-	if args == nil || args.Group == nil {
-		return nil, errors.New("missing required argument 'Group'")
-	}
-	if args == nil || args.LdapUserFederationId == nil {
-		return nil, errors.New("missing required argument 'LdapUserFederationId'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &HardcodedGroupMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Group == nil {
+		return nil, errors.New("invalid value for required argument 'Group'")
+	}
+	if args.LdapUserFederationId == nil {
+		return nil, errors.New("invalid value for required argument 'LdapUserFederationId'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource HardcodedGroupMapper
 	err := ctx.RegisterResource("keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper", name, args, &resource, opts...)

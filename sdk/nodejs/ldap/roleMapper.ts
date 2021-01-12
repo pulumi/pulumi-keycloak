@@ -86,25 +86,25 @@ export class RoleMapper extends pulumi.CustomResource {
             inputs["userRolesRetrieveStrategy"] = state ? state.userRolesRetrieveStrategy : undefined;
         } else {
             const args = argsOrState as RoleMapperArgs | undefined;
-            if (!args || args.ldapRolesDn === undefined) {
+            if ((!args || args.ldapRolesDn === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'ldapRolesDn'");
             }
-            if (!args || args.ldapUserFederationId === undefined) {
+            if ((!args || args.ldapUserFederationId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if (!args || args.membershipLdapAttribute === undefined) {
+            if ((!args || args.membershipLdapAttribute === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'membershipLdapAttribute'");
             }
-            if (!args || args.membershipUserLdapAttribute === undefined) {
+            if ((!args || args.membershipUserLdapAttribute === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'membershipUserLdapAttribute'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if (!args || args.roleNameLdapAttribute === undefined) {
+            if ((!args || args.roleNameLdapAttribute === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'roleNameLdapAttribute'");
             }
-            if (!args || args.roleObjectClasses === undefined) {
+            if ((!args || args.roleObjectClasses === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'roleObjectClasses'");
             }
             inputs["clientId"] = args ? args.clientId : undefined;

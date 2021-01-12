@@ -61,16 +61,16 @@ export class ClientUserPolicy extends pulumi.CustomResource {
             inputs["users"] = state ? state.users : undefined;
         } else {
             const args = argsOrState as ClientUserPolicyArgs | undefined;
-            if (!args || args.decisionStrategy === undefined) {
+            if ((!args || args.decisionStrategy === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'decisionStrategy'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if (!args || args.resourceServerId === undefined) {
+            if ((!args || args.resourceServerId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
-            if (!args || args.users === undefined) {
+            if ((!args || args.users === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'users'");
             }
             inputs["decisionStrategy"] = args ? args.decisionStrategy : undefined;

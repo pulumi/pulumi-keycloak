@@ -69,10 +69,10 @@ class CustomUserFederation(pulumi.CustomResource):
             __props__['name'] = name
             __props__['parent_id'] = parent_id
             __props__['priority'] = priority
-            if provider_id is None:
+            if provider_id is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_id'")
             __props__['provider_id'] = provider_id
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
         super(CustomUserFederation, __self__).__init__(

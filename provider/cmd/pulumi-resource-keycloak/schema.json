@@ -687,6 +687,198 @@
                 "value"
             ]
         },
+        "keycloak:index/UsersPermissionsImpersonateScope:UsersPermissionsImpersonateScope": {
+            "properties": {
+                "decisionStrategy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "keycloak:index/UsersPermissionsManageGroupMembershipScope:UsersPermissionsManageGroupMembershipScope": {
+            "properties": {
+                "decisionStrategy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "keycloak:index/UsersPermissionsManageScope:UsersPermissionsManageScope": {
+            "properties": {
+                "decisionStrategy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "keycloak:index/UsersPermissionsMapRolesScope:UsersPermissionsMapRolesScope": {
+            "properties": {
+                "decisionStrategy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "keycloak:index/UsersPermissionsUserImpersonatedScope:UsersPermissionsUserImpersonatedScope": {
+            "properties": {
+                "decisionStrategy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "keycloak:index/UsersPermissionsViewScope:UsersPermissionsViewScope": {
+            "properties": {
+                "decisionStrategy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
         "keycloak:index/getRealmInternationalization:getRealmInternationalization": {
             "properties": {
                 "defaultLocale": {
@@ -1478,6 +1670,15 @@
                         }
                     }
                 },
+                "decisionStrategy": {
+                    "type": "string",
+                    "description": "Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "keepDefaults": {
                     "type": "boolean",
                     "description": "When `true`, defaults set by Keycloak will be respected. Defaults to `false`.\n",
@@ -1535,6 +1736,230 @@
                 "id",
                 "path"
             ]
+        },
+        "keycloak:openid/ClientPermissionsConfigureScope:ClientPermissionsConfigureScope": {
+            "properties": {
+                "decisionStrategy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "keycloak:openid/ClientPermissionsManageScope:ClientPermissionsManageScope": {
+            "properties": {
+                "decisionStrategy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "keycloak:openid/ClientPermissionsMapRolesClientScopeScope:ClientPermissionsMapRolesClientScopeScope": {
+            "properties": {
+                "decisionStrategy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "keycloak:openid/ClientPermissionsMapRolesCompositeScope:ClientPermissionsMapRolesCompositeScope": {
+            "properties": {
+                "decisionStrategy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "keycloak:openid/ClientPermissionsMapRolesScope:ClientPermissionsMapRolesScope": {
+            "properties": {
+                "decisionStrategy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "keycloak:openid/ClientPermissionsTokenExchangeScope:ClientPermissionsTokenExchangeScope": {
+            "properties": {
+                "decisionStrategy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "keycloak:openid/ClientPermissionsViewScope:ClientPermissionsViewScope": {
+            "properties": {
+                "decisionStrategy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
         },
         "keycloak:openid/ClientRolePolicyRole:ClientRolePolicyRole": {
             "properties": {
@@ -1601,6 +2026,14 @@
                         }
                     }
                 },
+                "decisionStrategy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "keepDefaults": {
                     "type": "boolean",
                     "language": {
@@ -1621,6 +2054,7 @@
             "type": "object",
             "required": [
                 "allowRemoteResourceManagement",
+                "decisionStrategy",
                 "keepDefaults",
                 "policyEnforcementMode"
             ],
@@ -1668,6 +2102,29 @@
                     "requiredInputs": []
                 }
             }
+        },
+        "keycloak:saml/ClientAuthenticationFlowBindingOverrides:ClientAuthenticationFlowBindingOverrides": {
+            "properties": {
+                "browserId": {
+                    "type": "string",
+                    "description": "Browser flow id, (flow needs to exist)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "directGrantId": {
+                    "type": "string",
+                    "description": "Direct grant flow id (flow needs to exist)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
         }
     },
     "provider": {
@@ -1752,7 +2209,7 @@
     },
     "resources": {
         "keycloak:authentication/execution:Execution": {
-            "description": "Allows for creating and managing an authentication execution within Keycloak.\n\nAn authentication execution is an action that the user or service may or may not take when authenticating through an authentication\nflow.\n\n\u003e Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst flow = new keycloak.authentication.Flow(\"flow\", {\n    realmId: realm.id,\n    alias: \"my-flow-alias\",\n});\n// first execution\nconst executionOne = new keycloak.authentication.Execution(\"executionOne\", {\n    realmId: realm.id,\n    parentFlowAlias: flow.alias,\n    authenticator: \"auth-cookie\",\n    requirement: \"ALTERNATIVE\",\n});\n// second execution\nconst executionTwo = new keycloak.authentication.Execution(\"executionTwo\", {\n    realmId: realm.id,\n    parentFlowAlias: flow.alias,\n    authenticator: \"identity-provider-redirector\",\n    requirement: \"ALTERNATIVE\",\n}, {\n    dependsOn: [executionOne],\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nflow = keycloak.authentication.Flow(\"flow\",\n    realm_id=realm.id,\n    alias=\"my-flow-alias\")\n# first execution\nexecution_one = keycloak.authentication.Execution(\"executionOne\",\n    realm_id=realm.id,\n    parent_flow_alias=flow.alias,\n    authenticator=\"auth-cookie\",\n    requirement=\"ALTERNATIVE\")\n# second execution\nexecution_two = keycloak.authentication.Execution(\"executionTwo\",\n    realm_id=realm.id,\n    parent_flow_alias=flow.alias,\n    authenticator=\"identity-provider-redirector\",\n    requirement=\"ALTERNATIVE\",\n    opts=ResourceOptions(depends_on=[execution_one]))\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var flow = new Keycloak.Authentication.Flow(\"flow\", new Keycloak.Authentication.FlowArgs\n        {\n            RealmId = realm.Id,\n            Alias = \"my-flow-alias\",\n        });\n        // first execution\n        var executionOne = new Keycloak.Authentication.Execution(\"executionOne\", new Keycloak.Authentication.ExecutionArgs\n        {\n            RealmId = realm.Id,\n            ParentFlowAlias = flow.Alias,\n            Authenticator = \"auth-cookie\",\n            Requirement = \"ALTERNATIVE\",\n        });\n        // second execution\n        var executionTwo = new Keycloak.Authentication.Execution(\"executionTwo\", new Keycloak.Authentication.ExecutionArgs\n        {\n            RealmId = realm.Id,\n            ParentFlowAlias = flow.Alias,\n            Authenticator = \"identity-provider-redirector\",\n            Requirement = \"ALTERNATIVE\",\n        }, new CustomResourceOptions\n        {\n            DependsOn = \n            {\n                executionOne,\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/authentication\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tflow, err := authentication.NewFlow(ctx, \"flow\", \u0026authentication.FlowArgs{\n\t\t\tRealmId: realm.ID(),\n\t\t\tAlias:   pulumi.String(\"my-flow-alias\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texecutionOne, err := authentication.NewExecution(ctx, \"executionOne\", \u0026authentication.ExecutionArgs{\n\t\t\tRealmId:         realm.ID(),\n\t\t\tParentFlowAlias: flow.Alias,\n\t\t\tAuthenticator:   pulumi.String(\"auth-cookie\"),\n\t\t\tRequirement:     pulumi.String(\"ALTERNATIVE\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = authentication.NewExecution(ctx, \"executionTwo\", \u0026authentication.ExecutionArgs{\n\t\t\tRealmId:         realm.ID(),\n\t\t\tParentFlowAlias: flow.Alias,\n\t\t\tAuthenticator:   pulumi.String(\"identity-provider-redirector\"),\n\t\t\tRequirement:     pulumi.String(\"ALTERNATIVE\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\texecutionOne,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nAuthentication executions can be imported using the formats`{{realmId}}/{{parentFlowAlias}}/{{authenticationExecutionId}}`. Examplebash\n\n```sh\n $ pulumi import keycloak:authentication/execution:Execution keycloak_authentication_execution my-realm/my-flow/30559fcf-6fb8-45ea-8c46-2b86f46ebc17\n```\n\n ",
+            "description": "Allows for creating and managing an authentication execution within Keycloak.\n\nAn authentication execution is an action that the user or service may or may not take when authenticating through an authentication\nflow.\n\n\u003e Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst flow = new keycloak.authentication.Flow(\"flow\", {\n    realmId: realm.id,\n    alias: \"my-flow-alias\",\n});\n// first execution\nconst executionOne = new keycloak.authentication.Execution(\"executionOne\", {\n    realmId: realm.id,\n    parentFlowAlias: flow.alias,\n    authenticator: \"auth-cookie\",\n    requirement: \"ALTERNATIVE\",\n});\n// second execution\nconst executionTwo = new keycloak.authentication.Execution(\"executionTwo\", {\n    realmId: realm.id,\n    parentFlowAlias: flow.alias,\n    authenticator: \"identity-provider-redirector\",\n    requirement: \"ALTERNATIVE\",\n}, {\n    dependsOn: [executionOne],\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nflow = keycloak.authentication.Flow(\"flow\",\n    realm_id=realm.id,\n    alias=\"my-flow-alias\")\n# first execution\nexecution_one = keycloak.authentication.Execution(\"executionOne\",\n    realm_id=realm.id,\n    parent_flow_alias=flow.alias,\n    authenticator=\"auth-cookie\",\n    requirement=\"ALTERNATIVE\")\n# second execution\nexecution_two = keycloak.authentication.Execution(\"executionTwo\",\n    realm_id=realm.id,\n    parent_flow_alias=flow.alias,\n    authenticator=\"identity-provider-redirector\",\n    requirement=\"ALTERNATIVE\",\n    opts=pulumi.ResourceOptions(depends_on=[execution_one]))\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var flow = new Keycloak.Authentication.Flow(\"flow\", new Keycloak.Authentication.FlowArgs\n        {\n            RealmId = realm.Id,\n            Alias = \"my-flow-alias\",\n        });\n        // first execution\n        var executionOne = new Keycloak.Authentication.Execution(\"executionOne\", new Keycloak.Authentication.ExecutionArgs\n        {\n            RealmId = realm.Id,\n            ParentFlowAlias = flow.Alias,\n            Authenticator = \"auth-cookie\",\n            Requirement = \"ALTERNATIVE\",\n        });\n        // second execution\n        var executionTwo = new Keycloak.Authentication.Execution(\"executionTwo\", new Keycloak.Authentication.ExecutionArgs\n        {\n            RealmId = realm.Id,\n            ParentFlowAlias = flow.Alias,\n            Authenticator = \"identity-provider-redirector\",\n            Requirement = \"ALTERNATIVE\",\n        }, new CustomResourceOptions\n        {\n            DependsOn = \n            {\n                executionOne,\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/authentication\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tflow, err := authentication.NewFlow(ctx, \"flow\", \u0026authentication.FlowArgs{\n\t\t\tRealmId: realm.ID(),\n\t\t\tAlias:   pulumi.String(\"my-flow-alias\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texecutionOne, err := authentication.NewExecution(ctx, \"executionOne\", \u0026authentication.ExecutionArgs{\n\t\t\tRealmId:         realm.ID(),\n\t\t\tParentFlowAlias: flow.Alias,\n\t\t\tAuthenticator:   pulumi.String(\"auth-cookie\"),\n\t\t\tRequirement:     pulumi.String(\"ALTERNATIVE\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = authentication.NewExecution(ctx, \"executionTwo\", \u0026authentication.ExecutionArgs{\n\t\t\tRealmId:         realm.ID(),\n\t\t\tParentFlowAlias: flow.Alias,\n\t\t\tAuthenticator:   pulumi.String(\"identity-provider-redirector\"),\n\t\t\tRequirement:     pulumi.String(\"ALTERNATIVE\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\texecutionOne,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nAuthentication executions can be imported using the formats`{{realmId}}/{{parentFlowAlias}}/{{authenticationExecutionId}}`. Examplebash\n\n```sh\n $ pulumi import keycloak:authentication/execution:Execution keycloak_authentication_execution my-realm/my-flow/30559fcf-6fb8-45ea-8c46-2b86f46ebc17\n```\n\n ",
             "properties": {
                 "authenticator": {
                     "type": "string",
@@ -4475,6 +4932,103 @@
                 "type": "object"
             }
         },
+        "keycloak:index/usersPermissions:UsersPermissions": {
+            "properties": {
+                "authorizationResourceServerId": {
+                    "type": "string",
+                    "description": "Resource server id representing the realm management client on which this permission is managed\n"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "impersonateScope": {
+                    "$ref": "#/types/keycloak:index/UsersPermissionsImpersonateScope:UsersPermissionsImpersonateScope"
+                },
+                "manageGroupMembershipScope": {
+                    "$ref": "#/types/keycloak:index/UsersPermissionsManageGroupMembershipScope:UsersPermissionsManageGroupMembershipScope"
+                },
+                "manageScope": {
+                    "$ref": "#/types/keycloak:index/UsersPermissionsManageScope:UsersPermissionsManageScope"
+                },
+                "mapRolesScope": {
+                    "$ref": "#/types/keycloak:index/UsersPermissionsMapRolesScope:UsersPermissionsMapRolesScope"
+                },
+                "realmId": {
+                    "type": "string"
+                },
+                "userImpersonatedScope": {
+                    "$ref": "#/types/keycloak:index/UsersPermissionsUserImpersonatedScope:UsersPermissionsUserImpersonatedScope"
+                },
+                "viewScope": {
+                    "$ref": "#/types/keycloak:index/UsersPermissionsViewScope:UsersPermissionsViewScope"
+                }
+            },
+            "required": [
+                "authorizationResourceServerId",
+                "enabled",
+                "realmId"
+            ],
+            "inputProperties": {
+                "impersonateScope": {
+                    "$ref": "#/types/keycloak:index/UsersPermissionsImpersonateScope:UsersPermissionsImpersonateScope"
+                },
+                "manageGroupMembershipScope": {
+                    "$ref": "#/types/keycloak:index/UsersPermissionsManageGroupMembershipScope:UsersPermissionsManageGroupMembershipScope"
+                },
+                "manageScope": {
+                    "$ref": "#/types/keycloak:index/UsersPermissionsManageScope:UsersPermissionsManageScope"
+                },
+                "mapRolesScope": {
+                    "$ref": "#/types/keycloak:index/UsersPermissionsMapRolesScope:UsersPermissionsMapRolesScope"
+                },
+                "realmId": {
+                    "type": "string"
+                },
+                "userImpersonatedScope": {
+                    "$ref": "#/types/keycloak:index/UsersPermissionsUserImpersonatedScope:UsersPermissionsUserImpersonatedScope"
+                },
+                "viewScope": {
+                    "$ref": "#/types/keycloak:index/UsersPermissionsViewScope:UsersPermissionsViewScope"
+                }
+            },
+            "requiredInputs": [
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering UsersPermissions resources.\n",
+                "properties": {
+                    "authorizationResourceServerId": {
+                        "type": "string",
+                        "description": "Resource server id representing the realm management client on which this permission is managed\n"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "impersonateScope": {
+                        "$ref": "#/types/keycloak:index/UsersPermissionsImpersonateScope:UsersPermissionsImpersonateScope"
+                    },
+                    "manageGroupMembershipScope": {
+                        "$ref": "#/types/keycloak:index/UsersPermissionsManageGroupMembershipScope:UsersPermissionsManageGroupMembershipScope"
+                    },
+                    "manageScope": {
+                        "$ref": "#/types/keycloak:index/UsersPermissionsManageScope:UsersPermissionsManageScope"
+                    },
+                    "mapRolesScope": {
+                        "$ref": "#/types/keycloak:index/UsersPermissionsMapRolesScope:UsersPermissionsMapRolesScope"
+                    },
+                    "realmId": {
+                        "type": "string"
+                    },
+                    "userImpersonatedScope": {
+                        "$ref": "#/types/keycloak:index/UsersPermissionsUserImpersonatedScope:UsersPermissionsUserImpersonatedScope"
+                    },
+                    "viewScope": {
+                        "$ref": "#/types/keycloak:index/UsersPermissionsViewScope:UsersPermissionsViewScope"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "keycloak:ldap/fullNameMapper:FullNameMapper": {
             "description": "Allows for creating and managing full name mappers for Keycloak users federated via LDAP.\n\nThe LDAP full name mapper can map a user's full name from an LDAP attribute to the first and last name attributes of a\nKeycloak user.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst ldapUserFederation = new keycloak.ldap.UserFederation(\"ldapUserFederation\", {\n    realmId: realm.id,\n    usernameLdapAttribute: \"cn\",\n    rdnLdapAttribute: \"cn\",\n    uuidLdapAttribute: \"entryDN\",\n    userObjectClasses: [\n        \"simpleSecurityObject\",\n        \"organizationalRole\",\n    ],\n    connectionUrl: \"ldap://openldap\",\n    usersDn: \"dc=example,dc=org\",\n    bindDn: \"cn=admin,dc=example,dc=org\",\n    bindCredential: \"admin\",\n});\nconst ldapFullNameMapper = new keycloak.ldap.FullNameMapper(\"ldapFullNameMapper\", {\n    realmId: realm.id,\n    ldapUserFederationId: ldapUserFederation.id,\n    ldapFullNameAttribute: \"cn\",\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nldap_user_federation = keycloak.ldap.UserFederation(\"ldapUserFederation\",\n    realm_id=realm.id,\n    username_ldap_attribute=\"cn\",\n    rdn_ldap_attribute=\"cn\",\n    uuid_ldap_attribute=\"entryDN\",\n    user_object_classes=[\n        \"simpleSecurityObject\",\n        \"organizationalRole\",\n    ],\n    connection_url=\"ldap://openldap\",\n    users_dn=\"dc=example,dc=org\",\n    bind_dn=\"cn=admin,dc=example,dc=org\",\n    bind_credential=\"admin\")\nldap_full_name_mapper = keycloak.ldap.FullNameMapper(\"ldapFullNameMapper\",\n    realm_id=realm.id,\n    ldap_user_federation_id=ldap_user_federation.id,\n    ldap_full_name_attribute=\"cn\")\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var ldapUserFederation = new Keycloak.Ldap.UserFederation(\"ldapUserFederation\", new Keycloak.Ldap.UserFederationArgs\n        {\n            RealmId = realm.Id,\n            UsernameLdapAttribute = \"cn\",\n            RdnLdapAttribute = \"cn\",\n            UuidLdapAttribute = \"entryDN\",\n            UserObjectClasses = \n            {\n                \"simpleSecurityObject\",\n                \"organizationalRole\",\n            },\n            ConnectionUrl = \"ldap://openldap\",\n            UsersDn = \"dc=example,dc=org\",\n            BindDn = \"cn=admin,dc=example,dc=org\",\n            BindCredential = \"admin\",\n        });\n        var ldapFullNameMapper = new Keycloak.Ldap.FullNameMapper(\"ldapFullNameMapper\", new Keycloak.Ldap.FullNameMapperArgs\n        {\n            RealmId = realm.Id,\n            LdapUserFederationId = ldapUserFederation.Id,\n            LdapFullNameAttribute = \"cn\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/ldap\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tldapUserFederation, err := ldap.NewUserFederation(ctx, \"ldapUserFederation\", \u0026ldap.UserFederationArgs{\n\t\t\tRealmId:               realm.ID(),\n\t\t\tUsernameLdapAttribute: pulumi.String(\"cn\"),\n\t\t\tRdnLdapAttribute:      pulumi.String(\"cn\"),\n\t\t\tUuidLdapAttribute:     pulumi.String(\"entryDN\"),\n\t\t\tUserObjectClasses: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"simpleSecurityObject\"),\n\t\t\t\tpulumi.String(\"organizationalRole\"),\n\t\t\t},\n\t\t\tConnectionUrl:  pulumi.String(\"ldap://openldap\"),\n\t\t\tUsersDn:        pulumi.String(\"dc=example,dc=org\"),\n\t\t\tBindDn:         pulumi.String(\"cn=admin,dc=example,dc=org\"),\n\t\t\tBindCredential: pulumi.String(\"admin\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ldap.NewFullNameMapper(ctx, \"ldapFullNameMapper\", \u0026ldap.FullNameMapperArgs{\n\t\t\tRealmId:               realm.ID(),\n\t\t\tLdapUserFederationId:  ldapUserFederation.ID(),\n\t\t\tLdapFullNameAttribute: pulumi.String(\"cn\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nLDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash\n\n```sh\n $ pulumi import keycloak:ldap/fullNameMapper:FullNameMapper ldap_full_name_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67\n```\n\n ",
             "properties": {
@@ -4593,6 +5147,10 @@
                     "type": "string",
                     "description": "When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.\n"
                 },
+                "groupsPath": {
+                    "type": "string",
+                    "description": "Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.\n"
+                },
                 "ignoreMissingGroups": {
                     "type": "boolean",
                     "description": "When `true`, missing groups in the hierarchy will be ignored.\n"
@@ -4630,7 +5188,7 @@
                 },
                 "mode": {
                     "type": "string",
-                    "description": "Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.\n"
+                    "description": "Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.\n"
                 },
                 "name": {
                     "type": "string",
@@ -4652,6 +5210,7 @@
             "required": [
                 "groupNameLdapAttribute",
                 "groupObjectClasses",
+                "groupsPath",
                 "ldapGroupsDn",
                 "ldapUserFederationId",
                 "membershipLdapAttribute",
@@ -4679,6 +5238,10 @@
                     "type": "string",
                     "description": "When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.\n"
                 },
+                "groupsPath": {
+                    "type": "string",
+                    "description": "Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.\n"
+                },
                 "ignoreMissingGroups": {
                     "type": "boolean",
                     "description": "When `true`, missing groups in the hierarchy will be ignored.\n"
@@ -4716,7 +5279,7 @@
                 },
                 "mode": {
                     "type": "string",
-                    "description": "Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.\n"
+                    "description": "Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.\n"
                 },
                 "name": {
                     "type": "string",
@@ -4766,6 +5329,10 @@
                         "type": "string",
                         "description": "When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.\n"
                     },
+                    "groupsPath": {
+                        "type": "string",
+                        "description": "Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.\n"
+                    },
                     "ignoreMissingGroups": {
                         "type": "boolean",
                         "description": "When `true`, missing groups in the hierarchy will be ignored.\n"
@@ -4803,7 +5370,7 @@
                     },
                     "mode": {
                         "type": "string",
-                        "description": "Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.\n"
+                        "description": "Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.\n"
                     },
                     "name": {
                         "type": "string",
@@ -6617,9 +7184,25 @@
                     "type": "string",
                     "description": "The Client ID for this client, referenced in the URI during authentication and in issued tokens.\n"
                 },
+                "clientOfflineSessionIdleTimeout": {
+                    "type": "string",
+                    "description": "Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.\n"
+                },
+                "clientOfflineSessionMaxLifespan": {
+                    "type": "string",
+                    "description": "Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.\n"
+                },
                 "clientSecret": {
                     "type": "string",
                     "description": "The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.\n"
+                },
+                "clientSessionIdleTimeout": {
+                    "type": "string",
+                    "description": "Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.\n"
+                },
+                "clientSessionMaxLifespan": {
+                    "type": "string",
+                    "description": "Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.\n"
                 },
                 "consentRequired": {
                     "type": "boolean",
@@ -6738,9 +7321,25 @@
                     "type": "string",
                     "description": "The Client ID for this client, referenced in the URI during authentication and in issued tokens.\n"
                 },
+                "clientOfflineSessionIdleTimeout": {
+                    "type": "string",
+                    "description": "Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.\n"
+                },
+                "clientOfflineSessionMaxLifespan": {
+                    "type": "string",
+                    "description": "Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.\n"
+                },
                 "clientSecret": {
                     "type": "string",
                     "description": "The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.\n"
+                },
+                "clientSessionIdleTimeout": {
+                    "type": "string",
+                    "description": "Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.\n"
+                },
+                "clientSessionMaxLifespan": {
+                    "type": "string",
+                    "description": "Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.\n"
                 },
                 "consentRequired": {
                     "type": "boolean",
@@ -6849,9 +7448,25 @@
                         "type": "string",
                         "description": "The Client ID for this client, referenced in the URI during authentication and in issued tokens.\n"
                     },
+                    "clientOfflineSessionIdleTimeout": {
+                        "type": "string",
+                        "description": "Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.\n"
+                    },
+                    "clientOfflineSessionMaxLifespan": {
+                        "type": "string",
+                        "description": "Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.\n"
+                    },
                     "clientSecret": {
                         "type": "string",
                         "description": "The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.\n"
+                    },
+                    "clientSessionIdleTimeout": {
+                        "type": "string",
+                        "description": "Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.\n"
+                    },
+                    "clientSessionMaxLifespan": {
+                        "type": "string",
+                        "description": "Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.\n"
                     },
                     "consentRequired": {
                         "type": "boolean",
@@ -7699,6 +8314,123 @@
                     "realmId": {
                         "type": "string",
                         "description": "The realm this client and scopes exists in.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:openid/clientPermissions:ClientPermissions": {
+            "properties": {
+                "authorizationResourceServerId": {
+                    "type": "string",
+                    "description": "Resource server id representing the realm management client on which this permission is managed\n"
+                },
+                "clientId": {
+                    "type": "string"
+                },
+                "configureScope": {
+                    "$ref": "#/types/keycloak:openid/ClientPermissionsConfigureScope:ClientPermissionsConfigureScope"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "manageScope": {
+                    "$ref": "#/types/keycloak:openid/ClientPermissionsManageScope:ClientPermissionsManageScope"
+                },
+                "mapRolesClientScopeScope": {
+                    "$ref": "#/types/keycloak:openid/ClientPermissionsMapRolesClientScopeScope:ClientPermissionsMapRolesClientScopeScope"
+                },
+                "mapRolesCompositeScope": {
+                    "$ref": "#/types/keycloak:openid/ClientPermissionsMapRolesCompositeScope:ClientPermissionsMapRolesCompositeScope"
+                },
+                "mapRolesScope": {
+                    "$ref": "#/types/keycloak:openid/ClientPermissionsMapRolesScope:ClientPermissionsMapRolesScope"
+                },
+                "realmId": {
+                    "type": "string"
+                },
+                "tokenExchangeScope": {
+                    "$ref": "#/types/keycloak:openid/ClientPermissionsTokenExchangeScope:ClientPermissionsTokenExchangeScope"
+                },
+                "viewScope": {
+                    "$ref": "#/types/keycloak:openid/ClientPermissionsViewScope:ClientPermissionsViewScope"
+                }
+            },
+            "required": [
+                "authorizationResourceServerId",
+                "clientId",
+                "enabled",
+                "realmId"
+            ],
+            "inputProperties": {
+                "clientId": {
+                    "type": "string"
+                },
+                "configureScope": {
+                    "$ref": "#/types/keycloak:openid/ClientPermissionsConfigureScope:ClientPermissionsConfigureScope"
+                },
+                "manageScope": {
+                    "$ref": "#/types/keycloak:openid/ClientPermissionsManageScope:ClientPermissionsManageScope"
+                },
+                "mapRolesClientScopeScope": {
+                    "$ref": "#/types/keycloak:openid/ClientPermissionsMapRolesClientScopeScope:ClientPermissionsMapRolesClientScopeScope"
+                },
+                "mapRolesCompositeScope": {
+                    "$ref": "#/types/keycloak:openid/ClientPermissionsMapRolesCompositeScope:ClientPermissionsMapRolesCompositeScope"
+                },
+                "mapRolesScope": {
+                    "$ref": "#/types/keycloak:openid/ClientPermissionsMapRolesScope:ClientPermissionsMapRolesScope"
+                },
+                "realmId": {
+                    "type": "string"
+                },
+                "tokenExchangeScope": {
+                    "$ref": "#/types/keycloak:openid/ClientPermissionsTokenExchangeScope:ClientPermissionsTokenExchangeScope"
+                },
+                "viewScope": {
+                    "$ref": "#/types/keycloak:openid/ClientPermissionsViewScope:ClientPermissionsViewScope"
+                }
+            },
+            "requiredInputs": [
+                "clientId",
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ClientPermissions resources.\n",
+                "properties": {
+                    "authorizationResourceServerId": {
+                        "type": "string",
+                        "description": "Resource server id representing the realm management client on which this permission is managed\n"
+                    },
+                    "clientId": {
+                        "type": "string"
+                    },
+                    "configureScope": {
+                        "$ref": "#/types/keycloak:openid/ClientPermissionsConfigureScope:ClientPermissionsConfigureScope"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "manageScope": {
+                        "$ref": "#/types/keycloak:openid/ClientPermissionsManageScope:ClientPermissionsManageScope"
+                    },
+                    "mapRolesClientScopeScope": {
+                        "$ref": "#/types/keycloak:openid/ClientPermissionsMapRolesClientScopeScope:ClientPermissionsMapRolesClientScopeScope"
+                    },
+                    "mapRolesCompositeScope": {
+                        "$ref": "#/types/keycloak:openid/ClientPermissionsMapRolesCompositeScope:ClientPermissionsMapRolesCompositeScope"
+                    },
+                    "mapRolesScope": {
+                        "$ref": "#/types/keycloak:openid/ClientPermissionsMapRolesScope:ClientPermissionsMapRolesScope"
+                    },
+                    "realmId": {
+                        "type": "string"
+                    },
+                    "tokenExchangeScope": {
+                        "$ref": "#/types/keycloak:openid/ClientPermissionsTokenExchangeScope:ClientPermissionsTokenExchangeScope"
+                    },
+                    "viewScope": {
+                        "$ref": "#/types/keycloak:openid/ClientPermissionsViewScope:ClientPermissionsViewScope"
                     }
                 },
                 "type": "object"
@@ -8871,6 +9603,162 @@
                 "type": "object"
             }
         },
+        "keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper": {
+            "description": "Allows for creating and managing script protocol mappers within Keycloak.\n\nScript protocol mappers evaluate a JavaScript function to produce a token claim based on context information.\n\nProtocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between\nmultiple different clients.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Client)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst openidClient = new keycloak.openid.Client(\"openidClient\", {\n    realmId: realm.id,\n    clientId: \"client\",\n    enabled: true,\n    accessType: \"CONFIDENTIAL\",\n    validRedirectUris: [\"http://localhost:8080/openid-callback\"],\n});\nconst scriptMapper = new keycloak.openid.ScriptProtocolMapper(\"scriptMapper\", {\n    realmId: realm.id,\n    clientId: openidClient.id,\n    claimName: \"foo\",\n    script: \"exports = 'foo';\",\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nopenid_client = keycloak.openid.Client(\"openidClient\",\n    realm_id=realm.id,\n    client_id=\"client\",\n    enabled=True,\n    access_type=\"CONFIDENTIAL\",\n    valid_redirect_uris=[\"http://localhost:8080/openid-callback\"])\nscript_mapper = keycloak.openid.ScriptProtocolMapper(\"scriptMapper\",\n    realm_id=realm.id,\n    client_id=openid_client.id,\n    claim_name=\"foo\",\n    script=\"exports = 'foo';\")\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var openidClient = new Keycloak.OpenId.Client(\"openidClient\", new Keycloak.OpenId.ClientArgs\n        {\n            RealmId = realm.Id,\n            ClientId = \"client\",\n            Enabled = true,\n            AccessType = \"CONFIDENTIAL\",\n            ValidRedirectUris = \n            {\n                \"http://localhost:8080/openid-callback\",\n            },\n        });\n        var scriptMapper = new Keycloak.OpenId.ScriptProtocolMapper(\"scriptMapper\", new Keycloak.OpenId.ScriptProtocolMapperArgs\n        {\n            RealmId = realm.Id,\n            ClientId = openidClient.Id,\n            ClaimName = \"foo\",\n            Script = \"exports = 'foo';\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\topenidClient, err := openid.NewClient(ctx, \"openidClient\", \u0026openid.ClientArgs{\n\t\t\tRealmId:    realm.ID(),\n\t\t\tClientId:   pulumi.String(\"client\"),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t\tAccessType: pulumi.String(\"CONFIDENTIAL\"),\n\t\t\tValidRedirectUris: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"http://localhost:8080/openid-callback\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = openid.NewScriptProtocolMapper(ctx, \"scriptMapper\", \u0026openid.ScriptProtocolMapperArgs{\n\t\t\tRealmId:   realm.ID(),\n\t\t\tClientId:  openidClient.ID(),\n\t\t\tClaimName: pulumi.String(\"foo\"),\n\t\t\tScript:    pulumi.String(\"exports = 'foo';\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Client Scope)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst clientScope = new keycloak.openid.ClientScope(\"clientScope\", {realmId: realm.id});\nconst scriptMapper = new keycloak.openid.ScriptProtocolMapper(\"scriptMapper\", {\n    realmId: realm.id,\n    clientScopeId: clientScope.id,\n    claimName: \"foo\",\n    script: \"exports = 'foo';\",\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nclient_scope = keycloak.openid.ClientScope(\"clientScope\", realm_id=realm.id)\nscript_mapper = keycloak.openid.ScriptProtocolMapper(\"scriptMapper\",\n    realm_id=realm.id,\n    client_scope_id=client_scope.id,\n    claim_name=\"foo\",\n    script=\"exports = 'foo';\")\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var clientScope = new Keycloak.OpenId.ClientScope(\"clientScope\", new Keycloak.OpenId.ClientScopeArgs\n        {\n            RealmId = realm.Id,\n        });\n        var scriptMapper = new Keycloak.OpenId.ScriptProtocolMapper(\"scriptMapper\", new Keycloak.OpenId.ScriptProtocolMapperArgs\n        {\n            RealmId = realm.Id,\n            ClientScopeId = clientScope.Id,\n            ClaimName = \"foo\",\n            Script = \"exports = 'foo';\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclientScope, err := openid.NewClientScope(ctx, \"clientScope\", \u0026openid.ClientScopeArgs{\n\t\t\tRealmId: realm.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = openid.NewScriptProtocolMapper(ctx, \"scriptMapper\", \u0026openid.ScriptProtocolMapperArgs{\n\t\t\tRealmId:       realm.ID(),\n\t\t\tClientScopeId: clientScope.ID(),\n\t\t\tClaimName:     pulumi.String(\"foo\"),\n\t\t\tScript:        pulumi.String(\"exports = 'foo';\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nProtocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash\n\n```sh\n $ pulumi import keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper script_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n\n\n```sh\n $ pulumi import keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper script_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n ",
+            "properties": {
+                "addToAccessToken": {
+                    "type": "boolean",
+                    "description": "Indicates if the property should be added as a claim to the access token. Defaults to `true`.\n"
+                },
+                "addToIdToken": {
+                    "type": "boolean",
+                    "description": "Indicates if the property should be added as a claim to the id token. Defaults to `true`.\n"
+                },
+                "addToUserinfo": {
+                    "type": "boolean",
+                    "description": "Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.\n"
+                },
+                "claimName": {
+                    "type": "string",
+                    "description": "The name of the claim to insert into a token.\n"
+                },
+                "claimValueType": {
+                    "type": "string",
+                    "description": "The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.\n"
+                },
+                "clientId": {
+                    "type": "string",
+                    "description": "The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.\n"
+                },
+                "clientScopeId": {
+                    "type": "string",
+                    "description": "The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.\n"
+                },
+                "multivalued": {
+                    "type": "boolean",
+                    "description": "Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The display name of this protocol mapper in the GUI.\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this protocol mapper exists within.\n"
+                },
+                "script": {
+                    "type": "string",
+                    "description": "JavaScript code to compute the claim value.\n"
+                }
+            },
+            "required": [
+                "claimName",
+                "name",
+                "realmId",
+                "script"
+            ],
+            "inputProperties": {
+                "addToAccessToken": {
+                    "type": "boolean",
+                    "description": "Indicates if the property should be added as a claim to the access token. Defaults to `true`.\n"
+                },
+                "addToIdToken": {
+                    "type": "boolean",
+                    "description": "Indicates if the property should be added as a claim to the id token. Defaults to `true`.\n"
+                },
+                "addToUserinfo": {
+                    "type": "boolean",
+                    "description": "Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.\n"
+                },
+                "claimName": {
+                    "type": "string",
+                    "description": "The name of the claim to insert into a token.\n"
+                },
+                "claimValueType": {
+                    "type": "string",
+                    "description": "The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.\n"
+                },
+                "clientId": {
+                    "type": "string",
+                    "description": "The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.\n"
+                },
+                "clientScopeId": {
+                    "type": "string",
+                    "description": "The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.\n"
+                },
+                "multivalued": {
+                    "type": "boolean",
+                    "description": "Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The display name of this protocol mapper in the GUI.\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this protocol mapper exists within.\n"
+                },
+                "script": {
+                    "type": "string",
+                    "description": "JavaScript code to compute the claim value.\n"
+                }
+            },
+            "requiredInputs": [
+                "claimName",
+                "realmId",
+                "script"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ScriptProtocolMapper resources.\n",
+                "properties": {
+                    "addToAccessToken": {
+                        "type": "boolean",
+                        "description": "Indicates if the property should be added as a claim to the access token. Defaults to `true`.\n"
+                    },
+                    "addToIdToken": {
+                        "type": "boolean",
+                        "description": "Indicates if the property should be added as a claim to the id token. Defaults to `true`.\n"
+                    },
+                    "addToUserinfo": {
+                        "type": "boolean",
+                        "description": "Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.\n"
+                    },
+                    "claimName": {
+                        "type": "string",
+                        "description": "The name of the claim to insert into a token.\n"
+                    },
+                    "claimValueType": {
+                        "type": "string",
+                        "description": "The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.\n"
+                    },
+                    "clientId": {
+                        "type": "string",
+                        "description": "The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.\n"
+                    },
+                    "clientScopeId": {
+                        "type": "string",
+                        "description": "The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.\n"
+                    },
+                    "multivalued": {
+                        "type": "boolean",
+                        "description": "Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The display name of this protocol mapper in the GUI.\n"
+                    },
+                    "realmId": {
+                        "type": "string",
+                        "description": "The realm this protocol mapper exists within.\n"
+                    },
+                    "script": {
+                        "type": "string",
+                        "description": "JavaScript code to compute the claim value.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper": {
             "description": "Allows for creating and managing user attribute protocol mappers within Keycloak.\n\nUser attribute protocol mappers allow you to map custom attributes defined for a user within Keycloak to a claim in a token.\n\nProtocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between\nmultiple different clients.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Client)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst openidClient = new keycloak.openid.Client(\"openidClient\", {\n    realmId: realm.id,\n    clientId: \"client\",\n    enabled: true,\n    accessType: \"CONFIDENTIAL\",\n    validRedirectUris: [\"http://localhost:8080/openid-callback\"],\n});\nconst userAttributeMapper = new keycloak.openid.UserAttributeProtocolMapper(\"userAttributeMapper\", {\n    realmId: realm.id,\n    clientId: openidClient.id,\n    userAttribute: \"foo\",\n    claimName: \"bar\",\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nopenid_client = keycloak.openid.Client(\"openidClient\",\n    realm_id=realm.id,\n    client_id=\"client\",\n    enabled=True,\n    access_type=\"CONFIDENTIAL\",\n    valid_redirect_uris=[\"http://localhost:8080/openid-callback\"])\nuser_attribute_mapper = keycloak.openid.UserAttributeProtocolMapper(\"userAttributeMapper\",\n    realm_id=realm.id,\n    client_id=openid_client.id,\n    user_attribute=\"foo\",\n    claim_name=\"bar\")\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var openidClient = new Keycloak.OpenId.Client(\"openidClient\", new Keycloak.OpenId.ClientArgs\n        {\n            RealmId = realm.Id,\n            ClientId = \"client\",\n            Enabled = true,\n            AccessType = \"CONFIDENTIAL\",\n            ValidRedirectUris = \n            {\n                \"http://localhost:8080/openid-callback\",\n            },\n        });\n        var userAttributeMapper = new Keycloak.OpenId.UserAttributeProtocolMapper(\"userAttributeMapper\", new Keycloak.OpenId.UserAttributeProtocolMapperArgs\n        {\n            RealmId = realm.Id,\n            ClientId = openidClient.Id,\n            UserAttribute = \"foo\",\n            ClaimName = \"bar\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\topenidClient, err := openid.NewClient(ctx, \"openidClient\", \u0026openid.ClientArgs{\n\t\t\tRealmId:    realm.ID(),\n\t\t\tClientId:   pulumi.String(\"client\"),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t\tAccessType: pulumi.String(\"CONFIDENTIAL\"),\n\t\t\tValidRedirectUris: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"http://localhost:8080/openid-callback\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = openid.NewUserAttributeProtocolMapper(ctx, \"userAttributeMapper\", \u0026openid.UserAttributeProtocolMapperArgs{\n\t\t\tRealmId:       realm.ID(),\n\t\t\tClientId:      openidClient.ID(),\n\t\t\tUserAttribute: pulumi.String(\"foo\"),\n\t\t\tClaimName:     pulumi.String(\"bar\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Client Scope)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst clientScope = new keycloak.openid.ClientScope(\"clientScope\", {realmId: realm.id});\nconst userAttributeMapper = new keycloak.openid.UserAttributeProtocolMapper(\"userAttributeMapper\", {\n    realmId: realm.id,\n    clientScopeId: clientScope.id,\n    userAttribute: \"foo\",\n    claimName: \"bar\",\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nclient_scope = keycloak.openid.ClientScope(\"clientScope\", realm_id=realm.id)\nuser_attribute_mapper = keycloak.openid.UserAttributeProtocolMapper(\"userAttributeMapper\",\n    realm_id=realm.id,\n    client_scope_id=client_scope.id,\n    user_attribute=\"foo\",\n    claim_name=\"bar\")\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var clientScope = new Keycloak.OpenId.ClientScope(\"clientScope\", new Keycloak.OpenId.ClientScopeArgs\n        {\n            RealmId = realm.Id,\n        });\n        var userAttributeMapper = new Keycloak.OpenId.UserAttributeProtocolMapper(\"userAttributeMapper\", new Keycloak.OpenId.UserAttributeProtocolMapperArgs\n        {\n            RealmId = realm.Id,\n            ClientScopeId = clientScope.Id,\n            UserAttribute = \"foo\",\n            ClaimName = \"bar\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclientScope, err := openid.NewClientScope(ctx, \"clientScope\", \u0026openid.ClientScopeArgs{\n\t\t\tRealmId: realm.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = openid.NewUserAttributeProtocolMapper(ctx, \"userAttributeMapper\", \u0026openid.UserAttributeProtocolMapperArgs{\n\t\t\tRealmId:       realm.ID(),\n\t\t\tClientScopeId: clientScope.ID(),\n\t\t\tUserAttribute: pulumi.String(\"foo\"),\n\t\t\tClaimName:     pulumi.String(\"bar\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nProtocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash\n\n```sh\n $ pulumi import keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper user_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n\n\n```sh\n $ pulumi import keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper user_attribute_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n ",
             "properties": {
@@ -9659,6 +10547,10 @@
                     "type": "string",
                     "description": "SAML Redirect Binding URL for the client's assertion consumer service (login responses).\n"
                 },
+                "authenticationFlowBindingOverrides": {
+                    "$ref": "#/types/keycloak:saml/ClientAuthenticationFlowBindingOverrides:ClientAuthenticationFlowBindingOverrides",
+                    "description": "Override realm authentication flow bindings\n"
+                },
                 "baseUrl": {
                     "type": "string",
                     "description": "When specified, this URL will be used whenever Keycloak needs to link to this client.\n"
@@ -9794,6 +10686,10 @@
                     "type": "string",
                     "description": "SAML Redirect Binding URL for the client's assertion consumer service (login responses).\n"
                 },
+                "authenticationFlowBindingOverrides": {
+                    "$ref": "#/types/keycloak:saml/ClientAuthenticationFlowBindingOverrides:ClientAuthenticationFlowBindingOverrides",
+                    "description": "Override realm authentication flow bindings\n"
+                },
                 "baseUrl": {
                     "type": "string",
                     "description": "When specified, this URL will be used whenever Keycloak needs to link to this client.\n"
@@ -9920,6 +10816,10 @@
                     "assertionConsumerRedirectUrl": {
                         "type": "string",
                         "description": "SAML Redirect Binding URL for the client's assertion consumer service (login responses).\n"
+                    },
+                    "authenticationFlowBindingOverrides": {
+                        "$ref": "#/types/keycloak:saml/ClientAuthenticationFlowBindingOverrides:ClientAuthenticationFlowBindingOverrides",
+                        "description": "Override realm authentication flow bindings\n"
                     },
                     "baseUrl": {
                         "type": "string",
@@ -10774,6 +11674,57 @@
         }
     },
     "functions": {
+        "keycloak:index/getAuthenticationExecution:getAuthenticationExecution": {
+            "description": "This data source can be used to fetch the ID of an authentication execution within Keycloak.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst browserAuthCookie = realm.id.apply(id =\u003e keycloak.getAuthenticationExecution({\n    realmId: id,\n    parentFlowAlias: \"browser\",\n    providerId: \"auth-cookie\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nbrowser_auth_cookie = realm.id.apply(lambda id: keycloak.get_authentication_execution(realm_id=id,\n    parent_flow_alias=\"browser\",\n    provider_id=\"auth-cookie\"))\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var browserAuthCookie = realm.Id.Apply(id =\u003e Keycloak.GetAuthenticationExecution.InvokeAsync(new Keycloak.GetAuthenticationExecutionArgs\n        {\n            RealmId = id,\n            ParentFlowAlias = \"browser\",\n            ProviderId = \"auth-cookie\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getAuthenticationExecution.\n",
+                "properties": {
+                    "parentFlowAlias": {
+                        "type": "string",
+                        "description": "The alias of the flow this execution is attached to.\n"
+                    },
+                    "providerId": {
+                        "type": "string",
+                        "description": "The name of the provider. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools. This was previously known as the \"authenticator\".\n"
+                    },
+                    "realmId": {
+                        "type": "string",
+                        "description": "The realm the authentication execution exists in.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "parentFlowAlias",
+                    "providerId",
+                    "realmId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getAuthenticationExecution.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "parentFlowAlias": {
+                        "type": "string"
+                    },
+                    "providerId": {
+                        "type": "string"
+                    },
+                    "realmId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "parentFlowAlias",
+                    "providerId",
+                    "realmId",
+                    "id"
+                ]
+            }
+        },
         "keycloak:index/getGroup:getGroup": {
             "description": "This data source can be used to fetch properties of a Keycloak group for\nusage with other resources, such as `keycloak.GroupRoles`.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst offlineAccess = realm.id.apply(id =\u003e keycloak.getRole({\n    realmId: id,\n    name: \"offline_access\",\n}));\nconst group = realm.id.apply(id =\u003e keycloak.getGroup({\n    realmId: id,\n    name: \"group\",\n}));\nconst groupRoles = new keycloak.GroupRoles(\"groupRoles\", {\n    realmId: realm.id,\n    groupId: group.id,\n    roleIds: [offlineAccess.id],\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\noffline_access = realm.id.apply(lambda id: keycloak.get_role(realm_id=id,\n    name=\"offline_access\"))\ngroup = realm.id.apply(lambda id: keycloak.get_group(realm_id=id,\n    name=\"group\"))\ngroup_roles = keycloak.GroupRoles(\"groupRoles\",\n    realm_id=realm.id,\n    group_id=group.id,\n    role_ids=[offline_access.id])\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var offlineAccess = realm.Id.Apply(id =\u003e Keycloak.GetRole.InvokeAsync(new Keycloak.GetRoleArgs\n        {\n            RealmId = id,\n            Name = \"offline_access\",\n        }));\n        var @group = realm.Id.Apply(id =\u003e Keycloak.GetGroup.InvokeAsync(new Keycloak.GetGroupArgs\n        {\n            RealmId = id,\n            Name = \"group\",\n        }));\n        var groupRoles = new Keycloak.GroupRoles(\"groupRoles\", new Keycloak.GroupRolesArgs\n        {\n            RealmId = realm.Id,\n            GroupId = @group.Apply(@group =\u003e @group.Id),\n            RoleIds = \n            {\n                offlineAccess.Apply(offlineAccess =\u003e offlineAccess.Id),\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewGroupRoles(ctx, \"groupRoles\", \u0026keycloak.GroupRolesArgs{\n\t\t\tRealmId: realm.ID(),\n\t\t\tGroupId: group.ApplyT(func(group keycloak.LookupGroupResult) (string, error) {\n\t\t\t\treturn group.Id, nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t\tRoleIds: pulumi.StringArray{\n\t\t\t\tofflineAccess.ApplyT(func(offlineAccess keycloak.LookupRoleResult) (string, error) {\n\t\t\t\t\treturn offlineAccess.Id, nil\n\t\t\t\t}).(pulumi.StringOutput),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
@@ -11222,6 +12173,90 @@
                 ]
             }
         },
+        "keycloak:index/getUser:getUser": {
+            "description": "This data source can be used to fetch properties of a user within Keycloak.\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getUser.\n",
+                "properties": {
+                    "realmId": {
+                        "type": "string",
+                        "description": "The realm this user belongs to.\n"
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "The unique username of this user.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "realmId",
+                    "username"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getUser.\n",
+                "properties": {
+                    "attributes": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "description": "(Computed) A map representing attributes for the user\n"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "(Computed) The user's email.\n"
+                    },
+                    "emailVerified": {
+                        "type": "boolean",
+                        "description": "(Computed) Whether the email address was validated or not. Default to `false`.\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "(Computed) When false, this user cannot log in. Defaults to `true`.\n"
+                    },
+                    "federatedIdentities": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "(Computed) The user's federated identities, if applicable. This block has the following schema:\n"
+                    },
+                    "firstName": {
+                        "type": "string",
+                        "description": "(Computed) The user's first name.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "lastName": {
+                        "type": "string",
+                        "description": "(Computed) The user's last name.\n"
+                    },
+                    "realmId": {
+                        "type": "string"
+                    },
+                    "username": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "attributes",
+                    "email",
+                    "emailVerified",
+                    "enabled",
+                    "federatedIdentities",
+                    "federatedIdentities",
+                    "firstName",
+                    "lastName",
+                    "realmId",
+                    "username",
+                    "id"
+                ]
+            }
+        },
         "keycloak:openid/getClient:getClient": {
             "description": "This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realmManagement = keycloak.openid.getClient({\n    realmId: \"my-realm\",\n    clientId: \"realm-management\",\n});\nconst admin = realmManagement.then(realmManagement =\u003e keycloak.getRole({\n    realmId: \"my-realm\",\n    clientId: realmManagement.id,\n    name: \"realm-admin\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm_management = keycloak.openid.get_client(realm_id=\"my-realm\",\n    client_id=\"realm-management\")\nadmin = keycloak.get_role(realm_id=\"my-realm\",\n    client_id=realm_management.id,\n    name=\"realm-admin\")\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realmManagement = Output.Create(Keycloak.OpenId.GetClient.InvokeAsync(new Keycloak.OpenId.GetClientArgs\n        {\n            RealmId = \"my-realm\",\n            ClientId = \"realm-management\",\n        }));\n        var admin = realmManagement.Apply(realmManagement =\u003e Output.Create(Keycloak.GetRole.InvokeAsync(new Keycloak.GetRoleArgs\n        {\n            RealmId = \"my-realm\",\n            ClientId = realmManagement.Id,\n            Name = \"realm-admin\",\n        })));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealmManagement, err := openid.LookupClient(ctx, \u0026openid.LookupClientArgs{\n\t\t\tRealmId:  \"my-realm\",\n\t\t\tClientId: \"realm-management\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\topt0 := realmManagement.Id\n\t\t_, err = keycloak.LookupRole(ctx, \u0026keycloak.LookupRoleArgs{\n\t\t\tRealmId:  \"my-realm\",\n\t\t\tClientId: \u0026opt0,\n\t\t\tName:     \"realm-admin\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
@@ -11638,8 +12673,7 @@
             "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/mrparkers/terraform-provider-keycloak)\n\u003e distributed under [MIT](https://mit-license.org/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-keycloak` repo](https://github.com/pulumi/pulumi-keycloak/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`mrparkers/terraform-provider-keycloak` repo](https://github.com/mrparkers/terraform-provider-keycloak/issues).",
             "requires": {
                 "pulumi": "\u003e=2.9.0,\u003c3.0.0"
-            },
-            "usesIOClasses": true
+            }
         }
     }
 }

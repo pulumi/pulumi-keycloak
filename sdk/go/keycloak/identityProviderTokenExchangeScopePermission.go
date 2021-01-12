@@ -42,17 +42,18 @@ type IdentityProviderTokenExchangeScopePermission struct {
 // NewIdentityProviderTokenExchangeScopePermission registers a new resource with the given unique name, arguments, and options.
 func NewIdentityProviderTokenExchangeScopePermission(ctx *pulumi.Context,
 	name string, args *IdentityProviderTokenExchangeScopePermissionArgs, opts ...pulumi.ResourceOption) (*IdentityProviderTokenExchangeScopePermission, error) {
-	if args == nil || args.Clients == nil {
-		return nil, errors.New("missing required argument 'Clients'")
-	}
-	if args == nil || args.ProviderAlias == nil {
-		return nil, errors.New("missing required argument 'ProviderAlias'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &IdentityProviderTokenExchangeScopePermissionArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Clients == nil {
+		return nil, errors.New("invalid value for required argument 'Clients'")
+	}
+	if args.ProviderAlias == nil {
+		return nil, errors.New("invalid value for required argument 'ProviderAlias'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource IdentityProviderTokenExchangeScopePermission
 	err := ctx.RegisterResource("keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission", name, args, &resource, opts...)

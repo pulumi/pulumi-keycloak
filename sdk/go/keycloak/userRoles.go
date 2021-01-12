@@ -32,17 +32,18 @@ type UserRoles struct {
 // NewUserRoles registers a new resource with the given unique name, arguments, and options.
 func NewUserRoles(ctx *pulumi.Context,
 	name string, args *UserRolesArgs, opts ...pulumi.ResourceOption) (*UserRoles, error) {
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
-	if args == nil || args.RoleIds == nil {
-		return nil, errors.New("missing required argument 'RoleIds'")
-	}
-	if args == nil || args.UserId == nil {
-		return nil, errors.New("missing required argument 'UserId'")
-	}
 	if args == nil {
-		args = &UserRolesArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
+	}
+	if args.RoleIds == nil {
+		return nil, errors.New("invalid value for required argument 'RoleIds'")
+	}
+	if args.UserId == nil {
+		return nil, errors.New("invalid value for required argument 'UserId'")
 	}
 	var resource UserRoles
 	err := ctx.RegisterResource("keycloak:index/userRoles:UserRoles", name, args, &resource, opts...)

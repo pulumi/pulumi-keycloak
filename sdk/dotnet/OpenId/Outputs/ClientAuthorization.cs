@@ -18,6 +18,10 @@ namespace Pulumi.Keycloak.OpenId.Outputs
         /// </summary>
         public readonly bool? AllowRemoteResourceManagement;
         /// <summary>
+        /// Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
+        /// </summary>
+        public readonly string? DecisionStrategy;
+        /// <summary>
         /// When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
         /// </summary>
         public readonly bool? KeepDefaults;
@@ -30,11 +34,14 @@ namespace Pulumi.Keycloak.OpenId.Outputs
         private ClientAuthorization(
             bool? allowRemoteResourceManagement,
 
+            string? decisionStrategy,
+
             bool? keepDefaults,
 
             string policyEnforcementMode)
         {
             AllowRemoteResourceManagement = allowRemoteResourceManagement;
+            DecisionStrategy = decisionStrategy;
             KeepDefaults = keepDefaults;
             PolicyEnforcementMode = policyEnforcementMode;
         }

@@ -100,6 +100,10 @@ export class GroupMapper extends pulumi.CustomResource {
      */
     public readonly groupsLdapFilter!: pulumi.Output<string | undefined>;
     /**
+     * Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
+     */
+    public readonly groupsPath!: pulumi.Output<string>;
+    /**
      * When `true`, missing groups in the hierarchy will be ignored.
      */
     public readonly ignoreMissingGroups!: pulumi.Output<boolean | undefined>;
@@ -132,7 +136,7 @@ export class GroupMapper extends pulumi.CustomResource {
      */
     public readonly membershipUserLdapAttribute!: pulumi.Output<string>;
     /**
-     * Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+     * Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
      */
     public readonly mode!: pulumi.Output<string | undefined>;
     /**
@@ -168,6 +172,7 @@ export class GroupMapper extends pulumi.CustomResource {
             inputs["groupNameLdapAttribute"] = state ? state.groupNameLdapAttribute : undefined;
             inputs["groupObjectClasses"] = state ? state.groupObjectClasses : undefined;
             inputs["groupsLdapFilter"] = state ? state.groupsLdapFilter : undefined;
+            inputs["groupsPath"] = state ? state.groupsPath : undefined;
             inputs["ignoreMissingGroups"] = state ? state.ignoreMissingGroups : undefined;
             inputs["ldapGroupsDn"] = state ? state.ldapGroupsDn : undefined;
             inputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
@@ -183,31 +188,32 @@ export class GroupMapper extends pulumi.CustomResource {
             inputs["userRolesRetrieveStrategy"] = state ? state.userRolesRetrieveStrategy : undefined;
         } else {
             const args = argsOrState as GroupMapperArgs | undefined;
-            if (!args || args.groupNameLdapAttribute === undefined) {
+            if ((!args || args.groupNameLdapAttribute === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'groupNameLdapAttribute'");
             }
-            if (!args || args.groupObjectClasses === undefined) {
+            if ((!args || args.groupObjectClasses === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'groupObjectClasses'");
             }
-            if (!args || args.ldapGroupsDn === undefined) {
+            if ((!args || args.ldapGroupsDn === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'ldapGroupsDn'");
             }
-            if (!args || args.ldapUserFederationId === undefined) {
+            if ((!args || args.ldapUserFederationId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if (!args || args.membershipLdapAttribute === undefined) {
+            if ((!args || args.membershipLdapAttribute === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'membershipLdapAttribute'");
             }
-            if (!args || args.membershipUserLdapAttribute === undefined) {
+            if ((!args || args.membershipUserLdapAttribute === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'membershipUserLdapAttribute'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["dropNonExistingGroupsDuringSync"] = args ? args.dropNonExistingGroupsDuringSync : undefined;
             inputs["groupNameLdapAttribute"] = args ? args.groupNameLdapAttribute : undefined;
             inputs["groupObjectClasses"] = args ? args.groupObjectClasses : undefined;
             inputs["groupsLdapFilter"] = args ? args.groupsLdapFilter : undefined;
+            inputs["groupsPath"] = args ? args.groupsPath : undefined;
             inputs["ignoreMissingGroups"] = args ? args.ignoreMissingGroups : undefined;
             inputs["ldapGroupsDn"] = args ? args.ldapGroupsDn : undefined;
             inputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
@@ -254,6 +260,10 @@ export interface GroupMapperState {
      */
     readonly groupsLdapFilter?: pulumi.Input<string>;
     /**
+     * Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
+     */
+    readonly groupsPath?: pulumi.Input<string>;
+    /**
      * When `true`, missing groups in the hierarchy will be ignored.
      */
     readonly ignoreMissingGroups?: pulumi.Input<boolean>;
@@ -286,7 +296,7 @@ export interface GroupMapperState {
      */
     readonly membershipUserLdapAttribute?: pulumi.Input<string>;
     /**
-     * Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+     * Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
      */
     readonly mode?: pulumi.Input<string>;
     /**
@@ -328,6 +338,10 @@ export interface GroupMapperArgs {
      */
     readonly groupsLdapFilter?: pulumi.Input<string>;
     /**
+     * Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
+     */
+    readonly groupsPath?: pulumi.Input<string>;
+    /**
      * When `true`, missing groups in the hierarchy will be ignored.
      */
     readonly ignoreMissingGroups?: pulumi.Input<boolean>;
@@ -360,7 +374,7 @@ export interface GroupMapperArgs {
      */
     readonly membershipUserLdapAttribute: pulumi.Input<string>;
     /**
-     * Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+     * Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
      */
     readonly mode?: pulumi.Input<string>;
     /**

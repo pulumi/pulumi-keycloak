@@ -49,13 +49,13 @@ class ClientDefaultScopes(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if client_id is None:
+            if client_id is None and not opts.urn:
                 raise TypeError("Missing required property 'client_id'")
             __props__['client_id'] = client_id
-            if default_scopes is None:
+            if default_scopes is None and not opts.urn:
                 raise TypeError("Missing required property 'default_scopes'")
             __props__['default_scopes'] = default_scopes
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
         super(ClientDefaultScopes, __self__).__init__(

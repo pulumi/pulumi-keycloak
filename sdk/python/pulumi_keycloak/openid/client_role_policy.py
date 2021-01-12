@@ -54,16 +54,16 @@ class ClientRolePolicy(pulumi.CustomResource):
             __props__['description'] = description
             __props__['logic'] = logic
             __props__['name'] = name
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
-            if resource_server_id is None:
+            if resource_server_id is None and not opts.urn:
                 raise TypeError("Missing required property 'resource_server_id'")
             __props__['resource_server_id'] = resource_server_id
-            if roles is None:
+            if roles is None and not opts.urn:
                 raise TypeError("Missing required property 'roles'")
             __props__['roles'] = roles
-            if type is None:
+            if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__['type'] = type
         super(ClientRolePolicy, __self__).__init__(

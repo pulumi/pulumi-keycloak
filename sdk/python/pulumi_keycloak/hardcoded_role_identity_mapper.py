@@ -50,11 +50,11 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['extra_config'] = extra_config
-            if identity_provider_alias is None:
+            if identity_provider_alias is None and not opts.urn:
                 raise TypeError("Missing required property 'identity_provider_alias'")
             __props__['identity_provider_alias'] = identity_provider_alias
             __props__['name'] = name
-            if realm is None:
+            if realm is None and not opts.urn:
                 raise TypeError("Missing required property 'realm'")
             __props__['realm'] = realm
             __props__['role'] = role

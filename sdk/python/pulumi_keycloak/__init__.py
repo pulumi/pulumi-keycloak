@@ -9,10 +9,12 @@ from .custom_user_federation import *
 from .default_groups import *
 from .generic_client_protocol_mapper import *
 from .generic_client_role_mapper import *
+from .get_authentication_execution import *
 from .get_group import *
 from .get_realm import *
 from .get_realm_keys import *
 from .get_role import *
+from .get_user import *
 from .group import *
 from .group_memberships import *
 from .group_roles import *
@@ -27,6 +29,7 @@ from .role import *
 from .user import *
 from .user_roles import *
 from .user_template_importer_identity_provider_mapper import *
+from .users_permissions import *
 from ._inputs import *
 from . import outputs
 
@@ -39,3 +42,98 @@ from . import (
     openid,
     saml,
 )
+
+def _register_module():
+    import pulumi
+    from . import _utilities
+
+
+    class Module(pulumi.runtime.ResourceModule):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Module._version
+
+        def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+            if typ == "keycloak:index/attributeImporterIdentityProviderMapper:AttributeImporterIdentityProviderMapper":
+                return AttributeImporterIdentityProviderMapper(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper":
+                return AttributeToRoleIdentityMapper(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/customUserFederation:CustomUserFederation":
+                return CustomUserFederation(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/defaultGroups:DefaultGroups":
+                return DefaultGroups(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper":
+                return GenericClientProtocolMapper(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/genericClientRoleMapper:GenericClientRoleMapper":
+                return GenericClientRoleMapper(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/group:Group":
+                return Group(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/groupMemberships:GroupMemberships":
+                return GroupMemberships(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/groupRoles:GroupRoles":
+                return GroupRoles(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper":
+                return HardcodedAttributeIdentityProviderMapper(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper":
+                return HardcodedRoleIdentityMapper(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission":
+                return IdentityProviderTokenExchangeScopePermission(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/realm:Realm":
+                return Realm(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/realmEvents:RealmEvents":
+                return RealmEvents(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/requiredAction:RequiredAction":
+                return RequiredAction(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/role:Role":
+                return Role(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/user:User":
+                return User(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/userRoles:UserRoles":
+                return UserRoles(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper":
+                return UserTemplateImporterIdentityProviderMapper(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/usersPermissions:UsersPermissions":
+                return UsersPermissions(name, pulumi.ResourceOptions(urn=urn))
+            else:
+                raise Exception(f"unknown resource type {typ}")
+
+
+    _module_instance = Module()
+    pulumi.runtime.register_resource_module("keycloak", "index/attributeImporterIdentityProviderMapper", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/attributeToRoleIdentityMapper", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/customUserFederation", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/defaultGroups", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/genericClientProtocolMapper", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/genericClientRoleMapper", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/group", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/groupMemberships", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/groupRoles", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/hardcodedAttributeIdentityProviderMapper", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/hardcodedRoleIdentityMapper", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/identityProviderTokenExchangeScopePermission", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/realm", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/realmEvents", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/requiredAction", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/role", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/user", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/userRoles", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/userTemplateImporterIdentityProviderMapper", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/usersPermissions", _module_instance)
+
+
+    class Package(pulumi.runtime.ResourcePackage):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Package._version
+
+        def construct_provider(self, name: str, typ: str, urn: str) -> pulumi.ProviderResource:
+            if typ != "pulumi:providers:keycloak":
+                raise Exception(f"unknown provider type {typ}")
+            return Provider(name, pulumi.ResourceOptions(urn=urn))
+
+
+    pulumi.runtime.register_resource_package("keycloak", Package())
+
+_register_module()

@@ -164,10 +164,10 @@ export class UserRealmRoleProtocolMapper extends pulumi.CustomResource {
             inputs["realmRolePrefix"] = state ? state.realmRolePrefix : undefined;
         } else {
             const args = argsOrState as UserRealmRoleProtocolMapperArgs | undefined;
-            if (!args || args.claimName === undefined) {
+            if ((!args || args.claimName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'claimName'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["addToAccessToken"] = args ? args.addToAccessToken : undefined;

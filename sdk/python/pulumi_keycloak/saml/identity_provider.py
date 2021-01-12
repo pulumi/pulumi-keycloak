@@ -127,7 +127,7 @@ class IdentityProvider(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['add_read_token_role_on_create'] = add_read_token_role_on_create
-            if alias is None:
+            if alias is None and not opts.urn:
                 raise TypeError("Missing required property 'alias'")
             __props__['alias'] = alias
             __props__['authenticate_by_default'] = authenticate_by_default
@@ -143,13 +143,13 @@ class IdentityProvider(pulumi.CustomResource):
             __props__['post_binding_logout'] = post_binding_logout
             __props__['post_binding_response'] = post_binding_response
             __props__['post_broker_login_flow_alias'] = post_broker_login_flow_alias
-            if realm is None:
+            if realm is None and not opts.urn:
                 raise TypeError("Missing required property 'realm'")
             __props__['realm'] = realm
             __props__['signature_algorithm'] = signature_algorithm
             __props__['signing_certificate'] = signing_certificate
             __props__['single_logout_service_url'] = single_logout_service_url
-            if single_sign_on_service_url is None:
+            if single_sign_on_service_url is None and not opts.urn:
                 raise TypeError("Missing required property 'single_sign_on_service_url'")
             __props__['single_sign_on_service_url'] = single_sign_on_service_url
             __props__['store_token'] = store_token

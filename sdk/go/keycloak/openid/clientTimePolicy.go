@@ -37,17 +37,18 @@ type ClientTimePolicy struct {
 // NewClientTimePolicy registers a new resource with the given unique name, arguments, and options.
 func NewClientTimePolicy(ctx *pulumi.Context,
 	name string, args *ClientTimePolicyArgs, opts ...pulumi.ResourceOption) (*ClientTimePolicy, error) {
-	if args == nil || args.DecisionStrategy == nil {
-		return nil, errors.New("missing required argument 'DecisionStrategy'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
-	if args == nil || args.ResourceServerId == nil {
-		return nil, errors.New("missing required argument 'ResourceServerId'")
-	}
 	if args == nil {
-		args = &ClientTimePolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DecisionStrategy == nil {
+		return nil, errors.New("invalid value for required argument 'DecisionStrategy'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
+	}
+	if args.ResourceServerId == nil {
+		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
 	}
 	var resource ClientTimePolicy
 	err := ctx.RegisterResource("keycloak:openid/clientTimePolicy:ClientTimePolicy", name, args, &resource, opts...)

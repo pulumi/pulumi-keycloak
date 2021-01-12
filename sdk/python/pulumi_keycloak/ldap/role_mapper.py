@@ -59,29 +59,29 @@ class RoleMapper(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['client_id'] = client_id
-            if ldap_roles_dn is None:
+            if ldap_roles_dn is None and not opts.urn:
                 raise TypeError("Missing required property 'ldap_roles_dn'")
             __props__['ldap_roles_dn'] = ldap_roles_dn
-            if ldap_user_federation_id is None:
+            if ldap_user_federation_id is None and not opts.urn:
                 raise TypeError("Missing required property 'ldap_user_federation_id'")
             __props__['ldap_user_federation_id'] = ldap_user_federation_id
             __props__['memberof_ldap_attribute'] = memberof_ldap_attribute
             __props__['membership_attribute_type'] = membership_attribute_type
-            if membership_ldap_attribute is None:
+            if membership_ldap_attribute is None and not opts.urn:
                 raise TypeError("Missing required property 'membership_ldap_attribute'")
             __props__['membership_ldap_attribute'] = membership_ldap_attribute
-            if membership_user_ldap_attribute is None:
+            if membership_user_ldap_attribute is None and not opts.urn:
                 raise TypeError("Missing required property 'membership_user_ldap_attribute'")
             __props__['membership_user_ldap_attribute'] = membership_user_ldap_attribute
             __props__['mode'] = mode
             __props__['name'] = name
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
-            if role_name_ldap_attribute is None:
+            if role_name_ldap_attribute is None and not opts.urn:
                 raise TypeError("Missing required property 'role_name_ldap_attribute'")
             __props__['role_name_ldap_attribute'] = role_name_ldap_attribute
-            if role_object_classes is None:
+            if role_object_classes is None and not opts.urn:
                 raise TypeError("Missing required property 'role_object_classes'")
             __props__['role_object_classes'] = role_object_classes
             __props__['roles_ldap_filter'] = roles_ldap_filter

@@ -143,17 +143,18 @@ type HardcodedClaimProtocolMapper struct {
 // NewHardcodedClaimProtocolMapper registers a new resource with the given unique name, arguments, and options.
 func NewHardcodedClaimProtocolMapper(ctx *pulumi.Context,
 	name string, args *HardcodedClaimProtocolMapperArgs, opts ...pulumi.ResourceOption) (*HardcodedClaimProtocolMapper, error) {
-	if args == nil || args.ClaimName == nil {
-		return nil, errors.New("missing required argument 'ClaimName'")
-	}
-	if args == nil || args.ClaimValue == nil {
-		return nil, errors.New("missing required argument 'ClaimValue'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &HardcodedClaimProtocolMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ClaimName == nil {
+		return nil, errors.New("invalid value for required argument 'ClaimName'")
+	}
+	if args.ClaimValue == nil {
+		return nil, errors.New("invalid value for required argument 'ClaimValue'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource HardcodedClaimProtocolMapper
 	err := ctx.RegisterResource("keycloak:openid/hardcodedClaimProtocolMapper:HardcodedClaimProtocolMapper", name, args, &resource, opts...)

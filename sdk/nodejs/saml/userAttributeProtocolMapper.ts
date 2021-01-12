@@ -131,16 +131,16 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
             inputs["userAttribute"] = state ? state.userAttribute : undefined;
         } else {
             const args = argsOrState as UserAttributeProtocolMapperArgs | undefined;
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if (!args || args.samlAttributeName === undefined) {
+            if ((!args || args.samlAttributeName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'samlAttributeName'");
             }
-            if (!args || args.samlAttributeNameFormat === undefined) {
+            if ((!args || args.samlAttributeNameFormat === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'samlAttributeNameFormat'");
             }
-            if (!args || args.userAttribute === undefined) {
+            if ((!args || args.userAttribute === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'userAttribute'");
             }
             inputs["clientId"] = args ? args.clientId : undefined;

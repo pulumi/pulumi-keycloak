@@ -28,14 +28,15 @@ type ClientAuthorizationPermission struct {
 // NewClientAuthorizationPermission registers a new resource with the given unique name, arguments, and options.
 func NewClientAuthorizationPermission(ctx *pulumi.Context,
 	name string, args *ClientAuthorizationPermissionArgs, opts ...pulumi.ResourceOption) (*ClientAuthorizationPermission, error) {
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
-	if args == nil || args.ResourceServerId == nil {
-		return nil, errors.New("missing required argument 'ResourceServerId'")
-	}
 	if args == nil {
-		args = &ClientAuthorizationPermissionArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
+	}
+	if args.ResourceServerId == nil {
+		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
 	}
 	var resource ClientAuthorizationPermission
 	err := ctx.RegisterResource("keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission", name, args, &resource, opts...)

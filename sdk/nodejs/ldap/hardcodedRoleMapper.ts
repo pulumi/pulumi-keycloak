@@ -155,13 +155,13 @@ export class HardcodedRoleMapper extends pulumi.CustomResource {
             inputs["role"] = state ? state.role : undefined;
         } else {
             const args = argsOrState as HardcodedRoleMapperArgs | undefined;
-            if (!args || args.ldapUserFederationId === undefined) {
+            if ((!args || args.ldapUserFederationId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if (!args || args.role === undefined) {
+            if ((!args || args.role === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'role'");
             }
             inputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;

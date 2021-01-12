@@ -84,17 +84,18 @@ type ClientServiceAccountRealmRole struct {
 // NewClientServiceAccountRealmRole registers a new resource with the given unique name, arguments, and options.
 func NewClientServiceAccountRealmRole(ctx *pulumi.Context,
 	name string, args *ClientServiceAccountRealmRoleArgs, opts ...pulumi.ResourceOption) (*ClientServiceAccountRealmRole, error) {
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
-	if args == nil || args.ServiceAccountUserId == nil {
-		return nil, errors.New("missing required argument 'ServiceAccountUserId'")
-	}
 	if args == nil {
-		args = &ClientServiceAccountRealmRoleArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
+	}
+	if args.ServiceAccountUserId == nil {
+		return nil, errors.New("invalid value for required argument 'ServiceAccountUserId'")
 	}
 	var resource ClientServiceAccountRealmRole
 	err := ctx.RegisterResource("keycloak:openid/clientServiceAccountRealmRole:ClientServiceAccountRealmRole", name, args, &resource, opts...)

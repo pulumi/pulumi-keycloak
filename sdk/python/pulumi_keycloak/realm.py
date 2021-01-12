@@ -237,7 +237,7 @@ class Realm(pulumi.CustomResource):
             __props__['offline_session_max_lifespan'] = offline_session_max_lifespan
             __props__['offline_session_max_lifespan_enabled'] = offline_session_max_lifespan_enabled
             __props__['password_policy'] = password_policy
-            if realm is None:
+            if realm is None and not opts.urn:
                 raise TypeError("Missing required property 'realm'")
             __props__['realm'] = realm
             __props__['refresh_token_max_reuse'] = refresh_token_max_reuse

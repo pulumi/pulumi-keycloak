@@ -125,17 +125,18 @@ type IdentityProvider struct {
 // NewIdentityProvider registers a new resource with the given unique name, arguments, and options.
 func NewIdentityProvider(ctx *pulumi.Context,
 	name string, args *IdentityProviderArgs, opts ...pulumi.ResourceOption) (*IdentityProvider, error) {
-	if args == nil || args.Alias == nil {
-		return nil, errors.New("missing required argument 'Alias'")
-	}
-	if args == nil || args.Realm == nil {
-		return nil, errors.New("missing required argument 'Realm'")
-	}
-	if args == nil || args.SingleSignOnServiceUrl == nil {
-		return nil, errors.New("missing required argument 'SingleSignOnServiceUrl'")
-	}
 	if args == nil {
-		args = &IdentityProviderArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Alias == nil {
+		return nil, errors.New("invalid value for required argument 'Alias'")
+	}
+	if args.Realm == nil {
+		return nil, errors.New("invalid value for required argument 'Realm'")
+	}
+	if args.SingleSignOnServiceUrl == nil {
+		return nil, errors.New("invalid value for required argument 'SingleSignOnServiceUrl'")
 	}
 	var resource IdentityProvider
 	err := ctx.RegisterResource("keycloak:saml/identityProvider:IdentityProvider", name, args, &resource, opts...)

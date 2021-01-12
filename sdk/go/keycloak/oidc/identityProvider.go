@@ -126,26 +126,27 @@ type IdentityProvider struct {
 // NewIdentityProvider registers a new resource with the given unique name, arguments, and options.
 func NewIdentityProvider(ctx *pulumi.Context,
 	name string, args *IdentityProviderArgs, opts ...pulumi.ResourceOption) (*IdentityProvider, error) {
-	if args == nil || args.Alias == nil {
-		return nil, errors.New("missing required argument 'Alias'")
-	}
-	if args == nil || args.AuthorizationUrl == nil {
-		return nil, errors.New("missing required argument 'AuthorizationUrl'")
-	}
-	if args == nil || args.ClientId == nil {
-		return nil, errors.New("missing required argument 'ClientId'")
-	}
-	if args == nil || args.ClientSecret == nil {
-		return nil, errors.New("missing required argument 'ClientSecret'")
-	}
-	if args == nil || args.Realm == nil {
-		return nil, errors.New("missing required argument 'Realm'")
-	}
-	if args == nil || args.TokenUrl == nil {
-		return nil, errors.New("missing required argument 'TokenUrl'")
-	}
 	if args == nil {
-		args = &IdentityProviderArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Alias == nil {
+		return nil, errors.New("invalid value for required argument 'Alias'")
+	}
+	if args.AuthorizationUrl == nil {
+		return nil, errors.New("invalid value for required argument 'AuthorizationUrl'")
+	}
+	if args.ClientId == nil {
+		return nil, errors.New("invalid value for required argument 'ClientId'")
+	}
+	if args.ClientSecret == nil {
+		return nil, errors.New("invalid value for required argument 'ClientSecret'")
+	}
+	if args.Realm == nil {
+		return nil, errors.New("invalid value for required argument 'Realm'")
+	}
+	if args.TokenUrl == nil {
+		return nil, errors.New("invalid value for required argument 'TokenUrl'")
 	}
 	var resource IdentityProvider
 	err := ctx.RegisterResource("keycloak:oidc/identityProvider:IdentityProvider", name, args, &resource, opts...)

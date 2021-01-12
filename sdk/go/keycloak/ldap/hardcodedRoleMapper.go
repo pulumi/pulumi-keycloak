@@ -152,17 +152,18 @@ type HardcodedRoleMapper struct {
 // NewHardcodedRoleMapper registers a new resource with the given unique name, arguments, and options.
 func NewHardcodedRoleMapper(ctx *pulumi.Context,
 	name string, args *HardcodedRoleMapperArgs, opts ...pulumi.ResourceOption) (*HardcodedRoleMapper, error) {
-	if args == nil || args.LdapUserFederationId == nil {
-		return nil, errors.New("missing required argument 'LdapUserFederationId'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &HardcodedRoleMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.LdapUserFederationId == nil {
+		return nil, errors.New("invalid value for required argument 'LdapUserFederationId'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource HardcodedRoleMapper
 	err := ctx.RegisterResource("keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper", name, args, &resource, opts...)

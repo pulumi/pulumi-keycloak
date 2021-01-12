@@ -114,10 +114,10 @@ class User(pulumi.CustomResource):
             __props__['first_name'] = first_name
             __props__['initial_password'] = initial_password
             __props__['last_name'] = last_name
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
-            if username is None:
+            if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
             __props__['username'] = username
         super(User, __self__).__init__(

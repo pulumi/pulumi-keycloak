@@ -54,7 +54,7 @@ class Execution(pulumi.CustomResource):
             parent_flow_alias=flow.alias,
             authenticator="identity-provider-redirector",
             requirement="ALTERNATIVE",
-            opts=ResourceOptions(depends_on=[execution_one]))
+            opts=pulumi.ResourceOptions(depends_on=[execution_one]))
         ```
 
         ## Import
@@ -89,13 +89,13 @@ class Execution(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if authenticator is None:
+            if authenticator is None and not opts.urn:
                 raise TypeError("Missing required property 'authenticator'")
             __props__['authenticator'] = authenticator
-            if parent_flow_alias is None:
+            if parent_flow_alias is None and not opts.urn:
                 raise TypeError("Missing required property 'parent_flow_alias'")
             __props__['parent_flow_alias'] = parent_flow_alias
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
             __props__['requirement'] = requirement

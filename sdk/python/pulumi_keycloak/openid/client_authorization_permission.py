@@ -53,10 +53,10 @@ class ClientAuthorizationPermission(pulumi.CustomResource):
             __props__['description'] = description
             __props__['name'] = name
             __props__['policies'] = policies
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
-            if resource_server_id is None:
+            if resource_server_id is None and not opts.urn:
                 raise TypeError("Missing required property 'resource_server_id'")
             __props__['resource_server_id'] = resource_server_id
             __props__['resources'] = resources

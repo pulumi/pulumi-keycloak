@@ -144,17 +144,18 @@ type UserPropertyProtocolMapper struct {
 // NewUserPropertyProtocolMapper registers a new resource with the given unique name, arguments, and options.
 func NewUserPropertyProtocolMapper(ctx *pulumi.Context,
 	name string, args *UserPropertyProtocolMapperArgs, opts ...pulumi.ResourceOption) (*UserPropertyProtocolMapper, error) {
-	if args == nil || args.ClaimName == nil {
-		return nil, errors.New("missing required argument 'ClaimName'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
-	if args == nil || args.UserProperty == nil {
-		return nil, errors.New("missing required argument 'UserProperty'")
-	}
 	if args == nil {
-		args = &UserPropertyProtocolMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ClaimName == nil {
+		return nil, errors.New("invalid value for required argument 'ClaimName'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
+	}
+	if args.UserProperty == nil {
+		return nil, errors.New("invalid value for required argument 'UserProperty'")
 	}
 	var resource UserPropertyProtocolMapper
 	err := ctx.RegisterResource("keycloak:openid/userPropertyProtocolMapper:UserPropertyProtocolMapper", name, args, &resource, opts...)

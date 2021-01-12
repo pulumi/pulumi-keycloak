@@ -56,14 +56,14 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
             __props__['attribute_name'] = attribute_name
             __props__['attribute_value'] = attribute_value
             __props__['extra_config'] = extra_config
-            if identity_provider_alias is None:
+            if identity_provider_alias is None and not opts.urn:
                 raise TypeError("Missing required property 'identity_provider_alias'")
             __props__['identity_provider_alias'] = identity_provider_alias
             __props__['name'] = name
-            if realm is None:
+            if realm is None and not opts.urn:
                 raise TypeError("Missing required property 'realm'")
             __props__['realm'] = realm
-            if user_session is None:
+            if user_session is None and not opts.urn:
                 raise TypeError("Missing required property 'user_session'")
             __props__['user_session'] = user_session
         super(HardcodedAttributeIdentityProviderMapper, __self__).__init__(

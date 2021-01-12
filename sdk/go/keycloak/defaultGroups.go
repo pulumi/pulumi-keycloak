@@ -73,14 +73,15 @@ type DefaultGroups struct {
 // NewDefaultGroups registers a new resource with the given unique name, arguments, and options.
 func NewDefaultGroups(ctx *pulumi.Context,
 	name string, args *DefaultGroupsArgs, opts ...pulumi.ResourceOption) (*DefaultGroups, error) {
-	if args == nil || args.GroupIds == nil {
-		return nil, errors.New("missing required argument 'GroupIds'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &DefaultGroupsArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.GroupIds == nil {
+		return nil, errors.New("invalid value for required argument 'GroupIds'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource DefaultGroups
 	err := ctx.RegisterResource("keycloak:index/defaultGroups:DefaultGroups", name, args, &resource, opts...)

@@ -50,10 +50,10 @@ class GroupMemberships(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['group_id'] = group_id
-            if members is None:
+            if members is None and not opts.urn:
                 raise TypeError("Missing required property 'members'")
             __props__['members'] = members
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
         super(GroupMemberships, __self__).__init__(

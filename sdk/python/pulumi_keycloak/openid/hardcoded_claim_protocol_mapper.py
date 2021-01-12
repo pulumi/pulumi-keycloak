@@ -120,17 +120,17 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
             __props__['add_to_access_token'] = add_to_access_token
             __props__['add_to_id_token'] = add_to_id_token
             __props__['add_to_userinfo'] = add_to_userinfo
-            if claim_name is None:
+            if claim_name is None and not opts.urn:
                 raise TypeError("Missing required property 'claim_name'")
             __props__['claim_name'] = claim_name
-            if claim_value is None:
+            if claim_value is None and not opts.urn:
                 raise TypeError("Missing required property 'claim_value'")
             __props__['claim_value'] = claim_value
             __props__['claim_value_type'] = claim_value_type
             __props__['client_id'] = client_id
             __props__['client_scope_id'] = client_scope_id
             __props__['name'] = name
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
         super(HardcodedClaimProtocolMapper, __self__).__init__(

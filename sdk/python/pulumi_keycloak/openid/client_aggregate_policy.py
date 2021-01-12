@@ -47,19 +47,19 @@ class ClientAggregatePolicy(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if decision_strategy is None:
+            if decision_strategy is None and not opts.urn:
                 raise TypeError("Missing required property 'decision_strategy'")
             __props__['decision_strategy'] = decision_strategy
             __props__['description'] = description
             __props__['logic'] = logic
             __props__['name'] = name
-            if policies is None:
+            if policies is None and not opts.urn:
                 raise TypeError("Missing required property 'policies'")
             __props__['policies'] = policies
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
-            if resource_server_id is None:
+            if resource_server_id is None and not opts.urn:
                 raise TypeError("Missing required property 'resource_server_id'")
             __props__['resource_server_id'] = resource_server_id
         super(ClientAggregatePolicy, __self__).__init__(

@@ -354,6 +354,42 @@ export interface UserInitialPassword {
      */
     value: string;
 }
+
+export interface UsersPermissionsImpersonateScope {
+    decisionStrategy?: string;
+    description?: string;
+    policies?: string[];
+}
+
+export interface UsersPermissionsManageGroupMembershipScope {
+    decisionStrategy?: string;
+    description?: string;
+    policies?: string[];
+}
+
+export interface UsersPermissionsManageScope {
+    decisionStrategy?: string;
+    description?: string;
+    policies?: string[];
+}
+
+export interface UsersPermissionsMapRolesScope {
+    decisionStrategy?: string;
+    description?: string;
+    policies?: string[];
+}
+
+export interface UsersPermissionsUserImpersonatedScope {
+    decisionStrategy?: string;
+    description?: string;
+    policies?: string[];
+}
+
+export interface UsersPermissionsViewScope {
+    decisionStrategy?: string;
+    description?: string;
+    policies?: string[];
+}
 export namespace ldap {
     export interface UserFederationCache {
         /**
@@ -413,6 +449,10 @@ export namespace openid {
          */
         allowRemoteResourceManagement?: boolean;
         /**
+         * Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
+         */
+        decisionStrategy?: string;
+        /**
          * When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
          */
         keepDefaults?: boolean;
@@ -428,6 +468,48 @@ export namespace openid {
         path: string;
     }
 
+    export interface ClientPermissionsConfigureScope {
+        decisionStrategy?: string;
+        description?: string;
+        policies?: string[];
+    }
+
+    export interface ClientPermissionsManageScope {
+        decisionStrategy?: string;
+        description?: string;
+        policies?: string[];
+    }
+
+    export interface ClientPermissionsMapRolesClientScopeScope {
+        decisionStrategy?: string;
+        description?: string;
+        policies?: string[];
+    }
+
+    export interface ClientPermissionsMapRolesCompositeScope {
+        decisionStrategy?: string;
+        description?: string;
+        policies?: string[];
+    }
+
+    export interface ClientPermissionsMapRolesScope {
+        decisionStrategy?: string;
+        description?: string;
+        policies?: string[];
+    }
+
+    export interface ClientPermissionsTokenExchangeScope {
+        decisionStrategy?: string;
+        description?: string;
+        policies?: string[];
+    }
+
+    export interface ClientPermissionsViewScope {
+        decisionStrategy?: string;
+        description?: string;
+        policies?: string[];
+    }
+
     export interface ClientRolePolicyRole {
         id: string;
         required: boolean;
@@ -440,6 +522,7 @@ export namespace openid {
 
     export interface GetClientAuthorization {
         allowRemoteResourceManagement: boolean;
+        decisionStrategy: string;
         keepDefaults: boolean;
         policyEnforcementMode: string;
     }
@@ -448,5 +531,18 @@ export namespace openid {
         identityProvider: string;
         userId: string;
         userName: string;
+    }
+}
+
+export namespace saml {
+    export interface ClientAuthenticationFlowBindingOverrides {
+        /**
+         * Browser flow id, (flow needs to exist)
+         */
+        browserId?: string;
+        /**
+         * Direct grant flow id (flow needs to exist)
+         */
+        directGrantId?: string;
     }
 }

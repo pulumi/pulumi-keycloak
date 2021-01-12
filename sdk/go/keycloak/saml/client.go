@@ -30,6 +30,8 @@ type Client struct {
 	AssertionConsumerPostUrl pulumi.StringPtrOutput `pulumi:"assertionConsumerPostUrl"`
 	// SAML Redirect Binding URL for the client's assertion consumer service (login responses).
 	AssertionConsumerRedirectUrl pulumi.StringPtrOutput `pulumi:"assertionConsumerRedirectUrl"`
+	// Override realm authentication flow bindings
+	AuthenticationFlowBindingOverrides ClientAuthenticationFlowBindingOverridesPtrOutput `pulumi:"authenticationFlowBindingOverrides"`
 	// When specified, this URL will be used whenever Keycloak needs to link to this client.
 	BaseUrl pulumi.StringPtrOutput `pulumi:"baseUrl"`
 	// The unique ID of this client, referenced in the URI during authentication and in issued tokens.
@@ -89,14 +91,15 @@ type Client struct {
 // NewClient registers a new resource with the given unique name, arguments, and options.
 func NewClient(ctx *pulumi.Context,
 	name string, args *ClientArgs, opts ...pulumi.ResourceOption) (*Client, error) {
-	if args == nil || args.ClientId == nil {
-		return nil, errors.New("missing required argument 'ClientId'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &ClientArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ClientId == nil {
+		return nil, errors.New("invalid value for required argument 'ClientId'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource Client
 	err := ctx.RegisterResource("keycloak:saml/client:Client", name, args, &resource, opts...)
@@ -124,6 +127,8 @@ type clientState struct {
 	AssertionConsumerPostUrl *string `pulumi:"assertionConsumerPostUrl"`
 	// SAML Redirect Binding URL for the client's assertion consumer service (login responses).
 	AssertionConsumerRedirectUrl *string `pulumi:"assertionConsumerRedirectUrl"`
+	// Override realm authentication flow bindings
+	AuthenticationFlowBindingOverrides *ClientAuthenticationFlowBindingOverrides `pulumi:"authenticationFlowBindingOverrides"`
 	// When specified, this URL will be used whenever Keycloak needs to link to this client.
 	BaseUrl *string `pulumi:"baseUrl"`
 	// The unique ID of this client, referenced in the URI during authentication and in issued tokens.
@@ -185,6 +190,8 @@ type ClientState struct {
 	AssertionConsumerPostUrl pulumi.StringPtrInput
 	// SAML Redirect Binding URL for the client's assertion consumer service (login responses).
 	AssertionConsumerRedirectUrl pulumi.StringPtrInput
+	// Override realm authentication flow bindings
+	AuthenticationFlowBindingOverrides ClientAuthenticationFlowBindingOverridesPtrInput
 	// When specified, this URL will be used whenever Keycloak needs to link to this client.
 	BaseUrl pulumi.StringPtrInput
 	// The unique ID of this client, referenced in the URI during authentication and in issued tokens.
@@ -250,6 +257,8 @@ type clientArgs struct {
 	AssertionConsumerPostUrl *string `pulumi:"assertionConsumerPostUrl"`
 	// SAML Redirect Binding URL for the client's assertion consumer service (login responses).
 	AssertionConsumerRedirectUrl *string `pulumi:"assertionConsumerRedirectUrl"`
+	// Override realm authentication flow bindings
+	AuthenticationFlowBindingOverrides *ClientAuthenticationFlowBindingOverrides `pulumi:"authenticationFlowBindingOverrides"`
 	// When specified, this URL will be used whenever Keycloak needs to link to this client.
 	BaseUrl *string `pulumi:"baseUrl"`
 	// The unique ID of this client, referenced in the URI during authentication and in issued tokens.
@@ -312,6 +321,8 @@ type ClientArgs struct {
 	AssertionConsumerPostUrl pulumi.StringPtrInput
 	// SAML Redirect Binding URL for the client's assertion consumer service (login responses).
 	AssertionConsumerRedirectUrl pulumi.StringPtrInput
+	// Override realm authentication flow bindings
+	AuthenticationFlowBindingOverrides ClientAuthenticationFlowBindingOverridesPtrInput
 	// When specified, this URL will be used whenever Keycloak needs to link to this client.
 	BaseUrl pulumi.StringPtrInput
 	// The unique ID of this client, referenced in the URI during authentication and in issued tokens.

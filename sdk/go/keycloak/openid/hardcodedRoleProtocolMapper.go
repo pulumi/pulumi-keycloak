@@ -143,14 +143,15 @@ type HardcodedRoleProtocolMapper struct {
 // NewHardcodedRoleProtocolMapper registers a new resource with the given unique name, arguments, and options.
 func NewHardcodedRoleProtocolMapper(ctx *pulumi.Context,
 	name string, args *HardcodedRoleProtocolMapperArgs, opts ...pulumi.ResourceOption) (*HardcodedRoleProtocolMapper, error) {
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
-	if args == nil || args.RoleId == nil {
-		return nil, errors.New("missing required argument 'RoleId'")
-	}
 	if args == nil {
-		args = &HardcodedRoleProtocolMapperArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
+	}
+	if args.RoleId == nil {
+		return nil, errors.New("invalid value for required argument 'RoleId'")
 	}
 	var resource HardcodedRoleProtocolMapper
 	err := ctx.RegisterResource("keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper", name, args, &resource, opts...)

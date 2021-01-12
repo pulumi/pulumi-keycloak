@@ -19,6 +19,12 @@ namespace Pulumi.Keycloak.OpenId.Inputs
         public Input<bool>? AllowRemoteResourceManagement { get; set; }
 
         /// <summary>
+        /// Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
+        /// </summary>
+        [Input("decisionStrategy")]
+        public Input<string>? DecisionStrategy { get; set; }
+
+        /// <summary>
         /// When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
         /// </summary>
         [Input("keepDefaults")]

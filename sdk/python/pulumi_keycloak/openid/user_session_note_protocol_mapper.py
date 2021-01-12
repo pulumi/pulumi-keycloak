@@ -121,18 +121,18 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
 
             __props__['add_to_access_token'] = add_to_access_token
             __props__['add_to_id_token'] = add_to_id_token
-            if claim_name is None:
+            if claim_name is None and not opts.urn:
                 raise TypeError("Missing required property 'claim_name'")
             __props__['claim_name'] = claim_name
             __props__['claim_value_type'] = claim_value_type
             __props__['client_id'] = client_id
             __props__['client_scope_id'] = client_scope_id
             __props__['name'] = name
-            if realm_id is None:
+            if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__['realm_id'] = realm_id
             __props__['session_note'] = session_note
-            if session_note_label is not None:
+            if session_note_label is not None and not opts.urn:
                 warnings.warn("""use session_note instead""", DeprecationWarning)
                 pulumi.log.warn("session_note_label is deprecated: use session_note instead")
             __props__['session_note_label'] = session_note_label

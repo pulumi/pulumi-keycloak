@@ -67,10 +67,10 @@ export class ClientAuthorizationResource extends pulumi.CustomResource {
             inputs["uris"] = state ? state.uris : undefined;
         } else {
             const args = argsOrState as ClientAuthorizationResourceArgs | undefined;
-            if (!args || args.realmId === undefined) {
+            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if (!args || args.resourceServerId === undefined) {
+            if ((!args || args.resourceServerId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
             inputs["attributes"] = args ? args.attributes : undefined;
