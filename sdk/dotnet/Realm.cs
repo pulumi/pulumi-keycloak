@@ -97,6 +97,10 @@ namespace Pulumi.Keycloak
     /// 
     /// }
     /// ```
+    /// ## Default Client Scopes
+    /// 
+    /// - `default_default_client_scopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default default client-scopes.
+    /// - `default_optional_client_scopes` - (Optional) A list of default optional client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default optional client-scopes.
     /// 
     /// ## Import
     /// 
@@ -179,6 +183,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Output("clientAuthenticationFlow")]
         public Output<string?> ClientAuthenticationFlow { get; private set; } = null!;
+
+        [Output("defaultDefaultClientScopes")]
+        public Output<ImmutableArray<string>> DefaultDefaultClientScopes { get; private set; } = null!;
+
+        [Output("defaultOptionalClientScopes")]
+        public Output<ImmutableArray<string>> DefaultOptionalClientScopes { get; private set; } = null!;
 
         /// <summary>
         /// Default algorithm used to sign tokens for the realm.
@@ -508,6 +518,22 @@ namespace Pulumi.Keycloak
         [Input("clientAuthenticationFlow")]
         public Input<string>? ClientAuthenticationFlow { get; set; }
 
+        [Input("defaultDefaultClientScopes")]
+        private InputList<string>? _defaultDefaultClientScopes;
+        public InputList<string> DefaultDefaultClientScopes
+        {
+            get => _defaultDefaultClientScopes ?? (_defaultDefaultClientScopes = new InputList<string>());
+            set => _defaultDefaultClientScopes = value;
+        }
+
+        [Input("defaultOptionalClientScopes")]
+        private InputList<string>? _defaultOptionalClientScopes;
+        public InputList<string> DefaultOptionalClientScopes
+        {
+            get => _defaultOptionalClientScopes ?? (_defaultOptionalClientScopes = new InputList<string>());
+            set => _defaultOptionalClientScopes = value;
+        }
+
         /// <summary>
         /// Default algorithm used to sign tokens for the realm.
         /// </summary>
@@ -793,6 +819,22 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("clientAuthenticationFlow")]
         public Input<string>? ClientAuthenticationFlow { get; set; }
+
+        [Input("defaultDefaultClientScopes")]
+        private InputList<string>? _defaultDefaultClientScopes;
+        public InputList<string> DefaultDefaultClientScopes
+        {
+            get => _defaultDefaultClientScopes ?? (_defaultDefaultClientScopes = new InputList<string>());
+            set => _defaultDefaultClientScopes = value;
+        }
+
+        [Input("defaultOptionalClientScopes")]
+        private InputList<string>? _defaultOptionalClientScopes;
+        public InputList<string> DefaultOptionalClientScopes
+        {
+            get => _defaultOptionalClientScopes ?? (_defaultOptionalClientScopes = new InputList<string>());
+            set => _defaultOptionalClientScopes = value;
+        }
 
         /// <summary>
         /// Default algorithm used to sign tokens for the realm.

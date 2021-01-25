@@ -545,4 +545,9 @@ export namespace saml {
          */
         directGrantId?: string;
     }
+
+    export interface GetClientAuthenticationFlowBindingOverride {
+        browserId: string;
+        directGrantId: string;
+    }
 }

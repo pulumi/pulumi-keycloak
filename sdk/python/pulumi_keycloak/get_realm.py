@@ -21,7 +21,7 @@ class GetRealmResult:
     """
     A collection of values returned by getRealm.
     """
-    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, default_signature_algorithm=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, id=None, internal_id=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, offline_session_max_lifespan_enabled=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, revoke_refresh_token=None, security_defenses=None, smtp_servers=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_idle_timeout_remember_me=None, sso_session_max_lifespan=None, sso_session_max_lifespan_remember_me=None, user_managed_access=None, verify_email=None, web_authn_passwordless_policy=None, web_authn_policy=None):
+    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, default_default_client_scopes=None, default_optional_client_scopes=None, default_signature_algorithm=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, id=None, internal_id=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, offline_session_max_lifespan_enabled=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, revoke_refresh_token=None, security_defenses=None, smtp_servers=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_idle_timeout_remember_me=None, sso_session_max_lifespan=None, sso_session_max_lifespan_remember_me=None, user_managed_access=None, verify_email=None, web_authn_passwordless_policy=None, web_authn_policy=None):
         if access_code_lifespan and not isinstance(access_code_lifespan, str):
             raise TypeError("Expected argument 'access_code_lifespan' to be a str")
         pulumi.set(__self__, "access_code_lifespan", access_code_lifespan)
@@ -58,6 +58,12 @@ class GetRealmResult:
         if client_authentication_flow and not isinstance(client_authentication_flow, str):
             raise TypeError("Expected argument 'client_authentication_flow' to be a str")
         pulumi.set(__self__, "client_authentication_flow", client_authentication_flow)
+        if default_default_client_scopes and not isinstance(default_default_client_scopes, list):
+            raise TypeError("Expected argument 'default_default_client_scopes' to be a list")
+        pulumi.set(__self__, "default_default_client_scopes", default_default_client_scopes)
+        if default_optional_client_scopes and not isinstance(default_optional_client_scopes, list):
+            raise TypeError("Expected argument 'default_optional_client_scopes' to be a list")
+        pulumi.set(__self__, "default_optional_client_scopes", default_optional_client_scopes)
         if default_signature_algorithm and not isinstance(default_signature_algorithm, str):
             raise TypeError("Expected argument 'default_signature_algorithm' to be a str")
         pulumi.set(__self__, "default_signature_algorithm", default_signature_algorithm)
@@ -232,6 +238,16 @@ class GetRealmResult:
     @pulumi.getter(name="clientAuthenticationFlow")
     def client_authentication_flow(self) -> str:
         return pulumi.get(self, "client_authentication_flow")
+
+    @property
+    @pulumi.getter(name="defaultDefaultClientScopes")
+    def default_default_client_scopes(self) -> Sequence[str]:
+        return pulumi.get(self, "default_default_client_scopes")
+
+    @property
+    @pulumi.getter(name="defaultOptionalClientScopes")
+    def default_optional_client_scopes(self) -> Sequence[str]:
+        return pulumi.get(self, "default_optional_client_scopes")
 
     @property
     @pulumi.getter(name="defaultSignatureAlgorithm")
@@ -445,6 +461,8 @@ class AwaitableGetRealmResult(GetRealmResult):
             attributes=self.attributes,
             browser_flow=self.browser_flow,
             client_authentication_flow=self.client_authentication_flow,
+            default_default_client_scopes=self.default_default_client_scopes,
+            default_optional_client_scopes=self.default_optional_client_scopes,
             default_signature_algorithm=self.default_signature_algorithm,
             direct_grant_flow=self.direct_grant_flow,
             display_name=self.display_name,
@@ -486,6 +504,8 @@ class AwaitableGetRealmResult(GetRealmResult):
 
 
 def get_realm(attributes: Optional[Mapping[str, Any]] = None,
+              default_default_client_scopes: Optional[Sequence[str]] = None,
+              default_optional_client_scopes: Optional[Sequence[str]] = None,
               display_name_html: Optional[str] = None,
               internationalizations: Optional[Sequence[pulumi.InputType['GetRealmInternationalizationArgs']]] = None,
               realm: Optional[str] = None,
@@ -513,6 +533,8 @@ def get_realm(attributes: Optional[Mapping[str, Any]] = None,
     """
     __args__ = dict()
     __args__['attributes'] = attributes
+    __args__['defaultDefaultClientScopes'] = default_default_client_scopes
+    __args__['defaultOptionalClientScopes'] = default_optional_client_scopes
     __args__['displayNameHtml'] = display_name_html
     __args__['internationalizations'] = internationalizations
     __args__['realm'] = realm
@@ -539,6 +561,8 @@ def get_realm(attributes: Optional[Mapping[str, Any]] = None,
         attributes=__ret__.attributes,
         browser_flow=__ret__.browser_flow,
         client_authentication_flow=__ret__.client_authentication_flow,
+        default_default_client_scopes=__ret__.default_default_client_scopes,
+        default_optional_client_scopes=__ret__.default_optional_client_scopes,
         default_signature_algorithm=__ret__.default_signature_algorithm,
         direct_grant_flow=__ret__.direct_grant_flow,
         display_name=__ret__.display_name,

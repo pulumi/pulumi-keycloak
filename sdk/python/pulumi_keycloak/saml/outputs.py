@@ -10,6 +10,7 @@ from .. import _utilities, _tables
 
 __all__ = [
     'ClientAuthenticationFlowBindingOverrides',
+    'GetClientAuthenticationFlowBindingOverrideResult',
 ]
 
 @pulumi.output_type
@@ -44,5 +45,24 @@ class ClientAuthenticationFlowBindingOverrides(dict):
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class GetClientAuthenticationFlowBindingOverrideResult(dict):
+    def __init__(__self__, *,
+                 browser_id: str,
+                 direct_grant_id: str):
+        pulumi.set(__self__, "browser_id", browser_id)
+        pulumi.set(__self__, "direct_grant_id", direct_grant_id)
+
+    @property
+    @pulumi.getter(name="browserId")
+    def browser_id(self) -> str:
+        return pulumi.get(self, "browser_id")
+
+    @property
+    @pulumi.getter(name="directGrantId")
+    def direct_grant_id(self) -> str:
+        return pulumi.get(self, "direct_grant_id")
 
 

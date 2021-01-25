@@ -92,6 +92,7 @@
         "saml/client.ts",
         "saml/clientDefaultScope.ts",
         "saml/clientScope.ts",
+        "saml/getClient.ts",
         "saml/getClientInstallationProvider.ts",
         "saml/identityProvider.ts",
         "saml/index.ts",

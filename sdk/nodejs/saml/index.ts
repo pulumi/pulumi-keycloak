@@ -8,6 +8,7 @@ import * as utilities from "../utilities";
 export * from "./client";
 export * from "./clientDefaultScope";
 export * from "./clientScope";
+export * from "./getClient";
 export * from "./getClientInstallationProvider";
 export * from "./identityProvider";
 export * from "./userAttributeProtocolMapper";

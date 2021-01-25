@@ -75,6 +75,10 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ * ## Default Client Scopes
+ *
+ * - `defaultDefaultClientScopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default default client-scopes.
+ * - `defaultOptionalClientScopes` - (Optional) A list of default optional client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default optional client-scopes.
  *
  * ## Import
  *
@@ -160,6 +164,8 @@ export class Realm extends pulumi.CustomResource {
      * The desired flow for client authentication. Defaults to `clients`.
      */
     public readonly clientAuthenticationFlow!: pulumi.Output<string | undefined>;
+    public readonly defaultDefaultClientScopes!: pulumi.Output<string[] | undefined>;
+    public readonly defaultOptionalClientScopes!: pulumi.Output<string[] | undefined>;
     /**
      * Default algorithm used to sign tokens for the realm.
      */
@@ -315,6 +321,8 @@ export class Realm extends pulumi.CustomResource {
             inputs["attributes"] = state ? state.attributes : undefined;
             inputs["browserFlow"] = state ? state.browserFlow : undefined;
             inputs["clientAuthenticationFlow"] = state ? state.clientAuthenticationFlow : undefined;
+            inputs["defaultDefaultClientScopes"] = state ? state.defaultDefaultClientScopes : undefined;
+            inputs["defaultOptionalClientScopes"] = state ? state.defaultOptionalClientScopes : undefined;
             inputs["defaultSignatureAlgorithm"] = state ? state.defaultSignatureAlgorithm : undefined;
             inputs["directGrantFlow"] = state ? state.directGrantFlow : undefined;
             inputs["displayName"] = state ? state.displayName : undefined;
@@ -369,6 +377,8 @@ export class Realm extends pulumi.CustomResource {
             inputs["attributes"] = args ? args.attributes : undefined;
             inputs["browserFlow"] = args ? args.browserFlow : undefined;
             inputs["clientAuthenticationFlow"] = args ? args.clientAuthenticationFlow : undefined;
+            inputs["defaultDefaultClientScopes"] = args ? args.defaultDefaultClientScopes : undefined;
+            inputs["defaultOptionalClientScopes"] = args ? args.defaultOptionalClientScopes : undefined;
             inputs["defaultSignatureAlgorithm"] = args ? args.defaultSignatureAlgorithm : undefined;
             inputs["directGrantFlow"] = args ? args.directGrantFlow : undefined;
             inputs["displayName"] = args ? args.displayName : undefined;
@@ -470,6 +480,8 @@ export interface RealmState {
      * The desired flow for client authentication. Defaults to `clients`.
      */
     readonly clientAuthenticationFlow?: pulumi.Input<string>;
+    readonly defaultDefaultClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly defaultOptionalClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Default algorithm used to sign tokens for the realm.
      */
@@ -654,6 +666,8 @@ export interface RealmArgs {
      * The desired flow for client authentication. Defaults to `clients`.
      */
     readonly clientAuthenticationFlow?: pulumi.Input<string>;
+    readonly defaultDefaultClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly defaultOptionalClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Default algorithm used to sign tokens for the realm.
      */
