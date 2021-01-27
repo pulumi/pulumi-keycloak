@@ -255,6 +255,7 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_openid_client_service_account_user": {Tok: makeDataSource(openIDMod, "getClientServiceAccountUser")},
 
 			"keycloak_saml_client_installation_provider": {Tok: makeDataSource(samlMod, "getClientInstallationProvider")},
+			"keycloak_saml_client":                       {Tok: makeDataSource(samlMod, "getClient")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions

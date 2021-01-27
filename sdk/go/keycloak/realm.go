@@ -92,6 +92,10 @@ import (
 // 	})
 // }
 // ```
+// ## Default Client Scopes
+//
+// - `defaultDefaultClientScopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default default client-scopes.
+// - `defaultOptionalClientScopes` - (Optional) A list of default optional client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default optional client-scopes.
 //
 // ## Import
 //
@@ -126,7 +130,9 @@ type Realm struct {
 	// The desired flow for browser authentication. Defaults to `browser`.
 	BrowserFlow pulumi.StringPtrOutput `pulumi:"browserFlow"`
 	// The desired flow for client authentication. Defaults to `clients`.
-	ClientAuthenticationFlow pulumi.StringPtrOutput `pulumi:"clientAuthenticationFlow"`
+	ClientAuthenticationFlow    pulumi.StringPtrOutput   `pulumi:"clientAuthenticationFlow"`
+	DefaultDefaultClientScopes  pulumi.StringArrayOutput `pulumi:"defaultDefaultClientScopes"`
+	DefaultOptionalClientScopes pulumi.StringArrayOutput `pulumi:"defaultOptionalClientScopes"`
 	// Default algorithm used to sign tokens for the realm.
 	DefaultSignatureAlgorithm pulumi.StringPtrOutput `pulumi:"defaultSignatureAlgorithm"`
 	// The desired flow for direct access authentication. Defaults to `direct grant`.
@@ -252,7 +258,9 @@ type realmState struct {
 	// The desired flow for browser authentication. Defaults to `browser`.
 	BrowserFlow *string `pulumi:"browserFlow"`
 	// The desired flow for client authentication. Defaults to `clients`.
-	ClientAuthenticationFlow *string `pulumi:"clientAuthenticationFlow"`
+	ClientAuthenticationFlow    *string  `pulumi:"clientAuthenticationFlow"`
+	DefaultDefaultClientScopes  []string `pulumi:"defaultDefaultClientScopes"`
+	DefaultOptionalClientScopes []string `pulumi:"defaultOptionalClientScopes"`
 	// Default algorithm used to sign tokens for the realm.
 	DefaultSignatureAlgorithm *string `pulumi:"defaultSignatureAlgorithm"`
 	// The desired flow for direct access authentication. Defaults to `direct grant`.
@@ -347,7 +355,9 @@ type RealmState struct {
 	// The desired flow for browser authentication. Defaults to `browser`.
 	BrowserFlow pulumi.StringPtrInput
 	// The desired flow for client authentication. Defaults to `clients`.
-	ClientAuthenticationFlow pulumi.StringPtrInput
+	ClientAuthenticationFlow    pulumi.StringPtrInput
+	DefaultDefaultClientScopes  pulumi.StringArrayInput
+	DefaultOptionalClientScopes pulumi.StringArrayInput
 	// Default algorithm used to sign tokens for the realm.
 	DefaultSignatureAlgorithm pulumi.StringPtrInput
 	// The desired flow for direct access authentication. Defaults to `direct grant`.
@@ -446,7 +456,9 @@ type realmArgs struct {
 	// The desired flow for browser authentication. Defaults to `browser`.
 	BrowserFlow *string `pulumi:"browserFlow"`
 	// The desired flow for client authentication. Defaults to `clients`.
-	ClientAuthenticationFlow *string `pulumi:"clientAuthenticationFlow"`
+	ClientAuthenticationFlow    *string  `pulumi:"clientAuthenticationFlow"`
+	DefaultDefaultClientScopes  []string `pulumi:"defaultDefaultClientScopes"`
+	DefaultOptionalClientScopes []string `pulumi:"defaultOptionalClientScopes"`
 	// Default algorithm used to sign tokens for the realm.
 	DefaultSignatureAlgorithm *string `pulumi:"defaultSignatureAlgorithm"`
 	// The desired flow for direct access authentication. Defaults to `direct grant`.
@@ -541,7 +553,9 @@ type RealmArgs struct {
 	// The desired flow for browser authentication. Defaults to `browser`.
 	BrowserFlow pulumi.StringPtrInput
 	// The desired flow for client authentication. Defaults to `clients`.
-	ClientAuthenticationFlow pulumi.StringPtrInput
+	ClientAuthenticationFlow    pulumi.StringPtrInput
+	DefaultDefaultClientScopes  pulumi.StringArrayInput
+	DefaultOptionalClientScopes pulumi.StringArrayInput
 	// Default algorithm used to sign tokens for the realm.
 	DefaultSignatureAlgorithm pulumi.StringPtrInput
 	// The desired flow for direct access authentication. Defaults to `direct grant`.

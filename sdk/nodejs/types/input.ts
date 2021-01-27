@@ -493,4 +493,5 @@ export namespace saml {
          */
         directGrantId?: pulumi.Input<string>;
     }
+
 }

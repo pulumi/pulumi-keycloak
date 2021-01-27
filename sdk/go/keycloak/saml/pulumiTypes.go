@@ -160,7 +160,109 @@ func (o ClientAuthenticationFlowBindingOverridesPtrOutput) DirectGrantId() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetClientAuthenticationFlowBindingOverride struct {
+	BrowserId     string `pulumi:"browserId"`
+	DirectGrantId string `pulumi:"directGrantId"`
+}
+
+// GetClientAuthenticationFlowBindingOverrideInput is an input type that accepts GetClientAuthenticationFlowBindingOverrideArgs and GetClientAuthenticationFlowBindingOverrideOutput values.
+// You can construct a concrete instance of `GetClientAuthenticationFlowBindingOverrideInput` via:
+//
+//          GetClientAuthenticationFlowBindingOverrideArgs{...}
+type GetClientAuthenticationFlowBindingOverrideInput interface {
+	pulumi.Input
+
+	ToGetClientAuthenticationFlowBindingOverrideOutput() GetClientAuthenticationFlowBindingOverrideOutput
+	ToGetClientAuthenticationFlowBindingOverrideOutputWithContext(context.Context) GetClientAuthenticationFlowBindingOverrideOutput
+}
+
+type GetClientAuthenticationFlowBindingOverrideArgs struct {
+	BrowserId     pulumi.StringInput `pulumi:"browserId"`
+	DirectGrantId pulumi.StringInput `pulumi:"directGrantId"`
+}
+
+func (GetClientAuthenticationFlowBindingOverrideArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClientAuthenticationFlowBindingOverride)(nil)).Elem()
+}
+
+func (i GetClientAuthenticationFlowBindingOverrideArgs) ToGetClientAuthenticationFlowBindingOverrideOutput() GetClientAuthenticationFlowBindingOverrideOutput {
+	return i.ToGetClientAuthenticationFlowBindingOverrideOutputWithContext(context.Background())
+}
+
+func (i GetClientAuthenticationFlowBindingOverrideArgs) ToGetClientAuthenticationFlowBindingOverrideOutputWithContext(ctx context.Context) GetClientAuthenticationFlowBindingOverrideOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClientAuthenticationFlowBindingOverrideOutput)
+}
+
+// GetClientAuthenticationFlowBindingOverrideArrayInput is an input type that accepts GetClientAuthenticationFlowBindingOverrideArray and GetClientAuthenticationFlowBindingOverrideArrayOutput values.
+// You can construct a concrete instance of `GetClientAuthenticationFlowBindingOverrideArrayInput` via:
+//
+//          GetClientAuthenticationFlowBindingOverrideArray{ GetClientAuthenticationFlowBindingOverrideArgs{...} }
+type GetClientAuthenticationFlowBindingOverrideArrayInput interface {
+	pulumi.Input
+
+	ToGetClientAuthenticationFlowBindingOverrideArrayOutput() GetClientAuthenticationFlowBindingOverrideArrayOutput
+	ToGetClientAuthenticationFlowBindingOverrideArrayOutputWithContext(context.Context) GetClientAuthenticationFlowBindingOverrideArrayOutput
+}
+
+type GetClientAuthenticationFlowBindingOverrideArray []GetClientAuthenticationFlowBindingOverrideInput
+
+func (GetClientAuthenticationFlowBindingOverrideArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClientAuthenticationFlowBindingOverride)(nil)).Elem()
+}
+
+func (i GetClientAuthenticationFlowBindingOverrideArray) ToGetClientAuthenticationFlowBindingOverrideArrayOutput() GetClientAuthenticationFlowBindingOverrideArrayOutput {
+	return i.ToGetClientAuthenticationFlowBindingOverrideArrayOutputWithContext(context.Background())
+}
+
+func (i GetClientAuthenticationFlowBindingOverrideArray) ToGetClientAuthenticationFlowBindingOverrideArrayOutputWithContext(ctx context.Context) GetClientAuthenticationFlowBindingOverrideArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClientAuthenticationFlowBindingOverrideArrayOutput)
+}
+
+type GetClientAuthenticationFlowBindingOverrideOutput struct{ *pulumi.OutputState }
+
+func (GetClientAuthenticationFlowBindingOverrideOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClientAuthenticationFlowBindingOverride)(nil)).Elem()
+}
+
+func (o GetClientAuthenticationFlowBindingOverrideOutput) ToGetClientAuthenticationFlowBindingOverrideOutput() GetClientAuthenticationFlowBindingOverrideOutput {
+	return o
+}
+
+func (o GetClientAuthenticationFlowBindingOverrideOutput) ToGetClientAuthenticationFlowBindingOverrideOutputWithContext(ctx context.Context) GetClientAuthenticationFlowBindingOverrideOutput {
+	return o
+}
+
+func (o GetClientAuthenticationFlowBindingOverrideOutput) BrowserId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientAuthenticationFlowBindingOverride) string { return v.BrowserId }).(pulumi.StringOutput)
+}
+
+func (o GetClientAuthenticationFlowBindingOverrideOutput) DirectGrantId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientAuthenticationFlowBindingOverride) string { return v.DirectGrantId }).(pulumi.StringOutput)
+}
+
+type GetClientAuthenticationFlowBindingOverrideArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClientAuthenticationFlowBindingOverrideArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClientAuthenticationFlowBindingOverride)(nil)).Elem()
+}
+
+func (o GetClientAuthenticationFlowBindingOverrideArrayOutput) ToGetClientAuthenticationFlowBindingOverrideArrayOutput() GetClientAuthenticationFlowBindingOverrideArrayOutput {
+	return o
+}
+
+func (o GetClientAuthenticationFlowBindingOverrideArrayOutput) ToGetClientAuthenticationFlowBindingOverrideArrayOutputWithContext(ctx context.Context) GetClientAuthenticationFlowBindingOverrideArrayOutput {
+	return o
+}
+
+func (o GetClientAuthenticationFlowBindingOverrideArrayOutput) Index(i pulumi.IntInput) GetClientAuthenticationFlowBindingOverrideOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClientAuthenticationFlowBindingOverride {
+		return vs[0].([]GetClientAuthenticationFlowBindingOverride)[vs[1].(int)]
+	}).(GetClientAuthenticationFlowBindingOverrideOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(ClientAuthenticationFlowBindingOverridesOutput{})
 	pulumi.RegisterOutputType(ClientAuthenticationFlowBindingOverridesPtrOutput{})
+	pulumi.RegisterOutputType(GetClientAuthenticationFlowBindingOverrideOutput{})
+	pulumi.RegisterOutputType(GetClientAuthenticationFlowBindingOverrideArrayOutput{})
 }

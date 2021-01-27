@@ -29,6 +29,8 @@ class Realm(pulumi.CustomResource):
                  attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  browser_flow: Optional[pulumi.Input[str]] = None,
                  client_authentication_flow: Optional[pulumi.Input[str]] = None,
+                 default_default_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 default_optional_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_signature_algorithm: Optional[pulumi.Input[str]] = None,
                  direct_grant_flow: Optional[pulumi.Input[str]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
@@ -137,6 +139,10 @@ class Realm(pulumi.CustomResource):
                 ],
             ))
         ```
+        ## Default Client Scopes
+
+        - `default_default_client_scopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default default client-scopes.
+        - `default_optional_client_scopes` - (Optional) A list of default optional client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default optional client-scopes.
 
         ## Import
 
@@ -221,6 +227,8 @@ class Realm(pulumi.CustomResource):
             __props__['attributes'] = attributes
             __props__['browser_flow'] = browser_flow
             __props__['client_authentication_flow'] = client_authentication_flow
+            __props__['default_default_client_scopes'] = default_default_client_scopes
+            __props__['default_optional_client_scopes'] = default_optional_client_scopes
             __props__['default_signature_algorithm'] = default_signature_algorithm
             __props__['direct_grant_flow'] = direct_grant_flow
             __props__['display_name'] = display_name
@@ -282,6 +290,8 @@ class Realm(pulumi.CustomResource):
             attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             browser_flow: Optional[pulumi.Input[str]] = None,
             client_authentication_flow: Optional[pulumi.Input[str]] = None,
+            default_default_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            default_optional_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             default_signature_algorithm: Optional[pulumi.Input[str]] = None,
             direct_grant_flow: Optional[pulumi.Input[str]] = None,
             display_name: Optional[pulumi.Input[str]] = None,
@@ -386,6 +396,8 @@ class Realm(pulumi.CustomResource):
         __props__["attributes"] = attributes
         __props__["browser_flow"] = browser_flow
         __props__["client_authentication_flow"] = client_authentication_flow
+        __props__["default_default_client_scopes"] = default_default_client_scopes
+        __props__["default_optional_client_scopes"] = default_optional_client_scopes
         __props__["default_signature_algorithm"] = default_signature_algorithm
         __props__["direct_grant_flow"] = direct_grant_flow
         __props__["display_name"] = display_name
@@ -520,6 +532,16 @@ class Realm(pulumi.CustomResource):
         The desired flow for client authentication. Defaults to `clients`.
         """
         return pulumi.get(self, "client_authentication_flow")
+
+    @property
+    @pulumi.getter(name="defaultDefaultClientScopes")
+    def default_default_client_scopes(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        return pulumi.get(self, "default_default_client_scopes")
+
+    @property
+    @pulumi.getter(name="defaultOptionalClientScopes")
+    def default_optional_client_scopes(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        return pulumi.get(self, "default_optional_client_scopes")
 
     @property
     @pulumi.getter(name="defaultSignatureAlgorithm")

@@ -2125,6 +2125,36 @@
                 }
             },
             "type": "object"
+        },
+        "keycloak:saml/getClientAuthenticationFlowBindingOverride:getClientAuthenticationFlowBindingOverride": {
+            "properties": {
+                "browserId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "directGrantId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "browserId",
+                "directGrantId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         }
     },
     "provider": {
@@ -3702,7 +3732,7 @@
             }
         },
         "keycloak:index/realm:Realm": {
-            "description": "Allows for creating and managing Realms within Keycloak.\n\nA realm manages a logical collection of users, credentials, roles, and groups. Users log in to realms and can be federated\nfrom multiple sources.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    accessCodeLifespan: \"1h\",\n    attributes: {\n        mycustomAttribute: \"myCustomValue\",\n    },\n    displayName: \"my realm\",\n    displayNameHtml: \"\u003cb\u003emy realm\u003c/b\u003e\",\n    enabled: true,\n    internationalization: {\n        defaultLocale: \"en\",\n        supportedLocales: [\n            \"en\",\n            \"de\",\n            \"es\",\n        ],\n    },\n    loginTheme: \"base\",\n    passwordPolicy: \"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\",\n    realm: \"my-realm\",\n    securityDefenses: {\n        bruteForceDetection: {\n            failureResetTimeSeconds: 43200,\n            maxFailureWaitSeconds: 900,\n            maxLoginFailures: 30,\n            minimumQuickLoginWaitSeconds: 60,\n            permanentLockout: false,\n            quickLoginCheckMilliSeconds: 1000,\n            waitIncrementSeconds: 60,\n        },\n        headers: {\n            contentSecurityPolicy: \"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\",\n            contentSecurityPolicyReportOnly: \"\",\n            strictTransportSecurity: \"max-age=31536000; includeSubDomains\",\n            xContentTypeOptions: \"nosniff\",\n            xFrameOptions: \"DENY\",\n            xRobotsTag: \"none\",\n            xXssProtection: \"1; mode=block\",\n        },\n    },\n    smtpServer: {\n        auth: {\n            password: \"password\",\n            username: \"tom\",\n        },\n        from: \"example@example.com\",\n        host: \"smtp.example.com\",\n    },\n    sslRequired: \"external\",\n    webAuthnPolicy: {\n        relyingPartyEntityName: \"Example\",\n        relyingPartyId: \"keycloak.example.com\",\n        signatureAlgorithms: [\n            \"ES256\",\n            \"RS256\",\n        ],\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    access_code_lifespan=\"1h\",\n    attributes={\n        \"mycustomAttribute\": \"myCustomValue\",\n    },\n    display_name=\"my realm\",\n    display_name_html=\"\u003cb\u003emy realm\u003c/b\u003e\",\n    enabled=True,\n    internationalization=keycloak.RealmInternationalizationArgs(\n        default_locale=\"en\",\n        supported_locales=[\n            \"en\",\n            \"de\",\n            \"es\",\n        ],\n    ),\n    login_theme=\"base\",\n    password_policy=\"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\",\n    realm=\"my-realm\",\n    security_defenses=keycloak.RealmSecurityDefensesArgs(\n        brute_force_detection=keycloak.RealmSecurityDefensesBruteForceDetectionArgs(\n            failure_reset_time_seconds=43200,\n            max_failure_wait_seconds=900,\n            max_login_failures=30,\n            minimum_quick_login_wait_seconds=60,\n            permanent_lockout=False,\n            quick_login_check_milli_seconds=1000,\n            wait_increment_seconds=60,\n        ),\n        headers=keycloak.RealmSecurityDefensesHeadersArgs(\n            content_security_policy=\"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\",\n            content_security_policy_report_only=\"\",\n            strict_transport_security=\"max-age=31536000; includeSubDomains\",\n            x_content_type_options=\"nosniff\",\n            x_frame_options=\"DENY\",\n            x_robots_tag=\"none\",\n            x_xss_protection=\"1; mode=block\",\n        ),\n    ),\n    smtp_server=keycloak.RealmSmtpServerArgs(\n        auth=keycloak.RealmSmtpServerAuthArgs(\n            password=\"password\",\n            username=\"tom\",\n        ),\n        from_=\"example@example.com\",\n        host=\"smtp.example.com\",\n    ),\n    ssl_required=\"external\",\n    web_authn_policy=keycloak.RealmWebAuthnPolicyArgs(\n        relying_party_entity_name=\"Example\",\n        relying_party_id=\"keycloak.example.com\",\n        signature_algorithms=[\n            \"ES256\",\n            \"RS256\",\n        ],\n    ))\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            AccessCodeLifespan = \"1h\",\n            Attributes = \n            {\n                { \"mycustomAttribute\", \"myCustomValue\" },\n            },\n            DisplayName = \"my realm\",\n            DisplayNameHtml = \"\u003cb\u003emy realm\u003c/b\u003e\",\n            Enabled = true,\n            Internationalization = new Keycloak.Inputs.RealmInternationalizationArgs\n            {\n                DefaultLocale = \"en\",\n                SupportedLocales = \n                {\n                    \"en\",\n                    \"de\",\n                    \"es\",\n                },\n            },\n            LoginTheme = \"base\",\n            PasswordPolicy = \"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\",\n            Realm = \"my-realm\",\n            SecurityDefenses = new Keycloak.Inputs.RealmSecurityDefensesArgs\n            {\n                BruteForceDetection = new Keycloak.Inputs.RealmSecurityDefensesBruteForceDetectionArgs\n                {\n                    FailureResetTimeSeconds = 43200,\n                    MaxFailureWaitSeconds = 900,\n                    MaxLoginFailures = 30,\n                    MinimumQuickLoginWaitSeconds = 60,\n                    PermanentLockout = false,\n                    QuickLoginCheckMilliSeconds = 1000,\n                    WaitIncrementSeconds = 60,\n                },\n                Headers = new Keycloak.Inputs.RealmSecurityDefensesHeadersArgs\n                {\n                    ContentSecurityPolicy = \"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\",\n                    ContentSecurityPolicyReportOnly = \"\",\n                    StrictTransportSecurity = \"max-age=31536000; includeSubDomains\",\n                    XContentTypeOptions = \"nosniff\",\n                    XFrameOptions = \"DENY\",\n                    XRobotsTag = \"none\",\n                    XXssProtection = \"1; mode=block\",\n                },\n            },\n            SmtpServer = new Keycloak.Inputs.RealmSmtpServerArgs\n            {\n                Auth = new Keycloak.Inputs.RealmSmtpServerAuthArgs\n                {\n                    Password = \"password\",\n                    Username = \"tom\",\n                },\n                From = \"example@example.com\",\n                Host = \"smtp.example.com\",\n            },\n            SslRequired = \"external\",\n            WebAuthnPolicy = new Keycloak.Inputs.RealmWebAuthnPolicyArgs\n            {\n                RelyingPartyEntityName = \"Example\",\n                RelyingPartyId = \"keycloak.example.com\",\n                SignatureAlgorithms = \n                {\n                    \"ES256\",\n                    \"RS256\",\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tAccessCodeLifespan: pulumi.String(\"1h\"),\n\t\t\tAttributes: pulumi.StringMap{\n\t\t\t\t\"mycustomAttribute\": pulumi.String(\"myCustomValue\"),\n\t\t\t},\n\t\t\tDisplayName:     pulumi.String(\"my realm\"),\n\t\t\tDisplayNameHtml: pulumi.String(\"\u003cb\u003emy realm\u003c/b\u003e\"),\n\t\t\tEnabled:         pulumi.Bool(true),\n\t\t\tInternationalization: \u0026keycloak.RealmInternationalizationArgs{\n\t\t\t\tDefaultLocale: pulumi.String(\"en\"),\n\t\t\t\tSupportedLocales: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"en\"),\n\t\t\t\t\tpulumi.String(\"de\"),\n\t\t\t\t\tpulumi.String(\"es\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tLoginTheme:     pulumi.String(\"base\"),\n\t\t\tPasswordPolicy: pulumi.String(\"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\"),\n\t\t\tRealm:          pulumi.String(\"my-realm\"),\n\t\t\tSecurityDefenses: \u0026keycloak.RealmSecurityDefensesArgs{\n\t\t\t\tBruteForceDetection: \u0026keycloak.RealmSecurityDefensesBruteForceDetectionArgs{\n\t\t\t\t\tFailureResetTimeSeconds:      pulumi.Int(43200),\n\t\t\t\t\tMaxFailureWaitSeconds:        pulumi.Int(900),\n\t\t\t\t\tMaxLoginFailures:             pulumi.Int(30),\n\t\t\t\t\tMinimumQuickLoginWaitSeconds: pulumi.Int(60),\n\t\t\t\t\tPermanentLockout:             pulumi.Bool(false),\n\t\t\t\t\tQuickLoginCheckMilliSeconds:  pulumi.Int(1000),\n\t\t\t\t\tWaitIncrementSeconds:         pulumi.Int(60),\n\t\t\t\t},\n\t\t\t\tHeaders: \u0026keycloak.RealmSecurityDefensesHeadersArgs{\n\t\t\t\t\tContentSecurityPolicy:           pulumi.String(\"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\"),\n\t\t\t\t\tContentSecurityPolicyReportOnly: pulumi.String(\"\"),\n\t\t\t\t\tStrictTransportSecurity:         pulumi.String(\"max-age=31536000; includeSubDomains\"),\n\t\t\t\t\tXContentTypeOptions:             pulumi.String(\"nosniff\"),\n\t\t\t\t\tXFrameOptions:                   pulumi.String(\"DENY\"),\n\t\t\t\t\tXRobotsTag:                      pulumi.String(\"none\"),\n\t\t\t\t\tXXssProtection:                  pulumi.String(\"1; mode=block\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tSmtpServer: \u0026keycloak.RealmSmtpServerArgs{\n\t\t\t\tAuth: \u0026keycloak.RealmSmtpServerAuthArgs{\n\t\t\t\t\tPassword: pulumi.String(\"password\"),\n\t\t\t\t\tUsername: pulumi.String(\"tom\"),\n\t\t\t\t},\n\t\t\t\tFrom: pulumi.String(\"example@example.com\"),\n\t\t\t\tHost: pulumi.String(\"smtp.example.com\"),\n\t\t\t},\n\t\t\tSslRequired: pulumi.String(\"external\"),\n\t\t\tWebAuthnPolicy: \u0026keycloak.RealmWebAuthnPolicyArgs{\n\t\t\t\tRelyingPartyEntityName: pulumi.String(\"Example\"),\n\t\t\t\tRelyingPartyId:         pulumi.String(\"keycloak.example.com\"),\n\t\t\t\tSignatureAlgorithms: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"ES256\"),\n\t\t\t\t\tpulumi.String(\"RS256\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nRealms can be imported using their name. Examplebash\n\n```sh\n $ pulumi import keycloak:index/realm:Realm realm my-realm\n```\n\n ",
+            "description": "Allows for creating and managing Realms within Keycloak.\n\nA realm manages a logical collection of users, credentials, roles, and groups. Users log in to realms and can be federated\nfrom multiple sources.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    accessCodeLifespan: \"1h\",\n    attributes: {\n        mycustomAttribute: \"myCustomValue\",\n    },\n    displayName: \"my realm\",\n    displayNameHtml: \"\u003cb\u003emy realm\u003c/b\u003e\",\n    enabled: true,\n    internationalization: {\n        defaultLocale: \"en\",\n        supportedLocales: [\n            \"en\",\n            \"de\",\n            \"es\",\n        ],\n    },\n    loginTheme: \"base\",\n    passwordPolicy: \"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\",\n    realm: \"my-realm\",\n    securityDefenses: {\n        bruteForceDetection: {\n            failureResetTimeSeconds: 43200,\n            maxFailureWaitSeconds: 900,\n            maxLoginFailures: 30,\n            minimumQuickLoginWaitSeconds: 60,\n            permanentLockout: false,\n            quickLoginCheckMilliSeconds: 1000,\n            waitIncrementSeconds: 60,\n        },\n        headers: {\n            contentSecurityPolicy: \"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\",\n            contentSecurityPolicyReportOnly: \"\",\n            strictTransportSecurity: \"max-age=31536000; includeSubDomains\",\n            xContentTypeOptions: \"nosniff\",\n            xFrameOptions: \"DENY\",\n            xRobotsTag: \"none\",\n            xXssProtection: \"1; mode=block\",\n        },\n    },\n    smtpServer: {\n        auth: {\n            password: \"password\",\n            username: \"tom\",\n        },\n        from: \"example@example.com\",\n        host: \"smtp.example.com\",\n    },\n    sslRequired: \"external\",\n    webAuthnPolicy: {\n        relyingPartyEntityName: \"Example\",\n        relyingPartyId: \"keycloak.example.com\",\n        signatureAlgorithms: [\n            \"ES256\",\n            \"RS256\",\n        ],\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    access_code_lifespan=\"1h\",\n    attributes={\n        \"mycustomAttribute\": \"myCustomValue\",\n    },\n    display_name=\"my realm\",\n    display_name_html=\"\u003cb\u003emy realm\u003c/b\u003e\",\n    enabled=True,\n    internationalization=keycloak.RealmInternationalizationArgs(\n        default_locale=\"en\",\n        supported_locales=[\n            \"en\",\n            \"de\",\n            \"es\",\n        ],\n    ),\n    login_theme=\"base\",\n    password_policy=\"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\",\n    realm=\"my-realm\",\n    security_defenses=keycloak.RealmSecurityDefensesArgs(\n        brute_force_detection=keycloak.RealmSecurityDefensesBruteForceDetectionArgs(\n            failure_reset_time_seconds=43200,\n            max_failure_wait_seconds=900,\n            max_login_failures=30,\n            minimum_quick_login_wait_seconds=60,\n            permanent_lockout=False,\n            quick_login_check_milli_seconds=1000,\n            wait_increment_seconds=60,\n        ),\n        headers=keycloak.RealmSecurityDefensesHeadersArgs(\n            content_security_policy=\"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\",\n            content_security_policy_report_only=\"\",\n            strict_transport_security=\"max-age=31536000; includeSubDomains\",\n            x_content_type_options=\"nosniff\",\n            x_frame_options=\"DENY\",\n            x_robots_tag=\"none\",\n            x_xss_protection=\"1; mode=block\",\n        ),\n    ),\n    smtp_server=keycloak.RealmSmtpServerArgs(\n        auth=keycloak.RealmSmtpServerAuthArgs(\n            password=\"password\",\n            username=\"tom\",\n        ),\n        from_=\"example@example.com\",\n        host=\"smtp.example.com\",\n    ),\n    ssl_required=\"external\",\n    web_authn_policy=keycloak.RealmWebAuthnPolicyArgs(\n        relying_party_entity_name=\"Example\",\n        relying_party_id=\"keycloak.example.com\",\n        signature_algorithms=[\n            \"ES256\",\n            \"RS256\",\n        ],\n    ))\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            AccessCodeLifespan = \"1h\",\n            Attributes = \n            {\n                { \"mycustomAttribute\", \"myCustomValue\" },\n            },\n            DisplayName = \"my realm\",\n            DisplayNameHtml = \"\u003cb\u003emy realm\u003c/b\u003e\",\n            Enabled = true,\n            Internationalization = new Keycloak.Inputs.RealmInternationalizationArgs\n            {\n                DefaultLocale = \"en\",\n                SupportedLocales = \n                {\n                    \"en\",\n                    \"de\",\n                    \"es\",\n                },\n            },\n            LoginTheme = \"base\",\n            PasswordPolicy = \"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\",\n            Realm = \"my-realm\",\n            SecurityDefenses = new Keycloak.Inputs.RealmSecurityDefensesArgs\n            {\n                BruteForceDetection = new Keycloak.Inputs.RealmSecurityDefensesBruteForceDetectionArgs\n                {\n                    FailureResetTimeSeconds = 43200,\n                    MaxFailureWaitSeconds = 900,\n                    MaxLoginFailures = 30,\n                    MinimumQuickLoginWaitSeconds = 60,\n                    PermanentLockout = false,\n                    QuickLoginCheckMilliSeconds = 1000,\n                    WaitIncrementSeconds = 60,\n                },\n                Headers = new Keycloak.Inputs.RealmSecurityDefensesHeadersArgs\n                {\n                    ContentSecurityPolicy = \"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\",\n                    ContentSecurityPolicyReportOnly = \"\",\n                    StrictTransportSecurity = \"max-age=31536000; includeSubDomains\",\n                    XContentTypeOptions = \"nosniff\",\n                    XFrameOptions = \"DENY\",\n                    XRobotsTag = \"none\",\n                    XXssProtection = \"1; mode=block\",\n                },\n            },\n            SmtpServer = new Keycloak.Inputs.RealmSmtpServerArgs\n            {\n                Auth = new Keycloak.Inputs.RealmSmtpServerAuthArgs\n                {\n                    Password = \"password\",\n                    Username = \"tom\",\n                },\n                From = \"example@example.com\",\n                Host = \"smtp.example.com\",\n            },\n            SslRequired = \"external\",\n            WebAuthnPolicy = new Keycloak.Inputs.RealmWebAuthnPolicyArgs\n            {\n                RelyingPartyEntityName = \"Example\",\n                RelyingPartyId = \"keycloak.example.com\",\n                SignatureAlgorithms = \n                {\n                    \"ES256\",\n                    \"RS256\",\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tAccessCodeLifespan: pulumi.String(\"1h\"),\n\t\t\tAttributes: pulumi.StringMap{\n\t\t\t\t\"mycustomAttribute\": pulumi.String(\"myCustomValue\"),\n\t\t\t},\n\t\t\tDisplayName:     pulumi.String(\"my realm\"),\n\t\t\tDisplayNameHtml: pulumi.String(\"\u003cb\u003emy realm\u003c/b\u003e\"),\n\t\t\tEnabled:         pulumi.Bool(true),\n\t\t\tInternationalization: \u0026keycloak.RealmInternationalizationArgs{\n\t\t\t\tDefaultLocale: pulumi.String(\"en\"),\n\t\t\t\tSupportedLocales: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"en\"),\n\t\t\t\t\tpulumi.String(\"de\"),\n\t\t\t\t\tpulumi.String(\"es\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tLoginTheme:     pulumi.String(\"base\"),\n\t\t\tPasswordPolicy: pulumi.String(\"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\"),\n\t\t\tRealm:          pulumi.String(\"my-realm\"),\n\t\t\tSecurityDefenses: \u0026keycloak.RealmSecurityDefensesArgs{\n\t\t\t\tBruteForceDetection: \u0026keycloak.RealmSecurityDefensesBruteForceDetectionArgs{\n\t\t\t\t\tFailureResetTimeSeconds:      pulumi.Int(43200),\n\t\t\t\t\tMaxFailureWaitSeconds:        pulumi.Int(900),\n\t\t\t\t\tMaxLoginFailures:             pulumi.Int(30),\n\t\t\t\t\tMinimumQuickLoginWaitSeconds: pulumi.Int(60),\n\t\t\t\t\tPermanentLockout:             pulumi.Bool(false),\n\t\t\t\t\tQuickLoginCheckMilliSeconds:  pulumi.Int(1000),\n\t\t\t\t\tWaitIncrementSeconds:         pulumi.Int(60),\n\t\t\t\t},\n\t\t\t\tHeaders: \u0026keycloak.RealmSecurityDefensesHeadersArgs{\n\t\t\t\t\tContentSecurityPolicy:           pulumi.String(\"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\"),\n\t\t\t\t\tContentSecurityPolicyReportOnly: pulumi.String(\"\"),\n\t\t\t\t\tStrictTransportSecurity:         pulumi.String(\"max-age=31536000; includeSubDomains\"),\n\t\t\t\t\tXContentTypeOptions:             pulumi.String(\"nosniff\"),\n\t\t\t\t\tXFrameOptions:                   pulumi.String(\"DENY\"),\n\t\t\t\t\tXRobotsTag:                      pulumi.String(\"none\"),\n\t\t\t\t\tXXssProtection:                  pulumi.String(\"1; mode=block\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tSmtpServer: \u0026keycloak.RealmSmtpServerArgs{\n\t\t\t\tAuth: \u0026keycloak.RealmSmtpServerAuthArgs{\n\t\t\t\t\tPassword: pulumi.String(\"password\"),\n\t\t\t\t\tUsername: pulumi.String(\"tom\"),\n\t\t\t\t},\n\t\t\t\tFrom: pulumi.String(\"example@example.com\"),\n\t\t\t\tHost: pulumi.String(\"smtp.example.com\"),\n\t\t\t},\n\t\t\tSslRequired: pulumi.String(\"external\"),\n\t\t\tWebAuthnPolicy: \u0026keycloak.RealmWebAuthnPolicyArgs{\n\t\t\t\tRelyingPartyEntityName: pulumi.String(\"Example\"),\n\t\t\t\tRelyingPartyId:         pulumi.String(\"keycloak.example.com\"),\n\t\t\t\tSignatureAlgorithms: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"ES256\"),\n\t\t\t\t\tpulumi.String(\"RS256\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Default Client Scopes\n\n- `default_default_client_scopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default default client-scopes.\n- `default_optional_client_scopes` - (Optional) A list of default optional client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default optional client-scopes.\n\n\n## Import\n\nRealms can be imported using their name. Examplebash\n\n```sh\n $ pulumi import keycloak:index/realm:Realm realm my-realm\n```\n\n ",
             "properties": {
                 "accessCodeLifespan": {
                     "type": "string",
@@ -3754,6 +3784,18 @@
                 "clientAuthenticationFlow": {
                     "type": "string",
                     "description": "The desired flow for client authentication. Defaults to `clients`.\n"
+                },
+                "defaultDefaultClientScopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "defaultOptionalClientScopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "defaultSignatureAlgorithm": {
                     "type": "string",
@@ -3982,6 +4024,18 @@
                     "type": "string",
                     "description": "The desired flow for client authentication. Defaults to `clients`.\n"
                 },
+                "defaultDefaultClientScopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "defaultOptionalClientScopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "defaultSignatureAlgorithm": {
                     "type": "string",
                     "description": "Default algorithm used to sign tokens for the realm.\n"
@@ -4183,6 +4237,18 @@
                     "clientAuthenticationFlow": {
                         "type": "string",
                         "description": "The desired flow for client authentication. Defaults to `clients`.\n"
+                    },
+                    "defaultDefaultClientScopes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "defaultOptionalClientScopes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     },
                     "defaultSignatureAlgorithm": {
                         "type": "string",
@@ -11793,6 +11859,18 @@
                             "$ref": "pulumi.json#/Any"
                         }
                     },
+                    "defaultDefaultClientScopes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "defaultOptionalClientScopes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
                     "displayNameHtml": {
                         "type": "string"
                     },
@@ -11871,6 +11949,18 @@
                     },
                     "clientAuthenticationFlow": {
                         "type": "string"
+                    },
+                    "defaultDefaultClientScopes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "defaultOptionalClientScopes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     },
                     "defaultSignatureAlgorithm": {
                         "type": "string"
@@ -12011,6 +12101,8 @@
                     "attributes",
                     "browserFlow",
                     "clientAuthenticationFlow",
+                    "defaultDefaultClientScopes",
+                    "defaultOptionalClientScopes",
                     "defaultSignatureAlgorithm",
                     "directGrantFlow",
                     "displayName",
@@ -12578,6 +12670,166 @@
                     "lastName",
                     "realmId",
                     "username",
+                    "id"
+                ]
+            }
+        },
+        "keycloak:saml/getClient:getClient": {
+            "description": "This data source can be used to fetch properties of a Keycloak client that uses the SAML protocol.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realmManagement = keycloak.saml.getClient({\n    realmId: \"my-realm\",\n    clientId: \"realm-management\",\n});\nconst admin = realmManagement.then(realmManagement =\u003e keycloak.getRole({\n    realmId: \"my-realm\",\n    clientId: realmManagement.id,\n    name: \"realm-admin\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm_management = keycloak.saml.get_client(realm_id=\"my-realm\",\n    client_id=\"realm-management\")\nadmin = keycloak.get_role(realm_id=\"my-realm\",\n    client_id=realm_management.id,\n    name=\"realm-admin\")\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realmManagement = Output.Create(Keycloak.Saml.GetClient.InvokeAsync(new Keycloak.Saml.GetClientArgs\n        {\n            RealmId = \"my-realm\",\n            ClientId = \"realm-management\",\n        }));\n        var admin = realmManagement.Apply(realmManagement =\u003e Output.Create(Keycloak.GetRole.InvokeAsync(new Keycloak.GetRoleArgs\n        {\n            RealmId = \"my-realm\",\n            ClientId = realmManagement.Id,\n            Name = \"realm-admin\",\n        })));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/saml\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealmManagement, err := saml.LookupClient(ctx, \u0026saml.LookupClientArgs{\n\t\t\tRealmId:  \"my-realm\",\n\t\t\tClientId: \"realm-management\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\topt0 := realmManagement.Id\n\t\t_, err = keycloak.LookupRole(ctx, \u0026keycloak.LookupRoleArgs{\n\t\t\tRealmId:  \"my-realm\",\n\t\t\tClientId: \u0026opt0,\n\t\t\tName:     \"realm-admin\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getClient.\n",
+                "properties": {
+                    "clientId": {
+                        "type": "string",
+                        "description": "The client id (not its unique ID).\n"
+                    },
+                    "realmId": {
+                        "type": "string",
+                        "description": "The realm id.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "clientId",
+                    "realmId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getClient.\n",
+                "properties": {
+                    "assertionConsumerPostUrl": {
+                        "type": "string"
+                    },
+                    "assertionConsumerRedirectUrl": {
+                        "type": "string"
+                    },
+                    "authenticationFlowBindingOverrides": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/keycloak:saml/getClientAuthenticationFlowBindingOverride:getClientAuthenticationFlowBindingOverride"
+                        }
+                    },
+                    "baseUrl": {
+                        "type": "string"
+                    },
+                    "clientId": {
+                        "type": "string"
+                    },
+                    "clientSignatureRequired": {
+                        "type": "boolean"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "encryptAssertions": {
+                        "type": "boolean"
+                    },
+                    "encryptionCertificate": {
+                        "type": "string"
+                    },
+                    "forceNameIdFormat": {
+                        "type": "boolean"
+                    },
+                    "forcePostBinding": {
+                        "type": "boolean"
+                    },
+                    "frontChannelLogout": {
+                        "type": "boolean"
+                    },
+                    "fullScopeAllowed": {
+                        "type": "boolean"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "idpInitiatedSsoRelayState": {
+                        "type": "string"
+                    },
+                    "idpInitiatedSsoUrlName": {
+                        "type": "string"
+                    },
+                    "includeAuthnStatement": {
+                        "type": "boolean"
+                    },
+                    "logoutServicePostBindingUrl": {
+                        "type": "string"
+                    },
+                    "logoutServiceRedirectBindingUrl": {
+                        "type": "string"
+                    },
+                    "masterSamlProcessingUrl": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "nameIdFormat": {
+                        "type": "string"
+                    },
+                    "realmId": {
+                        "type": "string"
+                    },
+                    "rootUrl": {
+                        "type": "string"
+                    },
+                    "signAssertions": {
+                        "type": "boolean"
+                    },
+                    "signDocuments": {
+                        "type": "boolean"
+                    },
+                    "signatureAlgorithm": {
+                        "type": "string"
+                    },
+                    "signingCertificate": {
+                        "type": "string"
+                    },
+                    "signingPrivateKey": {
+                        "type": "string"
+                    },
+                    "validRedirectUris": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "assertionConsumerPostUrl",
+                    "assertionConsumerRedirectUrl",
+                    "authenticationFlowBindingOverrides",
+                    "baseUrl",
+                    "clientId",
+                    "clientSignatureRequired",
+                    "description",
+                    "enabled",
+                    "encryptAssertions",
+                    "encryptionCertificate",
+                    "forceNameIdFormat",
+                    "forcePostBinding",
+                    "frontChannelLogout",
+                    "fullScopeAllowed",
+                    "idpInitiatedSsoRelayState",
+                    "idpInitiatedSsoUrlName",
+                    "includeAuthnStatement",
+                    "logoutServicePostBindingUrl",
+                    "logoutServiceRedirectBindingUrl",
+                    "masterSamlProcessingUrl",
+                    "name",
+                    "nameIdFormat",
+                    "realmId",
+                    "rootUrl",
+                    "signAssertions",
+                    "signDocuments",
+                    "signatureAlgorithm",
+                    "signingCertificate",
+                    "signingPrivateKey",
+                    "validRedirectUris",
                     "id"
                 ]
             }

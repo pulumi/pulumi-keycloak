@@ -57,6 +57,22 @@ namespace Pulumi.Keycloak
             set => _attributes = value;
         }
 
+        [Input("defaultDefaultClientScopes")]
+        private List<string>? _defaultDefaultClientScopes;
+        public List<string> DefaultDefaultClientScopes
+        {
+            get => _defaultDefaultClientScopes ?? (_defaultDefaultClientScopes = new List<string>());
+            set => _defaultDefaultClientScopes = value;
+        }
+
+        [Input("defaultOptionalClientScopes")]
+        private List<string>? _defaultOptionalClientScopes;
+        public List<string> DefaultOptionalClientScopes
+        {
+            get => _defaultOptionalClientScopes ?? (_defaultOptionalClientScopes = new List<string>());
+            set => _defaultOptionalClientScopes = value;
+        }
+
         [Input("displayNameHtml")]
         public string? DisplayNameHtml { get; set; }
 
@@ -117,6 +133,8 @@ namespace Pulumi.Keycloak
         public readonly ImmutableDictionary<string, object> Attributes;
         public readonly string BrowserFlow;
         public readonly string ClientAuthenticationFlow;
+        public readonly ImmutableArray<string> DefaultDefaultClientScopes;
+        public readonly ImmutableArray<string> DefaultOptionalClientScopes;
         public readonly string DefaultSignatureAlgorithm;
         public readonly string DirectGrantFlow;
         public readonly string DisplayName;
@@ -184,6 +202,10 @@ namespace Pulumi.Keycloak
             string browserFlow,
 
             string clientAuthenticationFlow,
+
+            ImmutableArray<string> defaultDefaultClientScopes,
+
+            ImmutableArray<string> defaultOptionalClientScopes,
 
             string defaultSignatureAlgorithm,
 
@@ -273,6 +295,8 @@ namespace Pulumi.Keycloak
             Attributes = attributes;
             BrowserFlow = browserFlow;
             ClientAuthenticationFlow = clientAuthenticationFlow;
+            DefaultDefaultClientScopes = defaultDefaultClientScopes;
+            DefaultOptionalClientScopes = defaultOptionalClientScopes;
             DefaultSignatureAlgorithm = defaultSignatureAlgorithm;
             DirectGrantFlow = directGrantFlow;
             DisplayName = displayName;

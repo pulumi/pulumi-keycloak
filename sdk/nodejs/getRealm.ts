@@ -31,6 +31,8 @@ export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promi
     }
     return pulumi.runtime.invoke("keycloak:index/getRealm:getRealm", {
         "attributes": args.attributes,
+        "defaultDefaultClientScopes": args.defaultDefaultClientScopes,
+        "defaultOptionalClientScopes": args.defaultOptionalClientScopes,
         "displayNameHtml": args.displayNameHtml,
         "internationalizations": args.internationalizations,
         "realm": args.realm,
@@ -46,6 +48,8 @@ export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promi
  */
 export interface GetRealmArgs {
     readonly attributes?: {[key: string]: any};
+    readonly defaultDefaultClientScopes?: string[];
+    readonly defaultOptionalClientScopes?: string[];
     readonly displayNameHtml?: string;
     readonly internationalizations?: inputs.GetRealmInternationalization[];
     /**
@@ -74,6 +78,8 @@ export interface GetRealmResult {
     readonly attributes: {[key: string]: any};
     readonly browserFlow: string;
     readonly clientAuthenticationFlow: string;
+    readonly defaultDefaultClientScopes: string[];
+    readonly defaultOptionalClientScopes: string[];
     readonly defaultSignatureAlgorithm: string;
     readonly directGrantFlow: string;
     readonly displayName: string;

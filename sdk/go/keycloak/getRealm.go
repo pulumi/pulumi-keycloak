@@ -49,9 +49,11 @@ func LookupRealm(ctx *pulumi.Context, args *LookupRealmArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getRealm.
 type LookupRealmArgs struct {
-	Attributes            map[string]interface{}         `pulumi:"attributes"`
-	DisplayNameHtml       *string                        `pulumi:"displayNameHtml"`
-	Internationalizations []GetRealmInternationalization `pulumi:"internationalizations"`
+	Attributes                  map[string]interface{}         `pulumi:"attributes"`
+	DefaultDefaultClientScopes  []string                       `pulumi:"defaultDefaultClientScopes"`
+	DefaultOptionalClientScopes []string                       `pulumi:"defaultOptionalClientScopes"`
+	DisplayNameHtml             *string                        `pulumi:"displayNameHtml"`
+	Internationalizations       []GetRealmInternationalization `pulumi:"internationalizations"`
 	// The realm name.
 	Realm                      string                              `pulumi:"realm"`
 	SecurityDefenses           []GetRealmSecurityDefense           `pulumi:"securityDefenses"`
@@ -74,6 +76,8 @@ type LookupRealmResult struct {
 	Attributes                          map[string]interface{} `pulumi:"attributes"`
 	BrowserFlow                         string                 `pulumi:"browserFlow"`
 	ClientAuthenticationFlow            string                 `pulumi:"clientAuthenticationFlow"`
+	DefaultDefaultClientScopes          []string               `pulumi:"defaultDefaultClientScopes"`
+	DefaultOptionalClientScopes         []string               `pulumi:"defaultOptionalClientScopes"`
 	DefaultSignatureAlgorithm           string                 `pulumi:"defaultSignatureAlgorithm"`
 	DirectGrantFlow                     string                 `pulumi:"directGrantFlow"`
 	DisplayName                         string                 `pulumi:"displayName"`
