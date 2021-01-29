@@ -24,7 +24,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/ldap"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -467,15 +467,15 @@ type UserFederationInput interface {
 	ToUserFederationOutputWithContext(ctx context.Context) UserFederationOutput
 }
 
-func (UserFederation) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserFederation)(nil)).Elem()
+func (*UserFederation) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserFederation)(nil))
 }
 
-func (i UserFederation) ToUserFederationOutput() UserFederationOutput {
+func (i *UserFederation) ToUserFederationOutput() UserFederationOutput {
 	return i.ToUserFederationOutputWithContext(context.Background())
 }
 
-func (i UserFederation) ToUserFederationOutputWithContext(ctx context.Context) UserFederationOutput {
+func (i *UserFederation) ToUserFederationOutputWithContext(ctx context.Context) UserFederationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserFederationOutput)
 }
 
@@ -484,7 +484,7 @@ type UserFederationOutput struct {
 }
 
 func (UserFederationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserFederationOutput)(nil)).Elem()
+	return reflect.TypeOf((*UserFederation)(nil))
 }
 
 func (o UserFederationOutput) ToUserFederationOutput() UserFederationOutput {

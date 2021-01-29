@@ -71,6 +71,7 @@ namespace Pulumi.Keycloak
     ///  $ pulumi import keycloak:index/user:User user my-realm/60c3f971-b1d3-4b3a-9035-d16d7540a5e4
     /// ```
     /// </summary>
+    [KeycloakResourceType("keycloak:index/user:User")]
     public partial class User : Pulumi.CustomResource
     {
         /// <summary>

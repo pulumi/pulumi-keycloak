@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -191,15 +191,15 @@ type RealmEventsInput interface {
 	ToRealmEventsOutputWithContext(ctx context.Context) RealmEventsOutput
 }
 
-func (RealmEvents) ElementType() reflect.Type {
-	return reflect.TypeOf((*RealmEvents)(nil)).Elem()
+func (*RealmEvents) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmEvents)(nil))
 }
 
-func (i RealmEvents) ToRealmEventsOutput() RealmEventsOutput {
+func (i *RealmEvents) ToRealmEventsOutput() RealmEventsOutput {
 	return i.ToRealmEventsOutputWithContext(context.Background())
 }
 
-func (i RealmEvents) ToRealmEventsOutputWithContext(ctx context.Context) RealmEventsOutput {
+func (i *RealmEvents) ToRealmEventsOutputWithContext(ctx context.Context) RealmEventsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RealmEventsOutput)
 }
 
@@ -208,7 +208,7 @@ type RealmEventsOutput struct {
 }
 
 func (RealmEventsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RealmEventsOutput)(nil)).Elem()
+	return reflect.TypeOf((*RealmEvents)(nil))
 }
 
 func (o RealmEventsOutput) ToRealmEventsOutput() RealmEventsOutput {

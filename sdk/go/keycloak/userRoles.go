@@ -118,15 +118,15 @@ type UserRolesInput interface {
 	ToUserRolesOutputWithContext(ctx context.Context) UserRolesOutput
 }
 
-func (UserRoles) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserRoles)(nil)).Elem()
+func (*UserRoles) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserRoles)(nil))
 }
 
-func (i UserRoles) ToUserRolesOutput() UserRolesOutput {
+func (i *UserRoles) ToUserRolesOutput() UserRolesOutput {
 	return i.ToUserRolesOutputWithContext(context.Background())
 }
 
-func (i UserRoles) ToUserRolesOutputWithContext(ctx context.Context) UserRolesOutput {
+func (i *UserRoles) ToUserRolesOutputWithContext(ctx context.Context) UserRolesOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserRolesOutput)
 }
 
@@ -135,7 +135,7 @@ type UserRolesOutput struct {
 }
 
 func (UserRolesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserRolesOutput)(nil)).Elem()
+	return reflect.TypeOf((*UserRoles)(nil))
 }
 
 func (o UserRolesOutput) ToUserRolesOutput() UserRolesOutput {

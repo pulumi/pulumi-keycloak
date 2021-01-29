@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    [KeycloakResourceType("keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper")]
     public partial class AttributeToRoleIdentityMapper : Pulumi.CustomResource
     {
         /// <summary>

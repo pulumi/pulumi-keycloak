@@ -25,7 +25,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -71,7 +71,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -294,15 +294,15 @@ type UserSessionNoteProtocolMapperInput interface {
 	ToUserSessionNoteProtocolMapperOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperOutput
 }
 
-func (UserSessionNoteProtocolMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserSessionNoteProtocolMapper)(nil)).Elem()
+func (*UserSessionNoteProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserSessionNoteProtocolMapper)(nil))
 }
 
-func (i UserSessionNoteProtocolMapper) ToUserSessionNoteProtocolMapperOutput() UserSessionNoteProtocolMapperOutput {
+func (i *UserSessionNoteProtocolMapper) ToUserSessionNoteProtocolMapperOutput() UserSessionNoteProtocolMapperOutput {
 	return i.ToUserSessionNoteProtocolMapperOutputWithContext(context.Background())
 }
 
-func (i UserSessionNoteProtocolMapper) ToUserSessionNoteProtocolMapperOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperOutput {
+func (i *UserSessionNoteProtocolMapper) ToUserSessionNoteProtocolMapperOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserSessionNoteProtocolMapperOutput)
 }
 
@@ -311,7 +311,7 @@ type UserSessionNoteProtocolMapperOutput struct {
 }
 
 func (UserSessionNoteProtocolMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserSessionNoteProtocolMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*UserSessionNoteProtocolMapper)(nil))
 }
 
 func (o UserSessionNoteProtocolMapperOutput) ToUserSessionNoteProtocolMapperOutput() UserSessionNoteProtocolMapperOutput {

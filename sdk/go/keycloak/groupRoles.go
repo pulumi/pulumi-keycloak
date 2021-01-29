@@ -118,15 +118,15 @@ type GroupRolesInput interface {
 	ToGroupRolesOutputWithContext(ctx context.Context) GroupRolesOutput
 }
 
-func (GroupRoles) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupRoles)(nil)).Elem()
+func (*GroupRoles) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupRoles)(nil))
 }
 
-func (i GroupRoles) ToGroupRolesOutput() GroupRolesOutput {
+func (i *GroupRoles) ToGroupRolesOutput() GroupRolesOutput {
 	return i.ToGroupRolesOutputWithContext(context.Background())
 }
 
-func (i GroupRoles) ToGroupRolesOutputWithContext(ctx context.Context) GroupRolesOutput {
+func (i *GroupRoles) ToGroupRolesOutputWithContext(ctx context.Context) GroupRolesOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupRolesOutput)
 }
 
@@ -135,7 +135,7 @@ type GroupRolesOutput struct {
 }
 
 func (GroupRolesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupRolesOutput)(nil)).Elem()
+	return reflect.TypeOf((*GroupRoles)(nil))
 }
 
 func (o GroupRolesOutput) ToGroupRolesOutput() GroupRolesOutput {

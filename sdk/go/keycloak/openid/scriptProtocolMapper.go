@@ -25,7 +25,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -70,7 +70,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -295,15 +295,15 @@ type ScriptProtocolMapperInput interface {
 	ToScriptProtocolMapperOutputWithContext(ctx context.Context) ScriptProtocolMapperOutput
 }
 
-func (ScriptProtocolMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*ScriptProtocolMapper)(nil)).Elem()
+func (*ScriptProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScriptProtocolMapper)(nil))
 }
 
-func (i ScriptProtocolMapper) ToScriptProtocolMapperOutput() ScriptProtocolMapperOutput {
+func (i *ScriptProtocolMapper) ToScriptProtocolMapperOutput() ScriptProtocolMapperOutput {
 	return i.ToScriptProtocolMapperOutputWithContext(context.Background())
 }
 
-func (i ScriptProtocolMapper) ToScriptProtocolMapperOutputWithContext(ctx context.Context) ScriptProtocolMapperOutput {
+func (i *ScriptProtocolMapper) ToScriptProtocolMapperOutputWithContext(ctx context.Context) ScriptProtocolMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ScriptProtocolMapperOutput)
 }
 
@@ -312,7 +312,7 @@ type ScriptProtocolMapperOutput struct {
 }
 
 func (ScriptProtocolMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ScriptProtocolMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*ScriptProtocolMapper)(nil))
 }
 
 func (o ScriptProtocolMapperOutput) ToScriptProtocolMapperOutput() ScriptProtocolMapperOutput {

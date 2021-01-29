@@ -18,6 +18,7 @@ namespace Pulumi.Keycloak
     ///  $ pulumi import keycloak:index/userRoles:UserRoles user_roles my-realm/b0ae6924-1bd5-4655-9e38-dae7c5e42924
     /// ```
     /// </summary>
+    [KeycloakResourceType("keycloak:index/userRoles:UserRoles")]
     public partial class UserRoles : Pulumi.CustomResource
     {
         /// <summary>

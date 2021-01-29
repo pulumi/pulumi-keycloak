@@ -119,15 +119,15 @@ type UsersPermissionsInput interface {
 	ToUsersPermissionsOutputWithContext(ctx context.Context) UsersPermissionsOutput
 }
 
-func (UsersPermissions) ElementType() reflect.Type {
-	return reflect.TypeOf((*UsersPermissions)(nil)).Elem()
+func (*UsersPermissions) ElementType() reflect.Type {
+	return reflect.TypeOf((*UsersPermissions)(nil))
 }
 
-func (i UsersPermissions) ToUsersPermissionsOutput() UsersPermissionsOutput {
+func (i *UsersPermissions) ToUsersPermissionsOutput() UsersPermissionsOutput {
 	return i.ToUsersPermissionsOutputWithContext(context.Background())
 }
 
-func (i UsersPermissions) ToUsersPermissionsOutputWithContext(ctx context.Context) UsersPermissionsOutput {
+func (i *UsersPermissions) ToUsersPermissionsOutputWithContext(ctx context.Context) UsersPermissionsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsOutput)
 }
 
@@ -136,7 +136,7 @@ type UsersPermissionsOutput struct {
 }
 
 func (UsersPermissionsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UsersPermissionsOutput)(nil)).Elem()
+	return reflect.TypeOf((*UsersPermissions)(nil))
 }
 
 func (o UsersPermissionsOutput) ToUsersPermissionsOutput() UsersPermissionsOutput {

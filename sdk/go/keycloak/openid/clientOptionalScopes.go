@@ -114,15 +114,15 @@ type ClientOptionalScopesInput interface {
 	ToClientOptionalScopesOutputWithContext(ctx context.Context) ClientOptionalScopesOutput
 }
 
-func (ClientOptionalScopes) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientOptionalScopes)(nil)).Elem()
+func (*ClientOptionalScopes) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientOptionalScopes)(nil))
 }
 
-func (i ClientOptionalScopes) ToClientOptionalScopesOutput() ClientOptionalScopesOutput {
+func (i *ClientOptionalScopes) ToClientOptionalScopesOutput() ClientOptionalScopesOutput {
 	return i.ToClientOptionalScopesOutputWithContext(context.Background())
 }
 
-func (i ClientOptionalScopes) ToClientOptionalScopesOutputWithContext(ctx context.Context) ClientOptionalScopesOutput {
+func (i *ClientOptionalScopes) ToClientOptionalScopesOutputWithContext(ctx context.Context) ClientOptionalScopesOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientOptionalScopesOutput)
 }
 
@@ -131,7 +131,7 @@ type ClientOptionalScopesOutput struct {
 }
 
 func (ClientOptionalScopesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientOptionalScopesOutput)(nil)).Elem()
+	return reflect.TypeOf((*ClientOptionalScopes)(nil))
 }
 
 func (o ClientOptionalScopesOutput) ToClientOptionalScopesOutput() ClientOptionalScopesOutput {

@@ -62,6 +62,7 @@ namespace Pulumi.Keycloak.Authentication
     ///  $ pulumi import keycloak:authentication/executionConfig:ExecutionConfig config my-realm/be081463-ddbf-4b42-9eff-9c97886f24ff/30559fcf-6fb8-45ea-8c46-2b86f46ebc17
     /// ```
     /// </summary>
+    [KeycloakResourceType("keycloak:authentication/executionConfig:ExecutionConfig")]
     public partial class ExecutionConfig : Pulumi.CustomResource
     {
         /// <summary>

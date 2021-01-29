@@ -25,7 +25,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -69,7 +69,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -300,15 +300,15 @@ type UserClientRoleProtocolMapperInput interface {
 	ToUserClientRoleProtocolMapperOutputWithContext(ctx context.Context) UserClientRoleProtocolMapperOutput
 }
 
-func (UserClientRoleProtocolMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserClientRoleProtocolMapper)(nil)).Elem()
+func (*UserClientRoleProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserClientRoleProtocolMapper)(nil))
 }
 
-func (i UserClientRoleProtocolMapper) ToUserClientRoleProtocolMapperOutput() UserClientRoleProtocolMapperOutput {
+func (i *UserClientRoleProtocolMapper) ToUserClientRoleProtocolMapperOutput() UserClientRoleProtocolMapperOutput {
 	return i.ToUserClientRoleProtocolMapperOutputWithContext(context.Background())
 }
 
-func (i UserClientRoleProtocolMapper) ToUserClientRoleProtocolMapperOutputWithContext(ctx context.Context) UserClientRoleProtocolMapperOutput {
+func (i *UserClientRoleProtocolMapper) ToUserClientRoleProtocolMapperOutputWithContext(ctx context.Context) UserClientRoleProtocolMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserClientRoleProtocolMapperOutput)
 }
 
@@ -317,7 +317,7 @@ type UserClientRoleProtocolMapperOutput struct {
 }
 
 func (UserClientRoleProtocolMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserClientRoleProtocolMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*UserClientRoleProtocolMapper)(nil))
 }
 
 func (o UserClientRoleProtocolMapperOutput) ToUserClientRoleProtocolMapperOutput() UserClientRoleProtocolMapperOutput {

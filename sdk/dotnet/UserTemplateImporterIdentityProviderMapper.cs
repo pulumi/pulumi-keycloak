@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    [KeycloakResourceType("keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper")]
     public partial class UserTemplateImporterIdentityProviderMapper : Pulumi.CustomResource
     {
         [Output("extraConfig")]

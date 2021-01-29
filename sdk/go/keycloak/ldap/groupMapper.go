@@ -22,7 +22,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/ldap"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -343,15 +343,15 @@ type GroupMapperInput interface {
 	ToGroupMapperOutputWithContext(ctx context.Context) GroupMapperOutput
 }
 
-func (GroupMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupMapper)(nil)).Elem()
+func (*GroupMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupMapper)(nil))
 }
 
-func (i GroupMapper) ToGroupMapperOutput() GroupMapperOutput {
+func (i *GroupMapper) ToGroupMapperOutput() GroupMapperOutput {
 	return i.ToGroupMapperOutputWithContext(context.Background())
 }
 
-func (i GroupMapper) ToGroupMapperOutputWithContext(ctx context.Context) GroupMapperOutput {
+func (i *GroupMapper) ToGroupMapperOutputWithContext(ctx context.Context) GroupMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMapperOutput)
 }
 
@@ -360,7 +360,7 @@ type GroupMapperOutput struct {
 }
 
 func (GroupMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*GroupMapper)(nil))
 }
 
 func (o GroupMapperOutput) ToGroupMapperOutput() GroupMapperOutput {

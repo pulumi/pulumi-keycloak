@@ -123,15 +123,15 @@ type UserTemplateImporterIdentityProviderMapperInput interface {
 	ToUserTemplateImporterIdentityProviderMapperOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperOutput
 }
 
-func (UserTemplateImporterIdentityProviderMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserTemplateImporterIdentityProviderMapper)(nil)).Elem()
+func (*UserTemplateImporterIdentityProviderMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserTemplateImporterIdentityProviderMapper)(nil))
 }
 
-func (i UserTemplateImporterIdentityProviderMapper) ToUserTemplateImporterIdentityProviderMapperOutput() UserTemplateImporterIdentityProviderMapperOutput {
+func (i *UserTemplateImporterIdentityProviderMapper) ToUserTemplateImporterIdentityProviderMapperOutput() UserTemplateImporterIdentityProviderMapperOutput {
 	return i.ToUserTemplateImporterIdentityProviderMapperOutputWithContext(context.Background())
 }
 
-func (i UserTemplateImporterIdentityProviderMapper) ToUserTemplateImporterIdentityProviderMapperOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperOutput {
+func (i *UserTemplateImporterIdentityProviderMapper) ToUserTemplateImporterIdentityProviderMapperOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserTemplateImporterIdentityProviderMapperOutput)
 }
 
@@ -140,7 +140,7 @@ type UserTemplateImporterIdentityProviderMapperOutput struct {
 }
 
 func (UserTemplateImporterIdentityProviderMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserTemplateImporterIdentityProviderMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*UserTemplateImporterIdentityProviderMapper)(nil))
 }
 
 func (o UserTemplateImporterIdentityProviderMapperOutput) ToUserTemplateImporterIdentityProviderMapperOutput() UserTemplateImporterIdentityProviderMapperOutput {

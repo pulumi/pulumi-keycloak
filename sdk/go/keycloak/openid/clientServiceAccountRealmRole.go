@@ -23,7 +23,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -170,15 +170,15 @@ type ClientServiceAccountRealmRoleInput interface {
 	ToClientServiceAccountRealmRoleOutputWithContext(ctx context.Context) ClientServiceAccountRealmRoleOutput
 }
 
-func (ClientServiceAccountRealmRole) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientServiceAccountRealmRole)(nil)).Elem()
+func (*ClientServiceAccountRealmRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientServiceAccountRealmRole)(nil))
 }
 
-func (i ClientServiceAccountRealmRole) ToClientServiceAccountRealmRoleOutput() ClientServiceAccountRealmRoleOutput {
+func (i *ClientServiceAccountRealmRole) ToClientServiceAccountRealmRoleOutput() ClientServiceAccountRealmRoleOutput {
 	return i.ToClientServiceAccountRealmRoleOutputWithContext(context.Background())
 }
 
-func (i ClientServiceAccountRealmRole) ToClientServiceAccountRealmRoleOutputWithContext(ctx context.Context) ClientServiceAccountRealmRoleOutput {
+func (i *ClientServiceAccountRealmRole) ToClientServiceAccountRealmRoleOutputWithContext(ctx context.Context) ClientServiceAccountRealmRoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientServiceAccountRealmRoleOutput)
 }
 
@@ -187,7 +187,7 @@ type ClientServiceAccountRealmRoleOutput struct {
 }
 
 func (ClientServiceAccountRealmRoleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientServiceAccountRealmRoleOutput)(nil)).Elem()
+	return reflect.TypeOf((*ClientServiceAccountRealmRole)(nil))
 }
 
 func (o ClientServiceAccountRealmRoleOutput) ToClientServiceAccountRealmRoleOutput() ClientServiceAccountRealmRoleOutput {

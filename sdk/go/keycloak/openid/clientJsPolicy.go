@@ -124,15 +124,15 @@ type ClientJsPolicyInput interface {
 	ToClientJsPolicyOutputWithContext(ctx context.Context) ClientJsPolicyOutput
 }
 
-func (ClientJsPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientJsPolicy)(nil)).Elem()
+func (*ClientJsPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientJsPolicy)(nil))
 }
 
-func (i ClientJsPolicy) ToClientJsPolicyOutput() ClientJsPolicyOutput {
+func (i *ClientJsPolicy) ToClientJsPolicyOutput() ClientJsPolicyOutput {
 	return i.ToClientJsPolicyOutputWithContext(context.Background())
 }
 
-func (i ClientJsPolicy) ToClientJsPolicyOutputWithContext(ctx context.Context) ClientJsPolicyOutput {
+func (i *ClientJsPolicy) ToClientJsPolicyOutputWithContext(ctx context.Context) ClientJsPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientJsPolicyOutput)
 }
 
@@ -141,7 +141,7 @@ type ClientJsPolicyOutput struct {
 }
 
 func (ClientJsPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientJsPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*ClientJsPolicy)(nil))
 }
 
 func (o ClientJsPolicyOutput) ToClientJsPolicyOutput() ClientJsPolicyOutput {

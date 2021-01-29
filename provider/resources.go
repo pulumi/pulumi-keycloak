@@ -15,10 +15,13 @@
 package keycloak
 
 import (
+	"fmt"
+	"path/filepath"
 	"strings"
 	"unicode"
 
 	"github.com/mrparkers/terraform-provider-keycloak/provider"
+	"github.com/pulumi/pulumi-keycloak/provider/v3/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
@@ -260,18 +263,26 @@ func Provider() tfbridge.ProviderInfo {
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
-				"@pulumi/pulumi": "^2.0.0",
+				"@pulumi/pulumi": "^2.15.0",
 			},
 			DevDependencies: map[string]string{
 				"@types/node": "^8.0.25", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
 			},
 		},
+		Golang: &tfbridge.GolangInfo{
+			ImportBasePath: filepath.Join(
+				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", mainPkg),
+				tfbridge.GetModuleMajorVersion(version.Version),
+				"go",
+				mainPkg,
+			),
+			GenerateResourceContainerTypes: true,
+		},
 		Python: &tfbridge.PythonInfo{
 			Requires: map[string]string{
-				"pulumi": ">=2.9.0,<3.0.0",
+				"pulumi": ">=2.15.0,<3.0.0",
 			},
-			UsesIOClasses: true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{

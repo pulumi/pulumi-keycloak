@@ -70,6 +70,7 @@ namespace Pulumi.Keycloak.Ldap
     ///  $ pulumi import keycloak:ldap/userFederation:UserFederation ldap_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
     /// ```
     /// </summary>
+    [KeycloakResourceType("keycloak:ldap/userFederation:UserFederation")]
     public partial class UserFederation : Pulumi.CustomResource
     {
         /// <summary>

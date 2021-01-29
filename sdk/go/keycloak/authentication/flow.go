@@ -23,7 +23,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/authentication"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -172,15 +172,15 @@ type FlowInput interface {
 	ToFlowOutputWithContext(ctx context.Context) FlowOutput
 }
 
-func (Flow) ElementType() reflect.Type {
-	return reflect.TypeOf((*Flow)(nil)).Elem()
+func (*Flow) ElementType() reflect.Type {
+	return reflect.TypeOf((*Flow)(nil))
 }
 
-func (i Flow) ToFlowOutput() FlowOutput {
+func (i *Flow) ToFlowOutput() FlowOutput {
 	return i.ToFlowOutputWithContext(context.Background())
 }
 
-func (i Flow) ToFlowOutputWithContext(ctx context.Context) FlowOutput {
+func (i *Flow) ToFlowOutputWithContext(ctx context.Context) FlowOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FlowOutput)
 }
 
@@ -189,7 +189,7 @@ type FlowOutput struct {
 }
 
 func (FlowOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FlowOutput)(nil)).Elem()
+	return reflect.TypeOf((*Flow)(nil))
 }
 
 func (o FlowOutput) ToFlowOutput() FlowOutput {

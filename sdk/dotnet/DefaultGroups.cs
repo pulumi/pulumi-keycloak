@@ -54,6 +54,7 @@ namespace Pulumi.Keycloak
     ///  $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm
     /// ```
     /// </summary>
+    [KeycloakResourceType("keycloak:index/defaultGroups:DefaultGroups")]
     public partial class DefaultGroups : Pulumi.CustomResource
     {
         /// <summary>

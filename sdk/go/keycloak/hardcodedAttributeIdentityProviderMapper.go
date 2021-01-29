@@ -146,15 +146,15 @@ type HardcodedAttributeIdentityProviderMapperInput interface {
 	ToHardcodedAttributeIdentityProviderMapperOutputWithContext(ctx context.Context) HardcodedAttributeIdentityProviderMapperOutput
 }
 
-func (HardcodedAttributeIdentityProviderMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*HardcodedAttributeIdentityProviderMapper)(nil)).Elem()
+func (*HardcodedAttributeIdentityProviderMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*HardcodedAttributeIdentityProviderMapper)(nil))
 }
 
-func (i HardcodedAttributeIdentityProviderMapper) ToHardcodedAttributeIdentityProviderMapperOutput() HardcodedAttributeIdentityProviderMapperOutput {
+func (i *HardcodedAttributeIdentityProviderMapper) ToHardcodedAttributeIdentityProviderMapperOutput() HardcodedAttributeIdentityProviderMapperOutput {
 	return i.ToHardcodedAttributeIdentityProviderMapperOutputWithContext(context.Background())
 }
 
-func (i HardcodedAttributeIdentityProviderMapper) ToHardcodedAttributeIdentityProviderMapperOutputWithContext(ctx context.Context) HardcodedAttributeIdentityProviderMapperOutput {
+func (i *HardcodedAttributeIdentityProviderMapper) ToHardcodedAttributeIdentityProviderMapperOutputWithContext(ctx context.Context) HardcodedAttributeIdentityProviderMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedAttributeIdentityProviderMapperOutput)
 }
 
@@ -163,7 +163,7 @@ type HardcodedAttributeIdentityProviderMapperOutput struct {
 }
 
 func (HardcodedAttributeIdentityProviderMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*HardcodedAttributeIdentityProviderMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*HardcodedAttributeIdentityProviderMapper)(nil))
 }
 
 func (o HardcodedAttributeIdentityProviderMapperOutput) ToHardcodedAttributeIdentityProviderMapperOutput() HardcodedAttributeIdentityProviderMapperOutput {

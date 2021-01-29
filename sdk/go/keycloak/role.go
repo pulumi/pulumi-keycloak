@@ -22,7 +22,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -52,7 +52,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -96,7 +96,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -293,15 +293,15 @@ type RoleInput interface {
 	ToRoleOutputWithContext(ctx context.Context) RoleOutput
 }
 
-func (Role) ElementType() reflect.Type {
-	return reflect.TypeOf((*Role)(nil)).Elem()
+func (*Role) ElementType() reflect.Type {
+	return reflect.TypeOf((*Role)(nil))
 }
 
-func (i Role) ToRoleOutput() RoleOutput {
+func (i *Role) ToRoleOutput() RoleOutput {
 	return i.ToRoleOutputWithContext(context.Background())
 }
 
-func (i Role) ToRoleOutputWithContext(ctx context.Context) RoleOutput {
+func (i *Role) ToRoleOutputWithContext(ctx context.Context) RoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RoleOutput)
 }
 
@@ -310,7 +310,7 @@ type RoleOutput struct {
 }
 
 func (RoleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RoleOutput)(nil)).Elem()
+	return reflect.TypeOf((*Role)(nil))
 }
 
 func (o RoleOutput) ToRoleOutput() RoleOutput {

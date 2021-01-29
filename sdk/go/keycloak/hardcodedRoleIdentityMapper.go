@@ -123,15 +123,15 @@ type HardcodedRoleIdentityMapperInput interface {
 	ToHardcodedRoleIdentityMapperOutputWithContext(ctx context.Context) HardcodedRoleIdentityMapperOutput
 }
 
-func (HardcodedRoleIdentityMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*HardcodedRoleIdentityMapper)(nil)).Elem()
+func (*HardcodedRoleIdentityMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*HardcodedRoleIdentityMapper)(nil))
 }
 
-func (i HardcodedRoleIdentityMapper) ToHardcodedRoleIdentityMapperOutput() HardcodedRoleIdentityMapperOutput {
+func (i *HardcodedRoleIdentityMapper) ToHardcodedRoleIdentityMapperOutput() HardcodedRoleIdentityMapperOutput {
 	return i.ToHardcodedRoleIdentityMapperOutputWithContext(context.Background())
 }
 
-func (i HardcodedRoleIdentityMapper) ToHardcodedRoleIdentityMapperOutputWithContext(ctx context.Context) HardcodedRoleIdentityMapperOutput {
+func (i *HardcodedRoleIdentityMapper) ToHardcodedRoleIdentityMapperOutputWithContext(ctx context.Context) HardcodedRoleIdentityMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleIdentityMapperOutput)
 }
 
@@ -140,7 +140,7 @@ type HardcodedRoleIdentityMapperOutput struct {
 }
 
 func (HardcodedRoleIdentityMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*HardcodedRoleIdentityMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*HardcodedRoleIdentityMapper)(nil))
 }
 
 func (o HardcodedRoleIdentityMapperOutput) ToHardcodedRoleIdentityMapperOutput() HardcodedRoleIdentityMapperOutput {

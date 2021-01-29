@@ -56,6 +56,7 @@ namespace Pulumi.Keycloak.Saml
     ///  $ pulumi import keycloak:saml/identityProvider:IdentityProvider realm_saml_identity_provider my-realm/my-saml-idp
     /// ```
     /// </summary>
+    [KeycloakResourceType("keycloak:saml/identityProvider:IdentityProvider")]
     public partial class IdentityProvider : Pulumi.CustomResource
     {
         /// <summary>

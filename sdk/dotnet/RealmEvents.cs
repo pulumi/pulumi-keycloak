@@ -53,6 +53,7 @@ namespace Pulumi.Keycloak
     /// 
     /// This resource currently does not support importing.
     /// </summary>
+    [KeycloakResourceType("keycloak:index/realmEvents:RealmEvents")]
     public partial class RealmEvents : Pulumi.CustomResource
     {
         /// <summary>

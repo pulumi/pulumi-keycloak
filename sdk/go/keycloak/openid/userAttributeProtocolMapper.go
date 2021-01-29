@@ -25,7 +25,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -70,7 +70,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -305,15 +305,15 @@ type UserAttributeProtocolMapperInput interface {
 	ToUserAttributeProtocolMapperOutputWithContext(ctx context.Context) UserAttributeProtocolMapperOutput
 }
 
-func (UserAttributeProtocolMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserAttributeProtocolMapper)(nil)).Elem()
+func (*UserAttributeProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserAttributeProtocolMapper)(nil))
 }
 
-func (i UserAttributeProtocolMapper) ToUserAttributeProtocolMapperOutput() UserAttributeProtocolMapperOutput {
+func (i *UserAttributeProtocolMapper) ToUserAttributeProtocolMapperOutput() UserAttributeProtocolMapperOutput {
 	return i.ToUserAttributeProtocolMapperOutputWithContext(context.Background())
 }
 
-func (i UserAttributeProtocolMapper) ToUserAttributeProtocolMapperOutputWithContext(ctx context.Context) UserAttributeProtocolMapperOutput {
+func (i *UserAttributeProtocolMapper) ToUserAttributeProtocolMapperOutputWithContext(ctx context.Context) UserAttributeProtocolMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserAttributeProtocolMapperOutput)
 }
 
@@ -322,7 +322,7 @@ type UserAttributeProtocolMapperOutput struct {
 }
 
 func (UserAttributeProtocolMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserAttributeProtocolMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*UserAttributeProtocolMapper)(nil))
 }
 
 func (o UserAttributeProtocolMapperOutput) ToUserAttributeProtocolMapperOutput() UserAttributeProtocolMapperOutput {

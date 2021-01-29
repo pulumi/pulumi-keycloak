@@ -121,15 +121,15 @@ type SubflowInput interface {
 	ToSubflowOutputWithContext(ctx context.Context) SubflowOutput
 }
 
-func (Subflow) ElementType() reflect.Type {
-	return reflect.TypeOf((*Subflow)(nil)).Elem()
+func (*Subflow) ElementType() reflect.Type {
+	return reflect.TypeOf((*Subflow)(nil))
 }
 
-func (i Subflow) ToSubflowOutput() SubflowOutput {
+func (i *Subflow) ToSubflowOutput() SubflowOutput {
 	return i.ToSubflowOutputWithContext(context.Background())
 }
 
-func (i Subflow) ToSubflowOutputWithContext(ctx context.Context) SubflowOutput {
+func (i *Subflow) ToSubflowOutputWithContext(ctx context.Context) SubflowOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SubflowOutput)
 }
 
@@ -138,7 +138,7 @@ type SubflowOutput struct {
 }
 
 func (SubflowOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SubflowOutput)(nil)).Elem()
+	return reflect.TypeOf((*Subflow)(nil))
 }
 
 func (o SubflowOutput) ToSubflowOutput() SubflowOutput {

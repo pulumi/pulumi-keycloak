@@ -24,7 +24,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/authentication"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -187,15 +187,15 @@ type ExecutionInput interface {
 	ToExecutionOutputWithContext(ctx context.Context) ExecutionOutput
 }
 
-func (Execution) ElementType() reflect.Type {
-	return reflect.TypeOf((*Execution)(nil)).Elem()
+func (*Execution) ElementType() reflect.Type {
+	return reflect.TypeOf((*Execution)(nil))
 }
 
-func (i Execution) ToExecutionOutput() ExecutionOutput {
+func (i *Execution) ToExecutionOutput() ExecutionOutput {
 	return i.ToExecutionOutputWithContext(context.Background())
 }
 
-func (i Execution) ToExecutionOutputWithContext(ctx context.Context) ExecutionOutput {
+func (i *Execution) ToExecutionOutputWithContext(ctx context.Context) ExecutionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ExecutionOutput)
 }
 
@@ -204,7 +204,7 @@ type ExecutionOutput struct {
 }
 
 func (ExecutionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ExecutionOutput)(nil)).Elem()
+	return reflect.TypeOf((*Execution)(nil))
 }
 
 func (o ExecutionOutput) ToExecutionOutput() ExecutionOutput {

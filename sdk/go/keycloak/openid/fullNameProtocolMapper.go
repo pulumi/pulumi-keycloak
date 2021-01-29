@@ -25,7 +25,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -68,7 +68,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -245,15 +245,15 @@ type FullNameProtocolMapperInput interface {
 	ToFullNameProtocolMapperOutputWithContext(ctx context.Context) FullNameProtocolMapperOutput
 }
 
-func (FullNameProtocolMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*FullNameProtocolMapper)(nil)).Elem()
+func (*FullNameProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*FullNameProtocolMapper)(nil))
 }
 
-func (i FullNameProtocolMapper) ToFullNameProtocolMapperOutput() FullNameProtocolMapperOutput {
+func (i *FullNameProtocolMapper) ToFullNameProtocolMapperOutput() FullNameProtocolMapperOutput {
 	return i.ToFullNameProtocolMapperOutputWithContext(context.Background())
 }
 
-func (i FullNameProtocolMapper) ToFullNameProtocolMapperOutputWithContext(ctx context.Context) FullNameProtocolMapperOutput {
+func (i *FullNameProtocolMapper) ToFullNameProtocolMapperOutputWithContext(ctx context.Context) FullNameProtocolMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FullNameProtocolMapperOutput)
 }
 
@@ -262,7 +262,7 @@ type FullNameProtocolMapperOutput struct {
 }
 
 func (FullNameProtocolMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FullNameProtocolMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*FullNameProtocolMapper)(nil))
 }
 
 func (o FullNameProtocolMapperOutput) ToFullNameProtocolMapperOutput() FullNameProtocolMapperOutput {

@@ -55,6 +55,7 @@ namespace Pulumi.Keycloak.Oidc
     ///  $ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp
     /// ```
     /// </summary>
+    [KeycloakResourceType("keycloak:oidc/identityProvider:IdentityProvider")]
     public partial class IdentityProvider : Pulumi.CustomResource
     {
         /// <summary>

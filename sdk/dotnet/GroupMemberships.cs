@@ -14,6 +14,7 @@ namespace Pulumi.Keycloak
     /// 
     /// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
     /// </summary>
+    [KeycloakResourceType("keycloak:index/groupMemberships:GroupMemberships")]
     public partial class GroupMemberships : Pulumi.CustomResource
     {
         /// <summary>

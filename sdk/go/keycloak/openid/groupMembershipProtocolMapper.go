@@ -25,7 +25,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -69,7 +69,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -270,15 +270,15 @@ type GroupMembershipProtocolMapperInput interface {
 	ToGroupMembershipProtocolMapperOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperOutput
 }
 
-func (GroupMembershipProtocolMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupMembershipProtocolMapper)(nil)).Elem()
+func (*GroupMembershipProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupMembershipProtocolMapper)(nil))
 }
 
-func (i GroupMembershipProtocolMapper) ToGroupMembershipProtocolMapperOutput() GroupMembershipProtocolMapperOutput {
+func (i *GroupMembershipProtocolMapper) ToGroupMembershipProtocolMapperOutput() GroupMembershipProtocolMapperOutput {
 	return i.ToGroupMembershipProtocolMapperOutputWithContext(context.Background())
 }
 
-func (i GroupMembershipProtocolMapper) ToGroupMembershipProtocolMapperOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperOutput {
+func (i *GroupMembershipProtocolMapper) ToGroupMembershipProtocolMapperOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipProtocolMapperOutput)
 }
 
@@ -287,7 +287,7 @@ type GroupMembershipProtocolMapperOutput struct {
 }
 
 func (GroupMembershipProtocolMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupMembershipProtocolMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*GroupMembershipProtocolMapper)(nil))
 }
 
 func (o GroupMembershipProtocolMapperOutput) ToGroupMembershipProtocolMapperOutput() GroupMembershipProtocolMapperOutput {

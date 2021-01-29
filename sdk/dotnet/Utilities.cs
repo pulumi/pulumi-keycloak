@@ -77,4 +77,11 @@ namespace Pulumi.Keycloak
             }
         }
     }
+
+    internal sealed class KeycloakResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    {
+        public KeycloakResourceTypeAttribute(string type) : base(type, Utilities.Version)
+        {
+        }
+    }
 }

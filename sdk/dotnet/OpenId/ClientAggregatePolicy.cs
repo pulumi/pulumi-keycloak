@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    [KeycloakResourceType("keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy")]
     public partial class ClientAggregatePolicy : Pulumi.CustomResource
     {
         [Output("decisionStrategy")]
