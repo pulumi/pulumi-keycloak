@@ -25,7 +25,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -70,7 +70,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -285,15 +285,15 @@ type HardcodedClaimProtocolMapperInput interface {
 	ToHardcodedClaimProtocolMapperOutputWithContext(ctx context.Context) HardcodedClaimProtocolMapperOutput
 }
 
-func (HardcodedClaimProtocolMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*HardcodedClaimProtocolMapper)(nil)).Elem()
+func (*HardcodedClaimProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*HardcodedClaimProtocolMapper)(nil))
 }
 
-func (i HardcodedClaimProtocolMapper) ToHardcodedClaimProtocolMapperOutput() HardcodedClaimProtocolMapperOutput {
+func (i *HardcodedClaimProtocolMapper) ToHardcodedClaimProtocolMapperOutput() HardcodedClaimProtocolMapperOutput {
 	return i.ToHardcodedClaimProtocolMapperOutputWithContext(context.Background())
 }
 
-func (i HardcodedClaimProtocolMapper) ToHardcodedClaimProtocolMapperOutputWithContext(ctx context.Context) HardcodedClaimProtocolMapperOutput {
+func (i *HardcodedClaimProtocolMapper) ToHardcodedClaimProtocolMapperOutputWithContext(ctx context.Context) HardcodedClaimProtocolMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedClaimProtocolMapperOutput)
 }
 
@@ -302,7 +302,7 @@ type HardcodedClaimProtocolMapperOutput struct {
 }
 
 func (HardcodedClaimProtocolMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*HardcodedClaimProtocolMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*HardcodedClaimProtocolMapper)(nil))
 }
 
 func (o HardcodedClaimProtocolMapperOutput) ToHardcodedClaimProtocolMapperOutput() HardcodedClaimProtocolMapperOutput {

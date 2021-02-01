@@ -108,15 +108,15 @@ type RequiredActionInput interface {
 	ToRequiredActionOutputWithContext(ctx context.Context) RequiredActionOutput
 }
 
-func (RequiredAction) ElementType() reflect.Type {
-	return reflect.TypeOf((*RequiredAction)(nil)).Elem()
+func (*RequiredAction) ElementType() reflect.Type {
+	return reflect.TypeOf((*RequiredAction)(nil))
 }
 
-func (i RequiredAction) ToRequiredActionOutput() RequiredActionOutput {
+func (i *RequiredAction) ToRequiredActionOutput() RequiredActionOutput {
 	return i.ToRequiredActionOutputWithContext(context.Background())
 }
 
-func (i RequiredAction) ToRequiredActionOutputWithContext(ctx context.Context) RequiredActionOutput {
+func (i *RequiredAction) ToRequiredActionOutputWithContext(ctx context.Context) RequiredActionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RequiredActionOutput)
 }
 
@@ -125,7 +125,7 @@ type RequiredActionOutput struct {
 }
 
 func (RequiredActionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RequiredActionOutput)(nil)).Elem()
+	return reflect.TypeOf((*RequiredAction)(nil))
 }
 
 func (o RequiredActionOutput) ToRequiredActionOutput() RequiredActionOutput {

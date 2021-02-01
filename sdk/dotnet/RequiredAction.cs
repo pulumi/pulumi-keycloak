@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    [KeycloakResourceType("keycloak:index/requiredAction:RequiredAction")]
     public partial class RequiredAction : Pulumi.CustomResource
     {
         [Output("alias")]

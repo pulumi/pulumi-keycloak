@@ -25,7 +25,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/ldap"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -173,15 +173,15 @@ type MsadLdsUserAccountControlMapperInput interface {
 	ToMsadLdsUserAccountControlMapperOutputWithContext(ctx context.Context) MsadLdsUserAccountControlMapperOutput
 }
 
-func (MsadLdsUserAccountControlMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*MsadLdsUserAccountControlMapper)(nil)).Elem()
+func (*MsadLdsUserAccountControlMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*MsadLdsUserAccountControlMapper)(nil))
 }
 
-func (i MsadLdsUserAccountControlMapper) ToMsadLdsUserAccountControlMapperOutput() MsadLdsUserAccountControlMapperOutput {
+func (i *MsadLdsUserAccountControlMapper) ToMsadLdsUserAccountControlMapperOutput() MsadLdsUserAccountControlMapperOutput {
 	return i.ToMsadLdsUserAccountControlMapperOutputWithContext(context.Background())
 }
 
-func (i MsadLdsUserAccountControlMapper) ToMsadLdsUserAccountControlMapperOutputWithContext(ctx context.Context) MsadLdsUserAccountControlMapperOutput {
+func (i *MsadLdsUserAccountControlMapper) ToMsadLdsUserAccountControlMapperOutputWithContext(ctx context.Context) MsadLdsUserAccountControlMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MsadLdsUserAccountControlMapperOutput)
 }
 
@@ -190,7 +190,7 @@ type MsadLdsUserAccountControlMapperOutput struct {
 }
 
 func (MsadLdsUserAccountControlMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*MsadLdsUserAccountControlMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*MsadLdsUserAccountControlMapper)(nil))
 }
 
 func (o MsadLdsUserAccountControlMapperOutput) ToMsadLdsUserAccountControlMapperOutput() MsadLdsUserAccountControlMapperOutput {

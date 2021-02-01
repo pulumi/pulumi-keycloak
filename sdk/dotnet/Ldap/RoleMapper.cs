@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.Ldap
 {
+    [KeycloakResourceType("keycloak:ldap/roleMapper:RoleMapper")]
     public partial class RoleMapper : Pulumi.CustomResource
     {
         [Output("clientId")]

@@ -171,15 +171,15 @@ type ClientTimePolicyInput interface {
 	ToClientTimePolicyOutputWithContext(ctx context.Context) ClientTimePolicyOutput
 }
 
-func (ClientTimePolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientTimePolicy)(nil)).Elem()
+func (*ClientTimePolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientTimePolicy)(nil))
 }
 
-func (i ClientTimePolicy) ToClientTimePolicyOutput() ClientTimePolicyOutput {
+func (i *ClientTimePolicy) ToClientTimePolicyOutput() ClientTimePolicyOutput {
 	return i.ToClientTimePolicyOutputWithContext(context.Background())
 }
 
-func (i ClientTimePolicy) ToClientTimePolicyOutputWithContext(ctx context.Context) ClientTimePolicyOutput {
+func (i *ClientTimePolicy) ToClientTimePolicyOutputWithContext(ctx context.Context) ClientTimePolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientTimePolicyOutput)
 }
 
@@ -188,7 +188,7 @@ type ClientTimePolicyOutput struct {
 }
 
 func (ClientTimePolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientTimePolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*ClientTimePolicy)(nil))
 }
 
 func (o ClientTimePolicyOutput) ToClientTimePolicyOutput() ClientTimePolicyOutput {

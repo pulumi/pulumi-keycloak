@@ -25,7 +25,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -75,7 +75,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -242,15 +242,15 @@ type HardcodedRoleProtocolMapperInput interface {
 	ToHardcodedRoleProtocolMapperOutputWithContext(ctx context.Context) HardcodedRoleProtocolMapperOutput
 }
 
-func (HardcodedRoleProtocolMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*HardcodedRoleProtocolMapper)(nil)).Elem()
+func (*HardcodedRoleProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*HardcodedRoleProtocolMapper)(nil))
 }
 
-func (i HardcodedRoleProtocolMapper) ToHardcodedRoleProtocolMapperOutput() HardcodedRoleProtocolMapperOutput {
+func (i *HardcodedRoleProtocolMapper) ToHardcodedRoleProtocolMapperOutput() HardcodedRoleProtocolMapperOutput {
 	return i.ToHardcodedRoleProtocolMapperOutputWithContext(context.Background())
 }
 
-func (i HardcodedRoleProtocolMapper) ToHardcodedRoleProtocolMapperOutputWithContext(ctx context.Context) HardcodedRoleProtocolMapperOutput {
+func (i *HardcodedRoleProtocolMapper) ToHardcodedRoleProtocolMapperOutputWithContext(ctx context.Context) HardcodedRoleProtocolMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleProtocolMapperOutput)
 }
 
@@ -259,7 +259,7 @@ type HardcodedRoleProtocolMapperOutput struct {
 }
 
 func (HardcodedRoleProtocolMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*HardcodedRoleProtocolMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*HardcodedRoleProtocolMapper)(nil))
 }
 
 func (o HardcodedRoleProtocolMapperOutput) ToHardcodedRoleProtocolMapperOutput() HardcodedRoleProtocolMapperOutput {

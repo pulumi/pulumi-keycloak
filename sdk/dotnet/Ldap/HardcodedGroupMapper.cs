@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.Ldap
 {
+    [KeycloakResourceType("keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper")]
     public partial class HardcodedGroupMapper : Pulumi.CustomResource
     {
         /// <summary>

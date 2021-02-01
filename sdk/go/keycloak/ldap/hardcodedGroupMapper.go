@@ -121,15 +121,15 @@ type HardcodedGroupMapperInput interface {
 	ToHardcodedGroupMapperOutputWithContext(ctx context.Context) HardcodedGroupMapperOutput
 }
 
-func (HardcodedGroupMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*HardcodedGroupMapper)(nil)).Elem()
+func (*HardcodedGroupMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*HardcodedGroupMapper)(nil))
 }
 
-func (i HardcodedGroupMapper) ToHardcodedGroupMapperOutput() HardcodedGroupMapperOutput {
+func (i *HardcodedGroupMapper) ToHardcodedGroupMapperOutput() HardcodedGroupMapperOutput {
 	return i.ToHardcodedGroupMapperOutputWithContext(context.Background())
 }
 
-func (i HardcodedGroupMapper) ToHardcodedGroupMapperOutputWithContext(ctx context.Context) HardcodedGroupMapperOutput {
+func (i *HardcodedGroupMapper) ToHardcodedGroupMapperOutputWithContext(ctx context.Context) HardcodedGroupMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedGroupMapperOutput)
 }
 
@@ -138,7 +138,7 @@ type HardcodedGroupMapperOutput struct {
 }
 
 func (HardcodedGroupMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*HardcodedGroupMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*HardcodedGroupMapper)(nil))
 }
 
 func (o HardcodedGroupMapperOutput) ToHardcodedGroupMapperOutput() HardcodedGroupMapperOutput {

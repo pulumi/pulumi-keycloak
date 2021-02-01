@@ -124,15 +124,15 @@ type ClientRolePolicyInput interface {
 	ToClientRolePolicyOutputWithContext(ctx context.Context) ClientRolePolicyOutput
 }
 
-func (ClientRolePolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientRolePolicy)(nil)).Elem()
+func (*ClientRolePolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientRolePolicy)(nil))
 }
 
-func (i ClientRolePolicy) ToClientRolePolicyOutput() ClientRolePolicyOutput {
+func (i *ClientRolePolicy) ToClientRolePolicyOutput() ClientRolePolicyOutput {
 	return i.ToClientRolePolicyOutputWithContext(context.Background())
 }
 
-func (i ClientRolePolicy) ToClientRolePolicyOutputWithContext(ctx context.Context) ClientRolePolicyOutput {
+func (i *ClientRolePolicy) ToClientRolePolicyOutputWithContext(ctx context.Context) ClientRolePolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientRolePolicyOutput)
 }
 
@@ -141,7 +141,7 @@ type ClientRolePolicyOutput struct {
 }
 
 func (ClientRolePolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientRolePolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*ClientRolePolicy)(nil))
 }
 
 func (o ClientRolePolicyOutput) ToClientRolePolicyOutput() ClientRolePolicyOutput {

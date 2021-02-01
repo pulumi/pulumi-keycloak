@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/saml"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -169,15 +169,15 @@ type ClientScopeInput interface {
 	ToClientScopeOutputWithContext(ctx context.Context) ClientScopeOutput
 }
 
-func (ClientScope) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientScope)(nil)).Elem()
+func (*ClientScope) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientScope)(nil))
 }
 
-func (i ClientScope) ToClientScopeOutput() ClientScopeOutput {
+func (i *ClientScope) ToClientScopeOutput() ClientScopeOutput {
 	return i.ToClientScopeOutputWithContext(context.Background())
 }
 
-func (i ClientScope) ToClientScopeOutputWithContext(ctx context.Context) ClientScopeOutput {
+func (i *ClientScope) ToClientScopeOutputWithContext(ctx context.Context) ClientScopeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientScopeOutput)
 }
 
@@ -186,7 +186,7 @@ type ClientScopeOutput struct {
 }
 
 func (ClientScopeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientScopeOutput)(nil)).Elem()
+	return reflect.TypeOf((*ClientScope)(nil))
 }
 
 func (o ClientScopeOutput) ToClientScopeOutput() ClientScopeOutput {

@@ -132,6 +132,7 @@ namespace Pulumi.Keycloak.Ldap
     ///  $ pulumi import keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper assign_admin_role_to_all_users my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
     /// ```
     /// </summary>
+    [KeycloakResourceType("keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper")]
     public partial class HardcodedRoleMapper : Pulumi.CustomResource
     {
         /// <summary>

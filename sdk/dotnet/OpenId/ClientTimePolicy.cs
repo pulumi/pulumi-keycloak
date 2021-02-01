@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    [KeycloakResourceType("keycloak:openid/clientTimePolicy:ClientTimePolicy")]
     public partial class ClientTimePolicy : Pulumi.CustomResource
     {
         [Output("dayMonth")]

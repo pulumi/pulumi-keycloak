@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    [KeycloakResourceType("keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope")]
     public partial class ClientAuthorizationScope : Pulumi.CustomResource
     {
         [Output("displayName")]

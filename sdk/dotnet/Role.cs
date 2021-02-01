@@ -150,6 +150,7 @@ namespace Pulumi.Keycloak
     ///  $ pulumi import keycloak:index/role:Role role my-realm/7e8cf32a-8acb-4d34-89c4-04fb1d10ccad
     /// ```
     /// </summary>
+    [KeycloakResourceType("keycloak:index/role:Role")]
     public partial class Role : Pulumi.CustomResource
     {
         /// <summary>

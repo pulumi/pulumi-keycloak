@@ -17,6 +17,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //

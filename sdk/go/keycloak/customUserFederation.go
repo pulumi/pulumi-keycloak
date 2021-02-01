@@ -165,15 +165,15 @@ type CustomUserFederationInput interface {
 	ToCustomUserFederationOutputWithContext(ctx context.Context) CustomUserFederationOutput
 }
 
-func (CustomUserFederation) ElementType() reflect.Type {
-	return reflect.TypeOf((*CustomUserFederation)(nil)).Elem()
+func (*CustomUserFederation) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomUserFederation)(nil))
 }
 
-func (i CustomUserFederation) ToCustomUserFederationOutput() CustomUserFederationOutput {
+func (i *CustomUserFederation) ToCustomUserFederationOutput() CustomUserFederationOutput {
 	return i.ToCustomUserFederationOutputWithContext(context.Background())
 }
 
-func (i CustomUserFederation) ToCustomUserFederationOutputWithContext(ctx context.Context) CustomUserFederationOutput {
+func (i *CustomUserFederation) ToCustomUserFederationOutputWithContext(ctx context.Context) CustomUserFederationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CustomUserFederationOutput)
 }
 
@@ -182,7 +182,7 @@ type CustomUserFederationOutput struct {
 }
 
 func (CustomUserFederationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CustomUserFederationOutput)(nil)).Elem()
+	return reflect.TypeOf((*CustomUserFederation)(nil))
 }
 
 func (o CustomUserFederationOutput) ToCustomUserFederationOutput() CustomUserFederationOutput {

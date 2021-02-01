@@ -26,7 +26,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/oidc"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -226,15 +226,15 @@ type AttributeImporterIdentityProviderMapperInput interface {
 	ToAttributeImporterIdentityProviderMapperOutputWithContext(ctx context.Context) AttributeImporterIdentityProviderMapperOutput
 }
 
-func (AttributeImporterIdentityProviderMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*AttributeImporterIdentityProviderMapper)(nil)).Elem()
+func (*AttributeImporterIdentityProviderMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttributeImporterIdentityProviderMapper)(nil))
 }
 
-func (i AttributeImporterIdentityProviderMapper) ToAttributeImporterIdentityProviderMapperOutput() AttributeImporterIdentityProviderMapperOutput {
+func (i *AttributeImporterIdentityProviderMapper) ToAttributeImporterIdentityProviderMapperOutput() AttributeImporterIdentityProviderMapperOutput {
 	return i.ToAttributeImporterIdentityProviderMapperOutputWithContext(context.Background())
 }
 
-func (i AttributeImporterIdentityProviderMapper) ToAttributeImporterIdentityProviderMapperOutputWithContext(ctx context.Context) AttributeImporterIdentityProviderMapperOutput {
+func (i *AttributeImporterIdentityProviderMapper) ToAttributeImporterIdentityProviderMapperOutputWithContext(ctx context.Context) AttributeImporterIdentityProviderMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AttributeImporterIdentityProviderMapperOutput)
 }
 
@@ -243,7 +243,7 @@ type AttributeImporterIdentityProviderMapperOutput struct {
 }
 
 func (AttributeImporterIdentityProviderMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AttributeImporterIdentityProviderMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*AttributeImporterIdentityProviderMapper)(nil))
 }
 
 func (o AttributeImporterIdentityProviderMapperOutput) ToAttributeImporterIdentityProviderMapperOutput() AttributeImporterIdentityProviderMapperOutput {

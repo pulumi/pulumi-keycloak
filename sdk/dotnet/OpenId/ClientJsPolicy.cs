@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    [KeycloakResourceType("keycloak:openid/clientJsPolicy:ClientJsPolicy")]
     public partial class ClientJsPolicy : Pulumi.CustomResource
     {
         [Output("code")]

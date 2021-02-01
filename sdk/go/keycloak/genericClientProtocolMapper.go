@@ -26,7 +26,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/saml"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -217,15 +217,15 @@ type GenericClientProtocolMapperInput interface {
 	ToGenericClientProtocolMapperOutputWithContext(ctx context.Context) GenericClientProtocolMapperOutput
 }
 
-func (GenericClientProtocolMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*GenericClientProtocolMapper)(nil)).Elem()
+func (*GenericClientProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*GenericClientProtocolMapper)(nil))
 }
 
-func (i GenericClientProtocolMapper) ToGenericClientProtocolMapperOutput() GenericClientProtocolMapperOutput {
+func (i *GenericClientProtocolMapper) ToGenericClientProtocolMapperOutput() GenericClientProtocolMapperOutput {
 	return i.ToGenericClientProtocolMapperOutputWithContext(context.Background())
 }
 
-func (i GenericClientProtocolMapper) ToGenericClientProtocolMapperOutputWithContext(ctx context.Context) GenericClientProtocolMapperOutput {
+func (i *GenericClientProtocolMapper) ToGenericClientProtocolMapperOutputWithContext(ctx context.Context) GenericClientProtocolMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GenericClientProtocolMapperOutput)
 }
 
@@ -234,7 +234,7 @@ type GenericClientProtocolMapperOutput struct {
 }
 
 func (GenericClientProtocolMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GenericClientProtocolMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*GenericClientProtocolMapper)(nil))
 }
 
 func (o GenericClientProtocolMapperOutput) ToGenericClientProtocolMapperOutput() GenericClientProtocolMapperOutput {

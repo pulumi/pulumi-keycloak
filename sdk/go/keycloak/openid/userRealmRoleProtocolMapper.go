@@ -25,7 +25,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -69,7 +69,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -290,15 +290,15 @@ type UserRealmRoleProtocolMapperInput interface {
 	ToUserRealmRoleProtocolMapperOutputWithContext(ctx context.Context) UserRealmRoleProtocolMapperOutput
 }
 
-func (UserRealmRoleProtocolMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserRealmRoleProtocolMapper)(nil)).Elem()
+func (*UserRealmRoleProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserRealmRoleProtocolMapper)(nil))
 }
 
-func (i UserRealmRoleProtocolMapper) ToUserRealmRoleProtocolMapperOutput() UserRealmRoleProtocolMapperOutput {
+func (i *UserRealmRoleProtocolMapper) ToUserRealmRoleProtocolMapperOutput() UserRealmRoleProtocolMapperOutput {
 	return i.ToUserRealmRoleProtocolMapperOutputWithContext(context.Background())
 }
 
-func (i UserRealmRoleProtocolMapper) ToUserRealmRoleProtocolMapperOutputWithContext(ctx context.Context) UserRealmRoleProtocolMapperOutput {
+func (i *UserRealmRoleProtocolMapper) ToUserRealmRoleProtocolMapperOutputWithContext(ctx context.Context) UserRealmRoleProtocolMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserRealmRoleProtocolMapperOutput)
 }
 
@@ -307,7 +307,7 @@ type UserRealmRoleProtocolMapperOutput struct {
 }
 
 func (UserRealmRoleProtocolMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserRealmRoleProtocolMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*UserRealmRoleProtocolMapper)(nil))
 }
 
 func (o UserRealmRoleProtocolMapperOutput) ToUserRealmRoleProtocolMapperOutput() UserRealmRoleProtocolMapperOutput {

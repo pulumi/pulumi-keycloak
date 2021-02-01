@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    [KeycloakResourceType("keycloak:index/usersPermissions:UsersPermissions")]
     public partial class UsersPermissions : Pulumi.CustomResource
     {
         /// <summary>

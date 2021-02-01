@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    [KeycloakResourceType("keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper")]
     public partial class HardcodedAttributeIdentityProviderMapper : Pulumi.CustomResource
     {
         /// <summary>

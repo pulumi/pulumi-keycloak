@@ -18,6 +18,7 @@ namespace Pulumi.Keycloak
     ///  $ pulumi import keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission oidc_idp_permission my-realm/myIdp
     /// ```
     /// </summary>
+    [KeycloakResourceType("keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission")]
     public partial class IdentityProviderTokenExchangeScopePermission : Pulumi.CustomResource
     {
         /// <summary>

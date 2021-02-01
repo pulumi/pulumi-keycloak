@@ -104,6 +104,7 @@ namespace Pulumi.Keycloak.OpenId
     ///  $ pulumi import keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper hardcoded_role_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
     /// ```
     /// </summary>
+    [KeycloakResourceType("keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper")]
     public partial class HardcodedRoleProtocolMapper : Pulumi.CustomResource
     {
         /// <summary>

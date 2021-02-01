@@ -110,6 +110,7 @@ namespace Pulumi.Keycloak
     ///  $ pulumi import keycloak:index/realm:Realm realm my-realm
     /// ```
     /// </summary>
+    [KeycloakResourceType("keycloak:index/realm:Realm")]
     public partial class Realm : Pulumi.CustomResource
     {
         /// <summary>

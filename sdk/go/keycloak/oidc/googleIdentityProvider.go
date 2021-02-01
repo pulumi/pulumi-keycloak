@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/oidc"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -339,15 +339,15 @@ type GoogleIdentityProviderInput interface {
 	ToGoogleIdentityProviderOutputWithContext(ctx context.Context) GoogleIdentityProviderOutput
 }
 
-func (GoogleIdentityProvider) ElementType() reflect.Type {
-	return reflect.TypeOf((*GoogleIdentityProvider)(nil)).Elem()
+func (*GoogleIdentityProvider) ElementType() reflect.Type {
+	return reflect.TypeOf((*GoogleIdentityProvider)(nil))
 }
 
-func (i GoogleIdentityProvider) ToGoogleIdentityProviderOutput() GoogleIdentityProviderOutput {
+func (i *GoogleIdentityProvider) ToGoogleIdentityProviderOutput() GoogleIdentityProviderOutput {
 	return i.ToGoogleIdentityProviderOutputWithContext(context.Background())
 }
 
-func (i GoogleIdentityProvider) ToGoogleIdentityProviderOutputWithContext(ctx context.Context) GoogleIdentityProviderOutput {
+func (i *GoogleIdentityProvider) ToGoogleIdentityProviderOutputWithContext(ctx context.Context) GoogleIdentityProviderOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GoogleIdentityProviderOutput)
 }
 
@@ -356,7 +356,7 @@ type GoogleIdentityProviderOutput struct {
 }
 
 func (GoogleIdentityProviderOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GoogleIdentityProviderOutput)(nil)).Elem()
+	return reflect.TypeOf((*GoogleIdentityProvider)(nil))
 }
 
 func (o GoogleIdentityProviderOutput) ToGoogleIdentityProviderOutput() GoogleIdentityProviderOutput {

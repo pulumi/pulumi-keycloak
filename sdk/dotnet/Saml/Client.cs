@@ -54,6 +54,7 @@ namespace Pulumi.Keycloak.Saml
     ///  $ pulumi import keycloak:saml/client:Client saml_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
     /// ```
     /// </summary>
+    [KeycloakResourceType("keycloak:saml/client:Client")]
     public partial class Client : Pulumi.CustomResource
     {
         /// <summary>

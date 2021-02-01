@@ -183,15 +183,15 @@ type RoleMapperInput interface {
 	ToRoleMapperOutputWithContext(ctx context.Context) RoleMapperOutput
 }
 
-func (RoleMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*RoleMapper)(nil)).Elem()
+func (*RoleMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoleMapper)(nil))
 }
 
-func (i RoleMapper) ToRoleMapperOutput() RoleMapperOutput {
+func (i *RoleMapper) ToRoleMapperOutput() RoleMapperOutput {
 	return i.ToRoleMapperOutputWithContext(context.Background())
 }
 
-func (i RoleMapper) ToRoleMapperOutputWithContext(ctx context.Context) RoleMapperOutput {
+func (i *RoleMapper) ToRoleMapperOutputWithContext(ctx context.Context) RoleMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RoleMapperOutput)
 }
 
@@ -200,7 +200,7 @@ type RoleMapperOutput struct {
 }
 
 func (RoleMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RoleMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*RoleMapper)(nil))
 }
 
 func (o RoleMapperOutput) ToRoleMapperOutput() RoleMapperOutput {

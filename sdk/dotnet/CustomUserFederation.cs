@@ -18,6 +18,7 @@ namespace Pulumi.Keycloak
     ///  $ pulumi import keycloak:index/customUserFederation:CustomUserFederation custom_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
     /// ```
     /// </summary>
+    [KeycloakResourceType("keycloak:index/customUserFederation:CustomUserFederation")]
     public partial class CustomUserFederation : Pulumi.CustomResource
     {
         /// <summary>

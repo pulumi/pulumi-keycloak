@@ -116,15 +116,15 @@ type ClientPolicyInput interface {
 	ToClientPolicyOutputWithContext(ctx context.Context) ClientPolicyOutput
 }
 
-func (ClientPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientPolicy)(nil)).Elem()
+func (*ClientPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientPolicy)(nil))
 }
 
-func (i ClientPolicy) ToClientPolicyOutput() ClientPolicyOutput {
+func (i *ClientPolicy) ToClientPolicyOutput() ClientPolicyOutput {
 	return i.ToClientPolicyOutputWithContext(context.Background())
 }
 
-func (i ClientPolicy) ToClientPolicyOutputWithContext(ctx context.Context) ClientPolicyOutput {
+func (i *ClientPolicy) ToClientPolicyOutputWithContext(ctx context.Context) ClientPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPolicyOutput)
 }
 
@@ -133,7 +133,7 @@ type ClientPolicyOutput struct {
 }
 
 func (ClientPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*ClientPolicy)(nil))
 }
 
 func (o ClientPolicyOutput) ToClientPolicyOutput() ClientPolicyOutput {

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    [KeycloakResourceType("keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource")]
     public partial class ClientAuthorizationResource : Pulumi.CustomResource
     {
         [Output("attributes")]

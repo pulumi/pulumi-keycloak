@@ -48,12 +48,12 @@ setup(name='pulumi_keycloak',
       packages=find_packages(),
       package_data={
           'pulumi_keycloak': [
-              'py.typed'
+              'py.typed',
           ]
       },
       install_requires=[
           'parver>=0.2.1',
-          'pulumi>=2.9.0,<3.0.0',
+          'pulumi>=2.15.0,<3.0.0',
           'semver>=2.8.1'
       ],
       zip_safe=False)

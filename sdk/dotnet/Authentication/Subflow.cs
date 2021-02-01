@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.Authentication
 {
+    [KeycloakResourceType("keycloak:authentication/subflow:Subflow")]
     public partial class Subflow : Pulumi.CustomResource
     {
         [Output("alias")]

@@ -56,6 +56,7 @@ namespace Pulumi.Keycloak.Authentication
     ///  $ pulumi import keycloak:authentication/flow:Flow flow my-realm/e9a5641e-778c-4daf-89c0-f4ef617987d1
     /// ```
     /// </summary>
+    [KeycloakResourceType("keycloak:authentication/flow:Flow")]
     public partial class Flow : Pulumi.CustomResource
     {
         /// <summary>

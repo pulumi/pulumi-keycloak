@@ -50,6 +50,7 @@ namespace Pulumi.Keycloak.Oidc
     /// 
     /// This resource does not yet support importing.
     /// </summary>
+    [KeycloakResourceType("keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider")]
     public partial class GoogleIdentityProvider : Pulumi.CustomResource
     {
         /// <summary>

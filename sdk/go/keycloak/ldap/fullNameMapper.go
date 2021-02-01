@@ -22,7 +22,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/ldap"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -203,15 +203,15 @@ type FullNameMapperInput interface {
 	ToFullNameMapperOutputWithContext(ctx context.Context) FullNameMapperOutput
 }
 
-func (FullNameMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*FullNameMapper)(nil)).Elem()
+func (*FullNameMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*FullNameMapper)(nil))
 }
 
-func (i FullNameMapper) ToFullNameMapperOutput() FullNameMapperOutput {
+func (i *FullNameMapper) ToFullNameMapperOutput() FullNameMapperOutput {
 	return i.ToFullNameMapperOutputWithContext(context.Background())
 }
 
-func (i FullNameMapper) ToFullNameMapperOutputWithContext(ctx context.Context) FullNameMapperOutput {
+func (i *FullNameMapper) ToFullNameMapperOutputWithContext(ctx context.Context) FullNameMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FullNameMapperOutput)
 }
 
@@ -220,7 +220,7 @@ type FullNameMapperOutput struct {
 }
 
 func (FullNameMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FullNameMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*FullNameMapper)(nil))
 }
 
 func (o FullNameMapperOutput) ToFullNameMapperOutput() FullNameMapperOutput {

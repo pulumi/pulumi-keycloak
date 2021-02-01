@@ -50,6 +50,7 @@ namespace Pulumi.Keycloak.OpenId
     ///  $ pulumi import keycloak:openid/clientScope:ClientScope openid_client_scope my-realm/8e8f7fe1-df9b-40ed-bed3-4597aa0dac52
     /// ```
     /// </summary>
+    [KeycloakResourceType("keycloak:openid/clientScope:ClientScope")]
     public partial class ClientScope : Pulumi.CustomResource
     {
         /// <summary>

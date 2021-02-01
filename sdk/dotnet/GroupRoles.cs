@@ -18,6 +18,7 @@ namespace Pulumi.Keycloak
     ///  $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
     /// ```
     /// </summary>
+    [KeycloakResourceType("keycloak:index/groupRoles:GroupRoles")]
     public partial class GroupRoles : Pulumi.CustomResource
     {
         /// <summary>

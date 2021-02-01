@@ -119,15 +119,15 @@ type ClientAggregatePolicyInput interface {
 	ToClientAggregatePolicyOutputWithContext(ctx context.Context) ClientAggregatePolicyOutput
 }
 
-func (ClientAggregatePolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientAggregatePolicy)(nil)).Elem()
+func (*ClientAggregatePolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientAggregatePolicy)(nil))
 }
 
-func (i ClientAggregatePolicy) ToClientAggregatePolicyOutput() ClientAggregatePolicyOutput {
+func (i *ClientAggregatePolicy) ToClientAggregatePolicyOutput() ClientAggregatePolicyOutput {
 	return i.ToClientAggregatePolicyOutputWithContext(context.Background())
 }
 
-func (i ClientAggregatePolicy) ToClientAggregatePolicyOutputWithContext(ctx context.Context) ClientAggregatePolicyOutput {
+func (i *ClientAggregatePolicy) ToClientAggregatePolicyOutputWithContext(ctx context.Context) ClientAggregatePolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAggregatePolicyOutput)
 }
 
@@ -136,7 +136,7 @@ type ClientAggregatePolicyOutput struct {
 }
 
 func (ClientAggregatePolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientAggregatePolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*ClientAggregatePolicy)(nil))
 }
 
 func (o ClientAggregatePolicyOutput) ToClientAggregatePolicyOutput() ClientAggregatePolicyOutput {

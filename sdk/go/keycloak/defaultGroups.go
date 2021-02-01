@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -148,15 +148,15 @@ type DefaultGroupsInput interface {
 	ToDefaultGroupsOutputWithContext(ctx context.Context) DefaultGroupsOutput
 }
 
-func (DefaultGroups) ElementType() reflect.Type {
-	return reflect.TypeOf((*DefaultGroups)(nil)).Elem()
+func (*DefaultGroups) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultGroups)(nil))
 }
 
-func (i DefaultGroups) ToDefaultGroupsOutput() DefaultGroupsOutput {
+func (i *DefaultGroups) ToDefaultGroupsOutput() DefaultGroupsOutput {
 	return i.ToDefaultGroupsOutputWithContext(context.Background())
 }
 
-func (i DefaultGroups) ToDefaultGroupsOutputWithContext(ctx context.Context) DefaultGroupsOutput {
+func (i *DefaultGroups) ToDefaultGroupsOutputWithContext(ctx context.Context) DefaultGroupsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DefaultGroupsOutput)
 }
 
@@ -165,7 +165,7 @@ type DefaultGroupsOutput struct {
 }
 
 func (DefaultGroupsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DefaultGroupsOutput)(nil)).Elem()
+	return reflect.TypeOf((*DefaultGroups)(nil))
 }
 
 func (o DefaultGroupsOutput) ToDefaultGroupsOutput() DefaultGroupsOutput {

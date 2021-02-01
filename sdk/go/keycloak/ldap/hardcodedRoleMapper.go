@@ -22,7 +22,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/ldap"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -81,6 +81,7 @@ import (
 // 	"fmt"
 //
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/ldap"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -246,15 +247,15 @@ type HardcodedRoleMapperInput interface {
 	ToHardcodedRoleMapperOutputWithContext(ctx context.Context) HardcodedRoleMapperOutput
 }
 
-func (HardcodedRoleMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*HardcodedRoleMapper)(nil)).Elem()
+func (*HardcodedRoleMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*HardcodedRoleMapper)(nil))
 }
 
-func (i HardcodedRoleMapper) ToHardcodedRoleMapperOutput() HardcodedRoleMapperOutput {
+func (i *HardcodedRoleMapper) ToHardcodedRoleMapperOutput() HardcodedRoleMapperOutput {
 	return i.ToHardcodedRoleMapperOutputWithContext(context.Background())
 }
 
-func (i HardcodedRoleMapper) ToHardcodedRoleMapperOutputWithContext(ctx context.Context) HardcodedRoleMapperOutput {
+func (i *HardcodedRoleMapper) ToHardcodedRoleMapperOutputWithContext(ctx context.Context) HardcodedRoleMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleMapperOutput)
 }
 
@@ -263,7 +264,7 @@ type HardcodedRoleMapperOutput struct {
 }
 
 func (HardcodedRoleMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*HardcodedRoleMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*HardcodedRoleMapper)(nil))
 }
 
 func (o HardcodedRoleMapperOutput) ToHardcodedRoleMapperOutput() HardcodedRoleMapperOutput {

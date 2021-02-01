@@ -67,6 +67,7 @@ namespace Pulumi.Keycloak
     ///  $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
     /// ```
     /// </summary>
+    [KeycloakResourceType("keycloak:index/group:Group")]
     public partial class Group : Pulumi.CustomResource
     {
         /// <summary>

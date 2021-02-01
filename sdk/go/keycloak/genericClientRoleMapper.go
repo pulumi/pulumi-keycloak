@@ -24,7 +24,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -72,7 +72,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -139,7 +139,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -184,7 +184,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -348,15 +348,15 @@ type GenericClientRoleMapperInput interface {
 	ToGenericClientRoleMapperOutputWithContext(ctx context.Context) GenericClientRoleMapperOutput
 }
 
-func (GenericClientRoleMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*GenericClientRoleMapper)(nil)).Elem()
+func (*GenericClientRoleMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*GenericClientRoleMapper)(nil))
 }
 
-func (i GenericClientRoleMapper) ToGenericClientRoleMapperOutput() GenericClientRoleMapperOutput {
+func (i *GenericClientRoleMapper) ToGenericClientRoleMapperOutput() GenericClientRoleMapperOutput {
 	return i.ToGenericClientRoleMapperOutputWithContext(context.Background())
 }
 
-func (i GenericClientRoleMapper) ToGenericClientRoleMapperOutputWithContext(ctx context.Context) GenericClientRoleMapperOutput {
+func (i *GenericClientRoleMapper) ToGenericClientRoleMapperOutputWithContext(ctx context.Context) GenericClientRoleMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GenericClientRoleMapperOutput)
 }
 
@@ -365,7 +365,7 @@ type GenericClientRoleMapperOutput struct {
 }
 
 func (GenericClientRoleMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GenericClientRoleMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*GenericClientRoleMapper)(nil))
 }
 
 func (o GenericClientRoleMapperOutput) ToGenericClientRoleMapperOutput() GenericClientRoleMapperOutput {

@@ -128,15 +128,15 @@ type ClientAuthorizationResourceInput interface {
 	ToClientAuthorizationResourceOutputWithContext(ctx context.Context) ClientAuthorizationResourceOutput
 }
 
-func (ClientAuthorizationResource) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientAuthorizationResource)(nil)).Elem()
+func (*ClientAuthorizationResource) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientAuthorizationResource)(nil))
 }
 
-func (i ClientAuthorizationResource) ToClientAuthorizationResourceOutput() ClientAuthorizationResourceOutput {
+func (i *ClientAuthorizationResource) ToClientAuthorizationResourceOutput() ClientAuthorizationResourceOutput {
 	return i.ToClientAuthorizationResourceOutputWithContext(context.Background())
 }
 
-func (i ClientAuthorizationResource) ToClientAuthorizationResourceOutputWithContext(ctx context.Context) ClientAuthorizationResourceOutput {
+func (i *ClientAuthorizationResource) ToClientAuthorizationResourceOutputWithContext(ctx context.Context) ClientAuthorizationResourceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationResourceOutput)
 }
 
@@ -145,7 +145,7 @@ type ClientAuthorizationResourceOutput struct {
 }
 
 func (ClientAuthorizationResourceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientAuthorizationResourceOutput)(nil)).Elem()
+	return reflect.TypeOf((*ClientAuthorizationResource)(nil))
 }
 
 func (o ClientAuthorizationResourceOutput) ToClientAuthorizationResourceOutput() ClientAuthorizationResourceOutput {

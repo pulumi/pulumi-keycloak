@@ -23,7 +23,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -67,7 +67,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -255,15 +255,15 @@ type AudienceProtocolMapperInput interface {
 	ToAudienceProtocolMapperOutputWithContext(ctx context.Context) AudienceProtocolMapperOutput
 }
 
-func (AudienceProtocolMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*AudienceProtocolMapper)(nil)).Elem()
+func (*AudienceProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*AudienceProtocolMapper)(nil))
 }
 
-func (i AudienceProtocolMapper) ToAudienceProtocolMapperOutput() AudienceProtocolMapperOutput {
+func (i *AudienceProtocolMapper) ToAudienceProtocolMapperOutput() AudienceProtocolMapperOutput {
 	return i.ToAudienceProtocolMapperOutputWithContext(context.Background())
 }
 
-func (i AudienceProtocolMapper) ToAudienceProtocolMapperOutputWithContext(ctx context.Context) AudienceProtocolMapperOutput {
+func (i *AudienceProtocolMapper) ToAudienceProtocolMapperOutputWithContext(ctx context.Context) AudienceProtocolMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AudienceProtocolMapperOutput)
 }
 
@@ -272,7 +272,7 @@ type AudienceProtocolMapperOutput struct {
 }
 
 func (AudienceProtocolMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AudienceProtocolMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*AudienceProtocolMapper)(nil))
 }
 
 func (o AudienceProtocolMapperOutput) ToAudienceProtocolMapperOutput() AudienceProtocolMapperOutput {

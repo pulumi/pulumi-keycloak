@@ -23,7 +23,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/ldap"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -228,15 +228,15 @@ type UserAttributeMapperInput interface {
 	ToUserAttributeMapperOutputWithContext(ctx context.Context) UserAttributeMapperOutput
 }
 
-func (UserAttributeMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserAttributeMapper)(nil)).Elem()
+func (*UserAttributeMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserAttributeMapper)(nil))
 }
 
-func (i UserAttributeMapper) ToUserAttributeMapperOutput() UserAttributeMapperOutput {
+func (i *UserAttributeMapper) ToUserAttributeMapperOutput() UserAttributeMapperOutput {
 	return i.ToUserAttributeMapperOutputWithContext(context.Background())
 }
 
-func (i UserAttributeMapper) ToUserAttributeMapperOutputWithContext(ctx context.Context) UserAttributeMapperOutput {
+func (i *UserAttributeMapper) ToUserAttributeMapperOutputWithContext(ctx context.Context) UserAttributeMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserAttributeMapperOutput)
 }
 
@@ -245,7 +245,7 @@ type UserAttributeMapperOutput struct {
 }
 
 func (UserAttributeMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserAttributeMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*UserAttributeMapper)(nil))
 }
 
 func (o UserAttributeMapperOutput) ToUserAttributeMapperOutput() UserAttributeMapperOutput {

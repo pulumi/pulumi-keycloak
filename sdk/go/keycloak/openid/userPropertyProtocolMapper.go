@@ -26,7 +26,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -71,7 +71,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -286,15 +286,15 @@ type UserPropertyProtocolMapperInput interface {
 	ToUserPropertyProtocolMapperOutputWithContext(ctx context.Context) UserPropertyProtocolMapperOutput
 }
 
-func (UserPropertyProtocolMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserPropertyProtocolMapper)(nil)).Elem()
+func (*UserPropertyProtocolMapper) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserPropertyProtocolMapper)(nil))
 }
 
-func (i UserPropertyProtocolMapper) ToUserPropertyProtocolMapperOutput() UserPropertyProtocolMapperOutput {
+func (i *UserPropertyProtocolMapper) ToUserPropertyProtocolMapperOutput() UserPropertyProtocolMapperOutput {
 	return i.ToUserPropertyProtocolMapperOutputWithContext(context.Background())
 }
 
-func (i UserPropertyProtocolMapper) ToUserPropertyProtocolMapperOutputWithContext(ctx context.Context) UserPropertyProtocolMapperOutput {
+func (i *UserPropertyProtocolMapper) ToUserPropertyProtocolMapperOutputWithContext(ctx context.Context) UserPropertyProtocolMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserPropertyProtocolMapperOutput)
 }
 
@@ -303,7 +303,7 @@ type UserPropertyProtocolMapperOutput struct {
 }
 
 func (UserPropertyProtocolMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserPropertyProtocolMapperOutput)(nil)).Elem()
+	return reflect.TypeOf((*UserPropertyProtocolMapper)(nil))
 }
 
 func (o UserPropertyProtocolMapperOutput) ToUserPropertyProtocolMapperOutput() UserPropertyProtocolMapperOutput {

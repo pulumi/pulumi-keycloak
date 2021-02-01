@@ -103,15 +103,15 @@ type ClientAuthorizationScopeInput interface {
 	ToClientAuthorizationScopeOutputWithContext(ctx context.Context) ClientAuthorizationScopeOutput
 }
 
-func (ClientAuthorizationScope) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientAuthorizationScope)(nil)).Elem()
+func (*ClientAuthorizationScope) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientAuthorizationScope)(nil))
 }
 
-func (i ClientAuthorizationScope) ToClientAuthorizationScopeOutput() ClientAuthorizationScopeOutput {
+func (i *ClientAuthorizationScope) ToClientAuthorizationScopeOutput() ClientAuthorizationScopeOutput {
 	return i.ToClientAuthorizationScopeOutputWithContext(context.Background())
 }
 
-func (i ClientAuthorizationScope) ToClientAuthorizationScopeOutputWithContext(ctx context.Context) ClientAuthorizationScopeOutput {
+func (i *ClientAuthorizationScope) ToClientAuthorizationScopeOutputWithContext(ctx context.Context) ClientAuthorizationScopeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationScopeOutput)
 }
 
@@ -120,7 +120,7 @@ type ClientAuthorizationScopeOutput struct {
 }
 
 func (ClientAuthorizationScopeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientAuthorizationScopeOutput)(nil)).Elem()
+	return reflect.TypeOf((*ClientAuthorizationScope)(nil))
 }
 
 func (o ClientAuthorizationScopeOutput) ToClientAuthorizationScopeOutput() ClientAuthorizationScopeOutput {
