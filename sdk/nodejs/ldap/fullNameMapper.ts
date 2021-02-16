@@ -112,7 +112,8 @@ export class FullNameMapper extends pulumi.CustomResource {
     constructor(name: string, args: FullNameMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FullNameMapperArgs | FullNameMapperState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as FullNameMapperState | undefined;
             inputs["ldapFullNameAttribute"] = state ? state.ldapFullNameAttribute : undefined;
             inputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
@@ -122,13 +123,13 @@ export class FullNameMapper extends pulumi.CustomResource {
             inputs["writeOnly"] = state ? state.writeOnly : undefined;
         } else {
             const args = argsOrState as FullNameMapperArgs | undefined;
-            if ((!args || args.ldapFullNameAttribute === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.ldapFullNameAttribute === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ldapFullNameAttribute'");
             }
-            if ((!args || args.ldapUserFederationId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.ldapUserFederationId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["ldapFullNameAttribute"] = args ? args.ldapFullNameAttribute : undefined;
@@ -138,12 +139,8 @@ export class FullNameMapper extends pulumi.CustomResource {
             inputs["realmId"] = args ? args.realmId : undefined;
             inputs["writeOnly"] = args ? args.writeOnly : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(FullNameMapper.__pulumiType, name, inputs, opts);
     }

@@ -52,7 +52,8 @@ export class ClientRolePolicy extends pulumi.CustomResource {
     constructor(name: string, args: ClientRolePolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClientRolePolicyArgs | ClientRolePolicyState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ClientRolePolicyState | undefined;
             inputs["decisionStrategy"] = state ? state.decisionStrategy : undefined;
             inputs["description"] = state ? state.description : undefined;
@@ -64,16 +65,16 @@ export class ClientRolePolicy extends pulumi.CustomResource {
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as ClientRolePolicyArgs | undefined;
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.resourceServerId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.resourceServerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
-            if ((!args || args.roles === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.roles === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roles'");
             }
-            if ((!args || args.type === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
             inputs["decisionStrategy"] = args ? args.decisionStrategy : undefined;
@@ -85,12 +86,8 @@ export class ClientRolePolicy extends pulumi.CustomResource {
             inputs["roles"] = args ? args.roles : undefined;
             inputs["type"] = args ? args.type : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ClientRolePolicy.__pulumiType, name, inputs, opts);
     }

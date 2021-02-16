@@ -67,7 +67,8 @@ export class RoleMapper extends pulumi.CustomResource {
     constructor(name: string, args: RoleMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RoleMapperArgs | RoleMapperState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as RoleMapperState | undefined;
             inputs["clientId"] = state ? state.clientId : undefined;
             inputs["ldapRolesDn"] = state ? state.ldapRolesDn : undefined;
@@ -86,25 +87,25 @@ export class RoleMapper extends pulumi.CustomResource {
             inputs["userRolesRetrieveStrategy"] = state ? state.userRolesRetrieveStrategy : undefined;
         } else {
             const args = argsOrState as RoleMapperArgs | undefined;
-            if ((!args || args.ldapRolesDn === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.ldapRolesDn === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ldapRolesDn'");
             }
-            if ((!args || args.ldapUserFederationId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.ldapUserFederationId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if ((!args || args.membershipLdapAttribute === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.membershipLdapAttribute === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'membershipLdapAttribute'");
             }
-            if ((!args || args.membershipUserLdapAttribute === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.membershipUserLdapAttribute === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'membershipUserLdapAttribute'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.roleNameLdapAttribute === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.roleNameLdapAttribute === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleNameLdapAttribute'");
             }
-            if ((!args || args.roleObjectClasses === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.roleObjectClasses === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleObjectClasses'");
             }
             inputs["clientId"] = args ? args.clientId : undefined;
@@ -123,12 +124,8 @@ export class RoleMapper extends pulumi.CustomResource {
             inputs["useRealmRolesMapping"] = args ? args.useRealmRolesMapping : undefined;
             inputs["userRolesRetrieveStrategy"] = args ? args.userRolesRetrieveStrategy : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(RoleMapper.__pulumiType, name, inputs, opts);
     }

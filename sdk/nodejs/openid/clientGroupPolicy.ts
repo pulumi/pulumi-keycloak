@@ -52,7 +52,8 @@ export class ClientGroupPolicy extends pulumi.CustomResource {
     constructor(name: string, args: ClientGroupPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClientGroupPolicyArgs | ClientGroupPolicyState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ClientGroupPolicyState | undefined;
             inputs["decisionStrategy"] = state ? state.decisionStrategy : undefined;
             inputs["description"] = state ? state.description : undefined;
@@ -64,16 +65,16 @@ export class ClientGroupPolicy extends pulumi.CustomResource {
             inputs["resourceServerId"] = state ? state.resourceServerId : undefined;
         } else {
             const args = argsOrState as ClientGroupPolicyArgs | undefined;
-            if ((!args || args.decisionStrategy === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.decisionStrategy === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'decisionStrategy'");
             }
-            if ((!args || args.groups === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.groups === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'groups'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.resourceServerId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.resourceServerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
             inputs["decisionStrategy"] = args ? args.decisionStrategy : undefined;
@@ -85,12 +86,8 @@ export class ClientGroupPolicy extends pulumi.CustomResource {
             inputs["realmId"] = args ? args.realmId : undefined;
             inputs["resourceServerId"] = args ? args.resourceServerId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ClientGroupPolicy.__pulumiType, name, inputs, opts);
     }

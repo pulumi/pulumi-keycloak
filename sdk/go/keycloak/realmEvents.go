@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -203,6 +203,85 @@ func (i *RealmEvents) ToRealmEventsOutputWithContext(ctx context.Context) RealmE
 	return pulumi.ToOutputWithContext(ctx, i).(RealmEventsOutput)
 }
 
+func (i *RealmEvents) ToRealmEventsPtrOutput() RealmEventsPtrOutput {
+	return i.ToRealmEventsPtrOutputWithContext(context.Background())
+}
+
+func (i *RealmEvents) ToRealmEventsPtrOutputWithContext(ctx context.Context) RealmEventsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmEventsPtrOutput)
+}
+
+type RealmEventsPtrInput interface {
+	pulumi.Input
+
+	ToRealmEventsPtrOutput() RealmEventsPtrOutput
+	ToRealmEventsPtrOutputWithContext(ctx context.Context) RealmEventsPtrOutput
+}
+
+type realmEventsPtrType RealmEventsArgs
+
+func (*realmEventsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RealmEvents)(nil))
+}
+
+func (i *realmEventsPtrType) ToRealmEventsPtrOutput() RealmEventsPtrOutput {
+	return i.ToRealmEventsPtrOutputWithContext(context.Background())
+}
+
+func (i *realmEventsPtrType) ToRealmEventsPtrOutputWithContext(ctx context.Context) RealmEventsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmEventsPtrOutput)
+}
+
+// RealmEventsArrayInput is an input type that accepts RealmEventsArray and RealmEventsArrayOutput values.
+// You can construct a concrete instance of `RealmEventsArrayInput` via:
+//
+//          RealmEventsArray{ RealmEventsArgs{...} }
+type RealmEventsArrayInput interface {
+	pulumi.Input
+
+	ToRealmEventsArrayOutput() RealmEventsArrayOutput
+	ToRealmEventsArrayOutputWithContext(context.Context) RealmEventsArrayOutput
+}
+
+type RealmEventsArray []RealmEventsInput
+
+func (RealmEventsArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*RealmEvents)(nil))
+}
+
+func (i RealmEventsArray) ToRealmEventsArrayOutput() RealmEventsArrayOutput {
+	return i.ToRealmEventsArrayOutputWithContext(context.Background())
+}
+
+func (i RealmEventsArray) ToRealmEventsArrayOutputWithContext(ctx context.Context) RealmEventsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmEventsArrayOutput)
+}
+
+// RealmEventsMapInput is an input type that accepts RealmEventsMap and RealmEventsMapOutput values.
+// You can construct a concrete instance of `RealmEventsMapInput` via:
+//
+//          RealmEventsMap{ "key": RealmEventsArgs{...} }
+type RealmEventsMapInput interface {
+	pulumi.Input
+
+	ToRealmEventsMapOutput() RealmEventsMapOutput
+	ToRealmEventsMapOutputWithContext(context.Context) RealmEventsMapOutput
+}
+
+type RealmEventsMap map[string]RealmEventsInput
+
+func (RealmEventsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*RealmEvents)(nil))
+}
+
+func (i RealmEventsMap) ToRealmEventsMapOutput() RealmEventsMapOutput {
+	return i.ToRealmEventsMapOutputWithContext(context.Background())
+}
+
+func (i RealmEventsMap) ToRealmEventsMapOutputWithContext(ctx context.Context) RealmEventsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmEventsMapOutput)
+}
+
 type RealmEventsOutput struct {
 	*pulumi.OutputState
 }
@@ -219,6 +298,75 @@ func (o RealmEventsOutput) ToRealmEventsOutputWithContext(ctx context.Context) R
 	return o
 }
 
+func (o RealmEventsOutput) ToRealmEventsPtrOutput() RealmEventsPtrOutput {
+	return o.ToRealmEventsPtrOutputWithContext(context.Background())
+}
+
+func (o RealmEventsOutput) ToRealmEventsPtrOutputWithContext(ctx context.Context) RealmEventsPtrOutput {
+	return o.ApplyT(func(v RealmEvents) *RealmEvents {
+		return &v
+	}).(RealmEventsPtrOutput)
+}
+
+type RealmEventsPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RealmEventsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RealmEvents)(nil))
+}
+
+func (o RealmEventsPtrOutput) ToRealmEventsPtrOutput() RealmEventsPtrOutput {
+	return o
+}
+
+func (o RealmEventsPtrOutput) ToRealmEventsPtrOutputWithContext(ctx context.Context) RealmEventsPtrOutput {
+	return o
+}
+
+type RealmEventsArrayOutput struct{ *pulumi.OutputState }
+
+func (RealmEventsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RealmEvents)(nil))
+}
+
+func (o RealmEventsArrayOutput) ToRealmEventsArrayOutput() RealmEventsArrayOutput {
+	return o
+}
+
+func (o RealmEventsArrayOutput) ToRealmEventsArrayOutputWithContext(ctx context.Context) RealmEventsArrayOutput {
+	return o
+}
+
+func (o RealmEventsArrayOutput) Index(i pulumi.IntInput) RealmEventsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RealmEvents {
+		return vs[0].([]RealmEvents)[vs[1].(int)]
+	}).(RealmEventsOutput)
+}
+
+type RealmEventsMapOutput struct{ *pulumi.OutputState }
+
+func (RealmEventsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]RealmEvents)(nil))
+}
+
+func (o RealmEventsMapOutput) ToRealmEventsMapOutput() RealmEventsMapOutput {
+	return o
+}
+
+func (o RealmEventsMapOutput) ToRealmEventsMapOutputWithContext(ctx context.Context) RealmEventsMapOutput {
+	return o
+}
+
+func (o RealmEventsMapOutput) MapIndex(k pulumi.StringInput) RealmEventsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RealmEvents {
+		return vs[0].(map[string]RealmEvents)[vs[1].(string)]
+	}).(RealmEventsOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(RealmEventsOutput{})
+	pulumi.RegisterOutputType(RealmEventsPtrOutput{})
+	pulumi.RegisterOutputType(RealmEventsArrayOutput{})
+	pulumi.RegisterOutputType(RealmEventsMapOutput{})
 }

@@ -84,7 +84,8 @@ export class IdentityProviderTokenExchangeScopePermission extends pulumi.CustomR
     constructor(name: string, args: IdentityProviderTokenExchangeScopePermissionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IdentityProviderTokenExchangeScopePermissionArgs | IdentityProviderTokenExchangeScopePermissionState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as IdentityProviderTokenExchangeScopePermissionState | undefined;
             inputs["authorizationIdpResourceId"] = state ? state.authorizationIdpResourceId : undefined;
             inputs["authorizationResourceServerId"] = state ? state.authorizationResourceServerId : undefined;
@@ -96,13 +97,13 @@ export class IdentityProviderTokenExchangeScopePermission extends pulumi.CustomR
             inputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as IdentityProviderTokenExchangeScopePermissionArgs | undefined;
-            if ((!args || args.clients === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.clients === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clients'");
             }
-            if ((!args || args.providerAlias === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.providerAlias === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'providerAlias'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["clients"] = args ? args.clients : undefined;
@@ -114,12 +115,8 @@ export class IdentityProviderTokenExchangeScopePermission extends pulumi.CustomR
             inputs["authorizationTokenExchangeScopePermissionId"] = undefined /*out*/;
             inputs["policyId"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(IdentityProviderTokenExchangeScopePermission.__pulumiType, name, inputs, opts);
     }

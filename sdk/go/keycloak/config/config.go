@@ -12,18 +12,10 @@ func GetBasePath(ctx *pulumi.Context) string {
 	return config.Get(ctx, "keycloak:basePath")
 }
 func GetClientId(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "keycloak:clientId")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "KEYCLOAK_CLIENT_ID").(string)
+	return config.Get(ctx, "keycloak:clientId")
 }
 func GetClientSecret(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "keycloak:clientSecret")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "KEYCLOAK_CLIENT_SECRET").(string)
+	return config.Get(ctx, "keycloak:clientSecret")
 }
 
 // Timeout (in seconds) of the Keycloak client
@@ -40,18 +32,10 @@ func GetInitialLogin(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "keycloak:initialLogin")
 }
 func GetPassword(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "keycloak:password")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "KEYCLOAK_PASSWORD").(string)
+	return config.Get(ctx, "keycloak:password")
 }
 func GetRealm(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "keycloak:realm")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("master", nil, "KEYCLOAK_REALM").(string)
+	return config.Get(ctx, "keycloak:realm")
 }
 
 // Allows x509 calls using an unknown CA certificate (for development purposes)
@@ -67,16 +51,8 @@ func GetTlsInsecureSkipVerify(ctx *pulumi.Context) bool {
 
 // The base URL of the Keycloak instance, before `/auth`
 func GetUrl(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "keycloak:url")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "KEYCLOAK_URL").(string)
+	return config.Get(ctx, "keycloak:url")
 }
 func GetUsername(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "keycloak:username")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "KEYCLOAK_USER").(string)
+	return config.Get(ctx, "keycloak:username")
 }

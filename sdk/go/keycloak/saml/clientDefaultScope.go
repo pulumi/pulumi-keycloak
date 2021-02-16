@@ -126,6 +126,85 @@ func (i *ClientDefaultScope) ToClientDefaultScopeOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(ClientDefaultScopeOutput)
 }
 
+func (i *ClientDefaultScope) ToClientDefaultScopePtrOutput() ClientDefaultScopePtrOutput {
+	return i.ToClientDefaultScopePtrOutputWithContext(context.Background())
+}
+
+func (i *ClientDefaultScope) ToClientDefaultScopePtrOutputWithContext(ctx context.Context) ClientDefaultScopePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientDefaultScopePtrOutput)
+}
+
+type ClientDefaultScopePtrInput interface {
+	pulumi.Input
+
+	ToClientDefaultScopePtrOutput() ClientDefaultScopePtrOutput
+	ToClientDefaultScopePtrOutputWithContext(ctx context.Context) ClientDefaultScopePtrOutput
+}
+
+type clientDefaultScopePtrType ClientDefaultScopeArgs
+
+func (*clientDefaultScopePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClientDefaultScope)(nil))
+}
+
+func (i *clientDefaultScopePtrType) ToClientDefaultScopePtrOutput() ClientDefaultScopePtrOutput {
+	return i.ToClientDefaultScopePtrOutputWithContext(context.Background())
+}
+
+func (i *clientDefaultScopePtrType) ToClientDefaultScopePtrOutputWithContext(ctx context.Context) ClientDefaultScopePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientDefaultScopePtrOutput)
+}
+
+// ClientDefaultScopeArrayInput is an input type that accepts ClientDefaultScopeArray and ClientDefaultScopeArrayOutput values.
+// You can construct a concrete instance of `ClientDefaultScopeArrayInput` via:
+//
+//          ClientDefaultScopeArray{ ClientDefaultScopeArgs{...} }
+type ClientDefaultScopeArrayInput interface {
+	pulumi.Input
+
+	ToClientDefaultScopeArrayOutput() ClientDefaultScopeArrayOutput
+	ToClientDefaultScopeArrayOutputWithContext(context.Context) ClientDefaultScopeArrayOutput
+}
+
+type ClientDefaultScopeArray []ClientDefaultScopeInput
+
+func (ClientDefaultScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*ClientDefaultScope)(nil))
+}
+
+func (i ClientDefaultScopeArray) ToClientDefaultScopeArrayOutput() ClientDefaultScopeArrayOutput {
+	return i.ToClientDefaultScopeArrayOutputWithContext(context.Background())
+}
+
+func (i ClientDefaultScopeArray) ToClientDefaultScopeArrayOutputWithContext(ctx context.Context) ClientDefaultScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientDefaultScopeArrayOutput)
+}
+
+// ClientDefaultScopeMapInput is an input type that accepts ClientDefaultScopeMap and ClientDefaultScopeMapOutput values.
+// You can construct a concrete instance of `ClientDefaultScopeMapInput` via:
+//
+//          ClientDefaultScopeMap{ "key": ClientDefaultScopeArgs{...} }
+type ClientDefaultScopeMapInput interface {
+	pulumi.Input
+
+	ToClientDefaultScopeMapOutput() ClientDefaultScopeMapOutput
+	ToClientDefaultScopeMapOutputWithContext(context.Context) ClientDefaultScopeMapOutput
+}
+
+type ClientDefaultScopeMap map[string]ClientDefaultScopeInput
+
+func (ClientDefaultScopeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*ClientDefaultScope)(nil))
+}
+
+func (i ClientDefaultScopeMap) ToClientDefaultScopeMapOutput() ClientDefaultScopeMapOutput {
+	return i.ToClientDefaultScopeMapOutputWithContext(context.Background())
+}
+
+func (i ClientDefaultScopeMap) ToClientDefaultScopeMapOutputWithContext(ctx context.Context) ClientDefaultScopeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientDefaultScopeMapOutput)
+}
+
 type ClientDefaultScopeOutput struct {
 	*pulumi.OutputState
 }
@@ -142,6 +221,75 @@ func (o ClientDefaultScopeOutput) ToClientDefaultScopeOutputWithContext(ctx cont
 	return o
 }
 
+func (o ClientDefaultScopeOutput) ToClientDefaultScopePtrOutput() ClientDefaultScopePtrOutput {
+	return o.ToClientDefaultScopePtrOutputWithContext(context.Background())
+}
+
+func (o ClientDefaultScopeOutput) ToClientDefaultScopePtrOutputWithContext(ctx context.Context) ClientDefaultScopePtrOutput {
+	return o.ApplyT(func(v ClientDefaultScope) *ClientDefaultScope {
+		return &v
+	}).(ClientDefaultScopePtrOutput)
+}
+
+type ClientDefaultScopePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClientDefaultScopePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClientDefaultScope)(nil))
+}
+
+func (o ClientDefaultScopePtrOutput) ToClientDefaultScopePtrOutput() ClientDefaultScopePtrOutput {
+	return o
+}
+
+func (o ClientDefaultScopePtrOutput) ToClientDefaultScopePtrOutputWithContext(ctx context.Context) ClientDefaultScopePtrOutput {
+	return o
+}
+
+type ClientDefaultScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (ClientDefaultScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClientDefaultScope)(nil))
+}
+
+func (o ClientDefaultScopeArrayOutput) ToClientDefaultScopeArrayOutput() ClientDefaultScopeArrayOutput {
+	return o
+}
+
+func (o ClientDefaultScopeArrayOutput) ToClientDefaultScopeArrayOutputWithContext(ctx context.Context) ClientDefaultScopeArrayOutput {
+	return o
+}
+
+func (o ClientDefaultScopeArrayOutput) Index(i pulumi.IntInput) ClientDefaultScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClientDefaultScope {
+		return vs[0].([]ClientDefaultScope)[vs[1].(int)]
+	}).(ClientDefaultScopeOutput)
+}
+
+type ClientDefaultScopeMapOutput struct{ *pulumi.OutputState }
+
+func (ClientDefaultScopeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ClientDefaultScope)(nil))
+}
+
+func (o ClientDefaultScopeMapOutput) ToClientDefaultScopeMapOutput() ClientDefaultScopeMapOutput {
+	return o
+}
+
+func (o ClientDefaultScopeMapOutput) ToClientDefaultScopeMapOutputWithContext(ctx context.Context) ClientDefaultScopeMapOutput {
+	return o
+}
+
+func (o ClientDefaultScopeMapOutput) MapIndex(k pulumi.StringInput) ClientDefaultScopeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ClientDefaultScope {
+		return vs[0].(map[string]ClientDefaultScope)[vs[1].(string)]
+	}).(ClientDefaultScopeOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(ClientDefaultScopeOutput{})
+	pulumi.RegisterOutputType(ClientDefaultScopePtrOutput{})
+	pulumi.RegisterOutputType(ClientDefaultScopeArrayOutput{})
+	pulumi.RegisterOutputType(ClientDefaultScopeMapOutput{})
 }

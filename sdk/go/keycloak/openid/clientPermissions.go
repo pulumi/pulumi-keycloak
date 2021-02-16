@@ -144,6 +144,85 @@ func (i *ClientPermissions) ToClientPermissionsOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsOutput)
 }
 
+func (i *ClientPermissions) ToClientPermissionsPtrOutput() ClientPermissionsPtrOutput {
+	return i.ToClientPermissionsPtrOutputWithContext(context.Background())
+}
+
+func (i *ClientPermissions) ToClientPermissionsPtrOutputWithContext(ctx context.Context) ClientPermissionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsPtrOutput)
+}
+
+type ClientPermissionsPtrInput interface {
+	pulumi.Input
+
+	ToClientPermissionsPtrOutput() ClientPermissionsPtrOutput
+	ToClientPermissionsPtrOutputWithContext(ctx context.Context) ClientPermissionsPtrOutput
+}
+
+type clientPermissionsPtrType ClientPermissionsArgs
+
+func (*clientPermissionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClientPermissions)(nil))
+}
+
+func (i *clientPermissionsPtrType) ToClientPermissionsPtrOutput() ClientPermissionsPtrOutput {
+	return i.ToClientPermissionsPtrOutputWithContext(context.Background())
+}
+
+func (i *clientPermissionsPtrType) ToClientPermissionsPtrOutputWithContext(ctx context.Context) ClientPermissionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsPtrOutput)
+}
+
+// ClientPermissionsArrayInput is an input type that accepts ClientPermissionsArray and ClientPermissionsArrayOutput values.
+// You can construct a concrete instance of `ClientPermissionsArrayInput` via:
+//
+//          ClientPermissionsArray{ ClientPermissionsArgs{...} }
+type ClientPermissionsArrayInput interface {
+	pulumi.Input
+
+	ToClientPermissionsArrayOutput() ClientPermissionsArrayOutput
+	ToClientPermissionsArrayOutputWithContext(context.Context) ClientPermissionsArrayOutput
+}
+
+type ClientPermissionsArray []ClientPermissionsInput
+
+func (ClientPermissionsArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*ClientPermissions)(nil))
+}
+
+func (i ClientPermissionsArray) ToClientPermissionsArrayOutput() ClientPermissionsArrayOutput {
+	return i.ToClientPermissionsArrayOutputWithContext(context.Background())
+}
+
+func (i ClientPermissionsArray) ToClientPermissionsArrayOutputWithContext(ctx context.Context) ClientPermissionsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsArrayOutput)
+}
+
+// ClientPermissionsMapInput is an input type that accepts ClientPermissionsMap and ClientPermissionsMapOutput values.
+// You can construct a concrete instance of `ClientPermissionsMapInput` via:
+//
+//          ClientPermissionsMap{ "key": ClientPermissionsArgs{...} }
+type ClientPermissionsMapInput interface {
+	pulumi.Input
+
+	ToClientPermissionsMapOutput() ClientPermissionsMapOutput
+	ToClientPermissionsMapOutputWithContext(context.Context) ClientPermissionsMapOutput
+}
+
+type ClientPermissionsMap map[string]ClientPermissionsInput
+
+func (ClientPermissionsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*ClientPermissions)(nil))
+}
+
+func (i ClientPermissionsMap) ToClientPermissionsMapOutput() ClientPermissionsMapOutput {
+	return i.ToClientPermissionsMapOutputWithContext(context.Background())
+}
+
+func (i ClientPermissionsMap) ToClientPermissionsMapOutputWithContext(ctx context.Context) ClientPermissionsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsMapOutput)
+}
+
 type ClientPermissionsOutput struct {
 	*pulumi.OutputState
 }
@@ -160,6 +239,75 @@ func (o ClientPermissionsOutput) ToClientPermissionsOutputWithContext(ctx contex
 	return o
 }
 
+func (o ClientPermissionsOutput) ToClientPermissionsPtrOutput() ClientPermissionsPtrOutput {
+	return o.ToClientPermissionsPtrOutputWithContext(context.Background())
+}
+
+func (o ClientPermissionsOutput) ToClientPermissionsPtrOutputWithContext(ctx context.Context) ClientPermissionsPtrOutput {
+	return o.ApplyT(func(v ClientPermissions) *ClientPermissions {
+		return &v
+	}).(ClientPermissionsPtrOutput)
+}
+
+type ClientPermissionsPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClientPermissionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClientPermissions)(nil))
+}
+
+func (o ClientPermissionsPtrOutput) ToClientPermissionsPtrOutput() ClientPermissionsPtrOutput {
+	return o
+}
+
+func (o ClientPermissionsPtrOutput) ToClientPermissionsPtrOutputWithContext(ctx context.Context) ClientPermissionsPtrOutput {
+	return o
+}
+
+type ClientPermissionsArrayOutput struct{ *pulumi.OutputState }
+
+func (ClientPermissionsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClientPermissions)(nil))
+}
+
+func (o ClientPermissionsArrayOutput) ToClientPermissionsArrayOutput() ClientPermissionsArrayOutput {
+	return o
+}
+
+func (o ClientPermissionsArrayOutput) ToClientPermissionsArrayOutputWithContext(ctx context.Context) ClientPermissionsArrayOutput {
+	return o
+}
+
+func (o ClientPermissionsArrayOutput) Index(i pulumi.IntInput) ClientPermissionsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClientPermissions {
+		return vs[0].([]ClientPermissions)[vs[1].(int)]
+	}).(ClientPermissionsOutput)
+}
+
+type ClientPermissionsMapOutput struct{ *pulumi.OutputState }
+
+func (ClientPermissionsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ClientPermissions)(nil))
+}
+
+func (o ClientPermissionsMapOutput) ToClientPermissionsMapOutput() ClientPermissionsMapOutput {
+	return o
+}
+
+func (o ClientPermissionsMapOutput) ToClientPermissionsMapOutputWithContext(ctx context.Context) ClientPermissionsMapOutput {
+	return o
+}
+
+func (o ClientPermissionsMapOutput) MapIndex(k pulumi.StringInput) ClientPermissionsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ClientPermissions {
+		return vs[0].(map[string]ClientPermissions)[vs[1].(string)]
+	}).(ClientPermissionsOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(ClientPermissionsOutput{})
+	pulumi.RegisterOutputType(ClientPermissionsPtrOutput{})
+	pulumi.RegisterOutputType(ClientPermissionsArrayOutput{})
+	pulumi.RegisterOutputType(ClientPermissionsMapOutput{})
 }

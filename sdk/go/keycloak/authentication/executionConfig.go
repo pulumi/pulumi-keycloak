@@ -20,7 +20,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/authentication"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -197,6 +197,85 @@ func (i *ExecutionConfig) ToExecutionConfigOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(ExecutionConfigOutput)
 }
 
+func (i *ExecutionConfig) ToExecutionConfigPtrOutput() ExecutionConfigPtrOutput {
+	return i.ToExecutionConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *ExecutionConfig) ToExecutionConfigPtrOutputWithContext(ctx context.Context) ExecutionConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExecutionConfigPtrOutput)
+}
+
+type ExecutionConfigPtrInput interface {
+	pulumi.Input
+
+	ToExecutionConfigPtrOutput() ExecutionConfigPtrOutput
+	ToExecutionConfigPtrOutputWithContext(ctx context.Context) ExecutionConfigPtrOutput
+}
+
+type executionConfigPtrType ExecutionConfigArgs
+
+func (*executionConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ExecutionConfig)(nil))
+}
+
+func (i *executionConfigPtrType) ToExecutionConfigPtrOutput() ExecutionConfigPtrOutput {
+	return i.ToExecutionConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *executionConfigPtrType) ToExecutionConfigPtrOutputWithContext(ctx context.Context) ExecutionConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExecutionConfigPtrOutput)
+}
+
+// ExecutionConfigArrayInput is an input type that accepts ExecutionConfigArray and ExecutionConfigArrayOutput values.
+// You can construct a concrete instance of `ExecutionConfigArrayInput` via:
+//
+//          ExecutionConfigArray{ ExecutionConfigArgs{...} }
+type ExecutionConfigArrayInput interface {
+	pulumi.Input
+
+	ToExecutionConfigArrayOutput() ExecutionConfigArrayOutput
+	ToExecutionConfigArrayOutputWithContext(context.Context) ExecutionConfigArrayOutput
+}
+
+type ExecutionConfigArray []ExecutionConfigInput
+
+func (ExecutionConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*ExecutionConfig)(nil))
+}
+
+func (i ExecutionConfigArray) ToExecutionConfigArrayOutput() ExecutionConfigArrayOutput {
+	return i.ToExecutionConfigArrayOutputWithContext(context.Background())
+}
+
+func (i ExecutionConfigArray) ToExecutionConfigArrayOutputWithContext(ctx context.Context) ExecutionConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExecutionConfigArrayOutput)
+}
+
+// ExecutionConfigMapInput is an input type that accepts ExecutionConfigMap and ExecutionConfigMapOutput values.
+// You can construct a concrete instance of `ExecutionConfigMapInput` via:
+//
+//          ExecutionConfigMap{ "key": ExecutionConfigArgs{...} }
+type ExecutionConfigMapInput interface {
+	pulumi.Input
+
+	ToExecutionConfigMapOutput() ExecutionConfigMapOutput
+	ToExecutionConfigMapOutputWithContext(context.Context) ExecutionConfigMapOutput
+}
+
+type ExecutionConfigMap map[string]ExecutionConfigInput
+
+func (ExecutionConfigMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*ExecutionConfig)(nil))
+}
+
+func (i ExecutionConfigMap) ToExecutionConfigMapOutput() ExecutionConfigMapOutput {
+	return i.ToExecutionConfigMapOutputWithContext(context.Background())
+}
+
+func (i ExecutionConfigMap) ToExecutionConfigMapOutputWithContext(ctx context.Context) ExecutionConfigMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExecutionConfigMapOutput)
+}
+
 type ExecutionConfigOutput struct {
 	*pulumi.OutputState
 }
@@ -213,6 +292,75 @@ func (o ExecutionConfigOutput) ToExecutionConfigOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o ExecutionConfigOutput) ToExecutionConfigPtrOutput() ExecutionConfigPtrOutput {
+	return o.ToExecutionConfigPtrOutputWithContext(context.Background())
+}
+
+func (o ExecutionConfigOutput) ToExecutionConfigPtrOutputWithContext(ctx context.Context) ExecutionConfigPtrOutput {
+	return o.ApplyT(func(v ExecutionConfig) *ExecutionConfig {
+		return &v
+	}).(ExecutionConfigPtrOutput)
+}
+
+type ExecutionConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ExecutionConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ExecutionConfig)(nil))
+}
+
+func (o ExecutionConfigPtrOutput) ToExecutionConfigPtrOutput() ExecutionConfigPtrOutput {
+	return o
+}
+
+func (o ExecutionConfigPtrOutput) ToExecutionConfigPtrOutputWithContext(ctx context.Context) ExecutionConfigPtrOutput {
+	return o
+}
+
+type ExecutionConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (ExecutionConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ExecutionConfig)(nil))
+}
+
+func (o ExecutionConfigArrayOutput) ToExecutionConfigArrayOutput() ExecutionConfigArrayOutput {
+	return o
+}
+
+func (o ExecutionConfigArrayOutput) ToExecutionConfigArrayOutputWithContext(ctx context.Context) ExecutionConfigArrayOutput {
+	return o
+}
+
+func (o ExecutionConfigArrayOutput) Index(i pulumi.IntInput) ExecutionConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ExecutionConfig {
+		return vs[0].([]ExecutionConfig)[vs[1].(int)]
+	}).(ExecutionConfigOutput)
+}
+
+type ExecutionConfigMapOutput struct{ *pulumi.OutputState }
+
+func (ExecutionConfigMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ExecutionConfig)(nil))
+}
+
+func (o ExecutionConfigMapOutput) ToExecutionConfigMapOutput() ExecutionConfigMapOutput {
+	return o
+}
+
+func (o ExecutionConfigMapOutput) ToExecutionConfigMapOutputWithContext(ctx context.Context) ExecutionConfigMapOutput {
+	return o
+}
+
+func (o ExecutionConfigMapOutput) MapIndex(k pulumi.StringInput) ExecutionConfigOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ExecutionConfig {
+		return vs[0].(map[string]ExecutionConfig)[vs[1].(string)]
+	}).(ExecutionConfigOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(ExecutionConfigOutput{})
+	pulumi.RegisterOutputType(ExecutionConfigPtrOutput{})
+	pulumi.RegisterOutputType(ExecutionConfigArrayOutput{})
+	pulumi.RegisterOutputType(ExecutionConfigMapOutput{})
 }

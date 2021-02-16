@@ -22,7 +22,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/ldap"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -355,6 +355,85 @@ func (i *GroupMapper) ToGroupMapperOutputWithContext(ctx context.Context) GroupM
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMapperOutput)
 }
 
+func (i *GroupMapper) ToGroupMapperPtrOutput() GroupMapperPtrOutput {
+	return i.ToGroupMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *GroupMapper) ToGroupMapperPtrOutputWithContext(ctx context.Context) GroupMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMapperPtrOutput)
+}
+
+type GroupMapperPtrInput interface {
+	pulumi.Input
+
+	ToGroupMapperPtrOutput() GroupMapperPtrOutput
+	ToGroupMapperPtrOutputWithContext(ctx context.Context) GroupMapperPtrOutput
+}
+
+type groupMapperPtrType GroupMapperArgs
+
+func (*groupMapperPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GroupMapper)(nil))
+}
+
+func (i *groupMapperPtrType) ToGroupMapperPtrOutput() GroupMapperPtrOutput {
+	return i.ToGroupMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *groupMapperPtrType) ToGroupMapperPtrOutputWithContext(ctx context.Context) GroupMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMapperPtrOutput)
+}
+
+// GroupMapperArrayInput is an input type that accepts GroupMapperArray and GroupMapperArrayOutput values.
+// You can construct a concrete instance of `GroupMapperArrayInput` via:
+//
+//          GroupMapperArray{ GroupMapperArgs{...} }
+type GroupMapperArrayInput interface {
+	pulumi.Input
+
+	ToGroupMapperArrayOutput() GroupMapperArrayOutput
+	ToGroupMapperArrayOutputWithContext(context.Context) GroupMapperArrayOutput
+}
+
+type GroupMapperArray []GroupMapperInput
+
+func (GroupMapperArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*GroupMapper)(nil))
+}
+
+func (i GroupMapperArray) ToGroupMapperArrayOutput() GroupMapperArrayOutput {
+	return i.ToGroupMapperArrayOutputWithContext(context.Background())
+}
+
+func (i GroupMapperArray) ToGroupMapperArrayOutputWithContext(ctx context.Context) GroupMapperArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMapperArrayOutput)
+}
+
+// GroupMapperMapInput is an input type that accepts GroupMapperMap and GroupMapperMapOutput values.
+// You can construct a concrete instance of `GroupMapperMapInput` via:
+//
+//          GroupMapperMap{ "key": GroupMapperArgs{...} }
+type GroupMapperMapInput interface {
+	pulumi.Input
+
+	ToGroupMapperMapOutput() GroupMapperMapOutput
+	ToGroupMapperMapOutputWithContext(context.Context) GroupMapperMapOutput
+}
+
+type GroupMapperMap map[string]GroupMapperInput
+
+func (GroupMapperMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*GroupMapper)(nil))
+}
+
+func (i GroupMapperMap) ToGroupMapperMapOutput() GroupMapperMapOutput {
+	return i.ToGroupMapperMapOutputWithContext(context.Background())
+}
+
+func (i GroupMapperMap) ToGroupMapperMapOutputWithContext(ctx context.Context) GroupMapperMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMapperMapOutput)
+}
+
 type GroupMapperOutput struct {
 	*pulumi.OutputState
 }
@@ -371,6 +450,75 @@ func (o GroupMapperOutput) ToGroupMapperOutputWithContext(ctx context.Context) G
 	return o
 }
 
+func (o GroupMapperOutput) ToGroupMapperPtrOutput() GroupMapperPtrOutput {
+	return o.ToGroupMapperPtrOutputWithContext(context.Background())
+}
+
+func (o GroupMapperOutput) ToGroupMapperPtrOutputWithContext(ctx context.Context) GroupMapperPtrOutput {
+	return o.ApplyT(func(v GroupMapper) *GroupMapper {
+		return &v
+	}).(GroupMapperPtrOutput)
+}
+
+type GroupMapperPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (GroupMapperPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GroupMapper)(nil))
+}
+
+func (o GroupMapperPtrOutput) ToGroupMapperPtrOutput() GroupMapperPtrOutput {
+	return o
+}
+
+func (o GroupMapperPtrOutput) ToGroupMapperPtrOutputWithContext(ctx context.Context) GroupMapperPtrOutput {
+	return o
+}
+
+type GroupMapperArrayOutput struct{ *pulumi.OutputState }
+
+func (GroupMapperArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GroupMapper)(nil))
+}
+
+func (o GroupMapperArrayOutput) ToGroupMapperArrayOutput() GroupMapperArrayOutput {
+	return o
+}
+
+func (o GroupMapperArrayOutput) ToGroupMapperArrayOutputWithContext(ctx context.Context) GroupMapperArrayOutput {
+	return o
+}
+
+func (o GroupMapperArrayOutput) Index(i pulumi.IntInput) GroupMapperOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GroupMapper {
+		return vs[0].([]GroupMapper)[vs[1].(int)]
+	}).(GroupMapperOutput)
+}
+
+type GroupMapperMapOutput struct{ *pulumi.OutputState }
+
+func (GroupMapperMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]GroupMapper)(nil))
+}
+
+func (o GroupMapperMapOutput) ToGroupMapperMapOutput() GroupMapperMapOutput {
+	return o
+}
+
+func (o GroupMapperMapOutput) ToGroupMapperMapOutputWithContext(ctx context.Context) GroupMapperMapOutput {
+	return o
+}
+
+func (o GroupMapperMapOutput) MapIndex(k pulumi.StringInput) GroupMapperOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) GroupMapper {
+		return vs[0].(map[string]GroupMapper)[vs[1].(string)]
+	}).(GroupMapperOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(GroupMapperOutput{})
+	pulumi.RegisterOutputType(GroupMapperPtrOutput{})
+	pulumi.RegisterOutputType(GroupMapperArrayOutput{})
+	pulumi.RegisterOutputType(GroupMapperMapOutput{})
 }

@@ -100,7 +100,8 @@ export class ExecutionConfig extends pulumi.CustomResource {
     constructor(name: string, args: ExecutionConfigArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ExecutionConfigArgs | ExecutionConfigState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ExecutionConfigState | undefined;
             inputs["alias"] = state ? state.alias : undefined;
             inputs["config"] = state ? state.config : undefined;
@@ -108,16 +109,16 @@ export class ExecutionConfig extends pulumi.CustomResource {
             inputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as ExecutionConfigArgs | undefined;
-            if ((!args || args.alias === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.alias === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'alias'");
             }
-            if ((!args || args.config === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.config === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'config'");
             }
-            if ((!args || args.executionId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.executionId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'executionId'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["alias"] = args ? args.alias : undefined;
@@ -125,12 +126,8 @@ export class ExecutionConfig extends pulumi.CustomResource {
             inputs["executionId"] = args ? args.executionId : undefined;
             inputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ExecutionConfig.__pulumiType, name, inputs, opts);
     }

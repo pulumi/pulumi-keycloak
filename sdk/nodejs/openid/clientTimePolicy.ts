@@ -61,7 +61,8 @@ export class ClientTimePolicy extends pulumi.CustomResource {
     constructor(name: string, args: ClientTimePolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClientTimePolicyArgs | ClientTimePolicyState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ClientTimePolicyState | undefined;
             inputs["dayMonth"] = state ? state.dayMonth : undefined;
             inputs["dayMonthEnd"] = state ? state.dayMonthEnd : undefined;
@@ -83,13 +84,13 @@ export class ClientTimePolicy extends pulumi.CustomResource {
             inputs["yearEnd"] = state ? state.yearEnd : undefined;
         } else {
             const args = argsOrState as ClientTimePolicyArgs | undefined;
-            if ((!args || args.decisionStrategy === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.decisionStrategy === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'decisionStrategy'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.resourceServerId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.resourceServerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
             inputs["dayMonth"] = args ? args.dayMonth : undefined;
@@ -111,12 +112,8 @@ export class ClientTimePolicy extends pulumi.CustomResource {
             inputs["year"] = args ? args.year : undefined;
             inputs["yearEnd"] = args ? args.yearEnd : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ClientTimePolicy.__pulumiType, name, inputs, opts);
     }

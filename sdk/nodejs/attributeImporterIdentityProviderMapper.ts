@@ -123,7 +123,8 @@ export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResour
     constructor(name: string, args: AttributeImporterIdentityProviderMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AttributeImporterIdentityProviderMapperArgs | AttributeImporterIdentityProviderMapperState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as AttributeImporterIdentityProviderMapperState | undefined;
             inputs["attributeFriendlyName"] = state ? state.attributeFriendlyName : undefined;
             inputs["attributeName"] = state ? state.attributeName : undefined;
@@ -135,13 +136,13 @@ export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResour
             inputs["userAttribute"] = state ? state.userAttribute : undefined;
         } else {
             const args = argsOrState as AttributeImporterIdentityProviderMapperArgs | undefined;
-            if ((!args || args.identityProviderAlias === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.identityProviderAlias === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'identityProviderAlias'");
             }
-            if ((!args || args.realm === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realm === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realm'");
             }
-            if ((!args || args.userAttribute === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.userAttribute === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'userAttribute'");
             }
             inputs["attributeFriendlyName"] = args ? args.attributeFriendlyName : undefined;
@@ -153,12 +154,8 @@ export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResour
             inputs["realm"] = args ? args.realm : undefined;
             inputs["userAttribute"] = args ? args.userAttribute : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(AttributeImporterIdentityProviderMapper.__pulumiType, name, inputs, opts);
     }

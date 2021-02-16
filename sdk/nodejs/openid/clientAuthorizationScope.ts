@@ -48,7 +48,8 @@ export class ClientAuthorizationScope extends pulumi.CustomResource {
     constructor(name: string, args: ClientAuthorizationScopeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClientAuthorizationScopeArgs | ClientAuthorizationScopeState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ClientAuthorizationScopeState | undefined;
             inputs["displayName"] = state ? state.displayName : undefined;
             inputs["iconUri"] = state ? state.iconUri : undefined;
@@ -57,10 +58,10 @@ export class ClientAuthorizationScope extends pulumi.CustomResource {
             inputs["resourceServerId"] = state ? state.resourceServerId : undefined;
         } else {
             const args = argsOrState as ClientAuthorizationScopeArgs | undefined;
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.resourceServerId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.resourceServerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
             inputs["displayName"] = args ? args.displayName : undefined;
@@ -69,12 +70,8 @@ export class ClientAuthorizationScope extends pulumi.CustomResource {
             inputs["realmId"] = args ? args.realmId : undefined;
             inputs["resourceServerId"] = args ? args.resourceServerId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ClientAuthorizationScope.__pulumiType, name, inputs, opts);
     }

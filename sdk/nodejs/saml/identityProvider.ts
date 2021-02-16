@@ -189,7 +189,8 @@ export class IdentityProvider extends pulumi.CustomResource {
     constructor(name: string, args: IdentityProviderArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IdentityProviderArgs | IdentityProviderState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as IdentityProviderState | undefined;
             inputs["addReadTokenRoleOnCreate"] = state ? state.addReadTokenRoleOnCreate : undefined;
             inputs["alias"] = state ? state.alias : undefined;
@@ -220,13 +221,13 @@ export class IdentityProvider extends pulumi.CustomResource {
             inputs["xmlSignKeyInfoKeyNameTransformer"] = state ? state.xmlSignKeyInfoKeyNameTransformer : undefined;
         } else {
             const args = argsOrState as IdentityProviderArgs | undefined;
-            if ((!args || args.alias === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.alias === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'alias'");
             }
-            if ((!args || args.realm === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realm === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realm'");
             }
-            if ((!args || args.singleSignOnServiceUrl === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.singleSignOnServiceUrl === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'singleSignOnServiceUrl'");
             }
             inputs["addReadTokenRoleOnCreate"] = args ? args.addReadTokenRoleOnCreate : undefined;
@@ -257,12 +258,8 @@ export class IdentityProvider extends pulumi.CustomResource {
             inputs["xmlSignKeyInfoKeyNameTransformer"] = args ? args.xmlSignKeyInfoKeyNameTransformer : undefined;
             inputs["internalId"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(IdentityProvider.__pulumiType, name, inputs, opts);
     }

@@ -62,29 +62,21 @@ class Provider(pulumi.ProviderResource):
             __props__ = dict()
 
             __props__['base_path'] = base_path
-            if client_id is None:
-                client_id = _utilities.get_env('KEYCLOAK_CLIENT_ID')
+            if client_id is None and not opts.urn:
+                raise TypeError("Missing required property 'client_id'")
             __props__['client_id'] = client_id
-            if client_secret is None:
-                client_secret = _utilities.get_env('KEYCLOAK_CLIENT_SECRET')
             __props__['client_secret'] = client_secret
             if client_timeout is None:
                 client_timeout = (_utilities.get_env_int('KEYCLOAK_CLIENT_TIMEOUT') or 5)
             __props__['client_timeout'] = pulumi.Output.from_input(client_timeout).apply(pulumi.runtime.to_json) if client_timeout is not None else None
             __props__['initial_login'] = pulumi.Output.from_input(initial_login).apply(pulumi.runtime.to_json) if initial_login is not None else None
-            if password is None:
-                password = _utilities.get_env('KEYCLOAK_PASSWORD')
             __props__['password'] = password
-            if realm is None:
-                realm = (_utilities.get_env('KEYCLOAK_REALM') or 'master')
             __props__['realm'] = realm
             __props__['root_ca_certificate'] = root_ca_certificate
             __props__['tls_insecure_skip_verify'] = pulumi.Output.from_input(tls_insecure_skip_verify).apply(pulumi.runtime.to_json) if tls_insecure_skip_verify is not None else None
-            if url is None:
-                url = _utilities.get_env('KEYCLOAK_URL')
+            if url is None and not opts.urn:
+                raise TypeError("Missing required property 'url'")
             __props__['url'] = url
-            if username is None:
-                username = _utilities.get_env('KEYCLOAK_USER')
             __props__['username'] = username
         super(Provider, __self__).__init__(
             'keycloak',

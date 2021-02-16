@@ -126,6 +126,85 @@ func (i *ClientOptionalScopes) ToClientOptionalScopesOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(ClientOptionalScopesOutput)
 }
 
+func (i *ClientOptionalScopes) ToClientOptionalScopesPtrOutput() ClientOptionalScopesPtrOutput {
+	return i.ToClientOptionalScopesPtrOutputWithContext(context.Background())
+}
+
+func (i *ClientOptionalScopes) ToClientOptionalScopesPtrOutputWithContext(ctx context.Context) ClientOptionalScopesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientOptionalScopesPtrOutput)
+}
+
+type ClientOptionalScopesPtrInput interface {
+	pulumi.Input
+
+	ToClientOptionalScopesPtrOutput() ClientOptionalScopesPtrOutput
+	ToClientOptionalScopesPtrOutputWithContext(ctx context.Context) ClientOptionalScopesPtrOutput
+}
+
+type clientOptionalScopesPtrType ClientOptionalScopesArgs
+
+func (*clientOptionalScopesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClientOptionalScopes)(nil))
+}
+
+func (i *clientOptionalScopesPtrType) ToClientOptionalScopesPtrOutput() ClientOptionalScopesPtrOutput {
+	return i.ToClientOptionalScopesPtrOutputWithContext(context.Background())
+}
+
+func (i *clientOptionalScopesPtrType) ToClientOptionalScopesPtrOutputWithContext(ctx context.Context) ClientOptionalScopesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientOptionalScopesPtrOutput)
+}
+
+// ClientOptionalScopesArrayInput is an input type that accepts ClientOptionalScopesArray and ClientOptionalScopesArrayOutput values.
+// You can construct a concrete instance of `ClientOptionalScopesArrayInput` via:
+//
+//          ClientOptionalScopesArray{ ClientOptionalScopesArgs{...} }
+type ClientOptionalScopesArrayInput interface {
+	pulumi.Input
+
+	ToClientOptionalScopesArrayOutput() ClientOptionalScopesArrayOutput
+	ToClientOptionalScopesArrayOutputWithContext(context.Context) ClientOptionalScopesArrayOutput
+}
+
+type ClientOptionalScopesArray []ClientOptionalScopesInput
+
+func (ClientOptionalScopesArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*ClientOptionalScopes)(nil))
+}
+
+func (i ClientOptionalScopesArray) ToClientOptionalScopesArrayOutput() ClientOptionalScopesArrayOutput {
+	return i.ToClientOptionalScopesArrayOutputWithContext(context.Background())
+}
+
+func (i ClientOptionalScopesArray) ToClientOptionalScopesArrayOutputWithContext(ctx context.Context) ClientOptionalScopesArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientOptionalScopesArrayOutput)
+}
+
+// ClientOptionalScopesMapInput is an input type that accepts ClientOptionalScopesMap and ClientOptionalScopesMapOutput values.
+// You can construct a concrete instance of `ClientOptionalScopesMapInput` via:
+//
+//          ClientOptionalScopesMap{ "key": ClientOptionalScopesArgs{...} }
+type ClientOptionalScopesMapInput interface {
+	pulumi.Input
+
+	ToClientOptionalScopesMapOutput() ClientOptionalScopesMapOutput
+	ToClientOptionalScopesMapOutputWithContext(context.Context) ClientOptionalScopesMapOutput
+}
+
+type ClientOptionalScopesMap map[string]ClientOptionalScopesInput
+
+func (ClientOptionalScopesMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*ClientOptionalScopes)(nil))
+}
+
+func (i ClientOptionalScopesMap) ToClientOptionalScopesMapOutput() ClientOptionalScopesMapOutput {
+	return i.ToClientOptionalScopesMapOutputWithContext(context.Background())
+}
+
+func (i ClientOptionalScopesMap) ToClientOptionalScopesMapOutputWithContext(ctx context.Context) ClientOptionalScopesMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientOptionalScopesMapOutput)
+}
+
 type ClientOptionalScopesOutput struct {
 	*pulumi.OutputState
 }
@@ -142,6 +221,75 @@ func (o ClientOptionalScopesOutput) ToClientOptionalScopesOutputWithContext(ctx 
 	return o
 }
 
+func (o ClientOptionalScopesOutput) ToClientOptionalScopesPtrOutput() ClientOptionalScopesPtrOutput {
+	return o.ToClientOptionalScopesPtrOutputWithContext(context.Background())
+}
+
+func (o ClientOptionalScopesOutput) ToClientOptionalScopesPtrOutputWithContext(ctx context.Context) ClientOptionalScopesPtrOutput {
+	return o.ApplyT(func(v ClientOptionalScopes) *ClientOptionalScopes {
+		return &v
+	}).(ClientOptionalScopesPtrOutput)
+}
+
+type ClientOptionalScopesPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClientOptionalScopesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClientOptionalScopes)(nil))
+}
+
+func (o ClientOptionalScopesPtrOutput) ToClientOptionalScopesPtrOutput() ClientOptionalScopesPtrOutput {
+	return o
+}
+
+func (o ClientOptionalScopesPtrOutput) ToClientOptionalScopesPtrOutputWithContext(ctx context.Context) ClientOptionalScopesPtrOutput {
+	return o
+}
+
+type ClientOptionalScopesArrayOutput struct{ *pulumi.OutputState }
+
+func (ClientOptionalScopesArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClientOptionalScopes)(nil))
+}
+
+func (o ClientOptionalScopesArrayOutput) ToClientOptionalScopesArrayOutput() ClientOptionalScopesArrayOutput {
+	return o
+}
+
+func (o ClientOptionalScopesArrayOutput) ToClientOptionalScopesArrayOutputWithContext(ctx context.Context) ClientOptionalScopesArrayOutput {
+	return o
+}
+
+func (o ClientOptionalScopesArrayOutput) Index(i pulumi.IntInput) ClientOptionalScopesOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClientOptionalScopes {
+		return vs[0].([]ClientOptionalScopes)[vs[1].(int)]
+	}).(ClientOptionalScopesOutput)
+}
+
+type ClientOptionalScopesMapOutput struct{ *pulumi.OutputState }
+
+func (ClientOptionalScopesMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ClientOptionalScopes)(nil))
+}
+
+func (o ClientOptionalScopesMapOutput) ToClientOptionalScopesMapOutput() ClientOptionalScopesMapOutput {
+	return o
+}
+
+func (o ClientOptionalScopesMapOutput) ToClientOptionalScopesMapOutputWithContext(ctx context.Context) ClientOptionalScopesMapOutput {
+	return o
+}
+
+func (o ClientOptionalScopesMapOutput) MapIndex(k pulumi.StringInput) ClientOptionalScopesOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ClientOptionalScopes {
+		return vs[0].(map[string]ClientOptionalScopes)[vs[1].(string)]
+	}).(ClientOptionalScopesOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(ClientOptionalScopesOutput{})
+	pulumi.RegisterOutputType(ClientOptionalScopesPtrOutput{})
+	pulumi.RegisterOutputType(ClientOptionalScopesArrayOutput{})
+	pulumi.RegisterOutputType(ClientOptionalScopesMapOutput{})
 }

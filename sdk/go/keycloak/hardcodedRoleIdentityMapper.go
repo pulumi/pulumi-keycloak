@@ -135,6 +135,85 @@ func (i *HardcodedRoleIdentityMapper) ToHardcodedRoleIdentityMapperOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleIdentityMapperOutput)
 }
 
+func (i *HardcodedRoleIdentityMapper) ToHardcodedRoleIdentityMapperPtrOutput() HardcodedRoleIdentityMapperPtrOutput {
+	return i.ToHardcodedRoleIdentityMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *HardcodedRoleIdentityMapper) ToHardcodedRoleIdentityMapperPtrOutputWithContext(ctx context.Context) HardcodedRoleIdentityMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleIdentityMapperPtrOutput)
+}
+
+type HardcodedRoleIdentityMapperPtrInput interface {
+	pulumi.Input
+
+	ToHardcodedRoleIdentityMapperPtrOutput() HardcodedRoleIdentityMapperPtrOutput
+	ToHardcodedRoleIdentityMapperPtrOutputWithContext(ctx context.Context) HardcodedRoleIdentityMapperPtrOutput
+}
+
+type hardcodedRoleIdentityMapperPtrType HardcodedRoleIdentityMapperArgs
+
+func (*hardcodedRoleIdentityMapperPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**HardcodedRoleIdentityMapper)(nil))
+}
+
+func (i *hardcodedRoleIdentityMapperPtrType) ToHardcodedRoleIdentityMapperPtrOutput() HardcodedRoleIdentityMapperPtrOutput {
+	return i.ToHardcodedRoleIdentityMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *hardcodedRoleIdentityMapperPtrType) ToHardcodedRoleIdentityMapperPtrOutputWithContext(ctx context.Context) HardcodedRoleIdentityMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleIdentityMapperPtrOutput)
+}
+
+// HardcodedRoleIdentityMapperArrayInput is an input type that accepts HardcodedRoleIdentityMapperArray and HardcodedRoleIdentityMapperArrayOutput values.
+// You can construct a concrete instance of `HardcodedRoleIdentityMapperArrayInput` via:
+//
+//          HardcodedRoleIdentityMapperArray{ HardcodedRoleIdentityMapperArgs{...} }
+type HardcodedRoleIdentityMapperArrayInput interface {
+	pulumi.Input
+
+	ToHardcodedRoleIdentityMapperArrayOutput() HardcodedRoleIdentityMapperArrayOutput
+	ToHardcodedRoleIdentityMapperArrayOutputWithContext(context.Context) HardcodedRoleIdentityMapperArrayOutput
+}
+
+type HardcodedRoleIdentityMapperArray []HardcodedRoleIdentityMapperInput
+
+func (HardcodedRoleIdentityMapperArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*HardcodedRoleIdentityMapper)(nil))
+}
+
+func (i HardcodedRoleIdentityMapperArray) ToHardcodedRoleIdentityMapperArrayOutput() HardcodedRoleIdentityMapperArrayOutput {
+	return i.ToHardcodedRoleIdentityMapperArrayOutputWithContext(context.Background())
+}
+
+func (i HardcodedRoleIdentityMapperArray) ToHardcodedRoleIdentityMapperArrayOutputWithContext(ctx context.Context) HardcodedRoleIdentityMapperArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleIdentityMapperArrayOutput)
+}
+
+// HardcodedRoleIdentityMapperMapInput is an input type that accepts HardcodedRoleIdentityMapperMap and HardcodedRoleIdentityMapperMapOutput values.
+// You can construct a concrete instance of `HardcodedRoleIdentityMapperMapInput` via:
+//
+//          HardcodedRoleIdentityMapperMap{ "key": HardcodedRoleIdentityMapperArgs{...} }
+type HardcodedRoleIdentityMapperMapInput interface {
+	pulumi.Input
+
+	ToHardcodedRoleIdentityMapperMapOutput() HardcodedRoleIdentityMapperMapOutput
+	ToHardcodedRoleIdentityMapperMapOutputWithContext(context.Context) HardcodedRoleIdentityMapperMapOutput
+}
+
+type HardcodedRoleIdentityMapperMap map[string]HardcodedRoleIdentityMapperInput
+
+func (HardcodedRoleIdentityMapperMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*HardcodedRoleIdentityMapper)(nil))
+}
+
+func (i HardcodedRoleIdentityMapperMap) ToHardcodedRoleIdentityMapperMapOutput() HardcodedRoleIdentityMapperMapOutput {
+	return i.ToHardcodedRoleIdentityMapperMapOutputWithContext(context.Background())
+}
+
+func (i HardcodedRoleIdentityMapperMap) ToHardcodedRoleIdentityMapperMapOutputWithContext(ctx context.Context) HardcodedRoleIdentityMapperMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleIdentityMapperMapOutput)
+}
+
 type HardcodedRoleIdentityMapperOutput struct {
 	*pulumi.OutputState
 }
@@ -151,6 +230,75 @@ func (o HardcodedRoleIdentityMapperOutput) ToHardcodedRoleIdentityMapperOutputWi
 	return o
 }
 
+func (o HardcodedRoleIdentityMapperOutput) ToHardcodedRoleIdentityMapperPtrOutput() HardcodedRoleIdentityMapperPtrOutput {
+	return o.ToHardcodedRoleIdentityMapperPtrOutputWithContext(context.Background())
+}
+
+func (o HardcodedRoleIdentityMapperOutput) ToHardcodedRoleIdentityMapperPtrOutputWithContext(ctx context.Context) HardcodedRoleIdentityMapperPtrOutput {
+	return o.ApplyT(func(v HardcodedRoleIdentityMapper) *HardcodedRoleIdentityMapper {
+		return &v
+	}).(HardcodedRoleIdentityMapperPtrOutput)
+}
+
+type HardcodedRoleIdentityMapperPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (HardcodedRoleIdentityMapperPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**HardcodedRoleIdentityMapper)(nil))
+}
+
+func (o HardcodedRoleIdentityMapperPtrOutput) ToHardcodedRoleIdentityMapperPtrOutput() HardcodedRoleIdentityMapperPtrOutput {
+	return o
+}
+
+func (o HardcodedRoleIdentityMapperPtrOutput) ToHardcodedRoleIdentityMapperPtrOutputWithContext(ctx context.Context) HardcodedRoleIdentityMapperPtrOutput {
+	return o
+}
+
+type HardcodedRoleIdentityMapperArrayOutput struct{ *pulumi.OutputState }
+
+func (HardcodedRoleIdentityMapperArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HardcodedRoleIdentityMapper)(nil))
+}
+
+func (o HardcodedRoleIdentityMapperArrayOutput) ToHardcodedRoleIdentityMapperArrayOutput() HardcodedRoleIdentityMapperArrayOutput {
+	return o
+}
+
+func (o HardcodedRoleIdentityMapperArrayOutput) ToHardcodedRoleIdentityMapperArrayOutputWithContext(ctx context.Context) HardcodedRoleIdentityMapperArrayOutput {
+	return o
+}
+
+func (o HardcodedRoleIdentityMapperArrayOutput) Index(i pulumi.IntInput) HardcodedRoleIdentityMapperOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HardcodedRoleIdentityMapper {
+		return vs[0].([]HardcodedRoleIdentityMapper)[vs[1].(int)]
+	}).(HardcodedRoleIdentityMapperOutput)
+}
+
+type HardcodedRoleIdentityMapperMapOutput struct{ *pulumi.OutputState }
+
+func (HardcodedRoleIdentityMapperMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]HardcodedRoleIdentityMapper)(nil))
+}
+
+func (o HardcodedRoleIdentityMapperMapOutput) ToHardcodedRoleIdentityMapperMapOutput() HardcodedRoleIdentityMapperMapOutput {
+	return o
+}
+
+func (o HardcodedRoleIdentityMapperMapOutput) ToHardcodedRoleIdentityMapperMapOutputWithContext(ctx context.Context) HardcodedRoleIdentityMapperMapOutput {
+	return o
+}
+
+func (o HardcodedRoleIdentityMapperMapOutput) MapIndex(k pulumi.StringInput) HardcodedRoleIdentityMapperOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) HardcodedRoleIdentityMapper {
+		return vs[0].(map[string]HardcodedRoleIdentityMapper)[vs[1].(string)]
+	}).(HardcodedRoleIdentityMapperOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(HardcodedRoleIdentityMapperOutput{})
+	pulumi.RegisterOutputType(HardcodedRoleIdentityMapperPtrOutput{})
+	pulumi.RegisterOutputType(HardcodedRoleIdentityMapperArrayOutput{})
+	pulumi.RegisterOutputType(HardcodedRoleIdentityMapperMapOutput{})
 }

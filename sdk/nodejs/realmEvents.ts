@@ -102,7 +102,8 @@ export class RealmEvents extends pulumi.CustomResource {
     constructor(name: string, args: RealmEventsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RealmEventsArgs | RealmEventsState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as RealmEventsState | undefined;
             inputs["adminEventsDetailsEnabled"] = state ? state.adminEventsDetailsEnabled : undefined;
             inputs["adminEventsEnabled"] = state ? state.adminEventsEnabled : undefined;
@@ -113,7 +114,7 @@ export class RealmEvents extends pulumi.CustomResource {
             inputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as RealmEventsArgs | undefined;
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["adminEventsDetailsEnabled"] = args ? args.adminEventsDetailsEnabled : undefined;
@@ -124,12 +125,8 @@ export class RealmEvents extends pulumi.CustomResource {
             inputs["eventsListeners"] = args ? args.eventsListeners : undefined;
             inputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(RealmEvents.__pulumiType, name, inputs, opts);
     }

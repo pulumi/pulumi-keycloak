@@ -307,7 +307,8 @@ export class Realm extends pulumi.CustomResource {
     constructor(name: string, args: RealmArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RealmArgs | RealmState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as RealmState | undefined;
             inputs["accessCodeLifespan"] = state ? state.accessCodeLifespan : undefined;
             inputs["accessCodeLifespanLogin"] = state ? state.accessCodeLifespanLogin : undefined;
@@ -362,7 +363,7 @@ export class Realm extends pulumi.CustomResource {
             inputs["webAuthnPolicy"] = state ? state.webAuthnPolicy : undefined;
         } else {
             const args = argsOrState as RealmArgs | undefined;
-            if ((!args || args.realm === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realm === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realm'");
             }
             inputs["accessCodeLifespan"] = args ? args.accessCodeLifespan : undefined;
@@ -417,12 +418,8 @@ export class Realm extends pulumi.CustomResource {
             inputs["webAuthnPolicy"] = args ? args.webAuthnPolicy : undefined;
             inputs["internalId"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Realm.__pulumiType, name, inputs, opts);
     }

@@ -25,7 +25,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -69,7 +69,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -282,6 +282,85 @@ func (i *GroupMembershipProtocolMapper) ToGroupMembershipProtocolMapperOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipProtocolMapperOutput)
 }
 
+func (i *GroupMembershipProtocolMapper) ToGroupMembershipProtocolMapperPtrOutput() GroupMembershipProtocolMapperPtrOutput {
+	return i.ToGroupMembershipProtocolMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *GroupMembershipProtocolMapper) ToGroupMembershipProtocolMapperPtrOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipProtocolMapperPtrOutput)
+}
+
+type GroupMembershipProtocolMapperPtrInput interface {
+	pulumi.Input
+
+	ToGroupMembershipProtocolMapperPtrOutput() GroupMembershipProtocolMapperPtrOutput
+	ToGroupMembershipProtocolMapperPtrOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperPtrOutput
+}
+
+type groupMembershipProtocolMapperPtrType GroupMembershipProtocolMapperArgs
+
+func (*groupMembershipProtocolMapperPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GroupMembershipProtocolMapper)(nil))
+}
+
+func (i *groupMembershipProtocolMapperPtrType) ToGroupMembershipProtocolMapperPtrOutput() GroupMembershipProtocolMapperPtrOutput {
+	return i.ToGroupMembershipProtocolMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *groupMembershipProtocolMapperPtrType) ToGroupMembershipProtocolMapperPtrOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipProtocolMapperPtrOutput)
+}
+
+// GroupMembershipProtocolMapperArrayInput is an input type that accepts GroupMembershipProtocolMapperArray and GroupMembershipProtocolMapperArrayOutput values.
+// You can construct a concrete instance of `GroupMembershipProtocolMapperArrayInput` via:
+//
+//          GroupMembershipProtocolMapperArray{ GroupMembershipProtocolMapperArgs{...} }
+type GroupMembershipProtocolMapperArrayInput interface {
+	pulumi.Input
+
+	ToGroupMembershipProtocolMapperArrayOutput() GroupMembershipProtocolMapperArrayOutput
+	ToGroupMembershipProtocolMapperArrayOutputWithContext(context.Context) GroupMembershipProtocolMapperArrayOutput
+}
+
+type GroupMembershipProtocolMapperArray []GroupMembershipProtocolMapperInput
+
+func (GroupMembershipProtocolMapperArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*GroupMembershipProtocolMapper)(nil))
+}
+
+func (i GroupMembershipProtocolMapperArray) ToGroupMembershipProtocolMapperArrayOutput() GroupMembershipProtocolMapperArrayOutput {
+	return i.ToGroupMembershipProtocolMapperArrayOutputWithContext(context.Background())
+}
+
+func (i GroupMembershipProtocolMapperArray) ToGroupMembershipProtocolMapperArrayOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipProtocolMapperArrayOutput)
+}
+
+// GroupMembershipProtocolMapperMapInput is an input type that accepts GroupMembershipProtocolMapperMap and GroupMembershipProtocolMapperMapOutput values.
+// You can construct a concrete instance of `GroupMembershipProtocolMapperMapInput` via:
+//
+//          GroupMembershipProtocolMapperMap{ "key": GroupMembershipProtocolMapperArgs{...} }
+type GroupMembershipProtocolMapperMapInput interface {
+	pulumi.Input
+
+	ToGroupMembershipProtocolMapperMapOutput() GroupMembershipProtocolMapperMapOutput
+	ToGroupMembershipProtocolMapperMapOutputWithContext(context.Context) GroupMembershipProtocolMapperMapOutput
+}
+
+type GroupMembershipProtocolMapperMap map[string]GroupMembershipProtocolMapperInput
+
+func (GroupMembershipProtocolMapperMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*GroupMembershipProtocolMapper)(nil))
+}
+
+func (i GroupMembershipProtocolMapperMap) ToGroupMembershipProtocolMapperMapOutput() GroupMembershipProtocolMapperMapOutput {
+	return i.ToGroupMembershipProtocolMapperMapOutputWithContext(context.Background())
+}
+
+func (i GroupMembershipProtocolMapperMap) ToGroupMembershipProtocolMapperMapOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipProtocolMapperMapOutput)
+}
+
 type GroupMembershipProtocolMapperOutput struct {
 	*pulumi.OutputState
 }
@@ -298,6 +377,75 @@ func (o GroupMembershipProtocolMapperOutput) ToGroupMembershipProtocolMapperOutp
 	return o
 }
 
+func (o GroupMembershipProtocolMapperOutput) ToGroupMembershipProtocolMapperPtrOutput() GroupMembershipProtocolMapperPtrOutput {
+	return o.ToGroupMembershipProtocolMapperPtrOutputWithContext(context.Background())
+}
+
+func (o GroupMembershipProtocolMapperOutput) ToGroupMembershipProtocolMapperPtrOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperPtrOutput {
+	return o.ApplyT(func(v GroupMembershipProtocolMapper) *GroupMembershipProtocolMapper {
+		return &v
+	}).(GroupMembershipProtocolMapperPtrOutput)
+}
+
+type GroupMembershipProtocolMapperPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (GroupMembershipProtocolMapperPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GroupMembershipProtocolMapper)(nil))
+}
+
+func (o GroupMembershipProtocolMapperPtrOutput) ToGroupMembershipProtocolMapperPtrOutput() GroupMembershipProtocolMapperPtrOutput {
+	return o
+}
+
+func (o GroupMembershipProtocolMapperPtrOutput) ToGroupMembershipProtocolMapperPtrOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperPtrOutput {
+	return o
+}
+
+type GroupMembershipProtocolMapperArrayOutput struct{ *pulumi.OutputState }
+
+func (GroupMembershipProtocolMapperArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GroupMembershipProtocolMapper)(nil))
+}
+
+func (o GroupMembershipProtocolMapperArrayOutput) ToGroupMembershipProtocolMapperArrayOutput() GroupMembershipProtocolMapperArrayOutput {
+	return o
+}
+
+func (o GroupMembershipProtocolMapperArrayOutput) ToGroupMembershipProtocolMapperArrayOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperArrayOutput {
+	return o
+}
+
+func (o GroupMembershipProtocolMapperArrayOutput) Index(i pulumi.IntInput) GroupMembershipProtocolMapperOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GroupMembershipProtocolMapper {
+		return vs[0].([]GroupMembershipProtocolMapper)[vs[1].(int)]
+	}).(GroupMembershipProtocolMapperOutput)
+}
+
+type GroupMembershipProtocolMapperMapOutput struct{ *pulumi.OutputState }
+
+func (GroupMembershipProtocolMapperMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]GroupMembershipProtocolMapper)(nil))
+}
+
+func (o GroupMembershipProtocolMapperMapOutput) ToGroupMembershipProtocolMapperMapOutput() GroupMembershipProtocolMapperMapOutput {
+	return o
+}
+
+func (o GroupMembershipProtocolMapperMapOutput) ToGroupMembershipProtocolMapperMapOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperMapOutput {
+	return o
+}
+
+func (o GroupMembershipProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) GroupMembershipProtocolMapperOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) GroupMembershipProtocolMapper {
+		return vs[0].(map[string]GroupMembershipProtocolMapper)[vs[1].(string)]
+	}).(GroupMembershipProtocolMapperOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(GroupMembershipProtocolMapperOutput{})
+	pulumi.RegisterOutputType(GroupMembershipProtocolMapperPtrOutput{})
+	pulumi.RegisterOutputType(GroupMembershipProtocolMapperArrayOutput{})
+	pulumi.RegisterOutputType(GroupMembershipProtocolMapperMapOutput{})
 }

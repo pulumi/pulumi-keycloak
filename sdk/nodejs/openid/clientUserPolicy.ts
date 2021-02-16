@@ -50,7 +50,8 @@ export class ClientUserPolicy extends pulumi.CustomResource {
     constructor(name: string, args: ClientUserPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClientUserPolicyArgs | ClientUserPolicyState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ClientUserPolicyState | undefined;
             inputs["decisionStrategy"] = state ? state.decisionStrategy : undefined;
             inputs["description"] = state ? state.description : undefined;
@@ -61,16 +62,16 @@ export class ClientUserPolicy extends pulumi.CustomResource {
             inputs["users"] = state ? state.users : undefined;
         } else {
             const args = argsOrState as ClientUserPolicyArgs | undefined;
-            if ((!args || args.decisionStrategy === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.decisionStrategy === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'decisionStrategy'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.resourceServerId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.resourceServerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
-            if ((!args || args.users === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.users === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'users'");
             }
             inputs["decisionStrategy"] = args ? args.decisionStrategy : undefined;
@@ -81,12 +82,8 @@ export class ClientUserPolicy extends pulumi.CustomResource {
             inputs["resourceServerId"] = args ? args.resourceServerId : undefined;
             inputs["users"] = args ? args.users : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ClientUserPolicy.__pulumiType, name, inputs, opts);
     }

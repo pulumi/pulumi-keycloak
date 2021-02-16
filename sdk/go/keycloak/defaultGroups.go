@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -160,6 +160,85 @@ func (i *DefaultGroups) ToDefaultGroupsOutputWithContext(ctx context.Context) De
 	return pulumi.ToOutputWithContext(ctx, i).(DefaultGroupsOutput)
 }
 
+func (i *DefaultGroups) ToDefaultGroupsPtrOutput() DefaultGroupsPtrOutput {
+	return i.ToDefaultGroupsPtrOutputWithContext(context.Background())
+}
+
+func (i *DefaultGroups) ToDefaultGroupsPtrOutputWithContext(ctx context.Context) DefaultGroupsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultGroupsPtrOutput)
+}
+
+type DefaultGroupsPtrInput interface {
+	pulumi.Input
+
+	ToDefaultGroupsPtrOutput() DefaultGroupsPtrOutput
+	ToDefaultGroupsPtrOutputWithContext(ctx context.Context) DefaultGroupsPtrOutput
+}
+
+type defaultGroupsPtrType DefaultGroupsArgs
+
+func (*defaultGroupsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DefaultGroups)(nil))
+}
+
+func (i *defaultGroupsPtrType) ToDefaultGroupsPtrOutput() DefaultGroupsPtrOutput {
+	return i.ToDefaultGroupsPtrOutputWithContext(context.Background())
+}
+
+func (i *defaultGroupsPtrType) ToDefaultGroupsPtrOutputWithContext(ctx context.Context) DefaultGroupsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultGroupsPtrOutput)
+}
+
+// DefaultGroupsArrayInput is an input type that accepts DefaultGroupsArray and DefaultGroupsArrayOutput values.
+// You can construct a concrete instance of `DefaultGroupsArrayInput` via:
+//
+//          DefaultGroupsArray{ DefaultGroupsArgs{...} }
+type DefaultGroupsArrayInput interface {
+	pulumi.Input
+
+	ToDefaultGroupsArrayOutput() DefaultGroupsArrayOutput
+	ToDefaultGroupsArrayOutputWithContext(context.Context) DefaultGroupsArrayOutput
+}
+
+type DefaultGroupsArray []DefaultGroupsInput
+
+func (DefaultGroupsArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*DefaultGroups)(nil))
+}
+
+func (i DefaultGroupsArray) ToDefaultGroupsArrayOutput() DefaultGroupsArrayOutput {
+	return i.ToDefaultGroupsArrayOutputWithContext(context.Background())
+}
+
+func (i DefaultGroupsArray) ToDefaultGroupsArrayOutputWithContext(ctx context.Context) DefaultGroupsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultGroupsArrayOutput)
+}
+
+// DefaultGroupsMapInput is an input type that accepts DefaultGroupsMap and DefaultGroupsMapOutput values.
+// You can construct a concrete instance of `DefaultGroupsMapInput` via:
+//
+//          DefaultGroupsMap{ "key": DefaultGroupsArgs{...} }
+type DefaultGroupsMapInput interface {
+	pulumi.Input
+
+	ToDefaultGroupsMapOutput() DefaultGroupsMapOutput
+	ToDefaultGroupsMapOutputWithContext(context.Context) DefaultGroupsMapOutput
+}
+
+type DefaultGroupsMap map[string]DefaultGroupsInput
+
+func (DefaultGroupsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*DefaultGroups)(nil))
+}
+
+func (i DefaultGroupsMap) ToDefaultGroupsMapOutput() DefaultGroupsMapOutput {
+	return i.ToDefaultGroupsMapOutputWithContext(context.Background())
+}
+
+func (i DefaultGroupsMap) ToDefaultGroupsMapOutputWithContext(ctx context.Context) DefaultGroupsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultGroupsMapOutput)
+}
+
 type DefaultGroupsOutput struct {
 	*pulumi.OutputState
 }
@@ -176,6 +255,75 @@ func (o DefaultGroupsOutput) ToDefaultGroupsOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o DefaultGroupsOutput) ToDefaultGroupsPtrOutput() DefaultGroupsPtrOutput {
+	return o.ToDefaultGroupsPtrOutputWithContext(context.Background())
+}
+
+func (o DefaultGroupsOutput) ToDefaultGroupsPtrOutputWithContext(ctx context.Context) DefaultGroupsPtrOutput {
+	return o.ApplyT(func(v DefaultGroups) *DefaultGroups {
+		return &v
+	}).(DefaultGroupsPtrOutput)
+}
+
+type DefaultGroupsPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DefaultGroupsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DefaultGroups)(nil))
+}
+
+func (o DefaultGroupsPtrOutput) ToDefaultGroupsPtrOutput() DefaultGroupsPtrOutput {
+	return o
+}
+
+func (o DefaultGroupsPtrOutput) ToDefaultGroupsPtrOutputWithContext(ctx context.Context) DefaultGroupsPtrOutput {
+	return o
+}
+
+type DefaultGroupsArrayOutput struct{ *pulumi.OutputState }
+
+func (DefaultGroupsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultGroups)(nil))
+}
+
+func (o DefaultGroupsArrayOutput) ToDefaultGroupsArrayOutput() DefaultGroupsArrayOutput {
+	return o
+}
+
+func (o DefaultGroupsArrayOutput) ToDefaultGroupsArrayOutputWithContext(ctx context.Context) DefaultGroupsArrayOutput {
+	return o
+}
+
+func (o DefaultGroupsArrayOutput) Index(i pulumi.IntInput) DefaultGroupsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DefaultGroups {
+		return vs[0].([]DefaultGroups)[vs[1].(int)]
+	}).(DefaultGroupsOutput)
+}
+
+type DefaultGroupsMapOutput struct{ *pulumi.OutputState }
+
+func (DefaultGroupsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]DefaultGroups)(nil))
+}
+
+func (o DefaultGroupsMapOutput) ToDefaultGroupsMapOutput() DefaultGroupsMapOutput {
+	return o
+}
+
+func (o DefaultGroupsMapOutput) ToDefaultGroupsMapOutputWithContext(ctx context.Context) DefaultGroupsMapOutput {
+	return o
+}
+
+func (o DefaultGroupsMapOutput) MapIndex(k pulumi.StringInput) DefaultGroupsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DefaultGroups {
+		return vs[0].(map[string]DefaultGroups)[vs[1].(string)]
+	}).(DefaultGroupsOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(DefaultGroupsOutput{})
+	pulumi.RegisterOutputType(DefaultGroupsPtrOutput{})
+	pulumi.RegisterOutputType(DefaultGroupsArrayOutput{})
+	pulumi.RegisterOutputType(DefaultGroupsMapOutput{})
 }

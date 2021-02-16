@@ -25,7 +25,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/ldap"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -195,6 +195,85 @@ func (i *MsadUserAccountControlMapper) ToMsadUserAccountControlMapperOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(MsadUserAccountControlMapperOutput)
 }
 
+func (i *MsadUserAccountControlMapper) ToMsadUserAccountControlMapperPtrOutput() MsadUserAccountControlMapperPtrOutput {
+	return i.ToMsadUserAccountControlMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *MsadUserAccountControlMapper) ToMsadUserAccountControlMapperPtrOutputWithContext(ctx context.Context) MsadUserAccountControlMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MsadUserAccountControlMapperPtrOutput)
+}
+
+type MsadUserAccountControlMapperPtrInput interface {
+	pulumi.Input
+
+	ToMsadUserAccountControlMapperPtrOutput() MsadUserAccountControlMapperPtrOutput
+	ToMsadUserAccountControlMapperPtrOutputWithContext(ctx context.Context) MsadUserAccountControlMapperPtrOutput
+}
+
+type msadUserAccountControlMapperPtrType MsadUserAccountControlMapperArgs
+
+func (*msadUserAccountControlMapperPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MsadUserAccountControlMapper)(nil))
+}
+
+func (i *msadUserAccountControlMapperPtrType) ToMsadUserAccountControlMapperPtrOutput() MsadUserAccountControlMapperPtrOutput {
+	return i.ToMsadUserAccountControlMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *msadUserAccountControlMapperPtrType) ToMsadUserAccountControlMapperPtrOutputWithContext(ctx context.Context) MsadUserAccountControlMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MsadUserAccountControlMapperPtrOutput)
+}
+
+// MsadUserAccountControlMapperArrayInput is an input type that accepts MsadUserAccountControlMapperArray and MsadUserAccountControlMapperArrayOutput values.
+// You can construct a concrete instance of `MsadUserAccountControlMapperArrayInput` via:
+//
+//          MsadUserAccountControlMapperArray{ MsadUserAccountControlMapperArgs{...} }
+type MsadUserAccountControlMapperArrayInput interface {
+	pulumi.Input
+
+	ToMsadUserAccountControlMapperArrayOutput() MsadUserAccountControlMapperArrayOutput
+	ToMsadUserAccountControlMapperArrayOutputWithContext(context.Context) MsadUserAccountControlMapperArrayOutput
+}
+
+type MsadUserAccountControlMapperArray []MsadUserAccountControlMapperInput
+
+func (MsadUserAccountControlMapperArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*MsadUserAccountControlMapper)(nil))
+}
+
+func (i MsadUserAccountControlMapperArray) ToMsadUserAccountControlMapperArrayOutput() MsadUserAccountControlMapperArrayOutput {
+	return i.ToMsadUserAccountControlMapperArrayOutputWithContext(context.Background())
+}
+
+func (i MsadUserAccountControlMapperArray) ToMsadUserAccountControlMapperArrayOutputWithContext(ctx context.Context) MsadUserAccountControlMapperArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MsadUserAccountControlMapperArrayOutput)
+}
+
+// MsadUserAccountControlMapperMapInput is an input type that accepts MsadUserAccountControlMapperMap and MsadUserAccountControlMapperMapOutput values.
+// You can construct a concrete instance of `MsadUserAccountControlMapperMapInput` via:
+//
+//          MsadUserAccountControlMapperMap{ "key": MsadUserAccountControlMapperArgs{...} }
+type MsadUserAccountControlMapperMapInput interface {
+	pulumi.Input
+
+	ToMsadUserAccountControlMapperMapOutput() MsadUserAccountControlMapperMapOutput
+	ToMsadUserAccountControlMapperMapOutputWithContext(context.Context) MsadUserAccountControlMapperMapOutput
+}
+
+type MsadUserAccountControlMapperMap map[string]MsadUserAccountControlMapperInput
+
+func (MsadUserAccountControlMapperMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*MsadUserAccountControlMapper)(nil))
+}
+
+func (i MsadUserAccountControlMapperMap) ToMsadUserAccountControlMapperMapOutput() MsadUserAccountControlMapperMapOutput {
+	return i.ToMsadUserAccountControlMapperMapOutputWithContext(context.Background())
+}
+
+func (i MsadUserAccountControlMapperMap) ToMsadUserAccountControlMapperMapOutputWithContext(ctx context.Context) MsadUserAccountControlMapperMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MsadUserAccountControlMapperMapOutput)
+}
+
 type MsadUserAccountControlMapperOutput struct {
 	*pulumi.OutputState
 }
@@ -211,6 +290,75 @@ func (o MsadUserAccountControlMapperOutput) ToMsadUserAccountControlMapperOutput
 	return o
 }
 
+func (o MsadUserAccountControlMapperOutput) ToMsadUserAccountControlMapperPtrOutput() MsadUserAccountControlMapperPtrOutput {
+	return o.ToMsadUserAccountControlMapperPtrOutputWithContext(context.Background())
+}
+
+func (o MsadUserAccountControlMapperOutput) ToMsadUserAccountControlMapperPtrOutputWithContext(ctx context.Context) MsadUserAccountControlMapperPtrOutput {
+	return o.ApplyT(func(v MsadUserAccountControlMapper) *MsadUserAccountControlMapper {
+		return &v
+	}).(MsadUserAccountControlMapperPtrOutput)
+}
+
+type MsadUserAccountControlMapperPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (MsadUserAccountControlMapperPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MsadUserAccountControlMapper)(nil))
+}
+
+func (o MsadUserAccountControlMapperPtrOutput) ToMsadUserAccountControlMapperPtrOutput() MsadUserAccountControlMapperPtrOutput {
+	return o
+}
+
+func (o MsadUserAccountControlMapperPtrOutput) ToMsadUserAccountControlMapperPtrOutputWithContext(ctx context.Context) MsadUserAccountControlMapperPtrOutput {
+	return o
+}
+
+type MsadUserAccountControlMapperArrayOutput struct{ *pulumi.OutputState }
+
+func (MsadUserAccountControlMapperArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MsadUserAccountControlMapper)(nil))
+}
+
+func (o MsadUserAccountControlMapperArrayOutput) ToMsadUserAccountControlMapperArrayOutput() MsadUserAccountControlMapperArrayOutput {
+	return o
+}
+
+func (o MsadUserAccountControlMapperArrayOutput) ToMsadUserAccountControlMapperArrayOutputWithContext(ctx context.Context) MsadUserAccountControlMapperArrayOutput {
+	return o
+}
+
+func (o MsadUserAccountControlMapperArrayOutput) Index(i pulumi.IntInput) MsadUserAccountControlMapperOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MsadUserAccountControlMapper {
+		return vs[0].([]MsadUserAccountControlMapper)[vs[1].(int)]
+	}).(MsadUserAccountControlMapperOutput)
+}
+
+type MsadUserAccountControlMapperMapOutput struct{ *pulumi.OutputState }
+
+func (MsadUserAccountControlMapperMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]MsadUserAccountControlMapper)(nil))
+}
+
+func (o MsadUserAccountControlMapperMapOutput) ToMsadUserAccountControlMapperMapOutput() MsadUserAccountControlMapperMapOutput {
+	return o
+}
+
+func (o MsadUserAccountControlMapperMapOutput) ToMsadUserAccountControlMapperMapOutputWithContext(ctx context.Context) MsadUserAccountControlMapperMapOutput {
+	return o
+}
+
+func (o MsadUserAccountControlMapperMapOutput) MapIndex(k pulumi.StringInput) MsadUserAccountControlMapperOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) MsadUserAccountControlMapper {
+		return vs[0].(map[string]MsadUserAccountControlMapper)[vs[1].(string)]
+	}).(MsadUserAccountControlMapperOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(MsadUserAccountControlMapperOutput{})
+	pulumi.RegisterOutputType(MsadUserAccountControlMapperPtrOutput{})
+	pulumi.RegisterOutputType(MsadUserAccountControlMapperArrayOutput{})
+	pulumi.RegisterOutputType(MsadUserAccountControlMapperMapOutput{})
 }

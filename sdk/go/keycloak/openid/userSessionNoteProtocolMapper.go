@@ -25,7 +25,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -71,7 +71,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -306,6 +306,85 @@ func (i *UserSessionNoteProtocolMapper) ToUserSessionNoteProtocolMapperOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(UserSessionNoteProtocolMapperOutput)
 }
 
+func (i *UserSessionNoteProtocolMapper) ToUserSessionNoteProtocolMapperPtrOutput() UserSessionNoteProtocolMapperPtrOutput {
+	return i.ToUserSessionNoteProtocolMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *UserSessionNoteProtocolMapper) ToUserSessionNoteProtocolMapperPtrOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserSessionNoteProtocolMapperPtrOutput)
+}
+
+type UserSessionNoteProtocolMapperPtrInput interface {
+	pulumi.Input
+
+	ToUserSessionNoteProtocolMapperPtrOutput() UserSessionNoteProtocolMapperPtrOutput
+	ToUserSessionNoteProtocolMapperPtrOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperPtrOutput
+}
+
+type userSessionNoteProtocolMapperPtrType UserSessionNoteProtocolMapperArgs
+
+func (*userSessionNoteProtocolMapperPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserSessionNoteProtocolMapper)(nil))
+}
+
+func (i *userSessionNoteProtocolMapperPtrType) ToUserSessionNoteProtocolMapperPtrOutput() UserSessionNoteProtocolMapperPtrOutput {
+	return i.ToUserSessionNoteProtocolMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *userSessionNoteProtocolMapperPtrType) ToUserSessionNoteProtocolMapperPtrOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserSessionNoteProtocolMapperPtrOutput)
+}
+
+// UserSessionNoteProtocolMapperArrayInput is an input type that accepts UserSessionNoteProtocolMapperArray and UserSessionNoteProtocolMapperArrayOutput values.
+// You can construct a concrete instance of `UserSessionNoteProtocolMapperArrayInput` via:
+//
+//          UserSessionNoteProtocolMapperArray{ UserSessionNoteProtocolMapperArgs{...} }
+type UserSessionNoteProtocolMapperArrayInput interface {
+	pulumi.Input
+
+	ToUserSessionNoteProtocolMapperArrayOutput() UserSessionNoteProtocolMapperArrayOutput
+	ToUserSessionNoteProtocolMapperArrayOutputWithContext(context.Context) UserSessionNoteProtocolMapperArrayOutput
+}
+
+type UserSessionNoteProtocolMapperArray []UserSessionNoteProtocolMapperInput
+
+func (UserSessionNoteProtocolMapperArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*UserSessionNoteProtocolMapper)(nil))
+}
+
+func (i UserSessionNoteProtocolMapperArray) ToUserSessionNoteProtocolMapperArrayOutput() UserSessionNoteProtocolMapperArrayOutput {
+	return i.ToUserSessionNoteProtocolMapperArrayOutputWithContext(context.Background())
+}
+
+func (i UserSessionNoteProtocolMapperArray) ToUserSessionNoteProtocolMapperArrayOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserSessionNoteProtocolMapperArrayOutput)
+}
+
+// UserSessionNoteProtocolMapperMapInput is an input type that accepts UserSessionNoteProtocolMapperMap and UserSessionNoteProtocolMapperMapOutput values.
+// You can construct a concrete instance of `UserSessionNoteProtocolMapperMapInput` via:
+//
+//          UserSessionNoteProtocolMapperMap{ "key": UserSessionNoteProtocolMapperArgs{...} }
+type UserSessionNoteProtocolMapperMapInput interface {
+	pulumi.Input
+
+	ToUserSessionNoteProtocolMapperMapOutput() UserSessionNoteProtocolMapperMapOutput
+	ToUserSessionNoteProtocolMapperMapOutputWithContext(context.Context) UserSessionNoteProtocolMapperMapOutput
+}
+
+type UserSessionNoteProtocolMapperMap map[string]UserSessionNoteProtocolMapperInput
+
+func (UserSessionNoteProtocolMapperMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*UserSessionNoteProtocolMapper)(nil))
+}
+
+func (i UserSessionNoteProtocolMapperMap) ToUserSessionNoteProtocolMapperMapOutput() UserSessionNoteProtocolMapperMapOutput {
+	return i.ToUserSessionNoteProtocolMapperMapOutputWithContext(context.Background())
+}
+
+func (i UserSessionNoteProtocolMapperMap) ToUserSessionNoteProtocolMapperMapOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserSessionNoteProtocolMapperMapOutput)
+}
+
 type UserSessionNoteProtocolMapperOutput struct {
 	*pulumi.OutputState
 }
@@ -322,6 +401,75 @@ func (o UserSessionNoteProtocolMapperOutput) ToUserSessionNoteProtocolMapperOutp
 	return o
 }
 
+func (o UserSessionNoteProtocolMapperOutput) ToUserSessionNoteProtocolMapperPtrOutput() UserSessionNoteProtocolMapperPtrOutput {
+	return o.ToUserSessionNoteProtocolMapperPtrOutputWithContext(context.Background())
+}
+
+func (o UserSessionNoteProtocolMapperOutput) ToUserSessionNoteProtocolMapperPtrOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperPtrOutput {
+	return o.ApplyT(func(v UserSessionNoteProtocolMapper) *UserSessionNoteProtocolMapper {
+		return &v
+	}).(UserSessionNoteProtocolMapperPtrOutput)
+}
+
+type UserSessionNoteProtocolMapperPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (UserSessionNoteProtocolMapperPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserSessionNoteProtocolMapper)(nil))
+}
+
+func (o UserSessionNoteProtocolMapperPtrOutput) ToUserSessionNoteProtocolMapperPtrOutput() UserSessionNoteProtocolMapperPtrOutput {
+	return o
+}
+
+func (o UserSessionNoteProtocolMapperPtrOutput) ToUserSessionNoteProtocolMapperPtrOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperPtrOutput {
+	return o
+}
+
+type UserSessionNoteProtocolMapperArrayOutput struct{ *pulumi.OutputState }
+
+func (UserSessionNoteProtocolMapperArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserSessionNoteProtocolMapper)(nil))
+}
+
+func (o UserSessionNoteProtocolMapperArrayOutput) ToUserSessionNoteProtocolMapperArrayOutput() UserSessionNoteProtocolMapperArrayOutput {
+	return o
+}
+
+func (o UserSessionNoteProtocolMapperArrayOutput) ToUserSessionNoteProtocolMapperArrayOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperArrayOutput {
+	return o
+}
+
+func (o UserSessionNoteProtocolMapperArrayOutput) Index(i pulumi.IntInput) UserSessionNoteProtocolMapperOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserSessionNoteProtocolMapper {
+		return vs[0].([]UserSessionNoteProtocolMapper)[vs[1].(int)]
+	}).(UserSessionNoteProtocolMapperOutput)
+}
+
+type UserSessionNoteProtocolMapperMapOutput struct{ *pulumi.OutputState }
+
+func (UserSessionNoteProtocolMapperMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]UserSessionNoteProtocolMapper)(nil))
+}
+
+func (o UserSessionNoteProtocolMapperMapOutput) ToUserSessionNoteProtocolMapperMapOutput() UserSessionNoteProtocolMapperMapOutput {
+	return o
+}
+
+func (o UserSessionNoteProtocolMapperMapOutput) ToUserSessionNoteProtocolMapperMapOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperMapOutput {
+	return o
+}
+
+func (o UserSessionNoteProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) UserSessionNoteProtocolMapperOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserSessionNoteProtocolMapper {
+		return vs[0].(map[string]UserSessionNoteProtocolMapper)[vs[1].(string)]
+	}).(UserSessionNoteProtocolMapperOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(UserSessionNoteProtocolMapperOutput{})
+	pulumi.RegisterOutputType(UserSessionNoteProtocolMapperPtrOutput{})
+	pulumi.RegisterOutputType(UserSessionNoteProtocolMapperArrayOutput{})
+	pulumi.RegisterOutputType(UserSessionNoteProtocolMapperMapOutput{})
 }

@@ -7,8 +7,8 @@ import * as utilities from "../utilities";
 let __config = new pulumi.Config("keycloak");
 
 export let basePath: string | undefined = __config.get("basePath");
-export let clientId: string | undefined = __config.get("clientId") || utilities.getEnv("KEYCLOAK_CLIENT_ID");
-export let clientSecret: string | undefined = __config.get("clientSecret") || utilities.getEnv("KEYCLOAK_CLIENT_SECRET");
+export let clientId: string | undefined = __config.get("clientId");
+export let clientSecret: string | undefined = __config.get("clientSecret");
 /**
  * Timeout (in seconds) of the Keycloak client
  */
@@ -17,8 +17,8 @@ export let clientTimeout: number | undefined = __config.getObject<number>("clien
  * Whether or not to login to Keycloak instance on provider initialization
  */
 export let initialLogin: boolean | undefined = __config.getObject<boolean>("initialLogin");
-export let password: string | undefined = __config.get("password") || utilities.getEnv("KEYCLOAK_PASSWORD");
-export let realm: string | undefined = __config.get("realm") || (utilities.getEnv("KEYCLOAK_REALM") || "master");
+export let password: string | undefined = __config.get("password");
+export let realm: string | undefined = __config.get("realm");
 /**
  * Allows x509 calls using an unknown CA certificate (for development purposes)
  */
@@ -31,5 +31,5 @@ export let tlsInsecureSkipVerify: boolean | undefined = __config.getObject<boole
 /**
  * The base URL of the Keycloak instance, before `/auth`
  */
-export let url: string | undefined = __config.get("url") || utilities.getEnv("KEYCLOAK_URL");
-export let username: string | undefined = __config.get("username") || utilities.getEnv("KEYCLOAK_USER");
+export let url: string | undefined = __config.get("url");
+export let username: string | undefined = __config.get("username");

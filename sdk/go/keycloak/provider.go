@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -22,29 +23,17 @@ type Provider struct {
 func NewProvider(ctx *pulumi.Context,
 	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
 	if args == nil {
-		args = &ProviderArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
 	if args.ClientId == nil {
-		args.ClientId = pulumi.StringPtr(getEnvOrDefault("", nil, "KEYCLOAK_CLIENT_ID").(string))
+		return nil, errors.New("invalid value for required argument 'ClientId'")
 	}
-	if args.ClientSecret == nil {
-		args.ClientSecret = pulumi.StringPtr(getEnvOrDefault("", nil, "KEYCLOAK_CLIENT_SECRET").(string))
+	if args.Url == nil {
+		return nil, errors.New("invalid value for required argument 'Url'")
 	}
 	if args.ClientTimeout == nil {
 		args.ClientTimeout = pulumi.IntPtr(getEnvOrDefault(5, parseEnvInt, "KEYCLOAK_CLIENT_TIMEOUT").(int))
-	}
-	if args.Password == nil {
-		args.Password = pulumi.StringPtr(getEnvOrDefault("", nil, "KEYCLOAK_PASSWORD").(string))
-	}
-	if args.Realm == nil {
-		args.Realm = pulumi.StringPtr(getEnvOrDefault("master", nil, "KEYCLOAK_REALM").(string))
-	}
-	if args.Url == nil {
-		args.Url = pulumi.StringPtr(getEnvOrDefault("", nil, "KEYCLOAK_URL").(string))
-	}
-	if args.Username == nil {
-		args.Username = pulumi.StringPtr(getEnvOrDefault("", nil, "KEYCLOAK_USER").(string))
 	}
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:keycloak", name, args, &resource, opts...)
@@ -56,7 +45,7 @@ func NewProvider(ctx *pulumi.Context,
 
 type providerArgs struct {
 	BasePath     *string `pulumi:"basePath"`
-	ClientId     *string `pulumi:"clientId"`
+	ClientId     string  `pulumi:"clientId"`
 	ClientSecret *string `pulumi:"clientSecret"`
 	// Timeout (in seconds) of the Keycloak client
 	ClientTimeout *int `pulumi:"clientTimeout"`
@@ -70,14 +59,14 @@ type providerArgs struct {
 	// should be avoided.
 	TlsInsecureSkipVerify *bool `pulumi:"tlsInsecureSkipVerify"`
 	// The base URL of the Keycloak instance, before `/auth`
-	Url      *string `pulumi:"url"`
+	Url      string  `pulumi:"url"`
 	Username *string `pulumi:"username"`
 }
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
 	BasePath     pulumi.StringPtrInput
-	ClientId     pulumi.StringPtrInput
+	ClientId     pulumi.StringInput
 	ClientSecret pulumi.StringPtrInput
 	// Timeout (in seconds) of the Keycloak client
 	ClientTimeout pulumi.IntPtrInput
@@ -91,7 +80,7 @@ type ProviderArgs struct {
 	// should be avoided.
 	TlsInsecureSkipVerify pulumi.BoolPtrInput
 	// The base URL of the Keycloak instance, before `/auth`
-	Url      pulumi.StringPtrInput
+	Url      pulumi.StringInput
 	Username pulumi.StringPtrInput
 }
 
@@ -118,6 +107,35 @@ func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
 }
 
+func (i *Provider) ToProviderPtrOutput() ProviderPtrOutput {
+	return i.ToProviderPtrOutputWithContext(context.Background())
+}
+
+func (i *Provider) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderPtrOutput)
+}
+
+type ProviderPtrInput interface {
+	pulumi.Input
+
+	ToProviderPtrOutput() ProviderPtrOutput
+	ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput
+}
+
+type providerPtrType ProviderArgs
+
+func (*providerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**Provider)(nil))
+}
+
+func (i *providerPtrType) ToProviderPtrOutput() ProviderPtrOutput {
+	return i.ToProviderPtrOutputWithContext(context.Background())
+}
+
+func (i *providerPtrType) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderPtrOutput)
+}
+
 type ProviderOutput struct {
 	*pulumi.OutputState
 }
@@ -134,6 +152,33 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
+func (o ProviderOutput) ToProviderPtrOutput() ProviderPtrOutput {
+	return o.ToProviderPtrOutputWithContext(context.Background())
+}
+
+func (o ProviderOutput) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return o.ApplyT(func(v Provider) *Provider {
+		return &v
+	}).(ProviderPtrOutput)
+}
+
+type ProviderPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProviderPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Provider)(nil))
+}
+
+func (o ProviderPtrOutput) ToProviderPtrOutput() ProviderPtrOutput {
+	return o
+}
+
+func (o ProviderPtrOutput) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ProviderOutput{})
+	pulumi.RegisterOutputType(ProviderPtrOutput{})
 }

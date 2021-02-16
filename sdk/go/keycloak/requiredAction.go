@@ -120,6 +120,85 @@ func (i *RequiredAction) ToRequiredActionOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(RequiredActionOutput)
 }
 
+func (i *RequiredAction) ToRequiredActionPtrOutput() RequiredActionPtrOutput {
+	return i.ToRequiredActionPtrOutputWithContext(context.Background())
+}
+
+func (i *RequiredAction) ToRequiredActionPtrOutputWithContext(ctx context.Context) RequiredActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RequiredActionPtrOutput)
+}
+
+type RequiredActionPtrInput interface {
+	pulumi.Input
+
+	ToRequiredActionPtrOutput() RequiredActionPtrOutput
+	ToRequiredActionPtrOutputWithContext(ctx context.Context) RequiredActionPtrOutput
+}
+
+type requiredActionPtrType RequiredActionArgs
+
+func (*requiredActionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RequiredAction)(nil))
+}
+
+func (i *requiredActionPtrType) ToRequiredActionPtrOutput() RequiredActionPtrOutput {
+	return i.ToRequiredActionPtrOutputWithContext(context.Background())
+}
+
+func (i *requiredActionPtrType) ToRequiredActionPtrOutputWithContext(ctx context.Context) RequiredActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RequiredActionPtrOutput)
+}
+
+// RequiredActionArrayInput is an input type that accepts RequiredActionArray and RequiredActionArrayOutput values.
+// You can construct a concrete instance of `RequiredActionArrayInput` via:
+//
+//          RequiredActionArray{ RequiredActionArgs{...} }
+type RequiredActionArrayInput interface {
+	pulumi.Input
+
+	ToRequiredActionArrayOutput() RequiredActionArrayOutput
+	ToRequiredActionArrayOutputWithContext(context.Context) RequiredActionArrayOutput
+}
+
+type RequiredActionArray []RequiredActionInput
+
+func (RequiredActionArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*RequiredAction)(nil))
+}
+
+func (i RequiredActionArray) ToRequiredActionArrayOutput() RequiredActionArrayOutput {
+	return i.ToRequiredActionArrayOutputWithContext(context.Background())
+}
+
+func (i RequiredActionArray) ToRequiredActionArrayOutputWithContext(ctx context.Context) RequiredActionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RequiredActionArrayOutput)
+}
+
+// RequiredActionMapInput is an input type that accepts RequiredActionMap and RequiredActionMapOutput values.
+// You can construct a concrete instance of `RequiredActionMapInput` via:
+//
+//          RequiredActionMap{ "key": RequiredActionArgs{...} }
+type RequiredActionMapInput interface {
+	pulumi.Input
+
+	ToRequiredActionMapOutput() RequiredActionMapOutput
+	ToRequiredActionMapOutputWithContext(context.Context) RequiredActionMapOutput
+}
+
+type RequiredActionMap map[string]RequiredActionInput
+
+func (RequiredActionMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*RequiredAction)(nil))
+}
+
+func (i RequiredActionMap) ToRequiredActionMapOutput() RequiredActionMapOutput {
+	return i.ToRequiredActionMapOutputWithContext(context.Background())
+}
+
+func (i RequiredActionMap) ToRequiredActionMapOutputWithContext(ctx context.Context) RequiredActionMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RequiredActionMapOutput)
+}
+
 type RequiredActionOutput struct {
 	*pulumi.OutputState
 }
@@ -136,6 +215,75 @@ func (o RequiredActionOutput) ToRequiredActionOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o RequiredActionOutput) ToRequiredActionPtrOutput() RequiredActionPtrOutput {
+	return o.ToRequiredActionPtrOutputWithContext(context.Background())
+}
+
+func (o RequiredActionOutput) ToRequiredActionPtrOutputWithContext(ctx context.Context) RequiredActionPtrOutput {
+	return o.ApplyT(func(v RequiredAction) *RequiredAction {
+		return &v
+	}).(RequiredActionPtrOutput)
+}
+
+type RequiredActionPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RequiredActionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RequiredAction)(nil))
+}
+
+func (o RequiredActionPtrOutput) ToRequiredActionPtrOutput() RequiredActionPtrOutput {
+	return o
+}
+
+func (o RequiredActionPtrOutput) ToRequiredActionPtrOutputWithContext(ctx context.Context) RequiredActionPtrOutput {
+	return o
+}
+
+type RequiredActionArrayOutput struct{ *pulumi.OutputState }
+
+func (RequiredActionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RequiredAction)(nil))
+}
+
+func (o RequiredActionArrayOutput) ToRequiredActionArrayOutput() RequiredActionArrayOutput {
+	return o
+}
+
+func (o RequiredActionArrayOutput) ToRequiredActionArrayOutputWithContext(ctx context.Context) RequiredActionArrayOutput {
+	return o
+}
+
+func (o RequiredActionArrayOutput) Index(i pulumi.IntInput) RequiredActionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RequiredAction {
+		return vs[0].([]RequiredAction)[vs[1].(int)]
+	}).(RequiredActionOutput)
+}
+
+type RequiredActionMapOutput struct{ *pulumi.OutputState }
+
+func (RequiredActionMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]RequiredAction)(nil))
+}
+
+func (o RequiredActionMapOutput) ToRequiredActionMapOutput() RequiredActionMapOutput {
+	return o
+}
+
+func (o RequiredActionMapOutput) ToRequiredActionMapOutputWithContext(ctx context.Context) RequiredActionMapOutput {
+	return o
+}
+
+func (o RequiredActionMapOutput) MapIndex(k pulumi.StringInput) RequiredActionOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RequiredAction {
+		return vs[0].(map[string]RequiredAction)[vs[1].(string)]
+	}).(RequiredActionOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(RequiredActionOutput{})
+	pulumi.RegisterOutputType(RequiredActionPtrOutput{})
+	pulumi.RegisterOutputType(RequiredActionArrayOutput{})
+	pulumi.RegisterOutputType(RequiredActionMapOutput{})
 }

@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/oidc"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -351,6 +351,85 @@ func (i *GoogleIdentityProvider) ToGoogleIdentityProviderOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(GoogleIdentityProviderOutput)
 }
 
+func (i *GoogleIdentityProvider) ToGoogleIdentityProviderPtrOutput() GoogleIdentityProviderPtrOutput {
+	return i.ToGoogleIdentityProviderPtrOutputWithContext(context.Background())
+}
+
+func (i *GoogleIdentityProvider) ToGoogleIdentityProviderPtrOutputWithContext(ctx context.Context) GoogleIdentityProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GoogleIdentityProviderPtrOutput)
+}
+
+type GoogleIdentityProviderPtrInput interface {
+	pulumi.Input
+
+	ToGoogleIdentityProviderPtrOutput() GoogleIdentityProviderPtrOutput
+	ToGoogleIdentityProviderPtrOutputWithContext(ctx context.Context) GoogleIdentityProviderPtrOutput
+}
+
+type googleIdentityProviderPtrType GoogleIdentityProviderArgs
+
+func (*googleIdentityProviderPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GoogleIdentityProvider)(nil))
+}
+
+func (i *googleIdentityProviderPtrType) ToGoogleIdentityProviderPtrOutput() GoogleIdentityProviderPtrOutput {
+	return i.ToGoogleIdentityProviderPtrOutputWithContext(context.Background())
+}
+
+func (i *googleIdentityProviderPtrType) ToGoogleIdentityProviderPtrOutputWithContext(ctx context.Context) GoogleIdentityProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GoogleIdentityProviderPtrOutput)
+}
+
+// GoogleIdentityProviderArrayInput is an input type that accepts GoogleIdentityProviderArray and GoogleIdentityProviderArrayOutput values.
+// You can construct a concrete instance of `GoogleIdentityProviderArrayInput` via:
+//
+//          GoogleIdentityProviderArray{ GoogleIdentityProviderArgs{...} }
+type GoogleIdentityProviderArrayInput interface {
+	pulumi.Input
+
+	ToGoogleIdentityProviderArrayOutput() GoogleIdentityProviderArrayOutput
+	ToGoogleIdentityProviderArrayOutputWithContext(context.Context) GoogleIdentityProviderArrayOutput
+}
+
+type GoogleIdentityProviderArray []GoogleIdentityProviderInput
+
+func (GoogleIdentityProviderArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*GoogleIdentityProvider)(nil))
+}
+
+func (i GoogleIdentityProviderArray) ToGoogleIdentityProviderArrayOutput() GoogleIdentityProviderArrayOutput {
+	return i.ToGoogleIdentityProviderArrayOutputWithContext(context.Background())
+}
+
+func (i GoogleIdentityProviderArray) ToGoogleIdentityProviderArrayOutputWithContext(ctx context.Context) GoogleIdentityProviderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GoogleIdentityProviderArrayOutput)
+}
+
+// GoogleIdentityProviderMapInput is an input type that accepts GoogleIdentityProviderMap and GoogleIdentityProviderMapOutput values.
+// You can construct a concrete instance of `GoogleIdentityProviderMapInput` via:
+//
+//          GoogleIdentityProviderMap{ "key": GoogleIdentityProviderArgs{...} }
+type GoogleIdentityProviderMapInput interface {
+	pulumi.Input
+
+	ToGoogleIdentityProviderMapOutput() GoogleIdentityProviderMapOutput
+	ToGoogleIdentityProviderMapOutputWithContext(context.Context) GoogleIdentityProviderMapOutput
+}
+
+type GoogleIdentityProviderMap map[string]GoogleIdentityProviderInput
+
+func (GoogleIdentityProviderMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*GoogleIdentityProvider)(nil))
+}
+
+func (i GoogleIdentityProviderMap) ToGoogleIdentityProviderMapOutput() GoogleIdentityProviderMapOutput {
+	return i.ToGoogleIdentityProviderMapOutputWithContext(context.Background())
+}
+
+func (i GoogleIdentityProviderMap) ToGoogleIdentityProviderMapOutputWithContext(ctx context.Context) GoogleIdentityProviderMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GoogleIdentityProviderMapOutput)
+}
+
 type GoogleIdentityProviderOutput struct {
 	*pulumi.OutputState
 }
@@ -367,6 +446,75 @@ func (o GoogleIdentityProviderOutput) ToGoogleIdentityProviderOutputWithContext(
 	return o
 }
 
+func (o GoogleIdentityProviderOutput) ToGoogleIdentityProviderPtrOutput() GoogleIdentityProviderPtrOutput {
+	return o.ToGoogleIdentityProviderPtrOutputWithContext(context.Background())
+}
+
+func (o GoogleIdentityProviderOutput) ToGoogleIdentityProviderPtrOutputWithContext(ctx context.Context) GoogleIdentityProviderPtrOutput {
+	return o.ApplyT(func(v GoogleIdentityProvider) *GoogleIdentityProvider {
+		return &v
+	}).(GoogleIdentityProviderPtrOutput)
+}
+
+type GoogleIdentityProviderPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (GoogleIdentityProviderPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GoogleIdentityProvider)(nil))
+}
+
+func (o GoogleIdentityProviderPtrOutput) ToGoogleIdentityProviderPtrOutput() GoogleIdentityProviderPtrOutput {
+	return o
+}
+
+func (o GoogleIdentityProviderPtrOutput) ToGoogleIdentityProviderPtrOutputWithContext(ctx context.Context) GoogleIdentityProviderPtrOutput {
+	return o
+}
+
+type GoogleIdentityProviderArrayOutput struct{ *pulumi.OutputState }
+
+func (GoogleIdentityProviderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GoogleIdentityProvider)(nil))
+}
+
+func (o GoogleIdentityProviderArrayOutput) ToGoogleIdentityProviderArrayOutput() GoogleIdentityProviderArrayOutput {
+	return o
+}
+
+func (o GoogleIdentityProviderArrayOutput) ToGoogleIdentityProviderArrayOutputWithContext(ctx context.Context) GoogleIdentityProviderArrayOutput {
+	return o
+}
+
+func (o GoogleIdentityProviderArrayOutput) Index(i pulumi.IntInput) GoogleIdentityProviderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GoogleIdentityProvider {
+		return vs[0].([]GoogleIdentityProvider)[vs[1].(int)]
+	}).(GoogleIdentityProviderOutput)
+}
+
+type GoogleIdentityProviderMapOutput struct{ *pulumi.OutputState }
+
+func (GoogleIdentityProviderMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]GoogleIdentityProvider)(nil))
+}
+
+func (o GoogleIdentityProviderMapOutput) ToGoogleIdentityProviderMapOutput() GoogleIdentityProviderMapOutput {
+	return o
+}
+
+func (o GoogleIdentityProviderMapOutput) ToGoogleIdentityProviderMapOutputWithContext(ctx context.Context) GoogleIdentityProviderMapOutput {
+	return o
+}
+
+func (o GoogleIdentityProviderMapOutput) MapIndex(k pulumi.StringInput) GoogleIdentityProviderOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) GoogleIdentityProvider {
+		return vs[0].(map[string]GoogleIdentityProvider)[vs[1].(string)]
+	}).(GoogleIdentityProviderOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(GoogleIdentityProviderOutput{})
+	pulumi.RegisterOutputType(GoogleIdentityProviderPtrOutput{})
+	pulumi.RegisterOutputType(GoogleIdentityProviderArrayOutput{})
+	pulumi.RegisterOutputType(GoogleIdentityProviderMapOutput{})
 }

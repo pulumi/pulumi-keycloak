@@ -24,7 +24,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/ldap"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -479,6 +479,85 @@ func (i *UserFederation) ToUserFederationOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(UserFederationOutput)
 }
 
+func (i *UserFederation) ToUserFederationPtrOutput() UserFederationPtrOutput {
+	return i.ToUserFederationPtrOutputWithContext(context.Background())
+}
+
+func (i *UserFederation) ToUserFederationPtrOutputWithContext(ctx context.Context) UserFederationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserFederationPtrOutput)
+}
+
+type UserFederationPtrInput interface {
+	pulumi.Input
+
+	ToUserFederationPtrOutput() UserFederationPtrOutput
+	ToUserFederationPtrOutputWithContext(ctx context.Context) UserFederationPtrOutput
+}
+
+type userFederationPtrType UserFederationArgs
+
+func (*userFederationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserFederation)(nil))
+}
+
+func (i *userFederationPtrType) ToUserFederationPtrOutput() UserFederationPtrOutput {
+	return i.ToUserFederationPtrOutputWithContext(context.Background())
+}
+
+func (i *userFederationPtrType) ToUserFederationPtrOutputWithContext(ctx context.Context) UserFederationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserFederationPtrOutput)
+}
+
+// UserFederationArrayInput is an input type that accepts UserFederationArray and UserFederationArrayOutput values.
+// You can construct a concrete instance of `UserFederationArrayInput` via:
+//
+//          UserFederationArray{ UserFederationArgs{...} }
+type UserFederationArrayInput interface {
+	pulumi.Input
+
+	ToUserFederationArrayOutput() UserFederationArrayOutput
+	ToUserFederationArrayOutputWithContext(context.Context) UserFederationArrayOutput
+}
+
+type UserFederationArray []UserFederationInput
+
+func (UserFederationArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*UserFederation)(nil))
+}
+
+func (i UserFederationArray) ToUserFederationArrayOutput() UserFederationArrayOutput {
+	return i.ToUserFederationArrayOutputWithContext(context.Background())
+}
+
+func (i UserFederationArray) ToUserFederationArrayOutputWithContext(ctx context.Context) UserFederationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserFederationArrayOutput)
+}
+
+// UserFederationMapInput is an input type that accepts UserFederationMap and UserFederationMapOutput values.
+// You can construct a concrete instance of `UserFederationMapInput` via:
+//
+//          UserFederationMap{ "key": UserFederationArgs{...} }
+type UserFederationMapInput interface {
+	pulumi.Input
+
+	ToUserFederationMapOutput() UserFederationMapOutput
+	ToUserFederationMapOutputWithContext(context.Context) UserFederationMapOutput
+}
+
+type UserFederationMap map[string]UserFederationInput
+
+func (UserFederationMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*UserFederation)(nil))
+}
+
+func (i UserFederationMap) ToUserFederationMapOutput() UserFederationMapOutput {
+	return i.ToUserFederationMapOutputWithContext(context.Background())
+}
+
+func (i UserFederationMap) ToUserFederationMapOutputWithContext(ctx context.Context) UserFederationMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserFederationMapOutput)
+}
+
 type UserFederationOutput struct {
 	*pulumi.OutputState
 }
@@ -495,6 +574,75 @@ func (o UserFederationOutput) ToUserFederationOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o UserFederationOutput) ToUserFederationPtrOutput() UserFederationPtrOutput {
+	return o.ToUserFederationPtrOutputWithContext(context.Background())
+}
+
+func (o UserFederationOutput) ToUserFederationPtrOutputWithContext(ctx context.Context) UserFederationPtrOutput {
+	return o.ApplyT(func(v UserFederation) *UserFederation {
+		return &v
+	}).(UserFederationPtrOutput)
+}
+
+type UserFederationPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (UserFederationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserFederation)(nil))
+}
+
+func (o UserFederationPtrOutput) ToUserFederationPtrOutput() UserFederationPtrOutput {
+	return o
+}
+
+func (o UserFederationPtrOutput) ToUserFederationPtrOutputWithContext(ctx context.Context) UserFederationPtrOutput {
+	return o
+}
+
+type UserFederationArrayOutput struct{ *pulumi.OutputState }
+
+func (UserFederationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserFederation)(nil))
+}
+
+func (o UserFederationArrayOutput) ToUserFederationArrayOutput() UserFederationArrayOutput {
+	return o
+}
+
+func (o UserFederationArrayOutput) ToUserFederationArrayOutputWithContext(ctx context.Context) UserFederationArrayOutput {
+	return o
+}
+
+func (o UserFederationArrayOutput) Index(i pulumi.IntInput) UserFederationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserFederation {
+		return vs[0].([]UserFederation)[vs[1].(int)]
+	}).(UserFederationOutput)
+}
+
+type UserFederationMapOutput struct{ *pulumi.OutputState }
+
+func (UserFederationMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]UserFederation)(nil))
+}
+
+func (o UserFederationMapOutput) ToUserFederationMapOutput() UserFederationMapOutput {
+	return o
+}
+
+func (o UserFederationMapOutput) ToUserFederationMapOutputWithContext(ctx context.Context) UserFederationMapOutput {
+	return o
+}
+
+func (o UserFederationMapOutput) MapIndex(k pulumi.StringInput) UserFederationOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserFederation {
+		return vs[0].(map[string]UserFederation)[vs[1].(string)]
+	}).(UserFederationOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(UserFederationOutput{})
+	pulumi.RegisterOutputType(UserFederationPtrOutput{})
+	pulumi.RegisterOutputType(UserFederationArrayOutput{})
+	pulumi.RegisterOutputType(UserFederationMapOutput{})
 }

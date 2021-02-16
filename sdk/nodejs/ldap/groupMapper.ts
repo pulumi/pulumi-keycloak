@@ -166,7 +166,8 @@ export class GroupMapper extends pulumi.CustomResource {
     constructor(name: string, args: GroupMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GroupMapperArgs | GroupMapperState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as GroupMapperState | undefined;
             inputs["dropNonExistingGroupsDuringSync"] = state ? state.dropNonExistingGroupsDuringSync : undefined;
             inputs["groupNameLdapAttribute"] = state ? state.groupNameLdapAttribute : undefined;
@@ -188,25 +189,25 @@ export class GroupMapper extends pulumi.CustomResource {
             inputs["userRolesRetrieveStrategy"] = state ? state.userRolesRetrieveStrategy : undefined;
         } else {
             const args = argsOrState as GroupMapperArgs | undefined;
-            if ((!args || args.groupNameLdapAttribute === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.groupNameLdapAttribute === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'groupNameLdapAttribute'");
             }
-            if ((!args || args.groupObjectClasses === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.groupObjectClasses === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'groupObjectClasses'");
             }
-            if ((!args || args.ldapGroupsDn === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.ldapGroupsDn === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ldapGroupsDn'");
             }
-            if ((!args || args.ldapUserFederationId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.ldapUserFederationId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if ((!args || args.membershipLdapAttribute === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.membershipLdapAttribute === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'membershipLdapAttribute'");
             }
-            if ((!args || args.membershipUserLdapAttribute === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.membershipUserLdapAttribute === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'membershipUserLdapAttribute'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["dropNonExistingGroupsDuringSync"] = args ? args.dropNonExistingGroupsDuringSync : undefined;
@@ -228,12 +229,8 @@ export class GroupMapper extends pulumi.CustomResource {
             inputs["realmId"] = args ? args.realmId : undefined;
             inputs["userRolesRetrieveStrategy"] = args ? args.userRolesRetrieveStrategy : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(GroupMapper.__pulumiType, name, inputs, opts);
     }

@@ -141,7 +141,8 @@ export class GroupMembershipProtocolMapper extends pulumi.CustomResource {
     constructor(name: string, args: GroupMembershipProtocolMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GroupMembershipProtocolMapperArgs | GroupMembershipProtocolMapperState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as GroupMembershipProtocolMapperState | undefined;
             inputs["addToAccessToken"] = state ? state.addToAccessToken : undefined;
             inputs["addToIdToken"] = state ? state.addToIdToken : undefined;
@@ -154,10 +155,10 @@ export class GroupMembershipProtocolMapper extends pulumi.CustomResource {
             inputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as GroupMembershipProtocolMapperArgs | undefined;
-            if ((!args || args.claimName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.claimName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'claimName'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["addToAccessToken"] = args ? args.addToAccessToken : undefined;
@@ -170,12 +171,8 @@ export class GroupMembershipProtocolMapper extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(GroupMembershipProtocolMapper.__pulumiType, name, inputs, opts);
     }

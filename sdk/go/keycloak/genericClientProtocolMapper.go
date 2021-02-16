@@ -26,7 +26,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/saml"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -229,6 +229,85 @@ func (i *GenericClientProtocolMapper) ToGenericClientProtocolMapperOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(GenericClientProtocolMapperOutput)
 }
 
+func (i *GenericClientProtocolMapper) ToGenericClientProtocolMapperPtrOutput() GenericClientProtocolMapperPtrOutput {
+	return i.ToGenericClientProtocolMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *GenericClientProtocolMapper) ToGenericClientProtocolMapperPtrOutputWithContext(ctx context.Context) GenericClientProtocolMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GenericClientProtocolMapperPtrOutput)
+}
+
+type GenericClientProtocolMapperPtrInput interface {
+	pulumi.Input
+
+	ToGenericClientProtocolMapperPtrOutput() GenericClientProtocolMapperPtrOutput
+	ToGenericClientProtocolMapperPtrOutputWithContext(ctx context.Context) GenericClientProtocolMapperPtrOutput
+}
+
+type genericClientProtocolMapperPtrType GenericClientProtocolMapperArgs
+
+func (*genericClientProtocolMapperPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GenericClientProtocolMapper)(nil))
+}
+
+func (i *genericClientProtocolMapperPtrType) ToGenericClientProtocolMapperPtrOutput() GenericClientProtocolMapperPtrOutput {
+	return i.ToGenericClientProtocolMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *genericClientProtocolMapperPtrType) ToGenericClientProtocolMapperPtrOutputWithContext(ctx context.Context) GenericClientProtocolMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GenericClientProtocolMapperPtrOutput)
+}
+
+// GenericClientProtocolMapperArrayInput is an input type that accepts GenericClientProtocolMapperArray and GenericClientProtocolMapperArrayOutput values.
+// You can construct a concrete instance of `GenericClientProtocolMapperArrayInput` via:
+//
+//          GenericClientProtocolMapperArray{ GenericClientProtocolMapperArgs{...} }
+type GenericClientProtocolMapperArrayInput interface {
+	pulumi.Input
+
+	ToGenericClientProtocolMapperArrayOutput() GenericClientProtocolMapperArrayOutput
+	ToGenericClientProtocolMapperArrayOutputWithContext(context.Context) GenericClientProtocolMapperArrayOutput
+}
+
+type GenericClientProtocolMapperArray []GenericClientProtocolMapperInput
+
+func (GenericClientProtocolMapperArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*GenericClientProtocolMapper)(nil))
+}
+
+func (i GenericClientProtocolMapperArray) ToGenericClientProtocolMapperArrayOutput() GenericClientProtocolMapperArrayOutput {
+	return i.ToGenericClientProtocolMapperArrayOutputWithContext(context.Background())
+}
+
+func (i GenericClientProtocolMapperArray) ToGenericClientProtocolMapperArrayOutputWithContext(ctx context.Context) GenericClientProtocolMapperArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GenericClientProtocolMapperArrayOutput)
+}
+
+// GenericClientProtocolMapperMapInput is an input type that accepts GenericClientProtocolMapperMap and GenericClientProtocolMapperMapOutput values.
+// You can construct a concrete instance of `GenericClientProtocolMapperMapInput` via:
+//
+//          GenericClientProtocolMapperMap{ "key": GenericClientProtocolMapperArgs{...} }
+type GenericClientProtocolMapperMapInput interface {
+	pulumi.Input
+
+	ToGenericClientProtocolMapperMapOutput() GenericClientProtocolMapperMapOutput
+	ToGenericClientProtocolMapperMapOutputWithContext(context.Context) GenericClientProtocolMapperMapOutput
+}
+
+type GenericClientProtocolMapperMap map[string]GenericClientProtocolMapperInput
+
+func (GenericClientProtocolMapperMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*GenericClientProtocolMapper)(nil))
+}
+
+func (i GenericClientProtocolMapperMap) ToGenericClientProtocolMapperMapOutput() GenericClientProtocolMapperMapOutput {
+	return i.ToGenericClientProtocolMapperMapOutputWithContext(context.Background())
+}
+
+func (i GenericClientProtocolMapperMap) ToGenericClientProtocolMapperMapOutputWithContext(ctx context.Context) GenericClientProtocolMapperMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GenericClientProtocolMapperMapOutput)
+}
+
 type GenericClientProtocolMapperOutput struct {
 	*pulumi.OutputState
 }
@@ -245,6 +324,75 @@ func (o GenericClientProtocolMapperOutput) ToGenericClientProtocolMapperOutputWi
 	return o
 }
 
+func (o GenericClientProtocolMapperOutput) ToGenericClientProtocolMapperPtrOutput() GenericClientProtocolMapperPtrOutput {
+	return o.ToGenericClientProtocolMapperPtrOutputWithContext(context.Background())
+}
+
+func (o GenericClientProtocolMapperOutput) ToGenericClientProtocolMapperPtrOutputWithContext(ctx context.Context) GenericClientProtocolMapperPtrOutput {
+	return o.ApplyT(func(v GenericClientProtocolMapper) *GenericClientProtocolMapper {
+		return &v
+	}).(GenericClientProtocolMapperPtrOutput)
+}
+
+type GenericClientProtocolMapperPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (GenericClientProtocolMapperPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GenericClientProtocolMapper)(nil))
+}
+
+func (o GenericClientProtocolMapperPtrOutput) ToGenericClientProtocolMapperPtrOutput() GenericClientProtocolMapperPtrOutput {
+	return o
+}
+
+func (o GenericClientProtocolMapperPtrOutput) ToGenericClientProtocolMapperPtrOutputWithContext(ctx context.Context) GenericClientProtocolMapperPtrOutput {
+	return o
+}
+
+type GenericClientProtocolMapperArrayOutput struct{ *pulumi.OutputState }
+
+func (GenericClientProtocolMapperArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GenericClientProtocolMapper)(nil))
+}
+
+func (o GenericClientProtocolMapperArrayOutput) ToGenericClientProtocolMapperArrayOutput() GenericClientProtocolMapperArrayOutput {
+	return o
+}
+
+func (o GenericClientProtocolMapperArrayOutput) ToGenericClientProtocolMapperArrayOutputWithContext(ctx context.Context) GenericClientProtocolMapperArrayOutput {
+	return o
+}
+
+func (o GenericClientProtocolMapperArrayOutput) Index(i pulumi.IntInput) GenericClientProtocolMapperOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GenericClientProtocolMapper {
+		return vs[0].([]GenericClientProtocolMapper)[vs[1].(int)]
+	}).(GenericClientProtocolMapperOutput)
+}
+
+type GenericClientProtocolMapperMapOutput struct{ *pulumi.OutputState }
+
+func (GenericClientProtocolMapperMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]GenericClientProtocolMapper)(nil))
+}
+
+func (o GenericClientProtocolMapperMapOutput) ToGenericClientProtocolMapperMapOutput() GenericClientProtocolMapperMapOutput {
+	return o
+}
+
+func (o GenericClientProtocolMapperMapOutput) ToGenericClientProtocolMapperMapOutputWithContext(ctx context.Context) GenericClientProtocolMapperMapOutput {
+	return o
+}
+
+func (o GenericClientProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) GenericClientProtocolMapperOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) GenericClientProtocolMapper {
+		return vs[0].(map[string]GenericClientProtocolMapper)[vs[1].(string)]
+	}).(GenericClientProtocolMapperOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(GenericClientProtocolMapperOutput{})
+	pulumi.RegisterOutputType(GenericClientProtocolMapperPtrOutput{})
+	pulumi.RegisterOutputType(GenericClientProtocolMapperArrayOutput{})
+	pulumi.RegisterOutputType(GenericClientProtocolMapperMapOutput{})
 }

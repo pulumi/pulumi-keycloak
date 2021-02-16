@@ -151,7 +151,8 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
     constructor(name: string, args: UserSessionNoteProtocolMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserSessionNoteProtocolMapperArgs | UserSessionNoteProtocolMapperState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as UserSessionNoteProtocolMapperState | undefined;
             inputs["addToAccessToken"] = state ? state.addToAccessToken : undefined;
             inputs["addToIdToken"] = state ? state.addToIdToken : undefined;
@@ -165,10 +166,10 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
             inputs["sessionNoteLabel"] = state ? state.sessionNoteLabel : undefined;
         } else {
             const args = argsOrState as UserSessionNoteProtocolMapperArgs | undefined;
-            if ((!args || args.claimName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.claimName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'claimName'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["addToAccessToken"] = args ? args.addToAccessToken : undefined;
@@ -182,12 +183,8 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
             inputs["sessionNote"] = args ? args.sessionNote : undefined;
             inputs["sessionNoteLabel"] = args ? args.sessionNoteLabel : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(UserSessionNoteProtocolMapper.__pulumiType, name, inputs, opts);
     }

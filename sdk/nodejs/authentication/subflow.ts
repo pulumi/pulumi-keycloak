@@ -53,7 +53,8 @@ export class Subflow extends pulumi.CustomResource {
     constructor(name: string, args: SubflowArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SubflowArgs | SubflowState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SubflowState | undefined;
             inputs["alias"] = state ? state.alias : undefined;
             inputs["authenticator"] = state ? state.authenticator : undefined;
@@ -64,13 +65,13 @@ export class Subflow extends pulumi.CustomResource {
             inputs["requirement"] = state ? state.requirement : undefined;
         } else {
             const args = argsOrState as SubflowArgs | undefined;
-            if ((!args || args.alias === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.alias === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'alias'");
             }
-            if ((!args || args.parentFlowAlias === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.parentFlowAlias === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'parentFlowAlias'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["alias"] = args ? args.alias : undefined;
@@ -81,12 +82,8 @@ export class Subflow extends pulumi.CustomResource {
             inputs["realmId"] = args ? args.realmId : undefined;
             inputs["requirement"] = args ? args.requirement : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Subflow.__pulumiType, name, inputs, opts);
     }

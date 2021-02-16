@@ -195,6 +195,85 @@ func (i *RoleMapper) ToRoleMapperOutputWithContext(ctx context.Context) RoleMapp
 	return pulumi.ToOutputWithContext(ctx, i).(RoleMapperOutput)
 }
 
+func (i *RoleMapper) ToRoleMapperPtrOutput() RoleMapperPtrOutput {
+	return i.ToRoleMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *RoleMapper) ToRoleMapperPtrOutputWithContext(ctx context.Context) RoleMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoleMapperPtrOutput)
+}
+
+type RoleMapperPtrInput interface {
+	pulumi.Input
+
+	ToRoleMapperPtrOutput() RoleMapperPtrOutput
+	ToRoleMapperPtrOutputWithContext(ctx context.Context) RoleMapperPtrOutput
+}
+
+type roleMapperPtrType RoleMapperArgs
+
+func (*roleMapperPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RoleMapper)(nil))
+}
+
+func (i *roleMapperPtrType) ToRoleMapperPtrOutput() RoleMapperPtrOutput {
+	return i.ToRoleMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *roleMapperPtrType) ToRoleMapperPtrOutputWithContext(ctx context.Context) RoleMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoleMapperPtrOutput)
+}
+
+// RoleMapperArrayInput is an input type that accepts RoleMapperArray and RoleMapperArrayOutput values.
+// You can construct a concrete instance of `RoleMapperArrayInput` via:
+//
+//          RoleMapperArray{ RoleMapperArgs{...} }
+type RoleMapperArrayInput interface {
+	pulumi.Input
+
+	ToRoleMapperArrayOutput() RoleMapperArrayOutput
+	ToRoleMapperArrayOutputWithContext(context.Context) RoleMapperArrayOutput
+}
+
+type RoleMapperArray []RoleMapperInput
+
+func (RoleMapperArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*RoleMapper)(nil))
+}
+
+func (i RoleMapperArray) ToRoleMapperArrayOutput() RoleMapperArrayOutput {
+	return i.ToRoleMapperArrayOutputWithContext(context.Background())
+}
+
+func (i RoleMapperArray) ToRoleMapperArrayOutputWithContext(ctx context.Context) RoleMapperArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoleMapperArrayOutput)
+}
+
+// RoleMapperMapInput is an input type that accepts RoleMapperMap and RoleMapperMapOutput values.
+// You can construct a concrete instance of `RoleMapperMapInput` via:
+//
+//          RoleMapperMap{ "key": RoleMapperArgs{...} }
+type RoleMapperMapInput interface {
+	pulumi.Input
+
+	ToRoleMapperMapOutput() RoleMapperMapOutput
+	ToRoleMapperMapOutputWithContext(context.Context) RoleMapperMapOutput
+}
+
+type RoleMapperMap map[string]RoleMapperInput
+
+func (RoleMapperMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*RoleMapper)(nil))
+}
+
+func (i RoleMapperMap) ToRoleMapperMapOutput() RoleMapperMapOutput {
+	return i.ToRoleMapperMapOutputWithContext(context.Background())
+}
+
+func (i RoleMapperMap) ToRoleMapperMapOutputWithContext(ctx context.Context) RoleMapperMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoleMapperMapOutput)
+}
+
 type RoleMapperOutput struct {
 	*pulumi.OutputState
 }
@@ -211,6 +290,75 @@ func (o RoleMapperOutput) ToRoleMapperOutputWithContext(ctx context.Context) Rol
 	return o
 }
 
+func (o RoleMapperOutput) ToRoleMapperPtrOutput() RoleMapperPtrOutput {
+	return o.ToRoleMapperPtrOutputWithContext(context.Background())
+}
+
+func (o RoleMapperOutput) ToRoleMapperPtrOutputWithContext(ctx context.Context) RoleMapperPtrOutput {
+	return o.ApplyT(func(v RoleMapper) *RoleMapper {
+		return &v
+	}).(RoleMapperPtrOutput)
+}
+
+type RoleMapperPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RoleMapperPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RoleMapper)(nil))
+}
+
+func (o RoleMapperPtrOutput) ToRoleMapperPtrOutput() RoleMapperPtrOutput {
+	return o
+}
+
+func (o RoleMapperPtrOutput) ToRoleMapperPtrOutputWithContext(ctx context.Context) RoleMapperPtrOutput {
+	return o
+}
+
+type RoleMapperArrayOutput struct{ *pulumi.OutputState }
+
+func (RoleMapperArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RoleMapper)(nil))
+}
+
+func (o RoleMapperArrayOutput) ToRoleMapperArrayOutput() RoleMapperArrayOutput {
+	return o
+}
+
+func (o RoleMapperArrayOutput) ToRoleMapperArrayOutputWithContext(ctx context.Context) RoleMapperArrayOutput {
+	return o
+}
+
+func (o RoleMapperArrayOutput) Index(i pulumi.IntInput) RoleMapperOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RoleMapper {
+		return vs[0].([]RoleMapper)[vs[1].(int)]
+	}).(RoleMapperOutput)
+}
+
+type RoleMapperMapOutput struct{ *pulumi.OutputState }
+
+func (RoleMapperMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]RoleMapper)(nil))
+}
+
+func (o RoleMapperMapOutput) ToRoleMapperMapOutput() RoleMapperMapOutput {
+	return o
+}
+
+func (o RoleMapperMapOutput) ToRoleMapperMapOutputWithContext(ctx context.Context) RoleMapperMapOutput {
+	return o
+}
+
+func (o RoleMapperMapOutput) MapIndex(k pulumi.StringInput) RoleMapperOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RoleMapper {
+		return vs[0].(map[string]RoleMapper)[vs[1].(string)]
+	}).(RoleMapperOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(RoleMapperOutput{})
+	pulumi.RegisterOutputType(RoleMapperPtrOutput{})
+	pulumi.RegisterOutputType(RoleMapperArrayOutput{})
+	pulumi.RegisterOutputType(RoleMapperMapOutput{})
 }
