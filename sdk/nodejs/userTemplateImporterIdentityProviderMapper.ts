@@ -60,7 +60,8 @@ export class UserTemplateImporterIdentityProviderMapper extends pulumi.CustomRes
     constructor(name: string, args: UserTemplateImporterIdentityProviderMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserTemplateImporterIdentityProviderMapperArgs | UserTemplateImporterIdentityProviderMapperState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as UserTemplateImporterIdentityProviderMapperState | undefined;
             inputs["extraConfig"] = state ? state.extraConfig : undefined;
             inputs["identityProviderAlias"] = state ? state.identityProviderAlias : undefined;
@@ -69,10 +70,10 @@ export class UserTemplateImporterIdentityProviderMapper extends pulumi.CustomRes
             inputs["template"] = state ? state.template : undefined;
         } else {
             const args = argsOrState as UserTemplateImporterIdentityProviderMapperArgs | undefined;
-            if ((!args || args.identityProviderAlias === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.identityProviderAlias === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'identityProviderAlias'");
             }
-            if ((!args || args.realm === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realm === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realm'");
             }
             inputs["extraConfig"] = args ? args.extraConfig : undefined;
@@ -81,12 +82,8 @@ export class UserTemplateImporterIdentityProviderMapper extends pulumi.CustomRes
             inputs["realm"] = args ? args.realm : undefined;
             inputs["template"] = args ? args.template : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(UserTemplateImporterIdentityProviderMapper.__pulumiType, name, inputs, opts);
     }

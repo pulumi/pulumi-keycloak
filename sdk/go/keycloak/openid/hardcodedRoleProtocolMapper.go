@@ -25,7 +25,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -75,7 +75,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -254,6 +254,85 @@ func (i *HardcodedRoleProtocolMapper) ToHardcodedRoleProtocolMapperOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleProtocolMapperOutput)
 }
 
+func (i *HardcodedRoleProtocolMapper) ToHardcodedRoleProtocolMapperPtrOutput() HardcodedRoleProtocolMapperPtrOutput {
+	return i.ToHardcodedRoleProtocolMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *HardcodedRoleProtocolMapper) ToHardcodedRoleProtocolMapperPtrOutputWithContext(ctx context.Context) HardcodedRoleProtocolMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleProtocolMapperPtrOutput)
+}
+
+type HardcodedRoleProtocolMapperPtrInput interface {
+	pulumi.Input
+
+	ToHardcodedRoleProtocolMapperPtrOutput() HardcodedRoleProtocolMapperPtrOutput
+	ToHardcodedRoleProtocolMapperPtrOutputWithContext(ctx context.Context) HardcodedRoleProtocolMapperPtrOutput
+}
+
+type hardcodedRoleProtocolMapperPtrType HardcodedRoleProtocolMapperArgs
+
+func (*hardcodedRoleProtocolMapperPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**HardcodedRoleProtocolMapper)(nil))
+}
+
+func (i *hardcodedRoleProtocolMapperPtrType) ToHardcodedRoleProtocolMapperPtrOutput() HardcodedRoleProtocolMapperPtrOutput {
+	return i.ToHardcodedRoleProtocolMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *hardcodedRoleProtocolMapperPtrType) ToHardcodedRoleProtocolMapperPtrOutputWithContext(ctx context.Context) HardcodedRoleProtocolMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleProtocolMapperPtrOutput)
+}
+
+// HardcodedRoleProtocolMapperArrayInput is an input type that accepts HardcodedRoleProtocolMapperArray and HardcodedRoleProtocolMapperArrayOutput values.
+// You can construct a concrete instance of `HardcodedRoleProtocolMapperArrayInput` via:
+//
+//          HardcodedRoleProtocolMapperArray{ HardcodedRoleProtocolMapperArgs{...} }
+type HardcodedRoleProtocolMapperArrayInput interface {
+	pulumi.Input
+
+	ToHardcodedRoleProtocolMapperArrayOutput() HardcodedRoleProtocolMapperArrayOutput
+	ToHardcodedRoleProtocolMapperArrayOutputWithContext(context.Context) HardcodedRoleProtocolMapperArrayOutput
+}
+
+type HardcodedRoleProtocolMapperArray []HardcodedRoleProtocolMapperInput
+
+func (HardcodedRoleProtocolMapperArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*HardcodedRoleProtocolMapper)(nil))
+}
+
+func (i HardcodedRoleProtocolMapperArray) ToHardcodedRoleProtocolMapperArrayOutput() HardcodedRoleProtocolMapperArrayOutput {
+	return i.ToHardcodedRoleProtocolMapperArrayOutputWithContext(context.Background())
+}
+
+func (i HardcodedRoleProtocolMapperArray) ToHardcodedRoleProtocolMapperArrayOutputWithContext(ctx context.Context) HardcodedRoleProtocolMapperArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleProtocolMapperArrayOutput)
+}
+
+// HardcodedRoleProtocolMapperMapInput is an input type that accepts HardcodedRoleProtocolMapperMap and HardcodedRoleProtocolMapperMapOutput values.
+// You can construct a concrete instance of `HardcodedRoleProtocolMapperMapInput` via:
+//
+//          HardcodedRoleProtocolMapperMap{ "key": HardcodedRoleProtocolMapperArgs{...} }
+type HardcodedRoleProtocolMapperMapInput interface {
+	pulumi.Input
+
+	ToHardcodedRoleProtocolMapperMapOutput() HardcodedRoleProtocolMapperMapOutput
+	ToHardcodedRoleProtocolMapperMapOutputWithContext(context.Context) HardcodedRoleProtocolMapperMapOutput
+}
+
+type HardcodedRoleProtocolMapperMap map[string]HardcodedRoleProtocolMapperInput
+
+func (HardcodedRoleProtocolMapperMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*HardcodedRoleProtocolMapper)(nil))
+}
+
+func (i HardcodedRoleProtocolMapperMap) ToHardcodedRoleProtocolMapperMapOutput() HardcodedRoleProtocolMapperMapOutput {
+	return i.ToHardcodedRoleProtocolMapperMapOutputWithContext(context.Background())
+}
+
+func (i HardcodedRoleProtocolMapperMap) ToHardcodedRoleProtocolMapperMapOutputWithContext(ctx context.Context) HardcodedRoleProtocolMapperMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleProtocolMapperMapOutput)
+}
+
 type HardcodedRoleProtocolMapperOutput struct {
 	*pulumi.OutputState
 }
@@ -270,6 +349,75 @@ func (o HardcodedRoleProtocolMapperOutput) ToHardcodedRoleProtocolMapperOutputWi
 	return o
 }
 
+func (o HardcodedRoleProtocolMapperOutput) ToHardcodedRoleProtocolMapperPtrOutput() HardcodedRoleProtocolMapperPtrOutput {
+	return o.ToHardcodedRoleProtocolMapperPtrOutputWithContext(context.Background())
+}
+
+func (o HardcodedRoleProtocolMapperOutput) ToHardcodedRoleProtocolMapperPtrOutputWithContext(ctx context.Context) HardcodedRoleProtocolMapperPtrOutput {
+	return o.ApplyT(func(v HardcodedRoleProtocolMapper) *HardcodedRoleProtocolMapper {
+		return &v
+	}).(HardcodedRoleProtocolMapperPtrOutput)
+}
+
+type HardcodedRoleProtocolMapperPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (HardcodedRoleProtocolMapperPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**HardcodedRoleProtocolMapper)(nil))
+}
+
+func (o HardcodedRoleProtocolMapperPtrOutput) ToHardcodedRoleProtocolMapperPtrOutput() HardcodedRoleProtocolMapperPtrOutput {
+	return o
+}
+
+func (o HardcodedRoleProtocolMapperPtrOutput) ToHardcodedRoleProtocolMapperPtrOutputWithContext(ctx context.Context) HardcodedRoleProtocolMapperPtrOutput {
+	return o
+}
+
+type HardcodedRoleProtocolMapperArrayOutput struct{ *pulumi.OutputState }
+
+func (HardcodedRoleProtocolMapperArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HardcodedRoleProtocolMapper)(nil))
+}
+
+func (o HardcodedRoleProtocolMapperArrayOutput) ToHardcodedRoleProtocolMapperArrayOutput() HardcodedRoleProtocolMapperArrayOutput {
+	return o
+}
+
+func (o HardcodedRoleProtocolMapperArrayOutput) ToHardcodedRoleProtocolMapperArrayOutputWithContext(ctx context.Context) HardcodedRoleProtocolMapperArrayOutput {
+	return o
+}
+
+func (o HardcodedRoleProtocolMapperArrayOutput) Index(i pulumi.IntInput) HardcodedRoleProtocolMapperOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HardcodedRoleProtocolMapper {
+		return vs[0].([]HardcodedRoleProtocolMapper)[vs[1].(int)]
+	}).(HardcodedRoleProtocolMapperOutput)
+}
+
+type HardcodedRoleProtocolMapperMapOutput struct{ *pulumi.OutputState }
+
+func (HardcodedRoleProtocolMapperMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]HardcodedRoleProtocolMapper)(nil))
+}
+
+func (o HardcodedRoleProtocolMapperMapOutput) ToHardcodedRoleProtocolMapperMapOutput() HardcodedRoleProtocolMapperMapOutput {
+	return o
+}
+
+func (o HardcodedRoleProtocolMapperMapOutput) ToHardcodedRoleProtocolMapperMapOutputWithContext(ctx context.Context) HardcodedRoleProtocolMapperMapOutput {
+	return o
+}
+
+func (o HardcodedRoleProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) HardcodedRoleProtocolMapperOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) HardcodedRoleProtocolMapper {
+		return vs[0].(map[string]HardcodedRoleProtocolMapper)[vs[1].(string)]
+	}).(HardcodedRoleProtocolMapperOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(HardcodedRoleProtocolMapperOutput{})
+	pulumi.RegisterOutputType(HardcodedRoleProtocolMapperPtrOutput{})
+	pulumi.RegisterOutputType(HardcodedRoleProtocolMapperArrayOutput{})
+	pulumi.RegisterOutputType(HardcodedRoleProtocolMapperMapOutput{})
 }

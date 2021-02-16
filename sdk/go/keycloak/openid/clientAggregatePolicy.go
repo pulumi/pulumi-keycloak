@@ -131,6 +131,85 @@ func (i *ClientAggregatePolicy) ToClientAggregatePolicyOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAggregatePolicyOutput)
 }
 
+func (i *ClientAggregatePolicy) ToClientAggregatePolicyPtrOutput() ClientAggregatePolicyPtrOutput {
+	return i.ToClientAggregatePolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *ClientAggregatePolicy) ToClientAggregatePolicyPtrOutputWithContext(ctx context.Context) ClientAggregatePolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientAggregatePolicyPtrOutput)
+}
+
+type ClientAggregatePolicyPtrInput interface {
+	pulumi.Input
+
+	ToClientAggregatePolicyPtrOutput() ClientAggregatePolicyPtrOutput
+	ToClientAggregatePolicyPtrOutputWithContext(ctx context.Context) ClientAggregatePolicyPtrOutput
+}
+
+type clientAggregatePolicyPtrType ClientAggregatePolicyArgs
+
+func (*clientAggregatePolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClientAggregatePolicy)(nil))
+}
+
+func (i *clientAggregatePolicyPtrType) ToClientAggregatePolicyPtrOutput() ClientAggregatePolicyPtrOutput {
+	return i.ToClientAggregatePolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *clientAggregatePolicyPtrType) ToClientAggregatePolicyPtrOutputWithContext(ctx context.Context) ClientAggregatePolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientAggregatePolicyPtrOutput)
+}
+
+// ClientAggregatePolicyArrayInput is an input type that accepts ClientAggregatePolicyArray and ClientAggregatePolicyArrayOutput values.
+// You can construct a concrete instance of `ClientAggregatePolicyArrayInput` via:
+//
+//          ClientAggregatePolicyArray{ ClientAggregatePolicyArgs{...} }
+type ClientAggregatePolicyArrayInput interface {
+	pulumi.Input
+
+	ToClientAggregatePolicyArrayOutput() ClientAggregatePolicyArrayOutput
+	ToClientAggregatePolicyArrayOutputWithContext(context.Context) ClientAggregatePolicyArrayOutput
+}
+
+type ClientAggregatePolicyArray []ClientAggregatePolicyInput
+
+func (ClientAggregatePolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*ClientAggregatePolicy)(nil))
+}
+
+func (i ClientAggregatePolicyArray) ToClientAggregatePolicyArrayOutput() ClientAggregatePolicyArrayOutput {
+	return i.ToClientAggregatePolicyArrayOutputWithContext(context.Background())
+}
+
+func (i ClientAggregatePolicyArray) ToClientAggregatePolicyArrayOutputWithContext(ctx context.Context) ClientAggregatePolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientAggregatePolicyArrayOutput)
+}
+
+// ClientAggregatePolicyMapInput is an input type that accepts ClientAggregatePolicyMap and ClientAggregatePolicyMapOutput values.
+// You can construct a concrete instance of `ClientAggregatePolicyMapInput` via:
+//
+//          ClientAggregatePolicyMap{ "key": ClientAggregatePolicyArgs{...} }
+type ClientAggregatePolicyMapInput interface {
+	pulumi.Input
+
+	ToClientAggregatePolicyMapOutput() ClientAggregatePolicyMapOutput
+	ToClientAggregatePolicyMapOutputWithContext(context.Context) ClientAggregatePolicyMapOutput
+}
+
+type ClientAggregatePolicyMap map[string]ClientAggregatePolicyInput
+
+func (ClientAggregatePolicyMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*ClientAggregatePolicy)(nil))
+}
+
+func (i ClientAggregatePolicyMap) ToClientAggregatePolicyMapOutput() ClientAggregatePolicyMapOutput {
+	return i.ToClientAggregatePolicyMapOutputWithContext(context.Background())
+}
+
+func (i ClientAggregatePolicyMap) ToClientAggregatePolicyMapOutputWithContext(ctx context.Context) ClientAggregatePolicyMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientAggregatePolicyMapOutput)
+}
+
 type ClientAggregatePolicyOutput struct {
 	*pulumi.OutputState
 }
@@ -147,6 +226,75 @@ func (o ClientAggregatePolicyOutput) ToClientAggregatePolicyOutputWithContext(ct
 	return o
 }
 
+func (o ClientAggregatePolicyOutput) ToClientAggregatePolicyPtrOutput() ClientAggregatePolicyPtrOutput {
+	return o.ToClientAggregatePolicyPtrOutputWithContext(context.Background())
+}
+
+func (o ClientAggregatePolicyOutput) ToClientAggregatePolicyPtrOutputWithContext(ctx context.Context) ClientAggregatePolicyPtrOutput {
+	return o.ApplyT(func(v ClientAggregatePolicy) *ClientAggregatePolicy {
+		return &v
+	}).(ClientAggregatePolicyPtrOutput)
+}
+
+type ClientAggregatePolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClientAggregatePolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClientAggregatePolicy)(nil))
+}
+
+func (o ClientAggregatePolicyPtrOutput) ToClientAggregatePolicyPtrOutput() ClientAggregatePolicyPtrOutput {
+	return o
+}
+
+func (o ClientAggregatePolicyPtrOutput) ToClientAggregatePolicyPtrOutputWithContext(ctx context.Context) ClientAggregatePolicyPtrOutput {
+	return o
+}
+
+type ClientAggregatePolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (ClientAggregatePolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClientAggregatePolicy)(nil))
+}
+
+func (o ClientAggregatePolicyArrayOutput) ToClientAggregatePolicyArrayOutput() ClientAggregatePolicyArrayOutput {
+	return o
+}
+
+func (o ClientAggregatePolicyArrayOutput) ToClientAggregatePolicyArrayOutputWithContext(ctx context.Context) ClientAggregatePolicyArrayOutput {
+	return o
+}
+
+func (o ClientAggregatePolicyArrayOutput) Index(i pulumi.IntInput) ClientAggregatePolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClientAggregatePolicy {
+		return vs[0].([]ClientAggregatePolicy)[vs[1].(int)]
+	}).(ClientAggregatePolicyOutput)
+}
+
+type ClientAggregatePolicyMapOutput struct{ *pulumi.OutputState }
+
+func (ClientAggregatePolicyMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ClientAggregatePolicy)(nil))
+}
+
+func (o ClientAggregatePolicyMapOutput) ToClientAggregatePolicyMapOutput() ClientAggregatePolicyMapOutput {
+	return o
+}
+
+func (o ClientAggregatePolicyMapOutput) ToClientAggregatePolicyMapOutputWithContext(ctx context.Context) ClientAggregatePolicyMapOutput {
+	return o
+}
+
+func (o ClientAggregatePolicyMapOutput) MapIndex(k pulumi.StringInput) ClientAggregatePolicyOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ClientAggregatePolicy {
+		return vs[0].(map[string]ClientAggregatePolicy)[vs[1].(string)]
+	}).(ClientAggregatePolicyOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(ClientAggregatePolicyOutput{})
+	pulumi.RegisterOutputType(ClientAggregatePolicyPtrOutput{})
+	pulumi.RegisterOutputType(ClientAggregatePolicyArrayOutput{})
+	pulumi.RegisterOutputType(ClientAggregatePolicyMapOutput{})
 }

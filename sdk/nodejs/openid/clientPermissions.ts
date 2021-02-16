@@ -58,7 +58,8 @@ export class ClientPermissions extends pulumi.CustomResource {
     constructor(name: string, args: ClientPermissionsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClientPermissionsArgs | ClientPermissionsState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ClientPermissionsState | undefined;
             inputs["authorizationResourceServerId"] = state ? state.authorizationResourceServerId : undefined;
             inputs["clientId"] = state ? state.clientId : undefined;
@@ -73,10 +74,10 @@ export class ClientPermissions extends pulumi.CustomResource {
             inputs["viewScope"] = state ? state.viewScope : undefined;
         } else {
             const args = argsOrState as ClientPermissionsArgs | undefined;
-            if ((!args || args.clientId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.clientId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clientId'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["clientId"] = args ? args.clientId : undefined;
@@ -91,12 +92,8 @@ export class ClientPermissions extends pulumi.CustomResource {
             inputs["authorizationResourceServerId"] = undefined /*out*/;
             inputs["enabled"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ClientPermissions.__pulumiType, name, inputs, opts);
     }

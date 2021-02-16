@@ -214,7 +214,8 @@ export class UserFederation extends pulumi.CustomResource {
     constructor(name: string, args: UserFederationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserFederationArgs | UserFederationState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as UserFederationState | undefined;
             inputs["batchSizeForSync"] = state ? state.batchSizeForSync : undefined;
             inputs["bindCredential"] = state ? state.bindCredential : undefined;
@@ -247,25 +248,25 @@ export class UserFederation extends pulumi.CustomResource {
             inputs["vendor"] = state ? state.vendor : undefined;
         } else {
             const args = argsOrState as UserFederationArgs | undefined;
-            if ((!args || args.connectionUrl === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.connectionUrl === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'connectionUrl'");
             }
-            if ((!args || args.rdnLdapAttribute === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.rdnLdapAttribute === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'rdnLdapAttribute'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.userObjectClasses === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.userObjectClasses === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'userObjectClasses'");
             }
-            if ((!args || args.usernameLdapAttribute === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.usernameLdapAttribute === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'usernameLdapAttribute'");
             }
-            if ((!args || args.usersDn === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.usersDn === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'usersDn'");
             }
-            if ((!args || args.uuidLdapAttribute === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.uuidLdapAttribute === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'uuidLdapAttribute'");
             }
             inputs["batchSizeForSync"] = args ? args.batchSizeForSync : undefined;
@@ -298,12 +299,8 @@ export class UserFederation extends pulumi.CustomResource {
             inputs["validatePasswordPolicy"] = args ? args.validatePasswordPolicy : undefined;
             inputs["vendor"] = args ? args.vendor : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(UserFederation.__pulumiType, name, inputs, opts);
     }

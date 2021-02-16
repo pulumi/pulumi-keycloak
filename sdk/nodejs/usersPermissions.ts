@@ -56,7 +56,8 @@ export class UsersPermissions extends pulumi.CustomResource {
     constructor(name: string, args: UsersPermissionsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UsersPermissionsArgs | UsersPermissionsState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as UsersPermissionsState | undefined;
             inputs["authorizationResourceServerId"] = state ? state.authorizationResourceServerId : undefined;
             inputs["enabled"] = state ? state.enabled : undefined;
@@ -69,7 +70,7 @@ export class UsersPermissions extends pulumi.CustomResource {
             inputs["viewScope"] = state ? state.viewScope : undefined;
         } else {
             const args = argsOrState as UsersPermissionsArgs | undefined;
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["impersonateScope"] = args ? args.impersonateScope : undefined;
@@ -82,12 +83,8 @@ export class UsersPermissions extends pulumi.CustomResource {
             inputs["authorizationResourceServerId"] = undefined /*out*/;
             inputs["enabled"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(UsersPermissions.__pulumiType, name, inputs, opts);
     }

@@ -25,7 +25,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -69,7 +69,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -312,6 +312,85 @@ func (i *UserClientRoleProtocolMapper) ToUserClientRoleProtocolMapperOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(UserClientRoleProtocolMapperOutput)
 }
 
+func (i *UserClientRoleProtocolMapper) ToUserClientRoleProtocolMapperPtrOutput() UserClientRoleProtocolMapperPtrOutput {
+	return i.ToUserClientRoleProtocolMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *UserClientRoleProtocolMapper) ToUserClientRoleProtocolMapperPtrOutputWithContext(ctx context.Context) UserClientRoleProtocolMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserClientRoleProtocolMapperPtrOutput)
+}
+
+type UserClientRoleProtocolMapperPtrInput interface {
+	pulumi.Input
+
+	ToUserClientRoleProtocolMapperPtrOutput() UserClientRoleProtocolMapperPtrOutput
+	ToUserClientRoleProtocolMapperPtrOutputWithContext(ctx context.Context) UserClientRoleProtocolMapperPtrOutput
+}
+
+type userClientRoleProtocolMapperPtrType UserClientRoleProtocolMapperArgs
+
+func (*userClientRoleProtocolMapperPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserClientRoleProtocolMapper)(nil))
+}
+
+func (i *userClientRoleProtocolMapperPtrType) ToUserClientRoleProtocolMapperPtrOutput() UserClientRoleProtocolMapperPtrOutput {
+	return i.ToUserClientRoleProtocolMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *userClientRoleProtocolMapperPtrType) ToUserClientRoleProtocolMapperPtrOutputWithContext(ctx context.Context) UserClientRoleProtocolMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserClientRoleProtocolMapperPtrOutput)
+}
+
+// UserClientRoleProtocolMapperArrayInput is an input type that accepts UserClientRoleProtocolMapperArray and UserClientRoleProtocolMapperArrayOutput values.
+// You can construct a concrete instance of `UserClientRoleProtocolMapperArrayInput` via:
+//
+//          UserClientRoleProtocolMapperArray{ UserClientRoleProtocolMapperArgs{...} }
+type UserClientRoleProtocolMapperArrayInput interface {
+	pulumi.Input
+
+	ToUserClientRoleProtocolMapperArrayOutput() UserClientRoleProtocolMapperArrayOutput
+	ToUserClientRoleProtocolMapperArrayOutputWithContext(context.Context) UserClientRoleProtocolMapperArrayOutput
+}
+
+type UserClientRoleProtocolMapperArray []UserClientRoleProtocolMapperInput
+
+func (UserClientRoleProtocolMapperArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*UserClientRoleProtocolMapper)(nil))
+}
+
+func (i UserClientRoleProtocolMapperArray) ToUserClientRoleProtocolMapperArrayOutput() UserClientRoleProtocolMapperArrayOutput {
+	return i.ToUserClientRoleProtocolMapperArrayOutputWithContext(context.Background())
+}
+
+func (i UserClientRoleProtocolMapperArray) ToUserClientRoleProtocolMapperArrayOutputWithContext(ctx context.Context) UserClientRoleProtocolMapperArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserClientRoleProtocolMapperArrayOutput)
+}
+
+// UserClientRoleProtocolMapperMapInput is an input type that accepts UserClientRoleProtocolMapperMap and UserClientRoleProtocolMapperMapOutput values.
+// You can construct a concrete instance of `UserClientRoleProtocolMapperMapInput` via:
+//
+//          UserClientRoleProtocolMapperMap{ "key": UserClientRoleProtocolMapperArgs{...} }
+type UserClientRoleProtocolMapperMapInput interface {
+	pulumi.Input
+
+	ToUserClientRoleProtocolMapperMapOutput() UserClientRoleProtocolMapperMapOutput
+	ToUserClientRoleProtocolMapperMapOutputWithContext(context.Context) UserClientRoleProtocolMapperMapOutput
+}
+
+type UserClientRoleProtocolMapperMap map[string]UserClientRoleProtocolMapperInput
+
+func (UserClientRoleProtocolMapperMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*UserClientRoleProtocolMapper)(nil))
+}
+
+func (i UserClientRoleProtocolMapperMap) ToUserClientRoleProtocolMapperMapOutput() UserClientRoleProtocolMapperMapOutput {
+	return i.ToUserClientRoleProtocolMapperMapOutputWithContext(context.Background())
+}
+
+func (i UserClientRoleProtocolMapperMap) ToUserClientRoleProtocolMapperMapOutputWithContext(ctx context.Context) UserClientRoleProtocolMapperMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserClientRoleProtocolMapperMapOutput)
+}
+
 type UserClientRoleProtocolMapperOutput struct {
 	*pulumi.OutputState
 }
@@ -328,6 +407,75 @@ func (o UserClientRoleProtocolMapperOutput) ToUserClientRoleProtocolMapperOutput
 	return o
 }
 
+func (o UserClientRoleProtocolMapperOutput) ToUserClientRoleProtocolMapperPtrOutput() UserClientRoleProtocolMapperPtrOutput {
+	return o.ToUserClientRoleProtocolMapperPtrOutputWithContext(context.Background())
+}
+
+func (o UserClientRoleProtocolMapperOutput) ToUserClientRoleProtocolMapperPtrOutputWithContext(ctx context.Context) UserClientRoleProtocolMapperPtrOutput {
+	return o.ApplyT(func(v UserClientRoleProtocolMapper) *UserClientRoleProtocolMapper {
+		return &v
+	}).(UserClientRoleProtocolMapperPtrOutput)
+}
+
+type UserClientRoleProtocolMapperPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (UserClientRoleProtocolMapperPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserClientRoleProtocolMapper)(nil))
+}
+
+func (o UserClientRoleProtocolMapperPtrOutput) ToUserClientRoleProtocolMapperPtrOutput() UserClientRoleProtocolMapperPtrOutput {
+	return o
+}
+
+func (o UserClientRoleProtocolMapperPtrOutput) ToUserClientRoleProtocolMapperPtrOutputWithContext(ctx context.Context) UserClientRoleProtocolMapperPtrOutput {
+	return o
+}
+
+type UserClientRoleProtocolMapperArrayOutput struct{ *pulumi.OutputState }
+
+func (UserClientRoleProtocolMapperArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserClientRoleProtocolMapper)(nil))
+}
+
+func (o UserClientRoleProtocolMapperArrayOutput) ToUserClientRoleProtocolMapperArrayOutput() UserClientRoleProtocolMapperArrayOutput {
+	return o
+}
+
+func (o UserClientRoleProtocolMapperArrayOutput) ToUserClientRoleProtocolMapperArrayOutputWithContext(ctx context.Context) UserClientRoleProtocolMapperArrayOutput {
+	return o
+}
+
+func (o UserClientRoleProtocolMapperArrayOutput) Index(i pulumi.IntInput) UserClientRoleProtocolMapperOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserClientRoleProtocolMapper {
+		return vs[0].([]UserClientRoleProtocolMapper)[vs[1].(int)]
+	}).(UserClientRoleProtocolMapperOutput)
+}
+
+type UserClientRoleProtocolMapperMapOutput struct{ *pulumi.OutputState }
+
+func (UserClientRoleProtocolMapperMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]UserClientRoleProtocolMapper)(nil))
+}
+
+func (o UserClientRoleProtocolMapperMapOutput) ToUserClientRoleProtocolMapperMapOutput() UserClientRoleProtocolMapperMapOutput {
+	return o
+}
+
+func (o UserClientRoleProtocolMapperMapOutput) ToUserClientRoleProtocolMapperMapOutputWithContext(ctx context.Context) UserClientRoleProtocolMapperMapOutput {
+	return o
+}
+
+func (o UserClientRoleProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) UserClientRoleProtocolMapperOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserClientRoleProtocolMapper {
+		return vs[0].(map[string]UserClientRoleProtocolMapper)[vs[1].(string)]
+	}).(UserClientRoleProtocolMapperOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(UserClientRoleProtocolMapperOutput{})
+	pulumi.RegisterOutputType(UserClientRoleProtocolMapperPtrOutput{})
+	pulumi.RegisterOutputType(UserClientRoleProtocolMapperArrayOutput{})
+	pulumi.RegisterOutputType(UserClientRoleProtocolMapperMapOutput{})
 }

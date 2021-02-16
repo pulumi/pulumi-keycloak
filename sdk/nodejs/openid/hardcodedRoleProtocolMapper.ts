@@ -127,7 +127,8 @@ export class HardcodedRoleProtocolMapper extends pulumi.CustomResource {
     constructor(name: string, args: HardcodedRoleProtocolMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: HardcodedRoleProtocolMapperArgs | HardcodedRoleProtocolMapperState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as HardcodedRoleProtocolMapperState | undefined;
             inputs["clientId"] = state ? state.clientId : undefined;
             inputs["clientScopeId"] = state ? state.clientScopeId : undefined;
@@ -136,10 +137,10 @@ export class HardcodedRoleProtocolMapper extends pulumi.CustomResource {
             inputs["roleId"] = state ? state.roleId : undefined;
         } else {
             const args = argsOrState as HardcodedRoleProtocolMapperArgs | undefined;
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.roleId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.roleId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleId'");
             }
             inputs["clientId"] = args ? args.clientId : undefined;
@@ -148,12 +149,8 @@ export class HardcodedRoleProtocolMapper extends pulumi.CustomResource {
             inputs["realmId"] = args ? args.realmId : undefined;
             inputs["roleId"] = args ? args.roleId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(HardcodedRoleProtocolMapper.__pulumiType, name, inputs, opts);
     }

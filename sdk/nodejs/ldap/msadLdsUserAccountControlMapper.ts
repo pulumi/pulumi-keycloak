@@ -103,29 +103,26 @@ export class MsadLdsUserAccountControlMapper extends pulumi.CustomResource {
     constructor(name: string, args: MsadLdsUserAccountControlMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: MsadLdsUserAccountControlMapperArgs | MsadLdsUserAccountControlMapperState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as MsadLdsUserAccountControlMapperState | undefined;
             inputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as MsadLdsUserAccountControlMapperArgs | undefined;
-            if ((!args || args.ldapUserFederationId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.ldapUserFederationId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(MsadLdsUserAccountControlMapper.__pulumiType, name, inputs, opts);
     }

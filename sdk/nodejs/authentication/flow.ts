@@ -96,7 +96,8 @@ export class Flow extends pulumi.CustomResource {
     constructor(name: string, args: FlowArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FlowArgs | FlowState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as FlowState | undefined;
             inputs["alias"] = state ? state.alias : undefined;
             inputs["description"] = state ? state.description : undefined;
@@ -104,10 +105,10 @@ export class Flow extends pulumi.CustomResource {
             inputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as FlowArgs | undefined;
-            if ((!args || args.alias === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.alias === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'alias'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["alias"] = args ? args.alias : undefined;
@@ -115,12 +116,8 @@ export class Flow extends pulumi.CustomResource {
             inputs["providerId"] = args ? args.providerId : undefined;
             inputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Flow.__pulumiType, name, inputs, opts);
     }

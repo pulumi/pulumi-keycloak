@@ -52,7 +52,8 @@ export class ClientAuthorizationPermission extends pulumi.CustomResource {
     constructor(name: string, args: ClientAuthorizationPermissionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClientAuthorizationPermissionArgs | ClientAuthorizationPermissionState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ClientAuthorizationPermissionState | undefined;
             inputs["decisionStrategy"] = state ? state.decisionStrategy : undefined;
             inputs["description"] = state ? state.description : undefined;
@@ -65,10 +66,10 @@ export class ClientAuthorizationPermission extends pulumi.CustomResource {
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as ClientAuthorizationPermissionArgs | undefined;
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.resourceServerId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.resourceServerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
             inputs["decisionStrategy"] = args ? args.decisionStrategy : undefined;
@@ -81,12 +82,8 @@ export class ClientAuthorizationPermission extends pulumi.CustomResource {
             inputs["scopes"] = args ? args.scopes : undefined;
             inputs["type"] = args ? args.type : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ClientAuthorizationPermission.__pulumiType, name, inputs, opts);
     }

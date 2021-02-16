@@ -155,7 +155,8 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
     constructor(name: string, args: UserAttributeProtocolMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserAttributeProtocolMapperArgs | UserAttributeProtocolMapperState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as UserAttributeProtocolMapperState | undefined;
             inputs["addToAccessToken"] = state ? state.addToAccessToken : undefined;
             inputs["addToIdToken"] = state ? state.addToIdToken : undefined;
@@ -171,13 +172,13 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
             inputs["userAttribute"] = state ? state.userAttribute : undefined;
         } else {
             const args = argsOrState as UserAttributeProtocolMapperArgs | undefined;
-            if ((!args || args.claimName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.claimName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'claimName'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.userAttribute === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.userAttribute === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'userAttribute'");
             }
             inputs["addToAccessToken"] = args ? args.addToAccessToken : undefined;
@@ -193,12 +194,8 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
             inputs["realmId"] = args ? args.realmId : undefined;
             inputs["userAttribute"] = args ? args.userAttribute : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(UserAttributeProtocolMapper.__pulumiType, name, inputs, opts);
     }

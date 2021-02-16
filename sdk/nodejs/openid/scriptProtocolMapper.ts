@@ -151,7 +151,8 @@ export class ScriptProtocolMapper extends pulumi.CustomResource {
     constructor(name: string, args: ScriptProtocolMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ScriptProtocolMapperArgs | ScriptProtocolMapperState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ScriptProtocolMapperState | undefined;
             inputs["addToAccessToken"] = state ? state.addToAccessToken : undefined;
             inputs["addToIdToken"] = state ? state.addToIdToken : undefined;
@@ -166,13 +167,13 @@ export class ScriptProtocolMapper extends pulumi.CustomResource {
             inputs["script"] = state ? state.script : undefined;
         } else {
             const args = argsOrState as ScriptProtocolMapperArgs | undefined;
-            if ((!args || args.claimName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.claimName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'claimName'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.script === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.script === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'script'");
             }
             inputs["addToAccessToken"] = args ? args.addToAccessToken : undefined;
@@ -187,12 +188,8 @@ export class ScriptProtocolMapper extends pulumi.CustomResource {
             inputs["realmId"] = args ? args.realmId : undefined;
             inputs["script"] = args ? args.script : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ScriptProtocolMapper.__pulumiType, name, inputs, opts);
     }

@@ -107,7 +107,8 @@ export class MsadUserAccountControlMapper extends pulumi.CustomResource {
     constructor(name: string, args: MsadUserAccountControlMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: MsadUserAccountControlMapperArgs | MsadUserAccountControlMapperState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as MsadUserAccountControlMapperState | undefined;
             inputs["ldapPasswordPolicyHintsEnabled"] = state ? state.ldapPasswordPolicyHintsEnabled : undefined;
             inputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
@@ -115,10 +116,10 @@ export class MsadUserAccountControlMapper extends pulumi.CustomResource {
             inputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as MsadUserAccountControlMapperArgs | undefined;
-            if ((!args || args.ldapUserFederationId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.ldapUserFederationId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["ldapPasswordPolicyHintsEnabled"] = args ? args.ldapPasswordPolicyHintsEnabled : undefined;
@@ -126,12 +127,8 @@ export class MsadUserAccountControlMapper extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(MsadUserAccountControlMapper.__pulumiType, name, inputs, opts);
     }

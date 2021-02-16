@@ -147,7 +147,8 @@ export class HardcodedRoleMapper extends pulumi.CustomResource {
     constructor(name: string, args: HardcodedRoleMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: HardcodedRoleMapperArgs | HardcodedRoleMapperState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as HardcodedRoleMapperState | undefined;
             inputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
             inputs["name"] = state ? state.name : undefined;
@@ -155,13 +156,13 @@ export class HardcodedRoleMapper extends pulumi.CustomResource {
             inputs["role"] = state ? state.role : undefined;
         } else {
             const args = argsOrState as HardcodedRoleMapperArgs | undefined;
-            if ((!args || args.ldapUserFederationId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.ldapUserFederationId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.role === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.role === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
             inputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
@@ -169,12 +170,8 @@ export class HardcodedRoleMapper extends pulumi.CustomResource {
             inputs["realmId"] = args ? args.realmId : undefined;
             inputs["role"] = args ? args.role : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(HardcodedRoleMapper.__pulumiType, name, inputs, opts);
     }

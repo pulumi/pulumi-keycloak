@@ -33,27 +33,30 @@ export class Provider extends pulumi.ProviderResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let inputs: pulumi.Inputs = {};
+        opts = opts || {};
         {
+            if ((!args || args.clientId === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'clientId'");
+            }
+            if ((!args || args.url === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'url'");
+            }
             inputs["basePath"] = args ? args.basePath : undefined;
-            inputs["clientId"] = (args ? args.clientId : undefined) || utilities.getEnv("KEYCLOAK_CLIENT_ID");
-            inputs["clientSecret"] = (args ? args.clientSecret : undefined) || utilities.getEnv("KEYCLOAK_CLIENT_SECRET");
+            inputs["clientId"] = args ? args.clientId : undefined;
+            inputs["clientSecret"] = args ? args.clientSecret : undefined;
             inputs["clientTimeout"] = pulumi.output((args ? args.clientTimeout : undefined) || (<any>utilities.getEnvNumber("KEYCLOAK_CLIENT_TIMEOUT") || 5)).apply(JSON.stringify);
             inputs["initialLogin"] = pulumi.output(args ? args.initialLogin : undefined).apply(JSON.stringify);
-            inputs["password"] = (args ? args.password : undefined) || utilities.getEnv("KEYCLOAK_PASSWORD");
-            inputs["realm"] = (args ? args.realm : undefined) || (utilities.getEnv("KEYCLOAK_REALM") || "master");
+            inputs["password"] = args ? args.password : undefined;
+            inputs["realm"] = args ? args.realm : undefined;
             inputs["rootCaCertificate"] = args ? args.rootCaCertificate : undefined;
             inputs["tlsInsecureSkipVerify"] = pulumi.output(args ? args.tlsInsecureSkipVerify : undefined).apply(JSON.stringify);
-            inputs["url"] = (args ? args.url : undefined) || utilities.getEnv("KEYCLOAK_URL");
-            inputs["username"] = (args ? args.username : undefined) || utilities.getEnv("KEYCLOAK_USER");
+            inputs["url"] = args ? args.url : undefined;
+            inputs["username"] = args ? args.username : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Provider.__pulumiType, name, inputs, opts);
     }
@@ -64,7 +67,7 @@ export class Provider extends pulumi.ProviderResource {
  */
 export interface ProviderArgs {
     readonly basePath?: pulumi.Input<string>;
-    readonly clientId?: pulumi.Input<string>;
+    readonly clientId: pulumi.Input<string>;
     readonly clientSecret?: pulumi.Input<string>;
     /**
      * Timeout (in seconds) of the Keycloak client
@@ -88,6 +91,6 @@ export interface ProviderArgs {
     /**
      * The base URL of the Keycloak instance, before `/auth`
      */
-    readonly url?: pulumi.Input<string>;
+    readonly url: pulumi.Input<string>;
     readonly username?: pulumi.Input<string>;
 }

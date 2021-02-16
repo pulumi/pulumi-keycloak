@@ -23,7 +23,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/ldap"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -240,6 +240,85 @@ func (i *UserAttributeMapper) ToUserAttributeMapperOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(UserAttributeMapperOutput)
 }
 
+func (i *UserAttributeMapper) ToUserAttributeMapperPtrOutput() UserAttributeMapperPtrOutput {
+	return i.ToUserAttributeMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *UserAttributeMapper) ToUserAttributeMapperPtrOutputWithContext(ctx context.Context) UserAttributeMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserAttributeMapperPtrOutput)
+}
+
+type UserAttributeMapperPtrInput interface {
+	pulumi.Input
+
+	ToUserAttributeMapperPtrOutput() UserAttributeMapperPtrOutput
+	ToUserAttributeMapperPtrOutputWithContext(ctx context.Context) UserAttributeMapperPtrOutput
+}
+
+type userAttributeMapperPtrType UserAttributeMapperArgs
+
+func (*userAttributeMapperPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserAttributeMapper)(nil))
+}
+
+func (i *userAttributeMapperPtrType) ToUserAttributeMapperPtrOutput() UserAttributeMapperPtrOutput {
+	return i.ToUserAttributeMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *userAttributeMapperPtrType) ToUserAttributeMapperPtrOutputWithContext(ctx context.Context) UserAttributeMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserAttributeMapperPtrOutput)
+}
+
+// UserAttributeMapperArrayInput is an input type that accepts UserAttributeMapperArray and UserAttributeMapperArrayOutput values.
+// You can construct a concrete instance of `UserAttributeMapperArrayInput` via:
+//
+//          UserAttributeMapperArray{ UserAttributeMapperArgs{...} }
+type UserAttributeMapperArrayInput interface {
+	pulumi.Input
+
+	ToUserAttributeMapperArrayOutput() UserAttributeMapperArrayOutput
+	ToUserAttributeMapperArrayOutputWithContext(context.Context) UserAttributeMapperArrayOutput
+}
+
+type UserAttributeMapperArray []UserAttributeMapperInput
+
+func (UserAttributeMapperArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*UserAttributeMapper)(nil))
+}
+
+func (i UserAttributeMapperArray) ToUserAttributeMapperArrayOutput() UserAttributeMapperArrayOutput {
+	return i.ToUserAttributeMapperArrayOutputWithContext(context.Background())
+}
+
+func (i UserAttributeMapperArray) ToUserAttributeMapperArrayOutputWithContext(ctx context.Context) UserAttributeMapperArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserAttributeMapperArrayOutput)
+}
+
+// UserAttributeMapperMapInput is an input type that accepts UserAttributeMapperMap and UserAttributeMapperMapOutput values.
+// You can construct a concrete instance of `UserAttributeMapperMapInput` via:
+//
+//          UserAttributeMapperMap{ "key": UserAttributeMapperArgs{...} }
+type UserAttributeMapperMapInput interface {
+	pulumi.Input
+
+	ToUserAttributeMapperMapOutput() UserAttributeMapperMapOutput
+	ToUserAttributeMapperMapOutputWithContext(context.Context) UserAttributeMapperMapOutput
+}
+
+type UserAttributeMapperMap map[string]UserAttributeMapperInput
+
+func (UserAttributeMapperMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*UserAttributeMapper)(nil))
+}
+
+func (i UserAttributeMapperMap) ToUserAttributeMapperMapOutput() UserAttributeMapperMapOutput {
+	return i.ToUserAttributeMapperMapOutputWithContext(context.Background())
+}
+
+func (i UserAttributeMapperMap) ToUserAttributeMapperMapOutputWithContext(ctx context.Context) UserAttributeMapperMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserAttributeMapperMapOutput)
+}
+
 type UserAttributeMapperOutput struct {
 	*pulumi.OutputState
 }
@@ -256,6 +335,75 @@ func (o UserAttributeMapperOutput) ToUserAttributeMapperOutputWithContext(ctx co
 	return o
 }
 
+func (o UserAttributeMapperOutput) ToUserAttributeMapperPtrOutput() UserAttributeMapperPtrOutput {
+	return o.ToUserAttributeMapperPtrOutputWithContext(context.Background())
+}
+
+func (o UserAttributeMapperOutput) ToUserAttributeMapperPtrOutputWithContext(ctx context.Context) UserAttributeMapperPtrOutput {
+	return o.ApplyT(func(v UserAttributeMapper) *UserAttributeMapper {
+		return &v
+	}).(UserAttributeMapperPtrOutput)
+}
+
+type UserAttributeMapperPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (UserAttributeMapperPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserAttributeMapper)(nil))
+}
+
+func (o UserAttributeMapperPtrOutput) ToUserAttributeMapperPtrOutput() UserAttributeMapperPtrOutput {
+	return o
+}
+
+func (o UserAttributeMapperPtrOutput) ToUserAttributeMapperPtrOutputWithContext(ctx context.Context) UserAttributeMapperPtrOutput {
+	return o
+}
+
+type UserAttributeMapperArrayOutput struct{ *pulumi.OutputState }
+
+func (UserAttributeMapperArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserAttributeMapper)(nil))
+}
+
+func (o UserAttributeMapperArrayOutput) ToUserAttributeMapperArrayOutput() UserAttributeMapperArrayOutput {
+	return o
+}
+
+func (o UserAttributeMapperArrayOutput) ToUserAttributeMapperArrayOutputWithContext(ctx context.Context) UserAttributeMapperArrayOutput {
+	return o
+}
+
+func (o UserAttributeMapperArrayOutput) Index(i pulumi.IntInput) UserAttributeMapperOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserAttributeMapper {
+		return vs[0].([]UserAttributeMapper)[vs[1].(int)]
+	}).(UserAttributeMapperOutput)
+}
+
+type UserAttributeMapperMapOutput struct{ *pulumi.OutputState }
+
+func (UserAttributeMapperMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]UserAttributeMapper)(nil))
+}
+
+func (o UserAttributeMapperMapOutput) ToUserAttributeMapperMapOutput() UserAttributeMapperMapOutput {
+	return o
+}
+
+func (o UserAttributeMapperMapOutput) ToUserAttributeMapperMapOutputWithContext(ctx context.Context) UserAttributeMapperMapOutput {
+	return o
+}
+
+func (o UserAttributeMapperMapOutput) MapIndex(k pulumi.StringInput) UserAttributeMapperOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserAttributeMapper {
+		return vs[0].(map[string]UserAttributeMapper)[vs[1].(string)]
+	}).(UserAttributeMapperOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(UserAttributeMapperOutput{})
+	pulumi.RegisterOutputType(UserAttributeMapperPtrOutput{})
+	pulumi.RegisterOutputType(UserAttributeMapperArrayOutput{})
+	pulumi.RegisterOutputType(UserAttributeMapperMapOutput{})
 }

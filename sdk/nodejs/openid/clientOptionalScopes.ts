@@ -60,32 +60,29 @@ export class ClientOptionalScopes extends pulumi.CustomResource {
     constructor(name: string, args: ClientOptionalScopesArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClientOptionalScopesArgs | ClientOptionalScopesState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ClientOptionalScopesState | undefined;
             inputs["clientId"] = state ? state.clientId : undefined;
             inputs["optionalScopes"] = state ? state.optionalScopes : undefined;
             inputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as ClientOptionalScopesArgs | undefined;
-            if ((!args || args.clientId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.clientId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clientId'");
             }
-            if ((!args || args.optionalScopes === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.optionalScopes === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'optionalScopes'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["clientId"] = args ? args.clientId : undefined;
             inputs["optionalScopes"] = args ? args.optionalScopes : undefined;
             inputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ClientOptionalScopes.__pulumiType, name, inputs, opts);
     }

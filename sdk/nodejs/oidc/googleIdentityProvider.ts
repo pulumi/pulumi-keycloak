@@ -163,7 +163,8 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
     constructor(name: string, args: GoogleIdentityProviderArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GoogleIdentityProviderArgs | GoogleIdentityProviderState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as GoogleIdentityProviderState | undefined;
             inputs["acceptsPromptNoneForwardFromClient"] = state ? state.acceptsPromptNoneForwardFromClient : undefined;
             inputs["addReadTokenRoleOnCreate"] = state ? state.addReadTokenRoleOnCreate : undefined;
@@ -190,13 +191,13 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
             inputs["useUserIpParam"] = state ? state.useUserIpParam : undefined;
         } else {
             const args = argsOrState as GoogleIdentityProviderArgs | undefined;
-            if ((!args || args.clientId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.clientId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clientId'");
             }
-            if ((!args || args.clientSecret === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.clientSecret === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clientSecret'");
             }
-            if ((!args || args.realm === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realm === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realm'");
             }
             inputs["acceptsPromptNoneForwardFromClient"] = args ? args.acceptsPromptNoneForwardFromClient : undefined;
@@ -223,12 +224,8 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
             inputs["displayName"] = undefined /*out*/;
             inputs["internalId"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(GoogleIdentityProvider.__pulumiType, name, inputs, opts);
     }

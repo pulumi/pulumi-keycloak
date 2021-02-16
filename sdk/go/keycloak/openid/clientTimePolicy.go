@@ -183,6 +183,85 @@ func (i *ClientTimePolicy) ToClientTimePolicyOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(ClientTimePolicyOutput)
 }
 
+func (i *ClientTimePolicy) ToClientTimePolicyPtrOutput() ClientTimePolicyPtrOutput {
+	return i.ToClientTimePolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *ClientTimePolicy) ToClientTimePolicyPtrOutputWithContext(ctx context.Context) ClientTimePolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientTimePolicyPtrOutput)
+}
+
+type ClientTimePolicyPtrInput interface {
+	pulumi.Input
+
+	ToClientTimePolicyPtrOutput() ClientTimePolicyPtrOutput
+	ToClientTimePolicyPtrOutputWithContext(ctx context.Context) ClientTimePolicyPtrOutput
+}
+
+type clientTimePolicyPtrType ClientTimePolicyArgs
+
+func (*clientTimePolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClientTimePolicy)(nil))
+}
+
+func (i *clientTimePolicyPtrType) ToClientTimePolicyPtrOutput() ClientTimePolicyPtrOutput {
+	return i.ToClientTimePolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *clientTimePolicyPtrType) ToClientTimePolicyPtrOutputWithContext(ctx context.Context) ClientTimePolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientTimePolicyPtrOutput)
+}
+
+// ClientTimePolicyArrayInput is an input type that accepts ClientTimePolicyArray and ClientTimePolicyArrayOutput values.
+// You can construct a concrete instance of `ClientTimePolicyArrayInput` via:
+//
+//          ClientTimePolicyArray{ ClientTimePolicyArgs{...} }
+type ClientTimePolicyArrayInput interface {
+	pulumi.Input
+
+	ToClientTimePolicyArrayOutput() ClientTimePolicyArrayOutput
+	ToClientTimePolicyArrayOutputWithContext(context.Context) ClientTimePolicyArrayOutput
+}
+
+type ClientTimePolicyArray []ClientTimePolicyInput
+
+func (ClientTimePolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*ClientTimePolicy)(nil))
+}
+
+func (i ClientTimePolicyArray) ToClientTimePolicyArrayOutput() ClientTimePolicyArrayOutput {
+	return i.ToClientTimePolicyArrayOutputWithContext(context.Background())
+}
+
+func (i ClientTimePolicyArray) ToClientTimePolicyArrayOutputWithContext(ctx context.Context) ClientTimePolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientTimePolicyArrayOutput)
+}
+
+// ClientTimePolicyMapInput is an input type that accepts ClientTimePolicyMap and ClientTimePolicyMapOutput values.
+// You can construct a concrete instance of `ClientTimePolicyMapInput` via:
+//
+//          ClientTimePolicyMap{ "key": ClientTimePolicyArgs{...} }
+type ClientTimePolicyMapInput interface {
+	pulumi.Input
+
+	ToClientTimePolicyMapOutput() ClientTimePolicyMapOutput
+	ToClientTimePolicyMapOutputWithContext(context.Context) ClientTimePolicyMapOutput
+}
+
+type ClientTimePolicyMap map[string]ClientTimePolicyInput
+
+func (ClientTimePolicyMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*ClientTimePolicy)(nil))
+}
+
+func (i ClientTimePolicyMap) ToClientTimePolicyMapOutput() ClientTimePolicyMapOutput {
+	return i.ToClientTimePolicyMapOutputWithContext(context.Background())
+}
+
+func (i ClientTimePolicyMap) ToClientTimePolicyMapOutputWithContext(ctx context.Context) ClientTimePolicyMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientTimePolicyMapOutput)
+}
+
 type ClientTimePolicyOutput struct {
 	*pulumi.OutputState
 }
@@ -199,6 +278,75 @@ func (o ClientTimePolicyOutput) ToClientTimePolicyOutputWithContext(ctx context.
 	return o
 }
 
+func (o ClientTimePolicyOutput) ToClientTimePolicyPtrOutput() ClientTimePolicyPtrOutput {
+	return o.ToClientTimePolicyPtrOutputWithContext(context.Background())
+}
+
+func (o ClientTimePolicyOutput) ToClientTimePolicyPtrOutputWithContext(ctx context.Context) ClientTimePolicyPtrOutput {
+	return o.ApplyT(func(v ClientTimePolicy) *ClientTimePolicy {
+		return &v
+	}).(ClientTimePolicyPtrOutput)
+}
+
+type ClientTimePolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClientTimePolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClientTimePolicy)(nil))
+}
+
+func (o ClientTimePolicyPtrOutput) ToClientTimePolicyPtrOutput() ClientTimePolicyPtrOutput {
+	return o
+}
+
+func (o ClientTimePolicyPtrOutput) ToClientTimePolicyPtrOutputWithContext(ctx context.Context) ClientTimePolicyPtrOutput {
+	return o
+}
+
+type ClientTimePolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (ClientTimePolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClientTimePolicy)(nil))
+}
+
+func (o ClientTimePolicyArrayOutput) ToClientTimePolicyArrayOutput() ClientTimePolicyArrayOutput {
+	return o
+}
+
+func (o ClientTimePolicyArrayOutput) ToClientTimePolicyArrayOutputWithContext(ctx context.Context) ClientTimePolicyArrayOutput {
+	return o
+}
+
+func (o ClientTimePolicyArrayOutput) Index(i pulumi.IntInput) ClientTimePolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClientTimePolicy {
+		return vs[0].([]ClientTimePolicy)[vs[1].(int)]
+	}).(ClientTimePolicyOutput)
+}
+
+type ClientTimePolicyMapOutput struct{ *pulumi.OutputState }
+
+func (ClientTimePolicyMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ClientTimePolicy)(nil))
+}
+
+func (o ClientTimePolicyMapOutput) ToClientTimePolicyMapOutput() ClientTimePolicyMapOutput {
+	return o
+}
+
+func (o ClientTimePolicyMapOutput) ToClientTimePolicyMapOutputWithContext(ctx context.Context) ClientTimePolicyMapOutput {
+	return o
+}
+
+func (o ClientTimePolicyMapOutput) MapIndex(k pulumi.StringInput) ClientTimePolicyOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ClientTimePolicy {
+		return vs[0].(map[string]ClientTimePolicy)[vs[1].(string)]
+	}).(ClientTimePolicyOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(ClientTimePolicyOutput{})
+	pulumi.RegisterOutputType(ClientTimePolicyPtrOutput{})
+	pulumi.RegisterOutputType(ClientTimePolicyArrayOutput{})
+	pulumi.RegisterOutputType(ClientTimePolicyMapOutput{})
 }

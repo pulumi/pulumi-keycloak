@@ -201,7 +201,8 @@ export class Client extends pulumi.CustomResource {
     constructor(name: string, args: ClientArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClientArgs | ClientState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ClientState | undefined;
             inputs["accessTokenLifespan"] = state ? state.accessTokenLifespan : undefined;
             inputs["accessType"] = state ? state.accessType : undefined;
@@ -235,13 +236,13 @@ export class Client extends pulumi.CustomResource {
             inputs["webOrigins"] = state ? state.webOrigins : undefined;
         } else {
             const args = argsOrState as ClientArgs | undefined;
-            if ((!args || args.accessType === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.accessType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'accessType'");
             }
-            if ((!args || args.clientId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.clientId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clientId'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["accessTokenLifespan"] = args ? args.accessTokenLifespan : undefined;
@@ -275,12 +276,8 @@ export class Client extends pulumi.CustomResource {
             inputs["resourceServerId"] = undefined /*out*/;
             inputs["serviceAccountUserId"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Client.__pulumiType, name, inputs, opts);
     }

@@ -59,7 +59,8 @@ export class HardcodedGroupMapper extends pulumi.CustomResource {
     constructor(name: string, args: HardcodedGroupMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: HardcodedGroupMapperArgs | HardcodedGroupMapperState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as HardcodedGroupMapperState | undefined;
             inputs["group"] = state ? state.group : undefined;
             inputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
@@ -67,13 +68,13 @@ export class HardcodedGroupMapper extends pulumi.CustomResource {
             inputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as HardcodedGroupMapperArgs | undefined;
-            if ((!args || args.group === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.group === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'group'");
             }
-            if ((!args || args.ldapUserFederationId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.ldapUserFederationId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["group"] = args ? args.group : undefined;
@@ -81,12 +82,8 @@ export class HardcodedGroupMapper extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(HardcodedGroupMapper.__pulumiType, name, inputs, opts);
     }

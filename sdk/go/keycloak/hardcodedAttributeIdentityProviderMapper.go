@@ -158,6 +158,85 @@ func (i *HardcodedAttributeIdentityProviderMapper) ToHardcodedAttributeIdentityP
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedAttributeIdentityProviderMapperOutput)
 }
 
+func (i *HardcodedAttributeIdentityProviderMapper) ToHardcodedAttributeIdentityProviderMapperPtrOutput() HardcodedAttributeIdentityProviderMapperPtrOutput {
+	return i.ToHardcodedAttributeIdentityProviderMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *HardcodedAttributeIdentityProviderMapper) ToHardcodedAttributeIdentityProviderMapperPtrOutputWithContext(ctx context.Context) HardcodedAttributeIdentityProviderMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HardcodedAttributeIdentityProviderMapperPtrOutput)
+}
+
+type HardcodedAttributeIdentityProviderMapperPtrInput interface {
+	pulumi.Input
+
+	ToHardcodedAttributeIdentityProviderMapperPtrOutput() HardcodedAttributeIdentityProviderMapperPtrOutput
+	ToHardcodedAttributeIdentityProviderMapperPtrOutputWithContext(ctx context.Context) HardcodedAttributeIdentityProviderMapperPtrOutput
+}
+
+type hardcodedAttributeIdentityProviderMapperPtrType HardcodedAttributeIdentityProviderMapperArgs
+
+func (*hardcodedAttributeIdentityProviderMapperPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**HardcodedAttributeIdentityProviderMapper)(nil))
+}
+
+func (i *hardcodedAttributeIdentityProviderMapperPtrType) ToHardcodedAttributeIdentityProviderMapperPtrOutput() HardcodedAttributeIdentityProviderMapperPtrOutput {
+	return i.ToHardcodedAttributeIdentityProviderMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *hardcodedAttributeIdentityProviderMapperPtrType) ToHardcodedAttributeIdentityProviderMapperPtrOutputWithContext(ctx context.Context) HardcodedAttributeIdentityProviderMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HardcodedAttributeIdentityProviderMapperPtrOutput)
+}
+
+// HardcodedAttributeIdentityProviderMapperArrayInput is an input type that accepts HardcodedAttributeIdentityProviderMapperArray and HardcodedAttributeIdentityProviderMapperArrayOutput values.
+// You can construct a concrete instance of `HardcodedAttributeIdentityProviderMapperArrayInput` via:
+//
+//          HardcodedAttributeIdentityProviderMapperArray{ HardcodedAttributeIdentityProviderMapperArgs{...} }
+type HardcodedAttributeIdentityProviderMapperArrayInput interface {
+	pulumi.Input
+
+	ToHardcodedAttributeIdentityProviderMapperArrayOutput() HardcodedAttributeIdentityProviderMapperArrayOutput
+	ToHardcodedAttributeIdentityProviderMapperArrayOutputWithContext(context.Context) HardcodedAttributeIdentityProviderMapperArrayOutput
+}
+
+type HardcodedAttributeIdentityProviderMapperArray []HardcodedAttributeIdentityProviderMapperInput
+
+func (HardcodedAttributeIdentityProviderMapperArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*HardcodedAttributeIdentityProviderMapper)(nil))
+}
+
+func (i HardcodedAttributeIdentityProviderMapperArray) ToHardcodedAttributeIdentityProviderMapperArrayOutput() HardcodedAttributeIdentityProviderMapperArrayOutput {
+	return i.ToHardcodedAttributeIdentityProviderMapperArrayOutputWithContext(context.Background())
+}
+
+func (i HardcodedAttributeIdentityProviderMapperArray) ToHardcodedAttributeIdentityProviderMapperArrayOutputWithContext(ctx context.Context) HardcodedAttributeIdentityProviderMapperArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HardcodedAttributeIdentityProviderMapperArrayOutput)
+}
+
+// HardcodedAttributeIdentityProviderMapperMapInput is an input type that accepts HardcodedAttributeIdentityProviderMapperMap and HardcodedAttributeIdentityProviderMapperMapOutput values.
+// You can construct a concrete instance of `HardcodedAttributeIdentityProviderMapperMapInput` via:
+//
+//          HardcodedAttributeIdentityProviderMapperMap{ "key": HardcodedAttributeIdentityProviderMapperArgs{...} }
+type HardcodedAttributeIdentityProviderMapperMapInput interface {
+	pulumi.Input
+
+	ToHardcodedAttributeIdentityProviderMapperMapOutput() HardcodedAttributeIdentityProviderMapperMapOutput
+	ToHardcodedAttributeIdentityProviderMapperMapOutputWithContext(context.Context) HardcodedAttributeIdentityProviderMapperMapOutput
+}
+
+type HardcodedAttributeIdentityProviderMapperMap map[string]HardcodedAttributeIdentityProviderMapperInput
+
+func (HardcodedAttributeIdentityProviderMapperMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*HardcodedAttributeIdentityProviderMapper)(nil))
+}
+
+func (i HardcodedAttributeIdentityProviderMapperMap) ToHardcodedAttributeIdentityProviderMapperMapOutput() HardcodedAttributeIdentityProviderMapperMapOutput {
+	return i.ToHardcodedAttributeIdentityProviderMapperMapOutputWithContext(context.Background())
+}
+
+func (i HardcodedAttributeIdentityProviderMapperMap) ToHardcodedAttributeIdentityProviderMapperMapOutputWithContext(ctx context.Context) HardcodedAttributeIdentityProviderMapperMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HardcodedAttributeIdentityProviderMapperMapOutput)
+}
+
 type HardcodedAttributeIdentityProviderMapperOutput struct {
 	*pulumi.OutputState
 }
@@ -174,6 +253,75 @@ func (o HardcodedAttributeIdentityProviderMapperOutput) ToHardcodedAttributeIden
 	return o
 }
 
+func (o HardcodedAttributeIdentityProviderMapperOutput) ToHardcodedAttributeIdentityProviderMapperPtrOutput() HardcodedAttributeIdentityProviderMapperPtrOutput {
+	return o.ToHardcodedAttributeIdentityProviderMapperPtrOutputWithContext(context.Background())
+}
+
+func (o HardcodedAttributeIdentityProviderMapperOutput) ToHardcodedAttributeIdentityProviderMapperPtrOutputWithContext(ctx context.Context) HardcodedAttributeIdentityProviderMapperPtrOutput {
+	return o.ApplyT(func(v HardcodedAttributeIdentityProviderMapper) *HardcodedAttributeIdentityProviderMapper {
+		return &v
+	}).(HardcodedAttributeIdentityProviderMapperPtrOutput)
+}
+
+type HardcodedAttributeIdentityProviderMapperPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (HardcodedAttributeIdentityProviderMapperPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**HardcodedAttributeIdentityProviderMapper)(nil))
+}
+
+func (o HardcodedAttributeIdentityProviderMapperPtrOutput) ToHardcodedAttributeIdentityProviderMapperPtrOutput() HardcodedAttributeIdentityProviderMapperPtrOutput {
+	return o
+}
+
+func (o HardcodedAttributeIdentityProviderMapperPtrOutput) ToHardcodedAttributeIdentityProviderMapperPtrOutputWithContext(ctx context.Context) HardcodedAttributeIdentityProviderMapperPtrOutput {
+	return o
+}
+
+type HardcodedAttributeIdentityProviderMapperArrayOutput struct{ *pulumi.OutputState }
+
+func (HardcodedAttributeIdentityProviderMapperArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HardcodedAttributeIdentityProviderMapper)(nil))
+}
+
+func (o HardcodedAttributeIdentityProviderMapperArrayOutput) ToHardcodedAttributeIdentityProviderMapperArrayOutput() HardcodedAttributeIdentityProviderMapperArrayOutput {
+	return o
+}
+
+func (o HardcodedAttributeIdentityProviderMapperArrayOutput) ToHardcodedAttributeIdentityProviderMapperArrayOutputWithContext(ctx context.Context) HardcodedAttributeIdentityProviderMapperArrayOutput {
+	return o
+}
+
+func (o HardcodedAttributeIdentityProviderMapperArrayOutput) Index(i pulumi.IntInput) HardcodedAttributeIdentityProviderMapperOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HardcodedAttributeIdentityProviderMapper {
+		return vs[0].([]HardcodedAttributeIdentityProviderMapper)[vs[1].(int)]
+	}).(HardcodedAttributeIdentityProviderMapperOutput)
+}
+
+type HardcodedAttributeIdentityProviderMapperMapOutput struct{ *pulumi.OutputState }
+
+func (HardcodedAttributeIdentityProviderMapperMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]HardcodedAttributeIdentityProviderMapper)(nil))
+}
+
+func (o HardcodedAttributeIdentityProviderMapperMapOutput) ToHardcodedAttributeIdentityProviderMapperMapOutput() HardcodedAttributeIdentityProviderMapperMapOutput {
+	return o
+}
+
+func (o HardcodedAttributeIdentityProviderMapperMapOutput) ToHardcodedAttributeIdentityProviderMapperMapOutputWithContext(ctx context.Context) HardcodedAttributeIdentityProviderMapperMapOutput {
+	return o
+}
+
+func (o HardcodedAttributeIdentityProviderMapperMapOutput) MapIndex(k pulumi.StringInput) HardcodedAttributeIdentityProviderMapperOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) HardcodedAttributeIdentityProviderMapper {
+		return vs[0].(map[string]HardcodedAttributeIdentityProviderMapper)[vs[1].(string)]
+	}).(HardcodedAttributeIdentityProviderMapperOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(HardcodedAttributeIdentityProviderMapperOutput{})
+	pulumi.RegisterOutputType(HardcodedAttributeIdentityProviderMapperPtrOutput{})
+	pulumi.RegisterOutputType(HardcodedAttributeIdentityProviderMapperArrayOutput{})
+	pulumi.RegisterOutputType(HardcodedAttributeIdentityProviderMapperMapOutput{})
 }

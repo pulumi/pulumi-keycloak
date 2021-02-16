@@ -64,32 +64,29 @@ export class GroupRoles extends pulumi.CustomResource {
     constructor(name: string, args: GroupRolesArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GroupRolesArgs | GroupRolesState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as GroupRolesState | undefined;
             inputs["groupId"] = state ? state.groupId : undefined;
             inputs["realmId"] = state ? state.realmId : undefined;
             inputs["roleIds"] = state ? state.roleIds : undefined;
         } else {
             const args = argsOrState as GroupRolesArgs | undefined;
-            if ((!args || args.groupId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.groupId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'groupId'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.roleIds === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.roleIds === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleIds'");
             }
             inputs["groupId"] = args ? args.groupId : undefined;
             inputs["realmId"] = args ? args.realmId : undefined;
             inputs["roleIds"] = args ? args.roleIds : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(GroupRoles.__pulumiType, name, inputs, opts);
     }

@@ -122,7 +122,8 @@ export class UserAttributeMapper extends pulumi.CustomResource {
     constructor(name: string, args: UserAttributeMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserAttributeMapperArgs | UserAttributeMapperState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as UserAttributeMapperState | undefined;
             inputs["alwaysReadValueFromLdap"] = state ? state.alwaysReadValueFromLdap : undefined;
             inputs["isMandatoryInLdap"] = state ? state.isMandatoryInLdap : undefined;
@@ -134,16 +135,16 @@ export class UserAttributeMapper extends pulumi.CustomResource {
             inputs["userModelAttribute"] = state ? state.userModelAttribute : undefined;
         } else {
             const args = argsOrState as UserAttributeMapperArgs | undefined;
-            if ((!args || args.ldapAttribute === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.ldapAttribute === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ldapAttribute'");
             }
-            if ((!args || args.ldapUserFederationId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.ldapUserFederationId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.userModelAttribute === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.userModelAttribute === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'userModelAttribute'");
             }
             inputs["alwaysReadValueFromLdap"] = args ? args.alwaysReadValueFromLdap : undefined;
@@ -155,12 +156,8 @@ export class UserAttributeMapper extends pulumi.CustomResource {
             inputs["realmId"] = args ? args.realmId : undefined;
             inputs["userModelAttribute"] = args ? args.userModelAttribute : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(UserAttributeMapper.__pulumiType, name, inputs, opts);
     }

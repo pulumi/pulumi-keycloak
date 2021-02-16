@@ -86,37 +86,6 @@ func Provider() tfbridge.ProviderInfo {
 		Repository:        "https://github.com/pulumi/pulumi-keycloak",
 		TFProviderLicense: refProviderLicense(tfbridge.MITLicenseType),
 		Config: map[string]*tfbridge.SchemaInfo{
-			"client_id": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"KEYCLOAK_CLIENT_ID"},
-				},
-			},
-			"client_secret": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"KEYCLOAK_CLIENT_SECRET"},
-				},
-			},
-			"username": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"KEYCLOAK_USER"},
-				},
-			},
-			"password": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"KEYCLOAK_PASSWORD"},
-				},
-			},
-			"realm": {
-				Default: &tfbridge.DefaultInfo{
-					Value:   "master",
-					EnvVars: []string{"KEYCLOAK_REALM"},
-				},
-			},
-			"url": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"KEYCLOAK_URL"},
-				},
-			},
 			"client_timeout": {
 				Default: &tfbridge.DefaultInfo{
 					Value:   5,

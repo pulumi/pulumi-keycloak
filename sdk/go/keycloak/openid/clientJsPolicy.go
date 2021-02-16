@@ -136,6 +136,85 @@ func (i *ClientJsPolicy) ToClientJsPolicyOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(ClientJsPolicyOutput)
 }
 
+func (i *ClientJsPolicy) ToClientJsPolicyPtrOutput() ClientJsPolicyPtrOutput {
+	return i.ToClientJsPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *ClientJsPolicy) ToClientJsPolicyPtrOutputWithContext(ctx context.Context) ClientJsPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientJsPolicyPtrOutput)
+}
+
+type ClientJsPolicyPtrInput interface {
+	pulumi.Input
+
+	ToClientJsPolicyPtrOutput() ClientJsPolicyPtrOutput
+	ToClientJsPolicyPtrOutputWithContext(ctx context.Context) ClientJsPolicyPtrOutput
+}
+
+type clientJsPolicyPtrType ClientJsPolicyArgs
+
+func (*clientJsPolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClientJsPolicy)(nil))
+}
+
+func (i *clientJsPolicyPtrType) ToClientJsPolicyPtrOutput() ClientJsPolicyPtrOutput {
+	return i.ToClientJsPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *clientJsPolicyPtrType) ToClientJsPolicyPtrOutputWithContext(ctx context.Context) ClientJsPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientJsPolicyPtrOutput)
+}
+
+// ClientJsPolicyArrayInput is an input type that accepts ClientJsPolicyArray and ClientJsPolicyArrayOutput values.
+// You can construct a concrete instance of `ClientJsPolicyArrayInput` via:
+//
+//          ClientJsPolicyArray{ ClientJsPolicyArgs{...} }
+type ClientJsPolicyArrayInput interface {
+	pulumi.Input
+
+	ToClientJsPolicyArrayOutput() ClientJsPolicyArrayOutput
+	ToClientJsPolicyArrayOutputWithContext(context.Context) ClientJsPolicyArrayOutput
+}
+
+type ClientJsPolicyArray []ClientJsPolicyInput
+
+func (ClientJsPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*ClientJsPolicy)(nil))
+}
+
+func (i ClientJsPolicyArray) ToClientJsPolicyArrayOutput() ClientJsPolicyArrayOutput {
+	return i.ToClientJsPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i ClientJsPolicyArray) ToClientJsPolicyArrayOutputWithContext(ctx context.Context) ClientJsPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientJsPolicyArrayOutput)
+}
+
+// ClientJsPolicyMapInput is an input type that accepts ClientJsPolicyMap and ClientJsPolicyMapOutput values.
+// You can construct a concrete instance of `ClientJsPolicyMapInput` via:
+//
+//          ClientJsPolicyMap{ "key": ClientJsPolicyArgs{...} }
+type ClientJsPolicyMapInput interface {
+	pulumi.Input
+
+	ToClientJsPolicyMapOutput() ClientJsPolicyMapOutput
+	ToClientJsPolicyMapOutputWithContext(context.Context) ClientJsPolicyMapOutput
+}
+
+type ClientJsPolicyMap map[string]ClientJsPolicyInput
+
+func (ClientJsPolicyMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*ClientJsPolicy)(nil))
+}
+
+func (i ClientJsPolicyMap) ToClientJsPolicyMapOutput() ClientJsPolicyMapOutput {
+	return i.ToClientJsPolicyMapOutputWithContext(context.Background())
+}
+
+func (i ClientJsPolicyMap) ToClientJsPolicyMapOutputWithContext(ctx context.Context) ClientJsPolicyMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientJsPolicyMapOutput)
+}
+
 type ClientJsPolicyOutput struct {
 	*pulumi.OutputState
 }
@@ -152,6 +231,75 @@ func (o ClientJsPolicyOutput) ToClientJsPolicyOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o ClientJsPolicyOutput) ToClientJsPolicyPtrOutput() ClientJsPolicyPtrOutput {
+	return o.ToClientJsPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o ClientJsPolicyOutput) ToClientJsPolicyPtrOutputWithContext(ctx context.Context) ClientJsPolicyPtrOutput {
+	return o.ApplyT(func(v ClientJsPolicy) *ClientJsPolicy {
+		return &v
+	}).(ClientJsPolicyPtrOutput)
+}
+
+type ClientJsPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClientJsPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClientJsPolicy)(nil))
+}
+
+func (o ClientJsPolicyPtrOutput) ToClientJsPolicyPtrOutput() ClientJsPolicyPtrOutput {
+	return o
+}
+
+func (o ClientJsPolicyPtrOutput) ToClientJsPolicyPtrOutputWithContext(ctx context.Context) ClientJsPolicyPtrOutput {
+	return o
+}
+
+type ClientJsPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (ClientJsPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClientJsPolicy)(nil))
+}
+
+func (o ClientJsPolicyArrayOutput) ToClientJsPolicyArrayOutput() ClientJsPolicyArrayOutput {
+	return o
+}
+
+func (o ClientJsPolicyArrayOutput) ToClientJsPolicyArrayOutputWithContext(ctx context.Context) ClientJsPolicyArrayOutput {
+	return o
+}
+
+func (o ClientJsPolicyArrayOutput) Index(i pulumi.IntInput) ClientJsPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClientJsPolicy {
+		return vs[0].([]ClientJsPolicy)[vs[1].(int)]
+	}).(ClientJsPolicyOutput)
+}
+
+type ClientJsPolicyMapOutput struct{ *pulumi.OutputState }
+
+func (ClientJsPolicyMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ClientJsPolicy)(nil))
+}
+
+func (o ClientJsPolicyMapOutput) ToClientJsPolicyMapOutput() ClientJsPolicyMapOutput {
+	return o
+}
+
+func (o ClientJsPolicyMapOutput) ToClientJsPolicyMapOutputWithContext(ctx context.Context) ClientJsPolicyMapOutput {
+	return o
+}
+
+func (o ClientJsPolicyMapOutput) MapIndex(k pulumi.StringInput) ClientJsPolicyOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ClientJsPolicy {
+		return vs[0].(map[string]ClientJsPolicy)[vs[1].(string)]
+	}).(ClientJsPolicyOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(ClientJsPolicyOutput{})
+	pulumi.RegisterOutputType(ClientJsPolicyPtrOutput{})
+	pulumi.RegisterOutputType(ClientJsPolicyArrayOutput{})
+	pulumi.RegisterOutputType(ClientJsPolicyMapOutput{})
 }

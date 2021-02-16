@@ -23,7 +23,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/openid"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -204,6 +204,85 @@ func (i *ClientServiceAccountRole) ToClientServiceAccountRoleOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(ClientServiceAccountRoleOutput)
 }
 
+func (i *ClientServiceAccountRole) ToClientServiceAccountRolePtrOutput() ClientServiceAccountRolePtrOutput {
+	return i.ToClientServiceAccountRolePtrOutputWithContext(context.Background())
+}
+
+func (i *ClientServiceAccountRole) ToClientServiceAccountRolePtrOutputWithContext(ctx context.Context) ClientServiceAccountRolePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientServiceAccountRolePtrOutput)
+}
+
+type ClientServiceAccountRolePtrInput interface {
+	pulumi.Input
+
+	ToClientServiceAccountRolePtrOutput() ClientServiceAccountRolePtrOutput
+	ToClientServiceAccountRolePtrOutputWithContext(ctx context.Context) ClientServiceAccountRolePtrOutput
+}
+
+type clientServiceAccountRolePtrType ClientServiceAccountRoleArgs
+
+func (*clientServiceAccountRolePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClientServiceAccountRole)(nil))
+}
+
+func (i *clientServiceAccountRolePtrType) ToClientServiceAccountRolePtrOutput() ClientServiceAccountRolePtrOutput {
+	return i.ToClientServiceAccountRolePtrOutputWithContext(context.Background())
+}
+
+func (i *clientServiceAccountRolePtrType) ToClientServiceAccountRolePtrOutputWithContext(ctx context.Context) ClientServiceAccountRolePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientServiceAccountRolePtrOutput)
+}
+
+// ClientServiceAccountRoleArrayInput is an input type that accepts ClientServiceAccountRoleArray and ClientServiceAccountRoleArrayOutput values.
+// You can construct a concrete instance of `ClientServiceAccountRoleArrayInput` via:
+//
+//          ClientServiceAccountRoleArray{ ClientServiceAccountRoleArgs{...} }
+type ClientServiceAccountRoleArrayInput interface {
+	pulumi.Input
+
+	ToClientServiceAccountRoleArrayOutput() ClientServiceAccountRoleArrayOutput
+	ToClientServiceAccountRoleArrayOutputWithContext(context.Context) ClientServiceAccountRoleArrayOutput
+}
+
+type ClientServiceAccountRoleArray []ClientServiceAccountRoleInput
+
+func (ClientServiceAccountRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*ClientServiceAccountRole)(nil))
+}
+
+func (i ClientServiceAccountRoleArray) ToClientServiceAccountRoleArrayOutput() ClientServiceAccountRoleArrayOutput {
+	return i.ToClientServiceAccountRoleArrayOutputWithContext(context.Background())
+}
+
+func (i ClientServiceAccountRoleArray) ToClientServiceAccountRoleArrayOutputWithContext(ctx context.Context) ClientServiceAccountRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientServiceAccountRoleArrayOutput)
+}
+
+// ClientServiceAccountRoleMapInput is an input type that accepts ClientServiceAccountRoleMap and ClientServiceAccountRoleMapOutput values.
+// You can construct a concrete instance of `ClientServiceAccountRoleMapInput` via:
+//
+//          ClientServiceAccountRoleMap{ "key": ClientServiceAccountRoleArgs{...} }
+type ClientServiceAccountRoleMapInput interface {
+	pulumi.Input
+
+	ToClientServiceAccountRoleMapOutput() ClientServiceAccountRoleMapOutput
+	ToClientServiceAccountRoleMapOutputWithContext(context.Context) ClientServiceAccountRoleMapOutput
+}
+
+type ClientServiceAccountRoleMap map[string]ClientServiceAccountRoleInput
+
+func (ClientServiceAccountRoleMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*ClientServiceAccountRole)(nil))
+}
+
+func (i ClientServiceAccountRoleMap) ToClientServiceAccountRoleMapOutput() ClientServiceAccountRoleMapOutput {
+	return i.ToClientServiceAccountRoleMapOutputWithContext(context.Background())
+}
+
+func (i ClientServiceAccountRoleMap) ToClientServiceAccountRoleMapOutputWithContext(ctx context.Context) ClientServiceAccountRoleMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientServiceAccountRoleMapOutput)
+}
+
 type ClientServiceAccountRoleOutput struct {
 	*pulumi.OutputState
 }
@@ -220,6 +299,75 @@ func (o ClientServiceAccountRoleOutput) ToClientServiceAccountRoleOutputWithCont
 	return o
 }
 
+func (o ClientServiceAccountRoleOutput) ToClientServiceAccountRolePtrOutput() ClientServiceAccountRolePtrOutput {
+	return o.ToClientServiceAccountRolePtrOutputWithContext(context.Background())
+}
+
+func (o ClientServiceAccountRoleOutput) ToClientServiceAccountRolePtrOutputWithContext(ctx context.Context) ClientServiceAccountRolePtrOutput {
+	return o.ApplyT(func(v ClientServiceAccountRole) *ClientServiceAccountRole {
+		return &v
+	}).(ClientServiceAccountRolePtrOutput)
+}
+
+type ClientServiceAccountRolePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClientServiceAccountRolePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClientServiceAccountRole)(nil))
+}
+
+func (o ClientServiceAccountRolePtrOutput) ToClientServiceAccountRolePtrOutput() ClientServiceAccountRolePtrOutput {
+	return o
+}
+
+func (o ClientServiceAccountRolePtrOutput) ToClientServiceAccountRolePtrOutputWithContext(ctx context.Context) ClientServiceAccountRolePtrOutput {
+	return o
+}
+
+type ClientServiceAccountRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (ClientServiceAccountRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClientServiceAccountRole)(nil))
+}
+
+func (o ClientServiceAccountRoleArrayOutput) ToClientServiceAccountRoleArrayOutput() ClientServiceAccountRoleArrayOutput {
+	return o
+}
+
+func (o ClientServiceAccountRoleArrayOutput) ToClientServiceAccountRoleArrayOutputWithContext(ctx context.Context) ClientServiceAccountRoleArrayOutput {
+	return o
+}
+
+func (o ClientServiceAccountRoleArrayOutput) Index(i pulumi.IntInput) ClientServiceAccountRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClientServiceAccountRole {
+		return vs[0].([]ClientServiceAccountRole)[vs[1].(int)]
+	}).(ClientServiceAccountRoleOutput)
+}
+
+type ClientServiceAccountRoleMapOutput struct{ *pulumi.OutputState }
+
+func (ClientServiceAccountRoleMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ClientServiceAccountRole)(nil))
+}
+
+func (o ClientServiceAccountRoleMapOutput) ToClientServiceAccountRoleMapOutput() ClientServiceAccountRoleMapOutput {
+	return o
+}
+
+func (o ClientServiceAccountRoleMapOutput) ToClientServiceAccountRoleMapOutputWithContext(ctx context.Context) ClientServiceAccountRoleMapOutput {
+	return o
+}
+
+func (o ClientServiceAccountRoleMapOutput) MapIndex(k pulumi.StringInput) ClientServiceAccountRoleOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ClientServiceAccountRole {
+		return vs[0].(map[string]ClientServiceAccountRole)[vs[1].(string)]
+	}).(ClientServiceAccountRoleOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(ClientServiceAccountRoleOutput{})
+	pulumi.RegisterOutputType(ClientServiceAccountRolePtrOutput{})
+	pulumi.RegisterOutputType(ClientServiceAccountRoleArrayOutput{})
+	pulumi.RegisterOutputType(ClientServiceAccountRoleMapOutput{})
 }

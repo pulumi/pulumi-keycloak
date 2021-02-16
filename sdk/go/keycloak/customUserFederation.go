@@ -177,6 +177,85 @@ func (i *CustomUserFederation) ToCustomUserFederationOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(CustomUserFederationOutput)
 }
 
+func (i *CustomUserFederation) ToCustomUserFederationPtrOutput() CustomUserFederationPtrOutput {
+	return i.ToCustomUserFederationPtrOutputWithContext(context.Background())
+}
+
+func (i *CustomUserFederation) ToCustomUserFederationPtrOutputWithContext(ctx context.Context) CustomUserFederationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomUserFederationPtrOutput)
+}
+
+type CustomUserFederationPtrInput interface {
+	pulumi.Input
+
+	ToCustomUserFederationPtrOutput() CustomUserFederationPtrOutput
+	ToCustomUserFederationPtrOutputWithContext(ctx context.Context) CustomUserFederationPtrOutput
+}
+
+type customUserFederationPtrType CustomUserFederationArgs
+
+func (*customUserFederationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomUserFederation)(nil))
+}
+
+func (i *customUserFederationPtrType) ToCustomUserFederationPtrOutput() CustomUserFederationPtrOutput {
+	return i.ToCustomUserFederationPtrOutputWithContext(context.Background())
+}
+
+func (i *customUserFederationPtrType) ToCustomUserFederationPtrOutputWithContext(ctx context.Context) CustomUserFederationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomUserFederationPtrOutput)
+}
+
+// CustomUserFederationArrayInput is an input type that accepts CustomUserFederationArray and CustomUserFederationArrayOutput values.
+// You can construct a concrete instance of `CustomUserFederationArrayInput` via:
+//
+//          CustomUserFederationArray{ CustomUserFederationArgs{...} }
+type CustomUserFederationArrayInput interface {
+	pulumi.Input
+
+	ToCustomUserFederationArrayOutput() CustomUserFederationArrayOutput
+	ToCustomUserFederationArrayOutputWithContext(context.Context) CustomUserFederationArrayOutput
+}
+
+type CustomUserFederationArray []CustomUserFederationInput
+
+func (CustomUserFederationArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*CustomUserFederation)(nil))
+}
+
+func (i CustomUserFederationArray) ToCustomUserFederationArrayOutput() CustomUserFederationArrayOutput {
+	return i.ToCustomUserFederationArrayOutputWithContext(context.Background())
+}
+
+func (i CustomUserFederationArray) ToCustomUserFederationArrayOutputWithContext(ctx context.Context) CustomUserFederationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomUserFederationArrayOutput)
+}
+
+// CustomUserFederationMapInput is an input type that accepts CustomUserFederationMap and CustomUserFederationMapOutput values.
+// You can construct a concrete instance of `CustomUserFederationMapInput` via:
+//
+//          CustomUserFederationMap{ "key": CustomUserFederationArgs{...} }
+type CustomUserFederationMapInput interface {
+	pulumi.Input
+
+	ToCustomUserFederationMapOutput() CustomUserFederationMapOutput
+	ToCustomUserFederationMapOutputWithContext(context.Context) CustomUserFederationMapOutput
+}
+
+type CustomUserFederationMap map[string]CustomUserFederationInput
+
+func (CustomUserFederationMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*CustomUserFederation)(nil))
+}
+
+func (i CustomUserFederationMap) ToCustomUserFederationMapOutput() CustomUserFederationMapOutput {
+	return i.ToCustomUserFederationMapOutputWithContext(context.Background())
+}
+
+func (i CustomUserFederationMap) ToCustomUserFederationMapOutputWithContext(ctx context.Context) CustomUserFederationMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomUserFederationMapOutput)
+}
+
 type CustomUserFederationOutput struct {
 	*pulumi.OutputState
 }
@@ -193,6 +272,75 @@ func (o CustomUserFederationOutput) ToCustomUserFederationOutputWithContext(ctx 
 	return o
 }
 
+func (o CustomUserFederationOutput) ToCustomUserFederationPtrOutput() CustomUserFederationPtrOutput {
+	return o.ToCustomUserFederationPtrOutputWithContext(context.Background())
+}
+
+func (o CustomUserFederationOutput) ToCustomUserFederationPtrOutputWithContext(ctx context.Context) CustomUserFederationPtrOutput {
+	return o.ApplyT(func(v CustomUserFederation) *CustomUserFederation {
+		return &v
+	}).(CustomUserFederationPtrOutput)
+}
+
+type CustomUserFederationPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CustomUserFederationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomUserFederation)(nil))
+}
+
+func (o CustomUserFederationPtrOutput) ToCustomUserFederationPtrOutput() CustomUserFederationPtrOutput {
+	return o
+}
+
+func (o CustomUserFederationPtrOutput) ToCustomUserFederationPtrOutputWithContext(ctx context.Context) CustomUserFederationPtrOutput {
+	return o
+}
+
+type CustomUserFederationArrayOutput struct{ *pulumi.OutputState }
+
+func (CustomUserFederationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CustomUserFederation)(nil))
+}
+
+func (o CustomUserFederationArrayOutput) ToCustomUserFederationArrayOutput() CustomUserFederationArrayOutput {
+	return o
+}
+
+func (o CustomUserFederationArrayOutput) ToCustomUserFederationArrayOutputWithContext(ctx context.Context) CustomUserFederationArrayOutput {
+	return o
+}
+
+func (o CustomUserFederationArrayOutput) Index(i pulumi.IntInput) CustomUserFederationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CustomUserFederation {
+		return vs[0].([]CustomUserFederation)[vs[1].(int)]
+	}).(CustomUserFederationOutput)
+}
+
+type CustomUserFederationMapOutput struct{ *pulumi.OutputState }
+
+func (CustomUserFederationMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]CustomUserFederation)(nil))
+}
+
+func (o CustomUserFederationMapOutput) ToCustomUserFederationMapOutput() CustomUserFederationMapOutput {
+	return o
+}
+
+func (o CustomUserFederationMapOutput) ToCustomUserFederationMapOutputWithContext(ctx context.Context) CustomUserFederationMapOutput {
+	return o
+}
+
+func (o CustomUserFederationMapOutput) MapIndex(k pulumi.StringInput) CustomUserFederationOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) CustomUserFederation {
+		return vs[0].(map[string]CustomUserFederation)[vs[1].(string)]
+	}).(CustomUserFederationOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(CustomUserFederationOutput{})
+	pulumi.RegisterOutputType(CustomUserFederationPtrOutput{})
+	pulumi.RegisterOutputType(CustomUserFederationArrayOutput{})
+	pulumi.RegisterOutputType(CustomUserFederationMapOutput{})
 }

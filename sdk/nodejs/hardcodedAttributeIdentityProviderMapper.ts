@@ -68,7 +68,8 @@ export class HardcodedAttributeIdentityProviderMapper extends pulumi.CustomResou
     constructor(name: string, args: HardcodedAttributeIdentityProviderMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: HardcodedAttributeIdentityProviderMapperArgs | HardcodedAttributeIdentityProviderMapperState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as HardcodedAttributeIdentityProviderMapperState | undefined;
             inputs["attributeName"] = state ? state.attributeName : undefined;
             inputs["attributeValue"] = state ? state.attributeValue : undefined;
@@ -79,13 +80,13 @@ export class HardcodedAttributeIdentityProviderMapper extends pulumi.CustomResou
             inputs["userSession"] = state ? state.userSession : undefined;
         } else {
             const args = argsOrState as HardcodedAttributeIdentityProviderMapperArgs | undefined;
-            if ((!args || args.identityProviderAlias === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.identityProviderAlias === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'identityProviderAlias'");
             }
-            if ((!args || args.realm === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realm === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realm'");
             }
-            if ((!args || args.userSession === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.userSession === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'userSession'");
             }
             inputs["attributeName"] = args ? args.attributeName : undefined;
@@ -96,12 +97,8 @@ export class HardcodedAttributeIdentityProviderMapper extends pulumi.CustomResou
             inputs["realm"] = args ? args.realm : undefined;
             inputs["userSession"] = args ? args.userSession : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(HardcodedAttributeIdentityProviderMapper.__pulumiType, name, inputs, opts);
     }

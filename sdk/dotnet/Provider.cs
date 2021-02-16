@@ -25,7 +25,7 @@ namespace Pulumi.Keycloak
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Provider(string name, ProviderArgs? args = null, CustomResourceOptions? options = null)
+        public Provider(string name, ProviderArgs args, CustomResourceOptions? options = null)
             : base("keycloak", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -48,8 +48,8 @@ namespace Pulumi.Keycloak
         [Input("basePath")]
         public Input<string>? BasePath { get; set; }
 
-        [Input("clientId")]
-        public Input<string>? ClientId { get; set; }
+        [Input("clientId", required: true)]
+        public Input<string> ClientId { get; set; } = null!;
 
         [Input("clientSecret")]
         public Input<string>? ClientSecret { get; set; }
@@ -88,21 +88,15 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The base URL of the Keycloak instance, before `/auth`
         /// </summary>
-        [Input("url")]
-        public Input<string>? Url { get; set; }
+        [Input("url", required: true)]
+        public Input<string> Url { get; set; } = null!;
 
         [Input("username")]
         public Input<string>? Username { get; set; }
 
         public ProviderArgs()
         {
-            ClientId = Utilities.GetEnv("KEYCLOAK_CLIENT_ID");
-            ClientSecret = Utilities.GetEnv("KEYCLOAK_CLIENT_SECRET");
             ClientTimeout = Utilities.GetEnvInt32("KEYCLOAK_CLIENT_TIMEOUT") ?? 5;
-            Password = Utilities.GetEnv("KEYCLOAK_PASSWORD");
-            Realm = Utilities.GetEnv("KEYCLOAK_REALM") ?? "master";
-            Url = Utilities.GetEnv("KEYCLOAK_URL");
-            Username = Utilities.GetEnv("KEYCLOAK_USER");
         }
     }
 }

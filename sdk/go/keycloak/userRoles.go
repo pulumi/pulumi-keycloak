@@ -130,6 +130,85 @@ func (i *UserRoles) ToUserRolesOutputWithContext(ctx context.Context) UserRolesO
 	return pulumi.ToOutputWithContext(ctx, i).(UserRolesOutput)
 }
 
+func (i *UserRoles) ToUserRolesPtrOutput() UserRolesPtrOutput {
+	return i.ToUserRolesPtrOutputWithContext(context.Background())
+}
+
+func (i *UserRoles) ToUserRolesPtrOutputWithContext(ctx context.Context) UserRolesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserRolesPtrOutput)
+}
+
+type UserRolesPtrInput interface {
+	pulumi.Input
+
+	ToUserRolesPtrOutput() UserRolesPtrOutput
+	ToUserRolesPtrOutputWithContext(ctx context.Context) UserRolesPtrOutput
+}
+
+type userRolesPtrType UserRolesArgs
+
+func (*userRolesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserRoles)(nil))
+}
+
+func (i *userRolesPtrType) ToUserRolesPtrOutput() UserRolesPtrOutput {
+	return i.ToUserRolesPtrOutputWithContext(context.Background())
+}
+
+func (i *userRolesPtrType) ToUserRolesPtrOutputWithContext(ctx context.Context) UserRolesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserRolesPtrOutput)
+}
+
+// UserRolesArrayInput is an input type that accepts UserRolesArray and UserRolesArrayOutput values.
+// You can construct a concrete instance of `UserRolesArrayInput` via:
+//
+//          UserRolesArray{ UserRolesArgs{...} }
+type UserRolesArrayInput interface {
+	pulumi.Input
+
+	ToUserRolesArrayOutput() UserRolesArrayOutput
+	ToUserRolesArrayOutputWithContext(context.Context) UserRolesArrayOutput
+}
+
+type UserRolesArray []UserRolesInput
+
+func (UserRolesArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*UserRoles)(nil))
+}
+
+func (i UserRolesArray) ToUserRolesArrayOutput() UserRolesArrayOutput {
+	return i.ToUserRolesArrayOutputWithContext(context.Background())
+}
+
+func (i UserRolesArray) ToUserRolesArrayOutputWithContext(ctx context.Context) UserRolesArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserRolesArrayOutput)
+}
+
+// UserRolesMapInput is an input type that accepts UserRolesMap and UserRolesMapOutput values.
+// You can construct a concrete instance of `UserRolesMapInput` via:
+//
+//          UserRolesMap{ "key": UserRolesArgs{...} }
+type UserRolesMapInput interface {
+	pulumi.Input
+
+	ToUserRolesMapOutput() UserRolesMapOutput
+	ToUserRolesMapOutputWithContext(context.Context) UserRolesMapOutput
+}
+
+type UserRolesMap map[string]UserRolesInput
+
+func (UserRolesMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*UserRoles)(nil))
+}
+
+func (i UserRolesMap) ToUserRolesMapOutput() UserRolesMapOutput {
+	return i.ToUserRolesMapOutputWithContext(context.Background())
+}
+
+func (i UserRolesMap) ToUserRolesMapOutputWithContext(ctx context.Context) UserRolesMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserRolesMapOutput)
+}
+
 type UserRolesOutput struct {
 	*pulumi.OutputState
 }
@@ -146,6 +225,75 @@ func (o UserRolesOutput) ToUserRolesOutputWithContext(ctx context.Context) UserR
 	return o
 }
 
+func (o UserRolesOutput) ToUserRolesPtrOutput() UserRolesPtrOutput {
+	return o.ToUserRolesPtrOutputWithContext(context.Background())
+}
+
+func (o UserRolesOutput) ToUserRolesPtrOutputWithContext(ctx context.Context) UserRolesPtrOutput {
+	return o.ApplyT(func(v UserRoles) *UserRoles {
+		return &v
+	}).(UserRolesPtrOutput)
+}
+
+type UserRolesPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (UserRolesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserRoles)(nil))
+}
+
+func (o UserRolesPtrOutput) ToUserRolesPtrOutput() UserRolesPtrOutput {
+	return o
+}
+
+func (o UserRolesPtrOutput) ToUserRolesPtrOutputWithContext(ctx context.Context) UserRolesPtrOutput {
+	return o
+}
+
+type UserRolesArrayOutput struct{ *pulumi.OutputState }
+
+func (UserRolesArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserRoles)(nil))
+}
+
+func (o UserRolesArrayOutput) ToUserRolesArrayOutput() UserRolesArrayOutput {
+	return o
+}
+
+func (o UserRolesArrayOutput) ToUserRolesArrayOutputWithContext(ctx context.Context) UserRolesArrayOutput {
+	return o
+}
+
+func (o UserRolesArrayOutput) Index(i pulumi.IntInput) UserRolesOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserRoles {
+		return vs[0].([]UserRoles)[vs[1].(int)]
+	}).(UserRolesOutput)
+}
+
+type UserRolesMapOutput struct{ *pulumi.OutputState }
+
+func (UserRolesMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]UserRoles)(nil))
+}
+
+func (o UserRolesMapOutput) ToUserRolesMapOutput() UserRolesMapOutput {
+	return o
+}
+
+func (o UserRolesMapOutput) ToUserRolesMapOutputWithContext(ctx context.Context) UserRolesMapOutput {
+	return o
+}
+
+func (o UserRolesMapOutput) MapIndex(k pulumi.StringInput) UserRolesOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserRoles {
+		return vs[0].(map[string]UserRoles)[vs[1].(string)]
+	}).(UserRolesOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(UserRolesOutput{})
+	pulumi.RegisterOutputType(UserRolesPtrOutput{})
+	pulumi.RegisterOutputType(UserRolesArrayOutput{})
+	pulumi.RegisterOutputType(UserRolesMapOutput{})
 }

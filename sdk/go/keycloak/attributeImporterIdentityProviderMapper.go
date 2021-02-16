@@ -26,7 +26,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
 // 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak/oidc"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -238,6 +238,85 @@ func (i *AttributeImporterIdentityProviderMapper) ToAttributeImporterIdentityPro
 	return pulumi.ToOutputWithContext(ctx, i).(AttributeImporterIdentityProviderMapperOutput)
 }
 
+func (i *AttributeImporterIdentityProviderMapper) ToAttributeImporterIdentityProviderMapperPtrOutput() AttributeImporterIdentityProviderMapperPtrOutput {
+	return i.ToAttributeImporterIdentityProviderMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *AttributeImporterIdentityProviderMapper) ToAttributeImporterIdentityProviderMapperPtrOutputWithContext(ctx context.Context) AttributeImporterIdentityProviderMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttributeImporterIdentityProviderMapperPtrOutput)
+}
+
+type AttributeImporterIdentityProviderMapperPtrInput interface {
+	pulumi.Input
+
+	ToAttributeImporterIdentityProviderMapperPtrOutput() AttributeImporterIdentityProviderMapperPtrOutput
+	ToAttributeImporterIdentityProviderMapperPtrOutputWithContext(ctx context.Context) AttributeImporterIdentityProviderMapperPtrOutput
+}
+
+type attributeImporterIdentityProviderMapperPtrType AttributeImporterIdentityProviderMapperArgs
+
+func (*attributeImporterIdentityProviderMapperPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AttributeImporterIdentityProviderMapper)(nil))
+}
+
+func (i *attributeImporterIdentityProviderMapperPtrType) ToAttributeImporterIdentityProviderMapperPtrOutput() AttributeImporterIdentityProviderMapperPtrOutput {
+	return i.ToAttributeImporterIdentityProviderMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *attributeImporterIdentityProviderMapperPtrType) ToAttributeImporterIdentityProviderMapperPtrOutputWithContext(ctx context.Context) AttributeImporterIdentityProviderMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttributeImporterIdentityProviderMapperPtrOutput)
+}
+
+// AttributeImporterIdentityProviderMapperArrayInput is an input type that accepts AttributeImporterIdentityProviderMapperArray and AttributeImporterIdentityProviderMapperArrayOutput values.
+// You can construct a concrete instance of `AttributeImporterIdentityProviderMapperArrayInput` via:
+//
+//          AttributeImporterIdentityProviderMapperArray{ AttributeImporterIdentityProviderMapperArgs{...} }
+type AttributeImporterIdentityProviderMapperArrayInput interface {
+	pulumi.Input
+
+	ToAttributeImporterIdentityProviderMapperArrayOutput() AttributeImporterIdentityProviderMapperArrayOutput
+	ToAttributeImporterIdentityProviderMapperArrayOutputWithContext(context.Context) AttributeImporterIdentityProviderMapperArrayOutput
+}
+
+type AttributeImporterIdentityProviderMapperArray []AttributeImporterIdentityProviderMapperInput
+
+func (AttributeImporterIdentityProviderMapperArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*AttributeImporterIdentityProviderMapper)(nil))
+}
+
+func (i AttributeImporterIdentityProviderMapperArray) ToAttributeImporterIdentityProviderMapperArrayOutput() AttributeImporterIdentityProviderMapperArrayOutput {
+	return i.ToAttributeImporterIdentityProviderMapperArrayOutputWithContext(context.Background())
+}
+
+func (i AttributeImporterIdentityProviderMapperArray) ToAttributeImporterIdentityProviderMapperArrayOutputWithContext(ctx context.Context) AttributeImporterIdentityProviderMapperArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttributeImporterIdentityProviderMapperArrayOutput)
+}
+
+// AttributeImporterIdentityProviderMapperMapInput is an input type that accepts AttributeImporterIdentityProviderMapperMap and AttributeImporterIdentityProviderMapperMapOutput values.
+// You can construct a concrete instance of `AttributeImporterIdentityProviderMapperMapInput` via:
+//
+//          AttributeImporterIdentityProviderMapperMap{ "key": AttributeImporterIdentityProviderMapperArgs{...} }
+type AttributeImporterIdentityProviderMapperMapInput interface {
+	pulumi.Input
+
+	ToAttributeImporterIdentityProviderMapperMapOutput() AttributeImporterIdentityProviderMapperMapOutput
+	ToAttributeImporterIdentityProviderMapperMapOutputWithContext(context.Context) AttributeImporterIdentityProviderMapperMapOutput
+}
+
+type AttributeImporterIdentityProviderMapperMap map[string]AttributeImporterIdentityProviderMapperInput
+
+func (AttributeImporterIdentityProviderMapperMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*AttributeImporterIdentityProviderMapper)(nil))
+}
+
+func (i AttributeImporterIdentityProviderMapperMap) ToAttributeImporterIdentityProviderMapperMapOutput() AttributeImporterIdentityProviderMapperMapOutput {
+	return i.ToAttributeImporterIdentityProviderMapperMapOutputWithContext(context.Background())
+}
+
+func (i AttributeImporterIdentityProviderMapperMap) ToAttributeImporterIdentityProviderMapperMapOutputWithContext(ctx context.Context) AttributeImporterIdentityProviderMapperMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttributeImporterIdentityProviderMapperMapOutput)
+}
+
 type AttributeImporterIdentityProviderMapperOutput struct {
 	*pulumi.OutputState
 }
@@ -254,6 +333,75 @@ func (o AttributeImporterIdentityProviderMapperOutput) ToAttributeImporterIdenti
 	return o
 }
 
+func (o AttributeImporterIdentityProviderMapperOutput) ToAttributeImporterIdentityProviderMapperPtrOutput() AttributeImporterIdentityProviderMapperPtrOutput {
+	return o.ToAttributeImporterIdentityProviderMapperPtrOutputWithContext(context.Background())
+}
+
+func (o AttributeImporterIdentityProviderMapperOutput) ToAttributeImporterIdentityProviderMapperPtrOutputWithContext(ctx context.Context) AttributeImporterIdentityProviderMapperPtrOutput {
+	return o.ApplyT(func(v AttributeImporterIdentityProviderMapper) *AttributeImporterIdentityProviderMapper {
+		return &v
+	}).(AttributeImporterIdentityProviderMapperPtrOutput)
+}
+
+type AttributeImporterIdentityProviderMapperPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AttributeImporterIdentityProviderMapperPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AttributeImporterIdentityProviderMapper)(nil))
+}
+
+func (o AttributeImporterIdentityProviderMapperPtrOutput) ToAttributeImporterIdentityProviderMapperPtrOutput() AttributeImporterIdentityProviderMapperPtrOutput {
+	return o
+}
+
+func (o AttributeImporterIdentityProviderMapperPtrOutput) ToAttributeImporterIdentityProviderMapperPtrOutputWithContext(ctx context.Context) AttributeImporterIdentityProviderMapperPtrOutput {
+	return o
+}
+
+type AttributeImporterIdentityProviderMapperArrayOutput struct{ *pulumi.OutputState }
+
+func (AttributeImporterIdentityProviderMapperArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AttributeImporterIdentityProviderMapper)(nil))
+}
+
+func (o AttributeImporterIdentityProviderMapperArrayOutput) ToAttributeImporterIdentityProviderMapperArrayOutput() AttributeImporterIdentityProviderMapperArrayOutput {
+	return o
+}
+
+func (o AttributeImporterIdentityProviderMapperArrayOutput) ToAttributeImporterIdentityProviderMapperArrayOutputWithContext(ctx context.Context) AttributeImporterIdentityProviderMapperArrayOutput {
+	return o
+}
+
+func (o AttributeImporterIdentityProviderMapperArrayOutput) Index(i pulumi.IntInput) AttributeImporterIdentityProviderMapperOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AttributeImporterIdentityProviderMapper {
+		return vs[0].([]AttributeImporterIdentityProviderMapper)[vs[1].(int)]
+	}).(AttributeImporterIdentityProviderMapperOutput)
+}
+
+type AttributeImporterIdentityProviderMapperMapOutput struct{ *pulumi.OutputState }
+
+func (AttributeImporterIdentityProviderMapperMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]AttributeImporterIdentityProviderMapper)(nil))
+}
+
+func (o AttributeImporterIdentityProviderMapperMapOutput) ToAttributeImporterIdentityProviderMapperMapOutput() AttributeImporterIdentityProviderMapperMapOutput {
+	return o
+}
+
+func (o AttributeImporterIdentityProviderMapperMapOutput) ToAttributeImporterIdentityProviderMapperMapOutputWithContext(ctx context.Context) AttributeImporterIdentityProviderMapperMapOutput {
+	return o
+}
+
+func (o AttributeImporterIdentityProviderMapperMapOutput) MapIndex(k pulumi.StringInput) AttributeImporterIdentityProviderMapperOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AttributeImporterIdentityProviderMapper {
+		return vs[0].(map[string]AttributeImporterIdentityProviderMapper)[vs[1].(string)]
+	}).(AttributeImporterIdentityProviderMapperOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(AttributeImporterIdentityProviderMapperOutput{})
+	pulumi.RegisterOutputType(AttributeImporterIdentityProviderMapperPtrOutput{})
+	pulumi.RegisterOutputType(AttributeImporterIdentityProviderMapperArrayOutput{})
+	pulumi.RegisterOutputType(AttributeImporterIdentityProviderMapperMapOutput{})
 }

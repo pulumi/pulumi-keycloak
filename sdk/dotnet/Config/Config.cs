@@ -10,9 +10,9 @@ namespace Pulumi.Keycloak
         private static readonly Pulumi.Config __config = new Pulumi.Config("keycloak");
         public static string? BasePath { get; set; } = __config.Get("basePath");
 
-        public static string? ClientId { get; set; } = __config.Get("clientId") ?? Utilities.GetEnv("KEYCLOAK_CLIENT_ID");
+        public static string? ClientId { get; set; } = __config.Get("clientId");
 
-        public static string? ClientSecret { get; set; } = __config.Get("clientSecret") ?? Utilities.GetEnv("KEYCLOAK_CLIENT_SECRET");
+        public static string? ClientSecret { get; set; } = __config.Get("clientSecret");
 
         /// <summary>
         /// Timeout (in seconds) of the Keycloak client
@@ -24,9 +24,9 @@ namespace Pulumi.Keycloak
         /// </summary>
         public static bool? InitialLogin { get; set; } = __config.GetBoolean("initialLogin");
 
-        public static string? Password { get; set; } = __config.Get("password") ?? Utilities.GetEnv("KEYCLOAK_PASSWORD");
+        public static string? Password { get; set; } = __config.Get("password");
 
-        public static string? Realm { get; set; } = __config.Get("realm") ?? Utilities.GetEnv("KEYCLOAK_REALM") ?? "master";
+        public static string? Realm { get; set; } = __config.Get("realm");
 
         /// <summary>
         /// Allows x509 calls using an unknown CA certificate (for development purposes)
@@ -42,9 +42,9 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The base URL of the Keycloak instance, before `/auth`
         /// </summary>
-        public static string? Url { get; set; } = __config.Get("url") ?? Utilities.GetEnv("KEYCLOAK_URL");
+        public static string? Url { get; set; } = __config.Get("url");
 
-        public static string? Username { get; set; } = __config.Get("username") ?? Utilities.GetEnv("KEYCLOAK_USER");
+        public static string? Username { get; set; } = __config.Get("username");
 
     }
 }

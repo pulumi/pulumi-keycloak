@@ -149,7 +149,8 @@ export class UserRealmRoleProtocolMapper extends pulumi.CustomResource {
     constructor(name: string, args: UserRealmRoleProtocolMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserRealmRoleProtocolMapperArgs | UserRealmRoleProtocolMapperState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as UserRealmRoleProtocolMapperState | undefined;
             inputs["addToAccessToken"] = state ? state.addToAccessToken : undefined;
             inputs["addToIdToken"] = state ? state.addToIdToken : undefined;
@@ -164,10 +165,10 @@ export class UserRealmRoleProtocolMapper extends pulumi.CustomResource {
             inputs["realmRolePrefix"] = state ? state.realmRolePrefix : undefined;
         } else {
             const args = argsOrState as UserRealmRoleProtocolMapperArgs | undefined;
-            if ((!args || args.claimName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.claimName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'claimName'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
             inputs["addToAccessToken"] = args ? args.addToAccessToken : undefined;
@@ -182,12 +183,8 @@ export class UserRealmRoleProtocolMapper extends pulumi.CustomResource {
             inputs["realmId"] = args ? args.realmId : undefined;
             inputs["realmRolePrefix"] = args ? args.realmRolePrefix : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(UserRealmRoleProtocolMapper.__pulumiType, name, inputs, opts);
     }

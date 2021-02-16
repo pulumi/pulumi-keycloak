@@ -104,7 +104,8 @@ export class ClientServiceAccountRole extends pulumi.CustomResource {
     constructor(name: string, args: ClientServiceAccountRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClientServiceAccountRoleArgs | ClientServiceAccountRoleState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ClientServiceAccountRoleState | undefined;
             inputs["clientId"] = state ? state.clientId : undefined;
             inputs["realmId"] = state ? state.realmId : undefined;
@@ -112,16 +113,16 @@ export class ClientServiceAccountRole extends pulumi.CustomResource {
             inputs["serviceAccountUserId"] = state ? state.serviceAccountUserId : undefined;
         } else {
             const args = argsOrState as ClientServiceAccountRoleArgs | undefined;
-            if ((!args || args.clientId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.clientId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clientId'");
             }
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.role === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.role === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            if ((!args || args.serviceAccountUserId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.serviceAccountUserId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serviceAccountUserId'");
             }
             inputs["clientId"] = args ? args.clientId : undefined;
@@ -129,12 +130,8 @@ export class ClientServiceAccountRole extends pulumi.CustomResource {
             inputs["role"] = args ? args.role : undefined;
             inputs["serviceAccountUserId"] = args ? args.serviceAccountUserId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ClientServiceAccountRole.__pulumiType, name, inputs, opts);
     }

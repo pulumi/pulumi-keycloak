@@ -135,6 +135,85 @@ func (i *UserTemplateImporterIdentityProviderMapper) ToUserTemplateImporterIdent
 	return pulumi.ToOutputWithContext(ctx, i).(UserTemplateImporterIdentityProviderMapperOutput)
 }
 
+func (i *UserTemplateImporterIdentityProviderMapper) ToUserTemplateImporterIdentityProviderMapperPtrOutput() UserTemplateImporterIdentityProviderMapperPtrOutput {
+	return i.ToUserTemplateImporterIdentityProviderMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *UserTemplateImporterIdentityProviderMapper) ToUserTemplateImporterIdentityProviderMapperPtrOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserTemplateImporterIdentityProviderMapperPtrOutput)
+}
+
+type UserTemplateImporterIdentityProviderMapperPtrInput interface {
+	pulumi.Input
+
+	ToUserTemplateImporterIdentityProviderMapperPtrOutput() UserTemplateImporterIdentityProviderMapperPtrOutput
+	ToUserTemplateImporterIdentityProviderMapperPtrOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperPtrOutput
+}
+
+type userTemplateImporterIdentityProviderMapperPtrType UserTemplateImporterIdentityProviderMapperArgs
+
+func (*userTemplateImporterIdentityProviderMapperPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserTemplateImporterIdentityProviderMapper)(nil))
+}
+
+func (i *userTemplateImporterIdentityProviderMapperPtrType) ToUserTemplateImporterIdentityProviderMapperPtrOutput() UserTemplateImporterIdentityProviderMapperPtrOutput {
+	return i.ToUserTemplateImporterIdentityProviderMapperPtrOutputWithContext(context.Background())
+}
+
+func (i *userTemplateImporterIdentityProviderMapperPtrType) ToUserTemplateImporterIdentityProviderMapperPtrOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserTemplateImporterIdentityProviderMapperPtrOutput)
+}
+
+// UserTemplateImporterIdentityProviderMapperArrayInput is an input type that accepts UserTemplateImporterIdentityProviderMapperArray and UserTemplateImporterIdentityProviderMapperArrayOutput values.
+// You can construct a concrete instance of `UserTemplateImporterIdentityProviderMapperArrayInput` via:
+//
+//          UserTemplateImporterIdentityProviderMapperArray{ UserTemplateImporterIdentityProviderMapperArgs{...} }
+type UserTemplateImporterIdentityProviderMapperArrayInput interface {
+	pulumi.Input
+
+	ToUserTemplateImporterIdentityProviderMapperArrayOutput() UserTemplateImporterIdentityProviderMapperArrayOutput
+	ToUserTemplateImporterIdentityProviderMapperArrayOutputWithContext(context.Context) UserTemplateImporterIdentityProviderMapperArrayOutput
+}
+
+type UserTemplateImporterIdentityProviderMapperArray []UserTemplateImporterIdentityProviderMapperInput
+
+func (UserTemplateImporterIdentityProviderMapperArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*UserTemplateImporterIdentityProviderMapper)(nil))
+}
+
+func (i UserTemplateImporterIdentityProviderMapperArray) ToUserTemplateImporterIdentityProviderMapperArrayOutput() UserTemplateImporterIdentityProviderMapperArrayOutput {
+	return i.ToUserTemplateImporterIdentityProviderMapperArrayOutputWithContext(context.Background())
+}
+
+func (i UserTemplateImporterIdentityProviderMapperArray) ToUserTemplateImporterIdentityProviderMapperArrayOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserTemplateImporterIdentityProviderMapperArrayOutput)
+}
+
+// UserTemplateImporterIdentityProviderMapperMapInput is an input type that accepts UserTemplateImporterIdentityProviderMapperMap and UserTemplateImporterIdentityProviderMapperMapOutput values.
+// You can construct a concrete instance of `UserTemplateImporterIdentityProviderMapperMapInput` via:
+//
+//          UserTemplateImporterIdentityProviderMapperMap{ "key": UserTemplateImporterIdentityProviderMapperArgs{...} }
+type UserTemplateImporterIdentityProviderMapperMapInput interface {
+	pulumi.Input
+
+	ToUserTemplateImporterIdentityProviderMapperMapOutput() UserTemplateImporterIdentityProviderMapperMapOutput
+	ToUserTemplateImporterIdentityProviderMapperMapOutputWithContext(context.Context) UserTemplateImporterIdentityProviderMapperMapOutput
+}
+
+type UserTemplateImporterIdentityProviderMapperMap map[string]UserTemplateImporterIdentityProviderMapperInput
+
+func (UserTemplateImporterIdentityProviderMapperMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*UserTemplateImporterIdentityProviderMapper)(nil))
+}
+
+func (i UserTemplateImporterIdentityProviderMapperMap) ToUserTemplateImporterIdentityProviderMapperMapOutput() UserTemplateImporterIdentityProviderMapperMapOutput {
+	return i.ToUserTemplateImporterIdentityProviderMapperMapOutputWithContext(context.Background())
+}
+
+func (i UserTemplateImporterIdentityProviderMapperMap) ToUserTemplateImporterIdentityProviderMapperMapOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserTemplateImporterIdentityProviderMapperMapOutput)
+}
+
 type UserTemplateImporterIdentityProviderMapperOutput struct {
 	*pulumi.OutputState
 }
@@ -151,6 +230,75 @@ func (o UserTemplateImporterIdentityProviderMapperOutput) ToUserTemplateImporter
 	return o
 }
 
+func (o UserTemplateImporterIdentityProviderMapperOutput) ToUserTemplateImporterIdentityProviderMapperPtrOutput() UserTemplateImporterIdentityProviderMapperPtrOutput {
+	return o.ToUserTemplateImporterIdentityProviderMapperPtrOutputWithContext(context.Background())
+}
+
+func (o UserTemplateImporterIdentityProviderMapperOutput) ToUserTemplateImporterIdentityProviderMapperPtrOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperPtrOutput {
+	return o.ApplyT(func(v UserTemplateImporterIdentityProviderMapper) *UserTemplateImporterIdentityProviderMapper {
+		return &v
+	}).(UserTemplateImporterIdentityProviderMapperPtrOutput)
+}
+
+type UserTemplateImporterIdentityProviderMapperPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (UserTemplateImporterIdentityProviderMapperPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserTemplateImporterIdentityProviderMapper)(nil))
+}
+
+func (o UserTemplateImporterIdentityProviderMapperPtrOutput) ToUserTemplateImporterIdentityProviderMapperPtrOutput() UserTemplateImporterIdentityProviderMapperPtrOutput {
+	return o
+}
+
+func (o UserTemplateImporterIdentityProviderMapperPtrOutput) ToUserTemplateImporterIdentityProviderMapperPtrOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperPtrOutput {
+	return o
+}
+
+type UserTemplateImporterIdentityProviderMapperArrayOutput struct{ *pulumi.OutputState }
+
+func (UserTemplateImporterIdentityProviderMapperArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserTemplateImporterIdentityProviderMapper)(nil))
+}
+
+func (o UserTemplateImporterIdentityProviderMapperArrayOutput) ToUserTemplateImporterIdentityProviderMapperArrayOutput() UserTemplateImporterIdentityProviderMapperArrayOutput {
+	return o
+}
+
+func (o UserTemplateImporterIdentityProviderMapperArrayOutput) ToUserTemplateImporterIdentityProviderMapperArrayOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperArrayOutput {
+	return o
+}
+
+func (o UserTemplateImporterIdentityProviderMapperArrayOutput) Index(i pulumi.IntInput) UserTemplateImporterIdentityProviderMapperOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserTemplateImporterIdentityProviderMapper {
+		return vs[0].([]UserTemplateImporterIdentityProviderMapper)[vs[1].(int)]
+	}).(UserTemplateImporterIdentityProviderMapperOutput)
+}
+
+type UserTemplateImporterIdentityProviderMapperMapOutput struct{ *pulumi.OutputState }
+
+func (UserTemplateImporterIdentityProviderMapperMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]UserTemplateImporterIdentityProviderMapper)(nil))
+}
+
+func (o UserTemplateImporterIdentityProviderMapperMapOutput) ToUserTemplateImporterIdentityProviderMapperMapOutput() UserTemplateImporterIdentityProviderMapperMapOutput {
+	return o
+}
+
+func (o UserTemplateImporterIdentityProviderMapperMapOutput) ToUserTemplateImporterIdentityProviderMapperMapOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperMapOutput {
+	return o
+}
+
+func (o UserTemplateImporterIdentityProviderMapperMapOutput) MapIndex(k pulumi.StringInput) UserTemplateImporterIdentityProviderMapperOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserTemplateImporterIdentityProviderMapper {
+		return vs[0].(map[string]UserTemplateImporterIdentityProviderMapper)[vs[1].(string)]
+	}).(UserTemplateImporterIdentityProviderMapperOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(UserTemplateImporterIdentityProviderMapperOutput{})
+	pulumi.RegisterOutputType(UserTemplateImporterIdentityProviderMapperPtrOutput{})
+	pulumi.RegisterOutputType(UserTemplateImporterIdentityProviderMapperArrayOutput{})
+	pulumi.RegisterOutputType(UserTemplateImporterIdentityProviderMapperMapOutput{})
 }

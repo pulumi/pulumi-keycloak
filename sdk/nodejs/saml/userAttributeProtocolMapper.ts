@@ -119,7 +119,8 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
     constructor(name: string, args: UserAttributeProtocolMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserAttributeProtocolMapperArgs | UserAttributeProtocolMapperState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as UserAttributeProtocolMapperState | undefined;
             inputs["clientId"] = state ? state.clientId : undefined;
             inputs["clientScopeId"] = state ? state.clientScopeId : undefined;
@@ -131,16 +132,16 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
             inputs["userAttribute"] = state ? state.userAttribute : undefined;
         } else {
             const args = argsOrState as UserAttributeProtocolMapperArgs | undefined;
-            if ((!args || args.realmId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.samlAttributeName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.samlAttributeName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'samlAttributeName'");
             }
-            if ((!args || args.samlAttributeNameFormat === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.samlAttributeNameFormat === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'samlAttributeNameFormat'");
             }
-            if ((!args || args.userAttribute === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.userAttribute === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'userAttribute'");
             }
             inputs["clientId"] = args ? args.clientId : undefined;
@@ -152,12 +153,8 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
             inputs["samlAttributeNameFormat"] = args ? args.samlAttributeNameFormat : undefined;
             inputs["userAttribute"] = args ? args.userAttribute : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(UserAttributeProtocolMapper.__pulumiType, name, inputs, opts);
     }
