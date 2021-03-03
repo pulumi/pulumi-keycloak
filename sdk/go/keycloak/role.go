@@ -38,6 +38,9 @@ import (
 // 		_, err = keycloak.NewRole(ctx, "realmRole", &keycloak.RoleArgs{
 // 			RealmId:     realm.ID(),
 // 			Description: pulumi.String("My Realm Role"),
+// 			Attributes: pulumi.StringMap{
+// 				"key": pulumi.String("value"),
+// 			},
 // 		})
 // 		if err != nil {
 // 			return err
@@ -82,6 +85,9 @@ import (
 // 			RealmId:     realm.ID(),
 // 			ClientId:    pulumi.Any(keycloak_client.Openid_client.Id),
 // 			Description: pulumi.String("My Client Role"),
+// 			Attributes: pulumi.StringMap{
+// 				"key": pulumi.String("value"),
+// 			},
 // 		})
 // 		if err != nil {
 // 			return err
@@ -112,24 +118,36 @@ import (
 // 		}
 // 		createRole, err := keycloak.NewRole(ctx, "createRole", &keycloak.RoleArgs{
 // 			RealmId: realm.ID(),
+// 			Attributes: pulumi.StringMap{
+// 				"key": pulumi.String("value"),
+// 			},
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		readRole, err := keycloak.NewRole(ctx, "readRole", &keycloak.RoleArgs{
 // 			RealmId: realm.ID(),
+// 			Attributes: pulumi.StringMap{
+// 				"key": pulumi.String("value"),
+// 			},
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		updateRole, err := keycloak.NewRole(ctx, "updateRole", &keycloak.RoleArgs{
 // 			RealmId: realm.ID(),
+// 			Attributes: pulumi.StringMap{
+// 				"key": pulumi.String("value"),
+// 			},
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		deleteRole, err := keycloak.NewRole(ctx, "deleteRole", &keycloak.RoleArgs{
 // 			RealmId: realm.ID(),
+// 			Attributes: pulumi.StringMap{
+// 				"key": pulumi.String("value"),
+// 			},
 // 		})
 // 		if err != nil {
 // 			return err
@@ -150,6 +168,9 @@ import (
 // 			RealmId:     realm.ID(),
 // 			ClientId:    pulumi.Any(keycloak_client.Openid_client.Id),
 // 			Description: pulumi.String("My Client Role"),
+// 			Attributes: pulumi.StringMap{
+// 				"key": pulumi.String("value"),
+// 			},
 // 		})
 // 		if err != nil {
 // 			return err
@@ -162,6 +183,9 @@ import (
 // 				updateRole.ID(),
 // 				deleteRole.ID(),
 // 				clientRole.ID(),
+// 			},
+// 			Attributes: pulumi.StringMap{
+// 				"key": pulumi.String("value"),
 // 			},
 // 		})
 // 		if err != nil {
@@ -182,6 +206,8 @@ import (
 type Role struct {
 	pulumi.CustomResourceState
 
+	// Attribute key/value pairs
+	Attributes pulumi.MapOutput `pulumi:"attributes"`
 	// When specified, this role will be created as a client role attached to the client with the provided ID
 	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
 	// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
@@ -226,6 +252,8 @@ func GetRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Role resources.
 type roleState struct {
+	// Attribute key/value pairs
+	Attributes map[string]interface{} `pulumi:"attributes"`
 	// When specified, this role will be created as a client role attached to the client with the provided ID
 	ClientId *string `pulumi:"clientId"`
 	// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
@@ -239,6 +267,8 @@ type roleState struct {
 }
 
 type RoleState struct {
+	// Attribute key/value pairs
+	Attributes pulumi.MapInput
 	// When specified, this role will be created as a client role attached to the client with the provided ID
 	ClientId pulumi.StringPtrInput
 	// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
@@ -256,6 +286,8 @@ func (RoleState) ElementType() reflect.Type {
 }
 
 type roleArgs struct {
+	// Attribute key/value pairs
+	Attributes map[string]interface{} `pulumi:"attributes"`
 	// When specified, this role will be created as a client role attached to the client with the provided ID
 	ClientId *string `pulumi:"clientId"`
 	// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
@@ -270,6 +302,8 @@ type roleArgs struct {
 
 // The set of arguments for constructing a Role resource.
 type RoleArgs struct {
+	// Attribute key/value pairs
+	Attributes pulumi.MapInput
 	// When specified, this role will be created as a client role attached to the client with the provided ID
 	ClientId pulumi.StringPtrInput
 	// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.

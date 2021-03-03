@@ -72,7 +72,9 @@ type LookupRoleArgs struct {
 
 // A collection of values returned by getRole.
 type LookupRoleResult struct {
-	ClientId *string `pulumi:"clientId"`
+	Attributes     map[string]interface{} `pulumi:"attributes"`
+	ClientId       *string                `pulumi:"clientId"`
+	CompositeRoles []string               `pulumi:"compositeRoles"`
 	// (Computed) The description of the role.
 	Description string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.

@@ -9,6 +9,7 @@ from .client_scope import *
 from .get_client import *
 from .get_client_installation_provider import *
 from .identity_provider import *
+from .script_protocol_mapper import *
 from .user_attribute_protocol_mapper import *
 from .user_property_protocol_mapper import *
 from ._inputs import *
@@ -34,6 +35,8 @@ def _register_module():
                 return ClientScope(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "keycloak:saml/identityProvider:IdentityProvider":
                 return IdentityProvider(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper":
+                return ScriptProtocolMapper(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper":
                 return UserAttributeProtocolMapper(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper":
@@ -47,6 +50,7 @@ def _register_module():
     pulumi.runtime.register_resource_module("keycloak", "saml/clientDefaultScope", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "saml/clientScope", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "saml/identityProvider", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "saml/scriptProtocolMapper", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "saml/userAttributeProtocolMapper", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "saml/userPropertyProtocolMapper", _module_instance)
 

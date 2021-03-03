@@ -68,7 +68,9 @@ export interface GetRoleArgs {
  * A collection of values returned by getRole.
  */
 export interface GetRoleResult {
+    readonly attributes: {[key: string]: any};
     readonly clientId?: string;
+    readonly compositeRoles: string[];
     /**
      * (Computed) The description of the role.
      */

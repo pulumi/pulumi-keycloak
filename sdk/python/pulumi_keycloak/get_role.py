@@ -19,10 +19,16 @@ class GetRoleResult:
     """
     A collection of values returned by getRole.
     """
-    def __init__(__self__, client_id=None, description=None, id=None, name=None, realm_id=None):
+    def __init__(__self__, attributes=None, client_id=None, composite_roles=None, description=None, id=None, name=None, realm_id=None):
+        if attributes and not isinstance(attributes, dict):
+            raise TypeError("Expected argument 'attributes' to be a dict")
+        pulumi.set(__self__, "attributes", attributes)
         if client_id and not isinstance(client_id, str):
             raise TypeError("Expected argument 'client_id' to be a str")
         pulumi.set(__self__, "client_id", client_id)
+        if composite_roles and not isinstance(composite_roles, list):
+            raise TypeError("Expected argument 'composite_roles' to be a list")
+        pulumi.set(__self__, "composite_roles", composite_roles)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -37,9 +43,19 @@ class GetRoleResult:
         pulumi.set(__self__, "realm_id", realm_id)
 
     @property
+    @pulumi.getter
+    def attributes(self) -> Mapping[str, Any]:
+        return pulumi.get(self, "attributes")
+
+    @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[str]:
         return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="compositeRoles")
+    def composite_roles(self) -> Sequence[str]:
+        return pulumi.get(self, "composite_roles")
 
     @property
     @pulumi.getter
@@ -74,7 +90,9 @@ class AwaitableGetRoleResult(GetRoleResult):
         if False:
             yield self
         return GetRoleResult(
+            attributes=self.attributes,
             client_id=self.client_id,
+            composite_roles=self.composite_roles,
             description=self.description,
             id=self.id,
             name=self.name,
@@ -123,7 +141,9 @@ def get_role(client_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('keycloak:index/getRole:getRole', __args__, opts=opts, typ=GetRoleResult).value
 
     return AwaitableGetRoleResult(
+        attributes=__ret__.attributes,
         client_id=__ret__.client_id,
+        composite_roles=__ret__.composite_roles,
         description=__ret__.description,
         id=__ret__.id,
         name=__ret__.name,
