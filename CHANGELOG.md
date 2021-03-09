@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v2.3.0 of the KeyCloak Terraform Provider
+_(none)_
 
 ---
+
+## 3.5.0 (2021-03-09)
+* Upgrade to v2.3.0 of the KeyCloak Terraform Provider
 
 ## 3.4.1 (2021-02-16)
 * Upgrade to pulumi-terraform-bridge v2.19.0  
