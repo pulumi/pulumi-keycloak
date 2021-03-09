@@ -23,6 +23,9 @@ import * as utilities from "./utilities";
  * const realmRole = new keycloak.Role("realmRole", {
  *     realmId: realm.id,
  *     description: "My Realm Role",
+ *     attributes: {
+ *         key: "value",
+ *     },
  * });
  * ```
  * ### Client Role)
@@ -46,6 +49,9 @@ import * as utilities from "./utilities";
  *     realmId: realm.id,
  *     clientId: keycloak_client.openid_client.id,
  *     description: "My Client Role",
+ *     attributes: {
+ *         key: "value",
+ *     },
  * });
  * ```
  * ### Composite Role)
@@ -59,10 +65,30 @@ import * as utilities from "./utilities";
  *     enabled: true,
  * });
  * // realm roles
- * const createRole = new keycloak.Role("createRole", {realmId: realm.id});
- * const readRole = new keycloak.Role("readRole", {realmId: realm.id});
- * const updateRole = new keycloak.Role("updateRole", {realmId: realm.id});
- * const deleteRole = new keycloak.Role("deleteRole", {realmId: realm.id});
+ * const createRole = new keycloak.Role("createRole", {
+ *     realmId: realm.id,
+ *     attributes: {
+ *         key: "value",
+ *     },
+ * });
+ * const readRole = new keycloak.Role("readRole", {
+ *     realmId: realm.id,
+ *     attributes: {
+ *         key: "value",
+ *     },
+ * });
+ * const updateRole = new keycloak.Role("updateRole", {
+ *     realmId: realm.id,
+ *     attributes: {
+ *         key: "value",
+ *     },
+ * });
+ * const deleteRole = new keycloak.Role("deleteRole", {
+ *     realmId: realm.id,
+ *     attributes: {
+ *         key: "value",
+ *     },
+ * });
  * // client role
  * const openidClient = new keycloak.openid.Client("openidClient", {
  *     realmId: realm.id,
@@ -75,6 +101,9 @@ import * as utilities from "./utilities";
  *     realmId: realm.id,
  *     clientId: keycloak_client.openid_client.id,
  *     description: "My Client Role",
+ *     attributes: {
+ *         key: "value",
+ *     },
  * });
  * const adminRole = new keycloak.Role("adminRole", {
  *     realmId: realm.id,
@@ -85,6 +114,9 @@ import * as utilities from "./utilities";
  *         deleteRole.id,
  *         clientRole.id,
  *     ],
+ *     attributes: {
+ *         key: "value",
+ *     },
  * });
  * ```
  *
@@ -125,6 +157,10 @@ export class Role extends pulumi.CustomResource {
     }
 
     /**
+     * Attribute key/value pairs
+     */
+    public readonly attributes!: pulumi.Output<{[key: string]: any} | undefined>;
+    /**
      * When specified, this role will be created as a client role attached to the client with the provided ID
      */
     public readonly clientId!: pulumi.Output<string | undefined>;
@@ -158,6 +194,7 @@ export class Role extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RoleState | undefined;
+            inputs["attributes"] = state ? state.attributes : undefined;
             inputs["clientId"] = state ? state.clientId : undefined;
             inputs["compositeRoles"] = state ? state.compositeRoles : undefined;
             inputs["description"] = state ? state.description : undefined;
@@ -168,6 +205,7 @@ export class Role extends pulumi.CustomResource {
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
+            inputs["attributes"] = args ? args.attributes : undefined;
             inputs["clientId"] = args ? args.clientId : undefined;
             inputs["compositeRoles"] = args ? args.compositeRoles : undefined;
             inputs["description"] = args ? args.description : undefined;
@@ -185,6 +223,10 @@ export class Role extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Role resources.
  */
 export interface RoleState {
+    /**
+     * Attribute key/value pairs
+     */
+    readonly attributes?: pulumi.Input<{[key: string]: any}>;
     /**
      * When specified, this role will be created as a client role attached to the client with the provided ID
      */
@@ -211,6 +253,10 @@ export interface RoleState {
  * The set of arguments for constructing a Role resource.
  */
 export interface RoleArgs {
+    /**
+     * Attribute key/value pairs
+     */
+    readonly attributes?: pulumi.Input<{[key: string]: any}>;
     /**
      * When specified, this role will be created as a client role attached to the client with the provided ID
      */

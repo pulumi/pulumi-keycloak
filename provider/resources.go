@@ -208,6 +208,7 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_saml_user_property_protocol_mapper":  {Tok: makeResource(samlMod, "UserPropertyProtocolMapper")},
 			"keycloak_saml_client_scope":                   {Tok: makeResource(samlMod, "ClientScope")},
 			"keycloak_saml_client_default_scopes":          {Tok: makeResource(samlMod, "ClientDefaultScope")},
+			"keycloak_saml_script_protocol_mapper":         {Tok: makeResource(samlMod, "ScriptProtocolMapper")},
 
 			"keycloak_authentication_execution":        {Tok: makeResource(authenticationMod, "Execution")},
 			"keycloak_authentication_execution_config": {Tok: makeResource(authenticationMod, "ExecutionConfig")},

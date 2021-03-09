@@ -91,7 +91,9 @@ namespace Pulumi.Keycloak
     [OutputType]
     public sealed class GetRoleResult
     {
+        public readonly ImmutableDictionary<string, object> Attributes;
         public readonly string? ClientId;
+        public readonly ImmutableArray<string> CompositeRoles;
         /// <summary>
         /// (Computed) The description of the role.
         /// </summary>
@@ -105,7 +107,11 @@ namespace Pulumi.Keycloak
 
         [OutputConstructor]
         private GetRoleResult(
+            ImmutableDictionary<string, object> attributes,
+
             string? clientId,
+
+            ImmutableArray<string> compositeRoles,
 
             string description,
 
@@ -115,7 +121,9 @@ namespace Pulumi.Keycloak
 
             string realmId)
         {
+            Attributes = attributes;
             ClientId = clientId;
+            CompositeRoles = compositeRoles;
             Description = description;
             Id = id;
             Name = name;

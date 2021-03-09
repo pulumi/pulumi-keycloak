@@ -34,6 +34,10 @@ namespace Pulumi.Keycloak
     ///         {
     ///             RealmId = realm.Id,
     ///             Description = "My Realm Role",
+    ///             Attributes = 
+    ///             {
+    ///                 { "key", "value" },
+    ///             },
     ///         });
     ///     }
     /// 
@@ -70,6 +74,10 @@ namespace Pulumi.Keycloak
     ///             RealmId = realm.Id,
     ///             ClientId = keycloak_client.Openid_client.Id,
     ///             Description = "My Client Role",
+    ///             Attributes = 
+    ///             {
+    ///                 { "key", "value" },
+    ///             },
     ///         });
     ///     }
     /// 
@@ -94,18 +102,34 @@ namespace Pulumi.Keycloak
     ///         var createRole = new Keycloak.Role("createRole", new Keycloak.RoleArgs
     ///         {
     ///             RealmId = realm.Id,
+    ///             Attributes = 
+    ///             {
+    ///                 { "key", "value" },
+    ///             },
     ///         });
     ///         var readRole = new Keycloak.Role("readRole", new Keycloak.RoleArgs
     ///         {
     ///             RealmId = realm.Id,
+    ///             Attributes = 
+    ///             {
+    ///                 { "key", "value" },
+    ///             },
     ///         });
     ///         var updateRole = new Keycloak.Role("updateRole", new Keycloak.RoleArgs
     ///         {
     ///             RealmId = realm.Id,
+    ///             Attributes = 
+    ///             {
+    ///                 { "key", "value" },
+    ///             },
     ///         });
     ///         var deleteRole = new Keycloak.Role("deleteRole", new Keycloak.RoleArgs
     ///         {
     ///             RealmId = realm.Id,
+    ///             Attributes = 
+    ///             {
+    ///                 { "key", "value" },
+    ///             },
     ///         });
     ///         // client role
     ///         var openidClient = new Keycloak.OpenId.Client("openidClient", new Keycloak.OpenId.ClientArgs
@@ -124,6 +148,10 @@ namespace Pulumi.Keycloak
     ///             RealmId = realm.Id,
     ///             ClientId = keycloak_client.Openid_client.Id,
     ///             Description = "My Client Role",
+    ///             Attributes = 
+    ///             {
+    ///                 { "key", "value" },
+    ///             },
     ///         });
     ///         var adminRole = new Keycloak.Role("adminRole", new Keycloak.RoleArgs
     ///         {
@@ -135,6 +163,10 @@ namespace Pulumi.Keycloak
     ///                 updateRole.Id,
     ///                 deleteRole.Id,
     ///                 clientRole.Id,
+    ///             },
+    ///             Attributes = 
+    ///             {
+    ///                 { "key", "value" },
     ///             },
     ///         });
     ///     }
@@ -153,6 +185,12 @@ namespace Pulumi.Keycloak
     [KeycloakResourceType("keycloak:index/role:Role")]
     public partial class Role : Pulumi.CustomResource
     {
+        /// <summary>
+        /// Attribute key/value pairs
+        /// </summary>
+        [Output("attributes")]
+        public Output<ImmutableDictionary<string, object>?> Attributes { get; private set; } = null!;
+
         /// <summary>
         /// When specified, this role will be created as a client role attached to the client with the provided ID
         /// </summary>
@@ -229,6 +267,18 @@ namespace Pulumi.Keycloak
 
     public sealed class RoleArgs : Pulumi.ResourceArgs
     {
+        [Input("attributes")]
+        private InputMap<object>? _attributes;
+
+        /// <summary>
+        /// Attribute key/value pairs
+        /// </summary>
+        public InputMap<object> Attributes
+        {
+            get => _attributes ?? (_attributes = new InputMap<object>());
+            set => _attributes = value;
+        }
+
         /// <summary>
         /// When specified, this role will be created as a client role attached to the client with the provided ID
         /// </summary>
@@ -272,6 +322,18 @@ namespace Pulumi.Keycloak
 
     public sealed class RoleState : Pulumi.ResourceArgs
     {
+        [Input("attributes")]
+        private InputMap<object>? _attributes;
+
+        /// <summary>
+        /// Attribute key/value pairs
+        /// </summary>
+        public InputMap<object> Attributes
+        {
+            get => _attributes ?? (_attributes = new InputMap<object>());
+            set => _attributes = value;
+        }
+
         /// <summary>
         /// When specified, this role will be created as a client role attached to the client with the provided ID
         /// </summary>

@@ -11,6 +11,7 @@ export * from "./clientScope";
 export * from "./getClient";
 export * from "./getClientInstallationProvider";
 export * from "./identityProvider";
+export * from "./scriptProtocolMapper";
 export * from "./userAttributeProtocolMapper";
 export * from "./userPropertyProtocolMapper";
 
@@ -19,6 +20,7 @@ import { Client } from "./client";
 import { ClientDefaultScope } from "./clientDefaultScope";
 import { ClientScope } from "./clientScope";
 import { IdentityProvider } from "./identityProvider";
+import { ScriptProtocolMapper } from "./scriptProtocolMapper";
 import { UserAttributeProtocolMapper } from "./userAttributeProtocolMapper";
 import { UserPropertyProtocolMapper } from "./userPropertyProtocolMapper";
 
@@ -34,6 +36,8 @@ const _module = {
                 return new ClientScope(name, <any>undefined, { urn })
             case "keycloak:saml/identityProvider:IdentityProvider":
                 return new IdentityProvider(name, <any>undefined, { urn })
+            case "keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper":
+                return new ScriptProtocolMapper(name, <any>undefined, { urn })
             case "keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper":
                 return new UserAttributeProtocolMapper(name, <any>undefined, { urn })
             case "keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper":
@@ -47,5 +51,6 @@ pulumi.runtime.registerResourceModule("keycloak", "saml/client", _module)
 pulumi.runtime.registerResourceModule("keycloak", "saml/clientDefaultScope", _module)
 pulumi.runtime.registerResourceModule("keycloak", "saml/clientScope", _module)
 pulumi.runtime.registerResourceModule("keycloak", "saml/identityProvider", _module)
+pulumi.runtime.registerResourceModule("keycloak", "saml/scriptProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "saml/userAttributeProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "saml/userPropertyProtocolMapper", _module)

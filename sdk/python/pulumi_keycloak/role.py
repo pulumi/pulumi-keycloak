@@ -15,6 +15,7 @@ class Role(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  composite_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -40,7 +41,10 @@ class Role(pulumi.CustomResource):
             enabled=True)
         realm_role = keycloak.Role("realmRole",
             realm_id=realm.id,
-            description="My Realm Role")
+            description="My Realm Role",
+            attributes={
+                "key": "value",
+            })
         ```
         ### Client Role)
 
@@ -60,7 +64,10 @@ class Role(pulumi.CustomResource):
         client_role = keycloak.Role("clientRole",
             realm_id=realm.id,
             client_id=keycloak_client["openid_client"]["id"],
-            description="My Client Role")
+            description="My Client Role",
+            attributes={
+                "key": "value",
+            })
         ```
         ### Composite Role)
 
@@ -72,10 +79,26 @@ class Role(pulumi.CustomResource):
             realm="my-realm",
             enabled=True)
         # realm roles
-        create_role = keycloak.Role("createRole", realm_id=realm.id)
-        read_role = keycloak.Role("readRole", realm_id=realm.id)
-        update_role = keycloak.Role("updateRole", realm_id=realm.id)
-        delete_role = keycloak.Role("deleteRole", realm_id=realm.id)
+        create_role = keycloak.Role("createRole",
+            realm_id=realm.id,
+            attributes={
+                "key": "value",
+            })
+        read_role = keycloak.Role("readRole",
+            realm_id=realm.id,
+            attributes={
+                "key": "value",
+            })
+        update_role = keycloak.Role("updateRole",
+            realm_id=realm.id,
+            attributes={
+                "key": "value",
+            })
+        delete_role = keycloak.Role("deleteRole",
+            realm_id=realm.id,
+            attributes={
+                "key": "value",
+            })
         # client role
         openid_client = keycloak.openid.Client("openidClient",
             realm_id=realm.id,
@@ -86,7 +109,10 @@ class Role(pulumi.CustomResource):
         client_role = keycloak.Role("clientRole",
             realm_id=realm.id,
             client_id=keycloak_client["openid_client"]["id"],
-            description="My Client Role")
+            description="My Client Role",
+            attributes={
+                "key": "value",
+            })
         admin_role = keycloak.Role("adminRole",
             realm_id=realm.id,
             composite_roles=[
@@ -95,7 +121,10 @@ class Role(pulumi.CustomResource):
                 update_role.id,
                 delete_role.id,
                 client_role.id,
-            ])
+            ],
+            attributes={
+                "key": "value",
+            })
         ```
 
         ## Import
@@ -108,6 +137,7 @@ class Role(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, Any]] attributes: Attribute key/value pairs
         :param pulumi.Input[str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
         :param pulumi.Input[Sequence[pulumi.Input[str]]] composite_roles: When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
         :param pulumi.Input[str] description: The description of the role
@@ -131,6 +161,7 @@ class Role(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
+            __props__['attributes'] = attributes
             __props__['client_id'] = client_id
             __props__['composite_roles'] = composite_roles
             __props__['description'] = description
@@ -148,6 +179,7 @@ class Role(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             client_id: Optional[pulumi.Input[str]] = None,
             composite_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             description: Optional[pulumi.Input[str]] = None,
@@ -160,6 +192,7 @@ class Role(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, Any]] attributes: Attribute key/value pairs
         :param pulumi.Input[str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
         :param pulumi.Input[Sequence[pulumi.Input[str]]] composite_roles: When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
         :param pulumi.Input[str] description: The description of the role
@@ -170,12 +203,21 @@ class Role(pulumi.CustomResource):
 
         __props__ = dict()
 
+        __props__["attributes"] = attributes
         __props__["client_id"] = client_id
         __props__["composite_roles"] = composite_roles
         __props__["description"] = description
         __props__["name"] = name
         __props__["realm_id"] = realm_id
         return Role(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+        """
+        Attribute key/value pairs
+        """
+        return pulumi.get(self, "attributes")
 
     @property
     @pulumi.getter(name="clientId")

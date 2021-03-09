@@ -96,6 +96,7 @@
         "saml/getClientInstallationProvider.ts",
         "saml/identityProvider.ts",
         "saml/index.ts",
+        "saml/scriptProtocolMapper.ts",
         "saml/userAttributeProtocolMapper.ts",
         "saml/userPropertyProtocolMapper.ts",
         "types/index.ts",
