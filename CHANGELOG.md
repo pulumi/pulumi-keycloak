@@ -2,10 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to pulumi-terraform-bridge v2.21.0
-* Release macOS arm64 binary
+_(none)_
 
 ---
+
+## 3.6.0 (2021-03-16)
+* Upgrade to pulumi-terraform-bridge v2.21.0
+* Release macOS arm64 binary
 
 ## 3.5.0 (2021-03-09)
 * Upgrade to v2.3.0 of the KeyCloak Terraform Provider
