@@ -46,7 +46,7 @@ export class Provider extends pulumi.ProviderResource {
             inputs["basePath"] = args ? args.basePath : undefined;
             inputs["clientId"] = args ? args.clientId : undefined;
             inputs["clientSecret"] = args ? args.clientSecret : undefined;
-            inputs["clientTimeout"] = pulumi.output((args ? args.clientTimeout : undefined) || (<any>utilities.getEnvNumber("KEYCLOAK_CLIENT_TIMEOUT") || 5)).apply(JSON.stringify);
+            inputs["clientTimeout"] = pulumi.output((args ? args.clientTimeout : undefined) ?? (<any>utilities.getEnvNumber("KEYCLOAK_CLIENT_TIMEOUT") || 5)).apply(JSON.stringify);
             inputs["initialLogin"] = pulumi.output(args ? args.initialLogin : undefined).apply(JSON.stringify);
             inputs["password"] = args ? args.password : undefined;
             inputs["realm"] = args ? args.realm : undefined;

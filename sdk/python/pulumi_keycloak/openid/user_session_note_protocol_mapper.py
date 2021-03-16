@@ -134,7 +134,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
             __props__['session_note'] = session_note
             if session_note_label is not None and not opts.urn:
                 warnings.warn("""use session_note instead""", DeprecationWarning)
-                pulumi.log.warn("session_note_label is deprecated: use session_note instead")
+                pulumi.log.warn("""session_note_label is deprecated: use session_note instead""")
             __props__['session_note_label'] = session_note_label
         super(UserSessionNoteProtocolMapper, __self__).__init__(
             'keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper',
