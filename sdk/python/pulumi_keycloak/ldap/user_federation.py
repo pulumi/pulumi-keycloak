@@ -154,7 +154,7 @@ class UserFederation(pulumi.CustomResource):
             __props__['cache'] = cache
             if cache_policy is not None and not opts.urn:
                 warnings.warn("""use cache.policy instead""", DeprecationWarning)
-                pulumi.log.warn("cache_policy is deprecated: use cache.policy instead")
+                pulumi.log.warn("""cache_policy is deprecated: use cache.policy instead""")
             __props__['cache_policy'] = cache_policy
             __props__['changed_sync_period'] = changed_sync_period
             __props__['connection_timeout'] = connection_timeout
