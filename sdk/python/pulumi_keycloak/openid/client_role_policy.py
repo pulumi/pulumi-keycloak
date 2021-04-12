@@ -5,15 +5,115 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['ClientRolePolicy']
+__all__ = ['ClientRolePolicyArgs', 'ClientRolePolicy']
+
+@pulumi.input_type
+class ClientRolePolicyArgs:
+    def __init__(__self__, *,
+                 realm_id: pulumi.Input[str],
+                 resource_server_id: pulumi.Input[str],
+                 roles: pulumi.Input[Sequence[pulumi.Input['ClientRolePolicyRoleArgs']]],
+                 type: pulumi.Input[str],
+                 decision_strategy: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 logic: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a ClientRolePolicy resource.
+        """
+        pulumi.set(__self__, "realm_id", realm_id)
+        pulumi.set(__self__, "resource_server_id", resource_server_id)
+        pulumi.set(__self__, "roles", roles)
+        pulumi.set(__self__, "type", type)
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if logic is not None:
+            pulumi.set(__self__, "logic", logic)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter(name="resourceServerId")
+    def resource_server_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "resource_server_id")
+
+    @resource_server_id.setter
+    def resource_server_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "resource_server_id", value)
+
+    @property
+    @pulumi.getter
+    def roles(self) -> pulumi.Input[Sequence[pulumi.Input['ClientRolePolicyRoleArgs']]]:
+        return pulumi.get(self, "roles")
+
+    @roles.setter
+    def roles(self, value: pulumi.Input[Sequence[pulumi.Input['ClientRolePolicyRoleArgs']]]):
+        pulumi.set(self, "roles", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "decision_strategy")
+
+    @decision_strategy.setter
+    def decision_strategy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "decision_strategy", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def logic(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "logic")
+
+    @logic.setter
+    def logic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "logic", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 
 class ClientRolePolicy(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -33,6 +133,40 @@ class ClientRolePolicy(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: ClientRolePolicyArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Create a ClientRolePolicy resource with the given unique name, props, and options.
+        :param str resource_name: The name of the resource.
+        :param ClientRolePolicyArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(ClientRolePolicyArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 decision_strategy: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 logic: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 resource_server_id: Optional[pulumi.Input[str]] = None,
+                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClientRolePolicyRoleArgs']]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

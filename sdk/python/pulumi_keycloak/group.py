@@ -5,13 +5,84 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['Group']
+__all__ = ['GroupArgs', 'Group']
+
+@pulumi.input_type
+class GroupArgs:
+    def __init__(__self__, *,
+                 realm_id: pulumi.Input[str],
+                 attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 parent_id: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a Group resource.
+        :param pulumi.Input[str] realm_id: The realm this group exists in.
+        :param pulumi.Input[Mapping[str, Any]] attributes: A map of key/value pairs to set as custom attributes for the group.
+        :param pulumi.Input[str] name: The name of the group.
+        :param pulumi.Input[str] parent_id: The ID of this group's parent. If omitted, this group will be defined at the root level.
+        """
+        pulumi.set(__self__, "realm_id", realm_id)
+        if attributes is not None:
+            pulumi.set(__self__, "attributes", attributes)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if parent_id is not None:
+            pulumi.set(__self__, "parent_id", parent_id)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[str]:
+        """
+        The realm this group exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        A map of key/value pairs to set as custom attributes for the group.
+        """
+        return pulumi.get(self, "attributes")
+
+    @attributes.setter
+    def attributes(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "attributes", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the group.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="parentId")
+    def parent_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of this group's parent. If omitted, this group will be defined at the root level.
+        """
+        return pulumi.get(self, "parent_id")
+
+    @parent_id.setter
+    def parent_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "parent_id", value)
 
 
 class Group(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -70,6 +141,75 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[str] parent_id: The ID of this group's parent. If omitted, this group will be defined at the root level.
         :param pulumi.Input[str] realm_id: The realm this group exists in.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: GroupArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Allows for creating and managing Groups within Keycloak.
+
+        Groups provide a logical wrapping for users within Keycloak. Users within a group can share attributes and roles, and
+        group membership can be mapped to a claim.
+
+        Attributes can also be defined on Groups.
+
+        Groups can also be federated from external data sources, such as LDAP or Active Directory. This resource **should not**
+        be used to manage groups that were created this way.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        parent_group = keycloak.Group("parentGroup", realm_id=realm.id)
+        child_group = keycloak.Group("childGroup",
+            realm_id=realm.id,
+            parent_id=parent_group.id)
+        child_group_with_optional_attributes = keycloak.Group("childGroupWithOptionalAttributes",
+            realm_id=realm.id,
+            parent_id=parent_group.id,
+            attributes={
+                "key1": "value1",
+                "key2": "value2",
+            })
+        ```
+
+        ## Import
+
+        Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param GroupArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(GroupArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 parent_id: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

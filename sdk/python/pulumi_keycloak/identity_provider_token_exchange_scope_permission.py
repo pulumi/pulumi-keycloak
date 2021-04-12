@@ -5,13 +5,82 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['IdentityProviderTokenExchangeScopePermission']
+__all__ = ['IdentityProviderTokenExchangeScopePermissionArgs', 'IdentityProviderTokenExchangeScopePermission']
+
+@pulumi.input_type
+class IdentityProviderTokenExchangeScopePermissionArgs:
+    def __init__(__self__, *,
+                 clients: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 provider_alias: pulumi.Input[str],
+                 realm_id: pulumi.Input[str],
+                 policy_type: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a IdentityProviderTokenExchangeScopePermission resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] clients: A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
+        :param pulumi.Input[str] provider_alias: Alias of the identity provider.
+        :param pulumi.Input[str] realm_id: The realm that the identity provider exists in.
+        :param pulumi.Input[str] policy_type: Defaults to "client" This is also the only value policy type supported by this provider.
+        """
+        pulumi.set(__self__, "clients", clients)
+        pulumi.set(__self__, "provider_alias", provider_alias)
+        pulumi.set(__self__, "realm_id", realm_id)
+        if policy_type is not None:
+            pulumi.set(__self__, "policy_type", policy_type)
+
+    @property
+    @pulumi.getter
+    def clients(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
+        """
+        return pulumi.get(self, "clients")
+
+    @clients.setter
+    def clients(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "clients", value)
+
+    @property
+    @pulumi.getter(name="providerAlias")
+    def provider_alias(self) -> pulumi.Input[str]:
+        """
+        Alias of the identity provider.
+        """
+        return pulumi.get(self, "provider_alias")
+
+    @provider_alias.setter
+    def provider_alias(self, value: pulumi.Input[str]):
+        pulumi.set(self, "provider_alias", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[str]:
+        """
+        The realm that the identity provider exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter(name="policyType")
+    def policy_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Defaults to "client" This is also the only value policy type supported by this provider.
+        """
+        return pulumi.get(self, "policy_type")
+
+    @policy_type.setter
+    def policy_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "policy_type", value)
 
 
 class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -38,6 +107,43 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
         :param pulumi.Input[str] provider_alias: Alias of the identity provider.
         :param pulumi.Input[str] realm_id: The realm that the identity provider exists in.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: IdentityProviderTokenExchangeScopePermissionArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        This resource can be imported using the format `{{realm_id}}/{{provider_alias}}`, where `provider_alias` is the alias that you assign to the identity provider upon creation. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission oidc_idp_permission my-realm/myIdp
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param IdentityProviderTokenExchangeScopePermissionArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(IdentityProviderTokenExchangeScopePermissionArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 clients: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 policy_type: Optional[pulumi.Input[str]] = None,
+                 provider_alias: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

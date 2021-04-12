@@ -5,13 +5,51 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['DefaultGroups']
+__all__ = ['DefaultGroupsArgs', 'DefaultGroups']
+
+@pulumi.input_type
+class DefaultGroupsArgs:
+    def __init__(__self__, *,
+                 group_ids: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 realm_id: pulumi.Input[str]):
+        """
+        The set of arguments for constructing a DefaultGroups resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_ids: A set of group ids that should be default groups on the realm referenced by `realm_id`.
+        :param pulumi.Input[str] realm_id: The realm this group exists in.
+        """
+        pulumi.set(__self__, "group_ids", group_ids)
+        pulumi.set(__self__, "realm_id", realm_id)
+
+    @property
+    @pulumi.getter(name="groupIds")
+    def group_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        A set of group ids that should be default groups on the realm referenced by `realm_id`.
+        """
+        return pulumi.get(self, "group_ids")
+
+    @group_ids.setter
+    def group_ids(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "group_ids", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[str]:
+        """
+        The realm this group exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "realm_id", value)
 
 
 class DefaultGroups(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -53,6 +91,60 @@ class DefaultGroups(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] group_ids: A set of group ids that should be default groups on the realm referenced by `realm_id`.
         :param pulumi.Input[str] realm_id: The realm this group exists in.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: DefaultGroupsArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Allows for managing a realm's default groups.
+
+        > You should not use `DefaultGroups` with a group whose members are managed by `GroupMemberships`.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        group = keycloak.Group("group", realm_id=realm.id)
+        default = keycloak.DefaultGroups("default",
+            realm_id=realm.id,
+            group_ids=[group.id])
+        ```
+
+        ## Import
+
+        Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param DefaultGroupsArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(DefaultGroupsArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

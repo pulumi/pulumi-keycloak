@@ -5,13 +5,66 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['UserRoles']
+__all__ = ['UserRolesArgs', 'UserRoles']
+
+@pulumi.input_type
+class UserRolesArgs:
+    def __init__(__self__, *,
+                 realm_id: pulumi.Input[str],
+                 role_ids: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 user_id: pulumi.Input[str]):
+        """
+        The set of arguments for constructing a UserRoles resource.
+        :param pulumi.Input[str] realm_id: The realm this user exists in.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_ids: A list of role IDs to map to the user
+        :param pulumi.Input[str] user_id: The ID of the user this resource should manage roles for.
+        """
+        pulumi.set(__self__, "realm_id", realm_id)
+        pulumi.set(__self__, "role_ids", role_ids)
+        pulumi.set(__self__, "user_id", user_id)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[str]:
+        """
+        The realm this user exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter(name="roleIds")
+    def role_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        A list of role IDs to map to the user
+        """
+        return pulumi.get(self, "role_ids")
+
+    @role_ids.setter
+    def role_ids(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "role_ids", value)
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the user this resource should manage roles for.
+        """
+        return pulumi.get(self, "user_id")
+
+    @user_id.setter
+    def user_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "user_id", value)
 
 
 class UserRoles(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -36,6 +89,42 @@ class UserRoles(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_ids: A list of role IDs to map to the user
         :param pulumi.Input[str] user_id: The ID of the user this resource should manage roles for.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: UserRolesArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        This resource can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak assigns to the user upon creation. This value can be found in the GUI when editing the user, and is typically a GUID. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:index/userRoles:UserRoles user_roles my-realm/b0ae6924-1bd5-4655-9e38-dae7c5e42924
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param UserRolesArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(UserRolesArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 role_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

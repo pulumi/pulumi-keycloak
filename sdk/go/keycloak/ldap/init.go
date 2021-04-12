@@ -22,27 +22,28 @@ func (m *module) Version() semver.Version {
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
 	case "keycloak:ldap/fullNameMapper:FullNameMapper":
-		r, err = NewFullNameMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &FullNameMapper{}
 	case "keycloak:ldap/groupMapper:GroupMapper":
-		r, err = NewGroupMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &GroupMapper{}
 	case "keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper":
-		r, err = NewHardcodedGroupMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &HardcodedGroupMapper{}
 	case "keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper":
-		r, err = NewHardcodedRoleMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &HardcodedRoleMapper{}
 	case "keycloak:ldap/msadLdsUserAccountControlMapper:MsadLdsUserAccountControlMapper":
-		r, err = NewMsadLdsUserAccountControlMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &MsadLdsUserAccountControlMapper{}
 	case "keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper":
-		r, err = NewMsadUserAccountControlMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &MsadUserAccountControlMapper{}
 	case "keycloak:ldap/roleMapper:RoleMapper":
-		r, err = NewRoleMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &RoleMapper{}
 	case "keycloak:ldap/userAttributeMapper:UserAttributeMapper":
-		r, err = NewUserAttributeMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &UserAttributeMapper{}
 	case "keycloak:ldap/userFederation:UserFederation":
-		r, err = NewUserFederation(ctx, name, nil, pulumi.URN_(urn))
+		r = &UserFederation{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
 	return
 }
 

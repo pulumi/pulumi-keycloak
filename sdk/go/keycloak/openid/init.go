@@ -22,65 +22,66 @@ func (m *module) Version() semver.Version {
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
 	case "keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper":
-		r, err = NewAudienceProtocolMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &AudienceProtocolMapper{}
 	case "keycloak:openid/client:Client":
-		r, err = NewClient(ctx, name, nil, pulumi.URN_(urn))
+		r = &Client{}
 	case "keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy":
-		r, err = NewClientAggregatePolicy(ctx, name, nil, pulumi.URN_(urn))
+		r = &ClientAggregatePolicy{}
 	case "keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission":
-		r, err = NewClientAuthorizationPermission(ctx, name, nil, pulumi.URN_(urn))
+		r = &ClientAuthorizationPermission{}
 	case "keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource":
-		r, err = NewClientAuthorizationResource(ctx, name, nil, pulumi.URN_(urn))
+		r = &ClientAuthorizationResource{}
 	case "keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope":
-		r, err = NewClientAuthorizationScope(ctx, name, nil, pulumi.URN_(urn))
+		r = &ClientAuthorizationScope{}
 	case "keycloak:openid/clientDefaultScopes:ClientDefaultScopes":
-		r, err = NewClientDefaultScopes(ctx, name, nil, pulumi.URN_(urn))
+		r = &ClientDefaultScopes{}
 	case "keycloak:openid/clientGroupPolicy:ClientGroupPolicy":
-		r, err = NewClientGroupPolicy(ctx, name, nil, pulumi.URN_(urn))
+		r = &ClientGroupPolicy{}
 	case "keycloak:openid/clientJsPolicy:ClientJsPolicy":
-		r, err = NewClientJsPolicy(ctx, name, nil, pulumi.URN_(urn))
+		r = &ClientJsPolicy{}
 	case "keycloak:openid/clientOptionalScopes:ClientOptionalScopes":
-		r, err = NewClientOptionalScopes(ctx, name, nil, pulumi.URN_(urn))
+		r = &ClientOptionalScopes{}
 	case "keycloak:openid/clientPermissions:ClientPermissions":
-		r, err = NewClientPermissions(ctx, name, nil, pulumi.URN_(urn))
+		r = &ClientPermissions{}
 	case "keycloak:openid/clientPolicy:ClientPolicy":
-		r, err = NewClientPolicy(ctx, name, nil, pulumi.URN_(urn))
+		r = &ClientPolicy{}
 	case "keycloak:openid/clientRolePolicy:ClientRolePolicy":
-		r, err = NewClientRolePolicy(ctx, name, nil, pulumi.URN_(urn))
+		r = &ClientRolePolicy{}
 	case "keycloak:openid/clientScope:ClientScope":
-		r, err = NewClientScope(ctx, name, nil, pulumi.URN_(urn))
+		r = &ClientScope{}
 	case "keycloak:openid/clientServiceAccountRealmRole:ClientServiceAccountRealmRole":
-		r, err = NewClientServiceAccountRealmRole(ctx, name, nil, pulumi.URN_(urn))
+		r = &ClientServiceAccountRealmRole{}
 	case "keycloak:openid/clientServiceAccountRole:ClientServiceAccountRole":
-		r, err = NewClientServiceAccountRole(ctx, name, nil, pulumi.URN_(urn))
+		r = &ClientServiceAccountRole{}
 	case "keycloak:openid/clientTimePolicy:ClientTimePolicy":
-		r, err = NewClientTimePolicy(ctx, name, nil, pulumi.URN_(urn))
+		r = &ClientTimePolicy{}
 	case "keycloak:openid/clientUserPolicy:ClientUserPolicy":
-		r, err = NewClientUserPolicy(ctx, name, nil, pulumi.URN_(urn))
+		r = &ClientUserPolicy{}
 	case "keycloak:openid/fullNameProtocolMapper:FullNameProtocolMapper":
-		r, err = NewFullNameProtocolMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &FullNameProtocolMapper{}
 	case "keycloak:openid/groupMembershipProtocolMapper:GroupMembershipProtocolMapper":
-		r, err = NewGroupMembershipProtocolMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &GroupMembershipProtocolMapper{}
 	case "keycloak:openid/hardcodedClaimProtocolMapper:HardcodedClaimProtocolMapper":
-		r, err = NewHardcodedClaimProtocolMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &HardcodedClaimProtocolMapper{}
 	case "keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper":
-		r, err = NewHardcodedRoleProtocolMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &HardcodedRoleProtocolMapper{}
 	case "keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper":
-		r, err = NewScriptProtocolMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &ScriptProtocolMapper{}
 	case "keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper":
-		r, err = NewUserAttributeProtocolMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &UserAttributeProtocolMapper{}
 	case "keycloak:openid/userClientRoleProtocolMapper:UserClientRoleProtocolMapper":
-		r, err = NewUserClientRoleProtocolMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &UserClientRoleProtocolMapper{}
 	case "keycloak:openid/userPropertyProtocolMapper:UserPropertyProtocolMapper":
-		r, err = NewUserPropertyProtocolMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &UserPropertyProtocolMapper{}
 	case "keycloak:openid/userRealmRoleProtocolMapper:UserRealmRoleProtocolMapper":
-		r, err = NewUserRealmRoleProtocolMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &UserRealmRoleProtocolMapper{}
 	case "keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper":
-		r, err = NewUserSessionNoteProtocolMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &UserSessionNoteProtocolMapper{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
 	return
 }
 

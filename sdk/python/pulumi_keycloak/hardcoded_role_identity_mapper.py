@@ -5,13 +5,95 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['HardcodedRoleIdentityMapper']
+__all__ = ['HardcodedRoleIdentityMapperArgs', 'HardcodedRoleIdentityMapper']
+
+@pulumi.input_type
+class HardcodedRoleIdentityMapperArgs:
+    def __init__(__self__, *,
+                 identity_provider_alias: pulumi.Input[str],
+                 realm: pulumi.Input[str],
+                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a HardcodedRoleIdentityMapper resource.
+        :param pulumi.Input[str] identity_provider_alias: IDP Alias
+        :param pulumi.Input[str] realm: Realm Name
+        :param pulumi.Input[str] name: IDP Mapper Name
+        :param pulumi.Input[str] role: Role Name
+        """
+        pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
+        pulumi.set(__self__, "realm", realm)
+        if extra_config is not None:
+            pulumi.set(__self__, "extra_config", extra_config)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="identityProviderAlias")
+    def identity_provider_alias(self) -> pulumi.Input[str]:
+        """
+        IDP Alias
+        """
+        return pulumi.get(self, "identity_provider_alias")
+
+    @identity_provider_alias.setter
+    def identity_provider_alias(self, value: pulumi.Input[str]):
+        pulumi.set(self, "identity_provider_alias", value)
+
+    @property
+    @pulumi.getter
+    def realm(self) -> pulumi.Input[str]:
+        """
+        Realm Name
+        """
+        return pulumi.get(self, "realm")
+
+    @realm.setter
+    def realm(self, value: pulumi.Input[str]):
+        pulumi.set(self, "realm", value)
+
+    @property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        return pulumi.get(self, "extra_config")
+
+    @extra_config.setter
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "extra_config", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        IDP Mapper Name
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        Role Name
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role", value)
 
 
 class HardcodedRoleIdentityMapper(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -32,6 +114,37 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
         :param pulumi.Input[str] realm: Realm Name
         :param pulumi.Input[str] role: Role Name
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: HardcodedRoleIdentityMapperArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Create a HardcodedRoleIdentityMapper resource with the given unique name, props, and options.
+        :param str resource_name: The name of the resource.
+        :param HardcodedRoleIdentityMapperArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(HardcodedRoleIdentityMapperArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 identity_provider_alias: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

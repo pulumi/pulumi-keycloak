@@ -5,13 +5,67 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['GroupMemberships']
+__all__ = ['GroupMembershipsArgs', 'GroupMemberships']
+
+@pulumi.input_type
+class GroupMembershipsArgs:
+    def __init__(__self__, *,
+                 members: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 realm_id: pulumi.Input[str],
+                 group_id: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a GroupMemberships resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: A list of usernames that belong to this group.
+        :param pulumi.Input[str] realm_id: The realm this group exists in.
+        :param pulumi.Input[str] group_id: The ID of the group this resource should manage memberships for.
+        """
+        pulumi.set(__self__, "members", members)
+        pulumi.set(__self__, "realm_id", realm_id)
+        if group_id is not None:
+            pulumi.set(__self__, "group_id", group_id)
+
+    @property
+    @pulumi.getter
+    def members(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        A list of usernames that belong to this group.
+        """
+        return pulumi.get(self, "members")
+
+    @members.setter
+    def members(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "members", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[str]:
+        """
+        The realm this group exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the group this resource should manage memberships for.
+        """
+        return pulumi.get(self, "group_id")
+
+    @group_id.setter
+    def group_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "group_id", value)
 
 
 class GroupMemberships(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -32,6 +86,38 @@ class GroupMemberships(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] members: A list of usernames that belong to this group.
         :param pulumi.Input[str] realm_id: The realm this group exists in.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: GroupMembershipsArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
+
+        :param str resource_name: The name of the resource.
+        :param GroupMembershipsArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(GroupMembershipsArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 group_id: Optional[pulumi.Input[str]] = None,
+                 members: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__
