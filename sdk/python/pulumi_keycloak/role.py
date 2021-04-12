@@ -5,13 +5,116 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['Role']
+__all__ = ['RoleArgs', 'Role']
+
+@pulumi.input_type
+class RoleArgs:
+    def __init__(__self__, *,
+                 realm_id: pulumi.Input[str],
+                 attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 composite_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a Role resource.
+        :param pulumi.Input[str] realm_id: The realm this role exists within.
+        :param pulumi.Input[Mapping[str, Any]] attributes: Attribute key/value pairs
+        :param pulumi.Input[str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] composite_roles: When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+        :param pulumi.Input[str] description: The description of the role
+        :param pulumi.Input[str] name: The name of the role
+        """
+        pulumi.set(__self__, "realm_id", realm_id)
+        if attributes is not None:
+            pulumi.set(__self__, "attributes", attributes)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if composite_roles is not None:
+            pulumi.set(__self__, "composite_roles", composite_roles)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[str]:
+        """
+        The realm this role exists within.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Attribute key/value pairs
+        """
+        return pulumi.get(self, "attributes")
+
+    @attributes.setter
+    def attributes(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "attributes", value)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        When specified, this role will be created as a client role attached to the client with the provided ID
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_id", value)
+
+    @property
+    @pulumi.getter(name="compositeRoles")
+    def composite_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+        """
+        return pulumi.get(self, "composite_roles")
+
+    @composite_roles.setter
+    def composite_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "composite_roles", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of the role
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the role
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 
 class Role(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -144,6 +247,147 @@ class Role(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the role
         :param pulumi.Input[str] realm_id: The realm this role exists within.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: RoleArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Allows for creating and managing roles within Keycloak.
+
+        Roles allow you define privileges within Keycloak and map them to users and groups.
+
+        ## Example Usage
+        ### Realm Role)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        realm_role = keycloak.Role("realmRole",
+            realm_id=realm.id,
+            description="My Realm Role",
+            attributes={
+                "key": "value",
+            })
+        ```
+        ### Client Role)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        openid_client = keycloak.openid.Client("openidClient",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
+        client_role = keycloak.Role("clientRole",
+            realm_id=realm.id,
+            client_id=keycloak_client["openid_client"]["id"],
+            description="My Client Role",
+            attributes={
+                "key": "value",
+            })
+        ```
+        ### Composite Role)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        # realm roles
+        create_role = keycloak.Role("createRole",
+            realm_id=realm.id,
+            attributes={
+                "key": "value",
+            })
+        read_role = keycloak.Role("readRole",
+            realm_id=realm.id,
+            attributes={
+                "key": "value",
+            })
+        update_role = keycloak.Role("updateRole",
+            realm_id=realm.id,
+            attributes={
+                "key": "value",
+            })
+        delete_role = keycloak.Role("deleteRole",
+            realm_id=realm.id,
+            attributes={
+                "key": "value",
+            })
+        # client role
+        openid_client = keycloak.openid.Client("openidClient",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
+        client_role = keycloak.Role("clientRole",
+            realm_id=realm.id,
+            client_id=keycloak_client["openid_client"]["id"],
+            description="My Client Role",
+            attributes={
+                "key": "value",
+            })
+        admin_role = keycloak.Role("adminRole",
+            realm_id=realm.id,
+            composite_roles=[
+                create_role.id,
+                read_role.id,
+                update_role.id,
+                delete_role.id,
+                client_role.id,
+            ],
+            attributes={
+                "key": "value",
+            })
+        ```
+
+        ## Import
+
+        Roles can be imported using the format `{{realm_id}}/{{role_id}}`, where `role_id` is the unique ID that Keycloak assigns to the role. The ID is not easy to find in the GUI, but it appears in the URL when editing the role. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:index/role:Role role my-realm/7e8cf32a-8acb-4d34-89c4-04fb1d10ccad
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param RoleArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(RoleArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 composite_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

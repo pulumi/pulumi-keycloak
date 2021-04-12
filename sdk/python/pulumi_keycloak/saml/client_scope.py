@@ -5,13 +5,100 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['ClientScope']
+__all__ = ['ClientScopeArgs', 'ClientScope']
+
+@pulumi.input_type
+class ClientScopeArgs:
+    def __init__(__self__, *,
+                 realm_id: pulumi.Input[str],
+                 consent_screen_text: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 gui_order: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a ClientScope resource.
+        :param pulumi.Input[str] realm_id: The realm this client scope belongs to.
+        :param pulumi.Input[str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        :param pulumi.Input[str] description: The description of this client scope in the GUI.
+        :param pulumi.Input[int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
+        :param pulumi.Input[str] name: The display name of this client scope in the GUI.
+        """
+        pulumi.set(__self__, "realm_id", realm_id)
+        if consent_screen_text is not None:
+            pulumi.set(__self__, "consent_screen_text", consent_screen_text)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if gui_order is not None:
+            pulumi.set(__self__, "gui_order", gui_order)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[str]:
+        """
+        The realm this client scope belongs to.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter(name="consentScreenText")
+    def consent_screen_text(self) -> Optional[pulumi.Input[str]]:
+        """
+        When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        """
+        return pulumi.get(self, "consent_screen_text")
+
+    @consent_screen_text.setter
+    def consent_screen_text(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "consent_screen_text", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of this client scope in the GUI.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="guiOrder")
+    def gui_order(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specify order of the client scope in GUI (such as in Consent page) as integer.
+        """
+        return pulumi.get(self, "gui_order")
+
+    @gui_order.setter
+    def gui_order(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "gui_order", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The display name of this client scope in the GUI.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 
 class ClientScope(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -59,6 +146,63 @@ class ClientScope(pulumi.CustomResource):
         :param pulumi.Input[str] name: The display name of this client scope in the GUI.
         :param pulumi.Input[str] realm_id: The realm this client scope belongs to.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: ClientScopeArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Allows for creating and managing Keycloak client scopes that can be attached to clients that use the SAML protocol.
+
+        Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        saml_client_scope = keycloak.saml.ClientScope("samlClientScope",
+            realm_id=realm.id,
+            description="This scope will map a user's group memberships to SAML assertion",
+            gui_order=1)
+        ```
+
+        ## Import
+
+        Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:saml/clientScope:ClientScope saml_client_scope my-realm/e8a5d115-6985-4de3-a0f5-732e1be4525e
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param ClientScopeArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(ClientScopeArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 consent_screen_text: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 gui_order: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

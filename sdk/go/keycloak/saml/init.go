@@ -22,23 +22,24 @@ func (m *module) Version() semver.Version {
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
 	case "keycloak:saml/client:Client":
-		r, err = NewClient(ctx, name, nil, pulumi.URN_(urn))
+		r = &Client{}
 	case "keycloak:saml/clientDefaultScope:ClientDefaultScope":
-		r, err = NewClientDefaultScope(ctx, name, nil, pulumi.URN_(urn))
+		r = &ClientDefaultScope{}
 	case "keycloak:saml/clientScope:ClientScope":
-		r, err = NewClientScope(ctx, name, nil, pulumi.URN_(urn))
+		r = &ClientScope{}
 	case "keycloak:saml/identityProvider:IdentityProvider":
-		r, err = NewIdentityProvider(ctx, name, nil, pulumi.URN_(urn))
+		r = &IdentityProvider{}
 	case "keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper":
-		r, err = NewScriptProtocolMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &ScriptProtocolMapper{}
 	case "keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper":
-		r, err = NewUserAttributeProtocolMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &UserAttributeProtocolMapper{}
 	case "keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper":
-		r, err = NewUserPropertyProtocolMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &UserPropertyProtocolMapper{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
 	return
 }
 

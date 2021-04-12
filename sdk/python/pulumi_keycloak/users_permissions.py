@@ -5,15 +5,106 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['UsersPermissions']
+__all__ = ['UsersPermissionsArgs', 'UsersPermissions']
+
+@pulumi.input_type
+class UsersPermissionsArgs:
+    def __init__(__self__, *,
+                 realm_id: pulumi.Input[str],
+                 impersonate_scope: Optional[pulumi.Input['UsersPermissionsImpersonateScopeArgs']] = None,
+                 manage_group_membership_scope: Optional[pulumi.Input['UsersPermissionsManageGroupMembershipScopeArgs']] = None,
+                 manage_scope: Optional[pulumi.Input['UsersPermissionsManageScopeArgs']] = None,
+                 map_roles_scope: Optional[pulumi.Input['UsersPermissionsMapRolesScopeArgs']] = None,
+                 user_impersonated_scope: Optional[pulumi.Input['UsersPermissionsUserImpersonatedScopeArgs']] = None,
+                 view_scope: Optional[pulumi.Input['UsersPermissionsViewScopeArgs']] = None):
+        """
+        The set of arguments for constructing a UsersPermissions resource.
+        """
+        pulumi.set(__self__, "realm_id", realm_id)
+        if impersonate_scope is not None:
+            pulumi.set(__self__, "impersonate_scope", impersonate_scope)
+        if manage_group_membership_scope is not None:
+            pulumi.set(__self__, "manage_group_membership_scope", manage_group_membership_scope)
+        if manage_scope is not None:
+            pulumi.set(__self__, "manage_scope", manage_scope)
+        if map_roles_scope is not None:
+            pulumi.set(__self__, "map_roles_scope", map_roles_scope)
+        if user_impersonated_scope is not None:
+            pulumi.set(__self__, "user_impersonated_scope", user_impersonated_scope)
+        if view_scope is not None:
+            pulumi.set(__self__, "view_scope", view_scope)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter(name="impersonateScope")
+    def impersonate_scope(self) -> Optional[pulumi.Input['UsersPermissionsImpersonateScopeArgs']]:
+        return pulumi.get(self, "impersonate_scope")
+
+    @impersonate_scope.setter
+    def impersonate_scope(self, value: Optional[pulumi.Input['UsersPermissionsImpersonateScopeArgs']]):
+        pulumi.set(self, "impersonate_scope", value)
+
+    @property
+    @pulumi.getter(name="manageGroupMembershipScope")
+    def manage_group_membership_scope(self) -> Optional[pulumi.Input['UsersPermissionsManageGroupMembershipScopeArgs']]:
+        return pulumi.get(self, "manage_group_membership_scope")
+
+    @manage_group_membership_scope.setter
+    def manage_group_membership_scope(self, value: Optional[pulumi.Input['UsersPermissionsManageGroupMembershipScopeArgs']]):
+        pulumi.set(self, "manage_group_membership_scope", value)
+
+    @property
+    @pulumi.getter(name="manageScope")
+    def manage_scope(self) -> Optional[pulumi.Input['UsersPermissionsManageScopeArgs']]:
+        return pulumi.get(self, "manage_scope")
+
+    @manage_scope.setter
+    def manage_scope(self, value: Optional[pulumi.Input['UsersPermissionsManageScopeArgs']]):
+        pulumi.set(self, "manage_scope", value)
+
+    @property
+    @pulumi.getter(name="mapRolesScope")
+    def map_roles_scope(self) -> Optional[pulumi.Input['UsersPermissionsMapRolesScopeArgs']]:
+        return pulumi.get(self, "map_roles_scope")
+
+    @map_roles_scope.setter
+    def map_roles_scope(self, value: Optional[pulumi.Input['UsersPermissionsMapRolesScopeArgs']]):
+        pulumi.set(self, "map_roles_scope", value)
+
+    @property
+    @pulumi.getter(name="userImpersonatedScope")
+    def user_impersonated_scope(self) -> Optional[pulumi.Input['UsersPermissionsUserImpersonatedScopeArgs']]:
+        return pulumi.get(self, "user_impersonated_scope")
+
+    @user_impersonated_scope.setter
+    def user_impersonated_scope(self, value: Optional[pulumi.Input['UsersPermissionsUserImpersonatedScopeArgs']]):
+        pulumi.set(self, "user_impersonated_scope", value)
+
+    @property
+    @pulumi.getter(name="viewScope")
+    def view_scope(self) -> Optional[pulumi.Input['UsersPermissionsViewScopeArgs']]:
+        return pulumi.get(self, "view_scope")
+
+    @view_scope.setter
+    def view_scope(self, value: Optional[pulumi.Input['UsersPermissionsViewScopeArgs']]):
+        pulumi.set(self, "view_scope", value)
 
 
 class UsersPermissions(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -32,6 +123,39 @@ class UsersPermissions(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: UsersPermissionsArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Create a UsersPermissions resource with the given unique name, props, and options.
+        :param str resource_name: The name of the resource.
+        :param UsersPermissionsArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(UsersPermissionsArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 impersonate_scope: Optional[pulumi.Input[pulumi.InputType['UsersPermissionsImpersonateScopeArgs']]] = None,
+                 manage_group_membership_scope: Optional[pulumi.Input[pulumi.InputType['UsersPermissionsManageGroupMembershipScopeArgs']]] = None,
+                 manage_scope: Optional[pulumi.Input[pulumi.InputType['UsersPermissionsManageScopeArgs']]] = None,
+                 map_roles_scope: Optional[pulumi.Input[pulumi.InputType['UsersPermissionsMapRolesScopeArgs']]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 user_impersonated_scope: Optional[pulumi.Input[pulumi.InputType['UsersPermissionsUserImpersonatedScopeArgs']]] = None,
+                 view_scope: Optional[pulumi.Input[pulumi.InputType['UsersPermissionsViewScopeArgs']]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

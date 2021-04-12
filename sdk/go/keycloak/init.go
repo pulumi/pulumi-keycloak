@@ -21,49 +21,50 @@ func (m *module) Version() semver.Version {
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
 	case "keycloak:index/attributeImporterIdentityProviderMapper:AttributeImporterIdentityProviderMapper":
-		r, err = NewAttributeImporterIdentityProviderMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &AttributeImporterIdentityProviderMapper{}
 	case "keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper":
-		r, err = NewAttributeToRoleIdentityMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &AttributeToRoleIdentityMapper{}
 	case "keycloak:index/customUserFederation:CustomUserFederation":
-		r, err = NewCustomUserFederation(ctx, name, nil, pulumi.URN_(urn))
+		r = &CustomUserFederation{}
 	case "keycloak:index/defaultGroups:DefaultGroups":
-		r, err = NewDefaultGroups(ctx, name, nil, pulumi.URN_(urn))
+		r = &DefaultGroups{}
 	case "keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper":
-		r, err = NewGenericClientProtocolMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &GenericClientProtocolMapper{}
 	case "keycloak:index/genericClientRoleMapper:GenericClientRoleMapper":
-		r, err = NewGenericClientRoleMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &GenericClientRoleMapper{}
 	case "keycloak:index/group:Group":
-		r, err = NewGroup(ctx, name, nil, pulumi.URN_(urn))
+		r = &Group{}
 	case "keycloak:index/groupMemberships:GroupMemberships":
-		r, err = NewGroupMemberships(ctx, name, nil, pulumi.URN_(urn))
+		r = &GroupMemberships{}
 	case "keycloak:index/groupRoles:GroupRoles":
-		r, err = NewGroupRoles(ctx, name, nil, pulumi.URN_(urn))
+		r = &GroupRoles{}
 	case "keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper":
-		r, err = NewHardcodedAttributeIdentityProviderMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &HardcodedAttributeIdentityProviderMapper{}
 	case "keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper":
-		r, err = NewHardcodedRoleIdentityMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &HardcodedRoleIdentityMapper{}
 	case "keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission":
-		r, err = NewIdentityProviderTokenExchangeScopePermission(ctx, name, nil, pulumi.URN_(urn))
+		r = &IdentityProviderTokenExchangeScopePermission{}
 	case "keycloak:index/realm:Realm":
-		r, err = NewRealm(ctx, name, nil, pulumi.URN_(urn))
+		r = &Realm{}
 	case "keycloak:index/realmEvents:RealmEvents":
-		r, err = NewRealmEvents(ctx, name, nil, pulumi.URN_(urn))
+		r = &RealmEvents{}
 	case "keycloak:index/requiredAction:RequiredAction":
-		r, err = NewRequiredAction(ctx, name, nil, pulumi.URN_(urn))
+		r = &RequiredAction{}
 	case "keycloak:index/role:Role":
-		r, err = NewRole(ctx, name, nil, pulumi.URN_(urn))
+		r = &Role{}
 	case "keycloak:index/user:User":
-		r, err = NewUser(ctx, name, nil, pulumi.URN_(urn))
+		r = &User{}
 	case "keycloak:index/userRoles:UserRoles":
-		r, err = NewUserRoles(ctx, name, nil, pulumi.URN_(urn))
+		r = &UserRoles{}
 	case "keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper":
-		r, err = NewUserTemplateImporterIdentityProviderMapper(ctx, name, nil, pulumi.URN_(urn))
+		r = &UserTemplateImporterIdentityProviderMapper{}
 	case "keycloak:index/usersPermissions:UsersPermissions":
-		r, err = NewUsersPermissions(ctx, name, nil, pulumi.URN_(urn))
+		r = &UsersPermissions{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
 	return
 }
 
@@ -80,7 +81,9 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 		return nil, fmt.Errorf("unknown provider type: %s", typ)
 	}
 
-	return NewProvider(ctx, name, nil, pulumi.URN_(urn))
+	r := &Provider{}
+	err := ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	return r, err
 }
 
 func init() {

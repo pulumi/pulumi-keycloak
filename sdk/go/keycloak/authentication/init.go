@@ -22,17 +22,18 @@ func (m *module) Version() semver.Version {
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
 	case "keycloak:authentication/execution:Execution":
-		r, err = NewExecution(ctx, name, nil, pulumi.URN_(urn))
+		r = &Execution{}
 	case "keycloak:authentication/executionConfig:ExecutionConfig":
-		r, err = NewExecutionConfig(ctx, name, nil, pulumi.URN_(urn))
+		r = &ExecutionConfig{}
 	case "keycloak:authentication/flow:Flow":
-		r, err = NewFlow(ctx, name, nil, pulumi.URN_(urn))
+		r = &Flow{}
 	case "keycloak:authentication/subflow:Subflow":
-		r, err = NewSubflow(ctx, name, nil, pulumi.URN_(urn))
+		r = &Subflow{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
 	return
 }
 

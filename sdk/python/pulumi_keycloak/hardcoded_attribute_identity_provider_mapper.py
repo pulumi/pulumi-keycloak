@@ -5,13 +5,126 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['HardcodedAttributeIdentityProviderMapper']
+__all__ = ['HardcodedAttributeIdentityProviderMapperArgs', 'HardcodedAttributeIdentityProviderMapper']
+
+@pulumi.input_type
+class HardcodedAttributeIdentityProviderMapperArgs:
+    def __init__(__self__, *,
+                 identity_provider_alias: pulumi.Input[str],
+                 realm: pulumi.Input[str],
+                 user_session: pulumi.Input[bool],
+                 attribute_name: Optional[pulumi.Input[str]] = None,
+                 attribute_value: Optional[pulumi.Input[str]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a HardcodedAttributeIdentityProviderMapper resource.
+        :param pulumi.Input[str] identity_provider_alias: IDP Alias
+        :param pulumi.Input[str] realm: Realm Name
+        :param pulumi.Input[bool] user_session: Is Attribute Related To a User Session
+        :param pulumi.Input[str] attribute_name: OIDC Claim
+        :param pulumi.Input[str] attribute_value: User Attribute
+        :param pulumi.Input[str] name: IDP Mapper Name
+        """
+        pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
+        pulumi.set(__self__, "realm", realm)
+        pulumi.set(__self__, "user_session", user_session)
+        if attribute_name is not None:
+            pulumi.set(__self__, "attribute_name", attribute_name)
+        if attribute_value is not None:
+            pulumi.set(__self__, "attribute_value", attribute_value)
+        if extra_config is not None:
+            pulumi.set(__self__, "extra_config", extra_config)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="identityProviderAlias")
+    def identity_provider_alias(self) -> pulumi.Input[str]:
+        """
+        IDP Alias
+        """
+        return pulumi.get(self, "identity_provider_alias")
+
+    @identity_provider_alias.setter
+    def identity_provider_alias(self, value: pulumi.Input[str]):
+        pulumi.set(self, "identity_provider_alias", value)
+
+    @property
+    @pulumi.getter
+    def realm(self) -> pulumi.Input[str]:
+        """
+        Realm Name
+        """
+        return pulumi.get(self, "realm")
+
+    @realm.setter
+    def realm(self, value: pulumi.Input[str]):
+        pulumi.set(self, "realm", value)
+
+    @property
+    @pulumi.getter(name="userSession")
+    def user_session(self) -> pulumi.Input[bool]:
+        """
+        Is Attribute Related To a User Session
+        """
+        return pulumi.get(self, "user_session")
+
+    @user_session.setter
+    def user_session(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "user_session", value)
+
+    @property
+    @pulumi.getter(name="attributeName")
+    def attribute_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        OIDC Claim
+        """
+        return pulumi.get(self, "attribute_name")
+
+    @attribute_name.setter
+    def attribute_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "attribute_name", value)
+
+    @property
+    @pulumi.getter(name="attributeValue")
+    def attribute_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        User Attribute
+        """
+        return pulumi.get(self, "attribute_value")
+
+    @attribute_value.setter
+    def attribute_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "attribute_value", value)
+
+    @property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        return pulumi.get(self, "extra_config")
+
+    @extra_config.setter
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "extra_config", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        IDP Mapper Name
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 
 class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -36,6 +149,39 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
         :param pulumi.Input[str] realm: Realm Name
         :param pulumi.Input[bool] user_session: Is Attribute Related To a User Session
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: HardcodedAttributeIdentityProviderMapperArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Create a HardcodedAttributeIdentityProviderMapper resource with the given unique name, props, and options.
+        :param str resource_name: The name of the resource.
+        :param HardcodedAttributeIdentityProviderMapperArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(HardcodedAttributeIdentityProviderMapperArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 attribute_name: Optional[pulumi.Input[str]] = None,
+                 attribute_value: Optional[pulumi.Input[str]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 identity_provider_alias: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm: Optional[pulumi.Input[str]] = None,
+                 user_session: Optional[pulumi.Input[bool]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

@@ -5,13 +5,81 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['ExecutionConfig']
+__all__ = ['ExecutionConfigArgs', 'ExecutionConfig']
+
+@pulumi.input_type
+class ExecutionConfigArgs:
+    def __init__(__self__, *,
+                 alias: pulumi.Input[str],
+                 config: pulumi.Input[Mapping[str, pulumi.Input[str]]],
+                 execution_id: pulumi.Input[str],
+                 realm_id: pulumi.Input[str]):
+        """
+        The set of arguments for constructing a ExecutionConfig resource.
+        :param pulumi.Input[str] alias: The name of the configuration.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+        :param pulumi.Input[str] execution_id: The authentication execution this configuration is attached to.
+        :param pulumi.Input[str] realm_id: The realm the authentication execution exists in.
+        """
+        pulumi.set(__self__, "alias", alias)
+        pulumi.set(__self__, "config", config)
+        pulumi.set(__self__, "execution_id", execution_id)
+        pulumi.set(__self__, "realm_id", realm_id)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> pulumi.Input[str]:
+        """
+        The name of the configuration.
+        """
+        return pulumi.get(self, "alias")
+
+    @alias.setter
+    def alias(self, value: pulumi.Input[str]):
+        pulumi.set(self, "alias", value)
+
+    @property
+    @pulumi.getter
+    def config(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
+        """
+        The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+        """
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
+        pulumi.set(self, "config", value)
+
+    @property
+    @pulumi.getter(name="executionId")
+    def execution_id(self) -> pulumi.Input[str]:
+        """
+        The authentication execution this configuration is attached to.
+        """
+        return pulumi.get(self, "execution_id")
+
+    @execution_id.setter
+    def execution_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "execution_id", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[str]:
+        """
+        The realm the authentication execution exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "realm_id", value)
 
 
 class ExecutionConfig(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -66,6 +134,71 @@ class ExecutionConfig(pulumi.CustomResource):
         :param pulumi.Input[str] execution_id: The authentication execution this configuration is attached to.
         :param pulumi.Input[str] realm_id: The realm the authentication execution exists in.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: ExecutionConfigArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Allows for managing an authentication execution's configuration. If a particular authentication execution supports additional
+        configuration (such as with the `identity-provider-redirector` execution), this can be managed with this resource.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        flow = keycloak.authentication.Flow("flow",
+            realm_id=realm.id,
+            alias="my-flow-alias")
+        execution = keycloak.authentication.Execution("execution",
+            realm_id=realm.id,
+            parent_flow_alias=flow.alias,
+            authenticator="identity-provider-redirector")
+        config = keycloak.authentication.ExecutionConfig("config",
+            realm_id=realm.id,
+            execution_id=execution.id,
+            alias="my-config-alias",
+            config={
+                "defaultProvider": "my-config-default-idp",
+            })
+        ```
+
+        ## Import
+
+        Configurations can be imported using the format `{{realm}}/{{authenticationExecutionId}}/{{authenticationExecutionConfigId}}`. If the `authenticationExecutionId` is incorrect, the import will still be successful. A subsequent apply will change the `authenticationExecutionId` to the correct one, which causes the configuration to be replaced. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:authentication/executionConfig:ExecutionConfig config my-realm/be081463-ddbf-4b42-9eff-9c97886f24ff/30559fcf-6fb8-45ea-8c46-2b86f46ebc17
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param ExecutionConfigArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(ExecutionConfigArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 alias: Optional[pulumi.Input[str]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 execution_id: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__
