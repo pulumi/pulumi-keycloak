@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = [
     'ClientAuthenticationFlowBindingOverrides',
@@ -15,6 +15,25 @@ __all__ = [
 
 @pulumi.output_type
 class ClientAuthenticationFlowBindingOverrides(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "browserId":
+            suggest = "browser_id"
+        elif key == "directGrantId":
+            suggest = "direct_grant_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClientAuthenticationFlowBindingOverrides. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClientAuthenticationFlowBindingOverrides.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClientAuthenticationFlowBindingOverrides.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  browser_id: Optional[str] = None,
                  direct_grant_id: Optional[str] = None):
@@ -42,9 +61,6 @@ class ClientAuthenticationFlowBindingOverrides(dict):
         Direct grant flow id (flow needs to exist)
         """
         return pulumi.get(self, "direct_grant_id")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type

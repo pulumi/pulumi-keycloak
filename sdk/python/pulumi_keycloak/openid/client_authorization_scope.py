@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['ClientAuthorizationScopeArgs', 'ClientAuthorizationScope']
 
@@ -76,6 +76,74 @@ class ClientAuthorizationScopeArgs:
         pulumi.set(self, "name", value)
 
 
+@pulumi.input_type
+class _ClientAuthorizationScopeState:
+    def __init__(__self__, *,
+                 display_name: Optional[pulumi.Input[str]] = None,
+                 icon_uri: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 resource_server_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering ClientAuthorizationScope resources.
+        """
+        if display_name is not None:
+            pulumi.set(__self__, "display_name", display_name)
+        if icon_uri is not None:
+            pulumi.set(__self__, "icon_uri", icon_uri)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if resource_server_id is not None:
+            pulumi.set(__self__, "resource_server_id", resource_server_id)
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "display_name")
+
+    @display_name.setter
+    def display_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "display_name", value)
+
+    @property
+    @pulumi.getter(name="iconUri")
+    def icon_uri(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "icon_uri")
+
+    @icon_uri.setter
+    def icon_uri(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "icon_uri", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter(name="resourceServerId")
+    def resource_server_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "resource_server_id")
+
+    @resource_server_id.setter
+    def resource_server_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "resource_server_id", value)
+
+
 class ClientAuthorizationScope(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -140,17 +208,17 @@ class ClientAuthorizationScope(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = ClientAuthorizationScopeArgs.__new__(ClientAuthorizationScopeArgs)
 
-            __props__['display_name'] = display_name
-            __props__['icon_uri'] = icon_uri
-            __props__['name'] = name
+            __props__.__dict__["display_name"] = display_name
+            __props__.__dict__["icon_uri"] = icon_uri
+            __props__.__dict__["name"] = name
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
-            __props__['realm_id'] = realm_id
+            __props__.__dict__["realm_id"] = realm_id
             if resource_server_id is None and not opts.urn:
                 raise TypeError("Missing required property 'resource_server_id'")
-            __props__['resource_server_id'] = resource_server_id
+            __props__.__dict__["resource_server_id"] = resource_server_id
         super(ClientAuthorizationScope, __self__).__init__(
             'keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope',
             resource_name,
@@ -176,13 +244,13 @@ class ClientAuthorizationScope(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _ClientAuthorizationScopeState.__new__(_ClientAuthorizationScopeState)
 
-        __props__["display_name"] = display_name
-        __props__["icon_uri"] = icon_uri
-        __props__["name"] = name
-        __props__["realm_id"] = realm_id
-        __props__["resource_server_id"] = resource_server_id
+        __props__.__dict__["display_name"] = display_name
+        __props__.__dict__["icon_uri"] = icon_uri
+        __props__.__dict__["name"] = name
+        __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["resource_server_id"] = resource_server_id
         return ClientAuthorizationScope(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -209,10 +277,4 @@ class ClientAuthorizationScope(pulumi.CustomResource):
     @pulumi.getter(name="resourceServerId")
     def resource_server_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "resource_server_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

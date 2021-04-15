@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = [
     'ClientAuthenticationFlowBindingOverrides',
@@ -27,6 +27,25 @@ __all__ = [
 
 @pulumi.output_type
 class ClientAuthenticationFlowBindingOverrides(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "browserId":
+            suggest = "browser_id"
+        elif key == "directGrantId":
+            suggest = "direct_grant_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClientAuthenticationFlowBindingOverrides. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClientAuthenticationFlowBindingOverrides.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClientAuthenticationFlowBindingOverrides.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  browser_id: Optional[str] = None,
                  direct_grant_id: Optional[str] = None):
@@ -55,12 +74,32 @@ class ClientAuthenticationFlowBindingOverrides(dict):
         """
         return pulumi.get(self, "direct_grant_id")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ClientAuthorization(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "policyEnforcementMode":
+            suggest = "policy_enforcement_mode"
+        elif key == "allowRemoteResourceManagement":
+            suggest = "allow_remote_resource_management"
+        elif key == "decisionStrategy":
+            suggest = "decision_strategy"
+        elif key == "keepDefaults":
+            suggest = "keep_defaults"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClientAuthorization. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClientAuthorization.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClientAuthorization.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  policy_enforcement_mode: str,
                  allow_remote_resource_management: Optional[bool] = None,
@@ -112,12 +151,26 @@ class ClientAuthorization(dict):
         """
         return pulumi.get(self, "keep_defaults")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ClientGroupPolicyGroup(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "extendChildren":
+            suggest = "extend_children"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClientGroupPolicyGroup. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClientGroupPolicyGroup.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClientGroupPolicyGroup.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  extend_children: bool,
                  id: str,
@@ -141,12 +194,26 @@ class ClientGroupPolicyGroup(dict):
     def path(self) -> str:
         return pulumi.get(self, "path")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ClientPermissionsConfigureScope(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "decisionStrategy":
+            suggest = "decision_strategy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClientPermissionsConfigureScope. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClientPermissionsConfigureScope.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClientPermissionsConfigureScope.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
@@ -172,13 +239,27 @@ class ClientPermissionsConfigureScope(dict):
     @pulumi.getter
     def policies(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "policies")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class ClientPermissionsManageScope(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "decisionStrategy":
+            suggest = "decision_strategy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClientPermissionsManageScope. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClientPermissionsManageScope.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClientPermissionsManageScope.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
@@ -204,13 +285,27 @@ class ClientPermissionsManageScope(dict):
     @pulumi.getter
     def policies(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "policies")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class ClientPermissionsMapRolesClientScopeScope(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "decisionStrategy":
+            suggest = "decision_strategy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClientPermissionsMapRolesClientScopeScope. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClientPermissionsMapRolesClientScopeScope.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClientPermissionsMapRolesClientScopeScope.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
@@ -236,13 +331,27 @@ class ClientPermissionsMapRolesClientScopeScope(dict):
     @pulumi.getter
     def policies(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "policies")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class ClientPermissionsMapRolesCompositeScope(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "decisionStrategy":
+            suggest = "decision_strategy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClientPermissionsMapRolesCompositeScope. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClientPermissionsMapRolesCompositeScope.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClientPermissionsMapRolesCompositeScope.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
@@ -268,13 +377,27 @@ class ClientPermissionsMapRolesCompositeScope(dict):
     @pulumi.getter
     def policies(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "policies")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class ClientPermissionsMapRolesScope(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "decisionStrategy":
+            suggest = "decision_strategy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClientPermissionsMapRolesScope. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClientPermissionsMapRolesScope.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClientPermissionsMapRolesScope.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
@@ -300,13 +423,27 @@ class ClientPermissionsMapRolesScope(dict):
     @pulumi.getter
     def policies(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "policies")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class ClientPermissionsTokenExchangeScope(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "decisionStrategy":
+            suggest = "decision_strategy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClientPermissionsTokenExchangeScope. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClientPermissionsTokenExchangeScope.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClientPermissionsTokenExchangeScope.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
@@ -332,13 +469,27 @@ class ClientPermissionsTokenExchangeScope(dict):
     @pulumi.getter
     def policies(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "policies")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class ClientPermissionsViewScope(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "decisionStrategy":
+            suggest = "decision_strategy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClientPermissionsViewScope. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClientPermissionsViewScope.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClientPermissionsViewScope.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
@@ -364,9 +515,6 @@ class ClientPermissionsViewScope(dict):
     @pulumi.getter
     def policies(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "policies")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
@@ -386,9 +534,6 @@ class ClientRolePolicyRole(dict):
     @pulumi.getter
     def required(self) -> bool:
         return pulumi.get(self, "required")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type

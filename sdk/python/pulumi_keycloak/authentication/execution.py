@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['ExecutionArgs', 'Execution']
 
@@ -64,6 +64,78 @@ class ExecutionArgs:
 
     @realm_id.setter
     def realm_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter
+    def requirement(self) -> Optional[pulumi.Input[str]]:
+        """
+        The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
+        """
+        return pulumi.get(self, "requirement")
+
+    @requirement.setter
+    def requirement(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "requirement", value)
+
+
+@pulumi.input_type
+class _ExecutionState:
+    def __init__(__self__, *,
+                 authenticator: Optional[pulumi.Input[str]] = None,
+                 parent_flow_alias: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 requirement: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Execution resources.
+        :param pulumi.Input[str] authenticator: The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
+        :param pulumi.Input[str] parent_flow_alias: The alias of the flow this execution is attached to.
+        :param pulumi.Input[str] realm_id: The realm the authentication execution exists in.
+        :param pulumi.Input[str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
+        """
+        if authenticator is not None:
+            pulumi.set(__self__, "authenticator", authenticator)
+        if parent_flow_alias is not None:
+            pulumi.set(__self__, "parent_flow_alias", parent_flow_alias)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if requirement is not None:
+            pulumi.set(__self__, "requirement", requirement)
+
+    @property
+    @pulumi.getter
+    def authenticator(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
+        """
+        return pulumi.get(self, "authenticator")
+
+    @authenticator.setter
+    def authenticator(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "authenticator", value)
+
+    @property
+    @pulumi.getter(name="parentFlowAlias")
+    def parent_flow_alias(self) -> Optional[pulumi.Input[str]]:
+        """
+        The alias of the flow this execution is attached to.
+        """
+        return pulumi.get(self, "parent_flow_alias")
+
+    @parent_flow_alias.setter
+    def parent_flow_alias(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "parent_flow_alias", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The realm the authentication execution exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "realm_id", value)
 
     @property
@@ -227,18 +299,18 @@ class Execution(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = ExecutionArgs.__new__(ExecutionArgs)
 
             if authenticator is None and not opts.urn:
                 raise TypeError("Missing required property 'authenticator'")
-            __props__['authenticator'] = authenticator
+            __props__.__dict__["authenticator"] = authenticator
             if parent_flow_alias is None and not opts.urn:
                 raise TypeError("Missing required property 'parent_flow_alias'")
-            __props__['parent_flow_alias'] = parent_flow_alias
+            __props__.__dict__["parent_flow_alias"] = parent_flow_alias
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
-            __props__['realm_id'] = realm_id
-            __props__['requirement'] = requirement
+            __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["requirement"] = requirement
         super(Execution, __self__).__init__(
             'keycloak:authentication/execution:Execution',
             resource_name,
@@ -267,12 +339,12 @@ class Execution(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _ExecutionState.__new__(_ExecutionState)
 
-        __props__["authenticator"] = authenticator
-        __props__["parent_flow_alias"] = parent_flow_alias
-        __props__["realm_id"] = realm_id
-        __props__["requirement"] = requirement
+        __props__.__dict__["authenticator"] = authenticator
+        __props__.__dict__["parent_flow_alias"] = parent_flow_alias
+        __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["requirement"] = requirement
         return Execution(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -306,10 +378,4 @@ class Execution(pulumi.CustomResource):
         The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
         """
         return pulumi.get(self, "requirement")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

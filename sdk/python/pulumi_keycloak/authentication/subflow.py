@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['SubflowArgs', 'Subflow']
 
@@ -103,6 +103,102 @@ class SubflowArgs:
         pulumi.set(self, "requirement", value)
 
 
+@pulumi.input_type
+class _SubflowState:
+    def __init__(__self__, *,
+                 alias: Optional[pulumi.Input[str]] = None,
+                 authenticator: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 parent_flow_alias: Optional[pulumi.Input[str]] = None,
+                 provider_id: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 requirement: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Subflow resources.
+        :param pulumi.Input[str] authenticator: Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
+        """
+        if alias is not None:
+            pulumi.set(__self__, "alias", alias)
+        if authenticator is not None:
+            pulumi.set(__self__, "authenticator", authenticator)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if parent_flow_alias is not None:
+            pulumi.set(__self__, "parent_flow_alias", parent_flow_alias)
+        if provider_id is not None:
+            pulumi.set(__self__, "provider_id", provider_id)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if requirement is not None:
+            pulumi.set(__self__, "requirement", requirement)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "alias")
+
+    @alias.setter
+    def alias(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alias", value)
+
+    @property
+    @pulumi.getter
+    def authenticator(self) -> Optional[pulumi.Input[str]]:
+        """
+        Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
+        """
+        return pulumi.get(self, "authenticator")
+
+    @authenticator.setter
+    def authenticator(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "authenticator", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="parentFlowAlias")
+    def parent_flow_alias(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "parent_flow_alias")
+
+    @parent_flow_alias.setter
+    def parent_flow_alias(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "parent_flow_alias", value)
+
+    @property
+    @pulumi.getter(name="providerId")
+    def provider_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "provider_id")
+
+    @provider_id.setter
+    def provider_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider_id", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter
+    def requirement(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "requirement")
+
+    @requirement.setter
+    def requirement(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "requirement", value)
+
+
 class Subflow(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -172,21 +268,21 @@ class Subflow(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SubflowArgs.__new__(SubflowArgs)
 
             if alias is None and not opts.urn:
                 raise TypeError("Missing required property 'alias'")
-            __props__['alias'] = alias
-            __props__['authenticator'] = authenticator
-            __props__['description'] = description
+            __props__.__dict__["alias"] = alias
+            __props__.__dict__["authenticator"] = authenticator
+            __props__.__dict__["description"] = description
             if parent_flow_alias is None and not opts.urn:
                 raise TypeError("Missing required property 'parent_flow_alias'")
-            __props__['parent_flow_alias'] = parent_flow_alias
-            __props__['provider_id'] = provider_id
+            __props__.__dict__["parent_flow_alias"] = parent_flow_alias
+            __props__.__dict__["provider_id"] = provider_id
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
-            __props__['realm_id'] = realm_id
-            __props__['requirement'] = requirement
+            __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["requirement"] = requirement
         super(Subflow, __self__).__init__(
             'keycloak:authentication/subflow:Subflow',
             resource_name,
@@ -215,15 +311,15 @@ class Subflow(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SubflowState.__new__(_SubflowState)
 
-        __props__["alias"] = alias
-        __props__["authenticator"] = authenticator
-        __props__["description"] = description
-        __props__["parent_flow_alias"] = parent_flow_alias
-        __props__["provider_id"] = provider_id
-        __props__["realm_id"] = realm_id
-        __props__["requirement"] = requirement
+        __props__.__dict__["alias"] = alias
+        __props__.__dict__["authenticator"] = authenticator
+        __props__.__dict__["description"] = description
+        __props__.__dict__["parent_flow_alias"] = parent_flow_alias
+        __props__.__dict__["provider_id"] = provider_id
+        __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["requirement"] = requirement
         return Subflow(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -263,10 +359,4 @@ class Subflow(pulumi.CustomResource):
     @pulumi.getter
     def requirement(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "requirement")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

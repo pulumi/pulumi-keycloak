@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['ExecutionConfigArgs', 'ExecutionConfig']
 
@@ -75,6 +75,78 @@ class ExecutionConfigArgs:
 
     @realm_id.setter
     def realm_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "realm_id", value)
+
+
+@pulumi.input_type
+class _ExecutionConfigState:
+    def __init__(__self__, *,
+                 alias: Optional[pulumi.Input[str]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 execution_id: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering ExecutionConfig resources.
+        :param pulumi.Input[str] alias: The name of the configuration.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+        :param pulumi.Input[str] execution_id: The authentication execution this configuration is attached to.
+        :param pulumi.Input[str] realm_id: The realm the authentication execution exists in.
+        """
+        if alias is not None:
+            pulumi.set(__self__, "alias", alias)
+        if config is not None:
+            pulumi.set(__self__, "config", config)
+        if execution_id is not None:
+            pulumi.set(__self__, "execution_id", execution_id)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the configuration.
+        """
+        return pulumi.get(self, "alias")
+
+    @alias.setter
+    def alias(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alias", value)
+
+    @property
+    @pulumi.getter
+    def config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+        """
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "config", value)
+
+    @property
+    @pulumi.getter(name="executionId")
+    def execution_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The authentication execution this configuration is attached to.
+        """
+        return pulumi.get(self, "execution_id")
+
+    @execution_id.setter
+    def execution_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "execution_id", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The realm the authentication execution exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "realm_id", value)
 
 
@@ -214,20 +286,20 @@ class ExecutionConfig(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = ExecutionConfigArgs.__new__(ExecutionConfigArgs)
 
             if alias is None and not opts.urn:
                 raise TypeError("Missing required property 'alias'")
-            __props__['alias'] = alias
+            __props__.__dict__["alias"] = alias
             if config is None and not opts.urn:
                 raise TypeError("Missing required property 'config'")
-            __props__['config'] = config
+            __props__.__dict__["config"] = config
             if execution_id is None and not opts.urn:
                 raise TypeError("Missing required property 'execution_id'")
-            __props__['execution_id'] = execution_id
+            __props__.__dict__["execution_id"] = execution_id
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
-            __props__['realm_id'] = realm_id
+            __props__.__dict__["realm_id"] = realm_id
         super(ExecutionConfig, __self__).__init__(
             'keycloak:authentication/executionConfig:ExecutionConfig',
             resource_name,
@@ -256,12 +328,12 @@ class ExecutionConfig(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _ExecutionConfigState.__new__(_ExecutionConfigState)
 
-        __props__["alias"] = alias
-        __props__["config"] = config
-        __props__["execution_id"] = execution_id
-        __props__["realm_id"] = realm_id
+        __props__.__dict__["alias"] = alias
+        __props__.__dict__["config"] = config
+        __props__.__dict__["execution_id"] = execution_id
+        __props__.__dict__["realm_id"] = realm_id
         return ExecutionConfig(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -295,10 +367,4 @@ class ExecutionConfig(pulumi.CustomResource):
         The realm the authentication execution exists in.
         """
         return pulumi.get(self, "realm_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = [
     'UserFederationCache',
@@ -15,6 +15,29 @@ __all__ = [
 
 @pulumi.output_type
 class UserFederationCache(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "evictionDay":
+            suggest = "eviction_day"
+        elif key == "evictionHour":
+            suggest = "eviction_hour"
+        elif key == "evictionMinute":
+            suggest = "eviction_minute"
+        elif key == "maxLifespan":
+            suggest = "max_lifespan"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in UserFederationCache. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        UserFederationCache.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        UserFederationCache.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  eviction_day: Optional[int] = None,
                  eviction_hour: Optional[int] = None,
@@ -75,12 +98,32 @@ class UserFederationCache(dict):
         """
         return pulumi.get(self, "policy")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class UserFederationKerberos(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "kerberosRealm":
+            suggest = "kerberos_realm"
+        elif key == "keyTab":
+            suggest = "key_tab"
+        elif key == "serverPrincipal":
+            suggest = "server_principal"
+        elif key == "useKerberosForPasswordAuthentication":
+            suggest = "use_kerberos_for_password_authentication"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in UserFederationKerberos. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        UserFederationKerberos.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        UserFederationKerberos.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  kerberos_realm: str,
                  key_tab: str,
@@ -129,8 +172,5 @@ class UserFederationKerberos(dict):
         Use kerberos login module instead of ldap service api. Defaults to `false`.
         """
         return pulumi.get(self, "use_kerberos_for_password_authentication")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

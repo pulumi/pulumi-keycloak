@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['GenericClientRoleMapperArgs', 'GenericClientRoleMapper']
 
@@ -78,6 +78,78 @@ class GenericClientRoleMapperArgs:
     @client_scope_id.setter
     def client_scope_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "client_scope_id", value)
+
+
+@pulumi.input_type
+class _GenericClientRoleMapperState:
+    def __init__(__self__, *,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 client_scope_id: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 role_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering GenericClientRoleMapper resources.
+        :param pulumi.Input[str] client_id: The ID of the client this role mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
+        :param pulumi.Input[str] client_scope_id: The ID of the client scope this role mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
+        :param pulumi.Input[str] realm_id: The realm this role mapper exists within.
+        :param pulumi.Input[str] role_id: The ID of the role to be added to this role mapper.
+        """
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if client_scope_id is not None:
+            pulumi.set(__self__, "client_scope_id", client_scope_id)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if role_id is not None:
+            pulumi.set(__self__, "role_id", role_id)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the client this role mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_id", value)
+
+    @property
+    @pulumi.getter(name="clientScopeId")
+    def client_scope_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the client scope this role mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
+        """
+        return pulumi.get(self, "client_scope_id")
+
+    @client_scope_id.setter
+    def client_scope_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_scope_id", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The realm this role mapper exists within.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the role to be added to this role mapper.
+        """
+        return pulumi.get(self, "role_id")
+
+    @role_id.setter
+    def role_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_id", value)
 
 
 class GenericClientRoleMapper(pulumi.CustomResource):
@@ -370,16 +442,16 @@ class GenericClientRoleMapper(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = GenericClientRoleMapperArgs.__new__(GenericClientRoleMapperArgs)
 
-            __props__['client_id'] = client_id
-            __props__['client_scope_id'] = client_scope_id
+            __props__.__dict__["client_id"] = client_id
+            __props__.__dict__["client_scope_id"] = client_scope_id
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
-            __props__['realm_id'] = realm_id
+            __props__.__dict__["realm_id"] = realm_id
             if role_id is None and not opts.urn:
                 raise TypeError("Missing required property 'role_id'")
-            __props__['role_id'] = role_id
+            __props__.__dict__["role_id"] = role_id
         super(GenericClientRoleMapper, __self__).__init__(
             'keycloak:index/genericClientRoleMapper:GenericClientRoleMapper',
             resource_name,
@@ -408,12 +480,12 @@ class GenericClientRoleMapper(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _GenericClientRoleMapperState.__new__(_GenericClientRoleMapperState)
 
-        __props__["client_id"] = client_id
-        __props__["client_scope_id"] = client_scope_id
-        __props__["realm_id"] = realm_id
-        __props__["role_id"] = role_id
+        __props__.__dict__["client_id"] = client_id
+        __props__.__dict__["client_scope_id"] = client_scope_id
+        __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["role_id"] = role_id
         return GenericClientRoleMapper(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -447,10 +519,4 @@ class GenericClientRoleMapper(pulumi.CustomResource):
         The ID of the role to be added to this role mapper.
         """
         return pulumi.get(self, "role_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

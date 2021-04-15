@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['FlowArgs', 'Flow']
 
@@ -78,6 +78,78 @@ class FlowArgs:
     @provider_id.setter
     def provider_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "provider_id", value)
+
+
+@pulumi.input_type
+class _FlowState:
+    def __init__(__self__, *,
+                 alias: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 provider_id: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Flow resources.
+        :param pulumi.Input[str] alias: The alias for this authentication flow.
+        :param pulumi.Input[str] description: A description for the authentication flow.
+        :param pulumi.Input[str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+        :param pulumi.Input[str] realm_id: The realm that the authentication flow exists in.
+        """
+        if alias is not None:
+            pulumi.set(__self__, "alias", alias)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if provider_id is not None:
+            pulumi.set(__self__, "provider_id", provider_id)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> Optional[pulumi.Input[str]]:
+        """
+        The alias for this authentication flow.
+        """
+        return pulumi.get(self, "alias")
+
+    @alias.setter
+    def alias(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alias", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description for the authentication flow.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="providerId")
+    def provider_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+        """
+        return pulumi.get(self, "provider_id")
+
+    @provider_id.setter
+    def provider_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider_id", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The realm that the authentication flow exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm_id", value)
 
 
 class Flow(pulumi.CustomResource):
@@ -210,16 +282,16 @@ class Flow(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = FlowArgs.__new__(FlowArgs)
 
             if alias is None and not opts.urn:
                 raise TypeError("Missing required property 'alias'")
-            __props__['alias'] = alias
-            __props__['description'] = description
-            __props__['provider_id'] = provider_id
+            __props__.__dict__["alias"] = alias
+            __props__.__dict__["description"] = description
+            __props__.__dict__["provider_id"] = provider_id
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
-            __props__['realm_id'] = realm_id
+            __props__.__dict__["realm_id"] = realm_id
         super(Flow, __self__).__init__(
             'keycloak:authentication/flow:Flow',
             resource_name,
@@ -248,12 +320,12 @@ class Flow(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _FlowState.__new__(_FlowState)
 
-        __props__["alias"] = alias
-        __props__["description"] = description
-        __props__["provider_id"] = provider_id
-        __props__["realm_id"] = realm_id
+        __props__.__dict__["alias"] = alias
+        __props__.__dict__["description"] = description
+        __props__.__dict__["provider_id"] = provider_id
+        __props__.__dict__["realm_id"] = realm_id
         return Flow(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -287,10 +359,4 @@ class Flow(pulumi.CustomResource):
         The realm that the authentication flow exists in.
         """
         return pulumi.get(self, "realm_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 
