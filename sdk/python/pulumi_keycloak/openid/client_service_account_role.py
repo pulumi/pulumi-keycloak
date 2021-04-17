@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['ClientServiceAccountRoleArgs', 'ClientServiceAccountRole']
 
@@ -75,6 +75,78 @@ class ClientServiceAccountRoleArgs:
 
     @service_account_user_id.setter
     def service_account_user_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "service_account_user_id", value)
+
+
+@pulumi.input_type
+class _ClientServiceAccountRoleState:
+    def __init__(__self__, *,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 service_account_user_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering ClientServiceAccountRole resources.
+        :param pulumi.Input[str] client_id: The id of the client that provides the role.
+        :param pulumi.Input[str] realm_id: The realm the clients and roles belong to.
+        :param pulumi.Input[str] role: The name of the role that is assigned.
+        :param pulumi.Input[str] service_account_user_id: The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
+        """
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if service_account_user_id is not None:
+            pulumi.set(__self__, "service_account_user_id", service_account_user_id)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The id of the client that provides the role.
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_id", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The realm the clients and roles belong to.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the role that is assigned.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter(name="serviceAccountUserId")
+    def service_account_user_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
+        """
+        return pulumi.get(self, "service_account_user_id")
+
+    @service_account_user_id.setter
+    def service_account_user_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "service_account_user_id", value)
 
 
@@ -222,20 +294,20 @@ class ClientServiceAccountRole(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = ClientServiceAccountRoleArgs.__new__(ClientServiceAccountRoleArgs)
 
             if client_id is None and not opts.urn:
                 raise TypeError("Missing required property 'client_id'")
-            __props__['client_id'] = client_id
+            __props__.__dict__["client_id"] = client_id
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
-            __props__['realm_id'] = realm_id
+            __props__.__dict__["realm_id"] = realm_id
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
-            __props__['role'] = role
+            __props__.__dict__["role"] = role
             if service_account_user_id is None and not opts.urn:
                 raise TypeError("Missing required property 'service_account_user_id'")
-            __props__['service_account_user_id'] = service_account_user_id
+            __props__.__dict__["service_account_user_id"] = service_account_user_id
         super(ClientServiceAccountRole, __self__).__init__(
             'keycloak:openid/clientServiceAccountRole:ClientServiceAccountRole',
             resource_name,
@@ -264,12 +336,12 @@ class ClientServiceAccountRole(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _ClientServiceAccountRoleState.__new__(_ClientServiceAccountRoleState)
 
-        __props__["client_id"] = client_id
-        __props__["realm_id"] = realm_id
-        __props__["role"] = role
-        __props__["service_account_user_id"] = service_account_user_id
+        __props__.__dict__["client_id"] = client_id
+        __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["role"] = role
+        __props__.__dict__["service_account_user_id"] = service_account_user_id
         return ClientServiceAccountRole(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -303,10 +375,4 @@ class ClientServiceAccountRole(pulumi.CustomResource):
         The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
         """
         return pulumi.get(self, "service_account_user_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

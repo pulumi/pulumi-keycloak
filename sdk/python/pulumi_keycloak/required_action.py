@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['RequiredActionArgs', 'RequiredAction']
 
@@ -88,6 +88,86 @@ class RequiredActionArgs:
         pulumi.set(self, "priority", value)
 
 
+@pulumi.input_type
+class _RequiredActionState:
+    def __init__(__self__, *,
+                 alias: Optional[pulumi.Input[str]] = None,
+                 default_action: Optional[pulumi.Input[bool]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 priority: Optional[pulumi.Input[int]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering RequiredAction resources.
+        """
+        if alias is not None:
+            pulumi.set(__self__, "alias", alias)
+        if default_action is not None:
+            pulumi.set(__self__, "default_action", default_action)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "alias")
+
+    @alias.setter
+    def alias(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alias", value)
+
+    @property
+    @pulumi.getter(name="defaultAction")
+    def default_action(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "default_action")
+
+    @default_action.setter
+    def default_action(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "default_action", value)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "priority", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm_id", value)
+
+
 class RequiredAction(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -154,18 +234,18 @@ class RequiredAction(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = RequiredActionArgs.__new__(RequiredActionArgs)
 
             if alias is None and not opts.urn:
                 raise TypeError("Missing required property 'alias'")
-            __props__['alias'] = alias
-            __props__['default_action'] = default_action
-            __props__['enabled'] = enabled
-            __props__['name'] = name
-            __props__['priority'] = priority
+            __props__.__dict__["alias"] = alias
+            __props__.__dict__["default_action"] = default_action
+            __props__.__dict__["enabled"] = enabled
+            __props__.__dict__["name"] = name
+            __props__.__dict__["priority"] = priority
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
-            __props__['realm_id'] = realm_id
+            __props__.__dict__["realm_id"] = realm_id
         super(RequiredAction, __self__).__init__(
             'keycloak:index/requiredAction:RequiredAction',
             resource_name,
@@ -192,14 +272,14 @@ class RequiredAction(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _RequiredActionState.__new__(_RequiredActionState)
 
-        __props__["alias"] = alias
-        __props__["default_action"] = default_action
-        __props__["enabled"] = enabled
-        __props__["name"] = name
-        __props__["priority"] = priority
-        __props__["realm_id"] = realm_id
+        __props__.__dict__["alias"] = alias
+        __props__.__dict__["default_action"] = default_action
+        __props__.__dict__["enabled"] = enabled
+        __props__.__dict__["name"] = name
+        __props__.__dict__["priority"] = priority
+        __props__.__dict__["realm_id"] = realm_id
         return RequiredAction(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -231,10 +311,4 @@ class RequiredAction(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "realm_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

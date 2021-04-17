@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['HardcodedGroupMapperArgs', 'HardcodedGroupMapper']
 
@@ -79,6 +79,78 @@ class HardcodedGroupMapperArgs:
         pulumi.set(self, "name", value)
 
 
+@pulumi.input_type
+class _HardcodedGroupMapperState:
+    def __init__(__self__, *,
+                 group: Optional[pulumi.Input[str]] = None,
+                 ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering HardcodedGroupMapper resources.
+        :param pulumi.Input[str] group: Group to grant to user.
+        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
+        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
+        """
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if ldap_user_federation_id is not None:
+            pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+
+    @property
+    @pulumi.getter
+    def group(self) -> Optional[pulumi.Input[str]]:
+        """
+        Group to grant to user.
+        """
+        return pulumi.get(self, "group")
+
+    @group.setter
+    def group(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "group", value)
+
+    @property
+    @pulumi.getter(name="ldapUserFederationId")
+    def ldap_user_federation_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ldap user federation provider to attach this mapper to.
+        """
+        return pulumi.get(self, "ldap_user_federation_id")
+
+    @ldap_user_federation_id.setter
+    def ldap_user_federation_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ldap_user_federation_id", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the mapper when displayed in the console.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The realm in which the ldap user federation provider exists.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm_id", value)
+
+
 class HardcodedGroupMapper(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -145,18 +217,18 @@ class HardcodedGroupMapper(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = HardcodedGroupMapperArgs.__new__(HardcodedGroupMapperArgs)
 
             if group is None and not opts.urn:
                 raise TypeError("Missing required property 'group'")
-            __props__['group'] = group
+            __props__.__dict__["group"] = group
             if ldap_user_federation_id is None and not opts.urn:
                 raise TypeError("Missing required property 'ldap_user_federation_id'")
-            __props__['ldap_user_federation_id'] = ldap_user_federation_id
-            __props__['name'] = name
+            __props__.__dict__["ldap_user_federation_id"] = ldap_user_federation_id
+            __props__.__dict__["name"] = name
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
-            __props__['realm_id'] = realm_id
+            __props__.__dict__["realm_id"] = realm_id
         super(HardcodedGroupMapper, __self__).__init__(
             'keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper',
             resource_name,
@@ -185,12 +257,12 @@ class HardcodedGroupMapper(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _HardcodedGroupMapperState.__new__(_HardcodedGroupMapperState)
 
-        __props__["group"] = group
-        __props__["ldap_user_federation_id"] = ldap_user_federation_id
-        __props__["name"] = name
-        __props__["realm_id"] = realm_id
+        __props__.__dict__["group"] = group
+        __props__.__dict__["ldap_user_federation_id"] = ldap_user_federation_id
+        __props__.__dict__["name"] = name
+        __props__.__dict__["realm_id"] = realm_id
         return HardcodedGroupMapper(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -224,10 +296,4 @@ class HardcodedGroupMapper(pulumi.CustomResource):
         The realm in which the ldap user federation provider exists.
         """
         return pulumi.get(self, "realm_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

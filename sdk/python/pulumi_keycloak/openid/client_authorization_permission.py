@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['ClientAuthorizationPermissionArgs', 'ClientAuthorizationPermission']
 
@@ -124,6 +124,122 @@ class ClientAuthorizationPermissionArgs:
         pulumi.set(self, "type", value)
 
 
+@pulumi.input_type
+class _ClientAuthorizationPermissionState:
+    def __init__(__self__, *,
+                 decision_strategy: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 resource_server_id: Optional[pulumi.Input[str]] = None,
+                 resources: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering ClientAuthorizationPermission resources.
+        """
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if resource_server_id is not None:
+            pulumi.set(__self__, "resource_server_id", resource_server_id)
+        if resources is not None:
+            pulumi.set(__self__, "resources", resources)
+        if scopes is not None:
+            pulumi.set(__self__, "scopes", scopes)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "decision_strategy")
+
+    @decision_strategy.setter
+    def decision_strategy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "decision_strategy", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter(name="resourceServerId")
+    def resource_server_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "resource_server_id")
+
+    @resource_server_id.setter
+    def resource_server_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "resource_server_id", value)
+
+    @property
+    @pulumi.getter
+    def resources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "resources")
+
+    @resources.setter
+    def resources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "resources", value)
+
+    @property
+    @pulumi.getter
+    def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "scopes")
+
+    @scopes.setter
+    def scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "scopes", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
 class ClientAuthorizationPermission(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -196,21 +312,21 @@ class ClientAuthorizationPermission(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = ClientAuthorizationPermissionArgs.__new__(ClientAuthorizationPermissionArgs)
 
-            __props__['decision_strategy'] = decision_strategy
-            __props__['description'] = description
-            __props__['name'] = name
-            __props__['policies'] = policies
+            __props__.__dict__["decision_strategy"] = decision_strategy
+            __props__.__dict__["description"] = description
+            __props__.__dict__["name"] = name
+            __props__.__dict__["policies"] = policies
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
-            __props__['realm_id'] = realm_id
+            __props__.__dict__["realm_id"] = realm_id
             if resource_server_id is None and not opts.urn:
                 raise TypeError("Missing required property 'resource_server_id'")
-            __props__['resource_server_id'] = resource_server_id
-            __props__['resources'] = resources
-            __props__['scopes'] = scopes
-            __props__['type'] = type
+            __props__.__dict__["resource_server_id"] = resource_server_id
+            __props__.__dict__["resources"] = resources
+            __props__.__dict__["scopes"] = scopes
+            __props__.__dict__["type"] = type
         super(ClientAuthorizationPermission, __self__).__init__(
             'keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission',
             resource_name,
@@ -240,17 +356,17 @@ class ClientAuthorizationPermission(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _ClientAuthorizationPermissionState.__new__(_ClientAuthorizationPermissionState)
 
-        __props__["decision_strategy"] = decision_strategy
-        __props__["description"] = description
-        __props__["name"] = name
-        __props__["policies"] = policies
-        __props__["realm_id"] = realm_id
-        __props__["resource_server_id"] = resource_server_id
-        __props__["resources"] = resources
-        __props__["scopes"] = scopes
-        __props__["type"] = type
+        __props__.__dict__["decision_strategy"] = decision_strategy
+        __props__.__dict__["description"] = description
+        __props__.__dict__["name"] = name
+        __props__.__dict__["policies"] = policies
+        __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["resource_server_id"] = resource_server_id
+        __props__.__dict__["resources"] = resources
+        __props__.__dict__["scopes"] = scopes
+        __props__.__dict__["type"] = type
         return ClientAuthorizationPermission(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -297,10 +413,4 @@ class ClientAuthorizationPermission(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "type")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['RoleArgs', 'Role']
 
@@ -111,6 +111,110 @@ class RoleArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class _RoleState:
+    def __init__(__self__, *,
+                 attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 composite_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Role resources.
+        :param pulumi.Input[Mapping[str, Any]] attributes: Attribute key/value pairs
+        :param pulumi.Input[str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] composite_roles: When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+        :param pulumi.Input[str] description: The description of the role
+        :param pulumi.Input[str] name: The name of the role
+        :param pulumi.Input[str] realm_id: The realm this role exists within.
+        """
+        if attributes is not None:
+            pulumi.set(__self__, "attributes", attributes)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if composite_roles is not None:
+            pulumi.set(__self__, "composite_roles", composite_roles)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Attribute key/value pairs
+        """
+        return pulumi.get(self, "attributes")
+
+    @attributes.setter
+    def attributes(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "attributes", value)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        When specified, this role will be created as a client role attached to the client with the provided ID
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_id", value)
+
+    @property
+    @pulumi.getter(name="compositeRoles")
+    def composite_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+        """
+        return pulumi.get(self, "composite_roles")
+
+    @composite_roles.setter
+    def composite_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "composite_roles", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of the role
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the role
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The realm this role exists within.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm_id", value)
 
 
 class Role(pulumi.CustomResource):
@@ -403,16 +507,16 @@ class Role(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = RoleArgs.__new__(RoleArgs)
 
-            __props__['attributes'] = attributes
-            __props__['client_id'] = client_id
-            __props__['composite_roles'] = composite_roles
-            __props__['description'] = description
-            __props__['name'] = name
+            __props__.__dict__["attributes"] = attributes
+            __props__.__dict__["client_id"] = client_id
+            __props__.__dict__["composite_roles"] = composite_roles
+            __props__.__dict__["description"] = description
+            __props__.__dict__["name"] = name
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
-            __props__['realm_id'] = realm_id
+            __props__.__dict__["realm_id"] = realm_id
         super(Role, __self__).__init__(
             'keycloak:index/role:Role',
             resource_name,
@@ -445,14 +549,14 @@ class Role(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _RoleState.__new__(_RoleState)
 
-        __props__["attributes"] = attributes
-        __props__["client_id"] = client_id
-        __props__["composite_roles"] = composite_roles
-        __props__["description"] = description
-        __props__["name"] = name
-        __props__["realm_id"] = realm_id
+        __props__.__dict__["attributes"] = attributes
+        __props__.__dict__["client_id"] = client_id
+        __props__.__dict__["composite_roles"] = composite_roles
+        __props__.__dict__["description"] = description
+        __props__.__dict__["name"] = name
+        __props__.__dict__["realm_id"] = realm_id
         return Role(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -502,10 +606,4 @@ class Role(pulumi.CustomResource):
         The realm this role exists within.
         """
         return pulumi.get(self, "realm_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

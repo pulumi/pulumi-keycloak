@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['ClientScopeArgs', 'ClientScope']
 
@@ -111,6 +111,110 @@ class ClientScopeArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class _ClientScopeState:
+    def __init__(__self__, *,
+                 consent_screen_text: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 gui_order: Optional[pulumi.Input[int]] = None,
+                 include_in_token_scope: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering ClientScope resources.
+        :param pulumi.Input[str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        :param pulumi.Input[str] description: The description of this client scope in the GUI.
+        :param pulumi.Input[int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
+        :param pulumi.Input[bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        :param pulumi.Input[str] name: The display name of this client scope in the GUI.
+        :param pulumi.Input[str] realm_id: The realm this client scope belongs to.
+        """
+        if consent_screen_text is not None:
+            pulumi.set(__self__, "consent_screen_text", consent_screen_text)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if gui_order is not None:
+            pulumi.set(__self__, "gui_order", gui_order)
+        if include_in_token_scope is not None:
+            pulumi.set(__self__, "include_in_token_scope", include_in_token_scope)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+
+    @property
+    @pulumi.getter(name="consentScreenText")
+    def consent_screen_text(self) -> Optional[pulumi.Input[str]]:
+        """
+        When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        """
+        return pulumi.get(self, "consent_screen_text")
+
+    @consent_screen_text.setter
+    def consent_screen_text(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "consent_screen_text", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of this client scope in the GUI.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="guiOrder")
+    def gui_order(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specify order of the client scope in GUI (such as in Consent page) as integer.
+        """
+        return pulumi.get(self, "gui_order")
+
+    @gui_order.setter
+    def gui_order(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "gui_order", value)
+
+    @property
+    @pulumi.getter(name="includeInTokenScope")
+    def include_in_token_scope(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        """
+        return pulumi.get(self, "include_in_token_scope")
+
+    @include_in_token_scope.setter
+    def include_in_token_scope(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "include_in_token_scope", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The display name of this client scope in the GUI.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The realm this client scope belongs to.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm_id", value)
 
 
 class ClientScope(pulumi.CustomResource):
@@ -241,16 +345,16 @@ class ClientScope(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = ClientScopeArgs.__new__(ClientScopeArgs)
 
-            __props__['consent_screen_text'] = consent_screen_text
-            __props__['description'] = description
-            __props__['gui_order'] = gui_order
-            __props__['include_in_token_scope'] = include_in_token_scope
-            __props__['name'] = name
+            __props__.__dict__["consent_screen_text"] = consent_screen_text
+            __props__.__dict__["description"] = description
+            __props__.__dict__["gui_order"] = gui_order
+            __props__.__dict__["include_in_token_scope"] = include_in_token_scope
+            __props__.__dict__["name"] = name
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
-            __props__['realm_id'] = realm_id
+            __props__.__dict__["realm_id"] = realm_id
         super(ClientScope, __self__).__init__(
             'keycloak:openid/clientScope:ClientScope',
             resource_name,
@@ -283,14 +387,14 @@ class ClientScope(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _ClientScopeState.__new__(_ClientScopeState)
 
-        __props__["consent_screen_text"] = consent_screen_text
-        __props__["description"] = description
-        __props__["gui_order"] = gui_order
-        __props__["include_in_token_scope"] = include_in_token_scope
-        __props__["name"] = name
-        __props__["realm_id"] = realm_id
+        __props__.__dict__["consent_screen_text"] = consent_screen_text
+        __props__.__dict__["description"] = description
+        __props__.__dict__["gui_order"] = gui_order
+        __props__.__dict__["include_in_token_scope"] = include_in_token_scope
+        __props__.__dict__["name"] = name
+        __props__.__dict__["realm_id"] = realm_id
         return ClientScope(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -340,10 +444,4 @@ class ClientScope(pulumi.CustomResource):
         The realm this client scope belongs to.
         """
         return pulumi.get(self, "realm_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

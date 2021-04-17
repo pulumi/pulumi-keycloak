@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['ClientAuthorizationResourceArgs', 'ClientAuthorizationResource']
 
@@ -136,6 +136,134 @@ class ClientAuthorizationResourceArgs:
         pulumi.set(self, "uris", value)
 
 
+@pulumi.input_type
+class _ClientAuthorizationResourceState:
+    def __init__(__self__, *,
+                 attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 display_name: Optional[pulumi.Input[str]] = None,
+                 icon_uri: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 owner_managed_access: Optional[pulumi.Input[bool]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 resource_server_id: Optional[pulumi.Input[str]] = None,
+                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        Input properties used for looking up and filtering ClientAuthorizationResource resources.
+        """
+        if attributes is not None:
+            pulumi.set(__self__, "attributes", attributes)
+        if display_name is not None:
+            pulumi.set(__self__, "display_name", display_name)
+        if icon_uri is not None:
+            pulumi.set(__self__, "icon_uri", icon_uri)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if owner_managed_access is not None:
+            pulumi.set(__self__, "owner_managed_access", owner_managed_access)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if resource_server_id is not None:
+            pulumi.set(__self__, "resource_server_id", resource_server_id)
+        if scopes is not None:
+            pulumi.set(__self__, "scopes", scopes)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if uris is not None:
+            pulumi.set(__self__, "uris", uris)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        return pulumi.get(self, "attributes")
+
+    @attributes.setter
+    def attributes(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "attributes", value)
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "display_name")
+
+    @display_name.setter
+    def display_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "display_name", value)
+
+    @property
+    @pulumi.getter(name="iconUri")
+    def icon_uri(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "icon_uri")
+
+    @icon_uri.setter
+    def icon_uri(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "icon_uri", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="ownerManagedAccess")
+    def owner_managed_access(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "owner_managed_access")
+
+    @owner_managed_access.setter
+    def owner_managed_access(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "owner_managed_access", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter(name="resourceServerId")
+    def resource_server_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "resource_server_id")
+
+    @resource_server_id.setter
+    def resource_server_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "resource_server_id", value)
+
+    @property
+    @pulumi.getter
+    def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "scopes")
+
+    @scopes.setter
+    def scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "scopes", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "uris")
+
+    @uris.setter
+    def uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "uris", value)
+
+
 class ClientAuthorizationResource(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -210,22 +338,22 @@ class ClientAuthorizationResource(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = ClientAuthorizationResourceArgs.__new__(ClientAuthorizationResourceArgs)
 
-            __props__['attributes'] = attributes
-            __props__['display_name'] = display_name
-            __props__['icon_uri'] = icon_uri
-            __props__['name'] = name
-            __props__['owner_managed_access'] = owner_managed_access
+            __props__.__dict__["attributes"] = attributes
+            __props__.__dict__["display_name"] = display_name
+            __props__.__dict__["icon_uri"] = icon_uri
+            __props__.__dict__["name"] = name
+            __props__.__dict__["owner_managed_access"] = owner_managed_access
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
-            __props__['realm_id'] = realm_id
+            __props__.__dict__["realm_id"] = realm_id
             if resource_server_id is None and not opts.urn:
                 raise TypeError("Missing required property 'resource_server_id'")
-            __props__['resource_server_id'] = resource_server_id
-            __props__['scopes'] = scopes
-            __props__['type'] = type
-            __props__['uris'] = uris
+            __props__.__dict__["resource_server_id"] = resource_server_id
+            __props__.__dict__["scopes"] = scopes
+            __props__.__dict__["type"] = type
+            __props__.__dict__["uris"] = uris
         super(ClientAuthorizationResource, __self__).__init__(
             'keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource',
             resource_name,
@@ -256,18 +384,18 @@ class ClientAuthorizationResource(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _ClientAuthorizationResourceState.__new__(_ClientAuthorizationResourceState)
 
-        __props__["attributes"] = attributes
-        __props__["display_name"] = display_name
-        __props__["icon_uri"] = icon_uri
-        __props__["name"] = name
-        __props__["owner_managed_access"] = owner_managed_access
-        __props__["realm_id"] = realm_id
-        __props__["resource_server_id"] = resource_server_id
-        __props__["scopes"] = scopes
-        __props__["type"] = type
-        __props__["uris"] = uris
+        __props__.__dict__["attributes"] = attributes
+        __props__.__dict__["display_name"] = display_name
+        __props__.__dict__["icon_uri"] = icon_uri
+        __props__.__dict__["name"] = name
+        __props__.__dict__["owner_managed_access"] = owner_managed_access
+        __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["resource_server_id"] = resource_server_id
+        __props__.__dict__["scopes"] = scopes
+        __props__.__dict__["type"] = type
+        __props__.__dict__["uris"] = uris
         return ClientAuthorizationResource(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -319,10 +447,4 @@ class ClientAuthorizationResource(pulumi.CustomResource):
     @pulumi.getter
     def uris(self) -> pulumi.Output[Optional[Sequence[str]]]:
         return pulumi.get(self, "uris")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

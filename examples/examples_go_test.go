@@ -14,7 +14,7 @@
 package examples
 
 import (
-	"github.com/pulumi/pulumi/pkg/v2/testing/integration"
+	"github.com/pulumi/pulumi/pkg/v3/testing/integration"
 )
 
 func getGoBaseOptions() integration.ProgramTestOptions {

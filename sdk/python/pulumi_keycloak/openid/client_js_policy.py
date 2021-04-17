@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['ClientJsPolicyArgs', 'ClientJsPolicy']
 
@@ -110,6 +110,110 @@ class ClientJsPolicyArgs:
         pulumi.set(self, "type", value)
 
 
+@pulumi.input_type
+class _ClientJsPolicyState:
+    def __init__(__self__, *,
+                 code: Optional[pulumi.Input[str]] = None,
+                 decision_strategy: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 logic: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 resource_server_id: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering ClientJsPolicy resources.
+        """
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if logic is not None:
+            pulumi.set(__self__, "logic", logic)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if resource_server_id is not None:
+            pulumi.set(__self__, "resource_server_id", resource_server_id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "code")
+
+    @code.setter
+    def code(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "code", value)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "decision_strategy")
+
+    @decision_strategy.setter
+    def decision_strategy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "decision_strategy", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def logic(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "logic")
+
+    @logic.setter
+    def logic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "logic", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter(name="resourceServerId")
+    def resource_server_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "resource_server_id")
+
+    @resource_server_id.setter
+    def resource_server_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "resource_server_id", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
 class ClientJsPolicy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -180,24 +284,24 @@ class ClientJsPolicy(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = ClientJsPolicyArgs.__new__(ClientJsPolicyArgs)
 
             if code is None and not opts.urn:
                 raise TypeError("Missing required property 'code'")
-            __props__['code'] = code
+            __props__.__dict__["code"] = code
             if decision_strategy is None and not opts.urn:
                 raise TypeError("Missing required property 'decision_strategy'")
-            __props__['decision_strategy'] = decision_strategy
-            __props__['description'] = description
-            __props__['logic'] = logic
-            __props__['name'] = name
+            __props__.__dict__["decision_strategy"] = decision_strategy
+            __props__.__dict__["description"] = description
+            __props__.__dict__["logic"] = logic
+            __props__.__dict__["name"] = name
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
-            __props__['realm_id'] = realm_id
+            __props__.__dict__["realm_id"] = realm_id
             if resource_server_id is None and not opts.urn:
                 raise TypeError("Missing required property 'resource_server_id'")
-            __props__['resource_server_id'] = resource_server_id
-            __props__['type'] = type
+            __props__.__dict__["resource_server_id"] = resource_server_id
+            __props__.__dict__["type"] = type
         super(ClientJsPolicy, __self__).__init__(
             'keycloak:openid/clientJsPolicy:ClientJsPolicy',
             resource_name,
@@ -226,16 +330,16 @@ class ClientJsPolicy(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _ClientJsPolicyState.__new__(_ClientJsPolicyState)
 
-        __props__["code"] = code
-        __props__["decision_strategy"] = decision_strategy
-        __props__["description"] = description
-        __props__["logic"] = logic
-        __props__["name"] = name
-        __props__["realm_id"] = realm_id
-        __props__["resource_server_id"] = resource_server_id
-        __props__["type"] = type
+        __props__.__dict__["code"] = code
+        __props__.__dict__["decision_strategy"] = decision_strategy
+        __props__.__dict__["description"] = description
+        __props__.__dict__["logic"] = logic
+        __props__.__dict__["name"] = name
+        __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["resource_server_id"] = resource_server_id
+        __props__.__dict__["type"] = type
         return ClientJsPolicy(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -277,10 +381,4 @@ class ClientJsPolicy(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "type")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

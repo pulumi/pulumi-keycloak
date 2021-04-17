@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
@@ -172,6 +172,170 @@ class UserArgs:
     @last_name.setter
     def last_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "last_name", value)
+
+
+@pulumi.input_type
+class _UserState:
+    def __init__(__self__, *,
+                 attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 email: Optional[pulumi.Input[str]] = None,
+                 email_verified: Optional[pulumi.Input[bool]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]] = None,
+                 first_name: Optional[pulumi.Input[str]] = None,
+                 initial_password: Optional[pulumi.Input['UserInitialPasswordArgs']] = None,
+                 last_name: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering User resources.
+        :param pulumi.Input[Mapping[str, Any]] attributes: A map representing attributes for the user
+        :param pulumi.Input[str] email: The user's email.
+        :param pulumi.Input[bool] email_verified: Whether the email address was validated or not. Default to `false`.
+        :param pulumi.Input[bool] enabled: When false, this user cannot log in. Defaults to `true`.
+        :param pulumi.Input[str] first_name: The user's first name.
+        :param pulumi.Input['UserInitialPasswordArgs'] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+        :param pulumi.Input[str] last_name: The user's last name.
+        :param pulumi.Input[str] realm_id: The realm this user belongs to.
+        :param pulumi.Input[str] username: The unique username of this user.
+        """
+        if attributes is not None:
+            pulumi.set(__self__, "attributes", attributes)
+        if email is not None:
+            pulumi.set(__self__, "email", email)
+        if email_verified is not None:
+            pulumi.set(__self__, "email_verified", email_verified)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if federated_identities is not None:
+            pulumi.set(__self__, "federated_identities", federated_identities)
+        if first_name is not None:
+            pulumi.set(__self__, "first_name", first_name)
+        if initial_password is not None:
+            pulumi.set(__self__, "initial_password", initial_password)
+        if last_name is not None:
+            pulumi.set(__self__, "last_name", last_name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        A map representing attributes for the user
+        """
+        return pulumi.get(self, "attributes")
+
+    @attributes.setter
+    def attributes(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "attributes", value)
+
+    @property
+    @pulumi.getter
+    def email(self) -> Optional[pulumi.Input[str]]:
+        """
+        The user's email.
+        """
+        return pulumi.get(self, "email")
+
+    @email.setter
+    def email(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "email", value)
+
+    @property
+    @pulumi.getter(name="emailVerified")
+    def email_verified(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the email address was validated or not. Default to `false`.
+        """
+        return pulumi.get(self, "email_verified")
+
+    @email_verified.setter
+    def email_verified(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "email_verified", value)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When false, this user cannot log in. Defaults to `true`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="federatedIdentities")
+    def federated_identities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]]:
+        return pulumi.get(self, "federated_identities")
+
+    @federated_identities.setter
+    def federated_identities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]]):
+        pulumi.set(self, "federated_identities", value)
+
+    @property
+    @pulumi.getter(name="firstName")
+    def first_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The user's first name.
+        """
+        return pulumi.get(self, "first_name")
+
+    @first_name.setter
+    def first_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "first_name", value)
+
+    @property
+    @pulumi.getter(name="initialPassword")
+    def initial_password(self) -> Optional[pulumi.Input['UserInitialPasswordArgs']]:
+        """
+        When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+        """
+        return pulumi.get(self, "initial_password")
+
+    @initial_password.setter
+    def initial_password(self, value: Optional[pulumi.Input['UserInitialPasswordArgs']]):
+        pulumi.set(self, "initial_password", value)
+
+    @property
+    @pulumi.getter(name="lastName")
+    def last_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The user's last name.
+        """
+        return pulumi.get(self, "last_name")
+
+    @last_name.setter
+    def last_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "last_name", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The realm this user belongs to.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique username of this user.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
 
 
 class User(pulumi.CustomResource):
@@ -347,22 +511,22 @@ class User(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = UserArgs.__new__(UserArgs)
 
-            __props__['attributes'] = attributes
-            __props__['email'] = email
-            __props__['email_verified'] = email_verified
-            __props__['enabled'] = enabled
-            __props__['federated_identities'] = federated_identities
-            __props__['first_name'] = first_name
-            __props__['initial_password'] = initial_password
-            __props__['last_name'] = last_name
+            __props__.__dict__["attributes"] = attributes
+            __props__.__dict__["email"] = email
+            __props__.__dict__["email_verified"] = email_verified
+            __props__.__dict__["enabled"] = enabled
+            __props__.__dict__["federated_identities"] = federated_identities
+            __props__.__dict__["first_name"] = first_name
+            __props__.__dict__["initial_password"] = initial_password
+            __props__.__dict__["last_name"] = last_name
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
-            __props__['realm_id'] = realm_id
+            __props__.__dict__["realm_id"] = realm_id
             if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
-            __props__['username'] = username
+            __props__.__dict__["username"] = username
         super(User, __self__).__init__(
             'keycloak:index/user:User',
             resource_name,
@@ -402,18 +566,18 @@ class User(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _UserState.__new__(_UserState)
 
-        __props__["attributes"] = attributes
-        __props__["email"] = email
-        __props__["email_verified"] = email_verified
-        __props__["enabled"] = enabled
-        __props__["federated_identities"] = federated_identities
-        __props__["first_name"] = first_name
-        __props__["initial_password"] = initial_password
-        __props__["last_name"] = last_name
-        __props__["realm_id"] = realm_id
-        __props__["username"] = username
+        __props__.__dict__["attributes"] = attributes
+        __props__.__dict__["email"] = email
+        __props__.__dict__["email_verified"] = email_verified
+        __props__.__dict__["enabled"] = enabled
+        __props__.__dict__["federated_identities"] = federated_identities
+        __props__.__dict__["first_name"] = first_name
+        __props__.__dict__["initial_password"] = initial_password
+        __props__.__dict__["last_name"] = last_name
+        __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["username"] = username
         return User(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -492,10 +656,4 @@ class User(pulumi.CustomResource):
         The unique username of this user.
         """
         return pulumi.get(self, "username")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

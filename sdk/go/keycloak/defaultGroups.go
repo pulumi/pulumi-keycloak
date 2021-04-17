@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Allows for managing a realm's default groups.
@@ -21,8 +21,8 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v3/go/keycloak"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['CustomUserFederationArgs', 'CustomUserFederation']
 
@@ -144,6 +144,142 @@ class CustomUserFederationArgs:
         pulumi.set(self, "priority", value)
 
 
+@pulumi.input_type
+class _CustomUserFederationState:
+    def __init__(__self__, *,
+                 cache_policy: Optional[pulumi.Input[str]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 parent_id: Optional[pulumi.Input[str]] = None,
+                 priority: Optional[pulumi.Input[int]] = None,
+                 provider_id: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering CustomUserFederation resources.
+        :param pulumi.Input[str] cache_policy: Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+        :param pulumi.Input[Mapping[str, Any]] config: The provider configuration handed over to your custom user federation provider.
+        :param pulumi.Input[bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        :param pulumi.Input[str] name: Display name of the provider when displayed in the console.
+        :param pulumi.Input[str] parent_id: Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+        :param pulumi.Input[int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+        :param pulumi.Input[str] provider_id: The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
+        :param pulumi.Input[str] realm_id: The realm that this provider will provide user federation for.
+        """
+        if cache_policy is not None:
+            pulumi.set(__self__, "cache_policy", cache_policy)
+        if config is not None:
+            pulumi.set(__self__, "config", config)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if parent_id is not None:
+            pulumi.set(__self__, "parent_id", parent_id)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if provider_id is not None:
+            pulumi.set(__self__, "provider_id", provider_id)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+
+    @property
+    @pulumi.getter(name="cachePolicy")
+    def cache_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+        """
+        return pulumi.get(self, "cache_policy")
+
+    @cache_policy.setter
+    def cache_policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cache_policy", value)
+
+    @property
+    @pulumi.getter
+    def config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        The provider configuration handed over to your custom user federation provider.
+        """
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "config", value)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the provider when displayed in the console.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="parentId")
+    def parent_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+        """
+        return pulumi.get(self, "parent_id")
+
+    @parent_id.setter
+    def parent_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "parent_id", value)
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[pulumi.Input[int]]:
+        """
+        Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+        """
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "priority", value)
+
+    @property
+    @pulumi.getter(name="providerId")
+    def provider_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
+        """
+        return pulumi.get(self, "provider_id")
+
+    @provider_id.setter
+    def provider_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider_id", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The realm that this provider will provide user federation for.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm_id", value)
+
+
 class CustomUserFederation(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -236,20 +372,20 @@ class CustomUserFederation(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = CustomUserFederationArgs.__new__(CustomUserFederationArgs)
 
-            __props__['cache_policy'] = cache_policy
-            __props__['config'] = config
-            __props__['enabled'] = enabled
-            __props__['name'] = name
-            __props__['parent_id'] = parent_id
-            __props__['priority'] = priority
+            __props__.__dict__["cache_policy"] = cache_policy
+            __props__.__dict__["config"] = config
+            __props__.__dict__["enabled"] = enabled
+            __props__.__dict__["name"] = name
+            __props__.__dict__["parent_id"] = parent_id
+            __props__.__dict__["priority"] = priority
             if provider_id is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_id'")
-            __props__['provider_id'] = provider_id
+            __props__.__dict__["provider_id"] = provider_id
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
-            __props__['realm_id'] = realm_id
+            __props__.__dict__["realm_id"] = realm_id
         super(CustomUserFederation, __self__).__init__(
             'keycloak:index/customUserFederation:CustomUserFederation',
             resource_name,
@@ -286,16 +422,16 @@ class CustomUserFederation(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _CustomUserFederationState.__new__(_CustomUserFederationState)
 
-        __props__["cache_policy"] = cache_policy
-        __props__["config"] = config
-        __props__["enabled"] = enabled
-        __props__["name"] = name
-        __props__["parent_id"] = parent_id
-        __props__["priority"] = priority
-        __props__["provider_id"] = provider_id
-        __props__["realm_id"] = realm_id
+        __props__.__dict__["cache_policy"] = cache_policy
+        __props__.__dict__["config"] = config
+        __props__.__dict__["enabled"] = enabled
+        __props__.__dict__["name"] = name
+        __props__.__dict__["parent_id"] = parent_id
+        __props__.__dict__["priority"] = priority
+        __props__.__dict__["provider_id"] = provider_id
+        __props__.__dict__["realm_id"] = realm_id
         return CustomUserFederation(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -361,10 +497,4 @@ class CustomUserFederation(pulumi.CustomResource):
         The realm that this provider will provide user federation for.
         """
         return pulumi.get(self, "realm_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

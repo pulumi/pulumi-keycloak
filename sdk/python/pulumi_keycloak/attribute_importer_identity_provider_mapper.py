@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['AttributeImporterIdentityProviderMapperArgs', 'AttributeImporterIdentityProviderMapper']
 
@@ -141,6 +141,142 @@ class AttributeImporterIdentityProviderMapperArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class _AttributeImporterIdentityProviderMapperState:
+    def __init__(__self__, *,
+                 attribute_friendly_name: Optional[pulumi.Input[str]] = None,
+                 attribute_name: Optional[pulumi.Input[str]] = None,
+                 claim_name: Optional[pulumi.Input[str]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 identity_provider_alias: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm: Optional[pulumi.Input[str]] = None,
+                 user_attribute: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering AttributeImporterIdentityProviderMapper resources.
+        :param pulumi.Input[str] attribute_friendly_name: For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
+        :param pulumi.Input[str] attribute_name: For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
+        :param pulumi.Input[str] claim_name: For OIDC based providers, this is the name of the claim to use.
+        :param pulumi.Input[Mapping[str, Any]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        :param pulumi.Input[str] identity_provider_alias: The alias of the associated identity provider.
+        :param pulumi.Input[str] name: The name of the mapper.
+        :param pulumi.Input[str] realm: The name of the realm.
+        :param pulumi.Input[str] user_attribute: The user attribute or property name to store the mapped result.
+        """
+        if attribute_friendly_name is not None:
+            pulumi.set(__self__, "attribute_friendly_name", attribute_friendly_name)
+        if attribute_name is not None:
+            pulumi.set(__self__, "attribute_name", attribute_name)
+        if claim_name is not None:
+            pulumi.set(__self__, "claim_name", claim_name)
+        if extra_config is not None:
+            pulumi.set(__self__, "extra_config", extra_config)
+        if identity_provider_alias is not None:
+            pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if realm is not None:
+            pulumi.set(__self__, "realm", realm)
+        if user_attribute is not None:
+            pulumi.set(__self__, "user_attribute", user_attribute)
+
+    @property
+    @pulumi.getter(name="attributeFriendlyName")
+    def attribute_friendly_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
+        """
+        return pulumi.get(self, "attribute_friendly_name")
+
+    @attribute_friendly_name.setter
+    def attribute_friendly_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "attribute_friendly_name", value)
+
+    @property
+    @pulumi.getter(name="attributeName")
+    def attribute_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
+        """
+        return pulumi.get(self, "attribute_name")
+
+    @attribute_name.setter
+    def attribute_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "attribute_name", value)
+
+    @property
+    @pulumi.getter(name="claimName")
+    def claim_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        For OIDC based providers, this is the name of the claim to use.
+        """
+        return pulumi.get(self, "claim_name")
+
+    @claim_name.setter
+    def claim_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "claim_name", value)
+
+    @property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        """
+        return pulumi.get(self, "extra_config")
+
+    @extra_config.setter
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "extra_config", value)
+
+    @property
+    @pulumi.getter(name="identityProviderAlias")
+    def identity_provider_alias(self) -> Optional[pulumi.Input[str]]:
+        """
+        The alias of the associated identity provider.
+        """
+        return pulumi.get(self, "identity_provider_alias")
+
+    @identity_provider_alias.setter
+    def identity_provider_alias(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_provider_alias", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the mapper.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def realm(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the realm.
+        """
+        return pulumi.get(self, "realm")
+
+    @realm.setter
+    def realm(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm", value)
+
+    @property
+    @pulumi.getter(name="userAttribute")
+    def user_attribute(self) -> Optional[pulumi.Input[str]]:
+        """
+        The user attribute or property name to store the mapped result.
+        """
+        return pulumi.get(self, "user_attribute")
+
+    @user_attribute.setter
+    def user_attribute(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_attribute", value)
 
 
 class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
@@ -307,22 +443,22 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = AttributeImporterIdentityProviderMapperArgs.__new__(AttributeImporterIdentityProviderMapperArgs)
 
-            __props__['attribute_friendly_name'] = attribute_friendly_name
-            __props__['attribute_name'] = attribute_name
-            __props__['claim_name'] = claim_name
-            __props__['extra_config'] = extra_config
+            __props__.__dict__["attribute_friendly_name"] = attribute_friendly_name
+            __props__.__dict__["attribute_name"] = attribute_name
+            __props__.__dict__["claim_name"] = claim_name
+            __props__.__dict__["extra_config"] = extra_config
             if identity_provider_alias is None and not opts.urn:
                 raise TypeError("Missing required property 'identity_provider_alias'")
-            __props__['identity_provider_alias'] = identity_provider_alias
-            __props__['name'] = name
+            __props__.__dict__["identity_provider_alias"] = identity_provider_alias
+            __props__.__dict__["name"] = name
             if realm is None and not opts.urn:
                 raise TypeError("Missing required property 'realm'")
-            __props__['realm'] = realm
+            __props__.__dict__["realm"] = realm
             if user_attribute is None and not opts.urn:
                 raise TypeError("Missing required property 'user_attribute'")
-            __props__['user_attribute'] = user_attribute
+            __props__.__dict__["user_attribute"] = user_attribute
         super(AttributeImporterIdentityProviderMapper, __self__).__init__(
             'keycloak:index/attributeImporterIdentityProviderMapper:AttributeImporterIdentityProviderMapper',
             resource_name,
@@ -359,16 +495,16 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _AttributeImporterIdentityProviderMapperState.__new__(_AttributeImporterIdentityProviderMapperState)
 
-        __props__["attribute_friendly_name"] = attribute_friendly_name
-        __props__["attribute_name"] = attribute_name
-        __props__["claim_name"] = claim_name
-        __props__["extra_config"] = extra_config
-        __props__["identity_provider_alias"] = identity_provider_alias
-        __props__["name"] = name
-        __props__["realm"] = realm
-        __props__["user_attribute"] = user_attribute
+        __props__.__dict__["attribute_friendly_name"] = attribute_friendly_name
+        __props__.__dict__["attribute_name"] = attribute_name
+        __props__.__dict__["claim_name"] = claim_name
+        __props__.__dict__["extra_config"] = extra_config
+        __props__.__dict__["identity_provider_alias"] = identity_provider_alias
+        __props__.__dict__["name"] = name
+        __props__.__dict__["realm"] = realm
+        __props__.__dict__["user_attribute"] = user_attribute
         return AttributeImporterIdentityProviderMapper(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -434,10 +570,4 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
         The user attribute or property name to store the mapped result.
         """
         return pulumi.get(self, "user_attribute")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

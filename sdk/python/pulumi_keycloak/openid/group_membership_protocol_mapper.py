@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['GroupMembershipProtocolMapperArgs', 'GroupMembershipProtocolMapper']
 
@@ -158,6 +158,158 @@ class GroupMembershipProtocolMapperArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class _GroupMembershipProtocolMapperState:
+    def __init__(__self__, *,
+                 add_to_access_token: Optional[pulumi.Input[bool]] = None,
+                 add_to_id_token: Optional[pulumi.Input[bool]] = None,
+                 add_to_userinfo: Optional[pulumi.Input[bool]] = None,
+                 claim_name: Optional[pulumi.Input[str]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 client_scope_id: Optional[pulumi.Input[str]] = None,
+                 full_path: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering GroupMembershipProtocolMapper resources.
+        :param pulumi.Input[bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+        :param pulumi.Input[bool] add_to_id_token: Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[bool] add_to_userinfo: Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+        :param pulumi.Input[str] claim_name: The name of the claim to insert into a token.
+        :param pulumi.Input[str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[bool] full_path: Indicates whether the full path of the group including its parents will be used. Defaults to `true`.
+        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
+        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
+        """
+        if add_to_access_token is not None:
+            pulumi.set(__self__, "add_to_access_token", add_to_access_token)
+        if add_to_id_token is not None:
+            pulumi.set(__self__, "add_to_id_token", add_to_id_token)
+        if add_to_userinfo is not None:
+            pulumi.set(__self__, "add_to_userinfo", add_to_userinfo)
+        if claim_name is not None:
+            pulumi.set(__self__, "claim_name", claim_name)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if client_scope_id is not None:
+            pulumi.set(__self__, "client_scope_id", client_scope_id)
+        if full_path is not None:
+            pulumi.set(__self__, "full_path", full_path)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+
+    @property
+    @pulumi.getter(name="addToAccessToken")
+    def add_to_access_token(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+        """
+        return pulumi.get(self, "add_to_access_token")
+
+    @add_to_access_token.setter
+    def add_to_access_token(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "add_to_access_token", value)
+
+    @property
+    @pulumi.getter(name="addToIdToken")
+    def add_to_id_token(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        """
+        return pulumi.get(self, "add_to_id_token")
+
+    @add_to_id_token.setter
+    def add_to_id_token(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "add_to_id_token", value)
+
+    @property
+    @pulumi.getter(name="addToUserinfo")
+    def add_to_userinfo(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+        """
+        return pulumi.get(self, "add_to_userinfo")
+
+    @add_to_userinfo.setter
+    def add_to_userinfo(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "add_to_userinfo", value)
+
+    @property
+    @pulumi.getter(name="claimName")
+    def claim_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the claim to insert into a token.
+        """
+        return pulumi.get(self, "claim_name")
+
+    @claim_name.setter
+    def claim_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "claim_name", value)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_id", value)
+
+    @property
+    @pulumi.getter(name="clientScopeId")
+    def client_scope_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        """
+        return pulumi.get(self, "client_scope_id")
+
+    @client_scope_id.setter
+    def client_scope_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_scope_id", value)
+
+    @property
+    @pulumi.getter(name="fullPath")
+    def full_path(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates whether the full path of the group including its parents will be used. Defaults to `true`.
+        """
+        return pulumi.get(self, "full_path")
+
+    @full_path.setter
+    def full_path(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "full_path", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The display name of this protocol mapper in the GUI.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The realm this protocol mapper exists within.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm_id", value)
 
 
 class GroupMembershipProtocolMapper(pulumi.CustomResource):
@@ -351,21 +503,21 @@ class GroupMembershipProtocolMapper(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = GroupMembershipProtocolMapperArgs.__new__(GroupMembershipProtocolMapperArgs)
 
-            __props__['add_to_access_token'] = add_to_access_token
-            __props__['add_to_id_token'] = add_to_id_token
-            __props__['add_to_userinfo'] = add_to_userinfo
+            __props__.__dict__["add_to_access_token"] = add_to_access_token
+            __props__.__dict__["add_to_id_token"] = add_to_id_token
+            __props__.__dict__["add_to_userinfo"] = add_to_userinfo
             if claim_name is None and not opts.urn:
                 raise TypeError("Missing required property 'claim_name'")
-            __props__['claim_name'] = claim_name
-            __props__['client_id'] = client_id
-            __props__['client_scope_id'] = client_scope_id
-            __props__['full_path'] = full_path
-            __props__['name'] = name
+            __props__.__dict__["claim_name"] = claim_name
+            __props__.__dict__["client_id"] = client_id
+            __props__.__dict__["client_scope_id"] = client_scope_id
+            __props__.__dict__["full_path"] = full_path
+            __props__.__dict__["name"] = name
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
-            __props__['realm_id'] = realm_id
+            __props__.__dict__["realm_id"] = realm_id
         super(GroupMembershipProtocolMapper, __self__).__init__(
             'keycloak:openid/groupMembershipProtocolMapper:GroupMembershipProtocolMapper',
             resource_name,
@@ -404,17 +556,17 @@ class GroupMembershipProtocolMapper(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _GroupMembershipProtocolMapperState.__new__(_GroupMembershipProtocolMapperState)
 
-        __props__["add_to_access_token"] = add_to_access_token
-        __props__["add_to_id_token"] = add_to_id_token
-        __props__["add_to_userinfo"] = add_to_userinfo
-        __props__["claim_name"] = claim_name
-        __props__["client_id"] = client_id
-        __props__["client_scope_id"] = client_scope_id
-        __props__["full_path"] = full_path
-        __props__["name"] = name
-        __props__["realm_id"] = realm_id
+        __props__.__dict__["add_to_access_token"] = add_to_access_token
+        __props__.__dict__["add_to_id_token"] = add_to_id_token
+        __props__.__dict__["add_to_userinfo"] = add_to_userinfo
+        __props__.__dict__["claim_name"] = claim_name
+        __props__.__dict__["client_id"] = client_id
+        __props__.__dict__["client_scope_id"] = client_scope_id
+        __props__.__dict__["full_path"] = full_path
+        __props__.__dict__["name"] = name
+        __props__.__dict__["realm_id"] = realm_id
         return GroupMembershipProtocolMapper(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -488,10 +640,4 @@ class GroupMembershipProtocolMapper(pulumi.CustomResource):
         The realm this protocol mapper exists within.
         """
         return pulumi.get(self, "realm_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

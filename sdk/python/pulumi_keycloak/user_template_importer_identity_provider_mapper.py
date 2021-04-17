@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['UserTemplateImporterIdentityProviderMapperArgs', 'UserTemplateImporterIdentityProviderMapper']
 
@@ -92,6 +92,90 @@ class UserTemplateImporterIdentityProviderMapperArgs:
         pulumi.set(self, "template", value)
 
 
+@pulumi.input_type
+class _UserTemplateImporterIdentityProviderMapperState:
+    def __init__(__self__, *,
+                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 identity_provider_alias: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm: Optional[pulumi.Input[str]] = None,
+                 template: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering UserTemplateImporterIdentityProviderMapper resources.
+        :param pulumi.Input[str] identity_provider_alias: IDP Alias
+        :param pulumi.Input[str] name: IDP Mapper Name
+        :param pulumi.Input[str] realm: Realm Name
+        :param pulumi.Input[str] template: Username For Template Import
+        """
+        if extra_config is not None:
+            pulumi.set(__self__, "extra_config", extra_config)
+        if identity_provider_alias is not None:
+            pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if realm is not None:
+            pulumi.set(__self__, "realm", realm)
+        if template is not None:
+            pulumi.set(__self__, "template", template)
+
+    @property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        return pulumi.get(self, "extra_config")
+
+    @extra_config.setter
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "extra_config", value)
+
+    @property
+    @pulumi.getter(name="identityProviderAlias")
+    def identity_provider_alias(self) -> Optional[pulumi.Input[str]]:
+        """
+        IDP Alias
+        """
+        return pulumi.get(self, "identity_provider_alias")
+
+    @identity_provider_alias.setter
+    def identity_provider_alias(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_provider_alias", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        IDP Mapper Name
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def realm(self) -> Optional[pulumi.Input[str]]:
+        """
+        Realm Name
+        """
+        return pulumi.get(self, "realm")
+
+    @realm.setter
+    def realm(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm", value)
+
+    @property
+    @pulumi.getter
+    def template(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username For Template Import
+        """
+        return pulumi.get(self, "template")
+
+    @template.setter
+    def template(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "template", value)
+
+
 class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -160,17 +244,17 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = UserTemplateImporterIdentityProviderMapperArgs.__new__(UserTemplateImporterIdentityProviderMapperArgs)
 
-            __props__['extra_config'] = extra_config
+            __props__.__dict__["extra_config"] = extra_config
             if identity_provider_alias is None and not opts.urn:
                 raise TypeError("Missing required property 'identity_provider_alias'")
-            __props__['identity_provider_alias'] = identity_provider_alias
-            __props__['name'] = name
+            __props__.__dict__["identity_provider_alias"] = identity_provider_alias
+            __props__.__dict__["name"] = name
             if realm is None and not opts.urn:
                 raise TypeError("Missing required property 'realm'")
-            __props__['realm'] = realm
-            __props__['template'] = template
+            __props__.__dict__["realm"] = realm
+            __props__.__dict__["template"] = template
         super(UserTemplateImporterIdentityProviderMapper, __self__).__init__(
             'keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper',
             resource_name,
@@ -200,13 +284,13 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _UserTemplateImporterIdentityProviderMapperState.__new__(_UserTemplateImporterIdentityProviderMapperState)
 
-        __props__["extra_config"] = extra_config
-        __props__["identity_provider_alias"] = identity_provider_alias
-        __props__["name"] = name
-        __props__["realm"] = realm
-        __props__["template"] = template
+        __props__.__dict__["extra_config"] = extra_config
+        __props__.__dict__["identity_provider_alias"] = identity_provider_alias
+        __props__.__dict__["name"] = name
+        __props__.__dict__["realm"] = realm
+        __props__.__dict__["template"] = template
         return UserTemplateImporterIdentityProviderMapper(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -245,10 +329,4 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
         Username For Template Import
         """
         return pulumi.get(self, "template")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

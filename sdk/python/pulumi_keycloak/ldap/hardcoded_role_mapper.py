@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['HardcodedRoleMapperArgs', 'HardcodedRoleMapper']
 
@@ -77,6 +77,78 @@ class HardcodedRoleMapperArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class _HardcodedRoleMapperState:
+    def __init__(__self__, *,
+                 ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering HardcodedRoleMapper resources.
+        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[str] role: The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
+        """
+        if ldap_user_federation_id is not None:
+            pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="ldapUserFederationId")
+    def ldap_user_federation_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the LDAP user federation provider to attach this mapper to.
+        """
+        return pulumi.get(self, "ldap_user_federation_id")
+
+    @ldap_user_federation_id.setter
+    def ldap_user_federation_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ldap_user_federation_id", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of this mapper when displayed in the console.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The realm that this LDAP mapper will exist in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role", value)
 
 
 class HardcodedRoleMapper(pulumi.CustomResource):
@@ -295,18 +367,18 @@ class HardcodedRoleMapper(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = HardcodedRoleMapperArgs.__new__(HardcodedRoleMapperArgs)
 
             if ldap_user_federation_id is None and not opts.urn:
                 raise TypeError("Missing required property 'ldap_user_federation_id'")
-            __props__['ldap_user_federation_id'] = ldap_user_federation_id
-            __props__['name'] = name
+            __props__.__dict__["ldap_user_federation_id"] = ldap_user_federation_id
+            __props__.__dict__["name"] = name
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
-            __props__['realm_id'] = realm_id
+            __props__.__dict__["realm_id"] = realm_id
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
-            __props__['role'] = role
+            __props__.__dict__["role"] = role
         super(HardcodedRoleMapper, __self__).__init__(
             'keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper',
             resource_name,
@@ -335,12 +407,12 @@ class HardcodedRoleMapper(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _HardcodedRoleMapperState.__new__(_HardcodedRoleMapperState)
 
-        __props__["ldap_user_federation_id"] = ldap_user_federation_id
-        __props__["name"] = name
-        __props__["realm_id"] = realm_id
-        __props__["role"] = role
+        __props__.__dict__["ldap_user_federation_id"] = ldap_user_federation_id
+        __props__.__dict__["name"] = name
+        __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["role"] = role
         return HardcodedRoleMapper(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -374,10 +446,4 @@ class HardcodedRoleMapper(pulumi.CustomResource):
         The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
         """
         return pulumi.get(self, "role")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

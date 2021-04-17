@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['ProviderArgs', 'Provider']
 
@@ -262,34 +262,28 @@ class Provider(pulumi.ProviderResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = ProviderArgs.__new__(ProviderArgs)
 
-            __props__['base_path'] = base_path
+            __props__.__dict__["base_path"] = base_path
             if client_id is None and not opts.urn:
                 raise TypeError("Missing required property 'client_id'")
-            __props__['client_id'] = client_id
-            __props__['client_secret'] = client_secret
+            __props__.__dict__["client_id"] = client_id
+            __props__.__dict__["client_secret"] = client_secret
             if client_timeout is None:
                 client_timeout = (_utilities.get_env_int('KEYCLOAK_CLIENT_TIMEOUT') or 5)
-            __props__['client_timeout'] = pulumi.Output.from_input(client_timeout).apply(pulumi.runtime.to_json) if client_timeout is not None else None
-            __props__['initial_login'] = pulumi.Output.from_input(initial_login).apply(pulumi.runtime.to_json) if initial_login is not None else None
-            __props__['password'] = password
-            __props__['realm'] = realm
-            __props__['root_ca_certificate'] = root_ca_certificate
-            __props__['tls_insecure_skip_verify'] = pulumi.Output.from_input(tls_insecure_skip_verify).apply(pulumi.runtime.to_json) if tls_insecure_skip_verify is not None else None
+            __props__.__dict__["client_timeout"] = pulumi.Output.from_input(client_timeout).apply(pulumi.runtime.to_json) if client_timeout is not None else None
+            __props__.__dict__["initial_login"] = pulumi.Output.from_input(initial_login).apply(pulumi.runtime.to_json) if initial_login is not None else None
+            __props__.__dict__["password"] = password
+            __props__.__dict__["realm"] = realm
+            __props__.__dict__["root_ca_certificate"] = root_ca_certificate
+            __props__.__dict__["tls_insecure_skip_verify"] = pulumi.Output.from_input(tls_insecure_skip_verify).apply(pulumi.runtime.to_json) if tls_insecure_skip_verify is not None else None
             if url is None and not opts.urn:
                 raise TypeError("Missing required property 'url'")
-            __props__['url'] = url
-            __props__['username'] = username
+            __props__.__dict__["url"] = url
+            __props__.__dict__["username"] = username
         super(Provider, __self__).__init__(
             'keycloak',
             resource_name,
             __props__,
             opts)
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

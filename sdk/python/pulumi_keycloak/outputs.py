@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 from . import outputs
 
 __all__ = [
@@ -39,6 +39,25 @@ __all__ = [
 
 @pulumi.output_type
 class RealmInternationalization(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "defaultLocale":
+            suggest = "default_locale"
+        elif key == "supportedLocales":
+            suggest = "supported_locales"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RealmInternationalization. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RealmInternationalization.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RealmInternationalization.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  default_locale: str,
                  supported_locales: Sequence[str]):
@@ -65,12 +84,26 @@ class RealmInternationalization(dict):
         """
         return pulumi.get(self, "supported_locales")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class RealmSecurityDefenses(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bruteForceDetection":
+            suggest = "brute_force_detection"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RealmSecurityDefenses. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RealmSecurityDefenses.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RealmSecurityDefenses.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  brute_force_detection: Optional['outputs.RealmSecurityDefensesBruteForceDetection'] = None,
                  headers: Optional['outputs.RealmSecurityDefensesHeaders'] = None):
@@ -89,12 +122,38 @@ class RealmSecurityDefenses(dict):
     def headers(self) -> Optional['outputs.RealmSecurityDefensesHeaders']:
         return pulumi.get(self, "headers")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class RealmSecurityDefensesBruteForceDetection(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "failureResetTimeSeconds":
+            suggest = "failure_reset_time_seconds"
+        elif key == "maxFailureWaitSeconds":
+            suggest = "max_failure_wait_seconds"
+        elif key == "maxLoginFailures":
+            suggest = "max_login_failures"
+        elif key == "minimumQuickLoginWaitSeconds":
+            suggest = "minimum_quick_login_wait_seconds"
+        elif key == "permanentLockout":
+            suggest = "permanent_lockout"
+        elif key == "quickLoginCheckMilliSeconds":
+            suggest = "quick_login_check_milli_seconds"
+        elif key == "waitIncrementSeconds":
+            suggest = "wait_increment_seconds"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RealmSecurityDefensesBruteForceDetection. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RealmSecurityDefensesBruteForceDetection.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RealmSecurityDefensesBruteForceDetection.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  failure_reset_time_seconds: Optional[int] = None,
                  max_failure_wait_seconds: Optional[int] = None,
@@ -181,12 +240,38 @@ class RealmSecurityDefensesBruteForceDetection(dict):
         """
         return pulumi.get(self, "wait_increment_seconds")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class RealmSecurityDefensesHeaders(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "contentSecurityPolicy":
+            suggest = "content_security_policy"
+        elif key == "contentSecurityPolicyReportOnly":
+            suggest = "content_security_policy_report_only"
+        elif key == "strictTransportSecurity":
+            suggest = "strict_transport_security"
+        elif key == "xContentTypeOptions":
+            suggest = "x_content_type_options"
+        elif key == "xFrameOptions":
+            suggest = "x_frame_options"
+        elif key == "xRobotsTag":
+            suggest = "x_robots_tag"
+        elif key == "xXssProtection":
+            suggest = "x_xss_protection"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RealmSecurityDefensesHeaders. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RealmSecurityDefensesHeaders.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RealmSecurityDefensesHeaders.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  content_security_policy: Optional[str] = None,
                  content_security_policy_report_only: Optional[str] = None,
@@ -275,12 +360,34 @@ class RealmSecurityDefensesHeaders(dict):
         """
         return pulumi.get(self, "x_xss_protection")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class RealmSmtpServer(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "from":
+            suggest = "from_"
+        elif key == "envelopeFrom":
+            suggest = "envelope_from"
+        elif key == "fromDisplayName":
+            suggest = "from_display_name"
+        elif key == "replyTo":
+            suggest = "reply_to"
+        elif key == "replyToDisplayName":
+            suggest = "reply_to_display_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RealmSmtpServer. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RealmSmtpServer.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RealmSmtpServer.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  from_: str,
                  host: str,
@@ -403,9 +510,6 @@ class RealmSmtpServer(dict):
         """
         return pulumi.get(self, "starttls")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class RealmSmtpServerAuth(dict):
@@ -435,12 +539,44 @@ class RealmSmtpServerAuth(dict):
         """
         return pulumi.get(self, "username")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class RealmWebAuthnPasswordlessPolicy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "acceptableAaguids":
+            suggest = "acceptable_aaguids"
+        elif key == "attestationConveyancePreference":
+            suggest = "attestation_conveyance_preference"
+        elif key == "authenticatorAttachment":
+            suggest = "authenticator_attachment"
+        elif key == "avoidSameAuthenticatorRegister":
+            suggest = "avoid_same_authenticator_register"
+        elif key == "createTimeout":
+            suggest = "create_timeout"
+        elif key == "relyingPartyEntityName":
+            suggest = "relying_party_entity_name"
+        elif key == "relyingPartyId":
+            suggest = "relying_party_id"
+        elif key == "requireResidentKey":
+            suggest = "require_resident_key"
+        elif key == "signatureAlgorithms":
+            suggest = "signature_algorithms"
+        elif key == "userVerificationRequirement":
+            suggest = "user_verification_requirement"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RealmWebAuthnPasswordlessPolicy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RealmWebAuthnPasswordlessPolicy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RealmWebAuthnPasswordlessPolicy.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  acceptable_aaguids: Optional[Sequence[str]] = None,
                  attestation_conveyance_preference: Optional[str] = None,
@@ -564,13 +700,45 @@ class RealmWebAuthnPasswordlessPolicy(dict):
         Specifies the policy for verifying a user logging in via WebAuthn. Valid options are `not specified`, `required`, `preferred`, or `discouraged`. Defaults to `not specified`.
         """
         return pulumi.get(self, "user_verification_requirement")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class RealmWebAuthnPolicy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "acceptableAaguids":
+            suggest = "acceptable_aaguids"
+        elif key == "attestationConveyancePreference":
+            suggest = "attestation_conveyance_preference"
+        elif key == "authenticatorAttachment":
+            suggest = "authenticator_attachment"
+        elif key == "avoidSameAuthenticatorRegister":
+            suggest = "avoid_same_authenticator_register"
+        elif key == "createTimeout":
+            suggest = "create_timeout"
+        elif key == "relyingPartyEntityName":
+            suggest = "relying_party_entity_name"
+        elif key == "relyingPartyId":
+            suggest = "relying_party_id"
+        elif key == "requireResidentKey":
+            suggest = "require_resident_key"
+        elif key == "signatureAlgorithms":
+            suggest = "signature_algorithms"
+        elif key == "userVerificationRequirement":
+            suggest = "user_verification_requirement"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RealmWebAuthnPolicy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RealmWebAuthnPolicy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RealmWebAuthnPolicy.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  acceptable_aaguids: Optional[Sequence[str]] = None,
                  attestation_conveyance_preference: Optional[str] = None,
@@ -695,12 +863,30 @@ class RealmWebAuthnPolicy(dict):
         """
         return pulumi.get(self, "user_verification_requirement")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class UserFederatedIdentity(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "identityProvider":
+            suggest = "identity_provider"
+        elif key == "userId":
+            suggest = "user_id"
+        elif key == "userName":
+            suggest = "user_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in UserFederatedIdentity. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        UserFederatedIdentity.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        UserFederatedIdentity.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  identity_provider: str,
                  user_id: str,
@@ -738,9 +924,6 @@ class UserFederatedIdentity(dict):
         """
         return pulumi.get(self, "user_name")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class UserInitialPassword(dict):
@@ -771,12 +954,26 @@ class UserInitialPassword(dict):
         """
         return pulumi.get(self, "temporary")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class UsersPermissionsImpersonateScope(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "decisionStrategy":
+            suggest = "decision_strategy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in UsersPermissionsImpersonateScope. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        UsersPermissionsImpersonateScope.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        UsersPermissionsImpersonateScope.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
@@ -802,13 +999,27 @@ class UsersPermissionsImpersonateScope(dict):
     @pulumi.getter
     def policies(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "policies")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class UsersPermissionsManageGroupMembershipScope(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "decisionStrategy":
+            suggest = "decision_strategy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in UsersPermissionsManageGroupMembershipScope. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        UsersPermissionsManageGroupMembershipScope.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        UsersPermissionsManageGroupMembershipScope.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
@@ -834,13 +1045,27 @@ class UsersPermissionsManageGroupMembershipScope(dict):
     @pulumi.getter
     def policies(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "policies")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class UsersPermissionsManageScope(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "decisionStrategy":
+            suggest = "decision_strategy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in UsersPermissionsManageScope. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        UsersPermissionsManageScope.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        UsersPermissionsManageScope.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
@@ -866,13 +1091,27 @@ class UsersPermissionsManageScope(dict):
     @pulumi.getter
     def policies(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "policies")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class UsersPermissionsMapRolesScope(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "decisionStrategy":
+            suggest = "decision_strategy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in UsersPermissionsMapRolesScope. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        UsersPermissionsMapRolesScope.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        UsersPermissionsMapRolesScope.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
@@ -898,13 +1137,27 @@ class UsersPermissionsMapRolesScope(dict):
     @pulumi.getter
     def policies(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "policies")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class UsersPermissionsUserImpersonatedScope(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "decisionStrategy":
+            suggest = "decision_strategy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in UsersPermissionsUserImpersonatedScope. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        UsersPermissionsUserImpersonatedScope.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        UsersPermissionsUserImpersonatedScope.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
@@ -930,13 +1183,27 @@ class UsersPermissionsUserImpersonatedScope(dict):
     @pulumi.getter
     def policies(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "policies")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class UsersPermissionsViewScope(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "decisionStrategy":
+            suggest = "decision_strategy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in UsersPermissionsViewScope. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        UsersPermissionsViewScope.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        UsersPermissionsViewScope.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
@@ -962,9 +1229,6 @@ class UsersPermissionsViewScope(dict):
     @pulumi.getter
     def policies(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "policies")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type

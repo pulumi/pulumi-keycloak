@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['HardcodedRoleProtocolMapperArgs', 'HardcodedRoleProtocolMapper']
 
@@ -94,6 +94,94 @@ class HardcodedRoleProtocolMapperArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class _HardcodedRoleProtocolMapperState:
+    def __init__(__self__, *,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 client_scope_id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 role_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering HardcodedRoleProtocolMapper resources.
+        :param pulumi.Input[str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
+        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[str] role_id: The ID of the role to map to an access token.
+        """
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if client_scope_id is not None:
+            pulumi.set(__self__, "client_scope_id", client_scope_id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if role_id is not None:
+            pulumi.set(__self__, "role_id", role_id)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_id", value)
+
+    @property
+    @pulumi.getter(name="clientScopeId")
+    def client_scope_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        """
+        return pulumi.get(self, "client_scope_id")
+
+    @client_scope_id.setter
+    def client_scope_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_scope_id", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The display name of this protocol mapper in the GUI.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The realm this protocol mapper exists within.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the role to map to an access token.
+        """
+        return pulumi.get(self, "role_id")
+
+    @role_id.setter
+    def role_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_id", value)
 
 
 class HardcodedRoleProtocolMapper(pulumi.CustomResource):
@@ -279,17 +367,17 @@ class HardcodedRoleProtocolMapper(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = HardcodedRoleProtocolMapperArgs.__new__(HardcodedRoleProtocolMapperArgs)
 
-            __props__['client_id'] = client_id
-            __props__['client_scope_id'] = client_scope_id
-            __props__['name'] = name
+            __props__.__dict__["client_id"] = client_id
+            __props__.__dict__["client_scope_id"] = client_scope_id
+            __props__.__dict__["name"] = name
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
-            __props__['realm_id'] = realm_id
+            __props__.__dict__["realm_id"] = realm_id
             if role_id is None and not opts.urn:
                 raise TypeError("Missing required property 'role_id'")
-            __props__['role_id'] = role_id
+            __props__.__dict__["role_id"] = role_id
         super(HardcodedRoleProtocolMapper, __self__).__init__(
             'keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper',
             resource_name,
@@ -320,13 +408,13 @@ class HardcodedRoleProtocolMapper(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _HardcodedRoleProtocolMapperState.__new__(_HardcodedRoleProtocolMapperState)
 
-        __props__["client_id"] = client_id
-        __props__["client_scope_id"] = client_scope_id
-        __props__["name"] = name
-        __props__["realm_id"] = realm_id
-        __props__["role_id"] = role_id
+        __props__.__dict__["client_id"] = client_id
+        __props__.__dict__["client_scope_id"] = client_scope_id
+        __props__.__dict__["name"] = name
+        __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["role_id"] = role_id
         return HardcodedRoleProtocolMapper(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -368,10 +456,4 @@ class HardcodedRoleProtocolMapper(pulumi.CustomResource):
         The ID of the role to map to an access token.
         """
         return pulumi.get(self, "role_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 
