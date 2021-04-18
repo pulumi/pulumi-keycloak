@@ -55,7 +55,8 @@ import (
 // 			FirstName: pulumi.String("Alice"),
 // 			LastName:  pulumi.String("Aliceberg"),
 // 			Attributes: pulumi.StringMap{
-// 				"foo": pulumi.String("bar"),
+// 				"foo":        pulumi.String("bar"),
+// 				"multivalue": pulumi.String("value1##value2"),
 // 			},
 // 			InitialPassword: &keycloak.UserInitialPasswordArgs{
 // 				Value:     pulumi.String("some password"),
@@ -80,7 +81,7 @@ import (
 type User struct {
 	pulumi.CustomResourceState
 
-	// A map representing attributes for the user
+	// A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes pulumi.MapOutput `pulumi:"attributes"`
 	// The user's email.
 	Email pulumi.StringPtrOutput `pulumi:"email"`
@@ -136,7 +137,7 @@ func GetUser(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering User resources.
 type userState struct {
-	// A map representing attributes for the user
+	// A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes map[string]interface{} `pulumi:"attributes"`
 	// The user's email.
 	Email *string `pulumi:"email"`
@@ -158,7 +159,7 @@ type userState struct {
 }
 
 type UserState struct {
-	// A map representing attributes for the user
+	// A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes pulumi.MapInput
 	// The user's email.
 	Email pulumi.StringPtrInput
@@ -184,7 +185,7 @@ func (UserState) ElementType() reflect.Type {
 }
 
 type userArgs struct {
-	// A map representing attributes for the user
+	// A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes map[string]interface{} `pulumi:"attributes"`
 	// The user's email.
 	Email *string `pulumi:"email"`
@@ -207,7 +208,7 @@ type userArgs struct {
 
 // The set of arguments for constructing a User resource.
 type UserArgs struct {
-	// A map representing attributes for the user
+	// A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes pulumi.MapInput
 	// The user's email.
 	Email pulumi.StringPtrInput

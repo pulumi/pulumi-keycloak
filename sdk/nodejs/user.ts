@@ -39,6 +39,7 @@ import * as utilities from "./utilities";
  *     lastName: "Aliceberg",
  *     attributes: {
  *         foo: "bar",
+ *         multivalue: "value1##value2",
  *     },
  *     initialPassword: {
  *         value: "some password",
@@ -84,7 +85,7 @@ export class User extends pulumi.CustomResource {
     }
 
     /**
-     * A map representing attributes for the user
+     * A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
     public readonly attributes!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
@@ -175,7 +176,7 @@ export class User extends pulumi.CustomResource {
  */
 export interface UserState {
     /**
-     * A map representing attributes for the user
+     * A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
     readonly attributes?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -218,7 +219,7 @@ export interface UserState {
  */
 export interface UserArgs {
     /**
-     * A map representing attributes for the user
+     * A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
     readonly attributes?: pulumi.Input<{[key: string]: any}>;
     /**

@@ -21,8 +21,7 @@ class UserSessionNoteProtocolMapperArgs:
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_scope_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 session_note: Optional[pulumi.Input[str]] = None,
-                 session_note_label: Optional[pulumi.Input[str]] = None):
+                 session_note: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a UserSessionNoteProtocolMapper resource.
         :param pulumi.Input[str] claim_name: The name of the claim to insert into a token.
@@ -34,7 +33,6 @@ class UserSessionNoteProtocolMapperArgs:
         :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[str] session_note: String value being the name of stored user session note within the UserSessionModel.note map.
-        :param pulumi.Input[str] session_note_label: **Deprecated** Use `session_note` instead.
         """
         pulumi.set(__self__, "claim_name", claim_name)
         pulumi.set(__self__, "realm_id", realm_id)
@@ -52,11 +50,6 @@ class UserSessionNoteProtocolMapperArgs:
             pulumi.set(__self__, "name", name)
         if session_note is not None:
             pulumi.set(__self__, "session_note", session_note)
-        if session_note_label is not None:
-            warnings.warn("""use session_note instead""", DeprecationWarning)
-            pulumi.log.warn("""session_note_label is deprecated: use session_note instead""")
-        if session_note_label is not None:
-            pulumi.set(__self__, "session_note_label", session_note_label)
 
     @property
     @pulumi.getter(name="claimName")
@@ -166,18 +159,6 @@ class UserSessionNoteProtocolMapperArgs:
     def session_note(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "session_note", value)
 
-    @property
-    @pulumi.getter(name="sessionNoteLabel")
-    def session_note_label(self) -> Optional[pulumi.Input[str]]:
-        """
-        **Deprecated** Use `session_note` instead.
-        """
-        return pulumi.get(self, "session_note_label")
-
-    @session_note_label.setter
-    def session_note_label(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "session_note_label", value)
-
 
 @pulumi.input_type
 class _UserSessionNoteProtocolMapperState:
@@ -190,8 +171,7 @@ class _UserSessionNoteProtocolMapperState:
                  client_scope_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
-                 session_note: Optional[pulumi.Input[str]] = None,
-                 session_note_label: Optional[pulumi.Input[str]] = None):
+                 session_note: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering UserSessionNoteProtocolMapper resources.
         :param pulumi.Input[bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
@@ -203,7 +183,6 @@ class _UserSessionNoteProtocolMapperState:
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
         :param pulumi.Input[str] session_note: String value being the name of stored user session note within the UserSessionModel.note map.
-        :param pulumi.Input[str] session_note_label: **Deprecated** Use `session_note` instead.
         """
         if add_to_access_token is not None:
             pulumi.set(__self__, "add_to_access_token", add_to_access_token)
@@ -223,11 +202,6 @@ class _UserSessionNoteProtocolMapperState:
             pulumi.set(__self__, "realm_id", realm_id)
         if session_note is not None:
             pulumi.set(__self__, "session_note", session_note)
-        if session_note_label is not None:
-            warnings.warn("""use session_note instead""", DeprecationWarning)
-            pulumi.log.warn("""session_note_label is deprecated: use session_note instead""")
-        if session_note_label is not None:
-            pulumi.set(__self__, "session_note_label", session_note_label)
 
     @property
     @pulumi.getter(name="addToAccessToken")
@@ -337,18 +311,6 @@ class _UserSessionNoteProtocolMapperState:
     def session_note(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "session_note", value)
 
-    @property
-    @pulumi.getter(name="sessionNoteLabel")
-    def session_note_label(self) -> Optional[pulumi.Input[str]]:
-        """
-        **Deprecated** Use `session_note` instead.
-        """
-        return pulumi.get(self, "session_note_label")
-
-    @session_note_label.setter
-    def session_note_label(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "session_note_label", value)
-
 
 class UserSessionNoteProtocolMapper(pulumi.CustomResource):
     @overload
@@ -364,7 +326,6 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  session_note: Optional[pulumi.Input[str]] = None,
-                 session_note_label: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -440,7 +401,6 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
         :param pulumi.Input[str] session_note: String value being the name of stored user session note within the UserSessionModel.note map.
-        :param pulumi.Input[str] session_note_label: **Deprecated** Use `session_note` instead.
         """
         ...
     @overload
@@ -533,7 +493,6 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  session_note: Optional[pulumi.Input[str]] = None,
-                 session_note_label: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -567,10 +526,6 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
                 raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
             __props__.__dict__["session_note"] = session_note
-            if session_note_label is not None and not opts.urn:
-                warnings.warn("""use session_note instead""", DeprecationWarning)
-                pulumi.log.warn("""session_note_label is deprecated: use session_note instead""")
-            __props__.__dict__["session_note_label"] = session_note_label
         super(UserSessionNoteProtocolMapper, __self__).__init__(
             'keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper',
             resource_name,
@@ -589,8 +544,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
             client_scope_id: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             realm_id: Optional[pulumi.Input[str]] = None,
-            session_note: Optional[pulumi.Input[str]] = None,
-            session_note_label: Optional[pulumi.Input[str]] = None) -> 'UserSessionNoteProtocolMapper':
+            session_note: Optional[pulumi.Input[str]] = None) -> 'UserSessionNoteProtocolMapper':
         """
         Get an existing UserSessionNoteProtocolMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -607,7 +561,6 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
         :param pulumi.Input[str] session_note: String value being the name of stored user session note within the UserSessionModel.note map.
-        :param pulumi.Input[str] session_note_label: **Deprecated** Use `session_note` instead.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -622,7 +575,6 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["realm_id"] = realm_id
         __props__.__dict__["session_note"] = session_note
-        __props__.__dict__["session_note_label"] = session_note_label
         return UserSessionNoteProtocolMapper(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -696,12 +648,4 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
         String value being the name of stored user session note within the UserSessionModel.note map.
         """
         return pulumi.get(self, "session_note")
-
-    @property
-    @pulumi.getter(name="sessionNoteLabel")
-    def session_note_label(self) -> pulumi.Output[Optional[str]]:
-        """
-        **Deprecated** Use `session_note` instead.
-        """
-        return pulumi.get(self, "session_note_label")
 

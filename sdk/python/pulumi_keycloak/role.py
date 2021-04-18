@@ -22,7 +22,7 @@ class RoleArgs:
         """
         The set of arguments for constructing a Role resource.
         :param pulumi.Input[str] realm_id: The realm this role exists within.
-        :param pulumi.Input[Mapping[str, Any]] attributes: Attribute key/value pairs
+        :param pulumi.Input[Mapping[str, Any]] attributes: A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         :param pulumi.Input[str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
         :param pulumi.Input[Sequence[pulumi.Input[str]]] composite_roles: When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
         :param pulumi.Input[str] description: The description of the role
@@ -56,7 +56,7 @@ class RoleArgs:
     @pulumi.getter
     def attributes(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        Attribute key/value pairs
+        A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         """
         return pulumi.get(self, "attributes")
 
@@ -124,7 +124,7 @@ class _RoleState:
                  realm_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Role resources.
-        :param pulumi.Input[Mapping[str, Any]] attributes: Attribute key/value pairs
+        :param pulumi.Input[Mapping[str, Any]] attributes: A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         :param pulumi.Input[str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
         :param pulumi.Input[Sequence[pulumi.Input[str]]] composite_roles: When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
         :param pulumi.Input[str] description: The description of the role
@@ -148,7 +148,7 @@ class _RoleState:
     @pulumi.getter
     def attributes(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        Attribute key/value pairs
+        A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         """
         return pulumi.get(self, "attributes")
 
@@ -251,6 +251,7 @@ class Role(pulumi.CustomResource):
             description="My Realm Role",
             attributes={
                 "key": "value",
+                "multivalue": "value1##value2",
             })
         ```
         ### Client Role)
@@ -344,7 +345,7 @@ class Role(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] attributes: Attribute key/value pairs
+        :param pulumi.Input[Mapping[str, Any]] attributes: A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         :param pulumi.Input[str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
         :param pulumi.Input[Sequence[pulumi.Input[str]]] composite_roles: When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
         :param pulumi.Input[str] description: The description of the role
@@ -377,6 +378,7 @@ class Role(pulumi.CustomResource):
             description="My Realm Role",
             attributes={
                 "key": "value",
+                "multivalue": "value1##value2",
             })
         ```
         ### Client Role)
@@ -540,7 +542,7 @@ class Role(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] attributes: Attribute key/value pairs
+        :param pulumi.Input[Mapping[str, Any]] attributes: A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         :param pulumi.Input[str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
         :param pulumi.Input[Sequence[pulumi.Input[str]]] composite_roles: When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
         :param pulumi.Input[str] description: The description of the role
@@ -563,7 +565,7 @@ class Role(pulumi.CustomResource):
     @pulumi.getter
     def attributes(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
-        Attribute key/value pairs
+        A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         """
         return pulumi.get(self, "attributes")
 

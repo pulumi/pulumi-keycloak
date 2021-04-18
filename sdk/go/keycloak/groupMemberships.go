@@ -13,7 +13,7 @@ import (
 
 // ## Import
 //
-// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
+// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server. [1]/docs/resources/user_groups.html
 type GroupMemberships struct {
 	pulumi.CustomResourceState
 

@@ -50,8 +50,8 @@ namespace Pulumi.Keycloak
     ///             ParentId = parentGroup.Id,
     ///             Attributes = 
     ///             {
-    ///                 { "key1", "value1" },
-    ///                 { "key2", "value2" },
+    ///                 { "foo", "bar" },
+    ///                 { "multivalue", "value1##value2" },
     ///             },
     ///         });
     ///     }
@@ -71,7 +71,7 @@ namespace Pulumi.Keycloak
     public partial class Group : Pulumi.CustomResource
     {
         /// <summary>
-        /// A map of key/value pairs to set as custom attributes for the group.
+        /// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         /// </summary>
         [Output("attributes")]
         public Output<ImmutableDictionary<string, object>?> Attributes { get; private set; } = null!;
@@ -150,7 +150,7 @@ namespace Pulumi.Keycloak
         private InputMap<object>? _attributes;
 
         /// <summary>
-        /// A map of key/value pairs to set as custom attributes for the group.
+        /// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         /// </summary>
         public InputMap<object> Attributes
         {
@@ -187,7 +187,7 @@ namespace Pulumi.Keycloak
         private InputMap<object>? _attributes;
 
         /// <summary>
-        /// A map of key/value pairs to set as custom attributes for the group.
+        /// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         /// </summary>
         public InputMap<object> Attributes
         {

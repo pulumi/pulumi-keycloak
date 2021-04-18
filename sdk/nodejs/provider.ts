@@ -43,6 +43,7 @@ export class Provider extends pulumi.ProviderResource {
             if ((!args || args.url === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'url'");
             }
+            inputs["additionalHeaders"] = pulumi.output(args ? args.additionalHeaders : undefined).apply(JSON.stringify);
             inputs["basePath"] = args ? args.basePath : undefined;
             inputs["clientId"] = args ? args.clientId : undefined;
             inputs["clientSecret"] = args ? args.clientSecret : undefined;
@@ -66,6 +67,7 @@ export class Provider extends pulumi.ProviderResource {
  * The set of arguments for constructing a Provider resource.
  */
 export interface ProviderArgs {
+    readonly additionalHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     readonly basePath?: pulumi.Input<string>;
     readonly clientId: pulumi.Input<string>;
     readonly clientSecret?: pulumi.Input<string>;

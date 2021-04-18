@@ -44,9 +44,10 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	BasePath     *string `pulumi:"basePath"`
-	ClientId     string  `pulumi:"clientId"`
-	ClientSecret *string `pulumi:"clientSecret"`
+	AdditionalHeaders map[string]string `pulumi:"additionalHeaders"`
+	BasePath          *string           `pulumi:"basePath"`
+	ClientId          string            `pulumi:"clientId"`
+	ClientSecret      *string           `pulumi:"clientSecret"`
 	// Timeout (in seconds) of the Keycloak client
 	ClientTimeout *int `pulumi:"clientTimeout"`
 	// Whether or not to login to Keycloak instance on provider initialization
@@ -65,9 +66,10 @@ type providerArgs struct {
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
-	BasePath     pulumi.StringPtrInput
-	ClientId     pulumi.StringInput
-	ClientSecret pulumi.StringPtrInput
+	AdditionalHeaders pulumi.StringMapInput
+	BasePath          pulumi.StringPtrInput
+	ClientId          pulumi.StringInput
+	ClientSecret      pulumi.StringPtrInput
 	// Timeout (in seconds) of the Keycloak client
 	ClientTimeout pulumi.IntPtrInput
 	// Whether or not to login to Keycloak instance on provider initialization

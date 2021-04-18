@@ -39,7 +39,8 @@ import (
 // 			RealmId:     realm.ID(),
 // 			Description: pulumi.String("My Realm Role"),
 // 			Attributes: pulumi.StringMap{
-// 				"key": pulumi.String("value"),
+// 				"key":        pulumi.String("value"),
+// 				"multivalue": pulumi.String("value1##value2"),
 // 			},
 // 		})
 // 		if err != nil {
@@ -206,7 +207,7 @@ import (
 type Role struct {
 	pulumi.CustomResourceState
 
-	// Attribute key/value pairs
+	// A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes pulumi.MapOutput `pulumi:"attributes"`
 	// When specified, this role will be created as a client role attached to the client with the provided ID
 	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
@@ -252,7 +253,7 @@ func GetRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Role resources.
 type roleState struct {
-	// Attribute key/value pairs
+	// A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes map[string]interface{} `pulumi:"attributes"`
 	// When specified, this role will be created as a client role attached to the client with the provided ID
 	ClientId *string `pulumi:"clientId"`
@@ -267,7 +268,7 @@ type roleState struct {
 }
 
 type RoleState struct {
-	// Attribute key/value pairs
+	// A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes pulumi.MapInput
 	// When specified, this role will be created as a client role attached to the client with the provided ID
 	ClientId pulumi.StringPtrInput
@@ -286,7 +287,7 @@ func (RoleState) ElementType() reflect.Type {
 }
 
 type roleArgs struct {
-	// Attribute key/value pairs
+	// A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes map[string]interface{} `pulumi:"attributes"`
 	// When specified, this role will be created as a client role attached to the client with the provided ID
 	ClientId *string `pulumi:"clientId"`
@@ -302,7 +303,7 @@ type roleArgs struct {
 
 // The set of arguments for constructing a Role resource.
 type RoleArgs struct {
-	// Attribute key/value pairs
+	// A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes pulumi.MapInput
 	// When specified, this role will be created as a client role attached to the client with the provided ID
 	ClientId pulumi.StringPtrInput

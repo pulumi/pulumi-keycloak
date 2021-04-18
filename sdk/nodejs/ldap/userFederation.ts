@@ -100,12 +100,6 @@ export class UserFederation extends pulumi.CustomResource {
      */
     public readonly cache!: pulumi.Output<outputs.ldap.UserFederationCache | undefined>;
     /**
-     * **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-     *
-     * @deprecated use cache.policy instead
-     */
-    public readonly cachePolicy!: pulumi.Output<string | undefined>;
-    /**
      * How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
      */
     public readonly changedSyncPeriod!: pulumi.Output<number | undefined>;
@@ -176,6 +170,10 @@ export class UserFederation extends pulumi.CustomResource {
      */
     public readonly syncRegistrations!: pulumi.Output<boolean | undefined>;
     /**
+     * If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
+     */
+    public readonly trustEmail!: pulumi.Output<boolean | undefined>;
+    /**
      * Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
      */
     public readonly useTruststoreSpi!: pulumi.Output<string | undefined>;
@@ -221,7 +219,6 @@ export class UserFederation extends pulumi.CustomResource {
             inputs["bindCredential"] = state ? state.bindCredential : undefined;
             inputs["bindDn"] = state ? state.bindDn : undefined;
             inputs["cache"] = state ? state.cache : undefined;
-            inputs["cachePolicy"] = state ? state.cachePolicy : undefined;
             inputs["changedSyncPeriod"] = state ? state.changedSyncPeriod : undefined;
             inputs["connectionTimeout"] = state ? state.connectionTimeout : undefined;
             inputs["connectionUrl"] = state ? state.connectionUrl : undefined;
@@ -239,6 +236,7 @@ export class UserFederation extends pulumi.CustomResource {
             inputs["realmId"] = state ? state.realmId : undefined;
             inputs["searchScope"] = state ? state.searchScope : undefined;
             inputs["syncRegistrations"] = state ? state.syncRegistrations : undefined;
+            inputs["trustEmail"] = state ? state.trustEmail : undefined;
             inputs["useTruststoreSpi"] = state ? state.useTruststoreSpi : undefined;
             inputs["userObjectClasses"] = state ? state.userObjectClasses : undefined;
             inputs["usernameLdapAttribute"] = state ? state.usernameLdapAttribute : undefined;
@@ -273,7 +271,6 @@ export class UserFederation extends pulumi.CustomResource {
             inputs["bindCredential"] = args ? args.bindCredential : undefined;
             inputs["bindDn"] = args ? args.bindDn : undefined;
             inputs["cache"] = args ? args.cache : undefined;
-            inputs["cachePolicy"] = args ? args.cachePolicy : undefined;
             inputs["changedSyncPeriod"] = args ? args.changedSyncPeriod : undefined;
             inputs["connectionTimeout"] = args ? args.connectionTimeout : undefined;
             inputs["connectionUrl"] = args ? args.connectionUrl : undefined;
@@ -291,6 +288,7 @@ export class UserFederation extends pulumi.CustomResource {
             inputs["realmId"] = args ? args.realmId : undefined;
             inputs["searchScope"] = args ? args.searchScope : undefined;
             inputs["syncRegistrations"] = args ? args.syncRegistrations : undefined;
+            inputs["trustEmail"] = args ? args.trustEmail : undefined;
             inputs["useTruststoreSpi"] = args ? args.useTruststoreSpi : undefined;
             inputs["userObjectClasses"] = args ? args.userObjectClasses : undefined;
             inputs["usernameLdapAttribute"] = args ? args.usernameLdapAttribute : undefined;
@@ -326,12 +324,6 @@ export interface UserFederationState {
      * A block containing the cache settings.
      */
     readonly cache?: pulumi.Input<inputs.ldap.UserFederationCache>;
-    /**
-     * **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-     *
-     * @deprecated use cache.policy instead
-     */
-    readonly cachePolicy?: pulumi.Input<string>;
     /**
      * How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
      */
@@ -403,6 +395,10 @@ export interface UserFederationState {
      */
     readonly syncRegistrations?: pulumi.Input<boolean>;
     /**
+     * If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
+     */
+    readonly trustEmail?: pulumi.Input<boolean>;
+    /**
      * Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
      */
     readonly useTruststoreSpi?: pulumi.Input<string>;
@@ -452,12 +448,6 @@ export interface UserFederationArgs {
      * A block containing the cache settings.
      */
     readonly cache?: pulumi.Input<inputs.ldap.UserFederationCache>;
-    /**
-     * **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-     *
-     * @deprecated use cache.policy instead
-     */
-    readonly cachePolicy?: pulumi.Input<string>;
     /**
      * How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
      */
@@ -528,6 +518,10 @@ export interface UserFederationArgs {
      * When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
      */
     readonly syncRegistrations?: pulumi.Input<boolean>;
+    /**
+     * If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
+     */
+    readonly trustEmail?: pulumi.Input<boolean>;
     /**
      * Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
      */

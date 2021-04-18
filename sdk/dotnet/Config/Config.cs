@@ -8,6 +8,8 @@ namespace Pulumi.Keycloak
     public static class Config
     {
         private static readonly Pulumi.Config __config = new Pulumi.Config("keycloak");
+        public static ImmutableDictionary<string, string>? AdditionalHeaders { get; set; } = __config.GetObject<ImmutableDictionary<string, string>>("additionalHeaders");
+
         public static string? BasePath { get; set; } = __config.Get("basePath");
 
         public static string? ClientId { get; set; } = __config.Get("clientId");

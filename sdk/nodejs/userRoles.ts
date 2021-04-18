@@ -42,6 +42,10 @@ export class UserRoles extends pulumi.CustomResource {
     }
 
     /**
+     * Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
+     */
+    public readonly exhaustive!: pulumi.Output<boolean | undefined>;
+    /**
      * The realm this user exists in.
      */
     public readonly realmId!: pulumi.Output<string>;
@@ -67,6 +71,7 @@ export class UserRoles extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserRolesState | undefined;
+            inputs["exhaustive"] = state ? state.exhaustive : undefined;
             inputs["realmId"] = state ? state.realmId : undefined;
             inputs["roleIds"] = state ? state.roleIds : undefined;
             inputs["userId"] = state ? state.userId : undefined;
@@ -81,6 +86,7 @@ export class UserRoles extends pulumi.CustomResource {
             if ((!args || args.userId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'userId'");
             }
+            inputs["exhaustive"] = args ? args.exhaustive : undefined;
             inputs["realmId"] = args ? args.realmId : undefined;
             inputs["roleIds"] = args ? args.roleIds : undefined;
             inputs["userId"] = args ? args.userId : undefined;
@@ -96,6 +102,10 @@ export class UserRoles extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserRoles resources.
  */
 export interface UserRolesState {
+    /**
+     * Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
+     */
+    readonly exhaustive?: pulumi.Input<boolean>;
     /**
      * The realm this user exists in.
      */
@@ -114,6 +124,10 @@ export interface UserRolesState {
  * The set of arguments for constructing a UserRoles resource.
  */
 export interface UserRolesArgs {
+    /**
+     * Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
+     */
+    readonly exhaustive?: pulumi.Input<boolean>;
     /**
      * The realm this user exists in.
      */

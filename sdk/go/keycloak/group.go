@@ -57,8 +57,8 @@ import (
 // 			RealmId:  realm.ID(),
 // 			ParentId: parentGroup.ID(),
 // 			Attributes: pulumi.StringMap{
-// 				"key1": pulumi.String("value1"),
-// 				"key2": pulumi.String("value2"),
+// 				"foo":        pulumi.String("bar"),
+// 				"multivalue": pulumi.String("value1##value2"),
 // 			},
 // 		})
 // 		if err != nil {
@@ -79,7 +79,7 @@ import (
 type Group struct {
 	pulumi.CustomResourceState
 
-	// A map of key/value pairs to set as custom attributes for the group.
+	// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes pulumi.MapOutput `pulumi:"attributes"`
 	// The name of the group.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -123,7 +123,7 @@ func GetGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Group resources.
 type groupState struct {
-	// A map of key/value pairs to set as custom attributes for the group.
+	// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes map[string]interface{} `pulumi:"attributes"`
 	// The name of the group.
 	Name *string `pulumi:"name"`
@@ -136,7 +136,7 @@ type groupState struct {
 }
 
 type GroupState struct {
-	// A map of key/value pairs to set as custom attributes for the group.
+	// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes pulumi.MapInput
 	// The name of the group.
 	Name pulumi.StringPtrInput
@@ -153,7 +153,7 @@ func (GroupState) ElementType() reflect.Type {
 }
 
 type groupArgs struct {
-	// A map of key/value pairs to set as custom attributes for the group.
+	// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes map[string]interface{} `pulumi:"attributes"`
 	// The name of the group.
 	Name *string `pulumi:"name"`
@@ -165,7 +165,7 @@ type groupArgs struct {
 
 // The set of arguments for constructing a Group resource.
 type GroupArgs struct {
-	// A map of key/value pairs to set as custom attributes for the group.
+	// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes pulumi.MapInput
 	// The name of the group.
 	Name pulumi.StringPtrInput

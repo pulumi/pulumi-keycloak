@@ -15,16 +15,20 @@ class GroupRolesArgs:
     def __init__(__self__, *,
                  group_id: pulumi.Input[str],
                  realm_id: pulumi.Input[str],
-                 role_ids: pulumi.Input[Sequence[pulumi.Input[str]]]):
+                 role_ids: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 exhaustive: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a GroupRoles resource.
         :param pulumi.Input[str] group_id: The ID of the group this resource should manage roles for.
         :param pulumi.Input[str] realm_id: The realm this group exists in.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_ids: A list of role IDs to map to the group
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_ids: A list of role IDs to map to the group.
+        :param pulumi.Input[bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
         """
         pulumi.set(__self__, "group_id", group_id)
         pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "role_ids", role_ids)
+        if exhaustive is not None:
+            pulumi.set(__self__, "exhaustive", exhaustive)
 
     @property
     @pulumi.getter(name="groupId")
@@ -54,7 +58,7 @@ class GroupRolesArgs:
     @pulumi.getter(name="roleIds")
     def role_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        A list of role IDs to map to the group
+        A list of role IDs to map to the group.
         """
         return pulumi.get(self, "role_ids")
 
@@ -62,25 +66,53 @@ class GroupRolesArgs:
     def role_ids(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "role_ids", value)
 
+    @property
+    @pulumi.getter
+    def exhaustive(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+        """
+        return pulumi.get(self, "exhaustive")
+
+    @exhaustive.setter
+    def exhaustive(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "exhaustive", value)
+
 
 @pulumi.input_type
 class _GroupRolesState:
     def __init__(__self__, *,
+                 exhaustive: Optional[pulumi.Input[bool]] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  role_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering GroupRoles resources.
+        :param pulumi.Input[bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
         :param pulumi.Input[str] group_id: The ID of the group this resource should manage roles for.
         :param pulumi.Input[str] realm_id: The realm this group exists in.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_ids: A list of role IDs to map to the group
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_ids: A list of role IDs to map to the group.
         """
+        if exhaustive is not None:
+            pulumi.set(__self__, "exhaustive", exhaustive)
         if group_id is not None:
             pulumi.set(__self__, "group_id", group_id)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
         if role_ids is not None:
             pulumi.set(__self__, "role_ids", role_ids)
+
+    @property
+    @pulumi.getter
+    def exhaustive(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+        """
+        return pulumi.get(self, "exhaustive")
+
+    @exhaustive.setter
+    def exhaustive(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "exhaustive", value)
 
     @property
     @pulumi.getter(name="groupId")
@@ -110,7 +142,7 @@ class _GroupRolesState:
     @pulumi.getter(name="roleIds")
     def role_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        A list of role IDs to map to the group
+        A list of role IDs to map to the group.
         """
         return pulumi.get(self, "role_ids")
 
@@ -124,6 +156,7 @@ class GroupRoles(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 exhaustive: Optional[pulumi.Input[bool]] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  role_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -141,9 +174,10 @@ class GroupRoles(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
         :param pulumi.Input[str] group_id: The ID of the group this resource should manage roles for.
         :param pulumi.Input[str] realm_id: The realm this group exists in.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_ids: A list of role IDs to map to the group
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_ids: A list of role IDs to map to the group.
         """
         ...
     @overload
@@ -175,6 +209,7 @@ class GroupRoles(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 exhaustive: Optional[pulumi.Input[bool]] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  role_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -198,6 +233,7 @@ class GroupRoles(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = GroupRolesArgs.__new__(GroupRolesArgs)
 
+            __props__.__dict__["exhaustive"] = exhaustive
             if group_id is None and not opts.urn:
                 raise TypeError("Missing required property 'group_id'")
             __props__.__dict__["group_id"] = group_id
@@ -217,6 +253,7 @@ class GroupRoles(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            exhaustive: Optional[pulumi.Input[bool]] = None,
             group_id: Optional[pulumi.Input[str]] = None,
             realm_id: Optional[pulumi.Input[str]] = None,
             role_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'GroupRoles':
@@ -227,18 +264,28 @@ class GroupRoles(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
         :param pulumi.Input[str] group_id: The ID of the group this resource should manage roles for.
         :param pulumi.Input[str] realm_id: The realm this group exists in.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_ids: A list of role IDs to map to the group
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_ids: A list of role IDs to map to the group.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _GroupRolesState.__new__(_GroupRolesState)
 
+        __props__.__dict__["exhaustive"] = exhaustive
         __props__.__dict__["group_id"] = group_id
         __props__.__dict__["realm_id"] = realm_id
         __props__.__dict__["role_ids"] = role_ids
         return GroupRoles(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def exhaustive(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+        """
+        return pulumi.get(self, "exhaustive")
 
     @property
     @pulumi.getter(name="groupId")
@@ -260,7 +307,7 @@ class GroupRoles(pulumi.CustomResource):
     @pulumi.getter(name="roleIds")
     def role_ids(self) -> pulumi.Output[Sequence[str]]:
         """
-        A list of role IDs to map to the group
+        A list of role IDs to map to the group.
         """
         return pulumi.get(self, "role_ids")
 

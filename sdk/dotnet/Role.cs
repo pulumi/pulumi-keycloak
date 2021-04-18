@@ -37,6 +37,7 @@ namespace Pulumi.Keycloak
     ///             Attributes = 
     ///             {
     ///                 { "key", "value" },
+    ///                 { "multivalue", "value1##value2" },
     ///             },
     ///         });
     ///     }
@@ -186,7 +187,7 @@ namespace Pulumi.Keycloak
     public partial class Role : Pulumi.CustomResource
     {
         /// <summary>
-        /// Attribute key/value pairs
+        /// A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         /// </summary>
         [Output("attributes")]
         public Output<ImmutableDictionary<string, object>?> Attributes { get; private set; } = null!;
@@ -271,7 +272,7 @@ namespace Pulumi.Keycloak
         private InputMap<object>? _attributes;
 
         /// <summary>
-        /// Attribute key/value pairs
+        /// A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         /// </summary>
         public InputMap<object> Attributes
         {
@@ -326,7 +327,7 @@ namespace Pulumi.Keycloak
         private InputMap<object>? _attributes;
 
         /// <summary>
-        /// Attribute key/value pairs
+        /// A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         /// </summary>
         public InputMap<object> Attributes
         {

@@ -98,12 +98,6 @@ namespace Pulumi.Keycloak.Ldap
         public Output<Outputs.UserFederationCache?> Cache { get; private set; } = null!;
 
         /// <summary>
-        /// **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-        /// </summary>
-        [Output("cachePolicy")]
-        public Output<string?> CachePolicy { get; private set; } = null!;
-
-        /// <summary>
         /// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
         /// </summary>
         [Output("changedSyncPeriod")]
@@ -206,6 +200,12 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Output("syncRegistrations")]
         public Output<bool?> SyncRegistrations { get; private set; } = null!;
+
+        /// <summary>
+        /// If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
+        /// </summary>
+        [Output("trustEmail")]
+        public Output<bool?> TrustEmail { get; private set; } = null!;
 
         /// <summary>
         /// Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
@@ -320,12 +320,6 @@ namespace Pulumi.Keycloak.Ldap
         public Input<Inputs.UserFederationCacheArgs>? Cache { get; set; }
 
         /// <summary>
-        /// **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-        /// </summary>
-        [Input("cachePolicy")]
-        public Input<string>? CachePolicy { get; set; }
-
-        /// <summary>
         /// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
         /// </summary>
         [Input("changedSyncPeriod")]
@@ -430,6 +424,12 @@ namespace Pulumi.Keycloak.Ldap
         public Input<bool>? SyncRegistrations { get; set; }
 
         /// <summary>
+        /// If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
+        /// </summary>
+        [Input("trustEmail")]
+        public Input<bool>? TrustEmail { get; set; }
+
+        /// <summary>
         /// Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
         /// </summary>
         [Input("useTruststoreSpi")]
@@ -507,12 +507,6 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Input("cache")]
         public Input<Inputs.UserFederationCacheGetArgs>? Cache { get; set; }
-
-        /// <summary>
-        /// **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-        /// </summary>
-        [Input("cachePolicy")]
-        public Input<string>? CachePolicy { get; set; }
 
         /// <summary>
         /// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
@@ -617,6 +611,12 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Input("syncRegistrations")]
         public Input<bool>? SyncRegistrations { get; set; }
+
+        /// <summary>
+        /// If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
+        /// </summary>
+        [Input("trustEmail")]
+        public Input<bool>? TrustEmail { get; set; }
 
         /// <summary>
         /// Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:

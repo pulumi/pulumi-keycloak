@@ -21,6 +21,8 @@ import (
 type UserRoles struct {
 	pulumi.CustomResourceState
 
+	// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
+	Exhaustive pulumi.BoolPtrOutput `pulumi:"exhaustive"`
 	// The realm this user exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
 	// A list of role IDs to map to the user
@@ -67,6 +69,8 @@ func GetUserRoles(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserRoles resources.
 type userRolesState struct {
+	// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
+	Exhaustive *bool `pulumi:"exhaustive"`
 	// The realm this user exists in.
 	RealmId *string `pulumi:"realmId"`
 	// A list of role IDs to map to the user
@@ -76,6 +80,8 @@ type userRolesState struct {
 }
 
 type UserRolesState struct {
+	// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
+	Exhaustive pulumi.BoolPtrInput
 	// The realm this user exists in.
 	RealmId pulumi.StringPtrInput
 	// A list of role IDs to map to the user
@@ -89,6 +95,8 @@ func (UserRolesState) ElementType() reflect.Type {
 }
 
 type userRolesArgs struct {
+	// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
+	Exhaustive *bool `pulumi:"exhaustive"`
 	// The realm this user exists in.
 	RealmId string `pulumi:"realmId"`
 	// A list of role IDs to map to the user
@@ -99,6 +107,8 @@ type userRolesArgs struct {
 
 // The set of arguments for constructing a UserRoles resource.
 type UserRolesArgs struct {
+	// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
+	Exhaustive pulumi.BoolPtrInput
 	// The realm this user exists in.
 	RealmId pulumi.StringInput
 	// A list of role IDs to map to the user
