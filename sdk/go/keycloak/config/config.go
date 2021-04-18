@@ -8,6 +8,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
 
+func GetAdditionalHeaders(ctx *pulumi.Context) string {
+	return config.Get(ctx, "keycloak:additionalHeaders")
+}
 func GetBasePath(ctx *pulumi.Context) string {
 	return config.Get(ctx, "keycloak:basePath")
 }

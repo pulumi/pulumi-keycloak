@@ -134,12 +134,6 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
      * String value being the name of stored user session note within the UserSessionModel.note map.
      */
     public readonly sessionNote!: pulumi.Output<string | undefined>;
-    /**
-     * **Deprecated** Use `sessionNote` instead.
-     *
-     * @deprecated use session_note instead
-     */
-    public readonly sessionNoteLabel!: pulumi.Output<string | undefined>;
 
     /**
      * Create a UserSessionNoteProtocolMapper resource with the given unique name, arguments, and options.
@@ -163,7 +157,6 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
             inputs["name"] = state ? state.name : undefined;
             inputs["realmId"] = state ? state.realmId : undefined;
             inputs["sessionNote"] = state ? state.sessionNote : undefined;
-            inputs["sessionNoteLabel"] = state ? state.sessionNoteLabel : undefined;
         } else {
             const args = argsOrState as UserSessionNoteProtocolMapperArgs | undefined;
             if ((!args || args.claimName === undefined) && !opts.urn) {
@@ -181,7 +174,6 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["realmId"] = args ? args.realmId : undefined;
             inputs["sessionNote"] = args ? args.sessionNote : undefined;
-            inputs["sessionNoteLabel"] = args ? args.sessionNoteLabel : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
@@ -230,12 +222,6 @@ export interface UserSessionNoteProtocolMapperState {
      * String value being the name of stored user session note within the UserSessionModel.note map.
      */
     readonly sessionNote?: pulumi.Input<string>;
-    /**
-     * **Deprecated** Use `sessionNote` instead.
-     *
-     * @deprecated use session_note instead
-     */
-    readonly sessionNoteLabel?: pulumi.Input<string>;
 }
 
 /**
@@ -278,10 +264,4 @@ export interface UserSessionNoteProtocolMapperArgs {
      * String value being the name of stored user session note within the UserSessionModel.note map.
      */
     readonly sessionNote?: pulumi.Input<string>;
-    /**
-     * **Deprecated** Use `sessionNote` instead.
-     *
-     * @deprecated use session_note instead
-     */
-    readonly sessionNoteLabel?: pulumi.Input<string>;
 }

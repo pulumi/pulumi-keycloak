@@ -10,6 +10,7 @@ from .default_groups import *
 from .generic_client_protocol_mapper import *
 from .generic_client_role_mapper import *
 from .get_authentication_execution import *
+from .get_authentication_flow import *
 from .get_group import *
 from .get_realm import *
 from .get_realm_keys import *
@@ -27,6 +28,7 @@ from .realm_events import *
 from .required_action import *
 from .role import *
 from .user import *
+from .user_groups import *
 from .user_roles import *
 from .user_template_importer_identity_provider_mapper import *
 from .users_permissions import *
@@ -89,6 +91,8 @@ def _register_module():
                 return Role(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "keycloak:index/user:User":
                 return User(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/userGroups:UserGroups":
+                return UserGroups(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "keycloak:index/userRoles:UserRoles":
                 return UserRoles(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper":
@@ -117,6 +121,7 @@ def _register_module():
     pulumi.runtime.register_resource_module("keycloak", "index/requiredAction", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "index/role", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "index/user", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/userGroups", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "index/userRoles", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "index/userTemplateImporterIdentityProviderMapper", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "index/usersPermissions", _module_instance)

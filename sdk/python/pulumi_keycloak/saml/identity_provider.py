@@ -14,6 +14,7 @@ __all__ = ['IdentityProviderArgs', 'IdentityProvider']
 class IdentityProviderArgs:
     def __init__(__self__, *,
                  alias: pulumi.Input[str],
+                 entity_id: pulumi.Input[str],
                  realm: pulumi.Input[str],
                  single_sign_on_service_url: pulumi.Input[str],
                  add_read_token_role_on_create: Optional[pulumi.Input[bool]] = None,
@@ -23,6 +24,7 @@ class IdentityProviderArgs:
                  enabled: Optional[pulumi.Input[bool]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  force_authn: Optional[pulumi.Input[bool]] = None,
+                 gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
                  link_only: Optional[pulumi.Input[bool]] = None,
                  name_id_policy_format: Optional[pulumi.Input[str]] = None,
@@ -30,10 +32,13 @@ class IdentityProviderArgs:
                  post_binding_logout: Optional[pulumi.Input[bool]] = None,
                  post_binding_response: Optional[pulumi.Input[bool]] = None,
                  post_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+                 principal_attribute: Optional[pulumi.Input[str]] = None,
+                 principal_type: Optional[pulumi.Input[str]] = None,
                  signature_algorithm: Optional[pulumi.Input[str]] = None,
                  signing_certificate: Optional[pulumi.Input[str]] = None,
                  single_logout_service_url: Optional[pulumi.Input[str]] = None,
                  store_token: Optional[pulumi.Input[bool]] = None,
+                 sync_mode: Optional[pulumi.Input[str]] = None,
                  trust_email: Optional[pulumi.Input[bool]] = None,
                  validate_signature: Optional[pulumi.Input[bool]] = None,
                  want_assertions_encrypted: Optional[pulumi.Input[bool]] = None,
@@ -42,6 +47,7 @@ class IdentityProviderArgs:
         """
         The set of arguments for constructing a IdentityProvider resource.
         :param pulumi.Input[str] alias: The unique name of identity provider.
+        :param pulumi.Input[str] entity_id: The Entity ID that will be used to uniquely identify this SAML Service Provider.
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[str] single_sign_on_service_url: The Url that must be used to send authentication requests (SAML AuthnRequest).
         :param pulumi.Input[bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
@@ -51,6 +57,7 @@ class IdentityProviderArgs:
         :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
         :param pulumi.Input[str] first_broker_login_flow_alias: Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
         :param pulumi.Input[bool] force_authn: Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
+        :param pulumi.Input[str] gui_order: GUI Order
         :param pulumi.Input[bool] hide_on_login_page: If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
         :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] name_id_policy_format: Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
@@ -58,10 +65,13 @@ class IdentityProviderArgs:
         :param pulumi.Input[bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
         :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
+        :param pulumi.Input[str] principal_attribute: Principal Attribute
+        :param pulumi.Input[str] principal_type: Principal Type
         :param pulumi.Input[str] signature_algorithm: Signing Algorithm. Defaults to empty.
         :param pulumi.Input[str] signing_certificate: Signing Certificate.
         :param pulumi.Input[str] single_logout_service_url: The Url that must be used to send logout requests.
         :param pulumi.Input[bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        :param pulumi.Input[str] sync_mode: Sync Mode
         :param pulumi.Input[bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[bool] validate_signature: Enable/disable signature validation of SAML responses.
         :param pulumi.Input[bool] want_assertions_encrypted: Indicates whether this service provider expects an encrypted Assertion.
@@ -69,6 +79,7 @@ class IdentityProviderArgs:
         :param pulumi.Input[str] xml_sign_key_info_key_name_transformer: Sign Key Transformer. Defaults to empty.
         """
         pulumi.set(__self__, "alias", alias)
+        pulumi.set(__self__, "entity_id", entity_id)
         pulumi.set(__self__, "realm", realm)
         pulumi.set(__self__, "single_sign_on_service_url", single_sign_on_service_url)
         if add_read_token_role_on_create is not None:
@@ -85,6 +96,8 @@ class IdentityProviderArgs:
             pulumi.set(__self__, "first_broker_login_flow_alias", first_broker_login_flow_alias)
         if force_authn is not None:
             pulumi.set(__self__, "force_authn", force_authn)
+        if gui_order is not None:
+            pulumi.set(__self__, "gui_order", gui_order)
         if hide_on_login_page is not None:
             pulumi.set(__self__, "hide_on_login_page", hide_on_login_page)
         if link_only is not None:
@@ -99,6 +112,10 @@ class IdentityProviderArgs:
             pulumi.set(__self__, "post_binding_response", post_binding_response)
         if post_broker_login_flow_alias is not None:
             pulumi.set(__self__, "post_broker_login_flow_alias", post_broker_login_flow_alias)
+        if principal_attribute is not None:
+            pulumi.set(__self__, "principal_attribute", principal_attribute)
+        if principal_type is not None:
+            pulumi.set(__self__, "principal_type", principal_type)
         if signature_algorithm is not None:
             pulumi.set(__self__, "signature_algorithm", signature_algorithm)
         if signing_certificate is not None:
@@ -107,6 +124,8 @@ class IdentityProviderArgs:
             pulumi.set(__self__, "single_logout_service_url", single_logout_service_url)
         if store_token is not None:
             pulumi.set(__self__, "store_token", store_token)
+        if sync_mode is not None:
+            pulumi.set(__self__, "sync_mode", sync_mode)
         if trust_email is not None:
             pulumi.set(__self__, "trust_email", trust_email)
         if validate_signature is not None:
@@ -129,6 +148,18 @@ class IdentityProviderArgs:
     @alias.setter
     def alias(self, value: pulumi.Input[str]):
         pulumi.set(self, "alias", value)
+
+    @property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> pulumi.Input[str]:
+        """
+        The Entity ID that will be used to uniquely identify this SAML Service Provider.
+        """
+        return pulumi.get(self, "entity_id")
+
+    @entity_id.setter
+    def entity_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "entity_id", value)
 
     @property
     @pulumi.getter
@@ -239,6 +270,18 @@ class IdentityProviderArgs:
         pulumi.set(self, "force_authn", value)
 
     @property
+    @pulumi.getter(name="guiOrder")
+    def gui_order(self) -> Optional[pulumi.Input[str]]:
+        """
+        GUI Order
+        """
+        return pulumi.get(self, "gui_order")
+
+    @gui_order.setter
+    def gui_order(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_order", value)
+
+    @property
     @pulumi.getter(name="hideOnLoginPage")
     def hide_on_login_page(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -323,6 +366,30 @@ class IdentityProviderArgs:
         pulumi.set(self, "post_broker_login_flow_alias", value)
 
     @property
+    @pulumi.getter(name="principalAttribute")
+    def principal_attribute(self) -> Optional[pulumi.Input[str]]:
+        """
+        Principal Attribute
+        """
+        return pulumi.get(self, "principal_attribute")
+
+    @principal_attribute.setter
+    def principal_attribute(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "principal_attribute", value)
+
+    @property
+    @pulumi.getter(name="principalType")
+    def principal_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Principal Type
+        """
+        return pulumi.get(self, "principal_type")
+
+    @principal_type.setter
+    def principal_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "principal_type", value)
+
+    @property
     @pulumi.getter(name="signatureAlgorithm")
     def signature_algorithm(self) -> Optional[pulumi.Input[str]]:
         """
@@ -369,6 +436,18 @@ class IdentityProviderArgs:
     @store_token.setter
     def store_token(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "store_token", value)
+
+    @property
+    @pulumi.getter(name="syncMode")
+    def sync_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Sync Mode
+        """
+        return pulumi.get(self, "sync_mode")
+
+    @sync_mode.setter
+    def sync_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sync_mode", value)
 
     @property
     @pulumi.getter(name="trustEmail")
@@ -440,8 +519,10 @@ class _IdentityProviderState:
                  backchannel_supported: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
+                 entity_id: Optional[pulumi.Input[str]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  force_authn: Optional[pulumi.Input[bool]] = None,
+                 gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
                  internal_id: Optional[pulumi.Input[str]] = None,
                  link_only: Optional[pulumi.Input[bool]] = None,
@@ -450,12 +531,15 @@ class _IdentityProviderState:
                  post_binding_logout: Optional[pulumi.Input[bool]] = None,
                  post_binding_response: Optional[pulumi.Input[bool]] = None,
                  post_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+                 principal_attribute: Optional[pulumi.Input[str]] = None,
+                 principal_type: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  signature_algorithm: Optional[pulumi.Input[str]] = None,
                  signing_certificate: Optional[pulumi.Input[str]] = None,
                  single_logout_service_url: Optional[pulumi.Input[str]] = None,
                  single_sign_on_service_url: Optional[pulumi.Input[str]] = None,
                  store_token: Optional[pulumi.Input[bool]] = None,
+                 sync_mode: Optional[pulumi.Input[str]] = None,
                  trust_email: Optional[pulumi.Input[bool]] = None,
                  validate_signature: Optional[pulumi.Input[bool]] = None,
                  want_assertions_encrypted: Optional[pulumi.Input[bool]] = None,
@@ -469,8 +553,10 @@ class _IdentityProviderState:
         :param pulumi.Input[bool] backchannel_supported: Does the external IDP support back-channel logout ?.
         :param pulumi.Input[str] display_name: The display name for the realm that is shown when logging in to the admin console.
         :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        :param pulumi.Input[str] entity_id: The Entity ID that will be used to uniquely identify this SAML Service Provider.
         :param pulumi.Input[str] first_broker_login_flow_alias: Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
         :param pulumi.Input[bool] force_authn: Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
+        :param pulumi.Input[str] gui_order: GUI Order
         :param pulumi.Input[bool] hide_on_login_page: If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
         :param pulumi.Input[str] internal_id: Internal Identity Provider Id
         :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
@@ -479,12 +565,15 @@ class _IdentityProviderState:
         :param pulumi.Input[bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
         :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
+        :param pulumi.Input[str] principal_attribute: Principal Attribute
+        :param pulumi.Input[str] principal_type: Principal Type
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[str] signature_algorithm: Signing Algorithm. Defaults to empty.
         :param pulumi.Input[str] signing_certificate: Signing Certificate.
         :param pulumi.Input[str] single_logout_service_url: The Url that must be used to send logout requests.
         :param pulumi.Input[str] single_sign_on_service_url: The Url that must be used to send authentication requests (SAML AuthnRequest).
         :param pulumi.Input[bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        :param pulumi.Input[str] sync_mode: Sync Mode
         :param pulumi.Input[bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[bool] validate_signature: Enable/disable signature validation of SAML responses.
         :param pulumi.Input[bool] want_assertions_encrypted: Indicates whether this service provider expects an encrypted Assertion.
@@ -503,10 +592,14 @@ class _IdentityProviderState:
             pulumi.set(__self__, "display_name", display_name)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if entity_id is not None:
+            pulumi.set(__self__, "entity_id", entity_id)
         if first_broker_login_flow_alias is not None:
             pulumi.set(__self__, "first_broker_login_flow_alias", first_broker_login_flow_alias)
         if force_authn is not None:
             pulumi.set(__self__, "force_authn", force_authn)
+        if gui_order is not None:
+            pulumi.set(__self__, "gui_order", gui_order)
         if hide_on_login_page is not None:
             pulumi.set(__self__, "hide_on_login_page", hide_on_login_page)
         if internal_id is not None:
@@ -523,6 +616,10 @@ class _IdentityProviderState:
             pulumi.set(__self__, "post_binding_response", post_binding_response)
         if post_broker_login_flow_alias is not None:
             pulumi.set(__self__, "post_broker_login_flow_alias", post_broker_login_flow_alias)
+        if principal_attribute is not None:
+            pulumi.set(__self__, "principal_attribute", principal_attribute)
+        if principal_type is not None:
+            pulumi.set(__self__, "principal_type", principal_type)
         if realm is not None:
             pulumi.set(__self__, "realm", realm)
         if signature_algorithm is not None:
@@ -535,6 +632,8 @@ class _IdentityProviderState:
             pulumi.set(__self__, "single_sign_on_service_url", single_sign_on_service_url)
         if store_token is not None:
             pulumi.set(__self__, "store_token", store_token)
+        if sync_mode is not None:
+            pulumi.set(__self__, "sync_mode", sync_mode)
         if trust_email is not None:
             pulumi.set(__self__, "trust_email", trust_email)
         if validate_signature is not None:
@@ -619,6 +718,18 @@ class _IdentityProviderState:
         pulumi.set(self, "enabled", value)
 
     @property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Entity ID that will be used to uniquely identify this SAML Service Provider.
+        """
+        return pulumi.get(self, "entity_id")
+
+    @entity_id.setter
+    def entity_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "entity_id", value)
+
+    @property
     @pulumi.getter(name="firstBrokerLoginFlowAlias")
     def first_broker_login_flow_alias(self) -> Optional[pulumi.Input[str]]:
         """
@@ -641,6 +752,18 @@ class _IdentityProviderState:
     @force_authn.setter
     def force_authn(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "force_authn", value)
+
+    @property
+    @pulumi.getter(name="guiOrder")
+    def gui_order(self) -> Optional[pulumi.Input[str]]:
+        """
+        GUI Order
+        """
+        return pulumi.get(self, "gui_order")
+
+    @gui_order.setter
+    def gui_order(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_order", value)
 
     @property
     @pulumi.getter(name="hideOnLoginPage")
@@ -739,6 +862,30 @@ class _IdentityProviderState:
         pulumi.set(self, "post_broker_login_flow_alias", value)
 
     @property
+    @pulumi.getter(name="principalAttribute")
+    def principal_attribute(self) -> Optional[pulumi.Input[str]]:
+        """
+        Principal Attribute
+        """
+        return pulumi.get(self, "principal_attribute")
+
+    @principal_attribute.setter
+    def principal_attribute(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "principal_attribute", value)
+
+    @property
+    @pulumi.getter(name="principalType")
+    def principal_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Principal Type
+        """
+        return pulumi.get(self, "principal_type")
+
+    @principal_type.setter
+    def principal_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "principal_type", value)
+
+    @property
     @pulumi.getter
     def realm(self) -> Optional[pulumi.Input[str]]:
         """
@@ -809,6 +956,18 @@ class _IdentityProviderState:
     @store_token.setter
     def store_token(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "store_token", value)
+
+    @property
+    @pulumi.getter(name="syncMode")
+    def sync_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Sync Mode
+        """
+        return pulumi.get(self, "sync_mode")
+
+    @sync_mode.setter
+    def sync_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sync_mode", value)
 
     @property
     @pulumi.getter(name="trustEmail")
@@ -882,8 +1041,10 @@ class IdentityProvider(pulumi.CustomResource):
                  backchannel_supported: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
+                 entity_id: Optional[pulumi.Input[str]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  force_authn: Optional[pulumi.Input[bool]] = None,
+                 gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
                  link_only: Optional[pulumi.Input[bool]] = None,
                  name_id_policy_format: Optional[pulumi.Input[str]] = None,
@@ -891,12 +1052,15 @@ class IdentityProvider(pulumi.CustomResource):
                  post_binding_logout: Optional[pulumi.Input[bool]] = None,
                  post_binding_response: Optional[pulumi.Input[bool]] = None,
                  post_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+                 principal_attribute: Optional[pulumi.Input[str]] = None,
+                 principal_type: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  signature_algorithm: Optional[pulumi.Input[str]] = None,
                  signing_certificate: Optional[pulumi.Input[str]] = None,
                  single_logout_service_url: Optional[pulumi.Input[str]] = None,
                  single_sign_on_service_url: Optional[pulumi.Input[str]] = None,
                  store_token: Optional[pulumi.Input[bool]] = None,
+                 sync_mode: Optional[pulumi.Input[str]] = None,
                  trust_email: Optional[pulumi.Input[bool]] = None,
                  validate_signature: Optional[pulumi.Input[bool]] = None,
                  want_assertions_encrypted: Optional[pulumi.Input[bool]] = None,
@@ -922,6 +1086,7 @@ class IdentityProvider(pulumi.CustomResource):
         realm_saml_identity_provider = keycloak.saml.IdentityProvider("realmSamlIdentityProvider",
             realm=realm.id,
             alias="my-saml-idp",
+            entity_id="https://domain.com/entity_id",
             single_sign_on_service_url="https://domain.com/adfs/ls/",
             single_logout_service_url="https://domain.com/adfs/ls/?wa=wsignout1.0",
             backchannel_supported=True,
@@ -949,8 +1114,10 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[bool] backchannel_supported: Does the external IDP support back-channel logout ?.
         :param pulumi.Input[str] display_name: The display name for the realm that is shown when logging in to the admin console.
         :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        :param pulumi.Input[str] entity_id: The Entity ID that will be used to uniquely identify this SAML Service Provider.
         :param pulumi.Input[str] first_broker_login_flow_alias: Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
         :param pulumi.Input[bool] force_authn: Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
+        :param pulumi.Input[str] gui_order: GUI Order
         :param pulumi.Input[bool] hide_on_login_page: If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
         :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] name_id_policy_format: Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
@@ -958,12 +1125,15 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
         :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
+        :param pulumi.Input[str] principal_attribute: Principal Attribute
+        :param pulumi.Input[str] principal_type: Principal Type
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[str] signature_algorithm: Signing Algorithm. Defaults to empty.
         :param pulumi.Input[str] signing_certificate: Signing Certificate.
         :param pulumi.Input[str] single_logout_service_url: The Url that must be used to send logout requests.
         :param pulumi.Input[str] single_sign_on_service_url: The Url that must be used to send authentication requests (SAML AuthnRequest).
         :param pulumi.Input[bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        :param pulumi.Input[str] sync_mode: Sync Mode
         :param pulumi.Input[bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[bool] validate_signature: Enable/disable signature validation of SAML responses.
         :param pulumi.Input[bool] want_assertions_encrypted: Indicates whether this service provider expects an encrypted Assertion.
@@ -993,6 +1163,7 @@ class IdentityProvider(pulumi.CustomResource):
         realm_saml_identity_provider = keycloak.saml.IdentityProvider("realmSamlIdentityProvider",
             realm=realm.id,
             alias="my-saml-idp",
+            entity_id="https://domain.com/entity_id",
             single_sign_on_service_url="https://domain.com/adfs/ls/",
             single_logout_service_url="https://domain.com/adfs/ls/?wa=wsignout1.0",
             backchannel_supported=True,
@@ -1033,8 +1204,10 @@ class IdentityProvider(pulumi.CustomResource):
                  backchannel_supported: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
+                 entity_id: Optional[pulumi.Input[str]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  force_authn: Optional[pulumi.Input[bool]] = None,
+                 gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
                  link_only: Optional[pulumi.Input[bool]] = None,
                  name_id_policy_format: Optional[pulumi.Input[str]] = None,
@@ -1042,12 +1215,15 @@ class IdentityProvider(pulumi.CustomResource):
                  post_binding_logout: Optional[pulumi.Input[bool]] = None,
                  post_binding_response: Optional[pulumi.Input[bool]] = None,
                  post_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+                 principal_attribute: Optional[pulumi.Input[str]] = None,
+                 principal_type: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  signature_algorithm: Optional[pulumi.Input[str]] = None,
                  signing_certificate: Optional[pulumi.Input[str]] = None,
                  single_logout_service_url: Optional[pulumi.Input[str]] = None,
                  single_sign_on_service_url: Optional[pulumi.Input[str]] = None,
                  store_token: Optional[pulumi.Input[bool]] = None,
+                 sync_mode: Optional[pulumi.Input[str]] = None,
                  trust_email: Optional[pulumi.Input[bool]] = None,
                  validate_signature: Optional[pulumi.Input[bool]] = None,
                  want_assertions_encrypted: Optional[pulumi.Input[bool]] = None,
@@ -1081,8 +1257,12 @@ class IdentityProvider(pulumi.CustomResource):
             __props__.__dict__["backchannel_supported"] = backchannel_supported
             __props__.__dict__["display_name"] = display_name
             __props__.__dict__["enabled"] = enabled
+            if entity_id is None and not opts.urn:
+                raise TypeError("Missing required property 'entity_id'")
+            __props__.__dict__["entity_id"] = entity_id
             __props__.__dict__["first_broker_login_flow_alias"] = first_broker_login_flow_alias
             __props__.__dict__["force_authn"] = force_authn
+            __props__.__dict__["gui_order"] = gui_order
             __props__.__dict__["hide_on_login_page"] = hide_on_login_page
             __props__.__dict__["link_only"] = link_only
             __props__.__dict__["name_id_policy_format"] = name_id_policy_format
@@ -1090,6 +1270,8 @@ class IdentityProvider(pulumi.CustomResource):
             __props__.__dict__["post_binding_logout"] = post_binding_logout
             __props__.__dict__["post_binding_response"] = post_binding_response
             __props__.__dict__["post_broker_login_flow_alias"] = post_broker_login_flow_alias
+            __props__.__dict__["principal_attribute"] = principal_attribute
+            __props__.__dict__["principal_type"] = principal_type
             if realm is None and not opts.urn:
                 raise TypeError("Missing required property 'realm'")
             __props__.__dict__["realm"] = realm
@@ -1100,6 +1282,7 @@ class IdentityProvider(pulumi.CustomResource):
                 raise TypeError("Missing required property 'single_sign_on_service_url'")
             __props__.__dict__["single_sign_on_service_url"] = single_sign_on_service_url
             __props__.__dict__["store_token"] = store_token
+            __props__.__dict__["sync_mode"] = sync_mode
             __props__.__dict__["trust_email"] = trust_email
             __props__.__dict__["validate_signature"] = validate_signature
             __props__.__dict__["want_assertions_encrypted"] = want_assertions_encrypted
@@ -1122,8 +1305,10 @@ class IdentityProvider(pulumi.CustomResource):
             backchannel_supported: Optional[pulumi.Input[bool]] = None,
             display_name: Optional[pulumi.Input[str]] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
+            entity_id: Optional[pulumi.Input[str]] = None,
             first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
             force_authn: Optional[pulumi.Input[bool]] = None,
+            gui_order: Optional[pulumi.Input[str]] = None,
             hide_on_login_page: Optional[pulumi.Input[bool]] = None,
             internal_id: Optional[pulumi.Input[str]] = None,
             link_only: Optional[pulumi.Input[bool]] = None,
@@ -1132,12 +1317,15 @@ class IdentityProvider(pulumi.CustomResource):
             post_binding_logout: Optional[pulumi.Input[bool]] = None,
             post_binding_response: Optional[pulumi.Input[bool]] = None,
             post_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+            principal_attribute: Optional[pulumi.Input[str]] = None,
+            principal_type: Optional[pulumi.Input[str]] = None,
             realm: Optional[pulumi.Input[str]] = None,
             signature_algorithm: Optional[pulumi.Input[str]] = None,
             signing_certificate: Optional[pulumi.Input[str]] = None,
             single_logout_service_url: Optional[pulumi.Input[str]] = None,
             single_sign_on_service_url: Optional[pulumi.Input[str]] = None,
             store_token: Optional[pulumi.Input[bool]] = None,
+            sync_mode: Optional[pulumi.Input[str]] = None,
             trust_email: Optional[pulumi.Input[bool]] = None,
             validate_signature: Optional[pulumi.Input[bool]] = None,
             want_assertions_encrypted: Optional[pulumi.Input[bool]] = None,
@@ -1156,8 +1344,10 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[bool] backchannel_supported: Does the external IDP support back-channel logout ?.
         :param pulumi.Input[str] display_name: The display name for the realm that is shown when logging in to the admin console.
         :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        :param pulumi.Input[str] entity_id: The Entity ID that will be used to uniquely identify this SAML Service Provider.
         :param pulumi.Input[str] first_broker_login_flow_alias: Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
         :param pulumi.Input[bool] force_authn: Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
+        :param pulumi.Input[str] gui_order: GUI Order
         :param pulumi.Input[bool] hide_on_login_page: If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
         :param pulumi.Input[str] internal_id: Internal Identity Provider Id
         :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
@@ -1166,12 +1356,15 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
         :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
+        :param pulumi.Input[str] principal_attribute: Principal Attribute
+        :param pulumi.Input[str] principal_type: Principal Type
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[str] signature_algorithm: Signing Algorithm. Defaults to empty.
         :param pulumi.Input[str] signing_certificate: Signing Certificate.
         :param pulumi.Input[str] single_logout_service_url: The Url that must be used to send logout requests.
         :param pulumi.Input[str] single_sign_on_service_url: The Url that must be used to send authentication requests (SAML AuthnRequest).
         :param pulumi.Input[bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        :param pulumi.Input[str] sync_mode: Sync Mode
         :param pulumi.Input[bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[bool] validate_signature: Enable/disable signature validation of SAML responses.
         :param pulumi.Input[bool] want_assertions_encrypted: Indicates whether this service provider expects an encrypted Assertion.
@@ -1188,8 +1381,10 @@ class IdentityProvider(pulumi.CustomResource):
         __props__.__dict__["backchannel_supported"] = backchannel_supported
         __props__.__dict__["display_name"] = display_name
         __props__.__dict__["enabled"] = enabled
+        __props__.__dict__["entity_id"] = entity_id
         __props__.__dict__["first_broker_login_flow_alias"] = first_broker_login_flow_alias
         __props__.__dict__["force_authn"] = force_authn
+        __props__.__dict__["gui_order"] = gui_order
         __props__.__dict__["hide_on_login_page"] = hide_on_login_page
         __props__.__dict__["internal_id"] = internal_id
         __props__.__dict__["link_only"] = link_only
@@ -1198,12 +1393,15 @@ class IdentityProvider(pulumi.CustomResource):
         __props__.__dict__["post_binding_logout"] = post_binding_logout
         __props__.__dict__["post_binding_response"] = post_binding_response
         __props__.__dict__["post_broker_login_flow_alias"] = post_broker_login_flow_alias
+        __props__.__dict__["principal_attribute"] = principal_attribute
+        __props__.__dict__["principal_type"] = principal_type
         __props__.__dict__["realm"] = realm
         __props__.__dict__["signature_algorithm"] = signature_algorithm
         __props__.__dict__["signing_certificate"] = signing_certificate
         __props__.__dict__["single_logout_service_url"] = single_logout_service_url
         __props__.__dict__["single_sign_on_service_url"] = single_sign_on_service_url
         __props__.__dict__["store_token"] = store_token
+        __props__.__dict__["sync_mode"] = sync_mode
         __props__.__dict__["trust_email"] = trust_email
         __props__.__dict__["validate_signature"] = validate_signature
         __props__.__dict__["want_assertions_encrypted"] = want_assertions_encrypted
@@ -1260,6 +1458,14 @@ class IdentityProvider(pulumi.CustomResource):
         return pulumi.get(self, "enabled")
 
     @property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> pulumi.Output[str]:
+        """
+        The Entity ID that will be used to uniquely identify this SAML Service Provider.
+        """
+        return pulumi.get(self, "entity_id")
+
+    @property
     @pulumi.getter(name="firstBrokerLoginFlowAlias")
     def first_broker_login_flow_alias(self) -> pulumi.Output[Optional[str]]:
         """
@@ -1274,6 +1480,14 @@ class IdentityProvider(pulumi.CustomResource):
         Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
         """
         return pulumi.get(self, "force_authn")
+
+    @property
+    @pulumi.getter(name="guiOrder")
+    def gui_order(self) -> pulumi.Output[Optional[str]]:
+        """
+        GUI Order
+        """
+        return pulumi.get(self, "gui_order")
 
     @property
     @pulumi.getter(name="hideOnLoginPage")
@@ -1340,6 +1554,22 @@ class IdentityProvider(pulumi.CustomResource):
         return pulumi.get(self, "post_broker_login_flow_alias")
 
     @property
+    @pulumi.getter(name="principalAttribute")
+    def principal_attribute(self) -> pulumi.Output[Optional[str]]:
+        """
+        Principal Attribute
+        """
+        return pulumi.get(self, "principal_attribute")
+
+    @property
+    @pulumi.getter(name="principalType")
+    def principal_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        Principal Type
+        """
+        return pulumi.get(self, "principal_type")
+
+    @property
     @pulumi.getter
     def realm(self) -> pulumi.Output[str]:
         """
@@ -1386,6 +1616,14 @@ class IdentityProvider(pulumi.CustomResource):
         When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         """
         return pulumi.get(self, "store_token")
+
+    @property
+    @pulumi.getter(name="syncMode")
+    def sync_mode(self) -> pulumi.Output[Optional[str]]:
+        """
+        Sync Mode
+        """
+        return pulumi.get(self, "sync_mode")
 
     @property
     @pulumi.getter(name="trustEmail")

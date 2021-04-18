@@ -86,10 +86,6 @@ type UserFederation struct {
 	BindDn pulumi.StringPtrOutput `pulumi:"bindDn"`
 	// A block containing the cache settings.
 	Cache UserFederationCachePtrOutput `pulumi:"cache"`
-	// **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-	//
-	// Deprecated: use cache.policy instead
-	CachePolicy pulumi.StringPtrOutput `pulumi:"cachePolicy"`
 	// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod pulumi.IntPtrOutput `pulumi:"changedSyncPeriod"`
 	// LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
@@ -126,6 +122,8 @@ type UserFederation struct {
 	SearchScope pulumi.StringPtrOutput `pulumi:"searchScope"`
 	// When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
 	SyncRegistrations pulumi.BoolPtrOutput `pulumi:"syncRegistrations"`
+	// If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
+	TrustEmail pulumi.BoolPtrOutput `pulumi:"trustEmail"`
 	// Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
 	UseTruststoreSpi pulumi.StringPtrOutput `pulumi:"useTruststoreSpi"`
 	// Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
@@ -200,10 +198,6 @@ type userFederationState struct {
 	BindDn *string `pulumi:"bindDn"`
 	// A block containing the cache settings.
 	Cache *UserFederationCache `pulumi:"cache"`
-	// **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-	//
-	// Deprecated: use cache.policy instead
-	CachePolicy *string `pulumi:"cachePolicy"`
 	// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod *int `pulumi:"changedSyncPeriod"`
 	// LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
@@ -240,6 +234,8 @@ type userFederationState struct {
 	SearchScope *string `pulumi:"searchScope"`
 	// When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
 	SyncRegistrations *bool `pulumi:"syncRegistrations"`
+	// If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
+	TrustEmail *bool `pulumi:"trustEmail"`
 	// Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
 	UseTruststoreSpi *string `pulumi:"useTruststoreSpi"`
 	// Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
@@ -265,10 +261,6 @@ type UserFederationState struct {
 	BindDn pulumi.StringPtrInput
 	// A block containing the cache settings.
 	Cache UserFederationCachePtrInput
-	// **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-	//
-	// Deprecated: use cache.policy instead
-	CachePolicy pulumi.StringPtrInput
 	// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod pulumi.IntPtrInput
 	// LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
@@ -305,6 +297,8 @@ type UserFederationState struct {
 	SearchScope pulumi.StringPtrInput
 	// When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
 	SyncRegistrations pulumi.BoolPtrInput
+	// If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
+	TrustEmail pulumi.BoolPtrInput
 	// Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
 	UseTruststoreSpi pulumi.StringPtrInput
 	// Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
@@ -334,10 +328,6 @@ type userFederationArgs struct {
 	BindDn *string `pulumi:"bindDn"`
 	// A block containing the cache settings.
 	Cache *UserFederationCache `pulumi:"cache"`
-	// **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-	//
-	// Deprecated: use cache.policy instead
-	CachePolicy *string `pulumi:"cachePolicy"`
 	// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod *int `pulumi:"changedSyncPeriod"`
 	// LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
@@ -374,6 +364,8 @@ type userFederationArgs struct {
 	SearchScope *string `pulumi:"searchScope"`
 	// When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
 	SyncRegistrations *bool `pulumi:"syncRegistrations"`
+	// If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
+	TrustEmail *bool `pulumi:"trustEmail"`
 	// Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
 	UseTruststoreSpi *string `pulumi:"useTruststoreSpi"`
 	// Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
@@ -400,10 +392,6 @@ type UserFederationArgs struct {
 	BindDn pulumi.StringPtrInput
 	// A block containing the cache settings.
 	Cache UserFederationCachePtrInput
-	// **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-	//
-	// Deprecated: use cache.policy instead
-	CachePolicy pulumi.StringPtrInput
 	// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod pulumi.IntPtrInput
 	// LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
@@ -440,6 +428,8 @@ type UserFederationArgs struct {
 	SearchScope pulumi.StringPtrInput
 	// When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
 	SyncRegistrations pulumi.BoolPtrInput
+	// If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
+	TrustEmail pulumi.BoolPtrInput
 	// Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
 	UseTruststoreSpi pulumi.StringPtrInput
 	// Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.

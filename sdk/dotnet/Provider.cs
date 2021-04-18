@@ -45,6 +45,14 @@ namespace Pulumi.Keycloak
 
     public sealed class ProviderArgs : Pulumi.ResourceArgs
     {
+        [Input("additionalHeaders", json: true)]
+        private InputMap<string>? _additionalHeaders;
+        public InputMap<string> AdditionalHeaders
+        {
+            get => _additionalHeaders ?? (_additionalHeaders = new InputMap<string>());
+            set => _additionalHeaders = value;
+        }
+
         [Input("basePath")]
         public Input<string>? BasePath { get; set; }
 

@@ -138,10 +138,6 @@ type UserSessionNoteProtocolMapper struct {
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
 	// String value being the name of stored user session note within the UserSessionModel.note map.
 	SessionNote pulumi.StringPtrOutput `pulumi:"sessionNote"`
-	// **Deprecated** Use `sessionNote` instead.
-	//
-	// Deprecated: use session_note instead
-	SessionNoteLabel pulumi.StringPtrOutput `pulumi:"sessionNoteLabel"`
 }
 
 // NewUserSessionNoteProtocolMapper registers a new resource with the given unique name, arguments, and options.
@@ -197,10 +193,6 @@ type userSessionNoteProtocolMapperState struct {
 	RealmId *string `pulumi:"realmId"`
 	// String value being the name of stored user session note within the UserSessionModel.note map.
 	SessionNote *string `pulumi:"sessionNote"`
-	// **Deprecated** Use `sessionNote` instead.
-	//
-	// Deprecated: use session_note instead
-	SessionNoteLabel *string `pulumi:"sessionNoteLabel"`
 }
 
 type UserSessionNoteProtocolMapperState struct {
@@ -222,10 +214,6 @@ type UserSessionNoteProtocolMapperState struct {
 	RealmId pulumi.StringPtrInput
 	// String value being the name of stored user session note within the UserSessionModel.note map.
 	SessionNote pulumi.StringPtrInput
-	// **Deprecated** Use `sessionNote` instead.
-	//
-	// Deprecated: use session_note instead
-	SessionNoteLabel pulumi.StringPtrInput
 }
 
 func (UserSessionNoteProtocolMapperState) ElementType() reflect.Type {
@@ -251,10 +239,6 @@ type userSessionNoteProtocolMapperArgs struct {
 	RealmId string `pulumi:"realmId"`
 	// String value being the name of stored user session note within the UserSessionModel.note map.
 	SessionNote *string `pulumi:"sessionNote"`
-	// **Deprecated** Use `sessionNote` instead.
-	//
-	// Deprecated: use session_note instead
-	SessionNoteLabel *string `pulumi:"sessionNoteLabel"`
 }
 
 // The set of arguments for constructing a UserSessionNoteProtocolMapper resource.
@@ -277,10 +261,6 @@ type UserSessionNoteProtocolMapperArgs struct {
 	RealmId pulumi.StringInput
 	// String value being the name of stored user session note within the UserSessionModel.note map.
 	SessionNote pulumi.StringPtrInput
-	// **Deprecated** Use `sessionNote` instead.
-	//
-	// Deprecated: use session_note instead
-	SessionNoteLabel pulumi.StringPtrInput
 }
 
 func (UserSessionNoteProtocolMapperArgs) ElementType() reflect.Type {

@@ -22,6 +22,7 @@ import * as utilities from "../utilities";
  * const realmSamlIdentityProvider = new keycloak.saml.IdentityProvider("realmSamlIdentityProvider", {
  *     realm: realm.id,
  *     alias: "my-saml-idp",
+ *     entityId: "https://domain.com/entity_id",
  *     singleSignOnServiceUrl: "https://domain.com/adfs/ls/",
  *     singleLogoutServiceUrl: "https://domain.com/adfs/ls/?wa=wsignout1.0",
  *     backchannelSupported: true,
@@ -95,6 +96,10 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
     /**
+     * The Entity ID that will be used to uniquely identify this SAML Service Provider.
+     */
+    public readonly entityId!: pulumi.Output<string>;
+    /**
      * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
      */
     public readonly firstBrokerLoginFlowAlias!: pulumi.Output<string | undefined>;
@@ -102,6 +107,10 @@ export class IdentityProvider extends pulumi.CustomResource {
      * Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
      */
     public readonly forceAuthn!: pulumi.Output<boolean | undefined>;
+    /**
+     * GUI Order
+     */
+    public readonly guiOrder!: pulumi.Output<string | undefined>;
     /**
      * If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
      */
@@ -135,6 +144,14 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly postBrokerLoginFlowAlias!: pulumi.Output<string | undefined>;
     /**
+     * Principal Attribute
+     */
+    public readonly principalAttribute!: pulumi.Output<string | undefined>;
+    /**
+     * Principal Type
+     */
+    public readonly principalType!: pulumi.Output<string | undefined>;
+    /**
      * The name of the realm. This is unique across Keycloak.
      */
     public readonly realm!: pulumi.Output<string>;
@@ -158,6 +175,10 @@ export class IdentityProvider extends pulumi.CustomResource {
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
     public readonly storeToken!: pulumi.Output<boolean | undefined>;
+    /**
+     * Sync Mode
+     */
+    public readonly syncMode!: pulumi.Output<string | undefined>;
     /**
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
      */
@@ -198,8 +219,10 @@ export class IdentityProvider extends pulumi.CustomResource {
             inputs["backchannelSupported"] = state ? state.backchannelSupported : undefined;
             inputs["displayName"] = state ? state.displayName : undefined;
             inputs["enabled"] = state ? state.enabled : undefined;
+            inputs["entityId"] = state ? state.entityId : undefined;
             inputs["firstBrokerLoginFlowAlias"] = state ? state.firstBrokerLoginFlowAlias : undefined;
             inputs["forceAuthn"] = state ? state.forceAuthn : undefined;
+            inputs["guiOrder"] = state ? state.guiOrder : undefined;
             inputs["hideOnLoginPage"] = state ? state.hideOnLoginPage : undefined;
             inputs["internalId"] = state ? state.internalId : undefined;
             inputs["linkOnly"] = state ? state.linkOnly : undefined;
@@ -208,12 +231,15 @@ export class IdentityProvider extends pulumi.CustomResource {
             inputs["postBindingLogout"] = state ? state.postBindingLogout : undefined;
             inputs["postBindingResponse"] = state ? state.postBindingResponse : undefined;
             inputs["postBrokerLoginFlowAlias"] = state ? state.postBrokerLoginFlowAlias : undefined;
+            inputs["principalAttribute"] = state ? state.principalAttribute : undefined;
+            inputs["principalType"] = state ? state.principalType : undefined;
             inputs["realm"] = state ? state.realm : undefined;
             inputs["signatureAlgorithm"] = state ? state.signatureAlgorithm : undefined;
             inputs["signingCertificate"] = state ? state.signingCertificate : undefined;
             inputs["singleLogoutServiceUrl"] = state ? state.singleLogoutServiceUrl : undefined;
             inputs["singleSignOnServiceUrl"] = state ? state.singleSignOnServiceUrl : undefined;
             inputs["storeToken"] = state ? state.storeToken : undefined;
+            inputs["syncMode"] = state ? state.syncMode : undefined;
             inputs["trustEmail"] = state ? state.trustEmail : undefined;
             inputs["validateSignature"] = state ? state.validateSignature : undefined;
             inputs["wantAssertionsEncrypted"] = state ? state.wantAssertionsEncrypted : undefined;
@@ -223,6 +249,9 @@ export class IdentityProvider extends pulumi.CustomResource {
             const args = argsOrState as IdentityProviderArgs | undefined;
             if ((!args || args.alias === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'alias'");
+            }
+            if ((!args || args.entityId === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'entityId'");
             }
             if ((!args || args.realm === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realm'");
@@ -236,8 +265,10 @@ export class IdentityProvider extends pulumi.CustomResource {
             inputs["backchannelSupported"] = args ? args.backchannelSupported : undefined;
             inputs["displayName"] = args ? args.displayName : undefined;
             inputs["enabled"] = args ? args.enabled : undefined;
+            inputs["entityId"] = args ? args.entityId : undefined;
             inputs["firstBrokerLoginFlowAlias"] = args ? args.firstBrokerLoginFlowAlias : undefined;
             inputs["forceAuthn"] = args ? args.forceAuthn : undefined;
+            inputs["guiOrder"] = args ? args.guiOrder : undefined;
             inputs["hideOnLoginPage"] = args ? args.hideOnLoginPage : undefined;
             inputs["linkOnly"] = args ? args.linkOnly : undefined;
             inputs["nameIdPolicyFormat"] = args ? args.nameIdPolicyFormat : undefined;
@@ -245,12 +276,15 @@ export class IdentityProvider extends pulumi.CustomResource {
             inputs["postBindingLogout"] = args ? args.postBindingLogout : undefined;
             inputs["postBindingResponse"] = args ? args.postBindingResponse : undefined;
             inputs["postBrokerLoginFlowAlias"] = args ? args.postBrokerLoginFlowAlias : undefined;
+            inputs["principalAttribute"] = args ? args.principalAttribute : undefined;
+            inputs["principalType"] = args ? args.principalType : undefined;
             inputs["realm"] = args ? args.realm : undefined;
             inputs["signatureAlgorithm"] = args ? args.signatureAlgorithm : undefined;
             inputs["signingCertificate"] = args ? args.signingCertificate : undefined;
             inputs["singleLogoutServiceUrl"] = args ? args.singleLogoutServiceUrl : undefined;
             inputs["singleSignOnServiceUrl"] = args ? args.singleSignOnServiceUrl : undefined;
             inputs["storeToken"] = args ? args.storeToken : undefined;
+            inputs["syncMode"] = args ? args.syncMode : undefined;
             inputs["trustEmail"] = args ? args.trustEmail : undefined;
             inputs["validateSignature"] = args ? args.validateSignature : undefined;
             inputs["wantAssertionsEncrypted"] = args ? args.wantAssertionsEncrypted : undefined;
@@ -294,6 +328,10 @@ export interface IdentityProviderState {
      */
     readonly enabled?: pulumi.Input<boolean>;
     /**
+     * The Entity ID that will be used to uniquely identify this SAML Service Provider.
+     */
+    readonly entityId?: pulumi.Input<string>;
+    /**
      * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
      */
     readonly firstBrokerLoginFlowAlias?: pulumi.Input<string>;
@@ -301,6 +339,10 @@ export interface IdentityProviderState {
      * Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
      */
     readonly forceAuthn?: pulumi.Input<boolean>;
+    /**
+     * GUI Order
+     */
+    readonly guiOrder?: pulumi.Input<string>;
     /**
      * If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
      */
@@ -334,6 +376,14 @@ export interface IdentityProviderState {
      */
     readonly postBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
+     * Principal Attribute
+     */
+    readonly principalAttribute?: pulumi.Input<string>;
+    /**
+     * Principal Type
+     */
+    readonly principalType?: pulumi.Input<string>;
+    /**
      * The name of the realm. This is unique across Keycloak.
      */
     readonly realm?: pulumi.Input<string>;
@@ -357,6 +407,10 @@ export interface IdentityProviderState {
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
     readonly storeToken?: pulumi.Input<boolean>;
+    /**
+     * Sync Mode
+     */
+    readonly syncMode?: pulumi.Input<string>;
     /**
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
      */
@@ -408,6 +462,10 @@ export interface IdentityProviderArgs {
      */
     readonly enabled?: pulumi.Input<boolean>;
     /**
+     * The Entity ID that will be used to uniquely identify this SAML Service Provider.
+     */
+    readonly entityId: pulumi.Input<string>;
+    /**
      * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
      */
     readonly firstBrokerLoginFlowAlias?: pulumi.Input<string>;
@@ -415,6 +473,10 @@ export interface IdentityProviderArgs {
      * Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
      */
     readonly forceAuthn?: pulumi.Input<boolean>;
+    /**
+     * GUI Order
+     */
+    readonly guiOrder?: pulumi.Input<string>;
     /**
      * If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
      */
@@ -444,6 +506,14 @@ export interface IdentityProviderArgs {
      */
     readonly postBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
+     * Principal Attribute
+     */
+    readonly principalAttribute?: pulumi.Input<string>;
+    /**
+     * Principal Type
+     */
+    readonly principalType?: pulumi.Input<string>;
+    /**
      * The name of the realm. This is unique across Keycloak.
      */
     readonly realm: pulumi.Input<string>;
@@ -467,6 +537,10 @@ export interface IdentityProviderArgs {
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
     readonly storeToken?: pulumi.Input<boolean>;
+    /**
+     * Sync Mode
+     */
+    readonly syncMode?: pulumi.Input<string>;
     /**
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
      */

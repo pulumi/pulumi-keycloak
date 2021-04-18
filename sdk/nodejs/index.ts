@@ -12,6 +12,7 @@ export * from "./defaultGroups";
 export * from "./genericClientProtocolMapper";
 export * from "./genericClientRoleMapper";
 export * from "./getAuthenticationExecution";
+export * from "./getAuthenticationFlow";
 export * from "./getGroup";
 export * from "./getRealm";
 export * from "./getRealmKeys";
@@ -29,6 +30,7 @@ export * from "./realmEvents";
 export * from "./requiredAction";
 export * from "./role";
 export * from "./user";
+export * from "./userGroups";
 export * from "./userRoles";
 export * from "./userTemplateImporterIdentityProviderMapper";
 export * from "./usersPermissions";
@@ -70,6 +72,7 @@ import { RealmEvents } from "./realmEvents";
 import { RequiredAction } from "./requiredAction";
 import { Role } from "./role";
 import { User } from "./user";
+import { UserGroups } from "./userGroups";
 import { UserRoles } from "./userRoles";
 import { UserTemplateImporterIdentityProviderMapper } from "./userTemplateImporterIdentityProviderMapper";
 import { UsersPermissions } from "./usersPermissions";
@@ -112,6 +115,8 @@ const _module = {
                 return new Role(name, <any>undefined, { urn })
             case "keycloak:index/user:User":
                 return new User(name, <any>undefined, { urn })
+            case "keycloak:index/userGroups:UserGroups":
+                return new UserGroups(name, <any>undefined, { urn })
             case "keycloak:index/userRoles:UserRoles":
                 return new UserRoles(name, <any>undefined, { urn })
             case "keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper":
@@ -140,6 +145,7 @@ pulumi.runtime.registerResourceModule("keycloak", "index/realmEvents", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/requiredAction", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/role", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/user", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/userGroups", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/userRoles", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/userTemplateImporterIdentityProviderMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/usersPermissions", _module)

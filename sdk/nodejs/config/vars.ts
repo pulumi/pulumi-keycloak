@@ -6,6 +6,7 @@ import * as utilities from "../utilities";
 
 let __config = new pulumi.Config("keycloak");
 
+export let additionalHeaders: {[key: string]: string} | undefined = __config.getObject<{[key: string]: string}>("additionalHeaders");
 export let basePath: string | undefined = __config.get("basePath");
 export let clientId: string | undefined = __config.get("clientId");
 export let clientSecret: string | undefined = __config.get("clientSecret");

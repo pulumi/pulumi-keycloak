@@ -21,11 +21,13 @@ import (
 type GroupRoles struct {
 	pulumi.CustomResourceState
 
+	// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+	Exhaustive pulumi.BoolPtrOutput `pulumi:"exhaustive"`
 	// The ID of the group this resource should manage roles for.
 	GroupId pulumi.StringOutput `pulumi:"groupId"`
 	// The realm this group exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	// A list of role IDs to map to the group
+	// A list of role IDs to map to the group.
 	RoleIds pulumi.StringArrayOutput `pulumi:"roleIds"`
 }
 
@@ -67,20 +69,24 @@ func GetGroupRoles(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GroupRoles resources.
 type groupRolesState struct {
+	// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+	Exhaustive *bool `pulumi:"exhaustive"`
 	// The ID of the group this resource should manage roles for.
 	GroupId *string `pulumi:"groupId"`
 	// The realm this group exists in.
 	RealmId *string `pulumi:"realmId"`
-	// A list of role IDs to map to the group
+	// A list of role IDs to map to the group.
 	RoleIds []string `pulumi:"roleIds"`
 }
 
 type GroupRolesState struct {
+	// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+	Exhaustive pulumi.BoolPtrInput
 	// The ID of the group this resource should manage roles for.
 	GroupId pulumi.StringPtrInput
 	// The realm this group exists in.
 	RealmId pulumi.StringPtrInput
-	// A list of role IDs to map to the group
+	// A list of role IDs to map to the group.
 	RoleIds pulumi.StringArrayInput
 }
 
@@ -89,21 +95,25 @@ func (GroupRolesState) ElementType() reflect.Type {
 }
 
 type groupRolesArgs struct {
+	// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+	Exhaustive *bool `pulumi:"exhaustive"`
 	// The ID of the group this resource should manage roles for.
 	GroupId string `pulumi:"groupId"`
 	// The realm this group exists in.
 	RealmId string `pulumi:"realmId"`
-	// A list of role IDs to map to the group
+	// A list of role IDs to map to the group.
 	RoleIds []string `pulumi:"roleIds"`
 }
 
 // The set of arguments for constructing a GroupRoles resource.
 type GroupRolesArgs struct {
+	// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+	Exhaustive pulumi.BoolPtrInput
 	// The ID of the group this resource should manage roles for.
 	GroupId pulumi.StringInput
 	// The realm this group exists in.
 	RealmId pulumi.StringInput
-	// A list of role IDs to map to the group
+	// A list of role IDs to map to the group.
 	RoleIds pulumi.StringArrayInput
 }
 

@@ -22,6 +22,12 @@ namespace Pulumi.Keycloak
     public partial class UserRoles : Pulumi.CustomResource
     {
         /// <summary>
+        /// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
+        /// </summary>
+        [Output("exhaustive")]
+        public Output<bool?> Exhaustive { get; private set; } = null!;
+
+        /// <summary>
         /// The realm this user exists in.
         /// </summary>
         [Output("realmId")]
@@ -86,6 +92,12 @@ namespace Pulumi.Keycloak
     public sealed class UserRolesArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
+        /// </summary>
+        [Input("exhaustive")]
+        public Input<bool>? Exhaustive { get; set; }
+
+        /// <summary>
         /// The realm this user exists in.
         /// </summary>
         [Input("realmId", required: true)]
@@ -116,6 +128,12 @@ namespace Pulumi.Keycloak
 
     public sealed class UserRolesState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
+        /// </summary>
+        [Input("exhaustive")]
+        public Input<bool>? Exhaustive { get; set; }
+
         /// <summary>
         /// The realm this user exists in.
         /// </summary>

@@ -25,6 +25,7 @@ import * as utilities from "./utilities";
  *     description: "My Realm Role",
  *     attributes: {
  *         key: "value",
+ *         multivalue: "value1##value2",
  *     },
  * });
  * ```
@@ -157,7 +158,7 @@ export class Role extends pulumi.CustomResource {
     }
 
     /**
-     * Attribute key/value pairs
+     * A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
     public readonly attributes!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
@@ -224,7 +225,7 @@ export class Role extends pulumi.CustomResource {
  */
 export interface RoleState {
     /**
-     * Attribute key/value pairs
+     * A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
     readonly attributes?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -254,7 +255,7 @@ export interface RoleState {
  */
 export interface RoleArgs {
     /**
-     * Attribute key/value pairs
+     * A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
     readonly attributes?: pulumi.Input<{[key: string]: any}>;
     /**

@@ -29,7 +29,7 @@ class UserArgs:
         The set of arguments for constructing a User resource.
         :param pulumi.Input[str] realm_id: The realm this user belongs to.
         :param pulumi.Input[str] username: The unique username of this user.
-        :param pulumi.Input[Mapping[str, Any]] attributes: A map representing attributes for the user
+        :param pulumi.Input[Mapping[str, Any]] attributes: A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         :param pulumi.Input[str] email: The user's email.
         :param pulumi.Input[bool] email_verified: Whether the email address was validated or not. Default to `false`.
         :param pulumi.Input[bool] enabled: When false, this user cannot log in. Defaults to `true`.
@@ -84,7 +84,7 @@ class UserArgs:
     @pulumi.getter
     def attributes(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        A map representing attributes for the user
+        A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         """
         return pulumi.get(self, "attributes")
 
@@ -189,7 +189,7 @@ class _UserState:
                  username: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering User resources.
-        :param pulumi.Input[Mapping[str, Any]] attributes: A map representing attributes for the user
+        :param pulumi.Input[Mapping[str, Any]] attributes: A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         :param pulumi.Input[str] email: The user's email.
         :param pulumi.Input[bool] email_verified: Whether the email address was validated or not. Default to `false`.
         :param pulumi.Input[bool] enabled: When false, this user cannot log in. Defaults to `true`.
@@ -224,7 +224,7 @@ class _UserState:
     @pulumi.getter
     def attributes(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        A map representing attributes for the user
+        A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         """
         return pulumi.get(self, "attributes")
 
@@ -388,6 +388,7 @@ class User(pulumi.CustomResource):
             last_name="Aliceberg",
             attributes={
                 "foo": "bar",
+                "multivalue": "value1##value2",
             },
             initial_password=keycloak.UserInitialPasswordArgs(
                 value="some password",
@@ -405,7 +406,7 @@ class User(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] attributes: A map representing attributes for the user
+        :param pulumi.Input[Mapping[str, Any]] attributes: A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         :param pulumi.Input[str] email: The user's email.
         :param pulumi.Input[bool] email_verified: Whether the email address was validated or not. Default to `false`.
         :param pulumi.Input[bool] enabled: When false, this user cannot log in. Defaults to `true`.
@@ -453,6 +454,7 @@ class User(pulumi.CustomResource):
             last_name="Aliceberg",
             attributes={
                 "foo": "bar",
+                "multivalue": "value1##value2",
             },
             initial_password=keycloak.UserInitialPasswordArgs(
                 value="some password",
@@ -554,7 +556,7 @@ class User(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] attributes: A map representing attributes for the user
+        :param pulumi.Input[Mapping[str, Any]] attributes: A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         :param pulumi.Input[str] email: The user's email.
         :param pulumi.Input[bool] email_verified: Whether the email address was validated or not. Default to `false`.
         :param pulumi.Input[bool] enabled: When false, this user cannot log in. Defaults to `true`.
@@ -584,7 +586,7 @@ class User(pulumi.CustomResource):
     @pulumi.getter
     def attributes(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
-        A map representing attributes for the user
+        A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         """
         return pulumi.get(self, "attributes")
 

@@ -22,6 +22,12 @@ namespace Pulumi.Keycloak
     public partial class GroupRoles : Pulumi.CustomResource
     {
         /// <summary>
+        /// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+        /// </summary>
+        [Output("exhaustive")]
+        public Output<bool?> Exhaustive { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of the group this resource should manage roles for.
         /// </summary>
         [Output("groupId")]
@@ -34,7 +40,7 @@ namespace Pulumi.Keycloak
         public Output<string> RealmId { get; private set; } = null!;
 
         /// <summary>
-        /// A list of role IDs to map to the group
+        /// A list of role IDs to map to the group.
         /// </summary>
         [Output("roleIds")]
         public Output<ImmutableArray<string>> RoleIds { get; private set; } = null!;
@@ -86,6 +92,12 @@ namespace Pulumi.Keycloak
     public sealed class GroupRolesArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+        /// </summary>
+        [Input("exhaustive")]
+        public Input<bool>? Exhaustive { get; set; }
+
+        /// <summary>
         /// The ID of the group this resource should manage roles for.
         /// </summary>
         [Input("groupId", required: true)]
@@ -101,7 +113,7 @@ namespace Pulumi.Keycloak
         private InputList<string>? _roleIds;
 
         /// <summary>
-        /// A list of role IDs to map to the group
+        /// A list of role IDs to map to the group.
         /// </summary>
         public InputList<string> RoleIds
         {
@@ -116,6 +128,12 @@ namespace Pulumi.Keycloak
 
     public sealed class GroupRolesState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+        /// </summary>
+        [Input("exhaustive")]
+        public Input<bool>? Exhaustive { get; set; }
+
         /// <summary>
         /// The ID of the group this resource should manage roles for.
         /// </summary>
@@ -132,7 +150,7 @@ namespace Pulumi.Keycloak
         private InputList<string>? _roleIds;
 
         /// <summary>
-        /// A list of role IDs to map to the group
+        /// A list of role IDs to map to the group.
         /// </summary>
         public InputList<string> RoleIds
         {

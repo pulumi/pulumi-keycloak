@@ -38,6 +38,7 @@ import (
 // 		_, err = saml.NewIdentityProvider(ctx, "realmSamlIdentityProvider", &saml.IdentityProviderArgs{
 // 			Realm:                   realm.ID(),
 // 			Alias:                   pulumi.String("my-saml-idp"),
+// 			EntityId:                pulumi.String("https://domain.com/entity_id"),
 // 			SingleSignOnServiceUrl:  pulumi.String("https://domain.com/adfs/ls/"),
 // 			SingleLogoutServiceUrl:  pulumi.String("https://domain.com/adfs/ls/?wa=wsignout1.0"),
 // 			BackchannelSupported:    pulumi.Bool(true),
@@ -78,10 +79,14 @@ type IdentityProvider struct {
 	DisplayName pulumi.StringPtrOutput `pulumi:"displayName"`
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
+	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
+	EntityId pulumi.StringOutput `pulumi:"entityId"`
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrOutput `pulumi:"firstBrokerLoginFlowAlias"`
 	// Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
 	ForceAuthn pulumi.BoolPtrOutput `pulumi:"forceAuthn"`
+	// GUI Order
+	GuiOrder pulumi.StringPtrOutput `pulumi:"guiOrder"`
 	// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
 	HideOnLoginPage pulumi.BoolPtrOutput `pulumi:"hideOnLoginPage"`
 	// Internal Identity Provider Id
@@ -98,6 +103,10 @@ type IdentityProvider struct {
 	PostBindingResponse pulumi.BoolPtrOutput `pulumi:"postBindingResponse"`
 	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
 	PostBrokerLoginFlowAlias pulumi.StringPtrOutput `pulumi:"postBrokerLoginFlowAlias"`
+	// Principal Attribute
+	PrincipalAttribute pulumi.StringPtrOutput `pulumi:"principalAttribute"`
+	// Principal Type
+	PrincipalType pulumi.StringPtrOutput `pulumi:"principalType"`
 	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringOutput `pulumi:"realm"`
 	// Signing Algorithm. Defaults to empty.
@@ -110,6 +119,8 @@ type IdentityProvider struct {
 	SingleSignOnServiceUrl pulumi.StringOutput `pulumi:"singleSignOnServiceUrl"`
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrOutput `pulumi:"storeToken"`
+	// Sync Mode
+	SyncMode pulumi.StringPtrOutput `pulumi:"syncMode"`
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail pulumi.BoolPtrOutput `pulumi:"trustEmail"`
 	// Enable/disable signature validation of SAML responses.
@@ -131,6 +142,9 @@ func NewIdentityProvider(ctx *pulumi.Context,
 
 	if args.Alias == nil {
 		return nil, errors.New("invalid value for required argument 'Alias'")
+	}
+	if args.EntityId == nil {
+		return nil, errors.New("invalid value for required argument 'EntityId'")
 	}
 	if args.Realm == nil {
 		return nil, errors.New("invalid value for required argument 'Realm'")
@@ -172,10 +186,14 @@ type identityProviderState struct {
 	DisplayName *string `pulumi:"displayName"`
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
+	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
+	EntityId *string `pulumi:"entityId"`
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias *string `pulumi:"firstBrokerLoginFlowAlias"`
 	// Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
 	ForceAuthn *bool `pulumi:"forceAuthn"`
+	// GUI Order
+	GuiOrder *string `pulumi:"guiOrder"`
 	// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
 	HideOnLoginPage *bool `pulumi:"hideOnLoginPage"`
 	// Internal Identity Provider Id
@@ -192,6 +210,10 @@ type identityProviderState struct {
 	PostBindingResponse *bool `pulumi:"postBindingResponse"`
 	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
 	PostBrokerLoginFlowAlias *string `pulumi:"postBrokerLoginFlowAlias"`
+	// Principal Attribute
+	PrincipalAttribute *string `pulumi:"principalAttribute"`
+	// Principal Type
+	PrincipalType *string `pulumi:"principalType"`
 	// The name of the realm. This is unique across Keycloak.
 	Realm *string `pulumi:"realm"`
 	// Signing Algorithm. Defaults to empty.
@@ -204,6 +226,8 @@ type identityProviderState struct {
 	SingleSignOnServiceUrl *string `pulumi:"singleSignOnServiceUrl"`
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken *bool `pulumi:"storeToken"`
+	// Sync Mode
+	SyncMode *string `pulumi:"syncMode"`
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail *bool `pulumi:"trustEmail"`
 	// Enable/disable signature validation of SAML responses.
@@ -229,10 +253,14 @@ type IdentityProviderState struct {
 	DisplayName pulumi.StringPtrInput
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
+	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
+	EntityId pulumi.StringPtrInput
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrInput
 	// Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
 	ForceAuthn pulumi.BoolPtrInput
+	// GUI Order
+	GuiOrder pulumi.StringPtrInput
 	// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
 	HideOnLoginPage pulumi.BoolPtrInput
 	// Internal Identity Provider Id
@@ -249,6 +277,10 @@ type IdentityProviderState struct {
 	PostBindingResponse pulumi.BoolPtrInput
 	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
 	PostBrokerLoginFlowAlias pulumi.StringPtrInput
+	// Principal Attribute
+	PrincipalAttribute pulumi.StringPtrInput
+	// Principal Type
+	PrincipalType pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringPtrInput
 	// Signing Algorithm. Defaults to empty.
@@ -261,6 +293,8 @@ type IdentityProviderState struct {
 	SingleSignOnServiceUrl pulumi.StringPtrInput
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrInput
+	// Sync Mode
+	SyncMode pulumi.StringPtrInput
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail pulumi.BoolPtrInput
 	// Enable/disable signature validation of SAML responses.
@@ -290,10 +324,14 @@ type identityProviderArgs struct {
 	DisplayName *string `pulumi:"displayName"`
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
+	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
+	EntityId string `pulumi:"entityId"`
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias *string `pulumi:"firstBrokerLoginFlowAlias"`
 	// Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
 	ForceAuthn *bool `pulumi:"forceAuthn"`
+	// GUI Order
+	GuiOrder *string `pulumi:"guiOrder"`
 	// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
 	HideOnLoginPage *bool `pulumi:"hideOnLoginPage"`
 	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
@@ -308,6 +346,10 @@ type identityProviderArgs struct {
 	PostBindingResponse *bool `pulumi:"postBindingResponse"`
 	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
 	PostBrokerLoginFlowAlias *string `pulumi:"postBrokerLoginFlowAlias"`
+	// Principal Attribute
+	PrincipalAttribute *string `pulumi:"principalAttribute"`
+	// Principal Type
+	PrincipalType *string `pulumi:"principalType"`
 	// The name of the realm. This is unique across Keycloak.
 	Realm string `pulumi:"realm"`
 	// Signing Algorithm. Defaults to empty.
@@ -320,6 +362,8 @@ type identityProviderArgs struct {
 	SingleSignOnServiceUrl string `pulumi:"singleSignOnServiceUrl"`
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken *bool `pulumi:"storeToken"`
+	// Sync Mode
+	SyncMode *string `pulumi:"syncMode"`
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail *bool `pulumi:"trustEmail"`
 	// Enable/disable signature validation of SAML responses.
@@ -346,10 +390,14 @@ type IdentityProviderArgs struct {
 	DisplayName pulumi.StringPtrInput
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
+	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
+	EntityId pulumi.StringInput
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrInput
 	// Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
 	ForceAuthn pulumi.BoolPtrInput
+	// GUI Order
+	GuiOrder pulumi.StringPtrInput
 	// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
 	HideOnLoginPage pulumi.BoolPtrInput
 	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
@@ -364,6 +412,10 @@ type IdentityProviderArgs struct {
 	PostBindingResponse pulumi.BoolPtrInput
 	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
 	PostBrokerLoginFlowAlias pulumi.StringPtrInput
+	// Principal Attribute
+	PrincipalAttribute pulumi.StringPtrInput
+	// Principal Type
+	PrincipalType pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringInput
 	// Signing Algorithm. Defaults to empty.
@@ -376,6 +428,8 @@ type IdentityProviderArgs struct {
 	SingleSignOnServiceUrl pulumi.StringInput
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrInput
+	// Sync Mode
+	SyncMode pulumi.StringPtrInput
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail pulumi.BoolPtrInput
 	// Enable/disable signature validation of SAML responses.

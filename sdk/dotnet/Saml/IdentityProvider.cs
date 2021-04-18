@@ -33,6 +33,7 @@ namespace Pulumi.Keycloak.Saml
     ///         {
     ///             Realm = realm.Id,
     ///             Alias = "my-saml-idp",
+    ///             EntityId = "https://domain.com/entity_id",
     ///             SingleSignOnServiceUrl = "https://domain.com/adfs/ls/",
     ///             SingleLogoutServiceUrl = "https://domain.com/adfs/ls/?wa=wsignout1.0",
     ///             BackchannelSupported = true,
@@ -96,6 +97,12 @@ namespace Pulumi.Keycloak.Saml
         public Output<bool?> Enabled { get; private set; } = null!;
 
         /// <summary>
+        /// The Entity ID that will be used to uniquely identify this SAML Service Provider.
+        /// </summary>
+        [Output("entityId")]
+        public Output<string> EntityId { get; private set; } = null!;
+
+        /// <summary>
         /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
         /// </summary>
         [Output("firstBrokerLoginFlowAlias")]
@@ -106,6 +113,12 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Output("forceAuthn")]
         public Output<bool?> ForceAuthn { get; private set; } = null!;
+
+        /// <summary>
+        /// GUI Order
+        /// </summary>
+        [Output("guiOrder")]
+        public Output<string?> GuiOrder { get; private set; } = null!;
 
         /// <summary>
         /// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
@@ -156,6 +169,18 @@ namespace Pulumi.Keycloak.Saml
         public Output<string?> PostBrokerLoginFlowAlias { get; private set; } = null!;
 
         /// <summary>
+        /// Principal Attribute
+        /// </summary>
+        [Output("principalAttribute")]
+        public Output<string?> PrincipalAttribute { get; private set; } = null!;
+
+        /// <summary>
+        /// Principal Type
+        /// </summary>
+        [Output("principalType")]
+        public Output<string?> PrincipalType { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the realm. This is unique across Keycloak.
         /// </summary>
         [Output("realm")]
@@ -190,6 +215,12 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Output("storeToken")]
         public Output<bool?> StoreToken { get; private set; } = null!;
+
+        /// <summary>
+        /// Sync Mode
+        /// </summary>
+        [Output("syncMode")]
+        public Output<string?> SyncMode { get; private set; } = null!;
 
         /// <summary>
         /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
@@ -304,6 +335,12 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
+        /// The Entity ID that will be used to uniquely identify this SAML Service Provider.
+        /// </summary>
+        [Input("entityId", required: true)]
+        public Input<string> EntityId { get; set; } = null!;
+
+        /// <summary>
         /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
         /// </summary>
         [Input("firstBrokerLoginFlowAlias")]
@@ -314,6 +351,12 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Input("forceAuthn")]
         public Input<bool>? ForceAuthn { get; set; }
+
+        /// <summary>
+        /// GUI Order
+        /// </summary>
+        [Input("guiOrder")]
+        public Input<string>? GuiOrder { get; set; }
 
         /// <summary>
         /// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
@@ -358,6 +401,18 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? PostBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
+        /// Principal Attribute
+        /// </summary>
+        [Input("principalAttribute")]
+        public Input<string>? PrincipalAttribute { get; set; }
+
+        /// <summary>
+        /// Principal Type
+        /// </summary>
+        [Input("principalType")]
+        public Input<string>? PrincipalType { get; set; }
+
+        /// <summary>
         /// The name of the realm. This is unique across Keycloak.
         /// </summary>
         [Input("realm", required: true)]
@@ -392,6 +447,12 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Input("storeToken")]
         public Input<bool>? StoreToken { get; set; }
+
+        /// <summary>
+        /// Sync Mode
+        /// </summary>
+        [Input("syncMode")]
+        public Input<string>? SyncMode { get; set; }
 
         /// <summary>
         /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
@@ -467,6 +528,12 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
+        /// The Entity ID that will be used to uniquely identify this SAML Service Provider.
+        /// </summary>
+        [Input("entityId")]
+        public Input<string>? EntityId { get; set; }
+
+        /// <summary>
         /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
         /// </summary>
         [Input("firstBrokerLoginFlowAlias")]
@@ -477,6 +544,12 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Input("forceAuthn")]
         public Input<bool>? ForceAuthn { get; set; }
+
+        /// <summary>
+        /// GUI Order
+        /// </summary>
+        [Input("guiOrder")]
+        public Input<string>? GuiOrder { get; set; }
 
         /// <summary>
         /// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
@@ -527,6 +600,18 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? PostBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
+        /// Principal Attribute
+        /// </summary>
+        [Input("principalAttribute")]
+        public Input<string>? PrincipalAttribute { get; set; }
+
+        /// <summary>
+        /// Principal Type
+        /// </summary>
+        [Input("principalType")]
+        public Input<string>? PrincipalType { get; set; }
+
+        /// <summary>
         /// The name of the realm. This is unique across Keycloak.
         /// </summary>
         [Input("realm")]
@@ -561,6 +646,12 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Input("storeToken")]
         public Input<bool>? StoreToken { get; set; }
+
+        /// <summary>
+        /// Sync Mode
+        /// </summary>
+        [Input("syncMode")]
+        public Input<string>? SyncMode { get; set; }
 
         /// <summary>
         /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.

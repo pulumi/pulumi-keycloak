@@ -15,6 +15,7 @@ class ProviderArgs:
     def __init__(__self__, *,
                  client_id: pulumi.Input[str],
                  url: pulumi.Input[str],
+                 additional_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  base_path: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
                  client_timeout: Optional[pulumi.Input[int]] = None,
@@ -35,6 +36,8 @@ class ProviderArgs:
         """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "url", url)
+        if additional_headers is not None:
+            pulumi.set(__self__, "additional_headers", additional_headers)
         if base_path is not None:
             pulumi.set(__self__, "base_path", base_path)
         if client_secret is not None:
@@ -76,6 +79,15 @@ class ProviderArgs:
     @url.setter
     def url(self, value: pulumi.Input[str]):
         pulumi.set(self, "url", value)
+
+    @property
+    @pulumi.getter(name="additionalHeaders")
+    def additional_headers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        return pulumi.get(self, "additional_headers")
+
+    @additional_headers.setter
+    def additional_headers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "additional_headers", value)
 
     @property
     @pulumi.getter(name="basePath")
@@ -177,6 +189,7 @@ class Provider(pulumi.ProviderResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 additional_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  base_path: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
@@ -233,6 +246,7 @@ class Provider(pulumi.ProviderResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 additional_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  base_path: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
@@ -264,6 +278,7 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
+            __props__.__dict__["additional_headers"] = pulumi.Output.from_input(additional_headers).apply(pulumi.runtime.to_json) if additional_headers is not None else None
             __props__.__dict__["base_path"] = base_path
             if client_id is None and not opts.urn:
                 raise TypeError("Missing required property 'client_id'")

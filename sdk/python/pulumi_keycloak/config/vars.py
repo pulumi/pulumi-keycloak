@@ -9,6 +9,7 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'additional_headers',
     'base_path',
     'client_id',
     'client_secret',
@@ -23,6 +24,8 @@ __all__ = [
 ]
 
 __config__ = pulumi.Config('keycloak')
+
+additional_headers = __config__.get('additionalHeaders')
 
 base_path = __config__.get('basePath')
 

@@ -157,12 +157,6 @@ namespace Pulumi.Keycloak.OpenId
         [Output("sessionNote")]
         public Output<string?> SessionNote { get; private set; } = null!;
 
-        /// <summary>
-        /// **Deprecated** Use `session_note` instead.
-        /// </summary>
-        [Output("sessionNoteLabel")]
-        public Output<string?> SessionNoteLabel { get; private set; } = null!;
-
 
         /// <summary>
         /// Create a UserSessionNoteProtocolMapper resource with the given unique name, arguments, and options.
@@ -263,12 +257,6 @@ namespace Pulumi.Keycloak.OpenId
         [Input("sessionNote")]
         public Input<string>? SessionNote { get; set; }
 
-        /// <summary>
-        /// **Deprecated** Use `session_note` instead.
-        /// </summary>
-        [Input("sessionNoteLabel")]
-        public Input<string>? SessionNoteLabel { get; set; }
-
         public UserSessionNoteProtocolMapperArgs()
         {
         }
@@ -329,12 +317,6 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("sessionNote")]
         public Input<string>? SessionNote { get; set; }
-
-        /// <summary>
-        /// **Deprecated** Use `session_note` instead.
-        /// </summary>
-        [Input("sessionNoteLabel")]
-        public Input<string>? SessionNoteLabel { get; set; }
 
         public UserSessionNoteProtocolMapperState()
         {

@@ -34,8 +34,8 @@ import * as utilities from "./utilities";
  *     realmId: realm.id,
  *     parentId: parentGroup.id,
  *     attributes: {
- *         key1: "value1",
- *         key2: "value2",
+ *         foo: "bar",
+ *         multivalue: "value1##value2",
  *     },
  * });
  * ```
@@ -77,7 +77,7 @@ export class Group extends pulumi.CustomResource {
     }
 
     /**
-     * A map of key/value pairs to set as custom attributes for the group.
+     * A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
     public readonly attributes!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
@@ -138,7 +138,7 @@ export class Group extends pulumi.CustomResource {
  */
 export interface GroupState {
     /**
-     * A map of key/value pairs to set as custom attributes for the group.
+     * A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
     readonly attributes?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -164,7 +164,7 @@ export interface GroupState {
  */
 export interface GroupArgs {
     /**
-     * A map of key/value pairs to set as custom attributes for the group.
+     * A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
     readonly attributes?: pulumi.Input<{[key: string]: any}>;
     /**

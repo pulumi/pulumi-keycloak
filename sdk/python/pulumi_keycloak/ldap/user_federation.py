@@ -26,7 +26,6 @@ class UserFederationArgs:
                  bind_credential: Optional[pulumi.Input[str]] = None,
                  bind_dn: Optional[pulumi.Input[str]] = None,
                  cache: Optional[pulumi.Input['UserFederationCacheArgs']] = None,
-                 cache_policy: Optional[pulumi.Input[str]] = None,
                  changed_sync_period: Optional[pulumi.Input[int]] = None,
                  connection_timeout: Optional[pulumi.Input[str]] = None,
                  custom_user_search_filter: Optional[pulumi.Input[str]] = None,
@@ -41,6 +40,7 @@ class UserFederationArgs:
                  read_timeout: Optional[pulumi.Input[str]] = None,
                  search_scope: Optional[pulumi.Input[str]] = None,
                  sync_registrations: Optional[pulumi.Input[bool]] = None,
+                 trust_email: Optional[pulumi.Input[bool]] = None,
                  use_truststore_spi: Optional[pulumi.Input[str]] = None,
                  validate_password_policy: Optional[pulumi.Input[bool]] = None,
                  vendor: Optional[pulumi.Input[str]] = None):
@@ -57,7 +57,6 @@ class UserFederationArgs:
         :param pulumi.Input[str] bind_credential: Password of LDAP admin. This attribute must be set if `bind_dn` is set.
         :param pulumi.Input[str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
         :param pulumi.Input['UserFederationCacheArgs'] cache: A block containing the cache settings.
-        :param pulumi.Input[str] cache_policy: **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
         :param pulumi.Input[int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
         :param pulumi.Input[str] connection_timeout: LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         :param pulumi.Input[str] custom_user_search_filter: Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
@@ -74,6 +73,7 @@ class UserFederationArgs:
                - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
                - `SUBTREE`: Search entire LDAP subtree.
         :param pulumi.Input[bool] sync_registrations: When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+        :param pulumi.Input[bool] trust_email: If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
         :param pulumi.Input[str] use_truststore_spi: Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
         :param pulumi.Input[bool] validate_password_policy: When `true`, Keycloak will validate passwords using the realm policy before updating it.
         :param pulumi.Input[str] vendor: Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
@@ -93,11 +93,6 @@ class UserFederationArgs:
             pulumi.set(__self__, "bind_dn", bind_dn)
         if cache is not None:
             pulumi.set(__self__, "cache", cache)
-        if cache_policy is not None:
-            warnings.warn("""use cache.policy instead""", DeprecationWarning)
-            pulumi.log.warn("""cache_policy is deprecated: use cache.policy instead""")
-        if cache_policy is not None:
-            pulumi.set(__self__, "cache_policy", cache_policy)
         if changed_sync_period is not None:
             pulumi.set(__self__, "changed_sync_period", changed_sync_period)
         if connection_timeout is not None:
@@ -126,6 +121,8 @@ class UserFederationArgs:
             pulumi.set(__self__, "search_scope", search_scope)
         if sync_registrations is not None:
             pulumi.set(__self__, "sync_registrations", sync_registrations)
+        if trust_email is not None:
+            pulumi.set(__self__, "trust_email", trust_email)
         if use_truststore_spi is not None:
             pulumi.set(__self__, "use_truststore_spi", use_truststore_spi)
         if validate_password_policy is not None:
@@ -264,18 +261,6 @@ class UserFederationArgs:
     @cache.setter
     def cache(self, value: Optional[pulumi.Input['UserFederationCacheArgs']]):
         pulumi.set(self, "cache", value)
-
-    @property
-    @pulumi.getter(name="cachePolicy")
-    def cache_policy(self) -> Optional[pulumi.Input[str]]:
-        """
-        **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-        """
-        return pulumi.get(self, "cache_policy")
-
-    @cache_policy.setter
-    def cache_policy(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "cache_policy", value)
 
     @property
     @pulumi.getter(name="changedSyncPeriod")
@@ -448,6 +433,18 @@ class UserFederationArgs:
         pulumi.set(self, "sync_registrations", value)
 
     @property
+    @pulumi.getter(name="trustEmail")
+    def trust_email(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
+        """
+        return pulumi.get(self, "trust_email")
+
+    @trust_email.setter
+    def trust_email(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "trust_email", value)
+
+    @property
     @pulumi.getter(name="useTruststoreSpi")
     def use_truststore_spi(self) -> Optional[pulumi.Input[str]]:
         """
@@ -491,7 +488,6 @@ class _UserFederationState:
                  bind_credential: Optional[pulumi.Input[str]] = None,
                  bind_dn: Optional[pulumi.Input[str]] = None,
                  cache: Optional[pulumi.Input['UserFederationCacheArgs']] = None,
-                 cache_policy: Optional[pulumi.Input[str]] = None,
                  changed_sync_period: Optional[pulumi.Input[int]] = None,
                  connection_timeout: Optional[pulumi.Input[str]] = None,
                  connection_url: Optional[pulumi.Input[str]] = None,
@@ -509,6 +505,7 @@ class _UserFederationState:
                  realm_id: Optional[pulumi.Input[str]] = None,
                  search_scope: Optional[pulumi.Input[str]] = None,
                  sync_registrations: Optional[pulumi.Input[bool]] = None,
+                 trust_email: Optional[pulumi.Input[bool]] = None,
                  use_truststore_spi: Optional[pulumi.Input[str]] = None,
                  user_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username_ldap_attribute: Optional[pulumi.Input[str]] = None,
@@ -522,7 +519,6 @@ class _UserFederationState:
         :param pulumi.Input[str] bind_credential: Password of LDAP admin. This attribute must be set if `bind_dn` is set.
         :param pulumi.Input[str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
         :param pulumi.Input['UserFederationCacheArgs'] cache: A block containing the cache settings.
-        :param pulumi.Input[str] cache_policy: **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
         :param pulumi.Input[int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
         :param pulumi.Input[str] connection_timeout: LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         :param pulumi.Input[str] connection_url: Connection URL to the LDAP server.
@@ -542,6 +538,7 @@ class _UserFederationState:
                - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
                - `SUBTREE`: Search entire LDAP subtree.
         :param pulumi.Input[bool] sync_registrations: When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+        :param pulumi.Input[bool] trust_email: If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
         :param pulumi.Input[str] use_truststore_spi: Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_object_classes: Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
         :param pulumi.Input[str] username_ldap_attribute: Name of the LDAP attribute to use as the Keycloak username.
@@ -558,11 +555,6 @@ class _UserFederationState:
             pulumi.set(__self__, "bind_dn", bind_dn)
         if cache is not None:
             pulumi.set(__self__, "cache", cache)
-        if cache_policy is not None:
-            warnings.warn("""use cache.policy instead""", DeprecationWarning)
-            pulumi.log.warn("""cache_policy is deprecated: use cache.policy instead""")
-        if cache_policy is not None:
-            pulumi.set(__self__, "cache_policy", cache_policy)
         if changed_sync_period is not None:
             pulumi.set(__self__, "changed_sync_period", changed_sync_period)
         if connection_timeout is not None:
@@ -597,6 +589,8 @@ class _UserFederationState:
             pulumi.set(__self__, "search_scope", search_scope)
         if sync_registrations is not None:
             pulumi.set(__self__, "sync_registrations", sync_registrations)
+        if trust_email is not None:
+            pulumi.set(__self__, "trust_email", trust_email)
         if use_truststore_spi is not None:
             pulumi.set(__self__, "use_truststore_spi", use_truststore_spi)
         if user_object_classes is not None:
@@ -659,18 +653,6 @@ class _UserFederationState:
     @cache.setter
     def cache(self, value: Optional[pulumi.Input['UserFederationCacheArgs']]):
         pulumi.set(self, "cache", value)
-
-    @property
-    @pulumi.getter(name="cachePolicy")
-    def cache_policy(self) -> Optional[pulumi.Input[str]]:
-        """
-        **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-        """
-        return pulumi.get(self, "cache_policy")
-
-    @cache_policy.setter
-    def cache_policy(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "cache_policy", value)
 
     @property
     @pulumi.getter(name="changedSyncPeriod")
@@ -879,6 +861,18 @@ class _UserFederationState:
         pulumi.set(self, "sync_registrations", value)
 
     @property
+    @pulumi.getter(name="trustEmail")
+    def trust_email(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
+        """
+        return pulumi.get(self, "trust_email")
+
+    @trust_email.setter
+    def trust_email(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "trust_email", value)
+
+    @property
     @pulumi.getter(name="useTruststoreSpi")
     def use_truststore_spi(self) -> Optional[pulumi.Input[str]]:
         """
@@ -972,7 +966,6 @@ class UserFederation(pulumi.CustomResource):
                  bind_credential: Optional[pulumi.Input[str]] = None,
                  bind_dn: Optional[pulumi.Input[str]] = None,
                  cache: Optional[pulumi.Input[pulumi.InputType['UserFederationCacheArgs']]] = None,
-                 cache_policy: Optional[pulumi.Input[str]] = None,
                  changed_sync_period: Optional[pulumi.Input[int]] = None,
                  connection_timeout: Optional[pulumi.Input[str]] = None,
                  connection_url: Optional[pulumi.Input[str]] = None,
@@ -990,6 +983,7 @@ class UserFederation(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  search_scope: Optional[pulumi.Input[str]] = None,
                  sync_registrations: Optional[pulumi.Input[bool]] = None,
+                 trust_email: Optional[pulumi.Input[bool]] = None,
                  use_truststore_spi: Optional[pulumi.Input[str]] = None,
                  user_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username_ldap_attribute: Optional[pulumi.Input[str]] = None,
@@ -1054,7 +1048,6 @@ class UserFederation(pulumi.CustomResource):
         :param pulumi.Input[str] bind_credential: Password of LDAP admin. This attribute must be set if `bind_dn` is set.
         :param pulumi.Input[str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
         :param pulumi.Input[pulumi.InputType['UserFederationCacheArgs']] cache: A block containing the cache settings.
-        :param pulumi.Input[str] cache_policy: **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
         :param pulumi.Input[int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
         :param pulumi.Input[str] connection_timeout: LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         :param pulumi.Input[str] connection_url: Connection URL to the LDAP server.
@@ -1074,6 +1067,7 @@ class UserFederation(pulumi.CustomResource):
                - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
                - `SUBTREE`: Search entire LDAP subtree.
         :param pulumi.Input[bool] sync_registrations: When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+        :param pulumi.Input[bool] trust_email: If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
         :param pulumi.Input[str] use_truststore_spi: Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_object_classes: Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
         :param pulumi.Input[str] username_ldap_attribute: Name of the LDAP attribute to use as the Keycloak username.
@@ -1155,7 +1149,6 @@ class UserFederation(pulumi.CustomResource):
                  bind_credential: Optional[pulumi.Input[str]] = None,
                  bind_dn: Optional[pulumi.Input[str]] = None,
                  cache: Optional[pulumi.Input[pulumi.InputType['UserFederationCacheArgs']]] = None,
-                 cache_policy: Optional[pulumi.Input[str]] = None,
                  changed_sync_period: Optional[pulumi.Input[int]] = None,
                  connection_timeout: Optional[pulumi.Input[str]] = None,
                  connection_url: Optional[pulumi.Input[str]] = None,
@@ -1173,6 +1166,7 @@ class UserFederation(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  search_scope: Optional[pulumi.Input[str]] = None,
                  sync_registrations: Optional[pulumi.Input[bool]] = None,
+                 trust_email: Optional[pulumi.Input[bool]] = None,
                  use_truststore_spi: Optional[pulumi.Input[str]] = None,
                  user_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username_ldap_attribute: Optional[pulumi.Input[str]] = None,
@@ -1204,10 +1198,6 @@ class UserFederation(pulumi.CustomResource):
             __props__.__dict__["bind_credential"] = bind_credential
             __props__.__dict__["bind_dn"] = bind_dn
             __props__.__dict__["cache"] = cache
-            if cache_policy is not None and not opts.urn:
-                warnings.warn("""use cache.policy instead""", DeprecationWarning)
-                pulumi.log.warn("""cache_policy is deprecated: use cache.policy instead""")
-            __props__.__dict__["cache_policy"] = cache_policy
             __props__.__dict__["changed_sync_period"] = changed_sync_period
             __props__.__dict__["connection_timeout"] = connection_timeout
             if connection_url is None and not opts.urn:
@@ -1231,6 +1221,7 @@ class UserFederation(pulumi.CustomResource):
             __props__.__dict__["realm_id"] = realm_id
             __props__.__dict__["search_scope"] = search_scope
             __props__.__dict__["sync_registrations"] = sync_registrations
+            __props__.__dict__["trust_email"] = trust_email
             __props__.__dict__["use_truststore_spi"] = use_truststore_spi
             if user_object_classes is None and not opts.urn:
                 raise TypeError("Missing required property 'user_object_classes'")
@@ -1260,7 +1251,6 @@ class UserFederation(pulumi.CustomResource):
             bind_credential: Optional[pulumi.Input[str]] = None,
             bind_dn: Optional[pulumi.Input[str]] = None,
             cache: Optional[pulumi.Input[pulumi.InputType['UserFederationCacheArgs']]] = None,
-            cache_policy: Optional[pulumi.Input[str]] = None,
             changed_sync_period: Optional[pulumi.Input[int]] = None,
             connection_timeout: Optional[pulumi.Input[str]] = None,
             connection_url: Optional[pulumi.Input[str]] = None,
@@ -1278,6 +1268,7 @@ class UserFederation(pulumi.CustomResource):
             realm_id: Optional[pulumi.Input[str]] = None,
             search_scope: Optional[pulumi.Input[str]] = None,
             sync_registrations: Optional[pulumi.Input[bool]] = None,
+            trust_email: Optional[pulumi.Input[bool]] = None,
             use_truststore_spi: Optional[pulumi.Input[str]] = None,
             user_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             username_ldap_attribute: Optional[pulumi.Input[str]] = None,
@@ -1296,7 +1287,6 @@ class UserFederation(pulumi.CustomResource):
         :param pulumi.Input[str] bind_credential: Password of LDAP admin. This attribute must be set if `bind_dn` is set.
         :param pulumi.Input[str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
         :param pulumi.Input[pulumi.InputType['UserFederationCacheArgs']] cache: A block containing the cache settings.
-        :param pulumi.Input[str] cache_policy: **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
         :param pulumi.Input[int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
         :param pulumi.Input[str] connection_timeout: LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         :param pulumi.Input[str] connection_url: Connection URL to the LDAP server.
@@ -1316,6 +1306,7 @@ class UserFederation(pulumi.CustomResource):
                - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
                - `SUBTREE`: Search entire LDAP subtree.
         :param pulumi.Input[bool] sync_registrations: When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+        :param pulumi.Input[bool] trust_email: If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
         :param pulumi.Input[str] use_truststore_spi: Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_object_classes: Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
         :param pulumi.Input[str] username_ldap_attribute: Name of the LDAP attribute to use as the Keycloak username.
@@ -1332,7 +1323,6 @@ class UserFederation(pulumi.CustomResource):
         __props__.__dict__["bind_credential"] = bind_credential
         __props__.__dict__["bind_dn"] = bind_dn
         __props__.__dict__["cache"] = cache
-        __props__.__dict__["cache_policy"] = cache_policy
         __props__.__dict__["changed_sync_period"] = changed_sync_period
         __props__.__dict__["connection_timeout"] = connection_timeout
         __props__.__dict__["connection_url"] = connection_url
@@ -1350,6 +1340,7 @@ class UserFederation(pulumi.CustomResource):
         __props__.__dict__["realm_id"] = realm_id
         __props__.__dict__["search_scope"] = search_scope
         __props__.__dict__["sync_registrations"] = sync_registrations
+        __props__.__dict__["trust_email"] = trust_email
         __props__.__dict__["use_truststore_spi"] = use_truststore_spi
         __props__.__dict__["user_object_classes"] = user_object_classes
         __props__.__dict__["username_ldap_attribute"] = username_ldap_attribute
@@ -1390,14 +1381,6 @@ class UserFederation(pulumi.CustomResource):
         A block containing the cache settings.
         """
         return pulumi.get(self, "cache")
-
-    @property
-    @pulumi.getter(name="cachePolicy")
-    def cache_policy(self) -> pulumi.Output[Optional[str]]:
-        """
-        **Deprecated** Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-        """
-        return pulumi.get(self, "cache_policy")
 
     @property
     @pulumi.getter(name="changedSyncPeriod")
@@ -1536,6 +1519,14 @@ class UserFederation(pulumi.CustomResource):
         When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
         """
         return pulumi.get(self, "sync_registrations")
+
+    @property
+    @pulumi.getter(name="trustEmail")
+    def trust_email(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
+        """
+        return pulumi.get(self, "trust_email")
 
     @property
     @pulumi.getter(name="useTruststoreSpi")

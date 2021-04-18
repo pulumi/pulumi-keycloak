@@ -124,6 +124,7 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_role":              {Tok: makeResource(mainMod, "Role")},
 			"keycloak_user":              {Tok: makeResource(mainMod, "User")},
 			"keycloak_user_roles":        {Tok: makeResource(mainMod, "UserRoles")},
+			"keycloak_user_groups":       {Tok: makeResource(mainMod, "UserGroups")},
 			"keycloak_users_permissions": {Tok: makeResource(mainMod, "UsersPermissions")},
 			"keycloak_user_template_importer_identity_provider_mapper": {
 				Tok: makeResource(mainMod, "UserTemplateImporterIdentityProviderMapper"),
@@ -221,6 +222,7 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_realm_keys":               {Tok: makeDataSource(mainMod, "getRealmKeys")},
 			"keycloak_role":                     {Tok: makeDataSource(mainMod, "getRole")},
 			"keycloak_authentication_execution": {Tok: makeDataSource(mainMod, "getAuthenticationExecution")},
+			"keycloak_authentication_flow":      {Tok: makeDataSource(mainMod, "getAuthenticationFlow")},
 			"keycloak_user":                     {Tok: makeDataSource(mainMod, "getUser")},
 
 			"keycloak_openid_client":                      {Tok: makeDataSource(openIDMod, "getClient")},
