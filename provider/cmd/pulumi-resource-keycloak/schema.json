@@ -13205,6 +13205,7 @@
     },
     "language": {
         "csharp": {
+            "compatibility": "tfbridge20",
             "namespaces": {
                 "authentication": "Authentication",
                 "index": "index",
@@ -13224,6 +13225,7 @@
             "importBasePath": "github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
         },
         "nodejs": {
+            "compatibility": "tfbridge20",
             "dependencies": {
                 "@pulumi/pulumi": "^3.0.0-alpha.0"
             },
@@ -13238,6 +13240,7 @@
             "typescriptVersion": ""
         },
         "python": {
+            "compatibility": "tfbridge20",
             "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/mrparkers/terraform-provider-keycloak)\n\u003e distributed under [MIT](https://mit-license.org/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-keycloak` repo](https://github.com/pulumi/pulumi-keycloak/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`mrparkers/terraform-provider-keycloak` repo](https://github.com/mrparkers/terraform-provider-keycloak/issues).",
             "requires": {
                 "pulumi": "\u003e=3.0.0a1,\u003c4.0.0"
