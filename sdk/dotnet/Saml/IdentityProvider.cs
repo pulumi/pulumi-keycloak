@@ -102,6 +102,9 @@ namespace Pulumi.Keycloak.Saml
         [Output("entityId")]
         public Output<string> EntityId { get; private set; } = null!;
 
+        [Output("extraConfig")]
+        public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
+
         /// <summary>
         /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
         /// </summary>
@@ -115,7 +118,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<bool?> ForceAuthn { get; private set; } = null!;
 
         /// <summary>
-        /// GUI Order
+        /// A number defining the order of this identity provider in the GUI.
         /// </summary>
         [Output("guiOrder")]
         public Output<string?> GuiOrder { get; private set; } = null!;
@@ -217,7 +220,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<bool?> StoreToken { get; private set; } = null!;
 
         /// <summary>
-        /// Sync Mode
+        /// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
         /// </summary>
         [Output("syncMode")]
         public Output<string?> SyncMode { get; private set; } = null!;
@@ -340,6 +343,14 @@ namespace Pulumi.Keycloak.Saml
         [Input("entityId", required: true)]
         public Input<string> EntityId { get; set; } = null!;
 
+        [Input("extraConfig")]
+        private InputMap<object>? _extraConfig;
+        public InputMap<object> ExtraConfig
+        {
+            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            set => _extraConfig = value;
+        }
+
         /// <summary>
         /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
         /// </summary>
@@ -353,7 +364,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? ForceAuthn { get; set; }
 
         /// <summary>
-        /// GUI Order
+        /// A number defining the order of this identity provider in the GUI.
         /// </summary>
         [Input("guiOrder")]
         public Input<string>? GuiOrder { get; set; }
@@ -449,7 +460,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? StoreToken { get; set; }
 
         /// <summary>
-        /// Sync Mode
+        /// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
         /// </summary>
         [Input("syncMode")]
         public Input<string>? SyncMode { get; set; }
@@ -533,6 +544,14 @@ namespace Pulumi.Keycloak.Saml
         [Input("entityId")]
         public Input<string>? EntityId { get; set; }
 
+        [Input("extraConfig")]
+        private InputMap<object>? _extraConfig;
+        public InputMap<object> ExtraConfig
+        {
+            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            set => _extraConfig = value;
+        }
+
         /// <summary>
         /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
         /// </summary>
@@ -546,7 +565,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? ForceAuthn { get; set; }
 
         /// <summary>
-        /// GUI Order
+        /// A number defining the order of this identity provider in the GUI.
         /// </summary>
         [Input("guiOrder")]
         public Input<string>? GuiOrder { get; set; }
@@ -648,7 +667,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? StoreToken { get; set; }
 
         /// <summary>
-        /// Sync Mode
+        /// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
         /// </summary>
         [Input("syncMode")]
         public Input<string>? SyncMode { get; set; }

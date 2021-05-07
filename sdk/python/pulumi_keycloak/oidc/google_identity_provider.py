@@ -24,6 +24,7 @@ class GoogleIdentityProviderArgs:
                  enabled: Optional[pulumi.Input[bool]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+                 gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
                  hosted_domain: Optional[pulumi.Input[str]] = None,
                  link_only: Optional[pulumi.Input[bool]] = None,
@@ -31,6 +32,7 @@ class GoogleIdentityProviderArgs:
                  provider_id: Optional[pulumi.Input[str]] = None,
                  request_refresh_token: Optional[pulumi.Input[bool]] = None,
                  store_token: Optional[pulumi.Input[bool]] = None,
+                 sync_mode: Optional[pulumi.Input[str]] = None,
                  trust_email: Optional[pulumi.Input[bool]] = None,
                  use_user_ip_param: Optional[pulumi.Input[bool]] = None):
         """
@@ -45,6 +47,7 @@ class GoogleIdentityProviderArgs:
         :param pulumi.Input[bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
         :param pulumi.Input[bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
         :param pulumi.Input[str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
+        :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
         :param pulumi.Input[str] hosted_domain: Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
         :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
@@ -52,6 +55,7 @@ class GoogleIdentityProviderArgs:
         :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[bool] request_refresh_token: Sets the "access_type" query parameter to "offline" when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
         :param pulumi.Input[bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        :param pulumi.Input[str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
         :param pulumi.Input[bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[bool] use_user_ip_param: Sets the "userIp" query parameter when querying Google's User Info service. This will use the user's IP address. This is useful if Google is throttling Keycloak's access to the User Info service.
         """
@@ -74,6 +78,8 @@ class GoogleIdentityProviderArgs:
             pulumi.set(__self__, "extra_config", extra_config)
         if first_broker_login_flow_alias is not None:
             pulumi.set(__self__, "first_broker_login_flow_alias", first_broker_login_flow_alias)
+        if gui_order is not None:
+            pulumi.set(__self__, "gui_order", gui_order)
         if hide_on_login_page is not None:
             pulumi.set(__self__, "hide_on_login_page", hide_on_login_page)
         if hosted_domain is not None:
@@ -88,6 +94,8 @@ class GoogleIdentityProviderArgs:
             pulumi.set(__self__, "request_refresh_token", request_refresh_token)
         if store_token is not None:
             pulumi.set(__self__, "store_token", store_token)
+        if sync_mode is not None:
+            pulumi.set(__self__, "sync_mode", sync_mode)
         if trust_email is not None:
             pulumi.set(__self__, "trust_email", trust_email)
         if use_user_ip_param is not None:
@@ -223,6 +231,18 @@ class GoogleIdentityProviderArgs:
         pulumi.set(self, "first_broker_login_flow_alias", value)
 
     @property
+    @pulumi.getter(name="guiOrder")
+    def gui_order(self) -> Optional[pulumi.Input[str]]:
+        """
+        A number defining the order of this identity provider in the GUI.
+        """
+        return pulumi.get(self, "gui_order")
+
+    @gui_order.setter
+    def gui_order(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_order", value)
+
+    @property
     @pulumi.getter(name="hideOnLoginPage")
     def hide_on_login_page(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -307,6 +327,18 @@ class GoogleIdentityProviderArgs:
         pulumi.set(self, "store_token", value)
 
     @property
+    @pulumi.getter(name="syncMode")
+    def sync_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+        """
+        return pulumi.get(self, "sync_mode")
+
+    @sync_mode.setter
+    def sync_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sync_mode", value)
+
+    @property
     @pulumi.getter(name="trustEmail")
     def trust_email(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -346,6 +378,7 @@ class _GoogleIdentityProviderState:
                  enabled: Optional[pulumi.Input[bool]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+                 gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
                  hosted_domain: Optional[pulumi.Input[str]] = None,
                  internal_id: Optional[pulumi.Input[str]] = None,
@@ -355,6 +388,7 @@ class _GoogleIdentityProviderState:
                  realm: Optional[pulumi.Input[str]] = None,
                  request_refresh_token: Optional[pulumi.Input[bool]] = None,
                  store_token: Optional[pulumi.Input[bool]] = None,
+                 sync_mode: Optional[pulumi.Input[str]] = None,
                  trust_email: Optional[pulumi.Input[bool]] = None,
                  use_user_ip_param: Optional[pulumi.Input[bool]] = None):
         """
@@ -370,6 +404,7 @@ class _GoogleIdentityProviderState:
         :param pulumi.Input[str] display_name: (Computed) Display name for the Google identity provider in the GUI.
         :param pulumi.Input[bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
         :param pulumi.Input[str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
+        :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
         :param pulumi.Input[str] hosted_domain: Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
         :param pulumi.Input[str] internal_id: (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
@@ -379,6 +414,7 @@ class _GoogleIdentityProviderState:
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[bool] request_refresh_token: Sets the "access_type" query parameter to "offline" when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
         :param pulumi.Input[bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        :param pulumi.Input[str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
         :param pulumi.Input[bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[bool] use_user_ip_param: Sets the "userIp" query parameter when querying Google's User Info service. This will use the user's IP address. This is useful if Google is throttling Keycloak's access to the User Info service.
         """
@@ -406,6 +442,8 @@ class _GoogleIdentityProviderState:
             pulumi.set(__self__, "extra_config", extra_config)
         if first_broker_login_flow_alias is not None:
             pulumi.set(__self__, "first_broker_login_flow_alias", first_broker_login_flow_alias)
+        if gui_order is not None:
+            pulumi.set(__self__, "gui_order", gui_order)
         if hide_on_login_page is not None:
             pulumi.set(__self__, "hide_on_login_page", hide_on_login_page)
         if hosted_domain is not None:
@@ -424,6 +462,8 @@ class _GoogleIdentityProviderState:
             pulumi.set(__self__, "request_refresh_token", request_refresh_token)
         if store_token is not None:
             pulumi.set(__self__, "store_token", store_token)
+        if sync_mode is not None:
+            pulumi.set(__self__, "sync_mode", sync_mode)
         if trust_email is not None:
             pulumi.set(__self__, "trust_email", trust_email)
         if use_user_ip_param is not None:
@@ -571,6 +611,18 @@ class _GoogleIdentityProviderState:
         pulumi.set(self, "first_broker_login_flow_alias", value)
 
     @property
+    @pulumi.getter(name="guiOrder")
+    def gui_order(self) -> Optional[pulumi.Input[str]]:
+        """
+        A number defining the order of this identity provider in the GUI.
+        """
+        return pulumi.get(self, "gui_order")
+
+    @gui_order.setter
+    def gui_order(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_order", value)
+
+    @property
     @pulumi.getter(name="hideOnLoginPage")
     def hide_on_login_page(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -679,6 +731,18 @@ class _GoogleIdentityProviderState:
         pulumi.set(self, "store_token", value)
 
     @property
+    @pulumi.getter(name="syncMode")
+    def sync_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+        """
+        return pulumi.get(self, "sync_mode")
+
+    @sync_mode.setter
+    def sync_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sync_mode", value)
+
+    @property
     @pulumi.getter(name="trustEmail")
     def trust_email(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -718,6 +782,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[bool]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+                 gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
                  hosted_domain: Optional[pulumi.Input[str]] = None,
                  link_only: Optional[pulumi.Input[bool]] = None,
@@ -726,6 +791,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
                  realm: Optional[pulumi.Input[str]] = None,
                  request_refresh_token: Optional[pulumi.Input[bool]] = None,
                  store_token: Optional[pulumi.Input[bool]] = None,
+                 sync_mode: Optional[pulumi.Input[str]] = None,
                  trust_email: Optional[pulumi.Input[bool]] = None,
                  use_user_ip_param: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -749,8 +815,9 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             client_secret=var["google_identity_provider_client_secret"],
             trust_email=True,
             hosted_domain="example.com",
+            sync_mode="IMPORT",
             extra_config={
-                "syncMode": "IMPORT",
+                "myCustomConfigKey": "myValue",
             })
         ```
 
@@ -769,6 +836,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
         :param pulumi.Input[bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
         :param pulumi.Input[str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
+        :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
         :param pulumi.Input[str] hosted_domain: Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
         :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
@@ -777,6 +845,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[bool] request_refresh_token: Sets the "access_type" query parameter to "offline" when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
         :param pulumi.Input[bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        :param pulumi.Input[str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
         :param pulumi.Input[bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[bool] use_user_ip_param: Sets the "userIp" query parameter when querying Google's User Info service. This will use the user's IP address. This is useful if Google is throttling Keycloak's access to the User Info service.
         """
@@ -806,8 +875,9 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             client_secret=var["google_identity_provider_client_secret"],
             trust_email=True,
             hosted_domain="example.com",
+            sync_mode="IMPORT",
             extra_config={
-                "syncMode": "IMPORT",
+                "myCustomConfigKey": "myValue",
             })
         ```
 
@@ -840,6 +910,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[bool]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+                 gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
                  hosted_domain: Optional[pulumi.Input[str]] = None,
                  link_only: Optional[pulumi.Input[bool]] = None,
@@ -848,6 +919,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
                  realm: Optional[pulumi.Input[str]] = None,
                  request_refresh_token: Optional[pulumi.Input[bool]] = None,
                  store_token: Optional[pulumi.Input[bool]] = None,
+                 sync_mode: Optional[pulumi.Input[str]] = None,
                  trust_email: Optional[pulumi.Input[bool]] = None,
                  use_user_ip_param: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -876,6 +948,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["extra_config"] = extra_config
             __props__.__dict__["first_broker_login_flow_alias"] = first_broker_login_flow_alias
+            __props__.__dict__["gui_order"] = gui_order
             __props__.__dict__["hide_on_login_page"] = hide_on_login_page
             __props__.__dict__["hosted_domain"] = hosted_domain
             __props__.__dict__["link_only"] = link_only
@@ -886,6 +959,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             __props__.__dict__["realm"] = realm
             __props__.__dict__["request_refresh_token"] = request_refresh_token
             __props__.__dict__["store_token"] = store_token
+            __props__.__dict__["sync_mode"] = sync_mode
             __props__.__dict__["trust_email"] = trust_email
             __props__.__dict__["use_user_ip_param"] = use_user_ip_param
             __props__.__dict__["alias"] = None
@@ -913,6 +987,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             enabled: Optional[pulumi.Input[bool]] = None,
             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+            gui_order: Optional[pulumi.Input[str]] = None,
             hide_on_login_page: Optional[pulumi.Input[bool]] = None,
             hosted_domain: Optional[pulumi.Input[str]] = None,
             internal_id: Optional[pulumi.Input[str]] = None,
@@ -922,6 +997,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             realm: Optional[pulumi.Input[str]] = None,
             request_refresh_token: Optional[pulumi.Input[bool]] = None,
             store_token: Optional[pulumi.Input[bool]] = None,
+            sync_mode: Optional[pulumi.Input[str]] = None,
             trust_email: Optional[pulumi.Input[bool]] = None,
             use_user_ip_param: Optional[pulumi.Input[bool]] = None) -> 'GoogleIdentityProvider':
         """
@@ -942,6 +1018,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[str] display_name: (Computed) Display name for the Google identity provider in the GUI.
         :param pulumi.Input[bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
         :param pulumi.Input[str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
+        :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
         :param pulumi.Input[str] hosted_domain: Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
         :param pulumi.Input[str] internal_id: (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
@@ -951,6 +1028,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[bool] request_refresh_token: Sets the "access_type" query parameter to "offline" when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
         :param pulumi.Input[bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        :param pulumi.Input[str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
         :param pulumi.Input[bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[bool] use_user_ip_param: Sets the "userIp" query parameter when querying Google's User Info service. This will use the user's IP address. This is useful if Google is throttling Keycloak's access to the User Info service.
         """
@@ -970,6 +1048,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["extra_config"] = extra_config
         __props__.__dict__["first_broker_login_flow_alias"] = first_broker_login_flow_alias
+        __props__.__dict__["gui_order"] = gui_order
         __props__.__dict__["hide_on_login_page"] = hide_on_login_page
         __props__.__dict__["hosted_domain"] = hosted_domain
         __props__.__dict__["internal_id"] = internal_id
@@ -979,6 +1058,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         __props__.__dict__["realm"] = realm
         __props__.__dict__["request_refresh_token"] = request_refresh_token
         __props__.__dict__["store_token"] = store_token
+        __props__.__dict__["sync_mode"] = sync_mode
         __props__.__dict__["trust_email"] = trust_email
         __props__.__dict__["use_user_ip_param"] = use_user_ip_param
         return GoogleIdentityProvider(resource_name, opts=opts, __props__=__props__)
@@ -1077,6 +1157,14 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         return pulumi.get(self, "first_broker_login_flow_alias")
 
     @property
+    @pulumi.getter(name="guiOrder")
+    def gui_order(self) -> pulumi.Output[Optional[str]]:
+        """
+        A number defining the order of this identity provider in the GUI.
+        """
+        return pulumi.get(self, "gui_order")
+
+    @property
     @pulumi.getter(name="hideOnLoginPage")
     def hide_on_login_page(self) -> pulumi.Output[Optional[bool]]:
         """
@@ -1147,6 +1235,14 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         """
         return pulumi.get(self, "store_token")
+
+    @property
+    @pulumi.getter(name="syncMode")
+    def sync_mode(self) -> pulumi.Output[Optional[str]]:
+        """
+        The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+        """
+        return pulumi.get(self, "sync_mode")
 
     @property
     @pulumi.getter(name="trustEmail")
