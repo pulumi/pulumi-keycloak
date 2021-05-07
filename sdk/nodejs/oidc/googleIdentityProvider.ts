@@ -25,8 +25,9 @@ import * as utilities from "../utilities";
  *     clientSecret: _var.google_identity_provider_client_secret,
  *     trustEmail: true,
  *     hostedDomain: "example.com",
+ *     syncMode: "IMPORT",
  *     extraConfig: {
- *         syncMode: "IMPORT",
+ *         myCustomConfigKey: "myValue",
  *     },
  * });
  * ```
@@ -109,6 +110,10 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
      */
     public readonly firstBrokerLoginFlowAlias!: pulumi.Output<string | undefined>;
     /**
+     * A number defining the order of this identity provider in the GUI.
+     */
+    public readonly guiOrder!: pulumi.Output<string | undefined>;
+    /**
      * When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
      */
     public readonly hideOnLoginPage!: pulumi.Output<boolean | undefined>;
@@ -145,6 +150,10 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
      */
     public readonly storeToken!: pulumi.Output<boolean | undefined>;
     /**
+     * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+     */
+    public readonly syncMode!: pulumi.Output<string | undefined>;
+    /**
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
      */
     public readonly trustEmail!: pulumi.Output<boolean | undefined>;
@@ -178,6 +187,7 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
             inputs["enabled"] = state ? state.enabled : undefined;
             inputs["extraConfig"] = state ? state.extraConfig : undefined;
             inputs["firstBrokerLoginFlowAlias"] = state ? state.firstBrokerLoginFlowAlias : undefined;
+            inputs["guiOrder"] = state ? state.guiOrder : undefined;
             inputs["hideOnLoginPage"] = state ? state.hideOnLoginPage : undefined;
             inputs["hostedDomain"] = state ? state.hostedDomain : undefined;
             inputs["internalId"] = state ? state.internalId : undefined;
@@ -187,6 +197,7 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
             inputs["realm"] = state ? state.realm : undefined;
             inputs["requestRefreshToken"] = state ? state.requestRefreshToken : undefined;
             inputs["storeToken"] = state ? state.storeToken : undefined;
+            inputs["syncMode"] = state ? state.syncMode : undefined;
             inputs["trustEmail"] = state ? state.trustEmail : undefined;
             inputs["useUserIpParam"] = state ? state.useUserIpParam : undefined;
         } else {
@@ -210,6 +221,7 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
             inputs["enabled"] = args ? args.enabled : undefined;
             inputs["extraConfig"] = args ? args.extraConfig : undefined;
             inputs["firstBrokerLoginFlowAlias"] = args ? args.firstBrokerLoginFlowAlias : undefined;
+            inputs["guiOrder"] = args ? args.guiOrder : undefined;
             inputs["hideOnLoginPage"] = args ? args.hideOnLoginPage : undefined;
             inputs["hostedDomain"] = args ? args.hostedDomain : undefined;
             inputs["linkOnly"] = args ? args.linkOnly : undefined;
@@ -218,6 +230,7 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
             inputs["realm"] = args ? args.realm : undefined;
             inputs["requestRefreshToken"] = args ? args.requestRefreshToken : undefined;
             inputs["storeToken"] = args ? args.storeToken : undefined;
+            inputs["syncMode"] = args ? args.syncMode : undefined;
             inputs["trustEmail"] = args ? args.trustEmail : undefined;
             inputs["useUserIpParam"] = args ? args.useUserIpParam : undefined;
             inputs["alias"] = undefined /*out*/;
@@ -281,6 +294,10 @@ export interface GoogleIdentityProviderState {
      */
     readonly firstBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
+     * A number defining the order of this identity provider in the GUI.
+     */
+    readonly guiOrder?: pulumi.Input<string>;
+    /**
      * When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
      */
     readonly hideOnLoginPage?: pulumi.Input<boolean>;
@@ -316,6 +333,10 @@ export interface GoogleIdentityProviderState {
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
     readonly storeToken?: pulumi.Input<boolean>;
+    /**
+     * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+     */
+    readonly syncMode?: pulumi.Input<string>;
     /**
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
      */
@@ -368,6 +389,10 @@ export interface GoogleIdentityProviderArgs {
      */
     readonly firstBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
+     * A number defining the order of this identity provider in the GUI.
+     */
+    readonly guiOrder?: pulumi.Input<string>;
+    /**
      * When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
      */
     readonly hideOnLoginPage?: pulumi.Input<boolean>;
@@ -399,6 +424,10 @@ export interface GoogleIdentityProviderArgs {
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
     readonly storeToken?: pulumi.Input<boolean>;
+    /**
+     * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+     */
+    readonly syncMode?: pulumi.Input<string>;
     /**
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
      */

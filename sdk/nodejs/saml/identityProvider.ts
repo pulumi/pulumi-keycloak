@@ -99,6 +99,7 @@ export class IdentityProvider extends pulumi.CustomResource {
      * The Entity ID that will be used to uniquely identify this SAML Service Provider.
      */
     public readonly entityId!: pulumi.Output<string>;
+    public readonly extraConfig!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
      * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
      */
@@ -108,7 +109,7 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly forceAuthn!: pulumi.Output<boolean | undefined>;
     /**
-     * GUI Order
+     * A number defining the order of this identity provider in the GUI.
      */
     public readonly guiOrder!: pulumi.Output<string | undefined>;
     /**
@@ -176,7 +177,7 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly storeToken!: pulumi.Output<boolean | undefined>;
     /**
-     * Sync Mode
+     * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
      */
     public readonly syncMode!: pulumi.Output<string | undefined>;
     /**
@@ -220,6 +221,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             inputs["displayName"] = state ? state.displayName : undefined;
             inputs["enabled"] = state ? state.enabled : undefined;
             inputs["entityId"] = state ? state.entityId : undefined;
+            inputs["extraConfig"] = state ? state.extraConfig : undefined;
             inputs["firstBrokerLoginFlowAlias"] = state ? state.firstBrokerLoginFlowAlias : undefined;
             inputs["forceAuthn"] = state ? state.forceAuthn : undefined;
             inputs["guiOrder"] = state ? state.guiOrder : undefined;
@@ -266,6 +268,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             inputs["displayName"] = args ? args.displayName : undefined;
             inputs["enabled"] = args ? args.enabled : undefined;
             inputs["entityId"] = args ? args.entityId : undefined;
+            inputs["extraConfig"] = args ? args.extraConfig : undefined;
             inputs["firstBrokerLoginFlowAlias"] = args ? args.firstBrokerLoginFlowAlias : undefined;
             inputs["forceAuthn"] = args ? args.forceAuthn : undefined;
             inputs["guiOrder"] = args ? args.guiOrder : undefined;
@@ -331,6 +334,7 @@ export interface IdentityProviderState {
      * The Entity ID that will be used to uniquely identify this SAML Service Provider.
      */
     readonly entityId?: pulumi.Input<string>;
+    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
      */
@@ -340,7 +344,7 @@ export interface IdentityProviderState {
      */
     readonly forceAuthn?: pulumi.Input<boolean>;
     /**
-     * GUI Order
+     * A number defining the order of this identity provider in the GUI.
      */
     readonly guiOrder?: pulumi.Input<string>;
     /**
@@ -408,7 +412,7 @@ export interface IdentityProviderState {
      */
     readonly storeToken?: pulumi.Input<boolean>;
     /**
-     * Sync Mode
+     * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
      */
     readonly syncMode?: pulumi.Input<string>;
     /**
@@ -465,6 +469,7 @@ export interface IdentityProviderArgs {
      * The Entity ID that will be used to uniquely identify this SAML Service Provider.
      */
     readonly entityId: pulumi.Input<string>;
+    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
      */
@@ -474,7 +479,7 @@ export interface IdentityProviderArgs {
      */
     readonly forceAuthn?: pulumi.Input<boolean>;
     /**
-     * GUI Order
+     * A number defining the order of this identity provider in the GUI.
      */
     readonly guiOrder?: pulumi.Input<string>;
     /**
@@ -538,7 +543,7 @@ export interface IdentityProviderArgs {
      */
     readonly storeToken?: pulumi.Input<boolean>;
     /**
-     * Sync Mode
+     * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
      */
     readonly syncMode?: pulumi.Input<string>;
     /**

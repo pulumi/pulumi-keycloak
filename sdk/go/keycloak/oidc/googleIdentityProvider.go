@@ -41,8 +41,9 @@ import (
 // 			ClientSecret: pulumi.Any(_var.Google_identity_provider_client_secret),
 // 			TrustEmail:   pulumi.Bool(true),
 // 			HostedDomain: pulumi.String("example.com"),
+// 			SyncMode:     pulumi.String("IMPORT"),
 // 			ExtraConfig: pulumi.StringMap{
-// 				"syncMode": pulumi.String("IMPORT"),
+// 				"myCustomConfigKey": pulumi.String("myValue"),
 // 			},
 // 		})
 // 		if err != nil {
@@ -82,6 +83,8 @@ type GoogleIdentityProvider struct {
 	ExtraConfig pulumi.MapOutput     `pulumi:"extraConfig"`
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrOutput `pulumi:"firstBrokerLoginFlowAlias"`
+	// A number defining the order of this identity provider in the GUI.
+	GuiOrder pulumi.StringPtrOutput `pulumi:"guiOrder"`
 	// When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
 	HideOnLoginPage pulumi.BoolPtrOutput `pulumi:"hideOnLoginPage"`
 	// Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
@@ -100,6 +103,8 @@ type GoogleIdentityProvider struct {
 	RequestRefreshToken pulumi.BoolPtrOutput `pulumi:"requestRefreshToken"`
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrOutput `pulumi:"storeToken"`
+	// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+	SyncMode pulumi.StringPtrOutput `pulumi:"syncMode"`
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail pulumi.BoolPtrOutput `pulumi:"trustEmail"`
 	// Sets the "userIp" query parameter when querying Google's User Info service. This will use the user's IP address. This is useful if Google is throttling Keycloak's access to the User Info service.
@@ -167,6 +172,8 @@ type googleIdentityProviderState struct {
 	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias *string `pulumi:"firstBrokerLoginFlowAlias"`
+	// A number defining the order of this identity provider in the GUI.
+	GuiOrder *string `pulumi:"guiOrder"`
 	// When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
 	HideOnLoginPage *bool `pulumi:"hideOnLoginPage"`
 	// Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
@@ -185,6 +192,8 @@ type googleIdentityProviderState struct {
 	RequestRefreshToken *bool `pulumi:"requestRefreshToken"`
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken *bool `pulumi:"storeToken"`
+	// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+	SyncMode *string `pulumi:"syncMode"`
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail *bool `pulumi:"trustEmail"`
 	// Sets the "userIp" query parameter when querying Google's User Info service. This will use the user's IP address. This is useful if Google is throttling Keycloak's access to the User Info service.
@@ -215,6 +224,8 @@ type GoogleIdentityProviderState struct {
 	ExtraConfig pulumi.MapInput
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrInput
+	// A number defining the order of this identity provider in the GUI.
+	GuiOrder pulumi.StringPtrInput
 	// When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
 	HideOnLoginPage pulumi.BoolPtrInput
 	// Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
@@ -233,6 +244,8 @@ type GoogleIdentityProviderState struct {
 	RequestRefreshToken pulumi.BoolPtrInput
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrInput
+	// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+	SyncMode pulumi.StringPtrInput
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail pulumi.BoolPtrInput
 	// Sets the "userIp" query parameter when querying Google's User Info service. This will use the user's IP address. This is useful if Google is throttling Keycloak's access to the User Info service.
@@ -263,6 +276,8 @@ type googleIdentityProviderArgs struct {
 	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias *string `pulumi:"firstBrokerLoginFlowAlias"`
+	// A number defining the order of this identity provider in the GUI.
+	GuiOrder *string `pulumi:"guiOrder"`
 	// When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
 	HideOnLoginPage *bool `pulumi:"hideOnLoginPage"`
 	// Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
@@ -279,6 +294,8 @@ type googleIdentityProviderArgs struct {
 	RequestRefreshToken *bool `pulumi:"requestRefreshToken"`
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken *bool `pulumi:"storeToken"`
+	// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+	SyncMode *string `pulumi:"syncMode"`
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail *bool `pulumi:"trustEmail"`
 	// Sets the "userIp" query parameter when querying Google's User Info service. This will use the user's IP address. This is useful if Google is throttling Keycloak's access to the User Info service.
@@ -306,6 +323,8 @@ type GoogleIdentityProviderArgs struct {
 	ExtraConfig pulumi.MapInput
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrInput
+	// A number defining the order of this identity provider in the GUI.
+	GuiOrder pulumi.StringPtrInput
 	// When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
 	HideOnLoginPage pulumi.BoolPtrInput
 	// Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
@@ -322,6 +341,8 @@ type GoogleIdentityProviderArgs struct {
 	RequestRefreshToken pulumi.BoolPtrInput
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrInput
+	// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+	SyncMode pulumi.StringPtrInput
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail pulumi.BoolPtrInput
 	// Sets the "userIp" query parameter when querying Google's User Info service. This will use the user's IP address. This is useful if Google is throttling Keycloak's access to the User Info service.

@@ -29,6 +29,7 @@ class IdentityProviderArgs:
                  enabled: Optional[pulumi.Input[bool]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+                 gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
                  jwks_url: Optional[pulumi.Input[str]] = None,
                  link_only: Optional[pulumi.Input[bool]] = None,
@@ -37,6 +38,7 @@ class IdentityProviderArgs:
                  post_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  provider_id: Optional[pulumi.Input[str]] = None,
                  store_token: Optional[pulumi.Input[bool]] = None,
+                 sync_mode: Optional[pulumi.Input[str]] = None,
                  trust_email: Optional[pulumi.Input[bool]] = None,
                  ui_locales: Optional[pulumi.Input[bool]] = None,
                  user_info_url: Optional[pulumi.Input[str]] = None,
@@ -58,6 +60,7 @@ class IdentityProviderArgs:
         :param pulumi.Input[str] display_name: Display name for the identity provider in the GUI.
         :param pulumi.Input[bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
         :param pulumi.Input[str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
+        :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
         :param pulumi.Input[str] jwks_url: JSON Web Key Set URL.
         :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
@@ -66,6 +69,7 @@ class IdentityProviderArgs:
         :param pulumi.Input[str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        :param pulumi.Input[str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
         :param pulumi.Input[bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[bool] ui_locales: Pass current locale to identity provider. Defaults to `false`.
         :param pulumi.Input[str] user_info_url: User Info URL.
@@ -97,6 +101,8 @@ class IdentityProviderArgs:
             pulumi.set(__self__, "extra_config", extra_config)
         if first_broker_login_flow_alias is not None:
             pulumi.set(__self__, "first_broker_login_flow_alias", first_broker_login_flow_alias)
+        if gui_order is not None:
+            pulumi.set(__self__, "gui_order", gui_order)
         if hide_on_login_page is not None:
             pulumi.set(__self__, "hide_on_login_page", hide_on_login_page)
         if jwks_url is not None:
@@ -113,6 +119,8 @@ class IdentityProviderArgs:
             pulumi.set(__self__, "provider_id", provider_id)
         if store_token is not None:
             pulumi.set(__self__, "store_token", store_token)
+        if sync_mode is not None:
+            pulumi.set(__self__, "sync_mode", sync_mode)
         if trust_email is not None:
             pulumi.set(__self__, "trust_email", trust_email)
         if ui_locales is not None:
@@ -312,6 +320,18 @@ class IdentityProviderArgs:
         pulumi.set(self, "first_broker_login_flow_alias", value)
 
     @property
+    @pulumi.getter(name="guiOrder")
+    def gui_order(self) -> Optional[pulumi.Input[str]]:
+        """
+        A number defining the order of this identity provider in the GUI.
+        """
+        return pulumi.get(self, "gui_order")
+
+    @gui_order.setter
+    def gui_order(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_order", value)
+
+    @property
     @pulumi.getter(name="hideOnLoginPage")
     def hide_on_login_page(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -408,6 +428,18 @@ class IdentityProviderArgs:
         pulumi.set(self, "store_token", value)
 
     @property
+    @pulumi.getter(name="syncMode")
+    def sync_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+        """
+        return pulumi.get(self, "sync_mode")
+
+    @sync_mode.setter
+    def sync_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sync_mode", value)
+
+    @property
     @pulumi.getter(name="trustEmail")
     def trust_email(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -473,6 +505,7 @@ class _IdentityProviderState:
                  enabled: Optional[pulumi.Input[bool]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+                 gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
                  internal_id: Optional[pulumi.Input[str]] = None,
                  jwks_url: Optional[pulumi.Input[str]] = None,
@@ -483,6 +516,7 @@ class _IdentityProviderState:
                  provider_id: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  store_token: Optional[pulumi.Input[bool]] = None,
+                 sync_mode: Optional[pulumi.Input[str]] = None,
                  token_url: Optional[pulumi.Input[str]] = None,
                  trust_email: Optional[pulumi.Input[bool]] = None,
                  ui_locales: Optional[pulumi.Input[bool]] = None,
@@ -503,6 +537,7 @@ class _IdentityProviderState:
         :param pulumi.Input[str] display_name: Display name for the identity provider in the GUI.
         :param pulumi.Input[bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
         :param pulumi.Input[str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
+        :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
         :param pulumi.Input[str] internal_id: (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
         :param pulumi.Input[str] jwks_url: JSON Web Key Set URL.
@@ -513,6 +548,7 @@ class _IdentityProviderState:
         :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        :param pulumi.Input[str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
         :param pulumi.Input[str] token_url: The Token URL.
         :param pulumi.Input[bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[bool] ui_locales: Pass current locale to identity provider. Defaults to `false`.
@@ -547,6 +583,8 @@ class _IdentityProviderState:
             pulumi.set(__self__, "extra_config", extra_config)
         if first_broker_login_flow_alias is not None:
             pulumi.set(__self__, "first_broker_login_flow_alias", first_broker_login_flow_alias)
+        if gui_order is not None:
+            pulumi.set(__self__, "gui_order", gui_order)
         if hide_on_login_page is not None:
             pulumi.set(__self__, "hide_on_login_page", hide_on_login_page)
         if internal_id is not None:
@@ -567,6 +605,8 @@ class _IdentityProviderState:
             pulumi.set(__self__, "realm", realm)
         if store_token is not None:
             pulumi.set(__self__, "store_token", store_token)
+        if sync_mode is not None:
+            pulumi.set(__self__, "sync_mode", sync_mode)
         if token_url is not None:
             pulumi.set(__self__, "token_url", token_url)
         if trust_email is not None:
@@ -744,6 +784,18 @@ class _IdentityProviderState:
         pulumi.set(self, "first_broker_login_flow_alias", value)
 
     @property
+    @pulumi.getter(name="guiOrder")
+    def gui_order(self) -> Optional[pulumi.Input[str]]:
+        """
+        A number defining the order of this identity provider in the GUI.
+        """
+        return pulumi.get(self, "gui_order")
+
+    @gui_order.setter
+    def gui_order(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_order", value)
+
+    @property
     @pulumi.getter(name="hideOnLoginPage")
     def hide_on_login_page(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -864,6 +916,18 @@ class _IdentityProviderState:
         pulumi.set(self, "store_token", value)
 
     @property
+    @pulumi.getter(name="syncMode")
+    def sync_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+        """
+        return pulumi.get(self, "sync_mode")
+
+    @sync_mode.setter
+    def sync_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sync_mode", value)
+
+    @property
     @pulumi.getter(name="tokenUrl")
     def token_url(self) -> Optional[pulumi.Input[str]]:
         """
@@ -943,6 +1007,7 @@ class IdentityProvider(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[bool]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+                 gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
                  jwks_url: Optional[pulumi.Input[str]] = None,
                  link_only: Optional[pulumi.Input[bool]] = None,
@@ -952,6 +1017,7 @@ class IdentityProvider(pulumi.CustomResource):
                  provider_id: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  store_token: Optional[pulumi.Input[bool]] = None,
+                 sync_mode: Optional[pulumi.Input[str]] = None,
                  token_url: Optional[pulumi.Input[str]] = None,
                  trust_email: Optional[pulumi.Input[bool]] = None,
                  ui_locales: Optional[pulumi.Input[bool]] = None,
@@ -1007,6 +1073,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[str] display_name: Display name for the identity provider in the GUI.
         :param pulumi.Input[bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
         :param pulumi.Input[str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
+        :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
         :param pulumi.Input[str] jwks_url: JSON Web Key Set URL.
         :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
@@ -1016,6 +1083,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        :param pulumi.Input[str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
         :param pulumi.Input[str] token_url: The Token URL.
         :param pulumi.Input[bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[bool] ui_locales: Pass current locale to identity provider. Defaults to `false`.
@@ -1091,6 +1159,7 @@ class IdentityProvider(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[bool]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+                 gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
                  jwks_url: Optional[pulumi.Input[str]] = None,
                  link_only: Optional[pulumi.Input[bool]] = None,
@@ -1100,6 +1169,7 @@ class IdentityProvider(pulumi.CustomResource):
                  provider_id: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  store_token: Optional[pulumi.Input[bool]] = None,
+                 sync_mode: Optional[pulumi.Input[str]] = None,
                  token_url: Optional[pulumi.Input[str]] = None,
                  trust_email: Optional[pulumi.Input[bool]] = None,
                  ui_locales: Optional[pulumi.Input[bool]] = None,
@@ -1139,6 +1209,7 @@ class IdentityProvider(pulumi.CustomResource):
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["extra_config"] = extra_config
             __props__.__dict__["first_broker_login_flow_alias"] = first_broker_login_flow_alias
+            __props__.__dict__["gui_order"] = gui_order
             __props__.__dict__["hide_on_login_page"] = hide_on_login_page
             __props__.__dict__["jwks_url"] = jwks_url
             __props__.__dict__["link_only"] = link_only
@@ -1150,6 +1221,7 @@ class IdentityProvider(pulumi.CustomResource):
                 raise TypeError("Missing required property 'realm'")
             __props__.__dict__["realm"] = realm
             __props__.__dict__["store_token"] = store_token
+            __props__.__dict__["sync_mode"] = sync_mode
             if token_url is None and not opts.urn:
                 raise TypeError("Missing required property 'token_url'")
             __props__.__dict__["token_url"] = token_url
@@ -1182,6 +1254,7 @@ class IdentityProvider(pulumi.CustomResource):
             enabled: Optional[pulumi.Input[bool]] = None,
             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+            gui_order: Optional[pulumi.Input[str]] = None,
             hide_on_login_page: Optional[pulumi.Input[bool]] = None,
             internal_id: Optional[pulumi.Input[str]] = None,
             jwks_url: Optional[pulumi.Input[str]] = None,
@@ -1192,6 +1265,7 @@ class IdentityProvider(pulumi.CustomResource):
             provider_id: Optional[pulumi.Input[str]] = None,
             realm: Optional[pulumi.Input[str]] = None,
             store_token: Optional[pulumi.Input[bool]] = None,
+            sync_mode: Optional[pulumi.Input[str]] = None,
             token_url: Optional[pulumi.Input[str]] = None,
             trust_email: Optional[pulumi.Input[bool]] = None,
             ui_locales: Optional[pulumi.Input[bool]] = None,
@@ -1217,6 +1291,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[str] display_name: Display name for the identity provider in the GUI.
         :param pulumi.Input[bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
         :param pulumi.Input[str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
+        :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
         :param pulumi.Input[str] internal_id: (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
         :param pulumi.Input[str] jwks_url: JSON Web Key Set URL.
@@ -1227,6 +1302,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        :param pulumi.Input[str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
         :param pulumi.Input[str] token_url: The Token URL.
         :param pulumi.Input[bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[bool] ui_locales: Pass current locale to identity provider. Defaults to `false`.
@@ -1251,6 +1327,7 @@ class IdentityProvider(pulumi.CustomResource):
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["extra_config"] = extra_config
         __props__.__dict__["first_broker_login_flow_alias"] = first_broker_login_flow_alias
+        __props__.__dict__["gui_order"] = gui_order
         __props__.__dict__["hide_on_login_page"] = hide_on_login_page
         __props__.__dict__["internal_id"] = internal_id
         __props__.__dict__["jwks_url"] = jwks_url
@@ -1261,6 +1338,7 @@ class IdentityProvider(pulumi.CustomResource):
         __props__.__dict__["provider_id"] = provider_id
         __props__.__dict__["realm"] = realm
         __props__.__dict__["store_token"] = store_token
+        __props__.__dict__["sync_mode"] = sync_mode
         __props__.__dict__["token_url"] = token_url
         __props__.__dict__["trust_email"] = trust_email
         __props__.__dict__["ui_locales"] = ui_locales
@@ -1378,6 +1456,14 @@ class IdentityProvider(pulumi.CustomResource):
         return pulumi.get(self, "first_broker_login_flow_alias")
 
     @property
+    @pulumi.getter(name="guiOrder")
+    def gui_order(self) -> pulumi.Output[Optional[str]]:
+        """
+        A number defining the order of this identity provider in the GUI.
+        """
+        return pulumi.get(self, "gui_order")
+
+    @property
     @pulumi.getter(name="hideOnLoginPage")
     def hide_on_login_page(self) -> pulumi.Output[Optional[bool]]:
         """
@@ -1456,6 +1542,14 @@ class IdentityProvider(pulumi.CustomResource):
         When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         """
         return pulumi.get(self, "store_token")
+
+    @property
+    @pulumi.getter(name="syncMode")
+    def sync_mode(self) -> pulumi.Output[Optional[str]]:
+        """
+        The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+        """
+        return pulumi.get(self, "sync_mode")
 
     @property
     @pulumi.getter(name="tokenUrl")

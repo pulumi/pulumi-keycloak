@@ -36,9 +36,10 @@ namespace Pulumi.Keycloak.Oidc
     ///             ClientSecret = @var.Google_identity_provider_client_secret,
     ///             TrustEmail = true,
     ///             HostedDomain = "example.com",
+    ///             SyncMode = "IMPORT",
     ///             ExtraConfig = 
     ///             {
-    ///                 { "syncMode", "IMPORT" },
+    ///                 { "myCustomConfigKey", "myValue" },
     ///             },
     ///         });
     ///     }
@@ -123,6 +124,12 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string?> FirstBrokerLoginFlowAlias { get; private set; } = null!;
 
         /// <summary>
+        /// A number defining the order of this identity provider in the GUI.
+        /// </summary>
+        [Output("guiOrder")]
+        public Output<string?> GuiOrder { get; private set; } = null!;
+
+        /// <summary>
         /// When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
         /// </summary>
         [Output("hideOnLoginPage")]
@@ -175,6 +182,12 @@ namespace Pulumi.Keycloak.Oidc
         /// </summary>
         [Output("storeToken")]
         public Output<bool?> StoreToken { get; private set; } = null!;
+
+        /// <summary>
+        /// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+        /// </summary>
+        [Output("syncMode")]
+        public Output<string?> SyncMode { get; private set; } = null!;
 
         /// <summary>
         /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
@@ -297,6 +310,12 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? FirstBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
+        /// A number defining the order of this identity provider in the GUI.
+        /// </summary>
+        [Input("guiOrder")]
+        public Input<string>? GuiOrder { get; set; }
+
+        /// <summary>
         /// When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
         /// </summary>
         [Input("hideOnLoginPage")]
@@ -343,6 +362,12 @@ namespace Pulumi.Keycloak.Oidc
         /// </summary>
         [Input("storeToken")]
         public Input<bool>? StoreToken { get; set; }
+
+        /// <summary>
+        /// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+        /// </summary>
+        [Input("syncMode")]
+        public Input<string>? SyncMode { get; set; }
 
         /// <summary>
         /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
@@ -438,6 +463,12 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? FirstBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
+        /// A number defining the order of this identity provider in the GUI.
+        /// </summary>
+        [Input("guiOrder")]
+        public Input<string>? GuiOrder { get; set; }
+
+        /// <summary>
         /// When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
         /// </summary>
         [Input("hideOnLoginPage")]
@@ -490,6 +521,12 @@ namespace Pulumi.Keycloak.Oidc
         /// </summary>
         [Input("storeToken")]
         public Input<bool>? StoreToken { get; set; }
+
+        /// <summary>
+        /// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+        /// </summary>
+        [Input("syncMode")]
+        public Input<string>? SyncMode { get; set; }
 
         /// <summary>
         /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.

@@ -91,6 +91,8 @@ type IdentityProvider struct {
 	ExtraConfig pulumi.MapOutput     `pulumi:"extraConfig"`
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrOutput `pulumi:"firstBrokerLoginFlowAlias"`
+	// A number defining the order of this identity provider in the GUI.
+	GuiOrder pulumi.StringPtrOutput `pulumi:"guiOrder"`
 	// When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
 	HideOnLoginPage pulumi.BoolPtrOutput `pulumi:"hideOnLoginPage"`
 	// (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
@@ -111,6 +113,8 @@ type IdentityProvider struct {
 	Realm pulumi.StringOutput `pulumi:"realm"`
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrOutput `pulumi:"storeToken"`
+	// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+	SyncMode pulumi.StringPtrOutput `pulumi:"syncMode"`
 	// The Token URL.
 	TokenUrl pulumi.StringOutput `pulumi:"tokenUrl"`
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
@@ -197,6 +201,8 @@ type identityProviderState struct {
 	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias *string `pulumi:"firstBrokerLoginFlowAlias"`
+	// A number defining the order of this identity provider in the GUI.
+	GuiOrder *string `pulumi:"guiOrder"`
 	// When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
 	HideOnLoginPage *bool `pulumi:"hideOnLoginPage"`
 	// (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
@@ -217,6 +223,8 @@ type identityProviderState struct {
 	Realm *string `pulumi:"realm"`
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken *bool `pulumi:"storeToken"`
+	// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+	SyncMode *string `pulumi:"syncMode"`
 	// The Token URL.
 	TokenUrl *string `pulumi:"tokenUrl"`
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
@@ -257,6 +265,8 @@ type IdentityProviderState struct {
 	ExtraConfig pulumi.MapInput
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrInput
+	// A number defining the order of this identity provider in the GUI.
+	GuiOrder pulumi.StringPtrInput
 	// When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
 	HideOnLoginPage pulumi.BoolPtrInput
 	// (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
@@ -277,6 +287,8 @@ type IdentityProviderState struct {
 	Realm pulumi.StringPtrInput
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrInput
+	// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+	SyncMode pulumi.StringPtrInput
 	// The Token URL.
 	TokenUrl pulumi.StringPtrInput
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
@@ -321,6 +333,8 @@ type identityProviderArgs struct {
 	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias *string `pulumi:"firstBrokerLoginFlowAlias"`
+	// A number defining the order of this identity provider in the GUI.
+	GuiOrder *string `pulumi:"guiOrder"`
 	// When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
 	HideOnLoginPage *bool `pulumi:"hideOnLoginPage"`
 	// JSON Web Key Set URL.
@@ -339,6 +353,8 @@ type identityProviderArgs struct {
 	Realm string `pulumi:"realm"`
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken *bool `pulumi:"storeToken"`
+	// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+	SyncMode *string `pulumi:"syncMode"`
 	// The Token URL.
 	TokenUrl string `pulumi:"tokenUrl"`
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
@@ -380,6 +396,8 @@ type IdentityProviderArgs struct {
 	ExtraConfig pulumi.MapInput
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrInput
+	// A number defining the order of this identity provider in the GUI.
+	GuiOrder pulumi.StringPtrInput
 	// When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
 	HideOnLoginPage pulumi.BoolPtrInput
 	// JSON Web Key Set URL.
@@ -398,6 +416,8 @@ type IdentityProviderArgs struct {
 	Realm pulumi.StringInput
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrInput
+	// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+	SyncMode pulumi.StringPtrInput
 	// The Token URL.
 	TokenUrl pulumi.StringInput
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
