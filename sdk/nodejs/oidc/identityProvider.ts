@@ -122,6 +122,10 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly firstBrokerLoginFlowAlias!: pulumi.Output<string | undefined>;
     /**
+     * A number defining the order of this identity provider in the GUI.
+     */
+    public readonly guiOrder!: pulumi.Output<string | undefined>;
+    /**
      * When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
      */
     public readonly hideOnLoginPage!: pulumi.Output<boolean | undefined>;
@@ -161,6 +165,10 @@ export class IdentityProvider extends pulumi.CustomResource {
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
     public readonly storeToken!: pulumi.Output<boolean | undefined>;
+    /**
+     * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+     */
+    public readonly syncMode!: pulumi.Output<string | undefined>;
     /**
      * The Token URL.
      */
@@ -209,6 +217,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             inputs["enabled"] = state ? state.enabled : undefined;
             inputs["extraConfig"] = state ? state.extraConfig : undefined;
             inputs["firstBrokerLoginFlowAlias"] = state ? state.firstBrokerLoginFlowAlias : undefined;
+            inputs["guiOrder"] = state ? state.guiOrder : undefined;
             inputs["hideOnLoginPage"] = state ? state.hideOnLoginPage : undefined;
             inputs["internalId"] = state ? state.internalId : undefined;
             inputs["jwksUrl"] = state ? state.jwksUrl : undefined;
@@ -219,6 +228,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             inputs["providerId"] = state ? state.providerId : undefined;
             inputs["realm"] = state ? state.realm : undefined;
             inputs["storeToken"] = state ? state.storeToken : undefined;
+            inputs["syncMode"] = state ? state.syncMode : undefined;
             inputs["tokenUrl"] = state ? state.tokenUrl : undefined;
             inputs["trustEmail"] = state ? state.trustEmail : undefined;
             inputs["uiLocales"] = state ? state.uiLocales : undefined;
@@ -258,6 +268,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             inputs["enabled"] = args ? args.enabled : undefined;
             inputs["extraConfig"] = args ? args.extraConfig : undefined;
             inputs["firstBrokerLoginFlowAlias"] = args ? args.firstBrokerLoginFlowAlias : undefined;
+            inputs["guiOrder"] = args ? args.guiOrder : undefined;
             inputs["hideOnLoginPage"] = args ? args.hideOnLoginPage : undefined;
             inputs["jwksUrl"] = args ? args.jwksUrl : undefined;
             inputs["linkOnly"] = args ? args.linkOnly : undefined;
@@ -267,6 +278,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             inputs["providerId"] = args ? args.providerId : undefined;
             inputs["realm"] = args ? args.realm : undefined;
             inputs["storeToken"] = args ? args.storeToken : undefined;
+            inputs["syncMode"] = args ? args.syncMode : undefined;
             inputs["tokenUrl"] = args ? args.tokenUrl : undefined;
             inputs["trustEmail"] = args ? args.trustEmail : undefined;
             inputs["uiLocales"] = args ? args.uiLocales : undefined;
@@ -339,6 +351,10 @@ export interface IdentityProviderState {
      */
     readonly firstBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
+     * A number defining the order of this identity provider in the GUI.
+     */
+    readonly guiOrder?: pulumi.Input<string>;
+    /**
      * When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
      */
     readonly hideOnLoginPage?: pulumi.Input<boolean>;
@@ -378,6 +394,10 @@ export interface IdentityProviderState {
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
     readonly storeToken?: pulumi.Input<boolean>;
+    /**
+     * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+     */
+    readonly syncMode?: pulumi.Input<string>;
     /**
      * The Token URL.
      */
@@ -458,6 +478,10 @@ export interface IdentityProviderArgs {
      */
     readonly firstBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
+     * A number defining the order of this identity provider in the GUI.
+     */
+    readonly guiOrder?: pulumi.Input<string>;
+    /**
      * When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
      */
     readonly hideOnLoginPage?: pulumi.Input<boolean>;
@@ -493,6 +517,10 @@ export interface IdentityProviderArgs {
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
     readonly storeToken?: pulumi.Input<boolean>;
+    /**
+     * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+     */
+    readonly syncMode?: pulumi.Input<string>;
     /**
      * The Token URL.
      */

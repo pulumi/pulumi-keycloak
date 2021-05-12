@@ -6504,7 +6504,7 @@
             }
         },
         "keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider": {
-            "description": "Allows for creating and managing OIDC Identity Providers within Keycloak.\n\nOIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst google = new keycloak.oidc.GoogleIdentityProvider(\"google\", {\n    realm: realm.id,\n    clientId: _var.google_identity_provider_client_id,\n    clientSecret: _var.google_identity_provider_client_secret,\n    trustEmail: true,\n    hostedDomain: \"example.com\",\n    extraConfig: {\n        syncMode: \"IMPORT\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\ngoogle = keycloak.oidc.GoogleIdentityProvider(\"google\",\n    realm=realm.id,\n    client_id=var[\"google_identity_provider_client_id\"],\n    client_secret=var[\"google_identity_provider_client_secret\"],\n    trust_email=True,\n    hosted_domain=\"example.com\",\n    extra_config={\n        \"syncMode\": \"IMPORT\",\n    })\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var google = new Keycloak.Oidc.GoogleIdentityProvider(\"google\", new Keycloak.Oidc.GoogleIdentityProviderArgs\n        {\n            Realm = realm.Id,\n            ClientId = @var.Google_identity_provider_client_id,\n            ClientSecret = @var.Google_identity_provider_client_secret,\n            TrustEmail = true,\n            HostedDomain = \"example.com\",\n            ExtraConfig = \n            {\n                { \"syncMode\", \"IMPORT\" },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/oidc\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oidc.NewGoogleIdentityProvider(ctx, \"google\", \u0026oidc.GoogleIdentityProviderArgs{\n\t\t\tRealm:        realm.ID(),\n\t\t\tClientId:     pulumi.Any(_var.Google_identity_provider_client_id),\n\t\t\tClientSecret: pulumi.Any(_var.Google_identity_provider_client_secret),\n\t\t\tTrustEmail:   pulumi.Bool(true),\n\t\t\tHostedDomain: pulumi.String(\"example.com\"),\n\t\t\tExtraConfig: pulumi.StringMap{\n\t\t\t\t\"syncMode\": pulumi.String(\"IMPORT\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nThis resource does not yet support importing. ",
+            "description": "Allows for creating and managing OIDC Identity Providers within Keycloak.\n\nOIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst google = new keycloak.oidc.GoogleIdentityProvider(\"google\", {\n    realm: realm.id,\n    clientId: _var.google_identity_provider_client_id,\n    clientSecret: _var.google_identity_provider_client_secret,\n    trustEmail: true,\n    hostedDomain: \"example.com\",\n    syncMode: \"IMPORT\",\n    extraConfig: {\n        myCustomConfigKey: \"myValue\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\ngoogle = keycloak.oidc.GoogleIdentityProvider(\"google\",\n    realm=realm.id,\n    client_id=var[\"google_identity_provider_client_id\"],\n    client_secret=var[\"google_identity_provider_client_secret\"],\n    trust_email=True,\n    hosted_domain=\"example.com\",\n    sync_mode=\"IMPORT\",\n    extra_config={\n        \"myCustomConfigKey\": \"myValue\",\n    })\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var google = new Keycloak.Oidc.GoogleIdentityProvider(\"google\", new Keycloak.Oidc.GoogleIdentityProviderArgs\n        {\n            Realm = realm.Id,\n            ClientId = @var.Google_identity_provider_client_id,\n            ClientSecret = @var.Google_identity_provider_client_secret,\n            TrustEmail = true,\n            HostedDomain = \"example.com\",\n            SyncMode = \"IMPORT\",\n            ExtraConfig = \n            {\n                { \"myCustomConfigKey\", \"myValue\" },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/oidc\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oidc.NewGoogleIdentityProvider(ctx, \"google\", \u0026oidc.GoogleIdentityProviderArgs{\n\t\t\tRealm:        realm.ID(),\n\t\t\tClientId:     pulumi.Any(_var.Google_identity_provider_client_id),\n\t\t\tClientSecret: pulumi.Any(_var.Google_identity_provider_client_secret),\n\t\t\tTrustEmail:   pulumi.Bool(true),\n\t\t\tHostedDomain: pulumi.String(\"example.com\"),\n\t\t\tSyncMode:     pulumi.String(\"IMPORT\"),\n\t\t\tExtraConfig: pulumi.StringMap{\n\t\t\t\t\"myCustomConfigKey\": pulumi.String(\"myValue\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nThis resource does not yet support importing. ",
             "properties": {
                 "acceptsPromptNoneForwardFromClient": {
                     "type": "boolean",
@@ -6556,6 +6556,10 @@
                     "type": "string",
                     "description": "The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.\n"
                 },
+                "guiOrder": {
+                    "type": "string",
+                    "description": "A number defining the order of this identity provider in the GUI.\n"
+                },
                 "hideOnLoginPage": {
                     "type": "boolean",
                     "description": "When `true`, this identity provider will be hidden on the login page. Defaults to `false`.\n"
@@ -6591,6 +6595,10 @@
                 "storeToken": {
                     "type": "boolean",
                     "description": "When `true`, tokens will be stored after authenticating users. Defaults to `true`.\n"
+                },
+                "syncMode": {
+                    "type": "string",
+                    "description": "The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.\n"
                 },
                 "trustEmail": {
                     "type": "boolean",
@@ -6652,6 +6660,10 @@
                     "type": "string",
                     "description": "The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.\n"
                 },
+                "guiOrder": {
+                    "type": "string",
+                    "description": "A number defining the order of this identity provider in the GUI.\n"
+                },
                 "hideOnLoginPage": {
                     "type": "boolean",
                     "description": "When `true`, this identity provider will be hidden on the login page. Defaults to `false`.\n"
@@ -6683,6 +6695,10 @@
                 "storeToken": {
                     "type": "boolean",
                     "description": "When `true`, tokens will be stored after authenticating users. Defaults to `true`.\n"
+                },
+                "syncMode": {
+                    "type": "string",
+                    "description": "The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.\n"
                 },
                 "trustEmail": {
                     "type": "boolean",
@@ -6751,6 +6767,10 @@
                         "type": "string",
                         "description": "The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.\n"
                     },
+                    "guiOrder": {
+                        "type": "string",
+                        "description": "A number defining the order of this identity provider in the GUI.\n"
+                    },
                     "hideOnLoginPage": {
                         "type": "boolean",
                         "description": "When `true`, this identity provider will be hidden on the login page. Defaults to `false`.\n"
@@ -6786,6 +6806,10 @@
                     "storeToken": {
                         "type": "boolean",
                         "description": "When `true`, tokens will be stored after authenticating users. Defaults to `true`.\n"
+                    },
+                    "syncMode": {
+                        "type": "string",
+                        "description": "The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.\n"
                     },
                     "trustEmail": {
                         "type": "boolean",
@@ -6860,6 +6884,10 @@
                     "type": "string",
                     "description": "The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.\n"
                 },
+                "guiOrder": {
+                    "type": "string",
+                    "description": "A number defining the order of this identity provider in the GUI.\n"
+                },
                 "hideOnLoginPage": {
                     "type": "boolean",
                     "description": "When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.\n"
@@ -6899,6 +6927,10 @@
                 "storeToken": {
                     "type": "boolean",
                     "description": "When `true`, tokens will be stored after authenticating users. Defaults to `true`.\n"
+                },
+                "syncMode": {
+                    "type": "string",
+                    "description": "The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.\n"
                 },
                 "tokenUrl": {
                     "type": "string",
@@ -6989,6 +7021,10 @@
                     "type": "string",
                     "description": "The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.\n"
                 },
+                "guiOrder": {
+                    "type": "string",
+                    "description": "A number defining the order of this identity provider in the GUI.\n"
+                },
                 "hideOnLoginPage": {
                     "type": "boolean",
                     "description": "When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.\n"
@@ -7024,6 +7060,10 @@
                 "storeToken": {
                     "type": "boolean",
                     "description": "When `true`, tokens will be stored after authenticating users. Defaults to `true`.\n"
+                },
+                "syncMode": {
+                    "type": "string",
+                    "description": "The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.\n"
                 },
                 "tokenUrl": {
                     "type": "string",
@@ -7115,6 +7155,10 @@
                         "type": "string",
                         "description": "The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.\n"
                     },
+                    "guiOrder": {
+                        "type": "string",
+                        "description": "A number defining the order of this identity provider in the GUI.\n"
+                    },
                     "hideOnLoginPage": {
                         "type": "boolean",
                         "description": "When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.\n"
@@ -7154,6 +7198,10 @@
                     "storeToken": {
                         "type": "boolean",
                         "description": "When `true`, tokens will be stored after authenticating users. Defaults to `true`.\n"
+                    },
+                    "syncMode": {
+                        "type": "string",
+                        "description": "The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.\n"
                     },
                     "tokenUrl": {
                         "type": "string",
@@ -11242,6 +11290,12 @@
                     "type": "string",
                     "description": "The Entity ID that will be used to uniquely identify this SAML Service Provider.\n"
                 },
+                "extraConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
                 "firstBrokerLoginFlowAlias": {
                     "type": "string",
                     "description": "Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.\n"
@@ -11252,7 +11306,7 @@
                 },
                 "guiOrder": {
                     "type": "string",
-                    "description": "GUI Order\n"
+                    "description": "A number defining the order of this identity provider in the GUI.\n"
                 },
                 "hideOnLoginPage": {
                     "type": "boolean",
@@ -11320,7 +11374,7 @@
                 },
                 "syncMode": {
                     "type": "string",
-                    "description": "Sync Mode\n"
+                    "description": "The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.\n"
                 },
                 "trustEmail": {
                     "type": "boolean",
@@ -11379,6 +11433,12 @@
                     "type": "string",
                     "description": "The Entity ID that will be used to uniquely identify this SAML Service Provider.\n"
                 },
+                "extraConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
                 "firstBrokerLoginFlowAlias": {
                     "type": "string",
                     "description": "Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.\n"
@@ -11389,7 +11449,7 @@
                 },
                 "guiOrder": {
                     "type": "string",
-                    "description": "GUI Order\n"
+                    "description": "A number defining the order of this identity provider in the GUI.\n"
                 },
                 "hideOnLoginPage": {
                     "type": "boolean",
@@ -11453,7 +11513,7 @@
                 },
                 "syncMode": {
                     "type": "string",
-                    "description": "Sync Mode\n"
+                    "description": "The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.\n"
                 },
                 "trustEmail": {
                     "type": "boolean",
@@ -11513,6 +11573,12 @@
                         "type": "string",
                         "description": "The Entity ID that will be used to uniquely identify this SAML Service Provider.\n"
                     },
+                    "extraConfig": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
                     "firstBrokerLoginFlowAlias": {
                         "type": "string",
                         "description": "Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.\n"
@@ -11523,7 +11589,7 @@
                     },
                     "guiOrder": {
                         "type": "string",
-                        "description": "GUI Order\n"
+                        "description": "A number defining the order of this identity provider in the GUI.\n"
                     },
                     "hideOnLoginPage": {
                         "type": "boolean",
@@ -11591,7 +11657,7 @@
                     },
                     "syncMode": {
                         "type": "string",
-                        "description": "Sync Mode\n"
+                        "description": "The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.\n"
                     },
                     "trustEmail": {
                         "type": "boolean",
@@ -13216,7 +13282,7 @@
                 "saml": "Saml"
             },
             "packageReferences": {
-                "Pulumi": "3.*-*",
+                "Pulumi": "3.*",
                 "System.Collections.Immutable": "1.6.0"
             }
         },
@@ -13227,11 +13293,11 @@
         "nodejs": {
             "compatibility": "tfbridge20",
             "dependencies": {
-                "@pulumi/pulumi": "^3.0.0-alpha.0"
+                "@pulumi/pulumi": "^3.0.0"
             },
             "devDependencies": {
                 "@types/mime": "^2.0.0",
-                "@types/node": "^8.0.25"
+                "@types/node": "^10.0.0"
             },
             "disableUnionOutputTypes": true,
             "packageDescription": "A Pulumi package for creating and managing keycloak cloud resources.",
@@ -13243,7 +13309,7 @@
             "compatibility": "tfbridge20",
             "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/mrparkers/terraform-provider-keycloak)\n\u003e distributed under [MIT](https://mit-license.org/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-keycloak` repo](https://github.com/pulumi/pulumi-keycloak/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`mrparkers/terraform-provider-keycloak` repo](https://github.com/mrparkers/terraform-provider-keycloak/issues).",
             "requires": {
-                "pulumi": "\u003e=3.0.0a1,\u003c4.0.0"
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             }
         }
     }
