@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v3.0.1 of the KeyCloak Terraform Provider
+_(none)_
 
 ---
+
+## 4.0.1 (2021-05-12)
+* Upgrade to v3.0.1 of the KeyCloak Terraform Provider
 
 ## 4.0.0 (2021-04-19)
 * Upgrade to v3.0.0 of the KeyCloak Terraform Provider
