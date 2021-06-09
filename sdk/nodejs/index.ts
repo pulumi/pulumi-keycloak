@@ -7,12 +7,14 @@ import * as utilities from "./utilities";
 // Export members:
 export * from "./attributeImporterIdentityProviderMapper";
 export * from "./attributeToRoleIdentityMapper";
+export * from "./customIdentityProviderMapping";
 export * from "./customUserFederation";
 export * from "./defaultGroups";
 export * from "./genericClientProtocolMapper";
 export * from "./genericClientRoleMapper";
 export * from "./getAuthenticationExecution";
 export * from "./getAuthenticationFlow";
+export * from "./getClientDescriptionConverter";
 export * from "./getGroup";
 export * from "./getRealm";
 export * from "./getRealmKeys";
@@ -57,6 +59,7 @@ export {
 // Import resources to register:
 import { AttributeImporterIdentityProviderMapper } from "./attributeImporterIdentityProviderMapper";
 import { AttributeToRoleIdentityMapper } from "./attributeToRoleIdentityMapper";
+import { CustomIdentityProviderMapping } from "./customIdentityProviderMapping";
 import { CustomUserFederation } from "./customUserFederation";
 import { DefaultGroups } from "./defaultGroups";
 import { GenericClientProtocolMapper } from "./genericClientProtocolMapper";
@@ -85,6 +88,8 @@ const _module = {
                 return new AttributeImporterIdentityProviderMapper(name, <any>undefined, { urn })
             case "keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper":
                 return new AttributeToRoleIdentityMapper(name, <any>undefined, { urn })
+            case "keycloak:index/customIdentityProviderMapping:CustomIdentityProviderMapping":
+                return new CustomIdentityProviderMapping(name, <any>undefined, { urn })
             case "keycloak:index/customUserFederation:CustomUserFederation":
                 return new CustomUserFederation(name, <any>undefined, { urn })
             case "keycloak:index/defaultGroups:DefaultGroups":
@@ -130,6 +135,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("keycloak", "index/attributeImporterIdentityProviderMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/attributeToRoleIdentityMapper", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/customIdentityProviderMapping", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/customUserFederation", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/defaultGroups", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/genericClientProtocolMapper", _module)

@@ -7,7 +7,7 @@ import * as utilities from "./utilities";
 /**
  * ## Import
  *
- * This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server. [1]/docs/resources/user_groups.html
+ * This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server. [1]providers/mrparkers/keycloak/latest/docs/resources/group_memberships
  */
 export class GroupMemberships extends pulumi.CustomResource {
     /**

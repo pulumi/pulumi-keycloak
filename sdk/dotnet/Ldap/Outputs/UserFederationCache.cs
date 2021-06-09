@@ -14,13 +14,16 @@ namespace Pulumi.Keycloak.Ldap.Outputs
     public sealed class UserFederationCache
     {
         /// <summary>
-        /// Minute of day the entry will become invalid on.
+        /// Day of the week the entry will become invalid on
         /// </summary>
         public readonly int? EvictionDay;
         /// <summary>
         /// Hour of day the entry will become invalid on.
         /// </summary>
         public readonly int? EvictionHour;
+        /// <summary>
+        /// Minute of day the entry will become invalid on.
+        /// </summary>
         public readonly int? EvictionMinute;
         /// <summary>
         /// Max lifespan of cache entry (duration string).

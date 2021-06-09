@@ -24,6 +24,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AttributeImporterIdentityProviderMapper{}
 	case "keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper":
 		r = &AttributeToRoleIdentityMapper{}
+	case "keycloak:index/customIdentityProviderMapping:CustomIdentityProviderMapping":
+		r = &CustomIdentityProviderMapping{}
 	case "keycloak:index/customUserFederation:CustomUserFederation":
 		r = &CustomUserFederation{}
 	case "keycloak:index/defaultGroups:DefaultGroups":
@@ -101,6 +103,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"index/attributeToRoleIdentityMapper",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/customIdentityProviderMapping",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

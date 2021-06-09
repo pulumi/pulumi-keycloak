@@ -13,7 +13,7 @@ namespace Pulumi.Keycloak.Ldap.Inputs
     public sealed class UserFederationCacheGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Minute of day the entry will become invalid on.
+        /// Day of the week the entry will become invalid on
         /// </summary>
         [Input("evictionDay")]
         public Input<int>? EvictionDay { get; set; }
@@ -24,6 +24,9 @@ namespace Pulumi.Keycloak.Ldap.Inputs
         [Input("evictionHour")]
         public Input<int>? EvictionHour { get; set; }
 
+        /// <summary>
+        /// Minute of day the entry will become invalid on.
+        /// </summary>
         [Input("evictionMinute")]
         public Input<int>? EvictionMinute { get; set; }
 

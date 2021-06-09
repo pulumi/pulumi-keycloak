@@ -11,10 +11,11 @@ import (
 )
 
 type UserFederationCache struct {
-	// Minute of day the entry will become invalid on.
+	// Day of the week the entry will become invalid on
 	EvictionDay *int `pulumi:"evictionDay"`
 	// Hour of day the entry will become invalid on.
-	EvictionHour   *int `pulumi:"evictionHour"`
+	EvictionHour *int `pulumi:"evictionHour"`
+	// Minute of day the entry will become invalid on.
 	EvictionMinute *int `pulumi:"evictionMinute"`
 	// Max lifespan of cache entry (duration string).
 	MaxLifespan *string `pulumi:"maxLifespan"`
@@ -34,10 +35,11 @@ type UserFederationCacheInput interface {
 }
 
 type UserFederationCacheArgs struct {
-	// Minute of day the entry will become invalid on.
+	// Day of the week the entry will become invalid on
 	EvictionDay pulumi.IntPtrInput `pulumi:"evictionDay"`
 	// Hour of day the entry will become invalid on.
-	EvictionHour   pulumi.IntPtrInput `pulumi:"evictionHour"`
+	EvictionHour pulumi.IntPtrInput `pulumi:"evictionHour"`
+	// Minute of day the entry will become invalid on.
 	EvictionMinute pulumi.IntPtrInput `pulumi:"evictionMinute"`
 	// Max lifespan of cache entry (duration string).
 	MaxLifespan pulumi.StringPtrInput `pulumi:"maxLifespan"`
@@ -122,7 +124,7 @@ func (o UserFederationCacheOutput) ToUserFederationCachePtrOutputWithContext(ctx
 	}).(UserFederationCachePtrOutput)
 }
 
-// Minute of day the entry will become invalid on.
+// Day of the week the entry will become invalid on
 func (o UserFederationCacheOutput) EvictionDay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v UserFederationCache) *int { return v.EvictionDay }).(pulumi.IntPtrOutput)
 }
@@ -132,6 +134,7 @@ func (o UserFederationCacheOutput) EvictionHour() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v UserFederationCache) *int { return v.EvictionHour }).(pulumi.IntPtrOutput)
 }
 
+// Minute of day the entry will become invalid on.
 func (o UserFederationCacheOutput) EvictionMinute() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v UserFederationCache) *int { return v.EvictionMinute }).(pulumi.IntPtrOutput)
 }
@@ -164,7 +167,7 @@ func (o UserFederationCachePtrOutput) Elem() UserFederationCacheOutput {
 	return o.ApplyT(func(v *UserFederationCache) UserFederationCache { return *v }).(UserFederationCacheOutput)
 }
 
-// Minute of day the entry will become invalid on.
+// Day of the week the entry will become invalid on
 func (o UserFederationCachePtrOutput) EvictionDay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *UserFederationCache) *int {
 		if v == nil {
@@ -184,6 +187,7 @@ func (o UserFederationCachePtrOutput) EvictionHour() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// Minute of day the entry will become invalid on.
 func (o UserFederationCachePtrOutput) EvictionMinute() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *UserFederationCache) *int {
 		if v == nil {

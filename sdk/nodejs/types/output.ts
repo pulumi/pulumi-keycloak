@@ -4,6 +4,14 @@
 import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
+export interface GetClientDescriptionConverterProtocolMapper {
+    config: {[key: string]: any};
+    id: string;
+    name: string;
+    protocol: string;
+    protocolMapper: string;
+}
+
 export interface GetRealmInternationalization {
     defaultLocale: string;
     supportedLocales: string[];
@@ -393,13 +401,16 @@ export interface UsersPermissionsViewScope {
 export namespace ldap {
     export interface UserFederationCache {
         /**
-         * Minute of day the entry will become invalid on.
+         * Day of the week the entry will become invalid on
          */
         evictionDay?: number;
         /**
          * Hour of day the entry will become invalid on.
          */
         evictionHour?: number;
+        /**
+         * Minute of day the entry will become invalid on.
+         */
         evictionMinute?: number;
         /**
          * Max lifespan of cache entry (duration string).

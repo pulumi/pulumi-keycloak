@@ -22,8 +22,9 @@ class UserFederationCacheArgs:
                  max_lifespan: Optional[pulumi.Input[str]] = None,
                  policy: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] eviction_day: Minute of day the entry will become invalid on.
+        :param pulumi.Input[int] eviction_day: Day of the week the entry will become invalid on
         :param pulumi.Input[int] eviction_hour: Hour of day the entry will become invalid on.
+        :param pulumi.Input[int] eviction_minute: Minute of day the entry will become invalid on.
         :param pulumi.Input[str] max_lifespan: Max lifespan of cache entry (duration string).
         :param pulumi.Input[str] policy: Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
         """
@@ -42,7 +43,7 @@ class UserFederationCacheArgs:
     @pulumi.getter(name="evictionDay")
     def eviction_day(self) -> Optional[pulumi.Input[int]]:
         """
-        Minute of day the entry will become invalid on.
+        Day of the week the entry will become invalid on
         """
         return pulumi.get(self, "eviction_day")
 
@@ -65,6 +66,9 @@ class UserFederationCacheArgs:
     @property
     @pulumi.getter(name="evictionMinute")
     def eviction_minute(self) -> Optional[pulumi.Input[int]]:
+        """
+        Minute of day the entry will become invalid on.
+        """
         return pulumi.get(self, "eviction_minute")
 
     @eviction_minute.setter

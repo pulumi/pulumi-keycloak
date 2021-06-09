@@ -358,13 +358,16 @@ export interface UsersPermissionsViewScope {
 export namespace ldap {
     export interface UserFederationCache {
         /**
-         * Minute of day the entry will become invalid on.
+         * Day of the week the entry will become invalid on
          */
         evictionDay?: pulumi.Input<number>;
         /**
          * Hour of day the entry will become invalid on.
          */
         evictionHour?: pulumi.Input<number>;
+        /**
+         * Minute of day the entry will become invalid on.
+         */
         evictionMinute?: pulumi.Input<number>;
         /**
          * Max lifespan of cache entry (duration string).
