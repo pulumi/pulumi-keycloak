@@ -26,6 +26,7 @@ __all__ = [
     'UsersPermissionsMapRolesScope',
     'UsersPermissionsUserImpersonatedScope',
     'UsersPermissionsViewScope',
+    'GetClientDescriptionConverterProtocolMapperResult',
     'GetRealmInternationalizationResult',
     'GetRealmKeysKeyResult',
     'GetRealmSecurityDefenseResult',
@@ -1229,6 +1230,46 @@ class UsersPermissionsViewScope(dict):
     @pulumi.getter
     def policies(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "policies")
+
+
+@pulumi.output_type
+class GetClientDescriptionConverterProtocolMapperResult(dict):
+    def __init__(__self__, *,
+                 config: Mapping[str, Any],
+                 id: str,
+                 name: str,
+                 protocol: str,
+                 protocol_mapper: str):
+        pulumi.set(__self__, "config", config)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "protocol_mapper", protocol_mapper)
+
+    @property
+    @pulumi.getter
+    def config(self) -> Mapping[str, Any]:
+        return pulumi.get(self, "config")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="protocolMapper")
+    def protocol_mapper(self) -> str:
+        return pulumi.get(self, "protocol_mapper")
 
 
 @pulumi.output_type

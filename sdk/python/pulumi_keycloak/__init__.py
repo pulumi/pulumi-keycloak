@@ -5,12 +5,14 @@
 # Export this package's modules as members:
 from .attribute_importer_identity_provider_mapper import *
 from .attribute_to_role_identity_mapper import *
+from .custom_identity_provider_mapping import *
 from .custom_user_federation import *
 from .default_groups import *
 from .generic_client_protocol_mapper import *
 from .generic_client_role_mapper import *
 from .get_authentication_execution import *
 from .get_authentication_flow import *
+from .get_client_description_converter import *
 from .get_group import *
 from .get_realm import *
 from .get_realm_keys import *
@@ -61,6 +63,8 @@ def _register_module():
                 return AttributeImporterIdentityProviderMapper(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper":
                 return AttributeToRoleIdentityMapper(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/customIdentityProviderMapping:CustomIdentityProviderMapping":
+                return CustomIdentityProviderMapping(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "keycloak:index/customUserFederation:CustomUserFederation":
                 return CustomUserFederation(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "keycloak:index/defaultGroups:DefaultGroups":
@@ -106,6 +110,7 @@ def _register_module():
     _module_instance = Module()
     pulumi.runtime.register_resource_module("keycloak", "index/attributeImporterIdentityProviderMapper", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "index/attributeToRoleIdentityMapper", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/customIdentityProviderMapping", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "index/customUserFederation", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "index/defaultGroups", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "index/genericClientProtocolMapper", _module_instance)
