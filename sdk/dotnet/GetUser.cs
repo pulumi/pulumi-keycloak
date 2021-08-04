@@ -13,6 +13,37 @@ namespace Pulumi.Keycloak
     {
         /// <summary>
         /// This data source can be used to fetch properties of a user within Keycloak.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var masterRealm = Output.Create(Keycloak.GetRealm.InvokeAsync(new Keycloak.GetRealmArgs
+        ///         {
+        ///             Realm = "master",
+        ///         }));
+        ///         var defaultAdminUser = masterRealm.Apply(masterRealm =&gt; Output.Create(Keycloak.GetUser.InvokeAsync(new Keycloak.GetUserArgs
+        ///         {
+        ///             RealmId = masterRealm.Id,
+        ///             Username = "keycloak",
+        ///         })));
+        ///         this.KeycloakUserId = defaultAdminUser.Apply(defaultAdminUser =&gt; defaultAdminUser.Id);
+        ///     }
+        /// 
+        ///     [Output("keycloakUserId")]
+        ///     public Output&lt;string&gt; KeycloakUserId { get; set; }
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetUserResult> InvokeAsync(GetUserArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetUserResult>("keycloak:index/getUser:getUser", args ?? new GetUserArgs(), options.WithVersion());

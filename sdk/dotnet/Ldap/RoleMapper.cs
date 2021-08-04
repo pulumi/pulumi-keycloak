@@ -9,60 +9,161 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.Ldap
 {
+    /// <summary>
+    /// Allows for creating and managing role mappers for Keycloak users federated via LDAP.
+    /// 
+    /// The LDAP group mapper can be used to map an LDAP user's roles from some DN to Keycloak roles.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "my-realm",
+    ///             Enabled = true,
+    ///         });
+    ///         var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new Keycloak.Ldap.UserFederationArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             UsernameLdapAttribute = "cn",
+    ///             RdnLdapAttribute = "cn",
+    ///             UuidLdapAttribute = "entryDN",
+    ///             UserObjectClasses = 
+    ///             {
+    ///                 "simpleSecurityObject",
+    ///                 "organizationalRole",
+    ///             },
+    ///             ConnectionUrl = "ldap://openldap",
+    ///             UsersDn = "dc=example,dc=org",
+    ///             BindDn = "cn=admin,dc=example,dc=org",
+    ///             BindCredential = "admin",
+    ///         });
+    ///         var ldapRoleMapper = new Keycloak.Ldap.RoleMapper("ldapRoleMapper", new Keycloak.Ldap.RoleMapperArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             LdapUserFederationId = ldapUserFederation.Id,
+    ///             LdapRolesDn = "dc=example,dc=org",
+    ///             RoleNameLdapAttribute = "cn",
+    ///             RoleObjectClasses = 
+    ///             {
+    ///                 "groupOfNames",
+    ///             },
+    ///             MembershipAttributeType = "DN",
+    ///             MembershipLdapAttribute = "member",
+    ///             MembershipUserLdapAttribute = "cn",
+    ///             UserRolesRetrieveStrategy = "GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE",
+    ///             MemberofLdapAttribute = "memberOf",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
+    /// 
+    /// ```sh
+    ///  $ pulumi import keycloak:ldap/roleMapper:RoleMapper ldap_role_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+    /// ```
+    /// </summary>
     [KeycloakResourceType("keycloak:ldap/roleMapper:RoleMapper")]
     public partial class RoleMapper : Pulumi.CustomResource
     {
+        /// <summary>
+        /// When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
+        /// </summary>
         [Output("clientId")]
         public Output<string?> ClientId { get; private set; } = null!;
 
+        /// <summary>
+        /// The LDAP DN where roles can be found.
+        /// </summary>
         [Output("ldapRolesDn")]
         public Output<string> LdapRolesDn { get; private set; } = null!;
 
         /// <summary>
-        /// The ldap user federation provider to attach this mapper to.
+        /// The ID of the LDAP user federation provider to attach this mapper to.
         /// </summary>
         [Output("ldapUserFederationId")]
         public Output<string> LdapUserFederationId { get; private set; } = null!;
 
+        /// <summary>
+        /// Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when
+        /// </summary>
         [Output("memberofLdapAttribute")]
         public Output<string?> MemberofLdapAttribute { get; private set; } = null!;
 
+        /// <summary>
+        /// Can be one of `DN` or `UID`. Defaults to `DN`.
+        /// </summary>
         [Output("membershipAttributeType")]
         public Output<string?> MembershipAttributeType { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the LDAP attribute that is used for membership mappings.
+        /// </summary>
         [Output("membershipLdapAttribute")]
         public Output<string> MembershipLdapAttribute { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the LDAP attribute on a user that is used for membership mappings.
+        /// </summary>
         [Output("membershipUserLdapAttribute")]
         public Output<string> MembershipUserLdapAttribute { get; private set; } = null!;
 
+        /// <summary>
+        /// Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
+        /// </summary>
         [Output("mode")]
         public Output<string?> Mode { get; private set; } = null!;
 
         /// <summary>
-        /// Display name of the mapper when displayed in the console.
+        /// Display name of this mapper when displayed in the console.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The realm in which the ldap user federation provider exists.
+        /// The realm that this LDAP mapper will exist in.
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
+        /// </summary>
         [Output("roleNameLdapAttribute")]
         public Output<string> RoleNameLdapAttribute { get; private set; } = null!;
 
+        /// <summary>
+        /// List of strings representing the object classes for the role. Must contain at least one.
+        /// </summary>
         [Output("roleObjectClasses")]
         public Output<ImmutableArray<string>> RoleObjectClasses { get; private set; } = null!;
 
+        /// <summary>
+        /// When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        /// </summary>
         [Output("rolesLdapFilter")]
         public Output<string?> RolesLdapFilter { get; private set; } = null!;
 
+        /// <summary>
+        /// When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
+        /// </summary>
         [Output("useRealmRolesMapping")]
         public Output<bool?> UseRealmRolesMapping { get; private set; } = null!;
 
+        /// <summary>
+        /// Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
+        /// </summary>
         [Output("userRolesRetrieveStrategy")]
         public Output<string?> UserRolesRetrieveStrategy { get; private set; } = null!;
 
@@ -112,62 +213,99 @@ namespace Pulumi.Keycloak.Ldap
 
     public sealed class RoleMapperArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
+        /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
+        /// <summary>
+        /// The LDAP DN where roles can be found.
+        /// </summary>
         [Input("ldapRolesDn", required: true)]
         public Input<string> LdapRolesDn { get; set; } = null!;
 
         /// <summary>
-        /// The ldap user federation provider to attach this mapper to.
+        /// The ID of the LDAP user federation provider to attach this mapper to.
         /// </summary>
         [Input("ldapUserFederationId", required: true)]
         public Input<string> LdapUserFederationId { get; set; } = null!;
 
+        /// <summary>
+        /// Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when
+        /// </summary>
         [Input("memberofLdapAttribute")]
         public Input<string>? MemberofLdapAttribute { get; set; }
 
+        /// <summary>
+        /// Can be one of `DN` or `UID`. Defaults to `DN`.
+        /// </summary>
         [Input("membershipAttributeType")]
         public Input<string>? MembershipAttributeType { get; set; }
 
+        /// <summary>
+        /// The name of the LDAP attribute that is used for membership mappings.
+        /// </summary>
         [Input("membershipLdapAttribute", required: true)]
         public Input<string> MembershipLdapAttribute { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the LDAP attribute on a user that is used for membership mappings.
+        /// </summary>
         [Input("membershipUserLdapAttribute", required: true)]
         public Input<string> MembershipUserLdapAttribute { get; set; } = null!;
 
+        /// <summary>
+        /// Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
+        /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
         /// <summary>
-        /// Display name of the mapper when displayed in the console.
+        /// Display name of this mapper when displayed in the console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm in which the ldap user federation provider exists.
+        /// The realm that this LDAP mapper will exist in.
         /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
+        /// </summary>
         [Input("roleNameLdapAttribute", required: true)]
         public Input<string> RoleNameLdapAttribute { get; set; } = null!;
 
         [Input("roleObjectClasses", required: true)]
         private InputList<string>? _roleObjectClasses;
+
+        /// <summary>
+        /// List of strings representing the object classes for the role. Must contain at least one.
+        /// </summary>
         public InputList<string> RoleObjectClasses
         {
             get => _roleObjectClasses ?? (_roleObjectClasses = new InputList<string>());
             set => _roleObjectClasses = value;
         }
 
+        /// <summary>
+        /// When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        /// </summary>
         [Input("rolesLdapFilter")]
         public Input<string>? RolesLdapFilter { get; set; }
 
+        /// <summary>
+        /// When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
+        /// </summary>
         [Input("useRealmRolesMapping")]
         public Input<bool>? UseRealmRolesMapping { get; set; }
 
+        /// <summary>
+        /// Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
+        /// </summary>
         [Input("userRolesRetrieveStrategy")]
         public Input<string>? UserRolesRetrieveStrategy { get; set; }
 
@@ -178,62 +316,99 @@ namespace Pulumi.Keycloak.Ldap
 
     public sealed class RoleMapperState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
+        /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
+        /// <summary>
+        /// The LDAP DN where roles can be found.
+        /// </summary>
         [Input("ldapRolesDn")]
         public Input<string>? LdapRolesDn { get; set; }
 
         /// <summary>
-        /// The ldap user federation provider to attach this mapper to.
+        /// The ID of the LDAP user federation provider to attach this mapper to.
         /// </summary>
         [Input("ldapUserFederationId")]
         public Input<string>? LdapUserFederationId { get; set; }
 
+        /// <summary>
+        /// Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when
+        /// </summary>
         [Input("memberofLdapAttribute")]
         public Input<string>? MemberofLdapAttribute { get; set; }
 
+        /// <summary>
+        /// Can be one of `DN` or `UID`. Defaults to `DN`.
+        /// </summary>
         [Input("membershipAttributeType")]
         public Input<string>? MembershipAttributeType { get; set; }
 
+        /// <summary>
+        /// The name of the LDAP attribute that is used for membership mappings.
+        /// </summary>
         [Input("membershipLdapAttribute")]
         public Input<string>? MembershipLdapAttribute { get; set; }
 
+        /// <summary>
+        /// The name of the LDAP attribute on a user that is used for membership mappings.
+        /// </summary>
         [Input("membershipUserLdapAttribute")]
         public Input<string>? MembershipUserLdapAttribute { get; set; }
 
+        /// <summary>
+        /// Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
+        /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
         /// <summary>
-        /// Display name of the mapper when displayed in the console.
+        /// Display name of this mapper when displayed in the console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm in which the ldap user federation provider exists.
+        /// The realm that this LDAP mapper will exist in.
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
+        /// <summary>
+        /// The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
+        /// </summary>
         [Input("roleNameLdapAttribute")]
         public Input<string>? RoleNameLdapAttribute { get; set; }
 
         [Input("roleObjectClasses")]
         private InputList<string>? _roleObjectClasses;
+
+        /// <summary>
+        /// List of strings representing the object classes for the role. Must contain at least one.
+        /// </summary>
         public InputList<string> RoleObjectClasses
         {
             get => _roleObjectClasses ?? (_roleObjectClasses = new InputList<string>());
             set => _roleObjectClasses = value;
         }
 
+        /// <summary>
+        /// When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        /// </summary>
         [Input("rolesLdapFilter")]
         public Input<string>? RolesLdapFilter { get; set; }
 
+        /// <summary>
+        /// When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
+        /// </summary>
         [Input("useRealmRolesMapping")]
         public Input<bool>? UseRealmRolesMapping { get; set; }
 
+        /// <summary>
+        /// Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
+        /// </summary>
         [Input("userRolesRetrieveStrategy")]
         public Input<string>? UserRolesRetrieveStrategy { get; set; }
 

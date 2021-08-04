@@ -5963,57 +5963,70 @@
             }
         },
         "keycloak:ldap/roleMapper:RoleMapper": {
+            "description": "Allows for creating and managing role mappers for Keycloak users federated via LDAP.\n\nThe LDAP group mapper can be used to map an LDAP user's roles from some DN to Keycloak roles.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst ldapUserFederation = new keycloak.ldap.UserFederation(\"ldapUserFederation\", {\n    realmId: realm.id,\n    usernameLdapAttribute: \"cn\",\n    rdnLdapAttribute: \"cn\",\n    uuidLdapAttribute: \"entryDN\",\n    userObjectClasses: [\n        \"simpleSecurityObject\",\n        \"organizationalRole\",\n    ],\n    connectionUrl: \"ldap://openldap\",\n    usersDn: \"dc=example,dc=org\",\n    bindDn: \"cn=admin,dc=example,dc=org\",\n    bindCredential: \"admin\",\n});\nconst ldapRoleMapper = new keycloak.ldap.RoleMapper(\"ldapRoleMapper\", {\n    realmId: realm.id,\n    ldapUserFederationId: ldapUserFederation.id,\n    ldapRolesDn: \"dc=example,dc=org\",\n    roleNameLdapAttribute: \"cn\",\n    roleObjectClasses: [\"groupOfNames\"],\n    membershipAttributeType: \"DN\",\n    membershipLdapAttribute: \"member\",\n    membershipUserLdapAttribute: \"cn\",\n    userRolesRetrieveStrategy: \"GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE\",\n    memberofLdapAttribute: \"memberOf\",\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nldap_user_federation = keycloak.ldap.UserFederation(\"ldapUserFederation\",\n    realm_id=realm.id,\n    username_ldap_attribute=\"cn\",\n    rdn_ldap_attribute=\"cn\",\n    uuid_ldap_attribute=\"entryDN\",\n    user_object_classes=[\n        \"simpleSecurityObject\",\n        \"organizationalRole\",\n    ],\n    connection_url=\"ldap://openldap\",\n    users_dn=\"dc=example,dc=org\",\n    bind_dn=\"cn=admin,dc=example,dc=org\",\n    bind_credential=\"admin\")\nldap_role_mapper = keycloak.ldap.RoleMapper(\"ldapRoleMapper\",\n    realm_id=realm.id,\n    ldap_user_federation_id=ldap_user_federation.id,\n    ldap_roles_dn=\"dc=example,dc=org\",\n    role_name_ldap_attribute=\"cn\",\n    role_object_classes=[\"groupOfNames\"],\n    membership_attribute_type=\"DN\",\n    membership_ldap_attribute=\"member\",\n    membership_user_ldap_attribute=\"cn\",\n    user_roles_retrieve_strategy=\"GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE\",\n    memberof_ldap_attribute=\"memberOf\")\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var ldapUserFederation = new Keycloak.Ldap.UserFederation(\"ldapUserFederation\", new Keycloak.Ldap.UserFederationArgs\n        {\n            RealmId = realm.Id,\n            UsernameLdapAttribute = \"cn\",\n            RdnLdapAttribute = \"cn\",\n            UuidLdapAttribute = \"entryDN\",\n            UserObjectClasses = \n            {\n                \"simpleSecurityObject\",\n                \"organizationalRole\",\n            },\n            ConnectionUrl = \"ldap://openldap\",\n            UsersDn = \"dc=example,dc=org\",\n            BindDn = \"cn=admin,dc=example,dc=org\",\n            BindCredential = \"admin\",\n        });\n        var ldapRoleMapper = new Keycloak.Ldap.RoleMapper(\"ldapRoleMapper\", new Keycloak.Ldap.RoleMapperArgs\n        {\n            RealmId = realm.Id,\n            LdapUserFederationId = ldapUserFederation.Id,\n            LdapRolesDn = \"dc=example,dc=org\",\n            RoleNameLdapAttribute = \"cn\",\n            RoleObjectClasses = \n            {\n                \"groupOfNames\",\n            },\n            MembershipAttributeType = \"DN\",\n            MembershipLdapAttribute = \"member\",\n            MembershipUserLdapAttribute = \"cn\",\n            UserRolesRetrieveStrategy = \"GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE\",\n            MemberofLdapAttribute = \"memberOf\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/ldap\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tldapUserFederation, err := ldap.NewUserFederation(ctx, \"ldapUserFederation\", \u0026ldap.UserFederationArgs{\n\t\t\tRealmId:               realm.ID(),\n\t\t\tUsernameLdapAttribute: pulumi.String(\"cn\"),\n\t\t\tRdnLdapAttribute:      pulumi.String(\"cn\"),\n\t\t\tUuidLdapAttribute:     pulumi.String(\"entryDN\"),\n\t\t\tUserObjectClasses: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"simpleSecurityObject\"),\n\t\t\t\tpulumi.String(\"organizationalRole\"),\n\t\t\t},\n\t\t\tConnectionUrl:  pulumi.String(\"ldap://openldap\"),\n\t\t\tUsersDn:        pulumi.String(\"dc=example,dc=org\"),\n\t\t\tBindDn:         pulumi.String(\"cn=admin,dc=example,dc=org\"),\n\t\t\tBindCredential: pulumi.String(\"admin\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ldap.NewRoleMapper(ctx, \"ldapRoleMapper\", \u0026ldap.RoleMapperArgs{\n\t\t\tRealmId:               realm.ID(),\n\t\t\tLdapUserFederationId:  ldapUserFederation.ID(),\n\t\t\tLdapRolesDn:           pulumi.String(\"dc=example,dc=org\"),\n\t\t\tRoleNameLdapAttribute: pulumi.String(\"cn\"),\n\t\t\tRoleObjectClasses: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"groupOfNames\"),\n\t\t\t},\n\t\t\tMembershipAttributeType:     pulumi.String(\"DN\"),\n\t\t\tMembershipLdapAttribute:     pulumi.String(\"member\"),\n\t\t\tMembershipUserLdapAttribute: pulumi.String(\"cn\"),\n\t\t\tUserRolesRetrieveStrategy:   pulumi.String(\"GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE\"),\n\t\t\tMemberofLdapAttribute:       pulumi.String(\"memberOf\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nLDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash\n\n```sh\n $ pulumi import keycloak:ldap/roleMapper:RoleMapper ldap_role_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67\n```\n\n ",
             "properties": {
                 "clientId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.\n"
                 },
                 "ldapRolesDn": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The LDAP DN where roles can be found.\n"
                 },
                 "ldapUserFederationId": {
                     "type": "string",
-                    "description": "The ldap user federation provider to attach this mapper to.\n"
+                    "description": "The ID of the LDAP user federation provider to attach this mapper to.\n"
                 },
                 "memberofLdapAttribute": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when\n"
                 },
                 "membershipAttributeType": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Can be one of `DN` or `UID`. Defaults to `DN`.\n"
                 },
                 "membershipLdapAttribute": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the LDAP attribute that is used for membership mappings.\n"
                 },
                 "membershipUserLdapAttribute": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the LDAP attribute on a user that is used for membership mappings.\n"
                 },
                 "mode": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "Display name of the mapper when displayed in the console.\n"
+                    "description": "Display name of this mapper when displayed in the console.\n"
                 },
                 "realmId": {
                     "type": "string",
-                    "description": "The realm in which the ldap user federation provider exists.\n"
+                    "description": "The realm that this LDAP mapper will exist in.\n"
                 },
                 "roleNameLdapAttribute": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.\n"
                 },
                 "roleObjectClasses": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "List of strings representing the object classes for the role. Must contain at least one.\n"
                 },
                 "rolesLdapFilter": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.\n"
                 },
                 "useRealmRolesMapping": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.\n"
                 },
                 "userRolesRetrieveStrategy": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.\n"
                 }
             },
             "required": [
@@ -6028,55 +6041,67 @@
             ],
             "inputProperties": {
                 "clientId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.\n"
                 },
                 "ldapRolesDn": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The LDAP DN where roles can be found.\n"
                 },
                 "ldapUserFederationId": {
                     "type": "string",
-                    "description": "The ldap user federation provider to attach this mapper to.\n"
+                    "description": "The ID of the LDAP user federation provider to attach this mapper to.\n"
                 },
                 "memberofLdapAttribute": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when\n"
                 },
                 "membershipAttributeType": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Can be one of `DN` or `UID`. Defaults to `DN`.\n"
                 },
                 "membershipLdapAttribute": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the LDAP attribute that is used for membership mappings.\n"
                 },
                 "membershipUserLdapAttribute": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the LDAP attribute on a user that is used for membership mappings.\n"
                 },
                 "mode": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "Display name of the mapper when displayed in the console.\n"
+                    "description": "Display name of this mapper when displayed in the console.\n"
                 },
                 "realmId": {
                     "type": "string",
-                    "description": "The realm in which the ldap user federation provider exists.\n"
+                    "description": "The realm that this LDAP mapper will exist in.\n"
                 },
                 "roleNameLdapAttribute": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.\n"
                 },
                 "roleObjectClasses": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "List of strings representing the object classes for the role. Must contain at least one.\n"
                 },
                 "rolesLdapFilter": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.\n"
                 },
                 "useRealmRolesMapping": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.\n"
                 },
                 "userRolesRetrieveStrategy": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.\n"
                 }
             },
             "requiredInputs": [
@@ -6092,55 +6117,67 @@
                 "description": "Input properties used for looking up and filtering RoleMapper resources.\n",
                 "properties": {
                     "clientId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.\n"
                     },
                     "ldapRolesDn": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The LDAP DN where roles can be found.\n"
                     },
                     "ldapUserFederationId": {
                         "type": "string",
-                        "description": "The ldap user federation provider to attach this mapper to.\n"
+                        "description": "The ID of the LDAP user federation provider to attach this mapper to.\n"
                     },
                     "memberofLdapAttribute": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when\n"
                     },
                     "membershipAttributeType": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Can be one of `DN` or `UID`. Defaults to `DN`.\n"
                     },
                     "membershipLdapAttribute": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the LDAP attribute that is used for membership mappings.\n"
                     },
                     "membershipUserLdapAttribute": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the LDAP attribute on a user that is used for membership mappings.\n"
                     },
                     "mode": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.\n"
                     },
                     "name": {
                         "type": "string",
-                        "description": "Display name of the mapper when displayed in the console.\n"
+                        "description": "Display name of this mapper when displayed in the console.\n"
                     },
                     "realmId": {
                         "type": "string",
-                        "description": "The realm in which the ldap user federation provider exists.\n"
+                        "description": "The realm that this LDAP mapper will exist in.\n"
                     },
                     "roleNameLdapAttribute": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.\n"
                     },
                     "roleObjectClasses": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "List of strings representing the object classes for the role. Must contain at least one.\n"
                     },
                     "rolesLdapFilter": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.\n"
                     },
                     "useRealmRolesMapping": {
-                        "type": "boolean"
+                        "type": "boolean",
+                        "description": "When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.\n"
                     },
                     "userRolesRetrieveStrategy": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.\n"
                     }
                 },
                 "type": "object"
@@ -6269,7 +6306,7 @@
             }
         },
         "keycloak:ldap/userFederation:UserFederation": {
-            "description": "Allows for creating and managing LDAP user federation providers within Keycloak.\n\nKeycloak can use an LDAP user federation provider to federate users to Keycloak\nfrom a directory system such as LDAP or Active Directory. Federated users\nwill exist within the realm and will be able to log in to clients. Federated\nusers can have their attributes defined using mappers.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst ldapUserFederation = new keycloak.ldap.UserFederation(\"ldapUserFederation\", {\n    realmId: realm.id,\n    enabled: true,\n    usernameLdapAttribute: \"cn\",\n    rdnLdapAttribute: \"cn\",\n    uuidLdapAttribute: \"entryDN\",\n    userObjectClasses: [\n        \"simpleSecurityObject\",\n        \"organizationalRole\",\n    ],\n    connectionUrl: \"ldap://openldap\",\n    usersDn: \"dc=example,dc=org\",\n    bindDn: \"cn=admin,dc=example,dc=org\",\n    bindCredential: \"admin\",\n    connectionTimeout: \"5s\",\n    readTimeout: \"10s\",\n    kerberos: {\n        kerberosRealm: \"FOO.LOCAL\",\n        serverPrincipal: \"HTTP/host.foo.com@FOO.LOCAL\",\n        keytab: \"/etc/host.keytab\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nldap_user_federation = keycloak.ldap.UserFederation(\"ldapUserFederation\",\n    realm_id=realm.id,\n    enabled=True,\n    username_ldap_attribute=\"cn\",\n    rdn_ldap_attribute=\"cn\",\n    uuid_ldap_attribute=\"entryDN\",\n    user_object_classes=[\n        \"simpleSecurityObject\",\n        \"organizationalRole\",\n    ],\n    connection_url=\"ldap://openldap\",\n    users_dn=\"dc=example,dc=org\",\n    bind_dn=\"cn=admin,dc=example,dc=org\",\n    bind_credential=\"admin\",\n    connection_timeout=\"5s\",\n    read_timeout=\"10s\",\n    kerberos=keycloak.ldap.UserFederationKerberosArgs(\n        kerberos_realm=\"FOO.LOCAL\",\n        server_principal=\"HTTP/host.foo.com@FOO.LOCAL\",\n        keytab=\"/etc/host.keytab\",\n    ))\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var ldapUserFederation = new Keycloak.Ldap.UserFederation(\"ldapUserFederation\", new Keycloak.Ldap.UserFederationArgs\n        {\n            RealmId = realm.Id,\n            Enabled = true,\n            UsernameLdapAttribute = \"cn\",\n            RdnLdapAttribute = \"cn\",\n            UuidLdapAttribute = \"entryDN\",\n            UserObjectClasses = \n            {\n                \"simpleSecurityObject\",\n                \"organizationalRole\",\n            },\n            ConnectionUrl = \"ldap://openldap\",\n            UsersDn = \"dc=example,dc=org\",\n            BindDn = \"cn=admin,dc=example,dc=org\",\n            BindCredential = \"admin\",\n            ConnectionTimeout = \"5s\",\n            ReadTimeout = \"10s\",\n            Kerberos = new Keycloak.Ldap.Inputs.UserFederationKerberosArgs\n            {\n                KerberosRealm = \"FOO.LOCAL\",\n                ServerPrincipal = \"HTTP/host.foo.com@FOO.LOCAL\",\n                Keytab = \"/etc/host.keytab\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/ldap\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ldap.NewUserFederation(ctx, \"ldapUserFederation\", \u0026ldap.UserFederationArgs{\n\t\t\tRealmId:               realm.ID(),\n\t\t\tEnabled:               pulumi.Bool(true),\n\t\t\tUsernameLdapAttribute: pulumi.String(\"cn\"),\n\t\t\tRdnLdapAttribute:      pulumi.String(\"cn\"),\n\t\t\tUuidLdapAttribute:     pulumi.String(\"entryDN\"),\n\t\t\tUserObjectClasses: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"simpleSecurityObject\"),\n\t\t\t\tpulumi.String(\"organizationalRole\"),\n\t\t\t},\n\t\t\tConnectionUrl:     pulumi.String(\"ldap://openldap\"),\n\t\t\tUsersDn:           pulumi.String(\"dc=example,dc=org\"),\n\t\t\tBindDn:            pulumi.String(\"cn=admin,dc=example,dc=org\"),\n\t\t\tBindCredential:    pulumi.String(\"admin\"),\n\t\t\tConnectionTimeout: pulumi.String(\"5s\"),\n\t\t\tReadTimeout:       pulumi.String(\"10s\"),\n\t\t\tKerberos: \u0026ldap.UserFederationKerberosArgs{\n\t\t\t\tKerberosRealm:   pulumi.String(\"FOO.LOCAL\"),\n\t\t\t\tServerPrincipal: pulumi.String(\"HTTP/host.foo.com@FOO.LOCAL\"),\n\t\t\t\tKeytab:          pulumi.String(\"/etc/host.keytab\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nLDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`. The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUIDbash\n\n```sh\n $ pulumi import keycloak:ldap/userFederation:UserFederation ldap_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860\n```\n\n ",
+            "description": "Allows for creating and managing LDAP user federation providers within Keycloak.\n\nKeycloak can use an LDAP user federation provider to federate users to Keycloak\nfrom a directory system such as LDAP or Active Directory. Federated users\nwill exist within the realm and will be able to log in to clients. Federated\nusers can have their attributes defined using mappers.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst ldapUserFederation = new keycloak.ldap.UserFederation(\"ldapUserFederation\", {\n    realmId: realm.id,\n    enabled: true,\n    usernameLdapAttribute: \"cn\",\n    rdnLdapAttribute: \"cn\",\n    uuidLdapAttribute: \"entryDN\",\n    userObjectClasses: [\n        \"simpleSecurityObject\",\n        \"organizationalRole\",\n    ],\n    connectionUrl: \"ldap://openldap\",\n    usersDn: \"dc=example,dc=org\",\n    bindDn: \"cn=admin,dc=example,dc=org\",\n    bindCredential: \"admin\",\n    connectionTimeout: \"5s\",\n    readTimeout: \"10s\",\n    kerberos: {\n        kerberosRealm: \"FOO.LOCAL\",\n        serverPrincipal: \"HTTP/host.foo.com@FOO.LOCAL\",\n        keyTab: \"/etc/host.keytab\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nldap_user_federation = keycloak.ldap.UserFederation(\"ldapUserFederation\",\n    realm_id=realm.id,\n    enabled=True,\n    username_ldap_attribute=\"cn\",\n    rdn_ldap_attribute=\"cn\",\n    uuid_ldap_attribute=\"entryDN\",\n    user_object_classes=[\n        \"simpleSecurityObject\",\n        \"organizationalRole\",\n    ],\n    connection_url=\"ldap://openldap\",\n    users_dn=\"dc=example,dc=org\",\n    bind_dn=\"cn=admin,dc=example,dc=org\",\n    bind_credential=\"admin\",\n    connection_timeout=\"5s\",\n    read_timeout=\"10s\",\n    kerberos=keycloak.ldap.UserFederationKerberosArgs(\n        kerberos_realm=\"FOO.LOCAL\",\n        server_principal=\"HTTP/host.foo.com@FOO.LOCAL\",\n        key_tab=\"/etc/host.keytab\",\n    ))\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var ldapUserFederation = new Keycloak.Ldap.UserFederation(\"ldapUserFederation\", new Keycloak.Ldap.UserFederationArgs\n        {\n            RealmId = realm.Id,\n            Enabled = true,\n            UsernameLdapAttribute = \"cn\",\n            RdnLdapAttribute = \"cn\",\n            UuidLdapAttribute = \"entryDN\",\n            UserObjectClasses = \n            {\n                \"simpleSecurityObject\",\n                \"organizationalRole\",\n            },\n            ConnectionUrl = \"ldap://openldap\",\n            UsersDn = \"dc=example,dc=org\",\n            BindDn = \"cn=admin,dc=example,dc=org\",\n            BindCredential = \"admin\",\n            ConnectionTimeout = \"5s\",\n            ReadTimeout = \"10s\",\n            Kerberos = new Keycloak.Ldap.Inputs.UserFederationKerberosArgs\n            {\n                KerberosRealm = \"FOO.LOCAL\",\n                ServerPrincipal = \"HTTP/host.foo.com@FOO.LOCAL\",\n                KeyTab = \"/etc/host.keytab\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/ldap\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ldap.NewUserFederation(ctx, \"ldapUserFederation\", \u0026ldap.UserFederationArgs{\n\t\t\tRealmId:               realm.ID(),\n\t\t\tEnabled:               pulumi.Bool(true),\n\t\t\tUsernameLdapAttribute: pulumi.String(\"cn\"),\n\t\t\tRdnLdapAttribute:      pulumi.String(\"cn\"),\n\t\t\tUuidLdapAttribute:     pulumi.String(\"entryDN\"),\n\t\t\tUserObjectClasses: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"simpleSecurityObject\"),\n\t\t\t\tpulumi.String(\"organizationalRole\"),\n\t\t\t},\n\t\t\tConnectionUrl:     pulumi.String(\"ldap://openldap\"),\n\t\t\tUsersDn:           pulumi.String(\"dc=example,dc=org\"),\n\t\t\tBindDn:            pulumi.String(\"cn=admin,dc=example,dc=org\"),\n\t\t\tBindCredential:    pulumi.String(\"admin\"),\n\t\t\tConnectionTimeout: pulumi.String(\"5s\"),\n\t\t\tReadTimeout:       pulumi.String(\"10s\"),\n\t\t\tKerberos: \u0026ldap.UserFederationKerberosArgs{\n\t\t\t\tKerberosRealm:   pulumi.String(\"FOO.LOCAL\"),\n\t\t\t\tServerPrincipal: pulumi.String(\"HTTP/host.foo.com@FOO.LOCAL\"),\n\t\t\t\tKeyTab:          pulumi.String(\"/etc/host.keytab\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nLDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`. The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUIDbash\n\n```sh\n $ pulumi import keycloak:ldap/userFederation:UserFederation ldap_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860\n```\n\n ",
             "properties": {
                 "batchSizeForSync": {
                     "type": "integer",
@@ -13014,7 +13051,7 @@
             }
         },
         "keycloak:index/getUser:getUser": {
-            "description": "This data source can be used to fetch properties of a user within Keycloak.\n",
+            "description": "This data source can be used to fetch properties of a user within Keycloak.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst masterRealm = keycloak.getRealm({\n    realm: \"master\",\n});\nconst defaultAdminUser = masterRealm.then(masterRealm =\u003e keycloak.getUser({\n    realmId: masterRealm.id,\n    username: \"keycloak\",\n}));\nexport const keycloakUserId = defaultAdminUser.then(defaultAdminUser =\u003e defaultAdminUser.id);\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nmaster_realm = keycloak.get_realm(realm=\"master\")\ndefault_admin_user = keycloak.get_user(realm_id=master_realm.id,\n    username=\"keycloak\")\npulumi.export(\"keycloakUserId\", default_admin_user.id)\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var masterRealm = Output.Create(Keycloak.GetRealm.InvokeAsync(new Keycloak.GetRealmArgs\n        {\n            Realm = \"master\",\n        }));\n        var defaultAdminUser = masterRealm.Apply(masterRealm =\u003e Output.Create(Keycloak.GetUser.InvokeAsync(new Keycloak.GetUserArgs\n        {\n            RealmId = masterRealm.Id,\n            Username = \"keycloak\",\n        })));\n        this.KeycloakUserId = defaultAdminUser.Apply(defaultAdminUser =\u003e defaultAdminUser.Id);\n    }\n\n    [Output(\"keycloakUserId\")]\n    public Output\u003cstring\u003e KeycloakUserId { get; set; }\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmasterRealm, err := keycloak.LookupRealm(ctx, \u0026keycloak.LookupRealmArgs{\n\t\t\tRealm: \"master\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tdefaultAdminUser, err := keycloak.LookupUser(ctx, \u0026keycloak.LookupUserArgs{\n\t\t\tRealmId:  masterRealm.Id,\n\t\t\tUsername: \"keycloak\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"keycloakUserId\", defaultAdminUser.Id)\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getUser.\n",
                 "properties": {
@@ -13105,6 +13142,18 @@
                         "type": "string",
                         "description": "The client id (not its unique ID).\n"
                     },
+                    "clientOfflineSessionIdleTimeout": {
+                        "type": "string"
+                    },
+                    "clientOfflineSessionMaxLifespan": {
+                        "type": "string"
+                    },
+                    "clientSessionIdleTimeout": {
+                        "type": "string"
+                    },
+                    "clientSessionMaxLifespan": {
+                        "type": "string"
+                    },
                     "realmId": {
                         "type": "string",
                         "description": "The realm id.\n"
@@ -13146,7 +13195,19 @@
                     "clientId": {
                         "type": "string"
                     },
+                    "clientOfflineSessionIdleTimeout": {
+                        "type": "string"
+                    },
+                    "clientOfflineSessionMaxLifespan": {
+                        "type": "string"
+                    },
                     "clientSecret": {
+                        "type": "string"
+                    },
+                    "clientSessionIdleTimeout": {
+                        "type": "string"
+                    },
+                    "clientSessionMaxLifespan": {
                         "type": "string"
                     },
                     "consentRequired": {
@@ -13651,8 +13712,7 @@
                 "saml": "Saml"
             },
             "packageReferences": {
-                "Pulumi": "3.*",
-                "System.Collections.Immutable": "1.6.0"
+                "Pulumi": "3.*"
             }
         },
         "go": {

@@ -1028,7 +1028,7 @@ class UserFederation(pulumi.CustomResource):
             kerberos=keycloak.ldap.UserFederationKerberosArgs(
                 kerberos_realm="FOO.LOCAL",
                 server_principal="HTTP/host.foo.com@FOO.LOCAL",
-                keytab="/etc/host.keytab",
+                key_tab="/etc/host.keytab",
             ))
         ```
 
@@ -1116,7 +1116,7 @@ class UserFederation(pulumi.CustomResource):
             kerberos=keycloak.ldap.UserFederationKerberosArgs(
                 kerberos_realm="FOO.LOCAL",
                 server_principal="HTTP/host.foo.com@FOO.LOCAL",
-                keytab="/etc/host.keytab",
+                key_tab="/etc/host.keytab",
             ))
         ```
 

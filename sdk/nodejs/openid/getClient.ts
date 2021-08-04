@@ -35,6 +35,10 @@ export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Pro
     }
     return pulumi.runtime.invoke("keycloak:openid/getClient:getClient", {
         "clientId": args.clientId,
+        "clientOfflineSessionIdleTimeout": args.clientOfflineSessionIdleTimeout,
+        "clientOfflineSessionMaxLifespan": args.clientOfflineSessionMaxLifespan,
+        "clientSessionIdleTimeout": args.clientSessionIdleTimeout,
+        "clientSessionMaxLifespan": args.clientSessionMaxLifespan,
         "realmId": args.realmId,
     }, opts);
 }
@@ -47,6 +51,10 @@ export interface GetClientArgs {
      * The client id (not its unique ID).
      */
     readonly clientId: string;
+    readonly clientOfflineSessionIdleTimeout?: string;
+    readonly clientOfflineSessionMaxLifespan?: string;
+    readonly clientSessionIdleTimeout?: string;
+    readonly clientSessionMaxLifespan?: string;
     /**
      * The realm id.
      */
@@ -64,7 +72,11 @@ export interface GetClientResult {
     readonly authorizations: outputs.openid.GetClientAuthorization[];
     readonly baseUrl: string;
     readonly clientId: string;
+    readonly clientOfflineSessionIdleTimeout?: string;
+    readonly clientOfflineSessionMaxLifespan?: string;
     readonly clientSecret: string;
+    readonly clientSessionIdleTimeout?: string;
+    readonly clientSessionMaxLifespan?: string;
     readonly consentRequired: boolean;
     readonly description: string;
     readonly directAccessGrantsEnabled: boolean;

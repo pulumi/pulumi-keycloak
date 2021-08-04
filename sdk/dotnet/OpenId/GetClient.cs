@@ -57,6 +57,18 @@ namespace Pulumi.Keycloak.OpenId
         [Input("clientId", required: true)]
         public string ClientId { get; set; } = null!;
 
+        [Input("clientOfflineSessionIdleTimeout")]
+        public string? ClientOfflineSessionIdleTimeout { get; set; }
+
+        [Input("clientOfflineSessionMaxLifespan")]
+        public string? ClientOfflineSessionMaxLifespan { get; set; }
+
+        [Input("clientSessionIdleTimeout")]
+        public string? ClientSessionIdleTimeout { get; set; }
+
+        [Input("clientSessionMaxLifespan")]
+        public string? ClientSessionMaxLifespan { get; set; }
+
         /// <summary>
         /// The realm id.
         /// </summary>
@@ -79,7 +91,11 @@ namespace Pulumi.Keycloak.OpenId
         public readonly ImmutableArray<Outputs.GetClientAuthorizationResult> Authorizations;
         public readonly string BaseUrl;
         public readonly string ClientId;
+        public readonly string? ClientOfflineSessionIdleTimeout;
+        public readonly string? ClientOfflineSessionMaxLifespan;
         public readonly string ClientSecret;
+        public readonly string? ClientSessionIdleTimeout;
+        public readonly string? ClientSessionMaxLifespan;
         public readonly bool ConsentRequired;
         public readonly string Description;
         public readonly bool DirectAccessGrantsEnabled;
@@ -119,7 +135,15 @@ namespace Pulumi.Keycloak.OpenId
 
             string clientId,
 
+            string? clientOfflineSessionIdleTimeout,
+
+            string? clientOfflineSessionMaxLifespan,
+
             string clientSecret,
+
+            string? clientSessionIdleTimeout,
+
+            string? clientSessionMaxLifespan,
 
             bool consentRequired,
 
@@ -166,7 +190,11 @@ namespace Pulumi.Keycloak.OpenId
             Authorizations = authorizations;
             BaseUrl = baseUrl;
             ClientId = clientId;
+            ClientOfflineSessionIdleTimeout = clientOfflineSessionIdleTimeout;
+            ClientOfflineSessionMaxLifespan = clientOfflineSessionMaxLifespan;
             ClientSecret = clientSecret;
+            ClientSessionIdleTimeout = clientSessionIdleTimeout;
+            ClientSessionMaxLifespan = clientSessionMaxLifespan;
             ConsentRequired = consentRequired;
             Description = description;
             DirectAccessGrantsEnabled = directAccessGrantsEnabled;

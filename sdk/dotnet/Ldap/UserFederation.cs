@@ -54,7 +54,7 @@ namespace Pulumi.Keycloak.Ldap
     ///             {
     ///                 KerberosRealm = "FOO.LOCAL",
     ///                 ServerPrincipal = "HTTP/host.foo.com@FOO.LOCAL",
-    ///                 Keytab = "/etc/host.keytab",
+    ///                 KeyTab = "/etc/host.keytab",
     ///             },
     ///         });
     ///     }

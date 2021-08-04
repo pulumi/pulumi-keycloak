@@ -42,7 +42,7 @@ import * as utilities from "../utilities";
  *     kerberos: {
  *         kerberosRealm: "FOO.LOCAL",
  *         serverPrincipal: "HTTP/host.foo.com@FOO.LOCAL",
- *         keytab: "/etc/host.keytab",
+ *         keyTab: "/etc/host.keytab",
  *     },
  * });
  * ```
