@@ -4,6 +4,57 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * Allows for creating and managing role mappers for Keycloak users federated via LDAP.
+ *
+ * The LDAP group mapper can be used to map an LDAP user's roles from some DN to Keycloak roles.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
+ *     realmId: realm.id,
+ *     usernameLdapAttribute: "cn",
+ *     rdnLdapAttribute: "cn",
+ *     uuidLdapAttribute: "entryDN",
+ *     userObjectClasses: [
+ *         "simpleSecurityObject",
+ *         "organizationalRole",
+ *     ],
+ *     connectionUrl: "ldap://openldap",
+ *     usersDn: "dc=example,dc=org",
+ *     bindDn: "cn=admin,dc=example,dc=org",
+ *     bindCredential: "admin",
+ * });
+ * const ldapRoleMapper = new keycloak.ldap.RoleMapper("ldapRoleMapper", {
+ *     realmId: realm.id,
+ *     ldapUserFederationId: ldapUserFederation.id,
+ *     ldapRolesDn: "dc=example,dc=org",
+ *     roleNameLdapAttribute: "cn",
+ *     roleObjectClasses: ["groupOfNames"],
+ *     membershipAttributeType: "DN",
+ *     membershipLdapAttribute: "member",
+ *     membershipUserLdapAttribute: "cn",
+ *     userRolesRetrieveStrategy: "GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE",
+ *     memberofLdapAttribute: "memberOf",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
+ *
+ * ```sh
+ *  $ pulumi import keycloak:ldap/roleMapper:RoleMapper ldap_role_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+ * ```
+ */
 export class RoleMapper extends pulumi.CustomResource {
     /**
      * Get an existing RoleMapper resource's state with the given name, ID, and optional extra
@@ -32,29 +83,65 @@ export class RoleMapper extends pulumi.CustomResource {
         return obj['__pulumiType'] === RoleMapper.__pulumiType;
     }
 
+    /**
+     * When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `useRealmRolesMapping` is `false`.
+     */
     public readonly clientId!: pulumi.Output<string | undefined>;
+    /**
+     * The LDAP DN where roles can be found.
+     */
     public readonly ldapRolesDn!: pulumi.Output<string>;
     /**
-     * The ldap user federation provider to attach this mapper to.
+     * The ID of the LDAP user federation provider to attach this mapper to.
      */
     public readonly ldapUserFederationId!: pulumi.Output<string>;
+    /**
+     * Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when
+     */
     public readonly memberofLdapAttribute!: pulumi.Output<string | undefined>;
+    /**
+     * Can be one of `DN` or `UID`. Defaults to `DN`.
+     */
     public readonly membershipAttributeType!: pulumi.Output<string | undefined>;
+    /**
+     * The name of the LDAP attribute that is used for membership mappings.
+     */
     public readonly membershipLdapAttribute!: pulumi.Output<string>;
+    /**
+     * The name of the LDAP attribute on a user that is used for membership mappings.
+     */
     public readonly membershipUserLdapAttribute!: pulumi.Output<string>;
+    /**
+     * Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
+     */
     public readonly mode!: pulumi.Output<string | undefined>;
     /**
-     * Display name of the mapper when displayed in the console.
+     * Display name of this mapper when displayed in the console.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The realm in which the ldap user federation provider exists.
+     * The realm that this LDAP mapper will exist in.
      */
     public readonly realmId!: pulumi.Output<string>;
+    /**
+     * The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
+     */
     public readonly roleNameLdapAttribute!: pulumi.Output<string>;
+    /**
+     * List of strings representing the object classes for the role. Must contain at least one.
+     */
     public readonly roleObjectClasses!: pulumi.Output<string[]>;
+    /**
+     * When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+     */
     public readonly rolesLdapFilter!: pulumi.Output<string | undefined>;
+    /**
+     * When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
+     */
     public readonly useRealmRolesMapping!: pulumi.Output<boolean | undefined>;
+    /**
+     * Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
+     */
     public readonly userRolesRetrieveStrategy!: pulumi.Output<string | undefined>;
 
     /**
@@ -135,29 +222,65 @@ export class RoleMapper extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RoleMapper resources.
  */
 export interface RoleMapperState {
+    /**
+     * When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `useRealmRolesMapping` is `false`.
+     */
     readonly clientId?: pulumi.Input<string>;
+    /**
+     * The LDAP DN where roles can be found.
+     */
     readonly ldapRolesDn?: pulumi.Input<string>;
     /**
-     * The ldap user federation provider to attach this mapper to.
+     * The ID of the LDAP user federation provider to attach this mapper to.
      */
     readonly ldapUserFederationId?: pulumi.Input<string>;
+    /**
+     * Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when
+     */
     readonly memberofLdapAttribute?: pulumi.Input<string>;
+    /**
+     * Can be one of `DN` or `UID`. Defaults to `DN`.
+     */
     readonly membershipAttributeType?: pulumi.Input<string>;
+    /**
+     * The name of the LDAP attribute that is used for membership mappings.
+     */
     readonly membershipLdapAttribute?: pulumi.Input<string>;
+    /**
+     * The name of the LDAP attribute on a user that is used for membership mappings.
+     */
     readonly membershipUserLdapAttribute?: pulumi.Input<string>;
+    /**
+     * Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
+     */
     readonly mode?: pulumi.Input<string>;
     /**
-     * Display name of the mapper when displayed in the console.
+     * Display name of this mapper when displayed in the console.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The realm in which the ldap user federation provider exists.
+     * The realm that this LDAP mapper will exist in.
      */
     readonly realmId?: pulumi.Input<string>;
+    /**
+     * The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
+     */
     readonly roleNameLdapAttribute?: pulumi.Input<string>;
+    /**
+     * List of strings representing the object classes for the role. Must contain at least one.
+     */
     readonly roleObjectClasses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+     */
     readonly rolesLdapFilter?: pulumi.Input<string>;
+    /**
+     * When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
+     */
     readonly useRealmRolesMapping?: pulumi.Input<boolean>;
+    /**
+     * Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
+     */
     readonly userRolesRetrieveStrategy?: pulumi.Input<string>;
 }
 
@@ -165,28 +288,64 @@ export interface RoleMapperState {
  * The set of arguments for constructing a RoleMapper resource.
  */
 export interface RoleMapperArgs {
+    /**
+     * When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `useRealmRolesMapping` is `false`.
+     */
     readonly clientId?: pulumi.Input<string>;
+    /**
+     * The LDAP DN where roles can be found.
+     */
     readonly ldapRolesDn: pulumi.Input<string>;
     /**
-     * The ldap user federation provider to attach this mapper to.
+     * The ID of the LDAP user federation provider to attach this mapper to.
      */
     readonly ldapUserFederationId: pulumi.Input<string>;
+    /**
+     * Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when
+     */
     readonly memberofLdapAttribute?: pulumi.Input<string>;
+    /**
+     * Can be one of `DN` or `UID`. Defaults to `DN`.
+     */
     readonly membershipAttributeType?: pulumi.Input<string>;
+    /**
+     * The name of the LDAP attribute that is used for membership mappings.
+     */
     readonly membershipLdapAttribute: pulumi.Input<string>;
+    /**
+     * The name of the LDAP attribute on a user that is used for membership mappings.
+     */
     readonly membershipUserLdapAttribute: pulumi.Input<string>;
+    /**
+     * Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
+     */
     readonly mode?: pulumi.Input<string>;
     /**
-     * Display name of the mapper when displayed in the console.
+     * Display name of this mapper when displayed in the console.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The realm in which the ldap user federation provider exists.
+     * The realm that this LDAP mapper will exist in.
      */
     readonly realmId: pulumi.Input<string>;
+    /**
+     * The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
+     */
     readonly roleNameLdapAttribute: pulumi.Input<string>;
+    /**
+     * List of strings representing the object classes for the role. Must contain at least one.
+     */
     readonly roleObjectClasses: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+     */
     readonly rolesLdapFilter?: pulumi.Input<string>;
+    /**
+     * When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
+     */
     readonly useRealmRolesMapping?: pulumi.Input<boolean>;
+    /**
+     * Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
+     */
     readonly userRolesRetrieveStrategy?: pulumi.Input<string>;
 }

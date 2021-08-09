@@ -20,7 +20,7 @@ class GetClientResult:
     """
     A collection of values returned by getClient.
     """
-    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, authentication_flow_binding_overrides=None, authorizations=None, base_url=None, client_id=None, client_secret=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None):
+    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, authentication_flow_binding_overrides=None, authorizations=None, base_url=None, client_id=None, client_offline_session_idle_timeout=None, client_offline_session_max_lifespan=None, client_secret=None, client_session_idle_timeout=None, client_session_max_lifespan=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None):
         if access_token_lifespan and not isinstance(access_token_lifespan, str):
             raise TypeError("Expected argument 'access_token_lifespan' to be a str")
         pulumi.set(__self__, "access_token_lifespan", access_token_lifespan)
@@ -42,9 +42,21 @@ class GetClientResult:
         if client_id and not isinstance(client_id, str):
             raise TypeError("Expected argument 'client_id' to be a str")
         pulumi.set(__self__, "client_id", client_id)
+        if client_offline_session_idle_timeout and not isinstance(client_offline_session_idle_timeout, str):
+            raise TypeError("Expected argument 'client_offline_session_idle_timeout' to be a str")
+        pulumi.set(__self__, "client_offline_session_idle_timeout", client_offline_session_idle_timeout)
+        if client_offline_session_max_lifespan and not isinstance(client_offline_session_max_lifespan, str):
+            raise TypeError("Expected argument 'client_offline_session_max_lifespan' to be a str")
+        pulumi.set(__self__, "client_offline_session_max_lifespan", client_offline_session_max_lifespan)
         if client_secret and not isinstance(client_secret, str):
             raise TypeError("Expected argument 'client_secret' to be a str")
         pulumi.set(__self__, "client_secret", client_secret)
+        if client_session_idle_timeout and not isinstance(client_session_idle_timeout, str):
+            raise TypeError("Expected argument 'client_session_idle_timeout' to be a str")
+        pulumi.set(__self__, "client_session_idle_timeout", client_session_idle_timeout)
+        if client_session_max_lifespan and not isinstance(client_session_max_lifespan, str):
+            raise TypeError("Expected argument 'client_session_max_lifespan' to be a str")
+        pulumi.set(__self__, "client_session_max_lifespan", client_session_max_lifespan)
         if consent_required and not isinstance(consent_required, bool):
             raise TypeError("Expected argument 'consent_required' to be a bool")
         pulumi.set(__self__, "consent_required", consent_required)
@@ -139,9 +151,29 @@ class GetClientResult:
         return pulumi.get(self, "client_id")
 
     @property
+    @pulumi.getter(name="clientOfflineSessionIdleTimeout")
+    def client_offline_session_idle_timeout(self) -> Optional[str]:
+        return pulumi.get(self, "client_offline_session_idle_timeout")
+
+    @property
+    @pulumi.getter(name="clientOfflineSessionMaxLifespan")
+    def client_offline_session_max_lifespan(self) -> Optional[str]:
+        return pulumi.get(self, "client_offline_session_max_lifespan")
+
+    @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> str:
         return pulumi.get(self, "client_secret")
+
+    @property
+    @pulumi.getter(name="clientSessionIdleTimeout")
+    def client_session_idle_timeout(self) -> Optional[str]:
+        return pulumi.get(self, "client_session_idle_timeout")
+
+    @property
+    @pulumi.getter(name="clientSessionMaxLifespan")
+    def client_session_max_lifespan(self) -> Optional[str]:
+        return pulumi.get(self, "client_session_max_lifespan")
 
     @property
     @pulumi.getter(name="consentRequired")
@@ -255,7 +287,11 @@ class AwaitableGetClientResult(GetClientResult):
             authorizations=self.authorizations,
             base_url=self.base_url,
             client_id=self.client_id,
+            client_offline_session_idle_timeout=self.client_offline_session_idle_timeout,
+            client_offline_session_max_lifespan=self.client_offline_session_max_lifespan,
             client_secret=self.client_secret,
+            client_session_idle_timeout=self.client_session_idle_timeout,
+            client_session_max_lifespan=self.client_session_max_lifespan,
             consent_required=self.consent_required,
             description=self.description,
             direct_access_grants_enabled=self.direct_access_grants_enabled,
@@ -278,6 +314,10 @@ class AwaitableGetClientResult(GetClientResult):
 
 
 def get_client(client_id: Optional[str] = None,
+               client_offline_session_idle_timeout: Optional[str] = None,
+               client_offline_session_max_lifespan: Optional[str] = None,
+               client_session_idle_timeout: Optional[str] = None,
+               client_session_max_lifespan: Optional[str] = None,
                realm_id: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientResult:
     """
@@ -302,6 +342,10 @@ def get_client(client_id: Optional[str] = None,
     """
     __args__ = dict()
     __args__['clientId'] = client_id
+    __args__['clientOfflineSessionIdleTimeout'] = client_offline_session_idle_timeout
+    __args__['clientOfflineSessionMaxLifespan'] = client_offline_session_max_lifespan
+    __args__['clientSessionIdleTimeout'] = client_session_idle_timeout
+    __args__['clientSessionMaxLifespan'] = client_session_max_lifespan
     __args__['realmId'] = realm_id
     if opts is None:
         opts = pulumi.InvokeOptions()
@@ -317,7 +361,11 @@ def get_client(client_id: Optional[str] = None,
         authorizations=__ret__.authorizations,
         base_url=__ret__.base_url,
         client_id=__ret__.client_id,
+        client_offline_session_idle_timeout=__ret__.client_offline_session_idle_timeout,
+        client_offline_session_max_lifespan=__ret__.client_offline_session_max_lifespan,
         client_secret=__ret__.client_secret,
+        client_session_idle_timeout=__ret__.client_session_idle_timeout,
+        client_session_max_lifespan=__ret__.client_session_max_lifespan,
         consent_required=__ret__.consent_required,
         description=__ret__.description,
         direct_access_grants_enabled=__ret__.direct_access_grants_enabled,

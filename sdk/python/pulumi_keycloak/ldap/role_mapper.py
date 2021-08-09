@@ -30,9 +30,21 @@ class RoleMapperArgs:
                  user_roles_retrieve_strategy: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a RoleMapper resource.
-        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
-        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
-        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
+        :param pulumi.Input[str] ldap_roles_dn: The LDAP DN where roles can be found.
+        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
+        :param pulumi.Input[str] membership_ldap_attribute: The name of the LDAP attribute that is used for membership mappings.
+        :param pulumi.Input[str] membership_user_ldap_attribute: The name of the LDAP attribute on a user that is used for membership mappings.
+        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[str] role_name_ldap_attribute: The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_object_classes: List of strings representing the object classes for the role. Must contain at least one.
+        :param pulumi.Input[str] client_id: When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
+        :param pulumi.Input[str] memberof_ldap_attribute: Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when
+        :param pulumi.Input[str] membership_attribute_type: Can be one of `DN` or `UID`. Defaults to `DN`.
+        :param pulumi.Input[str] mode: Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[str] roles_ldap_filter: When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        :param pulumi.Input[bool] use_realm_roles_mapping: When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
+        :param pulumi.Input[str] user_roles_retrieve_strategy: Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
         """
         pulumi.set(__self__, "ldap_roles_dn", ldap_roles_dn)
         pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
@@ -61,6 +73,9 @@ class RoleMapperArgs:
     @property
     @pulumi.getter(name="ldapRolesDn")
     def ldap_roles_dn(self) -> pulumi.Input[str]:
+        """
+        The LDAP DN where roles can be found.
+        """
         return pulumi.get(self, "ldap_roles_dn")
 
     @ldap_roles_dn.setter
@@ -71,7 +86,7 @@ class RoleMapperArgs:
     @pulumi.getter(name="ldapUserFederationId")
     def ldap_user_federation_id(self) -> pulumi.Input[str]:
         """
-        The ldap user federation provider to attach this mapper to.
+        The ID of the LDAP user federation provider to attach this mapper to.
         """
         return pulumi.get(self, "ldap_user_federation_id")
 
@@ -82,6 +97,9 @@ class RoleMapperArgs:
     @property
     @pulumi.getter(name="membershipLdapAttribute")
     def membership_ldap_attribute(self) -> pulumi.Input[str]:
+        """
+        The name of the LDAP attribute that is used for membership mappings.
+        """
         return pulumi.get(self, "membership_ldap_attribute")
 
     @membership_ldap_attribute.setter
@@ -91,6 +109,9 @@ class RoleMapperArgs:
     @property
     @pulumi.getter(name="membershipUserLdapAttribute")
     def membership_user_ldap_attribute(self) -> pulumi.Input[str]:
+        """
+        The name of the LDAP attribute on a user that is used for membership mappings.
+        """
         return pulumi.get(self, "membership_user_ldap_attribute")
 
     @membership_user_ldap_attribute.setter
@@ -101,7 +122,7 @@ class RoleMapperArgs:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[str]:
         """
-        The realm in which the ldap user federation provider exists.
+        The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
 
@@ -112,6 +133,9 @@ class RoleMapperArgs:
     @property
     @pulumi.getter(name="roleNameLdapAttribute")
     def role_name_ldap_attribute(self) -> pulumi.Input[str]:
+        """
+        The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
+        """
         return pulumi.get(self, "role_name_ldap_attribute")
 
     @role_name_ldap_attribute.setter
@@ -121,6 +145,9 @@ class RoleMapperArgs:
     @property
     @pulumi.getter(name="roleObjectClasses")
     def role_object_classes(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        List of strings representing the object classes for the role. Must contain at least one.
+        """
         return pulumi.get(self, "role_object_classes")
 
     @role_object_classes.setter
@@ -130,6 +157,9 @@ class RoleMapperArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -139,6 +169,9 @@ class RoleMapperArgs:
     @property
     @pulumi.getter(name="memberofLdapAttribute")
     def memberof_ldap_attribute(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when
+        """
         return pulumi.get(self, "memberof_ldap_attribute")
 
     @memberof_ldap_attribute.setter
@@ -148,6 +181,9 @@ class RoleMapperArgs:
     @property
     @pulumi.getter(name="membershipAttributeType")
     def membership_attribute_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Can be one of `DN` or `UID`. Defaults to `DN`.
+        """
         return pulumi.get(self, "membership_attribute_type")
 
     @membership_attribute_type.setter
@@ -157,6 +193,9 @@ class RoleMapperArgs:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -167,7 +206,7 @@ class RoleMapperArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Display name of the mapper when displayed in the console.
+        Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
@@ -178,6 +217,9 @@ class RoleMapperArgs:
     @property
     @pulumi.getter(name="rolesLdapFilter")
     def roles_ldap_filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        """
         return pulumi.get(self, "roles_ldap_filter")
 
     @roles_ldap_filter.setter
@@ -187,6 +229,9 @@ class RoleMapperArgs:
     @property
     @pulumi.getter(name="useRealmRolesMapping")
     def use_realm_roles_mapping(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
+        """
         return pulumi.get(self, "use_realm_roles_mapping")
 
     @use_realm_roles_mapping.setter
@@ -196,6 +241,9 @@ class RoleMapperArgs:
     @property
     @pulumi.getter(name="userRolesRetrieveStrategy")
     def user_roles_retrieve_strategy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
+        """
         return pulumi.get(self, "user_roles_retrieve_strategy")
 
     @user_roles_retrieve_strategy.setter
@@ -223,9 +271,21 @@ class _RoleMapperState:
                  user_roles_retrieve_strategy: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RoleMapper resources.
-        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
-        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
-        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
+        :param pulumi.Input[str] client_id: When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
+        :param pulumi.Input[str] ldap_roles_dn: The LDAP DN where roles can be found.
+        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
+        :param pulumi.Input[str] memberof_ldap_attribute: Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when
+        :param pulumi.Input[str] membership_attribute_type: Can be one of `DN` or `UID`. Defaults to `DN`.
+        :param pulumi.Input[str] membership_ldap_attribute: The name of the LDAP attribute that is used for membership mappings.
+        :param pulumi.Input[str] membership_user_ldap_attribute: The name of the LDAP attribute on a user that is used for membership mappings.
+        :param pulumi.Input[str] mode: Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[str] role_name_ldap_attribute: The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_object_classes: List of strings representing the object classes for the role. Must contain at least one.
+        :param pulumi.Input[str] roles_ldap_filter: When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        :param pulumi.Input[bool] use_realm_roles_mapping: When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
+        :param pulumi.Input[str] user_roles_retrieve_strategy: Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
         """
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
@@ -261,6 +321,9 @@ class _RoleMapperState:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -270,6 +333,9 @@ class _RoleMapperState:
     @property
     @pulumi.getter(name="ldapRolesDn")
     def ldap_roles_dn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The LDAP DN where roles can be found.
+        """
         return pulumi.get(self, "ldap_roles_dn")
 
     @ldap_roles_dn.setter
@@ -280,7 +346,7 @@ class _RoleMapperState:
     @pulumi.getter(name="ldapUserFederationId")
     def ldap_user_federation_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ldap user federation provider to attach this mapper to.
+        The ID of the LDAP user federation provider to attach this mapper to.
         """
         return pulumi.get(self, "ldap_user_federation_id")
 
@@ -291,6 +357,9 @@ class _RoleMapperState:
     @property
     @pulumi.getter(name="memberofLdapAttribute")
     def memberof_ldap_attribute(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when
+        """
         return pulumi.get(self, "memberof_ldap_attribute")
 
     @memberof_ldap_attribute.setter
@@ -300,6 +369,9 @@ class _RoleMapperState:
     @property
     @pulumi.getter(name="membershipAttributeType")
     def membership_attribute_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Can be one of `DN` or `UID`. Defaults to `DN`.
+        """
         return pulumi.get(self, "membership_attribute_type")
 
     @membership_attribute_type.setter
@@ -309,6 +381,9 @@ class _RoleMapperState:
     @property
     @pulumi.getter(name="membershipLdapAttribute")
     def membership_ldap_attribute(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the LDAP attribute that is used for membership mappings.
+        """
         return pulumi.get(self, "membership_ldap_attribute")
 
     @membership_ldap_attribute.setter
@@ -318,6 +393,9 @@ class _RoleMapperState:
     @property
     @pulumi.getter(name="membershipUserLdapAttribute")
     def membership_user_ldap_attribute(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the LDAP attribute on a user that is used for membership mappings.
+        """
         return pulumi.get(self, "membership_user_ldap_attribute")
 
     @membership_user_ldap_attribute.setter
@@ -327,6 +405,9 @@ class _RoleMapperState:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -337,7 +418,7 @@ class _RoleMapperState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Display name of the mapper when displayed in the console.
+        Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
@@ -349,7 +430,7 @@ class _RoleMapperState:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The realm in which the ldap user federation provider exists.
+        The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
 
@@ -360,6 +441,9 @@ class _RoleMapperState:
     @property
     @pulumi.getter(name="roleNameLdapAttribute")
     def role_name_ldap_attribute(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
+        """
         return pulumi.get(self, "role_name_ldap_attribute")
 
     @role_name_ldap_attribute.setter
@@ -369,6 +453,9 @@ class _RoleMapperState:
     @property
     @pulumi.getter(name="roleObjectClasses")
     def role_object_classes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of strings representing the object classes for the role. Must contain at least one.
+        """
         return pulumi.get(self, "role_object_classes")
 
     @role_object_classes.setter
@@ -378,6 +465,9 @@ class _RoleMapperState:
     @property
     @pulumi.getter(name="rolesLdapFilter")
     def roles_ldap_filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        """
         return pulumi.get(self, "roles_ldap_filter")
 
     @roles_ldap_filter.setter
@@ -387,6 +477,9 @@ class _RoleMapperState:
     @property
     @pulumi.getter(name="useRealmRolesMapping")
     def use_realm_roles_mapping(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
+        """
         return pulumi.get(self, "use_realm_roles_mapping")
 
     @use_realm_roles_mapping.setter
@@ -396,6 +489,9 @@ class _RoleMapperState:
     @property
     @pulumi.getter(name="userRolesRetrieveStrategy")
     def user_roles_retrieve_strategy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
+        """
         return pulumi.get(self, "user_roles_retrieve_strategy")
 
     @user_roles_retrieve_strategy.setter
@@ -425,12 +521,70 @@ class RoleMapper(pulumi.CustomResource):
                  user_roles_retrieve_strategy: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a RoleMapper resource with the given unique name, props, and options.
+        Allows for creating and managing role mappers for Keycloak users federated via LDAP.
+
+        The LDAP group mapper can be used to map an LDAP user's roles from some DN to Keycloak roles.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
+            user_object_classes=[
+                "simpleSecurityObject",
+                "organizationalRole",
+            ],
+            connection_url="ldap://openldap",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        ldap_role_mapper = keycloak.ldap.RoleMapper("ldapRoleMapper",
+            realm_id=realm.id,
+            ldap_user_federation_id=ldap_user_federation.id,
+            ldap_roles_dn="dc=example,dc=org",
+            role_name_ldap_attribute="cn",
+            role_object_classes=["groupOfNames"],
+            membership_attribute_type="DN",
+            membership_ldap_attribute="member",
+            membership_user_ldap_attribute="cn",
+            user_roles_retrieve_strategy="GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE",
+            memberof_ldap_attribute="memberOf")
+        ```
+
+        ## Import
+
+        LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:ldap/roleMapper:RoleMapper ldap_role_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
-        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
-        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
+        :param pulumi.Input[str] client_id: When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
+        :param pulumi.Input[str] ldap_roles_dn: The LDAP DN where roles can be found.
+        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
+        :param pulumi.Input[str] memberof_ldap_attribute: Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when
+        :param pulumi.Input[str] membership_attribute_type: Can be one of `DN` or `UID`. Defaults to `DN`.
+        :param pulumi.Input[str] membership_ldap_attribute: The name of the LDAP attribute that is used for membership mappings.
+        :param pulumi.Input[str] membership_user_ldap_attribute: The name of the LDAP attribute on a user that is used for membership mappings.
+        :param pulumi.Input[str] mode: Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[str] role_name_ldap_attribute: The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_object_classes: List of strings representing the object classes for the role. Must contain at least one.
+        :param pulumi.Input[str] roles_ldap_filter: When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        :param pulumi.Input[bool] use_realm_roles_mapping: When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
+        :param pulumi.Input[str] user_roles_retrieve_strategy: Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
         """
         ...
     @overload
@@ -439,7 +593,53 @@ class RoleMapper(pulumi.CustomResource):
                  args: RoleMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a RoleMapper resource with the given unique name, props, and options.
+        Allows for creating and managing role mappers for Keycloak users federated via LDAP.
+
+        The LDAP group mapper can be used to map an LDAP user's roles from some DN to Keycloak roles.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
+            user_object_classes=[
+                "simpleSecurityObject",
+                "organizationalRole",
+            ],
+            connection_url="ldap://openldap",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        ldap_role_mapper = keycloak.ldap.RoleMapper("ldapRoleMapper",
+            realm_id=realm.id,
+            ldap_user_federation_id=ldap_user_federation.id,
+            ldap_roles_dn="dc=example,dc=org",
+            role_name_ldap_attribute="cn",
+            role_object_classes=["groupOfNames"],
+            membership_attribute_type="DN",
+            membership_ldap_attribute="member",
+            membership_user_ldap_attribute="cn",
+            user_roles_retrieve_strategy="GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE",
+            memberof_ldap_attribute="memberOf")
+        ```
+
+        ## Import
+
+        LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:ldap/roleMapper:RoleMapper ldap_role_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
         :param str resource_name: The name of the resource.
         :param RoleMapperArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -543,9 +743,21 @@ class RoleMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
-        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
-        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
+        :param pulumi.Input[str] client_id: When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
+        :param pulumi.Input[str] ldap_roles_dn: The LDAP DN where roles can be found.
+        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
+        :param pulumi.Input[str] memberof_ldap_attribute: Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when
+        :param pulumi.Input[str] membership_attribute_type: Can be one of `DN` or `UID`. Defaults to `DN`.
+        :param pulumi.Input[str] membership_ldap_attribute: The name of the LDAP attribute that is used for membership mappings.
+        :param pulumi.Input[str] membership_user_ldap_attribute: The name of the LDAP attribute on a user that is used for membership mappings.
+        :param pulumi.Input[str] mode: Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[str] role_name_ldap_attribute: The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_object_classes: List of strings representing the object classes for the role. Must contain at least one.
+        :param pulumi.Input[str] roles_ldap_filter: When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        :param pulumi.Input[bool] use_realm_roles_mapping: When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
+        :param pulumi.Input[str] user_roles_retrieve_strategy: Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -571,51 +783,72 @@ class RoleMapper(pulumi.CustomResource):
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
+        """
         return pulumi.get(self, "client_id")
 
     @property
     @pulumi.getter(name="ldapRolesDn")
     def ldap_roles_dn(self) -> pulumi.Output[str]:
+        """
+        The LDAP DN where roles can be found.
+        """
         return pulumi.get(self, "ldap_roles_dn")
 
     @property
     @pulumi.getter(name="ldapUserFederationId")
     def ldap_user_federation_id(self) -> pulumi.Output[str]:
         """
-        The ldap user federation provider to attach this mapper to.
+        The ID of the LDAP user federation provider to attach this mapper to.
         """
         return pulumi.get(self, "ldap_user_federation_id")
 
     @property
     @pulumi.getter(name="memberofLdapAttribute")
     def memberof_ldap_attribute(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when
+        """
         return pulumi.get(self, "memberof_ldap_attribute")
 
     @property
     @pulumi.getter(name="membershipAttributeType")
     def membership_attribute_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        Can be one of `DN` or `UID`. Defaults to `DN`.
+        """
         return pulumi.get(self, "membership_attribute_type")
 
     @property
     @pulumi.getter(name="membershipLdapAttribute")
     def membership_ldap_attribute(self) -> pulumi.Output[str]:
+        """
+        The name of the LDAP attribute that is used for membership mappings.
+        """
         return pulumi.get(self, "membership_ldap_attribute")
 
     @property
     @pulumi.getter(name="membershipUserLdapAttribute")
     def membership_user_ldap_attribute(self) -> pulumi.Output[str]:
+        """
+        The name of the LDAP attribute on a user that is used for membership mappings.
+        """
         return pulumi.get(self, "membership_user_ldap_attribute")
 
     @property
     @pulumi.getter
     def mode(self) -> pulumi.Output[Optional[str]]:
+        """
+        Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
+        """
         return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Display name of the mapper when displayed in the console.
+        Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
@@ -623,32 +856,47 @@ class RoleMapper(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
         """
-        The realm in which the ldap user federation provider exists.
+        The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter(name="roleNameLdapAttribute")
     def role_name_ldap_attribute(self) -> pulumi.Output[str]:
+        """
+        The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
+        """
         return pulumi.get(self, "role_name_ldap_attribute")
 
     @property
     @pulumi.getter(name="roleObjectClasses")
     def role_object_classes(self) -> pulumi.Output[Sequence[str]]:
+        """
+        List of strings representing the object classes for the role. Must contain at least one.
+        """
         return pulumi.get(self, "role_object_classes")
 
     @property
     @pulumi.getter(name="rolesLdapFilter")
     def roles_ldap_filter(self) -> pulumi.Output[Optional[str]]:
+        """
+        When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        """
         return pulumi.get(self, "roles_ldap_filter")
 
     @property
     @pulumi.getter(name="useRealmRolesMapping")
     def use_realm_roles_mapping(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
+        """
         return pulumi.get(self, "use_realm_roles_mapping")
 
     @property
     @pulumi.getter(name="userRolesRetrieveStrategy")
     def user_roles_retrieve_strategy(self) -> pulumi.Output[Optional[str]]:
+        """
+        Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
+        """
         return pulumi.get(self, "user_roles_retrieve_strategy")
 

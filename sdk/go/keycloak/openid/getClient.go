@@ -54,7 +54,11 @@ func LookupClient(ctx *pulumi.Context, args *LookupClientArgs, opts ...pulumi.In
 // A collection of arguments for invoking getClient.
 type LookupClientArgs struct {
 	// The client id (not its unique ID).
-	ClientId string `pulumi:"clientId"`
+	ClientId                        string  `pulumi:"clientId"`
+	ClientOfflineSessionIdleTimeout *string `pulumi:"clientOfflineSessionIdleTimeout"`
+	ClientOfflineSessionMaxLifespan *string `pulumi:"clientOfflineSessionMaxLifespan"`
+	ClientSessionIdleTimeout        *string `pulumi:"clientSessionIdleTimeout"`
+	ClientSessionMaxLifespan        *string `pulumi:"clientSessionMaxLifespan"`
 	// The realm id.
 	RealmId string `pulumi:"realmId"`
 }
@@ -68,7 +72,11 @@ type LookupClientResult struct {
 	Authorizations                      []GetClientAuthorization                     `pulumi:"authorizations"`
 	BaseUrl                             string                                       `pulumi:"baseUrl"`
 	ClientId                            string                                       `pulumi:"clientId"`
+	ClientOfflineSessionIdleTimeout     *string                                      `pulumi:"clientOfflineSessionIdleTimeout"`
+	ClientOfflineSessionMaxLifespan     *string                                      `pulumi:"clientOfflineSessionMaxLifespan"`
 	ClientSecret                        string                                       `pulumi:"clientSecret"`
+	ClientSessionIdleTimeout            *string                                      `pulumi:"clientSessionIdleTimeout"`
+	ClientSessionMaxLifespan            *string                                      `pulumi:"clientSessionMaxLifespan"`
 	ConsentRequired                     bool                                         `pulumi:"consentRequired"`
 	Description                         string                                       `pulumi:"description"`
 	DirectAccessGrantsEnabled           bool                                         `pulumi:"directAccessGrantsEnabled"`

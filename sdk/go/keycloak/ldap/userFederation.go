@@ -57,7 +57,7 @@ import (
 // 			Kerberos: &ldap.UserFederationKerberosArgs{
 // 				KerberosRealm:   pulumi.String("FOO.LOCAL"),
 // 				ServerPrincipal: pulumi.String("HTTP/host.foo.com@FOO.LOCAL"),
-// 				Keytab:          pulumi.String("/etc/host.keytab"),
+// 				KeyTab:          pulumi.String("/etc/host.keytab"),
 // 			},
 // 		})
 // 		if err != nil {
