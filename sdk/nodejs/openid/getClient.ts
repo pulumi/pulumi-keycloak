@@ -40,6 +40,7 @@ export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Pro
         "clientSessionIdleTimeout": args.clientSessionIdleTimeout,
         "clientSessionMaxLifespan": args.clientSessionMaxLifespan,
         "realmId": args.realmId,
+        "useRefreshTokens": args.useRefreshTokens,
     }, opts);
 }
 
@@ -59,6 +60,7 @@ export interface GetClientArgs {
      * The realm id.
      */
     readonly realmId: string;
+    readonly useRefreshTokens?: boolean;
 }
 
 /**
@@ -97,6 +99,7 @@ export interface GetClientResult {
     readonly serviceAccountUserId: string;
     readonly serviceAccountsEnabled: boolean;
     readonly standardFlowEnabled: boolean;
+    readonly useRefreshTokens?: boolean;
     readonly validRedirectUris: string[];
     readonly webOrigins: string[];
 }

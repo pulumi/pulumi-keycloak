@@ -75,6 +75,9 @@ namespace Pulumi.Keycloak.OpenId
         [Input("realmId", required: true)]
         public string RealmId { get; set; } = null!;
 
+        [Input("useRefreshTokens")]
+        public bool? UseRefreshTokens { get; set; }
+
         public GetClientArgs()
         {
         }
@@ -116,6 +119,7 @@ namespace Pulumi.Keycloak.OpenId
         public readonly string ServiceAccountUserId;
         public readonly bool ServiceAccountsEnabled;
         public readonly bool StandardFlowEnabled;
+        public readonly bool? UseRefreshTokens;
         public readonly ImmutableArray<string> ValidRedirectUris;
         public readonly ImmutableArray<string> WebOrigins;
 
@@ -179,6 +183,8 @@ namespace Pulumi.Keycloak.OpenId
 
             bool standardFlowEnabled,
 
+            bool? useRefreshTokens,
+
             ImmutableArray<string> validRedirectUris,
 
             ImmutableArray<string> webOrigins)
@@ -212,6 +218,7 @@ namespace Pulumi.Keycloak.OpenId
             ServiceAccountUserId = serviceAccountUserId;
             ServiceAccountsEnabled = serviceAccountsEnabled;
             StandardFlowEnabled = standardFlowEnabled;
+            UseRefreshTokens = useRefreshTokens;
             ValidRedirectUris = validRedirectUris;
             WebOrigins = webOrigins;
         }

@@ -121,6 +121,8 @@ type Client struct {
 	ServiceAccountsEnabled pulumi.BoolPtrOutput `pulumi:"serviceAccountsEnabled"`
 	// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
 	StandardFlowEnabled pulumi.BoolPtrOutput `pulumi:"standardFlowEnabled"`
+	// If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
+	UseRefreshTokens pulumi.BoolPtrOutput `pulumi:"useRefreshTokens"`
 	// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
 	// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
 	// is set to `true`.
@@ -223,6 +225,8 @@ type clientState struct {
 	ServiceAccountsEnabled *bool `pulumi:"serviceAccountsEnabled"`
 	// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
 	StandardFlowEnabled *bool `pulumi:"standardFlowEnabled"`
+	// If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
+	UseRefreshTokens *bool `pulumi:"useRefreshTokens"`
 	// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
 	// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
 	// is set to `true`.
@@ -288,6 +292,8 @@ type ClientState struct {
 	ServiceAccountsEnabled pulumi.BoolPtrInput
 	// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
 	StandardFlowEnabled pulumi.BoolPtrInput
+	// If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
+	UseRefreshTokens pulumi.BoolPtrInput
 	// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
 	// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
 	// is set to `true`.
@@ -353,6 +359,8 @@ type clientArgs struct {
 	ServiceAccountsEnabled *bool `pulumi:"serviceAccountsEnabled"`
 	// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
 	StandardFlowEnabled *bool `pulumi:"standardFlowEnabled"`
+	// If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
+	UseRefreshTokens *bool `pulumi:"useRefreshTokens"`
 	// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
 	// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
 	// is set to `true`.
@@ -415,6 +423,8 @@ type ClientArgs struct {
 	ServiceAccountsEnabled pulumi.BoolPtrInput
 	// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
 	StandardFlowEnabled pulumi.BoolPtrInput
+	// If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
+	UseRefreshTokens pulumi.BoolPtrInput
 	// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
 	// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
 	// is set to `true`.
