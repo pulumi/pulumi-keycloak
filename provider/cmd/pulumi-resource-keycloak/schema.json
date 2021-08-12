@@ -7649,6 +7649,10 @@
                     "type": "boolean",
                     "description": "When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.\n"
                 },
+                "useRefreshTokens": {
+                    "type": "boolean",
+                    "description": "If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.\n"
+                },
                 "validRedirectUris": {
                     "type": "array",
                     "items": {
@@ -7777,6 +7781,10 @@
                 "standardFlowEnabled": {
                     "type": "boolean",
                     "description": "When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.\n"
+                },
+                "useRefreshTokens": {
+                    "type": "boolean",
+                    "description": "If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.\n"
                 },
                 "validRedirectUris": {
                     "type": "array",
@@ -7912,6 +7920,10 @@
                     "standardFlowEnabled": {
                         "type": "boolean",
                         "description": "When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.\n"
+                    },
+                    "useRefreshTokens": {
+                        "type": "boolean",
+                        "description": "If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.\n"
                     },
                     "validRedirectUris": {
                         "type": "array",
@@ -13157,6 +13169,9 @@
                     "realmId": {
                         "type": "string",
                         "description": "The realm id.\n"
+                    },
+                    "useRefreshTokens": {
+                        "type": "boolean"
                     }
                 },
                 "type": "object",
@@ -13260,6 +13275,9 @@
                         "type": "boolean"
                     },
                     "standardFlowEnabled": {
+                        "type": "boolean"
+                    },
+                    "useRefreshTokens": {
                         "type": "boolean"
                     },
                     "validRedirectUris": {

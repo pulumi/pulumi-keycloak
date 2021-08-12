@@ -60,7 +60,8 @@ type LookupClientArgs struct {
 	ClientSessionIdleTimeout        *string `pulumi:"clientSessionIdleTimeout"`
 	ClientSessionMaxLifespan        *string `pulumi:"clientSessionMaxLifespan"`
 	// The realm id.
-	RealmId string `pulumi:"realmId"`
+	RealmId          string `pulumi:"realmId"`
+	UseRefreshTokens *bool  `pulumi:"useRefreshTokens"`
 }
 
 // A collection of values returned by getClient.
@@ -95,6 +96,7 @@ type LookupClientResult struct {
 	ServiceAccountUserId    string   `pulumi:"serviceAccountUserId"`
 	ServiceAccountsEnabled  bool     `pulumi:"serviceAccountsEnabled"`
 	StandardFlowEnabled     bool     `pulumi:"standardFlowEnabled"`
+	UseRefreshTokens        *bool    `pulumi:"useRefreshTokens"`
 	ValidRedirectUris       []string `pulumi:"validRedirectUris"`
 	WebOrigins              []string `pulumi:"webOrigins"`
 }

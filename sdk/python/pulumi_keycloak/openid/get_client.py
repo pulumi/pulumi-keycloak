@@ -20,7 +20,7 @@ class GetClientResult:
     """
     A collection of values returned by getClient.
     """
-    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, authentication_flow_binding_overrides=None, authorizations=None, base_url=None, client_id=None, client_offline_session_idle_timeout=None, client_offline_session_max_lifespan=None, client_secret=None, client_session_idle_timeout=None, client_session_max_lifespan=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, valid_redirect_uris=None, web_origins=None):
+    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, authentication_flow_binding_overrides=None, authorizations=None, base_url=None, client_id=None, client_offline_session_idle_timeout=None, client_offline_session_max_lifespan=None, client_secret=None, client_session_idle_timeout=None, client_session_max_lifespan=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, use_refresh_tokens=None, valid_redirect_uris=None, web_origins=None):
         if access_token_lifespan and not isinstance(access_token_lifespan, str):
             raise TypeError("Expected argument 'access_token_lifespan' to be a str")
         pulumi.set(__self__, "access_token_lifespan", access_token_lifespan)
@@ -108,6 +108,9 @@ class GetClientResult:
         if standard_flow_enabled and not isinstance(standard_flow_enabled, bool):
             raise TypeError("Expected argument 'standard_flow_enabled' to be a bool")
         pulumi.set(__self__, "standard_flow_enabled", standard_flow_enabled)
+        if use_refresh_tokens and not isinstance(use_refresh_tokens, bool):
+            raise TypeError("Expected argument 'use_refresh_tokens' to be a bool")
+        pulumi.set(__self__, "use_refresh_tokens", use_refresh_tokens)
         if valid_redirect_uris and not isinstance(valid_redirect_uris, list):
             raise TypeError("Expected argument 'valid_redirect_uris' to be a list")
         pulumi.set(__self__, "valid_redirect_uris", valid_redirect_uris)
@@ -264,6 +267,11 @@ class GetClientResult:
         return pulumi.get(self, "standard_flow_enabled")
 
     @property
+    @pulumi.getter(name="useRefreshTokens")
+    def use_refresh_tokens(self) -> Optional[bool]:
+        return pulumi.get(self, "use_refresh_tokens")
+
+    @property
     @pulumi.getter(name="validRedirectUris")
     def valid_redirect_uris(self) -> Sequence[str]:
         return pulumi.get(self, "valid_redirect_uris")
@@ -309,6 +317,7 @@ class AwaitableGetClientResult(GetClientResult):
             service_account_user_id=self.service_account_user_id,
             service_accounts_enabled=self.service_accounts_enabled,
             standard_flow_enabled=self.standard_flow_enabled,
+            use_refresh_tokens=self.use_refresh_tokens,
             valid_redirect_uris=self.valid_redirect_uris,
             web_origins=self.web_origins)
 
@@ -319,6 +328,7 @@ def get_client(client_id: Optional[str] = None,
                client_session_idle_timeout: Optional[str] = None,
                client_session_max_lifespan: Optional[str] = None,
                realm_id: Optional[str] = None,
+               use_refresh_tokens: Optional[bool] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientResult:
     """
     This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
@@ -347,6 +357,7 @@ def get_client(client_id: Optional[str] = None,
     __args__['clientSessionIdleTimeout'] = client_session_idle_timeout
     __args__['clientSessionMaxLifespan'] = client_session_max_lifespan
     __args__['realmId'] = realm_id
+    __args__['useRefreshTokens'] = use_refresh_tokens
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
@@ -383,5 +394,6 @@ def get_client(client_id: Optional[str] = None,
         service_account_user_id=__ret__.service_account_user_id,
         service_accounts_enabled=__ret__.service_accounts_enabled,
         standard_flow_enabled=__ret__.standard_flow_enabled,
+        use_refresh_tokens=__ret__.use_refresh_tokens,
         valid_redirect_uris=__ret__.valid_redirect_uris,
         web_origins=__ret__.web_origins)

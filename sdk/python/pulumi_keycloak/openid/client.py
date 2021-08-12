@@ -41,6 +41,7 @@ class ClientArgs:
                  root_url: Optional[pulumi.Input[str]] = None,
                  service_accounts_enabled: Optional[pulumi.Input[bool]] = None,
                  standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
+                 use_refresh_tokens: Optional[pulumi.Input[bool]] = None,
                  valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
@@ -71,6 +72,7 @@ class ClientArgs:
         :param pulumi.Input[str] root_url: When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
         :param pulumi.Input[bool] service_accounts_enabled: When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[bool] use_refresh_tokens: If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
                wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
                is set to `true`.
@@ -125,6 +127,8 @@ class ClientArgs:
             pulumi.set(__self__, "service_accounts_enabled", service_accounts_enabled)
         if standard_flow_enabled is not None:
             pulumi.set(__self__, "standard_flow_enabled", standard_flow_enabled)
+        if use_refresh_tokens is not None:
+            pulumi.set(__self__, "use_refresh_tokens", use_refresh_tokens)
         if valid_redirect_uris is not None:
             pulumi.set(__self__, "valid_redirect_uris", valid_redirect_uris)
         if web_origins is not None:
@@ -443,6 +447,18 @@ class ClientArgs:
         pulumi.set(self, "standard_flow_enabled", value)
 
     @property
+    @pulumi.getter(name="useRefreshTokens")
+    def use_refresh_tokens(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
+        """
+        return pulumi.get(self, "use_refresh_tokens")
+
+    @use_refresh_tokens.setter
+    def use_refresh_tokens(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_refresh_tokens", value)
+
+    @property
     @pulumi.getter(name="validRedirectUris")
     def valid_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -500,6 +516,7 @@ class _ClientState:
                  service_account_user_id: Optional[pulumi.Input[str]] = None,
                  service_accounts_enabled: Optional[pulumi.Input[bool]] = None,
                  standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
+                 use_refresh_tokens: Optional[pulumi.Input[bool]] = None,
                  valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
@@ -532,6 +549,7 @@ class _ClientState:
         :param pulumi.Input[str] service_account_user_id: (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
         :param pulumi.Input[bool] service_accounts_enabled: When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[bool] use_refresh_tokens: If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
                wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
                is set to `true`.
@@ -593,6 +611,8 @@ class _ClientState:
             pulumi.set(__self__, "service_accounts_enabled", service_accounts_enabled)
         if standard_flow_enabled is not None:
             pulumi.set(__self__, "standard_flow_enabled", standard_flow_enabled)
+        if use_refresh_tokens is not None:
+            pulumi.set(__self__, "use_refresh_tokens", use_refresh_tokens)
         if valid_redirect_uris is not None:
             pulumi.set(__self__, "valid_redirect_uris", valid_redirect_uris)
         if web_origins is not None:
@@ -935,6 +955,18 @@ class _ClientState:
         pulumi.set(self, "standard_flow_enabled", value)
 
     @property
+    @pulumi.getter(name="useRefreshTokens")
+    def use_refresh_tokens(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
+        """
+        return pulumi.get(self, "use_refresh_tokens")
+
+    @use_refresh_tokens.setter
+    def use_refresh_tokens(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_refresh_tokens", value)
+
+    @property
     @pulumi.getter(name="validRedirectUris")
     def valid_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -992,6 +1024,7 @@ class Client(pulumi.CustomResource):
                  root_url: Optional[pulumi.Input[str]] = None,
                  service_accounts_enabled: Optional[pulumi.Input[bool]] = None,
                  standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
+                 use_refresh_tokens: Optional[pulumi.Input[bool]] = None,
                  valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -1056,6 +1089,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[str] root_url: When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
         :param pulumi.Input[bool] service_accounts_enabled: When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[bool] use_refresh_tokens: If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
                wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
                is set to `true`.
@@ -1141,6 +1175,7 @@ class Client(pulumi.CustomResource):
                  root_url: Optional[pulumi.Input[str]] = None,
                  service_accounts_enabled: Optional[pulumi.Input[bool]] = None,
                  standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
+                 use_refresh_tokens: Optional[pulumi.Input[bool]] = None,
                  valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -1187,6 +1222,7 @@ class Client(pulumi.CustomResource):
             __props__.__dict__["root_url"] = root_url
             __props__.__dict__["service_accounts_enabled"] = service_accounts_enabled
             __props__.__dict__["standard_flow_enabled"] = standard_flow_enabled
+            __props__.__dict__["use_refresh_tokens"] = use_refresh_tokens
             __props__.__dict__["valid_redirect_uris"] = valid_redirect_uris
             __props__.__dict__["web_origins"] = web_origins
             __props__.__dict__["resource_server_id"] = None
@@ -1229,6 +1265,7 @@ class Client(pulumi.CustomResource):
             service_account_user_id: Optional[pulumi.Input[str]] = None,
             service_accounts_enabled: Optional[pulumi.Input[bool]] = None,
             standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
+            use_refresh_tokens: Optional[pulumi.Input[bool]] = None,
             valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Client':
         """
@@ -1266,6 +1303,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[str] service_account_user_id: (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
         :param pulumi.Input[bool] service_accounts_enabled: When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[bool] use_refresh_tokens: If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
                wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
                is set to `true`.
@@ -1303,6 +1341,7 @@ class Client(pulumi.CustomResource):
         __props__.__dict__["service_account_user_id"] = service_account_user_id
         __props__.__dict__["service_accounts_enabled"] = service_accounts_enabled
         __props__.__dict__["standard_flow_enabled"] = standard_flow_enabled
+        __props__.__dict__["use_refresh_tokens"] = use_refresh_tokens
         __props__.__dict__["valid_redirect_uris"] = valid_redirect_uris
         __props__.__dict__["web_origins"] = web_origins
         return Client(resource_name, opts=opts, __props__=__props__)
@@ -1530,6 +1569,14 @@ class Client(pulumi.CustomResource):
         When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
         """
         return pulumi.get(self, "standard_flow_enabled")
+
+    @property
+    @pulumi.getter(name="useRefreshTokens")
+    def use_refresh_tokens(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
+        """
+        return pulumi.get(self, "use_refresh_tokens")
 
     @property
     @pulumi.getter(name="validRedirectUris")

@@ -181,6 +181,10 @@ export class Client extends pulumi.CustomResource {
      */
     public readonly standardFlowEnabled!: pulumi.Output<boolean | undefined>;
     /**
+     * If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
+     */
+    public readonly useRefreshTokens!: pulumi.Output<boolean | undefined>;
+    /**
      * A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
      * wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
      * is set to `true`.
@@ -232,6 +236,7 @@ export class Client extends pulumi.CustomResource {
             inputs["serviceAccountUserId"] = state ? state.serviceAccountUserId : undefined;
             inputs["serviceAccountsEnabled"] = state ? state.serviceAccountsEnabled : undefined;
             inputs["standardFlowEnabled"] = state ? state.standardFlowEnabled : undefined;
+            inputs["useRefreshTokens"] = state ? state.useRefreshTokens : undefined;
             inputs["validRedirectUris"] = state ? state.validRedirectUris : undefined;
             inputs["webOrigins"] = state ? state.webOrigins : undefined;
         } else {
@@ -271,6 +276,7 @@ export class Client extends pulumi.CustomResource {
             inputs["rootUrl"] = args ? args.rootUrl : undefined;
             inputs["serviceAccountsEnabled"] = args ? args.serviceAccountsEnabled : undefined;
             inputs["standardFlowEnabled"] = args ? args.standardFlowEnabled : undefined;
+            inputs["useRefreshTokens"] = args ? args.useRefreshTokens : undefined;
             inputs["validRedirectUris"] = args ? args.validRedirectUris : undefined;
             inputs["webOrigins"] = args ? args.webOrigins : undefined;
             inputs["resourceServerId"] = undefined /*out*/;
@@ -400,6 +406,10 @@ export interface ClientState {
      */
     readonly standardFlowEnabled?: pulumi.Input<boolean>;
     /**
+     * If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
+     */
+    readonly useRefreshTokens?: pulumi.Input<boolean>;
+    /**
      * A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
      * wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
      * is set to `true`.
@@ -519,6 +529,10 @@ export interface ClientArgs {
      * When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
      */
     readonly standardFlowEnabled?: pulumi.Input<boolean>;
+    /**
+     * If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
+     */
+    readonly useRefreshTokens?: pulumi.Input<boolean>;
     /**
      * A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
      * wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`

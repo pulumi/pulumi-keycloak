@@ -228,6 +228,12 @@ namespace Pulumi.Keycloak.OpenId
         public Output<bool?> StandardFlowEnabled { get; private set; } = null!;
 
         /// <summary>
+        /// If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
+        /// </summary>
+        [Output("useRefreshTokens")]
+        public Output<bool?> UseRefreshTokens { get; private set; } = null!;
+
+        /// <summary>
         /// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
         /// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
         /// is set to `true`.
@@ -443,6 +449,12 @@ namespace Pulumi.Keycloak.OpenId
         [Input("standardFlowEnabled")]
         public Input<bool>? StandardFlowEnabled { get; set; }
 
+        /// <summary>
+        /// If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
+        /// </summary>
+        [Input("useRefreshTokens")]
+        public Input<bool>? UseRefreshTokens { get; set; }
+
         [Input("validRedirectUris")]
         private InputList<string>? _validRedirectUris;
 
@@ -643,6 +655,12 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("standardFlowEnabled")]
         public Input<bool>? StandardFlowEnabled { get; set; }
+
+        /// <summary>
+        /// If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
+        /// </summary>
+        [Input("useRefreshTokens")]
+        public Input<bool>? UseRefreshTokens { get; set; }
 
         [Input("validRedirectUris")]
         private InputList<string>? _validRedirectUris;
