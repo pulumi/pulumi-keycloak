@@ -11,6 +11,7 @@ from . import outputs
 
 __all__ = [
     'RealmInternationalization',
+    'RealmOtpPolicy',
     'RealmSecurityDefenses',
     'RealmSecurityDefensesBruteForceDetection',
     'RealmSecurityDefensesHeaders',
@@ -29,6 +30,7 @@ __all__ = [
     'GetClientDescriptionConverterProtocolMapperResult',
     'GetRealmInternationalizationResult',
     'GetRealmKeysKeyResult',
+    'GetRealmOtpPolicyResult',
     'GetRealmSecurityDefenseResult',
     'GetRealmSecurityDefenseBruteForceDetectionResult',
     'GetRealmSecurityDefenseHeaderResult',
@@ -84,6 +86,104 @@ class RealmInternationalization(dict):
         A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
         """
         return pulumi.get(self, "supported_locales")
+
+
+@pulumi.output_type
+class RealmOtpPolicy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "initialCounter":
+            suggest = "initial_counter"
+        elif key == "lookAheadWindow":
+            suggest = "look_ahead_window"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RealmOtpPolicy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RealmOtpPolicy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RealmOtpPolicy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 algorithm: Optional[str] = None,
+                 digits: Optional[int] = None,
+                 initial_counter: Optional[int] = None,
+                 look_ahead_window: Optional[int] = None,
+                 period: Optional[int] = None,
+                 type: Optional[str] = None):
+        """
+        :param str algorithm: What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
+        :param int digits: How many digits the OTP have. Defaults to `6`.
+        :param int initial_counter: What should the initial counter value be. Defaults to `2`.
+        :param int look_ahead_window: How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
+        :param int period: How many seconds should an OTP token be valid. Defaults to `30`.
+        :param str type: One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
+        """
+        if algorithm is not None:
+            pulumi.set(__self__, "algorithm", algorithm)
+        if digits is not None:
+            pulumi.set(__self__, "digits", digits)
+        if initial_counter is not None:
+            pulumi.set(__self__, "initial_counter", initial_counter)
+        if look_ahead_window is not None:
+            pulumi.set(__self__, "look_ahead_window", look_ahead_window)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def algorithm(self) -> Optional[str]:
+        """
+        What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
+        """
+        return pulumi.get(self, "algorithm")
+
+    @property
+    @pulumi.getter
+    def digits(self) -> Optional[int]:
+        """
+        How many digits the OTP have. Defaults to `6`.
+        """
+        return pulumi.get(self, "digits")
+
+    @property
+    @pulumi.getter(name="initialCounter")
+    def initial_counter(self) -> Optional[int]:
+        """
+        What should the initial counter value be. Defaults to `2`.
+        """
+        return pulumi.get(self, "initial_counter")
+
+    @property
+    @pulumi.getter(name="lookAheadWindow")
+    def look_ahead_window(self) -> Optional[int]:
+        """
+        How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
+        """
+        return pulumi.get(self, "look_ahead_window")
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[int]:
+        """
+        How many seconds should an OTP token be valid. Defaults to `30`.
+        """
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -1383,6 +1483,53 @@ class GetRealmKeysKeyResult(dict):
         """
         Key type (string)
         """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetRealmOtpPolicyResult(dict):
+    def __init__(__self__, *,
+                 algorithm: str,
+                 digits: int,
+                 initial_counter: int,
+                 look_ahead_window: int,
+                 period: int,
+                 type: str):
+        pulumi.set(__self__, "algorithm", algorithm)
+        pulumi.set(__self__, "digits", digits)
+        pulumi.set(__self__, "initial_counter", initial_counter)
+        pulumi.set(__self__, "look_ahead_window", look_ahead_window)
+        pulumi.set(__self__, "period", period)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def algorithm(self) -> str:
+        return pulumi.get(self, "algorithm")
+
+    @property
+    @pulumi.getter
+    def digits(self) -> int:
+        return pulumi.get(self, "digits")
+
+    @property
+    @pulumi.getter(name="initialCounter")
+    def initial_counter(self) -> int:
+        return pulumi.get(self, "initial_counter")
+
+    @property
+    @pulumi.getter(name="lookAheadWindow")
+    def look_ahead_window(self) -> int:
+        return pulumi.get(self, "look_ahead_window")
+
+    @property
+    @pulumi.getter
+    def period(self) -> int:
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
         return pulumi.get(self, "type")
 
 

@@ -57,26 +57,19 @@ namespace Pulumi.Keycloak.OpenId
         [Input("clientId", required: true)]
         public string ClientId { get; set; } = null!;
 
-        [Input("clientOfflineSessionIdleTimeout")]
-        public string? ClientOfflineSessionIdleTimeout { get; set; }
-
-        [Input("clientOfflineSessionMaxLifespan")]
-        public string? ClientOfflineSessionMaxLifespan { get; set; }
-
-        [Input("clientSessionIdleTimeout")]
-        public string? ClientSessionIdleTimeout { get; set; }
-
-        [Input("clientSessionMaxLifespan")]
-        public string? ClientSessionMaxLifespan { get; set; }
+        [Input("extraConfig")]
+        private Dictionary<string, object>? _extraConfig;
+        public Dictionary<string, object> ExtraConfig
+        {
+            get => _extraConfig ?? (_extraConfig = new Dictionary<string, object>());
+            set => _extraConfig = value;
+        }
 
         /// <summary>
         /// The realm id.
         /// </summary>
         [Input("realmId", required: true)]
         public string RealmId { get; set; } = null!;
-
-        [Input("useRefreshTokens")]
-        public bool? UseRefreshTokens { get; set; }
 
         public GetClientArgs()
         {
@@ -92,18 +85,22 @@ namespace Pulumi.Keycloak.OpenId
         public readonly string AdminUrl;
         public readonly ImmutableArray<Outputs.GetClientAuthenticationFlowBindingOverrideResult> AuthenticationFlowBindingOverrides;
         public readonly ImmutableArray<Outputs.GetClientAuthorizationResult> Authorizations;
+        public readonly bool BackchannelLogoutRevokeOfflineSessions;
+        public readonly bool BackchannelLogoutSessionRequired;
+        public readonly string BackchannelLogoutUrl;
         public readonly string BaseUrl;
         public readonly string ClientId;
-        public readonly string? ClientOfflineSessionIdleTimeout;
-        public readonly string? ClientOfflineSessionMaxLifespan;
+        public readonly string ClientOfflineSessionIdleTimeout;
+        public readonly string ClientOfflineSessionMaxLifespan;
         public readonly string ClientSecret;
-        public readonly string? ClientSessionIdleTimeout;
-        public readonly string? ClientSessionMaxLifespan;
+        public readonly string ClientSessionIdleTimeout;
+        public readonly string ClientSessionMaxLifespan;
         public readonly bool ConsentRequired;
         public readonly string Description;
         public readonly bool DirectAccessGrantsEnabled;
         public readonly bool Enabled;
         public readonly bool ExcludeSessionStateFromAuthResponse;
+        public readonly ImmutableDictionary<string, object> ExtraConfig;
         public readonly bool FullScopeAllowed;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -119,7 +116,7 @@ namespace Pulumi.Keycloak.OpenId
         public readonly string ServiceAccountUserId;
         public readonly bool ServiceAccountsEnabled;
         public readonly bool StandardFlowEnabled;
-        public readonly bool? UseRefreshTokens;
+        public readonly bool UseRefreshTokens;
         public readonly ImmutableArray<string> ValidRedirectUris;
         public readonly ImmutableArray<string> WebOrigins;
 
@@ -135,19 +132,25 @@ namespace Pulumi.Keycloak.OpenId
 
             ImmutableArray<Outputs.GetClientAuthorizationResult> authorizations,
 
+            bool backchannelLogoutRevokeOfflineSessions,
+
+            bool backchannelLogoutSessionRequired,
+
+            string backchannelLogoutUrl,
+
             string baseUrl,
 
             string clientId,
 
-            string? clientOfflineSessionIdleTimeout,
+            string clientOfflineSessionIdleTimeout,
 
-            string? clientOfflineSessionMaxLifespan,
+            string clientOfflineSessionMaxLifespan,
 
             string clientSecret,
 
-            string? clientSessionIdleTimeout,
+            string clientSessionIdleTimeout,
 
-            string? clientSessionMaxLifespan,
+            string clientSessionMaxLifespan,
 
             bool consentRequired,
 
@@ -158,6 +161,8 @@ namespace Pulumi.Keycloak.OpenId
             bool enabled,
 
             bool excludeSessionStateFromAuthResponse,
+
+            ImmutableDictionary<string, object> extraConfig,
 
             bool fullScopeAllowed,
 
@@ -183,7 +188,7 @@ namespace Pulumi.Keycloak.OpenId
 
             bool standardFlowEnabled,
 
-            bool? useRefreshTokens,
+            bool useRefreshTokens,
 
             ImmutableArray<string> validRedirectUris,
 
@@ -194,6 +199,9 @@ namespace Pulumi.Keycloak.OpenId
             AdminUrl = adminUrl;
             AuthenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
             Authorizations = authorizations;
+            BackchannelLogoutRevokeOfflineSessions = backchannelLogoutRevokeOfflineSessions;
+            BackchannelLogoutSessionRequired = backchannelLogoutSessionRequired;
+            BackchannelLogoutUrl = backchannelLogoutUrl;
             BaseUrl = baseUrl;
             ClientId = clientId;
             ClientOfflineSessionIdleTimeout = clientOfflineSessionIdleTimeout;
@@ -206,6 +214,7 @@ namespace Pulumi.Keycloak.OpenId
             DirectAccessGrantsEnabled = directAccessGrantsEnabled;
             Enabled = enabled;
             ExcludeSessionStateFromAuthResponse = excludeSessionStateFromAuthResponse;
+            ExtraConfig = extraConfig;
             FullScopeAllowed = fullScopeAllowed;
             Id = id;
             ImplicitFlowEnabled = implicitFlowEnabled;

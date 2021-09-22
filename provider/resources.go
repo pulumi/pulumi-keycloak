@@ -220,6 +220,7 @@ func Provider() tfbridge.ProviderInfo {
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"keycloak_group":                        {Tok: makeDataSource(mainMod, "getGroup")},
 			"keycloak_realm":                        {Tok: makeDataSource(mainMod, "getRealm")},
+			"keycloak_user_realm_roles":             {Tok: makeDataSource(mainMod, "getUserRealmRoles")},
 			"keycloak_realm_keys":                   {Tok: makeDataSource(mainMod, "getRealmKeys")},
 			"keycloak_role":                         {Tok: makeDataSource(mainMod, "getRole")},
 			"keycloak_authentication_execution":     {Tok: makeDataSource(mainMod, "getAuthenticationExecution")},

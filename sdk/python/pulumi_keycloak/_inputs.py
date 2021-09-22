@@ -10,6 +10,7 @@ from . import _utilities
 
 __all__ = [
     'RealmInternationalizationArgs',
+    'RealmOtpPolicyArgs',
     'RealmSecurityDefensesArgs',
     'RealmSecurityDefensesBruteForceDetectionArgs',
     'RealmSecurityDefensesHeadersArgs',
@@ -26,6 +27,7 @@ __all__ = [
     'UsersPermissionsUserImpersonatedScopeArgs',
     'UsersPermissionsViewScopeArgs',
     'GetRealmInternationalizationArgs',
+    'GetRealmOtpPolicyArgs',
     'GetRealmSecurityDefenseArgs',
     'GetRealmSecurityDefenseBruteForceDetectionArgs',
     'GetRealmSecurityDefenseHeaderArgs',
@@ -70,6 +72,109 @@ class RealmInternationalizationArgs:
     @supported_locales.setter
     def supported_locales(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "supported_locales", value)
+
+
+@pulumi.input_type
+class RealmOtpPolicyArgs:
+    def __init__(__self__, *,
+                 algorithm: Optional[pulumi.Input[str]] = None,
+                 digits: Optional[pulumi.Input[int]] = None,
+                 initial_counter: Optional[pulumi.Input[int]] = None,
+                 look_ahead_window: Optional[pulumi.Input[int]] = None,
+                 period: Optional[pulumi.Input[int]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] algorithm: What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
+        :param pulumi.Input[int] digits: How many digits the OTP have. Defaults to `6`.
+        :param pulumi.Input[int] initial_counter: What should the initial counter value be. Defaults to `2`.
+        :param pulumi.Input[int] look_ahead_window: How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
+        :param pulumi.Input[int] period: How many seconds should an OTP token be valid. Defaults to `30`.
+        :param pulumi.Input[str] type: One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
+        """
+        if algorithm is not None:
+            pulumi.set(__self__, "algorithm", algorithm)
+        if digits is not None:
+            pulumi.set(__self__, "digits", digits)
+        if initial_counter is not None:
+            pulumi.set(__self__, "initial_counter", initial_counter)
+        if look_ahead_window is not None:
+            pulumi.set(__self__, "look_ahead_window", look_ahead_window)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def algorithm(self) -> Optional[pulumi.Input[str]]:
+        """
+        What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
+        """
+        return pulumi.get(self, "algorithm")
+
+    @algorithm.setter
+    def algorithm(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "algorithm", value)
+
+    @property
+    @pulumi.getter
+    def digits(self) -> Optional[pulumi.Input[int]]:
+        """
+        How many digits the OTP have. Defaults to `6`.
+        """
+        return pulumi.get(self, "digits")
+
+    @digits.setter
+    def digits(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "digits", value)
+
+    @property
+    @pulumi.getter(name="initialCounter")
+    def initial_counter(self) -> Optional[pulumi.Input[int]]:
+        """
+        What should the initial counter value be. Defaults to `2`.
+        """
+        return pulumi.get(self, "initial_counter")
+
+    @initial_counter.setter
+    def initial_counter(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "initial_counter", value)
+
+    @property
+    @pulumi.getter(name="lookAheadWindow")
+    def look_ahead_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
+        """
+        return pulumi.get(self, "look_ahead_window")
+
+    @look_ahead_window.setter
+    def look_ahead_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "look_ahead_window", value)
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[pulumi.Input[int]]:
+        """
+        How many seconds should an OTP token be valid. Defaults to `30`.
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "period", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
@@ -1234,6 +1339,77 @@ class GetRealmInternationalizationArgs:
     @supported_locales.setter
     def supported_locales(self, value: Sequence[str]):
         pulumi.set(self, "supported_locales", value)
+
+
+@pulumi.input_type
+class GetRealmOtpPolicyArgs:
+    def __init__(__self__, *,
+                 algorithm: str,
+                 digits: int,
+                 initial_counter: int,
+                 look_ahead_window: int,
+                 period: int,
+                 type: str):
+        pulumi.set(__self__, "algorithm", algorithm)
+        pulumi.set(__self__, "digits", digits)
+        pulumi.set(__self__, "initial_counter", initial_counter)
+        pulumi.set(__self__, "look_ahead_window", look_ahead_window)
+        pulumi.set(__self__, "period", period)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def algorithm(self) -> str:
+        return pulumi.get(self, "algorithm")
+
+    @algorithm.setter
+    def algorithm(self, value: str):
+        pulumi.set(self, "algorithm", value)
+
+    @property
+    @pulumi.getter
+    def digits(self) -> int:
+        return pulumi.get(self, "digits")
+
+    @digits.setter
+    def digits(self, value: int):
+        pulumi.set(self, "digits", value)
+
+    @property
+    @pulumi.getter(name="initialCounter")
+    def initial_counter(self) -> int:
+        return pulumi.get(self, "initial_counter")
+
+    @initial_counter.setter
+    def initial_counter(self, value: int):
+        pulumi.set(self, "initial_counter", value)
+
+    @property
+    @pulumi.getter(name="lookAheadWindow")
+    def look_ahead_window(self) -> int:
+        return pulumi.get(self, "look_ahead_window")
+
+    @look_ahead_window.setter
+    def look_ahead_window(self, value: int):
+        pulumi.set(self, "look_ahead_window", value)
+
+    @property
+    @pulumi.getter
+    def period(self) -> int:
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: int):
+        pulumi.set(self, "period", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: str):
+        pulumi.set(self, "type", value)
 
 
 @pulumi.input_type

@@ -101,6 +101,65 @@
                 "supportedLocales"
             ]
         },
+        "keycloak:index/RealmOtpPolicy:RealmOtpPolicy": {
+            "properties": {
+                "algorithm": {
+                    "type": "string",
+                    "description": "What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "digits": {
+                    "type": "integer",
+                    "description": "How many digits the OTP have. Defaults to `6`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "initialCounter": {
+                    "type": "integer",
+                    "description": "What should the initial counter value be. Defaults to `2`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "lookAheadWindow": {
+                    "type": "integer",
+                    "description": "How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "How many seconds should an OTP token be valid. Defaults to `30`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
         "keycloak:index/RealmSecurityDefenses:RealmSecurityDefenses": {
             "properties": {
                 "bruteForceDetection": {
@@ -1031,6 +1090,72 @@
                 "providerPriority",
                 "publicKey",
                 "status",
+                "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "keycloak:index/getRealmOtpPolicy:getRealmOtpPolicy": {
+            "properties": {
+                "algorithm": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "digits": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "initialCounter": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "lookAheadWindow": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "period": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "algorithm",
+                "digits",
+                "initialCounter",
+                "lookAheadWindow",
+                "period",
                 "type"
             ],
             "language": {
@@ -2254,7 +2379,7 @@
     },
     "resources": {
         "keycloak:authentication/execution:Execution": {
-            "description": "Allows for creating and managing an authentication execution within Keycloak.\n\nAn authentication execution is an action that the user or service may or may not take when authenticating through an authentication\nflow.\n\n\u003e Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst flow = new keycloak.authentication.Flow(\"flow\", {\n    realmId: realm.id,\n    alias: \"my-flow-alias\",\n});\n// first execution\nconst executionOne = new keycloak.authentication.Execution(\"executionOne\", {\n    realmId: realm.id,\n    parentFlowAlias: flow.alias,\n    authenticator: \"auth-cookie\",\n    requirement: \"ALTERNATIVE\",\n});\n// second execution\nconst executionTwo = new keycloak.authentication.Execution(\"executionTwo\", {\n    realmId: realm.id,\n    parentFlowAlias: flow.alias,\n    authenticator: \"identity-provider-redirector\",\n    requirement: \"ALTERNATIVE\",\n}, {\n    dependsOn: [executionOne],\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nflow = keycloak.authentication.Flow(\"flow\",\n    realm_id=realm.id,\n    alias=\"my-flow-alias\")\n# first execution\nexecution_one = keycloak.authentication.Execution(\"executionOne\",\n    realm_id=realm.id,\n    parent_flow_alias=flow.alias,\n    authenticator=\"auth-cookie\",\n    requirement=\"ALTERNATIVE\")\n# second execution\nexecution_two = keycloak.authentication.Execution(\"executionTwo\",\n    realm_id=realm.id,\n    parent_flow_alias=flow.alias,\n    authenticator=\"identity-provider-redirector\",\n    requirement=\"ALTERNATIVE\",\n    opts=pulumi.ResourceOptions(depends_on=[execution_one]))\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var flow = new Keycloak.Authentication.Flow(\"flow\", new Keycloak.Authentication.FlowArgs\n        {\n            RealmId = realm.Id,\n            Alias = \"my-flow-alias\",\n        });\n        // first execution\n        var executionOne = new Keycloak.Authentication.Execution(\"executionOne\", new Keycloak.Authentication.ExecutionArgs\n        {\n            RealmId = realm.Id,\n            ParentFlowAlias = flow.Alias,\n            Authenticator = \"auth-cookie\",\n            Requirement = \"ALTERNATIVE\",\n        });\n        // second execution\n        var executionTwo = new Keycloak.Authentication.Execution(\"executionTwo\", new Keycloak.Authentication.ExecutionArgs\n        {\n            RealmId = realm.Id,\n            ParentFlowAlias = flow.Alias,\n            Authenticator = \"identity-provider-redirector\",\n            Requirement = \"ALTERNATIVE\",\n        }, new CustomResourceOptions\n        {\n            DependsOn = \n            {\n                executionOne,\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/authentication\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tflow, err := authentication.NewFlow(ctx, \"flow\", \u0026authentication.FlowArgs{\n\t\t\tRealmId: realm.ID(),\n\t\t\tAlias:   pulumi.String(\"my-flow-alias\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texecutionOne, err := authentication.NewExecution(ctx, \"executionOne\", \u0026authentication.ExecutionArgs{\n\t\t\tRealmId:         realm.ID(),\n\t\t\tParentFlowAlias: flow.Alias,\n\t\t\tAuthenticator:   pulumi.String(\"auth-cookie\"),\n\t\t\tRequirement:     pulumi.String(\"ALTERNATIVE\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = authentication.NewExecution(ctx, \"executionTwo\", \u0026authentication.ExecutionArgs{\n\t\t\tRealmId:         realm.ID(),\n\t\t\tParentFlowAlias: flow.Alias,\n\t\t\tAuthenticator:   pulumi.String(\"identity-provider-redirector\"),\n\t\t\tRequirement:     pulumi.String(\"ALTERNATIVE\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\texecutionOne,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nAuthentication executions can be imported using the formats`{{realmId}}/{{parentFlowAlias}}/{{authenticationExecutionId}}`. Examplebash\n\n```sh\n $ pulumi import keycloak:authentication/execution:Execution keycloak_authentication_execution my-realm/my-flow/30559fcf-6fb8-45ea-8c46-2b86f46ebc17\n```\n\n ",
+            "description": "Allows for creating and managing an authentication execution within Keycloak.\n\nAn authentication execution is an action that the user or service may or may not take when authenticating through an authentication\nflow.\n\n\u003e Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst flow = new keycloak.authentication.Flow(\"flow\", {\n    realmId: realm.id,\n    alias: \"my-flow-alias\",\n});\n// first execution\nconst executionOne = new keycloak.authentication.Execution(\"executionOne\", {\n    realmId: realm.id,\n    parentFlowAlias: flow.alias,\n    authenticator: \"auth-cookie\",\n    requirement: \"ALTERNATIVE\",\n});\n// second execution\nconst executionTwo = new keycloak.authentication.Execution(\"executionTwo\", {\n    realmId: realm.id,\n    parentFlowAlias: flow.alias,\n    authenticator: \"identity-provider-redirector\",\n    requirement: \"ALTERNATIVE\",\n}, {\n    dependsOn: [executionOne],\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nflow = keycloak.authentication.Flow(\"flow\",\n    realm_id=realm.id,\n    alias=\"my-flow-alias\")\n# first execution\nexecution_one = keycloak.authentication.Execution(\"executionOne\",\n    realm_id=realm.id,\n    parent_flow_alias=flow.alias,\n    authenticator=\"auth-cookie\",\n    requirement=\"ALTERNATIVE\")\n# second execution\nexecution_two = keycloak.authentication.Execution(\"executionTwo\",\n    realm_id=realm.id,\n    parent_flow_alias=flow.alias,\n    authenticator=\"identity-provider-redirector\",\n    requirement=\"ALTERNATIVE\",\n    opts=pulumi.ResourceOptions(depends_on=[execution_one]))\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var flow = new Keycloak.Authentication.Flow(\"flow\", new Keycloak.Authentication.FlowArgs\n        {\n            RealmId = realm.Id,\n            Alias = \"my-flow-alias\",\n        });\n        // first execution\n        var executionOne = new Keycloak.Authentication.Execution(\"executionOne\", new Keycloak.Authentication.ExecutionArgs\n        {\n            RealmId = realm.Id,\n            ParentFlowAlias = flow.Alias,\n            Authenticator = \"auth-cookie\",\n            Requirement = \"ALTERNATIVE\",\n        });\n        // second execution\n        var executionTwo = new Keycloak.Authentication.Execution(\"executionTwo\", new Keycloak.Authentication.ExecutionArgs\n        {\n            RealmId = realm.Id,\n            ParentFlowAlias = flow.Alias,\n            Authenticator = \"identity-provider-redirector\",\n            Requirement = \"ALTERNATIVE\",\n        }, new CustomResourceOptions\n        {\n            DependsOn = \n            {\n                executionOne,\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/authentication\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tflow, err := authentication.NewFlow(ctx, \"flow\", \u0026authentication.FlowArgs{\n\t\t\tRealmId: realm.ID(),\n\t\t\tAlias:   pulumi.String(\"my-flow-alias\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texecutionOne, err := authentication.NewExecution(ctx, \"executionOne\", \u0026authentication.ExecutionArgs{\n\t\t\tRealmId:         realm.ID(),\n\t\t\tParentFlowAlias: flow.Alias,\n\t\t\tAuthenticator:   pulumi.String(\"auth-cookie\"),\n\t\t\tRequirement:     pulumi.String(\"ALTERNATIVE\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = authentication.NewExecution(ctx, \"executionTwo\", \u0026authentication.ExecutionArgs{\n\t\t\tRealmId:         realm.ID(),\n\t\t\tParentFlowAlias: flow.Alias,\n\t\t\tAuthenticator:   pulumi.String(\"identity-provider-redirector\"),\n\t\t\tRequirement:     pulumi.String(\"ALTERNATIVE\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\texecutionOne,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nAuthentication executions can be imported using the formats`{{realmId}}/{{parentFlowAlias}}/{{authenticationExecutionId}}`. Examplebash\n\n```sh\n $ pulumi import keycloak:authentication/execution:Execution execution_one my-realm/my-flow-alias/30559fcf-6fb8-45ea-8c46-2b86f46ebc17\n```\n\n ",
             "properties": {
                 "authenticator": {
                     "type": "string",
@@ -3979,6 +4104,9 @@
                     "type": "boolean",
                     "description": "Enable `offline_session_max_lifespan`.\n"
                 },
+                "otpPolicy": {
+                    "$ref": "#/types/keycloak:index/RealmOtpPolicy:RealmOtpPolicy"
+                },
                 "passwordPolicy": {
                     "type": "string",
                     "description": "The password policy for users within the realm.\n"
@@ -4079,6 +4207,7 @@
                 "loginWithEmailAllowed",
                 "offlineSessionIdleTimeout",
                 "offlineSessionMaxLifespan",
+                "otpPolicy",
                 "realm",
                 "registrationAllowed",
                 "registrationEmailAsUsername",
@@ -4214,6 +4343,9 @@
                 "offlineSessionMaxLifespanEnabled": {
                     "type": "boolean",
                     "description": "Enable `offline_session_max_lifespan`.\n"
+                },
+                "otpPolicy": {
+                    "$ref": "#/types/keycloak:index/RealmOtpPolicy:RealmOtpPolicy"
                 },
                 "passwordPolicy": {
                     "type": "string",
@@ -4431,6 +4563,9 @@
                     "offlineSessionMaxLifespanEnabled": {
                         "type": "boolean",
                         "description": "Enable `offline_session_max_lifespan`.\n"
+                    },
+                    "otpPolicy": {
+                        "$ref": "#/types/keycloak:index/RealmOtpPolicy:RealmOtpPolicy"
                     },
                     "passwordPolicy": {
                         "type": "string",
@@ -7535,7 +7670,7 @@
             }
         },
         "keycloak:openid/client:Client": {
-            "description": "Allows for creating and managing Keycloak clients that use the OpenID Connect protocol.\n\nClients are entities that can use Keycloak for user authentication. Typically,\nclients are applications that redirect users to Keycloak for authentication\nin order to take advantage of Keycloak's user sessions for SSO.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst openidClient = new keycloak.openid.Client(\"openidClient\", {\n    realmId: realm.id,\n    clientId: \"test-client\",\n    enabled: true,\n    accessType: \"CONFIDENTIAL\",\n    validRedirectUris: [\"http://localhost:8080/openid-callback\"],\n    loginTheme: \"keycloak\",\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nopenid_client = keycloak.openid.Client(\"openidClient\",\n    realm_id=realm.id,\n    client_id=\"test-client\",\n    enabled=True,\n    access_type=\"CONFIDENTIAL\",\n    valid_redirect_uris=[\"http://localhost:8080/openid-callback\"],\n    login_theme=\"keycloak\")\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var openidClient = new Keycloak.OpenId.Client(\"openidClient\", new Keycloak.OpenId.ClientArgs\n        {\n            RealmId = realm.Id,\n            ClientId = \"test-client\",\n            Enabled = true,\n            AccessType = \"CONFIDENTIAL\",\n            ValidRedirectUris = \n            {\n                \"http://localhost:8080/openid-callback\",\n            },\n            LoginTheme = \"keycloak\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = openid.NewClient(ctx, \"openidClient\", \u0026openid.ClientArgs{\n\t\t\tRealmId:    realm.ID(),\n\t\t\tClientId:   pulumi.String(\"test-client\"),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t\tAccessType: pulumi.String(\"CONFIDENTIAL\"),\n\t\t\tValidRedirectUris: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"http://localhost:8080/openid-callback\"),\n\t\t\t},\n\t\t\tLoginTheme: pulumi.String(\"keycloak\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nClients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID. Examplebash\n\n```sh\n $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352\n```\n\n ",
+            "description": "Allows for creating and managing Keycloak clients that use the OpenID Connect protocol.\n\nClients are entities that can use Keycloak for user authentication. Typically,\nclients are applications that redirect users to Keycloak for authentication\nin order to take advantage of Keycloak's user sessions for SSO.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst openidClient = new keycloak.openid.Client(\"openidClient\", {\n    realmId: realm.id,\n    clientId: \"test-client\",\n    enabled: true,\n    accessType: \"CONFIDENTIAL\",\n    validRedirectUris: [\"http://localhost:8080/openid-callback\"],\n    loginTheme: \"keycloak\",\n    extraConfig: {\n        key1: \"value1\",\n        key2: \"value2\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nopenid_client = keycloak.openid.Client(\"openidClient\",\n    realm_id=realm.id,\n    client_id=\"test-client\",\n    enabled=True,\n    access_type=\"CONFIDENTIAL\",\n    valid_redirect_uris=[\"http://localhost:8080/openid-callback\"],\n    login_theme=\"keycloak\",\n    extra_config={\n        \"key1\": \"value1\",\n        \"key2\": \"value2\",\n    })\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var openidClient = new Keycloak.OpenId.Client(\"openidClient\", new Keycloak.OpenId.ClientArgs\n        {\n            RealmId = realm.Id,\n            ClientId = \"test-client\",\n            Enabled = true,\n            AccessType = \"CONFIDENTIAL\",\n            ValidRedirectUris = \n            {\n                \"http://localhost:8080/openid-callback\",\n            },\n            LoginTheme = \"keycloak\",\n            ExtraConfig = \n            {\n                { \"key1\", \"value1\" },\n                { \"key2\", \"value2\" },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = openid.NewClient(ctx, \"openidClient\", \u0026openid.ClientArgs{\n\t\t\tRealmId:    realm.ID(),\n\t\t\tClientId:   pulumi.String(\"test-client\"),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t\tAccessType: pulumi.String(\"CONFIDENTIAL\"),\n\t\t\tValidRedirectUris: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"http://localhost:8080/openid-callback\"),\n\t\t\t},\n\t\t\tLoginTheme: pulumi.String(\"keycloak\"),\n\t\t\tExtraConfig: pulumi.StringMap{\n\t\t\t\t\"key1\": pulumi.String(\"value1\"),\n\t\t\t\t\"key2\": pulumi.String(\"value2\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nClients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID. Examplebash\n\n```sh\n $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352\n```\n\n ",
             "properties": {
                 "accessTokenLifespan": {
                     "type": "string",
@@ -7556,6 +7691,18 @@
                 "authorization": {
                     "$ref": "#/types/keycloak:openid/ClientAuthorization:ClientAuthorization",
                     "description": "When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:\n"
+                },
+                "backchannelLogoutRevokeOfflineSessions": {
+                    "type": "boolean",
+                    "description": "Specifying whether a \"revoke_offline_access\" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.\n"
+                },
+                "backchannelLogoutSessionRequired": {
+                    "type": "boolean",
+                    "description": "When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.\n"
+                },
+                "backchannelLogoutUrl": {
+                    "type": "string",
+                    "description": "The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.\n"
                 },
                 "baseUrl": {
                     "type": "string",
@@ -7604,6 +7751,12 @@
                 "excludeSessionStateFromAuthResponse": {
                     "type": "boolean",
                     "description": "When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.\n"
+                },
+                "extraConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
                 },
                 "fullScopeAllowed": {
                     "type": "boolean",
@@ -7698,6 +7851,18 @@
                     "$ref": "#/types/keycloak:openid/ClientAuthorization:ClientAuthorization",
                     "description": "When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:\n"
                 },
+                "backchannelLogoutRevokeOfflineSessions": {
+                    "type": "boolean",
+                    "description": "Specifying whether a \"revoke_offline_access\" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.\n"
+                },
+                "backchannelLogoutSessionRequired": {
+                    "type": "boolean",
+                    "description": "When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.\n"
+                },
+                "backchannelLogoutUrl": {
+                    "type": "string",
+                    "description": "The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.\n"
+                },
                 "baseUrl": {
                     "type": "string",
                     "description": "Default URL to use when the auth server needs to redirect or link back to the client.\n"
@@ -7745,6 +7910,12 @@
                 "excludeSessionStateFromAuthResponse": {
                     "type": "boolean",
                     "description": "When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.\n"
+                },
+                "extraConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
                 },
                 "fullScopeAllowed": {
                     "type": "boolean",
@@ -7829,6 +8000,18 @@
                         "$ref": "#/types/keycloak:openid/ClientAuthorization:ClientAuthorization",
                         "description": "When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:\n"
                     },
+                    "backchannelLogoutRevokeOfflineSessions": {
+                        "type": "boolean",
+                        "description": "Specifying whether a \"revoke_offline_access\" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.\n"
+                    },
+                    "backchannelLogoutSessionRequired": {
+                        "type": "boolean",
+                        "description": "When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.\n"
+                    },
+                    "backchannelLogoutUrl": {
+                        "type": "string",
+                        "description": "The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.\n"
+                    },
                     "baseUrl": {
                         "type": "string",
                         "description": "Default URL to use when the auth server needs to redirect or link back to the client.\n"
@@ -7876,6 +8059,12 @@
                     "excludeSessionStateFromAuthResponse": {
                         "type": "boolean",
                         "description": "When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.\n"
+                    },
+                    "extraConfig": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
                     },
                     "fullScopeAllowed": {
                         "type": "boolean",
@@ -10933,13 +11122,17 @@
                     "type": "string",
                     "description": "When specified, this URL will be used whenever Keycloak needs to link to this client.\n"
                 },
+                "canonicalizationMethod": {
+                    "type": "string",
+                    "description": "The Canonicalization Method for XML signatures. Should be one of \"EXCLUSIVE\", \"EXCLUSIVE_WITH_COMMENTS\", \"INCLUSIVE\", or \"INCLUSIVE_WITH_COMMENTS\". Defaults to \"EXCLUSIVE\".\n"
+                },
                 "clientId": {
                     "type": "string",
                     "description": "The unique ID of this client, referenced in the URI during authentication and in issued tokens.\n"
                 },
                 "clientSignatureRequired": {
                     "type": "boolean",
-                    "description": "When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`.\n"
+                    "description": "When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.\n"
                 },
                 "description": {
                     "type": "string",
@@ -10951,23 +11144,33 @@
                 },
                 "encryptAssertions": {
                     "type": "boolean",
-                    "description": "When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key.\n"
+                    "description": "When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.\n"
                 },
                 "encryptionCertificate": {
                     "type": "string",
                     "description": "If assertions for the client are encrypted, this certificate will be used for encryption.\n"
                 },
+                "encryptionCertificateSha1": {
+                    "type": "string",
+                    "description": "(Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.\n"
+                },
+                "extraConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
                 "forceNameIdFormat": {
                     "type": "boolean",
-                    "description": "Ignore requested NameID subject format and use the one defined in `name_id_format` instead.\n"
+                    "description": "Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.\n"
                 },
                 "forcePostBinding": {
                     "type": "boolean",
-                    "description": "When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.\n"
+                    "description": "When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.\n"
                 },
                 "frontChannelLogout": {
                     "type": "boolean",
-                    "description": "When `true`, this client will require a browser redirect in order to perform a logout.\n"
+                    "description": "When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.\n"
                 },
                 "fullScopeAllowed": {
                     "type": "boolean",
@@ -10983,7 +11186,11 @@
                 },
                 "includeAuthnStatement": {
                     "type": "boolean",
-                    "description": "When `true`, an `AuthnStatement` will be included in the SAML response.\n"
+                    "description": "When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.\n"
+                },
+                "loginTheme": {
+                    "type": "string",
+                    "description": "The login theme of this client.\n"
                 },
                 "logoutServicePostBindingUrl": {
                     "type": "string",
@@ -11015,23 +11222,35 @@
                 },
                 "signAssertions": {
                     "type": "boolean",
-                    "description": "When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.\n"
+                    "description": "When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.\n"
                 },
                 "signDocuments": {
                     "type": "boolean",
-                    "description": "When `true`, the SAML document will be signed by Keycloak using the realm's private key.\n"
+                    "description": "When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.\n"
                 },
                 "signatureAlgorithm": {
                     "type": "string",
                     "description": "The signature algorithm used to sign documents. Should be one of \"RSA_SHA1\", \"RSA_SHA256\", \"RSA_SHA512\", or \"DSA_SHA1\".\n"
                 },
+                "signatureKeyName": {
+                    "type": "string",
+                    "description": "The value of the `KeyName` element within the signed SAML document. Should be one of \"NONE\", \"KEY_ID\", or \"CERT_SUBJECT\". Defaults to \"KEY_ID\".\n"
+                },
                 "signingCertificate": {
                     "type": "string",
                     "description": "If documents or assertions from the client are signed, this certificate will be used to verify the signature.\n"
                 },
+                "signingCertificateSha1": {
+                    "type": "string",
+                    "description": "(Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.\n"
+                },
                 "signingPrivateKey": {
                     "type": "string",
                     "description": "If documents or assertions from the client are signed, this private key will be used to verify the signature.\n"
+                },
+                "signingPrivateKeySha1": {
+                    "type": "string",
+                    "description": "(Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.\n"
                 },
                 "validRedirectUris": {
                     "type": "array",
@@ -11043,17 +11262,15 @@
             },
             "required": [
                 "clientId",
-                "clientSignatureRequired",
-                "encryptAssertions",
-                "forceNameIdFormat",
-                "forcePostBinding",
-                "frontChannelLogout",
-                "includeAuthnStatement",
+                "encryptionCertificate",
+                "encryptionCertificateSha1",
                 "name",
                 "nameIdFormat",
                 "realmId",
-                "signAssertions",
-                "signDocuments"
+                "signingCertificate",
+                "signingCertificateSha1",
+                "signingPrivateKey",
+                "signingPrivateKeySha1"
             ],
             "inputProperties": {
                 "assertionConsumerPostUrl": {
@@ -11072,13 +11289,17 @@
                     "type": "string",
                     "description": "When specified, this URL will be used whenever Keycloak needs to link to this client.\n"
                 },
+                "canonicalizationMethod": {
+                    "type": "string",
+                    "description": "The Canonicalization Method for XML signatures. Should be one of \"EXCLUSIVE\", \"EXCLUSIVE_WITH_COMMENTS\", \"INCLUSIVE\", or \"INCLUSIVE_WITH_COMMENTS\". Defaults to \"EXCLUSIVE\".\n"
+                },
                 "clientId": {
                     "type": "string",
                     "description": "The unique ID of this client, referenced in the URI during authentication and in issued tokens.\n"
                 },
                 "clientSignatureRequired": {
                     "type": "boolean",
-                    "description": "When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`.\n"
+                    "description": "When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.\n"
                 },
                 "description": {
                     "type": "string",
@@ -11090,23 +11311,29 @@
                 },
                 "encryptAssertions": {
                     "type": "boolean",
-                    "description": "When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key.\n"
+                    "description": "When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.\n"
                 },
                 "encryptionCertificate": {
                     "type": "string",
                     "description": "If assertions for the client are encrypted, this certificate will be used for encryption.\n"
                 },
+                "extraConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
                 "forceNameIdFormat": {
                     "type": "boolean",
-                    "description": "Ignore requested NameID subject format and use the one defined in `name_id_format` instead.\n"
+                    "description": "Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.\n"
                 },
                 "forcePostBinding": {
                     "type": "boolean",
-                    "description": "When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.\n"
+                    "description": "When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.\n"
                 },
                 "frontChannelLogout": {
                     "type": "boolean",
-                    "description": "When `true`, this client will require a browser redirect in order to perform a logout.\n"
+                    "description": "When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.\n"
                 },
                 "fullScopeAllowed": {
                     "type": "boolean",
@@ -11122,7 +11349,11 @@
                 },
                 "includeAuthnStatement": {
                     "type": "boolean",
-                    "description": "When `true`, an `AuthnStatement` will be included in the SAML response.\n"
+                    "description": "When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.\n"
+                },
+                "loginTheme": {
+                    "type": "string",
+                    "description": "The login theme of this client.\n"
                 },
                 "logoutServicePostBindingUrl": {
                     "type": "string",
@@ -11154,15 +11385,19 @@
                 },
                 "signAssertions": {
                     "type": "boolean",
-                    "description": "When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.\n"
+                    "description": "When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.\n"
                 },
                 "signDocuments": {
                     "type": "boolean",
-                    "description": "When `true`, the SAML document will be signed by Keycloak using the realm's private key.\n"
+                    "description": "When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.\n"
                 },
                 "signatureAlgorithm": {
                     "type": "string",
                     "description": "The signature algorithm used to sign documents. Should be one of \"RSA_SHA1\", \"RSA_SHA256\", \"RSA_SHA512\", or \"DSA_SHA1\".\n"
+                },
+                "signatureKeyName": {
+                    "type": "string",
+                    "description": "The value of the `KeyName` element within the signed SAML document. Should be one of \"NONE\", \"KEY_ID\", or \"CERT_SUBJECT\". Defaults to \"KEY_ID\".\n"
                 },
                 "signingCertificate": {
                     "type": "string",
@@ -11203,13 +11438,17 @@
                         "type": "string",
                         "description": "When specified, this URL will be used whenever Keycloak needs to link to this client.\n"
                     },
+                    "canonicalizationMethod": {
+                        "type": "string",
+                        "description": "The Canonicalization Method for XML signatures. Should be one of \"EXCLUSIVE\", \"EXCLUSIVE_WITH_COMMENTS\", \"INCLUSIVE\", or \"INCLUSIVE_WITH_COMMENTS\". Defaults to \"EXCLUSIVE\".\n"
+                    },
                     "clientId": {
                         "type": "string",
                         "description": "The unique ID of this client, referenced in the URI during authentication and in issued tokens.\n"
                     },
                     "clientSignatureRequired": {
                         "type": "boolean",
-                        "description": "When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`.\n"
+                        "description": "When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.\n"
                     },
                     "description": {
                         "type": "string",
@@ -11221,23 +11460,33 @@
                     },
                     "encryptAssertions": {
                         "type": "boolean",
-                        "description": "When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key.\n"
+                        "description": "When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.\n"
                     },
                     "encryptionCertificate": {
                         "type": "string",
                         "description": "If assertions for the client are encrypted, this certificate will be used for encryption.\n"
                     },
+                    "encryptionCertificateSha1": {
+                        "type": "string",
+                        "description": "(Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.\n"
+                    },
+                    "extraConfig": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
                     "forceNameIdFormat": {
                         "type": "boolean",
-                        "description": "Ignore requested NameID subject format and use the one defined in `name_id_format` instead.\n"
+                        "description": "Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.\n"
                     },
                     "forcePostBinding": {
                         "type": "boolean",
-                        "description": "When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.\n"
+                        "description": "When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.\n"
                     },
                     "frontChannelLogout": {
                         "type": "boolean",
-                        "description": "When `true`, this client will require a browser redirect in order to perform a logout.\n"
+                        "description": "When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.\n"
                     },
                     "fullScopeAllowed": {
                         "type": "boolean",
@@ -11253,7 +11502,11 @@
                     },
                     "includeAuthnStatement": {
                         "type": "boolean",
-                        "description": "When `true`, an `AuthnStatement` will be included in the SAML response.\n"
+                        "description": "When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.\n"
+                    },
+                    "loginTheme": {
+                        "type": "string",
+                        "description": "The login theme of this client.\n"
                     },
                     "logoutServicePostBindingUrl": {
                         "type": "string",
@@ -11285,23 +11538,35 @@
                     },
                     "signAssertions": {
                         "type": "boolean",
-                        "description": "When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.\n"
+                        "description": "When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.\n"
                     },
                     "signDocuments": {
                         "type": "boolean",
-                        "description": "When `true`, the SAML document will be signed by Keycloak using the realm's private key.\n"
+                        "description": "When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.\n"
                     },
                     "signatureAlgorithm": {
                         "type": "string",
                         "description": "The signature algorithm used to sign documents. Should be one of \"RSA_SHA1\", \"RSA_SHA256\", \"RSA_SHA512\", or \"DSA_SHA1\".\n"
                     },
+                    "signatureKeyName": {
+                        "type": "string",
+                        "description": "The value of the `KeyName` element within the signed SAML document. Should be one of \"NONE\", \"KEY_ID\", or \"CERT_SUBJECT\". Defaults to \"KEY_ID\".\n"
+                    },
                     "signingCertificate": {
                         "type": "string",
                         "description": "If documents or assertions from the client are signed, this certificate will be used to verify the signature.\n"
                     },
+                    "signingCertificateSha1": {
+                        "type": "string",
+                        "description": "(Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.\n"
+                    },
                     "signingPrivateKey": {
                         "type": "string",
                         "description": "If documents or assertions from the client are signed, this private key will be used to verify the signature.\n"
+                    },
+                    "signingPrivateKeySha1": {
+                        "type": "string",
+                        "description": "(Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.\n"
                     },
                     "validRedirectUris": {
                         "type": "array",
@@ -12663,6 +12928,9 @@
                             "$ref": "#/types/keycloak:index/getRealmInternationalization:getRealmInternationalization"
                         }
                     },
+                    "otpPolicy": {
+                        "$ref": "#/types/keycloak:index/getRealmOtpPolicy:getRealmOtpPolicy"
+                    },
                     "realm": {
                         "type": "string",
                         "description": "The realm name.\n"
@@ -12800,6 +13068,9 @@
                     "offlineSessionMaxLifespanEnabled": {
                         "type": "boolean"
                     },
+                    "otpPolicy": {
+                        "$ref": "#/types/keycloak:index/getRealmOtpPolicy:getRealmOtpPolicy"
+                    },
                     "passwordPolicy": {
                         "type": "string"
                     },
@@ -12901,6 +13172,7 @@
                     "offlineSessionIdleTimeout",
                     "offlineSessionMaxLifespan",
                     "offlineSessionMaxLifespanEnabled",
+                    "otpPolicy",
                     "passwordPolicy",
                     "realm",
                     "refreshTokenMaxReuse",
@@ -13145,6 +13417,56 @@
                 ]
             }
         },
+        "keycloak:index/getUserRealmRoles:getUserRealmRoles": {
+            "description": "This data source can be used to fetch the realm roles of a user within Keycloak.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst masterRealm = keycloak.getRealm({\n    realm: \"master\",\n});\nconst defaultAdminUser = masterRealm.then(masterRealm =\u003e keycloak.getUser({\n    realmId: masterRealm.id,\n    username: \"keycloak\",\n}));\nconst userRealmRoles = Promise.all([masterRealm, defaultAdminUser]).then(([masterRealm, defaultAdminUser]) =\u003e keycloak.getUserRealmRoles({\n    realmId: masterRealm.id,\n    userId: defaultAdminUser.id,\n}));\nexport const keycloakUserRoleNames = userRealmRoles.then(userRealmRoles =\u003e userRealmRoles.roleNames);\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nmaster_realm = keycloak.get_realm(realm=\"master\")\ndefault_admin_user = keycloak.get_user(realm_id=master_realm.id,\n    username=\"keycloak\")\nuser_realm_roles = keycloak.get_user_realm_roles(realm_id=master_realm.id,\n    user_id=default_admin_user.id)\npulumi.export(\"keycloakUserRoleNames\", user_realm_roles.role_names)\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var masterRealm = Output.Create(Keycloak.GetRealm.InvokeAsync(new Keycloak.GetRealmArgs\n        {\n            Realm = \"master\",\n        }));\n        var defaultAdminUser = masterRealm.Apply(masterRealm =\u003e Output.Create(Keycloak.GetUser.InvokeAsync(new Keycloak.GetUserArgs\n        {\n            RealmId = masterRealm.Id,\n            Username = \"keycloak\",\n        })));\n        var userRealmRoles = Output.Tuple(masterRealm, defaultAdminUser).Apply(values =\u003e\n        {\n            var masterRealm = values.Item1;\n            var defaultAdminUser = values.Item2;\n            return Output.Create(Keycloak.GetUserRealmRoles.InvokeAsync(new Keycloak.GetUserRealmRolesArgs\n            {\n                RealmId = masterRealm.Id,\n                UserId = defaultAdminUser.Id,\n            }));\n        });\n        this.KeycloakUserRoleNames = userRealmRoles.Apply(userRealmRoles =\u003e userRealmRoles.RoleNames);\n    }\n\n    [Output(\"keycloakUserRoleNames\")]\n    public Output\u003cstring\u003e KeycloakUserRoleNames { get; set; }\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmasterRealm, err := keycloak.LookupRealm(ctx, \u0026keycloak.LookupRealmArgs{\n\t\t\tRealm: \"master\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tdefaultAdminUser, err := keycloak.LookupUser(ctx, \u0026keycloak.LookupUserArgs{\n\t\t\tRealmId:  masterRealm.Id,\n\t\t\tUsername: \"keycloak\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tuserRealmRoles, err := keycloak.GetUserRealmRoles(ctx, \u0026keycloak.GetUserRealmRolesArgs{\n\t\t\tRealmId: masterRealm.Id,\n\t\t\tUserId:  defaultAdminUser.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"keycloakUserRoleNames\", userRealmRoles.RoleNames)\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getUserRealmRoles.\n",
+                "properties": {
+                    "realmId": {
+                        "type": "string",
+                        "description": "The realm this user belongs to.\n"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "description": "The ID of the user to query realm roles for.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "realmId",
+                    "userId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getUserRealmRoles.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "realmId": {
+                        "type": "string"
+                    },
+                    "roleNames": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "(Computed) A list of realm roles that belong to this user.\n"
+                    },
+                    "userId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "realmId",
+                    "roleNames",
+                    "userId",
+                    "id"
+                ]
+            }
+        },
         "keycloak:openid/getClient:getClient": {
             "description": "This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realmManagement = keycloak.openid.getClient({\n    realmId: \"my-realm\",\n    clientId: \"realm-management\",\n});\nconst admin = realmManagement.then(realmManagement =\u003e keycloak.getRole({\n    realmId: \"my-realm\",\n    clientId: realmManagement.id,\n    name: \"realm-admin\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm_management = keycloak.openid.get_client(realm_id=\"my-realm\",\n    client_id=\"realm-management\")\nadmin = keycloak.get_role(realm_id=\"my-realm\",\n    client_id=realm_management.id,\n    name=\"realm-admin\")\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realmManagement = Output.Create(Keycloak.OpenId.GetClient.InvokeAsync(new Keycloak.OpenId.GetClientArgs\n        {\n            RealmId = \"my-realm\",\n            ClientId = \"realm-management\",\n        }));\n        var admin = realmManagement.Apply(realmManagement =\u003e Output.Create(Keycloak.GetRole.InvokeAsync(new Keycloak.GetRoleArgs\n        {\n            RealmId = \"my-realm\",\n            ClientId = realmManagement.Id,\n            Name = \"realm-admin\",\n        })));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealmManagement, err := openid.LookupClient(ctx, \u0026openid.LookupClientArgs{\n\t\t\tRealmId:  \"my-realm\",\n\t\t\tClientId: \"realm-management\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\topt0 := realmManagement.Id\n\t\t_, err = keycloak.LookupRole(ctx, \u0026keycloak.LookupRoleArgs{\n\t\t\tRealmId:  \"my-realm\",\n\t\t\tClientId: \u0026opt0,\n\t\t\tName:     \"realm-admin\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
@@ -13154,24 +13476,15 @@
                         "type": "string",
                         "description": "The client id (not its unique ID).\n"
                     },
-                    "clientOfflineSessionIdleTimeout": {
-                        "type": "string"
-                    },
-                    "clientOfflineSessionMaxLifespan": {
-                        "type": "string"
-                    },
-                    "clientSessionIdleTimeout": {
-                        "type": "string"
-                    },
-                    "clientSessionMaxLifespan": {
-                        "type": "string"
+                    "extraConfig": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
                     },
                     "realmId": {
                         "type": "string",
                         "description": "The realm id.\n"
-                    },
-                    "useRefreshTokens": {
-                        "type": "boolean"
                     }
                 },
                 "type": "object",
@@ -13203,6 +13516,15 @@
                         "items": {
                             "$ref": "#/types/keycloak:openid/getClientAuthorization:getClientAuthorization"
                         }
+                    },
+                    "backchannelLogoutRevokeOfflineSessions": {
+                        "type": "boolean"
+                    },
+                    "backchannelLogoutSessionRequired": {
+                        "type": "boolean"
+                    },
+                    "backchannelLogoutUrl": {
+                        "type": "string"
                     },
                     "baseUrl": {
                         "type": "string"
@@ -13239,6 +13561,12 @@
                     },
                     "excludeSessionStateFromAuthResponse": {
                         "type": "boolean"
+                    },
+                    "extraConfig": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
                     },
                     "fullScopeAllowed": {
                         "type": "boolean"
@@ -13300,14 +13628,22 @@
                     "adminUrl",
                     "authenticationFlowBindingOverrides",
                     "authorizations",
+                    "backchannelLogoutRevokeOfflineSessions",
+                    "backchannelLogoutSessionRequired",
+                    "backchannelLogoutUrl",
                     "baseUrl",
                     "clientId",
+                    "clientOfflineSessionIdleTimeout",
+                    "clientOfflineSessionMaxLifespan",
                     "clientSecret",
+                    "clientSessionIdleTimeout",
+                    "clientSessionMaxLifespan",
                     "consentRequired",
                     "description",
                     "directAccessGrantsEnabled",
                     "enabled",
                     "excludeSessionStateFromAuthResponse",
+                    "extraConfig",
                     "fullScopeAllowed",
                     "implicitFlowEnabled",
                     "loginTheme",
@@ -13319,6 +13655,7 @@
                     "serviceAccountUserId",
                     "serviceAccountsEnabled",
                     "standardFlowEnabled",
+                    "useRefreshTokens",
                     "validRedirectUris",
                     "webOrigins",
                     "id"
@@ -13538,6 +13875,9 @@
                     "baseUrl": {
                         "type": "string"
                     },
+                    "canonicalizationMethod": {
+                        "type": "string"
+                    },
                     "clientId": {
                         "type": "string"
                     },
@@ -13555,6 +13895,15 @@
                     },
                     "encryptionCertificate": {
                         "type": "string"
+                    },
+                    "encryptionCertificateSha1": {
+                        "type": "string"
+                    },
+                    "extraConfig": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
                     },
                     "forceNameIdFormat": {
                         "type": "boolean"
@@ -13581,6 +13930,9 @@
                     "includeAuthnStatement": {
                         "type": "boolean"
                     },
+                    "loginTheme": {
+                        "type": "string"
+                    },
                     "logoutServicePostBindingUrl": {
                         "type": "string"
                     },
@@ -13602,6 +13954,9 @@
                     "rootUrl": {
                         "type": "string"
                     },
+                    "samlSignatureKeyName": {
+                        "type": "string"
+                    },
                     "signAssertions": {
                         "type": "boolean"
                     },
@@ -13611,10 +13966,19 @@
                     "signatureAlgorithm": {
                         "type": "string"
                     },
+                    "signatureKeyName": {
+                        "type": "string"
+                    },
                     "signingCertificate": {
                         "type": "string"
                     },
+                    "signingCertificateSha1": {
+                        "type": "string"
+                    },
                     "signingPrivateKey": {
+                        "type": "string"
+                    },
+                    "signingPrivateKeySha1": {
                         "type": "string"
                     },
                     "validRedirectUris": {
@@ -13630,12 +13994,15 @@
                     "assertionConsumerRedirectUrl",
                     "authenticationFlowBindingOverrides",
                     "baseUrl",
+                    "canonicalizationMethod",
                     "clientId",
                     "clientSignatureRequired",
                     "description",
                     "enabled",
                     "encryptAssertions",
                     "encryptionCertificate",
+                    "encryptionCertificateSha1",
+                    "extraConfig",
                     "forceNameIdFormat",
                     "forcePostBinding",
                     "frontChannelLogout",
@@ -13643,6 +14010,7 @@
                     "idpInitiatedSsoRelayState",
                     "idpInitiatedSsoUrlName",
                     "includeAuthnStatement",
+                    "loginTheme",
                     "logoutServicePostBindingUrl",
                     "logoutServiceRedirectBindingUrl",
                     "masterSamlProcessingUrl",
@@ -13650,11 +14018,15 @@
                     "nameIdFormat",
                     "realmId",
                     "rootUrl",
+                    "samlSignatureKeyName",
                     "signAssertions",
                     "signDocuments",
                     "signatureAlgorithm",
+                    "signatureKeyName",
                     "signingCertificate",
+                    "signingCertificateSha1",
                     "signingPrivateKey",
+                    "signingPrivateKeySha1",
                     "validRedirectUris",
                     "id"
                 ]

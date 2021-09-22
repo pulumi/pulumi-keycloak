@@ -76,12 +76,15 @@ namespace Pulumi.Keycloak.Saml
         public readonly string AssertionConsumerRedirectUrl;
         public readonly ImmutableArray<Outputs.GetClientAuthenticationFlowBindingOverrideResult> AuthenticationFlowBindingOverrides;
         public readonly string BaseUrl;
+        public readonly string CanonicalizationMethod;
         public readonly string ClientId;
         public readonly bool ClientSignatureRequired;
         public readonly string Description;
         public readonly bool Enabled;
         public readonly bool EncryptAssertions;
         public readonly string EncryptionCertificate;
+        public readonly string EncryptionCertificateSha1;
+        public readonly ImmutableDictionary<string, object> ExtraConfig;
         public readonly bool ForceNameIdFormat;
         public readonly bool ForcePostBinding;
         public readonly bool FrontChannelLogout;
@@ -93,6 +96,7 @@ namespace Pulumi.Keycloak.Saml
         public readonly string IdpInitiatedSsoRelayState;
         public readonly string IdpInitiatedSsoUrlName;
         public readonly bool IncludeAuthnStatement;
+        public readonly string LoginTheme;
         public readonly string LogoutServicePostBindingUrl;
         public readonly string LogoutServiceRedirectBindingUrl;
         public readonly string MasterSamlProcessingUrl;
@@ -100,11 +104,15 @@ namespace Pulumi.Keycloak.Saml
         public readonly string NameIdFormat;
         public readonly string RealmId;
         public readonly string RootUrl;
+        public readonly string SamlSignatureKeyName;
         public readonly bool SignAssertions;
         public readonly bool SignDocuments;
         public readonly string SignatureAlgorithm;
+        public readonly string SignatureKeyName;
         public readonly string SigningCertificate;
+        public readonly string SigningCertificateSha1;
         public readonly string SigningPrivateKey;
+        public readonly string SigningPrivateKeySha1;
         public readonly ImmutableArray<string> ValidRedirectUris;
 
         [OutputConstructor]
@@ -117,6 +125,8 @@ namespace Pulumi.Keycloak.Saml
 
             string baseUrl,
 
+            string canonicalizationMethod,
+
             string clientId,
 
             bool clientSignatureRequired,
@@ -128,6 +138,10 @@ namespace Pulumi.Keycloak.Saml
             bool encryptAssertions,
 
             string encryptionCertificate,
+
+            string encryptionCertificateSha1,
+
+            ImmutableDictionary<string, object> extraConfig,
 
             bool forceNameIdFormat,
 
@@ -145,6 +159,8 @@ namespace Pulumi.Keycloak.Saml
 
             bool includeAuthnStatement,
 
+            string loginTheme,
+
             string logoutServicePostBindingUrl,
 
             string logoutServiceRedirectBindingUrl,
@@ -159,15 +175,23 @@ namespace Pulumi.Keycloak.Saml
 
             string rootUrl,
 
+            string samlSignatureKeyName,
+
             bool signAssertions,
 
             bool signDocuments,
 
             string signatureAlgorithm,
 
+            string signatureKeyName,
+
             string signingCertificate,
 
+            string signingCertificateSha1,
+
             string signingPrivateKey,
+
+            string signingPrivateKeySha1,
 
             ImmutableArray<string> validRedirectUris)
         {
@@ -175,12 +199,15 @@ namespace Pulumi.Keycloak.Saml
             AssertionConsumerRedirectUrl = assertionConsumerRedirectUrl;
             AuthenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
             BaseUrl = baseUrl;
+            CanonicalizationMethod = canonicalizationMethod;
             ClientId = clientId;
             ClientSignatureRequired = clientSignatureRequired;
             Description = description;
             Enabled = enabled;
             EncryptAssertions = encryptAssertions;
             EncryptionCertificate = encryptionCertificate;
+            EncryptionCertificateSha1 = encryptionCertificateSha1;
+            ExtraConfig = extraConfig;
             ForceNameIdFormat = forceNameIdFormat;
             ForcePostBinding = forcePostBinding;
             FrontChannelLogout = frontChannelLogout;
@@ -189,6 +216,7 @@ namespace Pulumi.Keycloak.Saml
             IdpInitiatedSsoRelayState = idpInitiatedSsoRelayState;
             IdpInitiatedSsoUrlName = idpInitiatedSsoUrlName;
             IncludeAuthnStatement = includeAuthnStatement;
+            LoginTheme = loginTheme;
             LogoutServicePostBindingUrl = logoutServicePostBindingUrl;
             LogoutServiceRedirectBindingUrl = logoutServiceRedirectBindingUrl;
             MasterSamlProcessingUrl = masterSamlProcessingUrl;
@@ -196,11 +224,15 @@ namespace Pulumi.Keycloak.Saml
             NameIdFormat = nameIdFormat;
             RealmId = realmId;
             RootUrl = rootUrl;
+            SamlSignatureKeyName = samlSignatureKeyName;
             SignAssertions = signAssertions;
             SignDocuments = signDocuments;
             SignatureAlgorithm = signatureAlgorithm;
+            SignatureKeyName = signatureKeyName;
             SigningCertificate = signingCertificate;
+            SigningCertificateSha1 = signingCertificateSha1;
             SigningPrivateKey = signingPrivateKey;
+            SigningPrivateKeySha1 = signingPrivateKeySha1;
             ValidRedirectUris = validRedirectUris;
         }
     }

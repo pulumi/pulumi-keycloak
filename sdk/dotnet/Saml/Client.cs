@@ -82,16 +82,22 @@ namespace Pulumi.Keycloak.Saml
         public Output<string?> BaseUrl { get; private set; } = null!;
 
         /// <summary>
+        /// The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
+        /// </summary>
+        [Output("canonicalizationMethod")]
+        public Output<string?> CanonicalizationMethod { get; private set; } = null!;
+
+        /// <summary>
         /// The unique ID of this client, referenced in the URI during authentication and in issued tokens.
         /// </summary>
         [Output("clientId")]
         public Output<string> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`.
+        /// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
         /// </summary>
         [Output("clientSignatureRequired")]
-        public Output<bool> ClientSignatureRequired { get; private set; } = null!;
+        public Output<bool?> ClientSignatureRequired { get; private set; } = null!;
 
         /// <summary>
         /// The description of this client in the GUI.
@@ -106,34 +112,43 @@ namespace Pulumi.Keycloak.Saml
         public Output<bool?> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key.
+        /// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
         /// </summary>
         [Output("encryptAssertions")]
-        public Output<bool> EncryptAssertions { get; private set; } = null!;
+        public Output<bool?> EncryptAssertions { get; private set; } = null!;
 
         /// <summary>
         /// If assertions for the client are encrypted, this certificate will be used for encryption.
         /// </summary>
         [Output("encryptionCertificate")]
-        public Output<string?> EncryptionCertificate { get; private set; } = null!;
+        public Output<string> EncryptionCertificate { get; private set; } = null!;
 
         /// <summary>
-        /// Ignore requested NameID subject format and use the one defined in `name_id_format` instead.
+        /// (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
+        /// </summary>
+        [Output("encryptionCertificateSha1")]
+        public Output<string> EncryptionCertificateSha1 { get; private set; } = null!;
+
+        [Output("extraConfig")]
+        public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
+
+        /// <summary>
+        /// Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
         /// </summary>
         [Output("forceNameIdFormat")]
-        public Output<bool> ForceNameIdFormat { get; private set; } = null!;
+        public Output<bool?> ForceNameIdFormat { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.
+        /// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
         /// </summary>
         [Output("forcePostBinding")]
-        public Output<bool> ForcePostBinding { get; private set; } = null!;
+        public Output<bool?> ForcePostBinding { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, this client will require a browser redirect in order to perform a logout.
+        /// When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
         /// </summary>
         [Output("frontChannelLogout")]
-        public Output<bool> FrontChannelLogout { get; private set; } = null!;
+        public Output<bool?> FrontChannelLogout { get; private set; } = null!;
 
         /// <summary>
         /// - Allow to include all roles mappings in the access token
@@ -154,10 +169,16 @@ namespace Pulumi.Keycloak.Saml
         public Output<string?> IdpInitiatedSsoUrlName { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, an `AuthnStatement` will be included in the SAML response.
+        /// When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
         /// </summary>
         [Output("includeAuthnStatement")]
-        public Output<bool> IncludeAuthnStatement { get; private set; } = null!;
+        public Output<bool?> IncludeAuthnStatement { get; private set; } = null!;
+
+        /// <summary>
+        /// The login theme of this client.
+        /// </summary>
+        [Output("loginTheme")]
+        public Output<string?> LoginTheme { get; private set; } = null!;
 
         /// <summary>
         /// SAML POST Binding URL for the client's single logout service.
@@ -202,16 +223,16 @@ namespace Pulumi.Keycloak.Saml
         public Output<string?> RootUrl { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.
+        /// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
         /// </summary>
         [Output("signAssertions")]
-        public Output<bool> SignAssertions { get; private set; } = null!;
+        public Output<bool?> SignAssertions { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, the SAML document will be signed by Keycloak using the realm's private key.
+        /// When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
         /// </summary>
         [Output("signDocuments")]
-        public Output<bool> SignDocuments { get; private set; } = null!;
+        public Output<bool?> SignDocuments { get; private set; } = null!;
 
         /// <summary>
         /// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
@@ -220,16 +241,34 @@ namespace Pulumi.Keycloak.Saml
         public Output<string?> SignatureAlgorithm { get; private set; } = null!;
 
         /// <summary>
+        /// The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
+        /// </summary>
+        [Output("signatureKeyName")]
+        public Output<string?> SignatureKeyName { get; private set; } = null!;
+
+        /// <summary>
         /// If documents or assertions from the client are signed, this certificate will be used to verify the signature.
         /// </summary>
         [Output("signingCertificate")]
-        public Output<string?> SigningCertificate { get; private set; } = null!;
+        public Output<string> SigningCertificate { get; private set; } = null!;
+
+        /// <summary>
+        /// (Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.
+        /// </summary>
+        [Output("signingCertificateSha1")]
+        public Output<string> SigningCertificateSha1 { get; private set; } = null!;
 
         /// <summary>
         /// If documents or assertions from the client are signed, this private key will be used to verify the signature.
         /// </summary>
         [Output("signingPrivateKey")]
-        public Output<string?> SigningPrivateKey { get; private set; } = null!;
+        public Output<string> SigningPrivateKey { get; private set; } = null!;
+
+        /// <summary>
+        /// (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
+        /// </summary>
+        [Output("signingPrivateKeySha1")]
+        public Output<string> SigningPrivateKeySha1 { get; private set; } = null!;
 
         /// <summary>
         /// When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
@@ -308,13 +347,19 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? BaseUrl { get; set; }
 
         /// <summary>
+        /// The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
+        /// </summary>
+        [Input("canonicalizationMethod")]
+        public Input<string>? CanonicalizationMethod { get; set; }
+
+        /// <summary>
         /// The unique ID of this client, referenced in the URI during authentication and in issued tokens.
         /// </summary>
         [Input("clientId", required: true)]
         public Input<string> ClientId { get; set; } = null!;
 
         /// <summary>
-        /// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`.
+        /// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
         /// </summary>
         [Input("clientSignatureRequired")]
         public Input<bool>? ClientSignatureRequired { get; set; }
@@ -332,7 +377,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key.
+        /// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
         /// </summary>
         [Input("encryptAssertions")]
         public Input<bool>? EncryptAssertions { get; set; }
@@ -343,20 +388,28 @@ namespace Pulumi.Keycloak.Saml
         [Input("encryptionCertificate")]
         public Input<string>? EncryptionCertificate { get; set; }
 
+        [Input("extraConfig")]
+        private InputMap<object>? _extraConfig;
+        public InputMap<object> ExtraConfig
+        {
+            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            set => _extraConfig = value;
+        }
+
         /// <summary>
-        /// Ignore requested NameID subject format and use the one defined in `name_id_format` instead.
+        /// Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
         /// </summary>
         [Input("forceNameIdFormat")]
         public Input<bool>? ForceNameIdFormat { get; set; }
 
         /// <summary>
-        /// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.
+        /// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
         /// </summary>
         [Input("forcePostBinding")]
         public Input<bool>? ForcePostBinding { get; set; }
 
         /// <summary>
-        /// When `true`, this client will require a browser redirect in order to perform a logout.
+        /// When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
         /// </summary>
         [Input("frontChannelLogout")]
         public Input<bool>? FrontChannelLogout { get; set; }
@@ -380,10 +433,16 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? IdpInitiatedSsoUrlName { get; set; }
 
         /// <summary>
-        /// When `true`, an `AuthnStatement` will be included in the SAML response.
+        /// When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
         /// </summary>
         [Input("includeAuthnStatement")]
         public Input<bool>? IncludeAuthnStatement { get; set; }
+
+        /// <summary>
+        /// The login theme of this client.
+        /// </summary>
+        [Input("loginTheme")]
+        public Input<string>? LoginTheme { get; set; }
 
         /// <summary>
         /// SAML POST Binding URL for the client's single logout service.
@@ -428,13 +487,13 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? RootUrl { get; set; }
 
         /// <summary>
-        /// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.
+        /// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
         /// </summary>
         [Input("signAssertions")]
         public Input<bool>? SignAssertions { get; set; }
 
         /// <summary>
-        /// When `true`, the SAML document will be signed by Keycloak using the realm's private key.
+        /// When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
         /// </summary>
         [Input("signDocuments")]
         public Input<bool>? SignDocuments { get; set; }
@@ -444,6 +503,12 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Input("signatureAlgorithm")]
         public Input<string>? SignatureAlgorithm { get; set; }
+
+        /// <summary>
+        /// The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
+        /// </summary>
+        [Input("signatureKeyName")]
+        public Input<string>? SignatureKeyName { get; set; }
 
         /// <summary>
         /// If documents or assertions from the client are signed, this certificate will be used to verify the signature.
@@ -501,13 +566,19 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? BaseUrl { get; set; }
 
         /// <summary>
+        /// The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
+        /// </summary>
+        [Input("canonicalizationMethod")]
+        public Input<string>? CanonicalizationMethod { get; set; }
+
+        /// <summary>
         /// The unique ID of this client, referenced in the URI during authentication and in issued tokens.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`.
+        /// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
         /// </summary>
         [Input("clientSignatureRequired")]
         public Input<bool>? ClientSignatureRequired { get; set; }
@@ -525,7 +596,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key.
+        /// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
         /// </summary>
         [Input("encryptAssertions")]
         public Input<bool>? EncryptAssertions { get; set; }
@@ -537,19 +608,33 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? EncryptionCertificate { get; set; }
 
         /// <summary>
-        /// Ignore requested NameID subject format and use the one defined in `name_id_format` instead.
+        /// (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
+        /// </summary>
+        [Input("encryptionCertificateSha1")]
+        public Input<string>? EncryptionCertificateSha1 { get; set; }
+
+        [Input("extraConfig")]
+        private InputMap<object>? _extraConfig;
+        public InputMap<object> ExtraConfig
+        {
+            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            set => _extraConfig = value;
+        }
+
+        /// <summary>
+        /// Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
         /// </summary>
         [Input("forceNameIdFormat")]
         public Input<bool>? ForceNameIdFormat { get; set; }
 
         /// <summary>
-        /// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.
+        /// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
         /// </summary>
         [Input("forcePostBinding")]
         public Input<bool>? ForcePostBinding { get; set; }
 
         /// <summary>
-        /// When `true`, this client will require a browser redirect in order to perform a logout.
+        /// When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
         /// </summary>
         [Input("frontChannelLogout")]
         public Input<bool>? FrontChannelLogout { get; set; }
@@ -573,10 +658,16 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? IdpInitiatedSsoUrlName { get; set; }
 
         /// <summary>
-        /// When `true`, an `AuthnStatement` will be included in the SAML response.
+        /// When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
         /// </summary>
         [Input("includeAuthnStatement")]
         public Input<bool>? IncludeAuthnStatement { get; set; }
+
+        /// <summary>
+        /// The login theme of this client.
+        /// </summary>
+        [Input("loginTheme")]
+        public Input<string>? LoginTheme { get; set; }
 
         /// <summary>
         /// SAML POST Binding URL for the client's single logout service.
@@ -621,13 +712,13 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? RootUrl { get; set; }
 
         /// <summary>
-        /// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.
+        /// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
         /// </summary>
         [Input("signAssertions")]
         public Input<bool>? SignAssertions { get; set; }
 
         /// <summary>
-        /// When `true`, the SAML document will be signed by Keycloak using the realm's private key.
+        /// When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
         /// </summary>
         [Input("signDocuments")]
         public Input<bool>? SignDocuments { get; set; }
@@ -639,16 +730,34 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? SignatureAlgorithm { get; set; }
 
         /// <summary>
+        /// The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
+        /// </summary>
+        [Input("signatureKeyName")]
+        public Input<string>? SignatureKeyName { get; set; }
+
+        /// <summary>
         /// If documents or assertions from the client are signed, this certificate will be used to verify the signature.
         /// </summary>
         [Input("signingCertificate")]
         public Input<string>? SigningCertificate { get; set; }
 
         /// <summary>
+        /// (Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.
+        /// </summary>
+        [Input("signingCertificateSha1")]
+        public Input<string>? SigningCertificateSha1 { get; set; }
+
+        /// <summary>
         /// If documents or assertions from the client are signed, this private key will be used to verify the signature.
         /// </summary>
         [Input("signingPrivateKey")]
         public Input<string>? SigningPrivateKey { get; set; }
+
+        /// <summary>
+        /// (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
+        /// </summary>
+        [Input("signingPrivateKeySha1")]
+        public Input<string>? SigningPrivateKeySha1 { get; set; }
 
         [Input("validRedirectUris")]
         private InputList<string>? _validRedirectUris;

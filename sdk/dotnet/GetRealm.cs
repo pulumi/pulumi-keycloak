@@ -84,6 +84,9 @@ namespace Pulumi.Keycloak
             set => _internationalizations = value;
         }
 
+        [Input("otpPolicy")]
+        public Inputs.GetRealmOtpPolicyArgs? OtpPolicy { get; set; }
+
         /// <summary>
         /// The realm name.
         /// </summary>
@@ -155,6 +158,7 @@ namespace Pulumi.Keycloak
         public readonly string OfflineSessionIdleTimeout;
         public readonly string OfflineSessionMaxLifespan;
         public readonly bool OfflineSessionMaxLifespanEnabled;
+        public readonly Outputs.GetRealmOtpPolicyResult OtpPolicy;
         public readonly string PasswordPolicy;
         public readonly string Realm;
         public readonly int RefreshTokenMaxReuse;
@@ -241,6 +245,8 @@ namespace Pulumi.Keycloak
 
             bool offlineSessionMaxLifespanEnabled,
 
+            Outputs.GetRealmOtpPolicyResult otpPolicy,
+
             string passwordPolicy,
 
             string realm,
@@ -314,6 +320,7 @@ namespace Pulumi.Keycloak
             OfflineSessionIdleTimeout = offlineSessionIdleTimeout;
             OfflineSessionMaxLifespan = offlineSessionMaxLifespan;
             OfflineSessionMaxLifespanEnabled = offlineSessionMaxLifespanEnabled;
+            OtpPolicy = otpPolicy;
             PasswordPolicy = passwordPolicy;
             Realm = realm;
             RefreshTokenMaxReuse = refreshTokenMaxReuse;

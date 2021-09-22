@@ -720,6 +720,8 @@ github.com/pulumi/terraform-provider-keycloak v0.0.0-20210804140102-ab92ee24c352
 github.com/pulumi/terraform-provider-keycloak v0.0.0-20210804140102-ab92ee24c352/go.mod h1:gCq4O7jEaA3xEJ0XDK/KESumGeNVQFI7Nm4WCuQ5+1s=
 github.com/pulumi/terraform-provider-keycloak v0.0.0-20210811134603-22ef7dd7f246 h1:4cW6d+sXOhhEGlYQtW/N5qBb4ujSz3c7Xxmlf3cLdQA=
 github.com/pulumi/terraform-provider-keycloak v0.0.0-20210811134603-22ef7dd7f246/go.mod h1:gCq4O7jEaA3xEJ0XDK/KESumGeNVQFI7Nm4WCuQ5+1s=
+github.com/pulumi/terraform-provider-keycloak v0.0.0-20210922170327-c5e1247457f5 h1:IJBFdmjkQV2LfrTJ4fs0xsdD+NATTSx3X7TLhmGPvlc=
+github.com/pulumi/terraform-provider-keycloak v0.0.0-20210922170327-c5e1247457f5/go.mod h1:gCq4O7jEaA3xEJ0XDK/KESumGeNVQFI7Nm4WCuQ5+1s=
 github.com/rjeczalik/notify v0.9.2 h1:MiTWrPj55mNDHEiIX5YUSKefw/+lCQVoAFmD6oQm5w8=
 github.com/rjeczalik/notify v0.9.2/go.mod h1:aErll2f0sUX9PXZnVNyeiObbmTlk5jnMoCa4QEjJeqM=
 github.com/rogpeppe/fastuuid v0.0.0-20150106093220-6724a57986af h1:gu+uRPtBe88sKxUCEXRoeCvVG90TJmwhiqRpvdhQFng=

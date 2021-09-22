@@ -18,6 +18,7 @@ from .get_realm import *
 from .get_realm_keys import *
 from .get_role import *
 from .get_user import *
+from .get_user_realm_roles import *
 from .group import *
 from .group_memberships import *
 from .group_roles import *

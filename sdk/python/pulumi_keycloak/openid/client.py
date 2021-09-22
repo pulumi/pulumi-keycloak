@@ -22,6 +22,9 @@ class ClientArgs:
                  admin_url: Optional[pulumi.Input[str]] = None,
                  authentication_flow_binding_overrides: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']] = None,
                  authorization: Optional[pulumi.Input['ClientAuthorizationArgs']] = None,
+                 backchannel_logout_revoke_offline_sessions: Optional[pulumi.Input[bool]] = None,
+                 backchannel_logout_session_required: Optional[pulumi.Input[bool]] = None,
+                 backchannel_logout_url: Optional[pulumi.Input[str]] = None,
                  base_url: Optional[pulumi.Input[str]] = None,
                  client_offline_session_idle_timeout: Optional[pulumi.Input[str]] = None,
                  client_offline_session_max_lifespan: Optional[pulumi.Input[str]] = None,
@@ -33,6 +36,7 @@ class ClientArgs:
                  direct_access_grants_enabled: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  exclude_session_state_from_auth_response: Optional[pulumi.Input[bool]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  full_scope_allowed: Optional[pulumi.Input[bool]] = None,
                  implicit_flow_enabled: Optional[pulumi.Input[bool]] = None,
                  login_theme: Optional[pulumi.Input[str]] = None,
@@ -53,6 +57,9 @@ class ClientArgs:
         :param pulumi.Input[str] admin_url: URL to the admin interface of the client.
         :param pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs'] authentication_flow_binding_overrides: Override realm authentication flow bindings
         :param pulumi.Input['ClientAuthorizationArgs'] authorization: When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
+        :param pulumi.Input[bool] backchannel_logout_revoke_offline_sessions: Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+        :param pulumi.Input[bool] backchannel_logout_session_required: When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+        :param pulumi.Input[str] backchannel_logout_url: The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
         :param pulumi.Input[str] base_url: Default URL to use when the auth server needs to redirect or link back to the client.
         :param pulumi.Input[str] client_offline_session_idle_timeout: Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
         :param pulumi.Input[str] client_offline_session_max_lifespan: Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.
@@ -89,6 +96,12 @@ class ClientArgs:
             pulumi.set(__self__, "authentication_flow_binding_overrides", authentication_flow_binding_overrides)
         if authorization is not None:
             pulumi.set(__self__, "authorization", authorization)
+        if backchannel_logout_revoke_offline_sessions is not None:
+            pulumi.set(__self__, "backchannel_logout_revoke_offline_sessions", backchannel_logout_revoke_offline_sessions)
+        if backchannel_logout_session_required is not None:
+            pulumi.set(__self__, "backchannel_logout_session_required", backchannel_logout_session_required)
+        if backchannel_logout_url is not None:
+            pulumi.set(__self__, "backchannel_logout_url", backchannel_logout_url)
         if base_url is not None:
             pulumi.set(__self__, "base_url", base_url)
         if client_offline_session_idle_timeout is not None:
@@ -111,6 +124,8 @@ class ClientArgs:
             pulumi.set(__self__, "enabled", enabled)
         if exclude_session_state_from_auth_response is not None:
             pulumi.set(__self__, "exclude_session_state_from_auth_response", exclude_session_state_from_auth_response)
+        if extra_config is not None:
+            pulumi.set(__self__, "extra_config", extra_config)
         if full_scope_allowed is not None:
             pulumi.set(__self__, "full_scope_allowed", full_scope_allowed)
         if implicit_flow_enabled is not None:
@@ -217,6 +232,42 @@ class ClientArgs:
     @authorization.setter
     def authorization(self, value: Optional[pulumi.Input['ClientAuthorizationArgs']]):
         pulumi.set(self, "authorization", value)
+
+    @property
+    @pulumi.getter(name="backchannelLogoutRevokeOfflineSessions")
+    def backchannel_logout_revoke_offline_sessions(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+        """
+        return pulumi.get(self, "backchannel_logout_revoke_offline_sessions")
+
+    @backchannel_logout_revoke_offline_sessions.setter
+    def backchannel_logout_revoke_offline_sessions(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "backchannel_logout_revoke_offline_sessions", value)
+
+    @property
+    @pulumi.getter(name="backchannelLogoutSessionRequired")
+    def backchannel_logout_session_required(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+        """
+        return pulumi.get(self, "backchannel_logout_session_required")
+
+    @backchannel_logout_session_required.setter
+    def backchannel_logout_session_required(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "backchannel_logout_session_required", value)
+
+    @property
+    @pulumi.getter(name="backchannelLogoutUrl")
+    def backchannel_logout_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
+        """
+        return pulumi.get(self, "backchannel_logout_url")
+
+    @backchannel_logout_url.setter
+    def backchannel_logout_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backchannel_logout_url", value)
 
     @property
     @pulumi.getter(name="baseUrl")
@@ -349,6 +400,15 @@ class ClientArgs:
     @exclude_session_state_from_auth_response.setter
     def exclude_session_state_from_auth_response(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "exclude_session_state_from_auth_response", value)
+
+    @property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        return pulumi.get(self, "extra_config")
+
+    @extra_config.setter
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "extra_config", value)
 
     @property
     @pulumi.getter(name="fullScopeAllowed")
@@ -493,6 +553,9 @@ class _ClientState:
                  admin_url: Optional[pulumi.Input[str]] = None,
                  authentication_flow_binding_overrides: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']] = None,
                  authorization: Optional[pulumi.Input['ClientAuthorizationArgs']] = None,
+                 backchannel_logout_revoke_offline_sessions: Optional[pulumi.Input[bool]] = None,
+                 backchannel_logout_session_required: Optional[pulumi.Input[bool]] = None,
+                 backchannel_logout_url: Optional[pulumi.Input[str]] = None,
                  base_url: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_offline_session_idle_timeout: Optional[pulumi.Input[str]] = None,
@@ -505,6 +568,7 @@ class _ClientState:
                  direct_access_grants_enabled: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  exclude_session_state_from_auth_response: Optional[pulumi.Input[bool]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  full_scope_allowed: Optional[pulumi.Input[bool]] = None,
                  implicit_flow_enabled: Optional[pulumi.Input[bool]] = None,
                  login_theme: Optional[pulumi.Input[str]] = None,
@@ -526,6 +590,9 @@ class _ClientState:
         :param pulumi.Input[str] admin_url: URL to the admin interface of the client.
         :param pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs'] authentication_flow_binding_overrides: Override realm authentication flow bindings
         :param pulumi.Input['ClientAuthorizationArgs'] authorization: When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
+        :param pulumi.Input[bool] backchannel_logout_revoke_offline_sessions: Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+        :param pulumi.Input[bool] backchannel_logout_session_required: When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+        :param pulumi.Input[str] backchannel_logout_url: The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
         :param pulumi.Input[str] base_url: Default URL to use when the auth server needs to redirect or link back to the client.
         :param pulumi.Input[str] client_id: The Client ID for this client, referenced in the URI during authentication and in issued tokens.
         :param pulumi.Input[str] client_offline_session_idle_timeout: Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
@@ -565,6 +632,12 @@ class _ClientState:
             pulumi.set(__self__, "authentication_flow_binding_overrides", authentication_flow_binding_overrides)
         if authorization is not None:
             pulumi.set(__self__, "authorization", authorization)
+        if backchannel_logout_revoke_offline_sessions is not None:
+            pulumi.set(__self__, "backchannel_logout_revoke_offline_sessions", backchannel_logout_revoke_offline_sessions)
+        if backchannel_logout_session_required is not None:
+            pulumi.set(__self__, "backchannel_logout_session_required", backchannel_logout_session_required)
+        if backchannel_logout_url is not None:
+            pulumi.set(__self__, "backchannel_logout_url", backchannel_logout_url)
         if base_url is not None:
             pulumi.set(__self__, "base_url", base_url)
         if client_id is not None:
@@ -589,6 +662,8 @@ class _ClientState:
             pulumi.set(__self__, "enabled", enabled)
         if exclude_session_state_from_auth_response is not None:
             pulumi.set(__self__, "exclude_session_state_from_auth_response", exclude_session_state_from_auth_response)
+        if extra_config is not None:
+            pulumi.set(__self__, "extra_config", extra_config)
         if full_scope_allowed is not None:
             pulumi.set(__self__, "full_scope_allowed", full_scope_allowed)
         if implicit_flow_enabled is not None:
@@ -677,6 +752,42 @@ class _ClientState:
     @authorization.setter
     def authorization(self, value: Optional[pulumi.Input['ClientAuthorizationArgs']]):
         pulumi.set(self, "authorization", value)
+
+    @property
+    @pulumi.getter(name="backchannelLogoutRevokeOfflineSessions")
+    def backchannel_logout_revoke_offline_sessions(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+        """
+        return pulumi.get(self, "backchannel_logout_revoke_offline_sessions")
+
+    @backchannel_logout_revoke_offline_sessions.setter
+    def backchannel_logout_revoke_offline_sessions(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "backchannel_logout_revoke_offline_sessions", value)
+
+    @property
+    @pulumi.getter(name="backchannelLogoutSessionRequired")
+    def backchannel_logout_session_required(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+        """
+        return pulumi.get(self, "backchannel_logout_session_required")
+
+    @backchannel_logout_session_required.setter
+    def backchannel_logout_session_required(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "backchannel_logout_session_required", value)
+
+    @property
+    @pulumi.getter(name="backchannelLogoutUrl")
+    def backchannel_logout_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
+        """
+        return pulumi.get(self, "backchannel_logout_url")
+
+    @backchannel_logout_url.setter
+    def backchannel_logout_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backchannel_logout_url", value)
 
     @property
     @pulumi.getter(name="baseUrl")
@@ -821,6 +932,15 @@ class _ClientState:
     @exclude_session_state_from_auth_response.setter
     def exclude_session_state_from_auth_response(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "exclude_session_state_from_auth_response", value)
+
+    @property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        return pulumi.get(self, "extra_config")
+
+    @extra_config.setter
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "extra_config", value)
 
     @property
     @pulumi.getter(name="fullScopeAllowed")
@@ -1003,6 +1123,9 @@ class Client(pulumi.CustomResource):
                  admin_url: Optional[pulumi.Input[str]] = None,
                  authentication_flow_binding_overrides: Optional[pulumi.Input[pulumi.InputType['ClientAuthenticationFlowBindingOverridesArgs']]] = None,
                  authorization: Optional[pulumi.Input[pulumi.InputType['ClientAuthorizationArgs']]] = None,
+                 backchannel_logout_revoke_offline_sessions: Optional[pulumi.Input[bool]] = None,
+                 backchannel_logout_session_required: Optional[pulumi.Input[bool]] = None,
+                 backchannel_logout_url: Optional[pulumi.Input[str]] = None,
                  base_url: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_offline_session_idle_timeout: Optional[pulumi.Input[str]] = None,
@@ -1015,6 +1138,7 @@ class Client(pulumi.CustomResource):
                  direct_access_grants_enabled: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  exclude_session_state_from_auth_response: Optional[pulumi.Input[bool]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  full_scope_allowed: Optional[pulumi.Input[bool]] = None,
                  implicit_flow_enabled: Optional[pulumi.Input[bool]] = None,
                  login_theme: Optional[pulumi.Input[str]] = None,
@@ -1050,7 +1174,11 @@ class Client(pulumi.CustomResource):
             enabled=True,
             access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"],
-            login_theme="keycloak")
+            login_theme="keycloak",
+            extra_config={
+                "key1": "value1",
+                "key2": "value2",
+            })
         ```
 
         ## Import
@@ -1068,6 +1196,9 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[str] admin_url: URL to the admin interface of the client.
         :param pulumi.Input[pulumi.InputType['ClientAuthenticationFlowBindingOverridesArgs']] authentication_flow_binding_overrides: Override realm authentication flow bindings
         :param pulumi.Input[pulumi.InputType['ClientAuthorizationArgs']] authorization: When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
+        :param pulumi.Input[bool] backchannel_logout_revoke_offline_sessions: Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+        :param pulumi.Input[bool] backchannel_logout_session_required: When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+        :param pulumi.Input[str] backchannel_logout_url: The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
         :param pulumi.Input[str] base_url: Default URL to use when the auth server needs to redirect or link back to the client.
         :param pulumi.Input[str] client_id: The Client ID for this client, referenced in the URI during authentication and in issued tokens.
         :param pulumi.Input[str] client_offline_session_idle_timeout: Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
@@ -1123,7 +1254,11 @@ class Client(pulumi.CustomResource):
             enabled=True,
             access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"],
-            login_theme="keycloak")
+            login_theme="keycloak",
+            extra_config={
+                "key1": "value1",
+                "key2": "value2",
+            })
         ```
 
         ## Import
@@ -1154,6 +1289,9 @@ class Client(pulumi.CustomResource):
                  admin_url: Optional[pulumi.Input[str]] = None,
                  authentication_flow_binding_overrides: Optional[pulumi.Input[pulumi.InputType['ClientAuthenticationFlowBindingOverridesArgs']]] = None,
                  authorization: Optional[pulumi.Input[pulumi.InputType['ClientAuthorizationArgs']]] = None,
+                 backchannel_logout_revoke_offline_sessions: Optional[pulumi.Input[bool]] = None,
+                 backchannel_logout_session_required: Optional[pulumi.Input[bool]] = None,
+                 backchannel_logout_url: Optional[pulumi.Input[str]] = None,
                  base_url: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_offline_session_idle_timeout: Optional[pulumi.Input[str]] = None,
@@ -1166,6 +1304,7 @@ class Client(pulumi.CustomResource):
                  direct_access_grants_enabled: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  exclude_session_state_from_auth_response: Optional[pulumi.Input[bool]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  full_scope_allowed: Optional[pulumi.Input[bool]] = None,
                  implicit_flow_enabled: Optional[pulumi.Input[bool]] = None,
                  login_theme: Optional[pulumi.Input[str]] = None,
@@ -1197,6 +1336,9 @@ class Client(pulumi.CustomResource):
             __props__.__dict__["admin_url"] = admin_url
             __props__.__dict__["authentication_flow_binding_overrides"] = authentication_flow_binding_overrides
             __props__.__dict__["authorization"] = authorization
+            __props__.__dict__["backchannel_logout_revoke_offline_sessions"] = backchannel_logout_revoke_offline_sessions
+            __props__.__dict__["backchannel_logout_session_required"] = backchannel_logout_session_required
+            __props__.__dict__["backchannel_logout_url"] = backchannel_logout_url
             __props__.__dict__["base_url"] = base_url
             if client_id is None and not opts.urn:
                 raise TypeError("Missing required property 'client_id'")
@@ -1211,6 +1353,7 @@ class Client(pulumi.CustomResource):
             __props__.__dict__["direct_access_grants_enabled"] = direct_access_grants_enabled
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["exclude_session_state_from_auth_response"] = exclude_session_state_from_auth_response
+            __props__.__dict__["extra_config"] = extra_config
             __props__.__dict__["full_scope_allowed"] = full_scope_allowed
             __props__.__dict__["implicit_flow_enabled"] = implicit_flow_enabled
             __props__.__dict__["login_theme"] = login_theme
@@ -1242,6 +1385,9 @@ class Client(pulumi.CustomResource):
             admin_url: Optional[pulumi.Input[str]] = None,
             authentication_flow_binding_overrides: Optional[pulumi.Input[pulumi.InputType['ClientAuthenticationFlowBindingOverridesArgs']]] = None,
             authorization: Optional[pulumi.Input[pulumi.InputType['ClientAuthorizationArgs']]] = None,
+            backchannel_logout_revoke_offline_sessions: Optional[pulumi.Input[bool]] = None,
+            backchannel_logout_session_required: Optional[pulumi.Input[bool]] = None,
+            backchannel_logout_url: Optional[pulumi.Input[str]] = None,
             base_url: Optional[pulumi.Input[str]] = None,
             client_id: Optional[pulumi.Input[str]] = None,
             client_offline_session_idle_timeout: Optional[pulumi.Input[str]] = None,
@@ -1254,6 +1400,7 @@ class Client(pulumi.CustomResource):
             direct_access_grants_enabled: Optional[pulumi.Input[bool]] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
             exclude_session_state_from_auth_response: Optional[pulumi.Input[bool]] = None,
+            extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             full_scope_allowed: Optional[pulumi.Input[bool]] = None,
             implicit_flow_enabled: Optional[pulumi.Input[bool]] = None,
             login_theme: Optional[pulumi.Input[str]] = None,
@@ -1280,6 +1427,9 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[str] admin_url: URL to the admin interface of the client.
         :param pulumi.Input[pulumi.InputType['ClientAuthenticationFlowBindingOverridesArgs']] authentication_flow_binding_overrides: Override realm authentication flow bindings
         :param pulumi.Input[pulumi.InputType['ClientAuthorizationArgs']] authorization: When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
+        :param pulumi.Input[bool] backchannel_logout_revoke_offline_sessions: Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+        :param pulumi.Input[bool] backchannel_logout_session_required: When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+        :param pulumi.Input[str] backchannel_logout_url: The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
         :param pulumi.Input[str] base_url: Default URL to use when the auth server needs to redirect or link back to the client.
         :param pulumi.Input[str] client_id: The Client ID for this client, referenced in the URI during authentication and in issued tokens.
         :param pulumi.Input[str] client_offline_session_idle_timeout: Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
@@ -1318,6 +1468,9 @@ class Client(pulumi.CustomResource):
         __props__.__dict__["admin_url"] = admin_url
         __props__.__dict__["authentication_flow_binding_overrides"] = authentication_flow_binding_overrides
         __props__.__dict__["authorization"] = authorization
+        __props__.__dict__["backchannel_logout_revoke_offline_sessions"] = backchannel_logout_revoke_offline_sessions
+        __props__.__dict__["backchannel_logout_session_required"] = backchannel_logout_session_required
+        __props__.__dict__["backchannel_logout_url"] = backchannel_logout_url
         __props__.__dict__["base_url"] = base_url
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_offline_session_idle_timeout"] = client_offline_session_idle_timeout
@@ -1330,6 +1483,7 @@ class Client(pulumi.CustomResource):
         __props__.__dict__["direct_access_grants_enabled"] = direct_access_grants_enabled
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["exclude_session_state_from_auth_response"] = exclude_session_state_from_auth_response
+        __props__.__dict__["extra_config"] = extra_config
         __props__.__dict__["full_scope_allowed"] = full_scope_allowed
         __props__.__dict__["implicit_flow_enabled"] = implicit_flow_enabled
         __props__.__dict__["login_theme"] = login_theme
@@ -1385,6 +1539,30 @@ class Client(pulumi.CustomResource):
         When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
         """
         return pulumi.get(self, "authorization")
+
+    @property
+    @pulumi.getter(name="backchannelLogoutRevokeOfflineSessions")
+    def backchannel_logout_revoke_offline_sessions(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+        """
+        return pulumi.get(self, "backchannel_logout_revoke_offline_sessions")
+
+    @property
+    @pulumi.getter(name="backchannelLogoutSessionRequired")
+    def backchannel_logout_session_required(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+        """
+        return pulumi.get(self, "backchannel_logout_session_required")
+
+    @property
+    @pulumi.getter(name="backchannelLogoutUrl")
+    def backchannel_logout_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
+        """
+        return pulumi.get(self, "backchannel_logout_url")
 
     @property
     @pulumi.getter(name="baseUrl")
@@ -1481,6 +1659,11 @@ class Client(pulumi.CustomResource):
         When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
         """
         return pulumi.get(self, "exclude_session_state_from_auth_response")
+
+    @property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+        return pulumi.get(self, "extra_config")
 
     @property
     @pulumi.getter(name="fullScopeAllowed")

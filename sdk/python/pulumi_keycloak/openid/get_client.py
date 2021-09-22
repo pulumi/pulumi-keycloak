@@ -20,7 +20,7 @@ class GetClientResult:
     """
     A collection of values returned by getClient.
     """
-    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, authentication_flow_binding_overrides=None, authorizations=None, base_url=None, client_id=None, client_offline_session_idle_timeout=None, client_offline_session_max_lifespan=None, client_secret=None, client_session_idle_timeout=None, client_session_max_lifespan=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, use_refresh_tokens=None, valid_redirect_uris=None, web_origins=None):
+    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, authentication_flow_binding_overrides=None, authorizations=None, backchannel_logout_revoke_offline_sessions=None, backchannel_logout_session_required=None, backchannel_logout_url=None, base_url=None, client_id=None, client_offline_session_idle_timeout=None, client_offline_session_max_lifespan=None, client_secret=None, client_session_idle_timeout=None, client_session_max_lifespan=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, extra_config=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, use_refresh_tokens=None, valid_redirect_uris=None, web_origins=None):
         if access_token_lifespan and not isinstance(access_token_lifespan, str):
             raise TypeError("Expected argument 'access_token_lifespan' to be a str")
         pulumi.set(__self__, "access_token_lifespan", access_token_lifespan)
@@ -36,6 +36,15 @@ class GetClientResult:
         if authorizations and not isinstance(authorizations, list):
             raise TypeError("Expected argument 'authorizations' to be a list")
         pulumi.set(__self__, "authorizations", authorizations)
+        if backchannel_logout_revoke_offline_sessions and not isinstance(backchannel_logout_revoke_offline_sessions, bool):
+            raise TypeError("Expected argument 'backchannel_logout_revoke_offline_sessions' to be a bool")
+        pulumi.set(__self__, "backchannel_logout_revoke_offline_sessions", backchannel_logout_revoke_offline_sessions)
+        if backchannel_logout_session_required and not isinstance(backchannel_logout_session_required, bool):
+            raise TypeError("Expected argument 'backchannel_logout_session_required' to be a bool")
+        pulumi.set(__self__, "backchannel_logout_session_required", backchannel_logout_session_required)
+        if backchannel_logout_url and not isinstance(backchannel_logout_url, str):
+            raise TypeError("Expected argument 'backchannel_logout_url' to be a str")
+        pulumi.set(__self__, "backchannel_logout_url", backchannel_logout_url)
         if base_url and not isinstance(base_url, str):
             raise TypeError("Expected argument 'base_url' to be a str")
         pulumi.set(__self__, "base_url", base_url)
@@ -72,6 +81,9 @@ class GetClientResult:
         if exclude_session_state_from_auth_response and not isinstance(exclude_session_state_from_auth_response, bool):
             raise TypeError("Expected argument 'exclude_session_state_from_auth_response' to be a bool")
         pulumi.set(__self__, "exclude_session_state_from_auth_response", exclude_session_state_from_auth_response)
+        if extra_config and not isinstance(extra_config, dict):
+            raise TypeError("Expected argument 'extra_config' to be a dict")
+        pulumi.set(__self__, "extra_config", extra_config)
         if full_scope_allowed and not isinstance(full_scope_allowed, bool):
             raise TypeError("Expected argument 'full_scope_allowed' to be a bool")
         pulumi.set(__self__, "full_scope_allowed", full_scope_allowed)
@@ -144,6 +156,21 @@ class GetClientResult:
         return pulumi.get(self, "authorizations")
 
     @property
+    @pulumi.getter(name="backchannelLogoutRevokeOfflineSessions")
+    def backchannel_logout_revoke_offline_sessions(self) -> bool:
+        return pulumi.get(self, "backchannel_logout_revoke_offline_sessions")
+
+    @property
+    @pulumi.getter(name="backchannelLogoutSessionRequired")
+    def backchannel_logout_session_required(self) -> bool:
+        return pulumi.get(self, "backchannel_logout_session_required")
+
+    @property
+    @pulumi.getter(name="backchannelLogoutUrl")
+    def backchannel_logout_url(self) -> str:
+        return pulumi.get(self, "backchannel_logout_url")
+
+    @property
     @pulumi.getter(name="baseUrl")
     def base_url(self) -> str:
         return pulumi.get(self, "base_url")
@@ -155,12 +182,12 @@ class GetClientResult:
 
     @property
     @pulumi.getter(name="clientOfflineSessionIdleTimeout")
-    def client_offline_session_idle_timeout(self) -> Optional[str]:
+    def client_offline_session_idle_timeout(self) -> str:
         return pulumi.get(self, "client_offline_session_idle_timeout")
 
     @property
     @pulumi.getter(name="clientOfflineSessionMaxLifespan")
-    def client_offline_session_max_lifespan(self) -> Optional[str]:
+    def client_offline_session_max_lifespan(self) -> str:
         return pulumi.get(self, "client_offline_session_max_lifespan")
 
     @property
@@ -170,12 +197,12 @@ class GetClientResult:
 
     @property
     @pulumi.getter(name="clientSessionIdleTimeout")
-    def client_session_idle_timeout(self) -> Optional[str]:
+    def client_session_idle_timeout(self) -> str:
         return pulumi.get(self, "client_session_idle_timeout")
 
     @property
     @pulumi.getter(name="clientSessionMaxLifespan")
-    def client_session_max_lifespan(self) -> Optional[str]:
+    def client_session_max_lifespan(self) -> str:
         return pulumi.get(self, "client_session_max_lifespan")
 
     @property
@@ -202,6 +229,11 @@ class GetClientResult:
     @pulumi.getter(name="excludeSessionStateFromAuthResponse")
     def exclude_session_state_from_auth_response(self) -> bool:
         return pulumi.get(self, "exclude_session_state_from_auth_response")
+
+    @property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> Mapping[str, Any]:
+        return pulumi.get(self, "extra_config")
 
     @property
     @pulumi.getter(name="fullScopeAllowed")
@@ -268,7 +300,7 @@ class GetClientResult:
 
     @property
     @pulumi.getter(name="useRefreshTokens")
-    def use_refresh_tokens(self) -> Optional[bool]:
+    def use_refresh_tokens(self) -> bool:
         return pulumi.get(self, "use_refresh_tokens")
 
     @property
@@ -293,6 +325,9 @@ class AwaitableGetClientResult(GetClientResult):
             admin_url=self.admin_url,
             authentication_flow_binding_overrides=self.authentication_flow_binding_overrides,
             authorizations=self.authorizations,
+            backchannel_logout_revoke_offline_sessions=self.backchannel_logout_revoke_offline_sessions,
+            backchannel_logout_session_required=self.backchannel_logout_session_required,
+            backchannel_logout_url=self.backchannel_logout_url,
             base_url=self.base_url,
             client_id=self.client_id,
             client_offline_session_idle_timeout=self.client_offline_session_idle_timeout,
@@ -305,6 +340,7 @@ class AwaitableGetClientResult(GetClientResult):
             direct_access_grants_enabled=self.direct_access_grants_enabled,
             enabled=self.enabled,
             exclude_session_state_from_auth_response=self.exclude_session_state_from_auth_response,
+            extra_config=self.extra_config,
             full_scope_allowed=self.full_scope_allowed,
             id=self.id,
             implicit_flow_enabled=self.implicit_flow_enabled,
@@ -323,12 +359,8 @@ class AwaitableGetClientResult(GetClientResult):
 
 
 def get_client(client_id: Optional[str] = None,
-               client_offline_session_idle_timeout: Optional[str] = None,
-               client_offline_session_max_lifespan: Optional[str] = None,
-               client_session_idle_timeout: Optional[str] = None,
-               client_session_max_lifespan: Optional[str] = None,
+               extra_config: Optional[Mapping[str, Any]] = None,
                realm_id: Optional[str] = None,
-               use_refresh_tokens: Optional[bool] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientResult:
     """
     This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
@@ -352,12 +384,8 @@ def get_client(client_id: Optional[str] = None,
     """
     __args__ = dict()
     __args__['clientId'] = client_id
-    __args__['clientOfflineSessionIdleTimeout'] = client_offline_session_idle_timeout
-    __args__['clientOfflineSessionMaxLifespan'] = client_offline_session_max_lifespan
-    __args__['clientSessionIdleTimeout'] = client_session_idle_timeout
-    __args__['clientSessionMaxLifespan'] = client_session_max_lifespan
+    __args__['extraConfig'] = extra_config
     __args__['realmId'] = realm_id
-    __args__['useRefreshTokens'] = use_refresh_tokens
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
@@ -370,6 +398,9 @@ def get_client(client_id: Optional[str] = None,
         admin_url=__ret__.admin_url,
         authentication_flow_binding_overrides=__ret__.authentication_flow_binding_overrides,
         authorizations=__ret__.authorizations,
+        backchannel_logout_revoke_offline_sessions=__ret__.backchannel_logout_revoke_offline_sessions,
+        backchannel_logout_session_required=__ret__.backchannel_logout_session_required,
+        backchannel_logout_url=__ret__.backchannel_logout_url,
         base_url=__ret__.base_url,
         client_id=__ret__.client_id,
         client_offline_session_idle_timeout=__ret__.client_offline_session_idle_timeout,
@@ -382,6 +413,7 @@ def get_client(client_id: Optional[str] = None,
         direct_access_grants_enabled=__ret__.direct_access_grants_enabled,
         enabled=__ret__.enabled,
         exclude_session_state_from_auth_response=__ret__.exclude_session_state_from_auth_response,
+        extra_config=__ret__.extra_config,
         full_scope_allowed=__ret__.full_scope_allowed,
         id=__ret__.id,
         implicit_flow_enabled=__ret__.implicit_flow_enabled,
