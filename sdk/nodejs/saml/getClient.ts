@@ -61,12 +61,15 @@ export interface GetClientResult {
     readonly assertionConsumerRedirectUrl: string;
     readonly authenticationFlowBindingOverrides: outputs.saml.GetClientAuthenticationFlowBindingOverride[];
     readonly baseUrl: string;
+    readonly canonicalizationMethod: string;
     readonly clientId: string;
     readonly clientSignatureRequired: boolean;
     readonly description: string;
     readonly enabled: boolean;
     readonly encryptAssertions: boolean;
     readonly encryptionCertificate: string;
+    readonly encryptionCertificateSha1: string;
+    readonly extraConfig: {[key: string]: any};
     readonly forceNameIdFormat: boolean;
     readonly forcePostBinding: boolean;
     readonly frontChannelLogout: boolean;
@@ -78,6 +81,7 @@ export interface GetClientResult {
     readonly idpInitiatedSsoRelayState: string;
     readonly idpInitiatedSsoUrlName: string;
     readonly includeAuthnStatement: boolean;
+    readonly loginTheme: string;
     readonly logoutServicePostBindingUrl: string;
     readonly logoutServiceRedirectBindingUrl: string;
     readonly masterSamlProcessingUrl: string;
@@ -85,10 +89,14 @@ export interface GetClientResult {
     readonly nameIdFormat: string;
     readonly realmId: string;
     readonly rootUrl: string;
+    readonly samlSignatureKeyName: string;
     readonly signAssertions: boolean;
     readonly signDocuments: boolean;
     readonly signatureAlgorithm: string;
+    readonly signatureKeyName: string;
     readonly signingCertificate: string;
+    readonly signingCertificateSha1: string;
     readonly signingPrivateKey: string;
+    readonly signingPrivateKeySha1: string;
     readonly validRedirectUris: string[];
 }

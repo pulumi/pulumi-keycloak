@@ -163,6 +163,7 @@ type Realm struct {
 	OfflineSessionMaxLifespan pulumi.StringOutput `pulumi:"offlineSessionMaxLifespan"`
 	// Enable `offlineSessionMaxLifespan`.
 	OfflineSessionMaxLifespanEnabled pulumi.BoolPtrOutput `pulumi:"offlineSessionMaxLifespanEnabled"`
+	OtpPolicy                        RealmOtpPolicyOutput `pulumi:"otpPolicy"`
 	// The password policy for users within the realm.
 	PasswordPolicy pulumi.StringPtrOutput `pulumi:"passwordPolicy"`
 	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
@@ -290,7 +291,8 @@ type realmState struct {
 	// The maximum amount of time before an offline session expires regardless of activity.
 	OfflineSessionMaxLifespan *string `pulumi:"offlineSessionMaxLifespan"`
 	// Enable `offlineSessionMaxLifespan`.
-	OfflineSessionMaxLifespanEnabled *bool `pulumi:"offlineSessionMaxLifespanEnabled"`
+	OfflineSessionMaxLifespanEnabled *bool           `pulumi:"offlineSessionMaxLifespanEnabled"`
+	OtpPolicy                        *RealmOtpPolicy `pulumi:"otpPolicy"`
 	// The password policy for users within the realm.
 	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
@@ -388,6 +390,7 @@ type RealmState struct {
 	OfflineSessionMaxLifespan pulumi.StringPtrInput
 	// Enable `offlineSessionMaxLifespan`.
 	OfflineSessionMaxLifespanEnabled pulumi.BoolPtrInput
+	OtpPolicy                        RealmOtpPolicyPtrInput
 	// The password policy for users within the realm.
 	PasswordPolicy pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
@@ -487,7 +490,8 @@ type realmArgs struct {
 	// The maximum amount of time before an offline session expires regardless of activity.
 	OfflineSessionMaxLifespan *string `pulumi:"offlineSessionMaxLifespan"`
 	// Enable `offlineSessionMaxLifespan`.
-	OfflineSessionMaxLifespanEnabled *bool `pulumi:"offlineSessionMaxLifespanEnabled"`
+	OfflineSessionMaxLifespanEnabled *bool           `pulumi:"offlineSessionMaxLifespanEnabled"`
+	OtpPolicy                        *RealmOtpPolicy `pulumi:"otpPolicy"`
 	// The password policy for users within the realm.
 	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
@@ -585,6 +589,7 @@ type RealmArgs struct {
 	OfflineSessionMaxLifespan pulumi.StringPtrInput
 	// Enable `offlineSessionMaxLifespan`.
 	OfflineSessionMaxLifespanEnabled pulumi.BoolPtrInput
+	OtpPolicy                        RealmOtpPolicyPtrInput
 	// The password policy for users within the realm.
 	PasswordPolicy pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.

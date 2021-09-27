@@ -20,7 +20,7 @@ class GetClientResult:
     """
     A collection of values returned by getClient.
     """
-    def __init__(__self__, assertion_consumer_post_url=None, assertion_consumer_redirect_url=None, authentication_flow_binding_overrides=None, base_url=None, client_id=None, client_signature_required=None, description=None, enabled=None, encrypt_assertions=None, encryption_certificate=None, force_name_id_format=None, force_post_binding=None, front_channel_logout=None, full_scope_allowed=None, id=None, idp_initiated_sso_relay_state=None, idp_initiated_sso_url_name=None, include_authn_statement=None, logout_service_post_binding_url=None, logout_service_redirect_binding_url=None, master_saml_processing_url=None, name=None, name_id_format=None, realm_id=None, root_url=None, sign_assertions=None, sign_documents=None, signature_algorithm=None, signing_certificate=None, signing_private_key=None, valid_redirect_uris=None):
+    def __init__(__self__, assertion_consumer_post_url=None, assertion_consumer_redirect_url=None, authentication_flow_binding_overrides=None, base_url=None, canonicalization_method=None, client_id=None, client_signature_required=None, description=None, enabled=None, encrypt_assertions=None, encryption_certificate=None, encryption_certificate_sha1=None, extra_config=None, force_name_id_format=None, force_post_binding=None, front_channel_logout=None, full_scope_allowed=None, id=None, idp_initiated_sso_relay_state=None, idp_initiated_sso_url_name=None, include_authn_statement=None, login_theme=None, logout_service_post_binding_url=None, logout_service_redirect_binding_url=None, master_saml_processing_url=None, name=None, name_id_format=None, realm_id=None, root_url=None, saml_signature_key_name=None, sign_assertions=None, sign_documents=None, signature_algorithm=None, signature_key_name=None, signing_certificate=None, signing_certificate_sha1=None, signing_private_key=None, signing_private_key_sha1=None, valid_redirect_uris=None):
         if assertion_consumer_post_url and not isinstance(assertion_consumer_post_url, str):
             raise TypeError("Expected argument 'assertion_consumer_post_url' to be a str")
         pulumi.set(__self__, "assertion_consumer_post_url", assertion_consumer_post_url)
@@ -33,6 +33,9 @@ class GetClientResult:
         if base_url and not isinstance(base_url, str):
             raise TypeError("Expected argument 'base_url' to be a str")
         pulumi.set(__self__, "base_url", base_url)
+        if canonicalization_method and not isinstance(canonicalization_method, str):
+            raise TypeError("Expected argument 'canonicalization_method' to be a str")
+        pulumi.set(__self__, "canonicalization_method", canonicalization_method)
         if client_id and not isinstance(client_id, str):
             raise TypeError("Expected argument 'client_id' to be a str")
         pulumi.set(__self__, "client_id", client_id)
@@ -51,6 +54,12 @@ class GetClientResult:
         if encryption_certificate and not isinstance(encryption_certificate, str):
             raise TypeError("Expected argument 'encryption_certificate' to be a str")
         pulumi.set(__self__, "encryption_certificate", encryption_certificate)
+        if encryption_certificate_sha1 and not isinstance(encryption_certificate_sha1, str):
+            raise TypeError("Expected argument 'encryption_certificate_sha1' to be a str")
+        pulumi.set(__self__, "encryption_certificate_sha1", encryption_certificate_sha1)
+        if extra_config and not isinstance(extra_config, dict):
+            raise TypeError("Expected argument 'extra_config' to be a dict")
+        pulumi.set(__self__, "extra_config", extra_config)
         if force_name_id_format and not isinstance(force_name_id_format, bool):
             raise TypeError("Expected argument 'force_name_id_format' to be a bool")
         pulumi.set(__self__, "force_name_id_format", force_name_id_format)
@@ -75,6 +84,9 @@ class GetClientResult:
         if include_authn_statement and not isinstance(include_authn_statement, bool):
             raise TypeError("Expected argument 'include_authn_statement' to be a bool")
         pulumi.set(__self__, "include_authn_statement", include_authn_statement)
+        if login_theme and not isinstance(login_theme, str):
+            raise TypeError("Expected argument 'login_theme' to be a str")
+        pulumi.set(__self__, "login_theme", login_theme)
         if logout_service_post_binding_url and not isinstance(logout_service_post_binding_url, str):
             raise TypeError("Expected argument 'logout_service_post_binding_url' to be a str")
         pulumi.set(__self__, "logout_service_post_binding_url", logout_service_post_binding_url)
@@ -96,6 +108,9 @@ class GetClientResult:
         if root_url and not isinstance(root_url, str):
             raise TypeError("Expected argument 'root_url' to be a str")
         pulumi.set(__self__, "root_url", root_url)
+        if saml_signature_key_name and not isinstance(saml_signature_key_name, str):
+            raise TypeError("Expected argument 'saml_signature_key_name' to be a str")
+        pulumi.set(__self__, "saml_signature_key_name", saml_signature_key_name)
         if sign_assertions and not isinstance(sign_assertions, bool):
             raise TypeError("Expected argument 'sign_assertions' to be a bool")
         pulumi.set(__self__, "sign_assertions", sign_assertions)
@@ -105,12 +120,21 @@ class GetClientResult:
         if signature_algorithm and not isinstance(signature_algorithm, str):
             raise TypeError("Expected argument 'signature_algorithm' to be a str")
         pulumi.set(__self__, "signature_algorithm", signature_algorithm)
+        if signature_key_name and not isinstance(signature_key_name, str):
+            raise TypeError("Expected argument 'signature_key_name' to be a str")
+        pulumi.set(__self__, "signature_key_name", signature_key_name)
         if signing_certificate and not isinstance(signing_certificate, str):
             raise TypeError("Expected argument 'signing_certificate' to be a str")
         pulumi.set(__self__, "signing_certificate", signing_certificate)
+        if signing_certificate_sha1 and not isinstance(signing_certificate_sha1, str):
+            raise TypeError("Expected argument 'signing_certificate_sha1' to be a str")
+        pulumi.set(__self__, "signing_certificate_sha1", signing_certificate_sha1)
         if signing_private_key and not isinstance(signing_private_key, str):
             raise TypeError("Expected argument 'signing_private_key' to be a str")
         pulumi.set(__self__, "signing_private_key", signing_private_key)
+        if signing_private_key_sha1 and not isinstance(signing_private_key_sha1, str):
+            raise TypeError("Expected argument 'signing_private_key_sha1' to be a str")
+        pulumi.set(__self__, "signing_private_key_sha1", signing_private_key_sha1)
         if valid_redirect_uris and not isinstance(valid_redirect_uris, list):
             raise TypeError("Expected argument 'valid_redirect_uris' to be a list")
         pulumi.set(__self__, "valid_redirect_uris", valid_redirect_uris)
@@ -134,6 +158,11 @@ class GetClientResult:
     @pulumi.getter(name="baseUrl")
     def base_url(self) -> str:
         return pulumi.get(self, "base_url")
+
+    @property
+    @pulumi.getter(name="canonicalizationMethod")
+    def canonicalization_method(self) -> str:
+        return pulumi.get(self, "canonicalization_method")
 
     @property
     @pulumi.getter(name="clientId")
@@ -164,6 +193,16 @@ class GetClientResult:
     @pulumi.getter(name="encryptionCertificate")
     def encryption_certificate(self) -> str:
         return pulumi.get(self, "encryption_certificate")
+
+    @property
+    @pulumi.getter(name="encryptionCertificateSha1")
+    def encryption_certificate_sha1(self) -> str:
+        return pulumi.get(self, "encryption_certificate_sha1")
+
+    @property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> Mapping[str, Any]:
+        return pulumi.get(self, "extra_config")
 
     @property
     @pulumi.getter(name="forceNameIdFormat")
@@ -209,6 +248,11 @@ class GetClientResult:
         return pulumi.get(self, "include_authn_statement")
 
     @property
+    @pulumi.getter(name="loginTheme")
+    def login_theme(self) -> str:
+        return pulumi.get(self, "login_theme")
+
+    @property
     @pulumi.getter(name="logoutServicePostBindingUrl")
     def logout_service_post_binding_url(self) -> str:
         return pulumi.get(self, "logout_service_post_binding_url")
@@ -244,6 +288,11 @@ class GetClientResult:
         return pulumi.get(self, "root_url")
 
     @property
+    @pulumi.getter(name="samlSignatureKeyName")
+    def saml_signature_key_name(self) -> str:
+        return pulumi.get(self, "saml_signature_key_name")
+
+    @property
     @pulumi.getter(name="signAssertions")
     def sign_assertions(self) -> bool:
         return pulumi.get(self, "sign_assertions")
@@ -259,14 +308,29 @@ class GetClientResult:
         return pulumi.get(self, "signature_algorithm")
 
     @property
+    @pulumi.getter(name="signatureKeyName")
+    def signature_key_name(self) -> str:
+        return pulumi.get(self, "signature_key_name")
+
+    @property
     @pulumi.getter(name="signingCertificate")
     def signing_certificate(self) -> str:
         return pulumi.get(self, "signing_certificate")
 
     @property
+    @pulumi.getter(name="signingCertificateSha1")
+    def signing_certificate_sha1(self) -> str:
+        return pulumi.get(self, "signing_certificate_sha1")
+
+    @property
     @pulumi.getter(name="signingPrivateKey")
     def signing_private_key(self) -> str:
         return pulumi.get(self, "signing_private_key")
+
+    @property
+    @pulumi.getter(name="signingPrivateKeySha1")
+    def signing_private_key_sha1(self) -> str:
+        return pulumi.get(self, "signing_private_key_sha1")
 
     @property
     @pulumi.getter(name="validRedirectUris")
@@ -284,12 +348,15 @@ class AwaitableGetClientResult(GetClientResult):
             assertion_consumer_redirect_url=self.assertion_consumer_redirect_url,
             authentication_flow_binding_overrides=self.authentication_flow_binding_overrides,
             base_url=self.base_url,
+            canonicalization_method=self.canonicalization_method,
             client_id=self.client_id,
             client_signature_required=self.client_signature_required,
             description=self.description,
             enabled=self.enabled,
             encrypt_assertions=self.encrypt_assertions,
             encryption_certificate=self.encryption_certificate,
+            encryption_certificate_sha1=self.encryption_certificate_sha1,
+            extra_config=self.extra_config,
             force_name_id_format=self.force_name_id_format,
             force_post_binding=self.force_post_binding,
             front_channel_logout=self.front_channel_logout,
@@ -298,6 +365,7 @@ class AwaitableGetClientResult(GetClientResult):
             idp_initiated_sso_relay_state=self.idp_initiated_sso_relay_state,
             idp_initiated_sso_url_name=self.idp_initiated_sso_url_name,
             include_authn_statement=self.include_authn_statement,
+            login_theme=self.login_theme,
             logout_service_post_binding_url=self.logout_service_post_binding_url,
             logout_service_redirect_binding_url=self.logout_service_redirect_binding_url,
             master_saml_processing_url=self.master_saml_processing_url,
@@ -305,11 +373,15 @@ class AwaitableGetClientResult(GetClientResult):
             name_id_format=self.name_id_format,
             realm_id=self.realm_id,
             root_url=self.root_url,
+            saml_signature_key_name=self.saml_signature_key_name,
             sign_assertions=self.sign_assertions,
             sign_documents=self.sign_documents,
             signature_algorithm=self.signature_algorithm,
+            signature_key_name=self.signature_key_name,
             signing_certificate=self.signing_certificate,
+            signing_certificate_sha1=self.signing_certificate_sha1,
             signing_private_key=self.signing_private_key,
+            signing_private_key_sha1=self.signing_private_key_sha1,
             valid_redirect_uris=self.valid_redirect_uris)
 
 
@@ -350,12 +422,15 @@ def get_client(client_id: Optional[str] = None,
         assertion_consumer_redirect_url=__ret__.assertion_consumer_redirect_url,
         authentication_flow_binding_overrides=__ret__.authentication_flow_binding_overrides,
         base_url=__ret__.base_url,
+        canonicalization_method=__ret__.canonicalization_method,
         client_id=__ret__.client_id,
         client_signature_required=__ret__.client_signature_required,
         description=__ret__.description,
         enabled=__ret__.enabled,
         encrypt_assertions=__ret__.encrypt_assertions,
         encryption_certificate=__ret__.encryption_certificate,
+        encryption_certificate_sha1=__ret__.encryption_certificate_sha1,
+        extra_config=__ret__.extra_config,
         force_name_id_format=__ret__.force_name_id_format,
         force_post_binding=__ret__.force_post_binding,
         front_channel_logout=__ret__.front_channel_logout,
@@ -364,6 +439,7 @@ def get_client(client_id: Optional[str] = None,
         idp_initiated_sso_relay_state=__ret__.idp_initiated_sso_relay_state,
         idp_initiated_sso_url_name=__ret__.idp_initiated_sso_url_name,
         include_authn_statement=__ret__.include_authn_statement,
+        login_theme=__ret__.login_theme,
         logout_service_post_binding_url=__ret__.logout_service_post_binding_url,
         logout_service_redirect_binding_url=__ret__.logout_service_redirect_binding_url,
         master_saml_processing_url=__ret__.master_saml_processing_url,
@@ -371,9 +447,13 @@ def get_client(client_id: Optional[str] = None,
         name_id_format=__ret__.name_id_format,
         realm_id=__ret__.realm_id,
         root_url=__ret__.root_url,
+        saml_signature_key_name=__ret__.saml_signature_key_name,
         sign_assertions=__ret__.sign_assertions,
         sign_documents=__ret__.sign_documents,
         signature_algorithm=__ret__.signature_algorithm,
+        signature_key_name=__ret__.signature_key_name,
         signing_certificate=__ret__.signing_certificate,
+        signing_certificate_sha1=__ret__.signing_certificate_sha1,
         signing_private_key=__ret__.signing_private_key,
+        signing_private_key_sha1=__ret__.signing_private_key_sha1,
         valid_redirect_uris=__ret__.valid_redirect_uris)

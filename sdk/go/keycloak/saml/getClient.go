@@ -65,12 +65,15 @@ type LookupClientResult struct {
 	AssertionConsumerRedirectUrl       string                                       `pulumi:"assertionConsumerRedirectUrl"`
 	AuthenticationFlowBindingOverrides []GetClientAuthenticationFlowBindingOverride `pulumi:"authenticationFlowBindingOverrides"`
 	BaseUrl                            string                                       `pulumi:"baseUrl"`
+	CanonicalizationMethod             string                                       `pulumi:"canonicalizationMethod"`
 	ClientId                           string                                       `pulumi:"clientId"`
 	ClientSignatureRequired            bool                                         `pulumi:"clientSignatureRequired"`
 	Description                        string                                       `pulumi:"description"`
 	Enabled                            bool                                         `pulumi:"enabled"`
 	EncryptAssertions                  bool                                         `pulumi:"encryptAssertions"`
 	EncryptionCertificate              string                                       `pulumi:"encryptionCertificate"`
+	EncryptionCertificateSha1          string                                       `pulumi:"encryptionCertificateSha1"`
+	ExtraConfig                        map[string]interface{}                       `pulumi:"extraConfig"`
 	ForceNameIdFormat                  bool                                         `pulumi:"forceNameIdFormat"`
 	ForcePostBinding                   bool                                         `pulumi:"forcePostBinding"`
 	FrontChannelLogout                 bool                                         `pulumi:"frontChannelLogout"`
@@ -80,6 +83,7 @@ type LookupClientResult struct {
 	IdpInitiatedSsoRelayState       string   `pulumi:"idpInitiatedSsoRelayState"`
 	IdpInitiatedSsoUrlName          string   `pulumi:"idpInitiatedSsoUrlName"`
 	IncludeAuthnStatement           bool     `pulumi:"includeAuthnStatement"`
+	LoginTheme                      string   `pulumi:"loginTheme"`
 	LogoutServicePostBindingUrl     string   `pulumi:"logoutServicePostBindingUrl"`
 	LogoutServiceRedirectBindingUrl string   `pulumi:"logoutServiceRedirectBindingUrl"`
 	MasterSamlProcessingUrl         string   `pulumi:"masterSamlProcessingUrl"`
@@ -87,10 +91,14 @@ type LookupClientResult struct {
 	NameIdFormat                    string   `pulumi:"nameIdFormat"`
 	RealmId                         string   `pulumi:"realmId"`
 	RootUrl                         string   `pulumi:"rootUrl"`
+	SamlSignatureKeyName            string   `pulumi:"samlSignatureKeyName"`
 	SignAssertions                  bool     `pulumi:"signAssertions"`
 	SignDocuments                   bool     `pulumi:"signDocuments"`
 	SignatureAlgorithm              string   `pulumi:"signatureAlgorithm"`
+	SignatureKeyName                string   `pulumi:"signatureKeyName"`
 	SigningCertificate              string   `pulumi:"signingCertificate"`
+	SigningCertificateSha1          string   `pulumi:"signingCertificateSha1"`
 	SigningPrivateKey               string   `pulumi:"signingPrivateKey"`
+	SigningPrivateKeySha1           string   `pulumi:"signingPrivateKeySha1"`
 	ValidRedirectUris               []string `pulumi:"validRedirectUris"`
 }

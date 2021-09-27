@@ -35,6 +35,7 @@
         "getRealmKeys.ts",
         "getRole.ts",
         "getUser.ts",
+        "getUserRealmRoles.ts",
         "group.ts",
         "groupMemberships.ts",
         "groupRoles.ts",

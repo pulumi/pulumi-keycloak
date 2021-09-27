@@ -20,6 +20,7 @@ export * from "./getRealm";
 export * from "./getRealmKeys";
 export * from "./getRole";
 export * from "./getUser";
+export * from "./getUserRealmRoles";
 export * from "./group";
 export * from "./groupMemberships";
 export * from "./groupRoles";

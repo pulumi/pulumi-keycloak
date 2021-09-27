@@ -29,6 +29,10 @@ import * as utilities from "../utilities";
  *     accessType: "CONFIDENTIAL",
  *     validRedirectUris: ["http://localhost:8080/openid-callback"],
  *     loginTheme: "keycloak",
+ *     extraConfig: {
+ *         key1: "value1",
+ *         key2: "value2",
+ *     },
  * });
  * ```
  *
@@ -89,6 +93,18 @@ export class Client extends pulumi.CustomResource {
      */
     public readonly authorization!: pulumi.Output<outputs.openid.ClientAuthorization | undefined>;
     /**
+     * Specifying whether a "revokeOfflineAccess" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+     */
+    public readonly backchannelLogoutRevokeOfflineSessions!: pulumi.Output<boolean | undefined>;
+    /**
+     * When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+     */
+    public readonly backchannelLogoutSessionRequired!: pulumi.Output<boolean | undefined>;
+    /**
+     * The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
+     */
+    public readonly backchannelLogoutUrl!: pulumi.Output<string | undefined>;
+    /**
      * Default URL to use when the auth server needs to redirect or link back to the client.
      */
     public readonly baseUrl!: pulumi.Output<string | undefined>;
@@ -136,6 +152,7 @@ export class Client extends pulumi.CustomResource {
      * When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
      */
     public readonly excludeSessionStateFromAuthResponse!: pulumi.Output<boolean | undefined>;
+    public readonly extraConfig!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
      * Allow to include all roles mappings in the access token.
      */
@@ -213,6 +230,9 @@ export class Client extends pulumi.CustomResource {
             inputs["adminUrl"] = state ? state.adminUrl : undefined;
             inputs["authenticationFlowBindingOverrides"] = state ? state.authenticationFlowBindingOverrides : undefined;
             inputs["authorization"] = state ? state.authorization : undefined;
+            inputs["backchannelLogoutRevokeOfflineSessions"] = state ? state.backchannelLogoutRevokeOfflineSessions : undefined;
+            inputs["backchannelLogoutSessionRequired"] = state ? state.backchannelLogoutSessionRequired : undefined;
+            inputs["backchannelLogoutUrl"] = state ? state.backchannelLogoutUrl : undefined;
             inputs["baseUrl"] = state ? state.baseUrl : undefined;
             inputs["clientId"] = state ? state.clientId : undefined;
             inputs["clientOfflineSessionIdleTimeout"] = state ? state.clientOfflineSessionIdleTimeout : undefined;
@@ -225,6 +245,7 @@ export class Client extends pulumi.CustomResource {
             inputs["directAccessGrantsEnabled"] = state ? state.directAccessGrantsEnabled : undefined;
             inputs["enabled"] = state ? state.enabled : undefined;
             inputs["excludeSessionStateFromAuthResponse"] = state ? state.excludeSessionStateFromAuthResponse : undefined;
+            inputs["extraConfig"] = state ? state.extraConfig : undefined;
             inputs["fullScopeAllowed"] = state ? state.fullScopeAllowed : undefined;
             inputs["implicitFlowEnabled"] = state ? state.implicitFlowEnabled : undefined;
             inputs["loginTheme"] = state ? state.loginTheme : undefined;
@@ -255,6 +276,9 @@ export class Client extends pulumi.CustomResource {
             inputs["adminUrl"] = args ? args.adminUrl : undefined;
             inputs["authenticationFlowBindingOverrides"] = args ? args.authenticationFlowBindingOverrides : undefined;
             inputs["authorization"] = args ? args.authorization : undefined;
+            inputs["backchannelLogoutRevokeOfflineSessions"] = args ? args.backchannelLogoutRevokeOfflineSessions : undefined;
+            inputs["backchannelLogoutSessionRequired"] = args ? args.backchannelLogoutSessionRequired : undefined;
+            inputs["backchannelLogoutUrl"] = args ? args.backchannelLogoutUrl : undefined;
             inputs["baseUrl"] = args ? args.baseUrl : undefined;
             inputs["clientId"] = args ? args.clientId : undefined;
             inputs["clientOfflineSessionIdleTimeout"] = args ? args.clientOfflineSessionIdleTimeout : undefined;
@@ -267,6 +291,7 @@ export class Client extends pulumi.CustomResource {
             inputs["directAccessGrantsEnabled"] = args ? args.directAccessGrantsEnabled : undefined;
             inputs["enabled"] = args ? args.enabled : undefined;
             inputs["excludeSessionStateFromAuthResponse"] = args ? args.excludeSessionStateFromAuthResponse : undefined;
+            inputs["extraConfig"] = args ? args.extraConfig : undefined;
             inputs["fullScopeAllowed"] = args ? args.fullScopeAllowed : undefined;
             inputs["implicitFlowEnabled"] = args ? args.implicitFlowEnabled : undefined;
             inputs["loginTheme"] = args ? args.loginTheme : undefined;
@@ -313,6 +338,18 @@ export interface ClientState {
      * When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
      */
     readonly authorization?: pulumi.Input<inputs.openid.ClientAuthorization>;
+    /**
+     * Specifying whether a "revokeOfflineAccess" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+     */
+    readonly backchannelLogoutRevokeOfflineSessions?: pulumi.Input<boolean>;
+    /**
+     * When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+     */
+    readonly backchannelLogoutSessionRequired?: pulumi.Input<boolean>;
+    /**
+     * The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
+     */
+    readonly backchannelLogoutUrl?: pulumi.Input<string>;
     /**
      * Default URL to use when the auth server needs to redirect or link back to the client.
      */
@@ -361,6 +398,7 @@ export interface ClientState {
      * When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
      */
     readonly excludeSessionStateFromAuthResponse?: pulumi.Input<boolean>;
+    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * Allow to include all roles mappings in the access token.
      */
@@ -446,6 +484,18 @@ export interface ClientArgs {
      */
     readonly authorization?: pulumi.Input<inputs.openid.ClientAuthorization>;
     /**
+     * Specifying whether a "revokeOfflineAccess" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+     */
+    readonly backchannelLogoutRevokeOfflineSessions?: pulumi.Input<boolean>;
+    /**
+     * When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+     */
+    readonly backchannelLogoutSessionRequired?: pulumi.Input<boolean>;
+    /**
+     * The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
+     */
+    readonly backchannelLogoutUrl?: pulumi.Input<string>;
+    /**
      * Default URL to use when the auth server needs to redirect or link back to the client.
      */
     readonly baseUrl?: pulumi.Input<string>;
@@ -493,6 +543,7 @@ export interface ClientArgs {
      * When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
      */
     readonly excludeSessionStateFromAuthResponse?: pulumi.Input<boolean>;
+    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * Allow to include all roles mappings in the access token.
      */

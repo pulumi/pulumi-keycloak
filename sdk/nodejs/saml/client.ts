@@ -86,13 +86,17 @@ export class Client extends pulumi.CustomResource {
      */
     public readonly baseUrl!: pulumi.Output<string | undefined>;
     /**
+     * The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
+     */
+    public readonly canonicalizationMethod!: pulumi.Output<string | undefined>;
+    /**
      * The unique ID of this client, referenced in the URI during authentication and in issued tokens.
      */
     public readonly clientId!: pulumi.Output<string>;
     /**
-     * When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`.
+     * When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
      */
-    public readonly clientSignatureRequired!: pulumi.Output<boolean>;
+    public readonly clientSignatureRequired!: pulumi.Output<boolean | undefined>;
     /**
      * The description of this client in the GUI.
      */
@@ -102,25 +106,30 @@ export class Client extends pulumi.CustomResource {
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
     /**
-     * When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key.
+     * When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
      */
-    public readonly encryptAssertions!: pulumi.Output<boolean>;
+    public readonly encryptAssertions!: pulumi.Output<boolean | undefined>;
     /**
      * If assertions for the client are encrypted, this certificate will be used for encryption.
      */
-    public readonly encryptionCertificate!: pulumi.Output<string | undefined>;
+    public readonly encryptionCertificate!: pulumi.Output<string>;
     /**
-     * Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead.
+     * (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
      */
-    public readonly forceNameIdFormat!: pulumi.Output<boolean>;
+    public /*out*/ readonly encryptionCertificateSha1!: pulumi.Output<string>;
+    public readonly extraConfig!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.
+     * Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead. Defaults to `false`.
      */
-    public readonly forcePostBinding!: pulumi.Output<boolean>;
+    public readonly forceNameIdFormat!: pulumi.Output<boolean | undefined>;
     /**
-     * When `true`, this client will require a browser redirect in order to perform a logout.
+     * When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
      */
-    public readonly frontChannelLogout!: pulumi.Output<boolean>;
+    public readonly forcePostBinding!: pulumi.Output<boolean | undefined>;
+    /**
+     * When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
+     */
+    public readonly frontChannelLogout!: pulumi.Output<boolean | undefined>;
     /**
      * - Allow to include all roles mappings in the access token
      */
@@ -134,9 +143,13 @@ export class Client extends pulumi.CustomResource {
      */
     public readonly idpInitiatedSsoUrlName!: pulumi.Output<string | undefined>;
     /**
-     * When `true`, an `AuthnStatement` will be included in the SAML response.
+     * When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
      */
-    public readonly includeAuthnStatement!: pulumi.Output<boolean>;
+    public readonly includeAuthnStatement!: pulumi.Output<boolean | undefined>;
+    /**
+     * The login theme of this client.
+     */
+    public readonly loginTheme!: pulumi.Output<string | undefined>;
     /**
      * SAML POST Binding URL for the client's single logout service.
      */
@@ -166,25 +179,37 @@ export class Client extends pulumi.CustomResource {
      */
     public readonly rootUrl!: pulumi.Output<string | undefined>;
     /**
-     * When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.
+     * When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
      */
-    public readonly signAssertions!: pulumi.Output<boolean>;
+    public readonly signAssertions!: pulumi.Output<boolean | undefined>;
     /**
-     * When `true`, the SAML document will be signed by Keycloak using the realm's private key.
+     * When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
      */
-    public readonly signDocuments!: pulumi.Output<boolean>;
+    public readonly signDocuments!: pulumi.Output<boolean | undefined>;
     /**
      * The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
      */
     public readonly signatureAlgorithm!: pulumi.Output<string | undefined>;
     /**
+     * The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
+     */
+    public readonly signatureKeyName!: pulumi.Output<string | undefined>;
+    /**
      * If documents or assertions from the client are signed, this certificate will be used to verify the signature.
      */
-    public readonly signingCertificate!: pulumi.Output<string | undefined>;
+    public readonly signingCertificate!: pulumi.Output<string>;
+    /**
+     * (Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.
+     */
+    public /*out*/ readonly signingCertificateSha1!: pulumi.Output<string>;
     /**
      * If documents or assertions from the client are signed, this private key will be used to verify the signature.
      */
-    public readonly signingPrivateKey!: pulumi.Output<string | undefined>;
+    public readonly signingPrivateKey!: pulumi.Output<string>;
+    /**
+     * (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
+     */
+    public /*out*/ readonly signingPrivateKeySha1!: pulumi.Output<string>;
     /**
      * When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
      */
@@ -207,12 +232,15 @@ export class Client extends pulumi.CustomResource {
             inputs["assertionConsumerRedirectUrl"] = state ? state.assertionConsumerRedirectUrl : undefined;
             inputs["authenticationFlowBindingOverrides"] = state ? state.authenticationFlowBindingOverrides : undefined;
             inputs["baseUrl"] = state ? state.baseUrl : undefined;
+            inputs["canonicalizationMethod"] = state ? state.canonicalizationMethod : undefined;
             inputs["clientId"] = state ? state.clientId : undefined;
             inputs["clientSignatureRequired"] = state ? state.clientSignatureRequired : undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["enabled"] = state ? state.enabled : undefined;
             inputs["encryptAssertions"] = state ? state.encryptAssertions : undefined;
             inputs["encryptionCertificate"] = state ? state.encryptionCertificate : undefined;
+            inputs["encryptionCertificateSha1"] = state ? state.encryptionCertificateSha1 : undefined;
+            inputs["extraConfig"] = state ? state.extraConfig : undefined;
             inputs["forceNameIdFormat"] = state ? state.forceNameIdFormat : undefined;
             inputs["forcePostBinding"] = state ? state.forcePostBinding : undefined;
             inputs["frontChannelLogout"] = state ? state.frontChannelLogout : undefined;
@@ -220,6 +248,7 @@ export class Client extends pulumi.CustomResource {
             inputs["idpInitiatedSsoRelayState"] = state ? state.idpInitiatedSsoRelayState : undefined;
             inputs["idpInitiatedSsoUrlName"] = state ? state.idpInitiatedSsoUrlName : undefined;
             inputs["includeAuthnStatement"] = state ? state.includeAuthnStatement : undefined;
+            inputs["loginTheme"] = state ? state.loginTheme : undefined;
             inputs["logoutServicePostBindingUrl"] = state ? state.logoutServicePostBindingUrl : undefined;
             inputs["logoutServiceRedirectBindingUrl"] = state ? state.logoutServiceRedirectBindingUrl : undefined;
             inputs["masterSamlProcessingUrl"] = state ? state.masterSamlProcessingUrl : undefined;
@@ -230,8 +259,11 @@ export class Client extends pulumi.CustomResource {
             inputs["signAssertions"] = state ? state.signAssertions : undefined;
             inputs["signDocuments"] = state ? state.signDocuments : undefined;
             inputs["signatureAlgorithm"] = state ? state.signatureAlgorithm : undefined;
+            inputs["signatureKeyName"] = state ? state.signatureKeyName : undefined;
             inputs["signingCertificate"] = state ? state.signingCertificate : undefined;
+            inputs["signingCertificateSha1"] = state ? state.signingCertificateSha1 : undefined;
             inputs["signingPrivateKey"] = state ? state.signingPrivateKey : undefined;
+            inputs["signingPrivateKeySha1"] = state ? state.signingPrivateKeySha1 : undefined;
             inputs["validRedirectUris"] = state ? state.validRedirectUris : undefined;
         } else {
             const args = argsOrState as ClientArgs | undefined;
@@ -245,12 +277,14 @@ export class Client extends pulumi.CustomResource {
             inputs["assertionConsumerRedirectUrl"] = args ? args.assertionConsumerRedirectUrl : undefined;
             inputs["authenticationFlowBindingOverrides"] = args ? args.authenticationFlowBindingOverrides : undefined;
             inputs["baseUrl"] = args ? args.baseUrl : undefined;
+            inputs["canonicalizationMethod"] = args ? args.canonicalizationMethod : undefined;
             inputs["clientId"] = args ? args.clientId : undefined;
             inputs["clientSignatureRequired"] = args ? args.clientSignatureRequired : undefined;
             inputs["description"] = args ? args.description : undefined;
             inputs["enabled"] = args ? args.enabled : undefined;
             inputs["encryptAssertions"] = args ? args.encryptAssertions : undefined;
             inputs["encryptionCertificate"] = args ? args.encryptionCertificate : undefined;
+            inputs["extraConfig"] = args ? args.extraConfig : undefined;
             inputs["forceNameIdFormat"] = args ? args.forceNameIdFormat : undefined;
             inputs["forcePostBinding"] = args ? args.forcePostBinding : undefined;
             inputs["frontChannelLogout"] = args ? args.frontChannelLogout : undefined;
@@ -258,6 +292,7 @@ export class Client extends pulumi.CustomResource {
             inputs["idpInitiatedSsoRelayState"] = args ? args.idpInitiatedSsoRelayState : undefined;
             inputs["idpInitiatedSsoUrlName"] = args ? args.idpInitiatedSsoUrlName : undefined;
             inputs["includeAuthnStatement"] = args ? args.includeAuthnStatement : undefined;
+            inputs["loginTheme"] = args ? args.loginTheme : undefined;
             inputs["logoutServicePostBindingUrl"] = args ? args.logoutServicePostBindingUrl : undefined;
             inputs["logoutServiceRedirectBindingUrl"] = args ? args.logoutServiceRedirectBindingUrl : undefined;
             inputs["masterSamlProcessingUrl"] = args ? args.masterSamlProcessingUrl : undefined;
@@ -268,9 +303,13 @@ export class Client extends pulumi.CustomResource {
             inputs["signAssertions"] = args ? args.signAssertions : undefined;
             inputs["signDocuments"] = args ? args.signDocuments : undefined;
             inputs["signatureAlgorithm"] = args ? args.signatureAlgorithm : undefined;
+            inputs["signatureKeyName"] = args ? args.signatureKeyName : undefined;
             inputs["signingCertificate"] = args ? args.signingCertificate : undefined;
             inputs["signingPrivateKey"] = args ? args.signingPrivateKey : undefined;
             inputs["validRedirectUris"] = args ? args.validRedirectUris : undefined;
+            inputs["encryptionCertificateSha1"] = undefined /*out*/;
+            inputs["signingCertificateSha1"] = undefined /*out*/;
+            inputs["signingPrivateKeySha1"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
@@ -300,11 +339,15 @@ export interface ClientState {
      */
     readonly baseUrl?: pulumi.Input<string>;
     /**
+     * The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
+     */
+    readonly canonicalizationMethod?: pulumi.Input<string>;
+    /**
      * The unique ID of this client, referenced in the URI during authentication and in issued tokens.
      */
     readonly clientId?: pulumi.Input<string>;
     /**
-     * When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`.
+     * When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
      */
     readonly clientSignatureRequired?: pulumi.Input<boolean>;
     /**
@@ -316,7 +359,7 @@ export interface ClientState {
      */
     readonly enabled?: pulumi.Input<boolean>;
     /**
-     * When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key.
+     * When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
      */
     readonly encryptAssertions?: pulumi.Input<boolean>;
     /**
@@ -324,15 +367,20 @@ export interface ClientState {
      */
     readonly encryptionCertificate?: pulumi.Input<string>;
     /**
-     * Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead.
+     * (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
+     */
+    readonly encryptionCertificateSha1?: pulumi.Input<string>;
+    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead. Defaults to `false`.
      */
     readonly forceNameIdFormat?: pulumi.Input<boolean>;
     /**
-     * When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.
+     * When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
      */
     readonly forcePostBinding?: pulumi.Input<boolean>;
     /**
-     * When `true`, this client will require a browser redirect in order to perform a logout.
+     * When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
      */
     readonly frontChannelLogout?: pulumi.Input<boolean>;
     /**
@@ -348,9 +396,13 @@ export interface ClientState {
      */
     readonly idpInitiatedSsoUrlName?: pulumi.Input<string>;
     /**
-     * When `true`, an `AuthnStatement` will be included in the SAML response.
+     * When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
      */
     readonly includeAuthnStatement?: pulumi.Input<boolean>;
+    /**
+     * The login theme of this client.
+     */
+    readonly loginTheme?: pulumi.Input<string>;
     /**
      * SAML POST Binding URL for the client's single logout service.
      */
@@ -380,11 +432,11 @@ export interface ClientState {
      */
     readonly rootUrl?: pulumi.Input<string>;
     /**
-     * When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.
+     * When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
      */
     readonly signAssertions?: pulumi.Input<boolean>;
     /**
-     * When `true`, the SAML document will be signed by Keycloak using the realm's private key.
+     * When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
      */
     readonly signDocuments?: pulumi.Input<boolean>;
     /**
@@ -392,13 +444,25 @@ export interface ClientState {
      */
     readonly signatureAlgorithm?: pulumi.Input<string>;
     /**
+     * The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
+     */
+    readonly signatureKeyName?: pulumi.Input<string>;
+    /**
      * If documents or assertions from the client are signed, this certificate will be used to verify the signature.
      */
     readonly signingCertificate?: pulumi.Input<string>;
     /**
+     * (Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.
+     */
+    readonly signingCertificateSha1?: pulumi.Input<string>;
+    /**
      * If documents or assertions from the client are signed, this private key will be used to verify the signature.
      */
     readonly signingPrivateKey?: pulumi.Input<string>;
+    /**
+     * (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
+     */
+    readonly signingPrivateKeySha1?: pulumi.Input<string>;
     /**
      * When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
      */
@@ -426,11 +490,15 @@ export interface ClientArgs {
      */
     readonly baseUrl?: pulumi.Input<string>;
     /**
+     * The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
+     */
+    readonly canonicalizationMethod?: pulumi.Input<string>;
+    /**
      * The unique ID of this client, referenced in the URI during authentication and in issued tokens.
      */
     readonly clientId: pulumi.Input<string>;
     /**
-     * When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`.
+     * When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
      */
     readonly clientSignatureRequired?: pulumi.Input<boolean>;
     /**
@@ -442,23 +510,24 @@ export interface ClientArgs {
      */
     readonly enabled?: pulumi.Input<boolean>;
     /**
-     * When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key.
+     * When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
      */
     readonly encryptAssertions?: pulumi.Input<boolean>;
     /**
      * If assertions for the client are encrypted, this certificate will be used for encryption.
      */
     readonly encryptionCertificate?: pulumi.Input<string>;
+    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
-     * Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead.
+     * Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead. Defaults to `false`.
      */
     readonly forceNameIdFormat?: pulumi.Input<boolean>;
     /**
-     * When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.
+     * When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
      */
     readonly forcePostBinding?: pulumi.Input<boolean>;
     /**
-     * When `true`, this client will require a browser redirect in order to perform a logout.
+     * When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
      */
     readonly frontChannelLogout?: pulumi.Input<boolean>;
     /**
@@ -474,9 +543,13 @@ export interface ClientArgs {
      */
     readonly idpInitiatedSsoUrlName?: pulumi.Input<string>;
     /**
-     * When `true`, an `AuthnStatement` will be included in the SAML response.
+     * When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
      */
     readonly includeAuthnStatement?: pulumi.Input<boolean>;
+    /**
+     * The login theme of this client.
+     */
+    readonly loginTheme?: pulumi.Input<string>;
     /**
      * SAML POST Binding URL for the client's single logout service.
      */
@@ -506,17 +579,21 @@ export interface ClientArgs {
      */
     readonly rootUrl?: pulumi.Input<string>;
     /**
-     * When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.
+     * When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
      */
     readonly signAssertions?: pulumi.Input<boolean>;
     /**
-     * When `true`, the SAML document will be signed by Keycloak using the realm's private key.
+     * When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
      */
     readonly signDocuments?: pulumi.Input<boolean>;
     /**
      * The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
      */
     readonly signatureAlgorithm?: pulumi.Input<string>;
+    /**
+     * The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
+     */
+    readonly signatureKeyName?: pulumi.Input<string>;
     /**
      * If documents or assertions from the client are signed, this certificate will be used to verify the signature.
      */

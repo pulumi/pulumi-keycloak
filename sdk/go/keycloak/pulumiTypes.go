@@ -160,6 +160,232 @@ func (o RealmInternationalizationPtrOutput) SupportedLocales() pulumi.StringArra
 	}).(pulumi.StringArrayOutput)
 }
 
+type RealmOtpPolicy struct {
+	// What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
+	Algorithm *string `pulumi:"algorithm"`
+	// How many digits the OTP have. Defaults to `6`.
+	Digits *int `pulumi:"digits"`
+	// What should the initial counter value be. Defaults to `2`.
+	InitialCounter *int `pulumi:"initialCounter"`
+	// How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
+	LookAheadWindow *int `pulumi:"lookAheadWindow"`
+	// How many seconds should an OTP token be valid. Defaults to `30`.
+	Period *int `pulumi:"period"`
+	// One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
+	Type *string `pulumi:"type"`
+}
+
+// RealmOtpPolicyInput is an input type that accepts RealmOtpPolicyArgs and RealmOtpPolicyOutput values.
+// You can construct a concrete instance of `RealmOtpPolicyInput` via:
+//
+//          RealmOtpPolicyArgs{...}
+type RealmOtpPolicyInput interface {
+	pulumi.Input
+
+	ToRealmOtpPolicyOutput() RealmOtpPolicyOutput
+	ToRealmOtpPolicyOutputWithContext(context.Context) RealmOtpPolicyOutput
+}
+
+type RealmOtpPolicyArgs struct {
+	// What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
+	Algorithm pulumi.StringPtrInput `pulumi:"algorithm"`
+	// How many digits the OTP have. Defaults to `6`.
+	Digits pulumi.IntPtrInput `pulumi:"digits"`
+	// What should the initial counter value be. Defaults to `2`.
+	InitialCounter pulumi.IntPtrInput `pulumi:"initialCounter"`
+	// How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
+	LookAheadWindow pulumi.IntPtrInput `pulumi:"lookAheadWindow"`
+	// How many seconds should an OTP token be valid. Defaults to `30`.
+	Period pulumi.IntPtrInput `pulumi:"period"`
+	// One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (RealmOtpPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmOtpPolicy)(nil)).Elem()
+}
+
+func (i RealmOtpPolicyArgs) ToRealmOtpPolicyOutput() RealmOtpPolicyOutput {
+	return i.ToRealmOtpPolicyOutputWithContext(context.Background())
+}
+
+func (i RealmOtpPolicyArgs) ToRealmOtpPolicyOutputWithContext(ctx context.Context) RealmOtpPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmOtpPolicyOutput)
+}
+
+func (i RealmOtpPolicyArgs) ToRealmOtpPolicyPtrOutput() RealmOtpPolicyPtrOutput {
+	return i.ToRealmOtpPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i RealmOtpPolicyArgs) ToRealmOtpPolicyPtrOutputWithContext(ctx context.Context) RealmOtpPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmOtpPolicyOutput).ToRealmOtpPolicyPtrOutputWithContext(ctx)
+}
+
+// RealmOtpPolicyPtrInput is an input type that accepts RealmOtpPolicyArgs, RealmOtpPolicyPtr and RealmOtpPolicyPtrOutput values.
+// You can construct a concrete instance of `RealmOtpPolicyPtrInput` via:
+//
+//          RealmOtpPolicyArgs{...}
+//
+//  or:
+//
+//          nil
+type RealmOtpPolicyPtrInput interface {
+	pulumi.Input
+
+	ToRealmOtpPolicyPtrOutput() RealmOtpPolicyPtrOutput
+	ToRealmOtpPolicyPtrOutputWithContext(context.Context) RealmOtpPolicyPtrOutput
+}
+
+type realmOtpPolicyPtrType RealmOtpPolicyArgs
+
+func RealmOtpPolicyPtr(v *RealmOtpPolicyArgs) RealmOtpPolicyPtrInput {
+	return (*realmOtpPolicyPtrType)(v)
+}
+
+func (*realmOtpPolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RealmOtpPolicy)(nil)).Elem()
+}
+
+func (i *realmOtpPolicyPtrType) ToRealmOtpPolicyPtrOutput() RealmOtpPolicyPtrOutput {
+	return i.ToRealmOtpPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *realmOtpPolicyPtrType) ToRealmOtpPolicyPtrOutputWithContext(ctx context.Context) RealmOtpPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmOtpPolicyPtrOutput)
+}
+
+type RealmOtpPolicyOutput struct{ *pulumi.OutputState }
+
+func (RealmOtpPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmOtpPolicy)(nil)).Elem()
+}
+
+func (o RealmOtpPolicyOutput) ToRealmOtpPolicyOutput() RealmOtpPolicyOutput {
+	return o
+}
+
+func (o RealmOtpPolicyOutput) ToRealmOtpPolicyOutputWithContext(ctx context.Context) RealmOtpPolicyOutput {
+	return o
+}
+
+func (o RealmOtpPolicyOutput) ToRealmOtpPolicyPtrOutput() RealmOtpPolicyPtrOutput {
+	return o.ToRealmOtpPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o RealmOtpPolicyOutput) ToRealmOtpPolicyPtrOutputWithContext(ctx context.Context) RealmOtpPolicyPtrOutput {
+	return o.ApplyT(func(v RealmOtpPolicy) *RealmOtpPolicy {
+		return &v
+	}).(RealmOtpPolicyPtrOutput)
+}
+
+// What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
+func (o RealmOtpPolicyOutput) Algorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RealmOtpPolicy) *string { return v.Algorithm }).(pulumi.StringPtrOutput)
+}
+
+// How many digits the OTP have. Defaults to `6`.
+func (o RealmOtpPolicyOutput) Digits() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RealmOtpPolicy) *int { return v.Digits }).(pulumi.IntPtrOutput)
+}
+
+// What should the initial counter value be. Defaults to `2`.
+func (o RealmOtpPolicyOutput) InitialCounter() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RealmOtpPolicy) *int { return v.InitialCounter }).(pulumi.IntPtrOutput)
+}
+
+// How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
+func (o RealmOtpPolicyOutput) LookAheadWindow() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RealmOtpPolicy) *int { return v.LookAheadWindow }).(pulumi.IntPtrOutput)
+}
+
+// How many seconds should an OTP token be valid. Defaults to `30`.
+func (o RealmOtpPolicyOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RealmOtpPolicy) *int { return v.Period }).(pulumi.IntPtrOutput)
+}
+
+// One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
+func (o RealmOtpPolicyOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RealmOtpPolicy) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type RealmOtpPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (RealmOtpPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RealmOtpPolicy)(nil)).Elem()
+}
+
+func (o RealmOtpPolicyPtrOutput) ToRealmOtpPolicyPtrOutput() RealmOtpPolicyPtrOutput {
+	return o
+}
+
+func (o RealmOtpPolicyPtrOutput) ToRealmOtpPolicyPtrOutputWithContext(ctx context.Context) RealmOtpPolicyPtrOutput {
+	return o
+}
+
+func (o RealmOtpPolicyPtrOutput) Elem() RealmOtpPolicyOutput {
+	return o.ApplyT(func(v *RealmOtpPolicy) RealmOtpPolicy { return *v }).(RealmOtpPolicyOutput)
+}
+
+// What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
+func (o RealmOtpPolicyPtrOutput) Algorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmOtpPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Algorithm
+	}).(pulumi.StringPtrOutput)
+}
+
+// How many digits the OTP have. Defaults to `6`.
+func (o RealmOtpPolicyPtrOutput) Digits() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RealmOtpPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Digits
+	}).(pulumi.IntPtrOutput)
+}
+
+// What should the initial counter value be. Defaults to `2`.
+func (o RealmOtpPolicyPtrOutput) InitialCounter() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RealmOtpPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return v.InitialCounter
+	}).(pulumi.IntPtrOutput)
+}
+
+// How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
+func (o RealmOtpPolicyPtrOutput) LookAheadWindow() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RealmOtpPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return v.LookAheadWindow
+	}).(pulumi.IntPtrOutput)
+}
+
+// How many seconds should an OTP token be valid. Defaults to `30`.
+func (o RealmOtpPolicyPtrOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RealmOtpPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Period
+	}).(pulumi.IntPtrOutput)
+}
+
+// One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
+func (o RealmOtpPolicyPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmOtpPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
 type RealmSecurityDefenses struct {
 	BruteForceDetection *RealmSecurityDefensesBruteForceDetection `pulumi:"bruteForceDetection"`
 	Headers             *RealmSecurityDefensesHeaders             `pulumi:"headers"`
@@ -3428,6 +3654,85 @@ func (o GetRealmKeysKeyArrayOutput) Index(i pulumi.IntInput) GetRealmKeysKeyOutp
 	}).(GetRealmKeysKeyOutput)
 }
 
+type GetRealmOtpPolicy struct {
+	Algorithm       string `pulumi:"algorithm"`
+	Digits          int    `pulumi:"digits"`
+	InitialCounter  int    `pulumi:"initialCounter"`
+	LookAheadWindow int    `pulumi:"lookAheadWindow"`
+	Period          int    `pulumi:"period"`
+	Type            string `pulumi:"type"`
+}
+
+// GetRealmOtpPolicyInput is an input type that accepts GetRealmOtpPolicyArgs and GetRealmOtpPolicyOutput values.
+// You can construct a concrete instance of `GetRealmOtpPolicyInput` via:
+//
+//          GetRealmOtpPolicyArgs{...}
+type GetRealmOtpPolicyInput interface {
+	pulumi.Input
+
+	ToGetRealmOtpPolicyOutput() GetRealmOtpPolicyOutput
+	ToGetRealmOtpPolicyOutputWithContext(context.Context) GetRealmOtpPolicyOutput
+}
+
+type GetRealmOtpPolicyArgs struct {
+	Algorithm       pulumi.StringInput `pulumi:"algorithm"`
+	Digits          pulumi.IntInput    `pulumi:"digits"`
+	InitialCounter  pulumi.IntInput    `pulumi:"initialCounter"`
+	LookAheadWindow pulumi.IntInput    `pulumi:"lookAheadWindow"`
+	Period          pulumi.IntInput    `pulumi:"period"`
+	Type            pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetRealmOtpPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRealmOtpPolicy)(nil)).Elem()
+}
+
+func (i GetRealmOtpPolicyArgs) ToGetRealmOtpPolicyOutput() GetRealmOtpPolicyOutput {
+	return i.ToGetRealmOtpPolicyOutputWithContext(context.Background())
+}
+
+func (i GetRealmOtpPolicyArgs) ToGetRealmOtpPolicyOutputWithContext(ctx context.Context) GetRealmOtpPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRealmOtpPolicyOutput)
+}
+
+type GetRealmOtpPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetRealmOtpPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRealmOtpPolicy)(nil)).Elem()
+}
+
+func (o GetRealmOtpPolicyOutput) ToGetRealmOtpPolicyOutput() GetRealmOtpPolicyOutput {
+	return o
+}
+
+func (o GetRealmOtpPolicyOutput) ToGetRealmOtpPolicyOutputWithContext(ctx context.Context) GetRealmOtpPolicyOutput {
+	return o
+}
+
+func (o GetRealmOtpPolicyOutput) Algorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRealmOtpPolicy) string { return v.Algorithm }).(pulumi.StringOutput)
+}
+
+func (o GetRealmOtpPolicyOutput) Digits() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRealmOtpPolicy) int { return v.Digits }).(pulumi.IntOutput)
+}
+
+func (o GetRealmOtpPolicyOutput) InitialCounter() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRealmOtpPolicy) int { return v.InitialCounter }).(pulumi.IntOutput)
+}
+
+func (o GetRealmOtpPolicyOutput) LookAheadWindow() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRealmOtpPolicy) int { return v.LookAheadWindow }).(pulumi.IntOutput)
+}
+
+func (o GetRealmOtpPolicyOutput) Period() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRealmOtpPolicy) int { return v.Period }).(pulumi.IntOutput)
+}
+
+func (o GetRealmOtpPolicyOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRealmOtpPolicy) string { return v.Type }).(pulumi.StringOutput)
+}
+
 type GetRealmSecurityDefense struct {
 	BruteForceDetections []GetRealmSecurityDefenseBruteForceDetection `pulumi:"bruteForceDetections"`
 	Headers              []GetRealmSecurityDefenseHeader              `pulumi:"headers"`
@@ -4247,6 +4552,8 @@ func (o GetRealmWebAuthnPolicyOutput) UserVerificationRequirement() pulumi.Strin
 func init() {
 	pulumi.RegisterOutputType(RealmInternationalizationOutput{})
 	pulumi.RegisterOutputType(RealmInternationalizationPtrOutput{})
+	pulumi.RegisterOutputType(RealmOtpPolicyOutput{})
+	pulumi.RegisterOutputType(RealmOtpPolicyPtrOutput{})
 	pulumi.RegisterOutputType(RealmSecurityDefensesOutput{})
 	pulumi.RegisterOutputType(RealmSecurityDefensesPtrOutput{})
 	pulumi.RegisterOutputType(RealmSecurityDefensesBruteForceDetectionOutput{})
@@ -4283,6 +4590,7 @@ func init() {
 	pulumi.RegisterOutputType(GetRealmInternationalizationArrayOutput{})
 	pulumi.RegisterOutputType(GetRealmKeysKeyOutput{})
 	pulumi.RegisterOutputType(GetRealmKeysKeyArrayOutput{})
+	pulumi.RegisterOutputType(GetRealmOtpPolicyOutput{})
 	pulumi.RegisterOutputType(GetRealmSecurityDefenseOutput{})
 	pulumi.RegisterOutputType(GetRealmSecurityDefenseArrayOutput{})
 	pulumi.RegisterOutputType(GetRealmSecurityDefenseBruteForceDetectionOutput{})

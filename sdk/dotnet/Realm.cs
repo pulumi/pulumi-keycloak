@@ -281,6 +281,9 @@ namespace Pulumi.Keycloak
         [Output("offlineSessionMaxLifespanEnabled")]
         public Output<bool?> OfflineSessionMaxLifespanEnabled { get; private set; } = null!;
 
+        [Output("otpPolicy")]
+        public Output<Outputs.RealmOtpPolicy> OtpPolicy { get; private set; } = null!;
+
         /// <summary>
         /// The password policy for users within the realm.
         /// </summary>
@@ -622,6 +625,9 @@ namespace Pulumi.Keycloak
         [Input("offlineSessionMaxLifespanEnabled")]
         public Input<bool>? OfflineSessionMaxLifespanEnabled { get; set; }
 
+        [Input("otpPolicy")]
+        public Input<Inputs.RealmOtpPolicyArgs>? OtpPolicy { get; set; }
+
         /// <summary>
         /// The password policy for users within the realm.
         /// </summary>
@@ -926,6 +932,9 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("offlineSessionMaxLifespanEnabled")]
         public Input<bool>? OfflineSessionMaxLifespanEnabled { get; set; }
+
+        [Input("otpPolicy")]
+        public Input<Inputs.RealmOtpPolicyGetArgs>? OtpPolicy { get; set; }
 
         /// <summary>
         /// The password policy for users within the realm.

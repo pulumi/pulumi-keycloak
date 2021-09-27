@@ -224,6 +224,7 @@ export class Realm extends pulumi.CustomResource {
      * Enable `offlineSessionMaxLifespan`.
      */
     public readonly offlineSessionMaxLifespanEnabled!: pulumi.Output<boolean | undefined>;
+    public readonly otpPolicy!: pulumi.Output<outputs.RealmOtpPolicy>;
     /**
      * The password policy for users within the realm.
      */
@@ -340,6 +341,7 @@ export class Realm extends pulumi.CustomResource {
             inputs["offlineSessionIdleTimeout"] = state ? state.offlineSessionIdleTimeout : undefined;
             inputs["offlineSessionMaxLifespan"] = state ? state.offlineSessionMaxLifespan : undefined;
             inputs["offlineSessionMaxLifespanEnabled"] = state ? state.offlineSessionMaxLifespanEnabled : undefined;
+            inputs["otpPolicy"] = state ? state.otpPolicy : undefined;
             inputs["passwordPolicy"] = state ? state.passwordPolicy : undefined;
             inputs["realm"] = state ? state.realm : undefined;
             inputs["refreshTokenMaxReuse"] = state ? state.refreshTokenMaxReuse : undefined;
@@ -395,6 +397,7 @@ export class Realm extends pulumi.CustomResource {
             inputs["offlineSessionIdleTimeout"] = args ? args.offlineSessionIdleTimeout : undefined;
             inputs["offlineSessionMaxLifespan"] = args ? args.offlineSessionMaxLifespan : undefined;
             inputs["offlineSessionMaxLifespanEnabled"] = args ? args.offlineSessionMaxLifespanEnabled : undefined;
+            inputs["otpPolicy"] = args ? args.otpPolicy : undefined;
             inputs["passwordPolicy"] = args ? args.passwordPolicy : undefined;
             inputs["realm"] = args ? args.realm : undefined;
             inputs["refreshTokenMaxReuse"] = args ? args.refreshTokenMaxReuse : undefined;
@@ -537,6 +540,7 @@ export interface RealmState {
      * Enable `offlineSessionMaxLifespan`.
      */
     readonly offlineSessionMaxLifespanEnabled?: pulumi.Input<boolean>;
+    readonly otpPolicy?: pulumi.Input<inputs.RealmOtpPolicy>;
     /**
      * The password policy for users within the realm.
      */
@@ -722,6 +726,7 @@ export interface RealmArgs {
      * Enable `offlineSessionMaxLifespan`.
      */
     readonly offlineSessionMaxLifespanEnabled?: pulumi.Input<boolean>;
+    readonly otpPolicy?: pulumi.Input<inputs.RealmOtpPolicy>;
     /**
      * The password policy for users within the realm.
      */

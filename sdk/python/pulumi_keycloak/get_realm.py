@@ -21,7 +21,7 @@ class GetRealmResult:
     """
     A collection of values returned by getRealm.
     """
-    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, default_default_client_scopes=None, default_optional_client_scopes=None, default_signature_algorithm=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, id=None, internal_id=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, offline_session_max_lifespan_enabled=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, revoke_refresh_token=None, security_defenses=None, smtp_servers=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_idle_timeout_remember_me=None, sso_session_max_lifespan=None, sso_session_max_lifespan_remember_me=None, user_managed_access=None, verify_email=None, web_authn_passwordless_policy=None, web_authn_policy=None):
+    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, default_default_client_scopes=None, default_optional_client_scopes=None, default_signature_algorithm=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, id=None, internal_id=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, offline_session_max_lifespan_enabled=None, otp_policy=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, revoke_refresh_token=None, security_defenses=None, smtp_servers=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_idle_timeout_remember_me=None, sso_session_max_lifespan=None, sso_session_max_lifespan_remember_me=None, user_managed_access=None, verify_email=None, web_authn_passwordless_policy=None, web_authn_policy=None):
         if access_code_lifespan and not isinstance(access_code_lifespan, str):
             raise TypeError("Expected argument 'access_code_lifespan' to be a str")
         pulumi.set(__self__, "access_code_lifespan", access_code_lifespan)
@@ -115,6 +115,9 @@ class GetRealmResult:
         if offline_session_max_lifespan_enabled and not isinstance(offline_session_max_lifespan_enabled, bool):
             raise TypeError("Expected argument 'offline_session_max_lifespan_enabled' to be a bool")
         pulumi.set(__self__, "offline_session_max_lifespan_enabled", offline_session_max_lifespan_enabled)
+        if otp_policy and not isinstance(otp_policy, dict):
+            raise TypeError("Expected argument 'otp_policy' to be a dict")
+        pulumi.set(__self__, "otp_policy", otp_policy)
         if password_policy and not isinstance(password_policy, str):
             raise TypeError("Expected argument 'password_policy' to be a str")
         pulumi.set(__self__, "password_policy", password_policy)
@@ -338,6 +341,11 @@ class GetRealmResult:
         return pulumi.get(self, "offline_session_max_lifespan_enabled")
 
     @property
+    @pulumi.getter(name="otpPolicy")
+    def otp_policy(self) -> 'outputs.GetRealmOtpPolicyResult':
+        return pulumi.get(self, "otp_policy")
+
+    @property
     @pulumi.getter(name="passwordPolicy")
     def password_policy(self) -> str:
         return pulumi.get(self, "password_policy")
@@ -480,6 +488,7 @@ class AwaitableGetRealmResult(GetRealmResult):
             offline_session_idle_timeout=self.offline_session_idle_timeout,
             offline_session_max_lifespan=self.offline_session_max_lifespan,
             offline_session_max_lifespan_enabled=self.offline_session_max_lifespan_enabled,
+            otp_policy=self.otp_policy,
             password_policy=self.password_policy,
             realm=self.realm,
             refresh_token_max_reuse=self.refresh_token_max_reuse,
@@ -508,6 +517,7 @@ def get_realm(attributes: Optional[Mapping[str, Any]] = None,
               default_optional_client_scopes: Optional[Sequence[str]] = None,
               display_name_html: Optional[str] = None,
               internationalizations: Optional[Sequence[pulumi.InputType['GetRealmInternationalizationArgs']]] = None,
+              otp_policy: Optional[pulumi.InputType['GetRealmOtpPolicyArgs']] = None,
               realm: Optional[str] = None,
               security_defenses: Optional[Sequence[pulumi.InputType['GetRealmSecurityDefenseArgs']]] = None,
               smtp_servers: Optional[Sequence[pulumi.InputType['GetRealmSmtpServerArgs']]] = None,
@@ -537,6 +547,7 @@ def get_realm(attributes: Optional[Mapping[str, Any]] = None,
     __args__['defaultOptionalClientScopes'] = default_optional_client_scopes
     __args__['displayNameHtml'] = display_name_html
     __args__['internationalizations'] = internationalizations
+    __args__['otpPolicy'] = otp_policy
     __args__['realm'] = realm
     __args__['securityDefenses'] = security_defenses
     __args__['smtpServers'] = smtp_servers
@@ -580,6 +591,7 @@ def get_realm(attributes: Optional[Mapping[str, Any]] = None,
         offline_session_idle_timeout=__ret__.offline_session_idle_timeout,
         offline_session_max_lifespan=__ret__.offline_session_max_lifespan,
         offline_session_max_lifespan_enabled=__ret__.offline_session_max_lifespan_enabled,
+        otp_policy=__ret__.otp_policy,
         password_policy=__ret__.password_policy,
         realm=__ret__.realm,
         refresh_token_max_reuse=__ret__.refresh_token_max_reuse,

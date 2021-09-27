@@ -45,6 +45,7 @@ class RealmArgs:
                  offline_session_idle_timeout: Optional[pulumi.Input[str]] = None,
                  offline_session_max_lifespan: Optional[pulumi.Input[str]] = None,
                  offline_session_max_lifespan_enabled: Optional[pulumi.Input[bool]] = None,
+                 otp_policy: Optional[pulumi.Input['RealmOtpPolicyArgs']] = None,
                  password_policy: Optional[pulumi.Input[str]] = None,
                  refresh_token_max_reuse: Optional[pulumi.Input[int]] = None,
                  registration_allowed: Optional[pulumi.Input[bool]] = None,
@@ -170,6 +171,8 @@ class RealmArgs:
             pulumi.set(__self__, "offline_session_max_lifespan", offline_session_max_lifespan)
         if offline_session_max_lifespan_enabled is not None:
             pulumi.set(__self__, "offline_session_max_lifespan_enabled", offline_session_max_lifespan_enabled)
+        if otp_policy is not None:
+            pulumi.set(__self__, "otp_policy", otp_policy)
         if password_policy is not None:
             pulumi.set(__self__, "password_policy", password_policy)
         if refresh_token_max_reuse is not None:
@@ -563,6 +566,15 @@ class RealmArgs:
         pulumi.set(self, "offline_session_max_lifespan_enabled", value)
 
     @property
+    @pulumi.getter(name="otpPolicy")
+    def otp_policy(self) -> Optional[pulumi.Input['RealmOtpPolicyArgs']]:
+        return pulumi.get(self, "otp_policy")
+
+    @otp_policy.setter
+    def otp_policy(self, value: Optional[pulumi.Input['RealmOtpPolicyArgs']]):
+        pulumi.set(self, "otp_policy", value)
+
+    @property
     @pulumi.getter(name="passwordPolicy")
     def password_policy(self) -> Optional[pulumi.Input[str]]:
         """
@@ -824,6 +836,7 @@ class _RealmState:
                  offline_session_idle_timeout: Optional[pulumi.Input[str]] = None,
                  offline_session_max_lifespan: Optional[pulumi.Input[str]] = None,
                  offline_session_max_lifespan_enabled: Optional[pulumi.Input[bool]] = None,
+                 otp_policy: Optional[pulumi.Input['RealmOtpPolicyArgs']] = None,
                  password_policy: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  refresh_token_max_reuse: Optional[pulumi.Input[int]] = None,
@@ -951,6 +964,8 @@ class _RealmState:
             pulumi.set(__self__, "offline_session_max_lifespan", offline_session_max_lifespan)
         if offline_session_max_lifespan_enabled is not None:
             pulumi.set(__self__, "offline_session_max_lifespan_enabled", offline_session_max_lifespan_enabled)
+        if otp_policy is not None:
+            pulumi.set(__self__, "otp_policy", otp_policy)
         if password_policy is not None:
             pulumi.set(__self__, "password_policy", password_policy)
         if realm is not None:
@@ -1343,6 +1358,15 @@ class _RealmState:
         pulumi.set(self, "offline_session_max_lifespan_enabled", value)
 
     @property
+    @pulumi.getter(name="otpPolicy")
+    def otp_policy(self) -> Optional[pulumi.Input['RealmOtpPolicyArgs']]:
+        return pulumi.get(self, "otp_policy")
+
+    @otp_policy.setter
+    def otp_policy(self, value: Optional[pulumi.Input['RealmOtpPolicyArgs']]):
+        pulumi.set(self, "otp_policy", value)
+
+    @property
     @pulumi.getter(name="passwordPolicy")
     def password_policy(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1617,6 +1641,7 @@ class Realm(pulumi.CustomResource):
                  offline_session_idle_timeout: Optional[pulumi.Input[str]] = None,
                  offline_session_max_lifespan: Optional[pulumi.Input[str]] = None,
                  offline_session_max_lifespan_enabled: Optional[pulumi.Input[bool]] = None,
+                 otp_policy: Optional[pulumi.Input[pulumi.InputType['RealmOtpPolicyArgs']]] = None,
                  password_policy: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  refresh_token_max_reuse: Optional[pulumi.Input[int]] = None,
@@ -1899,6 +1924,7 @@ class Realm(pulumi.CustomResource):
                  offline_session_idle_timeout: Optional[pulumi.Input[str]] = None,
                  offline_session_max_lifespan: Optional[pulumi.Input[str]] = None,
                  offline_session_max_lifespan_enabled: Optional[pulumi.Input[bool]] = None,
+                 otp_policy: Optional[pulumi.Input[pulumi.InputType['RealmOtpPolicyArgs']]] = None,
                  password_policy: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  refresh_token_max_reuse: Optional[pulumi.Input[int]] = None,
@@ -1961,6 +1987,7 @@ class Realm(pulumi.CustomResource):
             __props__.__dict__["offline_session_idle_timeout"] = offline_session_idle_timeout
             __props__.__dict__["offline_session_max_lifespan"] = offline_session_max_lifespan
             __props__.__dict__["offline_session_max_lifespan_enabled"] = offline_session_max_lifespan_enabled
+            __props__.__dict__["otp_policy"] = otp_policy
             __props__.__dict__["password_policy"] = password_policy
             if realm is None and not opts.urn:
                 raise TypeError("Missing required property 'realm'")
@@ -2025,6 +2052,7 @@ class Realm(pulumi.CustomResource):
             offline_session_idle_timeout: Optional[pulumi.Input[str]] = None,
             offline_session_max_lifespan: Optional[pulumi.Input[str]] = None,
             offline_session_max_lifespan_enabled: Optional[pulumi.Input[bool]] = None,
+            otp_policy: Optional[pulumi.Input[pulumi.InputType['RealmOtpPolicyArgs']]] = None,
             password_policy: Optional[pulumi.Input[str]] = None,
             realm: Optional[pulumi.Input[str]] = None,
             refresh_token_max_reuse: Optional[pulumi.Input[int]] = None,
@@ -2131,6 +2159,7 @@ class Realm(pulumi.CustomResource):
         __props__.__dict__["offline_session_idle_timeout"] = offline_session_idle_timeout
         __props__.__dict__["offline_session_max_lifespan"] = offline_session_max_lifespan
         __props__.__dict__["offline_session_max_lifespan_enabled"] = offline_session_max_lifespan_enabled
+        __props__.__dict__["otp_policy"] = otp_policy
         __props__.__dict__["password_policy"] = password_policy
         __props__.__dict__["realm"] = realm
         __props__.__dict__["refresh_token_max_reuse"] = refresh_token_max_reuse
@@ -2381,6 +2410,11 @@ class Realm(pulumi.CustomResource):
         Enable `offline_session_max_lifespan`.
         """
         return pulumi.get(self, "offline_session_max_lifespan_enabled")
+
+    @property
+    @pulumi.getter(name="otpPolicy")
+    def otp_policy(self) -> pulumi.Output['outputs.RealmOtpPolicy']:
+        return pulumi.get(self, "otp_policy")
 
     @property
     @pulumi.getter(name="passwordPolicy")

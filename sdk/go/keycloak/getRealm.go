@@ -54,6 +54,7 @@ type LookupRealmArgs struct {
 	DefaultOptionalClientScopes []string                       `pulumi:"defaultOptionalClientScopes"`
 	DisplayNameHtml             *string                        `pulumi:"displayNameHtml"`
 	Internationalizations       []GetRealmInternationalization `pulumi:"internationalizations"`
+	OtpPolicy                   *GetRealmOtpPolicy             `pulumi:"otpPolicy"`
 	// The realm name.
 	Realm                      string                              `pulumi:"realm"`
 	SecurityDefenses           []GetRealmSecurityDefense           `pulumi:"securityDefenses"`
@@ -96,6 +97,7 @@ type LookupRealmResult struct {
 	OfflineSessionIdleTimeout        string                             `pulumi:"offlineSessionIdleTimeout"`
 	OfflineSessionMaxLifespan        string                             `pulumi:"offlineSessionMaxLifespan"`
 	OfflineSessionMaxLifespanEnabled bool                               `pulumi:"offlineSessionMaxLifespanEnabled"`
+	OtpPolicy                        GetRealmOtpPolicy                  `pulumi:"otpPolicy"`
 	PasswordPolicy                   string                             `pulumi:"passwordPolicy"`
 	Realm                            string                             `pulumi:"realm"`
 	RefreshTokenMaxReuse             int                                `pulumi:"refreshTokenMaxReuse"`

@@ -35,6 +35,7 @@ export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promi
         "defaultOptionalClientScopes": args.defaultOptionalClientScopes,
         "displayNameHtml": args.displayNameHtml,
         "internationalizations": args.internationalizations,
+        "otpPolicy": args.otpPolicy,
         "realm": args.realm,
         "securityDefenses": args.securityDefenses,
         "smtpServers": args.smtpServers,
@@ -52,6 +53,7 @@ export interface GetRealmArgs {
     readonly defaultOptionalClientScopes?: string[];
     readonly displayNameHtml?: string;
     readonly internationalizations?: inputs.GetRealmInternationalization[];
+    readonly otpPolicy?: inputs.GetRealmOtpPolicy;
     /**
      * The realm name.
      */
@@ -100,6 +102,7 @@ export interface GetRealmResult {
     readonly offlineSessionIdleTimeout: string;
     readonly offlineSessionMaxLifespan: string;
     readonly offlineSessionMaxLifespanEnabled: boolean;
+    readonly otpPolicy: outputs.GetRealmOtpPolicy;
     readonly passwordPolicy: string;
     readonly realm: string;
     readonly refreshTokenMaxReuse: number;

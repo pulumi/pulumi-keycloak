@@ -42,6 +42,11 @@ namespace Pulumi.Keycloak.OpenId
     ///                 "http://localhost:8080/openid-callback",
     ///             },
     ///             LoginTheme = "keycloak",
+    ///             ExtraConfig = 
+    ///             {
+    ///                 { "key1", "value1" },
+    ///                 { "key2", "value2" },
+    ///             },
     ///         });
     ///     }
     /// 
@@ -88,6 +93,24 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Output("authorization")]
         public Output<Outputs.ClientAuthorization?> Authorization { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+        /// </summary>
+        [Output("backchannelLogoutRevokeOfflineSessions")]
+        public Output<bool?> BackchannelLogoutRevokeOfflineSessions { get; private set; } = null!;
+
+        /// <summary>
+        /// When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+        /// </summary>
+        [Output("backchannelLogoutSessionRequired")]
+        public Output<bool?> BackchannelLogoutSessionRequired { get; private set; } = null!;
+
+        /// <summary>
+        /// The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
+        /// </summary>
+        [Output("backchannelLogoutUrl")]
+        public Output<string?> BackchannelLogoutUrl { get; private set; } = null!;
 
         /// <summary>
         /// Default URL to use when the auth server needs to redirect or link back to the client.
@@ -160,6 +183,9 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Output("excludeSessionStateFromAuthResponse")]
         public Output<bool?> ExcludeSessionStateFromAuthResponse { get; private set; } = null!;
+
+        [Output("extraConfig")]
+        public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
 
         /// <summary>
         /// Allow to include all roles mappings in the access token.
@@ -324,6 +350,24 @@ namespace Pulumi.Keycloak.OpenId
         public Input<Inputs.ClientAuthorizationArgs>? Authorization { get; set; }
 
         /// <summary>
+        /// Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+        /// </summary>
+        [Input("backchannelLogoutRevokeOfflineSessions")]
+        public Input<bool>? BackchannelLogoutRevokeOfflineSessions { get; set; }
+
+        /// <summary>
+        /// When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+        /// </summary>
+        [Input("backchannelLogoutSessionRequired")]
+        public Input<bool>? BackchannelLogoutSessionRequired { get; set; }
+
+        /// <summary>
+        /// The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
+        /// </summary>
+        [Input("backchannelLogoutUrl")]
+        public Input<string>? BackchannelLogoutUrl { get; set; }
+
+        /// <summary>
         /// Default URL to use when the auth server needs to redirect or link back to the client.
         /// </summary>
         [Input("baseUrl")]
@@ -394,6 +438,14 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("excludeSessionStateFromAuthResponse")]
         public Input<bool>? ExcludeSessionStateFromAuthResponse { get; set; }
+
+        [Input("extraConfig")]
+        private InputMap<object>? _extraConfig;
+        public InputMap<object> ExtraConfig
+        {
+            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            set => _extraConfig = value;
+        }
 
         /// <summary>
         /// Allow to include all roles mappings in the access token.
@@ -519,6 +571,24 @@ namespace Pulumi.Keycloak.OpenId
         public Input<Inputs.ClientAuthorizationGetArgs>? Authorization { get; set; }
 
         /// <summary>
+        /// Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+        /// </summary>
+        [Input("backchannelLogoutRevokeOfflineSessions")]
+        public Input<bool>? BackchannelLogoutRevokeOfflineSessions { get; set; }
+
+        /// <summary>
+        /// When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+        /// </summary>
+        [Input("backchannelLogoutSessionRequired")]
+        public Input<bool>? BackchannelLogoutSessionRequired { get; set; }
+
+        /// <summary>
+        /// The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
+        /// </summary>
+        [Input("backchannelLogoutUrl")]
+        public Input<string>? BackchannelLogoutUrl { get; set; }
+
+        /// <summary>
         /// Default URL to use when the auth server needs to redirect or link back to the client.
         /// </summary>
         [Input("baseUrl")]
@@ -589,6 +659,14 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("excludeSessionStateFromAuthResponse")]
         public Input<bool>? ExcludeSessionStateFromAuthResponse { get; set; }
+
+        [Input("extraConfig")]
+        private InputMap<object>? _extraConfig;
+        public InputMap<object> ExtraConfig
+        {
+            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            set => _extraConfig = value;
+        }
 
         /// <summary>
         /// Allow to include all roles mappings in the access token.

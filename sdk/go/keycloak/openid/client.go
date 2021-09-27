@@ -46,6 +46,10 @@ import (
 // 				pulumi.String("http://localhost:8080/openid-callback"),
 // 			},
 // 			LoginTheme: pulumi.String("keycloak"),
+// 			ExtraConfig: pulumi.StringMap{
+// 				"key1": pulumi.String("value1"),
+// 				"key2": pulumi.String("value2"),
+// 			},
 // 		})
 // 		if err != nil {
 // 			return err
@@ -75,6 +79,12 @@ type Client struct {
 	AuthenticationFlowBindingOverrides ClientAuthenticationFlowBindingOverridesPtrOutput `pulumi:"authenticationFlowBindingOverrides"`
 	// When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
 	Authorization ClientAuthorizationPtrOutput `pulumi:"authorization"`
+	// Specifying whether a "revokeOfflineAccess" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+	BackchannelLogoutRevokeOfflineSessions pulumi.BoolPtrOutput `pulumi:"backchannelLogoutRevokeOfflineSessions"`
+	// When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+	BackchannelLogoutSessionRequired pulumi.BoolPtrOutput `pulumi:"backchannelLogoutSessionRequired"`
+	// The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
+	BackchannelLogoutUrl pulumi.StringPtrOutput `pulumi:"backchannelLogoutUrl"`
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl pulumi.StringPtrOutput `pulumi:"baseUrl"`
 	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
@@ -99,6 +109,7 @@ type Client struct {
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
 	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrOutput `pulumi:"excludeSessionStateFromAuthResponse"`
+	ExtraConfig                         pulumi.MapOutput     `pulumi:"extraConfig"`
 	// Allow to include all roles mappings in the access token.
 	FullScopeAllowed pulumi.BoolPtrOutput `pulumi:"fullScopeAllowed"`
 	// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
@@ -179,6 +190,12 @@ type clientState struct {
 	AuthenticationFlowBindingOverrides *ClientAuthenticationFlowBindingOverrides `pulumi:"authenticationFlowBindingOverrides"`
 	// When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
 	Authorization *ClientAuthorization `pulumi:"authorization"`
+	// Specifying whether a "revokeOfflineAccess" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+	BackchannelLogoutRevokeOfflineSessions *bool `pulumi:"backchannelLogoutRevokeOfflineSessions"`
+	// When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+	BackchannelLogoutSessionRequired *bool `pulumi:"backchannelLogoutSessionRequired"`
+	// The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
+	BackchannelLogoutUrl *string `pulumi:"backchannelLogoutUrl"`
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl *string `pulumi:"baseUrl"`
 	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
@@ -202,7 +219,8 @@ type clientState struct {
 	// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
-	ExcludeSessionStateFromAuthResponse *bool `pulumi:"excludeSessionStateFromAuthResponse"`
+	ExcludeSessionStateFromAuthResponse *bool                  `pulumi:"excludeSessionStateFromAuthResponse"`
+	ExtraConfig                         map[string]interface{} `pulumi:"extraConfig"`
 	// Allow to include all roles mappings in the access token.
 	FullScopeAllowed *bool `pulumi:"fullScopeAllowed"`
 	// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
@@ -246,6 +264,12 @@ type ClientState struct {
 	AuthenticationFlowBindingOverrides ClientAuthenticationFlowBindingOverridesPtrInput
 	// When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
 	Authorization ClientAuthorizationPtrInput
+	// Specifying whether a "revokeOfflineAccess" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+	BackchannelLogoutRevokeOfflineSessions pulumi.BoolPtrInput
+	// When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+	BackchannelLogoutSessionRequired pulumi.BoolPtrInput
+	// The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
+	BackchannelLogoutUrl pulumi.StringPtrInput
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl pulumi.StringPtrInput
 	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
@@ -270,6 +294,7 @@ type ClientState struct {
 	Enabled pulumi.BoolPtrInput
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
 	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrInput
+	ExtraConfig                         pulumi.MapInput
 	// Allow to include all roles mappings in the access token.
 	FullScopeAllowed pulumi.BoolPtrInput
 	// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
@@ -317,6 +342,12 @@ type clientArgs struct {
 	AuthenticationFlowBindingOverrides *ClientAuthenticationFlowBindingOverrides `pulumi:"authenticationFlowBindingOverrides"`
 	// When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
 	Authorization *ClientAuthorization `pulumi:"authorization"`
+	// Specifying whether a "revokeOfflineAccess" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+	BackchannelLogoutRevokeOfflineSessions *bool `pulumi:"backchannelLogoutRevokeOfflineSessions"`
+	// When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+	BackchannelLogoutSessionRequired *bool `pulumi:"backchannelLogoutSessionRequired"`
+	// The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
+	BackchannelLogoutUrl *string `pulumi:"backchannelLogoutUrl"`
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl *string `pulumi:"baseUrl"`
 	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
@@ -340,7 +371,8 @@ type clientArgs struct {
 	// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
-	ExcludeSessionStateFromAuthResponse *bool `pulumi:"excludeSessionStateFromAuthResponse"`
+	ExcludeSessionStateFromAuthResponse *bool                  `pulumi:"excludeSessionStateFromAuthResponse"`
+	ExtraConfig                         map[string]interface{} `pulumi:"extraConfig"`
 	// Allow to include all roles mappings in the access token.
 	FullScopeAllowed *bool `pulumi:"fullScopeAllowed"`
 	// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
@@ -381,6 +413,12 @@ type ClientArgs struct {
 	AuthenticationFlowBindingOverrides ClientAuthenticationFlowBindingOverridesPtrInput
 	// When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
 	Authorization ClientAuthorizationPtrInput
+	// Specifying whether a "revokeOfflineAccess" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+	BackchannelLogoutRevokeOfflineSessions pulumi.BoolPtrInput
+	// When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+	BackchannelLogoutSessionRequired pulumi.BoolPtrInput
+	// The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
+	BackchannelLogoutUrl pulumi.StringPtrInput
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl pulumi.StringPtrInput
 	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
@@ -405,6 +443,7 @@ type ClientArgs struct {
 	Enabled pulumi.BoolPtrInput
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
 	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrInput
+	ExtraConfig                         pulumi.MapInput
 	// Allow to include all roles mappings in the access token.
 	FullScopeAllowed pulumi.BoolPtrInput
 	// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.

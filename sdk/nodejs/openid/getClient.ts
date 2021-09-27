@@ -35,12 +35,8 @@ export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Pro
     }
     return pulumi.runtime.invoke("keycloak:openid/getClient:getClient", {
         "clientId": args.clientId,
-        "clientOfflineSessionIdleTimeout": args.clientOfflineSessionIdleTimeout,
-        "clientOfflineSessionMaxLifespan": args.clientOfflineSessionMaxLifespan,
-        "clientSessionIdleTimeout": args.clientSessionIdleTimeout,
-        "clientSessionMaxLifespan": args.clientSessionMaxLifespan,
+        "extraConfig": args.extraConfig,
         "realmId": args.realmId,
-        "useRefreshTokens": args.useRefreshTokens,
     }, opts);
 }
 
@@ -52,15 +48,11 @@ export interface GetClientArgs {
      * The client id (not its unique ID).
      */
     readonly clientId: string;
-    readonly clientOfflineSessionIdleTimeout?: string;
-    readonly clientOfflineSessionMaxLifespan?: string;
-    readonly clientSessionIdleTimeout?: string;
-    readonly clientSessionMaxLifespan?: string;
+    readonly extraConfig?: {[key: string]: any};
     /**
      * The realm id.
      */
     readonly realmId: string;
-    readonly useRefreshTokens?: boolean;
 }
 
 /**
@@ -72,18 +64,22 @@ export interface GetClientResult {
     readonly adminUrl: string;
     readonly authenticationFlowBindingOverrides: outputs.openid.GetClientAuthenticationFlowBindingOverride[];
     readonly authorizations: outputs.openid.GetClientAuthorization[];
+    readonly backchannelLogoutRevokeOfflineSessions: boolean;
+    readonly backchannelLogoutSessionRequired: boolean;
+    readonly backchannelLogoutUrl: string;
     readonly baseUrl: string;
     readonly clientId: string;
-    readonly clientOfflineSessionIdleTimeout?: string;
-    readonly clientOfflineSessionMaxLifespan?: string;
+    readonly clientOfflineSessionIdleTimeout: string;
+    readonly clientOfflineSessionMaxLifespan: string;
     readonly clientSecret: string;
-    readonly clientSessionIdleTimeout?: string;
-    readonly clientSessionMaxLifespan?: string;
+    readonly clientSessionIdleTimeout: string;
+    readonly clientSessionMaxLifespan: string;
     readonly consentRequired: boolean;
     readonly description: string;
     readonly directAccessGrantsEnabled: boolean;
     readonly enabled: boolean;
     readonly excludeSessionStateFromAuthResponse: boolean;
+    readonly extraConfig: {[key: string]: any};
     readonly fullScopeAllowed: boolean;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -99,7 +95,7 @@ export interface GetClientResult {
     readonly serviceAccountUserId: string;
     readonly serviceAccountsEnabled: boolean;
     readonly standardFlowEnabled: boolean;
-    readonly useRefreshTokens?: boolean;
+    readonly useRefreshTokens: boolean;
     readonly validRedirectUris: string[];
     readonly webOrigins: string[];
 }

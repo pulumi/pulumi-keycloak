@@ -52,6 +52,15 @@ export interface GetRealmKeysKey {
     type: string;
 }
 
+export interface GetRealmOtpPolicy {
+    algorithm: string;
+    digits: number;
+    initialCounter: number;
+    lookAheadWindow: number;
+    period: number;
+    type: string;
+}
+
 export interface GetRealmSecurityDefense {
     bruteForceDetections: outputs.GetRealmSecurityDefenseBruteForceDetection[];
     headers: outputs.GetRealmSecurityDefenseHeader[];
@@ -130,6 +139,33 @@ export interface RealmInternationalization {
      * A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
      */
     supportedLocales: string[];
+}
+
+export interface RealmOtpPolicy {
+    /**
+     * What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
+     */
+    algorithm?: string;
+    /**
+     * How many digits the OTP have. Defaults to `6`.
+     */
+    digits?: number;
+    /**
+     * What should the initial counter value be. Defaults to `2`.
+     */
+    initialCounter?: number;
+    /**
+     * How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
+     */
+    lookAheadWindow?: number;
+    /**
+     * How many seconds should an OTP token be valid. Defaults to `30`.
+     */
+    period?: number;
+    /**
+     * One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
+     */
+    type?: string;
 }
 
 export interface RealmSecurityDefenses {
