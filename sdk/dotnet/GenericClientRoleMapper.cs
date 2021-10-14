@@ -99,7 +99,7 @@ namespace Pulumi.Keycloak
     ///         var clientBRoleMapper = new Keycloak.GenericClientRoleMapper("clientBRoleMapper", new Keycloak.GenericClientRoleMapperArgs
     ///         {
     ///             RealmId = realm.Id,
-    ///             ClientId = keycloak_client.Client_b.Id,
+    ///             ClientId = clientB.Id,
     ///             RoleId = clientRoleA.Id,
     ///         });
     ///     }
@@ -175,7 +175,7 @@ namespace Pulumi.Keycloak
     ///         var clientBRoleMapper = new Keycloak.GenericClientRoleMapper("clientBRoleMapper", new Keycloak.GenericClientRoleMapperArgs
     ///         {
     ///             RealmId = realm.Id,
-    ///             ClientScopeId = keycloak_client_scope.Client_scope.Id,
+    ///             ClientScopeId = clientScope.Id,
     ///             RoleId = clientRole.Id,
     ///         });
     ///     }

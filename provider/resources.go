@@ -103,10 +103,18 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_custom_user_federation":          {Tok: makeResource(mainMod, "CustomUserFederation")},
 			"keycloak_custom_identity_provider_mapper": {Tok: makeResource(mainMod, "CustomIdentityProviderMapping")},
 			"keycloak_default_groups":                  {Tok: makeResource(mainMod, "DefaultGroups")},
-			"keycloak_generic_client_protocol_mapper":  {Tok: makeResource(mainMod, "GenericClientProtocolMapper")},
-			"keycloak_group":                           {Tok: makeResource(mainMod, "Group")},
-			"keycloak_group_memberships":               {Tok: makeResource(mainMod, "GroupMemberships")},
-			"keycloak_group_roles":                     {Tok: makeResource(mainMod, "GroupRoles")},
+			"keycloak_default_roles": {
+				Tok: makeResource(mainMod, "DefaultRoles"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"default_roles": {
+						CSharpName: "RoleNames",
+					},
+				},
+			},
+			"keycloak_generic_client_protocol_mapper": {Tok: makeResource(mainMod, "GenericClientProtocolMapper")},
+			"keycloak_group":             {Tok: makeResource(mainMod, "Group")},
+			"keycloak_group_memberships": {Tok: makeResource(mainMod, "GroupMemberships")},
+			"keycloak_group_roles":       {Tok: makeResource(mainMod, "GroupRoles")},
 			"keycloak_hardcoded_attribute_identity_provider_mapper": {
 				Tok: makeResource(mainMod, "HardcodedAttributeIdentityProviderMapper"),
 			},
@@ -135,6 +143,12 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_identity_provider_token_exchange_scope_permission": {
 				Tok: makeResource(mainMod, "IdentityProviderTokenExchangeScopePermission"),
 			},
+			"keycloak_realm_keystore_aes_generated":   {Tok: makeResource(mainMod, "RealmKeystoreAesGenerated")},
+			"keycloak_realm_keystore_ecdsa_generated": {Tok: makeResource(mainMod, "RealmKeystoreEcdsaGenerated")},
+			"keycloak_realm_keystore_hmac_generated":  {Tok: makeResource(mainMod, "RealmKeystoreHmacGenerated")},
+			"keycloak_realm_keystore_java_keystore":   {Tok: makeResource(mainMod, "RealmKeystoreJavaGenerated")},
+			"keycloak_realm_keystore_rsa":             {Tok: makeResource(mainMod, "RealmKeystoreRsa")},
+			"keycloak_realm_keystore_rsa_generated":   {Tok: makeResource(mainMod, "RealmKeystoreRsaGenerated")},
 
 			"keycloak_ldap_full_name_mapper": {Tok: makeResource(ldapMod, "FullNameMapper")},
 			"keycloak_ldap_group_mapper":     {Tok: makeResource(ldapMod, "GroupMapper")},
@@ -200,6 +214,9 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(openIDMod, "UserSessionNoteProtocolMapper"),
 			},
 			"keycloak_openid_client_permissions": {Tok: makeResource(openIDMod, "ClientPermissions")},
+			"keycloak_openid_audience_resolve_protocol_mapper": {
+				Tok: makeResource(openIDMod, "AudienceResolveProtocolMappter"),
+			},
 			"keycloak_openid_script_protocol_mapper": {
 				Tok: makeResource(openIDMod, "ScriptProtocolMapper"),
 			},

@@ -39,8 +39,10 @@ class UserFederationArgs:
                  priority: Optional[pulumi.Input[int]] = None,
                  read_timeout: Optional[pulumi.Input[str]] = None,
                  search_scope: Optional[pulumi.Input[str]] = None,
+                 start_tls: Optional[pulumi.Input[bool]] = None,
                  sync_registrations: Optional[pulumi.Input[bool]] = None,
                  trust_email: Optional[pulumi.Input[bool]] = None,
+                 use_password_modify_extended_op: Optional[pulumi.Input[bool]] = None,
                  use_truststore_spi: Optional[pulumi.Input[str]] = None,
                  validate_password_policy: Optional[pulumi.Input[bool]] = None,
                  vendor: Optional[pulumi.Input[str]] = None):
@@ -72,8 +74,10 @@ class UserFederationArgs:
         :param pulumi.Input[str] search_scope: Can be one of `ONE_LEVEL` or `SUBTREE`:
                - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
                - `SUBTREE`: Search entire LDAP subtree.
+        :param pulumi.Input[bool] start_tls: When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
         :param pulumi.Input[bool] sync_registrations: When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
         :param pulumi.Input[bool] trust_email: If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
+        :param pulumi.Input[bool] use_password_modify_extended_op: When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
         :param pulumi.Input[str] use_truststore_spi: Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
         :param pulumi.Input[bool] validate_password_policy: When `true`, Keycloak will validate passwords using the realm policy before updating it.
         :param pulumi.Input[str] vendor: Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
@@ -119,10 +123,14 @@ class UserFederationArgs:
             pulumi.set(__self__, "read_timeout", read_timeout)
         if search_scope is not None:
             pulumi.set(__self__, "search_scope", search_scope)
+        if start_tls is not None:
+            pulumi.set(__self__, "start_tls", start_tls)
         if sync_registrations is not None:
             pulumi.set(__self__, "sync_registrations", sync_registrations)
         if trust_email is not None:
             pulumi.set(__self__, "trust_email", trust_email)
+        if use_password_modify_extended_op is not None:
+            pulumi.set(__self__, "use_password_modify_extended_op", use_password_modify_extended_op)
         if use_truststore_spi is not None:
             pulumi.set(__self__, "use_truststore_spi", use_truststore_spi)
         if validate_password_policy is not None:
@@ -421,6 +429,18 @@ class UserFederationArgs:
         pulumi.set(self, "search_scope", value)
 
     @property
+    @pulumi.getter(name="startTls")
+    def start_tls(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+        """
+        return pulumi.get(self, "start_tls")
+
+    @start_tls.setter
+    def start_tls(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "start_tls", value)
+
+    @property
     @pulumi.getter(name="syncRegistrations")
     def sync_registrations(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -443,6 +463,18 @@ class UserFederationArgs:
     @trust_email.setter
     def trust_email(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "trust_email", value)
+
+    @property
+    @pulumi.getter(name="usePasswordModifyExtendedOp")
+    def use_password_modify_extended_op(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
+        """
+        return pulumi.get(self, "use_password_modify_extended_op")
+
+    @use_password_modify_extended_op.setter
+    def use_password_modify_extended_op(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_password_modify_extended_op", value)
 
     @property
     @pulumi.getter(name="useTruststoreSpi")
@@ -504,8 +536,10 @@ class _UserFederationState:
                  read_timeout: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  search_scope: Optional[pulumi.Input[str]] = None,
+                 start_tls: Optional[pulumi.Input[bool]] = None,
                  sync_registrations: Optional[pulumi.Input[bool]] = None,
                  trust_email: Optional[pulumi.Input[bool]] = None,
+                 use_password_modify_extended_op: Optional[pulumi.Input[bool]] = None,
                  use_truststore_spi: Optional[pulumi.Input[str]] = None,
                  user_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username_ldap_attribute: Optional[pulumi.Input[str]] = None,
@@ -537,8 +571,10 @@ class _UserFederationState:
         :param pulumi.Input[str] search_scope: Can be one of `ONE_LEVEL` or `SUBTREE`:
                - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
                - `SUBTREE`: Search entire LDAP subtree.
+        :param pulumi.Input[bool] start_tls: When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
         :param pulumi.Input[bool] sync_registrations: When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
         :param pulumi.Input[bool] trust_email: If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
+        :param pulumi.Input[bool] use_password_modify_extended_op: When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
         :param pulumi.Input[str] use_truststore_spi: Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_object_classes: Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
         :param pulumi.Input[str] username_ldap_attribute: Name of the LDAP attribute to use as the Keycloak username.
@@ -587,10 +623,14 @@ class _UserFederationState:
             pulumi.set(__self__, "realm_id", realm_id)
         if search_scope is not None:
             pulumi.set(__self__, "search_scope", search_scope)
+        if start_tls is not None:
+            pulumi.set(__self__, "start_tls", start_tls)
         if sync_registrations is not None:
             pulumi.set(__self__, "sync_registrations", sync_registrations)
         if trust_email is not None:
             pulumi.set(__self__, "trust_email", trust_email)
+        if use_password_modify_extended_op is not None:
+            pulumi.set(__self__, "use_password_modify_extended_op", use_password_modify_extended_op)
         if use_truststore_spi is not None:
             pulumi.set(__self__, "use_truststore_spi", use_truststore_spi)
         if user_object_classes is not None:
@@ -849,6 +889,18 @@ class _UserFederationState:
         pulumi.set(self, "search_scope", value)
 
     @property
+    @pulumi.getter(name="startTls")
+    def start_tls(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+        """
+        return pulumi.get(self, "start_tls")
+
+    @start_tls.setter
+    def start_tls(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "start_tls", value)
+
+    @property
     @pulumi.getter(name="syncRegistrations")
     def sync_registrations(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -871,6 +923,18 @@ class _UserFederationState:
     @trust_email.setter
     def trust_email(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "trust_email", value)
+
+    @property
+    @pulumi.getter(name="usePasswordModifyExtendedOp")
+    def use_password_modify_extended_op(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
+        """
+        return pulumi.get(self, "use_password_modify_extended_op")
+
+    @use_password_modify_extended_op.setter
+    def use_password_modify_extended_op(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_password_modify_extended_op", value)
 
     @property
     @pulumi.getter(name="useTruststoreSpi")
@@ -982,8 +1046,10 @@ class UserFederation(pulumi.CustomResource):
                  read_timeout: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  search_scope: Optional[pulumi.Input[str]] = None,
+                 start_tls: Optional[pulumi.Input[bool]] = None,
                  sync_registrations: Optional[pulumi.Input[bool]] = None,
                  trust_email: Optional[pulumi.Input[bool]] = None,
+                 use_password_modify_extended_op: Optional[pulumi.Input[bool]] = None,
                  use_truststore_spi: Optional[pulumi.Input[str]] = None,
                  user_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username_ldap_attribute: Optional[pulumi.Input[str]] = None,
@@ -1064,8 +1130,10 @@ class UserFederation(pulumi.CustomResource):
         :param pulumi.Input[str] search_scope: Can be one of `ONE_LEVEL` or `SUBTREE`:
                - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
                - `SUBTREE`: Search entire LDAP subtree.
+        :param pulumi.Input[bool] start_tls: When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
         :param pulumi.Input[bool] sync_registrations: When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
         :param pulumi.Input[bool] trust_email: If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
+        :param pulumi.Input[bool] use_password_modify_extended_op: When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
         :param pulumi.Input[str] use_truststore_spi: Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_object_classes: Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
         :param pulumi.Input[str] username_ldap_attribute: Name of the LDAP attribute to use as the Keycloak username.
@@ -1163,8 +1231,10 @@ class UserFederation(pulumi.CustomResource):
                  read_timeout: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  search_scope: Optional[pulumi.Input[str]] = None,
+                 start_tls: Optional[pulumi.Input[bool]] = None,
                  sync_registrations: Optional[pulumi.Input[bool]] = None,
                  trust_email: Optional[pulumi.Input[bool]] = None,
+                 use_password_modify_extended_op: Optional[pulumi.Input[bool]] = None,
                  use_truststore_spi: Optional[pulumi.Input[str]] = None,
                  user_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username_ldap_attribute: Optional[pulumi.Input[str]] = None,
@@ -1210,8 +1280,10 @@ class UserFederation(pulumi.CustomResource):
                 raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
             __props__.__dict__["search_scope"] = search_scope
+            __props__.__dict__["start_tls"] = start_tls
             __props__.__dict__["sync_registrations"] = sync_registrations
             __props__.__dict__["trust_email"] = trust_email
+            __props__.__dict__["use_password_modify_extended_op"] = use_password_modify_extended_op
             __props__.__dict__["use_truststore_spi"] = use_truststore_spi
             if user_object_classes is None and not opts.urn:
                 raise TypeError("Missing required property 'user_object_classes'")
@@ -1257,8 +1329,10 @@ class UserFederation(pulumi.CustomResource):
             read_timeout: Optional[pulumi.Input[str]] = None,
             realm_id: Optional[pulumi.Input[str]] = None,
             search_scope: Optional[pulumi.Input[str]] = None,
+            start_tls: Optional[pulumi.Input[bool]] = None,
             sync_registrations: Optional[pulumi.Input[bool]] = None,
             trust_email: Optional[pulumi.Input[bool]] = None,
+            use_password_modify_extended_op: Optional[pulumi.Input[bool]] = None,
             use_truststore_spi: Optional[pulumi.Input[str]] = None,
             user_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             username_ldap_attribute: Optional[pulumi.Input[str]] = None,
@@ -1295,8 +1369,10 @@ class UserFederation(pulumi.CustomResource):
         :param pulumi.Input[str] search_scope: Can be one of `ONE_LEVEL` or `SUBTREE`:
                - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
                - `SUBTREE`: Search entire LDAP subtree.
+        :param pulumi.Input[bool] start_tls: When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
         :param pulumi.Input[bool] sync_registrations: When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
         :param pulumi.Input[bool] trust_email: If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
+        :param pulumi.Input[bool] use_password_modify_extended_op: When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
         :param pulumi.Input[str] use_truststore_spi: Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_object_classes: Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
         :param pulumi.Input[str] username_ldap_attribute: Name of the LDAP attribute to use as the Keycloak username.
@@ -1329,8 +1405,10 @@ class UserFederation(pulumi.CustomResource):
         __props__.__dict__["read_timeout"] = read_timeout
         __props__.__dict__["realm_id"] = realm_id
         __props__.__dict__["search_scope"] = search_scope
+        __props__.__dict__["start_tls"] = start_tls
         __props__.__dict__["sync_registrations"] = sync_registrations
         __props__.__dict__["trust_email"] = trust_email
+        __props__.__dict__["use_password_modify_extended_op"] = use_password_modify_extended_op
         __props__.__dict__["use_truststore_spi"] = use_truststore_spi
         __props__.__dict__["user_object_classes"] = user_object_classes
         __props__.__dict__["username_ldap_attribute"] = username_ldap_attribute
@@ -1503,6 +1581,14 @@ class UserFederation(pulumi.CustomResource):
         return pulumi.get(self, "search_scope")
 
     @property
+    @pulumi.getter(name="startTls")
+    def start_tls(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+        """
+        return pulumi.get(self, "start_tls")
+
+    @property
     @pulumi.getter(name="syncRegistrations")
     def sync_registrations(self) -> pulumi.Output[Optional[bool]]:
         """
@@ -1517,6 +1603,14 @@ class UserFederation(pulumi.CustomResource):
         If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
         """
         return pulumi.get(self, "trust_email")
+
+    @property
+    @pulumi.getter(name="usePasswordModifyExtendedOp")
+    def use_password_modify_extended_op(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
+        """
+        return pulumi.get(self, "use_password_modify_extended_op")
 
     @property
     @pulumi.getter(name="useTruststoreSpi")

@@ -73,7 +73,7 @@ import * as utilities from "./utilities";
  * });
  * const clientBRoleMapper = new keycloak.GenericClientRoleMapper("clientBRoleMapper", {
  *     realmId: realm.id,
- *     clientId: keycloak_client.client_b.id,
+ *     clientId: clientB.id,
  *     roleId: clientRoleA.id,
  * });
  * ```
@@ -122,7 +122,7 @@ import * as utilities from "./utilities";
  * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
  * const clientBRoleMapper = new keycloak.GenericClientRoleMapper("clientBRoleMapper", {
  *     realmId: realm.id,
- *     clientScopeId: keycloak_client_scope.client_scope.id,
+ *     clientScopeId: clientScope.id,
  *     roleId: clientRole.id,
  * });
  * ```

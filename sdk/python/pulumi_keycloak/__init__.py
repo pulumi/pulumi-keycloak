@@ -8,6 +8,7 @@ from .attribute_to_role_identity_mapper import *
 from .custom_identity_provider_mapping import *
 from .custom_user_federation import *
 from .default_groups import *
+from .default_roles import *
 from .generic_client_protocol_mapper import *
 from .generic_client_role_mapper import *
 from .get_authentication_execution import *
@@ -28,6 +29,12 @@ from .identity_provider_token_exchange_scope_permission import *
 from .provider import *
 from .realm import *
 from .realm_events import *
+from .realm_keystore_aes_generated import *
+from .realm_keystore_ecdsa_generated import *
+from .realm_keystore_hmac_generated import *
+from .realm_keystore_java_generated import *
+from .realm_keystore_rsa import *
+from .realm_keystore_rsa_generated import *
 from .required_action import *
 from .role import *
 from .user import *
@@ -70,6 +77,8 @@ def _register_module():
                 return CustomUserFederation(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "keycloak:index/defaultGroups:DefaultGroups":
                 return DefaultGroups(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/defaultRoles:DefaultRoles":
+                return DefaultRoles(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper":
                 return GenericClientProtocolMapper(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "keycloak:index/genericClientRoleMapper:GenericClientRoleMapper":
@@ -90,6 +99,18 @@ def _register_module():
                 return Realm(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "keycloak:index/realmEvents:RealmEvents":
                 return RealmEvents(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated":
+                return RealmKeystoreAesGenerated(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated":
+                return RealmKeystoreEcdsaGenerated(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated":
+                return RealmKeystoreHmacGenerated(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/realmKeystoreJavaGenerated:RealmKeystoreJavaGenerated":
+                return RealmKeystoreJavaGenerated(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/realmKeystoreRsa:RealmKeystoreRsa":
+                return RealmKeystoreRsa(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated":
+                return RealmKeystoreRsaGenerated(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "keycloak:index/requiredAction:RequiredAction":
                 return RequiredAction(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "keycloak:index/role:Role":
@@ -114,6 +135,7 @@ def _register_module():
     pulumi.runtime.register_resource_module("keycloak", "index/customIdentityProviderMapping", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "index/customUserFederation", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "index/defaultGroups", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/defaultRoles", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "index/genericClientProtocolMapper", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "index/genericClientRoleMapper", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "index/group", _module_instance)
@@ -124,6 +146,12 @@ def _register_module():
     pulumi.runtime.register_resource_module("keycloak", "index/identityProviderTokenExchangeScopePermission", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "index/realm", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "index/realmEvents", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/realmKeystoreAesGenerated", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/realmKeystoreEcdsaGenerated", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/realmKeystoreHmacGenerated", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/realmKeystoreJavaGenerated", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/realmKeystoreRsa", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "index/realmKeystoreRsaGenerated", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "index/requiredAction", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "index/role", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "index/user", _module_instance)

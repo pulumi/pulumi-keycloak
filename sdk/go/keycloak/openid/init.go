@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper":
 		r = &AudienceProtocolMapper{}
+	case "keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter":
+		r = &AudienceResolveProtocolMappter{}
 	case "keycloak:openid/client:Client":
 		r = &Client{}
 	case "keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy":
@@ -93,6 +95,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"openid/audienceProtocolMapper",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"openid/audienceResolveProtocolMappter",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
