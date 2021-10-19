@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  *
  * const realm = new keycloak.Realm("realm", {realm: "my-realm"});
  * const keystoreAesGenerated = new keycloak.RealmKeystoreAesGenerated("keystoreAesGenerated", {
- *     realmId: keycloak_realm.my_realm.realm,
+ *     realmId: realm.realm,
  *     enabled: true,
  *     active: true,
  *     priority: 100,

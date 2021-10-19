@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  *
  * const realm = new keycloak.Realm("realm", {realm: "my-realm"});
  * const keystoreHmacGenerated = new keycloak.RealmKeystoreHmacGenerated("keystoreHmacGenerated", {
- *     realmId: keycloak_realm.my_realm.realm,
+ *     realmId: realm.realm,
  *     enabled: true,
  *     active: true,
  *     priority: 100,

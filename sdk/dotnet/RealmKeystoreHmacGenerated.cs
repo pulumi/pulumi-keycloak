@@ -30,7 +30,7 @@ namespace Pulumi.Keycloak
     ///         });
     ///         var keystoreHmacGenerated = new Keycloak.RealmKeystoreHmacGenerated("keystoreHmacGenerated", new Keycloak.RealmKeystoreHmacGeneratedArgs
     ///         {
-    ///             RealmId = keycloak_realm.My_realm.Realm,
+    ///             RealmId = realm.RealmName,
     ///             Enabled = true,
     ///             Active = true,
     ///             Priority = 100,

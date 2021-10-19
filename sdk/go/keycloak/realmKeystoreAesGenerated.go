@@ -27,14 +27,14 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
 // 			Realm: pulumi.String("my-realm"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = keycloak.NewRealmKeystoreAesGenerated(ctx, "keystoreAesGenerated", &keycloak.RealmKeystoreAesGeneratedArgs{
-// 			RealmId:    pulumi.Any(keycloak_realm.My_realm.Realm),
+// 			RealmId:    realm.Realm,
 // 			Enabled:    pulumi.Bool(true),
 // 			Active:     pulumi.Bool(true),
 // 			Priority:   pulumi.Int(100),

@@ -47,7 +47,7 @@ import (
 // 		}
 // 		resource, err := openid.NewClientAuthorizationResource(ctx, "resource", &openid.ClientAuthorizationResourceArgs{
 // 			ResourceServerId: clientWithAuthz.ResourceServerId,
-// 			RealmId:          pulumi.Any(keycloak_realm.Test.Id),
+// 			RealmId:          realm.ID(),
 // 			Uris: pulumi.StringArray{
 // 				pulumi.String("/endpoint/*"),
 // 			},
@@ -60,7 +60,7 @@ import (
 // 		}
 // 		_, err = openid.NewClientAuthorizationPermission(ctx, "permission", &openid.ClientAuthorizationPermissionArgs{
 // 			ResourceServerId: clientWithAuthz.ResourceServerId,
-// 			RealmId:          pulumi.Any(keycloak_realm.Test.Id),
+// 			RealmId:          realm.ID(),
 // 			Policies: pulumi.StringArray{
 // 				defaultPermission.ApplyT(func(defaultPermission openid.GetClientAuthorizationPolicyResult) (string, error) {
 // 					return defaultPermission.Id, nil

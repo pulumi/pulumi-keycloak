@@ -23,11 +23,11 @@ import * as utilities from "../utilities";
  *     enabled: true,
  * });
  * const samlClient = new keycloak.saml.Client("samlClient", {
- *     realmId: keycloak_realm.test.id,
+ *     realmId: realm.id,
  *     clientId: "saml-client",
  * });
  * const samlScriptMapper = new keycloak.saml.ScriptProtocolMapper("samlScriptMapper", {
- *     realmId: keycloak_realm.test.id,
+ *     realmId: realm.id,
  *     clientId: samlClient.id,
  *     script: "exports = 'foo';",
  *     samlAttributeName: "displayName",

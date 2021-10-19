@@ -34,12 +34,12 @@ namespace Pulumi.Keycloak.Saml
     ///         });
     ///         var samlClient = new Keycloak.Saml.Client("samlClient", new Keycloak.Saml.ClientArgs
     ///         {
-    ///             RealmId = keycloak_realm.Test.Id,
+    ///             RealmId = realm.Id,
     ///             ClientId = "saml-client",
     ///         });
     ///         var samlScriptMapper = new Keycloak.Saml.ScriptProtocolMapper("samlScriptMapper", new Keycloak.Saml.ScriptProtocolMapperArgs
     ///         {
-    ///             RealmId = keycloak_realm.Test.Id,
+    ///             RealmId = realm.Id,
     ///             ClientId = samlClient.Id,
     ///             Script = "exports = 'foo';",
     ///             SamlAttributeName = "displayName",

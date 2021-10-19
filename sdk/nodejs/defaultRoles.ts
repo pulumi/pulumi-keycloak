@@ -5,9 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Allows managing default roles within Keycloak.
+ * Allows managing default realm roles within Keycloak.
  *
- * Roles allow you define privileges within Keycloak and map them to users and groups.
+ * Note: This feature was added in Keycloak v13, so this resource will not work on older versions of Keycloak.
  *
  * ## Example Usage
  * ### Realm Role)

@@ -242,7 +242,7 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
 
         realm = keycloak.Realm("realm", realm="my-realm")
         keystore_ecdsa_generated = keycloak.RealmKeystoreEcdsaGenerated("keystoreEcdsaGenerated",
-            realm_id=keycloak_realm["my_realm"]["realm"],
+            realm_id=realm.realm,
             enabled=True,
             active=True,
             priority=100,
@@ -285,7 +285,7 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
 
         realm = keycloak.Realm("realm", realm="my-realm")
         keystore_ecdsa_generated = keycloak.RealmKeystoreEcdsaGenerated("keystoreEcdsaGenerated",
-            realm_id=keycloak_realm["my_realm"]["realm"],
+            realm_id=realm.realm,
             enabled=True,
             active=True,
             priority=100,

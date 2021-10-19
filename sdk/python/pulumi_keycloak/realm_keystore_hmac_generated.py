@@ -275,7 +275,7 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
 
         realm = keycloak.Realm("realm", realm="my-realm")
         keystore_hmac_generated = keycloak.RealmKeystoreHmacGenerated("keystoreHmacGenerated",
-            realm_id=keycloak_realm["my_realm"]["realm"],
+            realm_id=realm.realm,
             enabled=True,
             active=True,
             priority=100,
@@ -320,7 +320,7 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
 
         realm = keycloak.Realm("realm", realm="my-realm")
         keystore_hmac_generated = keycloak.RealmKeystoreHmacGenerated("keystoreHmacGenerated",
-            realm_id=keycloak_realm["my_realm"]["realm"],
+            realm_id=realm.realm,
             enabled=True,
             active=True,
             priority=100,

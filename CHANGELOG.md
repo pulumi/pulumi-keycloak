@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v3.5.0 of the KeyCloak Terraform Provider
+* Upgrade to v3.5.1 of the KeyCloak Terraform Provider
 
 ---
 

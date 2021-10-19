@@ -46,16 +46,21 @@ namespace Pulumi.Keycloak.OpenId
         ///                 PolicyEnforcementMode = "ENFORCING",
         ///             },
         ///         });
-        ///         var defaultPermission = clientWithAuthz.ResourceServerId.Apply(resourceServerId =&gt; Keycloak.OpenId.GetClientAuthorizationPolicy.InvokeAsync(new Keycloak.OpenId.GetClientAuthorizationPolicyArgs
+        ///         var defaultPermission = Output.Tuple(realm.Id, clientWithAuthz.ResourceServerId).Apply(values =&gt;
         ///         {
-        ///             RealmId = keycloak_realm.Test.Id,
-        ///             ResourceServerId = resourceServerId,
-        ///             Name = "Default Permission",
-        ///         }));
+        ///             var id = values.Item1;
+        ///             var resourceServerId = values.Item2;
+        ///             return Keycloak.OpenId.GetClientAuthorizationPolicy.InvokeAsync(new Keycloak.OpenId.GetClientAuthorizationPolicyArgs
+        ///             {
+        ///                 RealmId = id,
+        ///                 ResourceServerId = resourceServerId,
+        ///                 Name = "Default Permission",
+        ///             });
+        ///         });
         ///         var resource = new Keycloak.OpenId.ClientAuthorizationResource("resource", new Keycloak.OpenId.ClientAuthorizationResourceArgs
         ///         {
         ///             ResourceServerId = clientWithAuthz.ResourceServerId,
-        ///             RealmId = keycloak_realm.Test.Id,
+        ///             RealmId = realm.Id,
         ///             Uris = 
         ///             {
         ///                 "/endpoint/*",
@@ -68,7 +73,7 @@ namespace Pulumi.Keycloak.OpenId
         ///         var permission = new Keycloak.OpenId.ClientAuthorizationPermission("permission", new Keycloak.OpenId.ClientAuthorizationPermissionArgs
         ///         {
         ///             ResourceServerId = clientWithAuthz.ResourceServerId,
-        ///             RealmId = keycloak_realm.Test.Id,
+        ///             RealmId = realm.Id,
         ///             Policies = 
         ///             {
         ///                 defaultPermission.Apply(defaultPermission =&gt; defaultPermission.Id),
