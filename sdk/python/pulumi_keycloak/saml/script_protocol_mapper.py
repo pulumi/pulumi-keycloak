@@ -343,10 +343,10 @@ class ScriptProtocolMapper(pulumi.CustomResource):
             realm="my-realm",
             enabled=True)
         saml_client = keycloak.saml.Client("samlClient",
-            realm_id=keycloak_realm["test"]["id"],
+            realm_id=realm.id,
             client_id="saml-client")
         saml_script_mapper = keycloak.saml.ScriptProtocolMapper("samlScriptMapper",
-            realm_id=keycloak_realm["test"]["id"],
+            realm_id=realm.id,
             client_id=saml_client.id,
             script="exports = 'foo';",
             saml_attribute_name="displayName",
@@ -401,10 +401,10 @@ class ScriptProtocolMapper(pulumi.CustomResource):
             realm="my-realm",
             enabled=True)
         saml_client = keycloak.saml.Client("samlClient",
-            realm_id=keycloak_realm["test"]["id"],
+            realm_id=realm.id,
             client_id="saml-client")
         saml_script_mapper = keycloak.saml.ScriptProtocolMapper("samlScriptMapper",
-            realm_id=keycloak_realm["test"]["id"],
+            realm_id=realm.id,
             client_id=saml_client.id,
             script="exports = 'foo';",
             saml_attribute_name="displayName",

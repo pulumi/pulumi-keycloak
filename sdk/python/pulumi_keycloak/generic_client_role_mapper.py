@@ -222,7 +222,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             description="My Client Role")
         client_b_role_mapper = keycloak.GenericClientRoleMapper("clientBRoleMapper",
             realm_id=realm.id,
-            client_id=keycloak_client["client_b"]["id"],
+            client_id=client_b.id,
             role_id=client_role_a.id)
         ```
         ### Realm Role To Client Scope)
@@ -264,7 +264,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
         client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
         client_b_role_mapper = keycloak.GenericClientRoleMapper("clientBRoleMapper",
             realm_id=realm.id,
-            client_scope_id=keycloak_client_scope["client_scope"]["id"],
+            client_scope_id=client_scope.id,
             role_id=client_role.id)
         ```
 
@@ -349,7 +349,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             description="My Client Role")
         client_b_role_mapper = keycloak.GenericClientRoleMapper("clientBRoleMapper",
             realm_id=realm.id,
-            client_id=keycloak_client["client_b"]["id"],
+            client_id=client_b.id,
             role_id=client_role_a.id)
         ```
         ### Realm Role To Client Scope)
@@ -391,7 +391,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
         client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
         client_b_role_mapper = keycloak.GenericClientRoleMapper("clientBRoleMapper",
             realm_id=realm.id,
-            client_scope_id=keycloak_client_scope["client_scope"]["id"],
+            client_scope_id=client_scope.id,
             role_id=client_role.id)
         ```
 

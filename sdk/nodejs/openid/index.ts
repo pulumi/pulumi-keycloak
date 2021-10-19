@@ -6,6 +6,7 @@ import * as utilities from "../utilities";
 
 // Export members:
 export * from "./audienceProtocolMapper";
+export * from "./audienceResolveProtocolMappter";
 export * from "./client";
 export * from "./clientAggregatePolicy";
 export * from "./clientAuthorizationPermission";
@@ -39,6 +40,7 @@ export * from "./userSessionNoteProtocolMapper";
 
 // Import resources to register:
 import { AudienceProtocolMapper } from "./audienceProtocolMapper";
+import { AudienceResolveProtocolMappter } from "./audienceResolveProtocolMappter";
 import { Client } from "./client";
 import { ClientAggregatePolicy } from "./clientAggregatePolicy";
 import { ClientAuthorizationPermission } from "./clientAuthorizationPermission";
@@ -73,6 +75,8 @@ const _module = {
         switch (type) {
             case "keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper":
                 return new AudienceProtocolMapper(name, <any>undefined, { urn })
+            case "keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter":
+                return new AudienceResolveProtocolMappter(name, <any>undefined, { urn })
             case "keycloak:openid/client:Client":
                 return new Client(name, <any>undefined, { urn })
             case "keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy":
@@ -133,6 +137,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("keycloak", "openid/audienceProtocolMapper", _module)
+pulumi.runtime.registerResourceModule("keycloak", "openid/audienceResolveProtocolMappter", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/client", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientAggregatePolicy", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientAuthorizationPermission", _module)

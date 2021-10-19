@@ -10,6 +10,7 @@ export * from "./attributeToRoleIdentityMapper";
 export * from "./customIdentityProviderMapping";
 export * from "./customUserFederation";
 export * from "./defaultGroups";
+export * from "./defaultRoles";
 export * from "./genericClientProtocolMapper";
 export * from "./genericClientRoleMapper";
 export * from "./getAuthenticationExecution";
@@ -30,6 +31,12 @@ export * from "./identityProviderTokenExchangeScopePermission";
 export * from "./provider";
 export * from "./realm";
 export * from "./realmEvents";
+export * from "./realmKeystoreAesGenerated";
+export * from "./realmKeystoreEcdsaGenerated";
+export * from "./realmKeystoreHmacGenerated";
+export * from "./realmKeystoreJavaGenerated";
+export * from "./realmKeystoreRsa";
+export * from "./realmKeystoreRsaGenerated";
 export * from "./requiredAction";
 export * from "./role";
 export * from "./user";
@@ -63,6 +70,7 @@ import { AttributeToRoleIdentityMapper } from "./attributeToRoleIdentityMapper";
 import { CustomIdentityProviderMapping } from "./customIdentityProviderMapping";
 import { CustomUserFederation } from "./customUserFederation";
 import { DefaultGroups } from "./defaultGroups";
+import { DefaultRoles } from "./defaultRoles";
 import { GenericClientProtocolMapper } from "./genericClientProtocolMapper";
 import { GenericClientRoleMapper } from "./genericClientRoleMapper";
 import { Group } from "./group";
@@ -73,6 +81,12 @@ import { HardcodedRoleIdentityMapper } from "./hardcodedRoleIdentityMapper";
 import { IdentityProviderTokenExchangeScopePermission } from "./identityProviderTokenExchangeScopePermission";
 import { Realm } from "./realm";
 import { RealmEvents } from "./realmEvents";
+import { RealmKeystoreAesGenerated } from "./realmKeystoreAesGenerated";
+import { RealmKeystoreEcdsaGenerated } from "./realmKeystoreEcdsaGenerated";
+import { RealmKeystoreHmacGenerated } from "./realmKeystoreHmacGenerated";
+import { RealmKeystoreJavaGenerated } from "./realmKeystoreJavaGenerated";
+import { RealmKeystoreRsa } from "./realmKeystoreRsa";
+import { RealmKeystoreRsaGenerated } from "./realmKeystoreRsaGenerated";
 import { RequiredAction } from "./requiredAction";
 import { Role } from "./role";
 import { User } from "./user";
@@ -95,6 +109,8 @@ const _module = {
                 return new CustomUserFederation(name, <any>undefined, { urn })
             case "keycloak:index/defaultGroups:DefaultGroups":
                 return new DefaultGroups(name, <any>undefined, { urn })
+            case "keycloak:index/defaultRoles:DefaultRoles":
+                return new DefaultRoles(name, <any>undefined, { urn })
             case "keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper":
                 return new GenericClientProtocolMapper(name, <any>undefined, { urn })
             case "keycloak:index/genericClientRoleMapper:GenericClientRoleMapper":
@@ -115,6 +131,18 @@ const _module = {
                 return new Realm(name, <any>undefined, { urn })
             case "keycloak:index/realmEvents:RealmEvents":
                 return new RealmEvents(name, <any>undefined, { urn })
+            case "keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated":
+                return new RealmKeystoreAesGenerated(name, <any>undefined, { urn })
+            case "keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated":
+                return new RealmKeystoreEcdsaGenerated(name, <any>undefined, { urn })
+            case "keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated":
+                return new RealmKeystoreHmacGenerated(name, <any>undefined, { urn })
+            case "keycloak:index/realmKeystoreJavaGenerated:RealmKeystoreJavaGenerated":
+                return new RealmKeystoreJavaGenerated(name, <any>undefined, { urn })
+            case "keycloak:index/realmKeystoreRsa:RealmKeystoreRsa":
+                return new RealmKeystoreRsa(name, <any>undefined, { urn })
+            case "keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated":
+                return new RealmKeystoreRsaGenerated(name, <any>undefined, { urn })
             case "keycloak:index/requiredAction:RequiredAction":
                 return new RequiredAction(name, <any>undefined, { urn })
             case "keycloak:index/role:Role":
@@ -139,6 +167,7 @@ pulumi.runtime.registerResourceModule("keycloak", "index/attributeToRoleIdentity
 pulumi.runtime.registerResourceModule("keycloak", "index/customIdentityProviderMapping", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/customUserFederation", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/defaultGroups", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/defaultRoles", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/genericClientProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/genericClientRoleMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/group", _module)
@@ -149,6 +178,12 @@ pulumi.runtime.registerResourceModule("keycloak", "index/hardcodedRoleIdentityMa
 pulumi.runtime.registerResourceModule("keycloak", "index/identityProviderTokenExchangeScopePermission", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realm", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmEvents", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreAesGenerated", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreEcdsaGenerated", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreHmacGenerated", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreJavaGenerated", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreRsa", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreRsaGenerated", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/requiredAction", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/role", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/user", _module)

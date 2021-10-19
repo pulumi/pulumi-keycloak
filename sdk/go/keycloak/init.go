@@ -30,6 +30,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CustomUserFederation{}
 	case "keycloak:index/defaultGroups:DefaultGroups":
 		r = &DefaultGroups{}
+	case "keycloak:index/defaultRoles:DefaultRoles":
+		r = &DefaultRoles{}
 	case "keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper":
 		r = &GenericClientProtocolMapper{}
 	case "keycloak:index/genericClientRoleMapper:GenericClientRoleMapper":
@@ -50,6 +52,18 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Realm{}
 	case "keycloak:index/realmEvents:RealmEvents":
 		r = &RealmEvents{}
+	case "keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated":
+		r = &RealmKeystoreAesGenerated{}
+	case "keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated":
+		r = &RealmKeystoreEcdsaGenerated{}
+	case "keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated":
+		r = &RealmKeystoreHmacGenerated{}
+	case "keycloak:index/realmKeystoreJavaGenerated:RealmKeystoreJavaGenerated":
+		r = &RealmKeystoreJavaGenerated{}
+	case "keycloak:index/realmKeystoreRsa:RealmKeystoreRsa":
+		r = &RealmKeystoreRsa{}
+	case "keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated":
+		r = &RealmKeystoreRsaGenerated{}
 	case "keycloak:index/requiredAction:RequiredAction":
 		r = &RequiredAction{}
 	case "keycloak:index/role:Role":
@@ -122,6 +136,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"keycloak",
+		"index/defaultRoles",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
 		"index/genericClientProtocolMapper",
 		&module{version},
 	)
@@ -168,6 +187,36 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"index/realmEvents",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/realmKeystoreAesGenerated",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/realmKeystoreEcdsaGenerated",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/realmKeystoreHmacGenerated",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/realmKeystoreJavaGenerated",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/realmKeystoreRsa",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/realmKeystoreRsaGenerated",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

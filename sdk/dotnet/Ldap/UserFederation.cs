@@ -196,6 +196,12 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string?> SearchScope { get; private set; } = null!;
 
         /// <summary>
+        /// When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+        /// </summary>
+        [Output("startTls")]
+        public Output<bool?> StartTls { get; private set; } = null!;
+
+        /// <summary>
         /// When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
         /// </summary>
         [Output("syncRegistrations")]
@@ -206,6 +212,12 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Output("trustEmail")]
         public Output<bool?> TrustEmail { get; private set; } = null!;
+
+        /// <summary>
+        /// When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
+        /// </summary>
+        [Output("usePasswordModifyExtendedOp")]
+        public Output<bool?> UsePasswordModifyExtendedOp { get; private set; } = null!;
 
         /// <summary>
         /// Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
@@ -418,6 +430,12 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? SearchScope { get; set; }
 
         /// <summary>
+        /// When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+        /// </summary>
+        [Input("startTls")]
+        public Input<bool>? StartTls { get; set; }
+
+        /// <summary>
         /// When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
         /// </summary>
         [Input("syncRegistrations")]
@@ -428,6 +446,12 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Input("trustEmail")]
         public Input<bool>? TrustEmail { get; set; }
+
+        /// <summary>
+        /// When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
+        /// </summary>
+        [Input("usePasswordModifyExtendedOp")]
+        public Input<bool>? UsePasswordModifyExtendedOp { get; set; }
 
         /// <summary>
         /// Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
@@ -607,6 +631,12 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? SearchScope { get; set; }
 
         /// <summary>
+        /// When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+        /// </summary>
+        [Input("startTls")]
+        public Input<bool>? StartTls { get; set; }
+
+        /// <summary>
         /// When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
         /// </summary>
         [Input("syncRegistrations")]
@@ -617,6 +647,12 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Input("trustEmail")]
         public Input<bool>? TrustEmail { get; set; }
+
+        /// <summary>
+        /// When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
+        /// </summary>
+        [Input("usePasswordModifyExtendedOp")]
+        public Input<bool>? UsePasswordModifyExtendedOp { get; set; }
 
         /// <summary>
         /// Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:

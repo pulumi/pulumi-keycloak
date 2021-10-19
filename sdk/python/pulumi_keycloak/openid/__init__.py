@@ -4,6 +4,7 @@
 
 # Export this package's modules as members:
 from .audience_protocol_mapper import *
+from .audience_resolve_protocol_mappter import *
 from .client import *
 from .client_aggregate_policy import *
 from .client_authorization_permission import *
@@ -51,6 +52,8 @@ def _register_module():
         def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
             if typ == "keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper":
                 return AudienceProtocolMapper(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter":
+                return AudienceResolveProtocolMappter(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "keycloak:openid/client:Client":
                 return Client(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy":
@@ -111,6 +114,7 @@ def _register_module():
 
     _module_instance = Module()
     pulumi.runtime.register_resource_module("keycloak", "openid/audienceProtocolMapper", _module_instance)
+    pulumi.runtime.register_resource_module("keycloak", "openid/audienceResolveProtocolMappter", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "openid/client", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "openid/clientAggregatePolicy", _module_instance)
     pulumi.runtime.register_resource_module("keycloak", "openid/clientAuthorizationPermission", _module_instance)

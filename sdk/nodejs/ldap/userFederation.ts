@@ -166,6 +166,10 @@ export class UserFederation extends pulumi.CustomResource {
      */
     public readonly searchScope!: pulumi.Output<string | undefined>;
     /**
+     * When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+     */
+    public readonly startTls!: pulumi.Output<boolean | undefined>;
+    /**
      * When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
      */
     public readonly syncRegistrations!: pulumi.Output<boolean | undefined>;
@@ -173,6 +177,10 @@ export class UserFederation extends pulumi.CustomResource {
      * If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
      */
     public readonly trustEmail!: pulumi.Output<boolean | undefined>;
+    /**
+     * When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
+     */
+    public readonly usePasswordModifyExtendedOp!: pulumi.Output<boolean | undefined>;
     /**
      * Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
      */
@@ -235,8 +243,10 @@ export class UserFederation extends pulumi.CustomResource {
             inputs["readTimeout"] = state ? state.readTimeout : undefined;
             inputs["realmId"] = state ? state.realmId : undefined;
             inputs["searchScope"] = state ? state.searchScope : undefined;
+            inputs["startTls"] = state ? state.startTls : undefined;
             inputs["syncRegistrations"] = state ? state.syncRegistrations : undefined;
             inputs["trustEmail"] = state ? state.trustEmail : undefined;
+            inputs["usePasswordModifyExtendedOp"] = state ? state.usePasswordModifyExtendedOp : undefined;
             inputs["useTruststoreSpi"] = state ? state.useTruststoreSpi : undefined;
             inputs["userObjectClasses"] = state ? state.userObjectClasses : undefined;
             inputs["usernameLdapAttribute"] = state ? state.usernameLdapAttribute : undefined;
@@ -287,8 +297,10 @@ export class UserFederation extends pulumi.CustomResource {
             inputs["readTimeout"] = args ? args.readTimeout : undefined;
             inputs["realmId"] = args ? args.realmId : undefined;
             inputs["searchScope"] = args ? args.searchScope : undefined;
+            inputs["startTls"] = args ? args.startTls : undefined;
             inputs["syncRegistrations"] = args ? args.syncRegistrations : undefined;
             inputs["trustEmail"] = args ? args.trustEmail : undefined;
+            inputs["usePasswordModifyExtendedOp"] = args ? args.usePasswordModifyExtendedOp : undefined;
             inputs["useTruststoreSpi"] = args ? args.useTruststoreSpi : undefined;
             inputs["userObjectClasses"] = args ? args.userObjectClasses : undefined;
             inputs["usernameLdapAttribute"] = args ? args.usernameLdapAttribute : undefined;
@@ -391,6 +403,10 @@ export interface UserFederationState {
      */
     readonly searchScope?: pulumi.Input<string>;
     /**
+     * When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+     */
+    readonly startTls?: pulumi.Input<boolean>;
+    /**
      * When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
      */
     readonly syncRegistrations?: pulumi.Input<boolean>;
@@ -398,6 +414,10 @@ export interface UserFederationState {
      * If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
      */
     readonly trustEmail?: pulumi.Input<boolean>;
+    /**
+     * When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
+     */
+    readonly usePasswordModifyExtendedOp?: pulumi.Input<boolean>;
     /**
      * Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
      */
@@ -515,6 +535,10 @@ export interface UserFederationArgs {
      */
     readonly searchScope?: pulumi.Input<string>;
     /**
+     * When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+     */
+    readonly startTls?: pulumi.Input<boolean>;
+    /**
      * When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
      */
     readonly syncRegistrations?: pulumi.Input<boolean>;
@@ -522,6 +546,10 @@ export interface UserFederationArgs {
      * If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
      */
     readonly trustEmail?: pulumi.Input<boolean>;
+    /**
+     * When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
+     */
+    readonly usePasswordModifyExtendedOp?: pulumi.Input<boolean>;
     /**
      * Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
      */

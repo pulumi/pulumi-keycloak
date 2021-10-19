@@ -24,11 +24,11 @@ import * as utilities from "../utilities";
  *     enabled: true,
  * });
  * const samlClient = new keycloak.saml.Client("samlClient", {
- *     realmId: keycloak_realm.test.id,
+ *     realmId: realm.id,
  *     clientId: "saml-client",
  * });
  * const samlUserPropertyMapper = new keycloak.saml.UserPropertyProtocolMapper("samlUserPropertyMapper", {
- *     realmId: keycloak_realm.test.id,
+ *     realmId: realm.id,
  *     clientId: samlClient.id,
  *     userProperty: "email",
  *     samlAttributeName: "email",

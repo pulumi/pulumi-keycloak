@@ -123,7 +123,7 @@ import (
 // 		}
 // 		_, err = keycloak.NewGenericClientRoleMapper(ctx, "clientBRoleMapper", &keycloak.GenericClientRoleMapperArgs{
 // 			RealmId:  realm.ID(),
-// 			ClientId: pulumi.Any(keycloak_client.Client_b.Id),
+// 			ClientId: clientB.ID(),
 // 			RoleId:   clientRoleA.ID(),
 // 		})
 // 		if err != nil {
@@ -215,7 +215,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = openid.NewClientScope(ctx, "clientScope", &openid.ClientScopeArgs{
+// 		clientScope, err := openid.NewClientScope(ctx, "clientScope", &openid.ClientScopeArgs{
 // 			RealmId: realm.ID(),
 // 		})
 // 		if err != nil {
@@ -223,7 +223,7 @@ import (
 // 		}
 // 		_, err = keycloak.NewGenericClientRoleMapper(ctx, "clientBRoleMapper", &keycloak.GenericClientRoleMapperArgs{
 // 			RealmId:       realm.ID(),
-// 			ClientScopeId: pulumi.Any(keycloak_client_scope.Client_scope.Id),
+// 			ClientScopeId: clientScope.ID(),
 // 			RoleId:        clientRole.ID(),
 // 		})
 // 		if err != nil {

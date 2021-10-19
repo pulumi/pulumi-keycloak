@@ -120,10 +120,14 @@ type UserFederation struct {
 	// - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
 	// - `SUBTREE`: Search entire LDAP subtree.
 	SearchScope pulumi.StringPtrOutput `pulumi:"searchScope"`
+	// When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+	StartTls pulumi.BoolPtrOutput `pulumi:"startTls"`
 	// When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
 	SyncRegistrations pulumi.BoolPtrOutput `pulumi:"syncRegistrations"`
 	// If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
 	TrustEmail pulumi.BoolPtrOutput `pulumi:"trustEmail"`
+	// When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
+	UsePasswordModifyExtendedOp pulumi.BoolPtrOutput `pulumi:"usePasswordModifyExtendedOp"`
 	// Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
 	UseTruststoreSpi pulumi.StringPtrOutput `pulumi:"useTruststoreSpi"`
 	// Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
@@ -232,10 +236,14 @@ type userFederationState struct {
 	// - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
 	// - `SUBTREE`: Search entire LDAP subtree.
 	SearchScope *string `pulumi:"searchScope"`
+	// When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+	StartTls *bool `pulumi:"startTls"`
 	// When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
 	SyncRegistrations *bool `pulumi:"syncRegistrations"`
 	// If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
 	TrustEmail *bool `pulumi:"trustEmail"`
+	// When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
+	UsePasswordModifyExtendedOp *bool `pulumi:"usePasswordModifyExtendedOp"`
 	// Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
 	UseTruststoreSpi *string `pulumi:"useTruststoreSpi"`
 	// Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
@@ -295,10 +303,14 @@ type UserFederationState struct {
 	// - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
 	// - `SUBTREE`: Search entire LDAP subtree.
 	SearchScope pulumi.StringPtrInput
+	// When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+	StartTls pulumi.BoolPtrInput
 	// When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
 	SyncRegistrations pulumi.BoolPtrInput
 	// If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
 	TrustEmail pulumi.BoolPtrInput
+	// When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
+	UsePasswordModifyExtendedOp pulumi.BoolPtrInput
 	// Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
 	UseTruststoreSpi pulumi.StringPtrInput
 	// Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
@@ -362,10 +374,14 @@ type userFederationArgs struct {
 	// - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
 	// - `SUBTREE`: Search entire LDAP subtree.
 	SearchScope *string `pulumi:"searchScope"`
+	// When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+	StartTls *bool `pulumi:"startTls"`
 	// When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
 	SyncRegistrations *bool `pulumi:"syncRegistrations"`
 	// If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
 	TrustEmail *bool `pulumi:"trustEmail"`
+	// When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
+	UsePasswordModifyExtendedOp *bool `pulumi:"usePasswordModifyExtendedOp"`
 	// Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
 	UseTruststoreSpi *string `pulumi:"useTruststoreSpi"`
 	// Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
@@ -426,10 +442,14 @@ type UserFederationArgs struct {
 	// - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
 	// - `SUBTREE`: Search entire LDAP subtree.
 	SearchScope pulumi.StringPtrInput
+	// When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+	StartTls pulumi.BoolPtrInput
 	// When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
 	SyncRegistrations pulumi.BoolPtrInput
 	// If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
 	TrustEmail pulumi.BoolPtrInput
+	// When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
+	UsePasswordModifyExtendedOp pulumi.BoolPtrInput
 	// Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
 	UseTruststoreSpi pulumi.StringPtrInput
 	// Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.

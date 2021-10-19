@@ -3240,6 +3240,75 @@
                 "type": "object"
             }
         },
+        "keycloak:index/defaultRoles:DefaultRoles": {
+            "description": "Allows managing default realm roles within Keycloak.\n\nNote: This feature was added in Keycloak v13, so this resource will not work on older versions of Keycloak.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Realm Role)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst defalutRoles = new keycloak.DefaultRoles(\"defalutRoles\", {\n    realmId: realm.id,\n    defaultRoles: [\"uma_authorization\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\ndefalut_roles = keycloak.DefaultRoles(\"defalutRoles\",\n    realm_id=realm.id,\n    default_roles=[\"uma_authorization\"])\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var defalutRoles = new Keycloak.DefaultRoles(\"defalutRoles\", new Keycloak.DefaultRolesArgs\n        {\n            RealmId = realm.Id,\n            DefaultRoles = \n            {\n                \"uma_authorization\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewDefaultRoles(ctx, \"defalutRoles\", \u0026keycloak.DefaultRolesArgs{\n\t\t\tRealmId: realm.ID(),\n\t\t\tDefaultRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"uma_authorization\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nDefault roles can be imported using the format `{{realm_id}}/{{default_role_id}}`, where `default_role_id` is the unique ID of the composite role that Keycloak uses to control default realm level roles. The ID is not easy to find in the GUI, but it appears in the dev tools when editing the default roles. Examplebash\n\n```sh\n $ pulumi import keycloak:index/defaultRoles:DefaultRoles default_roles my-realm/a04c35c2-e95a-4dc5-bd32-e83a21be9e7d\n```\n\n ",
+            "properties": {
+                "defaultRoles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Realm level roles assigned to new users by default.\n",
+                    "language": {
+                        "csharp": {
+                            "name": "RoleNames"
+                        }
+                    }
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this role exists within.\n"
+                }
+            },
+            "required": [
+                "defaultRoles",
+                "realmId"
+            ],
+            "inputProperties": {
+                "defaultRoles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Realm level roles assigned to new users by default.\n",
+                    "language": {
+                        "csharp": {
+                            "name": "RoleNames"
+                        }
+                    }
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this role exists within.\n"
+                }
+            },
+            "requiredInputs": [
+                "defaultRoles",
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DefaultRoles resources.\n",
+                "properties": {
+                    "defaultRoles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Realm level roles assigned to new users by default.\n",
+                        "language": {
+                            "csharp": {
+                                "name": "RoleNames"
+                            }
+                        }
+                    },
+                    "realmId": {
+                        "type": "string",
+                        "description": "The realm this role exists within.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper": {
             "description": "Allows for creating and managing protocol mappers for both types of clients (openid-connect and saml) within Keycloak.\n\nThere are two uses cases for using this resource:\n* If you implemented a custom protocol mapper, this resource can be used to configure it\n* If the provider doesn't support a particular protocol mapper, this resource can be used instead.\n\nDue to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors.\nTherefore, if possible, a specific mapper should be used.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst samlClient = new keycloak.saml.Client(\"samlClient\", {\n    realmId: realm.id,\n    clientId: \"test-client\",\n});\nconst samlHardcodeAttributeMapper = new keycloak.GenericClientProtocolMapper(\"samlHardcodeAttributeMapper\", {\n    realmId: realm.id,\n    clientId: samlClient.id,\n    protocol: \"saml\",\n    protocolMapper: \"saml-hardcode-attribute-mapper\",\n    config: {\n        \"attribute.name\": \"name\",\n        \"attribute.nameformat\": \"Basic\",\n        \"attribute.value\": \"value\",\n        \"friendly.name\": \"display name\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nsaml_client = keycloak.saml.Client(\"samlClient\",\n    realm_id=realm.id,\n    client_id=\"test-client\")\nsaml_hardcode_attribute_mapper = keycloak.GenericClientProtocolMapper(\"samlHardcodeAttributeMapper\",\n    realm_id=realm.id,\n    client_id=saml_client.id,\n    protocol=\"saml\",\n    protocol_mapper=\"saml-hardcode-attribute-mapper\",\n    config={\n        \"attribute.name\": \"name\",\n        \"attribute.nameformat\": \"Basic\",\n        \"attribute.value\": \"value\",\n        \"friendly.name\": \"display name\",\n    })\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var samlClient = new Keycloak.Saml.Client(\"samlClient\", new Keycloak.Saml.ClientArgs\n        {\n            RealmId = realm.Id,\n            ClientId = \"test-client\",\n        });\n        var samlHardcodeAttributeMapper = new Keycloak.GenericClientProtocolMapper(\"samlHardcodeAttributeMapper\", new Keycloak.GenericClientProtocolMapperArgs\n        {\n            RealmId = realm.Id,\n            ClientId = samlClient.Id,\n            Protocol = \"saml\",\n            ProtocolMapper = \"saml-hardcode-attribute-mapper\",\n            Config = \n            {\n                { \"attribute.name\", \"name\" },\n                { \"attribute.nameformat\", \"Basic\" },\n                { \"attribute.value\", \"value\" },\n                { \"friendly.name\", \"display name\" },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tsamlClient, err := saml.NewClient(ctx, \"samlClient\", \u0026saml.ClientArgs{\n\t\t\tRealmId:  realm.ID(),\n\t\t\tClientId: pulumi.String(\"test-client\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewGenericClientProtocolMapper(ctx, \"samlHardcodeAttributeMapper\", \u0026keycloak.GenericClientProtocolMapperArgs{\n\t\t\tRealmId:        realm.ID(),\n\t\t\tClientId:       samlClient.ID(),\n\t\t\tProtocol:       pulumi.String(\"saml\"),\n\t\t\tProtocolMapper: pulumi.String(\"saml-hardcode-attribute-mapper\"),\n\t\t\tConfig: pulumi.StringMap{\n\t\t\t\t\"attribute.name\":       pulumi.String(\"name\"),\n\t\t\t\t\"attribute.nameformat\": pulumi.String(\"Basic\"),\n\t\t\t\t\"attribute.value\":      pulumi.String(\"value\"),\n\t\t\t\t\"friendly.name\":        pulumi.String(\"display name\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nProtocol mappers can be imported using the following format`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` Examplebash\n\n```sh\n $ pulumi import keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper saml_hardcode_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n ",
             "properties": {
@@ -3360,7 +3429,7 @@
             }
         },
         "keycloak:index/genericClientRoleMapper:GenericClientRoleMapper": {
-            "description": "Allow for creating and managing a client's scope mappings within Keycloak.\n\nBy default, all the user role mappings of the user are added as claims within the token (OIDC) or assertion (SAML). When\n`full_scope_allowed` is set to `false` for a client, role scope mapping allows you to limit the roles that get declared\ninside an access token for a client.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Realm Role To Client)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst client = new keycloak.openid.Client(\"client\", {\n    realmId: realm.id,\n    clientId: \"client\",\n    enabled: true,\n    accessType: \"BEARER-ONLY\",\n});\nconst realmRole = new keycloak.Role(\"realmRole\", {\n    realmId: realm.id,\n    description: \"My Realm Role\",\n});\nconst clientRoleMapper = new keycloak.GenericClientRoleMapper(\"clientRoleMapper\", {\n    realmId: realm.id,\n    clientId: client.id,\n    roleId: realmRole.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nclient = keycloak.openid.Client(\"client\",\n    realm_id=realm.id,\n    client_id=\"client\",\n    enabled=True,\n    access_type=\"BEARER-ONLY\")\nrealm_role = keycloak.Role(\"realmRole\",\n    realm_id=realm.id,\n    description=\"My Realm Role\")\nclient_role_mapper = keycloak.GenericClientRoleMapper(\"clientRoleMapper\",\n    realm_id=realm.id,\n    client_id=client.id,\n    role_id=realm_role.id)\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var client = new Keycloak.OpenId.Client(\"client\", new Keycloak.OpenId.ClientArgs\n        {\n            RealmId = realm.Id,\n            ClientId = \"client\",\n            Enabled = true,\n            AccessType = \"BEARER-ONLY\",\n        });\n        var realmRole = new Keycloak.Role(\"realmRole\", new Keycloak.RoleArgs\n        {\n            RealmId = realm.Id,\n            Description = \"My Realm Role\",\n        });\n        var clientRoleMapper = new Keycloak.GenericClientRoleMapper(\"clientRoleMapper\", new Keycloak.GenericClientRoleMapperArgs\n        {\n            RealmId = realm.Id,\n            ClientId = client.Id,\n            RoleId = realmRole.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclient, err := openid.NewClient(ctx, \"client\", \u0026openid.ClientArgs{\n\t\t\tRealmId:    realm.ID(),\n\t\t\tClientId:   pulumi.String(\"client\"),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t\tAccessType: pulumi.String(\"BEARER-ONLY\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\trealmRole, err := keycloak.NewRole(ctx, \"realmRole\", \u0026keycloak.RoleArgs{\n\t\t\tRealmId:     realm.ID(),\n\t\t\tDescription: pulumi.String(\"My Realm Role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewGenericClientRoleMapper(ctx, \"clientRoleMapper\", \u0026keycloak.GenericClientRoleMapperArgs{\n\t\t\tRealmId:  realm.ID(),\n\t\t\tClientId: client.ID(),\n\t\t\tRoleId:   realmRole.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Client Role To Client)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst clientA = new keycloak.openid.Client(\"clientA\", {\n    realmId: realm.id,\n    clientId: \"client-a\",\n    enabled: true,\n    accessType: \"BEARER-ONLY\",\n    fullScopeAllowed: false,\n});\nconst clientRoleA = new keycloak.Role(\"clientRoleA\", {\n    realmId: realm.id,\n    clientId: clientA.id,\n    description: \"My Client Role\",\n});\nconst clientB = new keycloak.openid.Client(\"clientB\", {\n    realmId: realm.id,\n    clientId: \"client-b\",\n    enabled: true,\n    accessType: \"BEARER-ONLY\",\n});\nconst clientRoleB = new keycloak.Role(\"clientRoleB\", {\n    realmId: realm.id,\n    clientId: clientB.id,\n    description: \"My Client Role\",\n});\nconst clientBRoleMapper = new keycloak.GenericClientRoleMapper(\"clientBRoleMapper\", {\n    realmId: realm.id,\n    clientId: keycloak_client.client_b.id,\n    roleId: clientRoleA.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nclient_a = keycloak.openid.Client(\"clientA\",\n    realm_id=realm.id,\n    client_id=\"client-a\",\n    enabled=True,\n    access_type=\"BEARER-ONLY\",\n    full_scope_allowed=False)\nclient_role_a = keycloak.Role(\"clientRoleA\",\n    realm_id=realm.id,\n    client_id=client_a.id,\n    description=\"My Client Role\")\nclient_b = keycloak.openid.Client(\"clientB\",\n    realm_id=realm.id,\n    client_id=\"client-b\",\n    enabled=True,\n    access_type=\"BEARER-ONLY\")\nclient_role_b = keycloak.Role(\"clientRoleB\",\n    realm_id=realm.id,\n    client_id=client_b.id,\n    description=\"My Client Role\")\nclient_b_role_mapper = keycloak.GenericClientRoleMapper(\"clientBRoleMapper\",\n    realm_id=realm.id,\n    client_id=keycloak_client[\"client_b\"][\"id\"],\n    role_id=client_role_a.id)\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var clientA = new Keycloak.OpenId.Client(\"clientA\", new Keycloak.OpenId.ClientArgs\n        {\n            RealmId = realm.Id,\n            ClientId = \"client-a\",\n            Enabled = true,\n            AccessType = \"BEARER-ONLY\",\n            FullScopeAllowed = false,\n        });\n        var clientRoleA = new Keycloak.Role(\"clientRoleA\", new Keycloak.RoleArgs\n        {\n            RealmId = realm.Id,\n            ClientId = clientA.Id,\n            Description = \"My Client Role\",\n        });\n        var clientB = new Keycloak.OpenId.Client(\"clientB\", new Keycloak.OpenId.ClientArgs\n        {\n            RealmId = realm.Id,\n            ClientId = \"client-b\",\n            Enabled = true,\n            AccessType = \"BEARER-ONLY\",\n        });\n        var clientRoleB = new Keycloak.Role(\"clientRoleB\", new Keycloak.RoleArgs\n        {\n            RealmId = realm.Id,\n            ClientId = clientB.Id,\n            Description = \"My Client Role\",\n        });\n        var clientBRoleMapper = new Keycloak.GenericClientRoleMapper(\"clientBRoleMapper\", new Keycloak.GenericClientRoleMapperArgs\n        {\n            RealmId = realm.Id,\n            ClientId = keycloak_client.Client_b.Id,\n            RoleId = clientRoleA.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclientA, err := openid.NewClient(ctx, \"clientA\", \u0026openid.ClientArgs{\n\t\t\tRealmId:          realm.ID(),\n\t\t\tClientId:         pulumi.String(\"client-a\"),\n\t\t\tEnabled:          pulumi.Bool(true),\n\t\t\tAccessType:       pulumi.String(\"BEARER-ONLY\"),\n\t\t\tFullScopeAllowed: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclientRoleA, err := keycloak.NewRole(ctx, \"clientRoleA\", \u0026keycloak.RoleArgs{\n\t\t\tRealmId:     realm.ID(),\n\t\t\tClientId:    clientA.ID(),\n\t\t\tDescription: pulumi.String(\"My Client Role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclientB, err := openid.NewClient(ctx, \"clientB\", \u0026openid.ClientArgs{\n\t\t\tRealmId:    realm.ID(),\n\t\t\tClientId:   pulumi.String(\"client-b\"),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t\tAccessType: pulumi.String(\"BEARER-ONLY\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewRole(ctx, \"clientRoleB\", \u0026keycloak.RoleArgs{\n\t\t\tRealmId:     realm.ID(),\n\t\t\tClientId:    clientB.ID(),\n\t\t\tDescription: pulumi.String(\"My Client Role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewGenericClientRoleMapper(ctx, \"clientBRoleMapper\", \u0026keycloak.GenericClientRoleMapperArgs{\n\t\t\tRealmId:  realm.ID(),\n\t\t\tClientId: pulumi.Any(keycloak_client.Client_b.Id),\n\t\t\tRoleId:   clientRoleA.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Realm Role To Client Scope)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst clientScope = new keycloak.openid.ClientScope(\"clientScope\", {realmId: realm.id});\nconst realmRole = new keycloak.Role(\"realmRole\", {\n    realmId: realm.id,\n    description: \"My Realm Role\",\n});\nconst clientRoleMapper = new keycloak.GenericClientRoleMapper(\"clientRoleMapper\", {\n    realmId: realm.id,\n    clientScopeId: clientScope.id,\n    roleId: realmRole.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nclient_scope = keycloak.openid.ClientScope(\"clientScope\", realm_id=realm.id)\nrealm_role = keycloak.Role(\"realmRole\",\n    realm_id=realm.id,\n    description=\"My Realm Role\")\nclient_role_mapper = keycloak.GenericClientRoleMapper(\"clientRoleMapper\",\n    realm_id=realm.id,\n    client_scope_id=client_scope.id,\n    role_id=realm_role.id)\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var clientScope = new Keycloak.OpenId.ClientScope(\"clientScope\", new Keycloak.OpenId.ClientScopeArgs\n        {\n            RealmId = realm.Id,\n        });\n        var realmRole = new Keycloak.Role(\"realmRole\", new Keycloak.RoleArgs\n        {\n            RealmId = realm.Id,\n            Description = \"My Realm Role\",\n        });\n        var clientRoleMapper = new Keycloak.GenericClientRoleMapper(\"clientRoleMapper\", new Keycloak.GenericClientRoleMapperArgs\n        {\n            RealmId = realm.Id,\n            ClientScopeId = clientScope.Id,\n            RoleId = realmRole.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclientScope, err := openid.NewClientScope(ctx, \"clientScope\", \u0026openid.ClientScopeArgs{\n\t\t\tRealmId: realm.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\trealmRole, err := keycloak.NewRole(ctx, \"realmRole\", \u0026keycloak.RoleArgs{\n\t\t\tRealmId:     realm.ID(),\n\t\t\tDescription: pulumi.String(\"My Realm Role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewGenericClientRoleMapper(ctx, \"clientRoleMapper\", \u0026keycloak.GenericClientRoleMapperArgs{\n\t\t\tRealmId:       realm.ID(),\n\t\t\tClientScopeId: clientScope.ID(),\n\t\t\tRoleId:        realmRole.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Client Role To Client Scope)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst client = new keycloak.openid.Client(\"client\", {\n    realmId: realm.id,\n    clientId: \"client\",\n    enabled: true,\n    accessType: \"BEARER-ONLY\",\n});\nconst clientRole = new keycloak.Role(\"clientRole\", {\n    realmId: realm.id,\n    clientId: client.id,\n    description: \"My Client Role\",\n});\nconst clientScope = new keycloak.openid.ClientScope(\"clientScope\", {realmId: realm.id});\nconst clientBRoleMapper = new keycloak.GenericClientRoleMapper(\"clientBRoleMapper\", {\n    realmId: realm.id,\n    clientScopeId: keycloak_client_scope.client_scope.id,\n    roleId: clientRole.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nclient = keycloak.openid.Client(\"client\",\n    realm_id=realm.id,\n    client_id=\"client\",\n    enabled=True,\n    access_type=\"BEARER-ONLY\")\nclient_role = keycloak.Role(\"clientRole\",\n    realm_id=realm.id,\n    client_id=client.id,\n    description=\"My Client Role\")\nclient_scope = keycloak.openid.ClientScope(\"clientScope\", realm_id=realm.id)\nclient_b_role_mapper = keycloak.GenericClientRoleMapper(\"clientBRoleMapper\",\n    realm_id=realm.id,\n    client_scope_id=keycloak_client_scope[\"client_scope\"][\"id\"],\n    role_id=client_role.id)\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var client = new Keycloak.OpenId.Client(\"client\", new Keycloak.OpenId.ClientArgs\n        {\n            RealmId = realm.Id,\n            ClientId = \"client\",\n            Enabled = true,\n            AccessType = \"BEARER-ONLY\",\n        });\n        var clientRole = new Keycloak.Role(\"clientRole\", new Keycloak.RoleArgs\n        {\n            RealmId = realm.Id,\n            ClientId = client.Id,\n            Description = \"My Client Role\",\n        });\n        var clientScope = new Keycloak.OpenId.ClientScope(\"clientScope\", new Keycloak.OpenId.ClientScopeArgs\n        {\n            RealmId = realm.Id,\n        });\n        var clientBRoleMapper = new Keycloak.GenericClientRoleMapper(\"clientBRoleMapper\", new Keycloak.GenericClientRoleMapperArgs\n        {\n            RealmId = realm.Id,\n            ClientScopeId = keycloak_client_scope.Client_scope.Id,\n            RoleId = clientRole.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclient, err := openid.NewClient(ctx, \"client\", \u0026openid.ClientArgs{\n\t\t\tRealmId:    realm.ID(),\n\t\t\tClientId:   pulumi.String(\"client\"),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t\tAccessType: pulumi.String(\"BEARER-ONLY\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclientRole, err := keycloak.NewRole(ctx, \"clientRole\", \u0026keycloak.RoleArgs{\n\t\t\tRealmId:     realm.ID(),\n\t\t\tClientId:    client.ID(),\n\t\t\tDescription: pulumi.String(\"My Client Role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = openid.NewClientScope(ctx, \"clientScope\", \u0026openid.ClientScopeArgs{\n\t\t\tRealmId: realm.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewGenericClientRoleMapper(ctx, \"clientBRoleMapper\", \u0026keycloak.GenericClientRoleMapperArgs{\n\t\t\tRealmId:       realm.ID(),\n\t\t\tClientScopeId: pulumi.Any(keycloak_client_scope.Client_scope.Id),\n\t\t\tRoleId:        clientRole.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nGeneric client role mappers can be imported using one of the following two formats- When mapping a role to a client, use the format `{{realmId}}/client/{{clientId}}/scope-mappings/{{roleClientId}}/{{roleId}}` - When mapping a role to a client scope, use the format `{{realmId}}/client-scope/{{clientScopeId}}/scope-mappings/{{roleClientId}}/{{roleId}}` Examplebash\n\n```sh\n $ pulumi import keycloak:index/genericClientRoleMapper:GenericClientRoleMapper client_role_mapper my-realm/client/23888550-5dcd-41f6-85ba-554233021e9c/scope-mappings/ce51f004-bdfb-4dd5-a963-c4487d2dec5b/ff3aa49f-bc07-4030-8783-41918c3614a3\n```\n\n ",
+            "description": "Allow for creating and managing a client's scope mappings within Keycloak.\n\nBy default, all the user role mappings of the user are added as claims within the token (OIDC) or assertion (SAML). When\n`full_scope_allowed` is set to `false` for a client, role scope mapping allows you to limit the roles that get declared\ninside an access token for a client.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Realm Role To Client)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst client = new keycloak.openid.Client(\"client\", {\n    realmId: realm.id,\n    clientId: \"client\",\n    enabled: true,\n    accessType: \"BEARER-ONLY\",\n});\nconst realmRole = new keycloak.Role(\"realmRole\", {\n    realmId: realm.id,\n    description: \"My Realm Role\",\n});\nconst clientRoleMapper = new keycloak.GenericClientRoleMapper(\"clientRoleMapper\", {\n    realmId: realm.id,\n    clientId: client.id,\n    roleId: realmRole.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nclient = keycloak.openid.Client(\"client\",\n    realm_id=realm.id,\n    client_id=\"client\",\n    enabled=True,\n    access_type=\"BEARER-ONLY\")\nrealm_role = keycloak.Role(\"realmRole\",\n    realm_id=realm.id,\n    description=\"My Realm Role\")\nclient_role_mapper = keycloak.GenericClientRoleMapper(\"clientRoleMapper\",\n    realm_id=realm.id,\n    client_id=client.id,\n    role_id=realm_role.id)\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var client = new Keycloak.OpenId.Client(\"client\", new Keycloak.OpenId.ClientArgs\n        {\n            RealmId = realm.Id,\n            ClientId = \"client\",\n            Enabled = true,\n            AccessType = \"BEARER-ONLY\",\n        });\n        var realmRole = new Keycloak.Role(\"realmRole\", new Keycloak.RoleArgs\n        {\n            RealmId = realm.Id,\n            Description = \"My Realm Role\",\n        });\n        var clientRoleMapper = new Keycloak.GenericClientRoleMapper(\"clientRoleMapper\", new Keycloak.GenericClientRoleMapperArgs\n        {\n            RealmId = realm.Id,\n            ClientId = client.Id,\n            RoleId = realmRole.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclient, err := openid.NewClient(ctx, \"client\", \u0026openid.ClientArgs{\n\t\t\tRealmId:    realm.ID(),\n\t\t\tClientId:   pulumi.String(\"client\"),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t\tAccessType: pulumi.String(\"BEARER-ONLY\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\trealmRole, err := keycloak.NewRole(ctx, \"realmRole\", \u0026keycloak.RoleArgs{\n\t\t\tRealmId:     realm.ID(),\n\t\t\tDescription: pulumi.String(\"My Realm Role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewGenericClientRoleMapper(ctx, \"clientRoleMapper\", \u0026keycloak.GenericClientRoleMapperArgs{\n\t\t\tRealmId:  realm.ID(),\n\t\t\tClientId: client.ID(),\n\t\t\tRoleId:   realmRole.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Client Role To Client)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst clientA = new keycloak.openid.Client(\"clientA\", {\n    realmId: realm.id,\n    clientId: \"client-a\",\n    enabled: true,\n    accessType: \"BEARER-ONLY\",\n    fullScopeAllowed: false,\n});\nconst clientRoleA = new keycloak.Role(\"clientRoleA\", {\n    realmId: realm.id,\n    clientId: clientA.id,\n    description: \"My Client Role\",\n});\nconst clientB = new keycloak.openid.Client(\"clientB\", {\n    realmId: realm.id,\n    clientId: \"client-b\",\n    enabled: true,\n    accessType: \"BEARER-ONLY\",\n});\nconst clientRoleB = new keycloak.Role(\"clientRoleB\", {\n    realmId: realm.id,\n    clientId: clientB.id,\n    description: \"My Client Role\",\n});\nconst clientBRoleMapper = new keycloak.GenericClientRoleMapper(\"clientBRoleMapper\", {\n    realmId: realm.id,\n    clientId: clientB.id,\n    roleId: clientRoleA.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nclient_a = keycloak.openid.Client(\"clientA\",\n    realm_id=realm.id,\n    client_id=\"client-a\",\n    enabled=True,\n    access_type=\"BEARER-ONLY\",\n    full_scope_allowed=False)\nclient_role_a = keycloak.Role(\"clientRoleA\",\n    realm_id=realm.id,\n    client_id=client_a.id,\n    description=\"My Client Role\")\nclient_b = keycloak.openid.Client(\"clientB\",\n    realm_id=realm.id,\n    client_id=\"client-b\",\n    enabled=True,\n    access_type=\"BEARER-ONLY\")\nclient_role_b = keycloak.Role(\"clientRoleB\",\n    realm_id=realm.id,\n    client_id=client_b.id,\n    description=\"My Client Role\")\nclient_b_role_mapper = keycloak.GenericClientRoleMapper(\"clientBRoleMapper\",\n    realm_id=realm.id,\n    client_id=client_b.id,\n    role_id=client_role_a.id)\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var clientA = new Keycloak.OpenId.Client(\"clientA\", new Keycloak.OpenId.ClientArgs\n        {\n            RealmId = realm.Id,\n            ClientId = \"client-a\",\n            Enabled = true,\n            AccessType = \"BEARER-ONLY\",\n            FullScopeAllowed = false,\n        });\n        var clientRoleA = new Keycloak.Role(\"clientRoleA\", new Keycloak.RoleArgs\n        {\n            RealmId = realm.Id,\n            ClientId = clientA.Id,\n            Description = \"My Client Role\",\n        });\n        var clientB = new Keycloak.OpenId.Client(\"clientB\", new Keycloak.OpenId.ClientArgs\n        {\n            RealmId = realm.Id,\n            ClientId = \"client-b\",\n            Enabled = true,\n            AccessType = \"BEARER-ONLY\",\n        });\n        var clientRoleB = new Keycloak.Role(\"clientRoleB\", new Keycloak.RoleArgs\n        {\n            RealmId = realm.Id,\n            ClientId = clientB.Id,\n            Description = \"My Client Role\",\n        });\n        var clientBRoleMapper = new Keycloak.GenericClientRoleMapper(\"clientBRoleMapper\", new Keycloak.GenericClientRoleMapperArgs\n        {\n            RealmId = realm.Id,\n            ClientId = clientB.Id,\n            RoleId = clientRoleA.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclientA, err := openid.NewClient(ctx, \"clientA\", \u0026openid.ClientArgs{\n\t\t\tRealmId:          realm.ID(),\n\t\t\tClientId:         pulumi.String(\"client-a\"),\n\t\t\tEnabled:          pulumi.Bool(true),\n\t\t\tAccessType:       pulumi.String(\"BEARER-ONLY\"),\n\t\t\tFullScopeAllowed: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclientRoleA, err := keycloak.NewRole(ctx, \"clientRoleA\", \u0026keycloak.RoleArgs{\n\t\t\tRealmId:     realm.ID(),\n\t\t\tClientId:    clientA.ID(),\n\t\t\tDescription: pulumi.String(\"My Client Role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclientB, err := openid.NewClient(ctx, \"clientB\", \u0026openid.ClientArgs{\n\t\t\tRealmId:    realm.ID(),\n\t\t\tClientId:   pulumi.String(\"client-b\"),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t\tAccessType: pulumi.String(\"BEARER-ONLY\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewRole(ctx, \"clientRoleB\", \u0026keycloak.RoleArgs{\n\t\t\tRealmId:     realm.ID(),\n\t\t\tClientId:    clientB.ID(),\n\t\t\tDescription: pulumi.String(\"My Client Role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewGenericClientRoleMapper(ctx, \"clientBRoleMapper\", \u0026keycloak.GenericClientRoleMapperArgs{\n\t\t\tRealmId:  realm.ID(),\n\t\t\tClientId: clientB.ID(),\n\t\t\tRoleId:   clientRoleA.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Realm Role To Client Scope)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst clientScope = new keycloak.openid.ClientScope(\"clientScope\", {realmId: realm.id});\nconst realmRole = new keycloak.Role(\"realmRole\", {\n    realmId: realm.id,\n    description: \"My Realm Role\",\n});\nconst clientRoleMapper = new keycloak.GenericClientRoleMapper(\"clientRoleMapper\", {\n    realmId: realm.id,\n    clientScopeId: clientScope.id,\n    roleId: realmRole.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nclient_scope = keycloak.openid.ClientScope(\"clientScope\", realm_id=realm.id)\nrealm_role = keycloak.Role(\"realmRole\",\n    realm_id=realm.id,\n    description=\"My Realm Role\")\nclient_role_mapper = keycloak.GenericClientRoleMapper(\"clientRoleMapper\",\n    realm_id=realm.id,\n    client_scope_id=client_scope.id,\n    role_id=realm_role.id)\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var clientScope = new Keycloak.OpenId.ClientScope(\"clientScope\", new Keycloak.OpenId.ClientScopeArgs\n        {\n            RealmId = realm.Id,\n        });\n        var realmRole = new Keycloak.Role(\"realmRole\", new Keycloak.RoleArgs\n        {\n            RealmId = realm.Id,\n            Description = \"My Realm Role\",\n        });\n        var clientRoleMapper = new Keycloak.GenericClientRoleMapper(\"clientRoleMapper\", new Keycloak.GenericClientRoleMapperArgs\n        {\n            RealmId = realm.Id,\n            ClientScopeId = clientScope.Id,\n            RoleId = realmRole.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclientScope, err := openid.NewClientScope(ctx, \"clientScope\", \u0026openid.ClientScopeArgs{\n\t\t\tRealmId: realm.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\trealmRole, err := keycloak.NewRole(ctx, \"realmRole\", \u0026keycloak.RoleArgs{\n\t\t\tRealmId:     realm.ID(),\n\t\t\tDescription: pulumi.String(\"My Realm Role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewGenericClientRoleMapper(ctx, \"clientRoleMapper\", \u0026keycloak.GenericClientRoleMapperArgs{\n\t\t\tRealmId:       realm.ID(),\n\t\t\tClientScopeId: clientScope.ID(),\n\t\t\tRoleId:        realmRole.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Client Role To Client Scope)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst client = new keycloak.openid.Client(\"client\", {\n    realmId: realm.id,\n    clientId: \"client\",\n    enabled: true,\n    accessType: \"BEARER-ONLY\",\n});\nconst clientRole = new keycloak.Role(\"clientRole\", {\n    realmId: realm.id,\n    clientId: client.id,\n    description: \"My Client Role\",\n});\nconst clientScope = new keycloak.openid.ClientScope(\"clientScope\", {realmId: realm.id});\nconst clientBRoleMapper = new keycloak.GenericClientRoleMapper(\"clientBRoleMapper\", {\n    realmId: realm.id,\n    clientScopeId: clientScope.id,\n    roleId: clientRole.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nclient = keycloak.openid.Client(\"client\",\n    realm_id=realm.id,\n    client_id=\"client\",\n    enabled=True,\n    access_type=\"BEARER-ONLY\")\nclient_role = keycloak.Role(\"clientRole\",\n    realm_id=realm.id,\n    client_id=client.id,\n    description=\"My Client Role\")\nclient_scope = keycloak.openid.ClientScope(\"clientScope\", realm_id=realm.id)\nclient_b_role_mapper = keycloak.GenericClientRoleMapper(\"clientBRoleMapper\",\n    realm_id=realm.id,\n    client_scope_id=client_scope.id,\n    role_id=client_role.id)\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var client = new Keycloak.OpenId.Client(\"client\", new Keycloak.OpenId.ClientArgs\n        {\n            RealmId = realm.Id,\n            ClientId = \"client\",\n            Enabled = true,\n            AccessType = \"BEARER-ONLY\",\n        });\n        var clientRole = new Keycloak.Role(\"clientRole\", new Keycloak.RoleArgs\n        {\n            RealmId = realm.Id,\n            ClientId = client.Id,\n            Description = \"My Client Role\",\n        });\n        var clientScope = new Keycloak.OpenId.ClientScope(\"clientScope\", new Keycloak.OpenId.ClientScopeArgs\n        {\n            RealmId = realm.Id,\n        });\n        var clientBRoleMapper = new Keycloak.GenericClientRoleMapper(\"clientBRoleMapper\", new Keycloak.GenericClientRoleMapperArgs\n        {\n            RealmId = realm.Id,\n            ClientScopeId = clientScope.Id,\n            RoleId = clientRole.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclient, err := openid.NewClient(ctx, \"client\", \u0026openid.ClientArgs{\n\t\t\tRealmId:    realm.ID(),\n\t\t\tClientId:   pulumi.String(\"client\"),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t\tAccessType: pulumi.String(\"BEARER-ONLY\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclientRole, err := keycloak.NewRole(ctx, \"clientRole\", \u0026keycloak.RoleArgs{\n\t\t\tRealmId:     realm.ID(),\n\t\t\tClientId:    client.ID(),\n\t\t\tDescription: pulumi.String(\"My Client Role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclientScope, err := openid.NewClientScope(ctx, \"clientScope\", \u0026openid.ClientScopeArgs{\n\t\t\tRealmId: realm.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewGenericClientRoleMapper(ctx, \"clientBRoleMapper\", \u0026keycloak.GenericClientRoleMapperArgs{\n\t\t\tRealmId:       realm.ID(),\n\t\t\tClientScopeId: clientScope.ID(),\n\t\t\tRoleId:        clientRole.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nGeneric client role mappers can be imported using one of the following two formats- When mapping a role to a client, use the format `{{realmId}}/client/{{clientId}}/scope-mappings/{{roleClientId}}/{{roleId}}` - When mapping a role to a client scope, use the format `{{realmId}}/client-scope/{{clientScopeId}}/scope-mappings/{{roleClientId}}/{{roleId}}` Examplebash\n\n```sh\n $ pulumi import keycloak:index/genericClientRoleMapper:GenericClientRoleMapper client_role_mapper my-realm/client/23888550-5dcd-41f6-85ba-554233021e9c/scope-mappings/ce51f004-bdfb-4dd5-a963-c4487d2dec5b/ff3aa49f-bc07-4030-8783-41918c3614a3\n```\n\n ",
             "properties": {
                 "clientId": {
                     "type": "string",
@@ -4772,6 +4841,666 @@
                     "realmId": {
                         "type": "string",
                         "description": "The name of the realm the event settings apply to.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated": {
+            "description": "Allows for creating and managing `aes-generated` Realm keystores within Keycloak.\n\nA realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {realm: \"my-realm\"});\nconst keystoreAesGenerated = new keycloak.RealmKeystoreAesGenerated(\"keystoreAesGenerated\", {\n    realmId: realm.realm,\n    enabled: true,\n    active: true,\n    priority: 100,\n    secretSize: 16,\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\", realm=\"my-realm\")\nkeystore_aes_generated = keycloak.RealmKeystoreAesGenerated(\"keystoreAesGenerated\",\n    realm_id=realm.realm,\n    enabled=True,\n    active=True,\n    priority=100,\n    secret_size=16)\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n        });\n        var keystoreAesGenerated = new Keycloak.RealmKeystoreAesGenerated(\"keystoreAesGenerated\", new Keycloak.RealmKeystoreAesGeneratedArgs\n        {\n            RealmId = realm.RealmName,\n            Enabled = true,\n            Active = true,\n            Priority = 100,\n            SecretSize = 16,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm: pulumi.String(\"my-realm\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewRealmKeystoreAesGenerated(ctx, \"keystoreAesGenerated\", \u0026keycloak.RealmKeystoreAesGeneratedArgs{\n\t\t\tRealmId:    realm.Realm,\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t\tActive:     pulumi.Bool(true),\n\t\t\tPriority:   pulumi.Int(100),\n\t\t\tSecretSize: pulumi.Int(16),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nRealm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash\n\n```sh\n $ pulumi import keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated keystore_aes_generated my-realm/my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b\n```\n\n ",
+            "properties": {
+                "active": {
+                    "type": "boolean",
+                    "description": "When `false`, key in not used for signing. Defaults to `true`.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "When `false`, key is not accessible in this realm. Defaults to `true`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Display name of provider when linked in admin console.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Priority for the provider. Defaults to `0`\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this keystore exists in.\n"
+                },
+                "secretSize": {
+                    "type": "integer",
+                    "description": "Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.\n"
+                }
+            },
+            "required": [
+                "name",
+                "realmId"
+            ],
+            "inputProperties": {
+                "active": {
+                    "type": "boolean",
+                    "description": "When `false`, key in not used for signing. Defaults to `true`.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "When `false`, key is not accessible in this realm. Defaults to `true`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Display name of provider when linked in admin console.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Priority for the provider. Defaults to `0`\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this keystore exists in.\n"
+                },
+                "secretSize": {
+                    "type": "integer",
+                    "description": "Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.\n"
+                }
+            },
+            "requiredInputs": [
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RealmKeystoreAesGenerated resources.\n",
+                "properties": {
+                    "active": {
+                        "type": "boolean",
+                        "description": "When `false`, key in not used for signing. Defaults to `true`.\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "When `false`, key is not accessible in this realm. Defaults to `true`.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Display name of provider when linked in admin console.\n"
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "description": "Priority for the provider. Defaults to `0`\n"
+                    },
+                    "realmId": {
+                        "type": "string",
+                        "description": "The realm this keystore exists in.\n"
+                    },
+                    "secretSize": {
+                        "type": "integer",
+                        "description": "Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated": {
+            "description": "Allows for creating and managing `acdsa_generated` Realm keystores within Keycloak.\n\nA realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {realm: \"my-realm\"});\nconst keystoreEcdsaGenerated = new keycloak.RealmKeystoreEcdsaGenerated(\"keystoreEcdsaGenerated\", {\n    realmId: realm.realm,\n    enabled: true,\n    active: true,\n    priority: 100,\n    ellipticCurveKey: \"P-256\",\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\", realm=\"my-realm\")\nkeystore_ecdsa_generated = keycloak.RealmKeystoreEcdsaGenerated(\"keystoreEcdsaGenerated\",\n    realm_id=realm.realm,\n    enabled=True,\n    active=True,\n    priority=100,\n    elliptic_curve_key=\"P-256\")\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n        });\n        var keystoreEcdsaGenerated = new Keycloak.RealmKeystoreEcdsaGenerated(\"keystoreEcdsaGenerated\", new Keycloak.RealmKeystoreEcdsaGeneratedArgs\n        {\n            RealmId = realm.RealmName,\n            Enabled = true,\n            Active = true,\n            Priority = 100,\n            EllipticCurveKey = \"P-256\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm: pulumi.String(\"my-realm\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewRealmKeystoreEcdsaGenerated(ctx, \"keystoreEcdsaGenerated\", \u0026keycloak.RealmKeystoreEcdsaGeneratedArgs{\n\t\t\tRealmId:          realm.Realm,\n\t\t\tEnabled:          pulumi.Bool(true),\n\t\t\tActive:           pulumi.Bool(true),\n\t\t\tPriority:         pulumi.Int(100),\n\t\t\tEllipticCurveKey: pulumi.String(\"P-256\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nRealm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash\n\n```sh\n $ pulumi import keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated keystore_ecdsa_generated my-realm/my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b\n```\n\n ",
+            "properties": {
+                "active": {
+                    "type": "boolean",
+                    "description": "When `false`, key in not used for signing. Defaults to `true`.\n"
+                },
+                "ellipticCurveKey": {
+                    "type": "string",
+                    "description": "Elliptic Curve used in ECDSA. Defaults to `P-256`.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "When `false`, key is not accessible in this realm. Defaults to `true`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Display name of provider when linked in admin console.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Priority for the provider. Defaults to `0`\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this keystore exists in.\n"
+                }
+            },
+            "required": [
+                "name",
+                "realmId"
+            ],
+            "inputProperties": {
+                "active": {
+                    "type": "boolean",
+                    "description": "When `false`, key in not used for signing. Defaults to `true`.\n"
+                },
+                "ellipticCurveKey": {
+                    "type": "string",
+                    "description": "Elliptic Curve used in ECDSA. Defaults to `P-256`.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "When `false`, key is not accessible in this realm. Defaults to `true`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Display name of provider when linked in admin console.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Priority for the provider. Defaults to `0`\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this keystore exists in.\n"
+                }
+            },
+            "requiredInputs": [
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RealmKeystoreEcdsaGenerated resources.\n",
+                "properties": {
+                    "active": {
+                        "type": "boolean",
+                        "description": "When `false`, key in not used for signing. Defaults to `true`.\n"
+                    },
+                    "ellipticCurveKey": {
+                        "type": "string",
+                        "description": "Elliptic Curve used in ECDSA. Defaults to `P-256`.\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "When `false`, key is not accessible in this realm. Defaults to `true`.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Display name of provider when linked in admin console.\n"
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "description": "Priority for the provider. Defaults to `0`\n"
+                    },
+                    "realmId": {
+                        "type": "string",
+                        "description": "The realm this keystore exists in.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated": {
+            "description": "Allows for creating and managing `hmac-generated` Realm keystores within Keycloak.\n\nA realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {realm: \"my-realm\"});\nconst keystoreHmacGenerated = new keycloak.RealmKeystoreHmacGenerated(\"keystoreHmacGenerated\", {\n    realmId: realm.realm,\n    enabled: true,\n    active: true,\n    priority: 100,\n    algorithm: \"HS256\",\n    secretSize: 64,\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\", realm=\"my-realm\")\nkeystore_hmac_generated = keycloak.RealmKeystoreHmacGenerated(\"keystoreHmacGenerated\",\n    realm_id=realm.realm,\n    enabled=True,\n    active=True,\n    priority=100,\n    algorithm=\"HS256\",\n    secret_size=64)\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n        });\n        var keystoreHmacGenerated = new Keycloak.RealmKeystoreHmacGenerated(\"keystoreHmacGenerated\", new Keycloak.RealmKeystoreHmacGeneratedArgs\n        {\n            RealmId = realm.RealmName,\n            Enabled = true,\n            Active = true,\n            Priority = 100,\n            Algorithm = \"HS256\",\n            SecretSize = 64,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm: pulumi.String(\"my-realm\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewRealmKeystoreHmacGenerated(ctx, \"keystoreHmacGenerated\", \u0026keycloak.RealmKeystoreHmacGeneratedArgs{\n\t\t\tRealmId:    realm.Realm,\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t\tActive:     pulumi.Bool(true),\n\t\t\tPriority:   pulumi.Int(100),\n\t\t\tAlgorithm:  pulumi.String(\"HS256\"),\n\t\t\tSecretSize: pulumi.Int(64),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nRealm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash\n\n```sh\n $ pulumi import keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated keystore_hmac_generated my-realm/my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b\n```\n\n ",
+            "properties": {
+                "active": {
+                    "type": "boolean",
+                    "description": "When `false`, key in not used for signing. Defaults to `true`.\n"
+                },
+                "algorithm": {
+                    "type": "string",
+                    "description": "Intended algorithm for the key. Defaults to `HS256`\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "When `false`, key is not accessible in this realm. Defaults to `true`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Display name of provider when linked in admin console.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Priority for the provider. Defaults to `0`\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this keystore exists in.\n"
+                },
+                "secretSize": {
+                    "type": "integer",
+                    "description": "Size in bytes for the generated secret. Defaults to `64`.\n"
+                }
+            },
+            "required": [
+                "name",
+                "realmId"
+            ],
+            "inputProperties": {
+                "active": {
+                    "type": "boolean",
+                    "description": "When `false`, key in not used for signing. Defaults to `true`.\n"
+                },
+                "algorithm": {
+                    "type": "string",
+                    "description": "Intended algorithm for the key. Defaults to `HS256`\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "When `false`, key is not accessible in this realm. Defaults to `true`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Display name of provider when linked in admin console.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Priority for the provider. Defaults to `0`\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this keystore exists in.\n"
+                },
+                "secretSize": {
+                    "type": "integer",
+                    "description": "Size in bytes for the generated secret. Defaults to `64`.\n"
+                }
+            },
+            "requiredInputs": [
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RealmKeystoreHmacGenerated resources.\n",
+                "properties": {
+                    "active": {
+                        "type": "boolean",
+                        "description": "When `false`, key in not used for signing. Defaults to `true`.\n"
+                    },
+                    "algorithm": {
+                        "type": "string",
+                        "description": "Intended algorithm for the key. Defaults to `HS256`\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "When `false`, key is not accessible in this realm. Defaults to `true`.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Display name of provider when linked in admin console.\n"
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "description": "Priority for the provider. Defaults to `0`\n"
+                    },
+                    "realmId": {
+                        "type": "string",
+                        "description": "The realm this keystore exists in.\n"
+                    },
+                    "secretSize": {
+                        "type": "integer",
+                        "description": "Size in bytes for the generated secret. Defaults to `64`.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:index/realmKeystoreJavaGenerated:RealmKeystoreJavaGenerated": {
+            "description": "Allows for creating and managing `java-keystore` Realm keystores within Keycloak.\n\nA realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.\n\n\n## Import\n\nRealm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash\n\n```sh\n $ pulumi import keycloak:index/realmKeystoreJavaGenerated:RealmKeystoreJavaGenerated java_keystore my-realm/my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b\n```\n\n ",
+            "properties": {
+                "active": {
+                    "type": "boolean",
+                    "description": "When `false`, key in not used for signing. Defaults to `true`.\n"
+                },
+                "algorithm": {
+                    "type": "string",
+                    "description": "Intended algorithm for the key. Defaults to `RS256`\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "When `false`, key is not accessible in this realm. Defaults to `true`.\n"
+                },
+                "keyAlias": {
+                    "type": "string",
+                    "description": "Alias for the private key\n"
+                },
+                "keyPassword": {
+                    "type": "string",
+                    "description": "Password for the private key\n"
+                },
+                "keystore": {
+                    "type": "string",
+                    "description": "Path to keys file on keycloak instance.\n"
+                },
+                "keystorePassword": {
+                    "type": "string",
+                    "description": "Password for the private key.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Display name of provider when linked in admin console.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Priority for the provider. Defaults to `0`\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this keystore exists in.\n"
+                }
+            },
+            "required": [
+                "keyAlias",
+                "keyPassword",
+                "keystore",
+                "keystorePassword",
+                "name",
+                "realmId"
+            ],
+            "inputProperties": {
+                "active": {
+                    "type": "boolean",
+                    "description": "When `false`, key in not used for signing. Defaults to `true`.\n"
+                },
+                "algorithm": {
+                    "type": "string",
+                    "description": "Intended algorithm for the key. Defaults to `RS256`\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "When `false`, key is not accessible in this realm. Defaults to `true`.\n"
+                },
+                "keyAlias": {
+                    "type": "string",
+                    "description": "Alias for the private key\n"
+                },
+                "keyPassword": {
+                    "type": "string",
+                    "description": "Password for the private key\n"
+                },
+                "keystore": {
+                    "type": "string",
+                    "description": "Path to keys file on keycloak instance.\n"
+                },
+                "keystorePassword": {
+                    "type": "string",
+                    "description": "Password for the private key.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Display name of provider when linked in admin console.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Priority for the provider. Defaults to `0`\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this keystore exists in.\n"
+                }
+            },
+            "requiredInputs": [
+                "keyAlias",
+                "keyPassword",
+                "keystore",
+                "keystorePassword",
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RealmKeystoreJavaGenerated resources.\n",
+                "properties": {
+                    "active": {
+                        "type": "boolean",
+                        "description": "When `false`, key in not used for signing. Defaults to `true`.\n"
+                    },
+                    "algorithm": {
+                        "type": "string",
+                        "description": "Intended algorithm for the key. Defaults to `RS256`\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "When `false`, key is not accessible in this realm. Defaults to `true`.\n"
+                    },
+                    "keyAlias": {
+                        "type": "string",
+                        "description": "Alias for the private key\n"
+                    },
+                    "keyPassword": {
+                        "type": "string",
+                        "description": "Password for the private key\n"
+                    },
+                    "keystore": {
+                        "type": "string",
+                        "description": "Path to keys file on keycloak instance.\n"
+                    },
+                    "keystorePassword": {
+                        "type": "string",
+                        "description": "Password for the private key.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Display name of provider when linked in admin console.\n"
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "description": "Priority for the provider. Defaults to `0`\n"
+                    },
+                    "realmId": {
+                        "type": "string",
+                        "description": "The realm this keystore exists in.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:index/realmKeystoreRsa:RealmKeystoreRsa": {
+            "description": "Allows for creating and managing `rsa` Realm keystores within Keycloak.\n\nA realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst myRealm = new keycloak.Realm(\"myRealm\", {realm: \"my-realm\"});\nconst keystoreRsa = new keycloak.RealmKeystoreRsa(\"keystoreRsa\", {\n    realmId: myRealm.realm,\n    enabled: true,\n    active: true,\n    privateKey: \"\u003cyour rsa private key\u003e\",\n    certificate: \"\u003cyour certificate\u003e\",\n    priority: 100,\n    algorithm: \"RS256\",\n    keystoreSize: 2048,\n});\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nRealm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash\n\n```sh\n $ pulumi import keycloak:index/realmKeystoreRsa:RealmKeystoreRsa keystore_rsa my-realm/my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b\n```\n\n ",
+            "properties": {
+                "active": {
+                    "type": "boolean",
+                    "description": "When `false`, key in not used for signing. Defaults to `true`.\n"
+                },
+                "algorithm": {
+                    "type": "string",
+                    "description": "Intended algorithm for the key. Defaults to `RS256`\n"
+                },
+                "certificate": {
+                    "type": "string",
+                    "description": "X509 Certificate encoded in PEM format.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "When `false`, key is not accessible in this realm. Defaults to `true`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Display name of provider when linked in admin console.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Priority for the provider. Defaults to `0`\n"
+                },
+                "privateKey": {
+                    "type": "string",
+                    "description": "Private RSA Key encoded in PEM format.\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this keystore exists in.\n"
+                }
+            },
+            "required": [
+                "certificate",
+                "name",
+                "privateKey",
+                "realmId"
+            ],
+            "inputProperties": {
+                "active": {
+                    "type": "boolean",
+                    "description": "When `false`, key in not used for signing. Defaults to `true`.\n"
+                },
+                "algorithm": {
+                    "type": "string",
+                    "description": "Intended algorithm for the key. Defaults to `RS256`\n"
+                },
+                "certificate": {
+                    "type": "string",
+                    "description": "X509 Certificate encoded in PEM format.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "When `false`, key is not accessible in this realm. Defaults to `true`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Display name of provider when linked in admin console.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Priority for the provider. Defaults to `0`\n"
+                },
+                "privateKey": {
+                    "type": "string",
+                    "description": "Private RSA Key encoded in PEM format.\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this keystore exists in.\n"
+                }
+            },
+            "requiredInputs": [
+                "certificate",
+                "privateKey",
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RealmKeystoreRsa resources.\n",
+                "properties": {
+                    "active": {
+                        "type": "boolean",
+                        "description": "When `false`, key in not used for signing. Defaults to `true`.\n"
+                    },
+                    "algorithm": {
+                        "type": "string",
+                        "description": "Intended algorithm for the key. Defaults to `RS256`\n"
+                    },
+                    "certificate": {
+                        "type": "string",
+                        "description": "X509 Certificate encoded in PEM format.\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "When `false`, key is not accessible in this realm. Defaults to `true`.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Display name of provider when linked in admin console.\n"
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "description": "Priority for the provider. Defaults to `0`\n"
+                    },
+                    "privateKey": {
+                        "type": "string",
+                        "description": "Private RSA Key encoded in PEM format.\n"
+                    },
+                    "realmId": {
+                        "type": "string",
+                        "description": "The realm this keystore exists in.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated": {
+            "description": "Allows for creating and managing `rsa-generated` Realm keystores within Keycloak.\n\nA realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {realm: \"my-realm\"});\nconst keystoreRsaGenerated = new keycloak.RealmKeystoreRsaGenerated(\"keystoreRsaGenerated\", {\n    realmId: realm.realm,\n    enabled: true,\n    active: true,\n    priority: 100,\n    algorithm: \"RS256\",\n    keystoreSize: 2048,\n});\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nRealm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash\n\n```sh\n $ pulumi import keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated keystore_rsa_generated my-realm/my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b\n```\n\n ",
+            "properties": {
+                "active": {
+                    "type": "boolean",
+                    "description": "When `false`, key in not used for signing. Defaults to `true`.\n"
+                },
+                "algorithm": {
+                    "type": "string",
+                    "description": "Intended algorithm for the key. Defaults to `RS256`\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "When `false`, key is not accessible in this realm. Defaults to `true`.\n"
+                },
+                "keySize": {
+                    "type": "integer",
+                    "description": "Size for the generated keys\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Display name of provider when linked in admin console.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Priority for the provider. Defaults to `0`\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this keystore exists in.\n"
+                }
+            },
+            "required": [
+                "name",
+                "realmId"
+            ],
+            "inputProperties": {
+                "active": {
+                    "type": "boolean",
+                    "description": "When `false`, key in not used for signing. Defaults to `true`.\n"
+                },
+                "algorithm": {
+                    "type": "string",
+                    "description": "Intended algorithm for the key. Defaults to `RS256`\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "When `false`, key is not accessible in this realm. Defaults to `true`.\n"
+                },
+                "keySize": {
+                    "type": "integer",
+                    "description": "Size for the generated keys\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Display name of provider when linked in admin console.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Priority for the provider. Defaults to `0`\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this keystore exists in.\n"
+                }
+            },
+            "requiredInputs": [
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RealmKeystoreRsaGenerated resources.\n",
+                "properties": {
+                    "active": {
+                        "type": "boolean",
+                        "description": "When `false`, key in not used for signing. Defaults to `true`.\n"
+                    },
+                    "algorithm": {
+                        "type": "string",
+                        "description": "Intended algorithm for the key. Defaults to `RS256`\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "When `false`, key is not accessible in this realm. Defaults to `true`.\n"
+                    },
+                    "keySize": {
+                        "type": "integer",
+                        "description": "Size for the generated keys\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Display name of provider when linked in admin console.\n"
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "description": "Priority for the provider. Defaults to `0`\n"
+                    },
+                    "realmId": {
+                        "type": "string",
+                        "description": "The realm this keystore exists in.\n"
                     }
                 },
                 "type": "object"
@@ -6523,6 +7252,10 @@
                     "type": "string",
                     "description": "Can be one of `ONE_LEVEL` or `SUBTREE`:\n- `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.\n- `SUBTREE`: Search entire LDAP subtree.\n"
                 },
+                "startTls": {
+                    "type": "boolean",
+                    "description": "When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.\n"
+                },
                 "syncRegistrations": {
                     "type": "boolean",
                     "description": "When `true`, newly created users will be synced back to LDAP. Defaults to `false`.\n"
@@ -6530,6 +7263,10 @@
                 "trustEmail": {
                     "type": "boolean",
                     "description": "If enabled, email provided by this provider is not verified even if verification is enabled for the realm.\n"
+                },
+                "usePasswordModifyExtendedOp": {
+                    "type": "boolean",
+                    "description": "When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).\n"
                 },
                 "useTruststoreSpi": {
                     "type": "string",
@@ -6654,6 +7391,10 @@
                     "type": "string",
                     "description": "Can be one of `ONE_LEVEL` or `SUBTREE`:\n- `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.\n- `SUBTREE`: Search entire LDAP subtree.\n"
                 },
+                "startTls": {
+                    "type": "boolean",
+                    "description": "When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.\n"
+                },
                 "syncRegistrations": {
                     "type": "boolean",
                     "description": "When `true`, newly created users will be synced back to LDAP. Defaults to `false`.\n"
@@ -6661,6 +7402,10 @@
                 "trustEmail": {
                     "type": "boolean",
                     "description": "If enabled, email provided by this provider is not verified even if verification is enabled for the realm.\n"
+                },
+                "usePasswordModifyExtendedOp": {
+                    "type": "boolean",
+                    "description": "When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).\n"
                 },
                 "useTruststoreSpi": {
                     "type": "string",
@@ -6786,6 +7531,10 @@
                         "type": "string",
                         "description": "Can be one of `ONE_LEVEL` or `SUBTREE`:\n- `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.\n- `SUBTREE`: Search entire LDAP subtree.\n"
                     },
+                    "startTls": {
+                        "type": "boolean",
+                        "description": "When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.\n"
+                    },
                     "syncRegistrations": {
                         "type": "boolean",
                         "description": "When `true`, newly created users will be synced back to LDAP. Defaults to `false`.\n"
@@ -6793,6 +7542,10 @@
                     "trustEmail": {
                         "type": "boolean",
                         "description": "If enabled, email provided by this provider is not verified even if verification is enabled for the realm.\n"
+                    },
+                    "usePasswordModifyExtendedOp": {
+                        "type": "boolean",
+                        "description": "When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).\n"
                     },
                     "useTruststoreSpi": {
                         "type": "string",
@@ -7660,6 +8413,74 @@
                     "name": {
                         "type": "string",
                         "description": "The display name of this protocol mapper in the GUI.\n"
+                    },
+                    "realmId": {
+                        "type": "string",
+                        "description": "The realm this protocol mapper exists within.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter": {
+            "description": "Allows for creating the \"Audience Resolve\" OIDC protocol mapper within Keycloak.\n\nThis protocol mapper is useful to avoid manual management of audiences, instead relying on the presence of client roles\nto imply which audiences are appropriate for the token. See the\n[Keycloak docs](https://www.keycloak.org/docs/latest/server_admin/#_audience_resolve) for more details.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Client)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst openidClient = new keycloak.openid.Client(\"openidClient\", {\n    realmId: realm.id,\n    clientId: \"client\",\n    enabled: true,\n    accessType: \"CONFIDENTIAL\",\n    validRedirectUris: [\"http://localhost:8080/openid-callback\"],\n});\nconst audienceMapper = new keycloak.openid.AudienceResolveProtocolMappter(\"audienceMapper\", {\n    realmId: realm.id,\n    clientId: openidClient.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nopenid_client = keycloak.openid.Client(\"openidClient\",\n    realm_id=realm.id,\n    client_id=\"client\",\n    enabled=True,\n    access_type=\"CONFIDENTIAL\",\n    valid_redirect_uris=[\"http://localhost:8080/openid-callback\"])\naudience_mapper = keycloak.openid.AudienceResolveProtocolMappter(\"audienceMapper\",\n    realm_id=realm.id,\n    client_id=openid_client.id)\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var openidClient = new Keycloak.OpenId.Client(\"openidClient\", new Keycloak.OpenId.ClientArgs\n        {\n            RealmId = realm.Id,\n            ClientId = \"client\",\n            Enabled = true,\n            AccessType = \"CONFIDENTIAL\",\n            ValidRedirectUris = \n            {\n                \"http://localhost:8080/openid-callback\",\n            },\n        });\n        var audienceMapper = new Keycloak.OpenId.AudienceResolveProtocolMappter(\"audienceMapper\", new Keycloak.OpenId.AudienceResolveProtocolMappterArgs\n        {\n            RealmId = realm.Id,\n            ClientId = openidClient.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\topenidClient, err := openid.NewClient(ctx, \"openidClient\", \u0026openid.ClientArgs{\n\t\t\tRealmId:    realm.ID(),\n\t\t\tClientId:   pulumi.String(\"client\"),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t\tAccessType: pulumi.String(\"CONFIDENTIAL\"),\n\t\t\tValidRedirectUris: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"http://localhost:8080/openid-callback\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = openid.NewAudienceResolveProtocolMappter(ctx, \"audienceMapper\", \u0026openid.AudienceResolveProtocolMappterArgs{\n\t\t\tRealmId:  realm.ID(),\n\t\t\tClientId: openidClient.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Client Scope)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst clientScope = new keycloak.openid.ClientScope(\"clientScope\", {realmId: realm.id});\nconst audienceMapper = new keycloak.openid.AudienceProtocolMapper(\"audienceMapper\", {\n    realmId: realm.id,\n    clientScopeId: clientScope.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nclient_scope = keycloak.openid.ClientScope(\"clientScope\", realm_id=realm.id)\naudience_mapper = keycloak.openid.AudienceProtocolMapper(\"audienceMapper\",\n    realm_id=realm.id,\n    client_scope_id=client_scope.id)\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var clientScope = new Keycloak.OpenId.ClientScope(\"clientScope\", new Keycloak.OpenId.ClientScopeArgs\n        {\n            RealmId = realm.Id,\n        });\n        var audienceMapper = new Keycloak.OpenId.AudienceProtocolMapper(\"audienceMapper\", new Keycloak.OpenId.AudienceProtocolMapperArgs\n        {\n            RealmId = realm.Id,\n            ClientScopeId = clientScope.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclientScope, err := openid.NewClientScope(ctx, \"clientScope\", \u0026openid.ClientScopeArgs{\n\t\t\tRealmId: realm.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = openid.NewAudienceProtocolMapper(ctx, \"audienceMapper\", \u0026openid.AudienceProtocolMapperArgs{\n\t\t\tRealmId:       realm.ID(),\n\t\t\tClientScopeId: clientScope.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nProtocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash\n\n```sh\n $ pulumi import keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter audience_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n\n\n```sh\n $ pulumi import keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter audience_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n ",
+            "properties": {
+                "clientId": {
+                    "type": "string",
+                    "description": "The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.\n"
+                },
+                "clientScopeId": {
+                    "type": "string",
+                    "description": "The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The display name of this protocol mapper in the GUI. Defaults to \"audience resolve\".\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this protocol mapper exists within.\n"
+                }
+            },
+            "required": [
+                "name",
+                "realmId"
+            ],
+            "inputProperties": {
+                "clientId": {
+                    "type": "string",
+                    "description": "The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.\n"
+                },
+                "clientScopeId": {
+                    "type": "string",
+                    "description": "The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The display name of this protocol mapper in the GUI. Defaults to \"audience resolve\".\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this protocol mapper exists within.\n"
+                }
+            },
+            "requiredInputs": [
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AudienceResolveProtocolMappter resources.\n",
+                "properties": {
+                    "clientId": {
+                        "type": "string",
+                        "description": "The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.\n"
+                    },
+                    "clientScopeId": {
+                        "type": "string",
+                        "description": "The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The display name of this protocol mapper in the GUI. Defaults to \"audience resolve\".\n"
                     },
                     "realmId": {
                         "type": "string",
@@ -12152,7 +12973,7 @@
             }
         },
         "keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper": {
-            "description": "Allows for creating and managing script protocol mappers for SAML clients within Keycloak.\n\nScript protocol mappers evaluate a JavaScript function to produce an attribute value based on context information.\n\nProtocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between\nmultiple different clients.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst samlClient = new keycloak.saml.Client(\"samlClient\", {\n    realmId: keycloak_realm.test.id,\n    clientId: \"saml-client\",\n});\nconst samlScriptMapper = new keycloak.saml.ScriptProtocolMapper(\"samlScriptMapper\", {\n    realmId: keycloak_realm.test.id,\n    clientId: samlClient.id,\n    script: \"exports = 'foo';\",\n    samlAttributeName: \"displayName\",\n    samlAttributeNameFormat: \"Unspecified\",\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nsaml_client = keycloak.saml.Client(\"samlClient\",\n    realm_id=keycloak_realm[\"test\"][\"id\"],\n    client_id=\"saml-client\")\nsaml_script_mapper = keycloak.saml.ScriptProtocolMapper(\"samlScriptMapper\",\n    realm_id=keycloak_realm[\"test\"][\"id\"],\n    client_id=saml_client.id,\n    script=\"exports = 'foo';\",\n    saml_attribute_name=\"displayName\",\n    saml_attribute_name_format=\"Unspecified\")\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var samlClient = new Keycloak.Saml.Client(\"samlClient\", new Keycloak.Saml.ClientArgs\n        {\n            RealmId = keycloak_realm.Test.Id,\n            ClientId = \"saml-client\",\n        });\n        var samlScriptMapper = new Keycloak.Saml.ScriptProtocolMapper(\"samlScriptMapper\", new Keycloak.Saml.ScriptProtocolMapperArgs\n        {\n            RealmId = keycloak_realm.Test.Id,\n            ClientId = samlClient.Id,\n            Script = \"exports = 'foo';\",\n            SamlAttributeName = \"displayName\",\n            SamlAttributeNameFormat = \"Unspecified\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tsamlClient, err := saml.NewClient(ctx, \"samlClient\", \u0026saml.ClientArgs{\n\t\t\tRealmId:  pulumi.Any(keycloak_realm.Test.Id),\n\t\t\tClientId: pulumi.String(\"saml-client\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = saml.NewScriptProtocolMapper(ctx, \"samlScriptMapper\", \u0026saml.ScriptProtocolMapperArgs{\n\t\t\tRealmId:                 pulumi.Any(keycloak_realm.Test.Id),\n\t\t\tClientId:                samlClient.ID(),\n\t\t\tScript:                  pulumi.String(\"exports = 'foo';\"),\n\t\t\tSamlAttributeName:       pulumi.String(\"displayName\"),\n\t\t\tSamlAttributeNameFormat: pulumi.String(\"Unspecified\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nProtocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash\n\n```sh\n $ pulumi import keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper saml_script_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n\n\n```sh\n $ pulumi import keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper saml_script_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n ",
+            "description": "Allows for creating and managing script protocol mappers for SAML clients within Keycloak.\n\nScript protocol mappers evaluate a JavaScript function to produce an attribute value based on context information.\n\nProtocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between\nmultiple different clients.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst samlClient = new keycloak.saml.Client(\"samlClient\", {\n    realmId: realm.id,\n    clientId: \"saml-client\",\n});\nconst samlScriptMapper = new keycloak.saml.ScriptProtocolMapper(\"samlScriptMapper\", {\n    realmId: realm.id,\n    clientId: samlClient.id,\n    script: \"exports = 'foo';\",\n    samlAttributeName: \"displayName\",\n    samlAttributeNameFormat: \"Unspecified\",\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nsaml_client = keycloak.saml.Client(\"samlClient\",\n    realm_id=realm.id,\n    client_id=\"saml-client\")\nsaml_script_mapper = keycloak.saml.ScriptProtocolMapper(\"samlScriptMapper\",\n    realm_id=realm.id,\n    client_id=saml_client.id,\n    script=\"exports = 'foo';\",\n    saml_attribute_name=\"displayName\",\n    saml_attribute_name_format=\"Unspecified\")\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var samlClient = new Keycloak.Saml.Client(\"samlClient\", new Keycloak.Saml.ClientArgs\n        {\n            RealmId = realm.Id,\n            ClientId = \"saml-client\",\n        });\n        var samlScriptMapper = new Keycloak.Saml.ScriptProtocolMapper(\"samlScriptMapper\", new Keycloak.Saml.ScriptProtocolMapperArgs\n        {\n            RealmId = realm.Id,\n            ClientId = samlClient.Id,\n            Script = \"exports = 'foo';\",\n            SamlAttributeName = \"displayName\",\n            SamlAttributeNameFormat = \"Unspecified\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tsamlClient, err := saml.NewClient(ctx, \"samlClient\", \u0026saml.ClientArgs{\n\t\t\tRealmId:  realm.ID(),\n\t\t\tClientId: pulumi.String(\"saml-client\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = saml.NewScriptProtocolMapper(ctx, \"samlScriptMapper\", \u0026saml.ScriptProtocolMapperArgs{\n\t\t\tRealmId:                 realm.ID(),\n\t\t\tClientId:                samlClient.ID(),\n\t\t\tScript:                  pulumi.String(\"exports = 'foo';\"),\n\t\t\tSamlAttributeName:       pulumi.String(\"displayName\"),\n\t\t\tSamlAttributeNameFormat: pulumi.String(\"Unspecified\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nProtocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash\n\n```sh\n $ pulumi import keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper saml_script_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n\n\n```sh\n $ pulumi import keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper saml_script_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n ",
             "properties": {
                 "clientId": {
                     "type": "string",
@@ -12286,7 +13107,7 @@
             }
         },
         "keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper": {
-            "description": "Allows for creating and managing user attribute protocol mappers for SAML clients within Keycloak.\n\nSAML user attribute protocol mappers allow you to map custom attributes defined for a user within Keycloak to an attribute\nin a SAML assertion.\n\nProtocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between\nmultiple different clients.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst samlClient = new keycloak.saml.Client(\"samlClient\", {\n    realmId: keycloak_realm.test.id,\n    clientId: \"saml-client\",\n});\nconst samlUserAttributeMapper = new keycloak.saml.UserAttributeProtocolMapper(\"samlUserAttributeMapper\", {\n    realmId: keycloak_realm.test.id,\n    clientId: samlClient.id,\n    userAttribute: \"displayName\",\n    samlAttributeName: \"displayName\",\n    samlAttributeNameFormat: \"Unspecified\",\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nsaml_client = keycloak.saml.Client(\"samlClient\",\n    realm_id=keycloak_realm[\"test\"][\"id\"],\n    client_id=\"saml-client\")\nsaml_user_attribute_mapper = keycloak.saml.UserAttributeProtocolMapper(\"samlUserAttributeMapper\",\n    realm_id=keycloak_realm[\"test\"][\"id\"],\n    client_id=saml_client.id,\n    user_attribute=\"displayName\",\n    saml_attribute_name=\"displayName\",\n    saml_attribute_name_format=\"Unspecified\")\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var samlClient = new Keycloak.Saml.Client(\"samlClient\", new Keycloak.Saml.ClientArgs\n        {\n            RealmId = keycloak_realm.Test.Id,\n            ClientId = \"saml-client\",\n        });\n        var samlUserAttributeMapper = new Keycloak.Saml.UserAttributeProtocolMapper(\"samlUserAttributeMapper\", new Keycloak.Saml.UserAttributeProtocolMapperArgs\n        {\n            RealmId = keycloak_realm.Test.Id,\n            ClientId = samlClient.Id,\n            UserAttribute = \"displayName\",\n            SamlAttributeName = \"displayName\",\n            SamlAttributeNameFormat = \"Unspecified\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tsamlClient, err := saml.NewClient(ctx, \"samlClient\", \u0026saml.ClientArgs{\n\t\t\tRealmId:  pulumi.Any(keycloak_realm.Test.Id),\n\t\t\tClientId: pulumi.String(\"saml-client\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = saml.NewUserAttributeProtocolMapper(ctx, \"samlUserAttributeMapper\", \u0026saml.UserAttributeProtocolMapperArgs{\n\t\t\tRealmId:                 pulumi.Any(keycloak_realm.Test.Id),\n\t\t\tClientId:                samlClient.ID(),\n\t\t\tUserAttribute:           pulumi.String(\"displayName\"),\n\t\t\tSamlAttributeName:       pulumi.String(\"displayName\"),\n\t\t\tSamlAttributeNameFormat: pulumi.String(\"Unspecified\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nProtocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash\n\n```sh\n $ pulumi import keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper saml_user_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n\n\n```sh\n $ pulumi import keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper saml_user_attribute_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n ",
+            "description": "Allows for creating and managing user attribute protocol mappers for SAML clients within Keycloak.\n\nSAML user attribute protocol mappers allow you to map custom attributes defined for a user within Keycloak to an attribute\nin a SAML assertion.\n\nProtocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between\nmultiple different clients.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst samlClient = new keycloak.saml.Client(\"samlClient\", {\n    realmId: realm.id,\n    clientId: \"saml-client\",\n});\nconst samlUserAttributeMapper = new keycloak.saml.UserAttributeProtocolMapper(\"samlUserAttributeMapper\", {\n    realmId: realm.id,\n    clientId: samlClient.id,\n    userAttribute: \"displayName\",\n    samlAttributeName: \"displayName\",\n    samlAttributeNameFormat: \"Unspecified\",\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nsaml_client = keycloak.saml.Client(\"samlClient\",\n    realm_id=realm.id,\n    client_id=\"saml-client\")\nsaml_user_attribute_mapper = keycloak.saml.UserAttributeProtocolMapper(\"samlUserAttributeMapper\",\n    realm_id=realm.id,\n    client_id=saml_client.id,\n    user_attribute=\"displayName\",\n    saml_attribute_name=\"displayName\",\n    saml_attribute_name_format=\"Unspecified\")\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var samlClient = new Keycloak.Saml.Client(\"samlClient\", new Keycloak.Saml.ClientArgs\n        {\n            RealmId = realm.Id,\n            ClientId = \"saml-client\",\n        });\n        var samlUserAttributeMapper = new Keycloak.Saml.UserAttributeProtocolMapper(\"samlUserAttributeMapper\", new Keycloak.Saml.UserAttributeProtocolMapperArgs\n        {\n            RealmId = realm.Id,\n            ClientId = samlClient.Id,\n            UserAttribute = \"displayName\",\n            SamlAttributeName = \"displayName\",\n            SamlAttributeNameFormat = \"Unspecified\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tsamlClient, err := saml.NewClient(ctx, \"samlClient\", \u0026saml.ClientArgs{\n\t\t\tRealmId:  realm.ID(),\n\t\t\tClientId: pulumi.String(\"saml-client\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = saml.NewUserAttributeProtocolMapper(ctx, \"samlUserAttributeMapper\", \u0026saml.UserAttributeProtocolMapperArgs{\n\t\t\tRealmId:                 realm.ID(),\n\t\t\tClientId:                samlClient.ID(),\n\t\t\tUserAttribute:           pulumi.String(\"displayName\"),\n\t\t\tSamlAttributeName:       pulumi.String(\"displayName\"),\n\t\t\tSamlAttributeNameFormat: pulumi.String(\"Unspecified\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nProtocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash\n\n```sh\n $ pulumi import keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper saml_user_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n\n\n```sh\n $ pulumi import keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper saml_user_attribute_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n ",
             "properties": {
                 "clientId": {
                     "type": "string",
@@ -12408,7 +13229,7 @@
             }
         },
         "keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper": {
-            "description": "Allows for creating and managing user property protocol mappers for SAML clients within Keycloak.\n\nSAML user property protocol mappers allow you to map properties of the Keycloak\nuser model to an attribute in a SAML assertion.\n\nProtocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between\nmultiple different clients.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst samlClient = new keycloak.saml.Client(\"samlClient\", {\n    realmId: keycloak_realm.test.id,\n    clientId: \"saml-client\",\n});\nconst samlUserPropertyMapper = new keycloak.saml.UserPropertyProtocolMapper(\"samlUserPropertyMapper\", {\n    realmId: keycloak_realm.test.id,\n    clientId: samlClient.id,\n    userProperty: \"email\",\n    samlAttributeName: \"email\",\n    samlAttributeNameFormat: \"Unspecified\",\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nsaml_client = keycloak.saml.Client(\"samlClient\",\n    realm_id=keycloak_realm[\"test\"][\"id\"],\n    client_id=\"saml-client\")\nsaml_user_property_mapper = keycloak.saml.UserPropertyProtocolMapper(\"samlUserPropertyMapper\",\n    realm_id=keycloak_realm[\"test\"][\"id\"],\n    client_id=saml_client.id,\n    user_property=\"email\",\n    saml_attribute_name=\"email\",\n    saml_attribute_name_format=\"Unspecified\")\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var samlClient = new Keycloak.Saml.Client(\"samlClient\", new Keycloak.Saml.ClientArgs\n        {\n            RealmId = keycloak_realm.Test.Id,\n            ClientId = \"saml-client\",\n        });\n        var samlUserPropertyMapper = new Keycloak.Saml.UserPropertyProtocolMapper(\"samlUserPropertyMapper\", new Keycloak.Saml.UserPropertyProtocolMapperArgs\n        {\n            RealmId = keycloak_realm.Test.Id,\n            ClientId = samlClient.Id,\n            UserProperty = \"email\",\n            SamlAttributeName = \"email\",\n            SamlAttributeNameFormat = \"Unspecified\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tsamlClient, err := saml.NewClient(ctx, \"samlClient\", \u0026saml.ClientArgs{\n\t\t\tRealmId:  pulumi.Any(keycloak_realm.Test.Id),\n\t\t\tClientId: pulumi.String(\"saml-client\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = saml.NewUserPropertyProtocolMapper(ctx, \"samlUserPropertyMapper\", \u0026saml.UserPropertyProtocolMapperArgs{\n\t\t\tRealmId:                 pulumi.Any(keycloak_realm.Test.Id),\n\t\t\tClientId:                samlClient.ID(),\n\t\t\tUserProperty:            pulumi.String(\"email\"),\n\t\t\tSamlAttributeName:       pulumi.String(\"email\"),\n\t\t\tSamlAttributeNameFormat: pulumi.String(\"Unspecified\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nProtocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash\n\n```sh\n $ pulumi import keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper saml_user_property_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n\n\n```sh\n $ pulumi import keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper saml_user_property_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n ",
+            "description": "Allows for creating and managing user property protocol mappers for SAML clients within Keycloak.\n\nSAML user property protocol mappers allow you to map properties of the Keycloak\nuser model to an attribute in a SAML assertion.\n\nProtocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between\nmultiple different clients.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst samlClient = new keycloak.saml.Client(\"samlClient\", {\n    realmId: realm.id,\n    clientId: \"saml-client\",\n});\nconst samlUserPropertyMapper = new keycloak.saml.UserPropertyProtocolMapper(\"samlUserPropertyMapper\", {\n    realmId: realm.id,\n    clientId: samlClient.id,\n    userProperty: \"email\",\n    samlAttributeName: \"email\",\n    samlAttributeNameFormat: \"Unspecified\",\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nsaml_client = keycloak.saml.Client(\"samlClient\",\n    realm_id=realm.id,\n    client_id=\"saml-client\")\nsaml_user_property_mapper = keycloak.saml.UserPropertyProtocolMapper(\"samlUserPropertyMapper\",\n    realm_id=realm.id,\n    client_id=saml_client.id,\n    user_property=\"email\",\n    saml_attribute_name=\"email\",\n    saml_attribute_name_format=\"Unspecified\")\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var samlClient = new Keycloak.Saml.Client(\"samlClient\", new Keycloak.Saml.ClientArgs\n        {\n            RealmId = realm.Id,\n            ClientId = \"saml-client\",\n        });\n        var samlUserPropertyMapper = new Keycloak.Saml.UserPropertyProtocolMapper(\"samlUserPropertyMapper\", new Keycloak.Saml.UserPropertyProtocolMapperArgs\n        {\n            RealmId = realm.Id,\n            ClientId = samlClient.Id,\n            UserProperty = \"email\",\n            SamlAttributeName = \"email\",\n            SamlAttributeNameFormat = \"Unspecified\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tsamlClient, err := saml.NewClient(ctx, \"samlClient\", \u0026saml.ClientArgs{\n\t\t\tRealmId:  realm.ID(),\n\t\t\tClientId: pulumi.String(\"saml-client\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = saml.NewUserPropertyProtocolMapper(ctx, \"samlUserPropertyMapper\", \u0026saml.UserPropertyProtocolMapperArgs{\n\t\t\tRealmId:                 realm.ID(),\n\t\t\tClientId:                samlClient.ID(),\n\t\t\tUserProperty:            pulumi.String(\"email\"),\n\t\t\tSamlAttributeName:       pulumi.String(\"email\"),\n\t\t\tSamlAttributeNameFormat: pulumi.String(\"Unspecified\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nProtocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash\n\n```sh\n $ pulumi import keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper saml_user_property_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n\n\n```sh\n $ pulumi import keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper saml_user_property_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n ",
             "properties": {
                 "clientId": {
                     "type": "string",
@@ -13663,7 +14484,7 @@
             }
         },
         "keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy": {
-            "description": "This data source can be used to fetch policy and permission information for an OpenID client that has authorization enabled.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nIn this example, we'll create a new OpenID client with authorization enabled. This will cause Keycloak to create a default\npermission for this client called \"Default Permission\". We'll use the `keycloak.openid.getClientAuthorizationPolicy` data\nsource to fetch information about this permission, so we can use it to create a new resource-based authorization permission.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst clientWithAuthz = new keycloak.openid.Client(\"clientWithAuthz\", {\n    clientId: \"client-with-authz\",\n    realmId: realm.id,\n    accessType: \"CONFIDENTIAL\",\n    serviceAccountsEnabled: true,\n    authorization: {\n        policyEnforcementMode: \"ENFORCING\",\n    },\n});\nconst defaultPermission = clientWithAuthz.resourceServerId.apply(resourceServerId =\u003e keycloak.openid.getClientAuthorizationPolicy({\n    realmId: keycloak_realm.test.id,\n    resourceServerId: resourceServerId,\n    name: \"Default Permission\",\n}));\nconst resource = new keycloak.openid.ClientAuthorizationResource(\"resource\", {\n    resourceServerId: clientWithAuthz.resourceServerId,\n    realmId: keycloak_realm.test.id,\n    uris: [\"/endpoint/*\"],\n    attributes: {\n        foo: \"bar\",\n    },\n});\nconst permission = new keycloak.openid.ClientAuthorizationPermission(\"permission\", {\n    resourceServerId: clientWithAuthz.resourceServerId,\n    realmId: keycloak_realm.test.id,\n    policies: [defaultPermission.id],\n    resources: [resource.id],\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nclient_with_authz = keycloak.openid.Client(\"clientWithAuthz\",\n    client_id=\"client-with-authz\",\n    realm_id=realm.id,\n    access_type=\"CONFIDENTIAL\",\n    service_accounts_enabled=True,\n    authorization=keycloak.openid.ClientAuthorizationArgs(\n        policy_enforcement_mode=\"ENFORCING\",\n    ))\ndefault_permission = client_with_authz.resource_server_id.apply(lambda resource_server_id: keycloak.openid.get_client_authorization_policy(realm_id=keycloak_realm[\"test\"][\"id\"],\n    resource_server_id=resource_server_id,\n    name=\"Default Permission\"))\nresource = keycloak.openid.ClientAuthorizationResource(\"resource\",\n    resource_server_id=client_with_authz.resource_server_id,\n    realm_id=keycloak_realm[\"test\"][\"id\"],\n    uris=[\"/endpoint/*\"],\n    attributes={\n        \"foo\": \"bar\",\n    })\npermission = keycloak.openid.ClientAuthorizationPermission(\"permission\",\n    resource_server_id=client_with_authz.resource_server_id,\n    realm_id=keycloak_realm[\"test\"][\"id\"],\n    policies=[default_permission.id],\n    resources=[resource.id])\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var clientWithAuthz = new Keycloak.OpenId.Client(\"clientWithAuthz\", new Keycloak.OpenId.ClientArgs\n        {\n            ClientId = \"client-with-authz\",\n            RealmId = realm.Id,\n            AccessType = \"CONFIDENTIAL\",\n            ServiceAccountsEnabled = true,\n            Authorization = new Keycloak.OpenId.Inputs.ClientAuthorizationArgs\n            {\n                PolicyEnforcementMode = \"ENFORCING\",\n            },\n        });\n        var defaultPermission = clientWithAuthz.ResourceServerId.Apply(resourceServerId =\u003e Keycloak.OpenId.GetClientAuthorizationPolicy.InvokeAsync(new Keycloak.OpenId.GetClientAuthorizationPolicyArgs\n        {\n            RealmId = keycloak_realm.Test.Id,\n            ResourceServerId = resourceServerId,\n            Name = \"Default Permission\",\n        }));\n        var resource = new Keycloak.OpenId.ClientAuthorizationResource(\"resource\", new Keycloak.OpenId.ClientAuthorizationResourceArgs\n        {\n            ResourceServerId = clientWithAuthz.ResourceServerId,\n            RealmId = keycloak_realm.Test.Id,\n            Uris = \n            {\n                \"/endpoint/*\",\n            },\n            Attributes = \n            {\n                { \"foo\", \"bar\" },\n            },\n        });\n        var permission = new Keycloak.OpenId.ClientAuthorizationPermission(\"permission\", new Keycloak.OpenId.ClientAuthorizationPermissionArgs\n        {\n            ResourceServerId = clientWithAuthz.ResourceServerId,\n            RealmId = keycloak_realm.Test.Id,\n            Policies = \n            {\n                defaultPermission.Apply(defaultPermission =\u003e defaultPermission.Id),\n            },\n            Resources = \n            {\n                resource.Id,\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclientWithAuthz, err := openid.NewClient(ctx, \"clientWithAuthz\", \u0026openid.ClientArgs{\n\t\t\tClientId:               pulumi.String(\"client-with-authz\"),\n\t\t\tRealmId:                realm.ID(),\n\t\t\tAccessType:             pulumi.String(\"CONFIDENTIAL\"),\n\t\t\tServiceAccountsEnabled: pulumi.Bool(true),\n\t\t\tAuthorization: \u0026openid.ClientAuthorizationArgs{\n\t\t\t\tPolicyEnforcementMode: pulumi.String(\"ENFORCING\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tresource, err := openid.NewClientAuthorizationResource(ctx, \"resource\", \u0026openid.ClientAuthorizationResourceArgs{\n\t\t\tResourceServerId: clientWithAuthz.ResourceServerId,\n\t\t\tRealmId:          pulumi.Any(keycloak_realm.Test.Id),\n\t\t\tUris: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"/endpoint/*\"),\n\t\t\t},\n\t\t\tAttributes: pulumi.StringMap{\n\t\t\t\t\"foo\": pulumi.String(\"bar\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = openid.NewClientAuthorizationPermission(ctx, \"permission\", \u0026openid.ClientAuthorizationPermissionArgs{\n\t\t\tResourceServerId: clientWithAuthz.ResourceServerId,\n\t\t\tRealmId:          pulumi.Any(keycloak_realm.Test.Id),\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tdefaultPermission.ApplyT(func(defaultPermission openid.GetClientAuthorizationPolicyResult) (string, error) {\n\t\t\t\t\treturn defaultPermission.Id, nil\n\t\t\t\t}).(pulumi.StringOutput),\n\t\t\t},\n\t\t\tResources: pulumi.StringArray{\n\t\t\t\tresource.ID(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "This data source can be used to fetch policy and permission information for an OpenID client that has authorization enabled.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nIn this example, we'll create a new OpenID client with authorization enabled. This will cause Keycloak to create a default\npermission for this client called \"Default Permission\". We'll use the `keycloak.openid.getClientAuthorizationPolicy` data\nsource to fetch information about this permission, so we can use it to create a new resource-based authorization permission.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst clientWithAuthz = new keycloak.openid.Client(\"clientWithAuthz\", {\n    clientId: \"client-with-authz\",\n    realmId: realm.id,\n    accessType: \"CONFIDENTIAL\",\n    serviceAccountsEnabled: true,\n    authorization: {\n        policyEnforcementMode: \"ENFORCING\",\n    },\n});\nconst defaultPermission = pulumi.all([realm.id, clientWithAuthz.resourceServerId]).apply(([id, resourceServerId]) =\u003e keycloak.openid.getClientAuthorizationPolicy({\n    realmId: id,\n    resourceServerId: resourceServerId,\n    name: \"Default Permission\",\n}));\nconst resource = new keycloak.openid.ClientAuthorizationResource(\"resource\", {\n    resourceServerId: clientWithAuthz.resourceServerId,\n    realmId: realm.id,\n    uris: [\"/endpoint/*\"],\n    attributes: {\n        foo: \"bar\",\n    },\n});\nconst permission = new keycloak.openid.ClientAuthorizationPermission(\"permission\", {\n    resourceServerId: clientWithAuthz.resourceServerId,\n    realmId: realm.id,\n    policies: [defaultPermission.id],\n    resources: [resource.id],\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nclient_with_authz = keycloak.openid.Client(\"clientWithAuthz\",\n    client_id=\"client-with-authz\",\n    realm_id=realm.id,\n    access_type=\"CONFIDENTIAL\",\n    service_accounts_enabled=True,\n    authorization=keycloak.openid.ClientAuthorizationArgs(\n        policy_enforcement_mode=\"ENFORCING\",\n    ))\ndefault_permission = pulumi.Output.all(realm.id, client_with_authz.resource_server_id).apply(lambda id, resource_server_id: keycloak.openid.get_client_authorization_policy(realm_id=id,\n    resource_server_id=resource_server_id,\n    name=\"Default Permission\"))\nresource = keycloak.openid.ClientAuthorizationResource(\"resource\",\n    resource_server_id=client_with_authz.resource_server_id,\n    realm_id=realm.id,\n    uris=[\"/endpoint/*\"],\n    attributes={\n        \"foo\": \"bar\",\n    })\npermission = keycloak.openid.ClientAuthorizationPermission(\"permission\",\n    resource_server_id=client_with_authz.resource_server_id,\n    realm_id=realm.id,\n    policies=[default_permission.id],\n    resources=[resource.id])\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var clientWithAuthz = new Keycloak.OpenId.Client(\"clientWithAuthz\", new Keycloak.OpenId.ClientArgs\n        {\n            ClientId = \"client-with-authz\",\n            RealmId = realm.Id,\n            AccessType = \"CONFIDENTIAL\",\n            ServiceAccountsEnabled = true,\n            Authorization = new Keycloak.OpenId.Inputs.ClientAuthorizationArgs\n            {\n                PolicyEnforcementMode = \"ENFORCING\",\n            },\n        });\n        var defaultPermission = Output.Tuple(realm.Id, clientWithAuthz.ResourceServerId).Apply(values =\u003e\n        {\n            var id = values.Item1;\n            var resourceServerId = values.Item2;\n            return Keycloak.OpenId.GetClientAuthorizationPolicy.InvokeAsync(new Keycloak.OpenId.GetClientAuthorizationPolicyArgs\n            {\n                RealmId = id,\n                ResourceServerId = resourceServerId,\n                Name = \"Default Permission\",\n            });\n        });\n        var resource = new Keycloak.OpenId.ClientAuthorizationResource(\"resource\", new Keycloak.OpenId.ClientAuthorizationResourceArgs\n        {\n            ResourceServerId = clientWithAuthz.ResourceServerId,\n            RealmId = realm.Id,\n            Uris = \n            {\n                \"/endpoint/*\",\n            },\n            Attributes = \n            {\n                { \"foo\", \"bar\" },\n            },\n        });\n        var permission = new Keycloak.OpenId.ClientAuthorizationPermission(\"permission\", new Keycloak.OpenId.ClientAuthorizationPermissionArgs\n        {\n            ResourceServerId = clientWithAuthz.ResourceServerId,\n            RealmId = realm.Id,\n            Policies = \n            {\n                defaultPermission.Apply(defaultPermission =\u003e defaultPermission.Id),\n            },\n            Resources = \n            {\n                resource.Id,\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclientWithAuthz, err := openid.NewClient(ctx, \"clientWithAuthz\", \u0026openid.ClientArgs{\n\t\t\tClientId:               pulumi.String(\"client-with-authz\"),\n\t\t\tRealmId:                realm.ID(),\n\t\t\tAccessType:             pulumi.String(\"CONFIDENTIAL\"),\n\t\t\tServiceAccountsEnabled: pulumi.Bool(true),\n\t\t\tAuthorization: \u0026openid.ClientAuthorizationArgs{\n\t\t\t\tPolicyEnforcementMode: pulumi.String(\"ENFORCING\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tresource, err := openid.NewClientAuthorizationResource(ctx, \"resource\", \u0026openid.ClientAuthorizationResourceArgs{\n\t\t\tResourceServerId: clientWithAuthz.ResourceServerId,\n\t\t\tRealmId:          realm.ID(),\n\t\t\tUris: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"/endpoint/*\"),\n\t\t\t},\n\t\t\tAttributes: pulumi.StringMap{\n\t\t\t\t\"foo\": pulumi.String(\"bar\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = openid.NewClientAuthorizationPermission(ctx, \"permission\", \u0026openid.ClientAuthorizationPermissionArgs{\n\t\t\tResourceServerId: clientWithAuthz.ResourceServerId,\n\t\t\tRealmId:          realm.ID(),\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tdefaultPermission.ApplyT(func(defaultPermission openid.GetClientAuthorizationPolicyResult) (string, error) {\n\t\t\t\t\treturn defaultPermission.Id, nil\n\t\t\t\t}).(pulumi.StringOutput),\n\t\t\t},\n\t\t\tResources: pulumi.StringArray{\n\t\t\t\tresource.ID(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getClientAuthorizationPolicy.\n",
                 "properties": {

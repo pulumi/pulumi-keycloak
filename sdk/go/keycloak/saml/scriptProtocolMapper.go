@@ -31,7 +31,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
 // 			Realm:   pulumi.String("my-realm"),
 // 			Enabled: pulumi.Bool(true),
 // 		})
@@ -39,14 +39,14 @@ import (
 // 			return err
 // 		}
 // 		samlClient, err := saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
-// 			RealmId:  pulumi.Any(keycloak_realm.Test.Id),
+// 			RealmId:  realm.ID(),
 // 			ClientId: pulumi.String("saml-client"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = saml.NewScriptProtocolMapper(ctx, "samlScriptMapper", &saml.ScriptProtocolMapperArgs{
-// 			RealmId:                 pulumi.Any(keycloak_realm.Test.Id),
+// 			RealmId:                 realm.ID(),
 // 			ClientId:                samlClient.ID(),
 // 			Script:                  pulumi.String("exports = 'foo';"),
 // 			SamlAttributeName:       pulumi.String("displayName"),

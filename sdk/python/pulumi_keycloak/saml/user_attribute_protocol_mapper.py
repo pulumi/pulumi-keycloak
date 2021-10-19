@@ -311,10 +311,10 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
             realm="my-realm",
             enabled=True)
         saml_client = keycloak.saml.Client("samlClient",
-            realm_id=keycloak_realm["test"]["id"],
+            realm_id=realm.id,
             client_id="saml-client")
         saml_user_attribute_mapper = keycloak.saml.UserAttributeProtocolMapper("samlUserAttributeMapper",
-            realm_id=keycloak_realm["test"]["id"],
+            realm_id=realm.id,
             client_id=saml_client.id,
             user_attribute="displayName",
             saml_attribute_name="displayName",
@@ -369,10 +369,10 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
             realm="my-realm",
             enabled=True)
         saml_client = keycloak.saml.Client("samlClient",
-            realm_id=keycloak_realm["test"]["id"],
+            realm_id=realm.id,
             client_id="saml-client")
         saml_user_attribute_mapper = keycloak.saml.UserAttributeProtocolMapper("samlUserAttributeMapper",
-            realm_id=keycloak_realm["test"]["id"],
+            realm_id=realm.id,
             client_id=saml_client.id,
             user_attribute="displayName",
             saml_attribute_name="displayName",
