@@ -93,24 +93,24 @@ export class ClientAggregatePolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ClientAggregatePolicy resources.
  */
 export interface ClientAggregatePolicyState {
-    readonly decisionStrategy?: pulumi.Input<string>;
-    readonly description?: pulumi.Input<string>;
-    readonly logic?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly realmId?: pulumi.Input<string>;
-    readonly resourceServerId?: pulumi.Input<string>;
+    decisionStrategy?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    logic?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    realmId?: pulumi.Input<string>;
+    resourceServerId?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a ClientAggregatePolicy resource.
  */
 export interface ClientAggregatePolicyArgs {
-    readonly decisionStrategy: pulumi.Input<string>;
-    readonly description?: pulumi.Input<string>;
-    readonly logic?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
-    readonly policies: pulumi.Input<pulumi.Input<string>[]>;
-    readonly realmId: pulumi.Input<string>;
-    readonly resourceServerId: pulumi.Input<string>;
+    decisionStrategy: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    logic?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    policies: pulumi.Input<pulumi.Input<string>[]>;
+    realmId: pulumi.Input<string>;
+    resourceServerId: pulumi.Input<string>;
 }

@@ -170,35 +170,35 @@ export interface UserAttributeMapperState {
     /**
      * When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
      */
-    readonly alwaysReadValueFromLdap?: pulumi.Input<boolean>;
+    alwaysReadValueFromLdap?: pulumi.Input<boolean>;
     /**
      * When `true`, this attribute must exist in LDAP. Defaults to `false`.
      */
-    readonly isMandatoryInLdap?: pulumi.Input<boolean>;
+    isMandatoryInLdap?: pulumi.Input<boolean>;
     /**
      * Name of the mapped attribute on the LDAP object.
      */
-    readonly ldapAttribute?: pulumi.Input<string>;
+    ldapAttribute?: pulumi.Input<string>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    readonly ldapUserFederationId?: pulumi.Input<string>;
+    ldapUserFederationId?: pulumi.Input<string>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
      */
-    readonly readOnly?: pulumi.Input<boolean>;
+    readOnly?: pulumi.Input<boolean>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
     /**
      * Name of the user property or attribute you want to map the LDAP attribute into.
      */
-    readonly userModelAttribute?: pulumi.Input<string>;
+    userModelAttribute?: pulumi.Input<string>;
 }
 
 /**
@@ -208,33 +208,33 @@ export interface UserAttributeMapperArgs {
     /**
      * When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
      */
-    readonly alwaysReadValueFromLdap?: pulumi.Input<boolean>;
+    alwaysReadValueFromLdap?: pulumi.Input<boolean>;
     /**
      * When `true`, this attribute must exist in LDAP. Defaults to `false`.
      */
-    readonly isMandatoryInLdap?: pulumi.Input<boolean>;
+    isMandatoryInLdap?: pulumi.Input<boolean>;
     /**
      * Name of the mapped attribute on the LDAP object.
      */
-    readonly ldapAttribute: pulumi.Input<string>;
+    ldapAttribute: pulumi.Input<string>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    readonly ldapUserFederationId: pulumi.Input<string>;
+    ldapUserFederationId: pulumi.Input<string>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
      */
-    readonly readOnly?: pulumi.Input<boolean>;
+    readOnly?: pulumi.Input<boolean>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
     /**
      * Name of the user property or attribute you want to map the LDAP attribute into.
      */
-    readonly userModelAttribute: pulumi.Input<string>;
+    userModelAttribute: pulumi.Input<string>;
 }

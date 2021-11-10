@@ -227,7 +227,7 @@ type RealmKeystoreRsaArrayInput interface {
 type RealmKeystoreRsaArray []RealmKeystoreRsaInput
 
 func (RealmKeystoreRsaArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RealmKeystoreRsa)(nil))
+	return reflect.TypeOf((*[]*RealmKeystoreRsa)(nil)).Elem()
 }
 
 func (i RealmKeystoreRsaArray) ToRealmKeystoreRsaArrayOutput() RealmKeystoreRsaArrayOutput {
@@ -252,7 +252,7 @@ type RealmKeystoreRsaMapInput interface {
 type RealmKeystoreRsaMap map[string]RealmKeystoreRsaInput
 
 func (RealmKeystoreRsaMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RealmKeystoreRsa)(nil))
+	return reflect.TypeOf((*map[string]*RealmKeystoreRsa)(nil)).Elem()
 }
 
 func (i RealmKeystoreRsaMap) ToRealmKeystoreRsaMapOutput() RealmKeystoreRsaMapOutput {
@@ -263,9 +263,7 @@ func (i RealmKeystoreRsaMap) ToRealmKeystoreRsaMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreRsaMapOutput)
 }
 
-type RealmKeystoreRsaOutput struct {
-	*pulumi.OutputState
-}
+type RealmKeystoreRsaOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreRsaOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*RealmKeystoreRsa)(nil))
@@ -284,14 +282,12 @@ func (o RealmKeystoreRsaOutput) ToRealmKeystoreRsaPtrOutput() RealmKeystoreRsaPt
 }
 
 func (o RealmKeystoreRsaOutput) ToRealmKeystoreRsaPtrOutputWithContext(ctx context.Context) RealmKeystoreRsaPtrOutput {
-	return o.ApplyT(func(v RealmKeystoreRsa) *RealmKeystoreRsa {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmKeystoreRsa) *RealmKeystoreRsa {
 		return &v
 	}).(RealmKeystoreRsaPtrOutput)
 }
 
-type RealmKeystoreRsaPtrOutput struct {
-	*pulumi.OutputState
-}
+type RealmKeystoreRsaPtrOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreRsaPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RealmKeystoreRsa)(nil))
@@ -303,6 +299,16 @@ func (o RealmKeystoreRsaPtrOutput) ToRealmKeystoreRsaPtrOutput() RealmKeystoreRs
 
 func (o RealmKeystoreRsaPtrOutput) ToRealmKeystoreRsaPtrOutputWithContext(ctx context.Context) RealmKeystoreRsaPtrOutput {
 	return o
+}
+
+func (o RealmKeystoreRsaPtrOutput) Elem() RealmKeystoreRsaOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsa) RealmKeystoreRsa {
+		if v != nil {
+			return *v
+		}
+		var ret RealmKeystoreRsa
+		return ret
+	}).(RealmKeystoreRsaOutput)
 }
 
 type RealmKeystoreRsaArrayOutput struct{ *pulumi.OutputState }
@@ -346,6 +352,10 @@ func (o RealmKeystoreRsaMapOutput) MapIndex(k pulumi.StringInput) RealmKeystoreR
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreRsaInput)(nil)).Elem(), &RealmKeystoreRsa{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreRsaPtrInput)(nil)).Elem(), &RealmKeystoreRsa{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreRsaArrayInput)(nil)).Elem(), RealmKeystoreRsaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreRsaMapInput)(nil)).Elem(), RealmKeystoreRsaMap{})
 	pulumi.RegisterOutputType(RealmKeystoreRsaOutput{})
 	pulumi.RegisterOutputType(RealmKeystoreRsaPtrOutput{})
 	pulumi.RegisterOutputType(RealmKeystoreRsaArrayOutput{})

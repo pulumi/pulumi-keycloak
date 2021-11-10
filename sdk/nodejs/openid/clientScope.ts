@@ -134,27 +134,27 @@ export interface ClientScopeState {
     /**
      * When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
      */
-    readonly consentScreenText?: pulumi.Input<string>;
+    consentScreenText?: pulumi.Input<string>;
     /**
      * The description of this client scope in the GUI.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Specify order of the client scope in GUI (such as in Consent page) as integer.
      */
-    readonly guiOrder?: pulumi.Input<number>;
+    guiOrder?: pulumi.Input<number>;
     /**
      * When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
      */
-    readonly includeInTokenScope?: pulumi.Input<boolean>;
+    includeInTokenScope?: pulumi.Input<boolean>;
     /**
      * The display name of this client scope in the GUI.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The realm this client scope belongs to.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
 }
 
 /**
@@ -164,25 +164,25 @@ export interface ClientScopeArgs {
     /**
      * When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
      */
-    readonly consentScreenText?: pulumi.Input<string>;
+    consentScreenText?: pulumi.Input<string>;
     /**
      * The description of this client scope in the GUI.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Specify order of the client scope in GUI (such as in Consent page) as integer.
      */
-    readonly guiOrder?: pulumi.Input<number>;
+    guiOrder?: pulumi.Input<number>;
     /**
      * When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
      */
-    readonly includeInTokenScope?: pulumi.Input<boolean>;
+    includeInTokenScope?: pulumi.Input<boolean>;
     /**
      * The display name of this client scope in the GUI.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The realm this client scope belongs to.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
 }

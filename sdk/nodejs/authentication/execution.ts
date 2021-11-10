@@ -144,19 +144,19 @@ export interface ExecutionState {
     /**
      * The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
      */
-    readonly authenticator?: pulumi.Input<string>;
+    authenticator?: pulumi.Input<string>;
     /**
      * The alias of the flow this execution is attached to.
      */
-    readonly parentFlowAlias?: pulumi.Input<string>;
+    parentFlowAlias?: pulumi.Input<string>;
     /**
      * The realm the authentication execution exists in.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
     /**
      * The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
      */
-    readonly requirement?: pulumi.Input<string>;
+    requirement?: pulumi.Input<string>;
 }
 
 /**
@@ -166,17 +166,17 @@ export interface ExecutionArgs {
     /**
      * The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
      */
-    readonly authenticator: pulumi.Input<string>;
+    authenticator: pulumi.Input<string>;
     /**
      * The alias of the flow this execution is attached to.
      */
-    readonly parentFlowAlias: pulumi.Input<string>;
+    parentFlowAlias: pulumi.Input<string>;
     /**
      * The realm the authentication execution exists in.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
     /**
      * The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
      */
-    readonly requirement?: pulumi.Input<string>;
+    requirement?: pulumi.Input<string>;
 }

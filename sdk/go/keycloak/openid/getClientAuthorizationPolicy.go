@@ -4,6 +4,9 @@
 package openid
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -51,8 +54,8 @@ import (
 // 			Uris: pulumi.StringArray{
 // 				pulumi.String("/endpoint/*"),
 // 			},
-// 			Attributes: pulumi.StringMap{
-// 				"foo": pulumi.String("bar"),
+// 			Attributes: pulumi.AnyMap{
+// 				"foo": pulumi.Any("bar"),
 // 			},
 // 		})
 // 		if err != nil {
@@ -117,4 +120,98 @@ type GetClientAuthorizationPolicyResult struct {
 	Scopes []string `pulumi:"scopes"`
 	// (Computed) The type of this policy / permission. For permissions, this could be `resource` or `scope`. For policies, this could be any type of authorization policy, such as `js`.
 	Type string `pulumi:"type"`
+}
+
+func GetClientAuthorizationPolicyOutput(ctx *pulumi.Context, args GetClientAuthorizationPolicyOutputArgs, opts ...pulumi.InvokeOption) GetClientAuthorizationPolicyResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetClientAuthorizationPolicyResult, error) {
+			args := v.(GetClientAuthorizationPolicyArgs)
+			r, err := GetClientAuthorizationPolicy(ctx, &args, opts...)
+			return *r, err
+		}).(GetClientAuthorizationPolicyResultOutput)
+}
+
+// A collection of arguments for invoking getClientAuthorizationPolicy.
+type GetClientAuthorizationPolicyOutputArgs struct {
+	// The name of the authorization policy.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The realm this authorization policy exists within.
+	RealmId pulumi.StringInput `pulumi:"realmId"`
+	// The ID of the resource server this authorization policy is attached to.
+	ResourceServerId pulumi.StringInput `pulumi:"resourceServerId"`
+}
+
+func (GetClientAuthorizationPolicyOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClientAuthorizationPolicyArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getClientAuthorizationPolicy.
+type GetClientAuthorizationPolicyResultOutput struct{ *pulumi.OutputState }
+
+func (GetClientAuthorizationPolicyResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClientAuthorizationPolicyResult)(nil)).Elem()
+}
+
+func (o GetClientAuthorizationPolicyResultOutput) ToGetClientAuthorizationPolicyResultOutput() GetClientAuthorizationPolicyResultOutput {
+	return o
+}
+
+func (o GetClientAuthorizationPolicyResultOutput) ToGetClientAuthorizationPolicyResultOutputWithContext(ctx context.Context) GetClientAuthorizationPolicyResultOutput {
+	return o
+}
+
+// (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
+func (o GetClientAuthorizationPolicyResultOutput) DecisionStrategy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientAuthorizationPolicyResult) string { return v.DecisionStrategy }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetClientAuthorizationPolicyResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientAuthorizationPolicyResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
+func (o GetClientAuthorizationPolicyResultOutput) Logic() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientAuthorizationPolicyResult) string { return v.Logic }).(pulumi.StringOutput)
+}
+
+func (o GetClientAuthorizationPolicyResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientAuthorizationPolicyResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// (Computed) The ID of the owning resource. Applies to resources.
+func (o GetClientAuthorizationPolicyResultOutput) Owner() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientAuthorizationPolicyResult) string { return v.Owner }).(pulumi.StringOutput)
+}
+
+// (Computed) The IDs of the policies that must be applied to scopes/resources for this policy/permission. Applies to policies and permissions.
+func (o GetClientAuthorizationPolicyResultOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClientAuthorizationPolicyResult) []string { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+func (o GetClientAuthorizationPolicyResultOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientAuthorizationPolicyResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o GetClientAuthorizationPolicyResultOutput) ResourceServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientAuthorizationPolicyResult) string { return v.ResourceServerId }).(pulumi.StringOutput)
+}
+
+// (Computed) The IDs of the resources that this permission applies to. Applies to resource-based permissions.
+func (o GetClientAuthorizationPolicyResultOutput) Resources() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClientAuthorizationPolicyResult) []string { return v.Resources }).(pulumi.StringArrayOutput)
+}
+
+// (Computed) The IDs of the scopes that this permission applies to. Applies to scope-based permissions.
+func (o GetClientAuthorizationPolicyResultOutput) Scopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClientAuthorizationPolicyResult) []string { return v.Scopes }).(pulumi.StringArrayOutput)
+}
+
+// (Computed) The type of this policy / permission. For permissions, this could be `resource` or `scope`. For policies, this could be any type of authorization policy, such as `js`.
+func (o GetClientAuthorizationPolicyResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientAuthorizationPolicyResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetClientAuthorizationPolicyResultOutput{})
 }

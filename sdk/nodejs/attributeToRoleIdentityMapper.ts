@@ -129,40 +129,40 @@ export interface AttributeToRoleIdentityMapperState {
     /**
      * Attribute Friendly Name
      */
-    readonly attributeFriendlyName?: pulumi.Input<string>;
+    attributeFriendlyName?: pulumi.Input<string>;
     /**
      * Attribute Name
      */
-    readonly attributeName?: pulumi.Input<string>;
+    attributeName?: pulumi.Input<string>;
     /**
      * Attribute Value
      */
-    readonly attributeValue?: pulumi.Input<string>;
+    attributeValue?: pulumi.Input<string>;
     /**
      * OIDC Claim Name
      */
-    readonly claimName?: pulumi.Input<string>;
+    claimName?: pulumi.Input<string>;
     /**
      * OIDC Claim Value
      */
-    readonly claimValue?: pulumi.Input<string>;
-    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
+    claimValue?: pulumi.Input<string>;
+    extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * IDP Alias
      */
-    readonly identityProviderAlias?: pulumi.Input<string>;
+    identityProviderAlias?: pulumi.Input<string>;
     /**
      * IDP Mapper Name
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Realm Name
      */
-    readonly realm?: pulumi.Input<string>;
+    realm?: pulumi.Input<string>;
     /**
      * Role Name
      */
-    readonly role?: pulumi.Input<string>;
+    role?: pulumi.Input<string>;
 }
 
 /**
@@ -172,38 +172,38 @@ export interface AttributeToRoleIdentityMapperArgs {
     /**
      * Attribute Friendly Name
      */
-    readonly attributeFriendlyName?: pulumi.Input<string>;
+    attributeFriendlyName?: pulumi.Input<string>;
     /**
      * Attribute Name
      */
-    readonly attributeName?: pulumi.Input<string>;
+    attributeName?: pulumi.Input<string>;
     /**
      * Attribute Value
      */
-    readonly attributeValue?: pulumi.Input<string>;
+    attributeValue?: pulumi.Input<string>;
     /**
      * OIDC Claim Name
      */
-    readonly claimName?: pulumi.Input<string>;
+    claimName?: pulumi.Input<string>;
     /**
      * OIDC Claim Value
      */
-    readonly claimValue?: pulumi.Input<string>;
-    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
+    claimValue?: pulumi.Input<string>;
+    extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * IDP Alias
      */
-    readonly identityProviderAlias: pulumi.Input<string>;
+    identityProviderAlias: pulumi.Input<string>;
     /**
      * IDP Mapper Name
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Realm Name
      */
-    readonly realm: pulumi.Input<string>;
+    realm: pulumi.Input<string>;
     /**
      * Role Name
      */
-    readonly role: pulumi.Input<string>;
+    role: pulumi.Input<string>;
 }

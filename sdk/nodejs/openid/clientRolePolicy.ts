@@ -97,26 +97,26 @@ export class ClientRolePolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ClientRolePolicy resources.
  */
 export interface ClientRolePolicyState {
-    readonly decisionStrategy?: pulumi.Input<string>;
-    readonly description?: pulumi.Input<string>;
-    readonly logic?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
-    readonly realmId?: pulumi.Input<string>;
-    readonly resourceServerId?: pulumi.Input<string>;
-    readonly roles?: pulumi.Input<pulumi.Input<inputs.openid.ClientRolePolicyRole>[]>;
-    readonly type?: pulumi.Input<string>;
+    decisionStrategy?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    logic?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
+    resourceServerId?: pulumi.Input<string>;
+    roles?: pulumi.Input<pulumi.Input<inputs.openid.ClientRolePolicyRole>[]>;
+    type?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a ClientRolePolicy resource.
  */
 export interface ClientRolePolicyArgs {
-    readonly decisionStrategy?: pulumi.Input<string>;
-    readonly description?: pulumi.Input<string>;
-    readonly logic?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
-    readonly realmId: pulumi.Input<string>;
-    readonly resourceServerId: pulumi.Input<string>;
-    readonly roles: pulumi.Input<pulumi.Input<inputs.openid.ClientRolePolicyRole>[]>;
-    readonly type: pulumi.Input<string>;
+    decisionStrategy?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    logic?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
+    resourceServerId: pulumi.Input<string>;
+    roles: pulumi.Input<pulumi.Input<inputs.openid.ClientRolePolicyRole>[]>;
+    type: pulumi.Input<string>;
 }

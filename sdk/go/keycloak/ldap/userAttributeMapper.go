@@ -283,7 +283,7 @@ type UserAttributeMapperArrayInput interface {
 type UserAttributeMapperArray []UserAttributeMapperInput
 
 func (UserAttributeMapperArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserAttributeMapper)(nil))
+	return reflect.TypeOf((*[]*UserAttributeMapper)(nil)).Elem()
 }
 
 func (i UserAttributeMapperArray) ToUserAttributeMapperArrayOutput() UserAttributeMapperArrayOutput {
@@ -308,7 +308,7 @@ type UserAttributeMapperMapInput interface {
 type UserAttributeMapperMap map[string]UserAttributeMapperInput
 
 func (UserAttributeMapperMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserAttributeMapper)(nil))
+	return reflect.TypeOf((*map[string]*UserAttributeMapper)(nil)).Elem()
 }
 
 func (i UserAttributeMapperMap) ToUserAttributeMapperMapOutput() UserAttributeMapperMapOutput {
@@ -319,9 +319,7 @@ func (i UserAttributeMapperMap) ToUserAttributeMapperMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(UserAttributeMapperMapOutput)
 }
 
-type UserAttributeMapperOutput struct {
-	*pulumi.OutputState
-}
+type UserAttributeMapperOutput struct{ *pulumi.OutputState }
 
 func (UserAttributeMapperOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*UserAttributeMapper)(nil))
@@ -340,14 +338,12 @@ func (o UserAttributeMapperOutput) ToUserAttributeMapperPtrOutput() UserAttribut
 }
 
 func (o UserAttributeMapperOutput) ToUserAttributeMapperPtrOutputWithContext(ctx context.Context) UserAttributeMapperPtrOutput {
-	return o.ApplyT(func(v UserAttributeMapper) *UserAttributeMapper {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v UserAttributeMapper) *UserAttributeMapper {
 		return &v
 	}).(UserAttributeMapperPtrOutput)
 }
 
-type UserAttributeMapperPtrOutput struct {
-	*pulumi.OutputState
-}
+type UserAttributeMapperPtrOutput struct{ *pulumi.OutputState }
 
 func (UserAttributeMapperPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**UserAttributeMapper)(nil))
@@ -359,6 +355,16 @@ func (o UserAttributeMapperPtrOutput) ToUserAttributeMapperPtrOutput() UserAttri
 
 func (o UserAttributeMapperPtrOutput) ToUserAttributeMapperPtrOutputWithContext(ctx context.Context) UserAttributeMapperPtrOutput {
 	return o
+}
+
+func (o UserAttributeMapperPtrOutput) Elem() UserAttributeMapperOutput {
+	return o.ApplyT(func(v *UserAttributeMapper) UserAttributeMapper {
+		if v != nil {
+			return *v
+		}
+		var ret UserAttributeMapper
+		return ret
+	}).(UserAttributeMapperOutput)
 }
 
 type UserAttributeMapperArrayOutput struct{ *pulumi.OutputState }
@@ -402,6 +408,10 @@ func (o UserAttributeMapperMapOutput) MapIndex(k pulumi.StringInput) UserAttribu
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserAttributeMapperInput)(nil)).Elem(), &UserAttributeMapper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserAttributeMapperPtrInput)(nil)).Elem(), &UserAttributeMapper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserAttributeMapperArrayInput)(nil)).Elem(), UserAttributeMapperArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserAttributeMapperMapInput)(nil)).Elem(), UserAttributeMapperMap{})
 	pulumi.RegisterOutputType(UserAttributeMapperOutput{})
 	pulumi.RegisterOutputType(UserAttributeMapperPtrOutput{})
 	pulumi.RegisterOutputType(UserAttributeMapperArrayOutput{})

@@ -127,15 +127,15 @@ export interface ClientServiceAccountRealmRoleState {
     /**
      * The realm that the client and role belong to.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
     /**
      * The name of the role that is assigned.
      */
-    readonly role?: pulumi.Input<string>;
+    role?: pulumi.Input<string>;
     /**
      * The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
      */
-    readonly serviceAccountUserId?: pulumi.Input<string>;
+    serviceAccountUserId?: pulumi.Input<string>;
 }
 
 /**
@@ -145,13 +145,13 @@ export interface ClientServiceAccountRealmRoleArgs {
     /**
      * The realm that the client and role belong to.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
     /**
      * The name of the role that is assigned.
      */
-    readonly role: pulumi.Input<string>;
+    role: pulumi.Input<string>;
     /**
      * The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
      */
-    readonly serviceAccountUserId: pulumi.Input<string>;
+    serviceAccountUserId: pulumi.Input<string>;
 }

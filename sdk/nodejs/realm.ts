@@ -435,184 +435,184 @@ export interface RealmState {
     /**
      * The maximum amount of time a client has to finish the authorization code flow.
      */
-    readonly accessCodeLifespan?: pulumi.Input<string>;
+    accessCodeLifespan?: pulumi.Input<string>;
     /**
      * The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.
      */
-    readonly accessCodeLifespanLogin?: pulumi.Input<string>;
+    accessCodeLifespanLogin?: pulumi.Input<string>;
     /**
      * The maximum amount of time a user has to complete login related actions, such as updating a password.
      */
-    readonly accessCodeLifespanUserAction?: pulumi.Input<string>;
+    accessCodeLifespanUserAction?: pulumi.Input<string>;
     /**
      * The amount of time an access token can be used before it expires.
      */
-    readonly accessTokenLifespan?: pulumi.Input<string>;
+    accessTokenLifespan?: pulumi.Input<string>;
     /**
      * The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.
      */
-    readonly accessTokenLifespanForImplicitFlow?: pulumi.Input<string>;
+    accessTokenLifespanForImplicitFlow?: pulumi.Input<string>;
     /**
      * Used for account management pages.
      */
-    readonly accountTheme?: pulumi.Input<string>;
+    accountTheme?: pulumi.Input<string>;
     /**
      * The maximum time a user has to use an admin-generated permit before it expires.
      */
-    readonly actionTokenGeneratedByAdminLifespan?: pulumi.Input<string>;
+    actionTokenGeneratedByAdminLifespan?: pulumi.Input<string>;
     /**
      * The maximum time a user has to use a user-generated permit before it expires.
      */
-    readonly actionTokenGeneratedByUserLifespan?: pulumi.Input<string>;
+    actionTokenGeneratedByUserLifespan?: pulumi.Input<string>;
     /**
      * Used for the admin console.
      */
-    readonly adminTheme?: pulumi.Input<string>;
+    adminTheme?: pulumi.Input<string>;
     /**
      * A map of custom attributes to add to the realm.
      */
-    readonly attributes?: pulumi.Input<{[key: string]: any}>;
+    attributes?: pulumi.Input<{[key: string]: any}>;
     /**
      * The desired flow for browser authentication. Defaults to `browser`.
      */
-    readonly browserFlow?: pulumi.Input<string>;
+    browserFlow?: pulumi.Input<string>;
     /**
      * The desired flow for client authentication. Defaults to `clients`.
      */
-    readonly clientAuthenticationFlow?: pulumi.Input<string>;
-    readonly defaultDefaultClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly defaultOptionalClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    clientAuthenticationFlow?: pulumi.Input<string>;
+    defaultDefaultClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    defaultOptionalClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Default algorithm used to sign tokens for the realm.
      */
-    readonly defaultSignatureAlgorithm?: pulumi.Input<string>;
+    defaultSignatureAlgorithm?: pulumi.Input<string>;
     /**
      * The desired flow for direct access authentication. Defaults to `direct grant`.
      */
-    readonly directGrantFlow?: pulumi.Input<string>;
+    directGrantFlow?: pulumi.Input<string>;
     /**
      * The display name for the realm that is shown when logging in to the admin console.
      */
-    readonly displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string>;
     /**
      * The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
      */
-    readonly displayNameHtml?: pulumi.Input<string>;
+    displayNameHtml?: pulumi.Input<string>;
     /**
      * The desired flow for Docker authentication. Defaults to `docker auth`.
      */
-    readonly dockerAuthenticationFlow?: pulumi.Input<string>;
+    dockerAuthenticationFlow?: pulumi.Input<string>;
     /**
      * When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `loginWithEmailAllowed` is set to `true`.
      */
-    readonly duplicateEmailsAllowed?: pulumi.Input<boolean>;
+    duplicateEmailsAllowed?: pulumi.Input<boolean>;
     /**
      * When true, the username field is editable.
      */
-    readonly editUsernameAllowed?: pulumi.Input<boolean>;
+    editUsernameAllowed?: pulumi.Input<boolean>;
     /**
      * Used for emails that are sent by Keycloak.
      */
-    readonly emailTheme?: pulumi.Input<string>;
+    emailTheme?: pulumi.Input<string>;
     /**
      * When `false`, users and clients will not be able to access this realm. Defaults to `true`.
      */
-    readonly enabled?: pulumi.Input<boolean>;
-    readonly internalId?: pulumi.Input<string>;
-    readonly internationalization?: pulumi.Input<inputs.RealmInternationalization>;
+    enabled?: pulumi.Input<boolean>;
+    internalId?: pulumi.Input<string>;
+    internationalization?: pulumi.Input<inputs.RealmInternationalization>;
     /**
      * Used for the login, forgot password, and registration pages.
      */
-    readonly loginTheme?: pulumi.Input<string>;
+    loginTheme?: pulumi.Input<string>;
     /**
      * When true, users may log in with their email address.
      */
-    readonly loginWithEmailAllowed?: pulumi.Input<boolean>;
+    loginWithEmailAllowed?: pulumi.Input<boolean>;
     /**
      * The amount of time an offline session can be idle before it expires.
      */
-    readonly offlineSessionIdleTimeout?: pulumi.Input<string>;
+    offlineSessionIdleTimeout?: pulumi.Input<string>;
     /**
      * The maximum amount of time before an offline session expires regardless of activity.
      */
-    readonly offlineSessionMaxLifespan?: pulumi.Input<string>;
+    offlineSessionMaxLifespan?: pulumi.Input<string>;
     /**
      * Enable `offlineSessionMaxLifespan`.
      */
-    readonly offlineSessionMaxLifespanEnabled?: pulumi.Input<boolean>;
-    readonly otpPolicy?: pulumi.Input<inputs.RealmOtpPolicy>;
+    offlineSessionMaxLifespanEnabled?: pulumi.Input<boolean>;
+    otpPolicy?: pulumi.Input<inputs.RealmOtpPolicy>;
     /**
      * The password policy for users within the realm.
      */
-    readonly passwordPolicy?: pulumi.Input<string>;
+    passwordPolicy?: pulumi.Input<string>;
     /**
      * The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
      */
-    readonly realm?: pulumi.Input<string>;
+    realm?: pulumi.Input<string>;
     /**
      * Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
      */
-    readonly refreshTokenMaxReuse?: pulumi.Input<number>;
+    refreshTokenMaxReuse?: pulumi.Input<number>;
     /**
      * When true, user registration will be enabled, and a link for registration will be displayed on the login page.
      */
-    readonly registrationAllowed?: pulumi.Input<boolean>;
+    registrationAllowed?: pulumi.Input<boolean>;
     /**
      * When true, the user's email will be used as their username during registration.
      */
-    readonly registrationEmailAsUsername?: pulumi.Input<boolean>;
+    registrationEmailAsUsername?: pulumi.Input<boolean>;
     /**
      * The desired flow for user registration. Defaults to `registration`.
      */
-    readonly registrationFlow?: pulumi.Input<string>;
+    registrationFlow?: pulumi.Input<string>;
     /**
      * When true, a "remember me" checkbox will be displayed on the login page, and the user's session will not expire between browser restarts.
      */
-    readonly rememberMe?: pulumi.Input<boolean>;
+    rememberMe?: pulumi.Input<boolean>;
     /**
      * The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
      */
-    readonly resetCredentialsFlow?: pulumi.Input<string>;
+    resetCredentialsFlow?: pulumi.Input<string>;
     /**
      * When true, a "forgot password" link will be displayed on the login page.
      */
-    readonly resetPasswordAllowed?: pulumi.Input<boolean>;
+    resetPasswordAllowed?: pulumi.Input<boolean>;
     /**
      * If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.
      */
-    readonly revokeRefreshToken?: pulumi.Input<boolean>;
-    readonly securityDefenses?: pulumi.Input<inputs.RealmSecurityDefenses>;
-    readonly smtpServer?: pulumi.Input<inputs.RealmSmtpServer>;
+    revokeRefreshToken?: pulumi.Input<boolean>;
+    securityDefenses?: pulumi.Input<inputs.RealmSecurityDefenses>;
+    smtpServer?: pulumi.Input<inputs.RealmSmtpServer>;
     /**
      * Can be one of following values: 'none, 'external' or 'all'
      */
-    readonly sslRequired?: pulumi.Input<string>;
+    sslRequired?: pulumi.Input<string>;
     /**
      * The amount of time a session can be idle before it expires.
      */
-    readonly ssoSessionIdleTimeout?: pulumi.Input<string>;
-    readonly ssoSessionIdleTimeoutRememberMe?: pulumi.Input<string>;
+    ssoSessionIdleTimeout?: pulumi.Input<string>;
+    ssoSessionIdleTimeoutRememberMe?: pulumi.Input<string>;
     /**
      * The maximum amount of time before a session expires regardless of activity.
      */
-    readonly ssoSessionMaxLifespan?: pulumi.Input<string>;
-    readonly ssoSessionMaxLifespanRememberMe?: pulumi.Input<string>;
+    ssoSessionMaxLifespan?: pulumi.Input<string>;
+    ssoSessionMaxLifespanRememberMe?: pulumi.Input<string>;
     /**
      * When `true`, users are allowed to manage their own resources. Defaults to `false`.
      */
-    readonly userManagedAccess?: pulumi.Input<boolean>;
+    userManagedAccess?: pulumi.Input<boolean>;
     /**
      * When true, users are required to verify their email address after registration and after email address changes.
      */
-    readonly verifyEmail?: pulumi.Input<boolean>;
+    verifyEmail?: pulumi.Input<boolean>;
     /**
      * Configuration for WebAuthn Passwordless Policy authentication.
      */
-    readonly webAuthnPasswordlessPolicy?: pulumi.Input<inputs.RealmWebAuthnPasswordlessPolicy>;
+    webAuthnPasswordlessPolicy?: pulumi.Input<inputs.RealmWebAuthnPasswordlessPolicy>;
     /**
      * Configuration for WebAuthn Policy authentication.
      */
-    readonly webAuthnPolicy?: pulumi.Input<inputs.RealmWebAuthnPolicy>;
+    webAuthnPolicy?: pulumi.Input<inputs.RealmWebAuthnPolicy>;
 }
 
 /**
@@ -622,181 +622,181 @@ export interface RealmArgs {
     /**
      * The maximum amount of time a client has to finish the authorization code flow.
      */
-    readonly accessCodeLifespan?: pulumi.Input<string>;
+    accessCodeLifespan?: pulumi.Input<string>;
     /**
      * The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.
      */
-    readonly accessCodeLifespanLogin?: pulumi.Input<string>;
+    accessCodeLifespanLogin?: pulumi.Input<string>;
     /**
      * The maximum amount of time a user has to complete login related actions, such as updating a password.
      */
-    readonly accessCodeLifespanUserAction?: pulumi.Input<string>;
+    accessCodeLifespanUserAction?: pulumi.Input<string>;
     /**
      * The amount of time an access token can be used before it expires.
      */
-    readonly accessTokenLifespan?: pulumi.Input<string>;
+    accessTokenLifespan?: pulumi.Input<string>;
     /**
      * The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.
      */
-    readonly accessTokenLifespanForImplicitFlow?: pulumi.Input<string>;
+    accessTokenLifespanForImplicitFlow?: pulumi.Input<string>;
     /**
      * Used for account management pages.
      */
-    readonly accountTheme?: pulumi.Input<string>;
+    accountTheme?: pulumi.Input<string>;
     /**
      * The maximum time a user has to use an admin-generated permit before it expires.
      */
-    readonly actionTokenGeneratedByAdminLifespan?: pulumi.Input<string>;
+    actionTokenGeneratedByAdminLifespan?: pulumi.Input<string>;
     /**
      * The maximum time a user has to use a user-generated permit before it expires.
      */
-    readonly actionTokenGeneratedByUserLifespan?: pulumi.Input<string>;
+    actionTokenGeneratedByUserLifespan?: pulumi.Input<string>;
     /**
      * Used for the admin console.
      */
-    readonly adminTheme?: pulumi.Input<string>;
+    adminTheme?: pulumi.Input<string>;
     /**
      * A map of custom attributes to add to the realm.
      */
-    readonly attributes?: pulumi.Input<{[key: string]: any}>;
+    attributes?: pulumi.Input<{[key: string]: any}>;
     /**
      * The desired flow for browser authentication. Defaults to `browser`.
      */
-    readonly browserFlow?: pulumi.Input<string>;
+    browserFlow?: pulumi.Input<string>;
     /**
      * The desired flow for client authentication. Defaults to `clients`.
      */
-    readonly clientAuthenticationFlow?: pulumi.Input<string>;
-    readonly defaultDefaultClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly defaultOptionalClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    clientAuthenticationFlow?: pulumi.Input<string>;
+    defaultDefaultClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    defaultOptionalClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Default algorithm used to sign tokens for the realm.
      */
-    readonly defaultSignatureAlgorithm?: pulumi.Input<string>;
+    defaultSignatureAlgorithm?: pulumi.Input<string>;
     /**
      * The desired flow for direct access authentication. Defaults to `direct grant`.
      */
-    readonly directGrantFlow?: pulumi.Input<string>;
+    directGrantFlow?: pulumi.Input<string>;
     /**
      * The display name for the realm that is shown when logging in to the admin console.
      */
-    readonly displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string>;
     /**
      * The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
      */
-    readonly displayNameHtml?: pulumi.Input<string>;
+    displayNameHtml?: pulumi.Input<string>;
     /**
      * The desired flow for Docker authentication. Defaults to `docker auth`.
      */
-    readonly dockerAuthenticationFlow?: pulumi.Input<string>;
+    dockerAuthenticationFlow?: pulumi.Input<string>;
     /**
      * When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `loginWithEmailAllowed` is set to `true`.
      */
-    readonly duplicateEmailsAllowed?: pulumi.Input<boolean>;
+    duplicateEmailsAllowed?: pulumi.Input<boolean>;
     /**
      * When true, the username field is editable.
      */
-    readonly editUsernameAllowed?: pulumi.Input<boolean>;
+    editUsernameAllowed?: pulumi.Input<boolean>;
     /**
      * Used for emails that are sent by Keycloak.
      */
-    readonly emailTheme?: pulumi.Input<string>;
+    emailTheme?: pulumi.Input<string>;
     /**
      * When `false`, users and clients will not be able to access this realm. Defaults to `true`.
      */
-    readonly enabled?: pulumi.Input<boolean>;
-    readonly internationalization?: pulumi.Input<inputs.RealmInternationalization>;
+    enabled?: pulumi.Input<boolean>;
+    internationalization?: pulumi.Input<inputs.RealmInternationalization>;
     /**
      * Used for the login, forgot password, and registration pages.
      */
-    readonly loginTheme?: pulumi.Input<string>;
+    loginTheme?: pulumi.Input<string>;
     /**
      * When true, users may log in with their email address.
      */
-    readonly loginWithEmailAllowed?: pulumi.Input<boolean>;
+    loginWithEmailAllowed?: pulumi.Input<boolean>;
     /**
      * The amount of time an offline session can be idle before it expires.
      */
-    readonly offlineSessionIdleTimeout?: pulumi.Input<string>;
+    offlineSessionIdleTimeout?: pulumi.Input<string>;
     /**
      * The maximum amount of time before an offline session expires regardless of activity.
      */
-    readonly offlineSessionMaxLifespan?: pulumi.Input<string>;
+    offlineSessionMaxLifespan?: pulumi.Input<string>;
     /**
      * Enable `offlineSessionMaxLifespan`.
      */
-    readonly offlineSessionMaxLifespanEnabled?: pulumi.Input<boolean>;
-    readonly otpPolicy?: pulumi.Input<inputs.RealmOtpPolicy>;
+    offlineSessionMaxLifespanEnabled?: pulumi.Input<boolean>;
+    otpPolicy?: pulumi.Input<inputs.RealmOtpPolicy>;
     /**
      * The password policy for users within the realm.
      */
-    readonly passwordPolicy?: pulumi.Input<string>;
+    passwordPolicy?: pulumi.Input<string>;
     /**
      * The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
      */
-    readonly realm: pulumi.Input<string>;
+    realm: pulumi.Input<string>;
     /**
      * Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
      */
-    readonly refreshTokenMaxReuse?: pulumi.Input<number>;
+    refreshTokenMaxReuse?: pulumi.Input<number>;
     /**
      * When true, user registration will be enabled, and a link for registration will be displayed on the login page.
      */
-    readonly registrationAllowed?: pulumi.Input<boolean>;
+    registrationAllowed?: pulumi.Input<boolean>;
     /**
      * When true, the user's email will be used as their username during registration.
      */
-    readonly registrationEmailAsUsername?: pulumi.Input<boolean>;
+    registrationEmailAsUsername?: pulumi.Input<boolean>;
     /**
      * The desired flow for user registration. Defaults to `registration`.
      */
-    readonly registrationFlow?: pulumi.Input<string>;
+    registrationFlow?: pulumi.Input<string>;
     /**
      * When true, a "remember me" checkbox will be displayed on the login page, and the user's session will not expire between browser restarts.
      */
-    readonly rememberMe?: pulumi.Input<boolean>;
+    rememberMe?: pulumi.Input<boolean>;
     /**
      * The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
      */
-    readonly resetCredentialsFlow?: pulumi.Input<string>;
+    resetCredentialsFlow?: pulumi.Input<string>;
     /**
      * When true, a "forgot password" link will be displayed on the login page.
      */
-    readonly resetPasswordAllowed?: pulumi.Input<boolean>;
+    resetPasswordAllowed?: pulumi.Input<boolean>;
     /**
      * If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.
      */
-    readonly revokeRefreshToken?: pulumi.Input<boolean>;
-    readonly securityDefenses?: pulumi.Input<inputs.RealmSecurityDefenses>;
-    readonly smtpServer?: pulumi.Input<inputs.RealmSmtpServer>;
+    revokeRefreshToken?: pulumi.Input<boolean>;
+    securityDefenses?: pulumi.Input<inputs.RealmSecurityDefenses>;
+    smtpServer?: pulumi.Input<inputs.RealmSmtpServer>;
     /**
      * Can be one of following values: 'none, 'external' or 'all'
      */
-    readonly sslRequired?: pulumi.Input<string>;
+    sslRequired?: pulumi.Input<string>;
     /**
      * The amount of time a session can be idle before it expires.
      */
-    readonly ssoSessionIdleTimeout?: pulumi.Input<string>;
-    readonly ssoSessionIdleTimeoutRememberMe?: pulumi.Input<string>;
+    ssoSessionIdleTimeout?: pulumi.Input<string>;
+    ssoSessionIdleTimeoutRememberMe?: pulumi.Input<string>;
     /**
      * The maximum amount of time before a session expires regardless of activity.
      */
-    readonly ssoSessionMaxLifespan?: pulumi.Input<string>;
-    readonly ssoSessionMaxLifespanRememberMe?: pulumi.Input<string>;
+    ssoSessionMaxLifespan?: pulumi.Input<string>;
+    ssoSessionMaxLifespanRememberMe?: pulumi.Input<string>;
     /**
      * When `true`, users are allowed to manage their own resources. Defaults to `false`.
      */
-    readonly userManagedAccess?: pulumi.Input<boolean>;
+    userManagedAccess?: pulumi.Input<boolean>;
     /**
      * When true, users are required to verify their email address after registration and after email address changes.
      */
-    readonly verifyEmail?: pulumi.Input<boolean>;
+    verifyEmail?: pulumi.Input<boolean>;
     /**
      * Configuration for WebAuthn Passwordless Policy authentication.
      */
-    readonly webAuthnPasswordlessPolicy?: pulumi.Input<inputs.RealmWebAuthnPasswordlessPolicy>;
+    webAuthnPasswordlessPolicy?: pulumi.Input<inputs.RealmWebAuthnPasswordlessPolicy>;
     /**
      * Configuration for WebAuthn Policy authentication.
      */
-    readonly webAuthnPolicy?: pulumi.Input<inputs.RealmWebAuthnPolicy>;
+    webAuthnPolicy?: pulumi.Input<inputs.RealmWebAuthnPolicy>;
 }

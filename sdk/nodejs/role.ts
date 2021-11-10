@@ -227,27 +227,27 @@ export interface RoleState {
     /**
      * A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
-    readonly attributes?: pulumi.Input<{[key: string]: any}>;
+    attributes?: pulumi.Input<{[key: string]: any}>;
     /**
      * When specified, this role will be created as a client role attached to the client with the provided ID
      */
-    readonly clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
      */
-    readonly compositeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    compositeRoles?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The description of the role
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * The name of the role
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The realm this role exists within.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
 }
 
 /**
@@ -257,25 +257,25 @@ export interface RoleArgs {
     /**
      * A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
-    readonly attributes?: pulumi.Input<{[key: string]: any}>;
+    attributes?: pulumi.Input<{[key: string]: any}>;
     /**
      * When specified, this role will be created as a client role attached to the client with the provided ID
      */
-    readonly clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
      */
-    readonly compositeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    compositeRoles?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The description of the role
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * The name of the role
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The realm this role exists within.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
 }

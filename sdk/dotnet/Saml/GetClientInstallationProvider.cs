@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Keycloak.Saml
 {
@@ -69,6 +70,65 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         public static Task<GetClientInstallationProviderResult> InvokeAsync(GetClientInstallationProviderArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetClientInstallationProviderResult>("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", args ?? new GetClientInstallationProviderArgs(), options.WithVersion());
+
+        /// <summary>
+        /// This data source can be used to retrieve Installation Provider of a SAML Client.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
+        /// 
+        /// ```csharp
+        /// using System.IO;
+        /// using Pulumi;
+        /// using Aws = Pulumi.Aws;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+        ///         {
+        ///             Realm = "my-realm",
+        ///             Enabled = true,
+        ///         });
+        ///         var samlClient = new Keycloak.Saml.Client("samlClient", new Keycloak.Saml.ClientArgs
+        ///         {
+        ///             RealmId = realm.Id,
+        ///             ClientId = "test-saml-client",
+        ///             SignDocuments = false,
+        ///             SignAssertions = true,
+        ///             IncludeAuthnStatement = true,
+        ///             SigningCertificate = File.ReadAllText("saml-cert.pem"),
+        ///             SigningPrivateKey = File.ReadAllText("saml-key.pem"),
+        ///         });
+        ///         var samlIdpDescriptor = Output.Tuple(realm.Id, samlClient.Id).Apply(values =&gt;
+        ///         {
+        ///             var realmId = values.Item1;
+        ///             var samlClientId = values.Item2;
+        ///             return Keycloak.Saml.GetClientInstallationProvider.InvokeAsync(new Keycloak.Saml.GetClientInstallationProviderArgs
+        ///             {
+        ///                 RealmId = realmId,
+        ///                 ClientId = samlClientId,
+        ///                 ProviderId = "saml-idp-descriptor",
+        ///             });
+        ///         });
+        ///         var @default = new Aws.Iam.SamlProvider("default", new Aws.Iam.SamlProviderArgs
+        ///         {
+        ///             SamlMetadataDocument = samlIdpDescriptor.Apply(samlIdpDescriptor =&gt; samlIdpDescriptor.Value),
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetClientInstallationProviderResult> Invoke(GetClientInstallationProviderInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetClientInstallationProviderResult>("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", args ?? new GetClientInstallationProviderInvokeArgs(), options.WithVersion());
     }
 
 
@@ -93,6 +153,31 @@ namespace Pulumi.Keycloak.Saml
         public string RealmId { get; set; } = null!;
 
         public GetClientInstallationProviderArgs()
+        {
+        }
+    }
+
+    public sealed class GetClientInstallationProviderInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The ID of the SAML client. The `id` attribute of a `keycloak_client` resource should be used here.
+        /// </summary>
+        [Input("clientId", required: true)]
+        public Input<string> ClientId { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the SAML installation provider. Could be one of `saml-idp-descriptor`, `keycloak-saml`, `saml-sp-descriptor`, `keycloak-saml-subsystem`, `mod-auth-mellon`, etc.
+        /// </summary>
+        [Input("providerId", required: true)]
+        public Input<string> ProviderId { get; set; } = null!;
+
+        /// <summary>
+        /// The realm that the SAML client exists within.
+        /// </summary>
+        [Input("realmId", required: true)]
+        public Input<string> RealmId { get; set; } = null!;
+
+        public GetClientInstallationProviderInvokeArgs()
         {
         }
     }

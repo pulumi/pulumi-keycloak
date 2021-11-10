@@ -10,44 +10,44 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class GetRealmSmtpServerArgs : Pulumi.InvokeArgs
+    public sealed class GetRealmSmtpServerInputArgs : Pulumi.ResourceArgs
     {
         [Input("auths", required: true)]
-        private List<Inputs.GetRealmSmtpServerAuthArgs>? _auths;
-        public List<Inputs.GetRealmSmtpServerAuthArgs> Auths
+        private InputList<Inputs.GetRealmSmtpServerAuthInputArgs>? _auths;
+        public InputList<Inputs.GetRealmSmtpServerAuthInputArgs> Auths
         {
-            get => _auths ?? (_auths = new List<Inputs.GetRealmSmtpServerAuthArgs>());
+            get => _auths ?? (_auths = new InputList<Inputs.GetRealmSmtpServerAuthInputArgs>());
             set => _auths = value;
         }
 
         [Input("envelopeFrom", required: true)]
-        public string EnvelopeFrom { get; set; } = null!;
+        public Input<string> EnvelopeFrom { get; set; } = null!;
 
         [Input("from", required: true)]
-        public string From { get; set; } = null!;
+        public Input<string> From { get; set; } = null!;
 
         [Input("fromDisplayName", required: true)]
-        public string FromDisplayName { get; set; } = null!;
+        public Input<string> FromDisplayName { get; set; } = null!;
 
         [Input("host", required: true)]
-        public string Host { get; set; } = null!;
+        public Input<string> Host { get; set; } = null!;
 
         [Input("port", required: true)]
-        public string Port { get; set; } = null!;
+        public Input<string> Port { get; set; } = null!;
 
         [Input("replyTo", required: true)]
-        public string ReplyTo { get; set; } = null!;
+        public Input<string> ReplyTo { get; set; } = null!;
 
         [Input("replyToDisplayName", required: true)]
-        public string ReplyToDisplayName { get; set; } = null!;
+        public Input<string> ReplyToDisplayName { get; set; } = null!;
 
         [Input("ssl", required: true)]
-        public bool Ssl { get; set; }
+        public Input<bool> Ssl { get; set; } = null!;
 
         [Input("starttls", required: true)]
-        public bool Starttls { get; set; }
+        public Input<bool> Starttls { get; set; } = null!;
 
-        public GetRealmSmtpServerArgs()
+        public GetRealmSmtpServerInputArgs()
         {
         }
     }

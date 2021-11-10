@@ -300,124 +300,124 @@ export interface IdentityProviderState {
     /**
      * When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
      */
-    readonly acceptsPromptNoneForwardFromClient?: pulumi.Input<boolean>;
+    acceptsPromptNoneForwardFromClient?: pulumi.Input<boolean>;
     /**
      * When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
      */
-    readonly addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
+    addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
     /**
      * The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
      */
-    readonly alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string>;
     /**
      * Enable/disable authenticate users by default.
      */
-    readonly authenticateByDefault?: pulumi.Input<boolean>;
+    authenticateByDefault?: pulumi.Input<boolean>;
     /**
      * The Authorization Url.
      */
-    readonly authorizationUrl?: pulumi.Input<string>;
+    authorizationUrl?: pulumi.Input<string>;
     /**
      * Does the external IDP support backchannel logout? Defaults to `true`.
      */
-    readonly backchannelSupported?: pulumi.Input<boolean>;
+    backchannelSupported?: pulumi.Input<boolean>;
     /**
      * The client or client identifier registered within the identity provider.
      */
-    readonly clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
      */
-    readonly clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
     /**
      * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
      */
-    readonly defaultScopes?: pulumi.Input<string>;
+    defaultScopes?: pulumi.Input<string>;
     /**
      * When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
      */
-    readonly disableUserInfo?: pulumi.Input<boolean>;
+    disableUserInfo?: pulumi.Input<boolean>;
     /**
      * Display name for the identity provider in the GUI.
      */
-    readonly displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string>;
     /**
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
-    readonly enabled?: pulumi.Input<boolean>;
-    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
+    enabled?: pulumi.Input<boolean>;
+    extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
      */
-    readonly firstBrokerLoginFlowAlias?: pulumi.Input<string>;
+    firstBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
      * A number defining the order of this identity provider in the GUI.
      */
-    readonly guiOrder?: pulumi.Input<string>;
+    guiOrder?: pulumi.Input<string>;
     /**
      * When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
      */
-    readonly hideOnLoginPage?: pulumi.Input<boolean>;
+    hideOnLoginPage?: pulumi.Input<boolean>;
     /**
      * (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
      */
-    readonly internalId?: pulumi.Input<string>;
+    internalId?: pulumi.Input<string>;
     /**
      * JSON Web Key Set URL.
      */
-    readonly jwksUrl?: pulumi.Input<string>;
+    jwksUrl?: pulumi.Input<string>;
     /**
      * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
-    readonly linkOnly?: pulumi.Input<boolean>;
+    linkOnly?: pulumi.Input<boolean>;
     /**
      * Pass login hint to identity provider.
      */
-    readonly loginHint?: pulumi.Input<string>;
+    loginHint?: pulumi.Input<string>;
     /**
      * The Logout URL is the end session endpoint to use to logout user from external identity provider.
      */
-    readonly logoutUrl?: pulumi.Input<string>;
+    logoutUrl?: pulumi.Input<string>;
     /**
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
      */
-    readonly postBrokerLoginFlowAlias?: pulumi.Input<string>;
+    postBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
      * The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
      */
-    readonly providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string>;
     /**
      * The name of the realm. This is unique across Keycloak.
      */
-    readonly realm?: pulumi.Input<string>;
+    realm?: pulumi.Input<string>;
     /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
-    readonly storeToken?: pulumi.Input<boolean>;
+    storeToken?: pulumi.Input<boolean>;
     /**
      * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
      */
-    readonly syncMode?: pulumi.Input<string>;
+    syncMode?: pulumi.Input<string>;
     /**
      * The Token URL.
      */
-    readonly tokenUrl?: pulumi.Input<string>;
+    tokenUrl?: pulumi.Input<string>;
     /**
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
      */
-    readonly trustEmail?: pulumi.Input<boolean>;
+    trustEmail?: pulumi.Input<boolean>;
     /**
      * Pass current locale to identity provider. Defaults to `false`.
      */
-    readonly uiLocales?: pulumi.Input<boolean>;
+    uiLocales?: pulumi.Input<boolean>;
     /**
      * User Info URL.
      */
-    readonly userInfoUrl?: pulumi.Input<string>;
+    userInfoUrl?: pulumi.Input<string>;
     /**
      * Enable/disable signature validation of external IDP signatures. Defaults to `false`.
      */
-    readonly validateSignature?: pulumi.Input<boolean>;
+    validateSignature?: pulumi.Input<boolean>;
 }
 
 /**
@@ -427,118 +427,118 @@ export interface IdentityProviderArgs {
     /**
      * When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
      */
-    readonly acceptsPromptNoneForwardFromClient?: pulumi.Input<boolean>;
+    acceptsPromptNoneForwardFromClient?: pulumi.Input<boolean>;
     /**
      * When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
      */
-    readonly addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
+    addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
     /**
      * The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
      */
-    readonly alias: pulumi.Input<string>;
+    alias: pulumi.Input<string>;
     /**
      * Enable/disable authenticate users by default.
      */
-    readonly authenticateByDefault?: pulumi.Input<boolean>;
+    authenticateByDefault?: pulumi.Input<boolean>;
     /**
      * The Authorization Url.
      */
-    readonly authorizationUrl: pulumi.Input<string>;
+    authorizationUrl: pulumi.Input<string>;
     /**
      * Does the external IDP support backchannel logout? Defaults to `true`.
      */
-    readonly backchannelSupported?: pulumi.Input<boolean>;
+    backchannelSupported?: pulumi.Input<boolean>;
     /**
      * The client or client identifier registered within the identity provider.
      */
-    readonly clientId: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
     /**
      * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
      */
-    readonly clientSecret: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
     /**
      * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
      */
-    readonly defaultScopes?: pulumi.Input<string>;
+    defaultScopes?: pulumi.Input<string>;
     /**
      * When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
      */
-    readonly disableUserInfo?: pulumi.Input<boolean>;
+    disableUserInfo?: pulumi.Input<boolean>;
     /**
      * Display name for the identity provider in the GUI.
      */
-    readonly displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string>;
     /**
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
-    readonly enabled?: pulumi.Input<boolean>;
-    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
+    enabled?: pulumi.Input<boolean>;
+    extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
      */
-    readonly firstBrokerLoginFlowAlias?: pulumi.Input<string>;
+    firstBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
      * A number defining the order of this identity provider in the GUI.
      */
-    readonly guiOrder?: pulumi.Input<string>;
+    guiOrder?: pulumi.Input<string>;
     /**
      * When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
      */
-    readonly hideOnLoginPage?: pulumi.Input<boolean>;
+    hideOnLoginPage?: pulumi.Input<boolean>;
     /**
      * JSON Web Key Set URL.
      */
-    readonly jwksUrl?: pulumi.Input<string>;
+    jwksUrl?: pulumi.Input<string>;
     /**
      * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
-    readonly linkOnly?: pulumi.Input<boolean>;
+    linkOnly?: pulumi.Input<boolean>;
     /**
      * Pass login hint to identity provider.
      */
-    readonly loginHint?: pulumi.Input<string>;
+    loginHint?: pulumi.Input<string>;
     /**
      * The Logout URL is the end session endpoint to use to logout user from external identity provider.
      */
-    readonly logoutUrl?: pulumi.Input<string>;
+    logoutUrl?: pulumi.Input<string>;
     /**
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
      */
-    readonly postBrokerLoginFlowAlias?: pulumi.Input<string>;
+    postBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
      * The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
      */
-    readonly providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string>;
     /**
      * The name of the realm. This is unique across Keycloak.
      */
-    readonly realm: pulumi.Input<string>;
+    realm: pulumi.Input<string>;
     /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
-    readonly storeToken?: pulumi.Input<boolean>;
+    storeToken?: pulumi.Input<boolean>;
     /**
      * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
      */
-    readonly syncMode?: pulumi.Input<string>;
+    syncMode?: pulumi.Input<string>;
     /**
      * The Token URL.
      */
-    readonly tokenUrl: pulumi.Input<string>;
+    tokenUrl: pulumi.Input<string>;
     /**
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
      */
-    readonly trustEmail?: pulumi.Input<boolean>;
+    trustEmail?: pulumi.Input<boolean>;
     /**
      * Pass current locale to identity provider. Defaults to `false`.
      */
-    readonly uiLocales?: pulumi.Input<boolean>;
+    uiLocales?: pulumi.Input<boolean>;
     /**
      * User Info URL.
      */
-    readonly userInfoUrl?: pulumi.Input<string>;
+    userInfoUrl?: pulumi.Input<string>;
     /**
      * Enable/disable signature validation of external IDP signatures. Defaults to `false`.
      */
-    readonly validateSignature?: pulumi.Input<boolean>;
+    validateSignature?: pulumi.Input<boolean>;
 }

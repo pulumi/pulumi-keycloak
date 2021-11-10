@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -47,15 +46,15 @@ export interface GetAuthenticationExecutionArgs {
     /**
      * The alias of the flow this execution is attached to.
      */
-    readonly parentFlowAlias: string;
+    parentFlowAlias: string;
     /**
      * The name of the provider. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools. This was previously known as the "authenticator".
      */
-    readonly providerId: string;
+    providerId: string;
     /**
      * The realm the authentication execution exists in.
      */
-    readonly realmId: string;
+    realmId: string;
 }
 
 /**
@@ -69,4 +68,26 @@ export interface GetAuthenticationExecutionResult {
     readonly parentFlowAlias: string;
     readonly providerId: string;
     readonly realmId: string;
+}
+
+export function getAuthenticationExecutionOutput(args: GetAuthenticationExecutionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthenticationExecutionResult> {
+    return pulumi.output(args).apply(a => getAuthenticationExecution(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getAuthenticationExecution.
+ */
+export interface GetAuthenticationExecutionOutputArgs {
+    /**
+     * The alias of the flow this execution is attached to.
+     */
+    parentFlowAlias: pulumi.Input<string>;
+    /**
+     * The name of the provider. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools. This was previously known as the "authenticator".
+     */
+    providerId: pulumi.Input<string>;
+    /**
+     * The realm the authentication execution exists in.
+     */
+    realmId: pulumi.Input<string>;
 }

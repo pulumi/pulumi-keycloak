@@ -269,7 +269,7 @@ type AudienceResolveProtocolMappterArrayInput interface {
 type AudienceResolveProtocolMappterArray []AudienceResolveProtocolMappterInput
 
 func (AudienceResolveProtocolMappterArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*AudienceResolveProtocolMappter)(nil))
+	return reflect.TypeOf((*[]*AudienceResolveProtocolMappter)(nil)).Elem()
 }
 
 func (i AudienceResolveProtocolMappterArray) ToAudienceResolveProtocolMappterArrayOutput() AudienceResolveProtocolMappterArrayOutput {
@@ -294,7 +294,7 @@ type AudienceResolveProtocolMappterMapInput interface {
 type AudienceResolveProtocolMappterMap map[string]AudienceResolveProtocolMappterInput
 
 func (AudienceResolveProtocolMappterMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*AudienceResolveProtocolMappter)(nil))
+	return reflect.TypeOf((*map[string]*AudienceResolveProtocolMappter)(nil)).Elem()
 }
 
 func (i AudienceResolveProtocolMappterMap) ToAudienceResolveProtocolMappterMapOutput() AudienceResolveProtocolMappterMapOutput {
@@ -305,9 +305,7 @@ func (i AudienceResolveProtocolMappterMap) ToAudienceResolveProtocolMappterMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(AudienceResolveProtocolMappterMapOutput)
 }
 
-type AudienceResolveProtocolMappterOutput struct {
-	*pulumi.OutputState
-}
+type AudienceResolveProtocolMappterOutput struct{ *pulumi.OutputState }
 
 func (AudienceResolveProtocolMappterOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*AudienceResolveProtocolMappter)(nil))
@@ -326,14 +324,12 @@ func (o AudienceResolveProtocolMappterOutput) ToAudienceResolveProtocolMappterPt
 }
 
 func (o AudienceResolveProtocolMappterOutput) ToAudienceResolveProtocolMappterPtrOutputWithContext(ctx context.Context) AudienceResolveProtocolMappterPtrOutput {
-	return o.ApplyT(func(v AudienceResolveProtocolMappter) *AudienceResolveProtocolMappter {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AudienceResolveProtocolMappter) *AudienceResolveProtocolMappter {
 		return &v
 	}).(AudienceResolveProtocolMappterPtrOutput)
 }
 
-type AudienceResolveProtocolMappterPtrOutput struct {
-	*pulumi.OutputState
-}
+type AudienceResolveProtocolMappterPtrOutput struct{ *pulumi.OutputState }
 
 func (AudienceResolveProtocolMappterPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**AudienceResolveProtocolMappter)(nil))
@@ -345,6 +341,16 @@ func (o AudienceResolveProtocolMappterPtrOutput) ToAudienceResolveProtocolMappte
 
 func (o AudienceResolveProtocolMappterPtrOutput) ToAudienceResolveProtocolMappterPtrOutputWithContext(ctx context.Context) AudienceResolveProtocolMappterPtrOutput {
 	return o
+}
+
+func (o AudienceResolveProtocolMappterPtrOutput) Elem() AudienceResolveProtocolMappterOutput {
+	return o.ApplyT(func(v *AudienceResolveProtocolMappter) AudienceResolveProtocolMappter {
+		if v != nil {
+			return *v
+		}
+		var ret AudienceResolveProtocolMappter
+		return ret
+	}).(AudienceResolveProtocolMappterOutput)
 }
 
 type AudienceResolveProtocolMappterArrayOutput struct{ *pulumi.OutputState }
@@ -388,6 +394,10 @@ func (o AudienceResolveProtocolMappterMapOutput) MapIndex(k pulumi.StringInput) 
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AudienceResolveProtocolMappterInput)(nil)).Elem(), &AudienceResolveProtocolMappter{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AudienceResolveProtocolMappterPtrInput)(nil)).Elem(), &AudienceResolveProtocolMappter{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AudienceResolveProtocolMappterArrayInput)(nil)).Elem(), AudienceResolveProtocolMappterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AudienceResolveProtocolMappterMapInput)(nil)).Elem(), AudienceResolveProtocolMappterMap{})
 	pulumi.RegisterOutputType(AudienceResolveProtocolMappterOutput{})
 	pulumi.RegisterOutputType(AudienceResolveProtocolMappterPtrOutput{})
 	pulumi.RegisterOutputType(AudienceResolveProtocolMappterArrayOutput{})

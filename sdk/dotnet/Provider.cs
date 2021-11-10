@@ -18,6 +18,37 @@ namespace Pulumi.Keycloak
     [KeycloakResourceType("pulumi:providers:keycloak")]
     public partial class Provider : Pulumi.ProviderResource
     {
+        [Output("basePath")]
+        public Output<string?> BasePath { get; private set; } = null!;
+
+        [Output("clientId")]
+        public Output<string> ClientId { get; private set; } = null!;
+
+        [Output("clientSecret")]
+        public Output<string?> ClientSecret { get; private set; } = null!;
+
+        [Output("password")]
+        public Output<string?> Password { get; private set; } = null!;
+
+        [Output("realm")]
+        public Output<string?> Realm { get; private set; } = null!;
+
+        /// <summary>
+        /// Allows x509 calls using an unknown CA certificate (for development purposes)
+        /// </summary>
+        [Output("rootCaCertificate")]
+        public Output<string?> RootCaCertificate { get; private set; } = null!;
+
+        /// <summary>
+        /// The base URL of the Keycloak instance, before `/auth`
+        /// </summary>
+        [Output("url")]
+        public Output<string> Url { get; private set; } = null!;
+
+        [Output("username")]
+        public Output<string?> Username { get; private set; } = null!;
+
+
         /// <summary>
         /// Create a Provider resource with the given unique name, arguments, and options.
         /// </summary>

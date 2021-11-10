@@ -4,6 +4,9 @@
 package openid
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -49,7 +52,7 @@ import (
 // 				return serviceAccountUser.Id, nil
 // 			}).(pulumi.StringOutput),
 // 			RoleIds: pulumi.StringArray{
-// 				offlineAccess.ApplyT(func(offlineAccess keycloak.LookupRoleResult) (string, error) {
+// 				offlineAccess.ApplyT(func(offlineAccess GetRoleResult) (string, error) {
 // 					return offlineAccess.Id, nil
 // 				}).(pulumi.StringOutput),
 // 			},
@@ -92,4 +95,91 @@ type GetClientServiceAccountUserResult struct {
 	LastName string `pulumi:"lastName"`
 	RealmId  string `pulumi:"realmId"`
 	Username string `pulumi:"username"`
+}
+
+func GetClientServiceAccountUserOutput(ctx *pulumi.Context, args GetClientServiceAccountUserOutputArgs, opts ...pulumi.InvokeOption) GetClientServiceAccountUserResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetClientServiceAccountUserResult, error) {
+			args := v.(GetClientServiceAccountUserArgs)
+			r, err := GetClientServiceAccountUser(ctx, &args, opts...)
+			return *r, err
+		}).(GetClientServiceAccountUserResultOutput)
+}
+
+// A collection of arguments for invoking getClientServiceAccountUser.
+type GetClientServiceAccountUserOutputArgs struct {
+	// The ID of the OpenID client with service accounts enabled.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// The realm that the OpenID client exists within.
+	RealmId pulumi.StringInput `pulumi:"realmId"`
+}
+
+func (GetClientServiceAccountUserOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClientServiceAccountUserArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getClientServiceAccountUser.
+type GetClientServiceAccountUserResultOutput struct{ *pulumi.OutputState }
+
+func (GetClientServiceAccountUserResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClientServiceAccountUserResult)(nil)).Elem()
+}
+
+func (o GetClientServiceAccountUserResultOutput) ToGetClientServiceAccountUserResultOutput() GetClientServiceAccountUserResultOutput {
+	return o
+}
+
+func (o GetClientServiceAccountUserResultOutput) ToGetClientServiceAccountUserResultOutputWithContext(ctx context.Context) GetClientServiceAccountUserResultOutput {
+	return o
+}
+
+func (o GetClientServiceAccountUserResultOutput) Attributes() pulumi.MapOutput {
+	return o.ApplyT(func(v GetClientServiceAccountUserResult) map[string]interface{} { return v.Attributes }).(pulumi.MapOutput)
+}
+
+func (o GetClientServiceAccountUserResultOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientServiceAccountUserResult) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+func (o GetClientServiceAccountUserResultOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientServiceAccountUserResult) string { return v.Email }).(pulumi.StringOutput)
+}
+
+func (o GetClientServiceAccountUserResultOutput) EmailVerified() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClientServiceAccountUserResult) bool { return v.EmailVerified }).(pulumi.BoolOutput)
+}
+
+func (o GetClientServiceAccountUserResultOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClientServiceAccountUserResult) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+func (o GetClientServiceAccountUserResultOutput) FederatedIdentities() GetClientServiceAccountUserFederatedIdentityArrayOutput {
+	return o.ApplyT(func(v GetClientServiceAccountUserResult) []GetClientServiceAccountUserFederatedIdentity {
+		return v.FederatedIdentities
+	}).(GetClientServiceAccountUserFederatedIdentityArrayOutput)
+}
+
+func (o GetClientServiceAccountUserResultOutput) FirstName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientServiceAccountUserResult) string { return v.FirstName }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetClientServiceAccountUserResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientServiceAccountUserResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetClientServiceAccountUserResultOutput) LastName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientServiceAccountUserResult) string { return v.LastName }).(pulumi.StringOutput)
+}
+
+func (o GetClientServiceAccountUserResultOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientServiceAccountUserResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o GetClientServiceAccountUserResultOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientServiceAccountUserResult) string { return v.Username }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetClientServiceAccountUserResultOutput{})
 }

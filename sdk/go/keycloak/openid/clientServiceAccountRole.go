@@ -247,7 +247,7 @@ type ClientServiceAccountRoleArrayInput interface {
 type ClientServiceAccountRoleArray []ClientServiceAccountRoleInput
 
 func (ClientServiceAccountRoleArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ClientServiceAccountRole)(nil))
+	return reflect.TypeOf((*[]*ClientServiceAccountRole)(nil)).Elem()
 }
 
 func (i ClientServiceAccountRoleArray) ToClientServiceAccountRoleArrayOutput() ClientServiceAccountRoleArrayOutput {
@@ -272,7 +272,7 @@ type ClientServiceAccountRoleMapInput interface {
 type ClientServiceAccountRoleMap map[string]ClientServiceAccountRoleInput
 
 func (ClientServiceAccountRoleMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ClientServiceAccountRole)(nil))
+	return reflect.TypeOf((*map[string]*ClientServiceAccountRole)(nil)).Elem()
 }
 
 func (i ClientServiceAccountRoleMap) ToClientServiceAccountRoleMapOutput() ClientServiceAccountRoleMapOutput {
@@ -283,9 +283,7 @@ func (i ClientServiceAccountRoleMap) ToClientServiceAccountRoleMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ClientServiceAccountRoleMapOutput)
 }
 
-type ClientServiceAccountRoleOutput struct {
-	*pulumi.OutputState
-}
+type ClientServiceAccountRoleOutput struct{ *pulumi.OutputState }
 
 func (ClientServiceAccountRoleOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ClientServiceAccountRole)(nil))
@@ -304,14 +302,12 @@ func (o ClientServiceAccountRoleOutput) ToClientServiceAccountRolePtrOutput() Cl
 }
 
 func (o ClientServiceAccountRoleOutput) ToClientServiceAccountRolePtrOutputWithContext(ctx context.Context) ClientServiceAccountRolePtrOutput {
-	return o.ApplyT(func(v ClientServiceAccountRole) *ClientServiceAccountRole {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientServiceAccountRole) *ClientServiceAccountRole {
 		return &v
 	}).(ClientServiceAccountRolePtrOutput)
 }
 
-type ClientServiceAccountRolePtrOutput struct {
-	*pulumi.OutputState
-}
+type ClientServiceAccountRolePtrOutput struct{ *pulumi.OutputState }
 
 func (ClientServiceAccountRolePtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ClientServiceAccountRole)(nil))
@@ -323,6 +319,16 @@ func (o ClientServiceAccountRolePtrOutput) ToClientServiceAccountRolePtrOutput()
 
 func (o ClientServiceAccountRolePtrOutput) ToClientServiceAccountRolePtrOutputWithContext(ctx context.Context) ClientServiceAccountRolePtrOutput {
 	return o
+}
+
+func (o ClientServiceAccountRolePtrOutput) Elem() ClientServiceAccountRoleOutput {
+	return o.ApplyT(func(v *ClientServiceAccountRole) ClientServiceAccountRole {
+		if v != nil {
+			return *v
+		}
+		var ret ClientServiceAccountRole
+		return ret
+	}).(ClientServiceAccountRoleOutput)
 }
 
 type ClientServiceAccountRoleArrayOutput struct{ *pulumi.OutputState }
@@ -366,6 +372,10 @@ func (o ClientServiceAccountRoleMapOutput) MapIndex(k pulumi.StringInput) Client
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientServiceAccountRoleInput)(nil)).Elem(), &ClientServiceAccountRole{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientServiceAccountRolePtrInput)(nil)).Elem(), &ClientServiceAccountRole{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientServiceAccountRoleArrayInput)(nil)).Elem(), ClientServiceAccountRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientServiceAccountRoleMapInput)(nil)).Elem(), ClientServiceAccountRoleMap{})
 	pulumi.RegisterOutputType(ClientServiceAccountRoleOutput{})
 	pulumi.RegisterOutputType(ClientServiceAccountRolePtrOutput{})
 	pulumi.RegisterOutputType(ClientServiceAccountRoleArrayOutput{})

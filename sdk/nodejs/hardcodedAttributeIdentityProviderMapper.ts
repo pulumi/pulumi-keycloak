@@ -111,28 +111,28 @@ export interface HardcodedAttributeIdentityProviderMapperState {
     /**
      * OIDC Claim
      */
-    readonly attributeName?: pulumi.Input<string>;
+    attributeName?: pulumi.Input<string>;
     /**
      * User Attribute
      */
-    readonly attributeValue?: pulumi.Input<string>;
-    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
+    attributeValue?: pulumi.Input<string>;
+    extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * IDP Alias
      */
-    readonly identityProviderAlias?: pulumi.Input<string>;
+    identityProviderAlias?: pulumi.Input<string>;
     /**
      * IDP Mapper Name
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Realm Name
      */
-    readonly realm?: pulumi.Input<string>;
+    realm?: pulumi.Input<string>;
     /**
      * Is Attribute Related To a User Session
      */
-    readonly userSession?: pulumi.Input<boolean>;
+    userSession?: pulumi.Input<boolean>;
 }
 
 /**
@@ -142,26 +142,26 @@ export interface HardcodedAttributeIdentityProviderMapperArgs {
     /**
      * OIDC Claim
      */
-    readonly attributeName?: pulumi.Input<string>;
+    attributeName?: pulumi.Input<string>;
     /**
      * User Attribute
      */
-    readonly attributeValue?: pulumi.Input<string>;
-    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
+    attributeValue?: pulumi.Input<string>;
+    extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * IDP Alias
      */
-    readonly identityProviderAlias: pulumi.Input<string>;
+    identityProviderAlias: pulumi.Input<string>;
     /**
      * IDP Mapper Name
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Realm Name
      */
-    readonly realm: pulumi.Input<string>;
+    realm: pulumi.Input<string>;
     /**
      * Is Attribute Related To a User Session
      */
-    readonly userSession: pulumi.Input<boolean>;
+    userSession: pulumi.Input<boolean>;
 }

@@ -16,6 +16,53 @@ import (
 // Clients are entities that can use Keycloak for user authentication. Typically, clients are applications that redirect users
 // to Keycloak for authentication in order to take advantage of Keycloak's user sessions for SSO.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"io/ioutil"
+//
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func readFileOrPanic(path string) pulumi.StringPtrInput {
+// 	data, err := ioutil.ReadFile(path)
+// 	if err != nil {
+// 		panic(err.Error())
+// 	}
+// 	return pulumi.String(string(data))
+// }
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
+// 			RealmId:               realm.ID(),
+// 			ClientId:              pulumi.String("saml-client"),
+// 			SignDocuments:         pulumi.Bool(false),
+// 			SignAssertions:        pulumi.Bool(true),
+// 			IncludeAuthnStatement: pulumi.Bool(true),
+// 			SigningCertificate:    readFileOrPanic("saml-cert.pem"),
+// 			SigningPrivateKey:     readFileOrPanic("saml-key.pem"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID. Examplebash
@@ -498,7 +545,7 @@ type ClientArrayInput interface {
 type ClientArray []ClientInput
 
 func (ClientArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*Client)(nil))
+	return reflect.TypeOf((*[]*Client)(nil)).Elem()
 }
 
 func (i ClientArray) ToClientArrayOutput() ClientArrayOutput {
@@ -523,7 +570,7 @@ type ClientMapInput interface {
 type ClientMap map[string]ClientInput
 
 func (ClientMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*Client)(nil))
+	return reflect.TypeOf((*map[string]*Client)(nil)).Elem()
 }
 
 func (i ClientMap) ToClientMapOutput() ClientMapOutput {
@@ -534,9 +581,7 @@ func (i ClientMap) ToClientMapOutputWithContext(ctx context.Context) ClientMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(ClientMapOutput)
 }
 
-type ClientOutput struct {
-	*pulumi.OutputState
-}
+type ClientOutput struct{ *pulumi.OutputState }
 
 func (ClientOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Client)(nil))
@@ -555,14 +600,12 @@ func (o ClientOutput) ToClientPtrOutput() ClientPtrOutput {
 }
 
 func (o ClientOutput) ToClientPtrOutputWithContext(ctx context.Context) ClientPtrOutput {
-	return o.ApplyT(func(v Client) *Client {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Client) *Client {
 		return &v
 	}).(ClientPtrOutput)
 }
 
-type ClientPtrOutput struct {
-	*pulumi.OutputState
-}
+type ClientPtrOutput struct{ *pulumi.OutputState }
 
 func (ClientPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Client)(nil))
@@ -574,6 +617,16 @@ func (o ClientPtrOutput) ToClientPtrOutput() ClientPtrOutput {
 
 func (o ClientPtrOutput) ToClientPtrOutputWithContext(ctx context.Context) ClientPtrOutput {
 	return o
+}
+
+func (o ClientPtrOutput) Elem() ClientOutput {
+	return o.ApplyT(func(v *Client) Client {
+		if v != nil {
+			return *v
+		}
+		var ret Client
+		return ret
+	}).(ClientOutput)
 }
 
 type ClientArrayOutput struct{ *pulumi.OutputState }
@@ -617,6 +670,10 @@ func (o ClientMapOutput) MapIndex(k pulumi.StringInput) ClientOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientInput)(nil)).Elem(), &Client{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientPtrInput)(nil)).Elem(), &Client{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientArrayInput)(nil)).Elem(), ClientArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientMapInput)(nil)).Elem(), ClientMap{})
 	pulumi.RegisterOutputType(ClientOutput{})
 	pulumi.RegisterOutputType(ClientPtrOutput{})
 	pulumi.RegisterOutputType(ClientArrayOutput{})

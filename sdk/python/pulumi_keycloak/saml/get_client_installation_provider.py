@@ -12,6 +12,7 @@ __all__ = [
     'GetClientInstallationProviderResult',
     'AwaitableGetClientInstallationProviderResult',
     'get_client_installation_provider',
+    'get_client_installation_provider_output',
 ]
 
 @pulumi.output_type
@@ -135,3 +136,45 @@ def get_client_installation_provider(client_id: Optional[str] = None,
         provider_id=__ret__.provider_id,
         realm_id=__ret__.realm_id,
         value=__ret__.value)
+
+
+@_utilities.lift_output_func(get_client_installation_provider)
+def get_client_installation_provider_output(client_id: Optional[pulumi.Input[str]] = None,
+                                            provider_id: Optional[pulumi.Input[str]] = None,
+                                            realm_id: Optional[pulumi.Input[str]] = None,
+                                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientInstallationProviderResult]:
+    """
+    This data source can be used to retrieve Installation Provider of a SAML Client.
+
+    ## Example Usage
+
+    In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
+
+    ```python
+    import pulumi
+    import pulumi_aws as aws
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.Realm("realm",
+        realm="my-realm",
+        enabled=True)
+    saml_client = keycloak.saml.Client("samlClient",
+        realm_id=realm.id,
+        client_id="test-saml-client",
+        sign_documents=False,
+        sign_assertions=True,
+        include_authn_statement=True,
+        signing_certificate=(lambda path: open(path).read())("saml-cert.pem"),
+        signing_private_key=(lambda path: open(path).read())("saml-key.pem"))
+    saml_idp_descriptor = pulumi.Output.all(realm.id, saml_client.id).apply(lambda realmId, samlClientId: keycloak.saml.get_client_installation_provider(realm_id=realm_id,
+        client_id=saml_client_id,
+        provider_id="saml-idp-descriptor"))
+    default = aws.iam.SamlProvider("default", saml_metadata_document=saml_idp_descriptor.value)
+    ```
+
+
+    :param str client_id: The ID of the SAML client. The `id` attribute of a `keycloak_client` resource should be used here.
+    :param str provider_id: The ID of the SAML installation provider. Could be one of `saml-idp-descriptor`, `keycloak-saml`, `saml-sp-descriptor`, `keycloak-saml-subsystem`, `mod-auth-mellon`, etc.
+    :param str realm_id: The realm that the SAML client exists within.
+    """
+    ...

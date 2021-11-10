@@ -246,7 +246,7 @@ type RealmEventsArrayInput interface {
 type RealmEventsArray []RealmEventsInput
 
 func (RealmEventsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RealmEvents)(nil))
+	return reflect.TypeOf((*[]*RealmEvents)(nil)).Elem()
 }
 
 func (i RealmEventsArray) ToRealmEventsArrayOutput() RealmEventsArrayOutput {
@@ -271,7 +271,7 @@ type RealmEventsMapInput interface {
 type RealmEventsMap map[string]RealmEventsInput
 
 func (RealmEventsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RealmEvents)(nil))
+	return reflect.TypeOf((*map[string]*RealmEvents)(nil)).Elem()
 }
 
 func (i RealmEventsMap) ToRealmEventsMapOutput() RealmEventsMapOutput {
@@ -282,9 +282,7 @@ func (i RealmEventsMap) ToRealmEventsMapOutputWithContext(ctx context.Context) R
 	return pulumi.ToOutputWithContext(ctx, i).(RealmEventsMapOutput)
 }
 
-type RealmEventsOutput struct {
-	*pulumi.OutputState
-}
+type RealmEventsOutput struct{ *pulumi.OutputState }
 
 func (RealmEventsOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*RealmEvents)(nil))
@@ -303,14 +301,12 @@ func (o RealmEventsOutput) ToRealmEventsPtrOutput() RealmEventsPtrOutput {
 }
 
 func (o RealmEventsOutput) ToRealmEventsPtrOutputWithContext(ctx context.Context) RealmEventsPtrOutput {
-	return o.ApplyT(func(v RealmEvents) *RealmEvents {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmEvents) *RealmEvents {
 		return &v
 	}).(RealmEventsPtrOutput)
 }
 
-type RealmEventsPtrOutput struct {
-	*pulumi.OutputState
-}
+type RealmEventsPtrOutput struct{ *pulumi.OutputState }
 
 func (RealmEventsPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RealmEvents)(nil))
@@ -322,6 +318,16 @@ func (o RealmEventsPtrOutput) ToRealmEventsPtrOutput() RealmEventsPtrOutput {
 
 func (o RealmEventsPtrOutput) ToRealmEventsPtrOutputWithContext(ctx context.Context) RealmEventsPtrOutput {
 	return o
+}
+
+func (o RealmEventsPtrOutput) Elem() RealmEventsOutput {
+	return o.ApplyT(func(v *RealmEvents) RealmEvents {
+		if v != nil {
+			return *v
+		}
+		var ret RealmEvents
+		return ret
+	}).(RealmEventsOutput)
 }
 
 type RealmEventsArrayOutput struct{ *pulumi.OutputState }
@@ -365,6 +371,10 @@ func (o RealmEventsMapOutput) MapIndex(k pulumi.StringInput) RealmEventsOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmEventsInput)(nil)).Elem(), &RealmEvents{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmEventsPtrInput)(nil)).Elem(), &RealmEvents{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmEventsArrayInput)(nil)).Elem(), RealmEventsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmEventsMapInput)(nil)).Elem(), RealmEventsMap{})
 	pulumi.RegisterOutputType(RealmEventsOutput{})
 	pulumi.RegisterOutputType(RealmEventsPtrOutput{})
 	pulumi.RegisterOutputType(RealmEventsArrayOutput{})

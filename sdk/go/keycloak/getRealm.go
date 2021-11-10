@@ -4,6 +4,9 @@
 package keycloak
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -22,7 +25,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.LookupRealm(ctx, &keycloak.LookupRealmArgs{
+// 		realm, err := keycloak.LookupRealm(ctx, &GetRealmArgs{
 // 			Realm: "my-realm",
 // 		}, nil)
 // 		if err != nil {
@@ -119,4 +122,265 @@ type LookupRealmResult struct {
 	VerifyEmail                      bool                               `pulumi:"verifyEmail"`
 	WebAuthnPasswordlessPolicy       GetRealmWebAuthnPasswordlessPolicy `pulumi:"webAuthnPasswordlessPolicy"`
 	WebAuthnPolicy                   GetRealmWebAuthnPolicy             `pulumi:"webAuthnPolicy"`
+}
+
+func LookupRealmOutput(ctx *pulumi.Context, args LookupRealmOutputArgs, opts ...pulumi.InvokeOption) LookupRealmResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupRealmResult, error) {
+			args := v.(LookupRealmArgs)
+			r, err := LookupRealm(ctx, &args, opts...)
+			return *r, err
+		}).(LookupRealmResultOutput)
+}
+
+// A collection of arguments for invoking getRealm.
+type LookupRealmOutputArgs struct {
+	Attributes                  pulumi.MapInput                        `pulumi:"attributes"`
+	DefaultDefaultClientScopes  pulumi.StringArrayInput                `pulumi:"defaultDefaultClientScopes"`
+	DefaultOptionalClientScopes pulumi.StringArrayInput                `pulumi:"defaultOptionalClientScopes"`
+	DisplayNameHtml             pulumi.StringPtrInput                  `pulumi:"displayNameHtml"`
+	Internationalizations       GetRealmInternationalizationArrayInput `pulumi:"internationalizations"`
+	OtpPolicy                   GetRealmOtpPolicyPtrInput              `pulumi:"otpPolicy"`
+	// The realm name.
+	Realm                      pulumi.StringInput                         `pulumi:"realm"`
+	SecurityDefenses           GetRealmSecurityDefenseArrayInput          `pulumi:"securityDefenses"`
+	SmtpServers                GetRealmSmtpServerArrayInput               `pulumi:"smtpServers"`
+	WebAuthnPasswordlessPolicy GetRealmWebAuthnPasswordlessPolicyPtrInput `pulumi:"webAuthnPasswordlessPolicy"`
+	WebAuthnPolicy             GetRealmWebAuthnPolicyPtrInput             `pulumi:"webAuthnPolicy"`
+}
+
+func (LookupRealmOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRealmArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getRealm.
+type LookupRealmResultOutput struct{ *pulumi.OutputState }
+
+func (LookupRealmResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRealmResult)(nil)).Elem()
+}
+
+func (o LookupRealmResultOutput) ToLookupRealmResultOutput() LookupRealmResultOutput {
+	return o
+}
+
+func (o LookupRealmResultOutput) ToLookupRealmResultOutputWithContext(ctx context.Context) LookupRealmResultOutput {
+	return o
+}
+
+func (o LookupRealmResultOutput) AccessCodeLifespan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.AccessCodeLifespan }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) AccessCodeLifespanLogin() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.AccessCodeLifespanLogin }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) AccessCodeLifespanUserAction() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.AccessCodeLifespanUserAction }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) AccessTokenLifespan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.AccessTokenLifespan }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) AccessTokenLifespanForImplicitFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.AccessTokenLifespanForImplicitFlow }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) AccountTheme() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.AccountTheme }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) ActionTokenGeneratedByAdminLifespan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.ActionTokenGeneratedByAdminLifespan }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) ActionTokenGeneratedByUserLifespan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.ActionTokenGeneratedByUserLifespan }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) AdminTheme() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.AdminTheme }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) Attributes() pulumi.MapOutput {
+	return o.ApplyT(func(v LookupRealmResult) map[string]interface{} { return v.Attributes }).(pulumi.MapOutput)
+}
+
+func (o LookupRealmResultOutput) BrowserFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.BrowserFlow }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) ClientAuthenticationFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.ClientAuthenticationFlow }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) DefaultDefaultClientScopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupRealmResult) []string { return v.DefaultDefaultClientScopes }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupRealmResultOutput) DefaultOptionalClientScopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupRealmResult) []string { return v.DefaultOptionalClientScopes }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupRealmResultOutput) DefaultSignatureAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.DefaultSignatureAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) DirectGrantFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.DirectGrantFlow }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) DisplayNameHtml() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRealmResult) *string { return v.DisplayNameHtml }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupRealmResultOutput) DockerAuthenticationFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.DockerAuthenticationFlow }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) DuplicateEmailsAllowed() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupRealmResult) bool { return v.DuplicateEmailsAllowed }).(pulumi.BoolOutput)
+}
+
+func (o LookupRealmResultOutput) EditUsernameAllowed() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupRealmResult) bool { return v.EditUsernameAllowed }).(pulumi.BoolOutput)
+}
+
+func (o LookupRealmResultOutput) EmailTheme() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.EmailTheme }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupRealmResult) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupRealmResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) InternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.InternalId }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) Internationalizations() GetRealmInternationalizationArrayOutput {
+	return o.ApplyT(func(v LookupRealmResult) []GetRealmInternationalization { return v.Internationalizations }).(GetRealmInternationalizationArrayOutput)
+}
+
+func (o LookupRealmResultOutput) LoginTheme() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.LoginTheme }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) LoginWithEmailAllowed() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupRealmResult) bool { return v.LoginWithEmailAllowed }).(pulumi.BoolOutput)
+}
+
+func (o LookupRealmResultOutput) OfflineSessionIdleTimeout() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.OfflineSessionIdleTimeout }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) OfflineSessionMaxLifespan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.OfflineSessionMaxLifespan }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) OfflineSessionMaxLifespanEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupRealmResult) bool { return v.OfflineSessionMaxLifespanEnabled }).(pulumi.BoolOutput)
+}
+
+func (o LookupRealmResultOutput) OtpPolicy() GetRealmOtpPolicyOutput {
+	return o.ApplyT(func(v LookupRealmResult) GetRealmOtpPolicy { return v.OtpPolicy }).(GetRealmOtpPolicyOutput)
+}
+
+func (o LookupRealmResultOutput) PasswordPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.PasswordPolicy }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) Realm() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.Realm }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) RefreshTokenMaxReuse() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRealmResult) int { return v.RefreshTokenMaxReuse }).(pulumi.IntOutput)
+}
+
+func (o LookupRealmResultOutput) RegistrationAllowed() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupRealmResult) bool { return v.RegistrationAllowed }).(pulumi.BoolOutput)
+}
+
+func (o LookupRealmResultOutput) RegistrationEmailAsUsername() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupRealmResult) bool { return v.RegistrationEmailAsUsername }).(pulumi.BoolOutput)
+}
+
+func (o LookupRealmResultOutput) RegistrationFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.RegistrationFlow }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) RememberMe() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupRealmResult) bool { return v.RememberMe }).(pulumi.BoolOutput)
+}
+
+func (o LookupRealmResultOutput) ResetCredentialsFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.ResetCredentialsFlow }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) ResetPasswordAllowed() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupRealmResult) bool { return v.ResetPasswordAllowed }).(pulumi.BoolOutput)
+}
+
+func (o LookupRealmResultOutput) RevokeRefreshToken() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupRealmResult) bool { return v.RevokeRefreshToken }).(pulumi.BoolOutput)
+}
+
+func (o LookupRealmResultOutput) SecurityDefenses() GetRealmSecurityDefenseArrayOutput {
+	return o.ApplyT(func(v LookupRealmResult) []GetRealmSecurityDefense { return v.SecurityDefenses }).(GetRealmSecurityDefenseArrayOutput)
+}
+
+func (o LookupRealmResultOutput) SmtpServers() GetRealmSmtpServerArrayOutput {
+	return o.ApplyT(func(v LookupRealmResult) []GetRealmSmtpServer { return v.SmtpServers }).(GetRealmSmtpServerArrayOutput)
+}
+
+func (o LookupRealmResultOutput) SslRequired() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.SslRequired }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) SsoSessionIdleTimeout() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.SsoSessionIdleTimeout }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) SsoSessionIdleTimeoutRememberMe() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.SsoSessionIdleTimeoutRememberMe }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) SsoSessionMaxLifespan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.SsoSessionMaxLifespan }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) SsoSessionMaxLifespanRememberMe() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.SsoSessionMaxLifespanRememberMe }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) UserManagedAccess() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupRealmResult) bool { return v.UserManagedAccess }).(pulumi.BoolOutput)
+}
+
+func (o LookupRealmResultOutput) VerifyEmail() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupRealmResult) bool { return v.VerifyEmail }).(pulumi.BoolOutput)
+}
+
+func (o LookupRealmResultOutput) WebAuthnPasswordlessPolicy() GetRealmWebAuthnPasswordlessPolicyOutput {
+	return o.ApplyT(func(v LookupRealmResult) GetRealmWebAuthnPasswordlessPolicy { return v.WebAuthnPasswordlessPolicy }).(GetRealmWebAuthnPasswordlessPolicyOutput)
+}
+
+func (o LookupRealmResultOutput) WebAuthnPolicy() GetRealmWebAuthnPolicyOutput {
+	return o.ApplyT(func(v LookupRealmResult) GetRealmWebAuthnPolicy { return v.WebAuthnPolicy }).(GetRealmWebAuthnPolicyOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupRealmResultOutput{})
 }

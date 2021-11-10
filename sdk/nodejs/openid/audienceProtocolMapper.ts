@@ -174,35 +174,35 @@ export interface AudienceProtocolMapperState {
     /**
      * Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
      */
-    readonly addToAccessToken?: pulumi.Input<boolean>;
+    addToAccessToken?: pulumi.Input<boolean>;
     /**
      * Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
      */
-    readonly addToIdToken?: pulumi.Input<boolean>;
+    addToIdToken?: pulumi.Input<boolean>;
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    readonly clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    readonly clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string>;
     /**
      * A client ID to include within the token's `aud` claim. Conflicts with `includedCustomAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
      */
-    readonly includedClientAudience?: pulumi.Input<string>;
+    includedClientAudience?: pulumi.Input<string>;
     /**
      * A custom audience to include within the token's `aud` claim. Conflicts with `includedClientAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
      */
-    readonly includedCustomAudience?: pulumi.Input<string>;
+    includedCustomAudience?: pulumi.Input<string>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The realm this protocol mapper exists within.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
 }
 
 /**
@@ -212,33 +212,33 @@ export interface AudienceProtocolMapperArgs {
     /**
      * Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
      */
-    readonly addToAccessToken?: pulumi.Input<boolean>;
+    addToAccessToken?: pulumi.Input<boolean>;
     /**
      * Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
      */
-    readonly addToIdToken?: pulumi.Input<boolean>;
+    addToIdToken?: pulumi.Input<boolean>;
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    readonly clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    readonly clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string>;
     /**
      * A client ID to include within the token's `aud` claim. Conflicts with `includedCustomAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
      */
-    readonly includedClientAudience?: pulumi.Input<string>;
+    includedClientAudience?: pulumi.Input<string>;
     /**
      * A custom audience to include within the token's `aud` claim. Conflicts with `includedClientAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
      */
-    readonly includedCustomAudience?: pulumi.Input<string>;
+    includedCustomAudience?: pulumi.Input<string>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The realm this protocol mapper exists within.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
 }

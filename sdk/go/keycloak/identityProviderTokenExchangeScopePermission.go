@@ -207,7 +207,7 @@ type IdentityProviderTokenExchangeScopePermissionArrayInput interface {
 type IdentityProviderTokenExchangeScopePermissionArray []IdentityProviderTokenExchangeScopePermissionInput
 
 func (IdentityProviderTokenExchangeScopePermissionArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*IdentityProviderTokenExchangeScopePermission)(nil))
+	return reflect.TypeOf((*[]*IdentityProviderTokenExchangeScopePermission)(nil)).Elem()
 }
 
 func (i IdentityProviderTokenExchangeScopePermissionArray) ToIdentityProviderTokenExchangeScopePermissionArrayOutput() IdentityProviderTokenExchangeScopePermissionArrayOutput {
@@ -232,7 +232,7 @@ type IdentityProviderTokenExchangeScopePermissionMapInput interface {
 type IdentityProviderTokenExchangeScopePermissionMap map[string]IdentityProviderTokenExchangeScopePermissionInput
 
 func (IdentityProviderTokenExchangeScopePermissionMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*IdentityProviderTokenExchangeScopePermission)(nil))
+	return reflect.TypeOf((*map[string]*IdentityProviderTokenExchangeScopePermission)(nil)).Elem()
 }
 
 func (i IdentityProviderTokenExchangeScopePermissionMap) ToIdentityProviderTokenExchangeScopePermissionMapOutput() IdentityProviderTokenExchangeScopePermissionMapOutput {
@@ -243,9 +243,7 @@ func (i IdentityProviderTokenExchangeScopePermissionMap) ToIdentityProviderToken
 	return pulumi.ToOutputWithContext(ctx, i).(IdentityProviderTokenExchangeScopePermissionMapOutput)
 }
 
-type IdentityProviderTokenExchangeScopePermissionOutput struct {
-	*pulumi.OutputState
-}
+type IdentityProviderTokenExchangeScopePermissionOutput struct{ *pulumi.OutputState }
 
 func (IdentityProviderTokenExchangeScopePermissionOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*IdentityProviderTokenExchangeScopePermission)(nil))
@@ -264,14 +262,12 @@ func (o IdentityProviderTokenExchangeScopePermissionOutput) ToIdentityProviderTo
 }
 
 func (o IdentityProviderTokenExchangeScopePermissionOutput) ToIdentityProviderTokenExchangeScopePermissionPtrOutputWithContext(ctx context.Context) IdentityProviderTokenExchangeScopePermissionPtrOutput {
-	return o.ApplyT(func(v IdentityProviderTokenExchangeScopePermission) *IdentityProviderTokenExchangeScopePermission {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IdentityProviderTokenExchangeScopePermission) *IdentityProviderTokenExchangeScopePermission {
 		return &v
 	}).(IdentityProviderTokenExchangeScopePermissionPtrOutput)
 }
 
-type IdentityProviderTokenExchangeScopePermissionPtrOutput struct {
-	*pulumi.OutputState
-}
+type IdentityProviderTokenExchangeScopePermissionPtrOutput struct{ *pulumi.OutputState }
 
 func (IdentityProviderTokenExchangeScopePermissionPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**IdentityProviderTokenExchangeScopePermission)(nil))
@@ -283,6 +279,16 @@ func (o IdentityProviderTokenExchangeScopePermissionPtrOutput) ToIdentityProvide
 
 func (o IdentityProviderTokenExchangeScopePermissionPtrOutput) ToIdentityProviderTokenExchangeScopePermissionPtrOutputWithContext(ctx context.Context) IdentityProviderTokenExchangeScopePermissionPtrOutput {
 	return o
+}
+
+func (o IdentityProviderTokenExchangeScopePermissionPtrOutput) Elem() IdentityProviderTokenExchangeScopePermissionOutput {
+	return o.ApplyT(func(v *IdentityProviderTokenExchangeScopePermission) IdentityProviderTokenExchangeScopePermission {
+		if v != nil {
+			return *v
+		}
+		var ret IdentityProviderTokenExchangeScopePermission
+		return ret
+	}).(IdentityProviderTokenExchangeScopePermissionOutput)
 }
 
 type IdentityProviderTokenExchangeScopePermissionArrayOutput struct{ *pulumi.OutputState }
@@ -326,6 +332,10 @@ func (o IdentityProviderTokenExchangeScopePermissionMapOutput) MapIndex(k pulumi
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*IdentityProviderTokenExchangeScopePermissionInput)(nil)).Elem(), &IdentityProviderTokenExchangeScopePermission{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IdentityProviderTokenExchangeScopePermissionPtrInput)(nil)).Elem(), &IdentityProviderTokenExchangeScopePermission{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IdentityProviderTokenExchangeScopePermissionArrayInput)(nil)).Elem(), IdentityProviderTokenExchangeScopePermissionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IdentityProviderTokenExchangeScopePermissionMapInput)(nil)).Elem(), IdentityProviderTokenExchangeScopePermissionMap{})
 	pulumi.RegisterOutputType(IdentityProviderTokenExchangeScopePermissionOutput{})
 	pulumi.RegisterOutputType(IdentityProviderTokenExchangeScopePermissionPtrOutput{})
 	pulumi.RegisterOutputType(IdentityProviderTokenExchangeScopePermissionArrayOutput{})

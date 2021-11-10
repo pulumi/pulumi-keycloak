@@ -10,30 +10,30 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class GetRealmSecurityDefenseHeaderArgs : Pulumi.InvokeArgs
+    public sealed class GetRealmSecurityDefenseHeaderInputArgs : Pulumi.ResourceArgs
     {
         [Input("contentSecurityPolicy", required: true)]
-        public string ContentSecurityPolicy { get; set; } = null!;
+        public Input<string> ContentSecurityPolicy { get; set; } = null!;
 
         [Input("contentSecurityPolicyReportOnly", required: true)]
-        public string ContentSecurityPolicyReportOnly { get; set; } = null!;
+        public Input<string> ContentSecurityPolicyReportOnly { get; set; } = null!;
 
         [Input("strictTransportSecurity", required: true)]
-        public string StrictTransportSecurity { get; set; } = null!;
+        public Input<string> StrictTransportSecurity { get; set; } = null!;
 
         [Input("xContentTypeOptions", required: true)]
-        public string XContentTypeOptions { get; set; } = null!;
+        public Input<string> XContentTypeOptions { get; set; } = null!;
 
         [Input("xFrameOptions", required: true)]
-        public string XFrameOptions { get; set; } = null!;
+        public Input<string> XFrameOptions { get; set; } = null!;
 
         [Input("xRobotsTag", required: true)]
-        public string XRobotsTag { get; set; } = null!;
+        public Input<string> XRobotsTag { get; set; } = null!;
 
         [Input("xXssProtection", required: true)]
-        public string XXssProtection { get; set; } = null!;
+        public Input<string> XXssProtection { get; set; } = null!;
 
-        public GetRealmSecurityDefenseHeaderArgs()
+        public GetRealmSecurityDefenseHeaderInputArgs()
         {
         }
     }

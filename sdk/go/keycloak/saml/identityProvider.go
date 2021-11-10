@@ -513,7 +513,7 @@ type IdentityProviderArrayInput interface {
 type IdentityProviderArray []IdentityProviderInput
 
 func (IdentityProviderArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*IdentityProvider)(nil))
+	return reflect.TypeOf((*[]*IdentityProvider)(nil)).Elem()
 }
 
 func (i IdentityProviderArray) ToIdentityProviderArrayOutput() IdentityProviderArrayOutput {
@@ -538,7 +538,7 @@ type IdentityProviderMapInput interface {
 type IdentityProviderMap map[string]IdentityProviderInput
 
 func (IdentityProviderMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*IdentityProvider)(nil))
+	return reflect.TypeOf((*map[string]*IdentityProvider)(nil)).Elem()
 }
 
 func (i IdentityProviderMap) ToIdentityProviderMapOutput() IdentityProviderMapOutput {
@@ -549,9 +549,7 @@ func (i IdentityProviderMap) ToIdentityProviderMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(IdentityProviderMapOutput)
 }
 
-type IdentityProviderOutput struct {
-	*pulumi.OutputState
-}
+type IdentityProviderOutput struct{ *pulumi.OutputState }
 
 func (IdentityProviderOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*IdentityProvider)(nil))
@@ -570,14 +568,12 @@ func (o IdentityProviderOutput) ToIdentityProviderPtrOutput() IdentityProviderPt
 }
 
 func (o IdentityProviderOutput) ToIdentityProviderPtrOutputWithContext(ctx context.Context) IdentityProviderPtrOutput {
-	return o.ApplyT(func(v IdentityProvider) *IdentityProvider {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IdentityProvider) *IdentityProvider {
 		return &v
 	}).(IdentityProviderPtrOutput)
 }
 
-type IdentityProviderPtrOutput struct {
-	*pulumi.OutputState
-}
+type IdentityProviderPtrOutput struct{ *pulumi.OutputState }
 
 func (IdentityProviderPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**IdentityProvider)(nil))
@@ -589,6 +585,16 @@ func (o IdentityProviderPtrOutput) ToIdentityProviderPtrOutput() IdentityProvide
 
 func (o IdentityProviderPtrOutput) ToIdentityProviderPtrOutputWithContext(ctx context.Context) IdentityProviderPtrOutput {
 	return o
+}
+
+func (o IdentityProviderPtrOutput) Elem() IdentityProviderOutput {
+	return o.ApplyT(func(v *IdentityProvider) IdentityProvider {
+		if v != nil {
+			return *v
+		}
+		var ret IdentityProvider
+		return ret
+	}).(IdentityProviderOutput)
 }
 
 type IdentityProviderArrayOutput struct{ *pulumi.OutputState }
@@ -632,6 +638,10 @@ func (o IdentityProviderMapOutput) MapIndex(k pulumi.StringInput) IdentityProvid
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*IdentityProviderInput)(nil)).Elem(), &IdentityProvider{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IdentityProviderPtrInput)(nil)).Elem(), &IdentityProvider{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IdentityProviderArrayInput)(nil)).Elem(), IdentityProviderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IdentityProviderMapInput)(nil)).Elem(), IdentityProviderMap{})
 	pulumi.RegisterOutputType(IdentityProviderOutput{})
 	pulumi.RegisterOutputType(IdentityProviderPtrOutput{})
 	pulumi.RegisterOutputType(IdentityProviderArrayOutput{})

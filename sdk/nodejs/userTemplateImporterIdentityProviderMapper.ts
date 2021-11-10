@@ -93,44 +93,44 @@ export class UserTemplateImporterIdentityProviderMapper extends pulumi.CustomRes
  * Input properties used for looking up and filtering UserTemplateImporterIdentityProviderMapper resources.
  */
 export interface UserTemplateImporterIdentityProviderMapperState {
-    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * IDP Alias
      */
-    readonly identityProviderAlias?: pulumi.Input<string>;
+    identityProviderAlias?: pulumi.Input<string>;
     /**
      * IDP Mapper Name
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Realm Name
      */
-    readonly realm?: pulumi.Input<string>;
+    realm?: pulumi.Input<string>;
     /**
      * Username For Template Import
      */
-    readonly template?: pulumi.Input<string>;
+    template?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a UserTemplateImporterIdentityProviderMapper resource.
  */
 export interface UserTemplateImporterIdentityProviderMapperArgs {
-    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * IDP Alias
      */
-    readonly identityProviderAlias: pulumi.Input<string>;
+    identityProviderAlias: pulumi.Input<string>;
     /**
      * IDP Mapper Name
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Realm Name
      */
-    readonly realm: pulumi.Input<string>;
+    realm: pulumi.Input<string>;
     /**
      * Username For Template Import
      */
-    readonly template?: pulumi.Input<string>;
+    template?: pulumi.Input<string>;
 }

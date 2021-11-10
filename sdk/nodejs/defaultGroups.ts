@@ -111,11 +111,11 @@ export interface DefaultGroupsState {
     /**
      * A set of group ids that should be default groups on the realm referenced by `realmId`.
      */
-    readonly groupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    groupIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The realm this group exists in.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
 }
 
 /**
@@ -125,9 +125,9 @@ export interface DefaultGroupsArgs {
     /**
      * A set of group ids that should be default groups on the realm referenced by `realmId`.
      */
-    readonly groupIds: pulumi.Input<pulumi.Input<string>[]>;
+    groupIds: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The realm this group exists in.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
 }

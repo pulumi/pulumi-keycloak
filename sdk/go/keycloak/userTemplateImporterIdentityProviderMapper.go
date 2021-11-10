@@ -178,7 +178,7 @@ type UserTemplateImporterIdentityProviderMapperArrayInput interface {
 type UserTemplateImporterIdentityProviderMapperArray []UserTemplateImporterIdentityProviderMapperInput
 
 func (UserTemplateImporterIdentityProviderMapperArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserTemplateImporterIdentityProviderMapper)(nil))
+	return reflect.TypeOf((*[]*UserTemplateImporterIdentityProviderMapper)(nil)).Elem()
 }
 
 func (i UserTemplateImporterIdentityProviderMapperArray) ToUserTemplateImporterIdentityProviderMapperArrayOutput() UserTemplateImporterIdentityProviderMapperArrayOutput {
@@ -203,7 +203,7 @@ type UserTemplateImporterIdentityProviderMapperMapInput interface {
 type UserTemplateImporterIdentityProviderMapperMap map[string]UserTemplateImporterIdentityProviderMapperInput
 
 func (UserTemplateImporterIdentityProviderMapperMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserTemplateImporterIdentityProviderMapper)(nil))
+	return reflect.TypeOf((*map[string]*UserTemplateImporterIdentityProviderMapper)(nil)).Elem()
 }
 
 func (i UserTemplateImporterIdentityProviderMapperMap) ToUserTemplateImporterIdentityProviderMapperMapOutput() UserTemplateImporterIdentityProviderMapperMapOutput {
@@ -214,9 +214,7 @@ func (i UserTemplateImporterIdentityProviderMapperMap) ToUserTemplateImporterIde
 	return pulumi.ToOutputWithContext(ctx, i).(UserTemplateImporterIdentityProviderMapperMapOutput)
 }
 
-type UserTemplateImporterIdentityProviderMapperOutput struct {
-	*pulumi.OutputState
-}
+type UserTemplateImporterIdentityProviderMapperOutput struct{ *pulumi.OutputState }
 
 func (UserTemplateImporterIdentityProviderMapperOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*UserTemplateImporterIdentityProviderMapper)(nil))
@@ -235,14 +233,12 @@ func (o UserTemplateImporterIdentityProviderMapperOutput) ToUserTemplateImporter
 }
 
 func (o UserTemplateImporterIdentityProviderMapperOutput) ToUserTemplateImporterIdentityProviderMapperPtrOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperPtrOutput {
-	return o.ApplyT(func(v UserTemplateImporterIdentityProviderMapper) *UserTemplateImporterIdentityProviderMapper {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v UserTemplateImporterIdentityProviderMapper) *UserTemplateImporterIdentityProviderMapper {
 		return &v
 	}).(UserTemplateImporterIdentityProviderMapperPtrOutput)
 }
 
-type UserTemplateImporterIdentityProviderMapperPtrOutput struct {
-	*pulumi.OutputState
-}
+type UserTemplateImporterIdentityProviderMapperPtrOutput struct{ *pulumi.OutputState }
 
 func (UserTemplateImporterIdentityProviderMapperPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**UserTemplateImporterIdentityProviderMapper)(nil))
@@ -254,6 +250,16 @@ func (o UserTemplateImporterIdentityProviderMapperPtrOutput) ToUserTemplateImpor
 
 func (o UserTemplateImporterIdentityProviderMapperPtrOutput) ToUserTemplateImporterIdentityProviderMapperPtrOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperPtrOutput {
 	return o
+}
+
+func (o UserTemplateImporterIdentityProviderMapperPtrOutput) Elem() UserTemplateImporterIdentityProviderMapperOutput {
+	return o.ApplyT(func(v *UserTemplateImporterIdentityProviderMapper) UserTemplateImporterIdentityProviderMapper {
+		if v != nil {
+			return *v
+		}
+		var ret UserTemplateImporterIdentityProviderMapper
+		return ret
+	}).(UserTemplateImporterIdentityProviderMapperOutput)
 }
 
 type UserTemplateImporterIdentityProviderMapperArrayOutput struct{ *pulumi.OutputState }
@@ -297,6 +303,10 @@ func (o UserTemplateImporterIdentityProviderMapperMapOutput) MapIndex(k pulumi.S
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserTemplateImporterIdentityProviderMapperInput)(nil)).Elem(), &UserTemplateImporterIdentityProviderMapper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserTemplateImporterIdentityProviderMapperPtrInput)(nil)).Elem(), &UserTemplateImporterIdentityProviderMapper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserTemplateImporterIdentityProviderMapperArrayInput)(nil)).Elem(), UserTemplateImporterIdentityProviderMapperArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserTemplateImporterIdentityProviderMapperMapInput)(nil)).Elem(), UserTemplateImporterIdentityProviderMapperMap{})
 	pulumi.RegisterOutputType(UserTemplateImporterIdentityProviderMapperOutput{})
 	pulumi.RegisterOutputType(UserTemplateImporterIdentityProviderMapperPtrOutput{})
 	pulumi.RegisterOutputType(UserTemplateImporterIdentityProviderMapperArrayOutput{})

@@ -398,7 +398,7 @@ type GroupMapperArrayInput interface {
 type GroupMapperArray []GroupMapperInput
 
 func (GroupMapperArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*GroupMapper)(nil))
+	return reflect.TypeOf((*[]*GroupMapper)(nil)).Elem()
 }
 
 func (i GroupMapperArray) ToGroupMapperArrayOutput() GroupMapperArrayOutput {
@@ -423,7 +423,7 @@ type GroupMapperMapInput interface {
 type GroupMapperMap map[string]GroupMapperInput
 
 func (GroupMapperMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*GroupMapper)(nil))
+	return reflect.TypeOf((*map[string]*GroupMapper)(nil)).Elem()
 }
 
 func (i GroupMapperMap) ToGroupMapperMapOutput() GroupMapperMapOutput {
@@ -434,9 +434,7 @@ func (i GroupMapperMap) ToGroupMapperMapOutputWithContext(ctx context.Context) G
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMapperMapOutput)
 }
 
-type GroupMapperOutput struct {
-	*pulumi.OutputState
-}
+type GroupMapperOutput struct{ *pulumi.OutputState }
 
 func (GroupMapperOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GroupMapper)(nil))
@@ -455,14 +453,12 @@ func (o GroupMapperOutput) ToGroupMapperPtrOutput() GroupMapperPtrOutput {
 }
 
 func (o GroupMapperOutput) ToGroupMapperPtrOutputWithContext(ctx context.Context) GroupMapperPtrOutput {
-	return o.ApplyT(func(v GroupMapper) *GroupMapper {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GroupMapper) *GroupMapper {
 		return &v
 	}).(GroupMapperPtrOutput)
 }
 
-type GroupMapperPtrOutput struct {
-	*pulumi.OutputState
-}
+type GroupMapperPtrOutput struct{ *pulumi.OutputState }
 
 func (GroupMapperPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**GroupMapper)(nil))
@@ -474,6 +470,16 @@ func (o GroupMapperPtrOutput) ToGroupMapperPtrOutput() GroupMapperPtrOutput {
 
 func (o GroupMapperPtrOutput) ToGroupMapperPtrOutputWithContext(ctx context.Context) GroupMapperPtrOutput {
 	return o
+}
+
+func (o GroupMapperPtrOutput) Elem() GroupMapperOutput {
+	return o.ApplyT(func(v *GroupMapper) GroupMapper {
+		if v != nil {
+			return *v
+		}
+		var ret GroupMapper
+		return ret
+	}).(GroupMapperOutput)
 }
 
 type GroupMapperArrayOutput struct{ *pulumi.OutputState }
@@ -517,6 +523,10 @@ func (o GroupMapperMapOutput) MapIndex(k pulumi.StringInput) GroupMapperOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupMapperInput)(nil)).Elem(), &GroupMapper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupMapperPtrInput)(nil)).Elem(), &GroupMapper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupMapperArrayInput)(nil)).Elem(), GroupMapperArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupMapperMapInput)(nil)).Elem(), GroupMapperMap{})
 	pulumi.RegisterOutputType(GroupMapperOutput{})
 	pulumi.RegisterOutputType(GroupMapperPtrOutput{})
 	pulumi.RegisterOutputType(GroupMapperArrayOutput{})

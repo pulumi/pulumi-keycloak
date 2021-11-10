@@ -11,6 +11,6 @@ replace (
 
 require (
 	github.com/mrparkers/terraform-provider-keycloak v0.0.0-00010101000000-000000000000
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.0.0
-	github.com/pulumi/pulumi/sdk/v3 v3.0.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.11.0
+	github.com/pulumi/pulumi/sdk/v3 v3.17.0
 )

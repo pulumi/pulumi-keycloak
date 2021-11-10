@@ -12,6 +12,7 @@ __all__ = [
     'GetAuthenticationExecutionResult',
     'AwaitableGetAuthenticationExecutionResult',
     'get_authentication_execution',
+    'get_authentication_execution_output',
 ]
 
 @pulumi.output_type
@@ -110,3 +111,33 @@ def get_authentication_execution(parent_flow_alias: Optional[str] = None,
         parent_flow_alias=__ret__.parent_flow_alias,
         provider_id=__ret__.provider_id,
         realm_id=__ret__.realm_id)
+
+
+@_utilities.lift_output_func(get_authentication_execution)
+def get_authentication_execution_output(parent_flow_alias: Optional[pulumi.Input[str]] = None,
+                                        provider_id: Optional[pulumi.Input[str]] = None,
+                                        realm_id: Optional[pulumi.Input[str]] = None,
+                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthenticationExecutionResult]:
+    """
+    This data source can be used to fetch the ID of an authentication execution within Keycloak.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.Realm("realm",
+        realm="my-realm",
+        enabled=True)
+    browser_auth_cookie = realm.id.apply(lambda id: keycloak.get_authentication_execution(realm_id=id,
+        parent_flow_alias="browser",
+        provider_id="auth-cookie"))
+    ```
+
+
+    :param str parent_flow_alias: The alias of the flow this execution is attached to.
+    :param str provider_id: The name of the provider. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools. This was previously known as the "authenticator".
+    :param str realm_id: The realm the authentication execution exists in.
+    """
+    ...

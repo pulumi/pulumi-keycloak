@@ -176,7 +176,7 @@ type HardcodedGroupMapperArrayInput interface {
 type HardcodedGroupMapperArray []HardcodedGroupMapperInput
 
 func (HardcodedGroupMapperArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*HardcodedGroupMapper)(nil))
+	return reflect.TypeOf((*[]*HardcodedGroupMapper)(nil)).Elem()
 }
 
 func (i HardcodedGroupMapperArray) ToHardcodedGroupMapperArrayOutput() HardcodedGroupMapperArrayOutput {
@@ -201,7 +201,7 @@ type HardcodedGroupMapperMapInput interface {
 type HardcodedGroupMapperMap map[string]HardcodedGroupMapperInput
 
 func (HardcodedGroupMapperMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*HardcodedGroupMapper)(nil))
+	return reflect.TypeOf((*map[string]*HardcodedGroupMapper)(nil)).Elem()
 }
 
 func (i HardcodedGroupMapperMap) ToHardcodedGroupMapperMapOutput() HardcodedGroupMapperMapOutput {
@@ -212,9 +212,7 @@ func (i HardcodedGroupMapperMap) ToHardcodedGroupMapperMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedGroupMapperMapOutput)
 }
 
-type HardcodedGroupMapperOutput struct {
-	*pulumi.OutputState
-}
+type HardcodedGroupMapperOutput struct{ *pulumi.OutputState }
 
 func (HardcodedGroupMapperOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*HardcodedGroupMapper)(nil))
@@ -233,14 +231,12 @@ func (o HardcodedGroupMapperOutput) ToHardcodedGroupMapperPtrOutput() HardcodedG
 }
 
 func (o HardcodedGroupMapperOutput) ToHardcodedGroupMapperPtrOutputWithContext(ctx context.Context) HardcodedGroupMapperPtrOutput {
-	return o.ApplyT(func(v HardcodedGroupMapper) *HardcodedGroupMapper {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v HardcodedGroupMapper) *HardcodedGroupMapper {
 		return &v
 	}).(HardcodedGroupMapperPtrOutput)
 }
 
-type HardcodedGroupMapperPtrOutput struct {
-	*pulumi.OutputState
-}
+type HardcodedGroupMapperPtrOutput struct{ *pulumi.OutputState }
 
 func (HardcodedGroupMapperPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**HardcodedGroupMapper)(nil))
@@ -252,6 +248,16 @@ func (o HardcodedGroupMapperPtrOutput) ToHardcodedGroupMapperPtrOutput() Hardcod
 
 func (o HardcodedGroupMapperPtrOutput) ToHardcodedGroupMapperPtrOutputWithContext(ctx context.Context) HardcodedGroupMapperPtrOutput {
 	return o
+}
+
+func (o HardcodedGroupMapperPtrOutput) Elem() HardcodedGroupMapperOutput {
+	return o.ApplyT(func(v *HardcodedGroupMapper) HardcodedGroupMapper {
+		if v != nil {
+			return *v
+		}
+		var ret HardcodedGroupMapper
+		return ret
+	}).(HardcodedGroupMapperOutput)
 }
 
 type HardcodedGroupMapperArrayOutput struct{ *pulumi.OutputState }
@@ -295,6 +301,10 @@ func (o HardcodedGroupMapperMapOutput) MapIndex(k pulumi.StringInput) HardcodedG
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*HardcodedGroupMapperInput)(nil)).Elem(), &HardcodedGroupMapper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HardcodedGroupMapperPtrInput)(nil)).Elem(), &HardcodedGroupMapper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HardcodedGroupMapperArrayInput)(nil)).Elem(), HardcodedGroupMapperArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HardcodedGroupMapperMapInput)(nil)).Elem(), HardcodedGroupMapperMap{})
 	pulumi.RegisterOutputType(HardcodedGroupMapperOutput{})
 	pulumi.RegisterOutputType(HardcodedGroupMapperPtrOutput{})
 	pulumi.RegisterOutputType(HardcodedGroupMapperArrayOutput{})

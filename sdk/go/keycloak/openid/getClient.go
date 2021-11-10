@@ -4,6 +4,9 @@
 package openid
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,7 +33,7 @@ import (
 // 			return err
 // 		}
 // 		opt0 := realmManagement.Id
-// 		_, err = keycloak.LookupRole(ctx, &keycloak.LookupRoleArgs{
+// 		_, err = keycloak.LookupRole(ctx, &GetRoleArgs{
 // 			RealmId:  "my-realm",
 // 			ClientId: &opt0,
 // 			Name:     "realm-admin",
@@ -99,4 +102,192 @@ type LookupClientResult struct {
 	UseRefreshTokens        bool     `pulumi:"useRefreshTokens"`
 	ValidRedirectUris       []string `pulumi:"validRedirectUris"`
 	WebOrigins              []string `pulumi:"webOrigins"`
+}
+
+func LookupClientOutput(ctx *pulumi.Context, args LookupClientOutputArgs, opts ...pulumi.InvokeOption) LookupClientResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupClientResult, error) {
+			args := v.(LookupClientArgs)
+			r, err := LookupClient(ctx, &args, opts...)
+			return *r, err
+		}).(LookupClientResultOutput)
+}
+
+// A collection of arguments for invoking getClient.
+type LookupClientOutputArgs struct {
+	// The client id (not its unique ID).
+	ClientId    pulumi.StringInput `pulumi:"clientId"`
+	ExtraConfig pulumi.MapInput    `pulumi:"extraConfig"`
+	// The realm id.
+	RealmId pulumi.StringInput `pulumi:"realmId"`
+}
+
+func (LookupClientOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupClientArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getClient.
+type LookupClientResultOutput struct{ *pulumi.OutputState }
+
+func (LookupClientResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupClientResult)(nil)).Elem()
+}
+
+func (o LookupClientResultOutput) ToLookupClientResultOutput() LookupClientResultOutput {
+	return o
+}
+
+func (o LookupClientResultOutput) ToLookupClientResultOutputWithContext(ctx context.Context) LookupClientResultOutput {
+	return o
+}
+
+func (o LookupClientResultOutput) AccessTokenLifespan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.AccessTokenLifespan }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) AccessType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.AccessType }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) AdminUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.AdminUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) AuthenticationFlowBindingOverrides() GetClientAuthenticationFlowBindingOverrideArrayOutput {
+	return o.ApplyT(func(v LookupClientResult) []GetClientAuthenticationFlowBindingOverride {
+		return v.AuthenticationFlowBindingOverrides
+	}).(GetClientAuthenticationFlowBindingOverrideArrayOutput)
+}
+
+func (o LookupClientResultOutput) Authorizations() GetClientAuthorizationArrayOutput {
+	return o.ApplyT(func(v LookupClientResult) []GetClientAuthorization { return v.Authorizations }).(GetClientAuthorizationArrayOutput)
+}
+
+func (o LookupClientResultOutput) BackchannelLogoutRevokeOfflineSessions() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.BackchannelLogoutRevokeOfflineSessions }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) BackchannelLogoutSessionRequired() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.BackchannelLogoutSessionRequired }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) BackchannelLogoutUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.BackchannelLogoutUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) BaseUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.BaseUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) ClientOfflineSessionIdleTimeout() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.ClientOfflineSessionIdleTimeout }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) ClientOfflineSessionMaxLifespan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.ClientOfflineSessionMaxLifespan }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) ClientSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) ClientSessionIdleTimeout() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.ClientSessionIdleTimeout }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) ClientSessionMaxLifespan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.ClientSessionMaxLifespan }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) ConsentRequired() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.ConsentRequired }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) DirectAccessGrantsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.DirectAccessGrantsEnabled }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) ExcludeSessionStateFromAuthResponse() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.ExcludeSessionStateFromAuthResponse }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) ExtraConfig() pulumi.MapOutput {
+	return o.ApplyT(func(v LookupClientResult) map[string]interface{} { return v.ExtraConfig }).(pulumi.MapOutput)
+}
+
+func (o LookupClientResultOutput) FullScopeAllowed() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.FullScopeAllowed }).(pulumi.BoolOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupClientResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) ImplicitFlowEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.ImplicitFlowEnabled }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) LoginTheme() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.LoginTheme }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) PkceCodeChallengeMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.PkceCodeChallengeMethod }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) ResourceServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.ResourceServerId }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) RootUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.RootUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) ServiceAccountUserId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.ServiceAccountUserId }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) ServiceAccountsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.ServiceAccountsEnabled }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) StandardFlowEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.StandardFlowEnabled }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) UseRefreshTokens() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.UseRefreshTokens }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) ValidRedirectUris() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupClientResult) []string { return v.ValidRedirectUris }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupClientResultOutput) WebOrigins() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupClientResult) []string { return v.WebOrigins }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupClientResultOutput{})
 }

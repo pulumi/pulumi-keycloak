@@ -56,9 +56,9 @@ import (
 // 		_, err = keycloak.NewGroup(ctx, "childGroupWithOptionalAttributes", &keycloak.GroupArgs{
 // 			RealmId:  realm.ID(),
 // 			ParentId: parentGroup.ID(),
-// 			Attributes: pulumi.StringMap{
-// 				"foo":        pulumi.String("bar"),
-// 				"multivalue": pulumi.String("value1##value2"),
+// 			Attributes: pulumi.AnyMap{
+// 				"foo":        pulumi.Any("bar"),
+// 				"multivalue": pulumi.Any("value1##value2"),
 // 			},
 // 		})
 // 		if err != nil {
@@ -241,7 +241,7 @@ type GroupArrayInput interface {
 type GroupArray []GroupInput
 
 func (GroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*Group)(nil))
+	return reflect.TypeOf((*[]*Group)(nil)).Elem()
 }
 
 func (i GroupArray) ToGroupArrayOutput() GroupArrayOutput {
@@ -266,7 +266,7 @@ type GroupMapInput interface {
 type GroupMap map[string]GroupInput
 
 func (GroupMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*Group)(nil))
+	return reflect.TypeOf((*map[string]*Group)(nil)).Elem()
 }
 
 func (i GroupMap) ToGroupMapOutput() GroupMapOutput {
@@ -277,9 +277,7 @@ func (i GroupMap) ToGroupMapOutputWithContext(ctx context.Context) GroupMapOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMapOutput)
 }
 
-type GroupOutput struct {
-	*pulumi.OutputState
-}
+type GroupOutput struct{ *pulumi.OutputState }
 
 func (GroupOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Group)(nil))
@@ -298,14 +296,12 @@ func (o GroupOutput) ToGroupPtrOutput() GroupPtrOutput {
 }
 
 func (o GroupOutput) ToGroupPtrOutputWithContext(ctx context.Context) GroupPtrOutput {
-	return o.ApplyT(func(v Group) *Group {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Group) *Group {
 		return &v
 	}).(GroupPtrOutput)
 }
 
-type GroupPtrOutput struct {
-	*pulumi.OutputState
-}
+type GroupPtrOutput struct{ *pulumi.OutputState }
 
 func (GroupPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Group)(nil))
@@ -317,6 +313,16 @@ func (o GroupPtrOutput) ToGroupPtrOutput() GroupPtrOutput {
 
 func (o GroupPtrOutput) ToGroupPtrOutputWithContext(ctx context.Context) GroupPtrOutput {
 	return o
+}
+
+func (o GroupPtrOutput) Elem() GroupOutput {
+	return o.ApplyT(func(v *Group) Group {
+		if v != nil {
+			return *v
+		}
+		var ret Group
+		return ret
+	}).(GroupOutput)
 }
 
 type GroupArrayOutput struct{ *pulumi.OutputState }
@@ -360,6 +366,10 @@ func (o GroupMapOutput) MapIndex(k pulumi.StringInput) GroupOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupInput)(nil)).Elem(), &Group{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupPtrInput)(nil)).Elem(), &Group{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupArrayInput)(nil)).Elem(), GroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupMapInput)(nil)).Elem(), GroupMap{})
 	pulumi.RegisterOutputType(GroupOutput{})
 	pulumi.RegisterOutputType(GroupPtrOutput{})
 	pulumi.RegisterOutputType(GroupArrayOutput{})

@@ -135,15 +135,15 @@ export interface MsadLdsUserAccountControlMapperState {
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    readonly ldapUserFederationId?: pulumi.Input<string>;
+    ldapUserFederationId?: pulumi.Input<string>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
 }
 
 /**
@@ -153,13 +153,13 @@ export interface MsadLdsUserAccountControlMapperArgs {
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    readonly ldapUserFederationId: pulumi.Input<string>;
+    ldapUserFederationId: pulumi.Input<string>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
 }

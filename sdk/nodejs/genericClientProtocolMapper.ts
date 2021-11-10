@@ -163,31 +163,31 @@ export interface GenericClientProtocolMapperState {
     /**
      * The client this protocol mapper is attached to.
      */
-    readonly clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * The mapper's associated client scope. Cannot be used at the same time as client_id.
      */
-    readonly clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string>;
     /**
      * A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
      */
-    readonly config?: pulumi.Input<{[key: string]: any}>;
+    config?: pulumi.Input<{[key: string]: any}>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
      */
-    readonly protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string>;
     /**
      * The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
      */
-    readonly protocolMapper?: pulumi.Input<string>;
+    protocolMapper?: pulumi.Input<string>;
     /**
      * The realm this protocol mapper exists within.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
 }
 
 /**
@@ -197,29 +197,29 @@ export interface GenericClientProtocolMapperArgs {
     /**
      * The client this protocol mapper is attached to.
      */
-    readonly clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * The mapper's associated client scope. Cannot be used at the same time as client_id.
      */
-    readonly clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string>;
     /**
      * A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
      */
-    readonly config: pulumi.Input<{[key: string]: any}>;
+    config: pulumi.Input<{[key: string]: any}>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
      */
-    readonly protocol: pulumi.Input<string>;
+    protocol: pulumi.Input<string>;
     /**
      * The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
      */
-    readonly protocolMapper: pulumi.Input<string>;
+    protocolMapper: pulumi.Input<string>;
     /**
      * The realm this protocol mapper exists within.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
 }

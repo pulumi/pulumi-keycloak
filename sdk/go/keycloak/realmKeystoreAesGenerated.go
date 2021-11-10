@@ -234,7 +234,7 @@ type RealmKeystoreAesGeneratedArrayInput interface {
 type RealmKeystoreAesGeneratedArray []RealmKeystoreAesGeneratedInput
 
 func (RealmKeystoreAesGeneratedArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RealmKeystoreAesGenerated)(nil))
+	return reflect.TypeOf((*[]*RealmKeystoreAesGenerated)(nil)).Elem()
 }
 
 func (i RealmKeystoreAesGeneratedArray) ToRealmKeystoreAesGeneratedArrayOutput() RealmKeystoreAesGeneratedArrayOutput {
@@ -259,7 +259,7 @@ type RealmKeystoreAesGeneratedMapInput interface {
 type RealmKeystoreAesGeneratedMap map[string]RealmKeystoreAesGeneratedInput
 
 func (RealmKeystoreAesGeneratedMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RealmKeystoreAesGenerated)(nil))
+	return reflect.TypeOf((*map[string]*RealmKeystoreAesGenerated)(nil)).Elem()
 }
 
 func (i RealmKeystoreAesGeneratedMap) ToRealmKeystoreAesGeneratedMapOutput() RealmKeystoreAesGeneratedMapOutput {
@@ -270,9 +270,7 @@ func (i RealmKeystoreAesGeneratedMap) ToRealmKeystoreAesGeneratedMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreAesGeneratedMapOutput)
 }
 
-type RealmKeystoreAesGeneratedOutput struct {
-	*pulumi.OutputState
-}
+type RealmKeystoreAesGeneratedOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreAesGeneratedOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*RealmKeystoreAesGenerated)(nil))
@@ -291,14 +289,12 @@ func (o RealmKeystoreAesGeneratedOutput) ToRealmKeystoreAesGeneratedPtrOutput() 
 }
 
 func (o RealmKeystoreAesGeneratedOutput) ToRealmKeystoreAesGeneratedPtrOutputWithContext(ctx context.Context) RealmKeystoreAesGeneratedPtrOutput {
-	return o.ApplyT(func(v RealmKeystoreAesGenerated) *RealmKeystoreAesGenerated {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmKeystoreAesGenerated) *RealmKeystoreAesGenerated {
 		return &v
 	}).(RealmKeystoreAesGeneratedPtrOutput)
 }
 
-type RealmKeystoreAesGeneratedPtrOutput struct {
-	*pulumi.OutputState
-}
+type RealmKeystoreAesGeneratedPtrOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreAesGeneratedPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RealmKeystoreAesGenerated)(nil))
@@ -310,6 +306,16 @@ func (o RealmKeystoreAesGeneratedPtrOutput) ToRealmKeystoreAesGeneratedPtrOutput
 
 func (o RealmKeystoreAesGeneratedPtrOutput) ToRealmKeystoreAesGeneratedPtrOutputWithContext(ctx context.Context) RealmKeystoreAesGeneratedPtrOutput {
 	return o
+}
+
+func (o RealmKeystoreAesGeneratedPtrOutput) Elem() RealmKeystoreAesGeneratedOutput {
+	return o.ApplyT(func(v *RealmKeystoreAesGenerated) RealmKeystoreAesGenerated {
+		if v != nil {
+			return *v
+		}
+		var ret RealmKeystoreAesGenerated
+		return ret
+	}).(RealmKeystoreAesGeneratedOutput)
 }
 
 type RealmKeystoreAesGeneratedArrayOutput struct{ *pulumi.OutputState }
@@ -353,6 +359,10 @@ func (o RealmKeystoreAesGeneratedMapOutput) MapIndex(k pulumi.StringInput) Realm
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreAesGeneratedInput)(nil)).Elem(), &RealmKeystoreAesGenerated{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreAesGeneratedPtrInput)(nil)).Elem(), &RealmKeystoreAesGenerated{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreAesGeneratedArrayInput)(nil)).Elem(), RealmKeystoreAesGeneratedArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreAesGeneratedMapInput)(nil)).Elem(), RealmKeystoreAesGeneratedMap{})
 	pulumi.RegisterOutputType(RealmKeystoreAesGeneratedOutput{})
 	pulumi.RegisterOutputType(RealmKeystoreAesGeneratedPtrOutput{})
 	pulumi.RegisterOutputType(RealmKeystoreAesGeneratedArrayOutput{})

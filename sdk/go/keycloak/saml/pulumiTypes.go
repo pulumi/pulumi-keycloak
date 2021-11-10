@@ -107,7 +107,7 @@ func (o ClientAuthenticationFlowBindingOverridesOutput) ToClientAuthenticationFl
 }
 
 func (o ClientAuthenticationFlowBindingOverridesOutput) ToClientAuthenticationFlowBindingOverridesPtrOutputWithContext(ctx context.Context) ClientAuthenticationFlowBindingOverridesPtrOutput {
-	return o.ApplyT(func(v ClientAuthenticationFlowBindingOverrides) *ClientAuthenticationFlowBindingOverrides {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientAuthenticationFlowBindingOverrides) *ClientAuthenticationFlowBindingOverrides {
 		return &v
 	}).(ClientAuthenticationFlowBindingOverridesPtrOutput)
 }
@@ -137,7 +137,13 @@ func (o ClientAuthenticationFlowBindingOverridesPtrOutput) ToClientAuthenticatio
 }
 
 func (o ClientAuthenticationFlowBindingOverridesPtrOutput) Elem() ClientAuthenticationFlowBindingOverridesOutput {
-	return o.ApplyT(func(v *ClientAuthenticationFlowBindingOverrides) ClientAuthenticationFlowBindingOverrides { return *v }).(ClientAuthenticationFlowBindingOverridesOutput)
+	return o.ApplyT(func(v *ClientAuthenticationFlowBindingOverrides) ClientAuthenticationFlowBindingOverrides {
+		if v != nil {
+			return *v
+		}
+		var ret ClientAuthenticationFlowBindingOverrides
+		return ret
+	}).(ClientAuthenticationFlowBindingOverridesOutput)
 }
 
 // Browser flow id, (flow needs to exist)
@@ -261,6 +267,10 @@ func (o GetClientAuthenticationFlowBindingOverrideArrayOutput) Index(i pulumi.In
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthenticationFlowBindingOverridesInput)(nil)).Elem(), ClientAuthenticationFlowBindingOverridesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthenticationFlowBindingOverridesPtrInput)(nil)).Elem(), ClientAuthenticationFlowBindingOverridesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClientAuthenticationFlowBindingOverrideInput)(nil)).Elem(), GetClientAuthenticationFlowBindingOverrideArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClientAuthenticationFlowBindingOverrideArrayInput)(nil)).Elem(), GetClientAuthenticationFlowBindingOverrideArray{})
 	pulumi.RegisterOutputType(ClientAuthenticationFlowBindingOverridesOutput{})
 	pulumi.RegisterOutputType(ClientAuthenticationFlowBindingOverridesPtrOutput{})
 	pulumi.RegisterOutputType(GetClientAuthenticationFlowBindingOverrideOutput{})

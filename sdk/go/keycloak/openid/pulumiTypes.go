@@ -107,7 +107,7 @@ func (o ClientAuthenticationFlowBindingOverridesOutput) ToClientAuthenticationFl
 }
 
 func (o ClientAuthenticationFlowBindingOverridesOutput) ToClientAuthenticationFlowBindingOverridesPtrOutputWithContext(ctx context.Context) ClientAuthenticationFlowBindingOverridesPtrOutput {
-	return o.ApplyT(func(v ClientAuthenticationFlowBindingOverrides) *ClientAuthenticationFlowBindingOverrides {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientAuthenticationFlowBindingOverrides) *ClientAuthenticationFlowBindingOverrides {
 		return &v
 	}).(ClientAuthenticationFlowBindingOverridesPtrOutput)
 }
@@ -137,7 +137,13 @@ func (o ClientAuthenticationFlowBindingOverridesPtrOutput) ToClientAuthenticatio
 }
 
 func (o ClientAuthenticationFlowBindingOverridesPtrOutput) Elem() ClientAuthenticationFlowBindingOverridesOutput {
-	return o.ApplyT(func(v *ClientAuthenticationFlowBindingOverrides) ClientAuthenticationFlowBindingOverrides { return *v }).(ClientAuthenticationFlowBindingOverridesOutput)
+	return o.ApplyT(func(v *ClientAuthenticationFlowBindingOverrides) ClientAuthenticationFlowBindingOverrides {
+		if v != nil {
+			return *v
+		}
+		var ret ClientAuthenticationFlowBindingOverrides
+		return ret
+	}).(ClientAuthenticationFlowBindingOverridesOutput)
 }
 
 // Browser flow id, (flow needs to exist)
@@ -265,7 +271,7 @@ func (o ClientAuthorizationOutput) ToClientAuthorizationPtrOutput() ClientAuthor
 }
 
 func (o ClientAuthorizationOutput) ToClientAuthorizationPtrOutputWithContext(ctx context.Context) ClientAuthorizationPtrOutput {
-	return o.ApplyT(func(v ClientAuthorization) *ClientAuthorization {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientAuthorization) *ClientAuthorization {
 		return &v
 	}).(ClientAuthorizationPtrOutput)
 }
@@ -305,7 +311,13 @@ func (o ClientAuthorizationPtrOutput) ToClientAuthorizationPtrOutputWithContext(
 }
 
 func (o ClientAuthorizationPtrOutput) Elem() ClientAuthorizationOutput {
-	return o.ApplyT(func(v *ClientAuthorization) ClientAuthorization { return *v }).(ClientAuthorizationOutput)
+	return o.ApplyT(func(v *ClientAuthorization) ClientAuthorization {
+		if v != nil {
+			return *v
+		}
+		var ret ClientAuthorization
+		return ret
+	}).(ClientAuthorizationOutput)
 }
 
 // When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
@@ -549,10 +561,11 @@ func (o ClientPermissionsConfigureScopeOutput) ToClientPermissionsConfigureScope
 }
 
 func (o ClientPermissionsConfigureScopeOutput) ToClientPermissionsConfigureScopePtrOutputWithContext(ctx context.Context) ClientPermissionsConfigureScopePtrOutput {
-	return o.ApplyT(func(v ClientPermissionsConfigureScope) *ClientPermissionsConfigureScope {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientPermissionsConfigureScope) *ClientPermissionsConfigureScope {
 		return &v
 	}).(ClientPermissionsConfigureScopePtrOutput)
 }
+
 func (o ClientPermissionsConfigureScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClientPermissionsConfigureScope) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
 }
@@ -580,7 +593,13 @@ func (o ClientPermissionsConfigureScopePtrOutput) ToClientPermissionsConfigureSc
 }
 
 func (o ClientPermissionsConfigureScopePtrOutput) Elem() ClientPermissionsConfigureScopeOutput {
-	return o.ApplyT(func(v *ClientPermissionsConfigureScope) ClientPermissionsConfigureScope { return *v }).(ClientPermissionsConfigureScopeOutput)
+	return o.ApplyT(func(v *ClientPermissionsConfigureScope) ClientPermissionsConfigureScope {
+		if v != nil {
+			return *v
+		}
+		var ret ClientPermissionsConfigureScope
+		return ret
+	}).(ClientPermissionsConfigureScopeOutput)
 }
 
 func (o ClientPermissionsConfigureScopePtrOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -705,10 +724,11 @@ func (o ClientPermissionsManageScopeOutput) ToClientPermissionsManageScopePtrOut
 }
 
 func (o ClientPermissionsManageScopeOutput) ToClientPermissionsManageScopePtrOutputWithContext(ctx context.Context) ClientPermissionsManageScopePtrOutput {
-	return o.ApplyT(func(v ClientPermissionsManageScope) *ClientPermissionsManageScope {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientPermissionsManageScope) *ClientPermissionsManageScope {
 		return &v
 	}).(ClientPermissionsManageScopePtrOutput)
 }
+
 func (o ClientPermissionsManageScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClientPermissionsManageScope) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
 }
@@ -736,7 +756,13 @@ func (o ClientPermissionsManageScopePtrOutput) ToClientPermissionsManageScopePtr
 }
 
 func (o ClientPermissionsManageScopePtrOutput) Elem() ClientPermissionsManageScopeOutput {
-	return o.ApplyT(func(v *ClientPermissionsManageScope) ClientPermissionsManageScope { return *v }).(ClientPermissionsManageScopeOutput)
+	return o.ApplyT(func(v *ClientPermissionsManageScope) ClientPermissionsManageScope {
+		if v != nil {
+			return *v
+		}
+		var ret ClientPermissionsManageScope
+		return ret
+	}).(ClientPermissionsManageScopeOutput)
 }
 
 func (o ClientPermissionsManageScopePtrOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -861,10 +887,11 @@ func (o ClientPermissionsMapRolesClientScopeScopeOutput) ToClientPermissionsMapR
 }
 
 func (o ClientPermissionsMapRolesClientScopeScopeOutput) ToClientPermissionsMapRolesClientScopeScopePtrOutputWithContext(ctx context.Context) ClientPermissionsMapRolesClientScopeScopePtrOutput {
-	return o.ApplyT(func(v ClientPermissionsMapRolesClientScopeScope) *ClientPermissionsMapRolesClientScopeScope {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientPermissionsMapRolesClientScopeScope) *ClientPermissionsMapRolesClientScopeScope {
 		return &v
 	}).(ClientPermissionsMapRolesClientScopeScopePtrOutput)
 }
+
 func (o ClientPermissionsMapRolesClientScopeScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClientPermissionsMapRolesClientScopeScope) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
 }
@@ -893,7 +920,11 @@ func (o ClientPermissionsMapRolesClientScopeScopePtrOutput) ToClientPermissionsM
 
 func (o ClientPermissionsMapRolesClientScopeScopePtrOutput) Elem() ClientPermissionsMapRolesClientScopeScopeOutput {
 	return o.ApplyT(func(v *ClientPermissionsMapRolesClientScopeScope) ClientPermissionsMapRolesClientScopeScope {
-		return *v
+		if v != nil {
+			return *v
+		}
+		var ret ClientPermissionsMapRolesClientScopeScope
+		return ret
 	}).(ClientPermissionsMapRolesClientScopeScopeOutput)
 }
 
@@ -1019,10 +1050,11 @@ func (o ClientPermissionsMapRolesCompositeScopeOutput) ToClientPermissionsMapRol
 }
 
 func (o ClientPermissionsMapRolesCompositeScopeOutput) ToClientPermissionsMapRolesCompositeScopePtrOutputWithContext(ctx context.Context) ClientPermissionsMapRolesCompositeScopePtrOutput {
-	return o.ApplyT(func(v ClientPermissionsMapRolesCompositeScope) *ClientPermissionsMapRolesCompositeScope {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientPermissionsMapRolesCompositeScope) *ClientPermissionsMapRolesCompositeScope {
 		return &v
 	}).(ClientPermissionsMapRolesCompositeScopePtrOutput)
 }
+
 func (o ClientPermissionsMapRolesCompositeScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClientPermissionsMapRolesCompositeScope) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
 }
@@ -1050,7 +1082,13 @@ func (o ClientPermissionsMapRolesCompositeScopePtrOutput) ToClientPermissionsMap
 }
 
 func (o ClientPermissionsMapRolesCompositeScopePtrOutput) Elem() ClientPermissionsMapRolesCompositeScopeOutput {
-	return o.ApplyT(func(v *ClientPermissionsMapRolesCompositeScope) ClientPermissionsMapRolesCompositeScope { return *v }).(ClientPermissionsMapRolesCompositeScopeOutput)
+	return o.ApplyT(func(v *ClientPermissionsMapRolesCompositeScope) ClientPermissionsMapRolesCompositeScope {
+		if v != nil {
+			return *v
+		}
+		var ret ClientPermissionsMapRolesCompositeScope
+		return ret
+	}).(ClientPermissionsMapRolesCompositeScopeOutput)
 }
 
 func (o ClientPermissionsMapRolesCompositeScopePtrOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -1175,10 +1213,11 @@ func (o ClientPermissionsMapRolesScopeOutput) ToClientPermissionsMapRolesScopePt
 }
 
 func (o ClientPermissionsMapRolesScopeOutput) ToClientPermissionsMapRolesScopePtrOutputWithContext(ctx context.Context) ClientPermissionsMapRolesScopePtrOutput {
-	return o.ApplyT(func(v ClientPermissionsMapRolesScope) *ClientPermissionsMapRolesScope {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientPermissionsMapRolesScope) *ClientPermissionsMapRolesScope {
 		return &v
 	}).(ClientPermissionsMapRolesScopePtrOutput)
 }
+
 func (o ClientPermissionsMapRolesScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClientPermissionsMapRolesScope) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
 }
@@ -1206,7 +1245,13 @@ func (o ClientPermissionsMapRolesScopePtrOutput) ToClientPermissionsMapRolesScop
 }
 
 func (o ClientPermissionsMapRolesScopePtrOutput) Elem() ClientPermissionsMapRolesScopeOutput {
-	return o.ApplyT(func(v *ClientPermissionsMapRolesScope) ClientPermissionsMapRolesScope { return *v }).(ClientPermissionsMapRolesScopeOutput)
+	return o.ApplyT(func(v *ClientPermissionsMapRolesScope) ClientPermissionsMapRolesScope {
+		if v != nil {
+			return *v
+		}
+		var ret ClientPermissionsMapRolesScope
+		return ret
+	}).(ClientPermissionsMapRolesScopeOutput)
 }
 
 func (o ClientPermissionsMapRolesScopePtrOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -1331,10 +1376,11 @@ func (o ClientPermissionsTokenExchangeScopeOutput) ToClientPermissionsTokenExcha
 }
 
 func (o ClientPermissionsTokenExchangeScopeOutput) ToClientPermissionsTokenExchangeScopePtrOutputWithContext(ctx context.Context) ClientPermissionsTokenExchangeScopePtrOutput {
-	return o.ApplyT(func(v ClientPermissionsTokenExchangeScope) *ClientPermissionsTokenExchangeScope {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientPermissionsTokenExchangeScope) *ClientPermissionsTokenExchangeScope {
 		return &v
 	}).(ClientPermissionsTokenExchangeScopePtrOutput)
 }
+
 func (o ClientPermissionsTokenExchangeScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClientPermissionsTokenExchangeScope) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
 }
@@ -1362,7 +1408,13 @@ func (o ClientPermissionsTokenExchangeScopePtrOutput) ToClientPermissionsTokenEx
 }
 
 func (o ClientPermissionsTokenExchangeScopePtrOutput) Elem() ClientPermissionsTokenExchangeScopeOutput {
-	return o.ApplyT(func(v *ClientPermissionsTokenExchangeScope) ClientPermissionsTokenExchangeScope { return *v }).(ClientPermissionsTokenExchangeScopeOutput)
+	return o.ApplyT(func(v *ClientPermissionsTokenExchangeScope) ClientPermissionsTokenExchangeScope {
+		if v != nil {
+			return *v
+		}
+		var ret ClientPermissionsTokenExchangeScope
+		return ret
+	}).(ClientPermissionsTokenExchangeScopeOutput)
 }
 
 func (o ClientPermissionsTokenExchangeScopePtrOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -1487,10 +1539,11 @@ func (o ClientPermissionsViewScopeOutput) ToClientPermissionsViewScopePtrOutput(
 }
 
 func (o ClientPermissionsViewScopeOutput) ToClientPermissionsViewScopePtrOutputWithContext(ctx context.Context) ClientPermissionsViewScopePtrOutput {
-	return o.ApplyT(func(v ClientPermissionsViewScope) *ClientPermissionsViewScope {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientPermissionsViewScope) *ClientPermissionsViewScope {
 		return &v
 	}).(ClientPermissionsViewScopePtrOutput)
 }
+
 func (o ClientPermissionsViewScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClientPermissionsViewScope) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
 }
@@ -1518,7 +1571,13 @@ func (o ClientPermissionsViewScopePtrOutput) ToClientPermissionsViewScopePtrOutp
 }
 
 func (o ClientPermissionsViewScopePtrOutput) Elem() ClientPermissionsViewScopeOutput {
-	return o.ApplyT(func(v *ClientPermissionsViewScope) ClientPermissionsViewScope { return *v }).(ClientPermissionsViewScopeOutput)
+	return o.ApplyT(func(v *ClientPermissionsViewScope) ClientPermissionsViewScope {
+		if v != nil {
+			return *v
+		}
+		var ret ClientPermissionsViewScope
+		return ret
+	}).(ClientPermissionsViewScopeOutput)
 }
 
 func (o ClientPermissionsViewScopePtrOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -1967,6 +2026,34 @@ func (o GetClientServiceAccountUserFederatedIdentityArrayOutput) Index(i pulumi.
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthenticationFlowBindingOverridesInput)(nil)).Elem(), ClientAuthenticationFlowBindingOverridesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthenticationFlowBindingOverridesPtrInput)(nil)).Elem(), ClientAuthenticationFlowBindingOverridesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthorizationInput)(nil)).Elem(), ClientAuthorizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthorizationPtrInput)(nil)).Elem(), ClientAuthorizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientGroupPolicyGroupInput)(nil)).Elem(), ClientGroupPolicyGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientGroupPolicyGroupArrayInput)(nil)).Elem(), ClientGroupPolicyGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientPermissionsConfigureScopeInput)(nil)).Elem(), ClientPermissionsConfigureScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientPermissionsConfigureScopePtrInput)(nil)).Elem(), ClientPermissionsConfigureScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientPermissionsManageScopeInput)(nil)).Elem(), ClientPermissionsManageScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientPermissionsManageScopePtrInput)(nil)).Elem(), ClientPermissionsManageScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientPermissionsMapRolesClientScopeScopeInput)(nil)).Elem(), ClientPermissionsMapRolesClientScopeScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientPermissionsMapRolesClientScopeScopePtrInput)(nil)).Elem(), ClientPermissionsMapRolesClientScopeScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientPermissionsMapRolesCompositeScopeInput)(nil)).Elem(), ClientPermissionsMapRolesCompositeScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientPermissionsMapRolesCompositeScopePtrInput)(nil)).Elem(), ClientPermissionsMapRolesCompositeScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientPermissionsMapRolesScopeInput)(nil)).Elem(), ClientPermissionsMapRolesScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientPermissionsMapRolesScopePtrInput)(nil)).Elem(), ClientPermissionsMapRolesScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientPermissionsTokenExchangeScopeInput)(nil)).Elem(), ClientPermissionsTokenExchangeScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientPermissionsTokenExchangeScopePtrInput)(nil)).Elem(), ClientPermissionsTokenExchangeScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientPermissionsViewScopeInput)(nil)).Elem(), ClientPermissionsViewScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientPermissionsViewScopePtrInput)(nil)).Elem(), ClientPermissionsViewScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientRolePolicyRoleInput)(nil)).Elem(), ClientRolePolicyRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientRolePolicyRoleArrayInput)(nil)).Elem(), ClientRolePolicyRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClientAuthenticationFlowBindingOverrideInput)(nil)).Elem(), GetClientAuthenticationFlowBindingOverrideArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClientAuthenticationFlowBindingOverrideArrayInput)(nil)).Elem(), GetClientAuthenticationFlowBindingOverrideArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClientAuthorizationInput)(nil)).Elem(), GetClientAuthorizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClientAuthorizationArrayInput)(nil)).Elem(), GetClientAuthorizationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClientServiceAccountUserFederatedIdentityInput)(nil)).Elem(), GetClientServiceAccountUserFederatedIdentityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClientServiceAccountUserFederatedIdentityArrayInput)(nil)).Elem(), GetClientServiceAccountUserFederatedIdentityArray{})
 	pulumi.RegisterOutputType(ClientAuthenticationFlowBindingOverridesOutput{})
 	pulumi.RegisterOutputType(ClientAuthenticationFlowBindingOverridesPtrOutput{})
 	pulumi.RegisterOutputType(ClientAuthorizationOutput{})

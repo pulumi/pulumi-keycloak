@@ -220,7 +220,7 @@ type CustomUserFederationArrayInput interface {
 type CustomUserFederationArray []CustomUserFederationInput
 
 func (CustomUserFederationArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*CustomUserFederation)(nil))
+	return reflect.TypeOf((*[]*CustomUserFederation)(nil)).Elem()
 }
 
 func (i CustomUserFederationArray) ToCustomUserFederationArrayOutput() CustomUserFederationArrayOutput {
@@ -245,7 +245,7 @@ type CustomUserFederationMapInput interface {
 type CustomUserFederationMap map[string]CustomUserFederationInput
 
 func (CustomUserFederationMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*CustomUserFederation)(nil))
+	return reflect.TypeOf((*map[string]*CustomUserFederation)(nil)).Elem()
 }
 
 func (i CustomUserFederationMap) ToCustomUserFederationMapOutput() CustomUserFederationMapOutput {
@@ -256,9 +256,7 @@ func (i CustomUserFederationMap) ToCustomUserFederationMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(CustomUserFederationMapOutput)
 }
 
-type CustomUserFederationOutput struct {
-	*pulumi.OutputState
-}
+type CustomUserFederationOutput struct{ *pulumi.OutputState }
 
 func (CustomUserFederationOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*CustomUserFederation)(nil))
@@ -277,14 +275,12 @@ func (o CustomUserFederationOutput) ToCustomUserFederationPtrOutput() CustomUser
 }
 
 func (o CustomUserFederationOutput) ToCustomUserFederationPtrOutputWithContext(ctx context.Context) CustomUserFederationPtrOutput {
-	return o.ApplyT(func(v CustomUserFederation) *CustomUserFederation {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CustomUserFederation) *CustomUserFederation {
 		return &v
 	}).(CustomUserFederationPtrOutput)
 }
 
-type CustomUserFederationPtrOutput struct {
-	*pulumi.OutputState
-}
+type CustomUserFederationPtrOutput struct{ *pulumi.OutputState }
 
 func (CustomUserFederationPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**CustomUserFederation)(nil))
@@ -296,6 +292,16 @@ func (o CustomUserFederationPtrOutput) ToCustomUserFederationPtrOutput() CustomU
 
 func (o CustomUserFederationPtrOutput) ToCustomUserFederationPtrOutputWithContext(ctx context.Context) CustomUserFederationPtrOutput {
 	return o
+}
+
+func (o CustomUserFederationPtrOutput) Elem() CustomUserFederationOutput {
+	return o.ApplyT(func(v *CustomUserFederation) CustomUserFederation {
+		if v != nil {
+			return *v
+		}
+		var ret CustomUserFederation
+		return ret
+	}).(CustomUserFederationOutput)
 }
 
 type CustomUserFederationArrayOutput struct{ *pulumi.OutputState }
@@ -339,6 +345,10 @@ func (o CustomUserFederationMapOutput) MapIndex(k pulumi.StringInput) CustomUser
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomUserFederationInput)(nil)).Elem(), &CustomUserFederation{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomUserFederationPtrInput)(nil)).Elem(), &CustomUserFederation{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomUserFederationArrayInput)(nil)).Elem(), CustomUserFederationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomUserFederationMapInput)(nil)).Elem(), CustomUserFederationMap{})
 	pulumi.RegisterOutputType(CustomUserFederationOutput{})
 	pulumi.RegisterOutputType(CustomUserFederationPtrOutput{})
 	pulumi.RegisterOutputType(CustomUserFederationArrayOutput{})

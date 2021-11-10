@@ -96,26 +96,26 @@ export class ClientJsPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ClientJsPolicy resources.
  */
 export interface ClientJsPolicyState {
-    readonly code?: pulumi.Input<string>;
-    readonly decisionStrategy?: pulumi.Input<string>;
-    readonly description?: pulumi.Input<string>;
-    readonly logic?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
-    readonly realmId?: pulumi.Input<string>;
-    readonly resourceServerId?: pulumi.Input<string>;
-    readonly type?: pulumi.Input<string>;
+    code?: pulumi.Input<string>;
+    decisionStrategy?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    logic?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
+    resourceServerId?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a ClientJsPolicy resource.
  */
 export interface ClientJsPolicyArgs {
-    readonly code: pulumi.Input<string>;
-    readonly decisionStrategy: pulumi.Input<string>;
-    readonly description?: pulumi.Input<string>;
-    readonly logic?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
-    readonly realmId: pulumi.Input<string>;
-    readonly resourceServerId: pulumi.Input<string>;
-    readonly type?: pulumi.Input<string>;
+    code: pulumi.Input<string>;
+    decisionStrategy: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    logic?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
+    resourceServerId: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
 }

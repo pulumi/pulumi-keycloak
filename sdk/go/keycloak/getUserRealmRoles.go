@@ -4,6 +4,9 @@
 package keycloak
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,20 +24,20 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		masterRealm, err := keycloak.LookupRealm(ctx, &keycloak.LookupRealmArgs{
+// 		masterRealm, err := keycloak.LookupRealm(ctx, &GetRealmArgs{
 // 			Realm: "master",
 // 		}, nil)
 // 		if err != nil {
 // 			return err
 // 		}
-// 		defaultAdminUser, err := keycloak.LookupUser(ctx, &keycloak.LookupUserArgs{
+// 		defaultAdminUser, err := keycloak.LookupUser(ctx, &GetUserArgs{
 // 			RealmId:  masterRealm.Id,
 // 			Username: "keycloak",
 // 		}, nil)
 // 		if err != nil {
 // 			return err
 // 		}
-// 		userRealmRoles, err := keycloak.GetUserRealmRoles(ctx, &keycloak.GetUserRealmRolesArgs{
+// 		userRealmRoles, err := keycloak.GetUserRealmRoles(ctx, &GetUserRealmRolesArgs{
 // 			RealmId: masterRealm.Id,
 // 			UserId:  defaultAdminUser.Id,
 // 		}, nil)
@@ -71,4 +74,62 @@ type GetUserRealmRolesResult struct {
 	// (Computed) A list of realm roles that belong to this user.
 	RoleNames []string `pulumi:"roleNames"`
 	UserId    string   `pulumi:"userId"`
+}
+
+func GetUserRealmRolesOutput(ctx *pulumi.Context, args GetUserRealmRolesOutputArgs, opts ...pulumi.InvokeOption) GetUserRealmRolesResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetUserRealmRolesResult, error) {
+			args := v.(GetUserRealmRolesArgs)
+			r, err := GetUserRealmRoles(ctx, &args, opts...)
+			return *r, err
+		}).(GetUserRealmRolesResultOutput)
+}
+
+// A collection of arguments for invoking getUserRealmRoles.
+type GetUserRealmRolesOutputArgs struct {
+	// The realm this user belongs to.
+	RealmId pulumi.StringInput `pulumi:"realmId"`
+	// The ID of the user to query realm roles for.
+	UserId pulumi.StringInput `pulumi:"userId"`
+}
+
+func (GetUserRealmRolesOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserRealmRolesArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getUserRealmRoles.
+type GetUserRealmRolesResultOutput struct{ *pulumi.OutputState }
+
+func (GetUserRealmRolesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserRealmRolesResult)(nil)).Elem()
+}
+
+func (o GetUserRealmRolesResultOutput) ToGetUserRealmRolesResultOutput() GetUserRealmRolesResultOutput {
+	return o
+}
+
+func (o GetUserRealmRolesResultOutput) ToGetUserRealmRolesResultOutputWithContext(ctx context.Context) GetUserRealmRolesResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetUserRealmRolesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserRealmRolesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetUserRealmRolesResultOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserRealmRolesResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// (Computed) A list of realm roles that belong to this user.
+func (o GetUserRealmRolesResultOutput) RoleNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetUserRealmRolesResult) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
+}
+
+func (o GetUserRealmRolesResultOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserRealmRolesResult) string { return v.UserId }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetUserRealmRolesResultOutput{})
 }

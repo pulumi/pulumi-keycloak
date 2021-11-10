@@ -243,75 +243,75 @@ export interface GroupMapperState {
     /**
      * When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
      */
-    readonly dropNonExistingGroupsDuringSync?: pulumi.Input<boolean>;
+    dropNonExistingGroupsDuringSync?: pulumi.Input<boolean>;
     /**
      * The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
      */
-    readonly groupNameLdapAttribute?: pulumi.Input<string>;
+    groupNameLdapAttribute?: pulumi.Input<string>;
     /**
      * List of strings representing the object classes for the group. Must contain at least one.
      */
-    readonly groupObjectClasses?: pulumi.Input<pulumi.Input<string>[]>;
+    groupObjectClasses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
      */
-    readonly groupsLdapFilter?: pulumi.Input<string>;
+    groupsLdapFilter?: pulumi.Input<string>;
     /**
      * Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
      */
-    readonly groupsPath?: pulumi.Input<string>;
+    groupsPath?: pulumi.Input<string>;
     /**
      * When `true`, missing groups in the hierarchy will be ignored.
      */
-    readonly ignoreMissingGroups?: pulumi.Input<boolean>;
+    ignoreMissingGroups?: pulumi.Input<boolean>;
     /**
      * The LDAP DN where groups can be found.
      */
-    readonly ldapGroupsDn?: pulumi.Input<string>;
+    ldapGroupsDn?: pulumi.Input<string>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    readonly ldapUserFederationId?: pulumi.Input<string>;
+    ldapUserFederationId?: pulumi.Input<string>;
     /**
      * Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
      */
-    readonly mappedGroupAttributes?: pulumi.Input<pulumi.Input<string>[]>;
+    mappedGroupAttributes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
      */
-    readonly memberofLdapAttribute?: pulumi.Input<string>;
+    memberofLdapAttribute?: pulumi.Input<string>;
     /**
      * Can be one of `DN` or `UID`. Defaults to `DN`.
      */
-    readonly membershipAttributeType?: pulumi.Input<string>;
+    membershipAttributeType?: pulumi.Input<string>;
     /**
      * The name of the LDAP attribute that is used for membership mappings.
      */
-    readonly membershipLdapAttribute?: pulumi.Input<string>;
+    membershipLdapAttribute?: pulumi.Input<string>;
     /**
      * The name of the LDAP attribute on a user that is used for membership mappings.
      */
-    readonly membershipUserLdapAttribute?: pulumi.Input<string>;
+    membershipUserLdapAttribute?: pulumi.Input<string>;
     /**
      * Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
      */
-    readonly mode?: pulumi.Input<string>;
+    mode?: pulumi.Input<string>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
      */
-    readonly preserveGroupInheritance?: pulumi.Input<boolean>;
+    preserveGroupInheritance?: pulumi.Input<boolean>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
     /**
      * Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
      */
-    readonly userRolesRetrieveStrategy?: pulumi.Input<string>;
+    userRolesRetrieveStrategy?: pulumi.Input<string>;
 }
 
 /**
@@ -321,73 +321,73 @@ export interface GroupMapperArgs {
     /**
      * When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
      */
-    readonly dropNonExistingGroupsDuringSync?: pulumi.Input<boolean>;
+    dropNonExistingGroupsDuringSync?: pulumi.Input<boolean>;
     /**
      * The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
      */
-    readonly groupNameLdapAttribute: pulumi.Input<string>;
+    groupNameLdapAttribute: pulumi.Input<string>;
     /**
      * List of strings representing the object classes for the group. Must contain at least one.
      */
-    readonly groupObjectClasses: pulumi.Input<pulumi.Input<string>[]>;
+    groupObjectClasses: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
      */
-    readonly groupsLdapFilter?: pulumi.Input<string>;
+    groupsLdapFilter?: pulumi.Input<string>;
     /**
      * Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
      */
-    readonly groupsPath?: pulumi.Input<string>;
+    groupsPath?: pulumi.Input<string>;
     /**
      * When `true`, missing groups in the hierarchy will be ignored.
      */
-    readonly ignoreMissingGroups?: pulumi.Input<boolean>;
+    ignoreMissingGroups?: pulumi.Input<boolean>;
     /**
      * The LDAP DN where groups can be found.
      */
-    readonly ldapGroupsDn: pulumi.Input<string>;
+    ldapGroupsDn: pulumi.Input<string>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    readonly ldapUserFederationId: pulumi.Input<string>;
+    ldapUserFederationId: pulumi.Input<string>;
     /**
      * Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
      */
-    readonly mappedGroupAttributes?: pulumi.Input<pulumi.Input<string>[]>;
+    mappedGroupAttributes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
      */
-    readonly memberofLdapAttribute?: pulumi.Input<string>;
+    memberofLdapAttribute?: pulumi.Input<string>;
     /**
      * Can be one of `DN` or `UID`. Defaults to `DN`.
      */
-    readonly membershipAttributeType?: pulumi.Input<string>;
+    membershipAttributeType?: pulumi.Input<string>;
     /**
      * The name of the LDAP attribute that is used for membership mappings.
      */
-    readonly membershipLdapAttribute: pulumi.Input<string>;
+    membershipLdapAttribute: pulumi.Input<string>;
     /**
      * The name of the LDAP attribute on a user that is used for membership mappings.
      */
-    readonly membershipUserLdapAttribute: pulumi.Input<string>;
+    membershipUserLdapAttribute: pulumi.Input<string>;
     /**
      * Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
      */
-    readonly mode?: pulumi.Input<string>;
+    mode?: pulumi.Input<string>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
      */
-    readonly preserveGroupInheritance?: pulumi.Input<boolean>;
+    preserveGroupInheritance?: pulumi.Input<boolean>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
     /**
      * Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
      */
-    readonly userRolesRetrieveStrategy?: pulumi.Input<string>;
+    userRolesRetrieveStrategy?: pulumi.Input<string>;
 }

@@ -111,11 +111,11 @@ export interface DefaultRolesState {
     /**
      * Realm level roles assigned to new users by default.
      */
-    readonly defaultRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    defaultRoles?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The realm this role exists within.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
 }
 
 /**
@@ -125,9 +125,9 @@ export interface DefaultRolesArgs {
     /**
      * Realm level roles assigned to new users by default.
      */
-    readonly defaultRoles: pulumi.Input<pulumi.Input<string>[]>;
+    defaultRoles: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The realm this role exists within.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
 }

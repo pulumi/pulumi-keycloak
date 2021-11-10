@@ -105,19 +105,19 @@ export interface GroupRolesState {
     /**
      * Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
      */
-    readonly exhaustive?: pulumi.Input<boolean>;
+    exhaustive?: pulumi.Input<boolean>;
     /**
      * The ID of the group this resource should manage roles for.
      */
-    readonly groupId?: pulumi.Input<string>;
+    groupId?: pulumi.Input<string>;
     /**
      * The realm this group exists in.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
     /**
      * A list of role IDs to map to the group.
      */
-    readonly roleIds?: pulumi.Input<pulumi.Input<string>[]>;
+    roleIds?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -127,17 +127,17 @@ export interface GroupRolesArgs {
     /**
      * Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
      */
-    readonly exhaustive?: pulumi.Input<boolean>;
+    exhaustive?: pulumi.Input<boolean>;
     /**
      * The ID of the group this resource should manage roles for.
      */
-    readonly groupId: pulumi.Input<string>;
+    groupId: pulumi.Input<string>;
     /**
      * The realm this group exists in.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
     /**
      * A list of role IDs to map to the group.
      */
-    readonly roleIds: pulumi.Input<pulumi.Input<string>[]>;
+    roleIds: pulumi.Input<pulumi.Input<string>[]>;
 }

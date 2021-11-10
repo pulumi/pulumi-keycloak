@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -29,8 +28,8 @@ import * as utilities from "./utilities";
  * }));
  * const groupRoles = new keycloak.GroupRoles("groupRoles", {
  *     realmId: realm.id,
- *     groupId: group.id,
- *     roleIds: [offlineAccess.id],
+ *     groupId: group.apply(group => group.id),
+ *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
  * });
  * ```
  */
@@ -55,11 +54,11 @@ export interface GetGroupArgs {
     /**
      * The name of the group. If there are multiple groups match `name`, the first result will be returned.
      */
-    readonly name: string;
+    name: string;
     /**
      * The realm this group exists within.
      */
-    readonly realmId: string;
+    realmId: string;
 }
 
 /**
@@ -75,4 +74,22 @@ export interface GetGroupResult {
     readonly parentId: string;
     readonly path: string;
     readonly realmId: string;
+}
+
+export function getGroupOutput(args: GetGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGroupResult> {
+    return pulumi.output(args).apply(a => getGroup(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getGroup.
+ */
+export interface GetGroupOutputArgs {
+    /**
+     * The name of the group. If there are multiple groups match `name`, the first result will be returned.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The realm this group exists within.
+     */
+    realmId: pulumi.Input<string>;
 }

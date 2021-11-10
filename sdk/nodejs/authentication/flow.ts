@@ -130,19 +130,19 @@ export interface FlowState {
     /**
      * The alias for this authentication flow.
      */
-    readonly alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string>;
     /**
      * A description for the authentication flow.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
      */
-    readonly providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string>;
     /**
      * The realm that the authentication flow exists in.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
 }
 
 /**
@@ -152,17 +152,17 @@ export interface FlowArgs {
     /**
      * The alias for this authentication flow.
      */
-    readonly alias: pulumi.Input<string>;
+    alias: pulumi.Input<string>;
     /**
      * A description for the authentication flow.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
      */
-    readonly providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string>;
     /**
      * The realm that the authentication flow exists in.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
 }

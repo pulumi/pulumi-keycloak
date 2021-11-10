@@ -48,20 +48,20 @@ export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promi
  * A collection of arguments for invoking getRealm.
  */
 export interface GetRealmArgs {
-    readonly attributes?: {[key: string]: any};
-    readonly defaultDefaultClientScopes?: string[];
-    readonly defaultOptionalClientScopes?: string[];
-    readonly displayNameHtml?: string;
-    readonly internationalizations?: inputs.GetRealmInternationalization[];
-    readonly otpPolicy?: inputs.GetRealmOtpPolicy;
+    attributes?: {[key: string]: any};
+    defaultDefaultClientScopes?: string[];
+    defaultOptionalClientScopes?: string[];
+    displayNameHtml?: string;
+    internationalizations?: inputs.GetRealmInternationalization[];
+    otpPolicy?: inputs.GetRealmOtpPolicy;
     /**
      * The realm name.
      */
-    readonly realm: string;
-    readonly securityDefenses?: inputs.GetRealmSecurityDefense[];
-    readonly smtpServers?: inputs.GetRealmSmtpServer[];
-    readonly webAuthnPasswordlessPolicy?: inputs.GetRealmWebAuthnPasswordlessPolicy;
-    readonly webAuthnPolicy?: inputs.GetRealmWebAuthnPolicy;
+    realm: string;
+    securityDefenses?: inputs.GetRealmSecurityDefense[];
+    smtpServers?: inputs.GetRealmSmtpServer[];
+    webAuthnPasswordlessPolicy?: inputs.GetRealmWebAuthnPasswordlessPolicy;
+    webAuthnPolicy?: inputs.GetRealmWebAuthnPolicy;
 }
 
 /**
@@ -124,4 +124,28 @@ export interface GetRealmResult {
     readonly verifyEmail: boolean;
     readonly webAuthnPasswordlessPolicy: outputs.GetRealmWebAuthnPasswordlessPolicy;
     readonly webAuthnPolicy: outputs.GetRealmWebAuthnPolicy;
+}
+
+export function getRealmOutput(args: GetRealmOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRealmResult> {
+    return pulumi.output(args).apply(a => getRealm(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getRealm.
+ */
+export interface GetRealmOutputArgs {
+    attributes?: pulumi.Input<{[key: string]: any}>;
+    defaultDefaultClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    defaultOptionalClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    displayNameHtml?: pulumi.Input<string>;
+    internationalizations?: pulumi.Input<pulumi.Input<inputs.GetRealmInternationalizationArgs>[]>;
+    otpPolicy?: pulumi.Input<inputs.GetRealmOtpPolicyArgs>;
+    /**
+     * The realm name.
+     */
+    realm: pulumi.Input<string>;
+    securityDefenses?: pulumi.Input<pulumi.Input<inputs.GetRealmSecurityDefenseArgs>[]>;
+    smtpServers?: pulumi.Input<pulumi.Input<inputs.GetRealmSmtpServerArgs>[]>;
+    webAuthnPasswordlessPolicy?: pulumi.Input<inputs.GetRealmWebAuthnPasswordlessPolicyArgs>;
+    webAuthnPolicy?: pulumi.Input<inputs.GetRealmWebAuthnPolicyArgs>;
 }

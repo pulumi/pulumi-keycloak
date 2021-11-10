@@ -9,6 +9,11 @@ export interface GetRealmInternationalization {
     supportedLocales?: string[];
 }
 
+export interface GetRealmInternationalizationArgs {
+    defaultLocale?: pulumi.Input<string>;
+    supportedLocales?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
 export interface GetRealmOtpPolicy {
     algorithm?: string;
     digits?: number;
@@ -18,9 +23,23 @@ export interface GetRealmOtpPolicy {
     type?: string;
 }
 
+export interface GetRealmOtpPolicyArgs {
+    algorithm?: pulumi.Input<string>;
+    digits?: pulumi.Input<number>;
+    initialCounter?: pulumi.Input<number>;
+    lookAheadWindow?: pulumi.Input<number>;
+    period?: pulumi.Input<number>;
+    type?: pulumi.Input<string>;
+}
+
 export interface GetRealmSecurityDefense {
     bruteForceDetections?: inputs.GetRealmSecurityDefenseBruteForceDetection[];
     headers?: inputs.GetRealmSecurityDefenseHeader[];
+}
+
+export interface GetRealmSecurityDefenseArgs {
+    bruteForceDetections?: pulumi.Input<pulumi.Input<inputs.GetRealmSecurityDefenseBruteForceDetectionArgs>[]>;
+    headers?: pulumi.Input<pulumi.Input<inputs.GetRealmSecurityDefenseHeaderArgs>[]>;
 }
 
 export interface GetRealmSecurityDefenseBruteForceDetection {
@@ -33,6 +52,26 @@ export interface GetRealmSecurityDefenseBruteForceDetection {
     waitIncrementSeconds?: number;
 }
 
+export interface GetRealmSecurityDefenseBruteForceDetectionArgs {
+    failureResetTimeSeconds?: pulumi.Input<number>;
+    maxFailureWaitSeconds?: pulumi.Input<number>;
+    maxLoginFailures?: pulumi.Input<number>;
+    minimumQuickLoginWaitSeconds?: pulumi.Input<number>;
+    permanentLockout?: pulumi.Input<boolean>;
+    quickLoginCheckMilliSeconds?: pulumi.Input<number>;
+    waitIncrementSeconds?: pulumi.Input<number>;
+}
+
+export interface GetRealmSecurityDefenseHeaderArgs {
+    contentSecurityPolicy?: pulumi.Input<string>;
+    contentSecurityPolicyReportOnly?: pulumi.Input<string>;
+    strictTransportSecurity?: pulumi.Input<string>;
+    xContentTypeOptions?: pulumi.Input<string>;
+    xFrameOptions?: pulumi.Input<string>;
+    xRobotsTag?: pulumi.Input<string>;
+    xXssProtection?: pulumi.Input<string>;
+}
+
 export interface GetRealmSecurityDefenseHeader {
     contentSecurityPolicy?: string;
     contentSecurityPolicyReportOnly?: string;
@@ -41,6 +80,19 @@ export interface GetRealmSecurityDefenseHeader {
     xFrameOptions?: string;
     xRobotsTag?: string;
     xXssProtection?: string;
+}
+
+export interface GetRealmSmtpServerArgs {
+    auths?: pulumi.Input<pulumi.Input<inputs.GetRealmSmtpServerAuthArgs>[]>;
+    envelopeFrom?: pulumi.Input<string>;
+    from?: pulumi.Input<string>;
+    fromDisplayName?: pulumi.Input<string>;
+    host?: pulumi.Input<string>;
+    port?: pulumi.Input<string>;
+    replyTo?: pulumi.Input<string>;
+    replyToDisplayName?: pulumi.Input<string>;
+    ssl?: pulumi.Input<boolean>;
+    starttls?: pulumi.Input<boolean>;
 }
 
 export interface GetRealmSmtpServer {
@@ -61,6 +113,11 @@ export interface GetRealmSmtpServerAuth {
     username?: string;
 }
 
+export interface GetRealmSmtpServerAuthArgs {
+    password?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
 export interface GetRealmWebAuthnPasswordlessPolicy {
     acceptableAaguids?: string[];
     attestationConveyancePreference?: string;
@@ -72,6 +129,32 @@ export interface GetRealmWebAuthnPasswordlessPolicy {
     requireResidentKey?: string;
     signatureAlgorithms?: string[];
     userVerificationRequirement?: string;
+}
+
+export interface GetRealmWebAuthnPasswordlessPolicyArgs {
+    acceptableAaguids?: pulumi.Input<pulumi.Input<string>[]>;
+    attestationConveyancePreference?: pulumi.Input<string>;
+    authenticatorAttachment?: pulumi.Input<string>;
+    avoidSameAuthenticatorRegister?: pulumi.Input<boolean>;
+    createTimeout?: pulumi.Input<number>;
+    relyingPartyEntityName?: pulumi.Input<string>;
+    relyingPartyId?: pulumi.Input<string>;
+    requireResidentKey?: pulumi.Input<string>;
+    signatureAlgorithms?: pulumi.Input<pulumi.Input<string>[]>;
+    userVerificationRequirement?: pulumi.Input<string>;
+}
+
+export interface GetRealmWebAuthnPolicyArgs {
+    acceptableAaguids?: pulumi.Input<pulumi.Input<string>[]>;
+    attestationConveyancePreference?: pulumi.Input<string>;
+    authenticatorAttachment?: pulumi.Input<string>;
+    avoidSameAuthenticatorRegister?: pulumi.Input<boolean>;
+    createTimeout?: pulumi.Input<number>;
+    relyingPartyEntityName?: pulumi.Input<string>;
+    relyingPartyId?: pulumi.Input<string>;
+    requireResidentKey?: pulumi.Input<string>;
+    signatureAlgorithms?: pulumi.Input<pulumi.Input<string>[]>;
+    userVerificationRequirement?: pulumi.Input<string>;
 }
 
 export interface GetRealmWebAuthnPolicy {
@@ -391,6 +474,7 @@ export interface UsersPermissionsViewScope {
     description?: pulumi.Input<string>;
     policies?: pulumi.Input<pulumi.Input<string>[]>;
 }
+
 export namespace ldap {
     export interface UserFederationCache {
         /**

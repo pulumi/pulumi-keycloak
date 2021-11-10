@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -47,7 +46,7 @@ import * as utilities from "../utilities";
  * const permission = new keycloak.openid.ClientAuthorizationPermission("permission", {
  *     resourceServerId: clientWithAuthz.resourceServerId,
  *     realmId: realm.id,
- *     policies: [defaultPermission.id],
+ *     policies: [defaultPermission.apply(defaultPermission => defaultPermission.id)],
  *     resources: [resource.id],
  * });
  * ```
@@ -74,15 +73,15 @@ export interface GetClientAuthorizationPolicyArgs {
     /**
      * The name of the authorization policy.
      */
-    readonly name: string;
+    name: string;
     /**
      * The realm this authorization policy exists within.
      */
-    readonly realmId: string;
+    realmId: string;
     /**
      * The ID of the resource server this authorization policy is attached to.
      */
-    readonly resourceServerId: string;
+    resourceServerId: string;
 }
 
 /**
@@ -124,4 +123,26 @@ export interface GetClientAuthorizationPolicyResult {
      * (Computed) The type of this policy / permission. For permissions, this could be `resource` or `scope`. For policies, this could be any type of authorization policy, such as `js`.
      */
     readonly type: string;
+}
+
+export function getClientAuthorizationPolicyOutput(args: GetClientAuthorizationPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientAuthorizationPolicyResult> {
+    return pulumi.output(args).apply(a => getClientAuthorizationPolicy(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getClientAuthorizationPolicy.
+ */
+export interface GetClientAuthorizationPolicyOutputArgs {
+    /**
+     * The name of the authorization policy.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The realm this authorization policy exists within.
+     */
+    realmId: pulumi.Input<string>;
+    /**
+     * The ID of the resource server this authorization policy is attached to.
+     */
+    resourceServerId: pulumi.Input<string>;
 }

@@ -10,49 +10,49 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class GetRealmWebAuthnPasswordlessPolicyArgs : Pulumi.InvokeArgs
+    public sealed class GetRealmWebAuthnPasswordlessPolicyInputArgs : Pulumi.ResourceArgs
     {
         [Input("acceptableAaguids", required: true)]
-        private List<string>? _acceptableAaguids;
-        public List<string> AcceptableAaguids
+        private InputList<string>? _acceptableAaguids;
+        public InputList<string> AcceptableAaguids
         {
-            get => _acceptableAaguids ?? (_acceptableAaguids = new List<string>());
+            get => _acceptableAaguids ?? (_acceptableAaguids = new InputList<string>());
             set => _acceptableAaguids = value;
         }
 
         [Input("attestationConveyancePreference", required: true)]
-        public string AttestationConveyancePreference { get; set; } = null!;
+        public Input<string> AttestationConveyancePreference { get; set; } = null!;
 
         [Input("authenticatorAttachment", required: true)]
-        public string AuthenticatorAttachment { get; set; } = null!;
+        public Input<string> AuthenticatorAttachment { get; set; } = null!;
 
         [Input("avoidSameAuthenticatorRegister", required: true)]
-        public bool AvoidSameAuthenticatorRegister { get; set; }
+        public Input<bool> AvoidSameAuthenticatorRegister { get; set; } = null!;
 
         [Input("createTimeout", required: true)]
-        public int CreateTimeout { get; set; }
+        public Input<int> CreateTimeout { get; set; } = null!;
 
         [Input("relyingPartyEntityName", required: true)]
-        public string RelyingPartyEntityName { get; set; } = null!;
+        public Input<string> RelyingPartyEntityName { get; set; } = null!;
 
         [Input("relyingPartyId", required: true)]
-        public string RelyingPartyId { get; set; } = null!;
+        public Input<string> RelyingPartyId { get; set; } = null!;
 
         [Input("requireResidentKey", required: true)]
-        public string RequireResidentKey { get; set; } = null!;
+        public Input<string> RequireResidentKey { get; set; } = null!;
 
         [Input("signatureAlgorithms", required: true)]
-        private List<string>? _signatureAlgorithms;
-        public List<string> SignatureAlgorithms
+        private InputList<string>? _signatureAlgorithms;
+        public InputList<string> SignatureAlgorithms
         {
-            get => _signatureAlgorithms ?? (_signatureAlgorithms = new List<string>());
+            get => _signatureAlgorithms ?? (_signatureAlgorithms = new InputList<string>());
             set => _signatureAlgorithms = value;
         }
 
         [Input("userVerificationRequirement", required: true)]
-        public string UserVerificationRequirement { get; set; } = null!;
+        public Input<string> UserVerificationRequirement { get; set; } = null!;
 
-        public GetRealmWebAuthnPasswordlessPolicyArgs()
+        public GetRealmWebAuthnPasswordlessPolicyInputArgs()
         {
         }
     }

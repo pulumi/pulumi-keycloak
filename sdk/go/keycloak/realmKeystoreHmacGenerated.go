@@ -245,7 +245,7 @@ type RealmKeystoreHmacGeneratedArrayInput interface {
 type RealmKeystoreHmacGeneratedArray []RealmKeystoreHmacGeneratedInput
 
 func (RealmKeystoreHmacGeneratedArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RealmKeystoreHmacGenerated)(nil))
+	return reflect.TypeOf((*[]*RealmKeystoreHmacGenerated)(nil)).Elem()
 }
 
 func (i RealmKeystoreHmacGeneratedArray) ToRealmKeystoreHmacGeneratedArrayOutput() RealmKeystoreHmacGeneratedArrayOutput {
@@ -270,7 +270,7 @@ type RealmKeystoreHmacGeneratedMapInput interface {
 type RealmKeystoreHmacGeneratedMap map[string]RealmKeystoreHmacGeneratedInput
 
 func (RealmKeystoreHmacGeneratedMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RealmKeystoreHmacGenerated)(nil))
+	return reflect.TypeOf((*map[string]*RealmKeystoreHmacGenerated)(nil)).Elem()
 }
 
 func (i RealmKeystoreHmacGeneratedMap) ToRealmKeystoreHmacGeneratedMapOutput() RealmKeystoreHmacGeneratedMapOutput {
@@ -281,9 +281,7 @@ func (i RealmKeystoreHmacGeneratedMap) ToRealmKeystoreHmacGeneratedMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreHmacGeneratedMapOutput)
 }
 
-type RealmKeystoreHmacGeneratedOutput struct {
-	*pulumi.OutputState
-}
+type RealmKeystoreHmacGeneratedOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreHmacGeneratedOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*RealmKeystoreHmacGenerated)(nil))
@@ -302,14 +300,12 @@ func (o RealmKeystoreHmacGeneratedOutput) ToRealmKeystoreHmacGeneratedPtrOutput(
 }
 
 func (o RealmKeystoreHmacGeneratedOutput) ToRealmKeystoreHmacGeneratedPtrOutputWithContext(ctx context.Context) RealmKeystoreHmacGeneratedPtrOutput {
-	return o.ApplyT(func(v RealmKeystoreHmacGenerated) *RealmKeystoreHmacGenerated {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmKeystoreHmacGenerated) *RealmKeystoreHmacGenerated {
 		return &v
 	}).(RealmKeystoreHmacGeneratedPtrOutput)
 }
 
-type RealmKeystoreHmacGeneratedPtrOutput struct {
-	*pulumi.OutputState
-}
+type RealmKeystoreHmacGeneratedPtrOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreHmacGeneratedPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RealmKeystoreHmacGenerated)(nil))
@@ -321,6 +317,16 @@ func (o RealmKeystoreHmacGeneratedPtrOutput) ToRealmKeystoreHmacGeneratedPtrOutp
 
 func (o RealmKeystoreHmacGeneratedPtrOutput) ToRealmKeystoreHmacGeneratedPtrOutputWithContext(ctx context.Context) RealmKeystoreHmacGeneratedPtrOutput {
 	return o
+}
+
+func (o RealmKeystoreHmacGeneratedPtrOutput) Elem() RealmKeystoreHmacGeneratedOutput {
+	return o.ApplyT(func(v *RealmKeystoreHmacGenerated) RealmKeystoreHmacGenerated {
+		if v != nil {
+			return *v
+		}
+		var ret RealmKeystoreHmacGenerated
+		return ret
+	}).(RealmKeystoreHmacGeneratedOutput)
 }
 
 type RealmKeystoreHmacGeneratedArrayOutput struct{ *pulumi.OutputState }
@@ -364,6 +370,10 @@ func (o RealmKeystoreHmacGeneratedMapOutput) MapIndex(k pulumi.StringInput) Real
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreHmacGeneratedInput)(nil)).Elem(), &RealmKeystoreHmacGenerated{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreHmacGeneratedPtrInput)(nil)).Elem(), &RealmKeystoreHmacGenerated{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreHmacGeneratedArrayInput)(nil)).Elem(), RealmKeystoreHmacGeneratedArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreHmacGeneratedMapInput)(nil)).Elem(), RealmKeystoreHmacGeneratedMap{})
 	pulumi.RegisterOutputType(RealmKeystoreHmacGeneratedOutput{})
 	pulumi.RegisterOutputType(RealmKeystoreHmacGeneratedPtrOutput{})
 	pulumi.RegisterOutputType(RealmKeystoreHmacGeneratedArrayOutput{})

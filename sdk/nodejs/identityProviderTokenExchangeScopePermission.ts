@@ -129,35 +129,35 @@ export interface IdentityProviderTokenExchangeScopePermissionState {
     /**
      * (Computed) Resource ID representing the identity provider, this automatically created by keycloak.
      */
-    readonly authorizationIdpResourceId?: pulumi.Input<string>;
+    authorizationIdpResourceId?: pulumi.Input<string>;
     /**
      * (Computed) Resource server ID representing the realm management client on which this permission is managed.
      */
-    readonly authorizationResourceServerId?: pulumi.Input<string>;
+    authorizationResourceServerId?: pulumi.Input<string>;
     /**
      * (Computed) Permission ID representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id', this automatically created by keycloak, the policy ID will be set on this permission.
      */
-    readonly authorizationTokenExchangeScopePermissionId?: pulumi.Input<string>;
+    authorizationTokenExchangeScopePermissionId?: pulumi.Input<string>;
     /**
      * A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
      */
-    readonly clients?: pulumi.Input<pulumi.Input<string>[]>;
+    clients?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * (Computed) Policy ID that will be set on the scope based token exchange permission automatically created by enabling permissions on the reference identity provider.
      */
-    readonly policyId?: pulumi.Input<string>;
+    policyId?: pulumi.Input<string>;
     /**
      * Defaults to "client" This is also the only value policy type supported by this provider.
      */
-    readonly policyType?: pulumi.Input<string>;
+    policyType?: pulumi.Input<string>;
     /**
      * Alias of the identity provider.
      */
-    readonly providerAlias?: pulumi.Input<string>;
+    providerAlias?: pulumi.Input<string>;
     /**
      * The realm that the identity provider exists in.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
 }
 
 /**
@@ -167,17 +167,17 @@ export interface IdentityProviderTokenExchangeScopePermissionArgs {
     /**
      * A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
      */
-    readonly clients: pulumi.Input<pulumi.Input<string>[]>;
+    clients: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Defaults to "client" This is also the only value policy type supported by this provider.
      */
-    readonly policyType?: pulumi.Input<string>;
+    policyType?: pulumi.Input<string>;
     /**
      * Alias of the identity provider.
      */
-    readonly providerAlias: pulumi.Input<string>;
+    providerAlias: pulumi.Input<string>;
     /**
      * The realm that the identity provider exists in.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
 }

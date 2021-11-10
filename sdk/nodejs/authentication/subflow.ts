@@ -93,30 +93,30 @@ export class Subflow extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Subflow resources.
  */
 export interface SubflowState {
-    readonly alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string>;
     /**
      * Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
      */
-    readonly authenticator?: pulumi.Input<string>;
-    readonly description?: pulumi.Input<string>;
-    readonly parentFlowAlias?: pulumi.Input<string>;
-    readonly providerId?: pulumi.Input<string>;
-    readonly realmId?: pulumi.Input<string>;
-    readonly requirement?: pulumi.Input<string>;
+    authenticator?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    parentFlowAlias?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
+    requirement?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a Subflow resource.
  */
 export interface SubflowArgs {
-    readonly alias: pulumi.Input<string>;
+    alias: pulumi.Input<string>;
     /**
      * Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
      */
-    readonly authenticator?: pulumi.Input<string>;
-    readonly description?: pulumi.Input<string>;
-    readonly parentFlowAlias: pulumi.Input<string>;
-    readonly providerId?: pulumi.Input<string>;
-    readonly realmId: pulumi.Input<string>;
-    readonly requirement?: pulumi.Input<string>;
+    authenticator?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    parentFlowAlias: pulumi.Input<string>;
+    providerId?: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
+    requirement?: pulumi.Input<string>;
 }

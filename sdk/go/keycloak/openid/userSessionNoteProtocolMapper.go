@@ -329,7 +329,7 @@ type UserSessionNoteProtocolMapperArrayInput interface {
 type UserSessionNoteProtocolMapperArray []UserSessionNoteProtocolMapperInput
 
 func (UserSessionNoteProtocolMapperArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserSessionNoteProtocolMapper)(nil))
+	return reflect.TypeOf((*[]*UserSessionNoteProtocolMapper)(nil)).Elem()
 }
 
 func (i UserSessionNoteProtocolMapperArray) ToUserSessionNoteProtocolMapperArrayOutput() UserSessionNoteProtocolMapperArrayOutput {
@@ -354,7 +354,7 @@ type UserSessionNoteProtocolMapperMapInput interface {
 type UserSessionNoteProtocolMapperMap map[string]UserSessionNoteProtocolMapperInput
 
 func (UserSessionNoteProtocolMapperMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserSessionNoteProtocolMapper)(nil))
+	return reflect.TypeOf((*map[string]*UserSessionNoteProtocolMapper)(nil)).Elem()
 }
 
 func (i UserSessionNoteProtocolMapperMap) ToUserSessionNoteProtocolMapperMapOutput() UserSessionNoteProtocolMapperMapOutput {
@@ -365,9 +365,7 @@ func (i UserSessionNoteProtocolMapperMap) ToUserSessionNoteProtocolMapperMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(UserSessionNoteProtocolMapperMapOutput)
 }
 
-type UserSessionNoteProtocolMapperOutput struct {
-	*pulumi.OutputState
-}
+type UserSessionNoteProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (UserSessionNoteProtocolMapperOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*UserSessionNoteProtocolMapper)(nil))
@@ -386,14 +384,12 @@ func (o UserSessionNoteProtocolMapperOutput) ToUserSessionNoteProtocolMapperPtrO
 }
 
 func (o UserSessionNoteProtocolMapperOutput) ToUserSessionNoteProtocolMapperPtrOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperPtrOutput {
-	return o.ApplyT(func(v UserSessionNoteProtocolMapper) *UserSessionNoteProtocolMapper {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v UserSessionNoteProtocolMapper) *UserSessionNoteProtocolMapper {
 		return &v
 	}).(UserSessionNoteProtocolMapperPtrOutput)
 }
 
-type UserSessionNoteProtocolMapperPtrOutput struct {
-	*pulumi.OutputState
-}
+type UserSessionNoteProtocolMapperPtrOutput struct{ *pulumi.OutputState }
 
 func (UserSessionNoteProtocolMapperPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**UserSessionNoteProtocolMapper)(nil))
@@ -405,6 +401,16 @@ func (o UserSessionNoteProtocolMapperPtrOutput) ToUserSessionNoteProtocolMapperP
 
 func (o UserSessionNoteProtocolMapperPtrOutput) ToUserSessionNoteProtocolMapperPtrOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperPtrOutput {
 	return o
+}
+
+func (o UserSessionNoteProtocolMapperPtrOutput) Elem() UserSessionNoteProtocolMapperOutput {
+	return o.ApplyT(func(v *UserSessionNoteProtocolMapper) UserSessionNoteProtocolMapper {
+		if v != nil {
+			return *v
+		}
+		var ret UserSessionNoteProtocolMapper
+		return ret
+	}).(UserSessionNoteProtocolMapperOutput)
 }
 
 type UserSessionNoteProtocolMapperArrayOutput struct{ *pulumi.OutputState }
@@ -448,6 +454,10 @@ func (o UserSessionNoteProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) U
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSessionNoteProtocolMapperInput)(nil)).Elem(), &UserSessionNoteProtocolMapper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSessionNoteProtocolMapperPtrInput)(nil)).Elem(), &UserSessionNoteProtocolMapper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSessionNoteProtocolMapperArrayInput)(nil)).Elem(), UserSessionNoteProtocolMapperArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSessionNoteProtocolMapperMapInput)(nil)).Elem(), UserSessionNoteProtocolMapperMap{})
 	pulumi.RegisterOutputType(UserSessionNoteProtocolMapperOutput{})
 	pulumi.RegisterOutputType(UserSessionNoteProtocolMapperPtrOutput{})
 	pulumi.RegisterOutputType(UserSessionNoteProtocolMapperArrayOutput{})

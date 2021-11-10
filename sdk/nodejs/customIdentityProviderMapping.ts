@@ -111,23 +111,23 @@ export interface CustomIdentityProviderMappingState {
     /**
      * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
      */
-    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * The alias of the associated identity provider.
      */
-    readonly identityProviderAlias?: pulumi.Input<string>;
+    identityProviderAlias?: pulumi.Input<string>;
     /**
      * The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
      */
-    readonly identityProviderMapper?: pulumi.Input<string>;
+    identityProviderMapper?: pulumi.Input<string>;
     /**
      * The name of the mapper.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The name of the realm.
      */
-    readonly realm?: pulumi.Input<string>;
+    realm?: pulumi.Input<string>;
 }
 
 /**
@@ -137,21 +137,21 @@ export interface CustomIdentityProviderMappingArgs {
     /**
      * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
      */
-    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * The alias of the associated identity provider.
      */
-    readonly identityProviderAlias: pulumi.Input<string>;
+    identityProviderAlias: pulumi.Input<string>;
     /**
      * The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
      */
-    readonly identityProviderMapper: pulumi.Input<string>;
+    identityProviderMapper: pulumi.Input<string>;
     /**
      * The name of the mapper.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The name of the realm.
      */
-    readonly realm: pulumi.Input<string>;
+    realm: pulumi.Input<string>;
 }

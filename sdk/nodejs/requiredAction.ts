@@ -84,22 +84,22 @@ export class RequiredAction extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RequiredAction resources.
  */
 export interface RequiredActionState {
-    readonly alias?: pulumi.Input<string>;
-    readonly defaultAction?: pulumi.Input<boolean>;
-    readonly enabled?: pulumi.Input<boolean>;
-    readonly name?: pulumi.Input<string>;
-    readonly priority?: pulumi.Input<number>;
-    readonly realmId?: pulumi.Input<string>;
+    alias?: pulumi.Input<string>;
+    defaultAction?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
+    name?: pulumi.Input<string>;
+    priority?: pulumi.Input<number>;
+    realmId?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a RequiredAction resource.
  */
 export interface RequiredActionArgs {
-    readonly alias: pulumi.Input<string>;
-    readonly defaultAction?: pulumi.Input<boolean>;
-    readonly enabled?: pulumi.Input<boolean>;
-    readonly name?: pulumi.Input<string>;
-    readonly priority?: pulumi.Input<number>;
-    readonly realmId: pulumi.Input<string>;
+    alias: pulumi.Input<string>;
+    defaultAction?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
+    name?: pulumi.Input<string>;
+    priority?: pulumi.Input<number>;
+    realmId: pulumi.Input<string>;
 }

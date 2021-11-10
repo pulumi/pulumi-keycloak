@@ -12,6 +12,7 @@ __all__ = [
     'GetClientAuthorizationPolicyResult',
     'AwaitableGetClientAuthorizationPolicyResult',
     'get_client_authorization_policy',
+    'get_client_authorization_policy_output',
 ]
 
 @pulumi.output_type
@@ -163,7 +164,7 @@ def get_client_authorization_policy(name: Optional[str] = None,
     ## Example Usage
 
     In this example, we'll create a new OpenID client with authorization enabled. This will cause Keycloak to create a default
-    permission for this client called "Default Permission". We'll use the `openid.getClientAuthorizationPolicy` data
+    permission for this client called "Default Permission". We'll use the `openid.get_client_authorization_policy` data
     source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
 
     ```python
@@ -225,3 +226,57 @@ def get_client_authorization_policy(name: Optional[str] = None,
         resources=__ret__.resources,
         scopes=__ret__.scopes,
         type=__ret__.type)
+
+
+@_utilities.lift_output_func(get_client_authorization_policy)
+def get_client_authorization_policy_output(name: Optional[pulumi.Input[str]] = None,
+                                           realm_id: Optional[pulumi.Input[str]] = None,
+                                           resource_server_id: Optional[pulumi.Input[str]] = None,
+                                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientAuthorizationPolicyResult]:
+    """
+    This data source can be used to fetch policy and permission information for an OpenID client that has authorization enabled.
+
+    ## Example Usage
+
+    In this example, we'll create a new OpenID client with authorization enabled. This will cause Keycloak to create a default
+    permission for this client called "Default Permission". We'll use the `openid.get_client_authorization_policy` data
+    source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.Realm("realm",
+        realm="my-realm",
+        enabled=True)
+    client_with_authz = keycloak.openid.Client("clientWithAuthz",
+        client_id="client-with-authz",
+        realm_id=realm.id,
+        access_type="CONFIDENTIAL",
+        service_accounts_enabled=True,
+        authorization=keycloak.openid.ClientAuthorizationArgs(
+            policy_enforcement_mode="ENFORCING",
+        ))
+    default_permission = pulumi.Output.all(realm.id, client_with_authz.resource_server_id).apply(lambda id, resource_server_id: keycloak.openid.get_client_authorization_policy(realm_id=id,
+        resource_server_id=resource_server_id,
+        name="Default Permission"))
+    resource = keycloak.openid.ClientAuthorizationResource("resource",
+        resource_server_id=client_with_authz.resource_server_id,
+        realm_id=realm.id,
+        uris=["/endpoint/*"],
+        attributes={
+            "foo": "bar",
+        })
+    permission = keycloak.openid.ClientAuthorizationPermission("permission",
+        resource_server_id=client_with_authz.resource_server_id,
+        realm_id=realm.id,
+        policies=[default_permission.id],
+        resources=[resource.id])
+    ```
+
+
+    :param str name: The name of the authorization policy.
+    :param str realm_id: The realm this authorization policy exists within.
+    :param str resource_server_id: The ID of the resource server this authorization policy is attached to.
+    """
+    ...

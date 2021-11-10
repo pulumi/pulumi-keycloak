@@ -153,27 +153,27 @@ export interface FullNameMapperState {
     /**
      * The name of the LDAP attribute containing the user's full name.
      */
-    readonly ldapFullNameAttribute?: pulumi.Input<string>;
+    ldapFullNameAttribute?: pulumi.Input<string>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    readonly ldapUserFederationId?: pulumi.Input<string>;
+    ldapUserFederationId?: pulumi.Input<string>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
      */
-    readonly readOnly?: pulumi.Input<boolean>;
+    readOnly?: pulumi.Input<boolean>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
     /**
      * When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
      */
-    readonly writeOnly?: pulumi.Input<boolean>;
+    writeOnly?: pulumi.Input<boolean>;
 }
 
 /**
@@ -183,25 +183,25 @@ export interface FullNameMapperArgs {
     /**
      * The name of the LDAP attribute containing the user's full name.
      */
-    readonly ldapFullNameAttribute: pulumi.Input<string>;
+    ldapFullNameAttribute: pulumi.Input<string>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    readonly ldapUserFederationId: pulumi.Input<string>;
+    ldapUserFederationId: pulumi.Input<string>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
      */
-    readonly readOnly?: pulumi.Input<boolean>;
+    readOnly?: pulumi.Input<boolean>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
     /**
      * When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
      */
-    readonly writeOnly?: pulumi.Input<boolean>;
+    writeOnly?: pulumi.Input<boolean>;
 }

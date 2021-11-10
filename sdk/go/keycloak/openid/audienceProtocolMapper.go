@@ -310,7 +310,7 @@ type AudienceProtocolMapperArrayInput interface {
 type AudienceProtocolMapperArray []AudienceProtocolMapperInput
 
 func (AudienceProtocolMapperArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*AudienceProtocolMapper)(nil))
+	return reflect.TypeOf((*[]*AudienceProtocolMapper)(nil)).Elem()
 }
 
 func (i AudienceProtocolMapperArray) ToAudienceProtocolMapperArrayOutput() AudienceProtocolMapperArrayOutput {
@@ -335,7 +335,7 @@ type AudienceProtocolMapperMapInput interface {
 type AudienceProtocolMapperMap map[string]AudienceProtocolMapperInput
 
 func (AudienceProtocolMapperMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*AudienceProtocolMapper)(nil))
+	return reflect.TypeOf((*map[string]*AudienceProtocolMapper)(nil)).Elem()
 }
 
 func (i AudienceProtocolMapperMap) ToAudienceProtocolMapperMapOutput() AudienceProtocolMapperMapOutput {
@@ -346,9 +346,7 @@ func (i AudienceProtocolMapperMap) ToAudienceProtocolMapperMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(AudienceProtocolMapperMapOutput)
 }
 
-type AudienceProtocolMapperOutput struct {
-	*pulumi.OutputState
-}
+type AudienceProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (AudienceProtocolMapperOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*AudienceProtocolMapper)(nil))
@@ -367,14 +365,12 @@ func (o AudienceProtocolMapperOutput) ToAudienceProtocolMapperPtrOutput() Audien
 }
 
 func (o AudienceProtocolMapperOutput) ToAudienceProtocolMapperPtrOutputWithContext(ctx context.Context) AudienceProtocolMapperPtrOutput {
-	return o.ApplyT(func(v AudienceProtocolMapper) *AudienceProtocolMapper {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AudienceProtocolMapper) *AudienceProtocolMapper {
 		return &v
 	}).(AudienceProtocolMapperPtrOutput)
 }
 
-type AudienceProtocolMapperPtrOutput struct {
-	*pulumi.OutputState
-}
+type AudienceProtocolMapperPtrOutput struct{ *pulumi.OutputState }
 
 func (AudienceProtocolMapperPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**AudienceProtocolMapper)(nil))
@@ -386,6 +382,16 @@ func (o AudienceProtocolMapperPtrOutput) ToAudienceProtocolMapperPtrOutput() Aud
 
 func (o AudienceProtocolMapperPtrOutput) ToAudienceProtocolMapperPtrOutputWithContext(ctx context.Context) AudienceProtocolMapperPtrOutput {
 	return o
+}
+
+func (o AudienceProtocolMapperPtrOutput) Elem() AudienceProtocolMapperOutput {
+	return o.ApplyT(func(v *AudienceProtocolMapper) AudienceProtocolMapper {
+		if v != nil {
+			return *v
+		}
+		var ret AudienceProtocolMapper
+		return ret
+	}).(AudienceProtocolMapperOutput)
 }
 
 type AudienceProtocolMapperArrayOutput struct{ *pulumi.OutputState }
@@ -429,6 +435,10 @@ func (o AudienceProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) Audience
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AudienceProtocolMapperInput)(nil)).Elem(), &AudienceProtocolMapper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AudienceProtocolMapperPtrInput)(nil)).Elem(), &AudienceProtocolMapper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AudienceProtocolMapperArrayInput)(nil)).Elem(), AudienceProtocolMapperArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AudienceProtocolMapperMapInput)(nil)).Elem(), AudienceProtocolMapperMap{})
 	pulumi.RegisterOutputType(AudienceProtocolMapperOutput{})
 	pulumi.RegisterOutputType(AudienceProtocolMapperPtrOutput{})
 	pulumi.RegisterOutputType(AudienceProtocolMapperArrayOutput{})

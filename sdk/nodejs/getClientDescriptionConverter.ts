@@ -52,7 +52,7 @@ import * as utilities from "./utilities";
  * }));
  * const samlClientClient = new keycloak.saml.Client("samlClientClient", {
  *     realmId: realm.id,
- *     clientId: samlClientClientDescriptionConverter.clientId,
+ *     clientId: samlClientClientDescriptionConverter.apply(samlClientClientDescriptionConverter => samlClientClientDescriptionConverter.clientId),
  * });
  * ```
  */
@@ -77,11 +77,11 @@ export interface GetClientDescriptionConverterArgs {
     /**
      * The body of the request to convert.
      */
-    readonly body: string;
+    body: string;
     /**
      * The realm to use for the client description converter API call.
      */
-    readonly realmId: string;
+    realmId: string;
 }
 
 /**
@@ -129,4 +129,22 @@ export interface GetClientDescriptionConverterResult {
     readonly standardFlowEnabled: boolean;
     readonly surrogateAuthRequired: boolean;
     readonly webOrigins: string[];
+}
+
+export function getClientDescriptionConverterOutput(args: GetClientDescriptionConverterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientDescriptionConverterResult> {
+    return pulumi.output(args).apply(a => getClientDescriptionConverter(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getClientDescriptionConverter.
+ */
+export interface GetClientDescriptionConverterOutputArgs {
+    /**
+     * The body of the request to convert.
+     */
+    body: pulumi.Input<string>;
+    /**
+     * The realm to use for the client description converter API call.
+     */
+    realmId: pulumi.Input<string>;
 }

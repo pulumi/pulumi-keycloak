@@ -4,6 +4,9 @@
 package keycloak
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -43,4 +46,69 @@ type GetRealmKeysResult struct {
 	RealmId string            `pulumi:"realmId"`
 	// Key status (string)
 	Statuses []string `pulumi:"statuses"`
+}
+
+func GetRealmKeysOutput(ctx *pulumi.Context, args GetRealmKeysOutputArgs, opts ...pulumi.InvokeOption) GetRealmKeysResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetRealmKeysResult, error) {
+			args := v.(GetRealmKeysArgs)
+			r, err := GetRealmKeys(ctx, &args, opts...)
+			return *r, err
+		}).(GetRealmKeysResultOutput)
+}
+
+// A collection of arguments for invoking getRealmKeys.
+type GetRealmKeysOutputArgs struct {
+	// When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
+	Algorithms pulumi.StringArrayInput `pulumi:"algorithms"`
+	// The realm from which the keys will be retrieved.
+	RealmId pulumi.StringInput `pulumi:"realmId"`
+	// When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+	Statuses pulumi.StringArrayInput `pulumi:"statuses"`
+}
+
+func (GetRealmKeysOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRealmKeysArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getRealmKeys.
+type GetRealmKeysResultOutput struct{ *pulumi.OutputState }
+
+func (GetRealmKeysResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRealmKeysResult)(nil)).Elem()
+}
+
+func (o GetRealmKeysResultOutput) ToGetRealmKeysResultOutput() GetRealmKeysResultOutput {
+	return o
+}
+
+func (o GetRealmKeysResultOutput) ToGetRealmKeysResultOutputWithContext(ctx context.Context) GetRealmKeysResultOutput {
+	return o
+}
+
+func (o GetRealmKeysResultOutput) Algorithms() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRealmKeysResult) []string { return v.Algorithms }).(pulumi.StringArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetRealmKeysResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRealmKeysResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// (Computed) A list of keys that match the filter criteria. Each key has the following attributes:
+func (o GetRealmKeysResultOutput) Keys() GetRealmKeysKeyArrayOutput {
+	return o.ApplyT(func(v GetRealmKeysResult) []GetRealmKeysKey { return v.Keys }).(GetRealmKeysKeyArrayOutput)
+}
+
+func (o GetRealmKeysResultOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRealmKeysResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// Key status (string)
+func (o GetRealmKeysResultOutput) Statuses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRealmKeysResult) []string { return v.Statuses }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetRealmKeysResultOutput{})
 }

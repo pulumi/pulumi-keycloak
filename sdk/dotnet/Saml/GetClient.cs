@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Keycloak.Saml
 {
@@ -46,6 +47,42 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         public static Task<GetClientResult> InvokeAsync(GetClientArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetClientResult>("keycloak:saml/getClient:getClient", args ?? new GetClientArgs(), options.WithVersion());
+
+        /// <summary>
+        /// This data source can be used to fetch properties of a Keycloak client that uses the SAML protocol.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var realmManagement = Output.Create(Keycloak.Saml.GetClient.InvokeAsync(new Keycloak.Saml.GetClientArgs
+        ///         {
+        ///             RealmId = "my-realm",
+        ///             ClientId = "realm-management",
+        ///         }));
+        ///         var admin = realmManagement.Apply(realmManagement =&gt; Output.Create(Keycloak.GetRole.InvokeAsync(new Keycloak.GetRoleArgs
+        ///         {
+        ///             RealmId = "my-realm",
+        ///             ClientId = realmManagement.Id,
+        ///             Name = "realm-admin",
+        ///         })));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetClientResult> Invoke(GetClientInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetClientResult>("keycloak:saml/getClient:getClient", args ?? new GetClientInvokeArgs(), options.WithVersion());
     }
 
 
@@ -64,6 +101,25 @@ namespace Pulumi.Keycloak.Saml
         public string RealmId { get; set; } = null!;
 
         public GetClientArgs()
+        {
+        }
+    }
+
+    public sealed class GetClientInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The client id (not its unique ID).
+        /// </summary>
+        [Input("clientId", required: true)]
+        public Input<string> ClientId { get; set; } = null!;
+
+        /// <summary>
+        /// The realm id.
+        /// </summary>
+        [Input("realmId", required: true)]
+        public Input<string> RealmId { get; set; } = null!;
+
+        public GetClientInvokeArgs()
         {
         }
     }

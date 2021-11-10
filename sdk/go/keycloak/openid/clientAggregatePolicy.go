@@ -174,7 +174,7 @@ type ClientAggregatePolicyArrayInput interface {
 type ClientAggregatePolicyArray []ClientAggregatePolicyInput
 
 func (ClientAggregatePolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ClientAggregatePolicy)(nil))
+	return reflect.TypeOf((*[]*ClientAggregatePolicy)(nil)).Elem()
 }
 
 func (i ClientAggregatePolicyArray) ToClientAggregatePolicyArrayOutput() ClientAggregatePolicyArrayOutput {
@@ -199,7 +199,7 @@ type ClientAggregatePolicyMapInput interface {
 type ClientAggregatePolicyMap map[string]ClientAggregatePolicyInput
 
 func (ClientAggregatePolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ClientAggregatePolicy)(nil))
+	return reflect.TypeOf((*map[string]*ClientAggregatePolicy)(nil)).Elem()
 }
 
 func (i ClientAggregatePolicyMap) ToClientAggregatePolicyMapOutput() ClientAggregatePolicyMapOutput {
@@ -210,9 +210,7 @@ func (i ClientAggregatePolicyMap) ToClientAggregatePolicyMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAggregatePolicyMapOutput)
 }
 
-type ClientAggregatePolicyOutput struct {
-	*pulumi.OutputState
-}
+type ClientAggregatePolicyOutput struct{ *pulumi.OutputState }
 
 func (ClientAggregatePolicyOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ClientAggregatePolicy)(nil))
@@ -231,14 +229,12 @@ func (o ClientAggregatePolicyOutput) ToClientAggregatePolicyPtrOutput() ClientAg
 }
 
 func (o ClientAggregatePolicyOutput) ToClientAggregatePolicyPtrOutputWithContext(ctx context.Context) ClientAggregatePolicyPtrOutput {
-	return o.ApplyT(func(v ClientAggregatePolicy) *ClientAggregatePolicy {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientAggregatePolicy) *ClientAggregatePolicy {
 		return &v
 	}).(ClientAggregatePolicyPtrOutput)
 }
 
-type ClientAggregatePolicyPtrOutput struct {
-	*pulumi.OutputState
-}
+type ClientAggregatePolicyPtrOutput struct{ *pulumi.OutputState }
 
 func (ClientAggregatePolicyPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ClientAggregatePolicy)(nil))
@@ -250,6 +246,16 @@ func (o ClientAggregatePolicyPtrOutput) ToClientAggregatePolicyPtrOutput() Clien
 
 func (o ClientAggregatePolicyPtrOutput) ToClientAggregatePolicyPtrOutputWithContext(ctx context.Context) ClientAggregatePolicyPtrOutput {
 	return o
+}
+
+func (o ClientAggregatePolicyPtrOutput) Elem() ClientAggregatePolicyOutput {
+	return o.ApplyT(func(v *ClientAggregatePolicy) ClientAggregatePolicy {
+		if v != nil {
+			return *v
+		}
+		var ret ClientAggregatePolicy
+		return ret
+	}).(ClientAggregatePolicyOutput)
 }
 
 type ClientAggregatePolicyArrayOutput struct{ *pulumi.OutputState }
@@ -293,6 +299,10 @@ func (o ClientAggregatePolicyMapOutput) MapIndex(k pulumi.StringInput) ClientAgg
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientAggregatePolicyInput)(nil)).Elem(), &ClientAggregatePolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientAggregatePolicyPtrInput)(nil)).Elem(), &ClientAggregatePolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientAggregatePolicyArrayInput)(nil)).Elem(), ClientAggregatePolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientAggregatePolicyMapInput)(nil)).Elem(), ClientAggregatePolicyMap{})
 	pulumi.RegisterOutputType(ClientAggregatePolicyOutput{})
 	pulumi.RegisterOutputType(ClientAggregatePolicyPtrOutput{})
 	pulumi.RegisterOutputType(ClientAggregatePolicyArrayOutput{})

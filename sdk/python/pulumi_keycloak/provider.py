@@ -292,3 +292,49 @@ class Provider(pulumi.ProviderResource):
             __props__,
             opts)
 
+    @property
+    @pulumi.getter(name="basePath")
+    def base_path(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "base_path")
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "client_secret")
+
+    @property
+    @pulumi.getter
+    def password(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def realm(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "realm")
+
+    @property
+    @pulumi.getter(name="rootCaCertificate")
+    def root_ca_certificate(self) -> pulumi.Output[Optional[str]]:
+        """
+        Allows x509 calls using an unknown CA certificate (for development purposes)
+        """
+        return pulumi.get(self, "root_ca_certificate")
+
+    @property
+    @pulumi.getter
+    def url(self) -> pulumi.Output[str]:
+        """
+        The base URL of the Keycloak instance, before `/auth`
+        """
+        return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter
+    def username(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "username")
+

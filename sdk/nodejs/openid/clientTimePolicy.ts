@@ -123,46 +123,46 @@ export class ClientTimePolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ClientTimePolicy resources.
  */
 export interface ClientTimePolicyState {
-    readonly dayMonth?: pulumi.Input<string>;
-    readonly dayMonthEnd?: pulumi.Input<string>;
-    readonly decisionStrategy?: pulumi.Input<string>;
-    readonly description?: pulumi.Input<string>;
-    readonly hour?: pulumi.Input<string>;
-    readonly hourEnd?: pulumi.Input<string>;
-    readonly logic?: pulumi.Input<string>;
-    readonly minute?: pulumi.Input<string>;
-    readonly minuteEnd?: pulumi.Input<string>;
-    readonly month?: pulumi.Input<string>;
-    readonly monthEnd?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
-    readonly notBefore?: pulumi.Input<string>;
-    readonly notOnOrAfter?: pulumi.Input<string>;
-    readonly realmId?: pulumi.Input<string>;
-    readonly resourceServerId?: pulumi.Input<string>;
-    readonly year?: pulumi.Input<string>;
-    readonly yearEnd?: pulumi.Input<string>;
+    dayMonth?: pulumi.Input<string>;
+    dayMonthEnd?: pulumi.Input<string>;
+    decisionStrategy?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    hour?: pulumi.Input<string>;
+    hourEnd?: pulumi.Input<string>;
+    logic?: pulumi.Input<string>;
+    minute?: pulumi.Input<string>;
+    minuteEnd?: pulumi.Input<string>;
+    month?: pulumi.Input<string>;
+    monthEnd?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    notBefore?: pulumi.Input<string>;
+    notOnOrAfter?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
+    resourceServerId?: pulumi.Input<string>;
+    year?: pulumi.Input<string>;
+    yearEnd?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a ClientTimePolicy resource.
  */
 export interface ClientTimePolicyArgs {
-    readonly dayMonth?: pulumi.Input<string>;
-    readonly dayMonthEnd?: pulumi.Input<string>;
-    readonly decisionStrategy: pulumi.Input<string>;
-    readonly description?: pulumi.Input<string>;
-    readonly hour?: pulumi.Input<string>;
-    readonly hourEnd?: pulumi.Input<string>;
-    readonly logic?: pulumi.Input<string>;
-    readonly minute?: pulumi.Input<string>;
-    readonly minuteEnd?: pulumi.Input<string>;
-    readonly month?: pulumi.Input<string>;
-    readonly monthEnd?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
-    readonly notBefore?: pulumi.Input<string>;
-    readonly notOnOrAfter?: pulumi.Input<string>;
-    readonly realmId: pulumi.Input<string>;
-    readonly resourceServerId: pulumi.Input<string>;
-    readonly year?: pulumi.Input<string>;
-    readonly yearEnd?: pulumi.Input<string>;
+    dayMonth?: pulumi.Input<string>;
+    dayMonthEnd?: pulumi.Input<string>;
+    decisionStrategy: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    hour?: pulumi.Input<string>;
+    hourEnd?: pulumi.Input<string>;
+    logic?: pulumi.Input<string>;
+    minute?: pulumi.Input<string>;
+    minuteEnd?: pulumi.Input<string>;
+    month?: pulumi.Input<string>;
+    monthEnd?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    notBefore?: pulumi.Input<string>;
+    notOnOrAfter?: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
+    resourceServerId: pulumi.Input<string>;
+    year?: pulumi.Input<string>;
+    yearEnd?: pulumi.Input<string>;
 }
