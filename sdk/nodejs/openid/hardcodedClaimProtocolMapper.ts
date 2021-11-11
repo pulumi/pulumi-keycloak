@@ -196,43 +196,43 @@ export interface HardcodedClaimProtocolMapperState {
     /**
      * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      */
-    readonly addToAccessToken?: pulumi.Input<boolean>;
+    addToAccessToken?: pulumi.Input<boolean>;
     /**
      * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
-    readonly addToIdToken?: pulumi.Input<boolean>;
+    addToIdToken?: pulumi.Input<boolean>;
     /**
      * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
-    readonly addToUserinfo?: pulumi.Input<boolean>;
+    addToUserinfo?: pulumi.Input<boolean>;
     /**
      * The name of the claim to insert into a token.
      */
-    readonly claimName?: pulumi.Input<string>;
+    claimName?: pulumi.Input<string>;
     /**
      * The hardcoded value of the claim.
      */
-    readonly claimValue?: pulumi.Input<string>;
+    claimValue?: pulumi.Input<string>;
     /**
      * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
      */
-    readonly claimValueType?: pulumi.Input<string>;
+    claimValueType?: pulumi.Input<string>;
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    readonly clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    readonly clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The realm this protocol mapper exists within.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
 }
 
 /**
@@ -242,41 +242,41 @@ export interface HardcodedClaimProtocolMapperArgs {
     /**
      * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      */
-    readonly addToAccessToken?: pulumi.Input<boolean>;
+    addToAccessToken?: pulumi.Input<boolean>;
     /**
      * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
-    readonly addToIdToken?: pulumi.Input<boolean>;
+    addToIdToken?: pulumi.Input<boolean>;
     /**
      * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
-    readonly addToUserinfo?: pulumi.Input<boolean>;
+    addToUserinfo?: pulumi.Input<boolean>;
     /**
      * The name of the claim to insert into a token.
      */
-    readonly claimName: pulumi.Input<string>;
+    claimName: pulumi.Input<string>;
     /**
      * The hardcoded value of the claim.
      */
-    readonly claimValue: pulumi.Input<string>;
+    claimValue: pulumi.Input<string>;
     /**
      * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
      */
-    readonly claimValueType?: pulumi.Input<string>;
+    claimValueType?: pulumi.Input<string>;
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    readonly clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    readonly clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The realm this protocol mapper exists within.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
 }

@@ -251,100 +251,100 @@ export interface GoogleIdentityProviderState {
     /**
      * When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
      */
-    readonly acceptsPromptNoneForwardFromClient?: pulumi.Input<boolean>;
+    acceptsPromptNoneForwardFromClient?: pulumi.Input<boolean>;
     /**
      * When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
      */
-    readonly addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
+    addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
     /**
      * (Computed) The alias for the Google identity provider.
      */
-    readonly alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string>;
     /**
      * Enable/disable authenticate users by default.
      */
-    readonly authenticateByDefault?: pulumi.Input<boolean>;
+    authenticateByDefault?: pulumi.Input<boolean>;
     /**
      * The client or client identifier registered within the identity provider.
      */
-    readonly clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
      */
-    readonly clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
     /**
      * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid profile email`.
      */
-    readonly defaultScopes?: pulumi.Input<string>;
+    defaultScopes?: pulumi.Input<string>;
     /**
      * When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
      */
-    readonly disableUserInfo?: pulumi.Input<boolean>;
+    disableUserInfo?: pulumi.Input<boolean>;
     /**
      * (Computed) Display name for the Google identity provider in the GUI.
      */
-    readonly displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string>;
     /**
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
-    readonly enabled?: pulumi.Input<boolean>;
-    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
+    enabled?: pulumi.Input<boolean>;
+    extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
      */
-    readonly firstBrokerLoginFlowAlias?: pulumi.Input<string>;
+    firstBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
      * A number defining the order of this identity provider in the GUI.
      */
-    readonly guiOrder?: pulumi.Input<string>;
+    guiOrder?: pulumi.Input<string>;
     /**
      * When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
      */
-    readonly hideOnLoginPage?: pulumi.Input<boolean>;
+    hideOnLoginPage?: pulumi.Input<boolean>;
     /**
      * Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
      */
-    readonly hostedDomain?: pulumi.Input<string>;
+    hostedDomain?: pulumi.Input<string>;
     /**
      * (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
      */
-    readonly internalId?: pulumi.Input<string>;
+    internalId?: pulumi.Input<string>;
     /**
      * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
-    readonly linkOnly?: pulumi.Input<boolean>;
+    linkOnly?: pulumi.Input<boolean>;
     /**
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
      */
-    readonly postBrokerLoginFlowAlias?: pulumi.Input<string>;
+    postBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
      * The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
      */
-    readonly providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string>;
     /**
      * The name of the realm. This is unique across Keycloak.
      */
-    readonly realm?: pulumi.Input<string>;
+    realm?: pulumi.Input<string>;
     /**
      * Sets the "accessType" query parameter to "offline" when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
      */
-    readonly requestRefreshToken?: pulumi.Input<boolean>;
+    requestRefreshToken?: pulumi.Input<boolean>;
     /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
-    readonly storeToken?: pulumi.Input<boolean>;
+    storeToken?: pulumi.Input<boolean>;
     /**
      * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
      */
-    readonly syncMode?: pulumi.Input<string>;
+    syncMode?: pulumi.Input<string>;
     /**
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
      */
-    readonly trustEmail?: pulumi.Input<boolean>;
+    trustEmail?: pulumi.Input<boolean>;
     /**
      * Sets the "userIp" query parameter when querying Google's User Info service. This will use the user's IP address. This is useful if Google is throttling Keycloak's access to the User Info service.
      */
-    readonly useUserIpParam?: pulumi.Input<boolean>;
+    useUserIpParam?: pulumi.Input<boolean>;
 }
 
 /**
@@ -354,86 +354,86 @@ export interface GoogleIdentityProviderArgs {
     /**
      * When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
      */
-    readonly acceptsPromptNoneForwardFromClient?: pulumi.Input<boolean>;
+    acceptsPromptNoneForwardFromClient?: pulumi.Input<boolean>;
     /**
      * When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
      */
-    readonly addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
+    addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
     /**
      * Enable/disable authenticate users by default.
      */
-    readonly authenticateByDefault?: pulumi.Input<boolean>;
+    authenticateByDefault?: pulumi.Input<boolean>;
     /**
      * The client or client identifier registered within the identity provider.
      */
-    readonly clientId: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
     /**
      * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
      */
-    readonly clientSecret: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
     /**
      * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid profile email`.
      */
-    readonly defaultScopes?: pulumi.Input<string>;
+    defaultScopes?: pulumi.Input<string>;
     /**
      * When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
      */
-    readonly disableUserInfo?: pulumi.Input<boolean>;
+    disableUserInfo?: pulumi.Input<boolean>;
     /**
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
-    readonly enabled?: pulumi.Input<boolean>;
-    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
+    enabled?: pulumi.Input<boolean>;
+    extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
      */
-    readonly firstBrokerLoginFlowAlias?: pulumi.Input<string>;
+    firstBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
      * A number defining the order of this identity provider in the GUI.
      */
-    readonly guiOrder?: pulumi.Input<string>;
+    guiOrder?: pulumi.Input<string>;
     /**
      * When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
      */
-    readonly hideOnLoginPage?: pulumi.Input<boolean>;
+    hideOnLoginPage?: pulumi.Input<boolean>;
     /**
      * Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
      */
-    readonly hostedDomain?: pulumi.Input<string>;
+    hostedDomain?: pulumi.Input<string>;
     /**
      * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
-    readonly linkOnly?: pulumi.Input<boolean>;
+    linkOnly?: pulumi.Input<boolean>;
     /**
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
      */
-    readonly postBrokerLoginFlowAlias?: pulumi.Input<string>;
+    postBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
      * The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
      */
-    readonly providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string>;
     /**
      * The name of the realm. This is unique across Keycloak.
      */
-    readonly realm: pulumi.Input<string>;
+    realm: pulumi.Input<string>;
     /**
      * Sets the "accessType" query parameter to "offline" when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
      */
-    readonly requestRefreshToken?: pulumi.Input<boolean>;
+    requestRefreshToken?: pulumi.Input<boolean>;
     /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
-    readonly storeToken?: pulumi.Input<boolean>;
+    storeToken?: pulumi.Input<boolean>;
     /**
      * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
      */
-    readonly syncMode?: pulumi.Input<string>;
+    syncMode?: pulumi.Input<string>;
     /**
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
      */
-    readonly trustEmail?: pulumi.Input<boolean>;
+    trustEmail?: pulumi.Input<boolean>;
     /**
      * Sets the "userIp" query parameter when querying Google's User Info service. This will use the user's IP address. This is useful if Google is throttling Keycloak's access to the User Info service.
      */
-    readonly useUserIpParam?: pulumi.Input<boolean>;
+    useUserIpParam?: pulumi.Input<boolean>;
 }

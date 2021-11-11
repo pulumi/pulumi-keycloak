@@ -12,6 +12,7 @@ __all__ = [
     'GetGroupResult',
     'AwaitableGetGroupResult',
     'get_group',
+    'get_group_output',
 ]
 
 @pulumi.output_type
@@ -133,3 +134,37 @@ def get_group(name: Optional[str] = None,
         parent_id=__ret__.parent_id,
         path=__ret__.path,
         realm_id=__ret__.realm_id)
+
+
+@_utilities.lift_output_func(get_group)
+def get_group_output(name: Optional[pulumi.Input[str]] = None,
+                     realm_id: Optional[pulumi.Input[str]] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGroupResult]:
+    """
+    This data source can be used to fetch properties of a Keycloak group for
+    usage with other resources, such as `GroupRoles`.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.Realm("realm",
+        realm="my-realm",
+        enabled=True)
+    offline_access = realm.id.apply(lambda id: keycloak.get_role(realm_id=id,
+        name="offline_access"))
+    group = realm.id.apply(lambda id: keycloak.get_group(realm_id=id,
+        name="group"))
+    group_roles = keycloak.GroupRoles("groupRoles",
+        realm_id=realm.id,
+        group_id=group.id,
+        role_ids=[offline_access.id])
+    ```
+
+
+    :param str name: The name of the group. If there are multiple groups match `name`, the first result will be returned.
+    :param str realm_id: The realm this group exists within.
+    """
+    ...

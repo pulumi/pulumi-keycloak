@@ -4,33 +4,118 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-let __config = new pulumi.Config("keycloak");
+declare var exports: any;
+const __config = new pulumi.Config("keycloak");
 
-export let additionalHeaders: {[key: string]: string} | undefined = __config.getObject<{[key: string]: string}>("additionalHeaders");
-export let basePath: string | undefined = __config.get("basePath");
-export let clientId: string | undefined = __config.get("clientId");
-export let clientSecret: string | undefined = __config.get("clientSecret");
+export declare const additionalHeaders: {[key: string]: string} | undefined;
+Object.defineProperty(exports, "additionalHeaders", {
+    get() {
+        return __config.getObject<{[key: string]: string}>("additionalHeaders");
+    },
+    enumerable: true,
+});
+
+export declare const basePath: string | undefined;
+Object.defineProperty(exports, "basePath", {
+    get() {
+        return __config.get("basePath");
+    },
+    enumerable: true,
+});
+
+export declare const clientId: string | undefined;
+Object.defineProperty(exports, "clientId", {
+    get() {
+        return __config.get("clientId");
+    },
+    enumerable: true,
+});
+
+export declare const clientSecret: string | undefined;
+Object.defineProperty(exports, "clientSecret", {
+    get() {
+        return __config.get("clientSecret");
+    },
+    enumerable: true,
+});
+
 /**
  * Timeout (in seconds) of the Keycloak client
  */
-export let clientTimeout: number | undefined = __config.getObject<number>("clientTimeout") || (<any>utilities.getEnvNumber("KEYCLOAK_CLIENT_TIMEOUT") || 5);
+export declare const clientTimeout: number;
+Object.defineProperty(exports, "clientTimeout", {
+    get() {
+        return __config.getObject<number>("clientTimeout") ?? (<any>utilities.getEnvNumber("KEYCLOAK_CLIENT_TIMEOUT") || 5);
+    },
+    enumerable: true,
+});
+
 /**
  * Whether or not to login to Keycloak instance on provider initialization
  */
-export let initialLogin: boolean | undefined = __config.getObject<boolean>("initialLogin");
-export let password: string | undefined = __config.get("password");
-export let realm: string | undefined = __config.get("realm");
+export declare const initialLogin: boolean | undefined;
+Object.defineProperty(exports, "initialLogin", {
+    get() {
+        return __config.getObject<boolean>("initialLogin");
+    },
+    enumerable: true,
+});
+
+export declare const password: string | undefined;
+Object.defineProperty(exports, "password", {
+    get() {
+        return __config.get("password");
+    },
+    enumerable: true,
+});
+
+export declare const realm: string | undefined;
+Object.defineProperty(exports, "realm", {
+    get() {
+        return __config.get("realm");
+    },
+    enumerable: true,
+});
+
 /**
  * Allows x509 calls using an unknown CA certificate (for development purposes)
  */
-export let rootCaCertificate: string | undefined = __config.get("rootCaCertificate");
+export declare const rootCaCertificate: string | undefined;
+Object.defineProperty(exports, "rootCaCertificate", {
+    get() {
+        return __config.get("rootCaCertificate");
+    },
+    enumerable: true,
+});
+
 /**
  * Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
  * should be avoided.
  */
-export let tlsInsecureSkipVerify: boolean | undefined = __config.getObject<boolean>("tlsInsecureSkipVerify");
+export declare const tlsInsecureSkipVerify: boolean | undefined;
+Object.defineProperty(exports, "tlsInsecureSkipVerify", {
+    get() {
+        return __config.getObject<boolean>("tlsInsecureSkipVerify");
+    },
+    enumerable: true,
+});
+
 /**
  * The base URL of the Keycloak instance, before `/auth`
  */
-export let url: string | undefined = __config.get("url");
-export let username: string | undefined = __config.get("username");
+export declare const url: string | undefined;
+Object.defineProperty(exports, "url", {
+    get() {
+        return __config.get("url");
+    },
+    enumerable: true,
+});
+
+export declare const username: string | undefined;
+Object.defineProperty(exports, "username", {
+    get() {
+        return __config.get("username");
+    },
+    enumerable: true,
+});
+

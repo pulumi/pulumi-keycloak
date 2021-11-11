@@ -13,6 +13,7 @@ __all__ = [
     'GetClientResult',
     'AwaitableGetClientResult',
     'get_client',
+    'get_client_output',
 ]
 
 @pulumi.output_type
@@ -429,3 +430,31 @@ def get_client(client_id: Optional[str] = None,
         use_refresh_tokens=__ret__.use_refresh_tokens,
         valid_redirect_uris=__ret__.valid_redirect_uris,
         web_origins=__ret__.web_origins)
+
+
+@_utilities.lift_output_func(get_client)
+def get_client_output(client_id: Optional[pulumi.Input[str]] = None,
+                      extra_config: Optional[pulumi.Input[Optional[Mapping[str, Any]]]] = None,
+                      realm_id: Optional[pulumi.Input[str]] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientResult]:
+    """
+    This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm_management = keycloak.openid.get_client(realm_id="my-realm",
+        client_id="realm-management")
+    admin = keycloak.get_role(realm_id="my-realm",
+        client_id=realm_management.id,
+        name="realm-admin")
+    ```
+
+
+    :param str client_id: The client id (not its unique ID).
+    :param str realm_id: The realm id.
+    """
+    ...

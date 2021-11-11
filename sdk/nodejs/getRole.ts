@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -27,7 +26,7 @@ import * as utilities from "./utilities";
  * const groupRoles = new keycloak.GroupRoles("groupRoles", {
  *     realmId: realm.id,
  *     groupId: group.id,
- *     roleIds: [offlineAccess.id],
+ *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
  * });
  * ```
  */
@@ -53,15 +52,15 @@ export interface GetRoleArgs {
     /**
      * When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloakClient` resource should be used here.
      */
-    readonly clientId?: string;
+    clientId?: string;
     /**
      * The name of the role.
      */
-    readonly name: string;
+    name: string;
     /**
      * The realm this role exists within.
      */
-    readonly realmId: string;
+    realmId: string;
 }
 
 /**
@@ -81,4 +80,26 @@ export interface GetRoleResult {
     readonly id: string;
     readonly name: string;
     readonly realmId: string;
+}
+
+export function getRoleOutput(args: GetRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRoleResult> {
+    return pulumi.output(args).apply(a => getRole(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getRole.
+ */
+export interface GetRoleOutputArgs {
+    /**
+     * When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloakClient` resource should be used here.
+     */
+    clientId?: pulumi.Input<string>;
+    /**
+     * The name of the role.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The realm this role exists within.
+     */
+    realmId: pulumi.Input<string>;
 }

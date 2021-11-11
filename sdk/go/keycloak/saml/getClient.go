@@ -4,6 +4,9 @@
 package saml
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,7 +33,7 @@ import (
 // 			return err
 // 		}
 // 		opt0 := realmManagement.Id
-// 		_, err = keycloak.LookupRole(ctx, &keycloak.LookupRoleArgs{
+// 		_, err = keycloak.LookupRole(ctx, &GetRoleArgs{
 // 			RealmId:  "my-realm",
 // 			ClientId: &opt0,
 // 			Name:     "realm-admin",
@@ -101,4 +104,203 @@ type LookupClientResult struct {
 	SigningPrivateKey               string   `pulumi:"signingPrivateKey"`
 	SigningPrivateKeySha1           string   `pulumi:"signingPrivateKeySha1"`
 	ValidRedirectUris               []string `pulumi:"validRedirectUris"`
+}
+
+func LookupClientOutput(ctx *pulumi.Context, args LookupClientOutputArgs, opts ...pulumi.InvokeOption) LookupClientResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupClientResult, error) {
+			args := v.(LookupClientArgs)
+			r, err := LookupClient(ctx, &args, opts...)
+			return *r, err
+		}).(LookupClientResultOutput)
+}
+
+// A collection of arguments for invoking getClient.
+type LookupClientOutputArgs struct {
+	// The client id (not its unique ID).
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// The realm id.
+	RealmId pulumi.StringInput `pulumi:"realmId"`
+}
+
+func (LookupClientOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupClientArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getClient.
+type LookupClientResultOutput struct{ *pulumi.OutputState }
+
+func (LookupClientResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupClientResult)(nil)).Elem()
+}
+
+func (o LookupClientResultOutput) ToLookupClientResultOutput() LookupClientResultOutput {
+	return o
+}
+
+func (o LookupClientResultOutput) ToLookupClientResultOutputWithContext(ctx context.Context) LookupClientResultOutput {
+	return o
+}
+
+func (o LookupClientResultOutput) AssertionConsumerPostUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.AssertionConsumerPostUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) AssertionConsumerRedirectUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.AssertionConsumerRedirectUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) AuthenticationFlowBindingOverrides() GetClientAuthenticationFlowBindingOverrideArrayOutput {
+	return o.ApplyT(func(v LookupClientResult) []GetClientAuthenticationFlowBindingOverride {
+		return v.AuthenticationFlowBindingOverrides
+	}).(GetClientAuthenticationFlowBindingOverrideArrayOutput)
+}
+
+func (o LookupClientResultOutput) BaseUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.BaseUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) CanonicalizationMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.CanonicalizationMethod }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) ClientSignatureRequired() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.ClientSignatureRequired }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) EncryptAssertions() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.EncryptAssertions }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) EncryptionCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.EncryptionCertificate }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) EncryptionCertificateSha1() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.EncryptionCertificateSha1 }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) ExtraConfig() pulumi.MapOutput {
+	return o.ApplyT(func(v LookupClientResult) map[string]interface{} { return v.ExtraConfig }).(pulumi.MapOutput)
+}
+
+func (o LookupClientResultOutput) ForceNameIdFormat() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.ForceNameIdFormat }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) ForcePostBinding() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.ForcePostBinding }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) FrontChannelLogout() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.FrontChannelLogout }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) FullScopeAllowed() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.FullScopeAllowed }).(pulumi.BoolOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupClientResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) IdpInitiatedSsoRelayState() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.IdpInitiatedSsoRelayState }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) IdpInitiatedSsoUrlName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.IdpInitiatedSsoUrlName }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) IncludeAuthnStatement() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.IncludeAuthnStatement }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) LoginTheme() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.LoginTheme }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) LogoutServicePostBindingUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.LogoutServicePostBindingUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) LogoutServiceRedirectBindingUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.LogoutServiceRedirectBindingUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) MasterSamlProcessingUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.MasterSamlProcessingUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) NameIdFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.NameIdFormat }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) RootUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.RootUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) SamlSignatureKeyName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.SamlSignatureKeyName }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) SignAssertions() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.SignAssertions }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) SignDocuments() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.SignDocuments }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) SignatureAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.SignatureAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) SignatureKeyName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.SignatureKeyName }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) SigningCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.SigningCertificate }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) SigningCertificateSha1() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.SigningCertificateSha1 }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) SigningPrivateKey() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.SigningPrivateKey }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) SigningPrivateKeySha1() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.SigningPrivateKeySha1 }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) ValidRedirectUris() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupClientResult) []string { return v.ValidRedirectUris }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupClientResultOutput{})
 }

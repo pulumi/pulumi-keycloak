@@ -10,25 +10,25 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class GetRealmSecurityDefenseArgs : Pulumi.InvokeArgs
+    public sealed class GetRealmSecurityDefenseInputArgs : Pulumi.ResourceArgs
     {
         [Input("bruteForceDetections", required: true)]
-        private List<Inputs.GetRealmSecurityDefenseBruteForceDetectionArgs>? _bruteForceDetections;
-        public List<Inputs.GetRealmSecurityDefenseBruteForceDetectionArgs> BruteForceDetections
+        private InputList<Inputs.GetRealmSecurityDefenseBruteForceDetectionInputArgs>? _bruteForceDetections;
+        public InputList<Inputs.GetRealmSecurityDefenseBruteForceDetectionInputArgs> BruteForceDetections
         {
-            get => _bruteForceDetections ?? (_bruteForceDetections = new List<Inputs.GetRealmSecurityDefenseBruteForceDetectionArgs>());
+            get => _bruteForceDetections ?? (_bruteForceDetections = new InputList<Inputs.GetRealmSecurityDefenseBruteForceDetectionInputArgs>());
             set => _bruteForceDetections = value;
         }
 
         [Input("headers", required: true)]
-        private List<Inputs.GetRealmSecurityDefenseHeaderArgs>? _headers;
-        public List<Inputs.GetRealmSecurityDefenseHeaderArgs> Headers
+        private InputList<Inputs.GetRealmSecurityDefenseHeaderInputArgs>? _headers;
+        public InputList<Inputs.GetRealmSecurityDefenseHeaderInputArgs> Headers
         {
-            get => _headers ?? (_headers = new List<Inputs.GetRealmSecurityDefenseHeaderArgs>());
+            get => _headers ?? (_headers = new InputList<Inputs.GetRealmSecurityDefenseHeaderInputArgs>());
             set => _headers = value;
         }
 
-        public GetRealmSecurityDefenseArgs()
+        public GetRealmSecurityDefenseInputArgs()
         {
         }
     }

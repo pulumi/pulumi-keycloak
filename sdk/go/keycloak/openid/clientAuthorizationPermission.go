@@ -178,7 +178,7 @@ type ClientAuthorizationPermissionArrayInput interface {
 type ClientAuthorizationPermissionArray []ClientAuthorizationPermissionInput
 
 func (ClientAuthorizationPermissionArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ClientAuthorizationPermission)(nil))
+	return reflect.TypeOf((*[]*ClientAuthorizationPermission)(nil)).Elem()
 }
 
 func (i ClientAuthorizationPermissionArray) ToClientAuthorizationPermissionArrayOutput() ClientAuthorizationPermissionArrayOutput {
@@ -203,7 +203,7 @@ type ClientAuthorizationPermissionMapInput interface {
 type ClientAuthorizationPermissionMap map[string]ClientAuthorizationPermissionInput
 
 func (ClientAuthorizationPermissionMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ClientAuthorizationPermission)(nil))
+	return reflect.TypeOf((*map[string]*ClientAuthorizationPermission)(nil)).Elem()
 }
 
 func (i ClientAuthorizationPermissionMap) ToClientAuthorizationPermissionMapOutput() ClientAuthorizationPermissionMapOutput {
@@ -214,9 +214,7 @@ func (i ClientAuthorizationPermissionMap) ToClientAuthorizationPermissionMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationPermissionMapOutput)
 }
 
-type ClientAuthorizationPermissionOutput struct {
-	*pulumi.OutputState
-}
+type ClientAuthorizationPermissionOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthorizationPermissionOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ClientAuthorizationPermission)(nil))
@@ -235,14 +233,12 @@ func (o ClientAuthorizationPermissionOutput) ToClientAuthorizationPermissionPtrO
 }
 
 func (o ClientAuthorizationPermissionOutput) ToClientAuthorizationPermissionPtrOutputWithContext(ctx context.Context) ClientAuthorizationPermissionPtrOutput {
-	return o.ApplyT(func(v ClientAuthorizationPermission) *ClientAuthorizationPermission {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientAuthorizationPermission) *ClientAuthorizationPermission {
 		return &v
 	}).(ClientAuthorizationPermissionPtrOutput)
 }
 
-type ClientAuthorizationPermissionPtrOutput struct {
-	*pulumi.OutputState
-}
+type ClientAuthorizationPermissionPtrOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthorizationPermissionPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ClientAuthorizationPermission)(nil))
@@ -254,6 +250,16 @@ func (o ClientAuthorizationPermissionPtrOutput) ToClientAuthorizationPermissionP
 
 func (o ClientAuthorizationPermissionPtrOutput) ToClientAuthorizationPermissionPtrOutputWithContext(ctx context.Context) ClientAuthorizationPermissionPtrOutput {
 	return o
+}
+
+func (o ClientAuthorizationPermissionPtrOutput) Elem() ClientAuthorizationPermissionOutput {
+	return o.ApplyT(func(v *ClientAuthorizationPermission) ClientAuthorizationPermission {
+		if v != nil {
+			return *v
+		}
+		var ret ClientAuthorizationPermission
+		return ret
+	}).(ClientAuthorizationPermissionOutput)
 }
 
 type ClientAuthorizationPermissionArrayOutput struct{ *pulumi.OutputState }
@@ -297,6 +303,10 @@ func (o ClientAuthorizationPermissionMapOutput) MapIndex(k pulumi.StringInput) C
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthorizationPermissionInput)(nil)).Elem(), &ClientAuthorizationPermission{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthorizationPermissionPtrInput)(nil)).Elem(), &ClientAuthorizationPermission{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthorizationPermissionArrayInput)(nil)).Elem(), ClientAuthorizationPermissionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthorizationPermissionMapInput)(nil)).Elem(), ClientAuthorizationPermissionMap{})
 	pulumi.RegisterOutputType(ClientAuthorizationPermissionOutput{})
 	pulumi.RegisterOutputType(ClientAuthorizationPermissionPtrOutput{})
 	pulumi.RegisterOutputType(ClientAuthorizationPermissionArrayOutput{})

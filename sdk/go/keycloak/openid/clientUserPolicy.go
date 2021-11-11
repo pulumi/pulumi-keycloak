@@ -174,7 +174,7 @@ type ClientUserPolicyArrayInput interface {
 type ClientUserPolicyArray []ClientUserPolicyInput
 
 func (ClientUserPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ClientUserPolicy)(nil))
+	return reflect.TypeOf((*[]*ClientUserPolicy)(nil)).Elem()
 }
 
 func (i ClientUserPolicyArray) ToClientUserPolicyArrayOutput() ClientUserPolicyArrayOutput {
@@ -199,7 +199,7 @@ type ClientUserPolicyMapInput interface {
 type ClientUserPolicyMap map[string]ClientUserPolicyInput
 
 func (ClientUserPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ClientUserPolicy)(nil))
+	return reflect.TypeOf((*map[string]*ClientUserPolicy)(nil)).Elem()
 }
 
 func (i ClientUserPolicyMap) ToClientUserPolicyMapOutput() ClientUserPolicyMapOutput {
@@ -210,9 +210,7 @@ func (i ClientUserPolicyMap) ToClientUserPolicyMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(ClientUserPolicyMapOutput)
 }
 
-type ClientUserPolicyOutput struct {
-	*pulumi.OutputState
-}
+type ClientUserPolicyOutput struct{ *pulumi.OutputState }
 
 func (ClientUserPolicyOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ClientUserPolicy)(nil))
@@ -231,14 +229,12 @@ func (o ClientUserPolicyOutput) ToClientUserPolicyPtrOutput() ClientUserPolicyPt
 }
 
 func (o ClientUserPolicyOutput) ToClientUserPolicyPtrOutputWithContext(ctx context.Context) ClientUserPolicyPtrOutput {
-	return o.ApplyT(func(v ClientUserPolicy) *ClientUserPolicy {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientUserPolicy) *ClientUserPolicy {
 		return &v
 	}).(ClientUserPolicyPtrOutput)
 }
 
-type ClientUserPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
+type ClientUserPolicyPtrOutput struct{ *pulumi.OutputState }
 
 func (ClientUserPolicyPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ClientUserPolicy)(nil))
@@ -250,6 +246,16 @@ func (o ClientUserPolicyPtrOutput) ToClientUserPolicyPtrOutput() ClientUserPolic
 
 func (o ClientUserPolicyPtrOutput) ToClientUserPolicyPtrOutputWithContext(ctx context.Context) ClientUserPolicyPtrOutput {
 	return o
+}
+
+func (o ClientUserPolicyPtrOutput) Elem() ClientUserPolicyOutput {
+	return o.ApplyT(func(v *ClientUserPolicy) ClientUserPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret ClientUserPolicy
+		return ret
+	}).(ClientUserPolicyOutput)
 }
 
 type ClientUserPolicyArrayOutput struct{ *pulumi.OutputState }
@@ -293,6 +299,10 @@ func (o ClientUserPolicyMapOutput) MapIndex(k pulumi.StringInput) ClientUserPoli
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientUserPolicyInput)(nil)).Elem(), &ClientUserPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientUserPolicyPtrInput)(nil)).Elem(), &ClientUserPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientUserPolicyArrayInput)(nil)).Elem(), ClientUserPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientUserPolicyMapInput)(nil)).Elem(), ClientUserPolicyMap{})
 	pulumi.RegisterOutputType(ClientUserPolicyOutput{})
 	pulumi.RegisterOutputType(ClientUserPolicyPtrOutput{})
 	pulumi.RegisterOutputType(ClientUserPolicyArrayOutput{})

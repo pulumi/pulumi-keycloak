@@ -93,28 +93,28 @@ export class ClientAuthorizationPermission extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ClientAuthorizationPermission resources.
  */
 export interface ClientAuthorizationPermissionState {
-    readonly decisionStrategy?: pulumi.Input<string>;
-    readonly description?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly realmId?: pulumi.Input<string>;
-    readonly resourceServerId?: pulumi.Input<string>;
-    readonly resources?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly scopes?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly type?: pulumi.Input<string>;
+    decisionStrategy?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    realmId?: pulumi.Input<string>;
+    resourceServerId?: pulumi.Input<string>;
+    resources?: pulumi.Input<pulumi.Input<string>[]>;
+    scopes?: pulumi.Input<pulumi.Input<string>[]>;
+    type?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a ClientAuthorizationPermission resource.
  */
 export interface ClientAuthorizationPermissionArgs {
-    readonly decisionStrategy?: pulumi.Input<string>;
-    readonly description?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly realmId: pulumi.Input<string>;
-    readonly resourceServerId: pulumi.Input<string>;
-    readonly resources?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly scopes?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly type?: pulumi.Input<string>;
+    decisionStrategy?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    realmId: pulumi.Input<string>;
+    resourceServerId: pulumi.Input<string>;
+    resources?: pulumi.Input<pulumi.Input<string>[]>;
+    scopes?: pulumi.Input<pulumi.Input<string>[]>;
+    type?: pulumi.Input<string>;
 }

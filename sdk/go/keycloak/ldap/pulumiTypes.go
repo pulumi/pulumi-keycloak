@@ -119,7 +119,7 @@ func (o UserFederationCacheOutput) ToUserFederationCachePtrOutput() UserFederati
 }
 
 func (o UserFederationCacheOutput) ToUserFederationCachePtrOutputWithContext(ctx context.Context) UserFederationCachePtrOutput {
-	return o.ApplyT(func(v UserFederationCache) *UserFederationCache {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v UserFederationCache) *UserFederationCache {
 		return &v
 	}).(UserFederationCachePtrOutput)
 }
@@ -164,7 +164,13 @@ func (o UserFederationCachePtrOutput) ToUserFederationCachePtrOutputWithContext(
 }
 
 func (o UserFederationCachePtrOutput) Elem() UserFederationCacheOutput {
-	return o.ApplyT(func(v *UserFederationCache) UserFederationCache { return *v }).(UserFederationCacheOutput)
+	return o.ApplyT(func(v *UserFederationCache) UserFederationCache {
+		if v != nil {
+			return *v
+		}
+		var ret UserFederationCache
+		return ret
+	}).(UserFederationCacheOutput)
 }
 
 // Day of the week the entry will become invalid on
@@ -322,7 +328,7 @@ func (o UserFederationKerberosOutput) ToUserFederationKerberosPtrOutput() UserFe
 }
 
 func (o UserFederationKerberosOutput) ToUserFederationKerberosPtrOutputWithContext(ctx context.Context) UserFederationKerberosPtrOutput {
-	return o.ApplyT(func(v UserFederationKerberos) *UserFederationKerberos {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v UserFederationKerberos) *UserFederationKerberos {
 		return &v
 	}).(UserFederationKerberosPtrOutput)
 }
@@ -362,7 +368,13 @@ func (o UserFederationKerberosPtrOutput) ToUserFederationKerberosPtrOutputWithCo
 }
 
 func (o UserFederationKerberosPtrOutput) Elem() UserFederationKerberosOutput {
-	return o.ApplyT(func(v *UserFederationKerberos) UserFederationKerberos { return *v }).(UserFederationKerberosOutput)
+	return o.ApplyT(func(v *UserFederationKerberos) UserFederationKerberos {
+		if v != nil {
+			return *v
+		}
+		var ret UserFederationKerberos
+		return ret
+	}).(UserFederationKerberosOutput)
 }
 
 // The name of the kerberos realm, e.g. FOO.LOCAL.
@@ -406,6 +418,10 @@ func (o UserFederationKerberosPtrOutput) UseKerberosForPasswordAuthentication() 
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserFederationCacheInput)(nil)).Elem(), UserFederationCacheArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserFederationCachePtrInput)(nil)).Elem(), UserFederationCacheArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserFederationKerberosInput)(nil)).Elem(), UserFederationKerberosArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserFederationKerberosPtrInput)(nil)).Elem(), UserFederationKerberosArgs{})
 	pulumi.RegisterOutputType(UserFederationCacheOutput{})
 	pulumi.RegisterOutputType(UserFederationCachePtrOutput{})
 	pulumi.RegisterOutputType(UserFederationKerberosOutput{})

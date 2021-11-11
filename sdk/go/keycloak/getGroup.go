@@ -4,6 +4,9 @@
 package keycloak
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -31,11 +34,11 @@ import (
 // 		}
 // 		_, err = keycloak.NewGroupRoles(ctx, "groupRoles", &keycloak.GroupRolesArgs{
 // 			RealmId: realm.ID(),
-// 			GroupId: group.ApplyT(func(group keycloak.LookupGroupResult) (string, error) {
+// 			GroupId: group.ApplyT(func(group GetGroupResult) (string, error) {
 // 				return group.Id, nil
 // 			}).(pulumi.StringOutput),
 // 			RoleIds: pulumi.StringArray{
-// 				offlineAccess.ApplyT(func(offlineAccess keycloak.LookupRoleResult) (string, error) {
+// 				offlineAccess.ApplyT(func(offlineAccess GetRoleResult) (string, error) {
 // 					return offlineAccess.Id, nil
 // 				}).(pulumi.StringOutput),
 // 			},
@@ -73,4 +76,69 @@ type LookupGroupResult struct {
 	ParentId string `pulumi:"parentId"`
 	Path     string `pulumi:"path"`
 	RealmId  string `pulumi:"realmId"`
+}
+
+func LookupGroupOutput(ctx *pulumi.Context, args LookupGroupOutputArgs, opts ...pulumi.InvokeOption) LookupGroupResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupGroupResult, error) {
+			args := v.(LookupGroupArgs)
+			r, err := LookupGroup(ctx, &args, opts...)
+			return *r, err
+		}).(LookupGroupResultOutput)
+}
+
+// A collection of arguments for invoking getGroup.
+type LookupGroupOutputArgs struct {
+	// The name of the group. If there are multiple groups match `name`, the first result will be returned.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The realm this group exists within.
+	RealmId pulumi.StringInput `pulumi:"realmId"`
+}
+
+func (LookupGroupOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupGroupArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getGroup.
+type LookupGroupResultOutput struct{ *pulumi.OutputState }
+
+func (LookupGroupResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupGroupResult)(nil)).Elem()
+}
+
+func (o LookupGroupResultOutput) ToLookupGroupResultOutput() LookupGroupResultOutput {
+	return o
+}
+
+func (o LookupGroupResultOutput) ToLookupGroupResultOutputWithContext(ctx context.Context) LookupGroupResultOutput {
+	return o
+}
+
+func (o LookupGroupResultOutput) Attributes() pulumi.MapOutput {
+	return o.ApplyT(func(v LookupGroupResult) map[string]interface{} { return v.Attributes }).(pulumi.MapOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupGroupResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGroupResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupGroupResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGroupResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupGroupResultOutput) ParentId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGroupResult) string { return v.ParentId }).(pulumi.StringOutput)
+}
+
+func (o LookupGroupResultOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGroupResult) string { return v.Path }).(pulumi.StringOutput)
+}
+
+func (o LookupGroupResultOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGroupResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupGroupResultOutput{})
 }

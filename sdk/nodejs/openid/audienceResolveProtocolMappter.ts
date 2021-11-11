@@ -149,19 +149,19 @@ export interface AudienceResolveProtocolMappterState {
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    readonly clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    readonly clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string>;
     /**
      * The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The realm this protocol mapper exists within.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
 }
 
 /**
@@ -171,17 +171,17 @@ export interface AudienceResolveProtocolMappterArgs {
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    readonly clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    readonly clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string>;
     /**
      * The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The realm this protocol mapper exists within.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
 }

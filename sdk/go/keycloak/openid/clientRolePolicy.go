@@ -179,7 +179,7 @@ type ClientRolePolicyArrayInput interface {
 type ClientRolePolicyArray []ClientRolePolicyInput
 
 func (ClientRolePolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ClientRolePolicy)(nil))
+	return reflect.TypeOf((*[]*ClientRolePolicy)(nil)).Elem()
 }
 
 func (i ClientRolePolicyArray) ToClientRolePolicyArrayOutput() ClientRolePolicyArrayOutput {
@@ -204,7 +204,7 @@ type ClientRolePolicyMapInput interface {
 type ClientRolePolicyMap map[string]ClientRolePolicyInput
 
 func (ClientRolePolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ClientRolePolicy)(nil))
+	return reflect.TypeOf((*map[string]*ClientRolePolicy)(nil)).Elem()
 }
 
 func (i ClientRolePolicyMap) ToClientRolePolicyMapOutput() ClientRolePolicyMapOutput {
@@ -215,9 +215,7 @@ func (i ClientRolePolicyMap) ToClientRolePolicyMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(ClientRolePolicyMapOutput)
 }
 
-type ClientRolePolicyOutput struct {
-	*pulumi.OutputState
-}
+type ClientRolePolicyOutput struct{ *pulumi.OutputState }
 
 func (ClientRolePolicyOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ClientRolePolicy)(nil))
@@ -236,14 +234,12 @@ func (o ClientRolePolicyOutput) ToClientRolePolicyPtrOutput() ClientRolePolicyPt
 }
 
 func (o ClientRolePolicyOutput) ToClientRolePolicyPtrOutputWithContext(ctx context.Context) ClientRolePolicyPtrOutput {
-	return o.ApplyT(func(v ClientRolePolicy) *ClientRolePolicy {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientRolePolicy) *ClientRolePolicy {
 		return &v
 	}).(ClientRolePolicyPtrOutput)
 }
 
-type ClientRolePolicyPtrOutput struct {
-	*pulumi.OutputState
-}
+type ClientRolePolicyPtrOutput struct{ *pulumi.OutputState }
 
 func (ClientRolePolicyPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ClientRolePolicy)(nil))
@@ -255,6 +251,16 @@ func (o ClientRolePolicyPtrOutput) ToClientRolePolicyPtrOutput() ClientRolePolic
 
 func (o ClientRolePolicyPtrOutput) ToClientRolePolicyPtrOutputWithContext(ctx context.Context) ClientRolePolicyPtrOutput {
 	return o
+}
+
+func (o ClientRolePolicyPtrOutput) Elem() ClientRolePolicyOutput {
+	return o.ApplyT(func(v *ClientRolePolicy) ClientRolePolicy {
+		if v != nil {
+			return *v
+		}
+		var ret ClientRolePolicy
+		return ret
+	}).(ClientRolePolicyOutput)
 }
 
 type ClientRolePolicyArrayOutput struct{ *pulumi.OutputState }
@@ -298,6 +304,10 @@ func (o ClientRolePolicyMapOutput) MapIndex(k pulumi.StringInput) ClientRolePoli
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientRolePolicyInput)(nil)).Elem(), &ClientRolePolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientRolePolicyPtrInput)(nil)).Elem(), &ClientRolePolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientRolePolicyArrayInput)(nil)).Elem(), ClientRolePolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientRolePolicyMapInput)(nil)).Elem(), ClientRolePolicyMap{})
 	pulumi.RegisterOutputType(ClientRolePolicyOutput{})
 	pulumi.RegisterOutputType(ClientRolePolicyPtrOutput{})
 	pulumi.RegisterOutputType(ClientRolePolicyArrayOutput{})

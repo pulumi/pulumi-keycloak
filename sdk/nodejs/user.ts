@@ -178,40 +178,40 @@ export interface UserState {
     /**
      * A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
-    readonly attributes?: pulumi.Input<{[key: string]: any}>;
+    attributes?: pulumi.Input<{[key: string]: any}>;
     /**
      * The user's email.
      */
-    readonly email?: pulumi.Input<string>;
+    email?: pulumi.Input<string>;
     /**
      * Whether the email address was validated or not. Default to `false`.
      */
-    readonly emailVerified?: pulumi.Input<boolean>;
+    emailVerified?: pulumi.Input<boolean>;
     /**
      * When false, this user cannot log in. Defaults to `true`.
      */
-    readonly enabled?: pulumi.Input<boolean>;
-    readonly federatedIdentities?: pulumi.Input<pulumi.Input<inputs.UserFederatedIdentity>[]>;
+    enabled?: pulumi.Input<boolean>;
+    federatedIdentities?: pulumi.Input<pulumi.Input<inputs.UserFederatedIdentity>[]>;
     /**
      * The user's first name.
      */
-    readonly firstName?: pulumi.Input<string>;
+    firstName?: pulumi.Input<string>;
     /**
      * When given, the user's initial password will be set. This attribute is only respected during initial user creation.
      */
-    readonly initialPassword?: pulumi.Input<inputs.UserInitialPassword>;
+    initialPassword?: pulumi.Input<inputs.UserInitialPassword>;
     /**
      * The user's last name.
      */
-    readonly lastName?: pulumi.Input<string>;
+    lastName?: pulumi.Input<string>;
     /**
      * The realm this user belongs to.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
     /**
      * The unique username of this user.
      */
-    readonly username?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
 }
 
 /**
@@ -221,38 +221,38 @@ export interface UserArgs {
     /**
      * A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
-    readonly attributes?: pulumi.Input<{[key: string]: any}>;
+    attributes?: pulumi.Input<{[key: string]: any}>;
     /**
      * The user's email.
      */
-    readonly email?: pulumi.Input<string>;
+    email?: pulumi.Input<string>;
     /**
      * Whether the email address was validated or not. Default to `false`.
      */
-    readonly emailVerified?: pulumi.Input<boolean>;
+    emailVerified?: pulumi.Input<boolean>;
     /**
      * When false, this user cannot log in. Defaults to `true`.
      */
-    readonly enabled?: pulumi.Input<boolean>;
-    readonly federatedIdentities?: pulumi.Input<pulumi.Input<inputs.UserFederatedIdentity>[]>;
+    enabled?: pulumi.Input<boolean>;
+    federatedIdentities?: pulumi.Input<pulumi.Input<inputs.UserFederatedIdentity>[]>;
     /**
      * The user's first name.
      */
-    readonly firstName?: pulumi.Input<string>;
+    firstName?: pulumi.Input<string>;
     /**
      * When given, the user's initial password will be set. This attribute is only respected during initial user creation.
      */
-    readonly initialPassword?: pulumi.Input<inputs.UserInitialPassword>;
+    initialPassword?: pulumi.Input<inputs.UserInitialPassword>;
     /**
      * The user's last name.
      */
-    readonly lastName?: pulumi.Input<string>;
+    lastName?: pulumi.Input<string>;
     /**
      * The realm this user belongs to.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
     /**
      * The unique username of this user.
      */
-    readonly username: pulumi.Input<string>;
+    username: pulumi.Input<string>;
 }

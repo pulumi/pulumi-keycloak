@@ -96,30 +96,30 @@ export class ClientAuthorizationResource extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ClientAuthorizationResource resources.
  */
 export interface ClientAuthorizationResourceState {
-    readonly attributes?: pulumi.Input<{[key: string]: any}>;
-    readonly displayName?: pulumi.Input<string>;
-    readonly iconUri?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
-    readonly ownerManagedAccess?: pulumi.Input<boolean>;
-    readonly realmId?: pulumi.Input<string>;
-    readonly resourceServerId?: pulumi.Input<string>;
-    readonly scopes?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly type?: pulumi.Input<string>;
-    readonly uris?: pulumi.Input<pulumi.Input<string>[]>;
+    attributes?: pulumi.Input<{[key: string]: any}>;
+    displayName?: pulumi.Input<string>;
+    iconUri?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    ownerManagedAccess?: pulumi.Input<boolean>;
+    realmId?: pulumi.Input<string>;
+    resourceServerId?: pulumi.Input<string>;
+    scopes?: pulumi.Input<pulumi.Input<string>[]>;
+    type?: pulumi.Input<string>;
+    uris?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
  * The set of arguments for constructing a ClientAuthorizationResource resource.
  */
 export interface ClientAuthorizationResourceArgs {
-    readonly attributes?: pulumi.Input<{[key: string]: any}>;
-    readonly displayName?: pulumi.Input<string>;
-    readonly iconUri?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
-    readonly ownerManagedAccess?: pulumi.Input<boolean>;
-    readonly realmId: pulumi.Input<string>;
-    readonly resourceServerId: pulumi.Input<string>;
-    readonly scopes?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly type?: pulumi.Input<string>;
-    readonly uris?: pulumi.Input<pulumi.Input<string>[]>;
+    attributes?: pulumi.Input<{[key: string]: any}>;
+    displayName?: pulumi.Input<string>;
+    iconUri?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    ownerManagedAccess?: pulumi.Input<boolean>;
+    realmId: pulumi.Input<string>;
+    resourceServerId: pulumi.Input<string>;
+    scopes?: pulumi.Input<pulumi.Input<string>[]>;
+    type?: pulumi.Input<string>;
+    uris?: pulumi.Input<pulumi.Input<string>[]>;
 }

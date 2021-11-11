@@ -10,20 +10,20 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class GetRealmInternationalizationArgs : Pulumi.InvokeArgs
+    public sealed class GetRealmInternationalizationInputArgs : Pulumi.ResourceArgs
     {
         [Input("defaultLocale", required: true)]
-        public string DefaultLocale { get; set; } = null!;
+        public Input<string> DefaultLocale { get; set; } = null!;
 
         [Input("supportedLocales", required: true)]
-        private List<string>? _supportedLocales;
-        public List<string> SupportedLocales
+        private InputList<string>? _supportedLocales;
+        public InputList<string> SupportedLocales
         {
-            get => _supportedLocales ?? (_supportedLocales = new List<string>());
+            get => _supportedLocales ?? (_supportedLocales = new InputList<string>());
             set => _supportedLocales = value;
         }
 
-        public GetRealmInternationalizationArgs()
+        public GetRealmInternationalizationInputArgs()
         {
         }
     }

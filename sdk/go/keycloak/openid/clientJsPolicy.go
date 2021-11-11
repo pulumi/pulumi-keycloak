@@ -179,7 +179,7 @@ type ClientJsPolicyArrayInput interface {
 type ClientJsPolicyArray []ClientJsPolicyInput
 
 func (ClientJsPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ClientJsPolicy)(nil))
+	return reflect.TypeOf((*[]*ClientJsPolicy)(nil)).Elem()
 }
 
 func (i ClientJsPolicyArray) ToClientJsPolicyArrayOutput() ClientJsPolicyArrayOutput {
@@ -204,7 +204,7 @@ type ClientJsPolicyMapInput interface {
 type ClientJsPolicyMap map[string]ClientJsPolicyInput
 
 func (ClientJsPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ClientJsPolicy)(nil))
+	return reflect.TypeOf((*map[string]*ClientJsPolicy)(nil)).Elem()
 }
 
 func (i ClientJsPolicyMap) ToClientJsPolicyMapOutput() ClientJsPolicyMapOutput {
@@ -215,9 +215,7 @@ func (i ClientJsPolicyMap) ToClientJsPolicyMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(ClientJsPolicyMapOutput)
 }
 
-type ClientJsPolicyOutput struct {
-	*pulumi.OutputState
-}
+type ClientJsPolicyOutput struct{ *pulumi.OutputState }
 
 func (ClientJsPolicyOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ClientJsPolicy)(nil))
@@ -236,14 +234,12 @@ func (o ClientJsPolicyOutput) ToClientJsPolicyPtrOutput() ClientJsPolicyPtrOutpu
 }
 
 func (o ClientJsPolicyOutput) ToClientJsPolicyPtrOutputWithContext(ctx context.Context) ClientJsPolicyPtrOutput {
-	return o.ApplyT(func(v ClientJsPolicy) *ClientJsPolicy {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientJsPolicy) *ClientJsPolicy {
 		return &v
 	}).(ClientJsPolicyPtrOutput)
 }
 
-type ClientJsPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
+type ClientJsPolicyPtrOutput struct{ *pulumi.OutputState }
 
 func (ClientJsPolicyPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ClientJsPolicy)(nil))
@@ -255,6 +251,16 @@ func (o ClientJsPolicyPtrOutput) ToClientJsPolicyPtrOutput() ClientJsPolicyPtrOu
 
 func (o ClientJsPolicyPtrOutput) ToClientJsPolicyPtrOutputWithContext(ctx context.Context) ClientJsPolicyPtrOutput {
 	return o
+}
+
+func (o ClientJsPolicyPtrOutput) Elem() ClientJsPolicyOutput {
+	return o.ApplyT(func(v *ClientJsPolicy) ClientJsPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret ClientJsPolicy
+		return ret
+	}).(ClientJsPolicyOutput)
 }
 
 type ClientJsPolicyArrayOutput struct{ *pulumi.OutputState }
@@ -298,6 +304,10 @@ func (o ClientJsPolicyMapOutput) MapIndex(k pulumi.StringInput) ClientJsPolicyOu
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientJsPolicyInput)(nil)).Elem(), &ClientJsPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientJsPolicyPtrInput)(nil)).Elem(), &ClientJsPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientJsPolicyArrayInput)(nil)).Elem(), ClientJsPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientJsPolicyMapInput)(nil)).Elem(), ClientJsPolicyMap{})
 	pulumi.RegisterOutputType(ClientJsPolicyOutput{})
 	pulumi.RegisterOutputType(ClientJsPolicyPtrOutput{})
 	pulumi.RegisterOutputType(ClientJsPolicyArrayOutput{})

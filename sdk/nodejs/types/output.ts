@@ -434,6 +434,7 @@ export interface UsersPermissionsViewScope {
     description?: string;
     policies?: string[];
 }
+
 export namespace ldap {
     export interface UserFederationCache {
         /**
@@ -476,6 +477,7 @@ export namespace ldap {
          */
         useKerberosForPasswordAuthentication?: boolean;
     }
+
 }
 
 export namespace openid {
@@ -579,6 +581,7 @@ export namespace openid {
         userId: string;
         userName: string;
     }
+
 }
 
 export namespace saml {
@@ -597,4 +600,5 @@ export namespace saml {
         browserId: string;
         directGrantId: string;
     }
+
 }

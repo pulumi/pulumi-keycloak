@@ -167,35 +167,35 @@ export interface UserPropertyProtocolMapperState {
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    readonly clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    readonly clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string>;
     /**
      * An optional human-friendly name for this attribute.
      */
-    readonly friendlyName?: pulumi.Input<string>;
+    friendlyName?: pulumi.Input<string>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The realm this protocol mapper exists within.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
     /**
      * The name of the SAML attribute.
      */
-    readonly samlAttributeName?: pulumi.Input<string>;
+    samlAttributeName?: pulumi.Input<string>;
     /**
      * The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
      */
-    readonly samlAttributeNameFormat?: pulumi.Input<string>;
+    samlAttributeNameFormat?: pulumi.Input<string>;
     /**
      * The property of the Keycloak user model to map.
      */
-    readonly userProperty?: pulumi.Input<string>;
+    userProperty?: pulumi.Input<string>;
 }
 
 /**
@@ -205,33 +205,33 @@ export interface UserPropertyProtocolMapperArgs {
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    readonly clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    readonly clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string>;
     /**
      * An optional human-friendly name for this attribute.
      */
-    readonly friendlyName?: pulumi.Input<string>;
+    friendlyName?: pulumi.Input<string>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The realm this protocol mapper exists within.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
     /**
      * The name of the SAML attribute.
      */
-    readonly samlAttributeName: pulumi.Input<string>;
+    samlAttributeName: pulumi.Input<string>;
     /**
      * The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
      */
-    readonly samlAttributeNameFormat: pulumi.Input<string>;
+    samlAttributeNameFormat: pulumi.Input<string>;
     /**
      * The property of the Keycloak user model to map.
      */
-    readonly userProperty: pulumi.Input<string>;
+    userProperty: pulumi.Input<string>;
 }

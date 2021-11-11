@@ -238,7 +238,7 @@ type MsadUserAccountControlMapperArrayInput interface {
 type MsadUserAccountControlMapperArray []MsadUserAccountControlMapperInput
 
 func (MsadUserAccountControlMapperArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*MsadUserAccountControlMapper)(nil))
+	return reflect.TypeOf((*[]*MsadUserAccountControlMapper)(nil)).Elem()
 }
 
 func (i MsadUserAccountControlMapperArray) ToMsadUserAccountControlMapperArrayOutput() MsadUserAccountControlMapperArrayOutput {
@@ -263,7 +263,7 @@ type MsadUserAccountControlMapperMapInput interface {
 type MsadUserAccountControlMapperMap map[string]MsadUserAccountControlMapperInput
 
 func (MsadUserAccountControlMapperMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*MsadUserAccountControlMapper)(nil))
+	return reflect.TypeOf((*map[string]*MsadUserAccountControlMapper)(nil)).Elem()
 }
 
 func (i MsadUserAccountControlMapperMap) ToMsadUserAccountControlMapperMapOutput() MsadUserAccountControlMapperMapOutput {
@@ -274,9 +274,7 @@ func (i MsadUserAccountControlMapperMap) ToMsadUserAccountControlMapperMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(MsadUserAccountControlMapperMapOutput)
 }
 
-type MsadUserAccountControlMapperOutput struct {
-	*pulumi.OutputState
-}
+type MsadUserAccountControlMapperOutput struct{ *pulumi.OutputState }
 
 func (MsadUserAccountControlMapperOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*MsadUserAccountControlMapper)(nil))
@@ -295,14 +293,12 @@ func (o MsadUserAccountControlMapperOutput) ToMsadUserAccountControlMapperPtrOut
 }
 
 func (o MsadUserAccountControlMapperOutput) ToMsadUserAccountControlMapperPtrOutputWithContext(ctx context.Context) MsadUserAccountControlMapperPtrOutput {
-	return o.ApplyT(func(v MsadUserAccountControlMapper) *MsadUserAccountControlMapper {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MsadUserAccountControlMapper) *MsadUserAccountControlMapper {
 		return &v
 	}).(MsadUserAccountControlMapperPtrOutput)
 }
 
-type MsadUserAccountControlMapperPtrOutput struct {
-	*pulumi.OutputState
-}
+type MsadUserAccountControlMapperPtrOutput struct{ *pulumi.OutputState }
 
 func (MsadUserAccountControlMapperPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**MsadUserAccountControlMapper)(nil))
@@ -314,6 +310,16 @@ func (o MsadUserAccountControlMapperPtrOutput) ToMsadUserAccountControlMapperPtr
 
 func (o MsadUserAccountControlMapperPtrOutput) ToMsadUserAccountControlMapperPtrOutputWithContext(ctx context.Context) MsadUserAccountControlMapperPtrOutput {
 	return o
+}
+
+func (o MsadUserAccountControlMapperPtrOutput) Elem() MsadUserAccountControlMapperOutput {
+	return o.ApplyT(func(v *MsadUserAccountControlMapper) MsadUserAccountControlMapper {
+		if v != nil {
+			return *v
+		}
+		var ret MsadUserAccountControlMapper
+		return ret
+	}).(MsadUserAccountControlMapperOutput)
 }
 
 type MsadUserAccountControlMapperArrayOutput struct{ *pulumi.OutputState }
@@ -357,6 +363,10 @@ func (o MsadUserAccountControlMapperMapOutput) MapIndex(k pulumi.StringInput) Ms
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*MsadUserAccountControlMapperInput)(nil)).Elem(), &MsadUserAccountControlMapper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MsadUserAccountControlMapperPtrInput)(nil)).Elem(), &MsadUserAccountControlMapper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MsadUserAccountControlMapperArrayInput)(nil)).Elem(), MsadUserAccountControlMapperArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MsadUserAccountControlMapperMapInput)(nil)).Elem(), MsadUserAccountControlMapperMap{})
 	pulumi.RegisterOutputType(MsadUserAccountControlMapperOutput{})
 	pulumi.RegisterOutputType(MsadUserAccountControlMapperPtrOutput{})
 	pulumi.RegisterOutputType(MsadUserAccountControlMapperArrayOutput{})

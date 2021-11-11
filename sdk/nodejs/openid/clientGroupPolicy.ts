@@ -97,26 +97,26 @@ export class ClientGroupPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ClientGroupPolicy resources.
  */
 export interface ClientGroupPolicyState {
-    readonly decisionStrategy?: pulumi.Input<string>;
-    readonly description?: pulumi.Input<string>;
-    readonly groups?: pulumi.Input<pulumi.Input<inputs.openid.ClientGroupPolicyGroup>[]>;
-    readonly groupsClaim?: pulumi.Input<string>;
-    readonly logic?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
-    readonly realmId?: pulumi.Input<string>;
-    readonly resourceServerId?: pulumi.Input<string>;
+    decisionStrategy?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    groups?: pulumi.Input<pulumi.Input<inputs.openid.ClientGroupPolicyGroup>[]>;
+    groupsClaim?: pulumi.Input<string>;
+    logic?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
+    resourceServerId?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a ClientGroupPolicy resource.
  */
 export interface ClientGroupPolicyArgs {
-    readonly decisionStrategy: pulumi.Input<string>;
-    readonly description?: pulumi.Input<string>;
-    readonly groups: pulumi.Input<pulumi.Input<inputs.openid.ClientGroupPolicyGroup>[]>;
-    readonly groupsClaim?: pulumi.Input<string>;
-    readonly logic?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
-    readonly realmId: pulumi.Input<string>;
-    readonly resourceServerId: pulumi.Input<string>;
+    decisionStrategy: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    groups: pulumi.Input<pulumi.Input<inputs.openid.ClientGroupPolicyGroup>[]>;
+    groupsClaim?: pulumi.Input<string>;
+    logic?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
+    resourceServerId: pulumi.Input<string>;
 }

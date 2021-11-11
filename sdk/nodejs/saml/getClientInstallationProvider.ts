@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -36,7 +35,7 @@ import * as utilities from "../utilities";
  *     clientId: samlClientId,
  *     providerId: "saml-idp-descriptor",
  * }));
- * const _default = new aws.iam.SamlProvider("default", {samlMetadataDocument: samlIdpDescriptor.value});
+ * const _default = new aws.iam.SamlProvider("default", {samlMetadataDocument: samlIdpDescriptor.apply(samlIdpDescriptor => samlIdpDescriptor.value)});
  * ```
  */
 export function getClientInstallationProvider(args: GetClientInstallationProviderArgs, opts?: pulumi.InvokeOptions): Promise<GetClientInstallationProviderResult> {
@@ -61,15 +60,15 @@ export interface GetClientInstallationProviderArgs {
     /**
      * The ID of the SAML client. The `id` attribute of a `keycloakClient` resource should be used here.
      */
-    readonly clientId: string;
+    clientId: string;
     /**
      * The ID of the SAML installation provider. Could be one of `saml-idp-descriptor`, `keycloak-saml`, `saml-sp-descriptor`, `keycloak-saml-subsystem`, `mod-auth-mellon`, etc.
      */
-    readonly providerId: string;
+    providerId: string;
     /**
      * The realm that the SAML client exists within.
      */
-    readonly realmId: string;
+    realmId: string;
 }
 
 /**
@@ -87,4 +86,26 @@ export interface GetClientInstallationProviderResult {
      * (Computed) The returned document needed for SAML installation.
      */
     readonly value: string;
+}
+
+export function getClientInstallationProviderOutput(args: GetClientInstallationProviderOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientInstallationProviderResult> {
+    return pulumi.output(args).apply(a => getClientInstallationProvider(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getClientInstallationProvider.
+ */
+export interface GetClientInstallationProviderOutputArgs {
+    /**
+     * The ID of the SAML client. The `id` attribute of a `keycloakClient` resource should be used here.
+     */
+    clientId: pulumi.Input<string>;
+    /**
+     * The ID of the SAML installation provider. Could be one of `saml-idp-descriptor`, `keycloak-saml`, `saml-sp-descriptor`, `keycloak-saml-subsystem`, `mod-auth-mellon`, etc.
+     */
+    providerId: pulumi.Input<string>;
+    /**
+     * The realm that the SAML client exists within.
+     */
+    realmId: pulumi.Input<string>;
 }

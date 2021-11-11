@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -45,11 +44,11 @@ export interface GetUserArgs {
     /**
      * The realm this user belongs to.
      */
-    readonly realmId: string;
+    realmId: string;
     /**
      * The unique username of this user.
      */
-    readonly username: string;
+    username: string;
 }
 
 /**
@@ -90,4 +89,22 @@ export interface GetUserResult {
     readonly lastName: string;
     readonly realmId: string;
     readonly username: string;
+}
+
+export function getUserOutput(args: GetUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserResult> {
+    return pulumi.output(args).apply(a => getUser(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getUser.
+ */
+export interface GetUserOutputArgs {
+    /**
+     * The realm this user belongs to.
+     */
+    realmId: pulumi.Input<string>;
+    /**
+     * The unique username of this user.
+     */
+    username: pulumi.Input<string>;
 }

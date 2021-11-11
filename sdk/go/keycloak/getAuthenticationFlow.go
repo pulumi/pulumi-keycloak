@@ -4,6 +4,9 @@
 package keycloak
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -55,4 +58,57 @@ type GetAuthenticationFlowResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id      string `pulumi:"id"`
 	RealmId string `pulumi:"realmId"`
+}
+
+func GetAuthenticationFlowOutput(ctx *pulumi.Context, args GetAuthenticationFlowOutputArgs, opts ...pulumi.InvokeOption) GetAuthenticationFlowResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetAuthenticationFlowResult, error) {
+			args := v.(GetAuthenticationFlowArgs)
+			r, err := GetAuthenticationFlow(ctx, &args, opts...)
+			return *r, err
+		}).(GetAuthenticationFlowResultOutput)
+}
+
+// A collection of arguments for invoking getAuthenticationFlow.
+type GetAuthenticationFlowOutputArgs struct {
+	// The alias of the flow.
+	Alias pulumi.StringInput `pulumi:"alias"`
+	// The realm the authentication flow exists in.
+	RealmId pulumi.StringInput `pulumi:"realmId"`
+}
+
+func (GetAuthenticationFlowOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAuthenticationFlowArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getAuthenticationFlow.
+type GetAuthenticationFlowResultOutput struct{ *pulumi.OutputState }
+
+func (GetAuthenticationFlowResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAuthenticationFlowResult)(nil)).Elem()
+}
+
+func (o GetAuthenticationFlowResultOutput) ToGetAuthenticationFlowResultOutput() GetAuthenticationFlowResultOutput {
+	return o
+}
+
+func (o GetAuthenticationFlowResultOutput) ToGetAuthenticationFlowResultOutputWithContext(ctx context.Context) GetAuthenticationFlowResultOutput {
+	return o
+}
+
+func (o GetAuthenticationFlowResultOutput) Alias() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAuthenticationFlowResult) string { return v.Alias }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetAuthenticationFlowResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAuthenticationFlowResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetAuthenticationFlowResultOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAuthenticationFlowResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetAuthenticationFlowResultOutput{})
 }

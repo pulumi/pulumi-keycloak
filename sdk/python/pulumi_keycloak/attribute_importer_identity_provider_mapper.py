@@ -326,7 +326,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
             identity_provider_alias=oidc_identity_provider.alias,
             user_attribute="email",
             extra_config={
-                "sync_mode": "INHERIT",
+                "syncMode": "INHERIT",
             })
         ```
 
@@ -388,7 +388,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
             identity_provider_alias=oidc_identity_provider.alias,
             user_attribute="email",
             extra_config={
-                "sync_mode": "INHERIT",
+                "syncMode": "INHERIT",
             })
         ```
 

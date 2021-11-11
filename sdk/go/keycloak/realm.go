@@ -30,13 +30,13 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
 // 			AccessCodeLifespan: pulumi.String("1h"),
-// 			Attributes: pulumi.StringMap{
-// 				"mycustomAttribute": pulumi.String("myCustomValue"),
+// 			Attributes: pulumi.AnyMap{
+// 				"mycustomAttribute": pulumi.Any("myCustomValue"),
 // 			},
 // 			DisplayName:     pulumi.String("my realm"),
 // 			DisplayNameHtml: pulumi.String("<b>my realm</b>"),
 // 			Enabled:         pulumi.Bool(true),
-// 			Internationalization: &keycloak.RealmInternationalizationArgs{
+// 			Internationalization: &RealmInternationalizationArgs{
 // 				DefaultLocale: pulumi.String("en"),
 // 				SupportedLocales: pulumi.StringArray{
 // 					pulumi.String("en"),
@@ -47,8 +47,8 @@ import (
 // 			LoginTheme:     pulumi.String("base"),
 // 			PasswordPolicy: pulumi.String("upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername"),
 // 			Realm:          pulumi.String("my-realm"),
-// 			SecurityDefenses: &keycloak.RealmSecurityDefensesArgs{
-// 				BruteForceDetection: &keycloak.RealmSecurityDefensesBruteForceDetectionArgs{
+// 			SecurityDefenses: &RealmSecurityDefensesArgs{
+// 				BruteForceDetection: &RealmSecurityDefensesBruteForceDetectionArgs{
 // 					FailureResetTimeSeconds:      pulumi.Int(43200),
 // 					MaxFailureWaitSeconds:        pulumi.Int(900),
 // 					MaxLoginFailures:             pulumi.Int(30),
@@ -57,7 +57,7 @@ import (
 // 					QuickLoginCheckMilliSeconds:  pulumi.Int(1000),
 // 					WaitIncrementSeconds:         pulumi.Int(60),
 // 				},
-// 				Headers: &keycloak.RealmSecurityDefensesHeadersArgs{
+// 				Headers: &RealmSecurityDefensesHeadersArgs{
 // 					ContentSecurityPolicy:           pulumi.String("frame-src 'self'; frame-ancestors 'self'; object-src 'none';"),
 // 					ContentSecurityPolicyReportOnly: pulumi.String(""),
 // 					StrictTransportSecurity:         pulumi.String("max-age=31536000; includeSubDomains"),
@@ -67,8 +67,8 @@ import (
 // 					XXssProtection:                  pulumi.String("1; mode=block"),
 // 				},
 // 			},
-// 			SmtpServer: &keycloak.RealmSmtpServerArgs{
-// 				Auth: &keycloak.RealmSmtpServerAuthArgs{
+// 			SmtpServer: &RealmSmtpServerArgs{
+// 				Auth: &RealmSmtpServerAuthArgs{
 // 					Password: pulumi.String("password"),
 // 					Username: pulumi.String("tom"),
 // 				},
@@ -76,7 +76,7 @@ import (
 // 				Host: pulumi.String("smtp.example.com"),
 // 			},
 // 			SslRequired: pulumi.String("external"),
-// 			WebAuthnPolicy: &keycloak.RealmWebAuthnPolicyArgs{
+// 			WebAuthnPolicy: &RealmWebAuthnPolicyArgs{
 // 				RelyingPartyEntityName: pulumi.String("Example"),
 // 				RelyingPartyId:         pulumi.String("keycloak.example.com"),
 // 				SignatureAlgorithms: pulumi.StringArray{
@@ -696,7 +696,7 @@ type RealmArrayInput interface {
 type RealmArray []RealmInput
 
 func (RealmArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*Realm)(nil))
+	return reflect.TypeOf((*[]*Realm)(nil)).Elem()
 }
 
 func (i RealmArray) ToRealmArrayOutput() RealmArrayOutput {
@@ -721,7 +721,7 @@ type RealmMapInput interface {
 type RealmMap map[string]RealmInput
 
 func (RealmMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*Realm)(nil))
+	return reflect.TypeOf((*map[string]*Realm)(nil)).Elem()
 }
 
 func (i RealmMap) ToRealmMapOutput() RealmMapOutput {
@@ -732,9 +732,7 @@ func (i RealmMap) ToRealmMapOutputWithContext(ctx context.Context) RealmMapOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(RealmMapOutput)
 }
 
-type RealmOutput struct {
-	*pulumi.OutputState
-}
+type RealmOutput struct{ *pulumi.OutputState }
 
 func (RealmOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Realm)(nil))
@@ -753,14 +751,12 @@ func (o RealmOutput) ToRealmPtrOutput() RealmPtrOutput {
 }
 
 func (o RealmOutput) ToRealmPtrOutputWithContext(ctx context.Context) RealmPtrOutput {
-	return o.ApplyT(func(v Realm) *Realm {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Realm) *Realm {
 		return &v
 	}).(RealmPtrOutput)
 }
 
-type RealmPtrOutput struct {
-	*pulumi.OutputState
-}
+type RealmPtrOutput struct{ *pulumi.OutputState }
 
 func (RealmPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Realm)(nil))
@@ -772,6 +768,16 @@ func (o RealmPtrOutput) ToRealmPtrOutput() RealmPtrOutput {
 
 func (o RealmPtrOutput) ToRealmPtrOutputWithContext(ctx context.Context) RealmPtrOutput {
 	return o
+}
+
+func (o RealmPtrOutput) Elem() RealmOutput {
+	return o.ApplyT(func(v *Realm) Realm {
+		if v != nil {
+			return *v
+		}
+		var ret Realm
+		return ret
+	}).(RealmOutput)
 }
 
 type RealmArrayOutput struct{ *pulumi.OutputState }
@@ -815,6 +821,10 @@ func (o RealmMapOutput) MapIndex(k pulumi.StringInput) RealmOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmInput)(nil)).Elem(), &Realm{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmPtrInput)(nil)).Elem(), &Realm{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmArrayInput)(nil)).Elem(), RealmArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmMapInput)(nil)).Elem(), RealmMap{})
 	pulumi.RegisterOutputType(RealmOutput{})
 	pulumi.RegisterOutputType(RealmPtrOutput{})
 	pulumi.RegisterOutputType(RealmArrayOutput{})

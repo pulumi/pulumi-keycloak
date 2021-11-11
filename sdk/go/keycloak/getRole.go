@@ -4,6 +4,9 @@
 package keycloak
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -39,7 +42,7 @@ import (
 // 			RealmId: realm.ID(),
 // 			GroupId: group.ID(),
 // 			RoleIds: pulumi.StringArray{
-// 				offlineAccess.ApplyT(func(offlineAccess keycloak.LookupRoleResult) (string, error) {
+// 				offlineAccess.ApplyT(func(offlineAccess GetRoleResult) (string, error) {
 // 					return offlineAccess.Id, nil
 // 				}).(pulumi.StringOutput),
 // 			},
@@ -81,4 +84,76 @@ type LookupRoleResult struct {
 	Id      string `pulumi:"id"`
 	Name    string `pulumi:"name"`
 	RealmId string `pulumi:"realmId"`
+}
+
+func LookupRoleOutput(ctx *pulumi.Context, args LookupRoleOutputArgs, opts ...pulumi.InvokeOption) LookupRoleResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupRoleResult, error) {
+			args := v.(LookupRoleArgs)
+			r, err := LookupRole(ctx, &args, opts...)
+			return *r, err
+		}).(LookupRoleResultOutput)
+}
+
+// A collection of arguments for invoking getRole.
+type LookupRoleOutputArgs struct {
+	// When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloakClient` resource should be used here.
+	ClientId pulumi.StringPtrInput `pulumi:"clientId"`
+	// The name of the role.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The realm this role exists within.
+	RealmId pulumi.StringInput `pulumi:"realmId"`
+}
+
+func (LookupRoleOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRoleArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getRole.
+type LookupRoleResultOutput struct{ *pulumi.OutputState }
+
+func (LookupRoleResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRoleResult)(nil)).Elem()
+}
+
+func (o LookupRoleResultOutput) ToLookupRoleResultOutput() LookupRoleResultOutput {
+	return o
+}
+
+func (o LookupRoleResultOutput) ToLookupRoleResultOutputWithContext(ctx context.Context) LookupRoleResultOutput {
+	return o
+}
+
+func (o LookupRoleResultOutput) Attributes() pulumi.MapOutput {
+	return o.ApplyT(func(v LookupRoleResult) map[string]interface{} { return v.Attributes }).(pulumi.MapOutput)
+}
+
+func (o LookupRoleResultOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRoleResult) *string { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupRoleResultOutput) CompositeRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupRoleResult) []string { return v.CompositeRoles }).(pulumi.StringArrayOutput)
+}
+
+// (Computed) The description of the role.
+func (o LookupRoleResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRoleResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupRoleResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRoleResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupRoleResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRoleResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupRoleResultOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRoleResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupRoleResultOutput{})
 }

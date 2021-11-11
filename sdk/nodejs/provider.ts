@@ -25,6 +25,20 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === Provider.__pulumiType;
     }
 
+    public readonly basePath!: pulumi.Output<string | undefined>;
+    public readonly clientId!: pulumi.Output<string>;
+    public readonly clientSecret!: pulumi.Output<string | undefined>;
+    public readonly password!: pulumi.Output<string | undefined>;
+    public readonly realm!: pulumi.Output<string | undefined>;
+    /**
+     * Allows x509 calls using an unknown CA certificate (for development purposes)
+     */
+    public readonly rootCaCertificate!: pulumi.Output<string | undefined>;
+    /**
+     * The base URL of the Keycloak instance, before `/auth`
+     */
+    public readonly url!: pulumi.Output<string>;
+    public readonly username!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -67,32 +81,32 @@ export class Provider extends pulumi.ProviderResource {
  * The set of arguments for constructing a Provider resource.
  */
 export interface ProviderArgs {
-    readonly additionalHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    readonly basePath?: pulumi.Input<string>;
-    readonly clientId: pulumi.Input<string>;
-    readonly clientSecret?: pulumi.Input<string>;
+    additionalHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    basePath?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
     /**
      * Timeout (in seconds) of the Keycloak client
      */
-    readonly clientTimeout?: pulumi.Input<number>;
+    clientTimeout?: pulumi.Input<number>;
     /**
      * Whether or not to login to Keycloak instance on provider initialization
      */
-    readonly initialLogin?: pulumi.Input<boolean>;
-    readonly password?: pulumi.Input<string>;
-    readonly realm?: pulumi.Input<string>;
+    initialLogin?: pulumi.Input<boolean>;
+    password?: pulumi.Input<string>;
+    realm?: pulumi.Input<string>;
     /**
      * Allows x509 calls using an unknown CA certificate (for development purposes)
      */
-    readonly rootCaCertificate?: pulumi.Input<string>;
+    rootCaCertificate?: pulumi.Input<string>;
     /**
      * Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
      * should be avoided.
      */
-    readonly tlsInsecureSkipVerify?: pulumi.Input<boolean>;
+    tlsInsecureSkipVerify?: pulumi.Input<boolean>;
     /**
      * The base URL of the Keycloak instance, before `/auth`
      */
-    readonly url: pulumi.Input<string>;
-    readonly username?: pulumi.Input<string>;
+    url: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
 }

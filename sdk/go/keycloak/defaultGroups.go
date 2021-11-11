@@ -203,7 +203,7 @@ type DefaultGroupsArrayInput interface {
 type DefaultGroupsArray []DefaultGroupsInput
 
 func (DefaultGroupsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*DefaultGroups)(nil))
+	return reflect.TypeOf((*[]*DefaultGroups)(nil)).Elem()
 }
 
 func (i DefaultGroupsArray) ToDefaultGroupsArrayOutput() DefaultGroupsArrayOutput {
@@ -228,7 +228,7 @@ type DefaultGroupsMapInput interface {
 type DefaultGroupsMap map[string]DefaultGroupsInput
 
 func (DefaultGroupsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*DefaultGroups)(nil))
+	return reflect.TypeOf((*map[string]*DefaultGroups)(nil)).Elem()
 }
 
 func (i DefaultGroupsMap) ToDefaultGroupsMapOutput() DefaultGroupsMapOutput {
@@ -239,9 +239,7 @@ func (i DefaultGroupsMap) ToDefaultGroupsMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(DefaultGroupsMapOutput)
 }
 
-type DefaultGroupsOutput struct {
-	*pulumi.OutputState
-}
+type DefaultGroupsOutput struct{ *pulumi.OutputState }
 
 func (DefaultGroupsOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*DefaultGroups)(nil))
@@ -260,14 +258,12 @@ func (o DefaultGroupsOutput) ToDefaultGroupsPtrOutput() DefaultGroupsPtrOutput {
 }
 
 func (o DefaultGroupsOutput) ToDefaultGroupsPtrOutputWithContext(ctx context.Context) DefaultGroupsPtrOutput {
-	return o.ApplyT(func(v DefaultGroups) *DefaultGroups {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DefaultGroups) *DefaultGroups {
 		return &v
 	}).(DefaultGroupsPtrOutput)
 }
 
-type DefaultGroupsPtrOutput struct {
-	*pulumi.OutputState
-}
+type DefaultGroupsPtrOutput struct{ *pulumi.OutputState }
 
 func (DefaultGroupsPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**DefaultGroups)(nil))
@@ -279,6 +275,16 @@ func (o DefaultGroupsPtrOutput) ToDefaultGroupsPtrOutput() DefaultGroupsPtrOutpu
 
 func (o DefaultGroupsPtrOutput) ToDefaultGroupsPtrOutputWithContext(ctx context.Context) DefaultGroupsPtrOutput {
 	return o
+}
+
+func (o DefaultGroupsPtrOutput) Elem() DefaultGroupsOutput {
+	return o.ApplyT(func(v *DefaultGroups) DefaultGroups {
+		if v != nil {
+			return *v
+		}
+		var ret DefaultGroups
+		return ret
+	}).(DefaultGroupsOutput)
 }
 
 type DefaultGroupsArrayOutput struct{ *pulumi.OutputState }
@@ -322,6 +328,10 @@ func (o DefaultGroupsMapOutput) MapIndex(k pulumi.StringInput) DefaultGroupsOutp
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultGroupsInput)(nil)).Elem(), &DefaultGroups{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultGroupsPtrInput)(nil)).Elem(), &DefaultGroups{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultGroupsArrayInput)(nil)).Elem(), DefaultGroupsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultGroupsMapInput)(nil)).Elem(), DefaultGroupsMap{})
 	pulumi.RegisterOutputType(DefaultGroupsOutput{})
 	pulumi.RegisterOutputType(DefaultGroupsPtrOutput{})
 	pulumi.RegisterOutputType(DefaultGroupsArrayOutput{})

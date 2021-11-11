@@ -289,7 +289,7 @@ type ScriptProtocolMapperArrayInput interface {
 type ScriptProtocolMapperArray []ScriptProtocolMapperInput
 
 func (ScriptProtocolMapperArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ScriptProtocolMapper)(nil))
+	return reflect.TypeOf((*[]*ScriptProtocolMapper)(nil)).Elem()
 }
 
 func (i ScriptProtocolMapperArray) ToScriptProtocolMapperArrayOutput() ScriptProtocolMapperArrayOutput {
@@ -314,7 +314,7 @@ type ScriptProtocolMapperMapInput interface {
 type ScriptProtocolMapperMap map[string]ScriptProtocolMapperInput
 
 func (ScriptProtocolMapperMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ScriptProtocolMapper)(nil))
+	return reflect.TypeOf((*map[string]*ScriptProtocolMapper)(nil)).Elem()
 }
 
 func (i ScriptProtocolMapperMap) ToScriptProtocolMapperMapOutput() ScriptProtocolMapperMapOutput {
@@ -325,9 +325,7 @@ func (i ScriptProtocolMapperMap) ToScriptProtocolMapperMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(ScriptProtocolMapperMapOutput)
 }
 
-type ScriptProtocolMapperOutput struct {
-	*pulumi.OutputState
-}
+type ScriptProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (ScriptProtocolMapperOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ScriptProtocolMapper)(nil))
@@ -346,14 +344,12 @@ func (o ScriptProtocolMapperOutput) ToScriptProtocolMapperPtrOutput() ScriptProt
 }
 
 func (o ScriptProtocolMapperOutput) ToScriptProtocolMapperPtrOutputWithContext(ctx context.Context) ScriptProtocolMapperPtrOutput {
-	return o.ApplyT(func(v ScriptProtocolMapper) *ScriptProtocolMapper {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ScriptProtocolMapper) *ScriptProtocolMapper {
 		return &v
 	}).(ScriptProtocolMapperPtrOutput)
 }
 
-type ScriptProtocolMapperPtrOutput struct {
-	*pulumi.OutputState
-}
+type ScriptProtocolMapperPtrOutput struct{ *pulumi.OutputState }
 
 func (ScriptProtocolMapperPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ScriptProtocolMapper)(nil))
@@ -365,6 +361,16 @@ func (o ScriptProtocolMapperPtrOutput) ToScriptProtocolMapperPtrOutput() ScriptP
 
 func (o ScriptProtocolMapperPtrOutput) ToScriptProtocolMapperPtrOutputWithContext(ctx context.Context) ScriptProtocolMapperPtrOutput {
 	return o
+}
+
+func (o ScriptProtocolMapperPtrOutput) Elem() ScriptProtocolMapperOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) ScriptProtocolMapper {
+		if v != nil {
+			return *v
+		}
+		var ret ScriptProtocolMapper
+		return ret
+	}).(ScriptProtocolMapperOutput)
 }
 
 type ScriptProtocolMapperArrayOutput struct{ *pulumi.OutputState }
@@ -408,6 +414,10 @@ func (o ScriptProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) ScriptProt
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ScriptProtocolMapperInput)(nil)).Elem(), &ScriptProtocolMapper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScriptProtocolMapperPtrInput)(nil)).Elem(), &ScriptProtocolMapper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScriptProtocolMapperArrayInput)(nil)).Elem(), ScriptProtocolMapperArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScriptProtocolMapperMapInput)(nil)).Elem(), ScriptProtocolMapperMap{})
 	pulumi.RegisterOutputType(ScriptProtocolMapperOutput{})
 	pulumi.RegisterOutputType(ScriptProtocolMapperPtrOutput{})
 	pulumi.RegisterOutputType(ScriptProtocolMapperArrayOutput{})

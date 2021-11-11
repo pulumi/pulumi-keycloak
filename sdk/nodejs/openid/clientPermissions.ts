@@ -106,30 +106,30 @@ export interface ClientPermissionsState {
     /**
      * Resource server id representing the realm management client on which this permission is managed
      */
-    readonly authorizationResourceServerId?: pulumi.Input<string>;
-    readonly clientId?: pulumi.Input<string>;
-    readonly configureScope?: pulumi.Input<inputs.openid.ClientPermissionsConfigureScope>;
-    readonly enabled?: pulumi.Input<boolean>;
-    readonly manageScope?: pulumi.Input<inputs.openid.ClientPermissionsManageScope>;
-    readonly mapRolesClientScopeScope?: pulumi.Input<inputs.openid.ClientPermissionsMapRolesClientScopeScope>;
-    readonly mapRolesCompositeScope?: pulumi.Input<inputs.openid.ClientPermissionsMapRolesCompositeScope>;
-    readonly mapRolesScope?: pulumi.Input<inputs.openid.ClientPermissionsMapRolesScope>;
-    readonly realmId?: pulumi.Input<string>;
-    readonly tokenExchangeScope?: pulumi.Input<inputs.openid.ClientPermissionsTokenExchangeScope>;
-    readonly viewScope?: pulumi.Input<inputs.openid.ClientPermissionsViewScope>;
+    authorizationResourceServerId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    configureScope?: pulumi.Input<inputs.openid.ClientPermissionsConfigureScope>;
+    enabled?: pulumi.Input<boolean>;
+    manageScope?: pulumi.Input<inputs.openid.ClientPermissionsManageScope>;
+    mapRolesClientScopeScope?: pulumi.Input<inputs.openid.ClientPermissionsMapRolesClientScopeScope>;
+    mapRolesCompositeScope?: pulumi.Input<inputs.openid.ClientPermissionsMapRolesCompositeScope>;
+    mapRolesScope?: pulumi.Input<inputs.openid.ClientPermissionsMapRolesScope>;
+    realmId?: pulumi.Input<string>;
+    tokenExchangeScope?: pulumi.Input<inputs.openid.ClientPermissionsTokenExchangeScope>;
+    viewScope?: pulumi.Input<inputs.openid.ClientPermissionsViewScope>;
 }
 
 /**
  * The set of arguments for constructing a ClientPermissions resource.
  */
 export interface ClientPermissionsArgs {
-    readonly clientId: pulumi.Input<string>;
-    readonly configureScope?: pulumi.Input<inputs.openid.ClientPermissionsConfigureScope>;
-    readonly manageScope?: pulumi.Input<inputs.openid.ClientPermissionsManageScope>;
-    readonly mapRolesClientScopeScope?: pulumi.Input<inputs.openid.ClientPermissionsMapRolesClientScopeScope>;
-    readonly mapRolesCompositeScope?: pulumi.Input<inputs.openid.ClientPermissionsMapRolesCompositeScope>;
-    readonly mapRolesScope?: pulumi.Input<inputs.openid.ClientPermissionsMapRolesScope>;
-    readonly realmId: pulumi.Input<string>;
-    readonly tokenExchangeScope?: pulumi.Input<inputs.openid.ClientPermissionsTokenExchangeScope>;
-    readonly viewScope?: pulumi.Input<inputs.openid.ClientPermissionsViewScope>;
+    clientId: pulumi.Input<string>;
+    configureScope?: pulumi.Input<inputs.openid.ClientPermissionsConfigureScope>;
+    manageScope?: pulumi.Input<inputs.openid.ClientPermissionsManageScope>;
+    mapRolesClientScopeScope?: pulumi.Input<inputs.openid.ClientPermissionsMapRolesClientScopeScope>;
+    mapRolesCompositeScope?: pulumi.Input<inputs.openid.ClientPermissionsMapRolesCompositeScope>;
+    mapRolesScope?: pulumi.Input<inputs.openid.ClientPermissionsMapRolesScope>;
+    realmId: pulumi.Input<string>;
+    tokenExchangeScope?: pulumi.Input<inputs.openid.ClientPermissionsTokenExchangeScope>;
+    viewScope?: pulumi.Input<inputs.openid.ClientPermissionsViewScope>;
 }

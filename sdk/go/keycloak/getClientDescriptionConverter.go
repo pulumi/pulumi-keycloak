@@ -4,6 +4,9 @@
 package keycloak
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -34,7 +37,7 @@ import (
 // 		}
 // 		_, err = saml.NewClient(ctx, "samlClientClient", &saml.ClientArgs{
 // 			RealmId: realm.ID(),
-// 			ClientId: samlClientClientDescriptionConverter.ApplyT(func(samlClientClientDescriptionConverter keycloak.GetClientDescriptionConverterResult) (string, error) {
+// 			ClientId: samlClientClientDescriptionConverter.ApplyT(func(samlClientClientDescriptionConverter GetClientDescriptionConverterResult) (string, error) {
 // 				return samlClientClientDescriptionConverter.ClientId, nil
 // 			}).(pulumi.StringOutput),
 // 		})
@@ -103,4 +106,201 @@ type GetClientDescriptionConverterResult struct {
 	StandardFlowEnabled     bool                                          `pulumi:"standardFlowEnabled"`
 	SurrogateAuthRequired   bool                                          `pulumi:"surrogateAuthRequired"`
 	WebOrigins              []string                                      `pulumi:"webOrigins"`
+}
+
+func GetClientDescriptionConverterOutput(ctx *pulumi.Context, args GetClientDescriptionConverterOutputArgs, opts ...pulumi.InvokeOption) GetClientDescriptionConverterResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetClientDescriptionConverterResult, error) {
+			args := v.(GetClientDescriptionConverterArgs)
+			r, err := GetClientDescriptionConverter(ctx, &args, opts...)
+			return *r, err
+		}).(GetClientDescriptionConverterResultOutput)
+}
+
+// A collection of arguments for invoking getClientDescriptionConverter.
+type GetClientDescriptionConverterOutputArgs struct {
+	// The body of the request to convert.
+	Body pulumi.StringInput `pulumi:"body"`
+	// The realm to use for the client description converter API call.
+	RealmId pulumi.StringInput `pulumi:"realmId"`
+}
+
+func (GetClientDescriptionConverterOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClientDescriptionConverterArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getClientDescriptionConverter.
+type GetClientDescriptionConverterResultOutput struct{ *pulumi.OutputState }
+
+func (GetClientDescriptionConverterResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClientDescriptionConverterResult)(nil)).Elem()
+}
+
+func (o GetClientDescriptionConverterResultOutput) ToGetClientDescriptionConverterResultOutput() GetClientDescriptionConverterResultOutput {
+	return o
+}
+
+func (o GetClientDescriptionConverterResultOutput) ToGetClientDescriptionConverterResultOutputWithContext(ctx context.Context) GetClientDescriptionConverterResultOutput {
+	return o
+}
+
+func (o GetClientDescriptionConverterResultOutput) Access() pulumi.MapOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) map[string]interface{} { return v.Access }).(pulumi.MapOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) AdminUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) string { return v.AdminUrl }).(pulumi.StringOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) Attributes() pulumi.MapOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) map[string]interface{} { return v.Attributes }).(pulumi.MapOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) AuthenticationFlowBindingOverrides() pulumi.MapOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) map[string]interface{} {
+		return v.AuthenticationFlowBindingOverrides
+	}).(pulumi.MapOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) AuthorizationServicesEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) bool { return v.AuthorizationServicesEnabled }).(pulumi.BoolOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) AuthorizationSettings() pulumi.MapOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) map[string]interface{} { return v.AuthorizationSettings }).(pulumi.MapOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) BaseUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) string { return v.BaseUrl }).(pulumi.StringOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) BearerOnly() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) bool { return v.BearerOnly }).(pulumi.BoolOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) Body() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) string { return v.Body }).(pulumi.StringOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) ClientAuthenticatorType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) string { return v.ClientAuthenticatorType }).(pulumi.StringOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) ConsentRequired() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) string { return v.ConsentRequired }).(pulumi.StringOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) DefaultClientScopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) []string { return v.DefaultClientScopes }).(pulumi.StringArrayOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) DefaultRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) []string { return v.DefaultRoles }).(pulumi.StringArrayOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) DirectAccessGrantsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) bool { return v.DirectAccessGrantsEnabled }).(pulumi.BoolOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) FrontchannelLogout() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) bool { return v.FrontchannelLogout }).(pulumi.BoolOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) FullScopeAllowed() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) bool { return v.FullScopeAllowed }).(pulumi.BoolOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetClientDescriptionConverterResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) ImplicitFlowEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) bool { return v.ImplicitFlowEnabled }).(pulumi.BoolOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) NotBefore() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) int { return v.NotBefore }).(pulumi.IntOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) OptionalClientScopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) []string { return v.OptionalClientScopes }).(pulumi.StringArrayOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) Origin() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) string { return v.Origin }).(pulumi.StringOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) ProtocolMappers() GetClientDescriptionConverterProtocolMapperArrayOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) []GetClientDescriptionConverterProtocolMapper {
+		return v.ProtocolMappers
+	}).(GetClientDescriptionConverterProtocolMapperArrayOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) PublicClient() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) bool { return v.PublicClient }).(pulumi.BoolOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) RedirectUris() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) []string { return v.RedirectUris }).(pulumi.StringArrayOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) RegisteredNodes() pulumi.MapOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) map[string]interface{} { return v.RegisteredNodes }).(pulumi.MapOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) RegistrationAccessToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) string { return v.RegistrationAccessToken }).(pulumi.StringOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) RootUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) string { return v.RootUrl }).(pulumi.StringOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) Secret() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) string { return v.Secret }).(pulumi.StringOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) ServiceAccountsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) bool { return v.ServiceAccountsEnabled }).(pulumi.BoolOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) StandardFlowEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) bool { return v.StandardFlowEnabled }).(pulumi.BoolOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) SurrogateAuthRequired() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) bool { return v.SurrogateAuthRequired }).(pulumi.BoolOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) WebOrigins() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) []string { return v.WebOrigins }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetClientDescriptionConverterResultOutput{})
 }

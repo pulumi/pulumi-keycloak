@@ -10,30 +10,30 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class GetRealmSecurityDefenseBruteForceDetectionArgs : Pulumi.InvokeArgs
+    public sealed class GetRealmSecurityDefenseBruteForceDetectionInputArgs : Pulumi.ResourceArgs
     {
         [Input("failureResetTimeSeconds", required: true)]
-        public int FailureResetTimeSeconds { get; set; }
+        public Input<int> FailureResetTimeSeconds { get; set; } = null!;
 
         [Input("maxFailureWaitSeconds", required: true)]
-        public int MaxFailureWaitSeconds { get; set; }
+        public Input<int> MaxFailureWaitSeconds { get; set; } = null!;
 
         [Input("maxLoginFailures", required: true)]
-        public int MaxLoginFailures { get; set; }
+        public Input<int> MaxLoginFailures { get; set; } = null!;
 
         [Input("minimumQuickLoginWaitSeconds", required: true)]
-        public int MinimumQuickLoginWaitSeconds { get; set; }
+        public Input<int> MinimumQuickLoginWaitSeconds { get; set; } = null!;
 
         [Input("permanentLockout", required: true)]
-        public bool PermanentLockout { get; set; }
+        public Input<bool> PermanentLockout { get; set; } = null!;
 
         [Input("quickLoginCheckMilliSeconds", required: true)]
-        public int QuickLoginCheckMilliSeconds { get; set; }
+        public Input<int> QuickLoginCheckMilliSeconds { get; set; } = null!;
 
         [Input("waitIncrementSeconds", required: true)]
-        public int WaitIncrementSeconds { get; set; }
+        public Input<int> WaitIncrementSeconds { get; set; } = null!;
 
-        public GetRealmSecurityDefenseBruteForceDetectionArgs()
+        public GetRealmSecurityDefenseBruteForceDetectionInputArgs()
         {
         }
     }

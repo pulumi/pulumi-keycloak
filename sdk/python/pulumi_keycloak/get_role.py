@@ -12,6 +12,7 @@ __all__ = [
     'GetRoleResult',
     'AwaitableGetRoleResult',
     'get_role',
+    'get_role_output',
 ]
 
 @pulumi.output_type
@@ -148,3 +149,38 @@ def get_role(client_id: Optional[str] = None,
         id=__ret__.id,
         name=__ret__.name,
         realm_id=__ret__.realm_id)
+
+
+@_utilities.lift_output_func(get_role)
+def get_role_output(client_id: Optional[pulumi.Input[Optional[str]]] = None,
+                    name: Optional[pulumi.Input[str]] = None,
+                    realm_id: Optional[pulumi.Input[str]] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRoleResult]:
+    """
+    This data source can be used to fetch properties of a Keycloak role for
+    usage with other resources, such as `GroupRoles`.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.Realm("realm",
+        realm="my-realm",
+        enabled=True)
+    offline_access = realm.id.apply(lambda id: keycloak.get_role(realm_id=id,
+        name="offline_access"))
+    group = keycloak.Group("group", realm_id=realm.id)
+    group_roles = keycloak.GroupRoles("groupRoles",
+        realm_id=realm.id,
+        group_id=group.id,
+        role_ids=[offline_access.id])
+    ```
+
+
+    :param str client_id: When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloak_client` resource should be used here.
+    :param str name: The name of the role.
+    :param str realm_id: The realm this role exists within.
+    """
+    ...

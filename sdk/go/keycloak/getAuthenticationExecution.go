@@ -4,6 +4,9 @@
 package keycloak
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -58,4 +61,63 @@ type GetAuthenticationExecutionResult struct {
 	ParentFlowAlias string `pulumi:"parentFlowAlias"`
 	ProviderId      string `pulumi:"providerId"`
 	RealmId         string `pulumi:"realmId"`
+}
+
+func GetAuthenticationExecutionOutput(ctx *pulumi.Context, args GetAuthenticationExecutionOutputArgs, opts ...pulumi.InvokeOption) GetAuthenticationExecutionResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetAuthenticationExecutionResult, error) {
+			args := v.(GetAuthenticationExecutionArgs)
+			r, err := GetAuthenticationExecution(ctx, &args, opts...)
+			return *r, err
+		}).(GetAuthenticationExecutionResultOutput)
+}
+
+// A collection of arguments for invoking getAuthenticationExecution.
+type GetAuthenticationExecutionOutputArgs struct {
+	// The alias of the flow this execution is attached to.
+	ParentFlowAlias pulumi.StringInput `pulumi:"parentFlowAlias"`
+	// The name of the provider. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools. This was previously known as the "authenticator".
+	ProviderId pulumi.StringInput `pulumi:"providerId"`
+	// The realm the authentication execution exists in.
+	RealmId pulumi.StringInput `pulumi:"realmId"`
+}
+
+func (GetAuthenticationExecutionOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAuthenticationExecutionArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getAuthenticationExecution.
+type GetAuthenticationExecutionResultOutput struct{ *pulumi.OutputState }
+
+func (GetAuthenticationExecutionResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAuthenticationExecutionResult)(nil)).Elem()
+}
+
+func (o GetAuthenticationExecutionResultOutput) ToGetAuthenticationExecutionResultOutput() GetAuthenticationExecutionResultOutput {
+	return o
+}
+
+func (o GetAuthenticationExecutionResultOutput) ToGetAuthenticationExecutionResultOutputWithContext(ctx context.Context) GetAuthenticationExecutionResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetAuthenticationExecutionResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAuthenticationExecutionResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetAuthenticationExecutionResultOutput) ParentFlowAlias() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAuthenticationExecutionResult) string { return v.ParentFlowAlias }).(pulumi.StringOutput)
+}
+
+func (o GetAuthenticationExecutionResultOutput) ProviderId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAuthenticationExecutionResult) string { return v.ProviderId }).(pulumi.StringOutput)
+}
+
+func (o GetAuthenticationExecutionResultOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAuthenticationExecutionResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetAuthenticationExecutionResultOutput{})
 }

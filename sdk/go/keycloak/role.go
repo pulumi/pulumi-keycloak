@@ -38,9 +38,9 @@ import (
 // 		_, err = keycloak.NewRole(ctx, "realmRole", &keycloak.RoleArgs{
 // 			RealmId:     realm.ID(),
 // 			Description: pulumi.String("My Realm Role"),
-// 			Attributes: pulumi.StringMap{
-// 				"key":        pulumi.String("value"),
-// 				"multivalue": pulumi.String("value1##value2"),
+// 			Attributes: pulumi.AnyMap{
+// 				"key":        pulumi.Any("value"),
+// 				"multivalue": pulumi.Any("value1##value2"),
 // 			},
 // 		})
 // 		if err != nil {
@@ -86,8 +86,8 @@ import (
 // 			RealmId:     realm.ID(),
 // 			ClientId:    pulumi.Any(keycloak_client.Openid_client.Id),
 // 			Description: pulumi.String("My Client Role"),
-// 			Attributes: pulumi.StringMap{
-// 				"key": pulumi.String("value"),
+// 			Attributes: pulumi.AnyMap{
+// 				"key": pulumi.Any("value"),
 // 			},
 // 		})
 // 		if err != nil {
@@ -119,8 +119,8 @@ import (
 // 		}
 // 		createRole, err := keycloak.NewRole(ctx, "createRole", &keycloak.RoleArgs{
 // 			RealmId: realm.ID(),
-// 			Attributes: pulumi.StringMap{
-// 				"key": pulumi.String("value"),
+// 			Attributes: pulumi.AnyMap{
+// 				"key": pulumi.Any("value"),
 // 			},
 // 		})
 // 		if err != nil {
@@ -128,8 +128,8 @@ import (
 // 		}
 // 		readRole, err := keycloak.NewRole(ctx, "readRole", &keycloak.RoleArgs{
 // 			RealmId: realm.ID(),
-// 			Attributes: pulumi.StringMap{
-// 				"key": pulumi.String("value"),
+// 			Attributes: pulumi.AnyMap{
+// 				"key": pulumi.Any("value"),
 // 			},
 // 		})
 // 		if err != nil {
@@ -137,8 +137,8 @@ import (
 // 		}
 // 		updateRole, err := keycloak.NewRole(ctx, "updateRole", &keycloak.RoleArgs{
 // 			RealmId: realm.ID(),
-// 			Attributes: pulumi.StringMap{
-// 				"key": pulumi.String("value"),
+// 			Attributes: pulumi.AnyMap{
+// 				"key": pulumi.Any("value"),
 // 			},
 // 		})
 // 		if err != nil {
@@ -146,8 +146,8 @@ import (
 // 		}
 // 		deleteRole, err := keycloak.NewRole(ctx, "deleteRole", &keycloak.RoleArgs{
 // 			RealmId: realm.ID(),
-// 			Attributes: pulumi.StringMap{
-// 				"key": pulumi.String("value"),
+// 			Attributes: pulumi.AnyMap{
+// 				"key": pulumi.Any("value"),
 // 			},
 // 		})
 // 		if err != nil {
@@ -169,8 +169,8 @@ import (
 // 			RealmId:     realm.ID(),
 // 			ClientId:    pulumi.Any(keycloak_client.Openid_client.Id),
 // 			Description: pulumi.String("My Client Role"),
-// 			Attributes: pulumi.StringMap{
-// 				"key": pulumi.String("value"),
+// 			Attributes: pulumi.AnyMap{
+// 				"key": pulumi.Any("value"),
 // 			},
 // 		})
 // 		if err != nil {
@@ -185,8 +185,8 @@ import (
 // 				deleteRole.ID(),
 // 				clientRole.ID(),
 // 			},
-// 			Attributes: pulumi.StringMap{
-// 				"key": pulumi.String("value"),
+// 			Attributes: pulumi.AnyMap{
+// 				"key": pulumi.Any("value"),
 // 			},
 // 		})
 // 		if err != nil {
@@ -383,7 +383,7 @@ type RoleArrayInput interface {
 type RoleArray []RoleInput
 
 func (RoleArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*Role)(nil))
+	return reflect.TypeOf((*[]*Role)(nil)).Elem()
 }
 
 func (i RoleArray) ToRoleArrayOutput() RoleArrayOutput {
@@ -408,7 +408,7 @@ type RoleMapInput interface {
 type RoleMap map[string]RoleInput
 
 func (RoleMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*Role)(nil))
+	return reflect.TypeOf((*map[string]*Role)(nil)).Elem()
 }
 
 func (i RoleMap) ToRoleMapOutput() RoleMapOutput {
@@ -419,9 +419,7 @@ func (i RoleMap) ToRoleMapOutputWithContext(ctx context.Context) RoleMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RoleMapOutput)
 }
 
-type RoleOutput struct {
-	*pulumi.OutputState
-}
+type RoleOutput struct{ *pulumi.OutputState }
 
 func (RoleOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Role)(nil))
@@ -440,14 +438,12 @@ func (o RoleOutput) ToRolePtrOutput() RolePtrOutput {
 }
 
 func (o RoleOutput) ToRolePtrOutputWithContext(ctx context.Context) RolePtrOutput {
-	return o.ApplyT(func(v Role) *Role {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Role) *Role {
 		return &v
 	}).(RolePtrOutput)
 }
 
-type RolePtrOutput struct {
-	*pulumi.OutputState
-}
+type RolePtrOutput struct{ *pulumi.OutputState }
 
 func (RolePtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Role)(nil))
@@ -459,6 +455,16 @@ func (o RolePtrOutput) ToRolePtrOutput() RolePtrOutput {
 
 func (o RolePtrOutput) ToRolePtrOutputWithContext(ctx context.Context) RolePtrOutput {
 	return o
+}
+
+func (o RolePtrOutput) Elem() RoleOutput {
+	return o.ApplyT(func(v *Role) Role {
+		if v != nil {
+			return *v
+		}
+		var ret Role
+		return ret
+	}).(RoleOutput)
 }
 
 type RoleArrayOutput struct{ *pulumi.OutputState }
@@ -502,6 +508,10 @@ func (o RoleMapOutput) MapIndex(k pulumi.StringInput) RoleOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RoleInput)(nil)).Elem(), &Role{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RolePtrInput)(nil)).Elem(), &Role{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RoleArrayInput)(nil)).Elem(), RoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RoleMapInput)(nil)).Elem(), RoleMap{})
 	pulumi.RegisterOutputType(RoleOutput{})
 	pulumi.RegisterOutputType(RolePtrOutput{})
 	pulumi.RegisterOutputType(RoleArrayOutput{})

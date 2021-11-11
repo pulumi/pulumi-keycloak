@@ -176,7 +176,7 @@ type SubflowArrayInput interface {
 type SubflowArray []SubflowInput
 
 func (SubflowArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*Subflow)(nil))
+	return reflect.TypeOf((*[]*Subflow)(nil)).Elem()
 }
 
 func (i SubflowArray) ToSubflowArrayOutput() SubflowArrayOutput {
@@ -201,7 +201,7 @@ type SubflowMapInput interface {
 type SubflowMap map[string]SubflowInput
 
 func (SubflowMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*Subflow)(nil))
+	return reflect.TypeOf((*map[string]*Subflow)(nil)).Elem()
 }
 
 func (i SubflowMap) ToSubflowMapOutput() SubflowMapOutput {
@@ -212,9 +212,7 @@ func (i SubflowMap) ToSubflowMapOutputWithContext(ctx context.Context) SubflowMa
 	return pulumi.ToOutputWithContext(ctx, i).(SubflowMapOutput)
 }
 
-type SubflowOutput struct {
-	*pulumi.OutputState
-}
+type SubflowOutput struct{ *pulumi.OutputState }
 
 func (SubflowOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Subflow)(nil))
@@ -233,14 +231,12 @@ func (o SubflowOutput) ToSubflowPtrOutput() SubflowPtrOutput {
 }
 
 func (o SubflowOutput) ToSubflowPtrOutputWithContext(ctx context.Context) SubflowPtrOutput {
-	return o.ApplyT(func(v Subflow) *Subflow {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Subflow) *Subflow {
 		return &v
 	}).(SubflowPtrOutput)
 }
 
-type SubflowPtrOutput struct {
-	*pulumi.OutputState
-}
+type SubflowPtrOutput struct{ *pulumi.OutputState }
 
 func (SubflowPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Subflow)(nil))
@@ -252,6 +248,16 @@ func (o SubflowPtrOutput) ToSubflowPtrOutput() SubflowPtrOutput {
 
 func (o SubflowPtrOutput) ToSubflowPtrOutputWithContext(ctx context.Context) SubflowPtrOutput {
 	return o
+}
+
+func (o SubflowPtrOutput) Elem() SubflowOutput {
+	return o.ApplyT(func(v *Subflow) Subflow {
+		if v != nil {
+			return *v
+		}
+		var ret Subflow
+		return ret
+	}).(SubflowOutput)
 }
 
 type SubflowArrayOutput struct{ *pulumi.OutputState }
@@ -295,6 +301,10 @@ func (o SubflowMapOutput) MapIndex(k pulumi.StringInput) SubflowOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SubflowInput)(nil)).Elem(), &Subflow{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SubflowPtrInput)(nil)).Elem(), &Subflow{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SubflowArrayInput)(nil)).Elem(), SubflowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SubflowMapInput)(nil)).Elem(), SubflowMap{})
 	pulumi.RegisterOutputType(SubflowOutput{})
 	pulumi.RegisterOutputType(SubflowPtrOutput{})
 	pulumi.RegisterOutputType(SubflowArrayOutput{})

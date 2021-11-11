@@ -10,15 +10,15 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class GetRealmSmtpServerAuthArgs : Pulumi.InvokeArgs
+    public sealed class GetRealmSmtpServerAuthInputArgs : Pulumi.ResourceArgs
     {
         [Input("password", required: true)]
-        public string Password { get; set; } = null!;
+        public Input<string> Password { get; set; } = null!;
 
         [Input("username", required: true)]
-        public string Username { get; set; } = null!;
+        public Input<string> Username { get; set; } = null!;
 
-        public GetRealmSmtpServerAuthArgs()
+        public GetRealmSmtpServerAuthInputArgs()
         {
         }
     }

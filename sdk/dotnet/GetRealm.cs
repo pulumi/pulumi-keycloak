@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Keycloak
 {
@@ -44,6 +45,40 @@ namespace Pulumi.Keycloak
         /// </summary>
         public static Task<GetRealmResult> InvokeAsync(GetRealmArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetRealmResult>("keycloak:index/getRealm:getRealm", args ?? new GetRealmArgs(), options.WithVersion());
+
+        /// <summary>
+        /// This data source can be used to fetch properties of a Keycloak realm for
+        /// usage with other resources.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var realm = Output.Create(Keycloak.GetRealm.InvokeAsync(new Keycloak.GetRealmArgs
+        ///         {
+        ///             Realm = "my-realm",
+        ///         }));
+        ///         var @group = new Keycloak.Role("group", new Keycloak.RoleArgs
+        ///         {
+        ///             RealmId = realm.Apply(realm =&gt; realm.Id),
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetRealmResult> Invoke(GetRealmInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetRealmResult>("keycloak:index/getRealm:getRealm", args ?? new GetRealmInvokeArgs(), options.WithVersion());
     }
 
 
@@ -116,6 +151,79 @@ namespace Pulumi.Keycloak
         public Inputs.GetRealmWebAuthnPolicyArgs? WebAuthnPolicy { get; set; }
 
         public GetRealmArgs()
+        {
+        }
+    }
+
+    public sealed class GetRealmInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("attributes")]
+        private InputMap<object>? _attributes;
+        public InputMap<object> Attributes
+        {
+            get => _attributes ?? (_attributes = new InputMap<object>());
+            set => _attributes = value;
+        }
+
+        [Input("defaultDefaultClientScopes")]
+        private InputList<string>? _defaultDefaultClientScopes;
+        public InputList<string> DefaultDefaultClientScopes
+        {
+            get => _defaultDefaultClientScopes ?? (_defaultDefaultClientScopes = new InputList<string>());
+            set => _defaultDefaultClientScopes = value;
+        }
+
+        [Input("defaultOptionalClientScopes")]
+        private InputList<string>? _defaultOptionalClientScopes;
+        public InputList<string> DefaultOptionalClientScopes
+        {
+            get => _defaultOptionalClientScopes ?? (_defaultOptionalClientScopes = new InputList<string>());
+            set => _defaultOptionalClientScopes = value;
+        }
+
+        [Input("displayNameHtml")]
+        public Input<string>? DisplayNameHtml { get; set; }
+
+        [Input("internationalizations")]
+        private InputList<Inputs.GetRealmInternationalizationInputArgs>? _internationalizations;
+        public InputList<Inputs.GetRealmInternationalizationInputArgs> Internationalizations
+        {
+            get => _internationalizations ?? (_internationalizations = new InputList<Inputs.GetRealmInternationalizationInputArgs>());
+            set => _internationalizations = value;
+        }
+
+        [Input("otpPolicy")]
+        public Input<Inputs.GetRealmOtpPolicyInputArgs>? OtpPolicy { get; set; }
+
+        /// <summary>
+        /// The realm name.
+        /// </summary>
+        [Input("realm", required: true)]
+        public Input<string> Realm { get; set; } = null!;
+
+        [Input("securityDefenses")]
+        private InputList<Inputs.GetRealmSecurityDefenseInputArgs>? _securityDefenses;
+        public InputList<Inputs.GetRealmSecurityDefenseInputArgs> SecurityDefenses
+        {
+            get => _securityDefenses ?? (_securityDefenses = new InputList<Inputs.GetRealmSecurityDefenseInputArgs>());
+            set => _securityDefenses = value;
+        }
+
+        [Input("smtpServers")]
+        private InputList<Inputs.GetRealmSmtpServerInputArgs>? _smtpServers;
+        public InputList<Inputs.GetRealmSmtpServerInputArgs> SmtpServers
+        {
+            get => _smtpServers ?? (_smtpServers = new InputList<Inputs.GetRealmSmtpServerInputArgs>());
+            set => _smtpServers = value;
+        }
+
+        [Input("webAuthnPasswordlessPolicy")]
+        public Input<Inputs.GetRealmWebAuthnPasswordlessPolicyInputArgs>? WebAuthnPasswordlessPolicy { get; set; }
+
+        [Input("webAuthnPolicy")]
+        public Input<Inputs.GetRealmWebAuthnPolicyInputArgs>? WebAuthnPolicy { get; set; }
+
+        public GetRealmInvokeArgs()
         {
         }
     }

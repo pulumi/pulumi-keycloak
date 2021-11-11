@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Keycloak
 {
@@ -45,6 +46,41 @@ namespace Pulumi.Keycloak
         /// </summary>
         public static Task<GetAuthenticationFlowResult> InvokeAsync(GetAuthenticationFlowArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAuthenticationFlowResult>("keycloak:index/getAuthenticationFlow:getAuthenticationFlow", args ?? new GetAuthenticationFlowArgs(), options.WithVersion());
+
+        /// <summary>
+        /// This data source can be used to fetch the ID of an authentication flow within Keycloak.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+        ///         {
+        ///             Realm = "my-realm",
+        ///             Enabled = true,
+        ///         });
+        ///         var browserAuthCookie = realm.Id.Apply(id =&gt; Keycloak.GetAuthenticationFlow.InvokeAsync(new Keycloak.GetAuthenticationFlowArgs
+        ///         {
+        ///             RealmId = id,
+        ///             Alias = "browser",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetAuthenticationFlowResult> Invoke(GetAuthenticationFlowInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetAuthenticationFlowResult>("keycloak:index/getAuthenticationFlow:getAuthenticationFlow", args ?? new GetAuthenticationFlowInvokeArgs(), options.WithVersion());
     }
 
 
@@ -63,6 +99,25 @@ namespace Pulumi.Keycloak
         public string RealmId { get; set; } = null!;
 
         public GetAuthenticationFlowArgs()
+        {
+        }
+    }
+
+    public sealed class GetAuthenticationFlowInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The alias of the flow.
+        /// </summary>
+        [Input("alias", required: true)]
+        public Input<string> Alias { get; set; } = null!;
+
+        /// <summary>
+        /// The realm the authentication flow exists in.
+        /// </summary>
+        [Input("realmId", required: true)]
+        public Input<string> RealmId { get; set; } = null!;
+
+        public GetAuthenticationFlowInvokeArgs()
         {
         }
     }

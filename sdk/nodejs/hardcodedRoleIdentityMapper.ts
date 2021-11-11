@@ -93,44 +93,44 @@ export class HardcodedRoleIdentityMapper extends pulumi.CustomResource {
  * Input properties used for looking up and filtering HardcodedRoleIdentityMapper resources.
  */
 export interface HardcodedRoleIdentityMapperState {
-    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * IDP Alias
      */
-    readonly identityProviderAlias?: pulumi.Input<string>;
+    identityProviderAlias?: pulumi.Input<string>;
     /**
      * IDP Mapper Name
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Realm Name
      */
-    readonly realm?: pulumi.Input<string>;
+    realm?: pulumi.Input<string>;
     /**
      * Role Name
      */
-    readonly role?: pulumi.Input<string>;
+    role?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a HardcodedRoleIdentityMapper resource.
  */
 export interface HardcodedRoleIdentityMapperArgs {
-    readonly extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
      * IDP Alias
      */
-    readonly identityProviderAlias: pulumi.Input<string>;
+    identityProviderAlias: pulumi.Input<string>;
     /**
      * IDP Mapper Name
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Realm Name
      */
-    readonly realm: pulumi.Input<string>;
+    realm: pulumi.Input<string>;
     /**
      * Role Name
      */
-    readonly role?: pulumi.Input<string>;
+    role?: pulumi.Input<string>;
 }

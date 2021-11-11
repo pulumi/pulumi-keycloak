@@ -10,27 +10,27 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class GetRealmOtpPolicyArgs : Pulumi.InvokeArgs
+    public sealed class GetRealmOtpPolicyInputArgs : Pulumi.ResourceArgs
     {
         [Input("algorithm", required: true)]
-        public string Algorithm { get; set; } = null!;
+        public Input<string> Algorithm { get; set; } = null!;
 
         [Input("digits", required: true)]
-        public int Digits { get; set; }
+        public Input<int> Digits { get; set; } = null!;
 
         [Input("initialCounter", required: true)]
-        public int InitialCounter { get; set; }
+        public Input<int> InitialCounter { get; set; } = null!;
 
         [Input("lookAheadWindow", required: true)]
-        public int LookAheadWindow { get; set; }
+        public Input<int> LookAheadWindow { get; set; } = null!;
 
         [Input("period", required: true)]
-        public int Period { get; set; }
+        public Input<int> Period { get; set; } = null!;
 
         [Input("type", required: true)]
-        public string Type { get; set; } = null!;
+        public Input<string> Type { get; set; } = null!;
 
-        public GetRealmOtpPolicyArgs()
+        public GetRealmOtpPolicyInputArgs()
         {
         }
     }

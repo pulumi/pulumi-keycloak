@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -45,11 +44,11 @@ export interface GetAuthenticationFlowArgs {
     /**
      * The alias of the flow.
      */
-    readonly alias: string;
+    alias: string;
     /**
      * The realm the authentication flow exists in.
      */
-    readonly realmId: string;
+    realmId: string;
 }
 
 /**
@@ -62,4 +61,22 @@ export interface GetAuthenticationFlowResult {
      */
     readonly id: string;
     readonly realmId: string;
+}
+
+export function getAuthenticationFlowOutput(args: GetAuthenticationFlowOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthenticationFlowResult> {
+    return pulumi.output(args).apply(a => getAuthenticationFlow(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getAuthenticationFlow.
+ */
+export interface GetAuthenticationFlowOutputArgs {
+    /**
+     * The alias of the flow.
+     */
+    alias: pulumi.Input<string>;
+    /**
+     * The realm the authentication flow exists in.
+     */
+    realmId: pulumi.Input<string>;
 }

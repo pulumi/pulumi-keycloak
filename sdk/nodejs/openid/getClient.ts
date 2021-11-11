@@ -47,12 +47,12 @@ export interface GetClientArgs {
     /**
      * The client id (not its unique ID).
      */
-    readonly clientId: string;
-    readonly extraConfig?: {[key: string]: any};
+    clientId: string;
+    extraConfig?: {[key: string]: any};
     /**
      * The realm id.
      */
-    readonly realmId: string;
+    realmId: string;
 }
 
 /**
@@ -98,4 +98,23 @@ export interface GetClientResult {
     readonly useRefreshTokens: boolean;
     readonly validRedirectUris: string[];
     readonly webOrigins: string[];
+}
+
+export function getClientOutput(args: GetClientOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientResult> {
+    return pulumi.output(args).apply(a => getClient(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getClient.
+ */
+export interface GetClientOutputArgs {
+    /**
+     * The client id (not its unique ID).
+     */
+    clientId: pulumi.Input<string>;
+    extraConfig?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * The realm id.
+     */
+    realmId: pulumi.Input<string>;
 }

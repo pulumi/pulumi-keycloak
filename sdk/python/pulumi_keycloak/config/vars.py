@@ -8,60 +8,73 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
-__all__ = [
-    'additional_headers',
-    'base_path',
-    'client_id',
-    'client_secret',
-    'client_timeout',
-    'initial_login',
-    'password',
-    'realm',
-    'root_ca_certificate',
-    'tls_insecure_skip_verify',
-    'url',
-    'username',
-]
+import types
 
 __config__ = pulumi.Config('keycloak')
 
-additional_headers = __config__.get('additionalHeaders')
 
-base_path = __config__.get('basePath')
+class _ExportableConfig(types.ModuleType):
+    @property
+    def additional_headers(self) -> Optional[str]:
+        return __config__.get('additionalHeaders')
 
-client_id = __config__.get('clientId')
+    @property
+    def base_path(self) -> Optional[str]:
+        return __config__.get('basePath')
 
-client_secret = __config__.get('clientSecret')
+    @property
+    def client_id(self) -> Optional[str]:
+        return __config__.get('clientId')
 
-client_timeout = __config__.get('clientTimeout') or (_utilities.get_env_int('KEYCLOAK_CLIENT_TIMEOUT') or 5)
-"""
-Timeout (in seconds) of the Keycloak client
-"""
+    @property
+    def client_secret(self) -> Optional[str]:
+        return __config__.get('clientSecret')
 
-initial_login = __config__.get('initialLogin')
-"""
-Whether or not to login to Keycloak instance on provider initialization
-"""
+    @property
+    def client_timeout(self) -> int:
+        """
+        Timeout (in seconds) of the Keycloak client
+        """
+        return __config__.get_int('clientTimeout') or (_utilities.get_env_int('KEYCLOAK_CLIENT_TIMEOUT') or 5)
 
-password = __config__.get('password')
+    @property
+    def initial_login(self) -> Optional[bool]:
+        """
+        Whether or not to login to Keycloak instance on provider initialization
+        """
+        return __config__.get_bool('initialLogin')
 
-realm = __config__.get('realm')
+    @property
+    def password(self) -> Optional[str]:
+        return __config__.get('password')
 
-root_ca_certificate = __config__.get('rootCaCertificate')
-"""
-Allows x509 calls using an unknown CA certificate (for development purposes)
-"""
+    @property
+    def realm(self) -> Optional[str]:
+        return __config__.get('realm')
 
-tls_insecure_skip_verify = __config__.get('tlsInsecureSkipVerify')
-"""
-Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
-should be avoided.
-"""
+    @property
+    def root_ca_certificate(self) -> Optional[str]:
+        """
+        Allows x509 calls using an unknown CA certificate (for development purposes)
+        """
+        return __config__.get('rootCaCertificate')
 
-url = __config__.get('url')
-"""
-The base URL of the Keycloak instance, before `/auth`
-"""
+    @property
+    def tls_insecure_skip_verify(self) -> Optional[bool]:
+        """
+        Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
+        should be avoided.
+        """
+        return __config__.get_bool('tlsInsecureSkipVerify')
 
-username = __config__.get('username')
+    @property
+    def url(self) -> Optional[str]:
+        """
+        The base URL of the Keycloak instance, before `/auth`
+        """
+        return __config__.get('url')
+
+    @property
+    def username(self) -> Optional[str]:
+        return __config__.get('username')
 

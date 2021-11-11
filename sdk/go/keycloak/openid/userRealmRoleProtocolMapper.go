@@ -345,7 +345,7 @@ type UserRealmRoleProtocolMapperArrayInput interface {
 type UserRealmRoleProtocolMapperArray []UserRealmRoleProtocolMapperInput
 
 func (UserRealmRoleProtocolMapperArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserRealmRoleProtocolMapper)(nil))
+	return reflect.TypeOf((*[]*UserRealmRoleProtocolMapper)(nil)).Elem()
 }
 
 func (i UserRealmRoleProtocolMapperArray) ToUserRealmRoleProtocolMapperArrayOutput() UserRealmRoleProtocolMapperArrayOutput {
@@ -370,7 +370,7 @@ type UserRealmRoleProtocolMapperMapInput interface {
 type UserRealmRoleProtocolMapperMap map[string]UserRealmRoleProtocolMapperInput
 
 func (UserRealmRoleProtocolMapperMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserRealmRoleProtocolMapper)(nil))
+	return reflect.TypeOf((*map[string]*UserRealmRoleProtocolMapper)(nil)).Elem()
 }
 
 func (i UserRealmRoleProtocolMapperMap) ToUserRealmRoleProtocolMapperMapOutput() UserRealmRoleProtocolMapperMapOutput {
@@ -381,9 +381,7 @@ func (i UserRealmRoleProtocolMapperMap) ToUserRealmRoleProtocolMapperMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(UserRealmRoleProtocolMapperMapOutput)
 }
 
-type UserRealmRoleProtocolMapperOutput struct {
-	*pulumi.OutputState
-}
+type UserRealmRoleProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (UserRealmRoleProtocolMapperOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*UserRealmRoleProtocolMapper)(nil))
@@ -402,14 +400,12 @@ func (o UserRealmRoleProtocolMapperOutput) ToUserRealmRoleProtocolMapperPtrOutpu
 }
 
 func (o UserRealmRoleProtocolMapperOutput) ToUserRealmRoleProtocolMapperPtrOutputWithContext(ctx context.Context) UserRealmRoleProtocolMapperPtrOutput {
-	return o.ApplyT(func(v UserRealmRoleProtocolMapper) *UserRealmRoleProtocolMapper {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v UserRealmRoleProtocolMapper) *UserRealmRoleProtocolMapper {
 		return &v
 	}).(UserRealmRoleProtocolMapperPtrOutput)
 }
 
-type UserRealmRoleProtocolMapperPtrOutput struct {
-	*pulumi.OutputState
-}
+type UserRealmRoleProtocolMapperPtrOutput struct{ *pulumi.OutputState }
 
 func (UserRealmRoleProtocolMapperPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**UserRealmRoleProtocolMapper)(nil))
@@ -421,6 +417,16 @@ func (o UserRealmRoleProtocolMapperPtrOutput) ToUserRealmRoleProtocolMapperPtrOu
 
 func (o UserRealmRoleProtocolMapperPtrOutput) ToUserRealmRoleProtocolMapperPtrOutputWithContext(ctx context.Context) UserRealmRoleProtocolMapperPtrOutput {
 	return o
+}
+
+func (o UserRealmRoleProtocolMapperPtrOutput) Elem() UserRealmRoleProtocolMapperOutput {
+	return o.ApplyT(func(v *UserRealmRoleProtocolMapper) UserRealmRoleProtocolMapper {
+		if v != nil {
+			return *v
+		}
+		var ret UserRealmRoleProtocolMapper
+		return ret
+	}).(UserRealmRoleProtocolMapperOutput)
 }
 
 type UserRealmRoleProtocolMapperArrayOutput struct{ *pulumi.OutputState }
@@ -464,6 +470,10 @@ func (o UserRealmRoleProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) Use
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRealmRoleProtocolMapperInput)(nil)).Elem(), &UserRealmRoleProtocolMapper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRealmRoleProtocolMapperPtrInput)(nil)).Elem(), &UserRealmRoleProtocolMapper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRealmRoleProtocolMapperArrayInput)(nil)).Elem(), UserRealmRoleProtocolMapperArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRealmRoleProtocolMapperMapInput)(nil)).Elem(), UserRealmRoleProtocolMapperMap{})
 	pulumi.RegisterOutputType(UserRealmRoleProtocolMapperOutput{})
 	pulumi.RegisterOutputType(UserRealmRoleProtocolMapperPtrOutput{})
 	pulumi.RegisterOutputType(UserRealmRoleProtocolMapperArrayOutput{})

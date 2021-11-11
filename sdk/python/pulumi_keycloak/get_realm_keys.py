@@ -13,6 +13,7 @@ __all__ = [
     'GetRealmKeysResult',
     'AwaitableGetRealmKeysResult',
     'get_realm_keys',
+    'get_realm_keys_output',
 ]
 
 @pulumi.output_type
@@ -119,3 +120,25 @@ def get_realm_keys(algorithms: Optional[Sequence[str]] = None,
         keys=__ret__.keys,
         realm_id=__ret__.realm_id,
         statuses=__ret__.statuses)
+
+
+@_utilities.lift_output_func(get_realm_keys)
+def get_realm_keys_output(algorithms: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                          realm_id: Optional[pulumi.Input[str]] = None,
+                          statuses: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRealmKeysResult]:
+    """
+    Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
+
+    Remarks:
+
+    - A key must meet all filter criteria
+    - This data source may return more than one value.
+    - If no key matches the filter criteria, then an error will be returned.
+
+
+    :param Sequence[str] algorithms: When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
+    :param str realm_id: The realm from which the keys will be retrieved.
+    :param Sequence[str] statuses: When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+    """
+    ...

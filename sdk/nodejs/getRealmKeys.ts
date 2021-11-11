@@ -36,15 +36,15 @@ export interface GetRealmKeysArgs {
     /**
      * When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
      */
-    readonly algorithms?: string[];
+    algorithms?: string[];
     /**
      * The realm from which the keys will be retrieved.
      */
-    readonly realmId: string;
+    realmId: string;
     /**
      * When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
      */
-    readonly statuses?: string[];
+    statuses?: string[];
 }
 
 /**
@@ -65,4 +65,26 @@ export interface GetRealmKeysResult {
      * Key status (string)
      */
     readonly statuses?: string[];
+}
+
+export function getRealmKeysOutput(args: GetRealmKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRealmKeysResult> {
+    return pulumi.output(args).apply(a => getRealmKeys(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getRealmKeys.
+ */
+export interface GetRealmKeysOutputArgs {
+    /**
+     * When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
+     */
+    algorithms?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The realm from which the keys will be retrieved.
+     */
+    realmId: pulumi.Input<string>;
+    /**
+     * When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+     */
+    statuses?: pulumi.Input<pulumi.Input<string>[]>;
 }

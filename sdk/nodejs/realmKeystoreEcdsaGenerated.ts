@@ -131,27 +131,27 @@ export interface RealmKeystoreEcdsaGeneratedState {
     /**
      * When `false`, key in not used for signing. Defaults to `true`.
      */
-    readonly active?: pulumi.Input<boolean>;
+    active?: pulumi.Input<boolean>;
     /**
      * Elliptic Curve used in ECDSA. Defaults to `P-256`.
      */
-    readonly ellipticCurveKey?: pulumi.Input<string>;
+    ellipticCurveKey?: pulumi.Input<string>;
     /**
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      */
-    readonly enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
     /**
      * Display name of provider when linked in admin console.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Priority for the provider. Defaults to `0`
      */
-    readonly priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number>;
     /**
      * The realm this keystore exists in.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
 }
 
 /**
@@ -161,25 +161,25 @@ export interface RealmKeystoreEcdsaGeneratedArgs {
     /**
      * When `false`, key in not used for signing. Defaults to `true`.
      */
-    readonly active?: pulumi.Input<boolean>;
+    active?: pulumi.Input<boolean>;
     /**
      * Elliptic Curve used in ECDSA. Defaults to `P-256`.
      */
-    readonly ellipticCurveKey?: pulumi.Input<string>;
+    ellipticCurveKey?: pulumi.Input<string>;
     /**
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      */
-    readonly enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
     /**
      * Display name of provider when linked in admin console.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Priority for the provider. Defaults to `0`
      */
-    readonly priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number>;
     /**
      * The realm this keystore exists in.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
 }

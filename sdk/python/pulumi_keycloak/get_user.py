@@ -12,6 +12,7 @@ __all__ = [
     'GetUserResult',
     'AwaitableGetUserResult',
     'get_user',
+    'get_user_output',
 ]
 
 @pulumi.output_type
@@ -186,3 +187,29 @@ def get_user(realm_id: Optional[str] = None,
         last_name=__ret__.last_name,
         realm_id=__ret__.realm_id,
         username=__ret__.username)
+
+
+@_utilities.lift_output_func(get_user)
+def get_user_output(realm_id: Optional[pulumi.Input[str]] = None,
+                    username: Optional[pulumi.Input[str]] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUserResult]:
+    """
+    This data source can be used to fetch properties of a user within Keycloak.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    master_realm = keycloak.get_realm(realm="master")
+    default_admin_user = keycloak.get_user(realm_id=master_realm.id,
+        username="keycloak")
+    pulumi.export("keycloakUserId", default_admin_user.id)
+    ```
+
+
+    :param str realm_id: The realm this user belongs to.
+    :param str username: The unique username of this user.
+    """
+    ...

@@ -138,31 +138,31 @@ export interface RealmKeystoreRsaGeneratedState {
     /**
      * When `false`, key in not used for signing. Defaults to `true`.
      */
-    readonly active?: pulumi.Input<boolean>;
+    active?: pulumi.Input<boolean>;
     /**
      * Intended algorithm for the key. Defaults to `RS256`
      */
-    readonly algorithm?: pulumi.Input<string>;
+    algorithm?: pulumi.Input<string>;
     /**
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      */
-    readonly enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
     /**
      * Size for the generated keys
      */
-    readonly keySize?: pulumi.Input<number>;
+    keySize?: pulumi.Input<number>;
     /**
      * Display name of provider when linked in admin console.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Priority for the provider. Defaults to `0`
      */
-    readonly priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number>;
     /**
      * The realm this keystore exists in.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
 }
 
 /**
@@ -172,29 +172,29 @@ export interface RealmKeystoreRsaGeneratedArgs {
     /**
      * When `false`, key in not used for signing. Defaults to `true`.
      */
-    readonly active?: pulumi.Input<boolean>;
+    active?: pulumi.Input<boolean>;
     /**
      * Intended algorithm for the key. Defaults to `RS256`
      */
-    readonly algorithm?: pulumi.Input<string>;
+    algorithm?: pulumi.Input<string>;
     /**
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      */
-    readonly enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
     /**
      * Size for the generated keys
      */
-    readonly keySize?: pulumi.Input<number>;
+    keySize?: pulumi.Input<number>;
     /**
      * Display name of provider when linked in admin console.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Priority for the provider. Defaults to `0`
      */
-    readonly priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number>;
     /**
      * The realm this keystore exists in.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
 }

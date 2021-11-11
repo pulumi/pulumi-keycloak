@@ -39,8 +39,8 @@ import * as utilities from "../utilities";
  * }));
  * const serviceAccountUserRoles = new keycloak.UserRoles("serviceAccountUserRoles", {
  *     realmId: realm.id,
- *     userId: serviceAccountUser.id,
- *     roleIds: [offlineAccess.id],
+ *     userId: serviceAccountUser.apply(serviceAccountUser => serviceAccountUser.id),
+ *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
  * });
  * ```
  */
@@ -65,11 +65,11 @@ export interface GetClientServiceAccountUserArgs {
     /**
      * The ID of the OpenID client with service accounts enabled.
      */
-    readonly clientId: string;
+    clientId: string;
     /**
      * The realm that the OpenID client exists within.
      */
-    readonly realmId: string;
+    realmId: string;
 }
 
 /**
@@ -90,4 +90,22 @@ export interface GetClientServiceAccountUserResult {
     readonly lastName: string;
     readonly realmId: string;
     readonly username: string;
+}
+
+export function getClientServiceAccountUserOutput(args: GetClientServiceAccountUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientServiceAccountUserResult> {
+    return pulumi.output(args).apply(a => getClientServiceAccountUser(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getClientServiceAccountUser.
+ */
+export interface GetClientServiceAccountUserOutputArgs {
+    /**
+     * The ID of the OpenID client with service accounts enabled.
+     */
+    clientId: pulumi.Input<string>;
+    /**
+     * The realm that the OpenID client exists within.
+     */
+    realmId: pulumi.Input<string>;
 }

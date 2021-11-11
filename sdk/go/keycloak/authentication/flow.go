@@ -227,7 +227,7 @@ type FlowArrayInput interface {
 type FlowArray []FlowInput
 
 func (FlowArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*Flow)(nil))
+	return reflect.TypeOf((*[]*Flow)(nil)).Elem()
 }
 
 func (i FlowArray) ToFlowArrayOutput() FlowArrayOutput {
@@ -252,7 +252,7 @@ type FlowMapInput interface {
 type FlowMap map[string]FlowInput
 
 func (FlowMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*Flow)(nil))
+	return reflect.TypeOf((*map[string]*Flow)(nil)).Elem()
 }
 
 func (i FlowMap) ToFlowMapOutput() FlowMapOutput {
@@ -263,9 +263,7 @@ func (i FlowMap) ToFlowMapOutputWithContext(ctx context.Context) FlowMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FlowMapOutput)
 }
 
-type FlowOutput struct {
-	*pulumi.OutputState
-}
+type FlowOutput struct{ *pulumi.OutputState }
 
 func (FlowOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Flow)(nil))
@@ -284,14 +282,12 @@ func (o FlowOutput) ToFlowPtrOutput() FlowPtrOutput {
 }
 
 func (o FlowOutput) ToFlowPtrOutputWithContext(ctx context.Context) FlowPtrOutput {
-	return o.ApplyT(func(v Flow) *Flow {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Flow) *Flow {
 		return &v
 	}).(FlowPtrOutput)
 }
 
-type FlowPtrOutput struct {
-	*pulumi.OutputState
-}
+type FlowPtrOutput struct{ *pulumi.OutputState }
 
 func (FlowPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Flow)(nil))
@@ -303,6 +299,16 @@ func (o FlowPtrOutput) ToFlowPtrOutput() FlowPtrOutput {
 
 func (o FlowPtrOutput) ToFlowPtrOutputWithContext(ctx context.Context) FlowPtrOutput {
 	return o
+}
+
+func (o FlowPtrOutput) Elem() FlowOutput {
+	return o.ApplyT(func(v *Flow) Flow {
+		if v != nil {
+			return *v
+		}
+		var ret Flow
+		return ret
+	}).(FlowOutput)
 }
 
 type FlowArrayOutput struct{ *pulumi.OutputState }
@@ -346,6 +352,10 @@ func (o FlowMapOutput) MapIndex(k pulumi.StringInput) FlowOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FlowInput)(nil)).Elem(), &Flow{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlowPtrInput)(nil)).Elem(), &Flow{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlowArrayInput)(nil)).Elem(), FlowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FlowMapInput)(nil)).Elem(), FlowMap{})
 	pulumi.RegisterOutputType(FlowOutput{})
 	pulumi.RegisterOutputType(FlowPtrOutput{})
 	pulumi.RegisterOutputType(FlowArrayOutput{})

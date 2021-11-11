@@ -183,7 +183,7 @@ type UserRolesArrayInput interface {
 type UserRolesArray []UserRolesInput
 
 func (UserRolesArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserRoles)(nil))
+	return reflect.TypeOf((*[]*UserRoles)(nil)).Elem()
 }
 
 func (i UserRolesArray) ToUserRolesArrayOutput() UserRolesArrayOutput {
@@ -208,7 +208,7 @@ type UserRolesMapInput interface {
 type UserRolesMap map[string]UserRolesInput
 
 func (UserRolesMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserRoles)(nil))
+	return reflect.TypeOf((*map[string]*UserRoles)(nil)).Elem()
 }
 
 func (i UserRolesMap) ToUserRolesMapOutput() UserRolesMapOutput {
@@ -219,9 +219,7 @@ func (i UserRolesMap) ToUserRolesMapOutputWithContext(ctx context.Context) UserR
 	return pulumi.ToOutputWithContext(ctx, i).(UserRolesMapOutput)
 }
 
-type UserRolesOutput struct {
-	*pulumi.OutputState
-}
+type UserRolesOutput struct{ *pulumi.OutputState }
 
 func (UserRolesOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*UserRoles)(nil))
@@ -240,14 +238,12 @@ func (o UserRolesOutput) ToUserRolesPtrOutput() UserRolesPtrOutput {
 }
 
 func (o UserRolesOutput) ToUserRolesPtrOutputWithContext(ctx context.Context) UserRolesPtrOutput {
-	return o.ApplyT(func(v UserRoles) *UserRoles {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v UserRoles) *UserRoles {
 		return &v
 	}).(UserRolesPtrOutput)
 }
 
-type UserRolesPtrOutput struct {
-	*pulumi.OutputState
-}
+type UserRolesPtrOutput struct{ *pulumi.OutputState }
 
 func (UserRolesPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**UserRoles)(nil))
@@ -259,6 +255,16 @@ func (o UserRolesPtrOutput) ToUserRolesPtrOutput() UserRolesPtrOutput {
 
 func (o UserRolesPtrOutput) ToUserRolesPtrOutputWithContext(ctx context.Context) UserRolesPtrOutput {
 	return o
+}
+
+func (o UserRolesPtrOutput) Elem() UserRolesOutput {
+	return o.ApplyT(func(v *UserRoles) UserRoles {
+		if v != nil {
+			return *v
+		}
+		var ret UserRoles
+		return ret
+	}).(UserRolesOutput)
 }
 
 type UserRolesArrayOutput struct{ *pulumi.OutputState }
@@ -302,6 +308,10 @@ func (o UserRolesMapOutput) MapIndex(k pulumi.StringInput) UserRolesOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRolesInput)(nil)).Elem(), &UserRoles{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRolesPtrInput)(nil)).Elem(), &UserRoles{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRolesArrayInput)(nil)).Elem(), UserRolesArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRolesMapInput)(nil)).Elem(), UserRolesMap{})
 	pulumi.RegisterOutputType(UserRolesOutput{})
 	pulumi.RegisterOutputType(UserRolesPtrOutput{})
 	pulumi.RegisterOutputType(UserRolesArrayOutput{})

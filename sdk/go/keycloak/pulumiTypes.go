@@ -107,7 +107,7 @@ func (o RealmInternationalizationOutput) ToRealmInternationalizationPtrOutput() 
 }
 
 func (o RealmInternationalizationOutput) ToRealmInternationalizationPtrOutputWithContext(ctx context.Context) RealmInternationalizationPtrOutput {
-	return o.ApplyT(func(v RealmInternationalization) *RealmInternationalization {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmInternationalization) *RealmInternationalization {
 		return &v
 	}).(RealmInternationalizationPtrOutput)
 }
@@ -137,7 +137,13 @@ func (o RealmInternationalizationPtrOutput) ToRealmInternationalizationPtrOutput
 }
 
 func (o RealmInternationalizationPtrOutput) Elem() RealmInternationalizationOutput {
-	return o.ApplyT(func(v *RealmInternationalization) RealmInternationalization { return *v }).(RealmInternationalizationOutput)
+	return o.ApplyT(func(v *RealmInternationalization) RealmInternationalization {
+		if v != nil {
+			return *v
+		}
+		var ret RealmInternationalization
+		return ret
+	}).(RealmInternationalizationOutput)
 }
 
 // The locale to use by default. This locale code must be present within the `supportedLocales` list.
@@ -273,7 +279,7 @@ func (o RealmOtpPolicyOutput) ToRealmOtpPolicyPtrOutput() RealmOtpPolicyPtrOutpu
 }
 
 func (o RealmOtpPolicyOutput) ToRealmOtpPolicyPtrOutputWithContext(ctx context.Context) RealmOtpPolicyPtrOutput {
-	return o.ApplyT(func(v RealmOtpPolicy) *RealmOtpPolicy {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmOtpPolicy) *RealmOtpPolicy {
 		return &v
 	}).(RealmOtpPolicyPtrOutput)
 }
@@ -323,7 +329,13 @@ func (o RealmOtpPolicyPtrOutput) ToRealmOtpPolicyPtrOutputWithContext(ctx contex
 }
 
 func (o RealmOtpPolicyPtrOutput) Elem() RealmOtpPolicyOutput {
-	return o.ApplyT(func(v *RealmOtpPolicy) RealmOtpPolicy { return *v }).(RealmOtpPolicyOutput)
+	return o.ApplyT(func(v *RealmOtpPolicy) RealmOtpPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret RealmOtpPolicy
+		return ret
+	}).(RealmOtpPolicyOutput)
 }
 
 // What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
@@ -479,10 +491,11 @@ func (o RealmSecurityDefensesOutput) ToRealmSecurityDefensesPtrOutput() RealmSec
 }
 
 func (o RealmSecurityDefensesOutput) ToRealmSecurityDefensesPtrOutputWithContext(ctx context.Context) RealmSecurityDefensesPtrOutput {
-	return o.ApplyT(func(v RealmSecurityDefenses) *RealmSecurityDefenses {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmSecurityDefenses) *RealmSecurityDefenses {
 		return &v
 	}).(RealmSecurityDefensesPtrOutput)
 }
+
 func (o RealmSecurityDefensesOutput) BruteForceDetection() RealmSecurityDefensesBruteForceDetectionPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefenses) *RealmSecurityDefensesBruteForceDetection { return v.BruteForceDetection }).(RealmSecurityDefensesBruteForceDetectionPtrOutput)
 }
@@ -506,7 +519,13 @@ func (o RealmSecurityDefensesPtrOutput) ToRealmSecurityDefensesPtrOutputWithCont
 }
 
 func (o RealmSecurityDefensesPtrOutput) Elem() RealmSecurityDefensesOutput {
-	return o.ApplyT(func(v *RealmSecurityDefenses) RealmSecurityDefenses { return *v }).(RealmSecurityDefensesOutput)
+	return o.ApplyT(func(v *RealmSecurityDefenses) RealmSecurityDefenses {
+		if v != nil {
+			return *v
+		}
+		var ret RealmSecurityDefenses
+		return ret
+	}).(RealmSecurityDefensesOutput)
 }
 
 func (o RealmSecurityDefensesPtrOutput) BruteForceDetection() RealmSecurityDefensesBruteForceDetectionPtrOutput {
@@ -644,7 +663,7 @@ func (o RealmSecurityDefensesBruteForceDetectionOutput) ToRealmSecurityDefensesB
 }
 
 func (o RealmSecurityDefensesBruteForceDetectionOutput) ToRealmSecurityDefensesBruteForceDetectionPtrOutputWithContext(ctx context.Context) RealmSecurityDefensesBruteForceDetectionPtrOutput {
-	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *RealmSecurityDefensesBruteForceDetection {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmSecurityDefensesBruteForceDetection) *RealmSecurityDefensesBruteForceDetection {
 		return &v
 	}).(RealmSecurityDefensesBruteForceDetectionPtrOutput)
 }
@@ -699,7 +718,13 @@ func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) ToRealmSecurityDefens
 }
 
 func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) Elem() RealmSecurityDefensesBruteForceDetectionOutput {
-	return o.ApplyT(func(v *RealmSecurityDefensesBruteForceDetection) RealmSecurityDefensesBruteForceDetection { return *v }).(RealmSecurityDefensesBruteForceDetectionOutput)
+	return o.ApplyT(func(v *RealmSecurityDefensesBruteForceDetection) RealmSecurityDefensesBruteForceDetection {
+		if v != nil {
+			return *v
+		}
+		var ret RealmSecurityDefensesBruteForceDetection
+		return ret
+	}).(RealmSecurityDefensesBruteForceDetectionOutput)
 }
 
 // When will failure count be reset?
@@ -889,7 +914,7 @@ func (o RealmSecurityDefensesHeadersOutput) ToRealmSecurityDefensesHeadersPtrOut
 }
 
 func (o RealmSecurityDefensesHeadersOutput) ToRealmSecurityDefensesHeadersPtrOutputWithContext(ctx context.Context) RealmSecurityDefensesHeadersPtrOutput {
-	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *RealmSecurityDefensesHeaders {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmSecurityDefensesHeaders) *RealmSecurityDefensesHeaders {
 		return &v
 	}).(RealmSecurityDefensesHeadersPtrOutput)
 }
@@ -944,7 +969,13 @@ func (o RealmSecurityDefensesHeadersPtrOutput) ToRealmSecurityDefensesHeadersPtr
 }
 
 func (o RealmSecurityDefensesHeadersPtrOutput) Elem() RealmSecurityDefensesHeadersOutput {
-	return o.ApplyT(func(v *RealmSecurityDefensesHeaders) RealmSecurityDefensesHeaders { return *v }).(RealmSecurityDefensesHeadersOutput)
+	return o.ApplyT(func(v *RealmSecurityDefensesHeaders) RealmSecurityDefensesHeaders {
+		if v != nil {
+			return *v
+		}
+		var ret RealmSecurityDefensesHeaders
+		return ret
+	}).(RealmSecurityDefensesHeadersOutput)
 }
 
 // Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
@@ -1146,7 +1177,7 @@ func (o RealmSmtpServerOutput) ToRealmSmtpServerPtrOutput() RealmSmtpServerPtrOu
 }
 
 func (o RealmSmtpServerOutput) ToRealmSmtpServerPtrOutputWithContext(ctx context.Context) RealmSmtpServerPtrOutput {
-	return o.ApplyT(func(v RealmSmtpServer) *RealmSmtpServer {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmSmtpServer) *RealmSmtpServer {
 		return &v
 	}).(RealmSmtpServerPtrOutput)
 }
@@ -1216,7 +1247,13 @@ func (o RealmSmtpServerPtrOutput) ToRealmSmtpServerPtrOutputWithContext(ctx cont
 }
 
 func (o RealmSmtpServerPtrOutput) Elem() RealmSmtpServerOutput {
-	return o.ApplyT(func(v *RealmSmtpServer) RealmSmtpServer { return *v }).(RealmSmtpServerOutput)
+	return o.ApplyT(func(v *RealmSmtpServer) RealmSmtpServer {
+		if v != nil {
+			return *v
+		}
+		var ret RealmSmtpServer
+		return ret
+	}).(RealmSmtpServerOutput)
 }
 
 // Enables authentication to the SMTP server.  This block supports the following arguments:
@@ -1416,7 +1453,7 @@ func (o RealmSmtpServerAuthOutput) ToRealmSmtpServerAuthPtrOutput() RealmSmtpSer
 }
 
 func (o RealmSmtpServerAuthOutput) ToRealmSmtpServerAuthPtrOutputWithContext(ctx context.Context) RealmSmtpServerAuthPtrOutput {
-	return o.ApplyT(func(v RealmSmtpServerAuth) *RealmSmtpServerAuth {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmSmtpServerAuth) *RealmSmtpServerAuth {
 		return &v
 	}).(RealmSmtpServerAuthPtrOutput)
 }
@@ -1446,7 +1483,13 @@ func (o RealmSmtpServerAuthPtrOutput) ToRealmSmtpServerAuthPtrOutputWithContext(
 }
 
 func (o RealmSmtpServerAuthPtrOutput) Elem() RealmSmtpServerAuthOutput {
-	return o.ApplyT(func(v *RealmSmtpServerAuth) RealmSmtpServerAuth { return *v }).(RealmSmtpServerAuthOutput)
+	return o.ApplyT(func(v *RealmSmtpServerAuth) RealmSmtpServerAuth {
+		if v != nil {
+			return *v
+		}
+		var ret RealmSmtpServerAuth
+		return ret
+	}).(RealmSmtpServerAuthOutput)
 }
 
 // The SMTP server password.
@@ -1598,7 +1641,7 @@ func (o RealmWebAuthnPasswordlessPolicyOutput) ToRealmWebAuthnPasswordlessPolicy
 }
 
 func (o RealmWebAuthnPasswordlessPolicyOutput) ToRealmWebAuthnPasswordlessPolicyPtrOutputWithContext(ctx context.Context) RealmWebAuthnPasswordlessPolicyPtrOutput {
-	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) *RealmWebAuthnPasswordlessPolicy {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmWebAuthnPasswordlessPolicy) *RealmWebAuthnPasswordlessPolicy {
 		return &v
 	}).(RealmWebAuthnPasswordlessPolicyPtrOutput)
 }
@@ -1668,7 +1711,13 @@ func (o RealmWebAuthnPasswordlessPolicyPtrOutput) ToRealmWebAuthnPasswordlessPol
 }
 
 func (o RealmWebAuthnPasswordlessPolicyPtrOutput) Elem() RealmWebAuthnPasswordlessPolicyOutput {
-	return o.ApplyT(func(v *RealmWebAuthnPasswordlessPolicy) RealmWebAuthnPasswordlessPolicy { return *v }).(RealmWebAuthnPasswordlessPolicyOutput)
+	return o.ApplyT(func(v *RealmWebAuthnPasswordlessPolicy) RealmWebAuthnPasswordlessPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret RealmWebAuthnPasswordlessPolicy
+		return ret
+	}).(RealmWebAuthnPasswordlessPolicyOutput)
 }
 
 // A set of AAGUIDs for which an authenticator can be registered.
@@ -1900,7 +1949,7 @@ func (o RealmWebAuthnPolicyOutput) ToRealmWebAuthnPolicyPtrOutput() RealmWebAuth
 }
 
 func (o RealmWebAuthnPolicyOutput) ToRealmWebAuthnPolicyPtrOutputWithContext(ctx context.Context) RealmWebAuthnPolicyPtrOutput {
-	return o.ApplyT(func(v RealmWebAuthnPolicy) *RealmWebAuthnPolicy {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmWebAuthnPolicy) *RealmWebAuthnPolicy {
 		return &v
 	}).(RealmWebAuthnPolicyPtrOutput)
 }
@@ -1970,7 +2019,13 @@ func (o RealmWebAuthnPolicyPtrOutput) ToRealmWebAuthnPolicyPtrOutputWithContext(
 }
 
 func (o RealmWebAuthnPolicyPtrOutput) Elem() RealmWebAuthnPolicyOutput {
-	return o.ApplyT(func(v *RealmWebAuthnPolicy) RealmWebAuthnPolicy { return *v }).(RealmWebAuthnPolicyOutput)
+	return o.ApplyT(func(v *RealmWebAuthnPolicy) RealmWebAuthnPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret RealmWebAuthnPolicy
+		return ret
+	}).(RealmWebAuthnPolicyOutput)
 }
 
 // A set of AAGUIDs for which an authenticator can be registered.
@@ -2285,7 +2340,7 @@ func (o UserInitialPasswordOutput) ToUserInitialPasswordPtrOutput() UserInitialP
 }
 
 func (o UserInitialPasswordOutput) ToUserInitialPasswordPtrOutputWithContext(ctx context.Context) UserInitialPasswordPtrOutput {
-	return o.ApplyT(func(v UserInitialPassword) *UserInitialPassword {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v UserInitialPassword) *UserInitialPassword {
 		return &v
 	}).(UserInitialPasswordPtrOutput)
 }
@@ -2315,7 +2370,13 @@ func (o UserInitialPasswordPtrOutput) ToUserInitialPasswordPtrOutputWithContext(
 }
 
 func (o UserInitialPasswordPtrOutput) Elem() UserInitialPasswordOutput {
-	return o.ApplyT(func(v *UserInitialPassword) UserInitialPassword { return *v }).(UserInitialPasswordOutput)
+	return o.ApplyT(func(v *UserInitialPassword) UserInitialPassword {
+		if v != nil {
+			return *v
+		}
+		var ret UserInitialPassword
+		return ret
+	}).(UserInitialPasswordOutput)
 }
 
 // If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
@@ -2433,10 +2494,11 @@ func (o UsersPermissionsImpersonateScopeOutput) ToUsersPermissionsImpersonateSco
 }
 
 func (o UsersPermissionsImpersonateScopeOutput) ToUsersPermissionsImpersonateScopePtrOutputWithContext(ctx context.Context) UsersPermissionsImpersonateScopePtrOutput {
-	return o.ApplyT(func(v UsersPermissionsImpersonateScope) *UsersPermissionsImpersonateScope {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v UsersPermissionsImpersonateScope) *UsersPermissionsImpersonateScope {
 		return &v
 	}).(UsersPermissionsImpersonateScopePtrOutput)
 }
+
 func (o UsersPermissionsImpersonateScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UsersPermissionsImpersonateScope) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
 }
@@ -2464,7 +2526,13 @@ func (o UsersPermissionsImpersonateScopePtrOutput) ToUsersPermissionsImpersonate
 }
 
 func (o UsersPermissionsImpersonateScopePtrOutput) Elem() UsersPermissionsImpersonateScopeOutput {
-	return o.ApplyT(func(v *UsersPermissionsImpersonateScope) UsersPermissionsImpersonateScope { return *v }).(UsersPermissionsImpersonateScopeOutput)
+	return o.ApplyT(func(v *UsersPermissionsImpersonateScope) UsersPermissionsImpersonateScope {
+		if v != nil {
+			return *v
+		}
+		var ret UsersPermissionsImpersonateScope
+		return ret
+	}).(UsersPermissionsImpersonateScopeOutput)
 }
 
 func (o UsersPermissionsImpersonateScopePtrOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -2589,10 +2657,11 @@ func (o UsersPermissionsManageGroupMembershipScopeOutput) ToUsersPermissionsMana
 }
 
 func (o UsersPermissionsManageGroupMembershipScopeOutput) ToUsersPermissionsManageGroupMembershipScopePtrOutputWithContext(ctx context.Context) UsersPermissionsManageGroupMembershipScopePtrOutput {
-	return o.ApplyT(func(v UsersPermissionsManageGroupMembershipScope) *UsersPermissionsManageGroupMembershipScope {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v UsersPermissionsManageGroupMembershipScope) *UsersPermissionsManageGroupMembershipScope {
 		return &v
 	}).(UsersPermissionsManageGroupMembershipScopePtrOutput)
 }
+
 func (o UsersPermissionsManageGroupMembershipScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UsersPermissionsManageGroupMembershipScope) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
 }
@@ -2621,7 +2690,11 @@ func (o UsersPermissionsManageGroupMembershipScopePtrOutput) ToUsersPermissionsM
 
 func (o UsersPermissionsManageGroupMembershipScopePtrOutput) Elem() UsersPermissionsManageGroupMembershipScopeOutput {
 	return o.ApplyT(func(v *UsersPermissionsManageGroupMembershipScope) UsersPermissionsManageGroupMembershipScope {
-		return *v
+		if v != nil {
+			return *v
+		}
+		var ret UsersPermissionsManageGroupMembershipScope
+		return ret
 	}).(UsersPermissionsManageGroupMembershipScopeOutput)
 }
 
@@ -2747,10 +2820,11 @@ func (o UsersPermissionsManageScopeOutput) ToUsersPermissionsManageScopePtrOutpu
 }
 
 func (o UsersPermissionsManageScopeOutput) ToUsersPermissionsManageScopePtrOutputWithContext(ctx context.Context) UsersPermissionsManageScopePtrOutput {
-	return o.ApplyT(func(v UsersPermissionsManageScope) *UsersPermissionsManageScope {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v UsersPermissionsManageScope) *UsersPermissionsManageScope {
 		return &v
 	}).(UsersPermissionsManageScopePtrOutput)
 }
+
 func (o UsersPermissionsManageScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UsersPermissionsManageScope) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
 }
@@ -2778,7 +2852,13 @@ func (o UsersPermissionsManageScopePtrOutput) ToUsersPermissionsManageScopePtrOu
 }
 
 func (o UsersPermissionsManageScopePtrOutput) Elem() UsersPermissionsManageScopeOutput {
-	return o.ApplyT(func(v *UsersPermissionsManageScope) UsersPermissionsManageScope { return *v }).(UsersPermissionsManageScopeOutput)
+	return o.ApplyT(func(v *UsersPermissionsManageScope) UsersPermissionsManageScope {
+		if v != nil {
+			return *v
+		}
+		var ret UsersPermissionsManageScope
+		return ret
+	}).(UsersPermissionsManageScopeOutput)
 }
 
 func (o UsersPermissionsManageScopePtrOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -2903,10 +2983,11 @@ func (o UsersPermissionsMapRolesScopeOutput) ToUsersPermissionsMapRolesScopePtrO
 }
 
 func (o UsersPermissionsMapRolesScopeOutput) ToUsersPermissionsMapRolesScopePtrOutputWithContext(ctx context.Context) UsersPermissionsMapRolesScopePtrOutput {
-	return o.ApplyT(func(v UsersPermissionsMapRolesScope) *UsersPermissionsMapRolesScope {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v UsersPermissionsMapRolesScope) *UsersPermissionsMapRolesScope {
 		return &v
 	}).(UsersPermissionsMapRolesScopePtrOutput)
 }
+
 func (o UsersPermissionsMapRolesScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UsersPermissionsMapRolesScope) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
 }
@@ -2934,7 +3015,13 @@ func (o UsersPermissionsMapRolesScopePtrOutput) ToUsersPermissionsMapRolesScopeP
 }
 
 func (o UsersPermissionsMapRolesScopePtrOutput) Elem() UsersPermissionsMapRolesScopeOutput {
-	return o.ApplyT(func(v *UsersPermissionsMapRolesScope) UsersPermissionsMapRolesScope { return *v }).(UsersPermissionsMapRolesScopeOutput)
+	return o.ApplyT(func(v *UsersPermissionsMapRolesScope) UsersPermissionsMapRolesScope {
+		if v != nil {
+			return *v
+		}
+		var ret UsersPermissionsMapRolesScope
+		return ret
+	}).(UsersPermissionsMapRolesScopeOutput)
 }
 
 func (o UsersPermissionsMapRolesScopePtrOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -3059,10 +3146,11 @@ func (o UsersPermissionsUserImpersonatedScopeOutput) ToUsersPermissionsUserImper
 }
 
 func (o UsersPermissionsUserImpersonatedScopeOutput) ToUsersPermissionsUserImpersonatedScopePtrOutputWithContext(ctx context.Context) UsersPermissionsUserImpersonatedScopePtrOutput {
-	return o.ApplyT(func(v UsersPermissionsUserImpersonatedScope) *UsersPermissionsUserImpersonatedScope {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v UsersPermissionsUserImpersonatedScope) *UsersPermissionsUserImpersonatedScope {
 		return &v
 	}).(UsersPermissionsUserImpersonatedScopePtrOutput)
 }
+
 func (o UsersPermissionsUserImpersonatedScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UsersPermissionsUserImpersonatedScope) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
 }
@@ -3090,7 +3178,13 @@ func (o UsersPermissionsUserImpersonatedScopePtrOutput) ToUsersPermissionsUserIm
 }
 
 func (o UsersPermissionsUserImpersonatedScopePtrOutput) Elem() UsersPermissionsUserImpersonatedScopeOutput {
-	return o.ApplyT(func(v *UsersPermissionsUserImpersonatedScope) UsersPermissionsUserImpersonatedScope { return *v }).(UsersPermissionsUserImpersonatedScopeOutput)
+	return o.ApplyT(func(v *UsersPermissionsUserImpersonatedScope) UsersPermissionsUserImpersonatedScope {
+		if v != nil {
+			return *v
+		}
+		var ret UsersPermissionsUserImpersonatedScope
+		return ret
+	}).(UsersPermissionsUserImpersonatedScopeOutput)
 }
 
 func (o UsersPermissionsUserImpersonatedScopePtrOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -3215,10 +3309,11 @@ func (o UsersPermissionsViewScopeOutput) ToUsersPermissionsViewScopePtrOutput() 
 }
 
 func (o UsersPermissionsViewScopeOutput) ToUsersPermissionsViewScopePtrOutputWithContext(ctx context.Context) UsersPermissionsViewScopePtrOutput {
-	return o.ApplyT(func(v UsersPermissionsViewScope) *UsersPermissionsViewScope {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v UsersPermissionsViewScope) *UsersPermissionsViewScope {
 		return &v
 	}).(UsersPermissionsViewScopePtrOutput)
 }
+
 func (o UsersPermissionsViewScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UsersPermissionsViewScope) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
 }
@@ -3246,7 +3341,13 @@ func (o UsersPermissionsViewScopePtrOutput) ToUsersPermissionsViewScopePtrOutput
 }
 
 func (o UsersPermissionsViewScopePtrOutput) Elem() UsersPermissionsViewScopeOutput {
-	return o.ApplyT(func(v *UsersPermissionsViewScope) UsersPermissionsViewScope { return *v }).(UsersPermissionsViewScopeOutput)
+	return o.ApplyT(func(v *UsersPermissionsViewScope) UsersPermissionsViewScope {
+		if v != nil {
+			return *v
+		}
+		var ret UsersPermissionsViewScope
+		return ret
+	}).(UsersPermissionsViewScopeOutput)
 }
 
 func (o UsersPermissionsViewScopePtrOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -3695,6 +3796,47 @@ func (i GetRealmOtpPolicyArgs) ToGetRealmOtpPolicyOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmOtpPolicyOutput)
 }
 
+func (i GetRealmOtpPolicyArgs) ToGetRealmOtpPolicyPtrOutput() GetRealmOtpPolicyPtrOutput {
+	return i.ToGetRealmOtpPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i GetRealmOtpPolicyArgs) ToGetRealmOtpPolicyPtrOutputWithContext(ctx context.Context) GetRealmOtpPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRealmOtpPolicyOutput).ToGetRealmOtpPolicyPtrOutputWithContext(ctx)
+}
+
+// GetRealmOtpPolicyPtrInput is an input type that accepts GetRealmOtpPolicyArgs, GetRealmOtpPolicyPtr and GetRealmOtpPolicyPtrOutput values.
+// You can construct a concrete instance of `GetRealmOtpPolicyPtrInput` via:
+//
+//          GetRealmOtpPolicyArgs{...}
+//
+//  or:
+//
+//          nil
+type GetRealmOtpPolicyPtrInput interface {
+	pulumi.Input
+
+	ToGetRealmOtpPolicyPtrOutput() GetRealmOtpPolicyPtrOutput
+	ToGetRealmOtpPolicyPtrOutputWithContext(context.Context) GetRealmOtpPolicyPtrOutput
+}
+
+type getRealmOtpPolicyPtrType GetRealmOtpPolicyArgs
+
+func GetRealmOtpPolicyPtr(v *GetRealmOtpPolicyArgs) GetRealmOtpPolicyPtrInput {
+	return (*getRealmOtpPolicyPtrType)(v)
+}
+
+func (*getRealmOtpPolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetRealmOtpPolicy)(nil)).Elem()
+}
+
+func (i *getRealmOtpPolicyPtrType) ToGetRealmOtpPolicyPtrOutput() GetRealmOtpPolicyPtrOutput {
+	return i.ToGetRealmOtpPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *getRealmOtpPolicyPtrType) ToGetRealmOtpPolicyPtrOutputWithContext(ctx context.Context) GetRealmOtpPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRealmOtpPolicyPtrOutput)
+}
+
 type GetRealmOtpPolicyOutput struct{ *pulumi.OutputState }
 
 func (GetRealmOtpPolicyOutput) ElementType() reflect.Type {
@@ -3707,6 +3849,16 @@ func (o GetRealmOtpPolicyOutput) ToGetRealmOtpPolicyOutput() GetRealmOtpPolicyOu
 
 func (o GetRealmOtpPolicyOutput) ToGetRealmOtpPolicyOutputWithContext(ctx context.Context) GetRealmOtpPolicyOutput {
 	return o
+}
+
+func (o GetRealmOtpPolicyOutput) ToGetRealmOtpPolicyPtrOutput() GetRealmOtpPolicyPtrOutput {
+	return o.ToGetRealmOtpPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o GetRealmOtpPolicyOutput) ToGetRealmOtpPolicyPtrOutputWithContext(ctx context.Context) GetRealmOtpPolicyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetRealmOtpPolicy) *GetRealmOtpPolicy {
+		return &v
+	}).(GetRealmOtpPolicyPtrOutput)
 }
 
 func (o GetRealmOtpPolicyOutput) Algorithm() pulumi.StringOutput {
@@ -3731,6 +3883,84 @@ func (o GetRealmOtpPolicyOutput) Period() pulumi.IntOutput {
 
 func (o GetRealmOtpPolicyOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmOtpPolicy) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetRealmOtpPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (GetRealmOtpPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetRealmOtpPolicy)(nil)).Elem()
+}
+
+func (o GetRealmOtpPolicyPtrOutput) ToGetRealmOtpPolicyPtrOutput() GetRealmOtpPolicyPtrOutput {
+	return o
+}
+
+func (o GetRealmOtpPolicyPtrOutput) ToGetRealmOtpPolicyPtrOutputWithContext(ctx context.Context) GetRealmOtpPolicyPtrOutput {
+	return o
+}
+
+func (o GetRealmOtpPolicyPtrOutput) Elem() GetRealmOtpPolicyOutput {
+	return o.ApplyT(func(v *GetRealmOtpPolicy) GetRealmOtpPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret GetRealmOtpPolicy
+		return ret
+	}).(GetRealmOtpPolicyOutput)
+}
+
+func (o GetRealmOtpPolicyPtrOutput) Algorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetRealmOtpPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Algorithm
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetRealmOtpPolicyPtrOutput) Digits() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetRealmOtpPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Digits
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o GetRealmOtpPolicyPtrOutput) InitialCounter() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetRealmOtpPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.InitialCounter
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o GetRealmOtpPolicyPtrOutput) LookAheadWindow() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetRealmOtpPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.LookAheadWindow
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o GetRealmOtpPolicyPtrOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetRealmOtpPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Period
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o GetRealmOtpPolicyPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetRealmOtpPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
 }
 
 type GetRealmSecurityDefense struct {
@@ -4392,6 +4622,47 @@ func (i GetRealmWebAuthnPasswordlessPolicyArgs) ToGetRealmWebAuthnPasswordlessPo
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmWebAuthnPasswordlessPolicyOutput)
 }
 
+func (i GetRealmWebAuthnPasswordlessPolicyArgs) ToGetRealmWebAuthnPasswordlessPolicyPtrOutput() GetRealmWebAuthnPasswordlessPolicyPtrOutput {
+	return i.ToGetRealmWebAuthnPasswordlessPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i GetRealmWebAuthnPasswordlessPolicyArgs) ToGetRealmWebAuthnPasswordlessPolicyPtrOutputWithContext(ctx context.Context) GetRealmWebAuthnPasswordlessPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRealmWebAuthnPasswordlessPolicyOutput).ToGetRealmWebAuthnPasswordlessPolicyPtrOutputWithContext(ctx)
+}
+
+// GetRealmWebAuthnPasswordlessPolicyPtrInput is an input type that accepts GetRealmWebAuthnPasswordlessPolicyArgs, GetRealmWebAuthnPasswordlessPolicyPtr and GetRealmWebAuthnPasswordlessPolicyPtrOutput values.
+// You can construct a concrete instance of `GetRealmWebAuthnPasswordlessPolicyPtrInput` via:
+//
+//          GetRealmWebAuthnPasswordlessPolicyArgs{...}
+//
+//  or:
+//
+//          nil
+type GetRealmWebAuthnPasswordlessPolicyPtrInput interface {
+	pulumi.Input
+
+	ToGetRealmWebAuthnPasswordlessPolicyPtrOutput() GetRealmWebAuthnPasswordlessPolicyPtrOutput
+	ToGetRealmWebAuthnPasswordlessPolicyPtrOutputWithContext(context.Context) GetRealmWebAuthnPasswordlessPolicyPtrOutput
+}
+
+type getRealmWebAuthnPasswordlessPolicyPtrType GetRealmWebAuthnPasswordlessPolicyArgs
+
+func GetRealmWebAuthnPasswordlessPolicyPtr(v *GetRealmWebAuthnPasswordlessPolicyArgs) GetRealmWebAuthnPasswordlessPolicyPtrInput {
+	return (*getRealmWebAuthnPasswordlessPolicyPtrType)(v)
+}
+
+func (*getRealmWebAuthnPasswordlessPolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetRealmWebAuthnPasswordlessPolicy)(nil)).Elem()
+}
+
+func (i *getRealmWebAuthnPasswordlessPolicyPtrType) ToGetRealmWebAuthnPasswordlessPolicyPtrOutput() GetRealmWebAuthnPasswordlessPolicyPtrOutput {
+	return i.ToGetRealmWebAuthnPasswordlessPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *getRealmWebAuthnPasswordlessPolicyPtrType) ToGetRealmWebAuthnPasswordlessPolicyPtrOutputWithContext(ctx context.Context) GetRealmWebAuthnPasswordlessPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRealmWebAuthnPasswordlessPolicyPtrOutput)
+}
+
 type GetRealmWebAuthnPasswordlessPolicyOutput struct{ *pulumi.OutputState }
 
 func (GetRealmWebAuthnPasswordlessPolicyOutput) ElementType() reflect.Type {
@@ -4404,6 +4675,16 @@ func (o GetRealmWebAuthnPasswordlessPolicyOutput) ToGetRealmWebAuthnPasswordless
 
 func (o GetRealmWebAuthnPasswordlessPolicyOutput) ToGetRealmWebAuthnPasswordlessPolicyOutputWithContext(ctx context.Context) GetRealmWebAuthnPasswordlessPolicyOutput {
 	return o
+}
+
+func (o GetRealmWebAuthnPasswordlessPolicyOutput) ToGetRealmWebAuthnPasswordlessPolicyPtrOutput() GetRealmWebAuthnPasswordlessPolicyPtrOutput {
+	return o.ToGetRealmWebAuthnPasswordlessPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o GetRealmWebAuthnPasswordlessPolicyOutput) ToGetRealmWebAuthnPasswordlessPolicyPtrOutputWithContext(ctx context.Context) GetRealmWebAuthnPasswordlessPolicyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetRealmWebAuthnPasswordlessPolicy) *GetRealmWebAuthnPasswordlessPolicy {
+		return &v
+	}).(GetRealmWebAuthnPasswordlessPolicyPtrOutput)
 }
 
 func (o GetRealmWebAuthnPasswordlessPolicyOutput) AcceptableAaguids() pulumi.StringArrayOutput {
@@ -4444,6 +4725,120 @@ func (o GetRealmWebAuthnPasswordlessPolicyOutput) SignatureAlgorithms() pulumi.S
 
 func (o GetRealmWebAuthnPasswordlessPolicyOutput) UserVerificationRequirement() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) string { return v.UserVerificationRequirement }).(pulumi.StringOutput)
+}
+
+type GetRealmWebAuthnPasswordlessPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (GetRealmWebAuthnPasswordlessPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetRealmWebAuthnPasswordlessPolicy)(nil)).Elem()
+}
+
+func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) ToGetRealmWebAuthnPasswordlessPolicyPtrOutput() GetRealmWebAuthnPasswordlessPolicyPtrOutput {
+	return o
+}
+
+func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) ToGetRealmWebAuthnPasswordlessPolicyPtrOutputWithContext(ctx context.Context) GetRealmWebAuthnPasswordlessPolicyPtrOutput {
+	return o
+}
+
+func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) Elem() GetRealmWebAuthnPasswordlessPolicyOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) GetRealmWebAuthnPasswordlessPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret GetRealmWebAuthnPasswordlessPolicy
+		return ret
+	}).(GetRealmWebAuthnPasswordlessPolicyOutput)
+}
+
+func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) AcceptableAaguids() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) []string {
+		if v == nil {
+			return nil
+		}
+		return v.AcceptableAaguids
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) AttestationConveyancePreference() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AttestationConveyancePreference
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) AuthenticatorAttachment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AuthenticatorAttachment
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) AvoidSameAuthenticatorRegister() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.AvoidSameAuthenticatorRegister
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) CreateTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.CreateTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) RelyingPartyEntityName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RelyingPartyEntityName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) RelyingPartyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RelyingPartyId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) RequireResidentKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RequireResidentKey
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) SignatureAlgorithms() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SignatureAlgorithms
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) UserVerificationRequirement() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.UserVerificationRequirement
+	}).(pulumi.StringPtrOutput)
 }
 
 type GetRealmWebAuthnPolicy struct {
@@ -4495,6 +4890,47 @@ func (i GetRealmWebAuthnPolicyArgs) ToGetRealmWebAuthnPolicyOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmWebAuthnPolicyOutput)
 }
 
+func (i GetRealmWebAuthnPolicyArgs) ToGetRealmWebAuthnPolicyPtrOutput() GetRealmWebAuthnPolicyPtrOutput {
+	return i.ToGetRealmWebAuthnPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i GetRealmWebAuthnPolicyArgs) ToGetRealmWebAuthnPolicyPtrOutputWithContext(ctx context.Context) GetRealmWebAuthnPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRealmWebAuthnPolicyOutput).ToGetRealmWebAuthnPolicyPtrOutputWithContext(ctx)
+}
+
+// GetRealmWebAuthnPolicyPtrInput is an input type that accepts GetRealmWebAuthnPolicyArgs, GetRealmWebAuthnPolicyPtr and GetRealmWebAuthnPolicyPtrOutput values.
+// You can construct a concrete instance of `GetRealmWebAuthnPolicyPtrInput` via:
+//
+//          GetRealmWebAuthnPolicyArgs{...}
+//
+//  or:
+//
+//          nil
+type GetRealmWebAuthnPolicyPtrInput interface {
+	pulumi.Input
+
+	ToGetRealmWebAuthnPolicyPtrOutput() GetRealmWebAuthnPolicyPtrOutput
+	ToGetRealmWebAuthnPolicyPtrOutputWithContext(context.Context) GetRealmWebAuthnPolicyPtrOutput
+}
+
+type getRealmWebAuthnPolicyPtrType GetRealmWebAuthnPolicyArgs
+
+func GetRealmWebAuthnPolicyPtr(v *GetRealmWebAuthnPolicyArgs) GetRealmWebAuthnPolicyPtrInput {
+	return (*getRealmWebAuthnPolicyPtrType)(v)
+}
+
+func (*getRealmWebAuthnPolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetRealmWebAuthnPolicy)(nil)).Elem()
+}
+
+func (i *getRealmWebAuthnPolicyPtrType) ToGetRealmWebAuthnPolicyPtrOutput() GetRealmWebAuthnPolicyPtrOutput {
+	return i.ToGetRealmWebAuthnPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *getRealmWebAuthnPolicyPtrType) ToGetRealmWebAuthnPolicyPtrOutputWithContext(ctx context.Context) GetRealmWebAuthnPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRealmWebAuthnPolicyPtrOutput)
+}
+
 type GetRealmWebAuthnPolicyOutput struct{ *pulumi.OutputState }
 
 func (GetRealmWebAuthnPolicyOutput) ElementType() reflect.Type {
@@ -4507,6 +4943,16 @@ func (o GetRealmWebAuthnPolicyOutput) ToGetRealmWebAuthnPolicyOutput() GetRealmW
 
 func (o GetRealmWebAuthnPolicyOutput) ToGetRealmWebAuthnPolicyOutputWithContext(ctx context.Context) GetRealmWebAuthnPolicyOutput {
 	return o
+}
+
+func (o GetRealmWebAuthnPolicyOutput) ToGetRealmWebAuthnPolicyPtrOutput() GetRealmWebAuthnPolicyPtrOutput {
+	return o.ToGetRealmWebAuthnPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o GetRealmWebAuthnPolicyOutput) ToGetRealmWebAuthnPolicyPtrOutputWithContext(ctx context.Context) GetRealmWebAuthnPolicyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetRealmWebAuthnPolicy) *GetRealmWebAuthnPolicy {
+		return &v
+	}).(GetRealmWebAuthnPolicyPtrOutput)
 }
 
 func (o GetRealmWebAuthnPolicyOutput) AcceptableAaguids() pulumi.StringArrayOutput {
@@ -4549,7 +4995,177 @@ func (o GetRealmWebAuthnPolicyOutput) UserVerificationRequirement() pulumi.Strin
 	return o.ApplyT(func(v GetRealmWebAuthnPolicy) string { return v.UserVerificationRequirement }).(pulumi.StringOutput)
 }
 
+type GetRealmWebAuthnPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (GetRealmWebAuthnPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetRealmWebAuthnPolicy)(nil)).Elem()
+}
+
+func (o GetRealmWebAuthnPolicyPtrOutput) ToGetRealmWebAuthnPolicyPtrOutput() GetRealmWebAuthnPolicyPtrOutput {
+	return o
+}
+
+func (o GetRealmWebAuthnPolicyPtrOutput) ToGetRealmWebAuthnPolicyPtrOutputWithContext(ctx context.Context) GetRealmWebAuthnPolicyPtrOutput {
+	return o
+}
+
+func (o GetRealmWebAuthnPolicyPtrOutput) Elem() GetRealmWebAuthnPolicyOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) GetRealmWebAuthnPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret GetRealmWebAuthnPolicy
+		return ret
+	}).(GetRealmWebAuthnPolicyOutput)
+}
+
+func (o GetRealmWebAuthnPolicyPtrOutput) AcceptableAaguids() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) []string {
+		if v == nil {
+			return nil
+		}
+		return v.AcceptableAaguids
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o GetRealmWebAuthnPolicyPtrOutput) AttestationConveyancePreference() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AttestationConveyancePreference
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetRealmWebAuthnPolicyPtrOutput) AuthenticatorAttachment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AuthenticatorAttachment
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetRealmWebAuthnPolicyPtrOutput) AvoidSameAuthenticatorRegister() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.AvoidSameAuthenticatorRegister
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o GetRealmWebAuthnPolicyPtrOutput) CreateTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.CreateTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o GetRealmWebAuthnPolicyPtrOutput) RelyingPartyEntityName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RelyingPartyEntityName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetRealmWebAuthnPolicyPtrOutput) RelyingPartyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RelyingPartyId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetRealmWebAuthnPolicyPtrOutput) RequireResidentKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RequireResidentKey
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetRealmWebAuthnPolicyPtrOutput) SignatureAlgorithms() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SignatureAlgorithms
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o GetRealmWebAuthnPolicyPtrOutput) UserVerificationRequirement() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.UserVerificationRequirement
+	}).(pulumi.StringPtrOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmInternationalizationInput)(nil)).Elem(), RealmInternationalizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmInternationalizationPtrInput)(nil)).Elem(), RealmInternationalizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmOtpPolicyInput)(nil)).Elem(), RealmOtpPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmOtpPolicyPtrInput)(nil)).Elem(), RealmOtpPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmSecurityDefensesInput)(nil)).Elem(), RealmSecurityDefensesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmSecurityDefensesPtrInput)(nil)).Elem(), RealmSecurityDefensesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmSecurityDefensesBruteForceDetectionInput)(nil)).Elem(), RealmSecurityDefensesBruteForceDetectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmSecurityDefensesBruteForceDetectionPtrInput)(nil)).Elem(), RealmSecurityDefensesBruteForceDetectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmSecurityDefensesHeadersInput)(nil)).Elem(), RealmSecurityDefensesHeadersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmSecurityDefensesHeadersPtrInput)(nil)).Elem(), RealmSecurityDefensesHeadersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmSmtpServerInput)(nil)).Elem(), RealmSmtpServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmSmtpServerPtrInput)(nil)).Elem(), RealmSmtpServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmSmtpServerAuthInput)(nil)).Elem(), RealmSmtpServerAuthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmSmtpServerAuthPtrInput)(nil)).Elem(), RealmSmtpServerAuthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmWebAuthnPasswordlessPolicyInput)(nil)).Elem(), RealmWebAuthnPasswordlessPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmWebAuthnPasswordlessPolicyPtrInput)(nil)).Elem(), RealmWebAuthnPasswordlessPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmWebAuthnPolicyInput)(nil)).Elem(), RealmWebAuthnPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmWebAuthnPolicyPtrInput)(nil)).Elem(), RealmWebAuthnPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserFederatedIdentityInput)(nil)).Elem(), UserFederatedIdentityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserFederatedIdentityArrayInput)(nil)).Elem(), UserFederatedIdentityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserInitialPasswordInput)(nil)).Elem(), UserInitialPasswordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserInitialPasswordPtrInput)(nil)).Elem(), UserInitialPasswordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UsersPermissionsImpersonateScopeInput)(nil)).Elem(), UsersPermissionsImpersonateScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UsersPermissionsImpersonateScopePtrInput)(nil)).Elem(), UsersPermissionsImpersonateScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UsersPermissionsManageGroupMembershipScopeInput)(nil)).Elem(), UsersPermissionsManageGroupMembershipScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UsersPermissionsManageGroupMembershipScopePtrInput)(nil)).Elem(), UsersPermissionsManageGroupMembershipScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UsersPermissionsManageScopeInput)(nil)).Elem(), UsersPermissionsManageScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UsersPermissionsManageScopePtrInput)(nil)).Elem(), UsersPermissionsManageScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UsersPermissionsMapRolesScopeInput)(nil)).Elem(), UsersPermissionsMapRolesScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UsersPermissionsMapRolesScopePtrInput)(nil)).Elem(), UsersPermissionsMapRolesScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UsersPermissionsUserImpersonatedScopeInput)(nil)).Elem(), UsersPermissionsUserImpersonatedScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UsersPermissionsUserImpersonatedScopePtrInput)(nil)).Elem(), UsersPermissionsUserImpersonatedScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UsersPermissionsViewScopeInput)(nil)).Elem(), UsersPermissionsViewScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UsersPermissionsViewScopePtrInput)(nil)).Elem(), UsersPermissionsViewScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClientDescriptionConverterProtocolMapperInput)(nil)).Elem(), GetClientDescriptionConverterProtocolMapperArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClientDescriptionConverterProtocolMapperArrayInput)(nil)).Elem(), GetClientDescriptionConverterProtocolMapperArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmInternationalizationInput)(nil)).Elem(), GetRealmInternationalizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmInternationalizationArrayInput)(nil)).Elem(), GetRealmInternationalizationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmKeysKeyInput)(nil)).Elem(), GetRealmKeysKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmKeysKeyArrayInput)(nil)).Elem(), GetRealmKeysKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmOtpPolicyInput)(nil)).Elem(), GetRealmOtpPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmOtpPolicyPtrInput)(nil)).Elem(), GetRealmOtpPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmSecurityDefenseInput)(nil)).Elem(), GetRealmSecurityDefenseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmSecurityDefenseArrayInput)(nil)).Elem(), GetRealmSecurityDefenseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmSecurityDefenseBruteForceDetectionInput)(nil)).Elem(), GetRealmSecurityDefenseBruteForceDetectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmSecurityDefenseBruteForceDetectionArrayInput)(nil)).Elem(), GetRealmSecurityDefenseBruteForceDetectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmSecurityDefenseHeaderInput)(nil)).Elem(), GetRealmSecurityDefenseHeaderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmSecurityDefenseHeaderArrayInput)(nil)).Elem(), GetRealmSecurityDefenseHeaderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmSmtpServerInput)(nil)).Elem(), GetRealmSmtpServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmSmtpServerArrayInput)(nil)).Elem(), GetRealmSmtpServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmSmtpServerAuthInput)(nil)).Elem(), GetRealmSmtpServerAuthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmSmtpServerAuthArrayInput)(nil)).Elem(), GetRealmSmtpServerAuthArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmWebAuthnPasswordlessPolicyInput)(nil)).Elem(), GetRealmWebAuthnPasswordlessPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmWebAuthnPasswordlessPolicyPtrInput)(nil)).Elem(), GetRealmWebAuthnPasswordlessPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmWebAuthnPolicyInput)(nil)).Elem(), GetRealmWebAuthnPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmWebAuthnPolicyPtrInput)(nil)).Elem(), GetRealmWebAuthnPolicyArgs{})
 	pulumi.RegisterOutputType(RealmInternationalizationOutput{})
 	pulumi.RegisterOutputType(RealmInternationalizationPtrOutput{})
 	pulumi.RegisterOutputType(RealmOtpPolicyOutput{})
@@ -4591,6 +5207,7 @@ func init() {
 	pulumi.RegisterOutputType(GetRealmKeysKeyOutput{})
 	pulumi.RegisterOutputType(GetRealmKeysKeyArrayOutput{})
 	pulumi.RegisterOutputType(GetRealmOtpPolicyOutput{})
+	pulumi.RegisterOutputType(GetRealmOtpPolicyPtrOutput{})
 	pulumi.RegisterOutputType(GetRealmSecurityDefenseOutput{})
 	pulumi.RegisterOutputType(GetRealmSecurityDefenseArrayOutput{})
 	pulumi.RegisterOutputType(GetRealmSecurityDefenseBruteForceDetectionOutput{})
@@ -4602,5 +5219,7 @@ func init() {
 	pulumi.RegisterOutputType(GetRealmSmtpServerAuthOutput{})
 	pulumi.RegisterOutputType(GetRealmSmtpServerAuthArrayOutput{})
 	pulumi.RegisterOutputType(GetRealmWebAuthnPasswordlessPolicyOutput{})
+	pulumi.RegisterOutputType(GetRealmWebAuthnPasswordlessPolicyPtrOutput{})
 	pulumi.RegisterOutputType(GetRealmWebAuthnPolicyOutput{})
+	pulumi.RegisterOutputType(GetRealmWebAuthnPolicyPtrOutput{})
 }

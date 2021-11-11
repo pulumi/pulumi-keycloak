@@ -140,23 +140,23 @@ export interface GroupState {
     /**
      * A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
-    readonly attributes?: pulumi.Input<{[key: string]: any}>;
+    attributes?: pulumi.Input<{[key: string]: any}>;
     /**
      * The name of the group.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The ID of this group's parent. If omitted, this group will be defined at the root level.
      */
-    readonly parentId?: pulumi.Input<string>;
+    parentId?: pulumi.Input<string>;
     /**
      * (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * The realm this group exists in.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
 }
 
 /**
@@ -166,17 +166,17 @@ export interface GroupArgs {
     /**
      * A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
-    readonly attributes?: pulumi.Input<{[key: string]: any}>;
+    attributes?: pulumi.Input<{[key: string]: any}>;
     /**
      * The name of the group.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The ID of this group's parent. If omitted, this group will be defined at the root level.
      */
-    readonly parentId?: pulumi.Input<string>;
+    parentId?: pulumi.Input<string>;
     /**
      * The realm this group exists in.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
 }

@@ -126,35 +126,35 @@ export interface CustomUserFederationState {
     /**
      * Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
      */
-    readonly cachePolicy?: pulumi.Input<string>;
+    cachePolicy?: pulumi.Input<string>;
     /**
      * The provider configuration handed over to your custom user federation provider.
      */
-    readonly config?: pulumi.Input<{[key: string]: any}>;
+    config?: pulumi.Input<{[key: string]: any}>;
     /**
      * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      */
-    readonly enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
     /**
      * Display name of the provider when displayed in the console.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
      */
-    readonly parentId?: pulumi.Input<string>;
+    parentId?: pulumi.Input<string>;
     /**
      * Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
      */
-    readonly priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number>;
     /**
      * The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
      */
-    readonly providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string>;
     /**
      * The realm that this provider will provide user federation for.
      */
-    readonly realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string>;
 }
 
 /**
@@ -164,33 +164,33 @@ export interface CustomUserFederationArgs {
     /**
      * Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
      */
-    readonly cachePolicy?: pulumi.Input<string>;
+    cachePolicy?: pulumi.Input<string>;
     /**
      * The provider configuration handed over to your custom user federation provider.
      */
-    readonly config?: pulumi.Input<{[key: string]: any}>;
+    config?: pulumi.Input<{[key: string]: any}>;
     /**
      * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      */
-    readonly enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
     /**
      * Display name of the provider when displayed in the console.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
      */
-    readonly parentId?: pulumi.Input<string>;
+    parentId?: pulumi.Input<string>;
     /**
      * Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
      */
-    readonly priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number>;
     /**
      * The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
      */
-    readonly providerId: pulumi.Input<string>;
+    providerId: pulumi.Input<string>;
     /**
      * The realm that this provider will provide user federation for.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
 }

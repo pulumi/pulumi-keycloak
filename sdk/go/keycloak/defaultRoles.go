@@ -198,7 +198,7 @@ type DefaultRolesArrayInput interface {
 type DefaultRolesArray []DefaultRolesInput
 
 func (DefaultRolesArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*DefaultRoles)(nil))
+	return reflect.TypeOf((*[]*DefaultRoles)(nil)).Elem()
 }
 
 func (i DefaultRolesArray) ToDefaultRolesArrayOutput() DefaultRolesArrayOutput {
@@ -223,7 +223,7 @@ type DefaultRolesMapInput interface {
 type DefaultRolesMap map[string]DefaultRolesInput
 
 func (DefaultRolesMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*DefaultRoles)(nil))
+	return reflect.TypeOf((*map[string]*DefaultRoles)(nil)).Elem()
 }
 
 func (i DefaultRolesMap) ToDefaultRolesMapOutput() DefaultRolesMapOutput {
@@ -234,9 +234,7 @@ func (i DefaultRolesMap) ToDefaultRolesMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(DefaultRolesMapOutput)
 }
 
-type DefaultRolesOutput struct {
-	*pulumi.OutputState
-}
+type DefaultRolesOutput struct{ *pulumi.OutputState }
 
 func (DefaultRolesOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*DefaultRoles)(nil))
@@ -255,14 +253,12 @@ func (o DefaultRolesOutput) ToDefaultRolesPtrOutput() DefaultRolesPtrOutput {
 }
 
 func (o DefaultRolesOutput) ToDefaultRolesPtrOutputWithContext(ctx context.Context) DefaultRolesPtrOutput {
-	return o.ApplyT(func(v DefaultRoles) *DefaultRoles {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DefaultRoles) *DefaultRoles {
 		return &v
 	}).(DefaultRolesPtrOutput)
 }
 
-type DefaultRolesPtrOutput struct {
-	*pulumi.OutputState
-}
+type DefaultRolesPtrOutput struct{ *pulumi.OutputState }
 
 func (DefaultRolesPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**DefaultRoles)(nil))
@@ -274,6 +270,16 @@ func (o DefaultRolesPtrOutput) ToDefaultRolesPtrOutput() DefaultRolesPtrOutput {
 
 func (o DefaultRolesPtrOutput) ToDefaultRolesPtrOutputWithContext(ctx context.Context) DefaultRolesPtrOutput {
 	return o
+}
+
+func (o DefaultRolesPtrOutput) Elem() DefaultRolesOutput {
+	return o.ApplyT(func(v *DefaultRoles) DefaultRoles {
+		if v != nil {
+			return *v
+		}
+		var ret DefaultRoles
+		return ret
+	}).(DefaultRolesOutput)
 }
 
 type DefaultRolesArrayOutput struct{ *pulumi.OutputState }
@@ -317,6 +323,10 @@ func (o DefaultRolesMapOutput) MapIndex(k pulumi.StringInput) DefaultRolesOutput
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultRolesInput)(nil)).Elem(), &DefaultRoles{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultRolesPtrInput)(nil)).Elem(), &DefaultRoles{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultRolesArrayInput)(nil)).Elem(), DefaultRolesArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultRolesMapInput)(nil)).Elem(), DefaultRolesMap{})
 	pulumi.RegisterOutputType(DefaultRolesOutput{})
 	pulumi.RegisterOutputType(DefaultRolesPtrOutput{})
 	pulumi.RegisterOutputType(DefaultRolesArrayOutput{})

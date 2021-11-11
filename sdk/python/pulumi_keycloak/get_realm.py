@@ -14,6 +14,7 @@ __all__ = [
     'GetRealmResult',
     'AwaitableGetRealmResult',
     'get_realm',
+    'get_realm_output',
 ]
 
 @pulumi.output_type
@@ -613,3 +614,36 @@ def get_realm(attributes: Optional[Mapping[str, Any]] = None,
         verify_email=__ret__.verify_email,
         web_authn_passwordless_policy=__ret__.web_authn_passwordless_policy,
         web_authn_policy=__ret__.web_authn_policy)
+
+
+@_utilities.lift_output_func(get_realm)
+def get_realm_output(attributes: Optional[pulumi.Input[Optional[Mapping[str, Any]]]] = None,
+                     default_default_client_scopes: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                     default_optional_client_scopes: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                     display_name_html: Optional[pulumi.Input[Optional[str]]] = None,
+                     internationalizations: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetRealmInternationalizationArgs']]]]] = None,
+                     otp_policy: Optional[pulumi.Input[Optional[pulumi.InputType['GetRealmOtpPolicyArgs']]]] = None,
+                     realm: Optional[pulumi.Input[str]] = None,
+                     security_defenses: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetRealmSecurityDefenseArgs']]]]] = None,
+                     smtp_servers: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetRealmSmtpServerArgs']]]]] = None,
+                     web_authn_passwordless_policy: Optional[pulumi.Input[Optional[pulumi.InputType['GetRealmWebAuthnPasswordlessPolicyArgs']]]] = None,
+                     web_authn_policy: Optional[pulumi.Input[Optional[pulumi.InputType['GetRealmWebAuthnPolicyArgs']]]] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRealmResult]:
+    """
+    This data source can be used to fetch properties of a Keycloak realm for
+    usage with other resources.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.get_realm(realm="my-realm")
+    group = keycloak.Role("group", realm_id=realm.id)
+    ```
+
+
+    :param str realm: The realm name.
+    """
+    ...
