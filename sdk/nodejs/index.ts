@@ -24,6 +24,7 @@ export * from "./getUser";
 export * from "./getUserRealmRoles";
 export * from "./group";
 export * from "./groupMemberships";
+export * from "./groupPermissions";
 export * from "./groupRoles";
 export * from "./hardcodedAttributeIdentityProviderMapper";
 export * from "./hardcodedRoleIdentityMapper";
@@ -75,6 +76,7 @@ import { GenericClientProtocolMapper } from "./genericClientProtocolMapper";
 import { GenericClientRoleMapper } from "./genericClientRoleMapper";
 import { Group } from "./group";
 import { GroupMemberships } from "./groupMemberships";
+import { GroupPermissions } from "./groupPermissions";
 import { GroupRoles } from "./groupRoles";
 import { HardcodedAttributeIdentityProviderMapper } from "./hardcodedAttributeIdentityProviderMapper";
 import { HardcodedRoleIdentityMapper } from "./hardcodedRoleIdentityMapper";
@@ -119,6 +121,8 @@ const _module = {
                 return new Group(name, <any>undefined, { urn })
             case "keycloak:index/groupMemberships:GroupMemberships":
                 return new GroupMemberships(name, <any>undefined, { urn })
+            case "keycloak:index/groupPermissions:GroupPermissions":
+                return new GroupPermissions(name, <any>undefined, { urn })
             case "keycloak:index/groupRoles:GroupRoles":
                 return new GroupRoles(name, <any>undefined, { urn })
             case "keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper":
@@ -172,6 +176,7 @@ pulumi.runtime.registerResourceModule("keycloak", "index/genericClientProtocolMa
 pulumi.runtime.registerResourceModule("keycloak", "index/genericClientRoleMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/group", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/groupMemberships", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/groupPermissions", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/groupRoles", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/hardcodedAttributeIdentityProviderMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/hardcodedRoleIdentityMapper", _module)

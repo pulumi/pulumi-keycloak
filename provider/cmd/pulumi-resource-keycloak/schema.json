@@ -71,6 +71,166 @@
         ]
     },
     "types": {
+        "keycloak:index/GroupPermissionsManageMembersScope:GroupPermissionsManageMembersScope": {
+            "properties": {
+                "decisionStrategy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "keycloak:index/GroupPermissionsManageMembershipScope:GroupPermissionsManageMembershipScope": {
+            "properties": {
+                "decisionStrategy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "keycloak:index/GroupPermissionsManageScope:GroupPermissionsManageScope": {
+            "properties": {
+                "decisionStrategy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "keycloak:index/GroupPermissionsViewMembersScope:GroupPermissionsViewMembersScope": {
+            "properties": {
+                "decisionStrategy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "keycloak:index/GroupPermissionsViewScope:GroupPermissionsViewScope": {
+            "properties": {
+                "decisionStrategy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
         "keycloak:index/RealmInternationalization:RealmInternationalization": {
             "properties": {
                 "defaultLocale": {
@@ -3694,6 +3854,105 @@
                     "realmId": {
                         "type": "string",
                         "description": "The realm this group exists in.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:index/groupPermissions:GroupPermissions": {
+            "properties": {
+                "authorizationResourceServerId": {
+                    "type": "string",
+                    "description": "Resource server id representing the realm management client on which this permission is managed\n"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "groupId": {
+                    "type": "string"
+                },
+                "manageMembersScope": {
+                    "$ref": "#/types/keycloak:index/GroupPermissionsManageMembersScope:GroupPermissionsManageMembersScope"
+                },
+                "manageMembershipScope": {
+                    "$ref": "#/types/keycloak:index/GroupPermissionsManageMembershipScope:GroupPermissionsManageMembershipScope"
+                },
+                "manageScope": {
+                    "$ref": "#/types/keycloak:index/GroupPermissionsManageScope:GroupPermissionsManageScope"
+                },
+                "realmId": {
+                    "type": "string"
+                },
+                "viewMembersScope": {
+                    "$ref": "#/types/keycloak:index/GroupPermissionsViewMembersScope:GroupPermissionsViewMembersScope"
+                },
+                "viewScope": {
+                    "$ref": "#/types/keycloak:index/GroupPermissionsViewScope:GroupPermissionsViewScope"
+                }
+            },
+            "required": [
+                "authorizationResourceServerId",
+                "enabled",
+                "groupId",
+                "realmId"
+            ],
+            "inputProperties": {
+                "groupId": {
+                    "type": "string"
+                },
+                "manageMembersScope": {
+                    "$ref": "#/types/keycloak:index/GroupPermissionsManageMembersScope:GroupPermissionsManageMembersScope"
+                },
+                "manageMembershipScope": {
+                    "$ref": "#/types/keycloak:index/GroupPermissionsManageMembershipScope:GroupPermissionsManageMembershipScope"
+                },
+                "manageScope": {
+                    "$ref": "#/types/keycloak:index/GroupPermissionsManageScope:GroupPermissionsManageScope"
+                },
+                "realmId": {
+                    "type": "string"
+                },
+                "viewMembersScope": {
+                    "$ref": "#/types/keycloak:index/GroupPermissionsViewMembersScope:GroupPermissionsViewMembersScope"
+                },
+                "viewScope": {
+                    "$ref": "#/types/keycloak:index/GroupPermissionsViewScope:GroupPermissionsViewScope"
+                }
+            },
+            "requiredInputs": [
+                "groupId",
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering GroupPermissions resources.\n",
+                "properties": {
+                    "authorizationResourceServerId": {
+                        "type": "string",
+                        "description": "Resource server id representing the realm management client on which this permission is managed\n"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "groupId": {
+                        "type": "string"
+                    },
+                    "manageMembersScope": {
+                        "$ref": "#/types/keycloak:index/GroupPermissionsManageMembersScope:GroupPermissionsManageMembersScope"
+                    },
+                    "manageMembershipScope": {
+                        "$ref": "#/types/keycloak:index/GroupPermissionsManageMembershipScope:GroupPermissionsManageMembershipScope"
+                    },
+                    "manageScope": {
+                        "$ref": "#/types/keycloak:index/GroupPermissionsManageScope:GroupPermissionsManageScope"
+                    },
+                    "realmId": {
+                        "type": "string"
+                    },
+                    "viewMembersScope": {
+                        "$ref": "#/types/keycloak:index/GroupPermissionsViewMembersScope:GroupPermissionsViewMembersScope"
+                    },
+                    "viewScope": {
+                        "$ref": "#/types/keycloak:index/GroupPermissionsViewScope:GroupPermissionsViewScope"
                     }
                 },
                 "type": "object"

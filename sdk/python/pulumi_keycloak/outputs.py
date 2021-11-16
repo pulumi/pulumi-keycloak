@@ -10,6 +10,11 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
+    'GroupPermissionsManageMembersScope',
+    'GroupPermissionsManageMembershipScope',
+    'GroupPermissionsManageScope',
+    'GroupPermissionsViewMembersScope',
+    'GroupPermissionsViewScope',
     'RealmInternationalization',
     'RealmOtpPolicy',
     'RealmSecurityDefenses',
@@ -39,6 +44,236 @@ __all__ = [
     'GetRealmWebAuthnPasswordlessPolicyResult',
     'GetRealmWebAuthnPolicyResult',
 ]
+
+@pulumi.output_type
+class GroupPermissionsManageMembersScope(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "decisionStrategy":
+            suggest = "decision_strategy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GroupPermissionsManageMembersScope. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GroupPermissionsManageMembersScope.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GroupPermissionsManageMembersScope.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 decision_strategy: Optional[str] = None,
+                 description: Optional[str] = None,
+                 policies: Optional[Sequence[str]] = None):
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[str]:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "policies")
+
+
+@pulumi.output_type
+class GroupPermissionsManageMembershipScope(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "decisionStrategy":
+            suggest = "decision_strategy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GroupPermissionsManageMembershipScope. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GroupPermissionsManageMembershipScope.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GroupPermissionsManageMembershipScope.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 decision_strategy: Optional[str] = None,
+                 description: Optional[str] = None,
+                 policies: Optional[Sequence[str]] = None):
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[str]:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "policies")
+
+
+@pulumi.output_type
+class GroupPermissionsManageScope(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "decisionStrategy":
+            suggest = "decision_strategy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GroupPermissionsManageScope. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GroupPermissionsManageScope.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GroupPermissionsManageScope.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 decision_strategy: Optional[str] = None,
+                 description: Optional[str] = None,
+                 policies: Optional[Sequence[str]] = None):
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[str]:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "policies")
+
+
+@pulumi.output_type
+class GroupPermissionsViewMembersScope(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "decisionStrategy":
+            suggest = "decision_strategy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GroupPermissionsViewMembersScope. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GroupPermissionsViewMembersScope.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GroupPermissionsViewMembersScope.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 decision_strategy: Optional[str] = None,
+                 description: Optional[str] = None,
+                 policies: Optional[Sequence[str]] = None):
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[str]:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "policies")
+
+
+@pulumi.output_type
+class GroupPermissionsViewScope(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "decisionStrategy":
+            suggest = "decision_strategy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GroupPermissionsViewScope. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GroupPermissionsViewScope.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GroupPermissionsViewScope.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 decision_strategy: Optional[str] = None,
+                 description: Optional[str] = None,
+                 policies: Optional[Sequence[str]] = None):
+        if decision_strategy is not None:
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="decisionStrategy")
+    def decision_strategy(self) -> Optional[str]:
+        return pulumi.get(self, "decision_strategy")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "policies")
+
 
 @pulumi.output_type
 class RealmInternationalization(dict):

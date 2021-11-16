@@ -40,6 +40,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Group{}
 	case "keycloak:index/groupMemberships:GroupMemberships":
 		r = &GroupMemberships{}
+	case "keycloak:index/groupPermissions:GroupPermissions":
+		r = &GroupPermissions{}
 	case "keycloak:index/groupRoles:GroupRoles":
 		r = &GroupRoles{}
 	case "keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper":
@@ -157,6 +159,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"index/groupMemberships",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/groupPermissions",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
