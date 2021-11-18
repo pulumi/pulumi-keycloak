@@ -130,6 +130,36 @@ export interface GetRealmWebAuthnPolicy {
     userVerificationRequirement: string;
 }
 
+export interface GroupPermissionsManageMembersScope {
+    decisionStrategy?: string;
+    description?: string;
+    policies?: string[];
+}
+
+export interface GroupPermissionsManageMembershipScope {
+    decisionStrategy?: string;
+    description?: string;
+    policies?: string[];
+}
+
+export interface GroupPermissionsManageScope {
+    decisionStrategy?: string;
+    description?: string;
+    policies?: string[];
+}
+
+export interface GroupPermissionsViewMembersScope {
+    decisionStrategy?: string;
+    description?: string;
+    policies?: string[];
+}
+
+export interface GroupPermissionsViewScope {
+    decisionStrategy?: string;
+    description?: string;
+    policies?: string[];
+}
+
 export interface RealmInternationalization {
     /**
      * The locale to use by default. This locale code must be present within the `supportedLocales` list.
@@ -434,7 +464,6 @@ export interface UsersPermissionsViewScope {
     description?: string;
     policies?: string[];
 }
-
 export namespace ldap {
     export interface UserFederationCache {
         /**

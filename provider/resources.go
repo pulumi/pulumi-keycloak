@@ -114,6 +114,7 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_generic_client_protocol_mapper": {Tok: makeResource(mainMod, "GenericClientProtocolMapper")},
 			"keycloak_group":             {Tok: makeResource(mainMod, "Group")},
 			"keycloak_group_memberships": {Tok: makeResource(mainMod, "GroupMemberships")},
+			"keycloak_group_permissions": {Tok: makeResource(mainMod, "GroupPermissions")},
 			"keycloak_group_roles":       {Tok: makeResource(mainMod, "GroupRoles")},
 			"keycloak_hardcoded_attribute_identity_provider_mapper": {
 				Tok: makeResource(mainMod, "HardcodedAttributeIdentityProviderMapper"),

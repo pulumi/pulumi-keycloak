@@ -24,6 +24,7 @@ from .get_user import *
 from .get_user_realm_roles import *
 from .group import *
 from .group_memberships import *
+from .group_permissions import *
 from .group_roles import *
 from .hardcoded_attribute_identity_provider_mapper import *
 from .hardcoded_role_identity_mapper import *
@@ -182,6 +183,14 @@ _utilities.register(
   "fqn": "pulumi_keycloak",
   "classes": {
    "keycloak:index/groupMemberships:GroupMemberships": "GroupMemberships"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "index/groupPermissions",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/groupPermissions:GroupPermissions": "GroupPermissions"
   }
  },
  {

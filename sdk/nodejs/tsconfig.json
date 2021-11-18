@@ -39,6 +39,7 @@
         "getUserRealmRoles.ts",
         "group.ts",
         "groupMemberships.ts",
+        "groupPermissions.ts",
         "groupRoles.ts",
         "hardcodedAttributeIdentityProviderMapper.ts",
         "hardcodedRoleIdentityMapper.ts",
