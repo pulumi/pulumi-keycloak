@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v3.6.0 of the KeyCloak Terraform Provider
+_(none)_
 
 ---
+
+## 4.7.0 (2021-11-18)
+* Upgrade to v3.6.0 of the KeyCloak Terraform Provider
 
 ## 4.6.0 (2021-11-11)
 * Upgrade to terraform-bridge 3.11.0
