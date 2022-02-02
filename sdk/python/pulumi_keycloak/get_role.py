@@ -117,8 +117,8 @@ def get_role(client_id: Optional[str] = None,
     realm = keycloak.Realm("realm",
         realm="my-realm",
         enabled=True)
-    offline_access = realm.id.apply(lambda id: keycloak.get_role(realm_id=id,
-        name="offline_access"))
+    offline_access = keycloak.get_role_output(realm_id=realm.id,
+        name="offline_access")
     group = keycloak.Group("group", realm_id=realm.id)
     group_roles = keycloak.GroupRoles("groupRoles",
         realm_id=realm.id,
@@ -169,8 +169,8 @@ def get_role_output(client_id: Optional[pulumi.Input[Optional[str]]] = None,
     realm = keycloak.Realm("realm",
         realm="my-realm",
         enabled=True)
-    offline_access = realm.id.apply(lambda id: keycloak.get_role(realm_id=id,
-        name="offline_access"))
+    offline_access = keycloak.get_role_output(realm_id=realm.id,
+        name="offline_access")
     group = keycloak.Group("group", realm_id=realm.id)
     group_roles = keycloak.GroupRoles("groupRoles",
         realm_id=realm.id,

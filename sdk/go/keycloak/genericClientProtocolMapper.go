@@ -218,7 +218,7 @@ type GenericClientProtocolMapperInput interface {
 }
 
 func (*GenericClientProtocolMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*GenericClientProtocolMapper)(nil))
+	return reflect.TypeOf((**GenericClientProtocolMapper)(nil)).Elem()
 }
 
 func (i *GenericClientProtocolMapper) ToGenericClientProtocolMapperOutput() GenericClientProtocolMapperOutput {
@@ -227,35 +227,6 @@ func (i *GenericClientProtocolMapper) ToGenericClientProtocolMapperOutput() Gene
 
 func (i *GenericClientProtocolMapper) ToGenericClientProtocolMapperOutputWithContext(ctx context.Context) GenericClientProtocolMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GenericClientProtocolMapperOutput)
-}
-
-func (i *GenericClientProtocolMapper) ToGenericClientProtocolMapperPtrOutput() GenericClientProtocolMapperPtrOutput {
-	return i.ToGenericClientProtocolMapperPtrOutputWithContext(context.Background())
-}
-
-func (i *GenericClientProtocolMapper) ToGenericClientProtocolMapperPtrOutputWithContext(ctx context.Context) GenericClientProtocolMapperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GenericClientProtocolMapperPtrOutput)
-}
-
-type GenericClientProtocolMapperPtrInput interface {
-	pulumi.Input
-
-	ToGenericClientProtocolMapperPtrOutput() GenericClientProtocolMapperPtrOutput
-	ToGenericClientProtocolMapperPtrOutputWithContext(ctx context.Context) GenericClientProtocolMapperPtrOutput
-}
-
-type genericClientProtocolMapperPtrType GenericClientProtocolMapperArgs
-
-func (*genericClientProtocolMapperPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GenericClientProtocolMapper)(nil))
-}
-
-func (i *genericClientProtocolMapperPtrType) ToGenericClientProtocolMapperPtrOutput() GenericClientProtocolMapperPtrOutput {
-	return i.ToGenericClientProtocolMapperPtrOutputWithContext(context.Background())
-}
-
-func (i *genericClientProtocolMapperPtrType) ToGenericClientProtocolMapperPtrOutputWithContext(ctx context.Context) GenericClientProtocolMapperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GenericClientProtocolMapperPtrOutput)
 }
 
 // GenericClientProtocolMapperArrayInput is an input type that accepts GenericClientProtocolMapperArray and GenericClientProtocolMapperArrayOutput values.
@@ -311,7 +282,7 @@ func (i GenericClientProtocolMapperMap) ToGenericClientProtocolMapperMapOutputWi
 type GenericClientProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (GenericClientProtocolMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GenericClientProtocolMapper)(nil))
+	return reflect.TypeOf((**GenericClientProtocolMapper)(nil)).Elem()
 }
 
 func (o GenericClientProtocolMapperOutput) ToGenericClientProtocolMapperOutput() GenericClientProtocolMapperOutput {
@@ -322,44 +293,10 @@ func (o GenericClientProtocolMapperOutput) ToGenericClientProtocolMapperOutputWi
 	return o
 }
 
-func (o GenericClientProtocolMapperOutput) ToGenericClientProtocolMapperPtrOutput() GenericClientProtocolMapperPtrOutput {
-	return o.ToGenericClientProtocolMapperPtrOutputWithContext(context.Background())
-}
-
-func (o GenericClientProtocolMapperOutput) ToGenericClientProtocolMapperPtrOutputWithContext(ctx context.Context) GenericClientProtocolMapperPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GenericClientProtocolMapper) *GenericClientProtocolMapper {
-		return &v
-	}).(GenericClientProtocolMapperPtrOutput)
-}
-
-type GenericClientProtocolMapperPtrOutput struct{ *pulumi.OutputState }
-
-func (GenericClientProtocolMapperPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GenericClientProtocolMapper)(nil))
-}
-
-func (o GenericClientProtocolMapperPtrOutput) ToGenericClientProtocolMapperPtrOutput() GenericClientProtocolMapperPtrOutput {
-	return o
-}
-
-func (o GenericClientProtocolMapperPtrOutput) ToGenericClientProtocolMapperPtrOutputWithContext(ctx context.Context) GenericClientProtocolMapperPtrOutput {
-	return o
-}
-
-func (o GenericClientProtocolMapperPtrOutput) Elem() GenericClientProtocolMapperOutput {
-	return o.ApplyT(func(v *GenericClientProtocolMapper) GenericClientProtocolMapper {
-		if v != nil {
-			return *v
-		}
-		var ret GenericClientProtocolMapper
-		return ret
-	}).(GenericClientProtocolMapperOutput)
-}
-
 type GenericClientProtocolMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (GenericClientProtocolMapperArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GenericClientProtocolMapper)(nil))
+	return reflect.TypeOf((*[]*GenericClientProtocolMapper)(nil)).Elem()
 }
 
 func (o GenericClientProtocolMapperArrayOutput) ToGenericClientProtocolMapperArrayOutput() GenericClientProtocolMapperArrayOutput {
@@ -371,15 +308,15 @@ func (o GenericClientProtocolMapperArrayOutput) ToGenericClientProtocolMapperArr
 }
 
 func (o GenericClientProtocolMapperArrayOutput) Index(i pulumi.IntInput) GenericClientProtocolMapperOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GenericClientProtocolMapper {
-		return vs[0].([]GenericClientProtocolMapper)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GenericClientProtocolMapper {
+		return vs[0].([]*GenericClientProtocolMapper)[vs[1].(int)]
 	}).(GenericClientProtocolMapperOutput)
 }
 
 type GenericClientProtocolMapperMapOutput struct{ *pulumi.OutputState }
 
 func (GenericClientProtocolMapperMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]GenericClientProtocolMapper)(nil))
+	return reflect.TypeOf((*map[string]*GenericClientProtocolMapper)(nil)).Elem()
 }
 
 func (o GenericClientProtocolMapperMapOutput) ToGenericClientProtocolMapperMapOutput() GenericClientProtocolMapperMapOutput {
@@ -391,18 +328,16 @@ func (o GenericClientProtocolMapperMapOutput) ToGenericClientProtocolMapperMapOu
 }
 
 func (o GenericClientProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) GenericClientProtocolMapperOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) GenericClientProtocolMapper {
-		return vs[0].(map[string]GenericClientProtocolMapper)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *GenericClientProtocolMapper {
+		return vs[0].(map[string]*GenericClientProtocolMapper)[vs[1].(string)]
 	}).(GenericClientProtocolMapperOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GenericClientProtocolMapperInput)(nil)).Elem(), &GenericClientProtocolMapper{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GenericClientProtocolMapperPtrInput)(nil)).Elem(), &GenericClientProtocolMapper{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GenericClientProtocolMapperArrayInput)(nil)).Elem(), GenericClientProtocolMapperArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GenericClientProtocolMapperMapInput)(nil)).Elem(), GenericClientProtocolMapperMap{})
 	pulumi.RegisterOutputType(GenericClientProtocolMapperOutput{})
-	pulumi.RegisterOutputType(GenericClientProtocolMapperPtrOutput{})
 	pulumi.RegisterOutputType(GenericClientProtocolMapperArrayOutput{})
 	pulumi.RegisterOutputType(GenericClientProtocolMapperMapOutput{})
 }

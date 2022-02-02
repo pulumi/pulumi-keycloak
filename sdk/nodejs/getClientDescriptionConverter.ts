@@ -19,8 +19,8 @@ import * as utilities from "./utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const samlClientClientDescriptionConverter = realm.id.apply(id => keycloak.getClientDescriptionConverter({
- *     realmId: id,
+ * const samlClientClientDescriptionConverter = keycloak.getClientDescriptionConverterOutput({
+ *     realmId: realm.id,
  *     body: `	<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" validUntil="2021-04-17T12:41:46Z" cacheDuration="PT604800S" entityID="FakeEntityId">
  *     <md:SPSSODescriptor AuthnRequestsSigned="false" WantAssertionsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
  *         <md:KeyDescriptor use="signing">
@@ -49,7 +49,7 @@ import * as utilities from "./utilities";
  *     </md:SPSSODescriptor>
  * </md:EntityDescriptor>
  * `,
- * }));
+ * });
  * const samlClientClient = new keycloak.saml.Client("samlClientClient", {
  *     realmId: realm.id,
  *     clientId: samlClientClientDescriptionConverter.apply(samlClientClientDescriptionConverter => samlClientClientDescriptionConverter.clientId),
@@ -61,9 +61,7 @@ export function getClientDescriptionConverter(args: GetClientDescriptionConverte
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", {
         "body": args.body,
         "realmId": args.realmId,

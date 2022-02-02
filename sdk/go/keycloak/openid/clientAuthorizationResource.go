@@ -129,7 +129,7 @@ type ClientAuthorizationResourceInput interface {
 }
 
 func (*ClientAuthorizationResource) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientAuthorizationResource)(nil))
+	return reflect.TypeOf((**ClientAuthorizationResource)(nil)).Elem()
 }
 
 func (i *ClientAuthorizationResource) ToClientAuthorizationResourceOutput() ClientAuthorizationResourceOutput {
@@ -138,35 +138,6 @@ func (i *ClientAuthorizationResource) ToClientAuthorizationResourceOutput() Clie
 
 func (i *ClientAuthorizationResource) ToClientAuthorizationResourceOutputWithContext(ctx context.Context) ClientAuthorizationResourceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationResourceOutput)
-}
-
-func (i *ClientAuthorizationResource) ToClientAuthorizationResourcePtrOutput() ClientAuthorizationResourcePtrOutput {
-	return i.ToClientAuthorizationResourcePtrOutputWithContext(context.Background())
-}
-
-func (i *ClientAuthorizationResource) ToClientAuthorizationResourcePtrOutputWithContext(ctx context.Context) ClientAuthorizationResourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationResourcePtrOutput)
-}
-
-type ClientAuthorizationResourcePtrInput interface {
-	pulumi.Input
-
-	ToClientAuthorizationResourcePtrOutput() ClientAuthorizationResourcePtrOutput
-	ToClientAuthorizationResourcePtrOutputWithContext(ctx context.Context) ClientAuthorizationResourcePtrOutput
-}
-
-type clientAuthorizationResourcePtrType ClientAuthorizationResourceArgs
-
-func (*clientAuthorizationResourcePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ClientAuthorizationResource)(nil))
-}
-
-func (i *clientAuthorizationResourcePtrType) ToClientAuthorizationResourcePtrOutput() ClientAuthorizationResourcePtrOutput {
-	return i.ToClientAuthorizationResourcePtrOutputWithContext(context.Background())
-}
-
-func (i *clientAuthorizationResourcePtrType) ToClientAuthorizationResourcePtrOutputWithContext(ctx context.Context) ClientAuthorizationResourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationResourcePtrOutput)
 }
 
 // ClientAuthorizationResourceArrayInput is an input type that accepts ClientAuthorizationResourceArray and ClientAuthorizationResourceArrayOutput values.
@@ -222,7 +193,7 @@ func (i ClientAuthorizationResourceMap) ToClientAuthorizationResourceMapOutputWi
 type ClientAuthorizationResourceOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthorizationResourceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientAuthorizationResource)(nil))
+	return reflect.TypeOf((**ClientAuthorizationResource)(nil)).Elem()
 }
 
 func (o ClientAuthorizationResourceOutput) ToClientAuthorizationResourceOutput() ClientAuthorizationResourceOutput {
@@ -233,44 +204,10 @@ func (o ClientAuthorizationResourceOutput) ToClientAuthorizationResourceOutputWi
 	return o
 }
 
-func (o ClientAuthorizationResourceOutput) ToClientAuthorizationResourcePtrOutput() ClientAuthorizationResourcePtrOutput {
-	return o.ToClientAuthorizationResourcePtrOutputWithContext(context.Background())
-}
-
-func (o ClientAuthorizationResourceOutput) ToClientAuthorizationResourcePtrOutputWithContext(ctx context.Context) ClientAuthorizationResourcePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientAuthorizationResource) *ClientAuthorizationResource {
-		return &v
-	}).(ClientAuthorizationResourcePtrOutput)
-}
-
-type ClientAuthorizationResourcePtrOutput struct{ *pulumi.OutputState }
-
-func (ClientAuthorizationResourcePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ClientAuthorizationResource)(nil))
-}
-
-func (o ClientAuthorizationResourcePtrOutput) ToClientAuthorizationResourcePtrOutput() ClientAuthorizationResourcePtrOutput {
-	return o
-}
-
-func (o ClientAuthorizationResourcePtrOutput) ToClientAuthorizationResourcePtrOutputWithContext(ctx context.Context) ClientAuthorizationResourcePtrOutput {
-	return o
-}
-
-func (o ClientAuthorizationResourcePtrOutput) Elem() ClientAuthorizationResourceOutput {
-	return o.ApplyT(func(v *ClientAuthorizationResource) ClientAuthorizationResource {
-		if v != nil {
-			return *v
-		}
-		var ret ClientAuthorizationResource
-		return ret
-	}).(ClientAuthorizationResourceOutput)
-}
-
 type ClientAuthorizationResourceArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthorizationResourceArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClientAuthorizationResource)(nil))
+	return reflect.TypeOf((*[]*ClientAuthorizationResource)(nil)).Elem()
 }
 
 func (o ClientAuthorizationResourceArrayOutput) ToClientAuthorizationResourceArrayOutput() ClientAuthorizationResourceArrayOutput {
@@ -282,15 +219,15 @@ func (o ClientAuthorizationResourceArrayOutput) ToClientAuthorizationResourceArr
 }
 
 func (o ClientAuthorizationResourceArrayOutput) Index(i pulumi.IntInput) ClientAuthorizationResourceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClientAuthorizationResource {
-		return vs[0].([]ClientAuthorizationResource)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ClientAuthorizationResource {
+		return vs[0].([]*ClientAuthorizationResource)[vs[1].(int)]
 	}).(ClientAuthorizationResourceOutput)
 }
 
 type ClientAuthorizationResourceMapOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthorizationResourceMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ClientAuthorizationResource)(nil))
+	return reflect.TypeOf((*map[string]*ClientAuthorizationResource)(nil)).Elem()
 }
 
 func (o ClientAuthorizationResourceMapOutput) ToClientAuthorizationResourceMapOutput() ClientAuthorizationResourceMapOutput {
@@ -302,18 +239,16 @@ func (o ClientAuthorizationResourceMapOutput) ToClientAuthorizationResourceMapOu
 }
 
 func (o ClientAuthorizationResourceMapOutput) MapIndex(k pulumi.StringInput) ClientAuthorizationResourceOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ClientAuthorizationResource {
-		return vs[0].(map[string]ClientAuthorizationResource)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ClientAuthorizationResource {
+		return vs[0].(map[string]*ClientAuthorizationResource)[vs[1].(string)]
 	}).(ClientAuthorizationResourceOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthorizationResourceInput)(nil)).Elem(), &ClientAuthorizationResource{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthorizationResourcePtrInput)(nil)).Elem(), &ClientAuthorizationResource{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthorizationResourceArrayInput)(nil)).Elem(), ClientAuthorizationResourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthorizationResourceMapInput)(nil)).Elem(), ClientAuthorizationResourceMap{})
 	pulumi.RegisterOutputType(ClientAuthorizationResourceOutput{})
-	pulumi.RegisterOutputType(ClientAuthorizationResourcePtrOutput{})
 	pulumi.RegisterOutputType(ClientAuthorizationResourceArrayOutput{})
 	pulumi.RegisterOutputType(ClientAuthorizationResourceMapOutput{})
 }

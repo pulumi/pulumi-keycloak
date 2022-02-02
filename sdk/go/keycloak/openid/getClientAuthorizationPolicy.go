@@ -48,6 +48,11 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
+// 		defaultPermission := openid.GetClientAuthorizationPolicyOutput(ctx, openid.GetClientAuthorizationPolicyOutputArgs{
+// 			RealmId:          realm.ID(),
+// 			ResourceServerId: clientWithAuthz.ResourceServerId,
+// 			Name:             pulumi.String("Default Permission"),
+// 		}, nil)
 // 		resource, err := openid.NewClientAuthorizationResource(ctx, "resource", &openid.ClientAuthorizationResourceArgs{
 // 			ResourceServerId: clientWithAuthz.ResourceServerId,
 // 			RealmId:          realm.ID(),

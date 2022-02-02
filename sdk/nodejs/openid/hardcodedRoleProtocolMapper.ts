@@ -126,15 +126,15 @@ export class HardcodedRoleProtocolMapper extends pulumi.CustomResource {
      */
     constructor(name: string, args: HardcodedRoleProtocolMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: HardcodedRoleProtocolMapperArgs | HardcodedRoleProtocolMapperState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as HardcodedRoleProtocolMapperState | undefined;
-            inputs["clientId"] = state ? state.clientId : undefined;
-            inputs["clientScopeId"] = state ? state.clientScopeId : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["roleId"] = state ? state.roleId : undefined;
+            resourceInputs["clientId"] = state ? state.clientId : undefined;
+            resourceInputs["clientScopeId"] = state ? state.clientScopeId : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["roleId"] = state ? state.roleId : undefined;
         } else {
             const args = argsOrState as HardcodedRoleProtocolMapperArgs | undefined;
             if ((!args || args.realmId === undefined) && !opts.urn) {
@@ -143,16 +143,14 @@ export class HardcodedRoleProtocolMapper extends pulumi.CustomResource {
             if ((!args || args.roleId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleId'");
             }
-            inputs["clientId"] = args ? args.clientId : undefined;
-            inputs["clientScopeId"] = args ? args.clientScopeId : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["roleId"] = args ? args.roleId : undefined;
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["clientScopeId"] = args ? args.clientScopeId : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["roleId"] = args ? args.roleId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(HardcodedRoleProtocolMapper.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(HardcodedRoleProtocolMapper.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -177,7 +177,7 @@ type AttributeToRoleIdentityMapperInput interface {
 }
 
 func (*AttributeToRoleIdentityMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*AttributeToRoleIdentityMapper)(nil))
+	return reflect.TypeOf((**AttributeToRoleIdentityMapper)(nil)).Elem()
 }
 
 func (i *AttributeToRoleIdentityMapper) ToAttributeToRoleIdentityMapperOutput() AttributeToRoleIdentityMapperOutput {
@@ -186,35 +186,6 @@ func (i *AttributeToRoleIdentityMapper) ToAttributeToRoleIdentityMapperOutput() 
 
 func (i *AttributeToRoleIdentityMapper) ToAttributeToRoleIdentityMapperOutputWithContext(ctx context.Context) AttributeToRoleIdentityMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AttributeToRoleIdentityMapperOutput)
-}
-
-func (i *AttributeToRoleIdentityMapper) ToAttributeToRoleIdentityMapperPtrOutput() AttributeToRoleIdentityMapperPtrOutput {
-	return i.ToAttributeToRoleIdentityMapperPtrOutputWithContext(context.Background())
-}
-
-func (i *AttributeToRoleIdentityMapper) ToAttributeToRoleIdentityMapperPtrOutputWithContext(ctx context.Context) AttributeToRoleIdentityMapperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AttributeToRoleIdentityMapperPtrOutput)
-}
-
-type AttributeToRoleIdentityMapperPtrInput interface {
-	pulumi.Input
-
-	ToAttributeToRoleIdentityMapperPtrOutput() AttributeToRoleIdentityMapperPtrOutput
-	ToAttributeToRoleIdentityMapperPtrOutputWithContext(ctx context.Context) AttributeToRoleIdentityMapperPtrOutput
-}
-
-type attributeToRoleIdentityMapperPtrType AttributeToRoleIdentityMapperArgs
-
-func (*attributeToRoleIdentityMapperPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AttributeToRoleIdentityMapper)(nil))
-}
-
-func (i *attributeToRoleIdentityMapperPtrType) ToAttributeToRoleIdentityMapperPtrOutput() AttributeToRoleIdentityMapperPtrOutput {
-	return i.ToAttributeToRoleIdentityMapperPtrOutputWithContext(context.Background())
-}
-
-func (i *attributeToRoleIdentityMapperPtrType) ToAttributeToRoleIdentityMapperPtrOutputWithContext(ctx context.Context) AttributeToRoleIdentityMapperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AttributeToRoleIdentityMapperPtrOutput)
 }
 
 // AttributeToRoleIdentityMapperArrayInput is an input type that accepts AttributeToRoleIdentityMapperArray and AttributeToRoleIdentityMapperArrayOutput values.
@@ -270,7 +241,7 @@ func (i AttributeToRoleIdentityMapperMap) ToAttributeToRoleIdentityMapperMapOutp
 type AttributeToRoleIdentityMapperOutput struct{ *pulumi.OutputState }
 
 func (AttributeToRoleIdentityMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AttributeToRoleIdentityMapper)(nil))
+	return reflect.TypeOf((**AttributeToRoleIdentityMapper)(nil)).Elem()
 }
 
 func (o AttributeToRoleIdentityMapperOutput) ToAttributeToRoleIdentityMapperOutput() AttributeToRoleIdentityMapperOutput {
@@ -281,44 +252,10 @@ func (o AttributeToRoleIdentityMapperOutput) ToAttributeToRoleIdentityMapperOutp
 	return o
 }
 
-func (o AttributeToRoleIdentityMapperOutput) ToAttributeToRoleIdentityMapperPtrOutput() AttributeToRoleIdentityMapperPtrOutput {
-	return o.ToAttributeToRoleIdentityMapperPtrOutputWithContext(context.Background())
-}
-
-func (o AttributeToRoleIdentityMapperOutput) ToAttributeToRoleIdentityMapperPtrOutputWithContext(ctx context.Context) AttributeToRoleIdentityMapperPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v AttributeToRoleIdentityMapper) *AttributeToRoleIdentityMapper {
-		return &v
-	}).(AttributeToRoleIdentityMapperPtrOutput)
-}
-
-type AttributeToRoleIdentityMapperPtrOutput struct{ *pulumi.OutputState }
-
-func (AttributeToRoleIdentityMapperPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AttributeToRoleIdentityMapper)(nil))
-}
-
-func (o AttributeToRoleIdentityMapperPtrOutput) ToAttributeToRoleIdentityMapperPtrOutput() AttributeToRoleIdentityMapperPtrOutput {
-	return o
-}
-
-func (o AttributeToRoleIdentityMapperPtrOutput) ToAttributeToRoleIdentityMapperPtrOutputWithContext(ctx context.Context) AttributeToRoleIdentityMapperPtrOutput {
-	return o
-}
-
-func (o AttributeToRoleIdentityMapperPtrOutput) Elem() AttributeToRoleIdentityMapperOutput {
-	return o.ApplyT(func(v *AttributeToRoleIdentityMapper) AttributeToRoleIdentityMapper {
-		if v != nil {
-			return *v
-		}
-		var ret AttributeToRoleIdentityMapper
-		return ret
-	}).(AttributeToRoleIdentityMapperOutput)
-}
-
 type AttributeToRoleIdentityMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (AttributeToRoleIdentityMapperArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]AttributeToRoleIdentityMapper)(nil))
+	return reflect.TypeOf((*[]*AttributeToRoleIdentityMapper)(nil)).Elem()
 }
 
 func (o AttributeToRoleIdentityMapperArrayOutput) ToAttributeToRoleIdentityMapperArrayOutput() AttributeToRoleIdentityMapperArrayOutput {
@@ -330,15 +267,15 @@ func (o AttributeToRoleIdentityMapperArrayOutput) ToAttributeToRoleIdentityMappe
 }
 
 func (o AttributeToRoleIdentityMapperArrayOutput) Index(i pulumi.IntInput) AttributeToRoleIdentityMapperOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AttributeToRoleIdentityMapper {
-		return vs[0].([]AttributeToRoleIdentityMapper)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AttributeToRoleIdentityMapper {
+		return vs[0].([]*AttributeToRoleIdentityMapper)[vs[1].(int)]
 	}).(AttributeToRoleIdentityMapperOutput)
 }
 
 type AttributeToRoleIdentityMapperMapOutput struct{ *pulumi.OutputState }
 
 func (AttributeToRoleIdentityMapperMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]AttributeToRoleIdentityMapper)(nil))
+	return reflect.TypeOf((*map[string]*AttributeToRoleIdentityMapper)(nil)).Elem()
 }
 
 func (o AttributeToRoleIdentityMapperMapOutput) ToAttributeToRoleIdentityMapperMapOutput() AttributeToRoleIdentityMapperMapOutput {
@@ -350,18 +287,16 @@ func (o AttributeToRoleIdentityMapperMapOutput) ToAttributeToRoleIdentityMapperM
 }
 
 func (o AttributeToRoleIdentityMapperMapOutput) MapIndex(k pulumi.StringInput) AttributeToRoleIdentityMapperOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AttributeToRoleIdentityMapper {
-		return vs[0].(map[string]AttributeToRoleIdentityMapper)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *AttributeToRoleIdentityMapper {
+		return vs[0].(map[string]*AttributeToRoleIdentityMapper)[vs[1].(string)]
 	}).(AttributeToRoleIdentityMapperOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AttributeToRoleIdentityMapperInput)(nil)).Elem(), &AttributeToRoleIdentityMapper{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AttributeToRoleIdentityMapperPtrInput)(nil)).Elem(), &AttributeToRoleIdentityMapper{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AttributeToRoleIdentityMapperArrayInput)(nil)).Elem(), AttributeToRoleIdentityMapperArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AttributeToRoleIdentityMapperMapInput)(nil)).Elem(), AttributeToRoleIdentityMapperMap{})
 	pulumi.RegisterOutputType(AttributeToRoleIdentityMapperOutput{})
-	pulumi.RegisterOutputType(AttributeToRoleIdentityMapperPtrOutput{})
 	pulumi.RegisterOutputType(AttributeToRoleIdentityMapperArrayOutput{})
 	pulumi.RegisterOutputType(AttributeToRoleIdentityMapperMapOutput{})
 }

@@ -95,20 +95,20 @@ export class RealmKeystoreJavaGenerated extends pulumi.CustomResource {
      */
     constructor(name: string, args: RealmKeystoreJavaGeneratedArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RealmKeystoreJavaGeneratedArgs | RealmKeystoreJavaGeneratedState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RealmKeystoreJavaGeneratedState | undefined;
-            inputs["active"] = state ? state.active : undefined;
-            inputs["algorithm"] = state ? state.algorithm : undefined;
-            inputs["enabled"] = state ? state.enabled : undefined;
-            inputs["keyAlias"] = state ? state.keyAlias : undefined;
-            inputs["keyPassword"] = state ? state.keyPassword : undefined;
-            inputs["keystore"] = state ? state.keystore : undefined;
-            inputs["keystorePassword"] = state ? state.keystorePassword : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["active"] = state ? state.active : undefined;
+            resourceInputs["algorithm"] = state ? state.algorithm : undefined;
+            resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["keyAlias"] = state ? state.keyAlias : undefined;
+            resourceInputs["keyPassword"] = state ? state.keyPassword : undefined;
+            resourceInputs["keystore"] = state ? state.keystore : undefined;
+            resourceInputs["keystorePassword"] = state ? state.keystorePassword : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as RealmKeystoreJavaGeneratedArgs | undefined;
             if ((!args || args.keyAlias === undefined) && !opts.urn) {
@@ -126,21 +126,19 @@ export class RealmKeystoreJavaGenerated extends pulumi.CustomResource {
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["active"] = args ? args.active : undefined;
-            inputs["algorithm"] = args ? args.algorithm : undefined;
-            inputs["enabled"] = args ? args.enabled : undefined;
-            inputs["keyAlias"] = args ? args.keyAlias : undefined;
-            inputs["keyPassword"] = args ? args.keyPassword : undefined;
-            inputs["keystore"] = args ? args.keystore : undefined;
-            inputs["keystorePassword"] = args ? args.keystorePassword : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["active"] = args ? args.active : undefined;
+            resourceInputs["algorithm"] = args ? args.algorithm : undefined;
+            resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["keyAlias"] = args ? args.keyAlias : undefined;
+            resourceInputs["keyPassword"] = args ? args.keyPassword : undefined;
+            resourceInputs["keystore"] = args ? args.keystore : undefined;
+            resourceInputs["keystorePassword"] = args ? args.keystorePassword : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RealmKeystoreJavaGenerated.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RealmKeystoreJavaGenerated.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -271,7 +271,7 @@ type GroupMembershipProtocolMapperInput interface {
 }
 
 func (*GroupMembershipProtocolMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupMembershipProtocolMapper)(nil))
+	return reflect.TypeOf((**GroupMembershipProtocolMapper)(nil)).Elem()
 }
 
 func (i *GroupMembershipProtocolMapper) ToGroupMembershipProtocolMapperOutput() GroupMembershipProtocolMapperOutput {
@@ -280,35 +280,6 @@ func (i *GroupMembershipProtocolMapper) ToGroupMembershipProtocolMapperOutput() 
 
 func (i *GroupMembershipProtocolMapper) ToGroupMembershipProtocolMapperOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipProtocolMapperOutput)
-}
-
-func (i *GroupMembershipProtocolMapper) ToGroupMembershipProtocolMapperPtrOutput() GroupMembershipProtocolMapperPtrOutput {
-	return i.ToGroupMembershipProtocolMapperPtrOutputWithContext(context.Background())
-}
-
-func (i *GroupMembershipProtocolMapper) ToGroupMembershipProtocolMapperPtrOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipProtocolMapperPtrOutput)
-}
-
-type GroupMembershipProtocolMapperPtrInput interface {
-	pulumi.Input
-
-	ToGroupMembershipProtocolMapperPtrOutput() GroupMembershipProtocolMapperPtrOutput
-	ToGroupMembershipProtocolMapperPtrOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperPtrOutput
-}
-
-type groupMembershipProtocolMapperPtrType GroupMembershipProtocolMapperArgs
-
-func (*groupMembershipProtocolMapperPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GroupMembershipProtocolMapper)(nil))
-}
-
-func (i *groupMembershipProtocolMapperPtrType) ToGroupMembershipProtocolMapperPtrOutput() GroupMembershipProtocolMapperPtrOutput {
-	return i.ToGroupMembershipProtocolMapperPtrOutputWithContext(context.Background())
-}
-
-func (i *groupMembershipProtocolMapperPtrType) ToGroupMembershipProtocolMapperPtrOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipProtocolMapperPtrOutput)
 }
 
 // GroupMembershipProtocolMapperArrayInput is an input type that accepts GroupMembershipProtocolMapperArray and GroupMembershipProtocolMapperArrayOutput values.
@@ -364,7 +335,7 @@ func (i GroupMembershipProtocolMapperMap) ToGroupMembershipProtocolMapperMapOutp
 type GroupMembershipProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (GroupMembershipProtocolMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupMembershipProtocolMapper)(nil))
+	return reflect.TypeOf((**GroupMembershipProtocolMapper)(nil)).Elem()
 }
 
 func (o GroupMembershipProtocolMapperOutput) ToGroupMembershipProtocolMapperOutput() GroupMembershipProtocolMapperOutput {
@@ -375,44 +346,10 @@ func (o GroupMembershipProtocolMapperOutput) ToGroupMembershipProtocolMapperOutp
 	return o
 }
 
-func (o GroupMembershipProtocolMapperOutput) ToGroupMembershipProtocolMapperPtrOutput() GroupMembershipProtocolMapperPtrOutput {
-	return o.ToGroupMembershipProtocolMapperPtrOutputWithContext(context.Background())
-}
-
-func (o GroupMembershipProtocolMapperOutput) ToGroupMembershipProtocolMapperPtrOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GroupMembershipProtocolMapper) *GroupMembershipProtocolMapper {
-		return &v
-	}).(GroupMembershipProtocolMapperPtrOutput)
-}
-
-type GroupMembershipProtocolMapperPtrOutput struct{ *pulumi.OutputState }
-
-func (GroupMembershipProtocolMapperPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GroupMembershipProtocolMapper)(nil))
-}
-
-func (o GroupMembershipProtocolMapperPtrOutput) ToGroupMembershipProtocolMapperPtrOutput() GroupMembershipProtocolMapperPtrOutput {
-	return o
-}
-
-func (o GroupMembershipProtocolMapperPtrOutput) ToGroupMembershipProtocolMapperPtrOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperPtrOutput {
-	return o
-}
-
-func (o GroupMembershipProtocolMapperPtrOutput) Elem() GroupMembershipProtocolMapperOutput {
-	return o.ApplyT(func(v *GroupMembershipProtocolMapper) GroupMembershipProtocolMapper {
-		if v != nil {
-			return *v
-		}
-		var ret GroupMembershipProtocolMapper
-		return ret
-	}).(GroupMembershipProtocolMapperOutput)
-}
-
 type GroupMembershipProtocolMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (GroupMembershipProtocolMapperArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GroupMembershipProtocolMapper)(nil))
+	return reflect.TypeOf((*[]*GroupMembershipProtocolMapper)(nil)).Elem()
 }
 
 func (o GroupMembershipProtocolMapperArrayOutput) ToGroupMembershipProtocolMapperArrayOutput() GroupMembershipProtocolMapperArrayOutput {
@@ -424,15 +361,15 @@ func (o GroupMembershipProtocolMapperArrayOutput) ToGroupMembershipProtocolMappe
 }
 
 func (o GroupMembershipProtocolMapperArrayOutput) Index(i pulumi.IntInput) GroupMembershipProtocolMapperOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GroupMembershipProtocolMapper {
-		return vs[0].([]GroupMembershipProtocolMapper)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GroupMembershipProtocolMapper {
+		return vs[0].([]*GroupMembershipProtocolMapper)[vs[1].(int)]
 	}).(GroupMembershipProtocolMapperOutput)
 }
 
 type GroupMembershipProtocolMapperMapOutput struct{ *pulumi.OutputState }
 
 func (GroupMembershipProtocolMapperMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]GroupMembershipProtocolMapper)(nil))
+	return reflect.TypeOf((*map[string]*GroupMembershipProtocolMapper)(nil)).Elem()
 }
 
 func (o GroupMembershipProtocolMapperMapOutput) ToGroupMembershipProtocolMapperMapOutput() GroupMembershipProtocolMapperMapOutput {
@@ -444,18 +381,16 @@ func (o GroupMembershipProtocolMapperMapOutput) ToGroupMembershipProtocolMapperM
 }
 
 func (o GroupMembershipProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) GroupMembershipProtocolMapperOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) GroupMembershipProtocolMapper {
-		return vs[0].(map[string]GroupMembershipProtocolMapper)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *GroupMembershipProtocolMapper {
+		return vs[0].(map[string]*GroupMembershipProtocolMapper)[vs[1].(string)]
 	}).(GroupMembershipProtocolMapperOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupMembershipProtocolMapperInput)(nil)).Elem(), &GroupMembershipProtocolMapper{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GroupMembershipProtocolMapperPtrInput)(nil)).Elem(), &GroupMembershipProtocolMapper{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupMembershipProtocolMapperArrayInput)(nil)).Elem(), GroupMembershipProtocolMapperArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupMembershipProtocolMapperMapInput)(nil)).Elem(), GroupMembershipProtocolMapperMap{})
 	pulumi.RegisterOutputType(GroupMembershipProtocolMapperOutput{})
-	pulumi.RegisterOutputType(GroupMembershipProtocolMapperPtrOutput{})
 	pulumi.RegisterOutputType(GroupMembershipProtocolMapperArrayOutput{})
 	pulumi.RegisterOutputType(GroupMembershipProtocolMapperMapOutput{})
 }

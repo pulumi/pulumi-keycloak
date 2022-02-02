@@ -122,7 +122,7 @@ type SubflowInput interface {
 }
 
 func (*Subflow) ElementType() reflect.Type {
-	return reflect.TypeOf((*Subflow)(nil))
+	return reflect.TypeOf((**Subflow)(nil)).Elem()
 }
 
 func (i *Subflow) ToSubflowOutput() SubflowOutput {
@@ -131,35 +131,6 @@ func (i *Subflow) ToSubflowOutput() SubflowOutput {
 
 func (i *Subflow) ToSubflowOutputWithContext(ctx context.Context) SubflowOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SubflowOutput)
-}
-
-func (i *Subflow) ToSubflowPtrOutput() SubflowPtrOutput {
-	return i.ToSubflowPtrOutputWithContext(context.Background())
-}
-
-func (i *Subflow) ToSubflowPtrOutputWithContext(ctx context.Context) SubflowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubflowPtrOutput)
-}
-
-type SubflowPtrInput interface {
-	pulumi.Input
-
-	ToSubflowPtrOutput() SubflowPtrOutput
-	ToSubflowPtrOutputWithContext(ctx context.Context) SubflowPtrOutput
-}
-
-type subflowPtrType SubflowArgs
-
-func (*subflowPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**Subflow)(nil))
-}
-
-func (i *subflowPtrType) ToSubflowPtrOutput() SubflowPtrOutput {
-	return i.ToSubflowPtrOutputWithContext(context.Background())
-}
-
-func (i *subflowPtrType) ToSubflowPtrOutputWithContext(ctx context.Context) SubflowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubflowPtrOutput)
 }
 
 // SubflowArrayInput is an input type that accepts SubflowArray and SubflowArrayOutput values.
@@ -215,7 +186,7 @@ func (i SubflowMap) ToSubflowMapOutputWithContext(ctx context.Context) SubflowMa
 type SubflowOutput struct{ *pulumi.OutputState }
 
 func (SubflowOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Subflow)(nil))
+	return reflect.TypeOf((**Subflow)(nil)).Elem()
 }
 
 func (o SubflowOutput) ToSubflowOutput() SubflowOutput {
@@ -226,44 +197,10 @@ func (o SubflowOutput) ToSubflowOutputWithContext(ctx context.Context) SubflowOu
 	return o
 }
 
-func (o SubflowOutput) ToSubflowPtrOutput() SubflowPtrOutput {
-	return o.ToSubflowPtrOutputWithContext(context.Background())
-}
-
-func (o SubflowOutput) ToSubflowPtrOutputWithContext(ctx context.Context) SubflowPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v Subflow) *Subflow {
-		return &v
-	}).(SubflowPtrOutput)
-}
-
-type SubflowPtrOutput struct{ *pulumi.OutputState }
-
-func (SubflowPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**Subflow)(nil))
-}
-
-func (o SubflowPtrOutput) ToSubflowPtrOutput() SubflowPtrOutput {
-	return o
-}
-
-func (o SubflowPtrOutput) ToSubflowPtrOutputWithContext(ctx context.Context) SubflowPtrOutput {
-	return o
-}
-
-func (o SubflowPtrOutput) Elem() SubflowOutput {
-	return o.ApplyT(func(v *Subflow) Subflow {
-		if v != nil {
-			return *v
-		}
-		var ret Subflow
-		return ret
-	}).(SubflowOutput)
-}
-
 type SubflowArrayOutput struct{ *pulumi.OutputState }
 
 func (SubflowArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Subflow)(nil))
+	return reflect.TypeOf((*[]*Subflow)(nil)).Elem()
 }
 
 func (o SubflowArrayOutput) ToSubflowArrayOutput() SubflowArrayOutput {
@@ -275,15 +212,15 @@ func (o SubflowArrayOutput) ToSubflowArrayOutputWithContext(ctx context.Context)
 }
 
 func (o SubflowArrayOutput) Index(i pulumi.IntInput) SubflowOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Subflow {
-		return vs[0].([]Subflow)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Subflow {
+		return vs[0].([]*Subflow)[vs[1].(int)]
 	}).(SubflowOutput)
 }
 
 type SubflowMapOutput struct{ *pulumi.OutputState }
 
 func (SubflowMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]Subflow)(nil))
+	return reflect.TypeOf((*map[string]*Subflow)(nil)).Elem()
 }
 
 func (o SubflowMapOutput) ToSubflowMapOutput() SubflowMapOutput {
@@ -295,18 +232,16 @@ func (o SubflowMapOutput) ToSubflowMapOutputWithContext(ctx context.Context) Sub
 }
 
 func (o SubflowMapOutput) MapIndex(k pulumi.StringInput) SubflowOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) Subflow {
-		return vs[0].(map[string]Subflow)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Subflow {
+		return vs[0].(map[string]*Subflow)[vs[1].(string)]
 	}).(SubflowOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SubflowInput)(nil)).Elem(), &Subflow{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SubflowPtrInput)(nil)).Elem(), &Subflow{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SubflowArrayInput)(nil)).Elem(), SubflowArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SubflowMapInput)(nil)).Elem(), SubflowMap{})
 	pulumi.RegisterOutputType(SubflowOutput{})
-	pulumi.RegisterOutputType(SubflowPtrOutput{})
 	pulumi.RegisterOutputType(SubflowArrayOutput{})
 	pulumi.RegisterOutputType(SubflowMapOutput{})
 }

@@ -153,25 +153,25 @@ export class RoleMapper extends pulumi.CustomResource {
      */
     constructor(name: string, args: RoleMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RoleMapperArgs | RoleMapperState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RoleMapperState | undefined;
-            inputs["clientId"] = state ? state.clientId : undefined;
-            inputs["ldapRolesDn"] = state ? state.ldapRolesDn : undefined;
-            inputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
-            inputs["memberofLdapAttribute"] = state ? state.memberofLdapAttribute : undefined;
-            inputs["membershipAttributeType"] = state ? state.membershipAttributeType : undefined;
-            inputs["membershipLdapAttribute"] = state ? state.membershipLdapAttribute : undefined;
-            inputs["membershipUserLdapAttribute"] = state ? state.membershipUserLdapAttribute : undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["roleNameLdapAttribute"] = state ? state.roleNameLdapAttribute : undefined;
-            inputs["roleObjectClasses"] = state ? state.roleObjectClasses : undefined;
-            inputs["rolesLdapFilter"] = state ? state.rolesLdapFilter : undefined;
-            inputs["useRealmRolesMapping"] = state ? state.useRealmRolesMapping : undefined;
-            inputs["userRolesRetrieveStrategy"] = state ? state.userRolesRetrieveStrategy : undefined;
+            resourceInputs["clientId"] = state ? state.clientId : undefined;
+            resourceInputs["ldapRolesDn"] = state ? state.ldapRolesDn : undefined;
+            resourceInputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
+            resourceInputs["memberofLdapAttribute"] = state ? state.memberofLdapAttribute : undefined;
+            resourceInputs["membershipAttributeType"] = state ? state.membershipAttributeType : undefined;
+            resourceInputs["membershipLdapAttribute"] = state ? state.membershipLdapAttribute : undefined;
+            resourceInputs["membershipUserLdapAttribute"] = state ? state.membershipUserLdapAttribute : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["roleNameLdapAttribute"] = state ? state.roleNameLdapAttribute : undefined;
+            resourceInputs["roleObjectClasses"] = state ? state.roleObjectClasses : undefined;
+            resourceInputs["rolesLdapFilter"] = state ? state.rolesLdapFilter : undefined;
+            resourceInputs["useRealmRolesMapping"] = state ? state.useRealmRolesMapping : undefined;
+            resourceInputs["userRolesRetrieveStrategy"] = state ? state.userRolesRetrieveStrategy : undefined;
         } else {
             const args = argsOrState as RoleMapperArgs | undefined;
             if ((!args || args.ldapRolesDn === undefined) && !opts.urn) {
@@ -195,26 +195,24 @@ export class RoleMapper extends pulumi.CustomResource {
             if ((!args || args.roleObjectClasses === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleObjectClasses'");
             }
-            inputs["clientId"] = args ? args.clientId : undefined;
-            inputs["ldapRolesDn"] = args ? args.ldapRolesDn : undefined;
-            inputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
-            inputs["memberofLdapAttribute"] = args ? args.memberofLdapAttribute : undefined;
-            inputs["membershipAttributeType"] = args ? args.membershipAttributeType : undefined;
-            inputs["membershipLdapAttribute"] = args ? args.membershipLdapAttribute : undefined;
-            inputs["membershipUserLdapAttribute"] = args ? args.membershipUserLdapAttribute : undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["roleNameLdapAttribute"] = args ? args.roleNameLdapAttribute : undefined;
-            inputs["roleObjectClasses"] = args ? args.roleObjectClasses : undefined;
-            inputs["rolesLdapFilter"] = args ? args.rolesLdapFilter : undefined;
-            inputs["useRealmRolesMapping"] = args ? args.useRealmRolesMapping : undefined;
-            inputs["userRolesRetrieveStrategy"] = args ? args.userRolesRetrieveStrategy : undefined;
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["ldapRolesDn"] = args ? args.ldapRolesDn : undefined;
+            resourceInputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
+            resourceInputs["memberofLdapAttribute"] = args ? args.memberofLdapAttribute : undefined;
+            resourceInputs["membershipAttributeType"] = args ? args.membershipAttributeType : undefined;
+            resourceInputs["membershipLdapAttribute"] = args ? args.membershipLdapAttribute : undefined;
+            resourceInputs["membershipUserLdapAttribute"] = args ? args.membershipUserLdapAttribute : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["roleNameLdapAttribute"] = args ? args.roleNameLdapAttribute : undefined;
+            resourceInputs["roleObjectClasses"] = args ? args.roleObjectClasses : undefined;
+            resourceInputs["rolesLdapFilter"] = args ? args.rolesLdapFilter : undefined;
+            resourceInputs["useRealmRolesMapping"] = args ? args.useRealmRolesMapping : undefined;
+            resourceInputs["userRolesRetrieveStrategy"] = args ? args.userRolesRetrieveStrategy : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RoleMapper.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RoleMapper.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -83,18 +83,18 @@ export class IdentityProviderTokenExchangeScopePermission extends pulumi.CustomR
      */
     constructor(name: string, args: IdentityProviderTokenExchangeScopePermissionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IdentityProviderTokenExchangeScopePermissionArgs | IdentityProviderTokenExchangeScopePermissionState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IdentityProviderTokenExchangeScopePermissionState | undefined;
-            inputs["authorizationIdpResourceId"] = state ? state.authorizationIdpResourceId : undefined;
-            inputs["authorizationResourceServerId"] = state ? state.authorizationResourceServerId : undefined;
-            inputs["authorizationTokenExchangeScopePermissionId"] = state ? state.authorizationTokenExchangeScopePermissionId : undefined;
-            inputs["clients"] = state ? state.clients : undefined;
-            inputs["policyId"] = state ? state.policyId : undefined;
-            inputs["policyType"] = state ? state.policyType : undefined;
-            inputs["providerAlias"] = state ? state.providerAlias : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["authorizationIdpResourceId"] = state ? state.authorizationIdpResourceId : undefined;
+            resourceInputs["authorizationResourceServerId"] = state ? state.authorizationResourceServerId : undefined;
+            resourceInputs["authorizationTokenExchangeScopePermissionId"] = state ? state.authorizationTokenExchangeScopePermissionId : undefined;
+            resourceInputs["clients"] = state ? state.clients : undefined;
+            resourceInputs["policyId"] = state ? state.policyId : undefined;
+            resourceInputs["policyType"] = state ? state.policyType : undefined;
+            resourceInputs["providerAlias"] = state ? state.providerAlias : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as IdentityProviderTokenExchangeScopePermissionArgs | undefined;
             if ((!args || args.clients === undefined) && !opts.urn) {
@@ -106,19 +106,17 @@ export class IdentityProviderTokenExchangeScopePermission extends pulumi.CustomR
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["clients"] = args ? args.clients : undefined;
-            inputs["policyType"] = args ? args.policyType : undefined;
-            inputs["providerAlias"] = args ? args.providerAlias : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["authorizationIdpResourceId"] = undefined /*out*/;
-            inputs["authorizationResourceServerId"] = undefined /*out*/;
-            inputs["authorizationTokenExchangeScopePermissionId"] = undefined /*out*/;
-            inputs["policyId"] = undefined /*out*/;
+            resourceInputs["clients"] = args ? args.clients : undefined;
+            resourceInputs["policyType"] = args ? args.policyType : undefined;
+            resourceInputs["providerAlias"] = args ? args.providerAlias : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["authorizationIdpResourceId"] = undefined /*out*/;
+            resourceInputs["authorizationResourceServerId"] = undefined /*out*/;
+            resourceInputs["authorizationTokenExchangeScopePermissionId"] = undefined /*out*/;
+            resourceInputs["policyId"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(IdentityProviderTokenExchangeScopePermission.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(IdentityProviderTokenExchangeScopePermission.__pulumiType, name, resourceInputs, opts);
     }
 }
 

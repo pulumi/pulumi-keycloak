@@ -55,19 +55,19 @@ export class GroupPermissions extends pulumi.CustomResource {
      */
     constructor(name: string, args: GroupPermissionsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GroupPermissionsArgs | GroupPermissionsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GroupPermissionsState | undefined;
-            inputs["authorizationResourceServerId"] = state ? state.authorizationResourceServerId : undefined;
-            inputs["enabled"] = state ? state.enabled : undefined;
-            inputs["groupId"] = state ? state.groupId : undefined;
-            inputs["manageMembersScope"] = state ? state.manageMembersScope : undefined;
-            inputs["manageMembershipScope"] = state ? state.manageMembershipScope : undefined;
-            inputs["manageScope"] = state ? state.manageScope : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["viewMembersScope"] = state ? state.viewMembersScope : undefined;
-            inputs["viewScope"] = state ? state.viewScope : undefined;
+            resourceInputs["authorizationResourceServerId"] = state ? state.authorizationResourceServerId : undefined;
+            resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["groupId"] = state ? state.groupId : undefined;
+            resourceInputs["manageMembersScope"] = state ? state.manageMembersScope : undefined;
+            resourceInputs["manageMembershipScope"] = state ? state.manageMembershipScope : undefined;
+            resourceInputs["manageScope"] = state ? state.manageScope : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["viewMembersScope"] = state ? state.viewMembersScope : undefined;
+            resourceInputs["viewScope"] = state ? state.viewScope : undefined;
         } else {
             const args = argsOrState as GroupPermissionsArgs | undefined;
             if ((!args || args.groupId === undefined) && !opts.urn) {
@@ -76,20 +76,18 @@ export class GroupPermissions extends pulumi.CustomResource {
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["groupId"] = args ? args.groupId : undefined;
-            inputs["manageMembersScope"] = args ? args.manageMembersScope : undefined;
-            inputs["manageMembershipScope"] = args ? args.manageMembershipScope : undefined;
-            inputs["manageScope"] = args ? args.manageScope : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["viewMembersScope"] = args ? args.viewMembersScope : undefined;
-            inputs["viewScope"] = args ? args.viewScope : undefined;
-            inputs["authorizationResourceServerId"] = undefined /*out*/;
-            inputs["enabled"] = undefined /*out*/;
+            resourceInputs["groupId"] = args ? args.groupId : undefined;
+            resourceInputs["manageMembersScope"] = args ? args.manageMembersScope : undefined;
+            resourceInputs["manageMembershipScope"] = args ? args.manageMembershipScope : undefined;
+            resourceInputs["manageScope"] = args ? args.manageScope : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["viewMembersScope"] = args ? args.viewMembersScope : undefined;
+            resourceInputs["viewScope"] = args ? args.viewScope : undefined;
+            resourceInputs["authorizationResourceServerId"] = undefined /*out*/;
+            resourceInputs["enabled"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(GroupPermissions.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(GroupPermissions.__pulumiType, name, resourceInputs, opts);
     }
 }
 

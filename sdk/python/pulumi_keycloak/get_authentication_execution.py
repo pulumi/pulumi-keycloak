@@ -86,9 +86,9 @@ def get_authentication_execution(parent_flow_alias: Optional[str] = None,
     realm = keycloak.Realm("realm",
         realm="my-realm",
         enabled=True)
-    browser_auth_cookie = realm.id.apply(lambda id: keycloak.get_authentication_execution(realm_id=id,
+    browser_auth_cookie = keycloak.get_authentication_execution_output(realm_id=realm.id,
         parent_flow_alias="browser",
-        provider_id="auth-cookie"))
+        provider_id="auth-cookie")
     ```
 
 
@@ -130,9 +130,9 @@ def get_authentication_execution_output(parent_flow_alias: Optional[pulumi.Input
     realm = keycloak.Realm("realm",
         realm="my-realm",
         enabled=True)
-    browser_auth_cookie = realm.id.apply(lambda id: keycloak.get_authentication_execution(realm_id=id,
+    browser_auth_cookie = keycloak.get_authentication_execution_output(realm_id=realm.id,
         parent_flow_alias="browser",
-        provider_id="auth-cookie"))
+        provider_id="auth-cookie")
     ```
 
 

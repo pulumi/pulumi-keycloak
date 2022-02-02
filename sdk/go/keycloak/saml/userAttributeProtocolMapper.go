@@ -226,7 +226,7 @@ type UserAttributeProtocolMapperInput interface {
 }
 
 func (*UserAttributeProtocolMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserAttributeProtocolMapper)(nil))
+	return reflect.TypeOf((**UserAttributeProtocolMapper)(nil)).Elem()
 }
 
 func (i *UserAttributeProtocolMapper) ToUserAttributeProtocolMapperOutput() UserAttributeProtocolMapperOutput {
@@ -235,35 +235,6 @@ func (i *UserAttributeProtocolMapper) ToUserAttributeProtocolMapperOutput() User
 
 func (i *UserAttributeProtocolMapper) ToUserAttributeProtocolMapperOutputWithContext(ctx context.Context) UserAttributeProtocolMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserAttributeProtocolMapperOutput)
-}
-
-func (i *UserAttributeProtocolMapper) ToUserAttributeProtocolMapperPtrOutput() UserAttributeProtocolMapperPtrOutput {
-	return i.ToUserAttributeProtocolMapperPtrOutputWithContext(context.Background())
-}
-
-func (i *UserAttributeProtocolMapper) ToUserAttributeProtocolMapperPtrOutputWithContext(ctx context.Context) UserAttributeProtocolMapperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserAttributeProtocolMapperPtrOutput)
-}
-
-type UserAttributeProtocolMapperPtrInput interface {
-	pulumi.Input
-
-	ToUserAttributeProtocolMapperPtrOutput() UserAttributeProtocolMapperPtrOutput
-	ToUserAttributeProtocolMapperPtrOutputWithContext(ctx context.Context) UserAttributeProtocolMapperPtrOutput
-}
-
-type userAttributeProtocolMapperPtrType UserAttributeProtocolMapperArgs
-
-func (*userAttributeProtocolMapperPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserAttributeProtocolMapper)(nil))
-}
-
-func (i *userAttributeProtocolMapperPtrType) ToUserAttributeProtocolMapperPtrOutput() UserAttributeProtocolMapperPtrOutput {
-	return i.ToUserAttributeProtocolMapperPtrOutputWithContext(context.Background())
-}
-
-func (i *userAttributeProtocolMapperPtrType) ToUserAttributeProtocolMapperPtrOutputWithContext(ctx context.Context) UserAttributeProtocolMapperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserAttributeProtocolMapperPtrOutput)
 }
 
 // UserAttributeProtocolMapperArrayInput is an input type that accepts UserAttributeProtocolMapperArray and UserAttributeProtocolMapperArrayOutput values.
@@ -319,7 +290,7 @@ func (i UserAttributeProtocolMapperMap) ToUserAttributeProtocolMapperMapOutputWi
 type UserAttributeProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (UserAttributeProtocolMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserAttributeProtocolMapper)(nil))
+	return reflect.TypeOf((**UserAttributeProtocolMapper)(nil)).Elem()
 }
 
 func (o UserAttributeProtocolMapperOutput) ToUserAttributeProtocolMapperOutput() UserAttributeProtocolMapperOutput {
@@ -330,44 +301,10 @@ func (o UserAttributeProtocolMapperOutput) ToUserAttributeProtocolMapperOutputWi
 	return o
 }
 
-func (o UserAttributeProtocolMapperOutput) ToUserAttributeProtocolMapperPtrOutput() UserAttributeProtocolMapperPtrOutput {
-	return o.ToUserAttributeProtocolMapperPtrOutputWithContext(context.Background())
-}
-
-func (o UserAttributeProtocolMapperOutput) ToUserAttributeProtocolMapperPtrOutputWithContext(ctx context.Context) UserAttributeProtocolMapperPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v UserAttributeProtocolMapper) *UserAttributeProtocolMapper {
-		return &v
-	}).(UserAttributeProtocolMapperPtrOutput)
-}
-
-type UserAttributeProtocolMapperPtrOutput struct{ *pulumi.OutputState }
-
-func (UserAttributeProtocolMapperPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserAttributeProtocolMapper)(nil))
-}
-
-func (o UserAttributeProtocolMapperPtrOutput) ToUserAttributeProtocolMapperPtrOutput() UserAttributeProtocolMapperPtrOutput {
-	return o
-}
-
-func (o UserAttributeProtocolMapperPtrOutput) ToUserAttributeProtocolMapperPtrOutputWithContext(ctx context.Context) UserAttributeProtocolMapperPtrOutput {
-	return o
-}
-
-func (o UserAttributeProtocolMapperPtrOutput) Elem() UserAttributeProtocolMapperOutput {
-	return o.ApplyT(func(v *UserAttributeProtocolMapper) UserAttributeProtocolMapper {
-		if v != nil {
-			return *v
-		}
-		var ret UserAttributeProtocolMapper
-		return ret
-	}).(UserAttributeProtocolMapperOutput)
-}
-
 type UserAttributeProtocolMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (UserAttributeProtocolMapperArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserAttributeProtocolMapper)(nil))
+	return reflect.TypeOf((*[]*UserAttributeProtocolMapper)(nil)).Elem()
 }
 
 func (o UserAttributeProtocolMapperArrayOutput) ToUserAttributeProtocolMapperArrayOutput() UserAttributeProtocolMapperArrayOutput {
@@ -379,15 +316,15 @@ func (o UserAttributeProtocolMapperArrayOutput) ToUserAttributeProtocolMapperArr
 }
 
 func (o UserAttributeProtocolMapperArrayOutput) Index(i pulumi.IntInput) UserAttributeProtocolMapperOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserAttributeProtocolMapper {
-		return vs[0].([]UserAttributeProtocolMapper)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserAttributeProtocolMapper {
+		return vs[0].([]*UserAttributeProtocolMapper)[vs[1].(int)]
 	}).(UserAttributeProtocolMapperOutput)
 }
 
 type UserAttributeProtocolMapperMapOutput struct{ *pulumi.OutputState }
 
 func (UserAttributeProtocolMapperMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserAttributeProtocolMapper)(nil))
+	return reflect.TypeOf((*map[string]*UserAttributeProtocolMapper)(nil)).Elem()
 }
 
 func (o UserAttributeProtocolMapperMapOutput) ToUserAttributeProtocolMapperMapOutput() UserAttributeProtocolMapperMapOutput {
@@ -399,18 +336,16 @@ func (o UserAttributeProtocolMapperMapOutput) ToUserAttributeProtocolMapperMapOu
 }
 
 func (o UserAttributeProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) UserAttributeProtocolMapperOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserAttributeProtocolMapper {
-		return vs[0].(map[string]UserAttributeProtocolMapper)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserAttributeProtocolMapper {
+		return vs[0].(map[string]*UserAttributeProtocolMapper)[vs[1].(string)]
 	}).(UserAttributeProtocolMapperOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*UserAttributeProtocolMapperInput)(nil)).Elem(), &UserAttributeProtocolMapper{})
-	pulumi.RegisterInputType(reflect.TypeOf((*UserAttributeProtocolMapperPtrInput)(nil)).Elem(), &UserAttributeProtocolMapper{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserAttributeProtocolMapperArrayInput)(nil)).Elem(), UserAttributeProtocolMapperArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserAttributeProtocolMapperMapInput)(nil)).Elem(), UserAttributeProtocolMapperMap{})
 	pulumi.RegisterOutputType(UserAttributeProtocolMapperOutput{})
-	pulumi.RegisterOutputType(UserAttributeProtocolMapperPtrOutput{})
 	pulumi.RegisterOutputType(UserAttributeProtocolMapperArrayOutput{})
 	pulumi.RegisterOutputType(UserAttributeProtocolMapperMapOutput{})
 }

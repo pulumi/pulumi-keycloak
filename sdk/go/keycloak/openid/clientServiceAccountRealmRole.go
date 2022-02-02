@@ -171,7 +171,7 @@ type ClientServiceAccountRealmRoleInput interface {
 }
 
 func (*ClientServiceAccountRealmRole) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientServiceAccountRealmRole)(nil))
+	return reflect.TypeOf((**ClientServiceAccountRealmRole)(nil)).Elem()
 }
 
 func (i *ClientServiceAccountRealmRole) ToClientServiceAccountRealmRoleOutput() ClientServiceAccountRealmRoleOutput {
@@ -180,35 +180,6 @@ func (i *ClientServiceAccountRealmRole) ToClientServiceAccountRealmRoleOutput() 
 
 func (i *ClientServiceAccountRealmRole) ToClientServiceAccountRealmRoleOutputWithContext(ctx context.Context) ClientServiceAccountRealmRoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientServiceAccountRealmRoleOutput)
-}
-
-func (i *ClientServiceAccountRealmRole) ToClientServiceAccountRealmRolePtrOutput() ClientServiceAccountRealmRolePtrOutput {
-	return i.ToClientServiceAccountRealmRolePtrOutputWithContext(context.Background())
-}
-
-func (i *ClientServiceAccountRealmRole) ToClientServiceAccountRealmRolePtrOutputWithContext(ctx context.Context) ClientServiceAccountRealmRolePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClientServiceAccountRealmRolePtrOutput)
-}
-
-type ClientServiceAccountRealmRolePtrInput interface {
-	pulumi.Input
-
-	ToClientServiceAccountRealmRolePtrOutput() ClientServiceAccountRealmRolePtrOutput
-	ToClientServiceAccountRealmRolePtrOutputWithContext(ctx context.Context) ClientServiceAccountRealmRolePtrOutput
-}
-
-type clientServiceAccountRealmRolePtrType ClientServiceAccountRealmRoleArgs
-
-func (*clientServiceAccountRealmRolePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ClientServiceAccountRealmRole)(nil))
-}
-
-func (i *clientServiceAccountRealmRolePtrType) ToClientServiceAccountRealmRolePtrOutput() ClientServiceAccountRealmRolePtrOutput {
-	return i.ToClientServiceAccountRealmRolePtrOutputWithContext(context.Background())
-}
-
-func (i *clientServiceAccountRealmRolePtrType) ToClientServiceAccountRealmRolePtrOutputWithContext(ctx context.Context) ClientServiceAccountRealmRolePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClientServiceAccountRealmRolePtrOutput)
 }
 
 // ClientServiceAccountRealmRoleArrayInput is an input type that accepts ClientServiceAccountRealmRoleArray and ClientServiceAccountRealmRoleArrayOutput values.
@@ -264,7 +235,7 @@ func (i ClientServiceAccountRealmRoleMap) ToClientServiceAccountRealmRoleMapOutp
 type ClientServiceAccountRealmRoleOutput struct{ *pulumi.OutputState }
 
 func (ClientServiceAccountRealmRoleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientServiceAccountRealmRole)(nil))
+	return reflect.TypeOf((**ClientServiceAccountRealmRole)(nil)).Elem()
 }
 
 func (o ClientServiceAccountRealmRoleOutput) ToClientServiceAccountRealmRoleOutput() ClientServiceAccountRealmRoleOutput {
@@ -275,44 +246,10 @@ func (o ClientServiceAccountRealmRoleOutput) ToClientServiceAccountRealmRoleOutp
 	return o
 }
 
-func (o ClientServiceAccountRealmRoleOutput) ToClientServiceAccountRealmRolePtrOutput() ClientServiceAccountRealmRolePtrOutput {
-	return o.ToClientServiceAccountRealmRolePtrOutputWithContext(context.Background())
-}
-
-func (o ClientServiceAccountRealmRoleOutput) ToClientServiceAccountRealmRolePtrOutputWithContext(ctx context.Context) ClientServiceAccountRealmRolePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientServiceAccountRealmRole) *ClientServiceAccountRealmRole {
-		return &v
-	}).(ClientServiceAccountRealmRolePtrOutput)
-}
-
-type ClientServiceAccountRealmRolePtrOutput struct{ *pulumi.OutputState }
-
-func (ClientServiceAccountRealmRolePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ClientServiceAccountRealmRole)(nil))
-}
-
-func (o ClientServiceAccountRealmRolePtrOutput) ToClientServiceAccountRealmRolePtrOutput() ClientServiceAccountRealmRolePtrOutput {
-	return o
-}
-
-func (o ClientServiceAccountRealmRolePtrOutput) ToClientServiceAccountRealmRolePtrOutputWithContext(ctx context.Context) ClientServiceAccountRealmRolePtrOutput {
-	return o
-}
-
-func (o ClientServiceAccountRealmRolePtrOutput) Elem() ClientServiceAccountRealmRoleOutput {
-	return o.ApplyT(func(v *ClientServiceAccountRealmRole) ClientServiceAccountRealmRole {
-		if v != nil {
-			return *v
-		}
-		var ret ClientServiceAccountRealmRole
-		return ret
-	}).(ClientServiceAccountRealmRoleOutput)
-}
-
 type ClientServiceAccountRealmRoleArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientServiceAccountRealmRoleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClientServiceAccountRealmRole)(nil))
+	return reflect.TypeOf((*[]*ClientServiceAccountRealmRole)(nil)).Elem()
 }
 
 func (o ClientServiceAccountRealmRoleArrayOutput) ToClientServiceAccountRealmRoleArrayOutput() ClientServiceAccountRealmRoleArrayOutput {
@@ -324,15 +261,15 @@ func (o ClientServiceAccountRealmRoleArrayOutput) ToClientServiceAccountRealmRol
 }
 
 func (o ClientServiceAccountRealmRoleArrayOutput) Index(i pulumi.IntInput) ClientServiceAccountRealmRoleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClientServiceAccountRealmRole {
-		return vs[0].([]ClientServiceAccountRealmRole)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ClientServiceAccountRealmRole {
+		return vs[0].([]*ClientServiceAccountRealmRole)[vs[1].(int)]
 	}).(ClientServiceAccountRealmRoleOutput)
 }
 
 type ClientServiceAccountRealmRoleMapOutput struct{ *pulumi.OutputState }
 
 func (ClientServiceAccountRealmRoleMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ClientServiceAccountRealmRole)(nil))
+	return reflect.TypeOf((*map[string]*ClientServiceAccountRealmRole)(nil)).Elem()
 }
 
 func (o ClientServiceAccountRealmRoleMapOutput) ToClientServiceAccountRealmRoleMapOutput() ClientServiceAccountRealmRoleMapOutput {
@@ -344,18 +281,16 @@ func (o ClientServiceAccountRealmRoleMapOutput) ToClientServiceAccountRealmRoleM
 }
 
 func (o ClientServiceAccountRealmRoleMapOutput) MapIndex(k pulumi.StringInput) ClientServiceAccountRealmRoleOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ClientServiceAccountRealmRole {
-		return vs[0].(map[string]ClientServiceAccountRealmRole)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ClientServiceAccountRealmRole {
+		return vs[0].(map[string]*ClientServiceAccountRealmRole)[vs[1].(string)]
 	}).(ClientServiceAccountRealmRoleOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientServiceAccountRealmRoleInput)(nil)).Elem(), &ClientServiceAccountRealmRole{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ClientServiceAccountRealmRolePtrInput)(nil)).Elem(), &ClientServiceAccountRealmRole{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientServiceAccountRealmRoleArrayInput)(nil)).Elem(), ClientServiceAccountRealmRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientServiceAccountRealmRoleMapInput)(nil)).Elem(), ClientServiceAccountRealmRoleMap{})
 	pulumi.RegisterOutputType(ClientServiceAccountRealmRoleOutput{})
-	pulumi.RegisterOutputType(ClientServiceAccountRealmRolePtrOutput{})
 	pulumi.RegisterOutputType(ClientServiceAccountRealmRoleArrayOutput{})
 	pulumi.RegisterOutputType(ClientServiceAccountRealmRoleMapOutput{})
 }

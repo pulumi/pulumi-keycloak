@@ -46,6 +46,14 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
+// 		serviceAccountUser := openid.GetClientServiceAccountUserOutput(ctx, openid.GetClientServiceAccountUserOutputArgs{
+// 			RealmId:  realm.ID(),
+// 			ClientId: client.ID(),
+// 		}, nil)
+// 		offlineAccess := keycloak.LookupRoleOutput(ctx, GetRoleOutputArgs{
+// 			RealmId: realm.ID(),
+// 			Name:    pulumi.String("offline_access"),
+// 		}, nil)
 // 		_, err = keycloak.NewUserRoles(ctx, "serviceAccountUserRoles", &keycloak.UserRolesArgs{
 // 			RealmId: realm.ID(),
 // 			UserId: serviceAccountUser.ApplyT(func(serviceAccountUser openid.GetClientServiceAccountUserResult) (string, error) {

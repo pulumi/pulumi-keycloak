@@ -182,9 +182,9 @@ def get_client_authorization_policy(name: Optional[str] = None,
         authorization=keycloak.openid.ClientAuthorizationArgs(
             policy_enforcement_mode="ENFORCING",
         ))
-    default_permission = pulumi.Output.all(realm.id, client_with_authz.resource_server_id).apply(lambda id, resource_server_id: keycloak.openid.get_client_authorization_policy(realm_id=id,
-        resource_server_id=resource_server_id,
-        name="Default Permission"))
+    default_permission = keycloak.openid.get_client_authorization_policy_output(realm_id=realm.id,
+        resource_server_id=client_with_authz.resource_server_id,
+        name="Default Permission")
     resource = keycloak.openid.ClientAuthorizationResource("resource",
         resource_server_id=client_with_authz.resource_server_id,
         realm_id=realm.id,
@@ -257,9 +257,9 @@ def get_client_authorization_policy_output(name: Optional[pulumi.Input[str]] = N
         authorization=keycloak.openid.ClientAuthorizationArgs(
             policy_enforcement_mode="ENFORCING",
         ))
-    default_permission = pulumi.Output.all(realm.id, client_with_authz.resource_server_id).apply(lambda id, resource_server_id: keycloak.openid.get_client_authorization_policy(realm_id=id,
-        resource_server_id=resource_server_id,
-        name="Default Permission"))
+    default_permission = keycloak.openid.get_client_authorization_policy_output(realm_id=realm.id,
+        resource_server_id=client_with_authz.resource_server_id,
+        name="Default Permission")
     resource = keycloak.openid.ClientAuthorizationResource("resource",
         resource_server_id=client_with_authz.resource_server_id,
         realm_id=realm.id,

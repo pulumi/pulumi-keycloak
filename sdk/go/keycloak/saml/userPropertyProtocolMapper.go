@@ -226,7 +226,7 @@ type UserPropertyProtocolMapperInput interface {
 }
 
 func (*UserPropertyProtocolMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserPropertyProtocolMapper)(nil))
+	return reflect.TypeOf((**UserPropertyProtocolMapper)(nil)).Elem()
 }
 
 func (i *UserPropertyProtocolMapper) ToUserPropertyProtocolMapperOutput() UserPropertyProtocolMapperOutput {
@@ -235,35 +235,6 @@ func (i *UserPropertyProtocolMapper) ToUserPropertyProtocolMapperOutput() UserPr
 
 func (i *UserPropertyProtocolMapper) ToUserPropertyProtocolMapperOutputWithContext(ctx context.Context) UserPropertyProtocolMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserPropertyProtocolMapperOutput)
-}
-
-func (i *UserPropertyProtocolMapper) ToUserPropertyProtocolMapperPtrOutput() UserPropertyProtocolMapperPtrOutput {
-	return i.ToUserPropertyProtocolMapperPtrOutputWithContext(context.Background())
-}
-
-func (i *UserPropertyProtocolMapper) ToUserPropertyProtocolMapperPtrOutputWithContext(ctx context.Context) UserPropertyProtocolMapperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserPropertyProtocolMapperPtrOutput)
-}
-
-type UserPropertyProtocolMapperPtrInput interface {
-	pulumi.Input
-
-	ToUserPropertyProtocolMapperPtrOutput() UserPropertyProtocolMapperPtrOutput
-	ToUserPropertyProtocolMapperPtrOutputWithContext(ctx context.Context) UserPropertyProtocolMapperPtrOutput
-}
-
-type userPropertyProtocolMapperPtrType UserPropertyProtocolMapperArgs
-
-func (*userPropertyProtocolMapperPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserPropertyProtocolMapper)(nil))
-}
-
-func (i *userPropertyProtocolMapperPtrType) ToUserPropertyProtocolMapperPtrOutput() UserPropertyProtocolMapperPtrOutput {
-	return i.ToUserPropertyProtocolMapperPtrOutputWithContext(context.Background())
-}
-
-func (i *userPropertyProtocolMapperPtrType) ToUserPropertyProtocolMapperPtrOutputWithContext(ctx context.Context) UserPropertyProtocolMapperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserPropertyProtocolMapperPtrOutput)
 }
 
 // UserPropertyProtocolMapperArrayInput is an input type that accepts UserPropertyProtocolMapperArray and UserPropertyProtocolMapperArrayOutput values.
@@ -319,7 +290,7 @@ func (i UserPropertyProtocolMapperMap) ToUserPropertyProtocolMapperMapOutputWith
 type UserPropertyProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (UserPropertyProtocolMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserPropertyProtocolMapper)(nil))
+	return reflect.TypeOf((**UserPropertyProtocolMapper)(nil)).Elem()
 }
 
 func (o UserPropertyProtocolMapperOutput) ToUserPropertyProtocolMapperOutput() UserPropertyProtocolMapperOutput {
@@ -330,44 +301,10 @@ func (o UserPropertyProtocolMapperOutput) ToUserPropertyProtocolMapperOutputWith
 	return o
 }
 
-func (o UserPropertyProtocolMapperOutput) ToUserPropertyProtocolMapperPtrOutput() UserPropertyProtocolMapperPtrOutput {
-	return o.ToUserPropertyProtocolMapperPtrOutputWithContext(context.Background())
-}
-
-func (o UserPropertyProtocolMapperOutput) ToUserPropertyProtocolMapperPtrOutputWithContext(ctx context.Context) UserPropertyProtocolMapperPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v UserPropertyProtocolMapper) *UserPropertyProtocolMapper {
-		return &v
-	}).(UserPropertyProtocolMapperPtrOutput)
-}
-
-type UserPropertyProtocolMapperPtrOutput struct{ *pulumi.OutputState }
-
-func (UserPropertyProtocolMapperPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserPropertyProtocolMapper)(nil))
-}
-
-func (o UserPropertyProtocolMapperPtrOutput) ToUserPropertyProtocolMapperPtrOutput() UserPropertyProtocolMapperPtrOutput {
-	return o
-}
-
-func (o UserPropertyProtocolMapperPtrOutput) ToUserPropertyProtocolMapperPtrOutputWithContext(ctx context.Context) UserPropertyProtocolMapperPtrOutput {
-	return o
-}
-
-func (o UserPropertyProtocolMapperPtrOutput) Elem() UserPropertyProtocolMapperOutput {
-	return o.ApplyT(func(v *UserPropertyProtocolMapper) UserPropertyProtocolMapper {
-		if v != nil {
-			return *v
-		}
-		var ret UserPropertyProtocolMapper
-		return ret
-	}).(UserPropertyProtocolMapperOutput)
-}
-
 type UserPropertyProtocolMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (UserPropertyProtocolMapperArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserPropertyProtocolMapper)(nil))
+	return reflect.TypeOf((*[]*UserPropertyProtocolMapper)(nil)).Elem()
 }
 
 func (o UserPropertyProtocolMapperArrayOutput) ToUserPropertyProtocolMapperArrayOutput() UserPropertyProtocolMapperArrayOutput {
@@ -379,15 +316,15 @@ func (o UserPropertyProtocolMapperArrayOutput) ToUserPropertyProtocolMapperArray
 }
 
 func (o UserPropertyProtocolMapperArrayOutput) Index(i pulumi.IntInput) UserPropertyProtocolMapperOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserPropertyProtocolMapper {
-		return vs[0].([]UserPropertyProtocolMapper)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserPropertyProtocolMapper {
+		return vs[0].([]*UserPropertyProtocolMapper)[vs[1].(int)]
 	}).(UserPropertyProtocolMapperOutput)
 }
 
 type UserPropertyProtocolMapperMapOutput struct{ *pulumi.OutputState }
 
 func (UserPropertyProtocolMapperMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserPropertyProtocolMapper)(nil))
+	return reflect.TypeOf((*map[string]*UserPropertyProtocolMapper)(nil)).Elem()
 }
 
 func (o UserPropertyProtocolMapperMapOutput) ToUserPropertyProtocolMapperMapOutput() UserPropertyProtocolMapperMapOutput {
@@ -399,18 +336,16 @@ func (o UserPropertyProtocolMapperMapOutput) ToUserPropertyProtocolMapperMapOutp
 }
 
 func (o UserPropertyProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) UserPropertyProtocolMapperOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserPropertyProtocolMapper {
-		return vs[0].(map[string]UserPropertyProtocolMapper)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserPropertyProtocolMapper {
+		return vs[0].(map[string]*UserPropertyProtocolMapper)[vs[1].(string)]
 	}).(UserPropertyProtocolMapperOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*UserPropertyProtocolMapperInput)(nil)).Elem(), &UserPropertyProtocolMapper{})
-	pulumi.RegisterInputType(reflect.TypeOf((*UserPropertyProtocolMapperPtrInput)(nil)).Elem(), &UserPropertyProtocolMapper{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserPropertyProtocolMapperArrayInput)(nil)).Elem(), UserPropertyProtocolMapperArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserPropertyProtocolMapperMapInput)(nil)).Elem(), UserPropertyProtocolMapperMap{})
 	pulumi.RegisterOutputType(UserPropertyProtocolMapperOutput{})
-	pulumi.RegisterOutputType(UserPropertyProtocolMapperPtrOutput{})
 	pulumi.RegisterOutputType(UserPropertyProtocolMapperArrayOutput{})
 	pulumi.RegisterOutputType(UserPropertyProtocolMapperMapOutput{})
 }

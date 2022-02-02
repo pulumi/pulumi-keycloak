@@ -79,20 +79,20 @@ export class AttributeToRoleIdentityMapper extends pulumi.CustomResource {
      */
     constructor(name: string, args: AttributeToRoleIdentityMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AttributeToRoleIdentityMapperArgs | AttributeToRoleIdentityMapperState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AttributeToRoleIdentityMapperState | undefined;
-            inputs["attributeFriendlyName"] = state ? state.attributeFriendlyName : undefined;
-            inputs["attributeName"] = state ? state.attributeName : undefined;
-            inputs["attributeValue"] = state ? state.attributeValue : undefined;
-            inputs["claimName"] = state ? state.claimName : undefined;
-            inputs["claimValue"] = state ? state.claimValue : undefined;
-            inputs["extraConfig"] = state ? state.extraConfig : undefined;
-            inputs["identityProviderAlias"] = state ? state.identityProviderAlias : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["realm"] = state ? state.realm : undefined;
-            inputs["role"] = state ? state.role : undefined;
+            resourceInputs["attributeFriendlyName"] = state ? state.attributeFriendlyName : undefined;
+            resourceInputs["attributeName"] = state ? state.attributeName : undefined;
+            resourceInputs["attributeValue"] = state ? state.attributeValue : undefined;
+            resourceInputs["claimName"] = state ? state.claimName : undefined;
+            resourceInputs["claimValue"] = state ? state.claimValue : undefined;
+            resourceInputs["extraConfig"] = state ? state.extraConfig : undefined;
+            resourceInputs["identityProviderAlias"] = state ? state.identityProviderAlias : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["realm"] = state ? state.realm : undefined;
+            resourceInputs["role"] = state ? state.role : undefined;
         } else {
             const args = argsOrState as AttributeToRoleIdentityMapperArgs | undefined;
             if ((!args || args.identityProviderAlias === undefined) && !opts.urn) {
@@ -104,21 +104,19 @@ export class AttributeToRoleIdentityMapper extends pulumi.CustomResource {
             if ((!args || args.role === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            inputs["attributeFriendlyName"] = args ? args.attributeFriendlyName : undefined;
-            inputs["attributeName"] = args ? args.attributeName : undefined;
-            inputs["attributeValue"] = args ? args.attributeValue : undefined;
-            inputs["claimName"] = args ? args.claimName : undefined;
-            inputs["claimValue"] = args ? args.claimValue : undefined;
-            inputs["extraConfig"] = args ? args.extraConfig : undefined;
-            inputs["identityProviderAlias"] = args ? args.identityProviderAlias : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["realm"] = args ? args.realm : undefined;
-            inputs["role"] = args ? args.role : undefined;
+            resourceInputs["attributeFriendlyName"] = args ? args.attributeFriendlyName : undefined;
+            resourceInputs["attributeName"] = args ? args.attributeName : undefined;
+            resourceInputs["attributeValue"] = args ? args.attributeValue : undefined;
+            resourceInputs["claimName"] = args ? args.claimName : undefined;
+            resourceInputs["claimValue"] = args ? args.claimValue : undefined;
+            resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
+            resourceInputs["identityProviderAlias"] = args ? args.identityProviderAlias : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["realm"] = args ? args.realm : undefined;
+            resourceInputs["role"] = args ? args.role : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AttributeToRoleIdentityMapper.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AttributeToRoleIdentityMapper.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -83,18 +83,18 @@ export class CustomUserFederation extends pulumi.CustomResource {
      */
     constructor(name: string, args: CustomUserFederationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CustomUserFederationArgs | CustomUserFederationState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CustomUserFederationState | undefined;
-            inputs["cachePolicy"] = state ? state.cachePolicy : undefined;
-            inputs["config"] = state ? state.config : undefined;
-            inputs["enabled"] = state ? state.enabled : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["parentId"] = state ? state.parentId : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["providerId"] = state ? state.providerId : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["cachePolicy"] = state ? state.cachePolicy : undefined;
+            resourceInputs["config"] = state ? state.config : undefined;
+            resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["parentId"] = state ? state.parentId : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["providerId"] = state ? state.providerId : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as CustomUserFederationArgs | undefined;
             if ((!args || args.providerId === undefined) && !opts.urn) {
@@ -103,19 +103,17 @@ export class CustomUserFederation extends pulumi.CustomResource {
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["cachePolicy"] = args ? args.cachePolicy : undefined;
-            inputs["config"] = args ? args.config : undefined;
-            inputs["enabled"] = args ? args.enabled : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["parentId"] = args ? args.parentId : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["providerId"] = args ? args.providerId : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["cachePolicy"] = args ? args.cachePolicy : undefined;
+            resourceInputs["config"] = args ? args.config : undefined;
+            resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["parentId"] = args ? args.parentId : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["providerId"] = args ? args.providerId : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(CustomUserFederation.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(CustomUserFederation.__pulumiType, name, resourceInputs, opts);
     }
 }
 

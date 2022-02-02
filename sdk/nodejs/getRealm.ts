@@ -26,9 +26,7 @@ export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promi
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("keycloak:index/getRealm:getRealm", {
         "attributes": args.attributes,
         "defaultDefaultClientScopes": args.defaultDefaultClientScopes,

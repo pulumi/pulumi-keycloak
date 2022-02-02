@@ -139,7 +139,7 @@ type CustomIdentityProviderMappingInput interface {
 }
 
 func (*CustomIdentityProviderMapping) ElementType() reflect.Type {
-	return reflect.TypeOf((*CustomIdentityProviderMapping)(nil))
+	return reflect.TypeOf((**CustomIdentityProviderMapping)(nil)).Elem()
 }
 
 func (i *CustomIdentityProviderMapping) ToCustomIdentityProviderMappingOutput() CustomIdentityProviderMappingOutput {
@@ -148,35 +148,6 @@ func (i *CustomIdentityProviderMapping) ToCustomIdentityProviderMappingOutput() 
 
 func (i *CustomIdentityProviderMapping) ToCustomIdentityProviderMappingOutputWithContext(ctx context.Context) CustomIdentityProviderMappingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CustomIdentityProviderMappingOutput)
-}
-
-func (i *CustomIdentityProviderMapping) ToCustomIdentityProviderMappingPtrOutput() CustomIdentityProviderMappingPtrOutput {
-	return i.ToCustomIdentityProviderMappingPtrOutputWithContext(context.Background())
-}
-
-func (i *CustomIdentityProviderMapping) ToCustomIdentityProviderMappingPtrOutputWithContext(ctx context.Context) CustomIdentityProviderMappingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomIdentityProviderMappingPtrOutput)
-}
-
-type CustomIdentityProviderMappingPtrInput interface {
-	pulumi.Input
-
-	ToCustomIdentityProviderMappingPtrOutput() CustomIdentityProviderMappingPtrOutput
-	ToCustomIdentityProviderMappingPtrOutputWithContext(ctx context.Context) CustomIdentityProviderMappingPtrOutput
-}
-
-type customIdentityProviderMappingPtrType CustomIdentityProviderMappingArgs
-
-func (*customIdentityProviderMappingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**CustomIdentityProviderMapping)(nil))
-}
-
-func (i *customIdentityProviderMappingPtrType) ToCustomIdentityProviderMappingPtrOutput() CustomIdentityProviderMappingPtrOutput {
-	return i.ToCustomIdentityProviderMappingPtrOutputWithContext(context.Background())
-}
-
-func (i *customIdentityProviderMappingPtrType) ToCustomIdentityProviderMappingPtrOutputWithContext(ctx context.Context) CustomIdentityProviderMappingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomIdentityProviderMappingPtrOutput)
 }
 
 // CustomIdentityProviderMappingArrayInput is an input type that accepts CustomIdentityProviderMappingArray and CustomIdentityProviderMappingArrayOutput values.
@@ -232,7 +203,7 @@ func (i CustomIdentityProviderMappingMap) ToCustomIdentityProviderMappingMapOutp
 type CustomIdentityProviderMappingOutput struct{ *pulumi.OutputState }
 
 func (CustomIdentityProviderMappingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CustomIdentityProviderMapping)(nil))
+	return reflect.TypeOf((**CustomIdentityProviderMapping)(nil)).Elem()
 }
 
 func (o CustomIdentityProviderMappingOutput) ToCustomIdentityProviderMappingOutput() CustomIdentityProviderMappingOutput {
@@ -243,44 +214,10 @@ func (o CustomIdentityProviderMappingOutput) ToCustomIdentityProviderMappingOutp
 	return o
 }
 
-func (o CustomIdentityProviderMappingOutput) ToCustomIdentityProviderMappingPtrOutput() CustomIdentityProviderMappingPtrOutput {
-	return o.ToCustomIdentityProviderMappingPtrOutputWithContext(context.Background())
-}
-
-func (o CustomIdentityProviderMappingOutput) ToCustomIdentityProviderMappingPtrOutputWithContext(ctx context.Context) CustomIdentityProviderMappingPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v CustomIdentityProviderMapping) *CustomIdentityProviderMapping {
-		return &v
-	}).(CustomIdentityProviderMappingPtrOutput)
-}
-
-type CustomIdentityProviderMappingPtrOutput struct{ *pulumi.OutputState }
-
-func (CustomIdentityProviderMappingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CustomIdentityProviderMapping)(nil))
-}
-
-func (o CustomIdentityProviderMappingPtrOutput) ToCustomIdentityProviderMappingPtrOutput() CustomIdentityProviderMappingPtrOutput {
-	return o
-}
-
-func (o CustomIdentityProviderMappingPtrOutput) ToCustomIdentityProviderMappingPtrOutputWithContext(ctx context.Context) CustomIdentityProviderMappingPtrOutput {
-	return o
-}
-
-func (o CustomIdentityProviderMappingPtrOutput) Elem() CustomIdentityProviderMappingOutput {
-	return o.ApplyT(func(v *CustomIdentityProviderMapping) CustomIdentityProviderMapping {
-		if v != nil {
-			return *v
-		}
-		var ret CustomIdentityProviderMapping
-		return ret
-	}).(CustomIdentityProviderMappingOutput)
-}
-
 type CustomIdentityProviderMappingArrayOutput struct{ *pulumi.OutputState }
 
 func (CustomIdentityProviderMappingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]CustomIdentityProviderMapping)(nil))
+	return reflect.TypeOf((*[]*CustomIdentityProviderMapping)(nil)).Elem()
 }
 
 func (o CustomIdentityProviderMappingArrayOutput) ToCustomIdentityProviderMappingArrayOutput() CustomIdentityProviderMappingArrayOutput {
@@ -292,15 +229,15 @@ func (o CustomIdentityProviderMappingArrayOutput) ToCustomIdentityProviderMappin
 }
 
 func (o CustomIdentityProviderMappingArrayOutput) Index(i pulumi.IntInput) CustomIdentityProviderMappingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CustomIdentityProviderMapping {
-		return vs[0].([]CustomIdentityProviderMapping)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CustomIdentityProviderMapping {
+		return vs[0].([]*CustomIdentityProviderMapping)[vs[1].(int)]
 	}).(CustomIdentityProviderMappingOutput)
 }
 
 type CustomIdentityProviderMappingMapOutput struct{ *pulumi.OutputState }
 
 func (CustomIdentityProviderMappingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]CustomIdentityProviderMapping)(nil))
+	return reflect.TypeOf((*map[string]*CustomIdentityProviderMapping)(nil)).Elem()
 }
 
 func (o CustomIdentityProviderMappingMapOutput) ToCustomIdentityProviderMappingMapOutput() CustomIdentityProviderMappingMapOutput {
@@ -312,18 +249,16 @@ func (o CustomIdentityProviderMappingMapOutput) ToCustomIdentityProviderMappingM
 }
 
 func (o CustomIdentityProviderMappingMapOutput) MapIndex(k pulumi.StringInput) CustomIdentityProviderMappingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) CustomIdentityProviderMapping {
-		return vs[0].(map[string]CustomIdentityProviderMapping)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *CustomIdentityProviderMapping {
+		return vs[0].(map[string]*CustomIdentityProviderMapping)[vs[1].(string)]
 	}).(CustomIdentityProviderMappingOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomIdentityProviderMappingInput)(nil)).Elem(), &CustomIdentityProviderMapping{})
-	pulumi.RegisterInputType(reflect.TypeOf((*CustomIdentityProviderMappingPtrInput)(nil)).Elem(), &CustomIdentityProviderMapping{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomIdentityProviderMappingArrayInput)(nil)).Elem(), CustomIdentityProviderMappingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomIdentityProviderMappingMapInput)(nil)).Elem(), CustomIdentityProviderMappingMap{})
 	pulumi.RegisterOutputType(CustomIdentityProviderMappingOutput{})
-	pulumi.RegisterOutputType(CustomIdentityProviderMappingPtrOutput{})
 	pulumi.RegisterOutputType(CustomIdentityProviderMappingArrayOutput{})
 	pulumi.RegisterOutputType(CustomIdentityProviderMappingMapOutput{})
 }

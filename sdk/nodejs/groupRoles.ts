@@ -67,14 +67,14 @@ export class GroupRoles extends pulumi.CustomResource {
      */
     constructor(name: string, args: GroupRolesArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GroupRolesArgs | GroupRolesState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GroupRolesState | undefined;
-            inputs["exhaustive"] = state ? state.exhaustive : undefined;
-            inputs["groupId"] = state ? state.groupId : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["roleIds"] = state ? state.roleIds : undefined;
+            resourceInputs["exhaustive"] = state ? state.exhaustive : undefined;
+            resourceInputs["groupId"] = state ? state.groupId : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["roleIds"] = state ? state.roleIds : undefined;
         } else {
             const args = argsOrState as GroupRolesArgs | undefined;
             if ((!args || args.groupId === undefined) && !opts.urn) {
@@ -86,15 +86,13 @@ export class GroupRoles extends pulumi.CustomResource {
             if ((!args || args.roleIds === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleIds'");
             }
-            inputs["exhaustive"] = args ? args.exhaustive : undefined;
-            inputs["groupId"] = args ? args.groupId : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["roleIds"] = args ? args.roleIds : undefined;
+            resourceInputs["exhaustive"] = args ? args.exhaustive : undefined;
+            resourceInputs["groupId"] = args ? args.groupId : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["roleIds"] = args ? args.roleIds : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(GroupRoles.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(GroupRoles.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -104,7 +104,7 @@ type ClientAuthorizationScopeInput interface {
 }
 
 func (*ClientAuthorizationScope) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientAuthorizationScope)(nil))
+	return reflect.TypeOf((**ClientAuthorizationScope)(nil)).Elem()
 }
 
 func (i *ClientAuthorizationScope) ToClientAuthorizationScopeOutput() ClientAuthorizationScopeOutput {
@@ -113,35 +113,6 @@ func (i *ClientAuthorizationScope) ToClientAuthorizationScopeOutput() ClientAuth
 
 func (i *ClientAuthorizationScope) ToClientAuthorizationScopeOutputWithContext(ctx context.Context) ClientAuthorizationScopeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationScopeOutput)
-}
-
-func (i *ClientAuthorizationScope) ToClientAuthorizationScopePtrOutput() ClientAuthorizationScopePtrOutput {
-	return i.ToClientAuthorizationScopePtrOutputWithContext(context.Background())
-}
-
-func (i *ClientAuthorizationScope) ToClientAuthorizationScopePtrOutputWithContext(ctx context.Context) ClientAuthorizationScopePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationScopePtrOutput)
-}
-
-type ClientAuthorizationScopePtrInput interface {
-	pulumi.Input
-
-	ToClientAuthorizationScopePtrOutput() ClientAuthorizationScopePtrOutput
-	ToClientAuthorizationScopePtrOutputWithContext(ctx context.Context) ClientAuthorizationScopePtrOutput
-}
-
-type clientAuthorizationScopePtrType ClientAuthorizationScopeArgs
-
-func (*clientAuthorizationScopePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ClientAuthorizationScope)(nil))
-}
-
-func (i *clientAuthorizationScopePtrType) ToClientAuthorizationScopePtrOutput() ClientAuthorizationScopePtrOutput {
-	return i.ToClientAuthorizationScopePtrOutputWithContext(context.Background())
-}
-
-func (i *clientAuthorizationScopePtrType) ToClientAuthorizationScopePtrOutputWithContext(ctx context.Context) ClientAuthorizationScopePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationScopePtrOutput)
 }
 
 // ClientAuthorizationScopeArrayInput is an input type that accepts ClientAuthorizationScopeArray and ClientAuthorizationScopeArrayOutput values.
@@ -197,7 +168,7 @@ func (i ClientAuthorizationScopeMap) ToClientAuthorizationScopeMapOutputWithCont
 type ClientAuthorizationScopeOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthorizationScopeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientAuthorizationScope)(nil))
+	return reflect.TypeOf((**ClientAuthorizationScope)(nil)).Elem()
 }
 
 func (o ClientAuthorizationScopeOutput) ToClientAuthorizationScopeOutput() ClientAuthorizationScopeOutput {
@@ -208,44 +179,10 @@ func (o ClientAuthorizationScopeOutput) ToClientAuthorizationScopeOutputWithCont
 	return o
 }
 
-func (o ClientAuthorizationScopeOutput) ToClientAuthorizationScopePtrOutput() ClientAuthorizationScopePtrOutput {
-	return o.ToClientAuthorizationScopePtrOutputWithContext(context.Background())
-}
-
-func (o ClientAuthorizationScopeOutput) ToClientAuthorizationScopePtrOutputWithContext(ctx context.Context) ClientAuthorizationScopePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientAuthorizationScope) *ClientAuthorizationScope {
-		return &v
-	}).(ClientAuthorizationScopePtrOutput)
-}
-
-type ClientAuthorizationScopePtrOutput struct{ *pulumi.OutputState }
-
-func (ClientAuthorizationScopePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ClientAuthorizationScope)(nil))
-}
-
-func (o ClientAuthorizationScopePtrOutput) ToClientAuthorizationScopePtrOutput() ClientAuthorizationScopePtrOutput {
-	return o
-}
-
-func (o ClientAuthorizationScopePtrOutput) ToClientAuthorizationScopePtrOutputWithContext(ctx context.Context) ClientAuthorizationScopePtrOutput {
-	return o
-}
-
-func (o ClientAuthorizationScopePtrOutput) Elem() ClientAuthorizationScopeOutput {
-	return o.ApplyT(func(v *ClientAuthorizationScope) ClientAuthorizationScope {
-		if v != nil {
-			return *v
-		}
-		var ret ClientAuthorizationScope
-		return ret
-	}).(ClientAuthorizationScopeOutput)
-}
-
 type ClientAuthorizationScopeArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthorizationScopeArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClientAuthorizationScope)(nil))
+	return reflect.TypeOf((*[]*ClientAuthorizationScope)(nil)).Elem()
 }
 
 func (o ClientAuthorizationScopeArrayOutput) ToClientAuthorizationScopeArrayOutput() ClientAuthorizationScopeArrayOutput {
@@ -257,15 +194,15 @@ func (o ClientAuthorizationScopeArrayOutput) ToClientAuthorizationScopeArrayOutp
 }
 
 func (o ClientAuthorizationScopeArrayOutput) Index(i pulumi.IntInput) ClientAuthorizationScopeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClientAuthorizationScope {
-		return vs[0].([]ClientAuthorizationScope)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ClientAuthorizationScope {
+		return vs[0].([]*ClientAuthorizationScope)[vs[1].(int)]
 	}).(ClientAuthorizationScopeOutput)
 }
 
 type ClientAuthorizationScopeMapOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthorizationScopeMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ClientAuthorizationScope)(nil))
+	return reflect.TypeOf((*map[string]*ClientAuthorizationScope)(nil)).Elem()
 }
 
 func (o ClientAuthorizationScopeMapOutput) ToClientAuthorizationScopeMapOutput() ClientAuthorizationScopeMapOutput {
@@ -277,18 +214,16 @@ func (o ClientAuthorizationScopeMapOutput) ToClientAuthorizationScopeMapOutputWi
 }
 
 func (o ClientAuthorizationScopeMapOutput) MapIndex(k pulumi.StringInput) ClientAuthorizationScopeOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ClientAuthorizationScope {
-		return vs[0].(map[string]ClientAuthorizationScope)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ClientAuthorizationScope {
+		return vs[0].(map[string]*ClientAuthorizationScope)[vs[1].(string)]
 	}).(ClientAuthorizationScopeOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthorizationScopeInput)(nil)).Elem(), &ClientAuthorizationScope{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthorizationScopePtrInput)(nil)).Elem(), &ClientAuthorizationScope{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthorizationScopeArrayInput)(nil)).Elem(), ClientAuthorizationScopeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthorizationScopeMapInput)(nil)).Elem(), ClientAuthorizationScopeMap{})
 	pulumi.RegisterOutputType(ClientAuthorizationScopeOutput{})
-	pulumi.RegisterOutputType(ClientAuthorizationScopePtrOutput{})
 	pulumi.RegisterOutputType(ClientAuthorizationScopeArrayOutput{})
 	pulumi.RegisterOutputType(ClientAuthorizationScopeMapOutput{})
 }

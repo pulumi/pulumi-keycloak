@@ -246,7 +246,7 @@ type FullNameProtocolMapperInput interface {
 }
 
 func (*FullNameProtocolMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*FullNameProtocolMapper)(nil))
+	return reflect.TypeOf((**FullNameProtocolMapper)(nil)).Elem()
 }
 
 func (i *FullNameProtocolMapper) ToFullNameProtocolMapperOutput() FullNameProtocolMapperOutput {
@@ -255,35 +255,6 @@ func (i *FullNameProtocolMapper) ToFullNameProtocolMapperOutput() FullNameProtoc
 
 func (i *FullNameProtocolMapper) ToFullNameProtocolMapperOutputWithContext(ctx context.Context) FullNameProtocolMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FullNameProtocolMapperOutput)
-}
-
-func (i *FullNameProtocolMapper) ToFullNameProtocolMapperPtrOutput() FullNameProtocolMapperPtrOutput {
-	return i.ToFullNameProtocolMapperPtrOutputWithContext(context.Background())
-}
-
-func (i *FullNameProtocolMapper) ToFullNameProtocolMapperPtrOutputWithContext(ctx context.Context) FullNameProtocolMapperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FullNameProtocolMapperPtrOutput)
-}
-
-type FullNameProtocolMapperPtrInput interface {
-	pulumi.Input
-
-	ToFullNameProtocolMapperPtrOutput() FullNameProtocolMapperPtrOutput
-	ToFullNameProtocolMapperPtrOutputWithContext(ctx context.Context) FullNameProtocolMapperPtrOutput
-}
-
-type fullNameProtocolMapperPtrType FullNameProtocolMapperArgs
-
-func (*fullNameProtocolMapperPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FullNameProtocolMapper)(nil))
-}
-
-func (i *fullNameProtocolMapperPtrType) ToFullNameProtocolMapperPtrOutput() FullNameProtocolMapperPtrOutput {
-	return i.ToFullNameProtocolMapperPtrOutputWithContext(context.Background())
-}
-
-func (i *fullNameProtocolMapperPtrType) ToFullNameProtocolMapperPtrOutputWithContext(ctx context.Context) FullNameProtocolMapperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FullNameProtocolMapperPtrOutput)
 }
 
 // FullNameProtocolMapperArrayInput is an input type that accepts FullNameProtocolMapperArray and FullNameProtocolMapperArrayOutput values.
@@ -339,7 +310,7 @@ func (i FullNameProtocolMapperMap) ToFullNameProtocolMapperMapOutputWithContext(
 type FullNameProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (FullNameProtocolMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FullNameProtocolMapper)(nil))
+	return reflect.TypeOf((**FullNameProtocolMapper)(nil)).Elem()
 }
 
 func (o FullNameProtocolMapperOutput) ToFullNameProtocolMapperOutput() FullNameProtocolMapperOutput {
@@ -350,44 +321,10 @@ func (o FullNameProtocolMapperOutput) ToFullNameProtocolMapperOutputWithContext(
 	return o
 }
 
-func (o FullNameProtocolMapperOutput) ToFullNameProtocolMapperPtrOutput() FullNameProtocolMapperPtrOutput {
-	return o.ToFullNameProtocolMapperPtrOutputWithContext(context.Background())
-}
-
-func (o FullNameProtocolMapperOutput) ToFullNameProtocolMapperPtrOutputWithContext(ctx context.Context) FullNameProtocolMapperPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v FullNameProtocolMapper) *FullNameProtocolMapper {
-		return &v
-	}).(FullNameProtocolMapperPtrOutput)
-}
-
-type FullNameProtocolMapperPtrOutput struct{ *pulumi.OutputState }
-
-func (FullNameProtocolMapperPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FullNameProtocolMapper)(nil))
-}
-
-func (o FullNameProtocolMapperPtrOutput) ToFullNameProtocolMapperPtrOutput() FullNameProtocolMapperPtrOutput {
-	return o
-}
-
-func (o FullNameProtocolMapperPtrOutput) ToFullNameProtocolMapperPtrOutputWithContext(ctx context.Context) FullNameProtocolMapperPtrOutput {
-	return o
-}
-
-func (o FullNameProtocolMapperPtrOutput) Elem() FullNameProtocolMapperOutput {
-	return o.ApplyT(func(v *FullNameProtocolMapper) FullNameProtocolMapper {
-		if v != nil {
-			return *v
-		}
-		var ret FullNameProtocolMapper
-		return ret
-	}).(FullNameProtocolMapperOutput)
-}
-
 type FullNameProtocolMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (FullNameProtocolMapperArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FullNameProtocolMapper)(nil))
+	return reflect.TypeOf((*[]*FullNameProtocolMapper)(nil)).Elem()
 }
 
 func (o FullNameProtocolMapperArrayOutput) ToFullNameProtocolMapperArrayOutput() FullNameProtocolMapperArrayOutput {
@@ -399,15 +336,15 @@ func (o FullNameProtocolMapperArrayOutput) ToFullNameProtocolMapperArrayOutputWi
 }
 
 func (o FullNameProtocolMapperArrayOutput) Index(i pulumi.IntInput) FullNameProtocolMapperOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FullNameProtocolMapper {
-		return vs[0].([]FullNameProtocolMapper)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FullNameProtocolMapper {
+		return vs[0].([]*FullNameProtocolMapper)[vs[1].(int)]
 	}).(FullNameProtocolMapperOutput)
 }
 
 type FullNameProtocolMapperMapOutput struct{ *pulumi.OutputState }
 
 func (FullNameProtocolMapperMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FullNameProtocolMapper)(nil))
+	return reflect.TypeOf((*map[string]*FullNameProtocolMapper)(nil)).Elem()
 }
 
 func (o FullNameProtocolMapperMapOutput) ToFullNameProtocolMapperMapOutput() FullNameProtocolMapperMapOutput {
@@ -419,18 +356,16 @@ func (o FullNameProtocolMapperMapOutput) ToFullNameProtocolMapperMapOutputWithCo
 }
 
 func (o FullNameProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) FullNameProtocolMapperOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FullNameProtocolMapper {
-		return vs[0].(map[string]FullNameProtocolMapper)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FullNameProtocolMapper {
+		return vs[0].(map[string]*FullNameProtocolMapper)[vs[1].(string)]
 	}).(FullNameProtocolMapperOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FullNameProtocolMapperInput)(nil)).Elem(), &FullNameProtocolMapper{})
-	pulumi.RegisterInputType(reflect.TypeOf((*FullNameProtocolMapperPtrInput)(nil)).Elem(), &FullNameProtocolMapper{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FullNameProtocolMapperArrayInput)(nil)).Elem(), FullNameProtocolMapperArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FullNameProtocolMapperMapInput)(nil)).Elem(), FullNameProtocolMapperMap{})
 	pulumi.RegisterOutputType(FullNameProtocolMapperOutput{})
-	pulumi.RegisterOutputType(FullNameProtocolMapperPtrOutput{})
 	pulumi.RegisterOutputType(FullNameProtocolMapperArrayOutput{})
 	pulumi.RegisterOutputType(FullNameProtocolMapperMapOutput{})
 }

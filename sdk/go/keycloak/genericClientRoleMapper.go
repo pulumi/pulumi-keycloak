@@ -349,7 +349,7 @@ type GenericClientRoleMapperInput interface {
 }
 
 func (*GenericClientRoleMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*GenericClientRoleMapper)(nil))
+	return reflect.TypeOf((**GenericClientRoleMapper)(nil)).Elem()
 }
 
 func (i *GenericClientRoleMapper) ToGenericClientRoleMapperOutput() GenericClientRoleMapperOutput {
@@ -358,35 +358,6 @@ func (i *GenericClientRoleMapper) ToGenericClientRoleMapperOutput() GenericClien
 
 func (i *GenericClientRoleMapper) ToGenericClientRoleMapperOutputWithContext(ctx context.Context) GenericClientRoleMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GenericClientRoleMapperOutput)
-}
-
-func (i *GenericClientRoleMapper) ToGenericClientRoleMapperPtrOutput() GenericClientRoleMapperPtrOutput {
-	return i.ToGenericClientRoleMapperPtrOutputWithContext(context.Background())
-}
-
-func (i *GenericClientRoleMapper) ToGenericClientRoleMapperPtrOutputWithContext(ctx context.Context) GenericClientRoleMapperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GenericClientRoleMapperPtrOutput)
-}
-
-type GenericClientRoleMapperPtrInput interface {
-	pulumi.Input
-
-	ToGenericClientRoleMapperPtrOutput() GenericClientRoleMapperPtrOutput
-	ToGenericClientRoleMapperPtrOutputWithContext(ctx context.Context) GenericClientRoleMapperPtrOutput
-}
-
-type genericClientRoleMapperPtrType GenericClientRoleMapperArgs
-
-func (*genericClientRoleMapperPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GenericClientRoleMapper)(nil))
-}
-
-func (i *genericClientRoleMapperPtrType) ToGenericClientRoleMapperPtrOutput() GenericClientRoleMapperPtrOutput {
-	return i.ToGenericClientRoleMapperPtrOutputWithContext(context.Background())
-}
-
-func (i *genericClientRoleMapperPtrType) ToGenericClientRoleMapperPtrOutputWithContext(ctx context.Context) GenericClientRoleMapperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GenericClientRoleMapperPtrOutput)
 }
 
 // GenericClientRoleMapperArrayInput is an input type that accepts GenericClientRoleMapperArray and GenericClientRoleMapperArrayOutput values.
@@ -442,7 +413,7 @@ func (i GenericClientRoleMapperMap) ToGenericClientRoleMapperMapOutputWithContex
 type GenericClientRoleMapperOutput struct{ *pulumi.OutputState }
 
 func (GenericClientRoleMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GenericClientRoleMapper)(nil))
+	return reflect.TypeOf((**GenericClientRoleMapper)(nil)).Elem()
 }
 
 func (o GenericClientRoleMapperOutput) ToGenericClientRoleMapperOutput() GenericClientRoleMapperOutput {
@@ -453,44 +424,10 @@ func (o GenericClientRoleMapperOutput) ToGenericClientRoleMapperOutputWithContex
 	return o
 }
 
-func (o GenericClientRoleMapperOutput) ToGenericClientRoleMapperPtrOutput() GenericClientRoleMapperPtrOutput {
-	return o.ToGenericClientRoleMapperPtrOutputWithContext(context.Background())
-}
-
-func (o GenericClientRoleMapperOutput) ToGenericClientRoleMapperPtrOutputWithContext(ctx context.Context) GenericClientRoleMapperPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GenericClientRoleMapper) *GenericClientRoleMapper {
-		return &v
-	}).(GenericClientRoleMapperPtrOutput)
-}
-
-type GenericClientRoleMapperPtrOutput struct{ *pulumi.OutputState }
-
-func (GenericClientRoleMapperPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GenericClientRoleMapper)(nil))
-}
-
-func (o GenericClientRoleMapperPtrOutput) ToGenericClientRoleMapperPtrOutput() GenericClientRoleMapperPtrOutput {
-	return o
-}
-
-func (o GenericClientRoleMapperPtrOutput) ToGenericClientRoleMapperPtrOutputWithContext(ctx context.Context) GenericClientRoleMapperPtrOutput {
-	return o
-}
-
-func (o GenericClientRoleMapperPtrOutput) Elem() GenericClientRoleMapperOutput {
-	return o.ApplyT(func(v *GenericClientRoleMapper) GenericClientRoleMapper {
-		if v != nil {
-			return *v
-		}
-		var ret GenericClientRoleMapper
-		return ret
-	}).(GenericClientRoleMapperOutput)
-}
-
 type GenericClientRoleMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (GenericClientRoleMapperArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GenericClientRoleMapper)(nil))
+	return reflect.TypeOf((*[]*GenericClientRoleMapper)(nil)).Elem()
 }
 
 func (o GenericClientRoleMapperArrayOutput) ToGenericClientRoleMapperArrayOutput() GenericClientRoleMapperArrayOutput {
@@ -502,15 +439,15 @@ func (o GenericClientRoleMapperArrayOutput) ToGenericClientRoleMapperArrayOutput
 }
 
 func (o GenericClientRoleMapperArrayOutput) Index(i pulumi.IntInput) GenericClientRoleMapperOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GenericClientRoleMapper {
-		return vs[0].([]GenericClientRoleMapper)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GenericClientRoleMapper {
+		return vs[0].([]*GenericClientRoleMapper)[vs[1].(int)]
 	}).(GenericClientRoleMapperOutput)
 }
 
 type GenericClientRoleMapperMapOutput struct{ *pulumi.OutputState }
 
 func (GenericClientRoleMapperMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]GenericClientRoleMapper)(nil))
+	return reflect.TypeOf((*map[string]*GenericClientRoleMapper)(nil)).Elem()
 }
 
 func (o GenericClientRoleMapperMapOutput) ToGenericClientRoleMapperMapOutput() GenericClientRoleMapperMapOutput {
@@ -522,18 +459,16 @@ func (o GenericClientRoleMapperMapOutput) ToGenericClientRoleMapperMapOutputWith
 }
 
 func (o GenericClientRoleMapperMapOutput) MapIndex(k pulumi.StringInput) GenericClientRoleMapperOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) GenericClientRoleMapper {
-		return vs[0].(map[string]GenericClientRoleMapper)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *GenericClientRoleMapper {
+		return vs[0].(map[string]*GenericClientRoleMapper)[vs[1].(string)]
 	}).(GenericClientRoleMapperOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GenericClientRoleMapperInput)(nil)).Elem(), &GenericClientRoleMapper{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GenericClientRoleMapperPtrInput)(nil)).Elem(), &GenericClientRoleMapper{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GenericClientRoleMapperArrayInput)(nil)).Elem(), GenericClientRoleMapperArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GenericClientRoleMapperMapInput)(nil)).Elem(), GenericClientRoleMapperMap{})
 	pulumi.RegisterOutputType(GenericClientRoleMapperOutput{})
-	pulumi.RegisterOutputType(GenericClientRoleMapperPtrOutput{})
 	pulumi.RegisterOutputType(GenericClientRoleMapperArrayOutput{})
 	pulumi.RegisterOutputType(GenericClientRoleMapperMapOutput{})
 }

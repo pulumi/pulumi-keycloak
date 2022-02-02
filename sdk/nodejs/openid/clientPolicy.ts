@@ -49,17 +49,17 @@ export class ClientPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args: ClientPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClientPolicyArgs | ClientPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClientPolicyState | undefined;
-            inputs["clients"] = state ? state.clients : undefined;
-            inputs["decisionStrategy"] = state ? state.decisionStrategy : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["logic"] = state ? state.logic : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["resourceServerId"] = state ? state.resourceServerId : undefined;
+            resourceInputs["clients"] = state ? state.clients : undefined;
+            resourceInputs["decisionStrategy"] = state ? state.decisionStrategy : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["logic"] = state ? state.logic : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["resourceServerId"] = state ? state.resourceServerId : undefined;
         } else {
             const args = argsOrState as ClientPolicyArgs | undefined;
             if ((!args || args.clients === undefined) && !opts.urn) {
@@ -71,18 +71,16 @@ export class ClientPolicy extends pulumi.CustomResource {
             if ((!args || args.resourceServerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
-            inputs["clients"] = args ? args.clients : undefined;
-            inputs["decisionStrategy"] = args ? args.decisionStrategy : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["logic"] = args ? args.logic : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["resourceServerId"] = args ? args.resourceServerId : undefined;
+            resourceInputs["clients"] = args ? args.clients : undefined;
+            resourceInputs["decisionStrategy"] = args ? args.decisionStrategy : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["logic"] = args ? args.logic : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["resourceServerId"] = args ? args.resourceServerId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ClientPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ClientPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

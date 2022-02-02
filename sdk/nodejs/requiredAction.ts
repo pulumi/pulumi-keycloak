@@ -48,16 +48,16 @@ export class RequiredAction extends pulumi.CustomResource {
      */
     constructor(name: string, args: RequiredActionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RequiredActionArgs | RequiredActionState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RequiredActionState | undefined;
-            inputs["alias"] = state ? state.alias : undefined;
-            inputs["defaultAction"] = state ? state.defaultAction : undefined;
-            inputs["enabled"] = state ? state.enabled : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["alias"] = state ? state.alias : undefined;
+            resourceInputs["defaultAction"] = state ? state.defaultAction : undefined;
+            resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as RequiredActionArgs | undefined;
             if ((!args || args.alias === undefined) && !opts.urn) {
@@ -66,17 +66,15 @@ export class RequiredAction extends pulumi.CustomResource {
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["alias"] = args ? args.alias : undefined;
-            inputs["defaultAction"] = args ? args.defaultAction : undefined;
-            inputs["enabled"] = args ? args.enabled : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["alias"] = args ? args.alias : undefined;
+            resourceInputs["defaultAction"] = args ? args.defaultAction : undefined;
+            resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RequiredAction.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RequiredAction.__pulumiType, name, resourceInputs, opts);
     }
 }
 

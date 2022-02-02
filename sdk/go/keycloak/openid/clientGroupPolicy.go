@@ -125,7 +125,7 @@ type ClientGroupPolicyInput interface {
 }
 
 func (*ClientGroupPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientGroupPolicy)(nil))
+	return reflect.TypeOf((**ClientGroupPolicy)(nil)).Elem()
 }
 
 func (i *ClientGroupPolicy) ToClientGroupPolicyOutput() ClientGroupPolicyOutput {
@@ -134,35 +134,6 @@ func (i *ClientGroupPolicy) ToClientGroupPolicyOutput() ClientGroupPolicyOutput 
 
 func (i *ClientGroupPolicy) ToClientGroupPolicyOutputWithContext(ctx context.Context) ClientGroupPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientGroupPolicyOutput)
-}
-
-func (i *ClientGroupPolicy) ToClientGroupPolicyPtrOutput() ClientGroupPolicyPtrOutput {
-	return i.ToClientGroupPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *ClientGroupPolicy) ToClientGroupPolicyPtrOutputWithContext(ctx context.Context) ClientGroupPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClientGroupPolicyPtrOutput)
-}
-
-type ClientGroupPolicyPtrInput interface {
-	pulumi.Input
-
-	ToClientGroupPolicyPtrOutput() ClientGroupPolicyPtrOutput
-	ToClientGroupPolicyPtrOutputWithContext(ctx context.Context) ClientGroupPolicyPtrOutput
-}
-
-type clientGroupPolicyPtrType ClientGroupPolicyArgs
-
-func (*clientGroupPolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ClientGroupPolicy)(nil))
-}
-
-func (i *clientGroupPolicyPtrType) ToClientGroupPolicyPtrOutput() ClientGroupPolicyPtrOutput {
-	return i.ToClientGroupPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *clientGroupPolicyPtrType) ToClientGroupPolicyPtrOutputWithContext(ctx context.Context) ClientGroupPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClientGroupPolicyPtrOutput)
 }
 
 // ClientGroupPolicyArrayInput is an input type that accepts ClientGroupPolicyArray and ClientGroupPolicyArrayOutput values.
@@ -218,7 +189,7 @@ func (i ClientGroupPolicyMap) ToClientGroupPolicyMapOutputWithContext(ctx contex
 type ClientGroupPolicyOutput struct{ *pulumi.OutputState }
 
 func (ClientGroupPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientGroupPolicy)(nil))
+	return reflect.TypeOf((**ClientGroupPolicy)(nil)).Elem()
 }
 
 func (o ClientGroupPolicyOutput) ToClientGroupPolicyOutput() ClientGroupPolicyOutput {
@@ -229,44 +200,10 @@ func (o ClientGroupPolicyOutput) ToClientGroupPolicyOutputWithContext(ctx contex
 	return o
 }
 
-func (o ClientGroupPolicyOutput) ToClientGroupPolicyPtrOutput() ClientGroupPolicyPtrOutput {
-	return o.ToClientGroupPolicyPtrOutputWithContext(context.Background())
-}
-
-func (o ClientGroupPolicyOutput) ToClientGroupPolicyPtrOutputWithContext(ctx context.Context) ClientGroupPolicyPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientGroupPolicy) *ClientGroupPolicy {
-		return &v
-	}).(ClientGroupPolicyPtrOutput)
-}
-
-type ClientGroupPolicyPtrOutput struct{ *pulumi.OutputState }
-
-func (ClientGroupPolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ClientGroupPolicy)(nil))
-}
-
-func (o ClientGroupPolicyPtrOutput) ToClientGroupPolicyPtrOutput() ClientGroupPolicyPtrOutput {
-	return o
-}
-
-func (o ClientGroupPolicyPtrOutput) ToClientGroupPolicyPtrOutputWithContext(ctx context.Context) ClientGroupPolicyPtrOutput {
-	return o
-}
-
-func (o ClientGroupPolicyPtrOutput) Elem() ClientGroupPolicyOutput {
-	return o.ApplyT(func(v *ClientGroupPolicy) ClientGroupPolicy {
-		if v != nil {
-			return *v
-		}
-		var ret ClientGroupPolicy
-		return ret
-	}).(ClientGroupPolicyOutput)
-}
-
 type ClientGroupPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientGroupPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClientGroupPolicy)(nil))
+	return reflect.TypeOf((*[]*ClientGroupPolicy)(nil)).Elem()
 }
 
 func (o ClientGroupPolicyArrayOutput) ToClientGroupPolicyArrayOutput() ClientGroupPolicyArrayOutput {
@@ -278,15 +215,15 @@ func (o ClientGroupPolicyArrayOutput) ToClientGroupPolicyArrayOutputWithContext(
 }
 
 func (o ClientGroupPolicyArrayOutput) Index(i pulumi.IntInput) ClientGroupPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClientGroupPolicy {
-		return vs[0].([]ClientGroupPolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ClientGroupPolicy {
+		return vs[0].([]*ClientGroupPolicy)[vs[1].(int)]
 	}).(ClientGroupPolicyOutput)
 }
 
 type ClientGroupPolicyMapOutput struct{ *pulumi.OutputState }
 
 func (ClientGroupPolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ClientGroupPolicy)(nil))
+	return reflect.TypeOf((*map[string]*ClientGroupPolicy)(nil)).Elem()
 }
 
 func (o ClientGroupPolicyMapOutput) ToClientGroupPolicyMapOutput() ClientGroupPolicyMapOutput {
@@ -298,18 +235,16 @@ func (o ClientGroupPolicyMapOutput) ToClientGroupPolicyMapOutputWithContext(ctx 
 }
 
 func (o ClientGroupPolicyMapOutput) MapIndex(k pulumi.StringInput) ClientGroupPolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ClientGroupPolicy {
-		return vs[0].(map[string]ClientGroupPolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ClientGroupPolicy {
+		return vs[0].(map[string]*ClientGroupPolicy)[vs[1].(string)]
 	}).(ClientGroupPolicyOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientGroupPolicyInput)(nil)).Elem(), &ClientGroupPolicy{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ClientGroupPolicyPtrInput)(nil)).Elem(), &ClientGroupPolicy{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientGroupPolicyArrayInput)(nil)).Elem(), ClientGroupPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientGroupPolicyMapInput)(nil)).Elem(), ClientGroupPolicyMap{})
 	pulumi.RegisterOutputType(ClientGroupPolicyOutput{})
-	pulumi.RegisterOutputType(ClientGroupPolicyPtrOutput{})
 	pulumi.RegisterOutputType(ClientGroupPolicyArrayOutput{})
 	pulumi.RegisterOutputType(ClientGroupPolicyMapOutput{})
 }

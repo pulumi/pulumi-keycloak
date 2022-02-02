@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Keycloak
 {
@@ -57,7 +56,7 @@ namespace Pulumi.Keycloak
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetUserRealmRolesResult> InvokeAsync(GetUserRealmRolesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetUserRealmRolesResult>("keycloak:index/getUserRealmRoles:getUserRealmRoles", args ?? new GetUserRealmRolesArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetUserRealmRolesResult>("keycloak:index/getUserRealmRoles:getUserRealmRoles", args ?? new GetUserRealmRolesArgs(), options.WithDefaults());
 
         /// <summary>
         /// This data source can be used to fetch the realm roles of a user within Keycloak.
@@ -104,7 +103,7 @@ namespace Pulumi.Keycloak
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetUserRealmRolesResult> Invoke(GetUserRealmRolesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetUserRealmRolesResult>("keycloak:index/getUserRealmRoles:getUserRealmRoles", args ?? new GetUserRealmRolesInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetUserRealmRolesResult>("keycloak:index/getUserRealmRoles:getUserRealmRoles", args ?? new GetUserRealmRolesInvokeArgs(), options.WithDefaults());
     }
 
 

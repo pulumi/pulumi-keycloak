@@ -60,28 +60,28 @@ export class ClientTimePolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args: ClientTimePolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClientTimePolicyArgs | ClientTimePolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClientTimePolicyState | undefined;
-            inputs["dayMonth"] = state ? state.dayMonth : undefined;
-            inputs["dayMonthEnd"] = state ? state.dayMonthEnd : undefined;
-            inputs["decisionStrategy"] = state ? state.decisionStrategy : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["hour"] = state ? state.hour : undefined;
-            inputs["hourEnd"] = state ? state.hourEnd : undefined;
-            inputs["logic"] = state ? state.logic : undefined;
-            inputs["minute"] = state ? state.minute : undefined;
-            inputs["minuteEnd"] = state ? state.minuteEnd : undefined;
-            inputs["month"] = state ? state.month : undefined;
-            inputs["monthEnd"] = state ? state.monthEnd : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["notBefore"] = state ? state.notBefore : undefined;
-            inputs["notOnOrAfter"] = state ? state.notOnOrAfter : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["resourceServerId"] = state ? state.resourceServerId : undefined;
-            inputs["year"] = state ? state.year : undefined;
-            inputs["yearEnd"] = state ? state.yearEnd : undefined;
+            resourceInputs["dayMonth"] = state ? state.dayMonth : undefined;
+            resourceInputs["dayMonthEnd"] = state ? state.dayMonthEnd : undefined;
+            resourceInputs["decisionStrategy"] = state ? state.decisionStrategy : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["hour"] = state ? state.hour : undefined;
+            resourceInputs["hourEnd"] = state ? state.hourEnd : undefined;
+            resourceInputs["logic"] = state ? state.logic : undefined;
+            resourceInputs["minute"] = state ? state.minute : undefined;
+            resourceInputs["minuteEnd"] = state ? state.minuteEnd : undefined;
+            resourceInputs["month"] = state ? state.month : undefined;
+            resourceInputs["monthEnd"] = state ? state.monthEnd : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["notBefore"] = state ? state.notBefore : undefined;
+            resourceInputs["notOnOrAfter"] = state ? state.notOnOrAfter : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["resourceServerId"] = state ? state.resourceServerId : undefined;
+            resourceInputs["year"] = state ? state.year : undefined;
+            resourceInputs["yearEnd"] = state ? state.yearEnd : undefined;
         } else {
             const args = argsOrState as ClientTimePolicyArgs | undefined;
             if ((!args || args.decisionStrategy === undefined) && !opts.urn) {
@@ -93,29 +93,27 @@ export class ClientTimePolicy extends pulumi.CustomResource {
             if ((!args || args.resourceServerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
-            inputs["dayMonth"] = args ? args.dayMonth : undefined;
-            inputs["dayMonthEnd"] = args ? args.dayMonthEnd : undefined;
-            inputs["decisionStrategy"] = args ? args.decisionStrategy : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["hour"] = args ? args.hour : undefined;
-            inputs["hourEnd"] = args ? args.hourEnd : undefined;
-            inputs["logic"] = args ? args.logic : undefined;
-            inputs["minute"] = args ? args.minute : undefined;
-            inputs["minuteEnd"] = args ? args.minuteEnd : undefined;
-            inputs["month"] = args ? args.month : undefined;
-            inputs["monthEnd"] = args ? args.monthEnd : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["notBefore"] = args ? args.notBefore : undefined;
-            inputs["notOnOrAfter"] = args ? args.notOnOrAfter : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["resourceServerId"] = args ? args.resourceServerId : undefined;
-            inputs["year"] = args ? args.year : undefined;
-            inputs["yearEnd"] = args ? args.yearEnd : undefined;
+            resourceInputs["dayMonth"] = args ? args.dayMonth : undefined;
+            resourceInputs["dayMonthEnd"] = args ? args.dayMonthEnd : undefined;
+            resourceInputs["decisionStrategy"] = args ? args.decisionStrategy : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["hour"] = args ? args.hour : undefined;
+            resourceInputs["hourEnd"] = args ? args.hourEnd : undefined;
+            resourceInputs["logic"] = args ? args.logic : undefined;
+            resourceInputs["minute"] = args ? args.minute : undefined;
+            resourceInputs["minuteEnd"] = args ? args.minuteEnd : undefined;
+            resourceInputs["month"] = args ? args.month : undefined;
+            resourceInputs["monthEnd"] = args ? args.monthEnd : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["notBefore"] = args ? args.notBefore : undefined;
+            resourceInputs["notOnOrAfter"] = args ? args.notOnOrAfter : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["resourceServerId"] = args ? args.resourceServerId : undefined;
+            resourceInputs["year"] = args ? args.year : undefined;
+            resourceInputs["yearEnd"] = args ? args.yearEnd : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ClientTimePolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ClientTimePolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

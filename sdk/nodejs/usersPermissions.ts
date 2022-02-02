@@ -55,38 +55,36 @@ export class UsersPermissions extends pulumi.CustomResource {
      */
     constructor(name: string, args: UsersPermissionsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UsersPermissionsArgs | UsersPermissionsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UsersPermissionsState | undefined;
-            inputs["authorizationResourceServerId"] = state ? state.authorizationResourceServerId : undefined;
-            inputs["enabled"] = state ? state.enabled : undefined;
-            inputs["impersonateScope"] = state ? state.impersonateScope : undefined;
-            inputs["manageGroupMembershipScope"] = state ? state.manageGroupMembershipScope : undefined;
-            inputs["manageScope"] = state ? state.manageScope : undefined;
-            inputs["mapRolesScope"] = state ? state.mapRolesScope : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["userImpersonatedScope"] = state ? state.userImpersonatedScope : undefined;
-            inputs["viewScope"] = state ? state.viewScope : undefined;
+            resourceInputs["authorizationResourceServerId"] = state ? state.authorizationResourceServerId : undefined;
+            resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["impersonateScope"] = state ? state.impersonateScope : undefined;
+            resourceInputs["manageGroupMembershipScope"] = state ? state.manageGroupMembershipScope : undefined;
+            resourceInputs["manageScope"] = state ? state.manageScope : undefined;
+            resourceInputs["mapRolesScope"] = state ? state.mapRolesScope : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["userImpersonatedScope"] = state ? state.userImpersonatedScope : undefined;
+            resourceInputs["viewScope"] = state ? state.viewScope : undefined;
         } else {
             const args = argsOrState as UsersPermissionsArgs | undefined;
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["impersonateScope"] = args ? args.impersonateScope : undefined;
-            inputs["manageGroupMembershipScope"] = args ? args.manageGroupMembershipScope : undefined;
-            inputs["manageScope"] = args ? args.manageScope : undefined;
-            inputs["mapRolesScope"] = args ? args.mapRolesScope : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["userImpersonatedScope"] = args ? args.userImpersonatedScope : undefined;
-            inputs["viewScope"] = args ? args.viewScope : undefined;
-            inputs["authorizationResourceServerId"] = undefined /*out*/;
-            inputs["enabled"] = undefined /*out*/;
+            resourceInputs["impersonateScope"] = args ? args.impersonateScope : undefined;
+            resourceInputs["manageGroupMembershipScope"] = args ? args.manageGroupMembershipScope : undefined;
+            resourceInputs["manageScope"] = args ? args.manageScope : undefined;
+            resourceInputs["mapRolesScope"] = args ? args.mapRolesScope : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["userImpersonatedScope"] = args ? args.userImpersonatedScope : undefined;
+            resourceInputs["viewScope"] = args ? args.viewScope : undefined;
+            resourceInputs["authorizationResourceServerId"] = undefined /*out*/;
+            resourceInputs["enabled"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UsersPermissions.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UsersPermissions.__pulumiType, name, resourceInputs, opts);
     }
 }
 

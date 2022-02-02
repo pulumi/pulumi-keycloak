@@ -45,7 +45,7 @@ Object.defineProperty(exports, "clientSecret", {
 export declare const clientTimeout: number;
 Object.defineProperty(exports, "clientTimeout", {
     get() {
-        return __config.getObject<number>("clientTimeout") ?? (<any>utilities.getEnvNumber("KEYCLOAK_CLIENT_TIMEOUT") || 5);
+        return __config.getObject<number>("clientTimeout") ?? (utilities.getEnvNumber("KEYCLOAK_CLIENT_TIMEOUT") || 5);
     },
     enumerable: true,
 });

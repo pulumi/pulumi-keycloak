@@ -286,7 +286,7 @@ type HardcodedClaimProtocolMapperInput interface {
 }
 
 func (*HardcodedClaimProtocolMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*HardcodedClaimProtocolMapper)(nil))
+	return reflect.TypeOf((**HardcodedClaimProtocolMapper)(nil)).Elem()
 }
 
 func (i *HardcodedClaimProtocolMapper) ToHardcodedClaimProtocolMapperOutput() HardcodedClaimProtocolMapperOutput {
@@ -295,35 +295,6 @@ func (i *HardcodedClaimProtocolMapper) ToHardcodedClaimProtocolMapperOutput() Ha
 
 func (i *HardcodedClaimProtocolMapper) ToHardcodedClaimProtocolMapperOutputWithContext(ctx context.Context) HardcodedClaimProtocolMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedClaimProtocolMapperOutput)
-}
-
-func (i *HardcodedClaimProtocolMapper) ToHardcodedClaimProtocolMapperPtrOutput() HardcodedClaimProtocolMapperPtrOutput {
-	return i.ToHardcodedClaimProtocolMapperPtrOutputWithContext(context.Background())
-}
-
-func (i *HardcodedClaimProtocolMapper) ToHardcodedClaimProtocolMapperPtrOutputWithContext(ctx context.Context) HardcodedClaimProtocolMapperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HardcodedClaimProtocolMapperPtrOutput)
-}
-
-type HardcodedClaimProtocolMapperPtrInput interface {
-	pulumi.Input
-
-	ToHardcodedClaimProtocolMapperPtrOutput() HardcodedClaimProtocolMapperPtrOutput
-	ToHardcodedClaimProtocolMapperPtrOutputWithContext(ctx context.Context) HardcodedClaimProtocolMapperPtrOutput
-}
-
-type hardcodedClaimProtocolMapperPtrType HardcodedClaimProtocolMapperArgs
-
-func (*hardcodedClaimProtocolMapperPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**HardcodedClaimProtocolMapper)(nil))
-}
-
-func (i *hardcodedClaimProtocolMapperPtrType) ToHardcodedClaimProtocolMapperPtrOutput() HardcodedClaimProtocolMapperPtrOutput {
-	return i.ToHardcodedClaimProtocolMapperPtrOutputWithContext(context.Background())
-}
-
-func (i *hardcodedClaimProtocolMapperPtrType) ToHardcodedClaimProtocolMapperPtrOutputWithContext(ctx context.Context) HardcodedClaimProtocolMapperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HardcodedClaimProtocolMapperPtrOutput)
 }
 
 // HardcodedClaimProtocolMapperArrayInput is an input type that accepts HardcodedClaimProtocolMapperArray and HardcodedClaimProtocolMapperArrayOutput values.
@@ -379,7 +350,7 @@ func (i HardcodedClaimProtocolMapperMap) ToHardcodedClaimProtocolMapperMapOutput
 type HardcodedClaimProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (HardcodedClaimProtocolMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*HardcodedClaimProtocolMapper)(nil))
+	return reflect.TypeOf((**HardcodedClaimProtocolMapper)(nil)).Elem()
 }
 
 func (o HardcodedClaimProtocolMapperOutput) ToHardcodedClaimProtocolMapperOutput() HardcodedClaimProtocolMapperOutput {
@@ -390,44 +361,10 @@ func (o HardcodedClaimProtocolMapperOutput) ToHardcodedClaimProtocolMapperOutput
 	return o
 }
 
-func (o HardcodedClaimProtocolMapperOutput) ToHardcodedClaimProtocolMapperPtrOutput() HardcodedClaimProtocolMapperPtrOutput {
-	return o.ToHardcodedClaimProtocolMapperPtrOutputWithContext(context.Background())
-}
-
-func (o HardcodedClaimProtocolMapperOutput) ToHardcodedClaimProtocolMapperPtrOutputWithContext(ctx context.Context) HardcodedClaimProtocolMapperPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v HardcodedClaimProtocolMapper) *HardcodedClaimProtocolMapper {
-		return &v
-	}).(HardcodedClaimProtocolMapperPtrOutput)
-}
-
-type HardcodedClaimProtocolMapperPtrOutput struct{ *pulumi.OutputState }
-
-func (HardcodedClaimProtocolMapperPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**HardcodedClaimProtocolMapper)(nil))
-}
-
-func (o HardcodedClaimProtocolMapperPtrOutput) ToHardcodedClaimProtocolMapperPtrOutput() HardcodedClaimProtocolMapperPtrOutput {
-	return o
-}
-
-func (o HardcodedClaimProtocolMapperPtrOutput) ToHardcodedClaimProtocolMapperPtrOutputWithContext(ctx context.Context) HardcodedClaimProtocolMapperPtrOutput {
-	return o
-}
-
-func (o HardcodedClaimProtocolMapperPtrOutput) Elem() HardcodedClaimProtocolMapperOutput {
-	return o.ApplyT(func(v *HardcodedClaimProtocolMapper) HardcodedClaimProtocolMapper {
-		if v != nil {
-			return *v
-		}
-		var ret HardcodedClaimProtocolMapper
-		return ret
-	}).(HardcodedClaimProtocolMapperOutput)
-}
-
 type HardcodedClaimProtocolMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (HardcodedClaimProtocolMapperArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]HardcodedClaimProtocolMapper)(nil))
+	return reflect.TypeOf((*[]*HardcodedClaimProtocolMapper)(nil)).Elem()
 }
 
 func (o HardcodedClaimProtocolMapperArrayOutput) ToHardcodedClaimProtocolMapperArrayOutput() HardcodedClaimProtocolMapperArrayOutput {
@@ -439,15 +376,15 @@ func (o HardcodedClaimProtocolMapperArrayOutput) ToHardcodedClaimProtocolMapperA
 }
 
 func (o HardcodedClaimProtocolMapperArrayOutput) Index(i pulumi.IntInput) HardcodedClaimProtocolMapperOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HardcodedClaimProtocolMapper {
-		return vs[0].([]HardcodedClaimProtocolMapper)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *HardcodedClaimProtocolMapper {
+		return vs[0].([]*HardcodedClaimProtocolMapper)[vs[1].(int)]
 	}).(HardcodedClaimProtocolMapperOutput)
 }
 
 type HardcodedClaimProtocolMapperMapOutput struct{ *pulumi.OutputState }
 
 func (HardcodedClaimProtocolMapperMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]HardcodedClaimProtocolMapper)(nil))
+	return reflect.TypeOf((*map[string]*HardcodedClaimProtocolMapper)(nil)).Elem()
 }
 
 func (o HardcodedClaimProtocolMapperMapOutput) ToHardcodedClaimProtocolMapperMapOutput() HardcodedClaimProtocolMapperMapOutput {
@@ -459,18 +396,16 @@ func (o HardcodedClaimProtocolMapperMapOutput) ToHardcodedClaimProtocolMapperMap
 }
 
 func (o HardcodedClaimProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) HardcodedClaimProtocolMapperOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) HardcodedClaimProtocolMapper {
-		return vs[0].(map[string]HardcodedClaimProtocolMapper)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *HardcodedClaimProtocolMapper {
+		return vs[0].(map[string]*HardcodedClaimProtocolMapper)[vs[1].(string)]
 	}).(HardcodedClaimProtocolMapperOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*HardcodedClaimProtocolMapperInput)(nil)).Elem(), &HardcodedClaimProtocolMapper{})
-	pulumi.RegisterInputType(reflect.TypeOf((*HardcodedClaimProtocolMapperPtrInput)(nil)).Elem(), &HardcodedClaimProtocolMapper{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HardcodedClaimProtocolMapperArrayInput)(nil)).Elem(), HardcodedClaimProtocolMapperArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HardcodedClaimProtocolMapperMapInput)(nil)).Elem(), HardcodedClaimProtocolMapperMap{})
 	pulumi.RegisterOutputType(HardcodedClaimProtocolMapperOutput{})
-	pulumi.RegisterOutputType(HardcodedClaimProtocolMapperPtrOutput{})
 	pulumi.RegisterOutputType(HardcodedClaimProtocolMapperArrayOutput{})
 	pulumi.RegisterOutputType(HardcodedClaimProtocolMapperMapOutput{})
 }

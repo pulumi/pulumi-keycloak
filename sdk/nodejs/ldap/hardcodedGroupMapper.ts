@@ -58,14 +58,14 @@ export class HardcodedGroupMapper extends pulumi.CustomResource {
      */
     constructor(name: string, args: HardcodedGroupMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: HardcodedGroupMapperArgs | HardcodedGroupMapperState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as HardcodedGroupMapperState | undefined;
-            inputs["group"] = state ? state.group : undefined;
-            inputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["group"] = state ? state.group : undefined;
+            resourceInputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as HardcodedGroupMapperArgs | undefined;
             if ((!args || args.group === undefined) && !opts.urn) {
@@ -77,15 +77,13 @@ export class HardcodedGroupMapper extends pulumi.CustomResource {
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["group"] = args ? args.group : undefined;
-            inputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["group"] = args ? args.group : undefined;
+            resourceInputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(HardcodedGroupMapper.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(HardcodedGroupMapper.__pulumiType, name, resourceInputs, opts);
     }
 }
 

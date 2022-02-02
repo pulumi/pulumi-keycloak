@@ -204,7 +204,7 @@ type FullNameMapperInput interface {
 }
 
 func (*FullNameMapper) ElementType() reflect.Type {
-	return reflect.TypeOf((*FullNameMapper)(nil))
+	return reflect.TypeOf((**FullNameMapper)(nil)).Elem()
 }
 
 func (i *FullNameMapper) ToFullNameMapperOutput() FullNameMapperOutput {
@@ -213,35 +213,6 @@ func (i *FullNameMapper) ToFullNameMapperOutput() FullNameMapperOutput {
 
 func (i *FullNameMapper) ToFullNameMapperOutputWithContext(ctx context.Context) FullNameMapperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FullNameMapperOutput)
-}
-
-func (i *FullNameMapper) ToFullNameMapperPtrOutput() FullNameMapperPtrOutput {
-	return i.ToFullNameMapperPtrOutputWithContext(context.Background())
-}
-
-func (i *FullNameMapper) ToFullNameMapperPtrOutputWithContext(ctx context.Context) FullNameMapperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FullNameMapperPtrOutput)
-}
-
-type FullNameMapperPtrInput interface {
-	pulumi.Input
-
-	ToFullNameMapperPtrOutput() FullNameMapperPtrOutput
-	ToFullNameMapperPtrOutputWithContext(ctx context.Context) FullNameMapperPtrOutput
-}
-
-type fullNameMapperPtrType FullNameMapperArgs
-
-func (*fullNameMapperPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FullNameMapper)(nil))
-}
-
-func (i *fullNameMapperPtrType) ToFullNameMapperPtrOutput() FullNameMapperPtrOutput {
-	return i.ToFullNameMapperPtrOutputWithContext(context.Background())
-}
-
-func (i *fullNameMapperPtrType) ToFullNameMapperPtrOutputWithContext(ctx context.Context) FullNameMapperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FullNameMapperPtrOutput)
 }
 
 // FullNameMapperArrayInput is an input type that accepts FullNameMapperArray and FullNameMapperArrayOutput values.
@@ -297,7 +268,7 @@ func (i FullNameMapperMap) ToFullNameMapperMapOutputWithContext(ctx context.Cont
 type FullNameMapperOutput struct{ *pulumi.OutputState }
 
 func (FullNameMapperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FullNameMapper)(nil))
+	return reflect.TypeOf((**FullNameMapper)(nil)).Elem()
 }
 
 func (o FullNameMapperOutput) ToFullNameMapperOutput() FullNameMapperOutput {
@@ -308,44 +279,10 @@ func (o FullNameMapperOutput) ToFullNameMapperOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o FullNameMapperOutput) ToFullNameMapperPtrOutput() FullNameMapperPtrOutput {
-	return o.ToFullNameMapperPtrOutputWithContext(context.Background())
-}
-
-func (o FullNameMapperOutput) ToFullNameMapperPtrOutputWithContext(ctx context.Context) FullNameMapperPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v FullNameMapper) *FullNameMapper {
-		return &v
-	}).(FullNameMapperPtrOutput)
-}
-
-type FullNameMapperPtrOutput struct{ *pulumi.OutputState }
-
-func (FullNameMapperPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FullNameMapper)(nil))
-}
-
-func (o FullNameMapperPtrOutput) ToFullNameMapperPtrOutput() FullNameMapperPtrOutput {
-	return o
-}
-
-func (o FullNameMapperPtrOutput) ToFullNameMapperPtrOutputWithContext(ctx context.Context) FullNameMapperPtrOutput {
-	return o
-}
-
-func (o FullNameMapperPtrOutput) Elem() FullNameMapperOutput {
-	return o.ApplyT(func(v *FullNameMapper) FullNameMapper {
-		if v != nil {
-			return *v
-		}
-		var ret FullNameMapper
-		return ret
-	}).(FullNameMapperOutput)
-}
-
 type FullNameMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (FullNameMapperArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FullNameMapper)(nil))
+	return reflect.TypeOf((*[]*FullNameMapper)(nil)).Elem()
 }
 
 func (o FullNameMapperArrayOutput) ToFullNameMapperArrayOutput() FullNameMapperArrayOutput {
@@ -357,15 +294,15 @@ func (o FullNameMapperArrayOutput) ToFullNameMapperArrayOutputWithContext(ctx co
 }
 
 func (o FullNameMapperArrayOutput) Index(i pulumi.IntInput) FullNameMapperOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FullNameMapper {
-		return vs[0].([]FullNameMapper)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FullNameMapper {
+		return vs[0].([]*FullNameMapper)[vs[1].(int)]
 	}).(FullNameMapperOutput)
 }
 
 type FullNameMapperMapOutput struct{ *pulumi.OutputState }
 
 func (FullNameMapperMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FullNameMapper)(nil))
+	return reflect.TypeOf((*map[string]*FullNameMapper)(nil)).Elem()
 }
 
 func (o FullNameMapperMapOutput) ToFullNameMapperMapOutput() FullNameMapperMapOutput {
@@ -377,18 +314,16 @@ func (o FullNameMapperMapOutput) ToFullNameMapperMapOutputWithContext(ctx contex
 }
 
 func (o FullNameMapperMapOutput) MapIndex(k pulumi.StringInput) FullNameMapperOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FullNameMapper {
-		return vs[0].(map[string]FullNameMapper)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FullNameMapper {
+		return vs[0].(map[string]*FullNameMapper)[vs[1].(string)]
 	}).(FullNameMapperOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FullNameMapperInput)(nil)).Elem(), &FullNameMapper{})
-	pulumi.RegisterInputType(reflect.TypeOf((*FullNameMapperPtrInput)(nil)).Elem(), &FullNameMapper{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FullNameMapperArrayInput)(nil)).Elem(), FullNameMapperArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FullNameMapperMapInput)(nil)).Elem(), FullNameMapperMap{})
 	pulumi.RegisterOutputType(FullNameMapperOutput{})
-	pulumi.RegisterOutputType(FullNameMapperPtrOutput{})
 	pulumi.RegisterOutputType(FullNameMapperArrayOutput{})
 	pulumi.RegisterOutputType(FullNameMapperMapOutput{})
 }

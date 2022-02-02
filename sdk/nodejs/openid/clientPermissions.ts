@@ -57,21 +57,21 @@ export class ClientPermissions extends pulumi.CustomResource {
      */
     constructor(name: string, args: ClientPermissionsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClientPermissionsArgs | ClientPermissionsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClientPermissionsState | undefined;
-            inputs["authorizationResourceServerId"] = state ? state.authorizationResourceServerId : undefined;
-            inputs["clientId"] = state ? state.clientId : undefined;
-            inputs["configureScope"] = state ? state.configureScope : undefined;
-            inputs["enabled"] = state ? state.enabled : undefined;
-            inputs["manageScope"] = state ? state.manageScope : undefined;
-            inputs["mapRolesClientScopeScope"] = state ? state.mapRolesClientScopeScope : undefined;
-            inputs["mapRolesCompositeScope"] = state ? state.mapRolesCompositeScope : undefined;
-            inputs["mapRolesScope"] = state ? state.mapRolesScope : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["tokenExchangeScope"] = state ? state.tokenExchangeScope : undefined;
-            inputs["viewScope"] = state ? state.viewScope : undefined;
+            resourceInputs["authorizationResourceServerId"] = state ? state.authorizationResourceServerId : undefined;
+            resourceInputs["clientId"] = state ? state.clientId : undefined;
+            resourceInputs["configureScope"] = state ? state.configureScope : undefined;
+            resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["manageScope"] = state ? state.manageScope : undefined;
+            resourceInputs["mapRolesClientScopeScope"] = state ? state.mapRolesClientScopeScope : undefined;
+            resourceInputs["mapRolesCompositeScope"] = state ? state.mapRolesCompositeScope : undefined;
+            resourceInputs["mapRolesScope"] = state ? state.mapRolesScope : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["tokenExchangeScope"] = state ? state.tokenExchangeScope : undefined;
+            resourceInputs["viewScope"] = state ? state.viewScope : undefined;
         } else {
             const args = argsOrState as ClientPermissionsArgs | undefined;
             if ((!args || args.clientId === undefined) && !opts.urn) {
@@ -80,22 +80,20 @@ export class ClientPermissions extends pulumi.CustomResource {
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["clientId"] = args ? args.clientId : undefined;
-            inputs["configureScope"] = args ? args.configureScope : undefined;
-            inputs["manageScope"] = args ? args.manageScope : undefined;
-            inputs["mapRolesClientScopeScope"] = args ? args.mapRolesClientScopeScope : undefined;
-            inputs["mapRolesCompositeScope"] = args ? args.mapRolesCompositeScope : undefined;
-            inputs["mapRolesScope"] = args ? args.mapRolesScope : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["tokenExchangeScope"] = args ? args.tokenExchangeScope : undefined;
-            inputs["viewScope"] = args ? args.viewScope : undefined;
-            inputs["authorizationResourceServerId"] = undefined /*out*/;
-            inputs["enabled"] = undefined /*out*/;
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["configureScope"] = args ? args.configureScope : undefined;
+            resourceInputs["manageScope"] = args ? args.manageScope : undefined;
+            resourceInputs["mapRolesClientScopeScope"] = args ? args.mapRolesClientScopeScope : undefined;
+            resourceInputs["mapRolesCompositeScope"] = args ? args.mapRolesCompositeScope : undefined;
+            resourceInputs["mapRolesScope"] = args ? args.mapRolesScope : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["tokenExchangeScope"] = args ? args.tokenExchangeScope : undefined;
+            resourceInputs["viewScope"] = args ? args.viewScope : undefined;
+            resourceInputs["authorizationResourceServerId"] = undefined /*out*/;
+            resourceInputs["enabled"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ClientPermissions.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ClientPermissions.__pulumiType, name, resourceInputs, opts);
     }
 }
 

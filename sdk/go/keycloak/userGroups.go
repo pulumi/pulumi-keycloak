@@ -125,7 +125,7 @@ type UserGroupsInput interface {
 }
 
 func (*UserGroups) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserGroups)(nil))
+	return reflect.TypeOf((**UserGroups)(nil)).Elem()
 }
 
 func (i *UserGroups) ToUserGroupsOutput() UserGroupsOutput {
@@ -134,35 +134,6 @@ func (i *UserGroups) ToUserGroupsOutput() UserGroupsOutput {
 
 func (i *UserGroups) ToUserGroupsOutputWithContext(ctx context.Context) UserGroupsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserGroupsOutput)
-}
-
-func (i *UserGroups) ToUserGroupsPtrOutput() UserGroupsPtrOutput {
-	return i.ToUserGroupsPtrOutputWithContext(context.Background())
-}
-
-func (i *UserGroups) ToUserGroupsPtrOutputWithContext(ctx context.Context) UserGroupsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserGroupsPtrOutput)
-}
-
-type UserGroupsPtrInput interface {
-	pulumi.Input
-
-	ToUserGroupsPtrOutput() UserGroupsPtrOutput
-	ToUserGroupsPtrOutputWithContext(ctx context.Context) UserGroupsPtrOutput
-}
-
-type userGroupsPtrType UserGroupsArgs
-
-func (*userGroupsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserGroups)(nil))
-}
-
-func (i *userGroupsPtrType) ToUserGroupsPtrOutput() UserGroupsPtrOutput {
-	return i.ToUserGroupsPtrOutputWithContext(context.Background())
-}
-
-func (i *userGroupsPtrType) ToUserGroupsPtrOutputWithContext(ctx context.Context) UserGroupsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserGroupsPtrOutput)
 }
 
 // UserGroupsArrayInput is an input type that accepts UserGroupsArray and UserGroupsArrayOutput values.
@@ -218,7 +189,7 @@ func (i UserGroupsMap) ToUserGroupsMapOutputWithContext(ctx context.Context) Use
 type UserGroupsOutput struct{ *pulumi.OutputState }
 
 func (UserGroupsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserGroups)(nil))
+	return reflect.TypeOf((**UserGroups)(nil)).Elem()
 }
 
 func (o UserGroupsOutput) ToUserGroupsOutput() UserGroupsOutput {
@@ -229,44 +200,10 @@ func (o UserGroupsOutput) ToUserGroupsOutputWithContext(ctx context.Context) Use
 	return o
 }
 
-func (o UserGroupsOutput) ToUserGroupsPtrOutput() UserGroupsPtrOutput {
-	return o.ToUserGroupsPtrOutputWithContext(context.Background())
-}
-
-func (o UserGroupsOutput) ToUserGroupsPtrOutputWithContext(ctx context.Context) UserGroupsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v UserGroups) *UserGroups {
-		return &v
-	}).(UserGroupsPtrOutput)
-}
-
-type UserGroupsPtrOutput struct{ *pulumi.OutputState }
-
-func (UserGroupsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserGroups)(nil))
-}
-
-func (o UserGroupsPtrOutput) ToUserGroupsPtrOutput() UserGroupsPtrOutput {
-	return o
-}
-
-func (o UserGroupsPtrOutput) ToUserGroupsPtrOutputWithContext(ctx context.Context) UserGroupsPtrOutput {
-	return o
-}
-
-func (o UserGroupsPtrOutput) Elem() UserGroupsOutput {
-	return o.ApplyT(func(v *UserGroups) UserGroups {
-		if v != nil {
-			return *v
-		}
-		var ret UserGroups
-		return ret
-	}).(UserGroupsOutput)
-}
-
 type UserGroupsArrayOutput struct{ *pulumi.OutputState }
 
 func (UserGroupsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserGroups)(nil))
+	return reflect.TypeOf((*[]*UserGroups)(nil)).Elem()
 }
 
 func (o UserGroupsArrayOutput) ToUserGroupsArrayOutput() UserGroupsArrayOutput {
@@ -278,15 +215,15 @@ func (o UserGroupsArrayOutput) ToUserGroupsArrayOutputWithContext(ctx context.Co
 }
 
 func (o UserGroupsArrayOutput) Index(i pulumi.IntInput) UserGroupsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserGroups {
-		return vs[0].([]UserGroups)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserGroups {
+		return vs[0].([]*UserGroups)[vs[1].(int)]
 	}).(UserGroupsOutput)
 }
 
 type UserGroupsMapOutput struct{ *pulumi.OutputState }
 
 func (UserGroupsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserGroups)(nil))
+	return reflect.TypeOf((*map[string]*UserGroups)(nil)).Elem()
 }
 
 func (o UserGroupsMapOutput) ToUserGroupsMapOutput() UserGroupsMapOutput {
@@ -298,18 +235,16 @@ func (o UserGroupsMapOutput) ToUserGroupsMapOutputWithContext(ctx context.Contex
 }
 
 func (o UserGroupsMapOutput) MapIndex(k pulumi.StringInput) UserGroupsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserGroups {
-		return vs[0].(map[string]UserGroups)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserGroups {
+		return vs[0].(map[string]*UserGroups)[vs[1].(string)]
 	}).(UserGroupsOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupsInput)(nil)).Elem(), &UserGroups{})
-	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupsPtrInput)(nil)).Elem(), &UserGroups{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupsArrayInput)(nil)).Elem(), UserGroupsArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupsMapInput)(nil)).Elem(), UserGroupsMap{})
 	pulumi.RegisterOutputType(UserGroupsOutput{})
-	pulumi.RegisterOutputType(UserGroupsPtrOutput{})
 	pulumi.RegisterOutputType(UserGroupsArrayOutput{})
 	pulumi.RegisterOutputType(UserGroupsMapOutput{})
 }

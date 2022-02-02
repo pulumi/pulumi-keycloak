@@ -154,22 +154,22 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
      */
     constructor(name: string, args: UserAttributeProtocolMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserAttributeProtocolMapperArgs | UserAttributeProtocolMapperState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserAttributeProtocolMapperState | undefined;
-            inputs["addToAccessToken"] = state ? state.addToAccessToken : undefined;
-            inputs["addToIdToken"] = state ? state.addToIdToken : undefined;
-            inputs["addToUserinfo"] = state ? state.addToUserinfo : undefined;
-            inputs["aggregateAttributes"] = state ? state.aggregateAttributes : undefined;
-            inputs["claimName"] = state ? state.claimName : undefined;
-            inputs["claimValueType"] = state ? state.claimValueType : undefined;
-            inputs["clientId"] = state ? state.clientId : undefined;
-            inputs["clientScopeId"] = state ? state.clientScopeId : undefined;
-            inputs["multivalued"] = state ? state.multivalued : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["userAttribute"] = state ? state.userAttribute : undefined;
+            resourceInputs["addToAccessToken"] = state ? state.addToAccessToken : undefined;
+            resourceInputs["addToIdToken"] = state ? state.addToIdToken : undefined;
+            resourceInputs["addToUserinfo"] = state ? state.addToUserinfo : undefined;
+            resourceInputs["aggregateAttributes"] = state ? state.aggregateAttributes : undefined;
+            resourceInputs["claimName"] = state ? state.claimName : undefined;
+            resourceInputs["claimValueType"] = state ? state.claimValueType : undefined;
+            resourceInputs["clientId"] = state ? state.clientId : undefined;
+            resourceInputs["clientScopeId"] = state ? state.clientScopeId : undefined;
+            resourceInputs["multivalued"] = state ? state.multivalued : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["userAttribute"] = state ? state.userAttribute : undefined;
         } else {
             const args = argsOrState as UserAttributeProtocolMapperArgs | undefined;
             if ((!args || args.claimName === undefined) && !opts.urn) {
@@ -181,23 +181,21 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
             if ((!args || args.userAttribute === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'userAttribute'");
             }
-            inputs["addToAccessToken"] = args ? args.addToAccessToken : undefined;
-            inputs["addToIdToken"] = args ? args.addToIdToken : undefined;
-            inputs["addToUserinfo"] = args ? args.addToUserinfo : undefined;
-            inputs["aggregateAttributes"] = args ? args.aggregateAttributes : undefined;
-            inputs["claimName"] = args ? args.claimName : undefined;
-            inputs["claimValueType"] = args ? args.claimValueType : undefined;
-            inputs["clientId"] = args ? args.clientId : undefined;
-            inputs["clientScopeId"] = args ? args.clientScopeId : undefined;
-            inputs["multivalued"] = args ? args.multivalued : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["userAttribute"] = args ? args.userAttribute : undefined;
+            resourceInputs["addToAccessToken"] = args ? args.addToAccessToken : undefined;
+            resourceInputs["addToIdToken"] = args ? args.addToIdToken : undefined;
+            resourceInputs["addToUserinfo"] = args ? args.addToUserinfo : undefined;
+            resourceInputs["aggregateAttributes"] = args ? args.aggregateAttributes : undefined;
+            resourceInputs["claimName"] = args ? args.claimName : undefined;
+            resourceInputs["claimValueType"] = args ? args.claimValueType : undefined;
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["clientScopeId"] = args ? args.clientScopeId : undefined;
+            resourceInputs["multivalued"] = args ? args.multivalued : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["userAttribute"] = args ? args.userAttribute : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserAttributeProtocolMapper.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserAttributeProtocolMapper.__pulumiType, name, resourceInputs, opts);
     }
 }
 

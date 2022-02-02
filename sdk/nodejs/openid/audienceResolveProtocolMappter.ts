@@ -117,28 +117,26 @@ export class AudienceResolveProtocolMappter extends pulumi.CustomResource {
      */
     constructor(name: string, args: AudienceResolveProtocolMappterArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AudienceResolveProtocolMappterArgs | AudienceResolveProtocolMappterState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AudienceResolveProtocolMappterState | undefined;
-            inputs["clientId"] = state ? state.clientId : undefined;
-            inputs["clientScopeId"] = state ? state.clientScopeId : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["clientId"] = state ? state.clientId : undefined;
+            resourceInputs["clientScopeId"] = state ? state.clientScopeId : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as AudienceResolveProtocolMappterArgs | undefined;
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["clientId"] = args ? args.clientId : undefined;
-            inputs["clientScopeId"] = args ? args.clientScopeId : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["clientScopeId"] = args ? args.clientScopeId : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AudienceResolveProtocolMappter.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AudienceResolveProtocolMappter.__pulumiType, name, resourceInputs, opts);
     }
 }
 

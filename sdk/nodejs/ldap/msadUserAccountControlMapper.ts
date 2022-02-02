@@ -106,14 +106,14 @@ export class MsadUserAccountControlMapper extends pulumi.CustomResource {
      */
     constructor(name: string, args: MsadUserAccountControlMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: MsadUserAccountControlMapperArgs | MsadUserAccountControlMapperState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MsadUserAccountControlMapperState | undefined;
-            inputs["ldapPasswordPolicyHintsEnabled"] = state ? state.ldapPasswordPolicyHintsEnabled : undefined;
-            inputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["ldapPasswordPolicyHintsEnabled"] = state ? state.ldapPasswordPolicyHintsEnabled : undefined;
+            resourceInputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as MsadUserAccountControlMapperArgs | undefined;
             if ((!args || args.ldapUserFederationId === undefined) && !opts.urn) {
@@ -122,15 +122,13 @@ export class MsadUserAccountControlMapper extends pulumi.CustomResource {
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["ldapPasswordPolicyHintsEnabled"] = args ? args.ldapPasswordPolicyHintsEnabled : undefined;
-            inputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["ldapPasswordPolicyHintsEnabled"] = args ? args.ldapPasswordPolicyHintsEnabled : undefined;
+            resourceInputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(MsadUserAccountControlMapper.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(MsadUserAccountControlMapper.__pulumiType, name, resourceInputs, opts);
     }
 }
 

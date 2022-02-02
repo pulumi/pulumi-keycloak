@@ -165,28 +165,28 @@ export class GroupMapper extends pulumi.CustomResource {
      */
     constructor(name: string, args: GroupMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GroupMapperArgs | GroupMapperState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GroupMapperState | undefined;
-            inputs["dropNonExistingGroupsDuringSync"] = state ? state.dropNonExistingGroupsDuringSync : undefined;
-            inputs["groupNameLdapAttribute"] = state ? state.groupNameLdapAttribute : undefined;
-            inputs["groupObjectClasses"] = state ? state.groupObjectClasses : undefined;
-            inputs["groupsLdapFilter"] = state ? state.groupsLdapFilter : undefined;
-            inputs["groupsPath"] = state ? state.groupsPath : undefined;
-            inputs["ignoreMissingGroups"] = state ? state.ignoreMissingGroups : undefined;
-            inputs["ldapGroupsDn"] = state ? state.ldapGroupsDn : undefined;
-            inputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
-            inputs["mappedGroupAttributes"] = state ? state.mappedGroupAttributes : undefined;
-            inputs["memberofLdapAttribute"] = state ? state.memberofLdapAttribute : undefined;
-            inputs["membershipAttributeType"] = state ? state.membershipAttributeType : undefined;
-            inputs["membershipLdapAttribute"] = state ? state.membershipLdapAttribute : undefined;
-            inputs["membershipUserLdapAttribute"] = state ? state.membershipUserLdapAttribute : undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["preserveGroupInheritance"] = state ? state.preserveGroupInheritance : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["userRolesRetrieveStrategy"] = state ? state.userRolesRetrieveStrategy : undefined;
+            resourceInputs["dropNonExistingGroupsDuringSync"] = state ? state.dropNonExistingGroupsDuringSync : undefined;
+            resourceInputs["groupNameLdapAttribute"] = state ? state.groupNameLdapAttribute : undefined;
+            resourceInputs["groupObjectClasses"] = state ? state.groupObjectClasses : undefined;
+            resourceInputs["groupsLdapFilter"] = state ? state.groupsLdapFilter : undefined;
+            resourceInputs["groupsPath"] = state ? state.groupsPath : undefined;
+            resourceInputs["ignoreMissingGroups"] = state ? state.ignoreMissingGroups : undefined;
+            resourceInputs["ldapGroupsDn"] = state ? state.ldapGroupsDn : undefined;
+            resourceInputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
+            resourceInputs["mappedGroupAttributes"] = state ? state.mappedGroupAttributes : undefined;
+            resourceInputs["memberofLdapAttribute"] = state ? state.memberofLdapAttribute : undefined;
+            resourceInputs["membershipAttributeType"] = state ? state.membershipAttributeType : undefined;
+            resourceInputs["membershipLdapAttribute"] = state ? state.membershipLdapAttribute : undefined;
+            resourceInputs["membershipUserLdapAttribute"] = state ? state.membershipUserLdapAttribute : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["preserveGroupInheritance"] = state ? state.preserveGroupInheritance : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["userRolesRetrieveStrategy"] = state ? state.userRolesRetrieveStrategy : undefined;
         } else {
             const args = argsOrState as GroupMapperArgs | undefined;
             if ((!args || args.groupNameLdapAttribute === undefined) && !opts.urn) {
@@ -210,29 +210,27 @@ export class GroupMapper extends pulumi.CustomResource {
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["dropNonExistingGroupsDuringSync"] = args ? args.dropNonExistingGroupsDuringSync : undefined;
-            inputs["groupNameLdapAttribute"] = args ? args.groupNameLdapAttribute : undefined;
-            inputs["groupObjectClasses"] = args ? args.groupObjectClasses : undefined;
-            inputs["groupsLdapFilter"] = args ? args.groupsLdapFilter : undefined;
-            inputs["groupsPath"] = args ? args.groupsPath : undefined;
-            inputs["ignoreMissingGroups"] = args ? args.ignoreMissingGroups : undefined;
-            inputs["ldapGroupsDn"] = args ? args.ldapGroupsDn : undefined;
-            inputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
-            inputs["mappedGroupAttributes"] = args ? args.mappedGroupAttributes : undefined;
-            inputs["memberofLdapAttribute"] = args ? args.memberofLdapAttribute : undefined;
-            inputs["membershipAttributeType"] = args ? args.membershipAttributeType : undefined;
-            inputs["membershipLdapAttribute"] = args ? args.membershipLdapAttribute : undefined;
-            inputs["membershipUserLdapAttribute"] = args ? args.membershipUserLdapAttribute : undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["preserveGroupInheritance"] = args ? args.preserveGroupInheritance : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["userRolesRetrieveStrategy"] = args ? args.userRolesRetrieveStrategy : undefined;
+            resourceInputs["dropNonExistingGroupsDuringSync"] = args ? args.dropNonExistingGroupsDuringSync : undefined;
+            resourceInputs["groupNameLdapAttribute"] = args ? args.groupNameLdapAttribute : undefined;
+            resourceInputs["groupObjectClasses"] = args ? args.groupObjectClasses : undefined;
+            resourceInputs["groupsLdapFilter"] = args ? args.groupsLdapFilter : undefined;
+            resourceInputs["groupsPath"] = args ? args.groupsPath : undefined;
+            resourceInputs["ignoreMissingGroups"] = args ? args.ignoreMissingGroups : undefined;
+            resourceInputs["ldapGroupsDn"] = args ? args.ldapGroupsDn : undefined;
+            resourceInputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
+            resourceInputs["mappedGroupAttributes"] = args ? args.mappedGroupAttributes : undefined;
+            resourceInputs["memberofLdapAttribute"] = args ? args.memberofLdapAttribute : undefined;
+            resourceInputs["membershipAttributeType"] = args ? args.membershipAttributeType : undefined;
+            resourceInputs["membershipLdapAttribute"] = args ? args.membershipLdapAttribute : undefined;
+            resourceInputs["membershipUserLdapAttribute"] = args ? args.membershipUserLdapAttribute : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["preserveGroupInheritance"] = args ? args.preserveGroupInheritance : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["userRolesRetrieveStrategy"] = args ? args.userRolesRetrieveStrategy : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(GroupMapper.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(GroupMapper.__pulumiType, name, resourceInputs, opts);
     }
 }
 
