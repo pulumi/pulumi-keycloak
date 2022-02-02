@@ -122,18 +122,18 @@ export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResour
      */
     constructor(name: string, args: AttributeImporterIdentityProviderMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AttributeImporterIdentityProviderMapperArgs | AttributeImporterIdentityProviderMapperState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AttributeImporterIdentityProviderMapperState | undefined;
-            inputs["attributeFriendlyName"] = state ? state.attributeFriendlyName : undefined;
-            inputs["attributeName"] = state ? state.attributeName : undefined;
-            inputs["claimName"] = state ? state.claimName : undefined;
-            inputs["extraConfig"] = state ? state.extraConfig : undefined;
-            inputs["identityProviderAlias"] = state ? state.identityProviderAlias : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["realm"] = state ? state.realm : undefined;
-            inputs["userAttribute"] = state ? state.userAttribute : undefined;
+            resourceInputs["attributeFriendlyName"] = state ? state.attributeFriendlyName : undefined;
+            resourceInputs["attributeName"] = state ? state.attributeName : undefined;
+            resourceInputs["claimName"] = state ? state.claimName : undefined;
+            resourceInputs["extraConfig"] = state ? state.extraConfig : undefined;
+            resourceInputs["identityProviderAlias"] = state ? state.identityProviderAlias : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["realm"] = state ? state.realm : undefined;
+            resourceInputs["userAttribute"] = state ? state.userAttribute : undefined;
         } else {
             const args = argsOrState as AttributeImporterIdentityProviderMapperArgs | undefined;
             if ((!args || args.identityProviderAlias === undefined) && !opts.urn) {
@@ -145,19 +145,17 @@ export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResour
             if ((!args || args.userAttribute === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'userAttribute'");
             }
-            inputs["attributeFriendlyName"] = args ? args.attributeFriendlyName : undefined;
-            inputs["attributeName"] = args ? args.attributeName : undefined;
-            inputs["claimName"] = args ? args.claimName : undefined;
-            inputs["extraConfig"] = args ? args.extraConfig : undefined;
-            inputs["identityProviderAlias"] = args ? args.identityProviderAlias : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["realm"] = args ? args.realm : undefined;
-            inputs["userAttribute"] = args ? args.userAttribute : undefined;
+            resourceInputs["attributeFriendlyName"] = args ? args.attributeFriendlyName : undefined;
+            resourceInputs["attributeName"] = args ? args.attributeName : undefined;
+            resourceInputs["claimName"] = args ? args.claimName : undefined;
+            resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
+            resourceInputs["identityProviderAlias"] = args ? args.identityProviderAlias : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["realm"] = args ? args.realm : undefined;
+            resourceInputs["userAttribute"] = args ? args.userAttribute : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AttributeImporterIdentityProviderMapper.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AttributeImporterIdentityProviderMapper.__pulumiType, name, resourceInputs, opts);
     }
 }
 

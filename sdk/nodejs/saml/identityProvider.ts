@@ -210,43 +210,43 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     constructor(name: string, args: IdentityProviderArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IdentityProviderArgs | IdentityProviderState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IdentityProviderState | undefined;
-            inputs["addReadTokenRoleOnCreate"] = state ? state.addReadTokenRoleOnCreate : undefined;
-            inputs["alias"] = state ? state.alias : undefined;
-            inputs["authenticateByDefault"] = state ? state.authenticateByDefault : undefined;
-            inputs["backchannelSupported"] = state ? state.backchannelSupported : undefined;
-            inputs["displayName"] = state ? state.displayName : undefined;
-            inputs["enabled"] = state ? state.enabled : undefined;
-            inputs["entityId"] = state ? state.entityId : undefined;
-            inputs["extraConfig"] = state ? state.extraConfig : undefined;
-            inputs["firstBrokerLoginFlowAlias"] = state ? state.firstBrokerLoginFlowAlias : undefined;
-            inputs["forceAuthn"] = state ? state.forceAuthn : undefined;
-            inputs["guiOrder"] = state ? state.guiOrder : undefined;
-            inputs["hideOnLoginPage"] = state ? state.hideOnLoginPage : undefined;
-            inputs["internalId"] = state ? state.internalId : undefined;
-            inputs["linkOnly"] = state ? state.linkOnly : undefined;
-            inputs["nameIdPolicyFormat"] = state ? state.nameIdPolicyFormat : undefined;
-            inputs["postBindingAuthnRequest"] = state ? state.postBindingAuthnRequest : undefined;
-            inputs["postBindingLogout"] = state ? state.postBindingLogout : undefined;
-            inputs["postBindingResponse"] = state ? state.postBindingResponse : undefined;
-            inputs["postBrokerLoginFlowAlias"] = state ? state.postBrokerLoginFlowAlias : undefined;
-            inputs["principalAttribute"] = state ? state.principalAttribute : undefined;
-            inputs["principalType"] = state ? state.principalType : undefined;
-            inputs["realm"] = state ? state.realm : undefined;
-            inputs["signatureAlgorithm"] = state ? state.signatureAlgorithm : undefined;
-            inputs["signingCertificate"] = state ? state.signingCertificate : undefined;
-            inputs["singleLogoutServiceUrl"] = state ? state.singleLogoutServiceUrl : undefined;
-            inputs["singleSignOnServiceUrl"] = state ? state.singleSignOnServiceUrl : undefined;
-            inputs["storeToken"] = state ? state.storeToken : undefined;
-            inputs["syncMode"] = state ? state.syncMode : undefined;
-            inputs["trustEmail"] = state ? state.trustEmail : undefined;
-            inputs["validateSignature"] = state ? state.validateSignature : undefined;
-            inputs["wantAssertionsEncrypted"] = state ? state.wantAssertionsEncrypted : undefined;
-            inputs["wantAssertionsSigned"] = state ? state.wantAssertionsSigned : undefined;
-            inputs["xmlSignKeyInfoKeyNameTransformer"] = state ? state.xmlSignKeyInfoKeyNameTransformer : undefined;
+            resourceInputs["addReadTokenRoleOnCreate"] = state ? state.addReadTokenRoleOnCreate : undefined;
+            resourceInputs["alias"] = state ? state.alias : undefined;
+            resourceInputs["authenticateByDefault"] = state ? state.authenticateByDefault : undefined;
+            resourceInputs["backchannelSupported"] = state ? state.backchannelSupported : undefined;
+            resourceInputs["displayName"] = state ? state.displayName : undefined;
+            resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["entityId"] = state ? state.entityId : undefined;
+            resourceInputs["extraConfig"] = state ? state.extraConfig : undefined;
+            resourceInputs["firstBrokerLoginFlowAlias"] = state ? state.firstBrokerLoginFlowAlias : undefined;
+            resourceInputs["forceAuthn"] = state ? state.forceAuthn : undefined;
+            resourceInputs["guiOrder"] = state ? state.guiOrder : undefined;
+            resourceInputs["hideOnLoginPage"] = state ? state.hideOnLoginPage : undefined;
+            resourceInputs["internalId"] = state ? state.internalId : undefined;
+            resourceInputs["linkOnly"] = state ? state.linkOnly : undefined;
+            resourceInputs["nameIdPolicyFormat"] = state ? state.nameIdPolicyFormat : undefined;
+            resourceInputs["postBindingAuthnRequest"] = state ? state.postBindingAuthnRequest : undefined;
+            resourceInputs["postBindingLogout"] = state ? state.postBindingLogout : undefined;
+            resourceInputs["postBindingResponse"] = state ? state.postBindingResponse : undefined;
+            resourceInputs["postBrokerLoginFlowAlias"] = state ? state.postBrokerLoginFlowAlias : undefined;
+            resourceInputs["principalAttribute"] = state ? state.principalAttribute : undefined;
+            resourceInputs["principalType"] = state ? state.principalType : undefined;
+            resourceInputs["realm"] = state ? state.realm : undefined;
+            resourceInputs["signatureAlgorithm"] = state ? state.signatureAlgorithm : undefined;
+            resourceInputs["signingCertificate"] = state ? state.signingCertificate : undefined;
+            resourceInputs["singleLogoutServiceUrl"] = state ? state.singleLogoutServiceUrl : undefined;
+            resourceInputs["singleSignOnServiceUrl"] = state ? state.singleSignOnServiceUrl : undefined;
+            resourceInputs["storeToken"] = state ? state.storeToken : undefined;
+            resourceInputs["syncMode"] = state ? state.syncMode : undefined;
+            resourceInputs["trustEmail"] = state ? state.trustEmail : undefined;
+            resourceInputs["validateSignature"] = state ? state.validateSignature : undefined;
+            resourceInputs["wantAssertionsEncrypted"] = state ? state.wantAssertionsEncrypted : undefined;
+            resourceInputs["wantAssertionsSigned"] = state ? state.wantAssertionsSigned : undefined;
+            resourceInputs["xmlSignKeyInfoKeyNameTransformer"] = state ? state.xmlSignKeyInfoKeyNameTransformer : undefined;
         } else {
             const args = argsOrState as IdentityProviderArgs | undefined;
             if ((!args || args.alias === undefined) && !opts.urn) {
@@ -261,44 +261,42 @@ export class IdentityProvider extends pulumi.CustomResource {
             if ((!args || args.singleSignOnServiceUrl === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'singleSignOnServiceUrl'");
             }
-            inputs["addReadTokenRoleOnCreate"] = args ? args.addReadTokenRoleOnCreate : undefined;
-            inputs["alias"] = args ? args.alias : undefined;
-            inputs["authenticateByDefault"] = args ? args.authenticateByDefault : undefined;
-            inputs["backchannelSupported"] = args ? args.backchannelSupported : undefined;
-            inputs["displayName"] = args ? args.displayName : undefined;
-            inputs["enabled"] = args ? args.enabled : undefined;
-            inputs["entityId"] = args ? args.entityId : undefined;
-            inputs["extraConfig"] = args ? args.extraConfig : undefined;
-            inputs["firstBrokerLoginFlowAlias"] = args ? args.firstBrokerLoginFlowAlias : undefined;
-            inputs["forceAuthn"] = args ? args.forceAuthn : undefined;
-            inputs["guiOrder"] = args ? args.guiOrder : undefined;
-            inputs["hideOnLoginPage"] = args ? args.hideOnLoginPage : undefined;
-            inputs["linkOnly"] = args ? args.linkOnly : undefined;
-            inputs["nameIdPolicyFormat"] = args ? args.nameIdPolicyFormat : undefined;
-            inputs["postBindingAuthnRequest"] = args ? args.postBindingAuthnRequest : undefined;
-            inputs["postBindingLogout"] = args ? args.postBindingLogout : undefined;
-            inputs["postBindingResponse"] = args ? args.postBindingResponse : undefined;
-            inputs["postBrokerLoginFlowAlias"] = args ? args.postBrokerLoginFlowAlias : undefined;
-            inputs["principalAttribute"] = args ? args.principalAttribute : undefined;
-            inputs["principalType"] = args ? args.principalType : undefined;
-            inputs["realm"] = args ? args.realm : undefined;
-            inputs["signatureAlgorithm"] = args ? args.signatureAlgorithm : undefined;
-            inputs["signingCertificate"] = args ? args.signingCertificate : undefined;
-            inputs["singleLogoutServiceUrl"] = args ? args.singleLogoutServiceUrl : undefined;
-            inputs["singleSignOnServiceUrl"] = args ? args.singleSignOnServiceUrl : undefined;
-            inputs["storeToken"] = args ? args.storeToken : undefined;
-            inputs["syncMode"] = args ? args.syncMode : undefined;
-            inputs["trustEmail"] = args ? args.trustEmail : undefined;
-            inputs["validateSignature"] = args ? args.validateSignature : undefined;
-            inputs["wantAssertionsEncrypted"] = args ? args.wantAssertionsEncrypted : undefined;
-            inputs["wantAssertionsSigned"] = args ? args.wantAssertionsSigned : undefined;
-            inputs["xmlSignKeyInfoKeyNameTransformer"] = args ? args.xmlSignKeyInfoKeyNameTransformer : undefined;
-            inputs["internalId"] = undefined /*out*/;
+            resourceInputs["addReadTokenRoleOnCreate"] = args ? args.addReadTokenRoleOnCreate : undefined;
+            resourceInputs["alias"] = args ? args.alias : undefined;
+            resourceInputs["authenticateByDefault"] = args ? args.authenticateByDefault : undefined;
+            resourceInputs["backchannelSupported"] = args ? args.backchannelSupported : undefined;
+            resourceInputs["displayName"] = args ? args.displayName : undefined;
+            resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["entityId"] = args ? args.entityId : undefined;
+            resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
+            resourceInputs["firstBrokerLoginFlowAlias"] = args ? args.firstBrokerLoginFlowAlias : undefined;
+            resourceInputs["forceAuthn"] = args ? args.forceAuthn : undefined;
+            resourceInputs["guiOrder"] = args ? args.guiOrder : undefined;
+            resourceInputs["hideOnLoginPage"] = args ? args.hideOnLoginPage : undefined;
+            resourceInputs["linkOnly"] = args ? args.linkOnly : undefined;
+            resourceInputs["nameIdPolicyFormat"] = args ? args.nameIdPolicyFormat : undefined;
+            resourceInputs["postBindingAuthnRequest"] = args ? args.postBindingAuthnRequest : undefined;
+            resourceInputs["postBindingLogout"] = args ? args.postBindingLogout : undefined;
+            resourceInputs["postBindingResponse"] = args ? args.postBindingResponse : undefined;
+            resourceInputs["postBrokerLoginFlowAlias"] = args ? args.postBrokerLoginFlowAlias : undefined;
+            resourceInputs["principalAttribute"] = args ? args.principalAttribute : undefined;
+            resourceInputs["principalType"] = args ? args.principalType : undefined;
+            resourceInputs["realm"] = args ? args.realm : undefined;
+            resourceInputs["signatureAlgorithm"] = args ? args.signatureAlgorithm : undefined;
+            resourceInputs["signingCertificate"] = args ? args.signingCertificate : undefined;
+            resourceInputs["singleLogoutServiceUrl"] = args ? args.singleLogoutServiceUrl : undefined;
+            resourceInputs["singleSignOnServiceUrl"] = args ? args.singleSignOnServiceUrl : undefined;
+            resourceInputs["storeToken"] = args ? args.storeToken : undefined;
+            resourceInputs["syncMode"] = args ? args.syncMode : undefined;
+            resourceInputs["trustEmail"] = args ? args.trustEmail : undefined;
+            resourceInputs["validateSignature"] = args ? args.validateSignature : undefined;
+            resourceInputs["wantAssertionsEncrypted"] = args ? args.wantAssertionsEncrypted : undefined;
+            resourceInputs["wantAssertionsSigned"] = args ? args.wantAssertionsSigned : undefined;
+            resourceInputs["xmlSignKeyInfoKeyNameTransformer"] = args ? args.xmlSignKeyInfoKeyNameTransformer : undefined;
+            resourceInputs["internalId"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(IdentityProvider.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(IdentityProvider.__pulumiType, name, resourceInputs, opts);
     }
 }
 

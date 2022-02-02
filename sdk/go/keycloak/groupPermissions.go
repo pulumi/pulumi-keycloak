@@ -123,7 +123,7 @@ type GroupPermissionsInput interface {
 }
 
 func (*GroupPermissions) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupPermissions)(nil))
+	return reflect.TypeOf((**GroupPermissions)(nil)).Elem()
 }
 
 func (i *GroupPermissions) ToGroupPermissionsOutput() GroupPermissionsOutput {
@@ -132,35 +132,6 @@ func (i *GroupPermissions) ToGroupPermissionsOutput() GroupPermissionsOutput {
 
 func (i *GroupPermissions) ToGroupPermissionsOutputWithContext(ctx context.Context) GroupPermissionsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPermissionsOutput)
-}
-
-func (i *GroupPermissions) ToGroupPermissionsPtrOutput() GroupPermissionsPtrOutput {
-	return i.ToGroupPermissionsPtrOutputWithContext(context.Background())
-}
-
-func (i *GroupPermissions) ToGroupPermissionsPtrOutputWithContext(ctx context.Context) GroupPermissionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GroupPermissionsPtrOutput)
-}
-
-type GroupPermissionsPtrInput interface {
-	pulumi.Input
-
-	ToGroupPermissionsPtrOutput() GroupPermissionsPtrOutput
-	ToGroupPermissionsPtrOutputWithContext(ctx context.Context) GroupPermissionsPtrOutput
-}
-
-type groupPermissionsPtrType GroupPermissionsArgs
-
-func (*groupPermissionsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GroupPermissions)(nil))
-}
-
-func (i *groupPermissionsPtrType) ToGroupPermissionsPtrOutput() GroupPermissionsPtrOutput {
-	return i.ToGroupPermissionsPtrOutputWithContext(context.Background())
-}
-
-func (i *groupPermissionsPtrType) ToGroupPermissionsPtrOutputWithContext(ctx context.Context) GroupPermissionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GroupPermissionsPtrOutput)
 }
 
 // GroupPermissionsArrayInput is an input type that accepts GroupPermissionsArray and GroupPermissionsArrayOutput values.
@@ -216,7 +187,7 @@ func (i GroupPermissionsMap) ToGroupPermissionsMapOutputWithContext(ctx context.
 type GroupPermissionsOutput struct{ *pulumi.OutputState }
 
 func (GroupPermissionsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupPermissions)(nil))
+	return reflect.TypeOf((**GroupPermissions)(nil)).Elem()
 }
 
 func (o GroupPermissionsOutput) ToGroupPermissionsOutput() GroupPermissionsOutput {
@@ -227,44 +198,10 @@ func (o GroupPermissionsOutput) ToGroupPermissionsOutputWithContext(ctx context.
 	return o
 }
 
-func (o GroupPermissionsOutput) ToGroupPermissionsPtrOutput() GroupPermissionsPtrOutput {
-	return o.ToGroupPermissionsPtrOutputWithContext(context.Background())
-}
-
-func (o GroupPermissionsOutput) ToGroupPermissionsPtrOutputWithContext(ctx context.Context) GroupPermissionsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GroupPermissions) *GroupPermissions {
-		return &v
-	}).(GroupPermissionsPtrOutput)
-}
-
-type GroupPermissionsPtrOutput struct{ *pulumi.OutputState }
-
-func (GroupPermissionsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GroupPermissions)(nil))
-}
-
-func (o GroupPermissionsPtrOutput) ToGroupPermissionsPtrOutput() GroupPermissionsPtrOutput {
-	return o
-}
-
-func (o GroupPermissionsPtrOutput) ToGroupPermissionsPtrOutputWithContext(ctx context.Context) GroupPermissionsPtrOutput {
-	return o
-}
-
-func (o GroupPermissionsPtrOutput) Elem() GroupPermissionsOutput {
-	return o.ApplyT(func(v *GroupPermissions) GroupPermissions {
-		if v != nil {
-			return *v
-		}
-		var ret GroupPermissions
-		return ret
-	}).(GroupPermissionsOutput)
-}
-
 type GroupPermissionsArrayOutput struct{ *pulumi.OutputState }
 
 func (GroupPermissionsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GroupPermissions)(nil))
+	return reflect.TypeOf((*[]*GroupPermissions)(nil)).Elem()
 }
 
 func (o GroupPermissionsArrayOutput) ToGroupPermissionsArrayOutput() GroupPermissionsArrayOutput {
@@ -276,15 +213,15 @@ func (o GroupPermissionsArrayOutput) ToGroupPermissionsArrayOutputWithContext(ct
 }
 
 func (o GroupPermissionsArrayOutput) Index(i pulumi.IntInput) GroupPermissionsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GroupPermissions {
-		return vs[0].([]GroupPermissions)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GroupPermissions {
+		return vs[0].([]*GroupPermissions)[vs[1].(int)]
 	}).(GroupPermissionsOutput)
 }
 
 type GroupPermissionsMapOutput struct{ *pulumi.OutputState }
 
 func (GroupPermissionsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]GroupPermissions)(nil))
+	return reflect.TypeOf((*map[string]*GroupPermissions)(nil)).Elem()
 }
 
 func (o GroupPermissionsMapOutput) ToGroupPermissionsMapOutput() GroupPermissionsMapOutput {
@@ -296,18 +233,16 @@ func (o GroupPermissionsMapOutput) ToGroupPermissionsMapOutputWithContext(ctx co
 }
 
 func (o GroupPermissionsMapOutput) MapIndex(k pulumi.StringInput) GroupPermissionsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) GroupPermissions {
-		return vs[0].(map[string]GroupPermissions)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *GroupPermissions {
+		return vs[0].(map[string]*GroupPermissions)[vs[1].(string)]
 	}).(GroupPermissionsOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupPermissionsInput)(nil)).Elem(), &GroupPermissions{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GroupPermissionsPtrInput)(nil)).Elem(), &GroupPermissions{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupPermissionsArrayInput)(nil)).Elem(), GroupPermissionsArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupPermissionsMapInput)(nil)).Elem(), GroupPermissionsMap{})
 	pulumi.RegisterOutputType(GroupPermissionsOutput{})
-	pulumi.RegisterOutputType(GroupPermissionsPtrOutput{})
 	pulumi.RegisterOutputType(GroupPermissionsArrayOutput{})
 	pulumi.RegisterOutputType(GroupPermissionsMapOutput{})
 }

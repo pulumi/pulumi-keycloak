@@ -52,17 +52,17 @@ export class Subflow extends pulumi.CustomResource {
      */
     constructor(name: string, args: SubflowArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SubflowArgs | SubflowState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SubflowState | undefined;
-            inputs["alias"] = state ? state.alias : undefined;
-            inputs["authenticator"] = state ? state.authenticator : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["parentFlowAlias"] = state ? state.parentFlowAlias : undefined;
-            inputs["providerId"] = state ? state.providerId : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["requirement"] = state ? state.requirement : undefined;
+            resourceInputs["alias"] = state ? state.alias : undefined;
+            resourceInputs["authenticator"] = state ? state.authenticator : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["parentFlowAlias"] = state ? state.parentFlowAlias : undefined;
+            resourceInputs["providerId"] = state ? state.providerId : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["requirement"] = state ? state.requirement : undefined;
         } else {
             const args = argsOrState as SubflowArgs | undefined;
             if ((!args || args.alias === undefined) && !opts.urn) {
@@ -74,18 +74,16 @@ export class Subflow extends pulumi.CustomResource {
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["alias"] = args ? args.alias : undefined;
-            inputs["authenticator"] = args ? args.authenticator : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["parentFlowAlias"] = args ? args.parentFlowAlias : undefined;
-            inputs["providerId"] = args ? args.providerId : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["requirement"] = args ? args.requirement : undefined;
+            resourceInputs["alias"] = args ? args.alias : undefined;
+            resourceInputs["authenticator"] = args ? args.authenticator : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["parentFlowAlias"] = args ? args.parentFlowAlias : undefined;
+            resourceInputs["providerId"] = args ? args.providerId : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["requirement"] = args ? args.requirement : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Subflow.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Subflow.__pulumiType, name, resourceInputs, opts);
     }
 }
 

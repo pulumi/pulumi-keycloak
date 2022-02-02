@@ -91,13 +91,13 @@ export class ClientServiceAccountRealmRole extends pulumi.CustomResource {
      */
     constructor(name: string, args: ClientServiceAccountRealmRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClientServiceAccountRealmRoleArgs | ClientServiceAccountRealmRoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClientServiceAccountRealmRoleState | undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["role"] = state ? state.role : undefined;
-            inputs["serviceAccountUserId"] = state ? state.serviceAccountUserId : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["serviceAccountUserId"] = state ? state.serviceAccountUserId : undefined;
         } else {
             const args = argsOrState as ClientServiceAccountRealmRoleArgs | undefined;
             if ((!args || args.realmId === undefined) && !opts.urn) {
@@ -109,14 +109,12 @@ export class ClientServiceAccountRealmRole extends pulumi.CustomResource {
             if ((!args || args.serviceAccountUserId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serviceAccountUserId'");
             }
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["role"] = args ? args.role : undefined;
-            inputs["serviceAccountUserId"] = args ? args.serviceAccountUserId : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["serviceAccountUserId"] = args ? args.serviceAccountUserId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ClientServiceAccountRealmRole.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ClientServiceAccountRealmRole.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -51,19 +51,19 @@ export class ClientAuthorizationPermission extends pulumi.CustomResource {
      */
     constructor(name: string, args: ClientAuthorizationPermissionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClientAuthorizationPermissionArgs | ClientAuthorizationPermissionState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClientAuthorizationPermissionState | undefined;
-            inputs["decisionStrategy"] = state ? state.decisionStrategy : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["resourceServerId"] = state ? state.resourceServerId : undefined;
-            inputs["resources"] = state ? state.resources : undefined;
-            inputs["scopes"] = state ? state.scopes : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["decisionStrategy"] = state ? state.decisionStrategy : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["policies"] = state ? state.policies : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["resourceServerId"] = state ? state.resourceServerId : undefined;
+            resourceInputs["resources"] = state ? state.resources : undefined;
+            resourceInputs["scopes"] = state ? state.scopes : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as ClientAuthorizationPermissionArgs | undefined;
             if ((!args || args.realmId === undefined) && !opts.urn) {
@@ -72,20 +72,18 @@ export class ClientAuthorizationPermission extends pulumi.CustomResource {
             if ((!args || args.resourceServerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
-            inputs["decisionStrategy"] = args ? args.decisionStrategy : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["policies"] = args ? args.policies : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["resourceServerId"] = args ? args.resourceServerId : undefined;
-            inputs["resources"] = args ? args.resources : undefined;
-            inputs["scopes"] = args ? args.scopes : undefined;
-            inputs["type"] = args ? args.type : undefined;
+            resourceInputs["decisionStrategy"] = args ? args.decisionStrategy : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["policies"] = args ? args.policies : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["resourceServerId"] = args ? args.resourceServerId : undefined;
+            resourceInputs["resources"] = args ? args.resources : undefined;
+            resourceInputs["scopes"] = args ? args.scopes : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ClientAuthorizationPermission.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ClientAuthorizationPermission.__pulumiType, name, resourceInputs, opts);
     }
 }
 

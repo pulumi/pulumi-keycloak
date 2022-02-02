@@ -59,13 +59,13 @@ export class ClientDefaultScope extends pulumi.CustomResource {
      */
     constructor(name: string, args: ClientDefaultScopeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClientDefaultScopeArgs | ClientDefaultScopeState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClientDefaultScopeState | undefined;
-            inputs["clientId"] = state ? state.clientId : undefined;
-            inputs["defaultScopes"] = state ? state.defaultScopes : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["clientId"] = state ? state.clientId : undefined;
+            resourceInputs["defaultScopes"] = state ? state.defaultScopes : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as ClientDefaultScopeArgs | undefined;
             if ((!args || args.clientId === undefined) && !opts.urn) {
@@ -77,14 +77,12 @@ export class ClientDefaultScope extends pulumi.CustomResource {
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["clientId"] = args ? args.clientId : undefined;
-            inputs["defaultScopes"] = args ? args.defaultScopes : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["defaultScopes"] = args ? args.defaultScopes : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ClientDefaultScope.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ClientDefaultScope.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -59,15 +59,15 @@ export class UserTemplateImporterIdentityProviderMapper extends pulumi.CustomRes
      */
     constructor(name: string, args: UserTemplateImporterIdentityProviderMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserTemplateImporterIdentityProviderMapperArgs | UserTemplateImporterIdentityProviderMapperState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserTemplateImporterIdentityProviderMapperState | undefined;
-            inputs["extraConfig"] = state ? state.extraConfig : undefined;
-            inputs["identityProviderAlias"] = state ? state.identityProviderAlias : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["realm"] = state ? state.realm : undefined;
-            inputs["template"] = state ? state.template : undefined;
+            resourceInputs["extraConfig"] = state ? state.extraConfig : undefined;
+            resourceInputs["identityProviderAlias"] = state ? state.identityProviderAlias : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["realm"] = state ? state.realm : undefined;
+            resourceInputs["template"] = state ? state.template : undefined;
         } else {
             const args = argsOrState as UserTemplateImporterIdentityProviderMapperArgs | undefined;
             if ((!args || args.identityProviderAlias === undefined) && !opts.urn) {
@@ -76,16 +76,14 @@ export class UserTemplateImporterIdentityProviderMapper extends pulumi.CustomRes
             if ((!args || args.realm === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realm'");
             }
-            inputs["extraConfig"] = args ? args.extraConfig : undefined;
-            inputs["identityProviderAlias"] = args ? args.identityProviderAlias : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["realm"] = args ? args.realm : undefined;
-            inputs["template"] = args ? args.template : undefined;
+            resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
+            resourceInputs["identityProviderAlias"] = args ? args.identityProviderAlias : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["realm"] = args ? args.realm : undefined;
+            resourceInputs["template"] = args ? args.template : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserTemplateImporterIdentityProviderMapper.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserTemplateImporterIdentityProviderMapper.__pulumiType, name, resourceInputs, opts);
     }
 }
 

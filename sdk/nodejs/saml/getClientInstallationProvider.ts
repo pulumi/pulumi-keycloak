@@ -30,11 +30,11 @@ import * as utilities from "../utilities";
  *     signingCertificate: fs.readFileSync("saml-cert.pem"),
  *     signingPrivateKey: fs.readFileSync("saml-key.pem"),
  * });
- * const samlIdpDescriptor = pulumi.all([realm.id, samlClient.id]).apply(([realmId, samlClientId]) => keycloak.saml.getClientInstallationProvider({
- *     realmId: realmId,
- *     clientId: samlClientId,
+ * const samlIdpDescriptor = keycloak.saml.getClientInstallationProviderOutput({
+ *     realmId: realm.id,
+ *     clientId: samlClient.id,
  *     providerId: "saml-idp-descriptor",
- * }));
+ * });
  * const _default = new aws.iam.SamlProvider("default", {samlMetadataDocument: samlIdpDescriptor.apply(samlIdpDescriptor => samlIdpDescriptor.value)});
  * ```
  */
@@ -43,9 +43,7 @@ export function getClientInstallationProvider(args: GetClientInstallationProvide
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", {
         "clientId": args.clientId,
         "providerId": args.providerId,

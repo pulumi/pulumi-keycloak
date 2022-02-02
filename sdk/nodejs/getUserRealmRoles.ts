@@ -32,9 +32,7 @@ export function getUserRealmRoles(args: GetUserRealmRolesArgs, opts?: pulumi.Inv
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("keycloak:index/getUserRealmRoles:getUserRealmRoles", {
         "realmId": args.realmId,
         "userId": args.userId,

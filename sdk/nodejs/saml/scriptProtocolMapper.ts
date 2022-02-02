@@ -121,19 +121,19 @@ export class ScriptProtocolMapper extends pulumi.CustomResource {
      */
     constructor(name: string, args: ScriptProtocolMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ScriptProtocolMapperArgs | ScriptProtocolMapperState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ScriptProtocolMapperState | undefined;
-            inputs["clientId"] = state ? state.clientId : undefined;
-            inputs["clientScopeId"] = state ? state.clientScopeId : undefined;
-            inputs["friendlyName"] = state ? state.friendlyName : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["samlAttributeName"] = state ? state.samlAttributeName : undefined;
-            inputs["samlAttributeNameFormat"] = state ? state.samlAttributeNameFormat : undefined;
-            inputs["script"] = state ? state.script : undefined;
-            inputs["singleValueAttribute"] = state ? state.singleValueAttribute : undefined;
+            resourceInputs["clientId"] = state ? state.clientId : undefined;
+            resourceInputs["clientScopeId"] = state ? state.clientScopeId : undefined;
+            resourceInputs["friendlyName"] = state ? state.friendlyName : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["samlAttributeName"] = state ? state.samlAttributeName : undefined;
+            resourceInputs["samlAttributeNameFormat"] = state ? state.samlAttributeNameFormat : undefined;
+            resourceInputs["script"] = state ? state.script : undefined;
+            resourceInputs["singleValueAttribute"] = state ? state.singleValueAttribute : undefined;
         } else {
             const args = argsOrState as ScriptProtocolMapperArgs | undefined;
             if ((!args || args.realmId === undefined) && !opts.urn) {
@@ -148,20 +148,18 @@ export class ScriptProtocolMapper extends pulumi.CustomResource {
             if ((!args || args.script === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'script'");
             }
-            inputs["clientId"] = args ? args.clientId : undefined;
-            inputs["clientScopeId"] = args ? args.clientScopeId : undefined;
-            inputs["friendlyName"] = args ? args.friendlyName : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["samlAttributeName"] = args ? args.samlAttributeName : undefined;
-            inputs["samlAttributeNameFormat"] = args ? args.samlAttributeNameFormat : undefined;
-            inputs["script"] = args ? args.script : undefined;
-            inputs["singleValueAttribute"] = args ? args.singleValueAttribute : undefined;
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["clientScopeId"] = args ? args.clientScopeId : undefined;
+            resourceInputs["friendlyName"] = args ? args.friendlyName : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["samlAttributeName"] = args ? args.samlAttributeName : undefined;
+            resourceInputs["samlAttributeNameFormat"] = args ? args.samlAttributeNameFormat : undefined;
+            resourceInputs["script"] = args ? args.script : undefined;
+            resourceInputs["singleValueAttribute"] = args ? args.singleValueAttribute : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ScriptProtocolMapper.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ScriptProtocolMapper.__pulumiType, name, resourceInputs, opts);
     }
 }
 

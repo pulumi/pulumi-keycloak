@@ -170,7 +170,7 @@ type ClientScopeInput interface {
 }
 
 func (*ClientScope) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientScope)(nil))
+	return reflect.TypeOf((**ClientScope)(nil)).Elem()
 }
 
 func (i *ClientScope) ToClientScopeOutput() ClientScopeOutput {
@@ -179,35 +179,6 @@ func (i *ClientScope) ToClientScopeOutput() ClientScopeOutput {
 
 func (i *ClientScope) ToClientScopeOutputWithContext(ctx context.Context) ClientScopeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientScopeOutput)
-}
-
-func (i *ClientScope) ToClientScopePtrOutput() ClientScopePtrOutput {
-	return i.ToClientScopePtrOutputWithContext(context.Background())
-}
-
-func (i *ClientScope) ToClientScopePtrOutputWithContext(ctx context.Context) ClientScopePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClientScopePtrOutput)
-}
-
-type ClientScopePtrInput interface {
-	pulumi.Input
-
-	ToClientScopePtrOutput() ClientScopePtrOutput
-	ToClientScopePtrOutputWithContext(ctx context.Context) ClientScopePtrOutput
-}
-
-type clientScopePtrType ClientScopeArgs
-
-func (*clientScopePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ClientScope)(nil))
-}
-
-func (i *clientScopePtrType) ToClientScopePtrOutput() ClientScopePtrOutput {
-	return i.ToClientScopePtrOutputWithContext(context.Background())
-}
-
-func (i *clientScopePtrType) ToClientScopePtrOutputWithContext(ctx context.Context) ClientScopePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClientScopePtrOutput)
 }
 
 // ClientScopeArrayInput is an input type that accepts ClientScopeArray and ClientScopeArrayOutput values.
@@ -263,7 +234,7 @@ func (i ClientScopeMap) ToClientScopeMapOutputWithContext(ctx context.Context) C
 type ClientScopeOutput struct{ *pulumi.OutputState }
 
 func (ClientScopeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientScope)(nil))
+	return reflect.TypeOf((**ClientScope)(nil)).Elem()
 }
 
 func (o ClientScopeOutput) ToClientScopeOutput() ClientScopeOutput {
@@ -274,44 +245,10 @@ func (o ClientScopeOutput) ToClientScopeOutputWithContext(ctx context.Context) C
 	return o
 }
 
-func (o ClientScopeOutput) ToClientScopePtrOutput() ClientScopePtrOutput {
-	return o.ToClientScopePtrOutputWithContext(context.Background())
-}
-
-func (o ClientScopeOutput) ToClientScopePtrOutputWithContext(ctx context.Context) ClientScopePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientScope) *ClientScope {
-		return &v
-	}).(ClientScopePtrOutput)
-}
-
-type ClientScopePtrOutput struct{ *pulumi.OutputState }
-
-func (ClientScopePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ClientScope)(nil))
-}
-
-func (o ClientScopePtrOutput) ToClientScopePtrOutput() ClientScopePtrOutput {
-	return o
-}
-
-func (o ClientScopePtrOutput) ToClientScopePtrOutputWithContext(ctx context.Context) ClientScopePtrOutput {
-	return o
-}
-
-func (o ClientScopePtrOutput) Elem() ClientScopeOutput {
-	return o.ApplyT(func(v *ClientScope) ClientScope {
-		if v != nil {
-			return *v
-		}
-		var ret ClientScope
-		return ret
-	}).(ClientScopeOutput)
-}
-
 type ClientScopeArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientScopeArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClientScope)(nil))
+	return reflect.TypeOf((*[]*ClientScope)(nil)).Elem()
 }
 
 func (o ClientScopeArrayOutput) ToClientScopeArrayOutput() ClientScopeArrayOutput {
@@ -323,15 +260,15 @@ func (o ClientScopeArrayOutput) ToClientScopeArrayOutputWithContext(ctx context.
 }
 
 func (o ClientScopeArrayOutput) Index(i pulumi.IntInput) ClientScopeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClientScope {
-		return vs[0].([]ClientScope)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ClientScope {
+		return vs[0].([]*ClientScope)[vs[1].(int)]
 	}).(ClientScopeOutput)
 }
 
 type ClientScopeMapOutput struct{ *pulumi.OutputState }
 
 func (ClientScopeMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ClientScope)(nil))
+	return reflect.TypeOf((*map[string]*ClientScope)(nil)).Elem()
 }
 
 func (o ClientScopeMapOutput) ToClientScopeMapOutput() ClientScopeMapOutput {
@@ -343,18 +280,16 @@ func (o ClientScopeMapOutput) ToClientScopeMapOutputWithContext(ctx context.Cont
 }
 
 func (o ClientScopeMapOutput) MapIndex(k pulumi.StringInput) ClientScopeOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ClientScope {
-		return vs[0].(map[string]ClientScope)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ClientScope {
+		return vs[0].(map[string]*ClientScope)[vs[1].(string)]
 	}).(ClientScopeOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientScopeInput)(nil)).Elem(), &ClientScope{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ClientScopePtrInput)(nil)).Elem(), &ClientScope{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientScopeArrayInput)(nil)).Elem(), ClientScopeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientScopeMapInput)(nil)).Elem(), ClientScopeMap{})
 	pulumi.RegisterOutputType(ClientScopeOutput{})
-	pulumi.RegisterOutputType(ClientScopePtrOutput{})
 	pulumi.RegisterOutputType(ClientScopeArrayOutput{})
 	pulumi.RegisterOutputType(ClientScopeMapOutput{})
 }

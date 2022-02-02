@@ -361,7 +361,7 @@ type GoogleIdentityProviderInput interface {
 }
 
 func (*GoogleIdentityProvider) ElementType() reflect.Type {
-	return reflect.TypeOf((*GoogleIdentityProvider)(nil))
+	return reflect.TypeOf((**GoogleIdentityProvider)(nil)).Elem()
 }
 
 func (i *GoogleIdentityProvider) ToGoogleIdentityProviderOutput() GoogleIdentityProviderOutput {
@@ -370,35 +370,6 @@ func (i *GoogleIdentityProvider) ToGoogleIdentityProviderOutput() GoogleIdentity
 
 func (i *GoogleIdentityProvider) ToGoogleIdentityProviderOutputWithContext(ctx context.Context) GoogleIdentityProviderOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GoogleIdentityProviderOutput)
-}
-
-func (i *GoogleIdentityProvider) ToGoogleIdentityProviderPtrOutput() GoogleIdentityProviderPtrOutput {
-	return i.ToGoogleIdentityProviderPtrOutputWithContext(context.Background())
-}
-
-func (i *GoogleIdentityProvider) ToGoogleIdentityProviderPtrOutputWithContext(ctx context.Context) GoogleIdentityProviderPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GoogleIdentityProviderPtrOutput)
-}
-
-type GoogleIdentityProviderPtrInput interface {
-	pulumi.Input
-
-	ToGoogleIdentityProviderPtrOutput() GoogleIdentityProviderPtrOutput
-	ToGoogleIdentityProviderPtrOutputWithContext(ctx context.Context) GoogleIdentityProviderPtrOutput
-}
-
-type googleIdentityProviderPtrType GoogleIdentityProviderArgs
-
-func (*googleIdentityProviderPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GoogleIdentityProvider)(nil))
-}
-
-func (i *googleIdentityProviderPtrType) ToGoogleIdentityProviderPtrOutput() GoogleIdentityProviderPtrOutput {
-	return i.ToGoogleIdentityProviderPtrOutputWithContext(context.Background())
-}
-
-func (i *googleIdentityProviderPtrType) ToGoogleIdentityProviderPtrOutputWithContext(ctx context.Context) GoogleIdentityProviderPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GoogleIdentityProviderPtrOutput)
 }
 
 // GoogleIdentityProviderArrayInput is an input type that accepts GoogleIdentityProviderArray and GoogleIdentityProviderArrayOutput values.
@@ -454,7 +425,7 @@ func (i GoogleIdentityProviderMap) ToGoogleIdentityProviderMapOutputWithContext(
 type GoogleIdentityProviderOutput struct{ *pulumi.OutputState }
 
 func (GoogleIdentityProviderOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GoogleIdentityProvider)(nil))
+	return reflect.TypeOf((**GoogleIdentityProvider)(nil)).Elem()
 }
 
 func (o GoogleIdentityProviderOutput) ToGoogleIdentityProviderOutput() GoogleIdentityProviderOutput {
@@ -465,44 +436,10 @@ func (o GoogleIdentityProviderOutput) ToGoogleIdentityProviderOutputWithContext(
 	return o
 }
 
-func (o GoogleIdentityProviderOutput) ToGoogleIdentityProviderPtrOutput() GoogleIdentityProviderPtrOutput {
-	return o.ToGoogleIdentityProviderPtrOutputWithContext(context.Background())
-}
-
-func (o GoogleIdentityProviderOutput) ToGoogleIdentityProviderPtrOutputWithContext(ctx context.Context) GoogleIdentityProviderPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GoogleIdentityProvider) *GoogleIdentityProvider {
-		return &v
-	}).(GoogleIdentityProviderPtrOutput)
-}
-
-type GoogleIdentityProviderPtrOutput struct{ *pulumi.OutputState }
-
-func (GoogleIdentityProviderPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GoogleIdentityProvider)(nil))
-}
-
-func (o GoogleIdentityProviderPtrOutput) ToGoogleIdentityProviderPtrOutput() GoogleIdentityProviderPtrOutput {
-	return o
-}
-
-func (o GoogleIdentityProviderPtrOutput) ToGoogleIdentityProviderPtrOutputWithContext(ctx context.Context) GoogleIdentityProviderPtrOutput {
-	return o
-}
-
-func (o GoogleIdentityProviderPtrOutput) Elem() GoogleIdentityProviderOutput {
-	return o.ApplyT(func(v *GoogleIdentityProvider) GoogleIdentityProvider {
-		if v != nil {
-			return *v
-		}
-		var ret GoogleIdentityProvider
-		return ret
-	}).(GoogleIdentityProviderOutput)
-}
-
 type GoogleIdentityProviderArrayOutput struct{ *pulumi.OutputState }
 
 func (GoogleIdentityProviderArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GoogleIdentityProvider)(nil))
+	return reflect.TypeOf((*[]*GoogleIdentityProvider)(nil)).Elem()
 }
 
 func (o GoogleIdentityProviderArrayOutput) ToGoogleIdentityProviderArrayOutput() GoogleIdentityProviderArrayOutput {
@@ -514,15 +451,15 @@ func (o GoogleIdentityProviderArrayOutput) ToGoogleIdentityProviderArrayOutputWi
 }
 
 func (o GoogleIdentityProviderArrayOutput) Index(i pulumi.IntInput) GoogleIdentityProviderOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GoogleIdentityProvider {
-		return vs[0].([]GoogleIdentityProvider)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GoogleIdentityProvider {
+		return vs[0].([]*GoogleIdentityProvider)[vs[1].(int)]
 	}).(GoogleIdentityProviderOutput)
 }
 
 type GoogleIdentityProviderMapOutput struct{ *pulumi.OutputState }
 
 func (GoogleIdentityProviderMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]GoogleIdentityProvider)(nil))
+	return reflect.TypeOf((*map[string]*GoogleIdentityProvider)(nil)).Elem()
 }
 
 func (o GoogleIdentityProviderMapOutput) ToGoogleIdentityProviderMapOutput() GoogleIdentityProviderMapOutput {
@@ -534,18 +471,16 @@ func (o GoogleIdentityProviderMapOutput) ToGoogleIdentityProviderMapOutputWithCo
 }
 
 func (o GoogleIdentityProviderMapOutput) MapIndex(k pulumi.StringInput) GoogleIdentityProviderOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) GoogleIdentityProvider {
-		return vs[0].(map[string]GoogleIdentityProvider)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *GoogleIdentityProvider {
+		return vs[0].(map[string]*GoogleIdentityProvider)[vs[1].(string)]
 	}).(GoogleIdentityProviderOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GoogleIdentityProviderInput)(nil)).Elem(), &GoogleIdentityProvider{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GoogleIdentityProviderPtrInput)(nil)).Elem(), &GoogleIdentityProvider{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GoogleIdentityProviderArrayInput)(nil)).Elem(), GoogleIdentityProviderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GoogleIdentityProviderMapInput)(nil)).Elem(), GoogleIdentityProviderMap{})
 	pulumi.RegisterOutputType(GoogleIdentityProviderOutput{})
-	pulumi.RegisterOutputType(GoogleIdentityProviderPtrOutput{})
 	pulumi.RegisterOutputType(GoogleIdentityProviderArrayOutput{})
 	pulumi.RegisterOutputType(GoogleIdentityProviderMapOutput{})
 }

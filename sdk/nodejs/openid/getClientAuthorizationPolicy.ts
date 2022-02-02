@@ -30,11 +30,11 @@ import * as utilities from "../utilities";
  *         policyEnforcementMode: "ENFORCING",
  *     },
  * });
- * const defaultPermission = pulumi.all([realm.id, clientWithAuthz.resourceServerId]).apply(([id, resourceServerId]) => keycloak.openid.getClientAuthorizationPolicy({
- *     realmId: id,
- *     resourceServerId: resourceServerId,
+ * const defaultPermission = keycloak.openid.getClientAuthorizationPolicyOutput({
+ *     realmId: realm.id,
+ *     resourceServerId: clientWithAuthz.resourceServerId,
  *     name: "Default Permission",
- * }));
+ * });
  * const resource = new keycloak.openid.ClientAuthorizationResource("resource", {
  *     resourceServerId: clientWithAuthz.resourceServerId,
  *     realmId: realm.id,
@@ -56,9 +56,7 @@ export function getClientAuthorizationPolicy(args: GetClientAuthorizationPolicyA
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", {
         "name": args.name,
         "realmId": args.realmId,

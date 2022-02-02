@@ -29,14 +29,14 @@ import * as utilities from "../utilities";
  *     accessType: "CONFIDENTIAL",
  *     serviceAccountsEnabled: true,
  * });
- * const serviceAccountUser = pulumi.all([realm.id, client.id]).apply(([realmId, clientId]) => keycloak.openid.getClientServiceAccountUser({
- *     realmId: realmId,
- *     clientId: clientId,
- * }));
- * const offlineAccess = realm.id.apply(id => keycloak.getRole({
- *     realmId: id,
+ * const serviceAccountUser = keycloak.openid.getClientServiceAccountUserOutput({
+ *     realmId: realm.id,
+ *     clientId: client.id,
+ * });
+ * const offlineAccess = keycloak.getRoleOutput({
+ *     realmId: realm.id,
  *     name: "offline_access",
- * }));
+ * });
  * const serviceAccountUserRoles = new keycloak.UserRoles("serviceAccountUserRoles", {
  *     realmId: realm.id,
  *     userId: serviceAccountUser.apply(serviceAccountUser => serviceAccountUser.id),
@@ -49,9 +49,7 @@ export function getClientServiceAccountUser(args: GetClientServiceAccountUserArg
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", {
         "clientId": args.clientId,
         "realmId": args.realmId,

@@ -92,30 +92,28 @@ export class ClientScope extends pulumi.CustomResource {
      */
     constructor(name: string, args: ClientScopeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClientScopeArgs | ClientScopeState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClientScopeState | undefined;
-            inputs["consentScreenText"] = state ? state.consentScreenText : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["guiOrder"] = state ? state.guiOrder : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["consentScreenText"] = state ? state.consentScreenText : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["guiOrder"] = state ? state.guiOrder : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as ClientScopeArgs | undefined;
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["consentScreenText"] = args ? args.consentScreenText : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["guiOrder"] = args ? args.guiOrder : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["consentScreenText"] = args ? args.consentScreenText : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["guiOrder"] = args ? args.guiOrder : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ClientScope.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ClientScope.__pulumiType, name, resourceInputs, opts);
     }
 }
 

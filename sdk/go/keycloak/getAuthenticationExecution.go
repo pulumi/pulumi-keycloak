@@ -31,6 +31,11 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
+// 		_ = keycloak.GetAuthenticationExecutionOutput(ctx, GetAuthenticationExecutionOutputArgs{
+// 			RealmId:         realm.ID(),
+// 			ParentFlowAlias: pulumi.String("browser"),
+// 			ProviderId:      pulumi.String("auth-cookie"),
+// 		}, nil)
 // 		return nil
 // 	})
 // }

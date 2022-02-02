@@ -219,41 +219,41 @@ export class UserFederation extends pulumi.CustomResource {
      */
     constructor(name: string, args: UserFederationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserFederationArgs | UserFederationState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserFederationState | undefined;
-            inputs["batchSizeForSync"] = state ? state.batchSizeForSync : undefined;
-            inputs["bindCredential"] = state ? state.bindCredential : undefined;
-            inputs["bindDn"] = state ? state.bindDn : undefined;
-            inputs["cache"] = state ? state.cache : undefined;
-            inputs["changedSyncPeriod"] = state ? state.changedSyncPeriod : undefined;
-            inputs["connectionTimeout"] = state ? state.connectionTimeout : undefined;
-            inputs["connectionUrl"] = state ? state.connectionUrl : undefined;
-            inputs["customUserSearchFilter"] = state ? state.customUserSearchFilter : undefined;
-            inputs["editMode"] = state ? state.editMode : undefined;
-            inputs["enabled"] = state ? state.enabled : undefined;
-            inputs["fullSyncPeriod"] = state ? state.fullSyncPeriod : undefined;
-            inputs["importEnabled"] = state ? state.importEnabled : undefined;
-            inputs["kerberos"] = state ? state.kerberos : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["pagination"] = state ? state.pagination : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["rdnLdapAttribute"] = state ? state.rdnLdapAttribute : undefined;
-            inputs["readTimeout"] = state ? state.readTimeout : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["searchScope"] = state ? state.searchScope : undefined;
-            inputs["startTls"] = state ? state.startTls : undefined;
-            inputs["syncRegistrations"] = state ? state.syncRegistrations : undefined;
-            inputs["trustEmail"] = state ? state.trustEmail : undefined;
-            inputs["usePasswordModifyExtendedOp"] = state ? state.usePasswordModifyExtendedOp : undefined;
-            inputs["useTruststoreSpi"] = state ? state.useTruststoreSpi : undefined;
-            inputs["userObjectClasses"] = state ? state.userObjectClasses : undefined;
-            inputs["usernameLdapAttribute"] = state ? state.usernameLdapAttribute : undefined;
-            inputs["usersDn"] = state ? state.usersDn : undefined;
-            inputs["uuidLdapAttribute"] = state ? state.uuidLdapAttribute : undefined;
-            inputs["validatePasswordPolicy"] = state ? state.validatePasswordPolicy : undefined;
-            inputs["vendor"] = state ? state.vendor : undefined;
+            resourceInputs["batchSizeForSync"] = state ? state.batchSizeForSync : undefined;
+            resourceInputs["bindCredential"] = state ? state.bindCredential : undefined;
+            resourceInputs["bindDn"] = state ? state.bindDn : undefined;
+            resourceInputs["cache"] = state ? state.cache : undefined;
+            resourceInputs["changedSyncPeriod"] = state ? state.changedSyncPeriod : undefined;
+            resourceInputs["connectionTimeout"] = state ? state.connectionTimeout : undefined;
+            resourceInputs["connectionUrl"] = state ? state.connectionUrl : undefined;
+            resourceInputs["customUserSearchFilter"] = state ? state.customUserSearchFilter : undefined;
+            resourceInputs["editMode"] = state ? state.editMode : undefined;
+            resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["fullSyncPeriod"] = state ? state.fullSyncPeriod : undefined;
+            resourceInputs["importEnabled"] = state ? state.importEnabled : undefined;
+            resourceInputs["kerberos"] = state ? state.kerberos : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["pagination"] = state ? state.pagination : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["rdnLdapAttribute"] = state ? state.rdnLdapAttribute : undefined;
+            resourceInputs["readTimeout"] = state ? state.readTimeout : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["searchScope"] = state ? state.searchScope : undefined;
+            resourceInputs["startTls"] = state ? state.startTls : undefined;
+            resourceInputs["syncRegistrations"] = state ? state.syncRegistrations : undefined;
+            resourceInputs["trustEmail"] = state ? state.trustEmail : undefined;
+            resourceInputs["usePasswordModifyExtendedOp"] = state ? state.usePasswordModifyExtendedOp : undefined;
+            resourceInputs["useTruststoreSpi"] = state ? state.useTruststoreSpi : undefined;
+            resourceInputs["userObjectClasses"] = state ? state.userObjectClasses : undefined;
+            resourceInputs["usernameLdapAttribute"] = state ? state.usernameLdapAttribute : undefined;
+            resourceInputs["usersDn"] = state ? state.usersDn : undefined;
+            resourceInputs["uuidLdapAttribute"] = state ? state.uuidLdapAttribute : undefined;
+            resourceInputs["validatePasswordPolicy"] = state ? state.validatePasswordPolicy : undefined;
+            resourceInputs["vendor"] = state ? state.vendor : undefined;
         } else {
             const args = argsOrState as UserFederationArgs | undefined;
             if ((!args || args.connectionUrl === undefined) && !opts.urn) {
@@ -277,42 +277,40 @@ export class UserFederation extends pulumi.CustomResource {
             if ((!args || args.uuidLdapAttribute === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'uuidLdapAttribute'");
             }
-            inputs["batchSizeForSync"] = args ? args.batchSizeForSync : undefined;
-            inputs["bindCredential"] = args ? args.bindCredential : undefined;
-            inputs["bindDn"] = args ? args.bindDn : undefined;
-            inputs["cache"] = args ? args.cache : undefined;
-            inputs["changedSyncPeriod"] = args ? args.changedSyncPeriod : undefined;
-            inputs["connectionTimeout"] = args ? args.connectionTimeout : undefined;
-            inputs["connectionUrl"] = args ? args.connectionUrl : undefined;
-            inputs["customUserSearchFilter"] = args ? args.customUserSearchFilter : undefined;
-            inputs["editMode"] = args ? args.editMode : undefined;
-            inputs["enabled"] = args ? args.enabled : undefined;
-            inputs["fullSyncPeriod"] = args ? args.fullSyncPeriod : undefined;
-            inputs["importEnabled"] = args ? args.importEnabled : undefined;
-            inputs["kerberos"] = args ? args.kerberos : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["pagination"] = args ? args.pagination : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["rdnLdapAttribute"] = args ? args.rdnLdapAttribute : undefined;
-            inputs["readTimeout"] = args ? args.readTimeout : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["searchScope"] = args ? args.searchScope : undefined;
-            inputs["startTls"] = args ? args.startTls : undefined;
-            inputs["syncRegistrations"] = args ? args.syncRegistrations : undefined;
-            inputs["trustEmail"] = args ? args.trustEmail : undefined;
-            inputs["usePasswordModifyExtendedOp"] = args ? args.usePasswordModifyExtendedOp : undefined;
-            inputs["useTruststoreSpi"] = args ? args.useTruststoreSpi : undefined;
-            inputs["userObjectClasses"] = args ? args.userObjectClasses : undefined;
-            inputs["usernameLdapAttribute"] = args ? args.usernameLdapAttribute : undefined;
-            inputs["usersDn"] = args ? args.usersDn : undefined;
-            inputs["uuidLdapAttribute"] = args ? args.uuidLdapAttribute : undefined;
-            inputs["validatePasswordPolicy"] = args ? args.validatePasswordPolicy : undefined;
-            inputs["vendor"] = args ? args.vendor : undefined;
+            resourceInputs["batchSizeForSync"] = args ? args.batchSizeForSync : undefined;
+            resourceInputs["bindCredential"] = args ? args.bindCredential : undefined;
+            resourceInputs["bindDn"] = args ? args.bindDn : undefined;
+            resourceInputs["cache"] = args ? args.cache : undefined;
+            resourceInputs["changedSyncPeriod"] = args ? args.changedSyncPeriod : undefined;
+            resourceInputs["connectionTimeout"] = args ? args.connectionTimeout : undefined;
+            resourceInputs["connectionUrl"] = args ? args.connectionUrl : undefined;
+            resourceInputs["customUserSearchFilter"] = args ? args.customUserSearchFilter : undefined;
+            resourceInputs["editMode"] = args ? args.editMode : undefined;
+            resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["fullSyncPeriod"] = args ? args.fullSyncPeriod : undefined;
+            resourceInputs["importEnabled"] = args ? args.importEnabled : undefined;
+            resourceInputs["kerberos"] = args ? args.kerberos : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["pagination"] = args ? args.pagination : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["rdnLdapAttribute"] = args ? args.rdnLdapAttribute : undefined;
+            resourceInputs["readTimeout"] = args ? args.readTimeout : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["searchScope"] = args ? args.searchScope : undefined;
+            resourceInputs["startTls"] = args ? args.startTls : undefined;
+            resourceInputs["syncRegistrations"] = args ? args.syncRegistrations : undefined;
+            resourceInputs["trustEmail"] = args ? args.trustEmail : undefined;
+            resourceInputs["usePasswordModifyExtendedOp"] = args ? args.usePasswordModifyExtendedOp : undefined;
+            resourceInputs["useTruststoreSpi"] = args ? args.useTruststoreSpi : undefined;
+            resourceInputs["userObjectClasses"] = args ? args.userObjectClasses : undefined;
+            resourceInputs["usernameLdapAttribute"] = args ? args.usernameLdapAttribute : undefined;
+            resourceInputs["usersDn"] = args ? args.usersDn : undefined;
+            resourceInputs["uuidLdapAttribute"] = args ? args.uuidLdapAttribute : undefined;
+            resourceInputs["validatePasswordPolicy"] = args ? args.validatePasswordPolicy : undefined;
+            resourceInputs["vendor"] = args ? args.vendor : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserFederation.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserFederation.__pulumiType, name, resourceInputs, opts);
     }
 }
 

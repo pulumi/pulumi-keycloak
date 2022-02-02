@@ -48,7 +48,7 @@ export class Provider extends pulumi.ProviderResource {
      * @param opts A bag of options that control this resource's behavior.
      */
     constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
             if ((!args || args.clientId === undefined) && !opts.urn) {
@@ -57,23 +57,21 @@ export class Provider extends pulumi.ProviderResource {
             if ((!args || args.url === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'url'");
             }
-            inputs["additionalHeaders"] = pulumi.output(args ? args.additionalHeaders : undefined).apply(JSON.stringify);
-            inputs["basePath"] = args ? args.basePath : undefined;
-            inputs["clientId"] = args ? args.clientId : undefined;
-            inputs["clientSecret"] = args ? args.clientSecret : undefined;
-            inputs["clientTimeout"] = pulumi.output((args ? args.clientTimeout : undefined) ?? (<any>utilities.getEnvNumber("KEYCLOAK_CLIENT_TIMEOUT") || 5)).apply(JSON.stringify);
-            inputs["initialLogin"] = pulumi.output(args ? args.initialLogin : undefined).apply(JSON.stringify);
-            inputs["password"] = args ? args.password : undefined;
-            inputs["realm"] = args ? args.realm : undefined;
-            inputs["rootCaCertificate"] = args ? args.rootCaCertificate : undefined;
-            inputs["tlsInsecureSkipVerify"] = pulumi.output(args ? args.tlsInsecureSkipVerify : undefined).apply(JSON.stringify);
-            inputs["url"] = args ? args.url : undefined;
-            inputs["username"] = args ? args.username : undefined;
+            resourceInputs["additionalHeaders"] = pulumi.output(args ? args.additionalHeaders : undefined).apply(JSON.stringify);
+            resourceInputs["basePath"] = args ? args.basePath : undefined;
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["clientSecret"] = args ? args.clientSecret : undefined;
+            resourceInputs["clientTimeout"] = pulumi.output((args ? args.clientTimeout : undefined) ?? (utilities.getEnvNumber("KEYCLOAK_CLIENT_TIMEOUT") || 5)).apply(JSON.stringify);
+            resourceInputs["initialLogin"] = pulumi.output(args ? args.initialLogin : undefined).apply(JSON.stringify);
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["realm"] = args ? args.realm : undefined;
+            resourceInputs["rootCaCertificate"] = args ? args.rootCaCertificate : undefined;
+            resourceInputs["tlsInsecureSkipVerify"] = pulumi.output(args ? args.tlsInsecureSkipVerify : undefined).apply(JSON.stringify);
+            resourceInputs["url"] = args ? args.url : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Provider.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }
 

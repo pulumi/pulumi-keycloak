@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Keycloak.OpenId
 {
@@ -44,21 +43,16 @@ namespace Pulumi.Keycloak.OpenId
         ///             AccessType = "CONFIDENTIAL",
         ///             ServiceAccountsEnabled = true,
         ///         });
-        ///         var serviceAccountUser = Output.Tuple(realm.Id, client.Id).Apply(values =&gt;
+        ///         var serviceAccountUser = Keycloak.OpenId.GetClientServiceAccountUser.Invoke(new Keycloak.OpenId.GetClientServiceAccountUserInvokeArgs
         ///         {
-        ///             var realmId = values.Item1;
-        ///             var clientId = values.Item2;
-        ///             return Keycloak.OpenId.GetClientServiceAccountUser.InvokeAsync(new Keycloak.OpenId.GetClientServiceAccountUserArgs
-        ///             {
-        ///                 RealmId = realmId,
-        ///                 ClientId = clientId,
-        ///             });
+        ///             RealmId = realm.Id,
+        ///             ClientId = client.Id,
         ///         });
-        ///         var offlineAccess = realm.Id.Apply(id =&gt; Keycloak.GetRole.InvokeAsync(new Keycloak.GetRoleArgs
+        ///         var offlineAccess = Keycloak.GetRole.Invoke(new Keycloak.GetRoleInvokeArgs
         ///         {
-        ///             RealmId = id,
+        ///             RealmId = realm.Id,
         ///             Name = "offline_access",
-        ///         }));
+        ///         });
         ///         var serviceAccountUserRoles = new Keycloak.UserRoles("serviceAccountUserRoles", new Keycloak.UserRolesArgs
         ///         {
         ///             RealmId = realm.Id,
@@ -76,7 +70,7 @@ namespace Pulumi.Keycloak.OpenId
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetClientServiceAccountUserResult> InvokeAsync(GetClientServiceAccountUserArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetClientServiceAccountUserResult>("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", args ?? new GetClientServiceAccountUserArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetClientServiceAccountUserResult>("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", args ?? new GetClientServiceAccountUserArgs(), options.WithDefaults());
 
         /// <summary>
         /// This data source can be used to fetch information about the service account user that is associated with an OpenID client
@@ -110,21 +104,16 @@ namespace Pulumi.Keycloak.OpenId
         ///             AccessType = "CONFIDENTIAL",
         ///             ServiceAccountsEnabled = true,
         ///         });
-        ///         var serviceAccountUser = Output.Tuple(realm.Id, client.Id).Apply(values =&gt;
+        ///         var serviceAccountUser = Keycloak.OpenId.GetClientServiceAccountUser.Invoke(new Keycloak.OpenId.GetClientServiceAccountUserInvokeArgs
         ///         {
-        ///             var realmId = values.Item1;
-        ///             var clientId = values.Item2;
-        ///             return Keycloak.OpenId.GetClientServiceAccountUser.InvokeAsync(new Keycloak.OpenId.GetClientServiceAccountUserArgs
-        ///             {
-        ///                 RealmId = realmId,
-        ///                 ClientId = clientId,
-        ///             });
+        ///             RealmId = realm.Id,
+        ///             ClientId = client.Id,
         ///         });
-        ///         var offlineAccess = realm.Id.Apply(id =&gt; Keycloak.GetRole.InvokeAsync(new Keycloak.GetRoleArgs
+        ///         var offlineAccess = Keycloak.GetRole.Invoke(new Keycloak.GetRoleInvokeArgs
         ///         {
-        ///             RealmId = id,
+        ///             RealmId = realm.Id,
         ///             Name = "offline_access",
-        ///         }));
+        ///         });
         ///         var serviceAccountUserRoles = new Keycloak.UserRoles("serviceAccountUserRoles", new Keycloak.UserRolesArgs
         ///         {
         ///             RealmId = realm.Id,
@@ -142,7 +131,7 @@ namespace Pulumi.Keycloak.OpenId
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetClientServiceAccountUserResult> Invoke(GetClientServiceAccountUserInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetClientServiceAccountUserResult>("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", args ?? new GetClientServiceAccountUserInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetClientServiceAccountUserResult>("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", args ?? new GetClientServiceAccountUserInvokeArgs(), options.WithDefaults());
     }
 
 

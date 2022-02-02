@@ -129,7 +129,7 @@ type GroupRolesInput interface {
 }
 
 func (*GroupRoles) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupRoles)(nil))
+	return reflect.TypeOf((**GroupRoles)(nil)).Elem()
 }
 
 func (i *GroupRoles) ToGroupRolesOutput() GroupRolesOutput {
@@ -138,35 +138,6 @@ func (i *GroupRoles) ToGroupRolesOutput() GroupRolesOutput {
 
 func (i *GroupRoles) ToGroupRolesOutputWithContext(ctx context.Context) GroupRolesOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupRolesOutput)
-}
-
-func (i *GroupRoles) ToGroupRolesPtrOutput() GroupRolesPtrOutput {
-	return i.ToGroupRolesPtrOutputWithContext(context.Background())
-}
-
-func (i *GroupRoles) ToGroupRolesPtrOutputWithContext(ctx context.Context) GroupRolesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GroupRolesPtrOutput)
-}
-
-type GroupRolesPtrInput interface {
-	pulumi.Input
-
-	ToGroupRolesPtrOutput() GroupRolesPtrOutput
-	ToGroupRolesPtrOutputWithContext(ctx context.Context) GroupRolesPtrOutput
-}
-
-type groupRolesPtrType GroupRolesArgs
-
-func (*groupRolesPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GroupRoles)(nil))
-}
-
-func (i *groupRolesPtrType) ToGroupRolesPtrOutput() GroupRolesPtrOutput {
-	return i.ToGroupRolesPtrOutputWithContext(context.Background())
-}
-
-func (i *groupRolesPtrType) ToGroupRolesPtrOutputWithContext(ctx context.Context) GroupRolesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GroupRolesPtrOutput)
 }
 
 // GroupRolesArrayInput is an input type that accepts GroupRolesArray and GroupRolesArrayOutput values.
@@ -222,7 +193,7 @@ func (i GroupRolesMap) ToGroupRolesMapOutputWithContext(ctx context.Context) Gro
 type GroupRolesOutput struct{ *pulumi.OutputState }
 
 func (GroupRolesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupRoles)(nil))
+	return reflect.TypeOf((**GroupRoles)(nil)).Elem()
 }
 
 func (o GroupRolesOutput) ToGroupRolesOutput() GroupRolesOutput {
@@ -233,44 +204,10 @@ func (o GroupRolesOutput) ToGroupRolesOutputWithContext(ctx context.Context) Gro
 	return o
 }
 
-func (o GroupRolesOutput) ToGroupRolesPtrOutput() GroupRolesPtrOutput {
-	return o.ToGroupRolesPtrOutputWithContext(context.Background())
-}
-
-func (o GroupRolesOutput) ToGroupRolesPtrOutputWithContext(ctx context.Context) GroupRolesPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GroupRoles) *GroupRoles {
-		return &v
-	}).(GroupRolesPtrOutput)
-}
-
-type GroupRolesPtrOutput struct{ *pulumi.OutputState }
-
-func (GroupRolesPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GroupRoles)(nil))
-}
-
-func (o GroupRolesPtrOutput) ToGroupRolesPtrOutput() GroupRolesPtrOutput {
-	return o
-}
-
-func (o GroupRolesPtrOutput) ToGroupRolesPtrOutputWithContext(ctx context.Context) GroupRolesPtrOutput {
-	return o
-}
-
-func (o GroupRolesPtrOutput) Elem() GroupRolesOutput {
-	return o.ApplyT(func(v *GroupRoles) GroupRoles {
-		if v != nil {
-			return *v
-		}
-		var ret GroupRoles
-		return ret
-	}).(GroupRolesOutput)
-}
-
 type GroupRolesArrayOutput struct{ *pulumi.OutputState }
 
 func (GroupRolesArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GroupRoles)(nil))
+	return reflect.TypeOf((*[]*GroupRoles)(nil)).Elem()
 }
 
 func (o GroupRolesArrayOutput) ToGroupRolesArrayOutput() GroupRolesArrayOutput {
@@ -282,15 +219,15 @@ func (o GroupRolesArrayOutput) ToGroupRolesArrayOutputWithContext(ctx context.Co
 }
 
 func (o GroupRolesArrayOutput) Index(i pulumi.IntInput) GroupRolesOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GroupRoles {
-		return vs[0].([]GroupRoles)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GroupRoles {
+		return vs[0].([]*GroupRoles)[vs[1].(int)]
 	}).(GroupRolesOutput)
 }
 
 type GroupRolesMapOutput struct{ *pulumi.OutputState }
 
 func (GroupRolesMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]GroupRoles)(nil))
+	return reflect.TypeOf((*map[string]*GroupRoles)(nil)).Elem()
 }
 
 func (o GroupRolesMapOutput) ToGroupRolesMapOutput() GroupRolesMapOutput {
@@ -302,18 +239,16 @@ func (o GroupRolesMapOutput) ToGroupRolesMapOutputWithContext(ctx context.Contex
 }
 
 func (o GroupRolesMapOutput) MapIndex(k pulumi.StringInput) GroupRolesOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) GroupRoles {
-		return vs[0].(map[string]GroupRoles)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *GroupRoles {
+		return vs[0].(map[string]*GroupRoles)[vs[1].(string)]
 	}).(GroupRolesOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupRolesInput)(nil)).Elem(), &GroupRoles{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GroupRolesPtrInput)(nil)).Elem(), &GroupRoles{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupRolesArrayInput)(nil)).Elem(), GroupRolesArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupRolesMapInput)(nil)).Elem(), GroupRolesMap{})
 	pulumi.RegisterOutputType(GroupRolesOutput{})
-	pulumi.RegisterOutputType(GroupRolesPtrOutput{})
 	pulumi.RegisterOutputType(GroupRolesArrayOutput{})
 	pulumi.RegisterOutputType(GroupRolesMapOutput{})
 }

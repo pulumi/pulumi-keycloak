@@ -92,16 +92,16 @@ namespace Pulumi.Keycloak.Ldap
     ///             BindDn = "cn=admin,dc=example,dc=org",
     ///             BindCredential = "admin",
     ///         });
-    ///         var realmManagement = realm.Id.Apply(id =&gt; Keycloak.OpenId.GetClient.InvokeAsync(new Keycloak.OpenId.GetClientArgs
+    ///         var realmManagement = Keycloak.OpenId.GetClient.Invoke(new Keycloak.OpenId.GetClientInvokeArgs
     ///         {
-    ///             RealmId = id,
+    ///             RealmId = realm.Id,
     ///             ClientId = "realm-management",
-    ///         }));
+    ///         });
     ///         var createClient = Output.Tuple(realm.Id, realmManagement).Apply(values =&gt;
     ///         {
     ///             var id = values.Item1;
     ///             var realmManagement = values.Item2;
-    ///             return Keycloak.GetRole.InvokeAsync(new Keycloak.GetRoleArgs
+    ///             return Keycloak.GetRole.Invoke(new Keycloak.GetRoleInvokeArgs
     ///             {
     ///                 RealmId = id,
     ///                 ClientId = realmManagement.Id,

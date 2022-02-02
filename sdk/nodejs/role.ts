@@ -191,32 +191,30 @@ export class Role extends pulumi.CustomResource {
      */
     constructor(name: string, args: RoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RoleArgs | RoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RoleState | undefined;
-            inputs["attributes"] = state ? state.attributes : undefined;
-            inputs["clientId"] = state ? state.clientId : undefined;
-            inputs["compositeRoles"] = state ? state.compositeRoles : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["attributes"] = state ? state.attributes : undefined;
+            resourceInputs["clientId"] = state ? state.clientId : undefined;
+            resourceInputs["compositeRoles"] = state ? state.compositeRoles : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as RoleArgs | undefined;
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["attributes"] = args ? args.attributes : undefined;
-            inputs["clientId"] = args ? args.clientId : undefined;
-            inputs["compositeRoles"] = args ? args.compositeRoles : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["attributes"] = args ? args.attributes : undefined;
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["compositeRoles"] = args ? args.compositeRoles : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Role.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Role.__pulumiType, name, resourceInputs, opts);
     }
 }
 

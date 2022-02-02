@@ -189,14 +189,14 @@ export class GenericClientRoleMapper extends pulumi.CustomResource {
      */
     constructor(name: string, args: GenericClientRoleMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GenericClientRoleMapperArgs | GenericClientRoleMapperState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GenericClientRoleMapperState | undefined;
-            inputs["clientId"] = state ? state.clientId : undefined;
-            inputs["clientScopeId"] = state ? state.clientScopeId : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["roleId"] = state ? state.roleId : undefined;
+            resourceInputs["clientId"] = state ? state.clientId : undefined;
+            resourceInputs["clientScopeId"] = state ? state.clientScopeId : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["roleId"] = state ? state.roleId : undefined;
         } else {
             const args = argsOrState as GenericClientRoleMapperArgs | undefined;
             if ((!args || args.realmId === undefined) && !opts.urn) {
@@ -205,15 +205,13 @@ export class GenericClientRoleMapper extends pulumi.CustomResource {
             if ((!args || args.roleId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleId'");
             }
-            inputs["clientId"] = args ? args.clientId : undefined;
-            inputs["clientScopeId"] = args ? args.clientScopeId : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["roleId"] = args ? args.roleId : undefined;
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["clientScopeId"] = args ? args.clientScopeId : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["roleId"] = args ? args.roleId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(GenericClientRoleMapper.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(GenericClientRoleMapper.__pulumiType, name, resourceInputs, opts);
     }
 }
 

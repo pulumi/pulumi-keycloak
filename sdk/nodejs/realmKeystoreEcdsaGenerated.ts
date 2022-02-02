@@ -95,32 +95,30 @@ export class RealmKeystoreEcdsaGenerated extends pulumi.CustomResource {
      */
     constructor(name: string, args: RealmKeystoreEcdsaGeneratedArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RealmKeystoreEcdsaGeneratedArgs | RealmKeystoreEcdsaGeneratedState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RealmKeystoreEcdsaGeneratedState | undefined;
-            inputs["active"] = state ? state.active : undefined;
-            inputs["ellipticCurveKey"] = state ? state.ellipticCurveKey : undefined;
-            inputs["enabled"] = state ? state.enabled : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["active"] = state ? state.active : undefined;
+            resourceInputs["ellipticCurveKey"] = state ? state.ellipticCurveKey : undefined;
+            resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as RealmKeystoreEcdsaGeneratedArgs | undefined;
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["active"] = args ? args.active : undefined;
-            inputs["ellipticCurveKey"] = args ? args.ellipticCurveKey : undefined;
-            inputs["enabled"] = args ? args.enabled : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["active"] = args ? args.active : undefined;
+            resourceInputs["ellipticCurveKey"] = args ? args.ellipticCurveKey : undefined;
+            resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RealmKeystoreEcdsaGenerated.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RealmKeystoreEcdsaGenerated.__pulumiType, name, resourceInputs, opts);
     }
 }
 

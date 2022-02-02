@@ -17,11 +17,11 @@ import * as utilities from "./utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const browserAuthCookie = realm.id.apply(id => keycloak.getAuthenticationExecution({
- *     realmId: id,
+ * const browserAuthCookie = keycloak.getAuthenticationExecutionOutput({
+ *     realmId: realm.id,
  *     parentFlowAlias: "browser",
  *     providerId: "auth-cookie",
- * }));
+ * });
  * ```
  */
 export function getAuthenticationExecution(args: GetAuthenticationExecutionArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthenticationExecutionResult> {
@@ -29,9 +29,7 @@ export function getAuthenticationExecution(args: GetAuthenticationExecutionArgs,
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("keycloak:index/getAuthenticationExecution:getAuthenticationExecution", {
         "parentFlowAlias": args.parentFlowAlias,
         "providerId": args.providerId,

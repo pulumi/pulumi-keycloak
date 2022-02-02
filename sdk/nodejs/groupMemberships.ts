@@ -59,13 +59,13 @@ export class GroupMemberships extends pulumi.CustomResource {
      */
     constructor(name: string, args: GroupMembershipsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GroupMembershipsArgs | GroupMembershipsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GroupMembershipsState | undefined;
-            inputs["groupId"] = state ? state.groupId : undefined;
-            inputs["members"] = state ? state.members : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["groupId"] = state ? state.groupId : undefined;
+            resourceInputs["members"] = state ? state.members : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as GroupMembershipsArgs | undefined;
             if ((!args || args.members === undefined) && !opts.urn) {
@@ -74,14 +74,12 @@ export class GroupMemberships extends pulumi.CustomResource {
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["groupId"] = args ? args.groupId : undefined;
-            inputs["members"] = args ? args.members : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["groupId"] = args ? args.groupId : undefined;
+            resourceInputs["members"] = args ? args.members : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(GroupMemberships.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(GroupMemberships.__pulumiType, name, resourceInputs, opts);
     }
 }
 

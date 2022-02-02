@@ -131,20 +131,20 @@ export class User extends pulumi.CustomResource {
      */
     constructor(name: string, args: UserArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserArgs | UserState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserState | undefined;
-            inputs["attributes"] = state ? state.attributes : undefined;
-            inputs["email"] = state ? state.email : undefined;
-            inputs["emailVerified"] = state ? state.emailVerified : undefined;
-            inputs["enabled"] = state ? state.enabled : undefined;
-            inputs["federatedIdentities"] = state ? state.federatedIdentities : undefined;
-            inputs["firstName"] = state ? state.firstName : undefined;
-            inputs["initialPassword"] = state ? state.initialPassword : undefined;
-            inputs["lastName"] = state ? state.lastName : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["username"] = state ? state.username : undefined;
+            resourceInputs["attributes"] = state ? state.attributes : undefined;
+            resourceInputs["email"] = state ? state.email : undefined;
+            resourceInputs["emailVerified"] = state ? state.emailVerified : undefined;
+            resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["federatedIdentities"] = state ? state.federatedIdentities : undefined;
+            resourceInputs["firstName"] = state ? state.firstName : undefined;
+            resourceInputs["initialPassword"] = state ? state.initialPassword : undefined;
+            resourceInputs["lastName"] = state ? state.lastName : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["username"] = state ? state.username : undefined;
         } else {
             const args = argsOrState as UserArgs | undefined;
             if ((!args || args.realmId === undefined) && !opts.urn) {
@@ -153,21 +153,19 @@ export class User extends pulumi.CustomResource {
             if ((!args || args.username === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            inputs["attributes"] = args ? args.attributes : undefined;
-            inputs["email"] = args ? args.email : undefined;
-            inputs["emailVerified"] = args ? args.emailVerified : undefined;
-            inputs["enabled"] = args ? args.enabled : undefined;
-            inputs["federatedIdentities"] = args ? args.federatedIdentities : undefined;
-            inputs["firstName"] = args ? args.firstName : undefined;
-            inputs["initialPassword"] = args ? args.initialPassword : undefined;
-            inputs["lastName"] = args ? args.lastName : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["username"] = args ? args.username : undefined;
+            resourceInputs["attributes"] = args ? args.attributes : undefined;
+            resourceInputs["email"] = args ? args.email : undefined;
+            resourceInputs["emailVerified"] = args ? args.emailVerified : undefined;
+            resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["federatedIdentities"] = args ? args.federatedIdentities : undefined;
+            resourceInputs["firstName"] = args ? args.firstName : undefined;
+            resourceInputs["initialPassword"] = args ? args.initialPassword : undefined;
+            resourceInputs["lastName"] = args ? args.lastName : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(User.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(User.__pulumiType, name, resourceInputs, opts);
     }
 }
 

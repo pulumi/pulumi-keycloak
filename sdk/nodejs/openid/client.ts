@@ -221,45 +221,45 @@ export class Client extends pulumi.CustomResource {
      */
     constructor(name: string, args: ClientArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClientArgs | ClientState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClientState | undefined;
-            inputs["accessTokenLifespan"] = state ? state.accessTokenLifespan : undefined;
-            inputs["accessType"] = state ? state.accessType : undefined;
-            inputs["adminUrl"] = state ? state.adminUrl : undefined;
-            inputs["authenticationFlowBindingOverrides"] = state ? state.authenticationFlowBindingOverrides : undefined;
-            inputs["authorization"] = state ? state.authorization : undefined;
-            inputs["backchannelLogoutRevokeOfflineSessions"] = state ? state.backchannelLogoutRevokeOfflineSessions : undefined;
-            inputs["backchannelLogoutSessionRequired"] = state ? state.backchannelLogoutSessionRequired : undefined;
-            inputs["backchannelLogoutUrl"] = state ? state.backchannelLogoutUrl : undefined;
-            inputs["baseUrl"] = state ? state.baseUrl : undefined;
-            inputs["clientId"] = state ? state.clientId : undefined;
-            inputs["clientOfflineSessionIdleTimeout"] = state ? state.clientOfflineSessionIdleTimeout : undefined;
-            inputs["clientOfflineSessionMaxLifespan"] = state ? state.clientOfflineSessionMaxLifespan : undefined;
-            inputs["clientSecret"] = state ? state.clientSecret : undefined;
-            inputs["clientSessionIdleTimeout"] = state ? state.clientSessionIdleTimeout : undefined;
-            inputs["clientSessionMaxLifespan"] = state ? state.clientSessionMaxLifespan : undefined;
-            inputs["consentRequired"] = state ? state.consentRequired : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["directAccessGrantsEnabled"] = state ? state.directAccessGrantsEnabled : undefined;
-            inputs["enabled"] = state ? state.enabled : undefined;
-            inputs["excludeSessionStateFromAuthResponse"] = state ? state.excludeSessionStateFromAuthResponse : undefined;
-            inputs["extraConfig"] = state ? state.extraConfig : undefined;
-            inputs["fullScopeAllowed"] = state ? state.fullScopeAllowed : undefined;
-            inputs["implicitFlowEnabled"] = state ? state.implicitFlowEnabled : undefined;
-            inputs["loginTheme"] = state ? state.loginTheme : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["pkceCodeChallengeMethod"] = state ? state.pkceCodeChallengeMethod : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["resourceServerId"] = state ? state.resourceServerId : undefined;
-            inputs["rootUrl"] = state ? state.rootUrl : undefined;
-            inputs["serviceAccountUserId"] = state ? state.serviceAccountUserId : undefined;
-            inputs["serviceAccountsEnabled"] = state ? state.serviceAccountsEnabled : undefined;
-            inputs["standardFlowEnabled"] = state ? state.standardFlowEnabled : undefined;
-            inputs["useRefreshTokens"] = state ? state.useRefreshTokens : undefined;
-            inputs["validRedirectUris"] = state ? state.validRedirectUris : undefined;
-            inputs["webOrigins"] = state ? state.webOrigins : undefined;
+            resourceInputs["accessTokenLifespan"] = state ? state.accessTokenLifespan : undefined;
+            resourceInputs["accessType"] = state ? state.accessType : undefined;
+            resourceInputs["adminUrl"] = state ? state.adminUrl : undefined;
+            resourceInputs["authenticationFlowBindingOverrides"] = state ? state.authenticationFlowBindingOverrides : undefined;
+            resourceInputs["authorization"] = state ? state.authorization : undefined;
+            resourceInputs["backchannelLogoutRevokeOfflineSessions"] = state ? state.backchannelLogoutRevokeOfflineSessions : undefined;
+            resourceInputs["backchannelLogoutSessionRequired"] = state ? state.backchannelLogoutSessionRequired : undefined;
+            resourceInputs["backchannelLogoutUrl"] = state ? state.backchannelLogoutUrl : undefined;
+            resourceInputs["baseUrl"] = state ? state.baseUrl : undefined;
+            resourceInputs["clientId"] = state ? state.clientId : undefined;
+            resourceInputs["clientOfflineSessionIdleTimeout"] = state ? state.clientOfflineSessionIdleTimeout : undefined;
+            resourceInputs["clientOfflineSessionMaxLifespan"] = state ? state.clientOfflineSessionMaxLifespan : undefined;
+            resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
+            resourceInputs["clientSessionIdleTimeout"] = state ? state.clientSessionIdleTimeout : undefined;
+            resourceInputs["clientSessionMaxLifespan"] = state ? state.clientSessionMaxLifespan : undefined;
+            resourceInputs["consentRequired"] = state ? state.consentRequired : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["directAccessGrantsEnabled"] = state ? state.directAccessGrantsEnabled : undefined;
+            resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["excludeSessionStateFromAuthResponse"] = state ? state.excludeSessionStateFromAuthResponse : undefined;
+            resourceInputs["extraConfig"] = state ? state.extraConfig : undefined;
+            resourceInputs["fullScopeAllowed"] = state ? state.fullScopeAllowed : undefined;
+            resourceInputs["implicitFlowEnabled"] = state ? state.implicitFlowEnabled : undefined;
+            resourceInputs["loginTheme"] = state ? state.loginTheme : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["pkceCodeChallengeMethod"] = state ? state.pkceCodeChallengeMethod : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["resourceServerId"] = state ? state.resourceServerId : undefined;
+            resourceInputs["rootUrl"] = state ? state.rootUrl : undefined;
+            resourceInputs["serviceAccountUserId"] = state ? state.serviceAccountUserId : undefined;
+            resourceInputs["serviceAccountsEnabled"] = state ? state.serviceAccountsEnabled : undefined;
+            resourceInputs["standardFlowEnabled"] = state ? state.standardFlowEnabled : undefined;
+            resourceInputs["useRefreshTokens"] = state ? state.useRefreshTokens : undefined;
+            resourceInputs["validRedirectUris"] = state ? state.validRedirectUris : undefined;
+            resourceInputs["webOrigins"] = state ? state.webOrigins : undefined;
         } else {
             const args = argsOrState as ClientArgs | undefined;
             if ((!args || args.accessType === undefined) && !opts.urn) {
@@ -271,46 +271,44 @@ export class Client extends pulumi.CustomResource {
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["accessTokenLifespan"] = args ? args.accessTokenLifespan : undefined;
-            inputs["accessType"] = args ? args.accessType : undefined;
-            inputs["adminUrl"] = args ? args.adminUrl : undefined;
-            inputs["authenticationFlowBindingOverrides"] = args ? args.authenticationFlowBindingOverrides : undefined;
-            inputs["authorization"] = args ? args.authorization : undefined;
-            inputs["backchannelLogoutRevokeOfflineSessions"] = args ? args.backchannelLogoutRevokeOfflineSessions : undefined;
-            inputs["backchannelLogoutSessionRequired"] = args ? args.backchannelLogoutSessionRequired : undefined;
-            inputs["backchannelLogoutUrl"] = args ? args.backchannelLogoutUrl : undefined;
-            inputs["baseUrl"] = args ? args.baseUrl : undefined;
-            inputs["clientId"] = args ? args.clientId : undefined;
-            inputs["clientOfflineSessionIdleTimeout"] = args ? args.clientOfflineSessionIdleTimeout : undefined;
-            inputs["clientOfflineSessionMaxLifespan"] = args ? args.clientOfflineSessionMaxLifespan : undefined;
-            inputs["clientSecret"] = args ? args.clientSecret : undefined;
-            inputs["clientSessionIdleTimeout"] = args ? args.clientSessionIdleTimeout : undefined;
-            inputs["clientSessionMaxLifespan"] = args ? args.clientSessionMaxLifespan : undefined;
-            inputs["consentRequired"] = args ? args.consentRequired : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["directAccessGrantsEnabled"] = args ? args.directAccessGrantsEnabled : undefined;
-            inputs["enabled"] = args ? args.enabled : undefined;
-            inputs["excludeSessionStateFromAuthResponse"] = args ? args.excludeSessionStateFromAuthResponse : undefined;
-            inputs["extraConfig"] = args ? args.extraConfig : undefined;
-            inputs["fullScopeAllowed"] = args ? args.fullScopeAllowed : undefined;
-            inputs["implicitFlowEnabled"] = args ? args.implicitFlowEnabled : undefined;
-            inputs["loginTheme"] = args ? args.loginTheme : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["pkceCodeChallengeMethod"] = args ? args.pkceCodeChallengeMethod : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["rootUrl"] = args ? args.rootUrl : undefined;
-            inputs["serviceAccountsEnabled"] = args ? args.serviceAccountsEnabled : undefined;
-            inputs["standardFlowEnabled"] = args ? args.standardFlowEnabled : undefined;
-            inputs["useRefreshTokens"] = args ? args.useRefreshTokens : undefined;
-            inputs["validRedirectUris"] = args ? args.validRedirectUris : undefined;
-            inputs["webOrigins"] = args ? args.webOrigins : undefined;
-            inputs["resourceServerId"] = undefined /*out*/;
-            inputs["serviceAccountUserId"] = undefined /*out*/;
+            resourceInputs["accessTokenLifespan"] = args ? args.accessTokenLifespan : undefined;
+            resourceInputs["accessType"] = args ? args.accessType : undefined;
+            resourceInputs["adminUrl"] = args ? args.adminUrl : undefined;
+            resourceInputs["authenticationFlowBindingOverrides"] = args ? args.authenticationFlowBindingOverrides : undefined;
+            resourceInputs["authorization"] = args ? args.authorization : undefined;
+            resourceInputs["backchannelLogoutRevokeOfflineSessions"] = args ? args.backchannelLogoutRevokeOfflineSessions : undefined;
+            resourceInputs["backchannelLogoutSessionRequired"] = args ? args.backchannelLogoutSessionRequired : undefined;
+            resourceInputs["backchannelLogoutUrl"] = args ? args.backchannelLogoutUrl : undefined;
+            resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["clientOfflineSessionIdleTimeout"] = args ? args.clientOfflineSessionIdleTimeout : undefined;
+            resourceInputs["clientOfflineSessionMaxLifespan"] = args ? args.clientOfflineSessionMaxLifespan : undefined;
+            resourceInputs["clientSecret"] = args ? args.clientSecret : undefined;
+            resourceInputs["clientSessionIdleTimeout"] = args ? args.clientSessionIdleTimeout : undefined;
+            resourceInputs["clientSessionMaxLifespan"] = args ? args.clientSessionMaxLifespan : undefined;
+            resourceInputs["consentRequired"] = args ? args.consentRequired : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["directAccessGrantsEnabled"] = args ? args.directAccessGrantsEnabled : undefined;
+            resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["excludeSessionStateFromAuthResponse"] = args ? args.excludeSessionStateFromAuthResponse : undefined;
+            resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
+            resourceInputs["fullScopeAllowed"] = args ? args.fullScopeAllowed : undefined;
+            resourceInputs["implicitFlowEnabled"] = args ? args.implicitFlowEnabled : undefined;
+            resourceInputs["loginTheme"] = args ? args.loginTheme : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["pkceCodeChallengeMethod"] = args ? args.pkceCodeChallengeMethod : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["rootUrl"] = args ? args.rootUrl : undefined;
+            resourceInputs["serviceAccountsEnabled"] = args ? args.serviceAccountsEnabled : undefined;
+            resourceInputs["standardFlowEnabled"] = args ? args.standardFlowEnabled : undefined;
+            resourceInputs["useRefreshTokens"] = args ? args.useRefreshTokens : undefined;
+            resourceInputs["validRedirectUris"] = args ? args.validRedirectUris : undefined;
+            resourceInputs["webOrigins"] = args ? args.webOrigins : undefined;
+            resourceInputs["resourceServerId"] = undefined /*out*/;
+            resourceInputs["serviceAccountUserId"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Client.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Client.__pulumiType, name, resourceInputs, opts);
     }
 }
 

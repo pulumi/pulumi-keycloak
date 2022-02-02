@@ -219,9 +219,9 @@ class HardcodedRoleMapper(pulumi.CustomResource):
             users_dn="dc=example,dc=org",
             bind_dn="cn=admin,dc=example,dc=org",
             bind_credential="admin")
-        realm_management = realm.id.apply(lambda id: keycloak.openid.get_client(realm_id=id,
-            client_id="realm-management"))
-        create_client = pulumi.Output.all(realm.id, realm_management).apply(lambda id, realm_management: keycloak.get_role(realm_id=id,
+        realm_management = keycloak.openid.get_client_output(realm_id=realm.id,
+            client_id="realm-management")
+        create_client = pulumi.Output.all(realm.id, realm_management).apply(lambda id, realm_management: keycloak.get_role_output(realm_id=id,
             client_id=realm_management.id,
             name="create-client"))
         assign_admin_role_to_all_users = keycloak.ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers",
@@ -309,9 +309,9 @@ class HardcodedRoleMapper(pulumi.CustomResource):
             users_dn="dc=example,dc=org",
             bind_dn="cn=admin,dc=example,dc=org",
             bind_credential="admin")
-        realm_management = realm.id.apply(lambda id: keycloak.openid.get_client(realm_id=id,
-            client_id="realm-management"))
-        create_client = pulumi.Output.all(realm.id, realm_management).apply(lambda id, realm_management: keycloak.get_role(realm_id=id,
+        realm_management = keycloak.openid.get_client_output(realm_id=realm.id,
+            client_id="realm-management")
+        create_client = pulumi.Output.all(realm.id, realm_management).apply(lambda id, realm_management: keycloak.get_role_output(realm_id=id,
             client_id=realm_management.id,
             name="create-client"))
         assign_admin_role_to_all_users = keycloak.ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers",

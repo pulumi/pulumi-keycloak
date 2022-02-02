@@ -116,17 +116,17 @@ export class GenericClientProtocolMapper extends pulumi.CustomResource {
      */
     constructor(name: string, args: GenericClientProtocolMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GenericClientProtocolMapperArgs | GenericClientProtocolMapperState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GenericClientProtocolMapperState | undefined;
-            inputs["clientId"] = state ? state.clientId : undefined;
-            inputs["clientScopeId"] = state ? state.clientScopeId : undefined;
-            inputs["config"] = state ? state.config : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["protocolMapper"] = state ? state.protocolMapper : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["clientId"] = state ? state.clientId : undefined;
+            resourceInputs["clientScopeId"] = state ? state.clientScopeId : undefined;
+            resourceInputs["config"] = state ? state.config : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["protocolMapper"] = state ? state.protocolMapper : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as GenericClientProtocolMapperArgs | undefined;
             if ((!args || args.config === undefined) && !opts.urn) {
@@ -141,18 +141,16 @@ export class GenericClientProtocolMapper extends pulumi.CustomResource {
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["clientId"] = args ? args.clientId : undefined;
-            inputs["clientScopeId"] = args ? args.clientScopeId : undefined;
-            inputs["config"] = args ? args.config : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["protocolMapper"] = args ? args.protocolMapper : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["clientScopeId"] = args ? args.clientScopeId : undefined;
+            resourceInputs["config"] = args ? args.config : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["protocolMapper"] = args ? args.protocolMapper : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(GenericClientProtocolMapper.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(GenericClientProtocolMapper.__pulumiType, name, resourceInputs, opts);
     }
 }
 

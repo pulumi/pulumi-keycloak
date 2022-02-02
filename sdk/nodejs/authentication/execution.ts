@@ -106,14 +106,14 @@ export class Execution extends pulumi.CustomResource {
      */
     constructor(name: string, args: ExecutionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ExecutionArgs | ExecutionState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ExecutionState | undefined;
-            inputs["authenticator"] = state ? state.authenticator : undefined;
-            inputs["parentFlowAlias"] = state ? state.parentFlowAlias : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["requirement"] = state ? state.requirement : undefined;
+            resourceInputs["authenticator"] = state ? state.authenticator : undefined;
+            resourceInputs["parentFlowAlias"] = state ? state.parentFlowAlias : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["requirement"] = state ? state.requirement : undefined;
         } else {
             const args = argsOrState as ExecutionArgs | undefined;
             if ((!args || args.authenticator === undefined) && !opts.urn) {
@@ -125,15 +125,13 @@ export class Execution extends pulumi.CustomResource {
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["authenticator"] = args ? args.authenticator : undefined;
-            inputs["parentFlowAlias"] = args ? args.parentFlowAlias : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["requirement"] = args ? args.requirement : undefined;
+            resourceInputs["authenticator"] = args ? args.authenticator : undefined;
+            resourceInputs["parentFlowAlias"] = args ? args.parentFlowAlias : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["requirement"] = args ? args.requirement : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Execution.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Execution.__pulumiType, name, resourceInputs, opts);
     }
 }
 

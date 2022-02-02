@@ -180,7 +180,7 @@ type RealmKeystoreEcdsaGeneratedInput interface {
 }
 
 func (*RealmKeystoreEcdsaGenerated) ElementType() reflect.Type {
-	return reflect.TypeOf((*RealmKeystoreEcdsaGenerated)(nil))
+	return reflect.TypeOf((**RealmKeystoreEcdsaGenerated)(nil)).Elem()
 }
 
 func (i *RealmKeystoreEcdsaGenerated) ToRealmKeystoreEcdsaGeneratedOutput() RealmKeystoreEcdsaGeneratedOutput {
@@ -189,35 +189,6 @@ func (i *RealmKeystoreEcdsaGenerated) ToRealmKeystoreEcdsaGeneratedOutput() Real
 
 func (i *RealmKeystoreEcdsaGenerated) ToRealmKeystoreEcdsaGeneratedOutputWithContext(ctx context.Context) RealmKeystoreEcdsaGeneratedOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreEcdsaGeneratedOutput)
-}
-
-func (i *RealmKeystoreEcdsaGenerated) ToRealmKeystoreEcdsaGeneratedPtrOutput() RealmKeystoreEcdsaGeneratedPtrOutput {
-	return i.ToRealmKeystoreEcdsaGeneratedPtrOutputWithContext(context.Background())
-}
-
-func (i *RealmKeystoreEcdsaGenerated) ToRealmKeystoreEcdsaGeneratedPtrOutputWithContext(ctx context.Context) RealmKeystoreEcdsaGeneratedPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreEcdsaGeneratedPtrOutput)
-}
-
-type RealmKeystoreEcdsaGeneratedPtrInput interface {
-	pulumi.Input
-
-	ToRealmKeystoreEcdsaGeneratedPtrOutput() RealmKeystoreEcdsaGeneratedPtrOutput
-	ToRealmKeystoreEcdsaGeneratedPtrOutputWithContext(ctx context.Context) RealmKeystoreEcdsaGeneratedPtrOutput
-}
-
-type realmKeystoreEcdsaGeneratedPtrType RealmKeystoreEcdsaGeneratedArgs
-
-func (*realmKeystoreEcdsaGeneratedPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RealmKeystoreEcdsaGenerated)(nil))
-}
-
-func (i *realmKeystoreEcdsaGeneratedPtrType) ToRealmKeystoreEcdsaGeneratedPtrOutput() RealmKeystoreEcdsaGeneratedPtrOutput {
-	return i.ToRealmKeystoreEcdsaGeneratedPtrOutputWithContext(context.Background())
-}
-
-func (i *realmKeystoreEcdsaGeneratedPtrType) ToRealmKeystoreEcdsaGeneratedPtrOutputWithContext(ctx context.Context) RealmKeystoreEcdsaGeneratedPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreEcdsaGeneratedPtrOutput)
 }
 
 // RealmKeystoreEcdsaGeneratedArrayInput is an input type that accepts RealmKeystoreEcdsaGeneratedArray and RealmKeystoreEcdsaGeneratedArrayOutput values.
@@ -273,7 +244,7 @@ func (i RealmKeystoreEcdsaGeneratedMap) ToRealmKeystoreEcdsaGeneratedMapOutputWi
 type RealmKeystoreEcdsaGeneratedOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreEcdsaGeneratedOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RealmKeystoreEcdsaGenerated)(nil))
+	return reflect.TypeOf((**RealmKeystoreEcdsaGenerated)(nil)).Elem()
 }
 
 func (o RealmKeystoreEcdsaGeneratedOutput) ToRealmKeystoreEcdsaGeneratedOutput() RealmKeystoreEcdsaGeneratedOutput {
@@ -284,44 +255,10 @@ func (o RealmKeystoreEcdsaGeneratedOutput) ToRealmKeystoreEcdsaGeneratedOutputWi
 	return o
 }
 
-func (o RealmKeystoreEcdsaGeneratedOutput) ToRealmKeystoreEcdsaGeneratedPtrOutput() RealmKeystoreEcdsaGeneratedPtrOutput {
-	return o.ToRealmKeystoreEcdsaGeneratedPtrOutputWithContext(context.Background())
-}
-
-func (o RealmKeystoreEcdsaGeneratedOutput) ToRealmKeystoreEcdsaGeneratedPtrOutputWithContext(ctx context.Context) RealmKeystoreEcdsaGeneratedPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmKeystoreEcdsaGenerated) *RealmKeystoreEcdsaGenerated {
-		return &v
-	}).(RealmKeystoreEcdsaGeneratedPtrOutput)
-}
-
-type RealmKeystoreEcdsaGeneratedPtrOutput struct{ *pulumi.OutputState }
-
-func (RealmKeystoreEcdsaGeneratedPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RealmKeystoreEcdsaGenerated)(nil))
-}
-
-func (o RealmKeystoreEcdsaGeneratedPtrOutput) ToRealmKeystoreEcdsaGeneratedPtrOutput() RealmKeystoreEcdsaGeneratedPtrOutput {
-	return o
-}
-
-func (o RealmKeystoreEcdsaGeneratedPtrOutput) ToRealmKeystoreEcdsaGeneratedPtrOutputWithContext(ctx context.Context) RealmKeystoreEcdsaGeneratedPtrOutput {
-	return o
-}
-
-func (o RealmKeystoreEcdsaGeneratedPtrOutput) Elem() RealmKeystoreEcdsaGeneratedOutput {
-	return o.ApplyT(func(v *RealmKeystoreEcdsaGenerated) RealmKeystoreEcdsaGenerated {
-		if v != nil {
-			return *v
-		}
-		var ret RealmKeystoreEcdsaGenerated
-		return ret
-	}).(RealmKeystoreEcdsaGeneratedOutput)
-}
-
 type RealmKeystoreEcdsaGeneratedArrayOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreEcdsaGeneratedArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RealmKeystoreEcdsaGenerated)(nil))
+	return reflect.TypeOf((*[]*RealmKeystoreEcdsaGenerated)(nil)).Elem()
 }
 
 func (o RealmKeystoreEcdsaGeneratedArrayOutput) ToRealmKeystoreEcdsaGeneratedArrayOutput() RealmKeystoreEcdsaGeneratedArrayOutput {
@@ -333,15 +270,15 @@ func (o RealmKeystoreEcdsaGeneratedArrayOutput) ToRealmKeystoreEcdsaGeneratedArr
 }
 
 func (o RealmKeystoreEcdsaGeneratedArrayOutput) Index(i pulumi.IntInput) RealmKeystoreEcdsaGeneratedOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RealmKeystoreEcdsaGenerated {
-		return vs[0].([]RealmKeystoreEcdsaGenerated)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RealmKeystoreEcdsaGenerated {
+		return vs[0].([]*RealmKeystoreEcdsaGenerated)[vs[1].(int)]
 	}).(RealmKeystoreEcdsaGeneratedOutput)
 }
 
 type RealmKeystoreEcdsaGeneratedMapOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreEcdsaGeneratedMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RealmKeystoreEcdsaGenerated)(nil))
+	return reflect.TypeOf((*map[string]*RealmKeystoreEcdsaGenerated)(nil)).Elem()
 }
 
 func (o RealmKeystoreEcdsaGeneratedMapOutput) ToRealmKeystoreEcdsaGeneratedMapOutput() RealmKeystoreEcdsaGeneratedMapOutput {
@@ -353,18 +290,16 @@ func (o RealmKeystoreEcdsaGeneratedMapOutput) ToRealmKeystoreEcdsaGeneratedMapOu
 }
 
 func (o RealmKeystoreEcdsaGeneratedMapOutput) MapIndex(k pulumi.StringInput) RealmKeystoreEcdsaGeneratedOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RealmKeystoreEcdsaGenerated {
-		return vs[0].(map[string]RealmKeystoreEcdsaGenerated)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RealmKeystoreEcdsaGenerated {
+		return vs[0].(map[string]*RealmKeystoreEcdsaGenerated)[vs[1].(string)]
 	}).(RealmKeystoreEcdsaGeneratedOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreEcdsaGeneratedInput)(nil)).Elem(), &RealmKeystoreEcdsaGenerated{})
-	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreEcdsaGeneratedPtrInput)(nil)).Elem(), &RealmKeystoreEcdsaGenerated{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreEcdsaGeneratedArrayInput)(nil)).Elem(), RealmKeystoreEcdsaGeneratedArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreEcdsaGeneratedMapInput)(nil)).Elem(), RealmKeystoreEcdsaGeneratedMap{})
 	pulumi.RegisterOutputType(RealmKeystoreEcdsaGeneratedOutput{})
-	pulumi.RegisterOutputType(RealmKeystoreEcdsaGeneratedPtrOutput{})
 	pulumi.RegisterOutputType(RealmKeystoreEcdsaGeneratedArrayOutput{})
 	pulumi.RegisterOutputType(RealmKeystoreEcdsaGeneratedMapOutput{})
 }

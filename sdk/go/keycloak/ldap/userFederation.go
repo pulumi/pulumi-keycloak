@@ -478,7 +478,7 @@ type UserFederationInput interface {
 }
 
 func (*UserFederation) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserFederation)(nil))
+	return reflect.TypeOf((**UserFederation)(nil)).Elem()
 }
 
 func (i *UserFederation) ToUserFederationOutput() UserFederationOutput {
@@ -487,35 +487,6 @@ func (i *UserFederation) ToUserFederationOutput() UserFederationOutput {
 
 func (i *UserFederation) ToUserFederationOutputWithContext(ctx context.Context) UserFederationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserFederationOutput)
-}
-
-func (i *UserFederation) ToUserFederationPtrOutput() UserFederationPtrOutput {
-	return i.ToUserFederationPtrOutputWithContext(context.Background())
-}
-
-func (i *UserFederation) ToUserFederationPtrOutputWithContext(ctx context.Context) UserFederationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserFederationPtrOutput)
-}
-
-type UserFederationPtrInput interface {
-	pulumi.Input
-
-	ToUserFederationPtrOutput() UserFederationPtrOutput
-	ToUserFederationPtrOutputWithContext(ctx context.Context) UserFederationPtrOutput
-}
-
-type userFederationPtrType UserFederationArgs
-
-func (*userFederationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserFederation)(nil))
-}
-
-func (i *userFederationPtrType) ToUserFederationPtrOutput() UserFederationPtrOutput {
-	return i.ToUserFederationPtrOutputWithContext(context.Background())
-}
-
-func (i *userFederationPtrType) ToUserFederationPtrOutputWithContext(ctx context.Context) UserFederationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserFederationPtrOutput)
 }
 
 // UserFederationArrayInput is an input type that accepts UserFederationArray and UserFederationArrayOutput values.
@@ -571,7 +542,7 @@ func (i UserFederationMap) ToUserFederationMapOutputWithContext(ctx context.Cont
 type UserFederationOutput struct{ *pulumi.OutputState }
 
 func (UserFederationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserFederation)(nil))
+	return reflect.TypeOf((**UserFederation)(nil)).Elem()
 }
 
 func (o UserFederationOutput) ToUserFederationOutput() UserFederationOutput {
@@ -582,44 +553,10 @@ func (o UserFederationOutput) ToUserFederationOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o UserFederationOutput) ToUserFederationPtrOutput() UserFederationPtrOutput {
-	return o.ToUserFederationPtrOutputWithContext(context.Background())
-}
-
-func (o UserFederationOutput) ToUserFederationPtrOutputWithContext(ctx context.Context) UserFederationPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v UserFederation) *UserFederation {
-		return &v
-	}).(UserFederationPtrOutput)
-}
-
-type UserFederationPtrOutput struct{ *pulumi.OutputState }
-
-func (UserFederationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserFederation)(nil))
-}
-
-func (o UserFederationPtrOutput) ToUserFederationPtrOutput() UserFederationPtrOutput {
-	return o
-}
-
-func (o UserFederationPtrOutput) ToUserFederationPtrOutputWithContext(ctx context.Context) UserFederationPtrOutput {
-	return o
-}
-
-func (o UserFederationPtrOutput) Elem() UserFederationOutput {
-	return o.ApplyT(func(v *UserFederation) UserFederation {
-		if v != nil {
-			return *v
-		}
-		var ret UserFederation
-		return ret
-	}).(UserFederationOutput)
-}
-
 type UserFederationArrayOutput struct{ *pulumi.OutputState }
 
 func (UserFederationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserFederation)(nil))
+	return reflect.TypeOf((*[]*UserFederation)(nil)).Elem()
 }
 
 func (o UserFederationArrayOutput) ToUserFederationArrayOutput() UserFederationArrayOutput {
@@ -631,15 +568,15 @@ func (o UserFederationArrayOutput) ToUserFederationArrayOutputWithContext(ctx co
 }
 
 func (o UserFederationArrayOutput) Index(i pulumi.IntInput) UserFederationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserFederation {
-		return vs[0].([]UserFederation)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserFederation {
+		return vs[0].([]*UserFederation)[vs[1].(int)]
 	}).(UserFederationOutput)
 }
 
 type UserFederationMapOutput struct{ *pulumi.OutputState }
 
 func (UserFederationMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserFederation)(nil))
+	return reflect.TypeOf((*map[string]*UserFederation)(nil)).Elem()
 }
 
 func (o UserFederationMapOutput) ToUserFederationMapOutput() UserFederationMapOutput {
@@ -651,18 +588,16 @@ func (o UserFederationMapOutput) ToUserFederationMapOutputWithContext(ctx contex
 }
 
 func (o UserFederationMapOutput) MapIndex(k pulumi.StringInput) UserFederationOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserFederation {
-		return vs[0].(map[string]UserFederation)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserFederation {
+		return vs[0].(map[string]*UserFederation)[vs[1].(string)]
 	}).(UserFederationOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*UserFederationInput)(nil)).Elem(), &UserFederation{})
-	pulumi.RegisterInputType(reflect.TypeOf((*UserFederationPtrInput)(nil)).Elem(), &UserFederation{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserFederationArrayInput)(nil)).Elem(), UserFederationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserFederationMapInput)(nil)).Elem(), UserFederationMap{})
 	pulumi.RegisterOutputType(UserFederationOutput{})
-	pulumi.RegisterOutputType(UserFederationPtrOutput{})
 	pulumi.RegisterOutputType(UserFederationArrayOutput{})
 	pulumi.RegisterOutputType(UserFederationMapOutput{})
 }

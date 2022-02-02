@@ -55,6 +55,7 @@ setup(name='pulumi_keycloak',
       package_data={
           'pulumi_keycloak': [
               'py.typed',
+              'pulumi-plugin.json',
           ]
       },
       install_requires=[

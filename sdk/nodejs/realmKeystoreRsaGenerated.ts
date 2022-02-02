@@ -100,34 +100,32 @@ export class RealmKeystoreRsaGenerated extends pulumi.CustomResource {
      */
     constructor(name: string, args: RealmKeystoreRsaGeneratedArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RealmKeystoreRsaGeneratedArgs | RealmKeystoreRsaGeneratedState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RealmKeystoreRsaGeneratedState | undefined;
-            inputs["active"] = state ? state.active : undefined;
-            inputs["algorithm"] = state ? state.algorithm : undefined;
-            inputs["enabled"] = state ? state.enabled : undefined;
-            inputs["keySize"] = state ? state.keySize : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["active"] = state ? state.active : undefined;
+            resourceInputs["algorithm"] = state ? state.algorithm : undefined;
+            resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["keySize"] = state ? state.keySize : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as RealmKeystoreRsaGeneratedArgs | undefined;
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["active"] = args ? args.active : undefined;
-            inputs["algorithm"] = args ? args.algorithm : undefined;
-            inputs["enabled"] = args ? args.enabled : undefined;
-            inputs["keySize"] = args ? args.keySize : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["active"] = args ? args.active : undefined;
+            resourceInputs["algorithm"] = args ? args.algorithm : undefined;
+            resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["keySize"] = args ? args.keySize : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RealmKeystoreRsaGenerated.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RealmKeystoreRsaGenerated.__pulumiType, name, resourceInputs, opts);
     }
 }
 

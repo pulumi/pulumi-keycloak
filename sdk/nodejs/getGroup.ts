@@ -18,14 +18,14 @@ import * as utilities from "./utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const offlineAccess = realm.id.apply(id => keycloak.getRole({
- *     realmId: id,
+ * const offlineAccess = keycloak.getRoleOutput({
+ *     realmId: realm.id,
  *     name: "offline_access",
- * }));
- * const group = realm.id.apply(id => keycloak.getGroup({
- *     realmId: id,
+ * });
+ * const group = keycloak.getGroupOutput({
+ *     realmId: realm.id,
  *     name: "group",
- * }));
+ * });
  * const groupRoles = new keycloak.GroupRoles("groupRoles", {
  *     realmId: realm.id,
  *     groupId: group.apply(group => group.id),
@@ -38,9 +38,7 @@ export function getGroup(args: GetGroupArgs, opts?: pulumi.InvokeOptions): Promi
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("keycloak:index/getGroup:getGroup", {
         "name": args.name,
         "realmId": args.realmId,

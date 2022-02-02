@@ -109,9 +109,9 @@ def get_client_installation_provider(client_id: Optional[str] = None,
         include_authn_statement=True,
         signing_certificate=(lambda path: open(path).read())("saml-cert.pem"),
         signing_private_key=(lambda path: open(path).read())("saml-key.pem"))
-    saml_idp_descriptor = pulumi.Output.all(realm.id, saml_client.id).apply(lambda realmId, samlClientId: keycloak.saml.get_client_installation_provider(realm_id=realm_id,
-        client_id=saml_client_id,
-        provider_id="saml-idp-descriptor"))
+    saml_idp_descriptor = keycloak.saml.get_client_installation_provider_output(realm_id=realm.id,
+        client_id=saml_client.id,
+        provider_id="saml-idp-descriptor")
     default = aws.iam.SamlProvider("default", saml_metadata_document=saml_idp_descriptor.value)
     ```
 
@@ -166,9 +166,9 @@ def get_client_installation_provider_output(client_id: Optional[pulumi.Input[str
         include_authn_statement=True,
         signing_certificate=(lambda path: open(path).read())("saml-cert.pem"),
         signing_private_key=(lambda path: open(path).read())("saml-key.pem"))
-    saml_idp_descriptor = pulumi.Output.all(realm.id, saml_client.id).apply(lambda realmId, samlClientId: keycloak.saml.get_client_installation_provider(realm_id=realm_id,
-        client_id=saml_client_id,
-        provider_id="saml-idp-descriptor"))
+    saml_idp_descriptor = keycloak.saml.get_client_installation_provider_output(realm_id=realm.id,
+        client_id=saml_client.id,
+        provider_id="saml-idp-descriptor")
     default = aws.iam.SamlProvider("default", saml_metadata_document=saml_idp_descriptor.value)
     ```
 

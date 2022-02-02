@@ -199,41 +199,41 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     constructor(name: string, args: IdentityProviderArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IdentityProviderArgs | IdentityProviderState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IdentityProviderState | undefined;
-            inputs["acceptsPromptNoneForwardFromClient"] = state ? state.acceptsPromptNoneForwardFromClient : undefined;
-            inputs["addReadTokenRoleOnCreate"] = state ? state.addReadTokenRoleOnCreate : undefined;
-            inputs["alias"] = state ? state.alias : undefined;
-            inputs["authenticateByDefault"] = state ? state.authenticateByDefault : undefined;
-            inputs["authorizationUrl"] = state ? state.authorizationUrl : undefined;
-            inputs["backchannelSupported"] = state ? state.backchannelSupported : undefined;
-            inputs["clientId"] = state ? state.clientId : undefined;
-            inputs["clientSecret"] = state ? state.clientSecret : undefined;
-            inputs["defaultScopes"] = state ? state.defaultScopes : undefined;
-            inputs["disableUserInfo"] = state ? state.disableUserInfo : undefined;
-            inputs["displayName"] = state ? state.displayName : undefined;
-            inputs["enabled"] = state ? state.enabled : undefined;
-            inputs["extraConfig"] = state ? state.extraConfig : undefined;
-            inputs["firstBrokerLoginFlowAlias"] = state ? state.firstBrokerLoginFlowAlias : undefined;
-            inputs["guiOrder"] = state ? state.guiOrder : undefined;
-            inputs["hideOnLoginPage"] = state ? state.hideOnLoginPage : undefined;
-            inputs["internalId"] = state ? state.internalId : undefined;
-            inputs["jwksUrl"] = state ? state.jwksUrl : undefined;
-            inputs["linkOnly"] = state ? state.linkOnly : undefined;
-            inputs["loginHint"] = state ? state.loginHint : undefined;
-            inputs["logoutUrl"] = state ? state.logoutUrl : undefined;
-            inputs["postBrokerLoginFlowAlias"] = state ? state.postBrokerLoginFlowAlias : undefined;
-            inputs["providerId"] = state ? state.providerId : undefined;
-            inputs["realm"] = state ? state.realm : undefined;
-            inputs["storeToken"] = state ? state.storeToken : undefined;
-            inputs["syncMode"] = state ? state.syncMode : undefined;
-            inputs["tokenUrl"] = state ? state.tokenUrl : undefined;
-            inputs["trustEmail"] = state ? state.trustEmail : undefined;
-            inputs["uiLocales"] = state ? state.uiLocales : undefined;
-            inputs["userInfoUrl"] = state ? state.userInfoUrl : undefined;
-            inputs["validateSignature"] = state ? state.validateSignature : undefined;
+            resourceInputs["acceptsPromptNoneForwardFromClient"] = state ? state.acceptsPromptNoneForwardFromClient : undefined;
+            resourceInputs["addReadTokenRoleOnCreate"] = state ? state.addReadTokenRoleOnCreate : undefined;
+            resourceInputs["alias"] = state ? state.alias : undefined;
+            resourceInputs["authenticateByDefault"] = state ? state.authenticateByDefault : undefined;
+            resourceInputs["authorizationUrl"] = state ? state.authorizationUrl : undefined;
+            resourceInputs["backchannelSupported"] = state ? state.backchannelSupported : undefined;
+            resourceInputs["clientId"] = state ? state.clientId : undefined;
+            resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
+            resourceInputs["defaultScopes"] = state ? state.defaultScopes : undefined;
+            resourceInputs["disableUserInfo"] = state ? state.disableUserInfo : undefined;
+            resourceInputs["displayName"] = state ? state.displayName : undefined;
+            resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["extraConfig"] = state ? state.extraConfig : undefined;
+            resourceInputs["firstBrokerLoginFlowAlias"] = state ? state.firstBrokerLoginFlowAlias : undefined;
+            resourceInputs["guiOrder"] = state ? state.guiOrder : undefined;
+            resourceInputs["hideOnLoginPage"] = state ? state.hideOnLoginPage : undefined;
+            resourceInputs["internalId"] = state ? state.internalId : undefined;
+            resourceInputs["jwksUrl"] = state ? state.jwksUrl : undefined;
+            resourceInputs["linkOnly"] = state ? state.linkOnly : undefined;
+            resourceInputs["loginHint"] = state ? state.loginHint : undefined;
+            resourceInputs["logoutUrl"] = state ? state.logoutUrl : undefined;
+            resourceInputs["postBrokerLoginFlowAlias"] = state ? state.postBrokerLoginFlowAlias : undefined;
+            resourceInputs["providerId"] = state ? state.providerId : undefined;
+            resourceInputs["realm"] = state ? state.realm : undefined;
+            resourceInputs["storeToken"] = state ? state.storeToken : undefined;
+            resourceInputs["syncMode"] = state ? state.syncMode : undefined;
+            resourceInputs["tokenUrl"] = state ? state.tokenUrl : undefined;
+            resourceInputs["trustEmail"] = state ? state.trustEmail : undefined;
+            resourceInputs["uiLocales"] = state ? state.uiLocales : undefined;
+            resourceInputs["userInfoUrl"] = state ? state.userInfoUrl : undefined;
+            resourceInputs["validateSignature"] = state ? state.validateSignature : undefined;
         } else {
             const args = argsOrState as IdentityProviderArgs | undefined;
             if ((!args || args.alias === undefined) && !opts.urn) {
@@ -254,42 +254,40 @@ export class IdentityProvider extends pulumi.CustomResource {
             if ((!args || args.tokenUrl === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'tokenUrl'");
             }
-            inputs["acceptsPromptNoneForwardFromClient"] = args ? args.acceptsPromptNoneForwardFromClient : undefined;
-            inputs["addReadTokenRoleOnCreate"] = args ? args.addReadTokenRoleOnCreate : undefined;
-            inputs["alias"] = args ? args.alias : undefined;
-            inputs["authenticateByDefault"] = args ? args.authenticateByDefault : undefined;
-            inputs["authorizationUrl"] = args ? args.authorizationUrl : undefined;
-            inputs["backchannelSupported"] = args ? args.backchannelSupported : undefined;
-            inputs["clientId"] = args ? args.clientId : undefined;
-            inputs["clientSecret"] = args ? args.clientSecret : undefined;
-            inputs["defaultScopes"] = args ? args.defaultScopes : undefined;
-            inputs["disableUserInfo"] = args ? args.disableUserInfo : undefined;
-            inputs["displayName"] = args ? args.displayName : undefined;
-            inputs["enabled"] = args ? args.enabled : undefined;
-            inputs["extraConfig"] = args ? args.extraConfig : undefined;
-            inputs["firstBrokerLoginFlowAlias"] = args ? args.firstBrokerLoginFlowAlias : undefined;
-            inputs["guiOrder"] = args ? args.guiOrder : undefined;
-            inputs["hideOnLoginPage"] = args ? args.hideOnLoginPage : undefined;
-            inputs["jwksUrl"] = args ? args.jwksUrl : undefined;
-            inputs["linkOnly"] = args ? args.linkOnly : undefined;
-            inputs["loginHint"] = args ? args.loginHint : undefined;
-            inputs["logoutUrl"] = args ? args.logoutUrl : undefined;
-            inputs["postBrokerLoginFlowAlias"] = args ? args.postBrokerLoginFlowAlias : undefined;
-            inputs["providerId"] = args ? args.providerId : undefined;
-            inputs["realm"] = args ? args.realm : undefined;
-            inputs["storeToken"] = args ? args.storeToken : undefined;
-            inputs["syncMode"] = args ? args.syncMode : undefined;
-            inputs["tokenUrl"] = args ? args.tokenUrl : undefined;
-            inputs["trustEmail"] = args ? args.trustEmail : undefined;
-            inputs["uiLocales"] = args ? args.uiLocales : undefined;
-            inputs["userInfoUrl"] = args ? args.userInfoUrl : undefined;
-            inputs["validateSignature"] = args ? args.validateSignature : undefined;
-            inputs["internalId"] = undefined /*out*/;
+            resourceInputs["acceptsPromptNoneForwardFromClient"] = args ? args.acceptsPromptNoneForwardFromClient : undefined;
+            resourceInputs["addReadTokenRoleOnCreate"] = args ? args.addReadTokenRoleOnCreate : undefined;
+            resourceInputs["alias"] = args ? args.alias : undefined;
+            resourceInputs["authenticateByDefault"] = args ? args.authenticateByDefault : undefined;
+            resourceInputs["authorizationUrl"] = args ? args.authorizationUrl : undefined;
+            resourceInputs["backchannelSupported"] = args ? args.backchannelSupported : undefined;
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["clientSecret"] = args ? args.clientSecret : undefined;
+            resourceInputs["defaultScopes"] = args ? args.defaultScopes : undefined;
+            resourceInputs["disableUserInfo"] = args ? args.disableUserInfo : undefined;
+            resourceInputs["displayName"] = args ? args.displayName : undefined;
+            resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
+            resourceInputs["firstBrokerLoginFlowAlias"] = args ? args.firstBrokerLoginFlowAlias : undefined;
+            resourceInputs["guiOrder"] = args ? args.guiOrder : undefined;
+            resourceInputs["hideOnLoginPage"] = args ? args.hideOnLoginPage : undefined;
+            resourceInputs["jwksUrl"] = args ? args.jwksUrl : undefined;
+            resourceInputs["linkOnly"] = args ? args.linkOnly : undefined;
+            resourceInputs["loginHint"] = args ? args.loginHint : undefined;
+            resourceInputs["logoutUrl"] = args ? args.logoutUrl : undefined;
+            resourceInputs["postBrokerLoginFlowAlias"] = args ? args.postBrokerLoginFlowAlias : undefined;
+            resourceInputs["providerId"] = args ? args.providerId : undefined;
+            resourceInputs["realm"] = args ? args.realm : undefined;
+            resourceInputs["storeToken"] = args ? args.storeToken : undefined;
+            resourceInputs["syncMode"] = args ? args.syncMode : undefined;
+            resourceInputs["tokenUrl"] = args ? args.tokenUrl : undefined;
+            resourceInputs["trustEmail"] = args ? args.trustEmail : undefined;
+            resourceInputs["uiLocales"] = args ? args.uiLocales : undefined;
+            resourceInputs["userInfoUrl"] = args ? args.userInfoUrl : undefined;
+            resourceInputs["validateSignature"] = args ? args.validateSignature : undefined;
+            resourceInputs["internalId"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(IdentityProvider.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(IdentityProvider.__pulumiType, name, resourceInputs, opts);
     }
 }
 

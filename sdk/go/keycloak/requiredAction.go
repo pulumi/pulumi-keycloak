@@ -109,7 +109,7 @@ type RequiredActionInput interface {
 }
 
 func (*RequiredAction) ElementType() reflect.Type {
-	return reflect.TypeOf((*RequiredAction)(nil))
+	return reflect.TypeOf((**RequiredAction)(nil)).Elem()
 }
 
 func (i *RequiredAction) ToRequiredActionOutput() RequiredActionOutput {
@@ -118,35 +118,6 @@ func (i *RequiredAction) ToRequiredActionOutput() RequiredActionOutput {
 
 func (i *RequiredAction) ToRequiredActionOutputWithContext(ctx context.Context) RequiredActionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RequiredActionOutput)
-}
-
-func (i *RequiredAction) ToRequiredActionPtrOutput() RequiredActionPtrOutput {
-	return i.ToRequiredActionPtrOutputWithContext(context.Background())
-}
-
-func (i *RequiredAction) ToRequiredActionPtrOutputWithContext(ctx context.Context) RequiredActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RequiredActionPtrOutput)
-}
-
-type RequiredActionPtrInput interface {
-	pulumi.Input
-
-	ToRequiredActionPtrOutput() RequiredActionPtrOutput
-	ToRequiredActionPtrOutputWithContext(ctx context.Context) RequiredActionPtrOutput
-}
-
-type requiredActionPtrType RequiredActionArgs
-
-func (*requiredActionPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RequiredAction)(nil))
-}
-
-func (i *requiredActionPtrType) ToRequiredActionPtrOutput() RequiredActionPtrOutput {
-	return i.ToRequiredActionPtrOutputWithContext(context.Background())
-}
-
-func (i *requiredActionPtrType) ToRequiredActionPtrOutputWithContext(ctx context.Context) RequiredActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RequiredActionPtrOutput)
 }
 
 // RequiredActionArrayInput is an input type that accepts RequiredActionArray and RequiredActionArrayOutput values.
@@ -202,7 +173,7 @@ func (i RequiredActionMap) ToRequiredActionMapOutputWithContext(ctx context.Cont
 type RequiredActionOutput struct{ *pulumi.OutputState }
 
 func (RequiredActionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RequiredAction)(nil))
+	return reflect.TypeOf((**RequiredAction)(nil)).Elem()
 }
 
 func (o RequiredActionOutput) ToRequiredActionOutput() RequiredActionOutput {
@@ -213,44 +184,10 @@ func (o RequiredActionOutput) ToRequiredActionOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o RequiredActionOutput) ToRequiredActionPtrOutput() RequiredActionPtrOutput {
-	return o.ToRequiredActionPtrOutputWithContext(context.Background())
-}
-
-func (o RequiredActionOutput) ToRequiredActionPtrOutputWithContext(ctx context.Context) RequiredActionPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v RequiredAction) *RequiredAction {
-		return &v
-	}).(RequiredActionPtrOutput)
-}
-
-type RequiredActionPtrOutput struct{ *pulumi.OutputState }
-
-func (RequiredActionPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RequiredAction)(nil))
-}
-
-func (o RequiredActionPtrOutput) ToRequiredActionPtrOutput() RequiredActionPtrOutput {
-	return o
-}
-
-func (o RequiredActionPtrOutput) ToRequiredActionPtrOutputWithContext(ctx context.Context) RequiredActionPtrOutput {
-	return o
-}
-
-func (o RequiredActionPtrOutput) Elem() RequiredActionOutput {
-	return o.ApplyT(func(v *RequiredAction) RequiredAction {
-		if v != nil {
-			return *v
-		}
-		var ret RequiredAction
-		return ret
-	}).(RequiredActionOutput)
-}
-
 type RequiredActionArrayOutput struct{ *pulumi.OutputState }
 
 func (RequiredActionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RequiredAction)(nil))
+	return reflect.TypeOf((*[]*RequiredAction)(nil)).Elem()
 }
 
 func (o RequiredActionArrayOutput) ToRequiredActionArrayOutput() RequiredActionArrayOutput {
@@ -262,15 +199,15 @@ func (o RequiredActionArrayOutput) ToRequiredActionArrayOutputWithContext(ctx co
 }
 
 func (o RequiredActionArrayOutput) Index(i pulumi.IntInput) RequiredActionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RequiredAction {
-		return vs[0].([]RequiredAction)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RequiredAction {
+		return vs[0].([]*RequiredAction)[vs[1].(int)]
 	}).(RequiredActionOutput)
 }
 
 type RequiredActionMapOutput struct{ *pulumi.OutputState }
 
 func (RequiredActionMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RequiredAction)(nil))
+	return reflect.TypeOf((*map[string]*RequiredAction)(nil)).Elem()
 }
 
 func (o RequiredActionMapOutput) ToRequiredActionMapOutput() RequiredActionMapOutput {
@@ -282,18 +219,16 @@ func (o RequiredActionMapOutput) ToRequiredActionMapOutputWithContext(ctx contex
 }
 
 func (o RequiredActionMapOutput) MapIndex(k pulumi.StringInput) RequiredActionOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RequiredAction {
-		return vs[0].(map[string]RequiredAction)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RequiredAction {
+		return vs[0].(map[string]*RequiredAction)[vs[1].(string)]
 	}).(RequiredActionOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RequiredActionInput)(nil)).Elem(), &RequiredAction{})
-	pulumi.RegisterInputType(reflect.TypeOf((*RequiredActionPtrInput)(nil)).Elem(), &RequiredAction{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RequiredActionArrayInput)(nil)).Elem(), RequiredActionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RequiredActionMapInput)(nil)).Elem(), RequiredActionMap{})
 	pulumi.RegisterOutputType(RequiredActionOutput{})
-	pulumi.RegisterOutputType(RequiredActionPtrOutput{})
 	pulumi.RegisterOutputType(RequiredActionArrayOutput{})
 	pulumi.RegisterOutputType(RequiredActionMapOutput{})
 }

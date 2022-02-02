@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Keycloak.Saml
 {
@@ -46,16 +45,11 @@ namespace Pulumi.Keycloak.Saml
         ///             SigningCertificate = File.ReadAllText("saml-cert.pem"),
         ///             SigningPrivateKey = File.ReadAllText("saml-key.pem"),
         ///         });
-        ///         var samlIdpDescriptor = Output.Tuple(realm.Id, samlClient.Id).Apply(values =&gt;
+        ///         var samlIdpDescriptor = Keycloak.Saml.GetClientInstallationProvider.Invoke(new Keycloak.Saml.GetClientInstallationProviderInvokeArgs
         ///         {
-        ///             var realmId = values.Item1;
-        ///             var samlClientId = values.Item2;
-        ///             return Keycloak.Saml.GetClientInstallationProvider.InvokeAsync(new Keycloak.Saml.GetClientInstallationProviderArgs
-        ///             {
-        ///                 RealmId = realmId,
-        ///                 ClientId = samlClientId,
-        ///                 ProviderId = "saml-idp-descriptor",
-        ///             });
+        ///             RealmId = realm.Id,
+        ///             ClientId = samlClient.Id,
+        ///             ProviderId = "saml-idp-descriptor",
         ///         });
         ///         var @default = new Aws.Iam.SamlProvider("default", new Aws.Iam.SamlProviderArgs
         ///         {
@@ -69,7 +63,7 @@ namespace Pulumi.Keycloak.Saml
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetClientInstallationProviderResult> InvokeAsync(GetClientInstallationProviderArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetClientInstallationProviderResult>("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", args ?? new GetClientInstallationProviderArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetClientInstallationProviderResult>("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", args ?? new GetClientInstallationProviderArgs(), options.WithDefaults());
 
         /// <summary>
         /// This data source can be used to retrieve Installation Provider of a SAML Client.
@@ -105,16 +99,11 @@ namespace Pulumi.Keycloak.Saml
         ///             SigningCertificate = File.ReadAllText("saml-cert.pem"),
         ///             SigningPrivateKey = File.ReadAllText("saml-key.pem"),
         ///         });
-        ///         var samlIdpDescriptor = Output.Tuple(realm.Id, samlClient.Id).Apply(values =&gt;
+        ///         var samlIdpDescriptor = Keycloak.Saml.GetClientInstallationProvider.Invoke(new Keycloak.Saml.GetClientInstallationProviderInvokeArgs
         ///         {
-        ///             var realmId = values.Item1;
-        ///             var samlClientId = values.Item2;
-        ///             return Keycloak.Saml.GetClientInstallationProvider.InvokeAsync(new Keycloak.Saml.GetClientInstallationProviderArgs
-        ///             {
-        ///                 RealmId = realmId,
-        ///                 ClientId = samlClientId,
-        ///                 ProviderId = "saml-idp-descriptor",
-        ///             });
+        ///             RealmId = realm.Id,
+        ///             ClientId = samlClient.Id,
+        ///             ProviderId = "saml-idp-descriptor",
         ///         });
         ///         var @default = new Aws.Iam.SamlProvider("default", new Aws.Iam.SamlProviderArgs
         ///         {
@@ -128,7 +117,7 @@ namespace Pulumi.Keycloak.Saml
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetClientInstallationProviderResult> Invoke(GetClientInstallationProviderInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetClientInstallationProviderResult>("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", args ?? new GetClientInstallationProviderInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetClientInstallationProviderResult>("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", args ?? new GetClientInstallationProviderInvokeArgs(), options.WithDefaults());
     }
 
 

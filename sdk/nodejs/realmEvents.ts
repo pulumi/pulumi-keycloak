@@ -101,34 +101,32 @@ export class RealmEvents extends pulumi.CustomResource {
      */
     constructor(name: string, args: RealmEventsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RealmEventsArgs | RealmEventsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RealmEventsState | undefined;
-            inputs["adminEventsDetailsEnabled"] = state ? state.adminEventsDetailsEnabled : undefined;
-            inputs["adminEventsEnabled"] = state ? state.adminEventsEnabled : undefined;
-            inputs["enabledEventTypes"] = state ? state.enabledEventTypes : undefined;
-            inputs["eventsEnabled"] = state ? state.eventsEnabled : undefined;
-            inputs["eventsExpiration"] = state ? state.eventsExpiration : undefined;
-            inputs["eventsListeners"] = state ? state.eventsListeners : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["adminEventsDetailsEnabled"] = state ? state.adminEventsDetailsEnabled : undefined;
+            resourceInputs["adminEventsEnabled"] = state ? state.adminEventsEnabled : undefined;
+            resourceInputs["enabledEventTypes"] = state ? state.enabledEventTypes : undefined;
+            resourceInputs["eventsEnabled"] = state ? state.eventsEnabled : undefined;
+            resourceInputs["eventsExpiration"] = state ? state.eventsExpiration : undefined;
+            resourceInputs["eventsListeners"] = state ? state.eventsListeners : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as RealmEventsArgs | undefined;
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["adminEventsDetailsEnabled"] = args ? args.adminEventsDetailsEnabled : undefined;
-            inputs["adminEventsEnabled"] = args ? args.adminEventsEnabled : undefined;
-            inputs["enabledEventTypes"] = args ? args.enabledEventTypes : undefined;
-            inputs["eventsEnabled"] = args ? args.eventsEnabled : undefined;
-            inputs["eventsExpiration"] = args ? args.eventsExpiration : undefined;
-            inputs["eventsListeners"] = args ? args.eventsListeners : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["adminEventsDetailsEnabled"] = args ? args.adminEventsDetailsEnabled : undefined;
+            resourceInputs["adminEventsEnabled"] = args ? args.adminEventsEnabled : undefined;
+            resourceInputs["enabledEventTypes"] = args ? args.enabledEventTypes : undefined;
+            resourceInputs["eventsEnabled"] = args ? args.eventsEnabled : undefined;
+            resourceInputs["eventsExpiration"] = args ? args.eventsExpiration : undefined;
+            resourceInputs["eventsListeners"] = args ? args.eventsListeners : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RealmEvents.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RealmEvents.__pulumiType, name, resourceInputs, opts);
     }
 }
 

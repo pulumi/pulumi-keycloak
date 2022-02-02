@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Keycloak
 {
@@ -44,7 +43,7 @@ namespace Pulumi.Keycloak
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetRealmResult> InvokeAsync(GetRealmArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetRealmResult>("keycloak:index/getRealm:getRealm", args ?? new GetRealmArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetRealmResult>("keycloak:index/getRealm:getRealm", args ?? new GetRealmArgs(), options.WithDefaults());
 
         /// <summary>
         /// This data source can be used to fetch properties of a Keycloak realm for
@@ -78,7 +77,7 @@ namespace Pulumi.Keycloak
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetRealmResult> Invoke(GetRealmInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetRealmResult>("keycloak:index/getRealm:getRealm", args ?? new GetRealmInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetRealmResult>("keycloak:index/getRealm:getRealm", args ?? new GetRealmInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -199,7 +199,7 @@ type RealmKeystoreJavaGeneratedInput interface {
 }
 
 func (*RealmKeystoreJavaGenerated) ElementType() reflect.Type {
-	return reflect.TypeOf((*RealmKeystoreJavaGenerated)(nil))
+	return reflect.TypeOf((**RealmKeystoreJavaGenerated)(nil)).Elem()
 }
 
 func (i *RealmKeystoreJavaGenerated) ToRealmKeystoreJavaGeneratedOutput() RealmKeystoreJavaGeneratedOutput {
@@ -208,35 +208,6 @@ func (i *RealmKeystoreJavaGenerated) ToRealmKeystoreJavaGeneratedOutput() RealmK
 
 func (i *RealmKeystoreJavaGenerated) ToRealmKeystoreJavaGeneratedOutputWithContext(ctx context.Context) RealmKeystoreJavaGeneratedOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreJavaGeneratedOutput)
-}
-
-func (i *RealmKeystoreJavaGenerated) ToRealmKeystoreJavaGeneratedPtrOutput() RealmKeystoreJavaGeneratedPtrOutput {
-	return i.ToRealmKeystoreJavaGeneratedPtrOutputWithContext(context.Background())
-}
-
-func (i *RealmKeystoreJavaGenerated) ToRealmKeystoreJavaGeneratedPtrOutputWithContext(ctx context.Context) RealmKeystoreJavaGeneratedPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreJavaGeneratedPtrOutput)
-}
-
-type RealmKeystoreJavaGeneratedPtrInput interface {
-	pulumi.Input
-
-	ToRealmKeystoreJavaGeneratedPtrOutput() RealmKeystoreJavaGeneratedPtrOutput
-	ToRealmKeystoreJavaGeneratedPtrOutputWithContext(ctx context.Context) RealmKeystoreJavaGeneratedPtrOutput
-}
-
-type realmKeystoreJavaGeneratedPtrType RealmKeystoreJavaGeneratedArgs
-
-func (*realmKeystoreJavaGeneratedPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RealmKeystoreJavaGenerated)(nil))
-}
-
-func (i *realmKeystoreJavaGeneratedPtrType) ToRealmKeystoreJavaGeneratedPtrOutput() RealmKeystoreJavaGeneratedPtrOutput {
-	return i.ToRealmKeystoreJavaGeneratedPtrOutputWithContext(context.Background())
-}
-
-func (i *realmKeystoreJavaGeneratedPtrType) ToRealmKeystoreJavaGeneratedPtrOutputWithContext(ctx context.Context) RealmKeystoreJavaGeneratedPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreJavaGeneratedPtrOutput)
 }
 
 // RealmKeystoreJavaGeneratedArrayInput is an input type that accepts RealmKeystoreJavaGeneratedArray and RealmKeystoreJavaGeneratedArrayOutput values.
@@ -292,7 +263,7 @@ func (i RealmKeystoreJavaGeneratedMap) ToRealmKeystoreJavaGeneratedMapOutputWith
 type RealmKeystoreJavaGeneratedOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreJavaGeneratedOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RealmKeystoreJavaGenerated)(nil))
+	return reflect.TypeOf((**RealmKeystoreJavaGenerated)(nil)).Elem()
 }
 
 func (o RealmKeystoreJavaGeneratedOutput) ToRealmKeystoreJavaGeneratedOutput() RealmKeystoreJavaGeneratedOutput {
@@ -303,44 +274,10 @@ func (o RealmKeystoreJavaGeneratedOutput) ToRealmKeystoreJavaGeneratedOutputWith
 	return o
 }
 
-func (o RealmKeystoreJavaGeneratedOutput) ToRealmKeystoreJavaGeneratedPtrOutput() RealmKeystoreJavaGeneratedPtrOutput {
-	return o.ToRealmKeystoreJavaGeneratedPtrOutputWithContext(context.Background())
-}
-
-func (o RealmKeystoreJavaGeneratedOutput) ToRealmKeystoreJavaGeneratedPtrOutputWithContext(ctx context.Context) RealmKeystoreJavaGeneratedPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmKeystoreJavaGenerated) *RealmKeystoreJavaGenerated {
-		return &v
-	}).(RealmKeystoreJavaGeneratedPtrOutput)
-}
-
-type RealmKeystoreJavaGeneratedPtrOutput struct{ *pulumi.OutputState }
-
-func (RealmKeystoreJavaGeneratedPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RealmKeystoreJavaGenerated)(nil))
-}
-
-func (o RealmKeystoreJavaGeneratedPtrOutput) ToRealmKeystoreJavaGeneratedPtrOutput() RealmKeystoreJavaGeneratedPtrOutput {
-	return o
-}
-
-func (o RealmKeystoreJavaGeneratedPtrOutput) ToRealmKeystoreJavaGeneratedPtrOutputWithContext(ctx context.Context) RealmKeystoreJavaGeneratedPtrOutput {
-	return o
-}
-
-func (o RealmKeystoreJavaGeneratedPtrOutput) Elem() RealmKeystoreJavaGeneratedOutput {
-	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) RealmKeystoreJavaGenerated {
-		if v != nil {
-			return *v
-		}
-		var ret RealmKeystoreJavaGenerated
-		return ret
-	}).(RealmKeystoreJavaGeneratedOutput)
-}
-
 type RealmKeystoreJavaGeneratedArrayOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreJavaGeneratedArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RealmKeystoreJavaGenerated)(nil))
+	return reflect.TypeOf((*[]*RealmKeystoreJavaGenerated)(nil)).Elem()
 }
 
 func (o RealmKeystoreJavaGeneratedArrayOutput) ToRealmKeystoreJavaGeneratedArrayOutput() RealmKeystoreJavaGeneratedArrayOutput {
@@ -352,15 +289,15 @@ func (o RealmKeystoreJavaGeneratedArrayOutput) ToRealmKeystoreJavaGeneratedArray
 }
 
 func (o RealmKeystoreJavaGeneratedArrayOutput) Index(i pulumi.IntInput) RealmKeystoreJavaGeneratedOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RealmKeystoreJavaGenerated {
-		return vs[0].([]RealmKeystoreJavaGenerated)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RealmKeystoreJavaGenerated {
+		return vs[0].([]*RealmKeystoreJavaGenerated)[vs[1].(int)]
 	}).(RealmKeystoreJavaGeneratedOutput)
 }
 
 type RealmKeystoreJavaGeneratedMapOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreJavaGeneratedMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RealmKeystoreJavaGenerated)(nil))
+	return reflect.TypeOf((*map[string]*RealmKeystoreJavaGenerated)(nil)).Elem()
 }
 
 func (o RealmKeystoreJavaGeneratedMapOutput) ToRealmKeystoreJavaGeneratedMapOutput() RealmKeystoreJavaGeneratedMapOutput {
@@ -372,18 +309,16 @@ func (o RealmKeystoreJavaGeneratedMapOutput) ToRealmKeystoreJavaGeneratedMapOutp
 }
 
 func (o RealmKeystoreJavaGeneratedMapOutput) MapIndex(k pulumi.StringInput) RealmKeystoreJavaGeneratedOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RealmKeystoreJavaGenerated {
-		return vs[0].(map[string]RealmKeystoreJavaGenerated)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RealmKeystoreJavaGenerated {
+		return vs[0].(map[string]*RealmKeystoreJavaGenerated)[vs[1].(string)]
 	}).(RealmKeystoreJavaGeneratedOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreJavaGeneratedInput)(nil)).Elem(), &RealmKeystoreJavaGenerated{})
-	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreJavaGeneratedPtrInput)(nil)).Elem(), &RealmKeystoreJavaGenerated{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreJavaGeneratedArrayInput)(nil)).Elem(), RealmKeystoreJavaGeneratedArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmKeystoreJavaGeneratedMapInput)(nil)).Elem(), RealmKeystoreJavaGeneratedMap{})
 	pulumi.RegisterOutputType(RealmKeystoreJavaGeneratedOutput{})
-	pulumi.RegisterOutputType(RealmKeystoreJavaGeneratedPtrOutput{})
 	pulumi.RegisterOutputType(RealmKeystoreJavaGeneratedArrayOutput{})
 	pulumi.RegisterOutputType(RealmKeystoreJavaGeneratedMapOutput{})
 }

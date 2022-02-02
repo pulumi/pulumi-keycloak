@@ -57,7 +57,12 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = iam.NewSamlProvider(ctx, "_default", &iam.SamlProviderArgs{
+// 		samlIdpDescriptor := saml.GetClientInstallationProviderOutput(ctx, saml.GetClientInstallationProviderOutputArgs{
+// 			RealmId:    realm.ID(),
+// 			ClientId:   samlClient.ID(),
+// 			ProviderId: pulumi.String("saml-idp-descriptor"),
+// 		}, nil)
+// 		_, err = iam.NewSamlProvider(ctx, "default", &iam.SamlProviderArgs{
 // 			SamlMetadataDocument: samlIdpDescriptor.ApplyT(func(samlIdpDescriptor saml.GetClientInstallationProviderResult) (string, error) {
 // 				return samlIdpDescriptor.Value, nil
 // 			}).(pulumi.StringOutput),

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Keycloak.Saml
 {
@@ -46,7 +45,7 @@ namespace Pulumi.Keycloak.Saml
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetClientResult> InvokeAsync(GetClientArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetClientResult>("keycloak:saml/getClient:getClient", args ?? new GetClientArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetClientResult>("keycloak:saml/getClient:getClient", args ?? new GetClientArgs(), options.WithDefaults());
 
         /// <summary>
         /// This data source can be used to fetch properties of a Keycloak client that uses the SAML protocol.
@@ -82,7 +81,7 @@ namespace Pulumi.Keycloak.Saml
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetClientResult> Invoke(GetClientInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetClientResult>("keycloak:saml/getClient:getClient", args ?? new GetClientInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetClientResult>("keycloak:saml/getClient:getClient", args ?? new GetClientInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -172,7 +172,7 @@ type ClientTimePolicyInput interface {
 }
 
 func (*ClientTimePolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientTimePolicy)(nil))
+	return reflect.TypeOf((**ClientTimePolicy)(nil)).Elem()
 }
 
 func (i *ClientTimePolicy) ToClientTimePolicyOutput() ClientTimePolicyOutput {
@@ -181,35 +181,6 @@ func (i *ClientTimePolicy) ToClientTimePolicyOutput() ClientTimePolicyOutput {
 
 func (i *ClientTimePolicy) ToClientTimePolicyOutputWithContext(ctx context.Context) ClientTimePolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientTimePolicyOutput)
-}
-
-func (i *ClientTimePolicy) ToClientTimePolicyPtrOutput() ClientTimePolicyPtrOutput {
-	return i.ToClientTimePolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *ClientTimePolicy) ToClientTimePolicyPtrOutputWithContext(ctx context.Context) ClientTimePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClientTimePolicyPtrOutput)
-}
-
-type ClientTimePolicyPtrInput interface {
-	pulumi.Input
-
-	ToClientTimePolicyPtrOutput() ClientTimePolicyPtrOutput
-	ToClientTimePolicyPtrOutputWithContext(ctx context.Context) ClientTimePolicyPtrOutput
-}
-
-type clientTimePolicyPtrType ClientTimePolicyArgs
-
-func (*clientTimePolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ClientTimePolicy)(nil))
-}
-
-func (i *clientTimePolicyPtrType) ToClientTimePolicyPtrOutput() ClientTimePolicyPtrOutput {
-	return i.ToClientTimePolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *clientTimePolicyPtrType) ToClientTimePolicyPtrOutputWithContext(ctx context.Context) ClientTimePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClientTimePolicyPtrOutput)
 }
 
 // ClientTimePolicyArrayInput is an input type that accepts ClientTimePolicyArray and ClientTimePolicyArrayOutput values.
@@ -265,7 +236,7 @@ func (i ClientTimePolicyMap) ToClientTimePolicyMapOutputWithContext(ctx context.
 type ClientTimePolicyOutput struct{ *pulumi.OutputState }
 
 func (ClientTimePolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientTimePolicy)(nil))
+	return reflect.TypeOf((**ClientTimePolicy)(nil)).Elem()
 }
 
 func (o ClientTimePolicyOutput) ToClientTimePolicyOutput() ClientTimePolicyOutput {
@@ -276,44 +247,10 @@ func (o ClientTimePolicyOutput) ToClientTimePolicyOutputWithContext(ctx context.
 	return o
 }
 
-func (o ClientTimePolicyOutput) ToClientTimePolicyPtrOutput() ClientTimePolicyPtrOutput {
-	return o.ToClientTimePolicyPtrOutputWithContext(context.Background())
-}
-
-func (o ClientTimePolicyOutput) ToClientTimePolicyPtrOutputWithContext(ctx context.Context) ClientTimePolicyPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientTimePolicy) *ClientTimePolicy {
-		return &v
-	}).(ClientTimePolicyPtrOutput)
-}
-
-type ClientTimePolicyPtrOutput struct{ *pulumi.OutputState }
-
-func (ClientTimePolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ClientTimePolicy)(nil))
-}
-
-func (o ClientTimePolicyPtrOutput) ToClientTimePolicyPtrOutput() ClientTimePolicyPtrOutput {
-	return o
-}
-
-func (o ClientTimePolicyPtrOutput) ToClientTimePolicyPtrOutputWithContext(ctx context.Context) ClientTimePolicyPtrOutput {
-	return o
-}
-
-func (o ClientTimePolicyPtrOutput) Elem() ClientTimePolicyOutput {
-	return o.ApplyT(func(v *ClientTimePolicy) ClientTimePolicy {
-		if v != nil {
-			return *v
-		}
-		var ret ClientTimePolicy
-		return ret
-	}).(ClientTimePolicyOutput)
-}
-
 type ClientTimePolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientTimePolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClientTimePolicy)(nil))
+	return reflect.TypeOf((*[]*ClientTimePolicy)(nil)).Elem()
 }
 
 func (o ClientTimePolicyArrayOutput) ToClientTimePolicyArrayOutput() ClientTimePolicyArrayOutput {
@@ -325,15 +262,15 @@ func (o ClientTimePolicyArrayOutput) ToClientTimePolicyArrayOutputWithContext(ct
 }
 
 func (o ClientTimePolicyArrayOutput) Index(i pulumi.IntInput) ClientTimePolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClientTimePolicy {
-		return vs[0].([]ClientTimePolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ClientTimePolicy {
+		return vs[0].([]*ClientTimePolicy)[vs[1].(int)]
 	}).(ClientTimePolicyOutput)
 }
 
 type ClientTimePolicyMapOutput struct{ *pulumi.OutputState }
 
 func (ClientTimePolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ClientTimePolicy)(nil))
+	return reflect.TypeOf((*map[string]*ClientTimePolicy)(nil)).Elem()
 }
 
 func (o ClientTimePolicyMapOutput) ToClientTimePolicyMapOutput() ClientTimePolicyMapOutput {
@@ -345,18 +282,16 @@ func (o ClientTimePolicyMapOutput) ToClientTimePolicyMapOutputWithContext(ctx co
 }
 
 func (o ClientTimePolicyMapOutput) MapIndex(k pulumi.StringInput) ClientTimePolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ClientTimePolicy {
-		return vs[0].(map[string]ClientTimePolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ClientTimePolicy {
+		return vs[0].(map[string]*ClientTimePolicy)[vs[1].(string)]
 	}).(ClientTimePolicyOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientTimePolicyInput)(nil)).Elem(), &ClientTimePolicy{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ClientTimePolicyPtrInput)(nil)).Elem(), &ClientTimePolicy{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientTimePolicyArrayInput)(nil)).Elem(), ClientTimePolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientTimePolicyMapInput)(nil)).Elem(), ClientTimePolicyMap{})
 	pulumi.RegisterOutputType(ClientTimePolicyOutput{})
-	pulumi.RegisterOutputType(ClientTimePolicyPtrOutput{})
 	pulumi.RegisterOutputType(ClientTimePolicyArrayOutput{})
 	pulumi.RegisterOutputType(ClientTimePolicyMapOutput{})
 }

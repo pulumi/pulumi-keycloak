@@ -68,11 +68,11 @@ import * as utilities from "../utilities";
  *     bindDn: "cn=admin,dc=example,dc=org",
  *     bindCredential: "admin",
  * });
- * const realmManagement = realm.id.apply(id => keycloak.openid.getClient({
- *     realmId: id,
+ * const realmManagement = keycloak.openid.getClientOutput({
+ *     realmId: realm.id,
  *     clientId: "realm-management",
- * }));
- * const createClient = pulumi.all([realm.id, realmManagement]).apply(([id, realmManagement]) => keycloak.getRole({
+ * });
+ * const createClient = pulumi.all([realm.id, realmManagement]).apply(([id, realmManagement]) => keycloak.getRoleOutput({
  *     realmId: id,
  *     clientId: realmManagement.id,
  *     name: "create-client",
@@ -146,14 +146,14 @@ export class HardcodedRoleMapper extends pulumi.CustomResource {
      */
     constructor(name: string, args: HardcodedRoleMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: HardcodedRoleMapperArgs | HardcodedRoleMapperState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as HardcodedRoleMapperState | undefined;
-            inputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["role"] = state ? state.role : undefined;
+            resourceInputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["role"] = state ? state.role : undefined;
         } else {
             const args = argsOrState as HardcodedRoleMapperArgs | undefined;
             if ((!args || args.ldapUserFederationId === undefined) && !opts.urn) {
@@ -165,15 +165,13 @@ export class HardcodedRoleMapper extends pulumi.CustomResource {
             if ((!args || args.role === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            inputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["role"] = args ? args.role : undefined;
+            resourceInputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["role"] = args ? args.role : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(HardcodedRoleMapper.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(HardcodedRoleMapper.__pulumiType, name, resourceInputs, opts);
     }
 }
 

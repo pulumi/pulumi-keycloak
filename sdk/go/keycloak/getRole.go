@@ -32,6 +32,10 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
+// 		offlineAccess := keycloak.LookupRoleOutput(ctx, GetRoleOutputArgs{
+// 			RealmId: realm.ID(),
+// 			Name:    pulumi.String("offline_access"),
+// 		}, nil)
 // 		group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
 // 			RealmId: realm.ID(),
 // 		})

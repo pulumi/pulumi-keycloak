@@ -144,19 +144,19 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
      */
     constructor(name: string, args: UserSessionNoteProtocolMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserSessionNoteProtocolMapperArgs | UserSessionNoteProtocolMapperState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserSessionNoteProtocolMapperState | undefined;
-            inputs["addToAccessToken"] = state ? state.addToAccessToken : undefined;
-            inputs["addToIdToken"] = state ? state.addToIdToken : undefined;
-            inputs["claimName"] = state ? state.claimName : undefined;
-            inputs["claimValueType"] = state ? state.claimValueType : undefined;
-            inputs["clientId"] = state ? state.clientId : undefined;
-            inputs["clientScopeId"] = state ? state.clientScopeId : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["realmId"] = state ? state.realmId : undefined;
-            inputs["sessionNote"] = state ? state.sessionNote : undefined;
+            resourceInputs["addToAccessToken"] = state ? state.addToAccessToken : undefined;
+            resourceInputs["addToIdToken"] = state ? state.addToIdToken : undefined;
+            resourceInputs["claimName"] = state ? state.claimName : undefined;
+            resourceInputs["claimValueType"] = state ? state.claimValueType : undefined;
+            resourceInputs["clientId"] = state ? state.clientId : undefined;
+            resourceInputs["clientScopeId"] = state ? state.clientScopeId : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["sessionNote"] = state ? state.sessionNote : undefined;
         } else {
             const args = argsOrState as UserSessionNoteProtocolMapperArgs | undefined;
             if ((!args || args.claimName === undefined) && !opts.urn) {
@@ -165,20 +165,18 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            inputs["addToAccessToken"] = args ? args.addToAccessToken : undefined;
-            inputs["addToIdToken"] = args ? args.addToIdToken : undefined;
-            inputs["claimName"] = args ? args.claimName : undefined;
-            inputs["claimValueType"] = args ? args.claimValueType : undefined;
-            inputs["clientId"] = args ? args.clientId : undefined;
-            inputs["clientScopeId"] = args ? args.clientScopeId : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["realmId"] = args ? args.realmId : undefined;
-            inputs["sessionNote"] = args ? args.sessionNote : undefined;
+            resourceInputs["addToAccessToken"] = args ? args.addToAccessToken : undefined;
+            resourceInputs["addToIdToken"] = args ? args.addToIdToken : undefined;
+            resourceInputs["claimName"] = args ? args.claimName : undefined;
+            resourceInputs["claimValueType"] = args ? args.claimValueType : undefined;
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["clientScopeId"] = args ? args.clientScopeId : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["sessionNote"] = args ? args.sessionNote : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserSessionNoteProtocolMapper.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserSessionNoteProtocolMapper.__pulumiType, name, resourceInputs, opts);
     }
 }
 
