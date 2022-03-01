@@ -5,6 +5,35 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const client = new keycloak.openid.Client("client", {
+ *     realmId: realm.id,
+ *     clientId: "test-client",
+ *     accessType: "CONFIDENTIAL",
+ * });
+ * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
+ * const clientOptionalScopes = new keycloak.openid.ClientOptionalScopes("clientOptionalScopes", {
+ *     realmId: realm.id,
+ *     clientId: client.id,
+ *     optionalScopes: [
+ *         "address",
+ *         "phone",
+ *         "offline_access",
+ *         "microprofile-jwt",
+ *         clientScope.name,
+ *     ],
+ * });
+ * ```
+ *
  * ## Import
  *
  * This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
