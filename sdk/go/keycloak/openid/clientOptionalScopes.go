@@ -11,6 +11,59 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		client, err := openid.NewClient(ctx, "client", &openid.ClientArgs{
+// 			RealmId:    realm.ID(),
+// 			ClientId:   pulumi.String("test-client"),
+// 			AccessType: pulumi.String("CONFIDENTIAL"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		clientScope, err := openid.NewClientScope(ctx, "clientScope", &openid.ClientScopeArgs{
+// 			RealmId: realm.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = openid.NewClientOptionalScopes(ctx, "clientOptionalScopes", &openid.ClientOptionalScopesArgs{
+// 			RealmId:  realm.ID(),
+// 			ClientId: client.ID(),
+// 			OptionalScopes: pulumi.StringArray{
+// 				pulumi.String("address"),
+// 				pulumi.String("phone"),
+// 				pulumi.String("offline_access"),
+// 				pulumi.String("microprofile-jwt"),
+// 				clientScope.Name,
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.

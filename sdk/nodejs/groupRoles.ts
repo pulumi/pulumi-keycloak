@@ -5,6 +5,82 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ * ### Exhaustive Roles)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const realmRole = new keycloak.Role("realmRole", {
+ *     realmId: realm.id,
+ *     description: "My Realm Role",
+ * });
+ * const client = new keycloak.openid.Client("client", {
+ *     realmId: realm.id,
+ *     clientId: "client",
+ *     enabled: true,
+ *     accessType: "BEARER-ONLY",
+ * });
+ * const clientRole = new keycloak.Role("clientRole", {
+ *     realmId: realm.id,
+ *     clientId: keycloak_client.client.id,
+ *     description: "My Client Role",
+ * });
+ * const group = new keycloak.Group("group", {realmId: realm.id});
+ * const groupRoles = new keycloak.GroupRoles("groupRoles", {
+ *     realmId: realm.id,
+ *     groupId: group.id,
+ *     roleIds: [
+ *         realmRole.id,
+ *         clientRole.id,
+ *     ],
+ * });
+ * ```
+ * ### Non Exhaustive Roles)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const realmRole = new keycloak.Role("realmRole", {
+ *     realmId: realm.id,
+ *     description: "My Realm Role",
+ * });
+ * const client = new keycloak.openid.Client("client", {
+ *     realmId: realm.id,
+ *     clientId: "client",
+ *     enabled: true,
+ *     accessType: "BEARER-ONLY",
+ * });
+ * const clientRole = new keycloak.Role("clientRole", {
+ *     realmId: realm.id,
+ *     clientId: keycloak_client.client.id,
+ *     description: "My Client Role",
+ * });
+ * const group = new keycloak.Group("group", {realmId: realm.id});
+ * const groupRoleAssociation1 = new keycloak.GroupRoles("groupRoleAssociation1", {
+ *     realmId: realm.id,
+ *     groupId: group.id,
+ *     exhaustive: false,
+ *     roleIds: [realmRole.id],
+ * });
+ * const groupRoleAssociation2 = new keycloak.GroupRoles("groupRoleAssociation2", {
+ *     realmId: realm.id,
+ *     groupId: group.id,
+ *     exhaustive: false,
+ *     roleIds: [clientRole.id],
+ * });
+ * ```
+ *
  * ## Import
  *
  * This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID. Examplebash

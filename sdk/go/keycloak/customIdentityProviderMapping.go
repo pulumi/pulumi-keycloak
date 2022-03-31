@@ -11,6 +11,58 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/oidc"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		oidcIdentityProvider, err := oidc.NewIdentityProvider(ctx, "oidcIdentityProvider", &oidc.IdentityProviderArgs{
+// 			Realm:            realm.ID(),
+// 			Alias:            pulumi.String("oidc"),
+// 			AuthorizationUrl: pulumi.String("https://example.com/auth"),
+// 			TokenUrl:         pulumi.String("https://example.com/token"),
+// 			ClientId:         pulumi.String("example_id"),
+// 			ClientSecret:     pulumi.String("example_token"),
+// 			DefaultScopes:    pulumi.String("openid random profile"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewCustomIdentityProviderMapping(ctx, "oidcCustomIdentityProviderMapping", &keycloak.CustomIdentityProviderMappingArgs{
+// 			Realm:                  realm.ID(),
+// 			IdentityProviderAlias:  oidcIdentityProvider.Alias,
+// 			IdentityProviderMapper: pulumi.String(fmt.Sprintf("%v%v", "%", "s-user-attribute-idp-mapper")),
+// 			ExtraConfig: pulumi.AnyMap{
+// 				"syncMode":      pulumi.Any("INHERIT"),
+// 				"Claim":         pulumi.Any("my-email-claim"),
+// 				"UserAttribute": pulumi.Any("email"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // Identity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID. Examplebash

@@ -10,6 +10,48 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "my-realm",
+    ///             Enabled = true,
+    ///         });
+    ///         var oidcIdentityProvider = new Keycloak.Oidc.IdentityProvider("oidcIdentityProvider", new Keycloak.Oidc.IdentityProviderArgs
+    ///         {
+    ///             Realm = realm.Id,
+    ///             Alias = "oidc",
+    ///             AuthorizationUrl = "https://example.com/auth",
+    ///             TokenUrl = "https://example.com/token",
+    ///             ClientId = "example_id",
+    ///             ClientSecret = "example_token",
+    ///             DefaultScopes = "openid random profile",
+    ///         });
+    ///         var oidcCustomIdentityProviderMapping = new Keycloak.CustomIdentityProviderMapping("oidcCustomIdentityProviderMapping", new Keycloak.CustomIdentityProviderMappingArgs
+    ///         {
+    ///             Realm = realm.Id,
+    ///             IdentityProviderAlias = oidcIdentityProvider.Alias,
+    ///             IdentityProviderMapper = "%s-user-attribute-idp-mapper",
+    ///             ExtraConfig = 
+    ///             {
+    ///                 { "syncMode", "INHERIT" },
+    ///                 { "Claim", "my-email-claim" },
+    ///                 { "UserAttribute", "email" },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Identity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID. Examplebash

@@ -195,6 +195,34 @@ class CustomIdentityProviderMapping(pulumi.CustomResource):
                  realm: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        oidc_identity_provider = keycloak.oidc.IdentityProvider("oidcIdentityProvider",
+            realm=realm.id,
+            alias="oidc",
+            authorization_url="https://example.com/auth",
+            token_url="https://example.com/token",
+            client_id="example_id",
+            client_secret="example_token",
+            default_scopes="openid random profile")
+        oidc_custom_identity_provider_mapping = keycloak.CustomIdentityProviderMapping("oidcCustomIdentityProviderMapping",
+            realm=realm.id,
+            identity_provider_alias=oidc_identity_provider.alias,
+            identity_provider_mapper="%s-user-attribute-idp-mapper",
+            extra_config={
+                "syncMode": "INHERIT",
+                "Claim": "my-email-claim",
+                "UserAttribute": "email",
+            })
+        ```
+
         ## Import
 
         Identity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID. Examplebash
@@ -218,6 +246,34 @@ class CustomIdentityProviderMapping(pulumi.CustomResource):
                  args: CustomIdentityProviderMappingArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        oidc_identity_provider = keycloak.oidc.IdentityProvider("oidcIdentityProvider",
+            realm=realm.id,
+            alias="oidc",
+            authorization_url="https://example.com/auth",
+            token_url="https://example.com/token",
+            client_id="example_id",
+            client_secret="example_token",
+            default_scopes="openid random profile")
+        oidc_custom_identity_provider_mapping = keycloak.CustomIdentityProviderMapping("oidcCustomIdentityProviderMapping",
+            realm=realm.id,
+            identity_provider_alias=oidc_identity_provider.alias,
+            identity_provider_mapper="%s-user-attribute-idp-mapper",
+            extra_config={
+                "syncMode": "INHERIT",
+                "Claim": "my-email-claim",
+                "UserAttribute": "email",
+            })
+        ```
+
         ## Import
 
         Identity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID. Examplebash

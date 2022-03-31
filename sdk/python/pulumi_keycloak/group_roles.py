@@ -162,6 +162,71 @@ class GroupRoles(pulumi.CustomResource):
                  role_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
+        ## Example Usage
+        ### Exhaustive Roles)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        realm_role = keycloak.Role("realmRole",
+            realm_id=realm.id,
+            description="My Realm Role")
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="BEARER-ONLY")
+        client_role = keycloak.Role("clientRole",
+            realm_id=realm.id,
+            client_id=keycloak_client["client"]["id"],
+            description="My Client Role")
+        group = keycloak.Group("group", realm_id=realm.id)
+        group_roles = keycloak.GroupRoles("groupRoles",
+            realm_id=realm.id,
+            group_id=group.id,
+            role_ids=[
+                realm_role.id,
+                client_role.id,
+            ])
+        ```
+        ### Non Exhaustive Roles)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        realm_role = keycloak.Role("realmRole",
+            realm_id=realm.id,
+            description="My Realm Role")
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="BEARER-ONLY")
+        client_role = keycloak.Role("clientRole",
+            realm_id=realm.id,
+            client_id=keycloak_client["client"]["id"],
+            description="My Client Role")
+        group = keycloak.Group("group", realm_id=realm.id)
+        group_role_association1 = keycloak.GroupRoles("groupRoleAssociation1",
+            realm_id=realm.id,
+            group_id=group.id,
+            exhaustive=False,
+            role_ids=[realm_role.id])
+        group_role_association2 = keycloak.GroupRoles("groupRoleAssociation2",
+            realm_id=realm.id,
+            group_id=group.id,
+            exhaustive=False,
+            role_ids=[client_role.id])
+        ```
+
         ## Import
 
         This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID. Examplebash
@@ -184,6 +249,71 @@ class GroupRoles(pulumi.CustomResource):
                  args: GroupRolesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+        ### Exhaustive Roles)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        realm_role = keycloak.Role("realmRole",
+            realm_id=realm.id,
+            description="My Realm Role")
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="BEARER-ONLY")
+        client_role = keycloak.Role("clientRole",
+            realm_id=realm.id,
+            client_id=keycloak_client["client"]["id"],
+            description="My Client Role")
+        group = keycloak.Group("group", realm_id=realm.id)
+        group_roles = keycloak.GroupRoles("groupRoles",
+            realm_id=realm.id,
+            group_id=group.id,
+            role_ids=[
+                realm_role.id,
+                client_role.id,
+            ])
+        ```
+        ### Non Exhaustive Roles)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        realm_role = keycloak.Role("realmRole",
+            realm_id=realm.id,
+            description="My Realm Role")
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="BEARER-ONLY")
+        client_role = keycloak.Role("clientRole",
+            realm_id=realm.id,
+            client_id=keycloak_client["client"]["id"],
+            description="My Client Role")
+        group = keycloak.Group("group", realm_id=realm.id)
+        group_role_association1 = keycloak.GroupRoles("groupRoleAssociation1",
+            realm_id=realm.id,
+            group_id=group.id,
+            exhaustive=False,
+            role_ids=[realm_role.id])
+        group_role_association2 = keycloak.GroupRoles("groupRoleAssociation2",
+            realm_id=realm.id,
+            group_id=group.id,
+            exhaustive=False,
+            role_ids=[client_role.id])
+        ```
+
         ## Import
 
         This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID. Examplebash

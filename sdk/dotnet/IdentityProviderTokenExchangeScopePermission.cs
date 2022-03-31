@@ -10,6 +10,60 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var tokenExchangeRealm = new Keycloak.Realm("tokenExchangeRealm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "token-exchange_destination_realm",
+    ///             Enabled = true,
+    ///         });
+    ///         var tokenExchangeMyOidcIdp = new Keycloak.Oidc.IdentityProvider("tokenExchangeMyOidcIdp", new Keycloak.Oidc.IdentityProviderArgs
+    ///         {
+    ///             Realm = tokenExchangeRealm.Id,
+    ///             Alias = "myIdp",
+    ///             AuthorizationUrl = "http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/auth",
+    ///             TokenUrl = "http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/token",
+    ///             ClientId = "clientId",
+    ///             ClientSecret = "secret",
+    ///             DefaultScopes = "openid",
+    ///         });
+    ///         var token_exchangeWebappClient = new Keycloak.OpenId.Client("token-exchangeWebappClient", new Keycloak.OpenId.ClientArgs
+    ///         {
+    ///             RealmId = tokenExchangeRealm.Id,
+    ///             ClientId = "webapp_client",
+    ///             ClientSecret = "secret",
+    ///             Description = "a webapp client on the destination realm",
+    ///             AccessType = "CONFIDENTIAL",
+    ///             StandardFlowEnabled = true,
+    ///             ValidRedirectUris = 
+    ///             {
+    ///                 "http://localhost:8080/*",
+    ///             },
+    ///         });
+    ///         //relevant part
+    ///         var oidcIdpPermission = new Keycloak.IdentityProviderTokenExchangeScopePermission("oidcIdpPermission", new Keycloak.IdentityProviderTokenExchangeScopePermissionArgs
+    ///         {
+    ///             RealmId = tokenExchangeRealm.Id,
+    ///             ProviderAlias = tokenExchangeMyOidcIdp.Alias,
+    ///             PolicyType = "client",
+    ///             Clients = 
+    ///             {
+    ///                 token_exchangeWebappClient.Id,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// This resource can be imported using the format `{{realm_id}}/{{provider_alias}}`, where `provider_alias` is the alias that you assign to the identity provider upon creation. Examplebash

@@ -10,6 +10,64 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
+    /// ## Example Usage
+    /// ### Exhaustive Roles)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "my-realm",
+    ///             Enabled = true,
+    ///         });
+    ///         var realmRole = new Keycloak.Role("realmRole", new Keycloak.RoleArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             Description = "My Realm Role",
+    ///         });
+    ///         var client = new Keycloak.OpenId.Client("client", new Keycloak.OpenId.ClientArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             ClientId = "client",
+    ///             Enabled = true,
+    ///             AccessType = "BEARER-ONLY",
+    ///         });
+    ///         var clientRole = new Keycloak.Role("clientRole", new Keycloak.RoleArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             ClientId = keycloak_client.Client.Id,
+    ///             Description = "My Client Role",
+    ///         });
+    ///         var user = new Keycloak.User("user", new Keycloak.UserArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             Username = "bob",
+    ///             Enabled = true,
+    ///             Email = "bob@domain.com",
+    ///             FirstName = "Bob",
+    ///             LastName = "Bobson",
+    ///         });
+    ///         var userRoles = new Keycloak.UserRoles("userRoles", new Keycloak.UserRolesArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             UserId = user.Id,
+    ///             RoleIds = 
+    ///             {
+    ///                 realmRole.Id,
+    ///                 clientRole.Id,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// This resource can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak assigns to the user upon creation. This value can be found in the GUI when editing the user, and is typically a GUID. Examplebash
