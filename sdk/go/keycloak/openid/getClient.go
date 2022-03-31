@@ -32,10 +32,9 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		opt0 := realmManagement.Id
 // 		_, err = keycloak.LookupRole(ctx, &GetRoleArgs{
 // 			RealmId:  "my-realm",
-// 			ClientId: &opt0,
+// 			ClientId: pulumi.StringRef(realmManagement.Id),
 // 			Name:     "realm-admin",
 // 		}, nil)
 // 		if err != nil {

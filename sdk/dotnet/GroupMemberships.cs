@@ -10,6 +10,44 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "my-realm",
+    ///             Enabled = true,
+    ///         });
+    ///         var @group = new Keycloak.Group("group", new Keycloak.GroupArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var user = new Keycloak.User("user", new Keycloak.UserArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             Username = "my-user",
+    ///         });
+    ///         var groupMembers = new Keycloak.GroupMemberships("groupMembers", new Keycloak.GroupMembershipsArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             GroupId = @group.Id,
+    ///             Members = 
+    ///             {
+    ///                 user.Username,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server. [1]providers/mrparkers/keycloak/latest/docs/resources/group_memberships

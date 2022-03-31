@@ -10,6 +10,49 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "my-realm",
+    ///             Enabled = true,
+    ///         });
+    ///         var client = new Keycloak.OpenId.Client("client", new Keycloak.OpenId.ClientArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             ClientId = "test-client",
+    ///             AccessType = "CONFIDENTIAL",
+    ///         });
+    ///         var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new Keycloak.OpenId.ClientScopeArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var clientOptionalScopes = new Keycloak.OpenId.ClientOptionalScopes("clientOptionalScopes", new Keycloak.OpenId.ClientOptionalScopesArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             ClientId = client.Id,
+    ///             OptionalScopes = 
+    ///             {
+    ///                 "address",
+    ///                 "phone",
+    ///                 "offline_access",
+    ///                 "microprofile-jwt",
+    ///                 clientScope.Name,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.

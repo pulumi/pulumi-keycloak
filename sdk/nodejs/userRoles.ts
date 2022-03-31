@@ -5,6 +5,50 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ * ### Exhaustive Roles)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const realmRole = new keycloak.Role("realmRole", {
+ *     realmId: realm.id,
+ *     description: "My Realm Role",
+ * });
+ * const client = new keycloak.openid.Client("client", {
+ *     realmId: realm.id,
+ *     clientId: "client",
+ *     enabled: true,
+ *     accessType: "BEARER-ONLY",
+ * });
+ * const clientRole = new keycloak.Role("clientRole", {
+ *     realmId: realm.id,
+ *     clientId: keycloak_client.client.id,
+ *     description: "My Client Role",
+ * });
+ * const user = new keycloak.User("user", {
+ *     realmId: realm.id,
+ *     username: "bob",
+ *     enabled: true,
+ *     email: "bob@domain.com",
+ *     firstName: "Bob",
+ *     lastName: "Bobson",
+ * });
+ * const userRoles = new keycloak.UserRoles("userRoles", {
+ *     realmId: realm.id,
+ *     userId: user.id,
+ *     roleIds: [
+ *         realmRole.id,
+ *         clientRole.id,
+ *     ],
+ * });
+ * ```
+ *
  * ## Import
  *
  * This resource can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak assigns to the user upon creation. This value can be found in the GUI when editing the user, and is typically a GUID. Examplebash

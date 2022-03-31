@@ -162,6 +162,44 @@ class UserRoles(pulumi.CustomResource):
                  user_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+        ### Exhaustive Roles)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        realm_role = keycloak.Role("realmRole",
+            realm_id=realm.id,
+            description="My Realm Role")
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="BEARER-ONLY")
+        client_role = keycloak.Role("clientRole",
+            realm_id=realm.id,
+            client_id=keycloak_client["client"]["id"],
+            description="My Client Role")
+        user = keycloak.User("user",
+            realm_id=realm.id,
+            username="bob",
+            enabled=True,
+            email="bob@domain.com",
+            first_name="Bob",
+            last_name="Bobson")
+        user_roles = keycloak.UserRoles("userRoles",
+            realm_id=realm.id,
+            user_id=user.id,
+            role_ids=[
+                realm_role.id,
+                client_role.id,
+            ])
+        ```
+
         ## Import
 
         This resource can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak assigns to the user upon creation. This value can be found in the GUI when editing the user, and is typically a GUID. Examplebash
@@ -184,6 +222,44 @@ class UserRoles(pulumi.CustomResource):
                  args: UserRolesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+        ### Exhaustive Roles)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        realm_role = keycloak.Role("realmRole",
+            realm_id=realm.id,
+            description="My Realm Role")
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="BEARER-ONLY")
+        client_role = keycloak.Role("clientRole",
+            realm_id=realm.id,
+            client_id=keycloak_client["client"]["id"],
+            description="My Client Role")
+        user = keycloak.User("user",
+            realm_id=realm.id,
+            username="bob",
+            enabled=True,
+            email="bob@domain.com",
+            first_name="Bob",
+            last_name="Bobson")
+        user_roles = keycloak.UserRoles("userRoles",
+            realm_id=realm.id,
+            user_id=user.id,
+            role_ids=[
+                realm_role.id,
+                client_role.id,
+            ])
+        ```
+
         ## Import
 
         This resource can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak assigns to the user upon creation. This value can be found in the GUI when editing the user, and is typically a GUID. Examplebash

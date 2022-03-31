@@ -10,6 +10,95 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
+    /// ## Example Usage
+    /// ### Exhaustive Groups)
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "my-realm",
+    ///             Enabled = true,
+    ///         });
+    ///         var @group = new Keycloak.Group("group", new Keycloak.GroupArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var user = new Keycloak.User("user", new Keycloak.UserArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             Username = "my-user",
+    ///         });
+    ///         var userGroups = new Keycloak.UserGroups("userGroups", new Keycloak.UserGroupsArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             UserId = user.Id,
+    ///             GroupIds = 
+    ///             {
+    ///                 @group.Id,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Non Exhaustive Groups)
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "my-realm",
+    ///             Enabled = true,
+    ///         });
+    ///         var groupFoo = new Keycloak.Group("groupFoo", new Keycloak.GroupArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var groupBar = new Keycloak.Group("groupBar", new Keycloak.GroupArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///         });
+    ///         var user = new Keycloak.User("user", new Keycloak.UserArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             Username = "my-user",
+    ///         });
+    ///         var userGroupsAssociation1UserGroups = new Keycloak.UserGroups("userGroupsAssociation1UserGroups", new Keycloak.UserGroupsArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             UserId = user.Id,
+    ///             Exhaustive = false,
+    ///             GroupIds = 
+    ///             {
+    ///                 groupFoo.Id,
+    ///             },
+    ///         });
+    ///         var userGroupsAssociation1Index_userGroupsUserGroups = new Keycloak.UserGroups("userGroupsAssociation1Index/userGroupsUserGroups", new Keycloak.UserGroupsArgs
+    ///         {
+    ///             RealmId = realm.Id,
+    ///             UserId = user.Id,
+    ///             Exhaustive = false,
+    ///             GroupIds = 
+    ///             {
+    ///                 groupBar.Id,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.

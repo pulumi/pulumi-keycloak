@@ -162,6 +162,49 @@ class UserGroups(pulumi.CustomResource):
                  user_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+        ### Exhaustive Groups)
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        group = keycloak.Group("group", realm_id=realm.id)
+        user = keycloak.User("user",
+            realm_id=realm.id,
+            username="my-user")
+        user_groups = keycloak.UserGroups("userGroups",
+            realm_id=realm.id,
+            user_id=user.id,
+            group_ids=[group.id])
+        ```
+        ### Non Exhaustive Groups)
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        group_foo = keycloak.Group("groupFoo", realm_id=realm.id)
+        group_bar = keycloak.Group("groupBar", realm_id=realm.id)
+        user = keycloak.User("user",
+            realm_id=realm.id,
+            username="my-user")
+        user_groups_association1_user_groups = keycloak.UserGroups("userGroupsAssociation1UserGroups",
+            realm_id=realm.id,
+            user_id=user.id,
+            exhaustive=False,
+            group_ids=[group_foo.id])
+        user_groups_association1_index_user_groups_user_groups = keycloak.UserGroups("userGroupsAssociation1Index/userGroupsUserGroups",
+            realm_id=realm.id,
+            user_id=user.id,
+            exhaustive=False,
+            group_ids=[group_bar.id])
+        ```
+
         ## Import
 
         This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
@@ -180,6 +223,49 @@ class UserGroups(pulumi.CustomResource):
                  args: UserGroupsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+        ### Exhaustive Groups)
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        group = keycloak.Group("group", realm_id=realm.id)
+        user = keycloak.User("user",
+            realm_id=realm.id,
+            username="my-user")
+        user_groups = keycloak.UserGroups("userGroups",
+            realm_id=realm.id,
+            user_id=user.id,
+            group_ids=[group.id])
+        ```
+        ### Non Exhaustive Groups)
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        group_foo = keycloak.Group("groupFoo", realm_id=realm.id)
+        group_bar = keycloak.Group("groupBar", realm_id=realm.id)
+        user = keycloak.User("user",
+            realm_id=realm.id,
+            username="my-user")
+        user_groups_association1_user_groups = keycloak.UserGroups("userGroupsAssociation1UserGroups",
+            realm_id=realm.id,
+            user_id=user.id,
+            exhaustive=False,
+            group_ids=[group_foo.id])
+        user_groups_association1_index_user_groups_user_groups = keycloak.UserGroups("userGroupsAssociation1Index/userGroupsUserGroups",
+            realm_id=realm.id,
+            user_id=user.id,
+            exhaustive=False,
+            group_ids=[group_bar.id])
+        ```
+
         ## Import
 
         This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
