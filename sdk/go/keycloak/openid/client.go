@@ -87,6 +87,12 @@ type Client struct {
 	BackchannelLogoutUrl pulumi.StringPtrOutput `pulumi:"backchannelLogoutUrl"`
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl pulumi.StringPtrOutput `pulumi:"baseUrl"`
+	// Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+	// - `client-secret` (Default) Use client id and client secret to authenticate client.
+	// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
+	// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
+	// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
+	ClientAuthenticatorType pulumi.StringPtrOutput `pulumi:"clientAuthenticatorType"`
 	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
 	ClientId pulumi.StringOutput `pulumi:"clientId"`
 	// Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
@@ -99,17 +105,25 @@ type Client struct {
 	ClientSessionIdleTimeout pulumi.StringPtrOutput `pulumi:"clientSessionIdleTimeout"`
 	// Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
 	ClientSessionMaxLifespan pulumi.StringPtrOutput `pulumi:"clientSessionMaxLifespan"`
-	// When `true`, users have to consent to client access.
+	// When `true`, users have to consent to client access. Defaults to `false`.
 	ConsentRequired pulumi.BoolPtrOutput `pulumi:"consentRequired"`
+	// The text to display on the consent screen about permissions specific to this client. This is applicable only when `displayOnConsentScreen` is `true`.
+	ConsentScreenText pulumi.StringPtrOutput `pulumi:"consentScreenText"`
 	// The description of this client in the GUI.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
 	DirectAccessGrantsEnabled pulumi.BoolPtrOutput `pulumi:"directAccessGrantsEnabled"`
+	// When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consentRequired` is `true`.
+	DisplayOnConsentScreen pulumi.BoolPtrOutput `pulumi:"displayOnConsentScreen"`
 	// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
 	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrOutput `pulumi:"excludeSessionStateFromAuthResponse"`
 	ExtraConfig                         pulumi.MapOutput     `pulumi:"extraConfig"`
+	// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
+	FrontchannelLogoutEnabled pulumi.BoolPtrOutput `pulumi:"frontchannelLogoutEnabled"`
+	// The frontchannel logout url. This is applicable only when `frontchannelLogoutEnabled` is `true`.
+	FrontchannelLogoutUrl pulumi.StringPtrOutput `pulumi:"frontchannelLogoutUrl"`
 	// Allow to include all roles mappings in the access token.
 	FullScopeAllowed pulumi.BoolPtrOutput `pulumi:"fullScopeAllowed"`
 	// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
@@ -118,6 +132,12 @@ type Client struct {
 	LoginTheme pulumi.StringPtrOutput `pulumi:"loginTheme"`
 	// The display name of this client in the GUI.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
+	Oauth2DeviceAuthorizationGrantEnabled pulumi.BoolPtrOutput `pulumi:"oauth2DeviceAuthorizationGrantEnabled"`
+	// The maximum amount of time a client has to finish the device code flow before it expires.
+	Oauth2DeviceCodeLifespan pulumi.StringPtrOutput `pulumi:"oauth2DeviceCodeLifespan"`
+	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+	Oauth2DevicePollingInterval pulumi.StringPtrOutput `pulumi:"oauth2DevicePollingInterval"`
 	// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
 	PkceCodeChallengeMethod pulumi.StringPtrOutput `pulumi:"pkceCodeChallengeMethod"`
 	// The realm this client is attached to.
@@ -198,6 +218,12 @@ type clientState struct {
 	BackchannelLogoutUrl *string `pulumi:"backchannelLogoutUrl"`
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl *string `pulumi:"baseUrl"`
+	// Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+	// - `client-secret` (Default) Use client id and client secret to authenticate client.
+	// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
+	// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
+	// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
+	ClientAuthenticatorType *string `pulumi:"clientAuthenticatorType"`
 	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
 	ClientId *string `pulumi:"clientId"`
 	// Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
@@ -210,17 +236,25 @@ type clientState struct {
 	ClientSessionIdleTimeout *string `pulumi:"clientSessionIdleTimeout"`
 	// Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
 	ClientSessionMaxLifespan *string `pulumi:"clientSessionMaxLifespan"`
-	// When `true`, users have to consent to client access.
+	// When `true`, users have to consent to client access. Defaults to `false`.
 	ConsentRequired *bool `pulumi:"consentRequired"`
+	// The text to display on the consent screen about permissions specific to this client. This is applicable only when `displayOnConsentScreen` is `true`.
+	ConsentScreenText *string `pulumi:"consentScreenText"`
 	// The description of this client in the GUI.
 	Description *string `pulumi:"description"`
 	// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
 	DirectAccessGrantsEnabled *bool `pulumi:"directAccessGrantsEnabled"`
+	// When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consentRequired` is `true`.
+	DisplayOnConsentScreen *bool `pulumi:"displayOnConsentScreen"`
 	// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
 	ExcludeSessionStateFromAuthResponse *bool                  `pulumi:"excludeSessionStateFromAuthResponse"`
 	ExtraConfig                         map[string]interface{} `pulumi:"extraConfig"`
+	// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
+	FrontchannelLogoutEnabled *bool `pulumi:"frontchannelLogoutEnabled"`
+	// The frontchannel logout url. This is applicable only when `frontchannelLogoutEnabled` is `true`.
+	FrontchannelLogoutUrl *string `pulumi:"frontchannelLogoutUrl"`
 	// Allow to include all roles mappings in the access token.
 	FullScopeAllowed *bool `pulumi:"fullScopeAllowed"`
 	// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
@@ -229,6 +263,12 @@ type clientState struct {
 	LoginTheme *string `pulumi:"loginTheme"`
 	// The display name of this client in the GUI.
 	Name *string `pulumi:"name"`
+	// Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
+	Oauth2DeviceAuthorizationGrantEnabled *bool `pulumi:"oauth2DeviceAuthorizationGrantEnabled"`
+	// The maximum amount of time a client has to finish the device code flow before it expires.
+	Oauth2DeviceCodeLifespan *string `pulumi:"oauth2DeviceCodeLifespan"`
+	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+	Oauth2DevicePollingInterval *string `pulumi:"oauth2DevicePollingInterval"`
 	// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
 	PkceCodeChallengeMethod *string `pulumi:"pkceCodeChallengeMethod"`
 	// The realm this client is attached to.
@@ -272,6 +312,12 @@ type ClientState struct {
 	BackchannelLogoutUrl pulumi.StringPtrInput
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl pulumi.StringPtrInput
+	// Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+	// - `client-secret` (Default) Use client id and client secret to authenticate client.
+	// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
+	// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
+	// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
+	ClientAuthenticatorType pulumi.StringPtrInput
 	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
 	ClientId pulumi.StringPtrInput
 	// Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
@@ -284,17 +330,25 @@ type ClientState struct {
 	ClientSessionIdleTimeout pulumi.StringPtrInput
 	// Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
 	ClientSessionMaxLifespan pulumi.StringPtrInput
-	// When `true`, users have to consent to client access.
+	// When `true`, users have to consent to client access. Defaults to `false`.
 	ConsentRequired pulumi.BoolPtrInput
+	// The text to display on the consent screen about permissions specific to this client. This is applicable only when `displayOnConsentScreen` is `true`.
+	ConsentScreenText pulumi.StringPtrInput
 	// The description of this client in the GUI.
 	Description pulumi.StringPtrInput
 	// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
 	DirectAccessGrantsEnabled pulumi.BoolPtrInput
+	// When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consentRequired` is `true`.
+	DisplayOnConsentScreen pulumi.BoolPtrInput
 	// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
 	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrInput
 	ExtraConfig                         pulumi.MapInput
+	// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
+	FrontchannelLogoutEnabled pulumi.BoolPtrInput
+	// The frontchannel logout url. This is applicable only when `frontchannelLogoutEnabled` is `true`.
+	FrontchannelLogoutUrl pulumi.StringPtrInput
 	// Allow to include all roles mappings in the access token.
 	FullScopeAllowed pulumi.BoolPtrInput
 	// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
@@ -303,6 +357,12 @@ type ClientState struct {
 	LoginTheme pulumi.StringPtrInput
 	// The display name of this client in the GUI.
 	Name pulumi.StringPtrInput
+	// Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
+	Oauth2DeviceAuthorizationGrantEnabled pulumi.BoolPtrInput
+	// The maximum amount of time a client has to finish the device code flow before it expires.
+	Oauth2DeviceCodeLifespan pulumi.StringPtrInput
+	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+	Oauth2DevicePollingInterval pulumi.StringPtrInput
 	// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
 	PkceCodeChallengeMethod pulumi.StringPtrInput
 	// The realm this client is attached to.
@@ -350,6 +410,12 @@ type clientArgs struct {
 	BackchannelLogoutUrl *string `pulumi:"backchannelLogoutUrl"`
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl *string `pulumi:"baseUrl"`
+	// Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+	// - `client-secret` (Default) Use client id and client secret to authenticate client.
+	// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
+	// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
+	// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
+	ClientAuthenticatorType *string `pulumi:"clientAuthenticatorType"`
 	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
 	ClientId string `pulumi:"clientId"`
 	// Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
@@ -362,17 +428,25 @@ type clientArgs struct {
 	ClientSessionIdleTimeout *string `pulumi:"clientSessionIdleTimeout"`
 	// Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
 	ClientSessionMaxLifespan *string `pulumi:"clientSessionMaxLifespan"`
-	// When `true`, users have to consent to client access.
+	// When `true`, users have to consent to client access. Defaults to `false`.
 	ConsentRequired *bool `pulumi:"consentRequired"`
+	// The text to display on the consent screen about permissions specific to this client. This is applicable only when `displayOnConsentScreen` is `true`.
+	ConsentScreenText *string `pulumi:"consentScreenText"`
 	// The description of this client in the GUI.
 	Description *string `pulumi:"description"`
 	// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
 	DirectAccessGrantsEnabled *bool `pulumi:"directAccessGrantsEnabled"`
+	// When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consentRequired` is `true`.
+	DisplayOnConsentScreen *bool `pulumi:"displayOnConsentScreen"`
 	// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
 	ExcludeSessionStateFromAuthResponse *bool                  `pulumi:"excludeSessionStateFromAuthResponse"`
 	ExtraConfig                         map[string]interface{} `pulumi:"extraConfig"`
+	// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
+	FrontchannelLogoutEnabled *bool `pulumi:"frontchannelLogoutEnabled"`
+	// The frontchannel logout url. This is applicable only when `frontchannelLogoutEnabled` is `true`.
+	FrontchannelLogoutUrl *string `pulumi:"frontchannelLogoutUrl"`
 	// Allow to include all roles mappings in the access token.
 	FullScopeAllowed *bool `pulumi:"fullScopeAllowed"`
 	// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
@@ -381,6 +455,12 @@ type clientArgs struct {
 	LoginTheme *string `pulumi:"loginTheme"`
 	// The display name of this client in the GUI.
 	Name *string `pulumi:"name"`
+	// Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
+	Oauth2DeviceAuthorizationGrantEnabled *bool `pulumi:"oauth2DeviceAuthorizationGrantEnabled"`
+	// The maximum amount of time a client has to finish the device code flow before it expires.
+	Oauth2DeviceCodeLifespan *string `pulumi:"oauth2DeviceCodeLifespan"`
+	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+	Oauth2DevicePollingInterval *string `pulumi:"oauth2DevicePollingInterval"`
 	// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
 	PkceCodeChallengeMethod *string `pulumi:"pkceCodeChallengeMethod"`
 	// The realm this client is attached to.
@@ -421,6 +501,12 @@ type ClientArgs struct {
 	BackchannelLogoutUrl pulumi.StringPtrInput
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl pulumi.StringPtrInput
+	// Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+	// - `client-secret` (Default) Use client id and client secret to authenticate client.
+	// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
+	// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
+	// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
+	ClientAuthenticatorType pulumi.StringPtrInput
 	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
 	ClientId pulumi.StringInput
 	// Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
@@ -433,17 +519,25 @@ type ClientArgs struct {
 	ClientSessionIdleTimeout pulumi.StringPtrInput
 	// Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
 	ClientSessionMaxLifespan pulumi.StringPtrInput
-	// When `true`, users have to consent to client access.
+	// When `true`, users have to consent to client access. Defaults to `false`.
 	ConsentRequired pulumi.BoolPtrInput
+	// The text to display on the consent screen about permissions specific to this client. This is applicable only when `displayOnConsentScreen` is `true`.
+	ConsentScreenText pulumi.StringPtrInput
 	// The description of this client in the GUI.
 	Description pulumi.StringPtrInput
 	// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
 	DirectAccessGrantsEnabled pulumi.BoolPtrInput
+	// When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consentRequired` is `true`.
+	DisplayOnConsentScreen pulumi.BoolPtrInput
 	// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
 	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrInput
 	ExtraConfig                         pulumi.MapInput
+	// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
+	FrontchannelLogoutEnabled pulumi.BoolPtrInput
+	// The frontchannel logout url. This is applicable only when `frontchannelLogoutEnabled` is `true`.
+	FrontchannelLogoutUrl pulumi.StringPtrInput
 	// Allow to include all roles mappings in the access token.
 	FullScopeAllowed pulumi.BoolPtrInput
 	// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
@@ -452,6 +546,12 @@ type ClientArgs struct {
 	LoginTheme pulumi.StringPtrInput
 	// The display name of this client in the GUI.
 	Name pulumi.StringPtrInput
+	// Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
+	Oauth2DeviceAuthorizationGrantEnabled pulumi.BoolPtrInput
+	// The maximum amount of time a client has to finish the device code flow before it expires.
+	Oauth2DeviceCodeLifespan pulumi.StringPtrInput
+	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+	Oauth2DevicePollingInterval pulumi.StringPtrInput
 	// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
 	PkceCodeChallengeMethod pulumi.StringPtrInput
 	// The realm this client is attached to.

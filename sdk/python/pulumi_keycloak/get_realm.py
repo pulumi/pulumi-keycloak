@@ -22,7 +22,7 @@ class GetRealmResult:
     """
     A collection of values returned by getRealm.
     """
-    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, default_default_client_scopes=None, default_optional_client_scopes=None, default_signature_algorithm=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, id=None, internal_id=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, offline_session_max_lifespan_enabled=None, otp_policy=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, revoke_refresh_token=None, security_defenses=None, smtp_servers=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_idle_timeout_remember_me=None, sso_session_max_lifespan=None, sso_session_max_lifespan_remember_me=None, user_managed_access=None, verify_email=None, web_authn_passwordless_policy=None, web_authn_policy=None):
+    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, default_default_client_scopes=None, default_optional_client_scopes=None, default_signature_algorithm=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, id=None, internal_id=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, offline_session_max_lifespan_enabled=None, otp_policy=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, revoke_refresh_token=None, security_defenses=None, smtp_servers=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_idle_timeout_remember_me=None, sso_session_max_lifespan=None, sso_session_max_lifespan_remember_me=None, user_managed_access=None, verify_email=None, web_authn_passwordless_policy=None, web_authn_policy=None):
         if access_code_lifespan and not isinstance(access_code_lifespan, str):
             raise TypeError("Expected argument 'access_code_lifespan' to be a str")
         pulumi.set(__self__, "access_code_lifespan", access_code_lifespan)
@@ -107,6 +107,12 @@ class GetRealmResult:
         if login_with_email_allowed and not isinstance(login_with_email_allowed, bool):
             raise TypeError("Expected argument 'login_with_email_allowed' to be a bool")
         pulumi.set(__self__, "login_with_email_allowed", login_with_email_allowed)
+        if oauth2_device_code_lifespan and not isinstance(oauth2_device_code_lifespan, str):
+            raise TypeError("Expected argument 'oauth2_device_code_lifespan' to be a str")
+        pulumi.set(__self__, "oauth2_device_code_lifespan", oauth2_device_code_lifespan)
+        if oauth2_device_polling_interval and not isinstance(oauth2_device_polling_interval, int):
+            raise TypeError("Expected argument 'oauth2_device_polling_interval' to be a int")
+        pulumi.set(__self__, "oauth2_device_polling_interval", oauth2_device_polling_interval)
         if offline_session_idle_timeout and not isinstance(offline_session_idle_timeout, str):
             raise TypeError("Expected argument 'offline_session_idle_timeout' to be a str")
         pulumi.set(__self__, "offline_session_idle_timeout", offline_session_idle_timeout)
@@ -327,6 +333,16 @@ class GetRealmResult:
         return pulumi.get(self, "login_with_email_allowed")
 
     @property
+    @pulumi.getter(name="oauth2DeviceCodeLifespan")
+    def oauth2_device_code_lifespan(self) -> str:
+        return pulumi.get(self, "oauth2_device_code_lifespan")
+
+    @property
+    @pulumi.getter(name="oauth2DevicePollingInterval")
+    def oauth2_device_polling_interval(self) -> int:
+        return pulumi.get(self, "oauth2_device_polling_interval")
+
+    @property
     @pulumi.getter(name="offlineSessionIdleTimeout")
     def offline_session_idle_timeout(self) -> str:
         return pulumi.get(self, "offline_session_idle_timeout")
@@ -486,6 +502,8 @@ class AwaitableGetRealmResult(GetRealmResult):
             internationalizations=self.internationalizations,
             login_theme=self.login_theme,
             login_with_email_allowed=self.login_with_email_allowed,
+            oauth2_device_code_lifespan=self.oauth2_device_code_lifespan,
+            oauth2_device_polling_interval=self.oauth2_device_polling_interval,
             offline_session_idle_timeout=self.offline_session_idle_timeout,
             offline_session_max_lifespan=self.offline_session_max_lifespan,
             offline_session_max_lifespan_enabled=self.offline_session_max_lifespan_enabled,
@@ -589,6 +607,8 @@ def get_realm(attributes: Optional[Mapping[str, Any]] = None,
         internationalizations=__ret__.internationalizations,
         login_theme=__ret__.login_theme,
         login_with_email_allowed=__ret__.login_with_email_allowed,
+        oauth2_device_code_lifespan=__ret__.oauth2_device_code_lifespan,
+        oauth2_device_polling_interval=__ret__.oauth2_device_polling_interval,
         offline_session_idle_timeout=__ret__.offline_session_idle_timeout,
         offline_session_max_lifespan=__ret__.offline_session_max_lifespan,
         offline_session_max_lifespan_enabled=__ret__.offline_session_max_lifespan_enabled,

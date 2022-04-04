@@ -97,6 +97,8 @@ export interface GetRealmResult {
     readonly internationalizations: outputs.GetRealmInternationalization[];
     readonly loginTheme: string;
     readonly loginWithEmailAllowed: boolean;
+    readonly oauth2DeviceCodeLifespan: string;
+    readonly oauth2DevicePollingInterval: number;
     readonly offlineSessionIdleTimeout: string;
     readonly offlineSessionMaxLifespan: string;
     readonly offlineSessionMaxLifespanEnabled: boolean;

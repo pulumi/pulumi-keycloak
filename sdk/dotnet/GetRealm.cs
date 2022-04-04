@@ -262,6 +262,8 @@ namespace Pulumi.Keycloak
         public readonly ImmutableArray<Outputs.GetRealmInternationalizationResult> Internationalizations;
         public readonly string LoginTheme;
         public readonly bool LoginWithEmailAllowed;
+        public readonly string Oauth2DeviceCodeLifespan;
+        public readonly int Oauth2DevicePollingInterval;
         public readonly string OfflineSessionIdleTimeout;
         public readonly string OfflineSessionMaxLifespan;
         public readonly bool OfflineSessionMaxLifespanEnabled;
@@ -346,6 +348,10 @@ namespace Pulumi.Keycloak
 
             bool loginWithEmailAllowed,
 
+            string oauth2DeviceCodeLifespan,
+
+            int oauth2DevicePollingInterval,
+
             string offlineSessionIdleTimeout,
 
             string offlineSessionMaxLifespan,
@@ -424,6 +430,8 @@ namespace Pulumi.Keycloak
             Internationalizations = internationalizations;
             LoginTheme = loginTheme;
             LoginWithEmailAllowed = loginWithEmailAllowed;
+            Oauth2DeviceCodeLifespan = oauth2DeviceCodeLifespan;
+            Oauth2DevicePollingInterval = oauth2DevicePollingInterval;
             OfflineSessionIdleTimeout = offlineSessionIdleTimeout;
             OfflineSessionMaxLifespan = offlineSessionMaxLifespan;
             OfflineSessionMaxLifespanEnabled = offlineSessionMaxLifespanEnabled;

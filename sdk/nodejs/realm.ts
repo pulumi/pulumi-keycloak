@@ -213,6 +213,14 @@ export class Realm extends pulumi.CustomResource {
      */
     public readonly loginWithEmailAllowed!: pulumi.Output<boolean>;
     /**
+     * The maximum amount of time a client has to finish the device code flow before it expires.
+     */
+    public readonly oauth2DeviceCodeLifespan!: pulumi.Output<string>;
+    /**
+     * The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+     */
+    public readonly oauth2DevicePollingInterval!: pulumi.Output<number>;
+    /**
      * The amount of time an offline session can be idle before it expires.
      */
     public readonly offlineSessionIdleTimeout!: pulumi.Output<string>;
@@ -338,6 +346,8 @@ export class Realm extends pulumi.CustomResource {
             resourceInputs["internationalization"] = state ? state.internationalization : undefined;
             resourceInputs["loginTheme"] = state ? state.loginTheme : undefined;
             resourceInputs["loginWithEmailAllowed"] = state ? state.loginWithEmailAllowed : undefined;
+            resourceInputs["oauth2DeviceCodeLifespan"] = state ? state.oauth2DeviceCodeLifespan : undefined;
+            resourceInputs["oauth2DevicePollingInterval"] = state ? state.oauth2DevicePollingInterval : undefined;
             resourceInputs["offlineSessionIdleTimeout"] = state ? state.offlineSessionIdleTimeout : undefined;
             resourceInputs["offlineSessionMaxLifespan"] = state ? state.offlineSessionMaxLifespan : undefined;
             resourceInputs["offlineSessionMaxLifespanEnabled"] = state ? state.offlineSessionMaxLifespanEnabled : undefined;
@@ -394,6 +404,8 @@ export class Realm extends pulumi.CustomResource {
             resourceInputs["internationalization"] = args ? args.internationalization : undefined;
             resourceInputs["loginTheme"] = args ? args.loginTheme : undefined;
             resourceInputs["loginWithEmailAllowed"] = args ? args.loginWithEmailAllowed : undefined;
+            resourceInputs["oauth2DeviceCodeLifespan"] = args ? args.oauth2DeviceCodeLifespan : undefined;
+            resourceInputs["oauth2DevicePollingInterval"] = args ? args.oauth2DevicePollingInterval : undefined;
             resourceInputs["offlineSessionIdleTimeout"] = args ? args.offlineSessionIdleTimeout : undefined;
             resourceInputs["offlineSessionMaxLifespan"] = args ? args.offlineSessionMaxLifespan : undefined;
             resourceInputs["offlineSessionMaxLifespanEnabled"] = args ? args.offlineSessionMaxLifespanEnabled : undefined;
@@ -526,6 +538,14 @@ export interface RealmState {
      * When true, users may log in with their email address.
      */
     loginWithEmailAllowed?: pulumi.Input<boolean>;
+    /**
+     * The maximum amount of time a client has to finish the device code flow before it expires.
+     */
+    oauth2DeviceCodeLifespan?: pulumi.Input<string>;
+    /**
+     * The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+     */
+    oauth2DevicePollingInterval?: pulumi.Input<number>;
     /**
      * The amount of time an offline session can be idle before it expires.
      */
@@ -712,6 +732,14 @@ export interface RealmArgs {
      * When true, users may log in with their email address.
      */
     loginWithEmailAllowed?: pulumi.Input<boolean>;
+    /**
+     * The maximum amount of time a client has to finish the device code flow before it expires.
+     */
+    oauth2DeviceCodeLifespan?: pulumi.Input<string>;
+    /**
+     * The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+     */
+    oauth2DevicePollingInterval?: pulumi.Input<number>;
     /**
      * The amount of time an offline session can be idle before it expires.
      */

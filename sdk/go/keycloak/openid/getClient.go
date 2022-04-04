@@ -56,8 +56,13 @@ func LookupClient(ctx *pulumi.Context, args *LookupClientArgs, opts ...pulumi.In
 // A collection of arguments for invoking getClient.
 type LookupClientArgs struct {
 	// The client id (not its unique ID).
-	ClientId    string                 `pulumi:"clientId"`
-	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
+	ClientId                              string                 `pulumi:"clientId"`
+	ConsentScreenText                     *string                `pulumi:"consentScreenText"`
+	DisplayOnConsentScreen                *bool                  `pulumi:"displayOnConsentScreen"`
+	ExtraConfig                           map[string]interface{} `pulumi:"extraConfig"`
+	Oauth2DeviceAuthorizationGrantEnabled *bool                  `pulumi:"oauth2DeviceAuthorizationGrantEnabled"`
+	Oauth2DeviceCodeLifespan              *string                `pulumi:"oauth2DeviceCodeLifespan"`
+	Oauth2DevicePollingInterval           *string                `pulumi:"oauth2DevicePollingInterval"`
 	// The realm id.
 	RealmId string `pulumi:"realmId"`
 }
@@ -73,6 +78,7 @@ type LookupClientResult struct {
 	BackchannelLogoutSessionRequired       bool                                         `pulumi:"backchannelLogoutSessionRequired"`
 	BackchannelLogoutUrl                   string                                       `pulumi:"backchannelLogoutUrl"`
 	BaseUrl                                string                                       `pulumi:"baseUrl"`
+	ClientAuthenticatorType                string                                       `pulumi:"clientAuthenticatorType"`
 	ClientId                               string                                       `pulumi:"clientId"`
 	ClientOfflineSessionIdleTimeout        string                                       `pulumi:"clientOfflineSessionIdleTimeout"`
 	ClientOfflineSessionMaxLifespan        string                                       `pulumi:"clientOfflineSessionMaxLifespan"`
@@ -80,27 +86,34 @@ type LookupClientResult struct {
 	ClientSessionIdleTimeout               string                                       `pulumi:"clientSessionIdleTimeout"`
 	ClientSessionMaxLifespan               string                                       `pulumi:"clientSessionMaxLifespan"`
 	ConsentRequired                        bool                                         `pulumi:"consentRequired"`
+	ConsentScreenText                      *string                                      `pulumi:"consentScreenText"`
 	Description                            string                                       `pulumi:"description"`
 	DirectAccessGrantsEnabled              bool                                         `pulumi:"directAccessGrantsEnabled"`
+	DisplayOnConsentScreen                 *bool                                        `pulumi:"displayOnConsentScreen"`
 	Enabled                                bool                                         `pulumi:"enabled"`
 	ExcludeSessionStateFromAuthResponse    bool                                         `pulumi:"excludeSessionStateFromAuthResponse"`
 	ExtraConfig                            map[string]interface{}                       `pulumi:"extraConfig"`
+	FrontchannelLogoutEnabled              bool                                         `pulumi:"frontchannelLogoutEnabled"`
+	FrontchannelLogoutUrl                  string                                       `pulumi:"frontchannelLogoutUrl"`
 	FullScopeAllowed                       bool                                         `pulumi:"fullScopeAllowed"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                      string   `pulumi:"id"`
-	ImplicitFlowEnabled     bool     `pulumi:"implicitFlowEnabled"`
-	LoginTheme              string   `pulumi:"loginTheme"`
-	Name                    string   `pulumi:"name"`
-	PkceCodeChallengeMethod string   `pulumi:"pkceCodeChallengeMethod"`
-	RealmId                 string   `pulumi:"realmId"`
-	ResourceServerId        string   `pulumi:"resourceServerId"`
-	RootUrl                 string   `pulumi:"rootUrl"`
-	ServiceAccountUserId    string   `pulumi:"serviceAccountUserId"`
-	ServiceAccountsEnabled  bool     `pulumi:"serviceAccountsEnabled"`
-	StandardFlowEnabled     bool     `pulumi:"standardFlowEnabled"`
-	UseRefreshTokens        bool     `pulumi:"useRefreshTokens"`
-	ValidRedirectUris       []string `pulumi:"validRedirectUris"`
-	WebOrigins              []string `pulumi:"webOrigins"`
+	Id                                    string   `pulumi:"id"`
+	ImplicitFlowEnabled                   bool     `pulumi:"implicitFlowEnabled"`
+	LoginTheme                            string   `pulumi:"loginTheme"`
+	Name                                  string   `pulumi:"name"`
+	Oauth2DeviceAuthorizationGrantEnabled *bool    `pulumi:"oauth2DeviceAuthorizationGrantEnabled"`
+	Oauth2DeviceCodeLifespan              *string  `pulumi:"oauth2DeviceCodeLifespan"`
+	Oauth2DevicePollingInterval           *string  `pulumi:"oauth2DevicePollingInterval"`
+	PkceCodeChallengeMethod               string   `pulumi:"pkceCodeChallengeMethod"`
+	RealmId                               string   `pulumi:"realmId"`
+	ResourceServerId                      string   `pulumi:"resourceServerId"`
+	RootUrl                               string   `pulumi:"rootUrl"`
+	ServiceAccountUserId                  string   `pulumi:"serviceAccountUserId"`
+	ServiceAccountsEnabled                bool     `pulumi:"serviceAccountsEnabled"`
+	StandardFlowEnabled                   bool     `pulumi:"standardFlowEnabled"`
+	UseRefreshTokens                      bool     `pulumi:"useRefreshTokens"`
+	ValidRedirectUris                     []string `pulumi:"validRedirectUris"`
+	WebOrigins                            []string `pulumi:"webOrigins"`
 }
 
 func LookupClientOutput(ctx *pulumi.Context, args LookupClientOutputArgs, opts ...pulumi.InvokeOption) LookupClientResultOutput {
@@ -115,8 +128,13 @@ func LookupClientOutput(ctx *pulumi.Context, args LookupClientOutputArgs, opts .
 // A collection of arguments for invoking getClient.
 type LookupClientOutputArgs struct {
 	// The client id (not its unique ID).
-	ClientId    pulumi.StringInput `pulumi:"clientId"`
-	ExtraConfig pulumi.MapInput    `pulumi:"extraConfig"`
+	ClientId                              pulumi.StringInput    `pulumi:"clientId"`
+	ConsentScreenText                     pulumi.StringPtrInput `pulumi:"consentScreenText"`
+	DisplayOnConsentScreen                pulumi.BoolPtrInput   `pulumi:"displayOnConsentScreen"`
+	ExtraConfig                           pulumi.MapInput       `pulumi:"extraConfig"`
+	Oauth2DeviceAuthorizationGrantEnabled pulumi.BoolPtrInput   `pulumi:"oauth2DeviceAuthorizationGrantEnabled"`
+	Oauth2DeviceCodeLifespan              pulumi.StringPtrInput `pulumi:"oauth2DeviceCodeLifespan"`
+	Oauth2DevicePollingInterval           pulumi.StringPtrInput `pulumi:"oauth2DevicePollingInterval"`
 	// The realm id.
 	RealmId pulumi.StringInput `pulumi:"realmId"`
 }
@@ -178,6 +196,10 @@ func (o LookupClientResultOutput) BaseUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClientResult) string { return v.BaseUrl }).(pulumi.StringOutput)
 }
 
+func (o LookupClientResultOutput) ClientAuthenticatorType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.ClientAuthenticatorType }).(pulumi.StringOutput)
+}
+
 func (o LookupClientResultOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClientResult) string { return v.ClientId }).(pulumi.StringOutput)
 }
@@ -206,12 +228,20 @@ func (o LookupClientResultOutput) ConsentRequired() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupClientResult) bool { return v.ConsentRequired }).(pulumi.BoolOutput)
 }
 
+func (o LookupClientResultOutput) ConsentScreenText() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupClientResult) *string { return v.ConsentScreenText }).(pulumi.StringPtrOutput)
+}
+
 func (o LookupClientResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClientResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
 func (o LookupClientResultOutput) DirectAccessGrantsEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupClientResult) bool { return v.DirectAccessGrantsEnabled }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) DisplayOnConsentScreen() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LookupClientResult) *bool { return v.DisplayOnConsentScreen }).(pulumi.BoolPtrOutput)
 }
 
 func (o LookupClientResultOutput) Enabled() pulumi.BoolOutput {
@@ -224,6 +254,14 @@ func (o LookupClientResultOutput) ExcludeSessionStateFromAuthResponse() pulumi.B
 
 func (o LookupClientResultOutput) ExtraConfig() pulumi.MapOutput {
 	return o.ApplyT(func(v LookupClientResult) map[string]interface{} { return v.ExtraConfig }).(pulumi.MapOutput)
+}
+
+func (o LookupClientResultOutput) FrontchannelLogoutEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.FrontchannelLogoutEnabled }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) FrontchannelLogoutUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.FrontchannelLogoutUrl }).(pulumi.StringOutput)
 }
 
 func (o LookupClientResultOutput) FullScopeAllowed() pulumi.BoolOutput {
@@ -245,6 +283,18 @@ func (o LookupClientResultOutput) LoginTheme() pulumi.StringOutput {
 
 func (o LookupClientResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClientResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) Oauth2DeviceAuthorizationGrantEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LookupClientResult) *bool { return v.Oauth2DeviceAuthorizationGrantEnabled }).(pulumi.BoolPtrOutput)
+}
+
+func (o LookupClientResultOutput) Oauth2DeviceCodeLifespan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupClientResult) *string { return v.Oauth2DeviceCodeLifespan }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupClientResultOutput) Oauth2DevicePollingInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupClientResult) *string { return v.Oauth2DevicePollingInterval }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupClientResultOutput) PkceCodeChallengeMethod() pulumi.StringOutput {

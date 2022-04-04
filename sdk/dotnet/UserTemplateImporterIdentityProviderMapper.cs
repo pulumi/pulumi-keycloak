@@ -9,32 +9,92 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    /// <summary>
+    /// Allows for creating and managing an username template importer identity provider mapper within Keycloak.
+    /// 
+    /// The username template importer mapper can be used to map externally defined OIDC claims or SAML attributes with a template to the username of the imported Keycloak user:
+    /// 
+    /// - Substitutions are enclosed in \${}. For example: '\${ALIAS}.\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\&lt;NAME\&gt; references an ID or Access token claim.
+    /// 
+    /// &gt; If you are using Keycloak 10 or higher, you will need to specify the `extra_config` argument in order to define a `syncMode` for the mapper.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "my-realm",
+    ///             Enabled = true,
+    ///         });
+    ///         var oidc = new Keycloak.Oidc.IdentityProvider("oidc", new Keycloak.Oidc.IdentityProviderArgs
+    ///         {
+    ///             Realm = realm.Id,
+    ///             Alias = "oidc",
+    ///             AuthorizationUrl = "https://example.com/auth",
+    ///             TokenUrl = "https://example.com/token",
+    ///             ClientId = "example_id",
+    ///             ClientSecret = "example_token",
+    ///             DefaultScopes = "openid random profile",
+    ///         });
+    ///         var usernameImporter = new Keycloak.UserTemplateImporterIdentityProviderMapper("usernameImporter", new Keycloak.UserTemplateImporterIdentityProviderMapperArgs
+    ///         {
+    ///             Realm = realm.Id,
+    ///             IdentityProviderAlias = oidc.Alias,
+    ///             Template = $"{ALIAS}.{CLAIM.Email}",
+    ///             ExtraConfig = 
+    ///             {
+    ///                 { "syncMode", "INHERIT" },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Identity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID. Examplebash
+    /// 
+    /// ```sh
+    ///  $ pulumi import keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper username_importer my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
+    /// ```
+    /// </summary>
     [KeycloakResourceType("keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper")]
     public partial class UserTemplateImporterIdentityProviderMapper : Pulumi.CustomResource
     {
+        /// <summary>
+        /// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        /// </summary>
         [Output("extraConfig")]
         public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
 
         /// <summary>
-        /// IDP Alias
+        /// The alias of the associated identity provider.
         /// </summary>
         [Output("identityProviderAlias")]
         public Output<string> IdentityProviderAlias { get; private set; } = null!;
 
         /// <summary>
-        /// IDP Mapper Name
+        /// The name of the mapper.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Realm Name
+        /// The name of the realm.
         /// </summary>
         [Output("realm")]
         public Output<string> Realm { get; private set; } = null!;
 
         /// <summary>
-        /// Username For Template Import
+        /// Template to use to format the username to import. Substitutions are enclosed in \${}. For example: '\$\${ALIAS}.\$\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\&lt;NAME\&gt; references an ID or Access token claim.
         /// </summary>
         [Output("template")]
         public Output<string?> Template { get; private set; } = null!;
@@ -87,6 +147,10 @@ namespace Pulumi.Keycloak
     {
         [Input("extraConfig")]
         private InputMap<object>? _extraConfig;
+
+        /// <summary>
+        /// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        /// </summary>
         public InputMap<object> ExtraConfig
         {
             get => _extraConfig ?? (_extraConfig = new InputMap<object>());
@@ -94,25 +158,25 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// IDP Alias
+        /// The alias of the associated identity provider.
         /// </summary>
         [Input("identityProviderAlias", required: true)]
         public Input<string> IdentityProviderAlias { get; set; } = null!;
 
         /// <summary>
-        /// IDP Mapper Name
+        /// The name of the mapper.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Realm Name
+        /// The name of the realm.
         /// </summary>
         [Input("realm", required: true)]
         public Input<string> Realm { get; set; } = null!;
 
         /// <summary>
-        /// Username For Template Import
+        /// Template to use to format the username to import. Substitutions are enclosed in \${}. For example: '\$\${ALIAS}.\$\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\&lt;NAME\&gt; references an ID or Access token claim.
         /// </summary>
         [Input("template")]
         public Input<string>? Template { get; set; }
@@ -126,6 +190,10 @@ namespace Pulumi.Keycloak
     {
         [Input("extraConfig")]
         private InputMap<object>? _extraConfig;
+
+        /// <summary>
+        /// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        /// </summary>
         public InputMap<object> ExtraConfig
         {
             get => _extraConfig ?? (_extraConfig = new InputMap<object>());
@@ -133,25 +201,25 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// IDP Alias
+        /// The alias of the associated identity provider.
         /// </summary>
         [Input("identityProviderAlias")]
         public Input<string>? IdentityProviderAlias { get; set; }
 
         /// <summary>
-        /// IDP Mapper Name
+        /// The name of the mapper.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Realm Name
+        /// The name of the realm.
         /// </summary>
         [Input("realm")]
         public Input<string>? Realm { get; set; }
 
         /// <summary>
-        /// Username For Template Import
+        /// Template to use to format the username to import. Substitutions are enclosed in \${}. For example: '\$\${ALIAS}.\$\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\&lt;NAME\&gt; references an ID or Access token claim.
         /// </summary>
         [Input("template")]
         public Input<string>? Template { get; set; }

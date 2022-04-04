@@ -264,6 +264,18 @@ namespace Pulumi.Keycloak
         public Output<bool> LoginWithEmailAllowed { get; private set; } = null!;
 
         /// <summary>
+        /// The maximum amount of time a client has to finish the device code flow before it expires.
+        /// </summary>
+        [Output("oauth2DeviceCodeLifespan")]
+        public Output<string> Oauth2DeviceCodeLifespan { get; private set; } = null!;
+
+        /// <summary>
+        /// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+        /// </summary>
+        [Output("oauth2DevicePollingInterval")]
+        public Output<int> Oauth2DevicePollingInterval { get; private set; } = null!;
+
+        /// <summary>
         /// The amount of time an offline session can be idle before it expires.
         /// </summary>
         [Output("offlineSessionIdleTimeout")]
@@ -608,6 +620,18 @@ namespace Pulumi.Keycloak
         public Input<bool>? LoginWithEmailAllowed { get; set; }
 
         /// <summary>
+        /// The maximum amount of time a client has to finish the device code flow before it expires.
+        /// </summary>
+        [Input("oauth2DeviceCodeLifespan")]
+        public Input<string>? Oauth2DeviceCodeLifespan { get; set; }
+
+        /// <summary>
+        /// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+        /// </summary>
+        [Input("oauth2DevicePollingInterval")]
+        public Input<int>? Oauth2DevicePollingInterval { get; set; }
+
+        /// <summary>
         /// The amount of time an offline session can be idle before it expires.
         /// </summary>
         [Input("offlineSessionIdleTimeout")]
@@ -914,6 +938,18 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("loginWithEmailAllowed")]
         public Input<bool>? LoginWithEmailAllowed { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time a client has to finish the device code flow before it expires.
+        /// </summary>
+        [Input("oauth2DeviceCodeLifespan")]
+        public Input<string>? Oauth2DeviceCodeLifespan { get; set; }
+
+        /// <summary>
+        /// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+        /// </summary>
+        [Input("oauth2DevicePollingInterval")]
+        public Input<int>? Oauth2DevicePollingInterval { get; set; }
 
         /// <summary>
         /// The amount of time an offline session can be idle before it expires.

@@ -157,6 +157,10 @@ type Realm struct {
 	LoginTheme pulumi.StringPtrOutput `pulumi:"loginTheme"`
 	// When true, users may log in with their email address.
 	LoginWithEmailAllowed pulumi.BoolOutput `pulumi:"loginWithEmailAllowed"`
+	// The maximum amount of time a client has to finish the device code flow before it expires.
+	Oauth2DeviceCodeLifespan pulumi.StringOutput `pulumi:"oauth2DeviceCodeLifespan"`
+	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+	Oauth2DevicePollingInterval pulumi.IntOutput `pulumi:"oauth2DevicePollingInterval"`
 	// The amount of time an offline session can be idle before it expires.
 	OfflineSessionIdleTimeout pulumi.StringOutput `pulumi:"offlineSessionIdleTimeout"`
 	// The maximum amount of time before an offline session expires regardless of activity.
@@ -286,6 +290,10 @@ type realmState struct {
 	LoginTheme *string `pulumi:"loginTheme"`
 	// When true, users may log in with their email address.
 	LoginWithEmailAllowed *bool `pulumi:"loginWithEmailAllowed"`
+	// The maximum amount of time a client has to finish the device code flow before it expires.
+	Oauth2DeviceCodeLifespan *string `pulumi:"oauth2DeviceCodeLifespan"`
+	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+	Oauth2DevicePollingInterval *int `pulumi:"oauth2DevicePollingInterval"`
 	// The amount of time an offline session can be idle before it expires.
 	OfflineSessionIdleTimeout *string `pulumi:"offlineSessionIdleTimeout"`
 	// The maximum amount of time before an offline session expires regardless of activity.
@@ -384,6 +392,10 @@ type RealmState struct {
 	LoginTheme pulumi.StringPtrInput
 	// When true, users may log in with their email address.
 	LoginWithEmailAllowed pulumi.BoolPtrInput
+	// The maximum amount of time a client has to finish the device code flow before it expires.
+	Oauth2DeviceCodeLifespan pulumi.StringPtrInput
+	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+	Oauth2DevicePollingInterval pulumi.IntPtrInput
 	// The amount of time an offline session can be idle before it expires.
 	OfflineSessionIdleTimeout pulumi.StringPtrInput
 	// The maximum amount of time before an offline session expires regardless of activity.
@@ -485,6 +497,10 @@ type realmArgs struct {
 	LoginTheme *string `pulumi:"loginTheme"`
 	// When true, users may log in with their email address.
 	LoginWithEmailAllowed *bool `pulumi:"loginWithEmailAllowed"`
+	// The maximum amount of time a client has to finish the device code flow before it expires.
+	Oauth2DeviceCodeLifespan *string `pulumi:"oauth2DeviceCodeLifespan"`
+	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+	Oauth2DevicePollingInterval *int `pulumi:"oauth2DevicePollingInterval"`
 	// The amount of time an offline session can be idle before it expires.
 	OfflineSessionIdleTimeout *string `pulumi:"offlineSessionIdleTimeout"`
 	// The maximum amount of time before an offline session expires regardless of activity.
@@ -583,6 +599,10 @@ type RealmArgs struct {
 	LoginTheme pulumi.StringPtrInput
 	// When true, users may log in with their email address.
 	LoginWithEmailAllowed pulumi.BoolPtrInput
+	// The maximum amount of time a client has to finish the device code flow before it expires.
+	Oauth2DeviceCodeLifespan pulumi.StringPtrInput
+	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+	Oauth2DevicePollingInterval pulumi.IntPtrInput
 	// The amount of time an offline session can be idle before it expires.
 	OfflineSessionIdleTimeout pulumi.StringPtrInput
 	// The maximum amount of time before an offline session expires regardless of activity.

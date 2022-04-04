@@ -109,6 +109,14 @@ export class Client extends pulumi.CustomResource {
      */
     public readonly baseUrl!: pulumi.Output<string | undefined>;
     /**
+     * Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+     * - `client-secret` (Default) Use client id and client secret to authenticate client.
+     * - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
+     * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
+     * - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
+     */
+    public readonly clientAuthenticatorType!: pulumi.Output<string | undefined>;
+    /**
      * The Client ID for this client, referenced in the URI during authentication and in issued tokens.
      */
     public readonly clientId!: pulumi.Output<string>;
@@ -133,9 +141,13 @@ export class Client extends pulumi.CustomResource {
      */
     public readonly clientSessionMaxLifespan!: pulumi.Output<string | undefined>;
     /**
-     * When `true`, users have to consent to client access.
+     * When `true`, users have to consent to client access. Defaults to `false`.
      */
     public readonly consentRequired!: pulumi.Output<boolean | undefined>;
+    /**
+     * The text to display on the consent screen about permissions specific to this client. This is applicable only when `displayOnConsentScreen` is `true`.
+     */
+    public readonly consentScreenText!: pulumi.Output<string | undefined>;
     /**
      * The description of this client in the GUI.
      */
@@ -145,6 +157,10 @@ export class Client extends pulumi.CustomResource {
      */
     public readonly directAccessGrantsEnabled!: pulumi.Output<boolean | undefined>;
     /**
+     * When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consentRequired` is `true`.
+     */
+    public readonly displayOnConsentScreen!: pulumi.Output<boolean | undefined>;
+    /**
      * When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
@@ -153,6 +169,14 @@ export class Client extends pulumi.CustomResource {
      */
     public readonly excludeSessionStateFromAuthResponse!: pulumi.Output<boolean | undefined>;
     public readonly extraConfig!: pulumi.Output<{[key: string]: any} | undefined>;
+    /**
+     * When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
+     */
+    public readonly frontchannelLogoutEnabled!: pulumi.Output<boolean | undefined>;
+    /**
+     * The frontchannel logout url. This is applicable only when `frontchannelLogoutEnabled` is `true`.
+     */
+    public readonly frontchannelLogoutUrl!: pulumi.Output<string | undefined>;
     /**
      * Allow to include all roles mappings in the access token.
      */
@@ -169,6 +193,18 @@ export class Client extends pulumi.CustomResource {
      * The display name of this client in the GUI.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
+     */
+    public readonly oauth2DeviceAuthorizationGrantEnabled!: pulumi.Output<boolean | undefined>;
+    /**
+     * The maximum amount of time a client has to finish the device code flow before it expires.
+     */
+    public readonly oauth2DeviceCodeLifespan!: pulumi.Output<string | undefined>;
+    /**
+     * The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+     */
+    public readonly oauth2DevicePollingInterval!: pulumi.Output<string | undefined>;
     /**
      * The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
      */
@@ -234,6 +270,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["backchannelLogoutSessionRequired"] = state ? state.backchannelLogoutSessionRequired : undefined;
             resourceInputs["backchannelLogoutUrl"] = state ? state.backchannelLogoutUrl : undefined;
             resourceInputs["baseUrl"] = state ? state.baseUrl : undefined;
+            resourceInputs["clientAuthenticatorType"] = state ? state.clientAuthenticatorType : undefined;
             resourceInputs["clientId"] = state ? state.clientId : undefined;
             resourceInputs["clientOfflineSessionIdleTimeout"] = state ? state.clientOfflineSessionIdleTimeout : undefined;
             resourceInputs["clientOfflineSessionMaxLifespan"] = state ? state.clientOfflineSessionMaxLifespan : undefined;
@@ -241,15 +278,22 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["clientSessionIdleTimeout"] = state ? state.clientSessionIdleTimeout : undefined;
             resourceInputs["clientSessionMaxLifespan"] = state ? state.clientSessionMaxLifespan : undefined;
             resourceInputs["consentRequired"] = state ? state.consentRequired : undefined;
+            resourceInputs["consentScreenText"] = state ? state.consentScreenText : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["directAccessGrantsEnabled"] = state ? state.directAccessGrantsEnabled : undefined;
+            resourceInputs["displayOnConsentScreen"] = state ? state.displayOnConsentScreen : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
             resourceInputs["excludeSessionStateFromAuthResponse"] = state ? state.excludeSessionStateFromAuthResponse : undefined;
             resourceInputs["extraConfig"] = state ? state.extraConfig : undefined;
+            resourceInputs["frontchannelLogoutEnabled"] = state ? state.frontchannelLogoutEnabled : undefined;
+            resourceInputs["frontchannelLogoutUrl"] = state ? state.frontchannelLogoutUrl : undefined;
             resourceInputs["fullScopeAllowed"] = state ? state.fullScopeAllowed : undefined;
             resourceInputs["implicitFlowEnabled"] = state ? state.implicitFlowEnabled : undefined;
             resourceInputs["loginTheme"] = state ? state.loginTheme : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["oauth2DeviceAuthorizationGrantEnabled"] = state ? state.oauth2DeviceAuthorizationGrantEnabled : undefined;
+            resourceInputs["oauth2DeviceCodeLifespan"] = state ? state.oauth2DeviceCodeLifespan : undefined;
+            resourceInputs["oauth2DevicePollingInterval"] = state ? state.oauth2DevicePollingInterval : undefined;
             resourceInputs["pkceCodeChallengeMethod"] = state ? state.pkceCodeChallengeMethod : undefined;
             resourceInputs["realmId"] = state ? state.realmId : undefined;
             resourceInputs["resourceServerId"] = state ? state.resourceServerId : undefined;
@@ -280,6 +324,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["backchannelLogoutSessionRequired"] = args ? args.backchannelLogoutSessionRequired : undefined;
             resourceInputs["backchannelLogoutUrl"] = args ? args.backchannelLogoutUrl : undefined;
             resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
+            resourceInputs["clientAuthenticatorType"] = args ? args.clientAuthenticatorType : undefined;
             resourceInputs["clientId"] = args ? args.clientId : undefined;
             resourceInputs["clientOfflineSessionIdleTimeout"] = args ? args.clientOfflineSessionIdleTimeout : undefined;
             resourceInputs["clientOfflineSessionMaxLifespan"] = args ? args.clientOfflineSessionMaxLifespan : undefined;
@@ -287,15 +332,22 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["clientSessionIdleTimeout"] = args ? args.clientSessionIdleTimeout : undefined;
             resourceInputs["clientSessionMaxLifespan"] = args ? args.clientSessionMaxLifespan : undefined;
             resourceInputs["consentRequired"] = args ? args.consentRequired : undefined;
+            resourceInputs["consentScreenText"] = args ? args.consentScreenText : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["directAccessGrantsEnabled"] = args ? args.directAccessGrantsEnabled : undefined;
+            resourceInputs["displayOnConsentScreen"] = args ? args.displayOnConsentScreen : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["excludeSessionStateFromAuthResponse"] = args ? args.excludeSessionStateFromAuthResponse : undefined;
             resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
+            resourceInputs["frontchannelLogoutEnabled"] = args ? args.frontchannelLogoutEnabled : undefined;
+            resourceInputs["frontchannelLogoutUrl"] = args ? args.frontchannelLogoutUrl : undefined;
             resourceInputs["fullScopeAllowed"] = args ? args.fullScopeAllowed : undefined;
             resourceInputs["implicitFlowEnabled"] = args ? args.implicitFlowEnabled : undefined;
             resourceInputs["loginTheme"] = args ? args.loginTheme : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["oauth2DeviceAuthorizationGrantEnabled"] = args ? args.oauth2DeviceAuthorizationGrantEnabled : undefined;
+            resourceInputs["oauth2DeviceCodeLifespan"] = args ? args.oauth2DeviceCodeLifespan : undefined;
+            resourceInputs["oauth2DevicePollingInterval"] = args ? args.oauth2DevicePollingInterval : undefined;
             resourceInputs["pkceCodeChallengeMethod"] = args ? args.pkceCodeChallengeMethod : undefined;
             resourceInputs["realmId"] = args ? args.realmId : undefined;
             resourceInputs["rootUrl"] = args ? args.rootUrl : undefined;
@@ -353,6 +405,14 @@ export interface ClientState {
      */
     baseUrl?: pulumi.Input<string>;
     /**
+     * Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+     * - `client-secret` (Default) Use client id and client secret to authenticate client.
+     * - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
+     * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
+     * - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
+     */
+    clientAuthenticatorType?: pulumi.Input<string>;
+    /**
      * The Client ID for this client, referenced in the URI during authentication and in issued tokens.
      */
     clientId?: pulumi.Input<string>;
@@ -377,9 +437,13 @@ export interface ClientState {
      */
     clientSessionMaxLifespan?: pulumi.Input<string>;
     /**
-     * When `true`, users have to consent to client access.
+     * When `true`, users have to consent to client access. Defaults to `false`.
      */
     consentRequired?: pulumi.Input<boolean>;
+    /**
+     * The text to display on the consent screen about permissions specific to this client. This is applicable only when `displayOnConsentScreen` is `true`.
+     */
+    consentScreenText?: pulumi.Input<string>;
     /**
      * The description of this client in the GUI.
      */
@@ -389,6 +453,10 @@ export interface ClientState {
      */
     directAccessGrantsEnabled?: pulumi.Input<boolean>;
     /**
+     * When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consentRequired` is `true`.
+     */
+    displayOnConsentScreen?: pulumi.Input<boolean>;
+    /**
      * When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
@@ -397,6 +465,14 @@ export interface ClientState {
      */
     excludeSessionStateFromAuthResponse?: pulumi.Input<boolean>;
     extraConfig?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
+     */
+    frontchannelLogoutEnabled?: pulumi.Input<boolean>;
+    /**
+     * The frontchannel logout url. This is applicable only when `frontchannelLogoutEnabled` is `true`.
+     */
+    frontchannelLogoutUrl?: pulumi.Input<string>;
     /**
      * Allow to include all roles mappings in the access token.
      */
@@ -413,6 +489,18 @@ export interface ClientState {
      * The display name of this client in the GUI.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
+     */
+    oauth2DeviceAuthorizationGrantEnabled?: pulumi.Input<boolean>;
+    /**
+     * The maximum amount of time a client has to finish the device code flow before it expires.
+     */
+    oauth2DeviceCodeLifespan?: pulumi.Input<string>;
+    /**
+     * The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+     */
+    oauth2DevicePollingInterval?: pulumi.Input<string>;
     /**
      * The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
      */
@@ -498,6 +586,14 @@ export interface ClientArgs {
      */
     baseUrl?: pulumi.Input<string>;
     /**
+     * Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+     * - `client-secret` (Default) Use client id and client secret to authenticate client.
+     * - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
+     * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
+     * - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
+     */
+    clientAuthenticatorType?: pulumi.Input<string>;
+    /**
      * The Client ID for this client, referenced in the URI during authentication and in issued tokens.
      */
     clientId: pulumi.Input<string>;
@@ -522,9 +618,13 @@ export interface ClientArgs {
      */
     clientSessionMaxLifespan?: pulumi.Input<string>;
     /**
-     * When `true`, users have to consent to client access.
+     * When `true`, users have to consent to client access. Defaults to `false`.
      */
     consentRequired?: pulumi.Input<boolean>;
+    /**
+     * The text to display on the consent screen about permissions specific to this client. This is applicable only when `displayOnConsentScreen` is `true`.
+     */
+    consentScreenText?: pulumi.Input<string>;
     /**
      * The description of this client in the GUI.
      */
@@ -534,6 +634,10 @@ export interface ClientArgs {
      */
     directAccessGrantsEnabled?: pulumi.Input<boolean>;
     /**
+     * When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consentRequired` is `true`.
+     */
+    displayOnConsentScreen?: pulumi.Input<boolean>;
+    /**
      * When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
@@ -542,6 +646,14 @@ export interface ClientArgs {
      */
     excludeSessionStateFromAuthResponse?: pulumi.Input<boolean>;
     extraConfig?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
+     */
+    frontchannelLogoutEnabled?: pulumi.Input<boolean>;
+    /**
+     * The frontchannel logout url. This is applicable only when `frontchannelLogoutEnabled` is `true`.
+     */
+    frontchannelLogoutUrl?: pulumi.Input<string>;
     /**
      * Allow to include all roles mappings in the access token.
      */
@@ -558,6 +670,18 @@ export interface ClientArgs {
      * The display name of this client in the GUI.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
+     */
+    oauth2DeviceAuthorizationGrantEnabled?: pulumi.Input<boolean>;
+    /**
+     * The maximum amount of time a client has to finish the device code flow before it expires.
+     */
+    oauth2DeviceCodeLifespan?: pulumi.Input<string>;
+    /**
+     * The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+     */
+    oauth2DevicePollingInterval?: pulumi.Input<string>;
     /**
      * The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
      */

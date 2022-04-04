@@ -93,6 +93,12 @@ namespace Pulumi.Keycloak.OpenId
         [Input("clientId", required: true)]
         public string ClientId { get; set; } = null!;
 
+        [Input("consentScreenText")]
+        public string? ConsentScreenText { get; set; }
+
+        [Input("displayOnConsentScreen")]
+        public bool? DisplayOnConsentScreen { get; set; }
+
         [Input("extraConfig")]
         private Dictionary<string, object>? _extraConfig;
         public Dictionary<string, object> ExtraConfig
@@ -100,6 +106,15 @@ namespace Pulumi.Keycloak.OpenId
             get => _extraConfig ?? (_extraConfig = new Dictionary<string, object>());
             set => _extraConfig = value;
         }
+
+        [Input("oauth2DeviceAuthorizationGrantEnabled")]
+        public bool? Oauth2DeviceAuthorizationGrantEnabled { get; set; }
+
+        [Input("oauth2DeviceCodeLifespan")]
+        public string? Oauth2DeviceCodeLifespan { get; set; }
+
+        [Input("oauth2DevicePollingInterval")]
+        public string? Oauth2DevicePollingInterval { get; set; }
 
         /// <summary>
         /// The realm id.
@@ -120,6 +135,12 @@ namespace Pulumi.Keycloak.OpenId
         [Input("clientId", required: true)]
         public Input<string> ClientId { get; set; } = null!;
 
+        [Input("consentScreenText")]
+        public Input<string>? ConsentScreenText { get; set; }
+
+        [Input("displayOnConsentScreen")]
+        public Input<bool>? DisplayOnConsentScreen { get; set; }
+
         [Input("extraConfig")]
         private InputMap<object>? _extraConfig;
         public InputMap<object> ExtraConfig
@@ -127,6 +148,15 @@ namespace Pulumi.Keycloak.OpenId
             get => _extraConfig ?? (_extraConfig = new InputMap<object>());
             set => _extraConfig = value;
         }
+
+        [Input("oauth2DeviceAuthorizationGrantEnabled")]
+        public Input<bool>? Oauth2DeviceAuthorizationGrantEnabled { get; set; }
+
+        [Input("oauth2DeviceCodeLifespan")]
+        public Input<string>? Oauth2DeviceCodeLifespan { get; set; }
+
+        [Input("oauth2DevicePollingInterval")]
+        public Input<string>? Oauth2DevicePollingInterval { get; set; }
 
         /// <summary>
         /// The realm id.
@@ -152,6 +182,7 @@ namespace Pulumi.Keycloak.OpenId
         public readonly bool BackchannelLogoutSessionRequired;
         public readonly string BackchannelLogoutUrl;
         public readonly string BaseUrl;
+        public readonly string ClientAuthenticatorType;
         public readonly string ClientId;
         public readonly string ClientOfflineSessionIdleTimeout;
         public readonly string ClientOfflineSessionMaxLifespan;
@@ -159,11 +190,15 @@ namespace Pulumi.Keycloak.OpenId
         public readonly string ClientSessionIdleTimeout;
         public readonly string ClientSessionMaxLifespan;
         public readonly bool ConsentRequired;
+        public readonly string? ConsentScreenText;
         public readonly string Description;
         public readonly bool DirectAccessGrantsEnabled;
+        public readonly bool? DisplayOnConsentScreen;
         public readonly bool Enabled;
         public readonly bool ExcludeSessionStateFromAuthResponse;
         public readonly ImmutableDictionary<string, object> ExtraConfig;
+        public readonly bool FrontchannelLogoutEnabled;
+        public readonly string FrontchannelLogoutUrl;
         public readonly bool FullScopeAllowed;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -172,6 +207,9 @@ namespace Pulumi.Keycloak.OpenId
         public readonly bool ImplicitFlowEnabled;
         public readonly string LoginTheme;
         public readonly string Name;
+        public readonly bool? Oauth2DeviceAuthorizationGrantEnabled;
+        public readonly string? Oauth2DeviceCodeLifespan;
+        public readonly string? Oauth2DevicePollingInterval;
         public readonly string PkceCodeChallengeMethod;
         public readonly string RealmId;
         public readonly string ResourceServerId;
@@ -203,6 +241,8 @@ namespace Pulumi.Keycloak.OpenId
 
             string baseUrl,
 
+            string clientAuthenticatorType,
+
             string clientId,
 
             string clientOfflineSessionIdleTimeout,
@@ -217,15 +257,23 @@ namespace Pulumi.Keycloak.OpenId
 
             bool consentRequired,
 
+            string? consentScreenText,
+
             string description,
 
             bool directAccessGrantsEnabled,
+
+            bool? displayOnConsentScreen,
 
             bool enabled,
 
             bool excludeSessionStateFromAuthResponse,
 
             ImmutableDictionary<string, object> extraConfig,
+
+            bool frontchannelLogoutEnabled,
+
+            string frontchannelLogoutUrl,
 
             bool fullScopeAllowed,
 
@@ -236,6 +284,12 @@ namespace Pulumi.Keycloak.OpenId
             string loginTheme,
 
             string name,
+
+            bool? oauth2DeviceAuthorizationGrantEnabled,
+
+            string? oauth2DeviceCodeLifespan,
+
+            string? oauth2DevicePollingInterval,
 
             string pkceCodeChallengeMethod,
 
@@ -266,6 +320,7 @@ namespace Pulumi.Keycloak.OpenId
             BackchannelLogoutSessionRequired = backchannelLogoutSessionRequired;
             BackchannelLogoutUrl = backchannelLogoutUrl;
             BaseUrl = baseUrl;
+            ClientAuthenticatorType = clientAuthenticatorType;
             ClientId = clientId;
             ClientOfflineSessionIdleTimeout = clientOfflineSessionIdleTimeout;
             ClientOfflineSessionMaxLifespan = clientOfflineSessionMaxLifespan;
@@ -273,16 +328,23 @@ namespace Pulumi.Keycloak.OpenId
             ClientSessionIdleTimeout = clientSessionIdleTimeout;
             ClientSessionMaxLifespan = clientSessionMaxLifespan;
             ConsentRequired = consentRequired;
+            ConsentScreenText = consentScreenText;
             Description = description;
             DirectAccessGrantsEnabled = directAccessGrantsEnabled;
+            DisplayOnConsentScreen = displayOnConsentScreen;
             Enabled = enabled;
             ExcludeSessionStateFromAuthResponse = excludeSessionStateFromAuthResponse;
             ExtraConfig = extraConfig;
+            FrontchannelLogoutEnabled = frontchannelLogoutEnabled;
+            FrontchannelLogoutUrl = frontchannelLogoutUrl;
             FullScopeAllowed = fullScopeAllowed;
             Id = id;
             ImplicitFlowEnabled = implicitFlowEnabled;
             LoginTheme = loginTheme;
             Name = name;
+            Oauth2DeviceAuthorizationGrantEnabled = oauth2DeviceAuthorizationGrantEnabled;
+            Oauth2DeviceCodeLifespan = oauth2DeviceCodeLifespan;
+            Oauth2DevicePollingInterval = oauth2DevicePollingInterval;
             PkceCodeChallengeMethod = pkceCodeChallengeMethod;
             RealmId = realmId;
             ResourceServerId = resourceServerId;

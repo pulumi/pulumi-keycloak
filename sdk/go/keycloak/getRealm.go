@@ -97,6 +97,8 @@ type LookupRealmResult struct {
 	Internationalizations            []GetRealmInternationalization     `pulumi:"internationalizations"`
 	LoginTheme                       string                             `pulumi:"loginTheme"`
 	LoginWithEmailAllowed            bool                               `pulumi:"loginWithEmailAllowed"`
+	Oauth2DeviceCodeLifespan         string                             `pulumi:"oauth2DeviceCodeLifespan"`
+	Oauth2DevicePollingInterval      int                                `pulumi:"oauth2DevicePollingInterval"`
 	OfflineSessionIdleTimeout        string                             `pulumi:"offlineSessionIdleTimeout"`
 	OfflineSessionMaxLifespan        string                             `pulumi:"offlineSessionMaxLifespan"`
 	OfflineSessionMaxLifespanEnabled bool                               `pulumi:"offlineSessionMaxLifespanEnabled"`
@@ -279,6 +281,14 @@ func (o LookupRealmResultOutput) LoginTheme() pulumi.StringOutput {
 
 func (o LookupRealmResultOutput) LoginWithEmailAllowed() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupRealmResult) bool { return v.LoginWithEmailAllowed }).(pulumi.BoolOutput)
+}
+
+func (o LookupRealmResultOutput) Oauth2DeviceCodeLifespan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.Oauth2DeviceCodeLifespan }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) Oauth2DevicePollingInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRealmResult) int { return v.Oauth2DevicePollingInterval }).(pulumi.IntOutput)
 }
 
 func (o LookupRealmResultOutput) OfflineSessionIdleTimeout() pulumi.StringOutput {
