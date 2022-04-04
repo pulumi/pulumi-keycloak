@@ -4470,6 +4470,14 @@
                     "type": "boolean",
                     "description": "When true, users may log in with their email address.\n"
                 },
+                "oauth2DeviceCodeLifespan": {
+                    "type": "string",
+                    "description": "The maximum amount of time a client has to finish the device code flow before it expires.\n"
+                },
+                "oauth2DevicePollingInterval": {
+                    "type": "integer",
+                    "description": "The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.\n"
+                },
                 "offlineSessionIdleTimeout": {
                     "type": "string",
                     "description": "The amount of time an offline session can be idle before it expires.\n"
@@ -4583,6 +4591,8 @@
                 "editUsernameAllowed",
                 "internalId",
                 "loginWithEmailAllowed",
+                "oauth2DeviceCodeLifespan",
+                "oauth2DevicePollingInterval",
                 "offlineSessionIdleTimeout",
                 "offlineSessionMaxLifespan",
                 "otpPolicy",
@@ -4709,6 +4719,14 @@
                 "loginWithEmailAllowed": {
                     "type": "boolean",
                     "description": "When true, users may log in with their email address.\n"
+                },
+                "oauth2DeviceCodeLifespan": {
+                    "type": "string",
+                    "description": "The maximum amount of time a client has to finish the device code flow before it expires.\n"
+                },
+                "oauth2DevicePollingInterval": {
+                    "type": "integer",
+                    "description": "The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.\n"
                 },
                 "offlineSessionIdleTimeout": {
                     "type": "string",
@@ -4929,6 +4947,14 @@
                     "loginWithEmailAllowed": {
                         "type": "boolean",
                         "description": "When true, users may log in with their email address.\n"
+                    },
+                    "oauth2DeviceCodeLifespan": {
+                        "type": "string",
+                        "description": "The maximum amount of time a client has to finish the device code flow before it expires.\n"
+                    },
+                    "oauth2DevicePollingInterval": {
+                        "type": "integer",
+                        "description": "The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.\n"
                     },
                     "offlineSessionIdleTimeout": {
                         "type": "string",
@@ -6318,28 +6344,30 @@
             }
         },
         "keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper": {
+            "description": "Allows for creating and managing an username template importer identity provider mapper within Keycloak.\n\nThe username template importer mapper can be used to map externally defined OIDC claims or SAML attributes with a template to the username of the imported Keycloak user:\n\n- Substitutions are enclosed in \\${}. For example: '\\${ALIAS}.\\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\\\u003cNAME\\\u003e references an ID or Access token claim.\n\n\u003e If you are using Keycloak 10 or higher, you will need to specify the `extra_config` argument in order to define a `syncMode` for the mapper.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst oidc = new keycloak.oidc.IdentityProvider(\"oidc\", {\n    realm: realm.id,\n    alias: \"oidc\",\n    authorizationUrl: \"https://example.com/auth\",\n    tokenUrl: \"https://example.com/token\",\n    clientId: \"example_id\",\n    clientSecret: \"example_token\",\n    defaultScopes: \"openid random profile\",\n});\nconst usernameImporter = new keycloak.UserTemplateImporterIdentityProviderMapper(\"usernameImporter\", {\n    realm: realm.id,\n    identityProviderAlias: oidc.alias,\n    template: `${ALIAS}.${CLAIM.email}`,\n    extraConfig: {\n        syncMode: \"INHERIT\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\noidc = keycloak.oidc.IdentityProvider(\"oidc\",\n    realm=realm.id,\n    alias=\"oidc\",\n    authorization_url=\"https://example.com/auth\",\n    token_url=\"https://example.com/token\",\n    client_id=\"example_id\",\n    client_secret=\"example_token\",\n    default_scopes=\"openid random profile\")\nusername_importer = keycloak.UserTemplateImporterIdentityProviderMapper(\"usernameImporter\",\n    realm=realm.id,\n    identity_provider_alias=oidc.alias,\n    template=f\"{alias}.{claim['email']}\",\n    extra_config={\n        \"syncMode\": \"INHERIT\",\n    })\n```\n```csharp\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var realm = new Keycloak.Realm(\"realm\", new Keycloak.RealmArgs\n        {\n            Realm = \"my-realm\",\n            Enabled = true,\n        });\n        var oidc = new Keycloak.Oidc.IdentityProvider(\"oidc\", new Keycloak.Oidc.IdentityProviderArgs\n        {\n            Realm = realm.Id,\n            Alias = \"oidc\",\n            AuthorizationUrl = \"https://example.com/auth\",\n            TokenUrl = \"https://example.com/token\",\n            ClientId = \"example_id\",\n            ClientSecret = \"example_token\",\n            DefaultScopes = \"openid random profile\",\n        });\n        var usernameImporter = new Keycloak.UserTemplateImporterIdentityProviderMapper(\"usernameImporter\", new Keycloak.UserTemplateImporterIdentityProviderMapperArgs\n        {\n            Realm = realm.Id,\n            IdentityProviderAlias = oidc.Alias,\n            Template = $\"{ALIAS}.{CLAIM.Email}\",\n            ExtraConfig = \n            {\n                { \"syncMode\", \"INHERIT\" },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/oidc\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\toidc, err := oidc.NewIdentityProvider(ctx, \"oidc\", \u0026oidc.IdentityProviderArgs{\n\t\t\tRealm:            realm.ID(),\n\t\t\tAlias:            pulumi.String(\"oidc\"),\n\t\t\tAuthorizationUrl: pulumi.String(\"https://example.com/auth\"),\n\t\t\tTokenUrl:         pulumi.String(\"https://example.com/token\"),\n\t\t\tClientId:         pulumi.String(\"example_id\"),\n\t\t\tClientSecret:     pulumi.String(\"example_token\"),\n\t\t\tDefaultScopes:    pulumi.String(\"openid random profile\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewUserTemplateImporterIdentityProviderMapper(ctx, \"usernameImporter\", \u0026keycloak.UserTemplateImporterIdentityProviderMapperArgs{\n\t\t\tRealm:                 realm.ID(),\n\t\t\tIdentityProviderAlias: oidc.Alias,\n\t\t\tTemplate:              pulumi.String(fmt.Sprintf(\"%v%v%v\", ALIAS, \".\", CLAIM.Email)),\n\t\t\tExtraConfig: pulumi.AnyMap{\n\t\t\t\t\"syncMode\": pulumi.Any(\"INHERIT\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nIdentity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID. Examplebash\n\n```sh\n $ pulumi import keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper username_importer my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b\n```\n\n ",
             "properties": {
                 "extraConfig": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.\n"
                 },
                 "identityProviderAlias": {
                     "type": "string",
-                    "description": "IDP Alias\n"
+                    "description": "The alias of the associated identity provider.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "IDP Mapper Name\n"
+                    "description": "The name of the mapper.\n"
                 },
                 "realm": {
                     "type": "string",
-                    "description": "Realm Name\n"
+                    "description": "The name of the realm.\n"
                 },
                 "template": {
                     "type": "string",
-                    "description": "Username For Template Import\n"
+                    "description": "Template to use to format the username to import. Substitutions are enclosed in \\${}. For example: '\\$\\${ALIAS}.\\$\\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\\\u003cNAME\\\u003e references an ID or Access token claim.\n"
                 }
             },
             "required": [
@@ -6352,23 +6380,24 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.\n"
                 },
                 "identityProviderAlias": {
                     "type": "string",
-                    "description": "IDP Alias\n"
+                    "description": "The alias of the associated identity provider.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "IDP Mapper Name\n"
+                    "description": "The name of the mapper.\n"
                 },
                 "realm": {
                     "type": "string",
-                    "description": "Realm Name\n"
+                    "description": "The name of the realm.\n"
                 },
                 "template": {
                     "type": "string",
-                    "description": "Username For Template Import\n"
+                    "description": "Template to use to format the username to import. Substitutions are enclosed in \\${}. For example: '\\$\\${ALIAS}.\\$\\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\\\u003cNAME\\\u003e references an ID or Access token claim.\n"
                 }
             },
             "requiredInputs": [
@@ -6382,23 +6411,24 @@
                         "type": "object",
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
-                        }
+                        },
+                        "description": "Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.\n"
                     },
                     "identityProviderAlias": {
                         "type": "string",
-                        "description": "IDP Alias\n"
+                        "description": "The alias of the associated identity provider.\n"
                     },
                     "name": {
                         "type": "string",
-                        "description": "IDP Mapper Name\n"
+                        "description": "The name of the mapper.\n"
                     },
                     "realm": {
                         "type": "string",
-                        "description": "Realm Name\n"
+                        "description": "The name of the realm.\n"
                     },
                     "template": {
                         "type": "string",
-                        "description": "Username For Template Import\n"
+                        "description": "Template to use to format the username to import. Substitutions are enclosed in \\${}. For example: '\\$\\${ALIAS}.\\$\\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\\\u003cNAME\\\u003e references an ID or Access token claim.\n"
                     }
                 },
                 "type": "object"
@@ -8838,6 +8868,10 @@
                     "type": "string",
                     "description": "Default URL to use when the auth server needs to redirect or link back to the client.\n"
                 },
+                "clientAuthenticatorType": {
+                    "type": "string",
+                    "description": "Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:\n- `client-secret` (Default) Use client id and client secret to authenticate client.\n- `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = \u003calg\u003e`\n- `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = \u003csubjectDn\u003e`\n- `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = \u003calg\u003e`\n"
+                },
                 "clientId": {
                     "type": "string",
                     "description": "The Client ID for this client, referenced in the URI during authentication and in issued tokens.\n"
@@ -8864,7 +8898,11 @@
                 },
                 "consentRequired": {
                     "type": "boolean",
-                    "description": "When `true`, users have to consent to client access.\n"
+                    "description": "When `true`, users have to consent to client access. Defaults to `false`.\n"
+                },
+                "consentScreenText": {
+                    "type": "string",
+                    "description": "The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.\n"
                 },
                 "description": {
                     "type": "string",
@@ -8873,6 +8911,10 @@
                 "directAccessGrantsEnabled": {
                     "type": "boolean",
                     "description": "When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.\n"
+                },
+                "displayOnConsentScreen": {
+                    "type": "boolean",
+                    "description": "When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.\n"
                 },
                 "enabled": {
                     "type": "boolean",
@@ -8887,6 +8929,14 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     }
+                },
+                "frontchannelLogoutEnabled": {
+                    "type": "boolean",
+                    "description": "When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.\n"
+                },
+                "frontchannelLogoutUrl": {
+                    "type": "string",
+                    "description": "The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.\n"
                 },
                 "fullScopeAllowed": {
                     "type": "boolean",
@@ -8903,6 +8953,18 @@
                 "name": {
                     "type": "string",
                     "description": "The display name of this client in the GUI.\n"
+                },
+                "oauth2DeviceAuthorizationGrantEnabled": {
+                    "type": "boolean",
+                    "description": "Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.\n"
+                },
+                "oauth2DeviceCodeLifespan": {
+                    "type": "string",
+                    "description": "The maximum amount of time a client has to finish the device code flow before it expires.\n"
+                },
+                "oauth2DevicePollingInterval": {
+                    "type": "string",
+                    "description": "The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.\n"
                 },
                 "pkceCodeChallengeMethod": {
                     "type": "string",
@@ -8997,6 +9059,10 @@
                     "type": "string",
                     "description": "Default URL to use when the auth server needs to redirect or link back to the client.\n"
                 },
+                "clientAuthenticatorType": {
+                    "type": "string",
+                    "description": "Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:\n- `client-secret` (Default) Use client id and client secret to authenticate client.\n- `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = \u003calg\u003e`\n- `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = \u003csubjectDn\u003e`\n- `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = \u003calg\u003e`\n"
+                },
                 "clientId": {
                     "type": "string",
                     "description": "The Client ID for this client, referenced in the URI during authentication and in issued tokens.\n"
@@ -9023,7 +9089,11 @@
                 },
                 "consentRequired": {
                     "type": "boolean",
-                    "description": "When `true`, users have to consent to client access.\n"
+                    "description": "When `true`, users have to consent to client access. Defaults to `false`.\n"
+                },
+                "consentScreenText": {
+                    "type": "string",
+                    "description": "The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.\n"
                 },
                 "description": {
                     "type": "string",
@@ -9032,6 +9102,10 @@
                 "directAccessGrantsEnabled": {
                     "type": "boolean",
                     "description": "When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.\n"
+                },
+                "displayOnConsentScreen": {
+                    "type": "boolean",
+                    "description": "When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.\n"
                 },
                 "enabled": {
                     "type": "boolean",
@@ -9046,6 +9120,14 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     }
+                },
+                "frontchannelLogoutEnabled": {
+                    "type": "boolean",
+                    "description": "When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.\n"
+                },
+                "frontchannelLogoutUrl": {
+                    "type": "string",
+                    "description": "The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.\n"
                 },
                 "fullScopeAllowed": {
                     "type": "boolean",
@@ -9062,6 +9144,18 @@
                 "name": {
                     "type": "string",
                     "description": "The display name of this client in the GUI.\n"
+                },
+                "oauth2DeviceAuthorizationGrantEnabled": {
+                    "type": "boolean",
+                    "description": "Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.\n"
+                },
+                "oauth2DeviceCodeLifespan": {
+                    "type": "string",
+                    "description": "The maximum amount of time a client has to finish the device code flow before it expires.\n"
+                },
+                "oauth2DevicePollingInterval": {
+                    "type": "string",
+                    "description": "The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.\n"
                 },
                 "pkceCodeChallengeMethod": {
                     "type": "string",
@@ -9146,6 +9240,10 @@
                         "type": "string",
                         "description": "Default URL to use when the auth server needs to redirect or link back to the client.\n"
                     },
+                    "clientAuthenticatorType": {
+                        "type": "string",
+                        "description": "Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:\n- `client-secret` (Default) Use client id and client secret to authenticate client.\n- `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = \u003calg\u003e`\n- `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = \u003csubjectDn\u003e`\n- `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = \u003calg\u003e`\n"
+                    },
                     "clientId": {
                         "type": "string",
                         "description": "The Client ID for this client, referenced in the URI during authentication and in issued tokens.\n"
@@ -9172,7 +9270,11 @@
                     },
                     "consentRequired": {
                         "type": "boolean",
-                        "description": "When `true`, users have to consent to client access.\n"
+                        "description": "When `true`, users have to consent to client access. Defaults to `false`.\n"
+                    },
+                    "consentScreenText": {
+                        "type": "string",
+                        "description": "The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.\n"
                     },
                     "description": {
                         "type": "string",
@@ -9181,6 +9283,10 @@
                     "directAccessGrantsEnabled": {
                         "type": "boolean",
                         "description": "When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.\n"
+                    },
+                    "displayOnConsentScreen": {
+                        "type": "boolean",
+                        "description": "When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.\n"
                     },
                     "enabled": {
                         "type": "boolean",
@@ -9195,6 +9301,14 @@
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
                         }
+                    },
+                    "frontchannelLogoutEnabled": {
+                        "type": "boolean",
+                        "description": "When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.\n"
+                    },
+                    "frontchannelLogoutUrl": {
+                        "type": "string",
+                        "description": "The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.\n"
                     },
                     "fullScopeAllowed": {
                         "type": "boolean",
@@ -9211,6 +9325,18 @@
                     "name": {
                         "type": "string",
                         "description": "The display name of this client in the GUI.\n"
+                    },
+                    "oauth2DeviceAuthorizationGrantEnabled": {
+                        "type": "boolean",
+                        "description": "Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.\n"
+                    },
+                    "oauth2DeviceCodeLifespan": {
+                        "type": "string",
+                        "description": "The maximum amount of time a client has to finish the device code flow before it expires.\n"
+                    },
+                    "oauth2DevicePollingInterval": {
+                        "type": "string",
+                        "description": "The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.\n"
                     },
                     "pkceCodeChallengeMethod": {
                         "type": "string",
@@ -14189,6 +14315,12 @@
                     "loginWithEmailAllowed": {
                         "type": "boolean"
                     },
+                    "oauth2DeviceCodeLifespan": {
+                        "type": "string"
+                    },
+                    "oauth2DevicePollingInterval": {
+                        "type": "integer"
+                    },
                     "offlineSessionIdleTimeout": {
                         "type": "string"
                     },
@@ -14299,6 +14431,8 @@
                     "internationalizations",
                     "loginTheme",
                     "loginWithEmailAllowed",
+                    "oauth2DeviceCodeLifespan",
+                    "oauth2DevicePollingInterval",
                     "offlineSessionIdleTimeout",
                     "offlineSessionMaxLifespan",
                     "offlineSessionMaxLifespanEnabled",
@@ -14606,11 +14740,26 @@
                         "type": "string",
                         "description": "The client id (not its unique ID).\n"
                     },
+                    "consentScreenText": {
+                        "type": "string"
+                    },
+                    "displayOnConsentScreen": {
+                        "type": "boolean"
+                    },
                     "extraConfig": {
                         "type": "object",
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
                         }
+                    },
+                    "oauth2DeviceAuthorizationGrantEnabled": {
+                        "type": "boolean"
+                    },
+                    "oauth2DeviceCodeLifespan": {
+                        "type": "string"
+                    },
+                    "oauth2DevicePollingInterval": {
+                        "type": "string"
                     },
                     "realmId": {
                         "type": "string",
@@ -14659,6 +14808,9 @@
                     "baseUrl": {
                         "type": "string"
                     },
+                    "clientAuthenticatorType": {
+                        "type": "string"
+                    },
                     "clientId": {
                         "type": "string"
                     },
@@ -14680,10 +14832,16 @@
                     "consentRequired": {
                         "type": "boolean"
                     },
+                    "consentScreenText": {
+                        "type": "string"
+                    },
                     "description": {
                         "type": "string"
                     },
                     "directAccessGrantsEnabled": {
+                        "type": "boolean"
+                    },
+                    "displayOnConsentScreen": {
                         "type": "boolean"
                     },
                     "enabled": {
@@ -14697,6 +14855,12 @@
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
                         }
+                    },
+                    "frontchannelLogoutEnabled": {
+                        "type": "boolean"
+                    },
+                    "frontchannelLogoutUrl": {
+                        "type": "string"
                     },
                     "fullScopeAllowed": {
                         "type": "boolean"
@@ -14712,6 +14876,15 @@
                         "type": "string"
                     },
                     "name": {
+                        "type": "string"
+                    },
+                    "oauth2DeviceAuthorizationGrantEnabled": {
+                        "type": "boolean"
+                    },
+                    "oauth2DeviceCodeLifespan": {
+                        "type": "string"
+                    },
+                    "oauth2DevicePollingInterval": {
                         "type": "string"
                     },
                     "pkceCodeChallengeMethod": {
@@ -14762,6 +14935,7 @@
                     "backchannelLogoutSessionRequired",
                     "backchannelLogoutUrl",
                     "baseUrl",
+                    "clientAuthenticatorType",
                     "clientId",
                     "clientOfflineSessionIdleTimeout",
                     "clientOfflineSessionMaxLifespan",
@@ -14774,6 +14948,8 @@
                     "enabled",
                     "excludeSessionStateFromAuthResponse",
                     "extraConfig",
+                    "frontchannelLogoutEnabled",
+                    "frontchannelLogoutUrl",
                     "fullScopeAllowed",
                     "implicitFlowEnabled",
                     "loginTheme",

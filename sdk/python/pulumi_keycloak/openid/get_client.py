@@ -21,7 +21,7 @@ class GetClientResult:
     """
     A collection of values returned by getClient.
     """
-    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, authentication_flow_binding_overrides=None, authorizations=None, backchannel_logout_revoke_offline_sessions=None, backchannel_logout_session_required=None, backchannel_logout_url=None, base_url=None, client_id=None, client_offline_session_idle_timeout=None, client_offline_session_max_lifespan=None, client_secret=None, client_session_idle_timeout=None, client_session_max_lifespan=None, consent_required=None, description=None, direct_access_grants_enabled=None, enabled=None, exclude_session_state_from_auth_response=None, extra_config=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, use_refresh_tokens=None, valid_redirect_uris=None, web_origins=None):
+    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, authentication_flow_binding_overrides=None, authorizations=None, backchannel_logout_revoke_offline_sessions=None, backchannel_logout_session_required=None, backchannel_logout_url=None, base_url=None, client_authenticator_type=None, client_id=None, client_offline_session_idle_timeout=None, client_offline_session_max_lifespan=None, client_secret=None, client_session_idle_timeout=None, client_session_max_lifespan=None, consent_required=None, consent_screen_text=None, description=None, direct_access_grants_enabled=None, display_on_consent_screen=None, enabled=None, exclude_session_state_from_auth_response=None, extra_config=None, frontchannel_logout_enabled=None, frontchannel_logout_url=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, oauth2_device_authorization_grant_enabled=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, use_refresh_tokens=None, valid_redirect_uris=None, web_origins=None):
         if access_token_lifespan and not isinstance(access_token_lifespan, str):
             raise TypeError("Expected argument 'access_token_lifespan' to be a str")
         pulumi.set(__self__, "access_token_lifespan", access_token_lifespan)
@@ -49,6 +49,9 @@ class GetClientResult:
         if base_url and not isinstance(base_url, str):
             raise TypeError("Expected argument 'base_url' to be a str")
         pulumi.set(__self__, "base_url", base_url)
+        if client_authenticator_type and not isinstance(client_authenticator_type, str):
+            raise TypeError("Expected argument 'client_authenticator_type' to be a str")
+        pulumi.set(__self__, "client_authenticator_type", client_authenticator_type)
         if client_id and not isinstance(client_id, str):
             raise TypeError("Expected argument 'client_id' to be a str")
         pulumi.set(__self__, "client_id", client_id)
@@ -70,12 +73,18 @@ class GetClientResult:
         if consent_required and not isinstance(consent_required, bool):
             raise TypeError("Expected argument 'consent_required' to be a bool")
         pulumi.set(__self__, "consent_required", consent_required)
+        if consent_screen_text and not isinstance(consent_screen_text, str):
+            raise TypeError("Expected argument 'consent_screen_text' to be a str")
+        pulumi.set(__self__, "consent_screen_text", consent_screen_text)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
         if direct_access_grants_enabled and not isinstance(direct_access_grants_enabled, bool):
             raise TypeError("Expected argument 'direct_access_grants_enabled' to be a bool")
         pulumi.set(__self__, "direct_access_grants_enabled", direct_access_grants_enabled)
+        if display_on_consent_screen and not isinstance(display_on_consent_screen, bool):
+            raise TypeError("Expected argument 'display_on_consent_screen' to be a bool")
+        pulumi.set(__self__, "display_on_consent_screen", display_on_consent_screen)
         if enabled and not isinstance(enabled, bool):
             raise TypeError("Expected argument 'enabled' to be a bool")
         pulumi.set(__self__, "enabled", enabled)
@@ -85,6 +94,12 @@ class GetClientResult:
         if extra_config and not isinstance(extra_config, dict):
             raise TypeError("Expected argument 'extra_config' to be a dict")
         pulumi.set(__self__, "extra_config", extra_config)
+        if frontchannel_logout_enabled and not isinstance(frontchannel_logout_enabled, bool):
+            raise TypeError("Expected argument 'frontchannel_logout_enabled' to be a bool")
+        pulumi.set(__self__, "frontchannel_logout_enabled", frontchannel_logout_enabled)
+        if frontchannel_logout_url and not isinstance(frontchannel_logout_url, str):
+            raise TypeError("Expected argument 'frontchannel_logout_url' to be a str")
+        pulumi.set(__self__, "frontchannel_logout_url", frontchannel_logout_url)
         if full_scope_allowed and not isinstance(full_scope_allowed, bool):
             raise TypeError("Expected argument 'full_scope_allowed' to be a bool")
         pulumi.set(__self__, "full_scope_allowed", full_scope_allowed)
@@ -100,6 +115,15 @@ class GetClientResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if oauth2_device_authorization_grant_enabled and not isinstance(oauth2_device_authorization_grant_enabled, bool):
+            raise TypeError("Expected argument 'oauth2_device_authorization_grant_enabled' to be a bool")
+        pulumi.set(__self__, "oauth2_device_authorization_grant_enabled", oauth2_device_authorization_grant_enabled)
+        if oauth2_device_code_lifespan and not isinstance(oauth2_device_code_lifespan, str):
+            raise TypeError("Expected argument 'oauth2_device_code_lifespan' to be a str")
+        pulumi.set(__self__, "oauth2_device_code_lifespan", oauth2_device_code_lifespan)
+        if oauth2_device_polling_interval and not isinstance(oauth2_device_polling_interval, str):
+            raise TypeError("Expected argument 'oauth2_device_polling_interval' to be a str")
+        pulumi.set(__self__, "oauth2_device_polling_interval", oauth2_device_polling_interval)
         if pkce_code_challenge_method and not isinstance(pkce_code_challenge_method, str):
             raise TypeError("Expected argument 'pkce_code_challenge_method' to be a str")
         pulumi.set(__self__, "pkce_code_challenge_method", pkce_code_challenge_method)
@@ -177,6 +201,11 @@ class GetClientResult:
         return pulumi.get(self, "base_url")
 
     @property
+    @pulumi.getter(name="clientAuthenticatorType")
+    def client_authenticator_type(self) -> str:
+        return pulumi.get(self, "client_authenticator_type")
+
+    @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> str:
         return pulumi.get(self, "client_id")
@@ -212,6 +241,11 @@ class GetClientResult:
         return pulumi.get(self, "consent_required")
 
     @property
+    @pulumi.getter(name="consentScreenText")
+    def consent_screen_text(self) -> Optional[str]:
+        return pulumi.get(self, "consent_screen_text")
+
+    @property
     @pulumi.getter
     def description(self) -> str:
         return pulumi.get(self, "description")
@@ -220,6 +254,11 @@ class GetClientResult:
     @pulumi.getter(name="directAccessGrantsEnabled")
     def direct_access_grants_enabled(self) -> bool:
         return pulumi.get(self, "direct_access_grants_enabled")
+
+    @property
+    @pulumi.getter(name="displayOnConsentScreen")
+    def display_on_consent_screen(self) -> Optional[bool]:
+        return pulumi.get(self, "display_on_consent_screen")
 
     @property
     @pulumi.getter
@@ -235,6 +274,16 @@ class GetClientResult:
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> Mapping[str, Any]:
         return pulumi.get(self, "extra_config")
+
+    @property
+    @pulumi.getter(name="frontchannelLogoutEnabled")
+    def frontchannel_logout_enabled(self) -> bool:
+        return pulumi.get(self, "frontchannel_logout_enabled")
+
+    @property
+    @pulumi.getter(name="frontchannelLogoutUrl")
+    def frontchannel_logout_url(self) -> str:
+        return pulumi.get(self, "frontchannel_logout_url")
 
     @property
     @pulumi.getter(name="fullScopeAllowed")
@@ -263,6 +312,21 @@ class GetClientResult:
     @pulumi.getter
     def name(self) -> str:
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="oauth2DeviceAuthorizationGrantEnabled")
+    def oauth2_device_authorization_grant_enabled(self) -> Optional[bool]:
+        return pulumi.get(self, "oauth2_device_authorization_grant_enabled")
+
+    @property
+    @pulumi.getter(name="oauth2DeviceCodeLifespan")
+    def oauth2_device_code_lifespan(self) -> Optional[str]:
+        return pulumi.get(self, "oauth2_device_code_lifespan")
+
+    @property
+    @pulumi.getter(name="oauth2DevicePollingInterval")
+    def oauth2_device_polling_interval(self) -> Optional[str]:
+        return pulumi.get(self, "oauth2_device_polling_interval")
 
     @property
     @pulumi.getter(name="pkceCodeChallengeMethod")
@@ -330,6 +394,7 @@ class AwaitableGetClientResult(GetClientResult):
             backchannel_logout_session_required=self.backchannel_logout_session_required,
             backchannel_logout_url=self.backchannel_logout_url,
             base_url=self.base_url,
+            client_authenticator_type=self.client_authenticator_type,
             client_id=self.client_id,
             client_offline_session_idle_timeout=self.client_offline_session_idle_timeout,
             client_offline_session_max_lifespan=self.client_offline_session_max_lifespan,
@@ -337,16 +402,23 @@ class AwaitableGetClientResult(GetClientResult):
             client_session_idle_timeout=self.client_session_idle_timeout,
             client_session_max_lifespan=self.client_session_max_lifespan,
             consent_required=self.consent_required,
+            consent_screen_text=self.consent_screen_text,
             description=self.description,
             direct_access_grants_enabled=self.direct_access_grants_enabled,
+            display_on_consent_screen=self.display_on_consent_screen,
             enabled=self.enabled,
             exclude_session_state_from_auth_response=self.exclude_session_state_from_auth_response,
             extra_config=self.extra_config,
+            frontchannel_logout_enabled=self.frontchannel_logout_enabled,
+            frontchannel_logout_url=self.frontchannel_logout_url,
             full_scope_allowed=self.full_scope_allowed,
             id=self.id,
             implicit_flow_enabled=self.implicit_flow_enabled,
             login_theme=self.login_theme,
             name=self.name,
+            oauth2_device_authorization_grant_enabled=self.oauth2_device_authorization_grant_enabled,
+            oauth2_device_code_lifespan=self.oauth2_device_code_lifespan,
+            oauth2_device_polling_interval=self.oauth2_device_polling_interval,
             pkce_code_challenge_method=self.pkce_code_challenge_method,
             realm_id=self.realm_id,
             resource_server_id=self.resource_server_id,
@@ -360,7 +432,12 @@ class AwaitableGetClientResult(GetClientResult):
 
 
 def get_client(client_id: Optional[str] = None,
+               consent_screen_text: Optional[str] = None,
+               display_on_consent_screen: Optional[bool] = None,
                extra_config: Optional[Mapping[str, Any]] = None,
+               oauth2_device_authorization_grant_enabled: Optional[bool] = None,
+               oauth2_device_code_lifespan: Optional[str] = None,
+               oauth2_device_polling_interval: Optional[str] = None,
                realm_id: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientResult:
     """
@@ -385,7 +462,12 @@ def get_client(client_id: Optional[str] = None,
     """
     __args__ = dict()
     __args__['clientId'] = client_id
+    __args__['consentScreenText'] = consent_screen_text
+    __args__['displayOnConsentScreen'] = display_on_consent_screen
     __args__['extraConfig'] = extra_config
+    __args__['oauth2DeviceAuthorizationGrantEnabled'] = oauth2_device_authorization_grant_enabled
+    __args__['oauth2DeviceCodeLifespan'] = oauth2_device_code_lifespan
+    __args__['oauth2DevicePollingInterval'] = oauth2_device_polling_interval
     __args__['realmId'] = realm_id
     if opts is None:
         opts = pulumi.InvokeOptions()
@@ -403,6 +485,7 @@ def get_client(client_id: Optional[str] = None,
         backchannel_logout_session_required=__ret__.backchannel_logout_session_required,
         backchannel_logout_url=__ret__.backchannel_logout_url,
         base_url=__ret__.base_url,
+        client_authenticator_type=__ret__.client_authenticator_type,
         client_id=__ret__.client_id,
         client_offline_session_idle_timeout=__ret__.client_offline_session_idle_timeout,
         client_offline_session_max_lifespan=__ret__.client_offline_session_max_lifespan,
@@ -410,16 +493,23 @@ def get_client(client_id: Optional[str] = None,
         client_session_idle_timeout=__ret__.client_session_idle_timeout,
         client_session_max_lifespan=__ret__.client_session_max_lifespan,
         consent_required=__ret__.consent_required,
+        consent_screen_text=__ret__.consent_screen_text,
         description=__ret__.description,
         direct_access_grants_enabled=__ret__.direct_access_grants_enabled,
+        display_on_consent_screen=__ret__.display_on_consent_screen,
         enabled=__ret__.enabled,
         exclude_session_state_from_auth_response=__ret__.exclude_session_state_from_auth_response,
         extra_config=__ret__.extra_config,
+        frontchannel_logout_enabled=__ret__.frontchannel_logout_enabled,
+        frontchannel_logout_url=__ret__.frontchannel_logout_url,
         full_scope_allowed=__ret__.full_scope_allowed,
         id=__ret__.id,
         implicit_flow_enabled=__ret__.implicit_flow_enabled,
         login_theme=__ret__.login_theme,
         name=__ret__.name,
+        oauth2_device_authorization_grant_enabled=__ret__.oauth2_device_authorization_grant_enabled,
+        oauth2_device_code_lifespan=__ret__.oauth2_device_code_lifespan,
+        oauth2_device_polling_interval=__ret__.oauth2_device_polling_interval,
         pkce_code_challenge_method=__ret__.pkce_code_challenge_method,
         realm_id=__ret__.realm_id,
         resource_server_id=__ret__.resource_server_id,
@@ -434,7 +524,12 @@ def get_client(client_id: Optional[str] = None,
 
 @_utilities.lift_output_func(get_client)
 def get_client_output(client_id: Optional[pulumi.Input[str]] = None,
+                      consent_screen_text: Optional[pulumi.Input[Optional[str]]] = None,
+                      display_on_consent_screen: Optional[pulumi.Input[Optional[bool]]] = None,
                       extra_config: Optional[pulumi.Input[Optional[Mapping[str, Any]]]] = None,
+                      oauth2_device_authorization_grant_enabled: Optional[pulumi.Input[Optional[bool]]] = None,
+                      oauth2_device_code_lifespan: Optional[pulumi.Input[Optional[str]]] = None,
+                      oauth2_device_polling_interval: Optional[pulumi.Input[Optional[str]]] = None,
                       realm_id: Optional[pulumi.Input[str]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientResult]:
     """

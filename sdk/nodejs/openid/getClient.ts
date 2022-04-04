@@ -33,7 +33,12 @@ export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Pro
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("keycloak:openid/getClient:getClient", {
         "clientId": args.clientId,
+        "consentScreenText": args.consentScreenText,
+        "displayOnConsentScreen": args.displayOnConsentScreen,
         "extraConfig": args.extraConfig,
+        "oauth2DeviceAuthorizationGrantEnabled": args.oauth2DeviceAuthorizationGrantEnabled,
+        "oauth2DeviceCodeLifespan": args.oauth2DeviceCodeLifespan,
+        "oauth2DevicePollingInterval": args.oauth2DevicePollingInterval,
         "realmId": args.realmId,
     }, opts);
 }
@@ -46,7 +51,12 @@ export interface GetClientArgs {
      * The client id (not its unique ID).
      */
     clientId: string;
+    consentScreenText?: string;
+    displayOnConsentScreen?: boolean;
     extraConfig?: {[key: string]: any};
+    oauth2DeviceAuthorizationGrantEnabled?: boolean;
+    oauth2DeviceCodeLifespan?: string;
+    oauth2DevicePollingInterval?: string;
     /**
      * The realm id.
      */
@@ -66,6 +76,7 @@ export interface GetClientResult {
     readonly backchannelLogoutSessionRequired: boolean;
     readonly backchannelLogoutUrl: string;
     readonly baseUrl: string;
+    readonly clientAuthenticatorType: string;
     readonly clientId: string;
     readonly clientOfflineSessionIdleTimeout: string;
     readonly clientOfflineSessionMaxLifespan: string;
@@ -73,11 +84,15 @@ export interface GetClientResult {
     readonly clientSessionIdleTimeout: string;
     readonly clientSessionMaxLifespan: string;
     readonly consentRequired: boolean;
+    readonly consentScreenText?: string;
     readonly description: string;
     readonly directAccessGrantsEnabled: boolean;
+    readonly displayOnConsentScreen?: boolean;
     readonly enabled: boolean;
     readonly excludeSessionStateFromAuthResponse: boolean;
     readonly extraConfig: {[key: string]: any};
+    readonly frontchannelLogoutEnabled: boolean;
+    readonly frontchannelLogoutUrl: string;
     readonly fullScopeAllowed: boolean;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -86,6 +101,9 @@ export interface GetClientResult {
     readonly implicitFlowEnabled: boolean;
     readonly loginTheme: string;
     readonly name: string;
+    readonly oauth2DeviceAuthorizationGrantEnabled?: boolean;
+    readonly oauth2DeviceCodeLifespan?: string;
+    readonly oauth2DevicePollingInterval?: string;
     readonly pkceCodeChallengeMethod: string;
     readonly realmId: string;
     readonly resourceServerId: string;
@@ -110,7 +128,12 @@ export interface GetClientOutputArgs {
      * The client id (not its unique ID).
      */
     clientId: pulumi.Input<string>;
+    consentScreenText?: pulumi.Input<string>;
+    displayOnConsentScreen?: pulumi.Input<boolean>;
     extraConfig?: pulumi.Input<{[key: string]: any}>;
+    oauth2DeviceAuthorizationGrantEnabled?: pulumi.Input<boolean>;
+    oauth2DeviceCodeLifespan?: pulumi.Input<string>;
+    oauth2DevicePollingInterval?: pulumi.Input<string>;
     /**
      * The realm id.
      */

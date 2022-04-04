@@ -119,6 +119,16 @@ namespace Pulumi.Keycloak.OpenId
         public Output<string?> BaseUrl { get; private set; } = null!;
 
         /// <summary>
+        /// Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+        /// - `client-secret` (Default) Use client id and client secret to authenticate client.
+        /// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+        /// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
+        /// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+        /// </summary>
+        [Output("clientAuthenticatorType")]
+        public Output<string?> ClientAuthenticatorType { get; private set; } = null!;
+
+        /// <summary>
         /// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
         /// </summary>
         [Output("clientId")]
@@ -155,10 +165,16 @@ namespace Pulumi.Keycloak.OpenId
         public Output<string?> ClientSessionMaxLifespan { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, users have to consent to client access.
+        /// When `true`, users have to consent to client access. Defaults to `false`.
         /// </summary>
         [Output("consentRequired")]
         public Output<bool?> ConsentRequired { get; private set; } = null!;
+
+        /// <summary>
+        /// The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.
+        /// </summary>
+        [Output("consentScreenText")]
+        public Output<string?> ConsentScreenText { get; private set; } = null!;
 
         /// <summary>
         /// The description of this client in the GUI.
@@ -171,6 +187,12 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Output("directAccessGrantsEnabled")]
         public Output<bool?> DirectAccessGrantsEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
+        /// </summary>
+        [Output("displayOnConsentScreen")]
+        public Output<bool?> DisplayOnConsentScreen { get; private set; } = null!;
 
         /// <summary>
         /// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
@@ -186,6 +208,18 @@ namespace Pulumi.Keycloak.OpenId
 
         [Output("extraConfig")]
         public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
+
+        /// <summary>
+        /// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
+        /// </summary>
+        [Output("frontchannelLogoutEnabled")]
+        public Output<bool?> FrontchannelLogoutEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
+        /// </summary>
+        [Output("frontchannelLogoutUrl")]
+        public Output<string?> FrontchannelLogoutUrl { get; private set; } = null!;
 
         /// <summary>
         /// Allow to include all roles mappings in the access token.
@@ -210,6 +244,24 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
+        /// </summary>
+        [Output("oauth2DeviceAuthorizationGrantEnabled")]
+        public Output<bool?> Oauth2DeviceAuthorizationGrantEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// The maximum amount of time a client has to finish the device code flow before it expires.
+        /// </summary>
+        [Output("oauth2DeviceCodeLifespan")]
+        public Output<string?> Oauth2DeviceCodeLifespan { get; private set; } = null!;
+
+        /// <summary>
+        /// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+        /// </summary>
+        [Output("oauth2DevicePollingInterval")]
+        public Output<string?> Oauth2DevicePollingInterval { get; private set; } = null!;
 
         /// <summary>
         /// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
@@ -374,6 +426,16 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? BaseUrl { get; set; }
 
         /// <summary>
+        /// Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+        /// - `client-secret` (Default) Use client id and client secret to authenticate client.
+        /// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+        /// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
+        /// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+        /// </summary>
+        [Input("clientAuthenticatorType")]
+        public Input<string>? ClientAuthenticatorType { get; set; }
+
+        /// <summary>
         /// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
         /// </summary>
         [Input("clientId", required: true)]
@@ -410,10 +472,16 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? ClientSessionMaxLifespan { get; set; }
 
         /// <summary>
-        /// When `true`, users have to consent to client access.
+        /// When `true`, users have to consent to client access. Defaults to `false`.
         /// </summary>
         [Input("consentRequired")]
         public Input<bool>? ConsentRequired { get; set; }
+
+        /// <summary>
+        /// The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.
+        /// </summary>
+        [Input("consentScreenText")]
+        public Input<string>? ConsentScreenText { get; set; }
 
         /// <summary>
         /// The description of this client in the GUI.
@@ -426,6 +494,12 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("directAccessGrantsEnabled")]
         public Input<bool>? DirectAccessGrantsEnabled { get; set; }
+
+        /// <summary>
+        /// When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
+        /// </summary>
+        [Input("displayOnConsentScreen")]
+        public Input<bool>? DisplayOnConsentScreen { get; set; }
 
         /// <summary>
         /// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
@@ -446,6 +520,18 @@ namespace Pulumi.Keycloak.OpenId
             get => _extraConfig ?? (_extraConfig = new InputMap<object>());
             set => _extraConfig = value;
         }
+
+        /// <summary>
+        /// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
+        /// </summary>
+        [Input("frontchannelLogoutEnabled")]
+        public Input<bool>? FrontchannelLogoutEnabled { get; set; }
+
+        /// <summary>
+        /// The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
+        /// </summary>
+        [Input("frontchannelLogoutUrl")]
+        public Input<string>? FrontchannelLogoutUrl { get; set; }
 
         /// <summary>
         /// Allow to include all roles mappings in the access token.
@@ -470,6 +556,24 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
+        /// </summary>
+        [Input("oauth2DeviceAuthorizationGrantEnabled")]
+        public Input<bool>? Oauth2DeviceAuthorizationGrantEnabled { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time a client has to finish the device code flow before it expires.
+        /// </summary>
+        [Input("oauth2DeviceCodeLifespan")]
+        public Input<string>? Oauth2DeviceCodeLifespan { get; set; }
+
+        /// <summary>
+        /// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+        /// </summary>
+        [Input("oauth2DevicePollingInterval")]
+        public Input<string>? Oauth2DevicePollingInterval { get; set; }
 
         /// <summary>
         /// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
@@ -595,6 +699,16 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? BaseUrl { get; set; }
 
         /// <summary>
+        /// Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+        /// - `client-secret` (Default) Use client id and client secret to authenticate client.
+        /// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+        /// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
+        /// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+        /// </summary>
+        [Input("clientAuthenticatorType")]
+        public Input<string>? ClientAuthenticatorType { get; set; }
+
+        /// <summary>
         /// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
         /// </summary>
         [Input("clientId")]
@@ -631,10 +745,16 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? ClientSessionMaxLifespan { get; set; }
 
         /// <summary>
-        /// When `true`, users have to consent to client access.
+        /// When `true`, users have to consent to client access. Defaults to `false`.
         /// </summary>
         [Input("consentRequired")]
         public Input<bool>? ConsentRequired { get; set; }
+
+        /// <summary>
+        /// The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.
+        /// </summary>
+        [Input("consentScreenText")]
+        public Input<string>? ConsentScreenText { get; set; }
 
         /// <summary>
         /// The description of this client in the GUI.
@@ -647,6 +767,12 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("directAccessGrantsEnabled")]
         public Input<bool>? DirectAccessGrantsEnabled { get; set; }
+
+        /// <summary>
+        /// When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
+        /// </summary>
+        [Input("displayOnConsentScreen")]
+        public Input<bool>? DisplayOnConsentScreen { get; set; }
 
         /// <summary>
         /// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
@@ -667,6 +793,18 @@ namespace Pulumi.Keycloak.OpenId
             get => _extraConfig ?? (_extraConfig = new InputMap<object>());
             set => _extraConfig = value;
         }
+
+        /// <summary>
+        /// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
+        /// </summary>
+        [Input("frontchannelLogoutEnabled")]
+        public Input<bool>? FrontchannelLogoutEnabled { get; set; }
+
+        /// <summary>
+        /// The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
+        /// </summary>
+        [Input("frontchannelLogoutUrl")]
+        public Input<string>? FrontchannelLogoutUrl { get; set; }
 
         /// <summary>
         /// Allow to include all roles mappings in the access token.
@@ -691,6 +829,24 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
+        /// </summary>
+        [Input("oauth2DeviceAuthorizationGrantEnabled")]
+        public Input<bool>? Oauth2DeviceAuthorizationGrantEnabled { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time a client has to finish the device code flow before it expires.
+        /// </summary>
+        [Input("oauth2DeviceCodeLifespan")]
+        public Input<string>? Oauth2DeviceCodeLifespan { get; set; }
+
+        /// <summary>
+        /// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+        /// </summary>
+        [Input("oauth2DevicePollingInterval")]
+        public Input<string>? Oauth2DevicePollingInterval { get; set; }
 
         /// <summary>
         /// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.

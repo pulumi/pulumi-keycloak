@@ -42,6 +42,8 @@ class RealmArgs:
                  internationalization: Optional[pulumi.Input['RealmInternationalizationArgs']] = None,
                  login_theme: Optional[pulumi.Input[str]] = None,
                  login_with_email_allowed: Optional[pulumi.Input[bool]] = None,
+                 oauth2_device_code_lifespan: Optional[pulumi.Input[str]] = None,
+                 oauth2_device_polling_interval: Optional[pulumi.Input[int]] = None,
                  offline_session_idle_timeout: Optional[pulumi.Input[str]] = None,
                  offline_session_max_lifespan: Optional[pulumi.Input[str]] = None,
                  offline_session_max_lifespan_enabled: Optional[pulumi.Input[bool]] = None,
@@ -92,6 +94,8 @@ class RealmArgs:
         :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
         :param pulumi.Input[str] login_theme: Used for the login, forgot password, and registration pages.
         :param pulumi.Input[bool] login_with_email_allowed: When true, users may log in with their email address.
+        :param pulumi.Input[str] oauth2_device_code_lifespan: The maximum amount of time a client has to finish the device code flow before it expires.
+        :param pulumi.Input[int] oauth2_device_polling_interval: The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
         :param pulumi.Input[str] offline_session_idle_timeout: The amount of time an offline session can be idle before it expires.
         :param pulumi.Input[str] offline_session_max_lifespan: The maximum amount of time before an offline session expires regardless of activity.
         :param pulumi.Input[bool] offline_session_max_lifespan_enabled: Enable `offline_session_max_lifespan`.
@@ -165,6 +169,10 @@ class RealmArgs:
             pulumi.set(__self__, "login_theme", login_theme)
         if login_with_email_allowed is not None:
             pulumi.set(__self__, "login_with_email_allowed", login_with_email_allowed)
+        if oauth2_device_code_lifespan is not None:
+            pulumi.set(__self__, "oauth2_device_code_lifespan", oauth2_device_code_lifespan)
+        if oauth2_device_polling_interval is not None:
+            pulumi.set(__self__, "oauth2_device_polling_interval", oauth2_device_polling_interval)
         if offline_session_idle_timeout is not None:
             pulumi.set(__self__, "offline_session_idle_timeout", offline_session_idle_timeout)
         if offline_session_max_lifespan is not None:
@@ -530,6 +538,30 @@ class RealmArgs:
         pulumi.set(self, "login_with_email_allowed", value)
 
     @property
+    @pulumi.getter(name="oauth2DeviceCodeLifespan")
+    def oauth2_device_code_lifespan(self) -> Optional[pulumi.Input[str]]:
+        """
+        The maximum amount of time a client has to finish the device code flow before it expires.
+        """
+        return pulumi.get(self, "oauth2_device_code_lifespan")
+
+    @oauth2_device_code_lifespan.setter
+    def oauth2_device_code_lifespan(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "oauth2_device_code_lifespan", value)
+
+    @property
+    @pulumi.getter(name="oauth2DevicePollingInterval")
+    def oauth2_device_polling_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+        """
+        return pulumi.get(self, "oauth2_device_polling_interval")
+
+    @oauth2_device_polling_interval.setter
+    def oauth2_device_polling_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "oauth2_device_polling_interval", value)
+
+    @property
     @pulumi.getter(name="offlineSessionIdleTimeout")
     def offline_session_idle_timeout(self) -> Optional[pulumi.Input[str]]:
         """
@@ -833,6 +865,8 @@ class _RealmState:
                  internationalization: Optional[pulumi.Input['RealmInternationalizationArgs']] = None,
                  login_theme: Optional[pulumi.Input[str]] = None,
                  login_with_email_allowed: Optional[pulumi.Input[bool]] = None,
+                 oauth2_device_code_lifespan: Optional[pulumi.Input[str]] = None,
+                 oauth2_device_polling_interval: Optional[pulumi.Input[int]] = None,
                  offline_session_idle_timeout: Optional[pulumi.Input[str]] = None,
                  offline_session_max_lifespan: Optional[pulumi.Input[str]] = None,
                  offline_session_max_lifespan_enabled: Optional[pulumi.Input[bool]] = None,
@@ -883,6 +917,8 @@ class _RealmState:
         :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
         :param pulumi.Input[str] login_theme: Used for the login, forgot password, and registration pages.
         :param pulumi.Input[bool] login_with_email_allowed: When true, users may log in with their email address.
+        :param pulumi.Input[str] oauth2_device_code_lifespan: The maximum amount of time a client has to finish the device code flow before it expires.
+        :param pulumi.Input[int] oauth2_device_polling_interval: The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
         :param pulumi.Input[str] offline_session_idle_timeout: The amount of time an offline session can be idle before it expires.
         :param pulumi.Input[str] offline_session_max_lifespan: The maximum amount of time before an offline session expires regardless of activity.
         :param pulumi.Input[bool] offline_session_max_lifespan_enabled: Enable `offline_session_max_lifespan`.
@@ -958,6 +994,10 @@ class _RealmState:
             pulumi.set(__self__, "login_theme", login_theme)
         if login_with_email_allowed is not None:
             pulumi.set(__self__, "login_with_email_allowed", login_with_email_allowed)
+        if oauth2_device_code_lifespan is not None:
+            pulumi.set(__self__, "oauth2_device_code_lifespan", oauth2_device_code_lifespan)
+        if oauth2_device_polling_interval is not None:
+            pulumi.set(__self__, "oauth2_device_polling_interval", oauth2_device_polling_interval)
         if offline_session_idle_timeout is not None:
             pulumi.set(__self__, "offline_session_idle_timeout", offline_session_idle_timeout)
         if offline_session_max_lifespan is not None:
@@ -1322,6 +1362,30 @@ class _RealmState:
         pulumi.set(self, "login_with_email_allowed", value)
 
     @property
+    @pulumi.getter(name="oauth2DeviceCodeLifespan")
+    def oauth2_device_code_lifespan(self) -> Optional[pulumi.Input[str]]:
+        """
+        The maximum amount of time a client has to finish the device code flow before it expires.
+        """
+        return pulumi.get(self, "oauth2_device_code_lifespan")
+
+    @oauth2_device_code_lifespan.setter
+    def oauth2_device_code_lifespan(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "oauth2_device_code_lifespan", value)
+
+    @property
+    @pulumi.getter(name="oauth2DevicePollingInterval")
+    def oauth2_device_polling_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+        """
+        return pulumi.get(self, "oauth2_device_polling_interval")
+
+    @oauth2_device_polling_interval.setter
+    def oauth2_device_polling_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "oauth2_device_polling_interval", value)
+
+    @property
     @pulumi.getter(name="offlineSessionIdleTimeout")
     def offline_session_idle_timeout(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1638,6 +1702,8 @@ class Realm(pulumi.CustomResource):
                  internationalization: Optional[pulumi.Input[pulumi.InputType['RealmInternationalizationArgs']]] = None,
                  login_theme: Optional[pulumi.Input[str]] = None,
                  login_with_email_allowed: Optional[pulumi.Input[bool]] = None,
+                 oauth2_device_code_lifespan: Optional[pulumi.Input[str]] = None,
+                 oauth2_device_polling_interval: Optional[pulumi.Input[int]] = None,
                  offline_session_idle_timeout: Optional[pulumi.Input[str]] = None,
                  offline_session_max_lifespan: Optional[pulumi.Input[str]] = None,
                  offline_session_max_lifespan_enabled: Optional[pulumi.Input[bool]] = None,
@@ -1771,6 +1837,8 @@ class Realm(pulumi.CustomResource):
         :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
         :param pulumi.Input[str] login_theme: Used for the login, forgot password, and registration pages.
         :param pulumi.Input[bool] login_with_email_allowed: When true, users may log in with their email address.
+        :param pulumi.Input[str] oauth2_device_code_lifespan: The maximum amount of time a client has to finish the device code flow before it expires.
+        :param pulumi.Input[int] oauth2_device_polling_interval: The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
         :param pulumi.Input[str] offline_session_idle_timeout: The amount of time an offline session can be idle before it expires.
         :param pulumi.Input[str] offline_session_max_lifespan: The maximum amount of time before an offline session expires regardless of activity.
         :param pulumi.Input[bool] offline_session_max_lifespan_enabled: Enable `offline_session_max_lifespan`.
@@ -1921,6 +1989,8 @@ class Realm(pulumi.CustomResource):
                  internationalization: Optional[pulumi.Input[pulumi.InputType['RealmInternationalizationArgs']]] = None,
                  login_theme: Optional[pulumi.Input[str]] = None,
                  login_with_email_allowed: Optional[pulumi.Input[bool]] = None,
+                 oauth2_device_code_lifespan: Optional[pulumi.Input[str]] = None,
+                 oauth2_device_polling_interval: Optional[pulumi.Input[int]] = None,
                  offline_session_idle_timeout: Optional[pulumi.Input[str]] = None,
                  offline_session_max_lifespan: Optional[pulumi.Input[str]] = None,
                  offline_session_max_lifespan_enabled: Optional[pulumi.Input[bool]] = None,
@@ -1984,6 +2054,8 @@ class Realm(pulumi.CustomResource):
             __props__.__dict__["internationalization"] = internationalization
             __props__.__dict__["login_theme"] = login_theme
             __props__.__dict__["login_with_email_allowed"] = login_with_email_allowed
+            __props__.__dict__["oauth2_device_code_lifespan"] = oauth2_device_code_lifespan
+            __props__.__dict__["oauth2_device_polling_interval"] = oauth2_device_polling_interval
             __props__.__dict__["offline_session_idle_timeout"] = offline_session_idle_timeout
             __props__.__dict__["offline_session_max_lifespan"] = offline_session_max_lifespan
             __props__.__dict__["offline_session_max_lifespan_enabled"] = offline_session_max_lifespan_enabled
@@ -2049,6 +2121,8 @@ class Realm(pulumi.CustomResource):
             internationalization: Optional[pulumi.Input[pulumi.InputType['RealmInternationalizationArgs']]] = None,
             login_theme: Optional[pulumi.Input[str]] = None,
             login_with_email_allowed: Optional[pulumi.Input[bool]] = None,
+            oauth2_device_code_lifespan: Optional[pulumi.Input[str]] = None,
+            oauth2_device_polling_interval: Optional[pulumi.Input[int]] = None,
             offline_session_idle_timeout: Optional[pulumi.Input[str]] = None,
             offline_session_max_lifespan: Optional[pulumi.Input[str]] = None,
             offline_session_max_lifespan_enabled: Optional[pulumi.Input[bool]] = None,
@@ -2104,6 +2178,8 @@ class Realm(pulumi.CustomResource):
         :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
         :param pulumi.Input[str] login_theme: Used for the login, forgot password, and registration pages.
         :param pulumi.Input[bool] login_with_email_allowed: When true, users may log in with their email address.
+        :param pulumi.Input[str] oauth2_device_code_lifespan: The maximum amount of time a client has to finish the device code flow before it expires.
+        :param pulumi.Input[int] oauth2_device_polling_interval: The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
         :param pulumi.Input[str] offline_session_idle_timeout: The amount of time an offline session can be idle before it expires.
         :param pulumi.Input[str] offline_session_max_lifespan: The maximum amount of time before an offline session expires regardless of activity.
         :param pulumi.Input[bool] offline_session_max_lifespan_enabled: Enable `offline_session_max_lifespan`.
@@ -2156,6 +2232,8 @@ class Realm(pulumi.CustomResource):
         __props__.__dict__["internationalization"] = internationalization
         __props__.__dict__["login_theme"] = login_theme
         __props__.__dict__["login_with_email_allowed"] = login_with_email_allowed
+        __props__.__dict__["oauth2_device_code_lifespan"] = oauth2_device_code_lifespan
+        __props__.__dict__["oauth2_device_polling_interval"] = oauth2_device_polling_interval
         __props__.__dict__["offline_session_idle_timeout"] = offline_session_idle_timeout
         __props__.__dict__["offline_session_max_lifespan"] = offline_session_max_lifespan
         __props__.__dict__["offline_session_max_lifespan_enabled"] = offline_session_max_lifespan_enabled
@@ -2386,6 +2464,22 @@ class Realm(pulumi.CustomResource):
         When true, users may log in with their email address.
         """
         return pulumi.get(self, "login_with_email_allowed")
+
+    @property
+    @pulumi.getter(name="oauth2DeviceCodeLifespan")
+    def oauth2_device_code_lifespan(self) -> pulumi.Output[str]:
+        """
+        The maximum amount of time a client has to finish the device code flow before it expires.
+        """
+        return pulumi.get(self, "oauth2_device_code_lifespan")
+
+    @property
+    @pulumi.getter(name="oauth2DevicePollingInterval")
+    def oauth2_device_polling_interval(self) -> pulumi.Output[int]:
+        """
+        The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+        """
+        return pulumi.get(self, "oauth2_device_polling_interval")
 
     @property
     @pulumi.getter(name="offlineSessionIdleTimeout")
