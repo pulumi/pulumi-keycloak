@@ -9,7 +9,7 @@
 # Keycloak Resource Provider
 
 The Keycloak resource provider for Pulumi lets you manage Keycloak resources in your cloud programs. To use
-this package, please [install the Pulumi CLI first](https://www.mailgun.com//).
+this package, please [install the Pulumi CLI first](https://www.pulumi.com/docs/reference/cli/).
 
 ## Installing
 
