@@ -9,25 +9,6 @@ import * as utilities from "./utilities";
  *
  * A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const myRealm = new keycloak.Realm("myRealm", {realm: "my-realm"});
- * const keystoreRsa = new keycloak.RealmKeystoreRsa("keystoreRsa", {
- *     realmId: myRealm.realm,
- *     enabled: true,
- *     active: true,
- *     privateKey: "<your rsa private key>",
- *     certificate: "<your certificate>",
- *     priority: 100,
- *     algorithm: "RS256",
- *     keystoreSize: 2048,
- * });
- * ```
- *
  * ## Import
  *
  * Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
