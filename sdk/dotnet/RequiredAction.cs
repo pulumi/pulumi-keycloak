@@ -9,24 +9,81 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    /// <summary>
+    /// Allows for creating and managing required actions within Keycloak.
+    /// 
+    /// [Required actions](https://www.keycloak.org/docs/latest/server_admin/#con-required-actions_server_administration_guide) specify actions required before the first login of all new users.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         {
+    ///             Realm = "my-realm",
+    ///             Enabled = true,
+    ///         });
+    ///         var requiredAction = new Keycloak.RequiredAction("requiredAction", new Keycloak.RequiredActionArgs
+    ///         {
+    ///             RealmId = realm.RealmName,
+    ///             Alias = "webauthn-register",
+    ///             Enabled = true,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Authentication executions can be imported using the formats`{{realm}}/{{alias}}`. Examplebash
+    /// 
+    /// ```sh
+    ///  $ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias
+    /// ```
+    /// </summary>
     [KeycloakResourceType("keycloak:index/requiredAction:RequiredAction")]
     public partial class RequiredAction : Pulumi.CustomResource
     {
+        /// <summary>
+        /// The alias of the action to attach as a required action.
+        /// </summary>
         [Output("alias")]
         public Output<string> Alias { get; private set; } = null!;
 
+        /// <summary>
+        /// When `true`, the required action is set as the default action for new users. Defaults to `false`.
+        /// </summary>
         [Output("defaultAction")]
         public Output<bool?> DefaultAction { get; private set; } = null!;
 
+        /// <summary>
+        /// When `false`, the required action is not enabled for new users. Defaults to `false`.
+        /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the required action.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// The priority of the required action.
+        /// </summary>
         [Output("priority")]
         public Output<int> Priority { get; private set; } = null!;
 
+        /// <summary>
+        /// The realm the required action exists in.
+        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
@@ -76,21 +133,39 @@ namespace Pulumi.Keycloak
 
     public sealed class RequiredActionArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The alias of the action to attach as a required action.
+        /// </summary>
         [Input("alias", required: true)]
         public Input<string> Alias { get; set; } = null!;
 
+        /// <summary>
+        /// When `true`, the required action is set as the default action for new users. Defaults to `false`.
+        /// </summary>
         [Input("defaultAction")]
         public Input<bool>? DefaultAction { get; set; }
 
+        /// <summary>
+        /// When `false`, the required action is not enabled for new users. Defaults to `false`.
+        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        /// <summary>
+        /// The name of the required action.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The priority of the required action.
+        /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
+        /// <summary>
+        /// The realm the required action exists in.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
@@ -101,21 +176,39 @@ namespace Pulumi.Keycloak
 
     public sealed class RequiredActionState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The alias of the action to attach as a required action.
+        /// </summary>
         [Input("alias")]
         public Input<string>? Alias { get; set; }
 
+        /// <summary>
+        /// When `true`, the required action is set as the default action for new users. Defaults to `false`.
+        /// </summary>
         [Input("defaultAction")]
         public Input<bool>? DefaultAction { get; set; }
 
+        /// <summary>
+        /// When `false`, the required action is not enabled for new users. Defaults to `false`.
+        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        /// <summary>
+        /// The name of the required action.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The priority of the required action.
+        /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
+        /// <summary>
+        /// The realm the required action exists in.
+        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 

@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  *
  * const realm = new keycloak.Realm("realm", {realm: "my-realm"});
  * const keystoreHmacGenerated = new keycloak.RealmKeystoreHmacGenerated("keystoreHmacGenerated", {
- *     realmId: realm.realm,
+ *     realmId: realm.id,
  *     enabled: true,
  *     active: true,
  *     priority: 100,
@@ -31,7 +31,7 @@ import * as utilities from "./utilities";
  * Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
  *
  * ```sh
- *  $ pulumi import keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated keystore_hmac_generated my-realm/my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+ *  $ pulumi import keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated keystore_hmac_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
  * ```
  */
 export class RealmKeystoreHmacGenerated extends pulumi.CustomResource {

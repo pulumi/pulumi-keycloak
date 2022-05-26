@@ -59,6 +59,12 @@ namespace Pulumi.Keycloak
         public Output<string?> CachePolicy { get; private set; } = null!;
 
         /// <summary>
+        /// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+        /// </summary>
+        [Output("changedSyncPeriod")]
+        public Output<int?> ChangedSyncPeriod { get; private set; } = null!;
+
+        /// <summary>
         /// The provider configuration handed over to your custom user federation provider.
         /// </summary>
         [Output("config")]
@@ -69,6 +75,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
+
+        /// <summary>
+        /// How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
+        /// </summary>
+        [Output("fullSyncPeriod")]
+        public Output<int?> FullSyncPeriod { get; private set; } = null!;
 
         /// <summary>
         /// Display name of the provider when displayed in the console.
@@ -152,6 +164,12 @@ namespace Pulumi.Keycloak
         [Input("cachePolicy")]
         public Input<string>? CachePolicy { get; set; }
 
+        /// <summary>
+        /// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+        /// </summary>
+        [Input("changedSyncPeriod")]
+        public Input<int>? ChangedSyncPeriod { get; set; }
+
         [Input("config")]
         private InputMap<object>? _config;
 
@@ -169,6 +187,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
+
+        /// <summary>
+        /// How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
+        /// </summary>
+        [Input("fullSyncPeriod")]
+        public Input<int>? FullSyncPeriod { get; set; }
 
         /// <summary>
         /// Display name of the provider when displayed in the console.
@@ -213,6 +237,12 @@ namespace Pulumi.Keycloak
         [Input("cachePolicy")]
         public Input<string>? CachePolicy { get; set; }
 
+        /// <summary>
+        /// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+        /// </summary>
+        [Input("changedSyncPeriod")]
+        public Input<int>? ChangedSyncPeriod { get; set; }
+
         [Input("config")]
         private InputMap<object>? _config;
 
@@ -230,6 +260,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
+
+        /// <summary>
+        /// How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
+        /// </summary>
+        [Input("fullSyncPeriod")]
+        public Input<int>? FullSyncPeriod { get; set; }
 
         /// <summary>
         /// Display name of the provider when displayed in the console.

@@ -184,6 +184,12 @@ namespace Pulumi.Keycloak.Saml
         public Output<string?> PrincipalType { get; private set; } = null!;
 
         /// <summary>
+        /// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+        /// </summary>
+        [Output("providerId")]
+        public Output<string?> ProviderId { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the realm. This is unique across Keycloak.
         /// </summary>
         [Output("realm")]
@@ -424,6 +430,12 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? PrincipalType { get; set; }
 
         /// <summary>
+        /// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+        /// </summary>
+        [Input("providerId")]
+        public Input<string>? ProviderId { get; set; }
+
+        /// <summary>
         /// The name of the realm. This is unique across Keycloak.
         /// </summary>
         [Input("realm", required: true)]
@@ -629,6 +641,12 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Input("principalType")]
         public Input<string>? PrincipalType { get; set; }
+
+        /// <summary>
+        /// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+        /// </summary>
+        [Input("providerId")]
+        public Input<string>? ProviderId { get; set; }
 
         /// <summary>
         /// The name of the realm. This is unique across Keycloak.

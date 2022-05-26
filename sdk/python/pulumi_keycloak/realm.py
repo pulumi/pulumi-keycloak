@@ -28,6 +28,8 @@ class RealmArgs:
                  attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  browser_flow: Optional[pulumi.Input[str]] = None,
                  client_authentication_flow: Optional[pulumi.Input[str]] = None,
+                 client_session_idle_timeout: Optional[pulumi.Input[str]] = None,
+                 client_session_max_lifespan: Optional[pulumi.Input[str]] = None,
                  default_default_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_optional_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_signature_algorithm: Optional[pulumi.Input[str]] = None,
@@ -83,6 +85,8 @@ class RealmArgs:
         :param pulumi.Input[Mapping[str, Any]] attributes: A map of custom attributes to add to the realm.
         :param pulumi.Input[str] browser_flow: The desired flow for browser authentication. Defaults to `browser`.
         :param pulumi.Input[str] client_authentication_flow: The desired flow for client authentication. Defaults to `clients`.
+        :param pulumi.Input[str] client_session_idle_timeout: The amount of time a session can be idle before it expires. Users can override it for individual clients.
+        :param pulumi.Input[str] client_session_max_lifespan: The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
         :param pulumi.Input[str] default_signature_algorithm: Default algorithm used to sign tokens for the realm.
         :param pulumi.Input[str] direct_grant_flow: The desired flow for direct access authentication. Defaults to `direct grant`.
         :param pulumi.Input[str] display_name: The display name for the realm that is shown when logging in to the admin console.
@@ -141,6 +145,10 @@ class RealmArgs:
             pulumi.set(__self__, "browser_flow", browser_flow)
         if client_authentication_flow is not None:
             pulumi.set(__self__, "client_authentication_flow", client_authentication_flow)
+        if client_session_idle_timeout is not None:
+            pulumi.set(__self__, "client_session_idle_timeout", client_session_idle_timeout)
+        if client_session_max_lifespan is not None:
+            pulumi.set(__self__, "client_session_max_lifespan", client_session_max_lifespan)
         if default_default_client_scopes is not None:
             pulumi.set(__self__, "default_default_client_scopes", default_default_client_scopes)
         if default_optional_client_scopes is not None:
@@ -377,6 +385,30 @@ class RealmArgs:
     @client_authentication_flow.setter
     def client_authentication_flow(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "client_authentication_flow", value)
+
+    @property
+    @pulumi.getter(name="clientSessionIdleTimeout")
+    def client_session_idle_timeout(self) -> Optional[pulumi.Input[str]]:
+        """
+        The amount of time a session can be idle before it expires. Users can override it for individual clients.
+        """
+        return pulumi.get(self, "client_session_idle_timeout")
+
+    @client_session_idle_timeout.setter
+    def client_session_idle_timeout(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_session_idle_timeout", value)
+
+    @property
+    @pulumi.getter(name="clientSessionMaxLifespan")
+    def client_session_max_lifespan(self) -> Optional[pulumi.Input[str]]:
+        """
+        The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+        """
+        return pulumi.get(self, "client_session_max_lifespan")
+
+    @client_session_max_lifespan.setter
+    def client_session_max_lifespan(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_session_max_lifespan", value)
 
     @property
     @pulumi.getter(name="defaultDefaultClientScopes")
@@ -850,6 +882,8 @@ class _RealmState:
                  attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  browser_flow: Optional[pulumi.Input[str]] = None,
                  client_authentication_flow: Optional[pulumi.Input[str]] = None,
+                 client_session_idle_timeout: Optional[pulumi.Input[str]] = None,
+                 client_session_max_lifespan: Optional[pulumi.Input[str]] = None,
                  default_default_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_optional_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_signature_algorithm: Optional[pulumi.Input[str]] = None,
@@ -906,6 +940,8 @@ class _RealmState:
         :param pulumi.Input[Mapping[str, Any]] attributes: A map of custom attributes to add to the realm.
         :param pulumi.Input[str] browser_flow: The desired flow for browser authentication. Defaults to `browser`.
         :param pulumi.Input[str] client_authentication_flow: The desired flow for client authentication. Defaults to `clients`.
+        :param pulumi.Input[str] client_session_idle_timeout: The amount of time a session can be idle before it expires. Users can override it for individual clients.
+        :param pulumi.Input[str] client_session_max_lifespan: The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
         :param pulumi.Input[str] default_signature_algorithm: Default algorithm used to sign tokens for the realm.
         :param pulumi.Input[str] direct_grant_flow: The desired flow for direct access authentication. Defaults to `direct grant`.
         :param pulumi.Input[str] display_name: The display name for the realm that is shown when logging in to the admin console.
@@ -964,6 +1000,10 @@ class _RealmState:
             pulumi.set(__self__, "browser_flow", browser_flow)
         if client_authentication_flow is not None:
             pulumi.set(__self__, "client_authentication_flow", client_authentication_flow)
+        if client_session_idle_timeout is not None:
+            pulumi.set(__self__, "client_session_idle_timeout", client_session_idle_timeout)
+        if client_session_max_lifespan is not None:
+            pulumi.set(__self__, "client_session_max_lifespan", client_session_max_lifespan)
         if default_default_client_scopes is not None:
             pulumi.set(__self__, "default_default_client_scopes", default_default_client_scopes)
         if default_optional_client_scopes is not None:
@@ -1192,6 +1232,30 @@ class _RealmState:
     @client_authentication_flow.setter
     def client_authentication_flow(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "client_authentication_flow", value)
+
+    @property
+    @pulumi.getter(name="clientSessionIdleTimeout")
+    def client_session_idle_timeout(self) -> Optional[pulumi.Input[str]]:
+        """
+        The amount of time a session can be idle before it expires. Users can override it for individual clients.
+        """
+        return pulumi.get(self, "client_session_idle_timeout")
+
+    @client_session_idle_timeout.setter
+    def client_session_idle_timeout(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_session_idle_timeout", value)
+
+    @property
+    @pulumi.getter(name="clientSessionMaxLifespan")
+    def client_session_max_lifespan(self) -> Optional[pulumi.Input[str]]:
+        """
+        The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+        """
+        return pulumi.get(self, "client_session_max_lifespan")
+
+    @client_session_max_lifespan.setter
+    def client_session_max_lifespan(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_session_max_lifespan", value)
 
     @property
     @pulumi.getter(name="defaultDefaultClientScopes")
@@ -1688,6 +1752,8 @@ class Realm(pulumi.CustomResource):
                  attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  browser_flow: Optional[pulumi.Input[str]] = None,
                  client_authentication_flow: Optional[pulumi.Input[str]] = None,
+                 client_session_idle_timeout: Optional[pulumi.Input[str]] = None,
+                 client_session_max_lifespan: Optional[pulumi.Input[str]] = None,
                  default_default_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_optional_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_signature_algorithm: Optional[pulumi.Input[str]] = None,
@@ -1826,6 +1892,8 @@ class Realm(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, Any]] attributes: A map of custom attributes to add to the realm.
         :param pulumi.Input[str] browser_flow: The desired flow for browser authentication. Defaults to `browser`.
         :param pulumi.Input[str] client_authentication_flow: The desired flow for client authentication. Defaults to `clients`.
+        :param pulumi.Input[str] client_session_idle_timeout: The amount of time a session can be idle before it expires. Users can override it for individual clients.
+        :param pulumi.Input[str] client_session_max_lifespan: The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
         :param pulumi.Input[str] default_signature_algorithm: Default algorithm used to sign tokens for the realm.
         :param pulumi.Input[str] direct_grant_flow: The desired flow for direct access authentication. Defaults to `direct grant`.
         :param pulumi.Input[str] display_name: The display name for the realm that is shown when logging in to the admin console.
@@ -1975,6 +2043,8 @@ class Realm(pulumi.CustomResource):
                  attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  browser_flow: Optional[pulumi.Input[str]] = None,
                  client_authentication_flow: Optional[pulumi.Input[str]] = None,
+                 client_session_idle_timeout: Optional[pulumi.Input[str]] = None,
+                 client_session_max_lifespan: Optional[pulumi.Input[str]] = None,
                  default_default_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_optional_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_signature_algorithm: Optional[pulumi.Input[str]] = None,
@@ -2040,6 +2110,8 @@ class Realm(pulumi.CustomResource):
             __props__.__dict__["attributes"] = attributes
             __props__.__dict__["browser_flow"] = browser_flow
             __props__.__dict__["client_authentication_flow"] = client_authentication_flow
+            __props__.__dict__["client_session_idle_timeout"] = client_session_idle_timeout
+            __props__.__dict__["client_session_max_lifespan"] = client_session_max_lifespan
             __props__.__dict__["default_default_client_scopes"] = default_default_client_scopes
             __props__.__dict__["default_optional_client_scopes"] = default_optional_client_scopes
             __props__.__dict__["default_signature_algorithm"] = default_signature_algorithm
@@ -2106,6 +2178,8 @@ class Realm(pulumi.CustomResource):
             attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             browser_flow: Optional[pulumi.Input[str]] = None,
             client_authentication_flow: Optional[pulumi.Input[str]] = None,
+            client_session_idle_timeout: Optional[pulumi.Input[str]] = None,
+            client_session_max_lifespan: Optional[pulumi.Input[str]] = None,
             default_default_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             default_optional_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             default_signature_algorithm: Optional[pulumi.Input[str]] = None,
@@ -2167,6 +2241,8 @@ class Realm(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, Any]] attributes: A map of custom attributes to add to the realm.
         :param pulumi.Input[str] browser_flow: The desired flow for browser authentication. Defaults to `browser`.
         :param pulumi.Input[str] client_authentication_flow: The desired flow for client authentication. Defaults to `clients`.
+        :param pulumi.Input[str] client_session_idle_timeout: The amount of time a session can be idle before it expires. Users can override it for individual clients.
+        :param pulumi.Input[str] client_session_max_lifespan: The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
         :param pulumi.Input[str] default_signature_algorithm: Default algorithm used to sign tokens for the realm.
         :param pulumi.Input[str] direct_grant_flow: The desired flow for direct access authentication. Defaults to `direct grant`.
         :param pulumi.Input[str] display_name: The display name for the realm that is shown when logging in to the admin console.
@@ -2217,6 +2293,8 @@ class Realm(pulumi.CustomResource):
         __props__.__dict__["attributes"] = attributes
         __props__.__dict__["browser_flow"] = browser_flow
         __props__.__dict__["client_authentication_flow"] = client_authentication_flow
+        __props__.__dict__["client_session_idle_timeout"] = client_session_idle_timeout
+        __props__.__dict__["client_session_max_lifespan"] = client_session_max_lifespan
         __props__.__dict__["default_default_client_scopes"] = default_default_client_scopes
         __props__.__dict__["default_optional_client_scopes"] = default_optional_client_scopes
         __props__.__dict__["default_signature_algorithm"] = default_signature_algorithm
@@ -2343,7 +2421,7 @@ class Realm(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="browserFlow")
-    def browser_flow(self) -> pulumi.Output[Optional[str]]:
+    def browser_flow(self) -> pulumi.Output[str]:
         """
         The desired flow for browser authentication. Defaults to `browser`.
         """
@@ -2351,11 +2429,27 @@ class Realm(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientAuthenticationFlow")
-    def client_authentication_flow(self) -> pulumi.Output[Optional[str]]:
+    def client_authentication_flow(self) -> pulumi.Output[str]:
         """
         The desired flow for client authentication. Defaults to `clients`.
         """
         return pulumi.get(self, "client_authentication_flow")
+
+    @property
+    @pulumi.getter(name="clientSessionIdleTimeout")
+    def client_session_idle_timeout(self) -> pulumi.Output[str]:
+        """
+        The amount of time a session can be idle before it expires. Users can override it for individual clients.
+        """
+        return pulumi.get(self, "client_session_idle_timeout")
+
+    @property
+    @pulumi.getter(name="clientSessionMaxLifespan")
+    def client_session_max_lifespan(self) -> pulumi.Output[str]:
+        """
+        The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+        """
+        return pulumi.get(self, "client_session_max_lifespan")
 
     @property
     @pulumi.getter(name="defaultDefaultClientScopes")
@@ -2377,7 +2471,7 @@ class Realm(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="directGrantFlow")
-    def direct_grant_flow(self) -> pulumi.Output[Optional[str]]:
+    def direct_grant_flow(self) -> pulumi.Output[str]:
         """
         The desired flow for direct access authentication. Defaults to `direct grant`.
         """
@@ -2401,7 +2495,7 @@ class Realm(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="dockerAuthenticationFlow")
-    def docker_authentication_flow(self) -> pulumi.Output[Optional[str]]:
+    def docker_authentication_flow(self) -> pulumi.Output[str]:
         """
         The desired flow for Docker authentication. Defaults to `docker auth`.
         """
@@ -2552,7 +2646,7 @@ class Realm(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="registrationFlow")
-    def registration_flow(self) -> pulumi.Output[Optional[str]]:
+    def registration_flow(self) -> pulumi.Output[str]:
         """
         The desired flow for user registration. Defaults to `registration`.
         """
@@ -2568,7 +2662,7 @@ class Realm(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="resetCredentialsFlow")
-    def reset_credentials_flow(self) -> pulumi.Output[Optional[str]]:
+    def reset_credentials_flow(self) -> pulumi.Output[str]:
         """
         The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
         """

@@ -34,7 +34,7 @@ import (
 // 			return err
 // 		}
 // 		_, err = keycloak.NewRealmKeystoreEcdsaGenerated(ctx, "keystoreEcdsaGenerated", &keycloak.RealmKeystoreEcdsaGeneratedArgs{
-// 			RealmId:          realm.Realm,
+// 			RealmId:          realm.ID(),
 // 			Enabled:          pulumi.Bool(true),
 // 			Active:           pulumi.Bool(true),
 // 			Priority:         pulumi.Int(100),
@@ -53,7 +53,7 @@ import (
 // Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated keystore_ecdsa_generated my-realm/my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+//  $ pulumi import keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated keystore_ecdsa_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
 // ```
 type RealmKeystoreEcdsaGenerated struct {
 	pulumi.CustomResourceState

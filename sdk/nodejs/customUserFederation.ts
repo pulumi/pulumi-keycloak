@@ -67,6 +67,10 @@ export class CustomUserFederation extends pulumi.CustomResource {
      */
     public readonly cachePolicy!: pulumi.Output<string | undefined>;
     /**
+     * How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+     */
+    public readonly changedSyncPeriod!: pulumi.Output<number | undefined>;
+    /**
      * The provider configuration handed over to your custom user federation provider.
      */
     public readonly config!: pulumi.Output<{[key: string]: any} | undefined>;
@@ -74,6 +78,10 @@ export class CustomUserFederation extends pulumi.CustomResource {
      * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
+    /**
+     * How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
+     */
+    public readonly fullSyncPeriod!: pulumi.Output<number | undefined>;
     /**
      * Display name of the provider when displayed in the console.
      */
@@ -109,8 +117,10 @@ export class CustomUserFederation extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as CustomUserFederationState | undefined;
             resourceInputs["cachePolicy"] = state ? state.cachePolicy : undefined;
+            resourceInputs["changedSyncPeriod"] = state ? state.changedSyncPeriod : undefined;
             resourceInputs["config"] = state ? state.config : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["fullSyncPeriod"] = state ? state.fullSyncPeriod : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["parentId"] = state ? state.parentId : undefined;
             resourceInputs["priority"] = state ? state.priority : undefined;
@@ -125,8 +135,10 @@ export class CustomUserFederation extends pulumi.CustomResource {
                 throw new Error("Missing required property 'realmId'");
             }
             resourceInputs["cachePolicy"] = args ? args.cachePolicy : undefined;
+            resourceInputs["changedSyncPeriod"] = args ? args.changedSyncPeriod : undefined;
             resourceInputs["config"] = args ? args.config : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["fullSyncPeriod"] = args ? args.fullSyncPeriod : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["parentId"] = args ? args.parentId : undefined;
             resourceInputs["priority"] = args ? args.priority : undefined;
@@ -147,6 +159,10 @@ export interface CustomUserFederationState {
      */
     cachePolicy?: pulumi.Input<string>;
     /**
+     * How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+     */
+    changedSyncPeriod?: pulumi.Input<number>;
+    /**
      * The provider configuration handed over to your custom user federation provider.
      */
     config?: pulumi.Input<{[key: string]: any}>;
@@ -154,6 +170,10 @@ export interface CustomUserFederationState {
      * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
+     */
+    fullSyncPeriod?: pulumi.Input<number>;
     /**
      * Display name of the provider when displayed in the console.
      */
@@ -185,6 +205,10 @@ export interface CustomUserFederationArgs {
      */
     cachePolicy?: pulumi.Input<string>;
     /**
+     * How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+     */
+    changedSyncPeriod?: pulumi.Input<number>;
+    /**
      * The provider configuration handed over to your custom user federation provider.
      */
     config?: pulumi.Input<{[key: string]: any}>;
@@ -192,6 +216,10 @@ export interface CustomUserFederationArgs {
      * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
+     */
+    fullSyncPeriod?: pulumi.Input<number>;
     /**
      * Display name of the provider when displayed in the console.
      */

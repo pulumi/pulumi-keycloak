@@ -59,10 +59,14 @@ type CustomUserFederation struct {
 
 	// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
 	CachePolicy pulumi.StringPtrOutput `pulumi:"cachePolicy"`
+	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+	ChangedSyncPeriod pulumi.IntPtrOutput `pulumi:"changedSyncPeriod"`
 	// The provider configuration handed over to your custom user federation provider.
 	Config pulumi.MapOutput `pulumi:"config"`
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
+	// How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
+	FullSyncPeriod pulumi.IntPtrOutput `pulumi:"fullSyncPeriod"`
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
@@ -112,10 +116,14 @@ func GetCustomUserFederation(ctx *pulumi.Context,
 type customUserFederationState struct {
 	// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
 	CachePolicy *string `pulumi:"cachePolicy"`
+	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+	ChangedSyncPeriod *int `pulumi:"changedSyncPeriod"`
 	// The provider configuration handed over to your custom user federation provider.
 	Config map[string]interface{} `pulumi:"config"`
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
+	// How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
+	FullSyncPeriod *int `pulumi:"fullSyncPeriod"`
 	// Display name of the provider when displayed in the console.
 	Name *string `pulumi:"name"`
 	// Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
@@ -131,10 +139,14 @@ type customUserFederationState struct {
 type CustomUserFederationState struct {
 	// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
 	CachePolicy pulumi.StringPtrInput
+	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+	ChangedSyncPeriod pulumi.IntPtrInput
 	// The provider configuration handed over to your custom user federation provider.
 	Config pulumi.MapInput
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
+	// How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
+	FullSyncPeriod pulumi.IntPtrInput
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringPtrInput
 	// Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
@@ -154,10 +166,14 @@ func (CustomUserFederationState) ElementType() reflect.Type {
 type customUserFederationArgs struct {
 	// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
 	CachePolicy *string `pulumi:"cachePolicy"`
+	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+	ChangedSyncPeriod *int `pulumi:"changedSyncPeriod"`
 	// The provider configuration handed over to your custom user federation provider.
 	Config map[string]interface{} `pulumi:"config"`
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
+	// How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
+	FullSyncPeriod *int `pulumi:"fullSyncPeriod"`
 	// Display name of the provider when displayed in the console.
 	Name *string `pulumi:"name"`
 	// Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
@@ -174,10 +190,14 @@ type customUserFederationArgs struct {
 type CustomUserFederationArgs struct {
 	// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
 	CachePolicy pulumi.StringPtrInput
+	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+	ChangedSyncPeriod pulumi.IntPtrInput
 	// The provider configuration handed over to your custom user federation provider.
 	Config pulumi.MapInput
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
+	// How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
+	FullSyncPeriod pulumi.IntPtrInput
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringPtrInput
 	// Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.

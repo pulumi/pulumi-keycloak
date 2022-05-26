@@ -128,21 +128,25 @@ type Realm struct {
 	// A map of custom attributes to add to the realm.
 	Attributes pulumi.MapOutput `pulumi:"attributes"`
 	// The desired flow for browser authentication. Defaults to `browser`.
-	BrowserFlow pulumi.StringPtrOutput `pulumi:"browserFlow"`
+	BrowserFlow pulumi.StringOutput `pulumi:"browserFlow"`
 	// The desired flow for client authentication. Defaults to `clients`.
-	ClientAuthenticationFlow    pulumi.StringPtrOutput   `pulumi:"clientAuthenticationFlow"`
+	ClientAuthenticationFlow pulumi.StringOutput `pulumi:"clientAuthenticationFlow"`
+	// The amount of time a session can be idle before it expires. Users can override it for individual clients.
+	ClientSessionIdleTimeout pulumi.StringOutput `pulumi:"clientSessionIdleTimeout"`
+	// The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+	ClientSessionMaxLifespan    pulumi.StringOutput      `pulumi:"clientSessionMaxLifespan"`
 	DefaultDefaultClientScopes  pulumi.StringArrayOutput `pulumi:"defaultDefaultClientScopes"`
 	DefaultOptionalClientScopes pulumi.StringArrayOutput `pulumi:"defaultOptionalClientScopes"`
 	// Default algorithm used to sign tokens for the realm.
 	DefaultSignatureAlgorithm pulumi.StringPtrOutput `pulumi:"defaultSignatureAlgorithm"`
 	// The desired flow for direct access authentication. Defaults to `direct grant`.
-	DirectGrantFlow pulumi.StringPtrOutput `pulumi:"directGrantFlow"`
+	DirectGrantFlow pulumi.StringOutput `pulumi:"directGrantFlow"`
 	// The display name for the realm that is shown when logging in to the admin console.
 	DisplayName pulumi.StringPtrOutput `pulumi:"displayName"`
 	// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
 	DisplayNameHtml pulumi.StringPtrOutput `pulumi:"displayNameHtml"`
 	// The desired flow for Docker authentication. Defaults to `docker auth`.
-	DockerAuthenticationFlow pulumi.StringPtrOutput `pulumi:"dockerAuthenticationFlow"`
+	DockerAuthenticationFlow pulumi.StringOutput `pulumi:"dockerAuthenticationFlow"`
 	// When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `loginWithEmailAllowed` is set to `true`.
 	DuplicateEmailsAllowed pulumi.BoolOutput `pulumi:"duplicateEmailsAllowed"`
 	// When true, the username field is editable.
@@ -179,11 +183,11 @@ type Realm struct {
 	// When true, the user's email will be used as their username during registration.
 	RegistrationEmailAsUsername pulumi.BoolOutput `pulumi:"registrationEmailAsUsername"`
 	// The desired flow for user registration. Defaults to `registration`.
-	RegistrationFlow pulumi.StringPtrOutput `pulumi:"registrationFlow"`
+	RegistrationFlow pulumi.StringOutput `pulumi:"registrationFlow"`
 	// When true, a "remember me" checkbox will be displayed on the login page, and the user's session will not expire between browser restarts.
 	RememberMe pulumi.BoolOutput `pulumi:"rememberMe"`
 	// The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
-	ResetCredentialsFlow pulumi.StringPtrOutput `pulumi:"resetCredentialsFlow"`
+	ResetCredentialsFlow pulumi.StringOutput `pulumi:"resetCredentialsFlow"`
 	// When true, a "forgot password" link will be displayed on the login page.
 	ResetPasswordAllowed pulumi.BoolOutput `pulumi:"resetPasswordAllowed"`
 	// If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.
@@ -263,7 +267,11 @@ type realmState struct {
 	// The desired flow for browser authentication. Defaults to `browser`.
 	BrowserFlow *string `pulumi:"browserFlow"`
 	// The desired flow for client authentication. Defaults to `clients`.
-	ClientAuthenticationFlow    *string  `pulumi:"clientAuthenticationFlow"`
+	ClientAuthenticationFlow *string `pulumi:"clientAuthenticationFlow"`
+	// The amount of time a session can be idle before it expires. Users can override it for individual clients.
+	ClientSessionIdleTimeout *string `pulumi:"clientSessionIdleTimeout"`
+	// The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+	ClientSessionMaxLifespan    *string  `pulumi:"clientSessionMaxLifespan"`
 	DefaultDefaultClientScopes  []string `pulumi:"defaultDefaultClientScopes"`
 	DefaultOptionalClientScopes []string `pulumi:"defaultOptionalClientScopes"`
 	// Default algorithm used to sign tokens for the realm.
@@ -365,7 +373,11 @@ type RealmState struct {
 	// The desired flow for browser authentication. Defaults to `browser`.
 	BrowserFlow pulumi.StringPtrInput
 	// The desired flow for client authentication. Defaults to `clients`.
-	ClientAuthenticationFlow    pulumi.StringPtrInput
+	ClientAuthenticationFlow pulumi.StringPtrInput
+	// The amount of time a session can be idle before it expires. Users can override it for individual clients.
+	ClientSessionIdleTimeout pulumi.StringPtrInput
+	// The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+	ClientSessionMaxLifespan    pulumi.StringPtrInput
 	DefaultDefaultClientScopes  pulumi.StringArrayInput
 	DefaultOptionalClientScopes pulumi.StringArrayInput
 	// Default algorithm used to sign tokens for the realm.
@@ -471,7 +483,11 @@ type realmArgs struct {
 	// The desired flow for browser authentication. Defaults to `browser`.
 	BrowserFlow *string `pulumi:"browserFlow"`
 	// The desired flow for client authentication. Defaults to `clients`.
-	ClientAuthenticationFlow    *string  `pulumi:"clientAuthenticationFlow"`
+	ClientAuthenticationFlow *string `pulumi:"clientAuthenticationFlow"`
+	// The amount of time a session can be idle before it expires. Users can override it for individual clients.
+	ClientSessionIdleTimeout *string `pulumi:"clientSessionIdleTimeout"`
+	// The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+	ClientSessionMaxLifespan    *string  `pulumi:"clientSessionMaxLifespan"`
 	DefaultDefaultClientScopes  []string `pulumi:"defaultDefaultClientScopes"`
 	DefaultOptionalClientScopes []string `pulumi:"defaultOptionalClientScopes"`
 	// Default algorithm used to sign tokens for the realm.
@@ -573,7 +589,11 @@ type RealmArgs struct {
 	// The desired flow for browser authentication. Defaults to `browser`.
 	BrowserFlow pulumi.StringPtrInput
 	// The desired flow for client authentication. Defaults to `clients`.
-	ClientAuthenticationFlow    pulumi.StringPtrInput
+	ClientAuthenticationFlow pulumi.StringPtrInput
+	// The amount of time a session can be idle before it expires. Users can override it for individual clients.
+	ClientSessionIdleTimeout pulumi.StringPtrInput
+	// The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+	ClientSessionMaxLifespan    pulumi.StringPtrInput
 	DefaultDefaultClientScopes  pulumi.StringArrayInput
 	DefaultOptionalClientScopes pulumi.StringArrayInput
 	// Default algorithm used to sign tokens for the realm.

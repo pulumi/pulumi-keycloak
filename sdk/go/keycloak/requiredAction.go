@@ -11,15 +11,64 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows for creating and managing required actions within Keycloak.
+//
+// [Required actions](https://www.keycloak.org/docs/latest/server_admin/#con-required-actions_server_administration_guide) specify actions required before the first login of all new users.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = keycloak.NewRequiredAction(ctx, "requiredAction", &keycloak.RequiredActionArgs{
+// 			RealmId: realm.Realm,
+// 			Alias:   pulumi.String("webauthn-register"),
+// 			Enabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ## Import
+//
+// Authentication executions can be imported using the formats`{{realm}}/{{alias}}`. Examplebash
+//
+// ```sh
+//  $ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias
+// ```
 type RequiredAction struct {
 	pulumi.CustomResourceState
 
-	Alias         pulumi.StringOutput  `pulumi:"alias"`
+	// The alias of the action to attach as a required action.
+	Alias pulumi.StringOutput `pulumi:"alias"`
+	// When `true`, the required action is set as the default action for new users. Defaults to `false`.
 	DefaultAction pulumi.BoolPtrOutput `pulumi:"defaultAction"`
-	Enabled       pulumi.BoolPtrOutput `pulumi:"enabled"`
-	Name          pulumi.StringOutput  `pulumi:"name"`
-	Priority      pulumi.IntOutput     `pulumi:"priority"`
-	RealmId       pulumi.StringOutput  `pulumi:"realmId"`
+	// When `false`, the required action is not enabled for new users. Defaults to `false`.
+	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
+	// The name of the required action.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// The priority of the required action.
+	Priority pulumi.IntOutput `pulumi:"priority"`
+	// The realm the required action exists in.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
 // NewRequiredAction registers a new resource with the given unique name, arguments, and options.
@@ -57,21 +106,33 @@ func GetRequiredAction(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RequiredAction resources.
 type requiredActionState struct {
-	Alias         *string `pulumi:"alias"`
-	DefaultAction *bool   `pulumi:"defaultAction"`
-	Enabled       *bool   `pulumi:"enabled"`
-	Name          *string `pulumi:"name"`
-	Priority      *int    `pulumi:"priority"`
-	RealmId       *string `pulumi:"realmId"`
+	// The alias of the action to attach as a required action.
+	Alias *string `pulumi:"alias"`
+	// When `true`, the required action is set as the default action for new users. Defaults to `false`.
+	DefaultAction *bool `pulumi:"defaultAction"`
+	// When `false`, the required action is not enabled for new users. Defaults to `false`.
+	Enabled *bool `pulumi:"enabled"`
+	// The name of the required action.
+	Name *string `pulumi:"name"`
+	// The priority of the required action.
+	Priority *int `pulumi:"priority"`
+	// The realm the required action exists in.
+	RealmId *string `pulumi:"realmId"`
 }
 
 type RequiredActionState struct {
-	Alias         pulumi.StringPtrInput
+	// The alias of the action to attach as a required action.
+	Alias pulumi.StringPtrInput
+	// When `true`, the required action is set as the default action for new users. Defaults to `false`.
 	DefaultAction pulumi.BoolPtrInput
-	Enabled       pulumi.BoolPtrInput
-	Name          pulumi.StringPtrInput
-	Priority      pulumi.IntPtrInput
-	RealmId       pulumi.StringPtrInput
+	// When `false`, the required action is not enabled for new users. Defaults to `false`.
+	Enabled pulumi.BoolPtrInput
+	// The name of the required action.
+	Name pulumi.StringPtrInput
+	// The priority of the required action.
+	Priority pulumi.IntPtrInput
+	// The realm the required action exists in.
+	RealmId pulumi.StringPtrInput
 }
 
 func (RequiredActionState) ElementType() reflect.Type {
@@ -79,22 +140,34 @@ func (RequiredActionState) ElementType() reflect.Type {
 }
 
 type requiredActionArgs struct {
-	Alias         string  `pulumi:"alias"`
-	DefaultAction *bool   `pulumi:"defaultAction"`
-	Enabled       *bool   `pulumi:"enabled"`
-	Name          *string `pulumi:"name"`
-	Priority      *int    `pulumi:"priority"`
-	RealmId       string  `pulumi:"realmId"`
+	// The alias of the action to attach as a required action.
+	Alias string `pulumi:"alias"`
+	// When `true`, the required action is set as the default action for new users. Defaults to `false`.
+	DefaultAction *bool `pulumi:"defaultAction"`
+	// When `false`, the required action is not enabled for new users. Defaults to `false`.
+	Enabled *bool `pulumi:"enabled"`
+	// The name of the required action.
+	Name *string `pulumi:"name"`
+	// The priority of the required action.
+	Priority *int `pulumi:"priority"`
+	// The realm the required action exists in.
+	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a RequiredAction resource.
 type RequiredActionArgs struct {
-	Alias         pulumi.StringInput
+	// The alias of the action to attach as a required action.
+	Alias pulumi.StringInput
+	// When `true`, the required action is set as the default action for new users. Defaults to `false`.
 	DefaultAction pulumi.BoolPtrInput
-	Enabled       pulumi.BoolPtrInput
-	Name          pulumi.StringPtrInput
-	Priority      pulumi.IntPtrInput
-	RealmId       pulumi.StringInput
+	// When `false`, the required action is not enabled for new users. Defaults to `false`.
+	Enabled pulumi.BoolPtrInput
+	// The name of the required action.
+	Name pulumi.StringPtrInput
+	// The priority of the required action.
+	Priority pulumi.IntPtrInput
+	// The realm the required action exists in.
+	RealmId pulumi.StringInput
 }
 
 func (RequiredActionArgs) ElementType() reflect.Type {

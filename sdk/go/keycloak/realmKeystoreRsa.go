@@ -20,7 +20,7 @@ import (
 // Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:index/realmKeystoreRsa:RealmKeystoreRsa keystore_rsa my-realm/my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+//  $ pulumi import keycloak:index/realmKeystoreRsa:RealmKeystoreRsa keystore_rsa my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
 // ```
 type RealmKeystoreRsa struct {
 	pulumi.CustomResourceState
