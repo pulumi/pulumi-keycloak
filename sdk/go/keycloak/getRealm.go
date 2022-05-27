@@ -80,6 +80,8 @@ type LookupRealmResult struct {
 	Attributes                          map[string]interface{} `pulumi:"attributes"`
 	BrowserFlow                         string                 `pulumi:"browserFlow"`
 	ClientAuthenticationFlow            string                 `pulumi:"clientAuthenticationFlow"`
+	ClientSessionIdleTimeout            string                 `pulumi:"clientSessionIdleTimeout"`
+	ClientSessionMaxLifespan            string                 `pulumi:"clientSessionMaxLifespan"`
 	DefaultDefaultClientScopes          []string               `pulumi:"defaultDefaultClientScopes"`
 	DefaultOptionalClientScopes         []string               `pulumi:"defaultOptionalClientScopes"`
 	DefaultSignatureAlgorithm           string                 `pulumi:"defaultSignatureAlgorithm"`
@@ -220,6 +222,14 @@ func (o LookupRealmResultOutput) BrowserFlow() pulumi.StringOutput {
 
 func (o LookupRealmResultOutput) ClientAuthenticationFlow() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRealmResult) string { return v.ClientAuthenticationFlow }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) ClientSessionIdleTimeout() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.ClientSessionIdleTimeout }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) ClientSessionMaxLifespan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.ClientSessionMaxLifespan }).(pulumi.StringOutput)
 }
 
 func (o LookupRealmResultOutput) DefaultDefaultClientScopes() pulumi.StringArrayOutput {

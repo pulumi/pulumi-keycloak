@@ -242,7 +242,7 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
 
         realm = keycloak.Realm("realm", realm="my-realm")
         keystore_ecdsa_generated = keycloak.RealmKeystoreEcdsaGenerated("keystoreEcdsaGenerated",
-            realm_id=realm.realm,
+            realm_id=realm.id,
             enabled=True,
             active=True,
             priority=100,
@@ -254,7 +254,7 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
         Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
 
         ```sh
-         $ pulumi import keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated keystore_ecdsa_generated my-realm/my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+         $ pulumi import keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated keystore_ecdsa_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
         ```
 
         :param str resource_name: The name of the resource.
@@ -285,7 +285,7 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
 
         realm = keycloak.Realm("realm", realm="my-realm")
         keystore_ecdsa_generated = keycloak.RealmKeystoreEcdsaGenerated("keystoreEcdsaGenerated",
-            realm_id=realm.realm,
+            realm_id=realm.id,
             enabled=True,
             active=True,
             priority=100,
@@ -297,7 +297,7 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
         Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
 
         ```sh
-         $ pulumi import keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated keystore_ecdsa_generated my-realm/my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+         $ pulumi import keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated keystore_ecdsa_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
         ```
 
         :param str resource_name: The name of the resource.

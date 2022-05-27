@@ -108,6 +108,8 @@ type IdentityProvider struct {
 	PrincipalAttribute pulumi.StringPtrOutput `pulumi:"principalAttribute"`
 	// Principal Type
 	PrincipalType pulumi.StringPtrOutput `pulumi:"principalType"`
+	// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+	ProviderId pulumi.StringPtrOutput `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringOutput `pulumi:"realm"`
 	// Signing Algorithm. Defaults to empty.
@@ -216,6 +218,8 @@ type identityProviderState struct {
 	PrincipalAttribute *string `pulumi:"principalAttribute"`
 	// Principal Type
 	PrincipalType *string `pulumi:"principalType"`
+	// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+	ProviderId *string `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
 	Realm *string `pulumi:"realm"`
 	// Signing Algorithm. Defaults to empty.
@@ -284,6 +288,8 @@ type IdentityProviderState struct {
 	PrincipalAttribute pulumi.StringPtrInput
 	// Principal Type
 	PrincipalType pulumi.StringPtrInput
+	// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+	ProviderId pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringPtrInput
 	// Signing Algorithm. Defaults to empty.
@@ -354,6 +360,8 @@ type identityProviderArgs struct {
 	PrincipalAttribute *string `pulumi:"principalAttribute"`
 	// Principal Type
 	PrincipalType *string `pulumi:"principalType"`
+	// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+	ProviderId *string `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
 	Realm string `pulumi:"realm"`
 	// Signing Algorithm. Defaults to empty.
@@ -421,6 +429,8 @@ type IdentityProviderArgs struct {
 	PrincipalAttribute pulumi.StringPtrInput
 	// Principal Type
 	PrincipalType pulumi.StringPtrInput
+	// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+	ProviderId pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringInput
 	// Signing Algorithm. Defaults to empty.

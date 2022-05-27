@@ -21,6 +21,12 @@ class RequiredActionArgs:
                  priority: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a RequiredAction resource.
+        :param pulumi.Input[str] alias: The alias of the action to attach as a required action.
+        :param pulumi.Input[str] realm_id: The realm the required action exists in.
+        :param pulumi.Input[bool] default_action: When `true`, the required action is set as the default action for new users. Defaults to `false`.
+        :param pulumi.Input[bool] enabled: When `false`, the required action is not enabled for new users. Defaults to `false`.
+        :param pulumi.Input[str] name: The name of the required action.
+        :param pulumi.Input[int] priority: The priority of the required action.
         """
         pulumi.set(__self__, "alias", alias)
         pulumi.set(__self__, "realm_id", realm_id)
@@ -36,6 +42,9 @@ class RequiredActionArgs:
     @property
     @pulumi.getter
     def alias(self) -> pulumi.Input[str]:
+        """
+        The alias of the action to attach as a required action.
+        """
         return pulumi.get(self, "alias")
 
     @alias.setter
@@ -45,6 +54,9 @@ class RequiredActionArgs:
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[str]:
+        """
+        The realm the required action exists in.
+        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -54,6 +66,9 @@ class RequiredActionArgs:
     @property
     @pulumi.getter(name="defaultAction")
     def default_action(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, the required action is set as the default action for new users. Defaults to `false`.
+        """
         return pulumi.get(self, "default_action")
 
     @default_action.setter
@@ -63,6 +78,9 @@ class RequiredActionArgs:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `false`, the required action is not enabled for new users. Defaults to `false`.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -72,6 +90,9 @@ class RequiredActionArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the required action.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -81,6 +102,9 @@ class RequiredActionArgs:
     @property
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
+        """
+        The priority of the required action.
+        """
         return pulumi.get(self, "priority")
 
     @priority.setter
@@ -99,6 +123,12 @@ class _RequiredActionState:
                  realm_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RequiredAction resources.
+        :param pulumi.Input[str] alias: The alias of the action to attach as a required action.
+        :param pulumi.Input[bool] default_action: When `true`, the required action is set as the default action for new users. Defaults to `false`.
+        :param pulumi.Input[bool] enabled: When `false`, the required action is not enabled for new users. Defaults to `false`.
+        :param pulumi.Input[str] name: The name of the required action.
+        :param pulumi.Input[int] priority: The priority of the required action.
+        :param pulumi.Input[str] realm_id: The realm the required action exists in.
         """
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
@@ -116,6 +146,9 @@ class _RequiredActionState:
     @property
     @pulumi.getter
     def alias(self) -> Optional[pulumi.Input[str]]:
+        """
+        The alias of the action to attach as a required action.
+        """
         return pulumi.get(self, "alias")
 
     @alias.setter
@@ -125,6 +158,9 @@ class _RequiredActionState:
     @property
     @pulumi.getter(name="defaultAction")
     def default_action(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, the required action is set as the default action for new users. Defaults to `false`.
+        """
         return pulumi.get(self, "default_action")
 
     @default_action.setter
@@ -134,6 +170,9 @@ class _RequiredActionState:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `false`, the required action is not enabled for new users. Defaults to `false`.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -143,6 +182,9 @@ class _RequiredActionState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the required action.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -152,6 +194,9 @@ class _RequiredActionState:
     @property
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
+        """
+        The priority of the required action.
+        """
         return pulumi.get(self, "priority")
 
     @priority.setter
@@ -161,6 +206,9 @@ class _RequiredActionState:
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The realm the required action exists in.
+        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -181,9 +229,41 @@ class RequiredAction(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a RequiredAction resource with the given unique name, props, and options.
+        Allows for creating and managing required actions within Keycloak.
+
+        [Required actions](https://www.keycloak.org/docs/latest/server_admin/#con-required-actions_server_administration_guide) specify actions required before the first login of all new users.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        required_action = keycloak.RequiredAction("requiredAction",
+            realm_id=realm.realm,
+            alias="webauthn-register",
+            enabled=True)
+        ```
+
+        ## Import
+
+        Authentication executions can be imported using the formats`{{realm}}/{{alias}}`. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] alias: The alias of the action to attach as a required action.
+        :param pulumi.Input[bool] default_action: When `true`, the required action is set as the default action for new users. Defaults to `false`.
+        :param pulumi.Input[bool] enabled: When `false`, the required action is not enabled for new users. Defaults to `false`.
+        :param pulumi.Input[str] name: The name of the required action.
+        :param pulumi.Input[int] priority: The priority of the required action.
+        :param pulumi.Input[str] realm_id: The realm the required action exists in.
         """
         ...
     @overload
@@ -192,7 +272,33 @@ class RequiredAction(pulumi.CustomResource):
                  args: RequiredActionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a RequiredAction resource with the given unique name, props, and options.
+        Allows for creating and managing required actions within Keycloak.
+
+        [Required actions](https://www.keycloak.org/docs/latest/server_admin/#con-required-actions_server_administration_guide) specify actions required before the first login of all new users.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        required_action = keycloak.RequiredAction("requiredAction",
+            realm_id=realm.realm,
+            alias="webauthn-register",
+            enabled=True)
+        ```
+
+        ## Import
+
+        Authentication executions can be imported using the formats`{{realm}}/{{alias}}`. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias
+        ```
+
         :param str resource_name: The name of the resource.
         :param RequiredActionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -259,6 +365,12 @@ class RequiredAction(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] alias: The alias of the action to attach as a required action.
+        :param pulumi.Input[bool] default_action: When `true`, the required action is set as the default action for new users. Defaults to `false`.
+        :param pulumi.Input[bool] enabled: When `false`, the required action is not enabled for new users. Defaults to `false`.
+        :param pulumi.Input[str] name: The name of the required action.
+        :param pulumi.Input[int] priority: The priority of the required action.
+        :param pulumi.Input[str] realm_id: The realm the required action exists in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -275,30 +387,48 @@ class RequiredAction(pulumi.CustomResource):
     @property
     @pulumi.getter
     def alias(self) -> pulumi.Output[str]:
+        """
+        The alias of the action to attach as a required action.
+        """
         return pulumi.get(self, "alias")
 
     @property
     @pulumi.getter(name="defaultAction")
     def default_action(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, the required action is set as the default action for new users. Defaults to `false`.
+        """
         return pulumi.get(self, "default_action")
 
     @property
     @pulumi.getter
     def enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `false`, the required action is not enabled for new users. Defaults to `false`.
+        """
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        The name of the required action.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def priority(self) -> pulumi.Output[int]:
+        """
+        The priority of the required action.
+        """
         return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
+        """
+        The realm the required action exists in.
+        """
         return pulumi.get(self, "realm_id")
 

@@ -112,6 +112,7 @@ type LookupClientResult struct {
 	ServiceAccountsEnabled                bool     `pulumi:"serviceAccountsEnabled"`
 	StandardFlowEnabled                   bool     `pulumi:"standardFlowEnabled"`
 	UseRefreshTokens                      bool     `pulumi:"useRefreshTokens"`
+	UseRefreshTokensClientCredentials     bool     `pulumi:"useRefreshTokensClientCredentials"`
 	ValidRedirectUris                     []string `pulumi:"validRedirectUris"`
 	WebOrigins                            []string `pulumi:"webOrigins"`
 }
@@ -331,6 +332,10 @@ func (o LookupClientResultOutput) StandardFlowEnabled() pulumi.BoolOutput {
 
 func (o LookupClientResultOutput) UseRefreshTokens() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupClientResult) bool { return v.UseRefreshTokens }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) UseRefreshTokensClientCredentials() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.UseRefreshTokensClientCredentials }).(pulumi.BoolOutput)
 }
 
 func (o LookupClientResultOutput) ValidRedirectUris() pulumi.StringArrayOutput {

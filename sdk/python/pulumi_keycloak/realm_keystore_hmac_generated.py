@@ -275,7 +275,7 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
 
         realm = keycloak.Realm("realm", realm="my-realm")
         keystore_hmac_generated = keycloak.RealmKeystoreHmacGenerated("keystoreHmacGenerated",
-            realm_id=realm.realm,
+            realm_id=realm.id,
             enabled=True,
             active=True,
             priority=100,
@@ -288,7 +288,7 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
         Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
 
         ```sh
-         $ pulumi import keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated keystore_hmac_generated my-realm/my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+         $ pulumi import keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated keystore_hmac_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
         ```
 
         :param str resource_name: The name of the resource.
@@ -320,7 +320,7 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
 
         realm = keycloak.Realm("realm", realm="my-realm")
         keystore_hmac_generated = keycloak.RealmKeystoreHmacGenerated("keystoreHmacGenerated",
-            realm_id=realm.realm,
+            realm_id=realm.id,
             enabled=True,
             active=True,
             priority=100,
@@ -333,7 +333,7 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
         Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
 
         ```sh
-         $ pulumi import keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated keystore_hmac_generated my-realm/my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+         $ pulumi import keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated keystore_hmac_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
         ```
 
         :param str resource_name: The name of the resource.

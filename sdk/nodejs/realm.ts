@@ -159,11 +159,19 @@ export class Realm extends pulumi.CustomResource {
     /**
      * The desired flow for browser authentication. Defaults to `browser`.
      */
-    public readonly browserFlow!: pulumi.Output<string | undefined>;
+    public readonly browserFlow!: pulumi.Output<string>;
     /**
      * The desired flow for client authentication. Defaults to `clients`.
      */
-    public readonly clientAuthenticationFlow!: pulumi.Output<string | undefined>;
+    public readonly clientAuthenticationFlow!: pulumi.Output<string>;
+    /**
+     * The amount of time a session can be idle before it expires. Users can override it for individual clients.
+     */
+    public readonly clientSessionIdleTimeout!: pulumi.Output<string>;
+    /**
+     * The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+     */
+    public readonly clientSessionMaxLifespan!: pulumi.Output<string>;
     public readonly defaultDefaultClientScopes!: pulumi.Output<string[] | undefined>;
     public readonly defaultOptionalClientScopes!: pulumi.Output<string[] | undefined>;
     /**
@@ -173,7 +181,7 @@ export class Realm extends pulumi.CustomResource {
     /**
      * The desired flow for direct access authentication. Defaults to `direct grant`.
      */
-    public readonly directGrantFlow!: pulumi.Output<string | undefined>;
+    public readonly directGrantFlow!: pulumi.Output<string>;
     /**
      * The display name for the realm that is shown when logging in to the admin console.
      */
@@ -185,7 +193,7 @@ export class Realm extends pulumi.CustomResource {
     /**
      * The desired flow for Docker authentication. Defaults to `docker auth`.
      */
-    public readonly dockerAuthenticationFlow!: pulumi.Output<string | undefined>;
+    public readonly dockerAuthenticationFlow!: pulumi.Output<string>;
     /**
      * When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `loginWithEmailAllowed` is set to `true`.
      */
@@ -256,7 +264,7 @@ export class Realm extends pulumi.CustomResource {
     /**
      * The desired flow for user registration. Defaults to `registration`.
      */
-    public readonly registrationFlow!: pulumi.Output<string | undefined>;
+    public readonly registrationFlow!: pulumi.Output<string>;
     /**
      * When true, a "remember me" checkbox will be displayed on the login page, and the user's session will not expire between browser restarts.
      */
@@ -264,7 +272,7 @@ export class Realm extends pulumi.CustomResource {
     /**
      * The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
      */
-    public readonly resetCredentialsFlow!: pulumi.Output<string | undefined>;
+    public readonly resetCredentialsFlow!: pulumi.Output<string>;
     /**
      * When true, a "forgot password" link will be displayed on the login page.
      */
@@ -331,6 +339,8 @@ export class Realm extends pulumi.CustomResource {
             resourceInputs["attributes"] = state ? state.attributes : undefined;
             resourceInputs["browserFlow"] = state ? state.browserFlow : undefined;
             resourceInputs["clientAuthenticationFlow"] = state ? state.clientAuthenticationFlow : undefined;
+            resourceInputs["clientSessionIdleTimeout"] = state ? state.clientSessionIdleTimeout : undefined;
+            resourceInputs["clientSessionMaxLifespan"] = state ? state.clientSessionMaxLifespan : undefined;
             resourceInputs["defaultDefaultClientScopes"] = state ? state.defaultDefaultClientScopes : undefined;
             resourceInputs["defaultOptionalClientScopes"] = state ? state.defaultOptionalClientScopes : undefined;
             resourceInputs["defaultSignatureAlgorithm"] = state ? state.defaultSignatureAlgorithm : undefined;
@@ -390,6 +400,8 @@ export class Realm extends pulumi.CustomResource {
             resourceInputs["attributes"] = args ? args.attributes : undefined;
             resourceInputs["browserFlow"] = args ? args.browserFlow : undefined;
             resourceInputs["clientAuthenticationFlow"] = args ? args.clientAuthenticationFlow : undefined;
+            resourceInputs["clientSessionIdleTimeout"] = args ? args.clientSessionIdleTimeout : undefined;
+            resourceInputs["clientSessionMaxLifespan"] = args ? args.clientSessionMaxLifespan : undefined;
             resourceInputs["defaultDefaultClientScopes"] = args ? args.defaultDefaultClientScopes : undefined;
             resourceInputs["defaultOptionalClientScopes"] = args ? args.defaultOptionalClientScopes : undefined;
             resourceInputs["defaultSignatureAlgorithm"] = args ? args.defaultSignatureAlgorithm : undefined;
@@ -490,6 +502,14 @@ export interface RealmState {
      * The desired flow for client authentication. Defaults to `clients`.
      */
     clientAuthenticationFlow?: pulumi.Input<string>;
+    /**
+     * The amount of time a session can be idle before it expires. Users can override it for individual clients.
+     */
+    clientSessionIdleTimeout?: pulumi.Input<string>;
+    /**
+     * The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+     */
+    clientSessionMaxLifespan?: pulumi.Input<string>;
     defaultDefaultClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
     defaultOptionalClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -685,6 +705,14 @@ export interface RealmArgs {
      * The desired flow for client authentication. Defaults to `clients`.
      */
     clientAuthenticationFlow?: pulumi.Input<string>;
+    /**
+     * The amount of time a session can be idle before it expires. Users can override it for individual clients.
+     */
+    clientSessionIdleTimeout?: pulumi.Input<string>;
+    /**
+     * The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+     */
+    clientSessionMaxLifespan?: pulumi.Input<string>;
     defaultDefaultClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
     defaultOptionalClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
     /**

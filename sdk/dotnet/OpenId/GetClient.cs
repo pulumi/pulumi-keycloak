@@ -218,6 +218,7 @@ namespace Pulumi.Keycloak.OpenId
         public readonly bool ServiceAccountsEnabled;
         public readonly bool StandardFlowEnabled;
         public readonly bool UseRefreshTokens;
+        public readonly bool UseRefreshTokensClientCredentials;
         public readonly ImmutableArray<string> ValidRedirectUris;
         public readonly ImmutableArray<string> WebOrigins;
 
@@ -307,6 +308,8 @@ namespace Pulumi.Keycloak.OpenId
 
             bool useRefreshTokens,
 
+            bool useRefreshTokensClientCredentials,
+
             ImmutableArray<string> validRedirectUris,
 
             ImmutableArray<string> webOrigins)
@@ -353,6 +356,7 @@ namespace Pulumi.Keycloak.OpenId
             ServiceAccountsEnabled = serviceAccountsEnabled;
             StandardFlowEnabled = standardFlowEnabled;
             UseRefreshTokens = useRefreshTokens;
+            UseRefreshTokensClientCredentials = useRefreshTokensClientCredentials;
             ValidRedirectUris = validRedirectUris;
             WebOrigins = webOrigins;
         }

@@ -22,7 +22,16 @@ class SubflowArgs:
                  requirement: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Subflow resource.
-        :param pulumi.Input[str] authenticator: Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
+        :param pulumi.Input[str] alias: The alias for this authentication subflow.
+        :param pulumi.Input[str] parent_flow_alias: The alias for the parent authentication flow.
+        :param pulumi.Input[str] realm_id: The realm that the authentication subflow exists in.
+        :param pulumi.Input[str] authenticator: The name of the authenticator. Might be needed to be set with certain custom subflows with specific
+               authenticators. In general this will remain empty.
+        :param pulumi.Input[str] description: A description for the authentication subflow.
+        :param pulumi.Input[str] provider_id: The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
+               and `client-flow`. Defaults to `basic-flow`.
+        :param pulumi.Input[str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
+               or `DISABLED`. Defaults to `DISABLED`.
         """
         pulumi.set(__self__, "alias", alias)
         pulumi.set(__self__, "parent_flow_alias", parent_flow_alias)
@@ -39,6 +48,9 @@ class SubflowArgs:
     @property
     @pulumi.getter
     def alias(self) -> pulumi.Input[str]:
+        """
+        The alias for this authentication subflow.
+        """
         return pulumi.get(self, "alias")
 
     @alias.setter
@@ -48,6 +60,9 @@ class SubflowArgs:
     @property
     @pulumi.getter(name="parentFlowAlias")
     def parent_flow_alias(self) -> pulumi.Input[str]:
+        """
+        The alias for the parent authentication flow.
+        """
         return pulumi.get(self, "parent_flow_alias")
 
     @parent_flow_alias.setter
@@ -57,6 +72,9 @@ class SubflowArgs:
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[str]:
+        """
+        The realm that the authentication subflow exists in.
+        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -67,7 +85,8 @@ class SubflowArgs:
     @pulumi.getter
     def authenticator(self) -> Optional[pulumi.Input[str]]:
         """
-        Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
+        The name of the authenticator. Might be needed to be set with certain custom subflows with specific
+        authenticators. In general this will remain empty.
         """
         return pulumi.get(self, "authenticator")
 
@@ -78,6 +97,9 @@ class SubflowArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description for the authentication subflow.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -87,6 +109,10 @@ class SubflowArgs:
     @property
     @pulumi.getter(name="providerId")
     def provider_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
+        and `client-flow`. Defaults to `basic-flow`.
+        """
         return pulumi.get(self, "provider_id")
 
     @provider_id.setter
@@ -96,6 +122,10 @@ class SubflowArgs:
     @property
     @pulumi.getter
     def requirement(self) -> Optional[pulumi.Input[str]]:
+        """
+        The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
+        or `DISABLED`. Defaults to `DISABLED`.
+        """
         return pulumi.get(self, "requirement")
 
     @requirement.setter
@@ -115,7 +145,16 @@ class _SubflowState:
                  requirement: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Subflow resources.
-        :param pulumi.Input[str] authenticator: Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
+        :param pulumi.Input[str] alias: The alias for this authentication subflow.
+        :param pulumi.Input[str] authenticator: The name of the authenticator. Might be needed to be set with certain custom subflows with specific
+               authenticators. In general this will remain empty.
+        :param pulumi.Input[str] description: A description for the authentication subflow.
+        :param pulumi.Input[str] parent_flow_alias: The alias for the parent authentication flow.
+        :param pulumi.Input[str] provider_id: The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
+               and `client-flow`. Defaults to `basic-flow`.
+        :param pulumi.Input[str] realm_id: The realm that the authentication subflow exists in.
+        :param pulumi.Input[str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
+               or `DISABLED`. Defaults to `DISABLED`.
         """
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
@@ -135,6 +174,9 @@ class _SubflowState:
     @property
     @pulumi.getter
     def alias(self) -> Optional[pulumi.Input[str]]:
+        """
+        The alias for this authentication subflow.
+        """
         return pulumi.get(self, "alias")
 
     @alias.setter
@@ -145,7 +187,8 @@ class _SubflowState:
     @pulumi.getter
     def authenticator(self) -> Optional[pulumi.Input[str]]:
         """
-        Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
+        The name of the authenticator. Might be needed to be set with certain custom subflows with specific
+        authenticators. In general this will remain empty.
         """
         return pulumi.get(self, "authenticator")
 
@@ -156,6 +199,9 @@ class _SubflowState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description for the authentication subflow.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -165,6 +211,9 @@ class _SubflowState:
     @property
     @pulumi.getter(name="parentFlowAlias")
     def parent_flow_alias(self) -> Optional[pulumi.Input[str]]:
+        """
+        The alias for the parent authentication flow.
+        """
         return pulumi.get(self, "parent_flow_alias")
 
     @parent_flow_alias.setter
@@ -174,6 +223,10 @@ class _SubflowState:
     @property
     @pulumi.getter(name="providerId")
     def provider_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
+        and `client-flow`. Defaults to `basic-flow`.
+        """
         return pulumi.get(self, "provider_id")
 
     @provider_id.setter
@@ -183,6 +236,9 @@ class _SubflowState:
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The realm that the authentication subflow exists in.
+        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -192,6 +248,10 @@ class _SubflowState:
     @property
     @pulumi.getter
     def requirement(self) -> Optional[pulumi.Input[str]]:
+        """
+        The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
+        or `DISABLED`. Defaults to `DISABLED`.
+        """
         return pulumi.get(self, "requirement")
 
     @requirement.setter
@@ -213,10 +273,51 @@ class Subflow(pulumi.CustomResource):
                  requirement: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Subflow resource with the given unique name, props, and options.
+        Allows for creating and managing an authentication subflow within Keycloak.
+
+        Like authentication flows, authentication subflows are containers for authentication executions.
+        As its name implies, an authentication subflow is contained in an authentication flow.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        flow = keycloak.authentication.Flow("flow",
+            realm_id=realm.id,
+            alias="my-flow-alias")
+        subflow = keycloak.authentication.Subflow("subflow",
+            realm_id=realm.id,
+            alias="my-subflow-alias",
+            parent_flow_alias=flow.alias,
+            provider_id="basic-flow",
+            requirement="ALTERNATIVE")
+        ```
+
+        ## Import
+
+        Authentication flows can be imported using the format `{{realmId}}/{{parentFlowAlias}}/{{authenticationSubflowId}}`. The authentication subflow ID is typically a GUID which is autogenerated when the subflow is created via Keycloak. Unfortunately, it is not trivial to retrieve the authentication subflow ID from the UI. The best way to do this is to visit the "Authentication" page in Keycloak, and use the network tab of your browser to view the response of the API call to `/auth/admin/realms/${realm}/authentication/flows/{flow}/executions`, which will be a list of executions, where the subflow will be. __The subflow ID is contained in the `flowID` field__ (not, as one could guess, the `id` field). Examplebash
+
+        ```sh
+         $ pulumi import keycloak:authentication/subflow:Subflow subflow my-realm/"Parent Flow"/3bad1172-bb5c-4a77-9615-c2606eb03081
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] authenticator: Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
+        :param pulumi.Input[str] alias: The alias for this authentication subflow.
+        :param pulumi.Input[str] authenticator: The name of the authenticator. Might be needed to be set with certain custom subflows with specific
+               authenticators. In general this will remain empty.
+        :param pulumi.Input[str] description: A description for the authentication subflow.
+        :param pulumi.Input[str] parent_flow_alias: The alias for the parent authentication flow.
+        :param pulumi.Input[str] provider_id: The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
+               and `client-flow`. Defaults to `basic-flow`.
+        :param pulumi.Input[str] realm_id: The realm that the authentication subflow exists in.
+        :param pulumi.Input[str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
+               or `DISABLED`. Defaults to `DISABLED`.
         """
         ...
     @overload
@@ -225,7 +326,39 @@ class Subflow(pulumi.CustomResource):
                  args: SubflowArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Subflow resource with the given unique name, props, and options.
+        Allows for creating and managing an authentication subflow within Keycloak.
+
+        Like authentication flows, authentication subflows are containers for authentication executions.
+        As its name implies, an authentication subflow is contained in an authentication flow.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        flow = keycloak.authentication.Flow("flow",
+            realm_id=realm.id,
+            alias="my-flow-alias")
+        subflow = keycloak.authentication.Subflow("subflow",
+            realm_id=realm.id,
+            alias="my-subflow-alias",
+            parent_flow_alias=flow.alias,
+            provider_id="basic-flow",
+            requirement="ALTERNATIVE")
+        ```
+
+        ## Import
+
+        Authentication flows can be imported using the format `{{realmId}}/{{parentFlowAlias}}/{{authenticationSubflowId}}`. The authentication subflow ID is typically a GUID which is autogenerated when the subflow is created via Keycloak. Unfortunately, it is not trivial to retrieve the authentication subflow ID from the UI. The best way to do this is to visit the "Authentication" page in Keycloak, and use the network tab of your browser to view the response of the API call to `/auth/admin/realms/${realm}/authentication/flows/{flow}/executions`, which will be a list of executions, where the subflow will be. __The subflow ID is contained in the `flowID` field__ (not, as one could guess, the `id` field). Examplebash
+
+        ```sh
+         $ pulumi import keycloak:authentication/subflow:Subflow subflow my-realm/"Parent Flow"/3bad1172-bb5c-4a77-9615-c2606eb03081
+        ```
+
         :param str resource_name: The name of the resource.
         :param SubflowArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -297,7 +430,16 @@ class Subflow(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] authenticator: Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
+        :param pulumi.Input[str] alias: The alias for this authentication subflow.
+        :param pulumi.Input[str] authenticator: The name of the authenticator. Might be needed to be set with certain custom subflows with specific
+               authenticators. In general this will remain empty.
+        :param pulumi.Input[str] description: A description for the authentication subflow.
+        :param pulumi.Input[str] parent_flow_alias: The alias for the parent authentication flow.
+        :param pulumi.Input[str] provider_id: The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
+               and `client-flow`. Defaults to `basic-flow`.
+        :param pulumi.Input[str] realm_id: The realm that the authentication subflow exists in.
+        :param pulumi.Input[str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
+               or `DISABLED`. Defaults to `DISABLED`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -315,38 +457,59 @@ class Subflow(pulumi.CustomResource):
     @property
     @pulumi.getter
     def alias(self) -> pulumi.Output[str]:
+        """
+        The alias for this authentication subflow.
+        """
         return pulumi.get(self, "alias")
 
     @property
     @pulumi.getter
     def authenticator(self) -> pulumi.Output[Optional[str]]:
         """
-        Might be needed to be set with certain custom subflow with specific authenticator, in general this will remain empty
+        The name of the authenticator. Might be needed to be set with certain custom subflows with specific
+        authenticators. In general this will remain empty.
         """
         return pulumi.get(self, "authenticator")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        A description for the authentication subflow.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="parentFlowAlias")
     def parent_flow_alias(self) -> pulumi.Output[str]:
+        """
+        The alias for the parent authentication flow.
+        """
         return pulumi.get(self, "parent_flow_alias")
 
     @property
     @pulumi.getter(name="providerId")
     def provider_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
+        and `client-flow`. Defaults to `basic-flow`.
+        """
         return pulumi.get(self, "provider_id")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
+        """
+        The realm that the authentication subflow exists in.
+        """
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter
     def requirement(self) -> pulumi.Output[Optional[str]]:
+        """
+        The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
+        or `DISABLED`. Defaults to `DISABLED`.
+        """
         return pulumi.get(self, "requirement")
 

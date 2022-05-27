@@ -238,13 +238,17 @@ export class Client extends pulumi.CustomResource {
      */
     public readonly useRefreshTokens!: pulumi.Output<boolean | undefined>;
     /**
+     * If this is `true`, a refreshToken will be created and added to the token response if the clientCredentials grant is used and a user session will be created. If this is `false` then no refreshToken will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+     */
+    public readonly useRefreshTokensClientCredentials!: pulumi.Output<boolean | undefined>;
+    /**
      * A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
      * wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
      * is set to `true`.
      */
     public readonly validRedirectUris!: pulumi.Output<string[] | undefined>;
     /**
-     * A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+     * A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
      */
     public readonly webOrigins!: pulumi.Output<string[] | undefined>;
 
@@ -302,6 +306,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["serviceAccountsEnabled"] = state ? state.serviceAccountsEnabled : undefined;
             resourceInputs["standardFlowEnabled"] = state ? state.standardFlowEnabled : undefined;
             resourceInputs["useRefreshTokens"] = state ? state.useRefreshTokens : undefined;
+            resourceInputs["useRefreshTokensClientCredentials"] = state ? state.useRefreshTokensClientCredentials : undefined;
             resourceInputs["validRedirectUris"] = state ? state.validRedirectUris : undefined;
             resourceInputs["webOrigins"] = state ? state.webOrigins : undefined;
         } else {
@@ -354,6 +359,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["serviceAccountsEnabled"] = args ? args.serviceAccountsEnabled : undefined;
             resourceInputs["standardFlowEnabled"] = args ? args.standardFlowEnabled : undefined;
             resourceInputs["useRefreshTokens"] = args ? args.useRefreshTokens : undefined;
+            resourceInputs["useRefreshTokensClientCredentials"] = args ? args.useRefreshTokensClientCredentials : undefined;
             resourceInputs["validRedirectUris"] = args ? args.validRedirectUris : undefined;
             resourceInputs["webOrigins"] = args ? args.webOrigins : undefined;
             resourceInputs["resourceServerId"] = undefined /*out*/;
@@ -534,13 +540,17 @@ export interface ClientState {
      */
     useRefreshTokens?: pulumi.Input<boolean>;
     /**
+     * If this is `true`, a refreshToken will be created and added to the token response if the clientCredentials grant is used and a user session will be created. If this is `false` then no refreshToken will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+     */
+    useRefreshTokensClientCredentials?: pulumi.Input<boolean>;
+    /**
      * A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
      * wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
      * is set to `true`.
      */
     validRedirectUris?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+     * A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
      */
     webOrigins?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -707,13 +717,17 @@ export interface ClientArgs {
      */
     useRefreshTokens?: pulumi.Input<boolean>;
     /**
+     * If this is `true`, a refreshToken will be created and added to the token response if the clientCredentials grant is used and a user session will be created. If this is `false` then no refreshToken will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+     */
+    useRefreshTokensClientCredentials?: pulumi.Input<boolean>;
+    /**
      * A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
      * wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
      * is set to `true`.
      */
     validRedirectUris?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+     * A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
      */
     webOrigins?: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -22,7 +22,7 @@ class GetRealmResult:
     """
     A collection of values returned by getRealm.
     """
-    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, default_default_client_scopes=None, default_optional_client_scopes=None, default_signature_algorithm=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, id=None, internal_id=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, offline_session_max_lifespan_enabled=None, otp_policy=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, revoke_refresh_token=None, security_defenses=None, smtp_servers=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_idle_timeout_remember_me=None, sso_session_max_lifespan=None, sso_session_max_lifespan_remember_me=None, user_managed_access=None, verify_email=None, web_authn_passwordless_policy=None, web_authn_policy=None):
+    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, client_session_idle_timeout=None, client_session_max_lifespan=None, default_default_client_scopes=None, default_optional_client_scopes=None, default_signature_algorithm=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, id=None, internal_id=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, offline_session_max_lifespan_enabled=None, otp_policy=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, revoke_refresh_token=None, security_defenses=None, smtp_servers=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_idle_timeout_remember_me=None, sso_session_max_lifespan=None, sso_session_max_lifespan_remember_me=None, user_managed_access=None, verify_email=None, web_authn_passwordless_policy=None, web_authn_policy=None):
         if access_code_lifespan and not isinstance(access_code_lifespan, str):
             raise TypeError("Expected argument 'access_code_lifespan' to be a str")
         pulumi.set(__self__, "access_code_lifespan", access_code_lifespan)
@@ -59,6 +59,12 @@ class GetRealmResult:
         if client_authentication_flow and not isinstance(client_authentication_flow, str):
             raise TypeError("Expected argument 'client_authentication_flow' to be a str")
         pulumi.set(__self__, "client_authentication_flow", client_authentication_flow)
+        if client_session_idle_timeout and not isinstance(client_session_idle_timeout, str):
+            raise TypeError("Expected argument 'client_session_idle_timeout' to be a str")
+        pulumi.set(__self__, "client_session_idle_timeout", client_session_idle_timeout)
+        if client_session_max_lifespan and not isinstance(client_session_max_lifespan, str):
+            raise TypeError("Expected argument 'client_session_max_lifespan' to be a str")
+        pulumi.set(__self__, "client_session_max_lifespan", client_session_max_lifespan)
         if default_default_client_scopes and not isinstance(default_default_client_scopes, list):
             raise TypeError("Expected argument 'default_default_client_scopes' to be a list")
         pulumi.set(__self__, "default_default_client_scopes", default_default_client_scopes)
@@ -248,6 +254,16 @@ class GetRealmResult:
     @pulumi.getter(name="clientAuthenticationFlow")
     def client_authentication_flow(self) -> str:
         return pulumi.get(self, "client_authentication_flow")
+
+    @property
+    @pulumi.getter(name="clientSessionIdleTimeout")
+    def client_session_idle_timeout(self) -> str:
+        return pulumi.get(self, "client_session_idle_timeout")
+
+    @property
+    @pulumi.getter(name="clientSessionMaxLifespan")
+    def client_session_max_lifespan(self) -> str:
+        return pulumi.get(self, "client_session_max_lifespan")
 
     @property
     @pulumi.getter(name="defaultDefaultClientScopes")
@@ -486,6 +502,8 @@ class AwaitableGetRealmResult(GetRealmResult):
             attributes=self.attributes,
             browser_flow=self.browser_flow,
             client_authentication_flow=self.client_authentication_flow,
+            client_session_idle_timeout=self.client_session_idle_timeout,
+            client_session_max_lifespan=self.client_session_max_lifespan,
             default_default_client_scopes=self.default_default_client_scopes,
             default_optional_client_scopes=self.default_optional_client_scopes,
             default_signature_algorithm=self.default_signature_algorithm,
@@ -591,6 +609,8 @@ def get_realm(attributes: Optional[Mapping[str, Any]] = None,
         attributes=__ret__.attributes,
         browser_flow=__ret__.browser_flow,
         client_authentication_flow=__ret__.client_authentication_flow,
+        client_session_idle_timeout=__ret__.client_session_idle_timeout,
+        client_session_max_lifespan=__ret__.client_session_max_lifespan,
         default_default_client_scopes=__ret__.default_default_client_scopes,
         default_optional_client_scopes=__ret__.default_optional_client_scopes,
         default_signature_algorithm=__ret__.default_signature_algorithm,

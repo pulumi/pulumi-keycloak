@@ -16,8 +16,10 @@ class CustomUserFederationArgs:
                  provider_id: pulumi.Input[str],
                  realm_id: pulumi.Input[str],
                  cache_policy: Optional[pulumi.Input[str]] = None,
+                 changed_sync_period: Optional[pulumi.Input[int]] = None,
                  config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
+                 full_sync_period: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  parent_id: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None):
@@ -26,8 +28,10 @@ class CustomUserFederationArgs:
         :param pulumi.Input[str] provider_id: The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
         :param pulumi.Input[str] realm_id: The realm that this provider will provide user federation for.
         :param pulumi.Input[str] cache_policy: Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+        :param pulumi.Input[int] changed_sync_period: How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
         :param pulumi.Input[Mapping[str, Any]] config: The provider configuration handed over to your custom user federation provider.
         :param pulumi.Input[bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        :param pulumi.Input[int] full_sync_period: How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[str] name: Display name of the provider when displayed in the console.
         :param pulumi.Input[str] parent_id: Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
         :param pulumi.Input[int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
@@ -36,10 +40,14 @@ class CustomUserFederationArgs:
         pulumi.set(__self__, "realm_id", realm_id)
         if cache_policy is not None:
             pulumi.set(__self__, "cache_policy", cache_policy)
+        if changed_sync_period is not None:
+            pulumi.set(__self__, "changed_sync_period", changed_sync_period)
         if config is not None:
             pulumi.set(__self__, "config", config)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if full_sync_period is not None:
+            pulumi.set(__self__, "full_sync_period", full_sync_period)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if parent_id is not None:
@@ -84,6 +92,18 @@ class CustomUserFederationArgs:
         pulumi.set(self, "cache_policy", value)
 
     @property
+    @pulumi.getter(name="changedSyncPeriod")
+    def changed_sync_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+        """
+        return pulumi.get(self, "changed_sync_period")
+
+    @changed_sync_period.setter
+    def changed_sync_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "changed_sync_period", value)
+
+    @property
     @pulumi.getter
     def config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
@@ -106,6 +126,18 @@ class CustomUserFederationArgs:
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="fullSyncPeriod")
+    def full_sync_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
+        """
+        return pulumi.get(self, "full_sync_period")
+
+    @full_sync_period.setter
+    def full_sync_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "full_sync_period", value)
 
     @property
     @pulumi.getter
@@ -148,8 +180,10 @@ class CustomUserFederationArgs:
 class _CustomUserFederationState:
     def __init__(__self__, *,
                  cache_policy: Optional[pulumi.Input[str]] = None,
+                 changed_sync_period: Optional[pulumi.Input[int]] = None,
                  config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
+                 full_sync_period: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  parent_id: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
@@ -158,8 +192,10 @@ class _CustomUserFederationState:
         """
         Input properties used for looking up and filtering CustomUserFederation resources.
         :param pulumi.Input[str] cache_policy: Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+        :param pulumi.Input[int] changed_sync_period: How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
         :param pulumi.Input[Mapping[str, Any]] config: The provider configuration handed over to your custom user federation provider.
         :param pulumi.Input[bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        :param pulumi.Input[int] full_sync_period: How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[str] name: Display name of the provider when displayed in the console.
         :param pulumi.Input[str] parent_id: Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
         :param pulumi.Input[int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
@@ -168,10 +204,14 @@ class _CustomUserFederationState:
         """
         if cache_policy is not None:
             pulumi.set(__self__, "cache_policy", cache_policy)
+        if changed_sync_period is not None:
+            pulumi.set(__self__, "changed_sync_period", changed_sync_period)
         if config is not None:
             pulumi.set(__self__, "config", config)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if full_sync_period is not None:
+            pulumi.set(__self__, "full_sync_period", full_sync_period)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if parent_id is not None:
@@ -196,6 +236,18 @@ class _CustomUserFederationState:
         pulumi.set(self, "cache_policy", value)
 
     @property
+    @pulumi.getter(name="changedSyncPeriod")
+    def changed_sync_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+        """
+        return pulumi.get(self, "changed_sync_period")
+
+    @changed_sync_period.setter
+    def changed_sync_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "changed_sync_period", value)
+
+    @property
     @pulumi.getter
     def config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
@@ -218,6 +270,18 @@ class _CustomUserFederationState:
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="fullSyncPeriod")
+    def full_sync_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
+        """
+        return pulumi.get(self, "full_sync_period")
+
+    @full_sync_period.setter
+    def full_sync_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "full_sync_period", value)
 
     @property
     @pulumi.getter
@@ -286,8 +350,10 @@ class CustomUserFederation(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cache_policy: Optional[pulumi.Input[str]] = None,
+                 changed_sync_period: Optional[pulumi.Input[int]] = None,
                  config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
+                 full_sync_period: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  parent_id: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
@@ -325,8 +391,10 @@ class CustomUserFederation(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cache_policy: Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+        :param pulumi.Input[int] changed_sync_period: How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
         :param pulumi.Input[Mapping[str, Any]] config: The provider configuration handed over to your custom user federation provider.
         :param pulumi.Input[bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        :param pulumi.Input[int] full_sync_period: How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[str] name: Display name of the provider when displayed in the console.
         :param pulumi.Input[str] parent_id: Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
         :param pulumi.Input[int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
@@ -383,8 +451,10 @@ class CustomUserFederation(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cache_policy: Optional[pulumi.Input[str]] = None,
+                 changed_sync_period: Optional[pulumi.Input[int]] = None,
                  config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
+                 full_sync_period: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  parent_id: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
@@ -403,8 +473,10 @@ class CustomUserFederation(pulumi.CustomResource):
             __props__ = CustomUserFederationArgs.__new__(CustomUserFederationArgs)
 
             __props__.__dict__["cache_policy"] = cache_policy
+            __props__.__dict__["changed_sync_period"] = changed_sync_period
             __props__.__dict__["config"] = config
             __props__.__dict__["enabled"] = enabled
+            __props__.__dict__["full_sync_period"] = full_sync_period
             __props__.__dict__["name"] = name
             __props__.__dict__["parent_id"] = parent_id
             __props__.__dict__["priority"] = priority
@@ -425,8 +497,10 @@ class CustomUserFederation(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             cache_policy: Optional[pulumi.Input[str]] = None,
+            changed_sync_period: Optional[pulumi.Input[int]] = None,
             config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
+            full_sync_period: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             parent_id: Optional[pulumi.Input[str]] = None,
             priority: Optional[pulumi.Input[int]] = None,
@@ -440,8 +514,10 @@ class CustomUserFederation(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cache_policy: Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+        :param pulumi.Input[int] changed_sync_period: How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
         :param pulumi.Input[Mapping[str, Any]] config: The provider configuration handed over to your custom user federation provider.
         :param pulumi.Input[bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        :param pulumi.Input[int] full_sync_period: How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[str] name: Display name of the provider when displayed in the console.
         :param pulumi.Input[str] parent_id: Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
         :param pulumi.Input[int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
@@ -453,8 +529,10 @@ class CustomUserFederation(pulumi.CustomResource):
         __props__ = _CustomUserFederationState.__new__(_CustomUserFederationState)
 
         __props__.__dict__["cache_policy"] = cache_policy
+        __props__.__dict__["changed_sync_period"] = changed_sync_period
         __props__.__dict__["config"] = config
         __props__.__dict__["enabled"] = enabled
+        __props__.__dict__["full_sync_period"] = full_sync_period
         __props__.__dict__["name"] = name
         __props__.__dict__["parent_id"] = parent_id
         __props__.__dict__["priority"] = priority
@@ -471,6 +549,14 @@ class CustomUserFederation(pulumi.CustomResource):
         return pulumi.get(self, "cache_policy")
 
     @property
+    @pulumi.getter(name="changedSyncPeriod")
+    def changed_sync_period(self) -> pulumi.Output[Optional[int]]:
+        """
+        How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+        """
+        return pulumi.get(self, "changed_sync_period")
+
+    @property
     @pulumi.getter
     def config(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
@@ -485,6 +571,14 @@ class CustomUserFederation(pulumi.CustomResource):
         When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="fullSyncPeriod")
+    def full_sync_period(self) -> pulumi.Output[Optional[int]]:
+        """
+        How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
+        """
+        return pulumi.get(self, "full_sync_period")
 
     @property
     @pulumi.getter

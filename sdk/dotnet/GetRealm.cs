@@ -243,6 +243,8 @@ namespace Pulumi.Keycloak
         public readonly ImmutableDictionary<string, object> Attributes;
         public readonly string BrowserFlow;
         public readonly string ClientAuthenticationFlow;
+        public readonly string ClientSessionIdleTimeout;
+        public readonly string ClientSessionMaxLifespan;
         public readonly ImmutableArray<string> DefaultDefaultClientScopes;
         public readonly ImmutableArray<string> DefaultOptionalClientScopes;
         public readonly string DefaultSignatureAlgorithm;
@@ -315,6 +317,10 @@ namespace Pulumi.Keycloak
             string browserFlow,
 
             string clientAuthenticationFlow,
+
+            string clientSessionIdleTimeout,
+
+            string clientSessionMaxLifespan,
 
             ImmutableArray<string> defaultDefaultClientScopes,
 
@@ -414,6 +420,8 @@ namespace Pulumi.Keycloak
             Attributes = attributes;
             BrowserFlow = browserFlow;
             ClientAuthenticationFlow = clientAuthenticationFlow;
+            ClientSessionIdleTimeout = clientSessionIdleTimeout;
+            ClientSessionMaxLifespan = clientSessionMaxLifespan;
             DefaultDefaultClientScopes = defaultDefaultClientScopes;
             DefaultOptionalClientScopes = defaultOptionalClientScopes;
             DefaultSignatureAlgorithm = defaultSignatureAlgorithm;

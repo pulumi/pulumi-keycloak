@@ -35,6 +35,7 @@ class IdentityProviderArgs:
                  post_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  principal_attribute: Optional[pulumi.Input[str]] = None,
                  principal_type: Optional[pulumi.Input[str]] = None,
+                 provider_id: Optional[pulumi.Input[str]] = None,
                  signature_algorithm: Optional[pulumi.Input[str]] = None,
                  signing_certificate: Optional[pulumi.Input[str]] = None,
                  single_logout_service_url: Optional[pulumi.Input[str]] = None,
@@ -68,6 +69,7 @@ class IdentityProviderArgs:
         :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
         :param pulumi.Input[str] principal_attribute: Principal Attribute
         :param pulumi.Input[str] principal_type: Principal Type
+        :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[str] signature_algorithm: Signing Algorithm. Defaults to empty.
         :param pulumi.Input[str] signing_certificate: Signing Certificate.
         :param pulumi.Input[str] single_logout_service_url: The Url that must be used to send logout requests.
@@ -119,6 +121,8 @@ class IdentityProviderArgs:
             pulumi.set(__self__, "principal_attribute", principal_attribute)
         if principal_type is not None:
             pulumi.set(__self__, "principal_type", principal_type)
+        if provider_id is not None:
+            pulumi.set(__self__, "provider_id", provider_id)
         if signature_algorithm is not None:
             pulumi.set(__self__, "signature_algorithm", signature_algorithm)
         if signing_certificate is not None:
@@ -402,6 +406,18 @@ class IdentityProviderArgs:
         pulumi.set(self, "principal_type", value)
 
     @property
+    @pulumi.getter(name="providerId")
+    def provider_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+        """
+        return pulumi.get(self, "provider_id")
+
+    @provider_id.setter
+    def provider_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider_id", value)
+
+    @property
     @pulumi.getter(name="signatureAlgorithm")
     def signature_algorithm(self) -> Optional[pulumi.Input[str]]:
         """
@@ -546,6 +562,7 @@ class _IdentityProviderState:
                  post_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  principal_attribute: Optional[pulumi.Input[str]] = None,
                  principal_type: Optional[pulumi.Input[str]] = None,
+                 provider_id: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  signature_algorithm: Optional[pulumi.Input[str]] = None,
                  signing_certificate: Optional[pulumi.Input[str]] = None,
@@ -580,6 +597,7 @@ class _IdentityProviderState:
         :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
         :param pulumi.Input[str] principal_attribute: Principal Attribute
         :param pulumi.Input[str] principal_type: Principal Type
+        :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[str] signature_algorithm: Signing Algorithm. Defaults to empty.
         :param pulumi.Input[str] signing_certificate: Signing Certificate.
@@ -635,6 +653,8 @@ class _IdentityProviderState:
             pulumi.set(__self__, "principal_attribute", principal_attribute)
         if principal_type is not None:
             pulumi.set(__self__, "principal_type", principal_type)
+        if provider_id is not None:
+            pulumi.set(__self__, "provider_id", provider_id)
         if realm is not None:
             pulumi.set(__self__, "realm", realm)
         if signature_algorithm is not None:
@@ -910,6 +930,18 @@ class _IdentityProviderState:
         pulumi.set(self, "principal_type", value)
 
     @property
+    @pulumi.getter(name="providerId")
+    def provider_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+        """
+        return pulumi.get(self, "provider_id")
+
+    @provider_id.setter
+    def provider_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider_id", value)
+
+    @property
     @pulumi.getter
     def realm(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1079,6 +1111,7 @@ class IdentityProvider(pulumi.CustomResource):
                  post_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  principal_attribute: Optional[pulumi.Input[str]] = None,
                  principal_type: Optional[pulumi.Input[str]] = None,
+                 provider_id: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  signature_algorithm: Optional[pulumi.Input[str]] = None,
                  signing_certificate: Optional[pulumi.Input[str]] = None,
@@ -1150,6 +1183,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
         :param pulumi.Input[str] principal_attribute: Principal Attribute
         :param pulumi.Input[str] principal_type: Principal Type
+        :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[str] signature_algorithm: Signing Algorithm. Defaults to empty.
         :param pulumi.Input[str] signing_certificate: Signing Certificate.
@@ -1241,6 +1275,7 @@ class IdentityProvider(pulumi.CustomResource):
                  post_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  principal_attribute: Optional[pulumi.Input[str]] = None,
                  principal_type: Optional[pulumi.Input[str]] = None,
+                 provider_id: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  signature_algorithm: Optional[pulumi.Input[str]] = None,
                  signing_certificate: Optional[pulumi.Input[str]] = None,
@@ -1289,6 +1324,7 @@ class IdentityProvider(pulumi.CustomResource):
             __props__.__dict__["post_broker_login_flow_alias"] = post_broker_login_flow_alias
             __props__.__dict__["principal_attribute"] = principal_attribute
             __props__.__dict__["principal_type"] = principal_type
+            __props__.__dict__["provider_id"] = provider_id
             if realm is None and not opts.urn:
                 raise TypeError("Missing required property 'realm'")
             __props__.__dict__["realm"] = realm
@@ -1337,6 +1373,7 @@ class IdentityProvider(pulumi.CustomResource):
             post_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
             principal_attribute: Optional[pulumi.Input[str]] = None,
             principal_type: Optional[pulumi.Input[str]] = None,
+            provider_id: Optional[pulumi.Input[str]] = None,
             realm: Optional[pulumi.Input[str]] = None,
             signature_algorithm: Optional[pulumi.Input[str]] = None,
             signing_certificate: Optional[pulumi.Input[str]] = None,
@@ -1376,6 +1413,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
         :param pulumi.Input[str] principal_attribute: Principal Attribute
         :param pulumi.Input[str] principal_type: Principal Type
+        :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[str] signature_algorithm: Signing Algorithm. Defaults to empty.
         :param pulumi.Input[str] signing_certificate: Signing Certificate.
@@ -1414,6 +1452,7 @@ class IdentityProvider(pulumi.CustomResource):
         __props__.__dict__["post_broker_login_flow_alias"] = post_broker_login_flow_alias
         __props__.__dict__["principal_attribute"] = principal_attribute
         __props__.__dict__["principal_type"] = principal_type
+        __props__.__dict__["provider_id"] = provider_id
         __props__.__dict__["realm"] = realm
         __props__.__dict__["signature_algorithm"] = signature_algorithm
         __props__.__dict__["signing_certificate"] = signing_certificate
@@ -1592,6 +1631,14 @@ class IdentityProvider(pulumi.CustomResource):
         Principal Type
         """
         return pulumi.get(self, "principal_type")
+
+    @property
+    @pulumi.getter(name="providerId")
+    def provider_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+        """
+        return pulumi.get(self, "provider_id")
 
     @property
     @pulumi.getter

@@ -112,6 +112,7 @@ export interface GetClientResult {
     readonly serviceAccountsEnabled: boolean;
     readonly standardFlowEnabled: boolean;
     readonly useRefreshTokens: boolean;
+    readonly useRefreshTokensClientCredentials: boolean;
     readonly validRedirectUris: string[];
     readonly webOrigins: string[];
 }

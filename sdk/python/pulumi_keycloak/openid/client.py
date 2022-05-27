@@ -54,6 +54,7 @@ class ClientArgs:
                  service_accounts_enabled: Optional[pulumi.Input[bool]] = None,
                  standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
                  use_refresh_tokens: Optional[pulumi.Input[bool]] = None,
+                 use_refresh_tokens_client_credentials: Optional[pulumi.Input[bool]] = None,
                  valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
@@ -100,10 +101,11 @@ class ClientArgs:
         :param pulumi.Input[bool] service_accounts_enabled: When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[bool] use_refresh_tokens: If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
+        :param pulumi.Input[bool] use_refresh_tokens_client_credentials: If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
                wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
                is set to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
         """
         pulumi.set(__self__, "access_type", access_type)
         pulumi.set(__self__, "client_id", client_id)
@@ -180,6 +182,8 @@ class ClientArgs:
             pulumi.set(__self__, "standard_flow_enabled", standard_flow_enabled)
         if use_refresh_tokens is not None:
             pulumi.set(__self__, "use_refresh_tokens", use_refresh_tokens)
+        if use_refresh_tokens_client_credentials is not None:
+            pulumi.set(__self__, "use_refresh_tokens_client_credentials", use_refresh_tokens_client_credentials)
         if valid_redirect_uris is not None:
             pulumi.set(__self__, "valid_redirect_uris", valid_redirect_uris)
         if web_origins is not None:
@@ -655,6 +659,18 @@ class ClientArgs:
         pulumi.set(self, "use_refresh_tokens", value)
 
     @property
+    @pulumi.getter(name="useRefreshTokensClientCredentials")
+    def use_refresh_tokens_client_credentials(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+        """
+        return pulumi.get(self, "use_refresh_tokens_client_credentials")
+
+    @use_refresh_tokens_client_credentials.setter
+    def use_refresh_tokens_client_credentials(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_refresh_tokens_client_credentials", value)
+
+    @property
     @pulumi.getter(name="validRedirectUris")
     def valid_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -672,7 +688,7 @@ class ClientArgs:
     @pulumi.getter(name="webOrigins")
     def web_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+        A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
         """
         return pulumi.get(self, "web_origins")
 
@@ -725,6 +741,7 @@ class _ClientState:
                  service_accounts_enabled: Optional[pulumi.Input[bool]] = None,
                  standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
                  use_refresh_tokens: Optional[pulumi.Input[bool]] = None,
+                 use_refresh_tokens_client_credentials: Optional[pulumi.Input[bool]] = None,
                  valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
@@ -773,10 +790,11 @@ class _ClientState:
         :param pulumi.Input[bool] service_accounts_enabled: When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[bool] use_refresh_tokens: If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
+        :param pulumi.Input[bool] use_refresh_tokens_client_credentials: If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
                wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
                is set to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
         """
         if access_token_lifespan is not None:
             pulumi.set(__self__, "access_token_lifespan", access_token_lifespan)
@@ -860,6 +878,8 @@ class _ClientState:
             pulumi.set(__self__, "standard_flow_enabled", standard_flow_enabled)
         if use_refresh_tokens is not None:
             pulumi.set(__self__, "use_refresh_tokens", use_refresh_tokens)
+        if use_refresh_tokens_client_credentials is not None:
+            pulumi.set(__self__, "use_refresh_tokens_client_credentials", use_refresh_tokens_client_credentials)
         if valid_redirect_uris is not None:
             pulumi.set(__self__, "valid_redirect_uris", valid_redirect_uris)
         if web_origins is not None:
@@ -1359,6 +1379,18 @@ class _ClientState:
         pulumi.set(self, "use_refresh_tokens", value)
 
     @property
+    @pulumi.getter(name="useRefreshTokensClientCredentials")
+    def use_refresh_tokens_client_credentials(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+        """
+        return pulumi.get(self, "use_refresh_tokens_client_credentials")
+
+    @use_refresh_tokens_client_credentials.setter
+    def use_refresh_tokens_client_credentials(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_refresh_tokens_client_credentials", value)
+
+    @property
     @pulumi.getter(name="validRedirectUris")
     def valid_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -1376,7 +1408,7 @@ class _ClientState:
     @pulumi.getter(name="webOrigins")
     def web_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+        A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
         """
         return pulumi.get(self, "web_origins")
 
@@ -1429,6 +1461,7 @@ class Client(pulumi.CustomResource):
                  service_accounts_enabled: Optional[pulumi.Input[bool]] = None,
                  standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
                  use_refresh_tokens: Optional[pulumi.Input[bool]] = None,
+                 use_refresh_tokens_client_credentials: Optional[pulumi.Input[bool]] = None,
                  valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -1513,10 +1546,11 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[bool] service_accounts_enabled: When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[bool] use_refresh_tokens: If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
+        :param pulumi.Input[bool] use_refresh_tokens_client_credentials: If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
                wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
                is set to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
         """
         ...
     @overload
@@ -1615,6 +1649,7 @@ class Client(pulumi.CustomResource):
                  service_accounts_enabled: Optional[pulumi.Input[bool]] = None,
                  standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
                  use_refresh_tokens: Optional[pulumi.Input[bool]] = None,
+                 use_refresh_tokens_client_credentials: Optional[pulumi.Input[bool]] = None,
                  valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -1674,6 +1709,7 @@ class Client(pulumi.CustomResource):
             __props__.__dict__["service_accounts_enabled"] = service_accounts_enabled
             __props__.__dict__["standard_flow_enabled"] = standard_flow_enabled
             __props__.__dict__["use_refresh_tokens"] = use_refresh_tokens
+            __props__.__dict__["use_refresh_tokens_client_credentials"] = use_refresh_tokens_client_credentials
             __props__.__dict__["valid_redirect_uris"] = valid_redirect_uris
             __props__.__dict__["web_origins"] = web_origins
             __props__.__dict__["resource_server_id"] = None
@@ -1729,6 +1765,7 @@ class Client(pulumi.CustomResource):
             service_accounts_enabled: Optional[pulumi.Input[bool]] = None,
             standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
             use_refresh_tokens: Optional[pulumi.Input[bool]] = None,
+            use_refresh_tokens_client_credentials: Optional[pulumi.Input[bool]] = None,
             valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Client':
         """
@@ -1782,10 +1819,11 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[bool] service_accounts_enabled: When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[bool] use_refresh_tokens: If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
+        :param pulumi.Input[bool] use_refresh_tokens_client_credentials: If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
                wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
                is set to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1832,6 +1870,7 @@ class Client(pulumi.CustomResource):
         __props__.__dict__["service_accounts_enabled"] = service_accounts_enabled
         __props__.__dict__["standard_flow_enabled"] = standard_flow_enabled
         __props__.__dict__["use_refresh_tokens"] = use_refresh_tokens
+        __props__.__dict__["use_refresh_tokens_client_credentials"] = use_refresh_tokens_client_credentials
         __props__.__dict__["valid_redirect_uris"] = valid_redirect_uris
         __props__.__dict__["web_origins"] = web_origins
         return Client(resource_name, opts=opts, __props__=__props__)
@@ -2166,6 +2205,14 @@ class Client(pulumi.CustomResource):
         return pulumi.get(self, "use_refresh_tokens")
 
     @property
+    @pulumi.getter(name="useRefreshTokensClientCredentials")
+    def use_refresh_tokens_client_credentials(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+        """
+        return pulumi.get(self, "use_refresh_tokens_client_credentials")
+
+    @property
     @pulumi.getter(name="validRedirectUris")
     def valid_redirect_uris(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
@@ -2179,7 +2226,7 @@ class Client(pulumi.CustomResource):
     @pulumi.getter(name="webOrigins")
     def web_origins(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+        A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
         """
         return pulumi.get(self, "web_origins")
 

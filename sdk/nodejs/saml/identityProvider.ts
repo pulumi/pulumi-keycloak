@@ -153,6 +153,10 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly principalType!: pulumi.Output<string | undefined>;
     /**
+     * The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+     */
+    public readonly providerId!: pulumi.Output<string | undefined>;
+    /**
      * The name of the realm. This is unique across Keycloak.
      */
     public readonly realm!: pulumi.Output<string>;
@@ -235,6 +239,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["postBrokerLoginFlowAlias"] = state ? state.postBrokerLoginFlowAlias : undefined;
             resourceInputs["principalAttribute"] = state ? state.principalAttribute : undefined;
             resourceInputs["principalType"] = state ? state.principalType : undefined;
+            resourceInputs["providerId"] = state ? state.providerId : undefined;
             resourceInputs["realm"] = state ? state.realm : undefined;
             resourceInputs["signatureAlgorithm"] = state ? state.signatureAlgorithm : undefined;
             resourceInputs["signingCertificate"] = state ? state.signingCertificate : undefined;
@@ -281,6 +286,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["postBrokerLoginFlowAlias"] = args ? args.postBrokerLoginFlowAlias : undefined;
             resourceInputs["principalAttribute"] = args ? args.principalAttribute : undefined;
             resourceInputs["principalType"] = args ? args.principalType : undefined;
+            resourceInputs["providerId"] = args ? args.providerId : undefined;
             resourceInputs["realm"] = args ? args.realm : undefined;
             resourceInputs["signatureAlgorithm"] = args ? args.signatureAlgorithm : undefined;
             resourceInputs["signingCertificate"] = args ? args.signingCertificate : undefined;
@@ -385,6 +391,10 @@ export interface IdentityProviderState {
      * Principal Type
      */
     principalType?: pulumi.Input<string>;
+    /**
+     * The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+     */
+    providerId?: pulumi.Input<string>;
     /**
      * The name of the realm. This is unique across Keycloak.
      */
@@ -516,6 +526,10 @@ export interface IdentityProviderArgs {
      * Principal Type
      */
     principalType?: pulumi.Input<string>;
+    /**
+     * The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+     */
+    providerId?: pulumi.Input<string>;
     /**
      * The name of the realm. This is unique across Keycloak.
      */

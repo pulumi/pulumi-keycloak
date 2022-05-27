@@ -78,6 +78,8 @@ export interface GetRealmResult {
     readonly attributes: {[key: string]: any};
     readonly browserFlow: string;
     readonly clientAuthenticationFlow: string;
+    readonly clientSessionIdleTimeout: string;
+    readonly clientSessionMaxLifespan: string;
     readonly defaultDefaultClientScopes: string[];
     readonly defaultOptionalClientScopes: string[];
     readonly defaultSignatureAlgorithm: string;

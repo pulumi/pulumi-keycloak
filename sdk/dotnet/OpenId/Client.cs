@@ -312,6 +312,12 @@ namespace Pulumi.Keycloak.OpenId
         public Output<bool?> UseRefreshTokens { get; private set; } = null!;
 
         /// <summary>
+        /// If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+        /// </summary>
+        [Output("useRefreshTokensClientCredentials")]
+        public Output<bool?> UseRefreshTokensClientCredentials { get; private set; } = null!;
+
+        /// <summary>
         /// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
         /// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
         /// is set to `true`.
@@ -320,7 +326,7 @@ namespace Pulumi.Keycloak.OpenId
         public Output<ImmutableArray<string>> ValidRedirectUris { get; private set; } = null!;
 
         /// <summary>
-        /// A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+        /// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
         /// </summary>
         [Output("webOrigins")]
         public Output<ImmutableArray<string>> WebOrigins { get; private set; } = null!;
@@ -611,6 +617,12 @@ namespace Pulumi.Keycloak.OpenId
         [Input("useRefreshTokens")]
         public Input<bool>? UseRefreshTokens { get; set; }
 
+        /// <summary>
+        /// If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+        /// </summary>
+        [Input("useRefreshTokensClientCredentials")]
+        public Input<bool>? UseRefreshTokensClientCredentials { get; set; }
+
         [Input("validRedirectUris")]
         private InputList<string>? _validRedirectUris;
 
@@ -629,7 +641,7 @@ namespace Pulumi.Keycloak.OpenId
         private InputList<string>? _webOrigins;
 
         /// <summary>
-        /// A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+        /// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
         /// </summary>
         public InputList<string> WebOrigins
         {
@@ -896,6 +908,12 @@ namespace Pulumi.Keycloak.OpenId
         [Input("useRefreshTokens")]
         public Input<bool>? UseRefreshTokens { get; set; }
 
+        /// <summary>
+        /// If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+        /// </summary>
+        [Input("useRefreshTokensClientCredentials")]
+        public Input<bool>? UseRefreshTokensClientCredentials { get; set; }
+
         [Input("validRedirectUris")]
         private InputList<string>? _validRedirectUris;
 
@@ -914,7 +932,7 @@ namespace Pulumi.Keycloak.OpenId
         private InputList<string>? _webOrigins;
 
         /// <summary>
-        /// A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+        /// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
         /// </summary>
         public InputList<string> WebOrigins
         {

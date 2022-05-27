@@ -4,6 +4,36 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Allows for creating and managing required actions within Keycloak.
+ *
+ * [Required actions](https://www.keycloak.org/docs/latest/server_admin/#con-required-actions_server_administration_guide) specify actions required before the first login of all new users.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const requiredAction = new keycloak.RequiredAction("requiredAction", {
+ *     realmId: realm.realm,
+ *     alias: "webauthn-register",
+ *     enabled: true,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Authentication executions can be imported using the formats`{{realm}}/{{alias}}`. Examplebash
+ *
+ * ```sh
+ *  $ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias
+ * ```
+ */
 export class RequiredAction extends pulumi.CustomResource {
     /**
      * Get an existing RequiredAction resource's state with the given name, ID, and optional extra
@@ -32,11 +62,29 @@ export class RequiredAction extends pulumi.CustomResource {
         return obj['__pulumiType'] === RequiredAction.__pulumiType;
     }
 
+    /**
+     * The alias of the action to attach as a required action.
+     */
     public readonly alias!: pulumi.Output<string>;
+    /**
+     * When `true`, the required action is set as the default action for new users. Defaults to `false`.
+     */
     public readonly defaultAction!: pulumi.Output<boolean | undefined>;
+    /**
+     * When `false`, the required action is not enabled for new users. Defaults to `false`.
+     */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
+    /**
+     * The name of the required action.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The priority of the required action.
+     */
     public readonly priority!: pulumi.Output<number>;
+    /**
+     * The realm the required action exists in.
+     */
     public readonly realmId!: pulumi.Output<string>;
 
     /**
@@ -82,11 +130,29 @@ export class RequiredAction extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RequiredAction resources.
  */
 export interface RequiredActionState {
+    /**
+     * The alias of the action to attach as a required action.
+     */
     alias?: pulumi.Input<string>;
+    /**
+     * When `true`, the required action is set as the default action for new users. Defaults to `false`.
+     */
     defaultAction?: pulumi.Input<boolean>;
+    /**
+     * When `false`, the required action is not enabled for new users. Defaults to `false`.
+     */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * The name of the required action.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The priority of the required action.
+     */
     priority?: pulumi.Input<number>;
+    /**
+     * The realm the required action exists in.
+     */
     realmId?: pulumi.Input<string>;
 }
 
@@ -94,10 +160,28 @@ export interface RequiredActionState {
  * The set of arguments for constructing a RequiredAction resource.
  */
 export interface RequiredActionArgs {
+    /**
+     * The alias of the action to attach as a required action.
+     */
     alias: pulumi.Input<string>;
+    /**
+     * When `true`, the required action is set as the default action for new users. Defaults to `false`.
+     */
     defaultAction?: pulumi.Input<boolean>;
+    /**
+     * When `false`, the required action is not enabled for new users. Defaults to `false`.
+     */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * The name of the required action.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The priority of the required action.
+     */
     priority?: pulumi.Input<number>;
+    /**
+     * The realm the required action exists in.
+     */
     realmId: pulumi.Input<string>;
 }

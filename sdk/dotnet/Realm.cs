@@ -177,13 +177,25 @@ namespace Pulumi.Keycloak
         /// The desired flow for browser authentication. Defaults to `browser`.
         /// </summary>
         [Output("browserFlow")]
-        public Output<string?> BrowserFlow { get; private set; } = null!;
+        public Output<string> BrowserFlow { get; private set; } = null!;
 
         /// <summary>
         /// The desired flow for client authentication. Defaults to `clients`.
         /// </summary>
         [Output("clientAuthenticationFlow")]
-        public Output<string?> ClientAuthenticationFlow { get; private set; } = null!;
+        public Output<string> ClientAuthenticationFlow { get; private set; } = null!;
+
+        /// <summary>
+        /// The amount of time a session can be idle before it expires. Users can override it for individual clients.
+        /// </summary>
+        [Output("clientSessionIdleTimeout")]
+        public Output<string> ClientSessionIdleTimeout { get; private set; } = null!;
+
+        /// <summary>
+        /// The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+        /// </summary>
+        [Output("clientSessionMaxLifespan")]
+        public Output<string> ClientSessionMaxLifespan { get; private set; } = null!;
 
         [Output("defaultDefaultClientScopes")]
         public Output<ImmutableArray<string>> DefaultDefaultClientScopes { get; private set; } = null!;
@@ -201,7 +213,7 @@ namespace Pulumi.Keycloak
         /// The desired flow for direct access authentication. Defaults to `direct grant`.
         /// </summary>
         [Output("directGrantFlow")]
-        public Output<string?> DirectGrantFlow { get; private set; } = null!;
+        public Output<string> DirectGrantFlow { get; private set; } = null!;
 
         /// <summary>
         /// The display name for the realm that is shown when logging in to the admin console.
@@ -219,7 +231,7 @@ namespace Pulumi.Keycloak
         /// The desired flow for Docker authentication. Defaults to `docker auth`.
         /// </summary>
         [Output("dockerAuthenticationFlow")]
-        public Output<string?> DockerAuthenticationFlow { get; private set; } = null!;
+        public Output<string> DockerAuthenticationFlow { get; private set; } = null!;
 
         /// <summary>
         /// When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `login_with_email_allowed` is set to `true`.
@@ -330,7 +342,7 @@ namespace Pulumi.Keycloak
         /// The desired flow for user registration. Defaults to `registration`.
         /// </summary>
         [Output("registrationFlow")]
-        public Output<string?> RegistrationFlow { get; private set; } = null!;
+        public Output<string> RegistrationFlow { get; private set; } = null!;
 
         /// <summary>
         /// When true, a "remember me" checkbox will be displayed on the login page, and the user's session will not expire between browser restarts.
@@ -342,7 +354,7 @@ namespace Pulumi.Keycloak
         /// The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
         /// </summary>
         [Output("resetCredentialsFlow")]
-        public Output<string?> ResetCredentialsFlow { get; private set; } = null!;
+        public Output<string> ResetCredentialsFlow { get; private set; } = null!;
 
         /// <summary>
         /// When true, a "forgot password" link will be displayed on the login page.
@@ -533,6 +545,18 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("clientAuthenticationFlow")]
         public Input<string>? ClientAuthenticationFlow { get; set; }
+
+        /// <summary>
+        /// The amount of time a session can be idle before it expires. Users can override it for individual clients.
+        /// </summary>
+        [Input("clientSessionIdleTimeout")]
+        public Input<string>? ClientSessionIdleTimeout { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+        /// </summary>
+        [Input("clientSessionMaxLifespan")]
+        public Input<string>? ClientSessionMaxLifespan { get; set; }
 
         [Input("defaultDefaultClientScopes")]
         private InputList<string>? _defaultDefaultClientScopes;
@@ -850,6 +874,18 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("clientAuthenticationFlow")]
         public Input<string>? ClientAuthenticationFlow { get; set; }
+
+        /// <summary>
+        /// The amount of time a session can be idle before it expires. Users can override it for individual clients.
+        /// </summary>
+        [Input("clientSessionIdleTimeout")]
+        public Input<string>? ClientSessionIdleTimeout { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+        /// </summary>
+        [Input("clientSessionMaxLifespan")]
+        public Input<string>? ClientSessionMaxLifespan { get; set; }
 
         [Input("defaultDefaultClientScopes")]
         private InputList<string>? _defaultDefaultClientScopes;
