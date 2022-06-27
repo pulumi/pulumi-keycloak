@@ -99,6 +99,9 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"keycloak_attribute_to_role_identity_provider_mapper": {
 				Tok: makeResource(mainMod, "AttributeToRoleIdentityMapper"),
+				Docs: &tfbridge.DocInfo{
+					Markdown: []byte(" "),
+				},
 			},
 			"keycloak_custom_user_federation":          {Tok: makeResource(mainMod, "CustomUserFederation")},
 			"keycloak_custom_identity_provider_mapper": {Tok: makeResource(mainMod, "CustomIdentityProviderMapping")},
@@ -118,9 +121,15 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_group_roles":       {Tok: makeResource(mainMod, "GroupRoles")},
 			"keycloak_hardcoded_attribute_identity_provider_mapper": {
 				Tok: makeResource(mainMod, "HardcodedAttributeIdentityProviderMapper"),
+				Docs: &tfbridge.DocInfo{
+					Markdown: []byte(" "),
+				},
 			},
 			"keycloak_hardcoded_role_identity_provider_mapper": {
 				Tok: makeResource(mainMod, "HardcodedRoleIdentityMapper"),
+				Docs: &tfbridge.DocInfo{
+					Markdown: []byte(" "),
+				},
 			},
 			"keycloak_realm": {
 				Tok: makeResource(mainMod, "Realm"),
@@ -130,12 +139,17 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			"keycloak_required_action":   {Tok: makeResource(mainMod, "RequiredAction")},
-			"keycloak_role":              {Tok: makeResource(mainMod, "Role")},
-			"keycloak_user":              {Tok: makeResource(mainMod, "User")},
-			"keycloak_user_roles":        {Tok: makeResource(mainMod, "UserRoles")},
-			"keycloak_user_groups":       {Tok: makeResource(mainMod, "UserGroups")},
-			"keycloak_users_permissions": {Tok: makeResource(mainMod, "UsersPermissions")},
+			"keycloak_required_action": {Tok: makeResource(mainMod, "RequiredAction")},
+			"keycloak_role":            {Tok: makeResource(mainMod, "Role")},
+			"keycloak_user":            {Tok: makeResource(mainMod, "User")},
+			"keycloak_user_roles":      {Tok: makeResource(mainMod, "UserRoles")},
+			"keycloak_user_groups":     {Tok: makeResource(mainMod, "UserGroups")},
+			"keycloak_users_permissions": {
+				Tok: makeResource(mainMod, "UsersPermissions"),
+				Docs: &tfbridge.DocInfo{
+					Markdown: []byte(" "),
+				},
+			},
 			"keycloak_user_template_importer_identity_provider_mapper": {
 				Tok: makeResource(mainMod, "UserTemplateImporterIdentityProviderMapper"),
 			},
@@ -150,6 +164,7 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_realm_keystore_java_keystore":   {Tok: makeResource(mainMod, "RealmKeystoreJavaGenerated")},
 			"keycloak_realm_keystore_rsa":             {Tok: makeResource(mainMod, "RealmKeystoreRsa")},
 			"keycloak_realm_keystore_rsa_generated":   {Tok: makeResource(mainMod, "RealmKeystoreRsaGenerated")},
+			"keycloak_realm_user_profile":             {Tok: makeResource(mainMod, "RealmUserProfile")},
 
 			"keycloak_ldap_full_name_mapper": {Tok: makeResource(ldapMod, "FullNameMapper")},
 			"keycloak_ldap_group_mapper":     {Tok: makeResource(ldapMod, "GroupMapper")},
@@ -162,8 +177,13 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_ldap_msad_lds_user_account_control_mapper": {
 				Tok: makeResource(ldapMod, "MsadLdsUserAccountControlMapper"),
 			},
-			"keycloak_ldap_hardcoded_group_mapper": {Tok: makeResource(ldapMod, "HardcodedGroupMapper")},
-			"keycloak_ldap_role_mapper":            {Tok: makeResource(ldapMod, "RoleMapper")},
+			"keycloak_ldap_hardcoded_group_mapper": {
+				Tok: makeResource(ldapMod, "HardcodedGroupMapper"),
+				Docs: &tfbridge.DocInfo{
+					Markdown: []byte(" "),
+				},
+			},
+			"keycloak_ldap_role_mapper": {Tok: makeResource(ldapMod, "RoleMapper")},
 
 			"keycloak_oidc_identity_provider":        {Tok: makeResource(oidcMod, "IdentityProvider")},
 			"keycloak_oidc_google_identity_provider": {Tok: makeResource(oidcMod, "GoogleIdentityProvider")},
@@ -172,14 +192,27 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_openid_client":                   {Tok: makeResource(openIDMod, "Client")},
 			"keycloak_openid_client_authorization_permission": {
 				Tok: makeResource(openIDMod, "ClientAuthorizationPermission"),
+				Docs: &tfbridge.DocInfo{
+					Markdown: []byte(" "),
+				},
 			},
-			"keycloak_openid_client_authorization_resource": {Tok: makeResource(openIDMod, "ClientAuthorizationResource")},
-			"keycloak_openid_client_authorization_scope":    {Tok: makeResource(openIDMod, "ClientAuthorizationScope")},
-			"keycloak_openid_client_default_scopes":         {Tok: makeResource(openIDMod, "ClientDefaultScopes")},
-			"keycloak_openid_client_optional_scopes":        {Tok: makeResource(openIDMod, "ClientOptionalScopes")},
-			"keycloak_openid_client_scope":                  {Tok: makeResource(openIDMod, "ClientScope")},
-			"keycloak_openid_client_service_account_role":   {Tok: makeResource(openIDMod, "ClientServiceAccountRole")},
-			"keycloak_openid_full_name_protocol_mapper":     {Tok: makeResource(openIDMod, "FullNameProtocolMapper")},
+			"keycloak_openid_client_authorization_resource": {
+				Tok: makeResource(openIDMod, "ClientAuthorizationResource"),
+				Docs: &tfbridge.DocInfo{
+					Markdown: []byte(" "),
+				},
+			},
+			"keycloak_openid_client_authorization_scope": {
+				Tok: makeResource(openIDMod, "ClientAuthorizationScope"),
+				Docs: &tfbridge.DocInfo{
+					Markdown: []byte(" "),
+				},
+			},
+			"keycloak_openid_client_default_scopes":       {Tok: makeResource(openIDMod, "ClientDefaultScopes")},
+			"keycloak_openid_client_optional_scopes":      {Tok: makeResource(openIDMod, "ClientOptionalScopes")},
+			"keycloak_openid_client_scope":                {Tok: makeResource(openIDMod, "ClientScope")},
+			"keycloak_openid_client_service_account_role": {Tok: makeResource(openIDMod, "ClientServiceAccountRole")},
+			"keycloak_openid_full_name_protocol_mapper":   {Tok: makeResource(openIDMod, "FullNameProtocolMapper")},
 			"keycloak_openid_group_membership_protocol_mapper": {
 				Tok: makeResource(openIDMod, "GroupMembershipProtocolMapper"),
 			},
@@ -201,20 +234,55 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_openid_client_service_account_realm_role": {
 				Tok: makeResource(openIDMod, "ClientServiceAccountRealmRole"),
 			},
-			"keycloak_openid_client_aggregate_policy": {Tok: makeResource(openIDMod, "ClientAggregatePolicy")},
-			"keycloak_openid_client_client_policy":    {Tok: makeResource(openIDMod, "ClientPolicy")},
-			"keycloak_openid_client_group_policy":     {Tok: makeResource(openIDMod, "ClientGroupPolicy")},
-			"keycloak_openid_client_js_policy":        {Tok: makeResource(openIDMod, "ClientJsPolicy")},
-			"keycloak_openid_client_role_policy":      {Tok: makeResource(openIDMod, "ClientRolePolicy")},
-			"keycloak_openid_client_time_policy":      {Tok: makeResource(openIDMod, "ClientTimePolicy")},
-			"keycloak_openid_client_user_policy":      {Tok: makeResource(openIDMod, "ClientUserPolicy")},
+			"keycloak_openid_client_aggregate_policy": {
+				Tok: makeResource(openIDMod, "ClientAggregatePolicy"),
+				Docs: &tfbridge.DocInfo{
+					Markdown: []byte(" "),
+				},
+			},
+			"keycloak_openid_client_client_policy": {Tok: makeResource(openIDMod, "ClientPolicy")},
+			"keycloak_openid_client_group_policy": {
+				Tok: makeResource(openIDMod, "ClientGroupPolicy"),
+				Docs: &tfbridge.DocInfo{
+					Markdown: []byte(" "),
+				},
+			},
+			"keycloak_openid_client_js_policy": {
+				Tok: makeResource(openIDMod, "ClientJsPolicy"),
+				Docs: &tfbridge.DocInfo{
+					Markdown: []byte(" "),
+				},
+			},
+			"keycloak_openid_client_role_policy": {
+				Tok: makeResource(openIDMod, "ClientRolePolicy"),
+				Docs: &tfbridge.DocInfo{
+					Markdown: []byte(" "),
+				},
+			},
+			"keycloak_openid_client_time_policy": {
+				Tok: makeResource(openIDMod, "ClientTimePolicy"),
+				Docs: &tfbridge.DocInfo{
+					Markdown: []byte(" "),
+				},
+			},
+			"keycloak_openid_client_user_policy": {
+				Tok: makeResource(openIDMod, "ClientUserPolicy"),
+				Docs: &tfbridge.DocInfo{
+					Markdown: []byte(" "),
+				},
+			},
 			"keycloak_openid_user_client_role_protocol_mapper": {
 				Tok: makeResource(openIDMod, "UserClientRoleProtocolMapper"),
 			},
 			"keycloak_openid_user_session_note_protocol_mapper": {
 				Tok: makeResource(openIDMod, "UserSessionNoteProtocolMapper"),
 			},
-			"keycloak_openid_client_permissions": {Tok: makeResource(openIDMod, "ClientPermissions")},
+			"keycloak_openid_client_permissions": {
+				Tok: makeResource(openIDMod, "ClientPermissions"),
+				Docs: &tfbridge.DocInfo{
+					Markdown: []byte(" "),
+				},
+			},
 			"keycloak_openid_audience_resolve_protocol_mapper": {
 				Tok: makeResource(openIDMod, "AudienceResolveProtocolMappter"),
 			},
@@ -234,6 +302,7 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_authentication_execution_config": {Tok: makeResource(authenticationMod, "ExecutionConfig")},
 			"keycloak_authentication_flow":             {Tok: makeResource(authenticationMod, "Flow")},
 			"keycloak_authentication_subflow":          {Tok: makeResource(authenticationMod, "Subflow")},
+			"keycloak_authentication_bindings":         {Tok: makeResource(authenticationMod, "Bindings")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"keycloak_group":                        {Tok: makeDataSource(mainMod, "getGroup")},

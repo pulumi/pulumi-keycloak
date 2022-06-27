@@ -11,16 +11,86 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// This resource can be used to create client policy.
+//
+// ## Example Usage
+//
+// In this example, we'll create a new OpenID client, then enabled permissions for the client. A client without permissions disabled cannot be assigned by a client policy. We'll use the `openid.ClientPolicy` resource to create a new client policy, which could be applied to many clients, for a realm and a resource_server_id.
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// 			Realm:   pulumi.String("my-realm"),
+// 			Enabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		openidClient, err := openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
+// 			ClientId:               pulumi.String("openid_client"),
+// 			RealmId:                realm.ID(),
+// 			AccessType:             pulumi.String("CONFIDENTIAL"),
+// 			ServiceAccountsEnabled: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = openid.NewClientPermissions(ctx, "myPermission", &openid.ClientPermissionsArgs{
+// 			RealmId:  realm.ID(),
+// 			ClientId: openidClient.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		realmManagement, err := openid.LookupClient(ctx, &openid.LookupClientArgs{
+// 			RealmId:  "my-realm",
+// 			ClientId: "realm-management",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = openid.NewClientPolicy(ctx, "tokenExchange", &openid.ClientPolicyArgs{
+// 			ResourceServerId: pulumi.String(realmManagement.Id),
+// 			RealmId:          realm.ID(),
+// 			Logic:            pulumi.String("POSITIVE"),
+// 			DecisionStrategy: pulumi.String("UNANIMOUS"),
+// 			Clients: pulumi.StringArray{
+// 				openidClient.ID(),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type ClientPolicy struct {
 	pulumi.CustomResourceState
 
-	Clients          pulumi.StringArrayOutput `pulumi:"clients"`
-	DecisionStrategy pulumi.StringPtrOutput   `pulumi:"decisionStrategy"`
-	Description      pulumi.StringPtrOutput   `pulumi:"description"`
-	Logic            pulumi.StringPtrOutput   `pulumi:"logic"`
-	Name             pulumi.StringOutput      `pulumi:"name"`
-	RealmId          pulumi.StringOutput      `pulumi:"realmId"`
-	ResourceServerId pulumi.StringOutput      `pulumi:"resourceServerId"`
+	// The clients allowed by this client policy.
+	Clients pulumi.StringArrayOutput `pulumi:"clients"`
+	// (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
+	DecisionStrategy pulumi.StringPtrOutput `pulumi:"decisionStrategy"`
+	// The description of this client policy.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
+	Logic pulumi.StringPtrOutput `pulumi:"logic"`
+	// The name of this client policy.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// The realm this client policy exists within.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The ID of the resource server this client policy is attached to.
+	ResourceServerId pulumi.StringOutput `pulumi:"resourceServerId"`
 }
 
 // NewClientPolicy registers a new resource with the given unique name, arguments, and options.
@@ -61,22 +131,36 @@ func GetClientPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ClientPolicy resources.
 type clientPolicyState struct {
-	Clients          []string `pulumi:"clients"`
-	DecisionStrategy *string  `pulumi:"decisionStrategy"`
-	Description      *string  `pulumi:"description"`
-	Logic            *string  `pulumi:"logic"`
-	Name             *string  `pulumi:"name"`
-	RealmId          *string  `pulumi:"realmId"`
-	ResourceServerId *string  `pulumi:"resourceServerId"`
+	// The clients allowed by this client policy.
+	Clients []string `pulumi:"clients"`
+	// (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
+	DecisionStrategy *string `pulumi:"decisionStrategy"`
+	// The description of this client policy.
+	Description *string `pulumi:"description"`
+	// (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
+	Logic *string `pulumi:"logic"`
+	// The name of this client policy.
+	Name *string `pulumi:"name"`
+	// The realm this client policy exists within.
+	RealmId *string `pulumi:"realmId"`
+	// The ID of the resource server this client policy is attached to.
+	ResourceServerId *string `pulumi:"resourceServerId"`
 }
 
 type ClientPolicyState struct {
-	Clients          pulumi.StringArrayInput
+	// The clients allowed by this client policy.
+	Clients pulumi.StringArrayInput
+	// (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
 	DecisionStrategy pulumi.StringPtrInput
-	Description      pulumi.StringPtrInput
-	Logic            pulumi.StringPtrInput
-	Name             pulumi.StringPtrInput
-	RealmId          pulumi.StringPtrInput
+	// The description of this client policy.
+	Description pulumi.StringPtrInput
+	// (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
+	Logic pulumi.StringPtrInput
+	// The name of this client policy.
+	Name pulumi.StringPtrInput
+	// The realm this client policy exists within.
+	RealmId pulumi.StringPtrInput
+	// The ID of the resource server this client policy is attached to.
 	ResourceServerId pulumi.StringPtrInput
 }
 
@@ -85,23 +169,37 @@ func (ClientPolicyState) ElementType() reflect.Type {
 }
 
 type clientPolicyArgs struct {
-	Clients          []string `pulumi:"clients"`
-	DecisionStrategy *string  `pulumi:"decisionStrategy"`
-	Description      *string  `pulumi:"description"`
-	Logic            *string  `pulumi:"logic"`
-	Name             *string  `pulumi:"name"`
-	RealmId          string   `pulumi:"realmId"`
-	ResourceServerId string   `pulumi:"resourceServerId"`
+	// The clients allowed by this client policy.
+	Clients []string `pulumi:"clients"`
+	// (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
+	DecisionStrategy *string `pulumi:"decisionStrategy"`
+	// The description of this client policy.
+	Description *string `pulumi:"description"`
+	// (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
+	Logic *string `pulumi:"logic"`
+	// The name of this client policy.
+	Name *string `pulumi:"name"`
+	// The realm this client policy exists within.
+	RealmId string `pulumi:"realmId"`
+	// The ID of the resource server this client policy is attached to.
+	ResourceServerId string `pulumi:"resourceServerId"`
 }
 
 // The set of arguments for constructing a ClientPolicy resource.
 type ClientPolicyArgs struct {
-	Clients          pulumi.StringArrayInput
+	// The clients allowed by this client policy.
+	Clients pulumi.StringArrayInput
+	// (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
 	DecisionStrategy pulumi.StringPtrInput
-	Description      pulumi.StringPtrInput
-	Logic            pulumi.StringPtrInput
-	Name             pulumi.StringPtrInput
-	RealmId          pulumi.StringInput
+	// The description of this client policy.
+	Description pulumi.StringPtrInput
+	// (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
+	Logic pulumi.StringPtrInput
+	// The name of this client policy.
+	Name pulumi.StringPtrInput
+	// The realm this client policy exists within.
+	RealmId pulumi.StringInput
+	// The ID of the resource server this client policy is attached to.
 	ResourceServerId pulumi.StringInput
 }
 

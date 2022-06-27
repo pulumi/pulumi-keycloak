@@ -38,6 +38,7 @@ from .realm_keystore_hmac_generated import *
 from .realm_keystore_java_generated import *
 from .realm_keystore_rsa import *
 from .realm_keystore_rsa_generated import *
+from .realm_user_profile import *
 from .required_action import *
 from .role import *
 from .user import *
@@ -73,6 +74,14 @@ else:
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "keycloak",
+  "mod": "authentication/bindings",
+  "fqn": "pulumi_keycloak.authentication",
+  "classes": {
+   "keycloak:authentication/bindings:Bindings": "Bindings"
+  }
+ },
  {
   "pkg": "keycloak",
   "mod": "authentication/execution",
@@ -287,6 +296,14 @@ _utilities.register(
   "fqn": "pulumi_keycloak",
   "classes": {
    "keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated": "RealmKeystoreRsaGenerated"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "index/realmUserProfile",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/realmUserProfile:RealmUserProfile": "RealmUserProfile"
   }
  },
  {

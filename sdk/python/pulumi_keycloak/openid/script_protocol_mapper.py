@@ -400,6 +400,8 @@ class ScriptProtocolMapper(pulumi.CustomResource):
         Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
         multiple different clients.
 
+        > Support for this protocol mapper was removed in Keycloak 18.
+
         ## Example Usage
         ### Client)
 
@@ -478,6 +480,8 @@ class ScriptProtocolMapper(pulumi.CustomResource):
 
         Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
         multiple different clients.
+
+        > Support for this protocol mapper was removed in Keycloak 18.
 
         ## Example Usage
         ### Client)

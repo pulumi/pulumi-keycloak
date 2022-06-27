@@ -691,8 +691,8 @@ github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e h1:Di
 github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e/go.mod h1:sZ9FUzGO+yM41hsQHs/yIcj/Y993qMdBxBU5mpDmAfQ=
 github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20201218231525-9cca98608a5e h1:jl43csgF3BSlNRmjo+TGgjW/uXk9h7+NoR3doKQ0BT4=
 github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20201218231525-9cca98608a5e/go.mod h1:JBItawj+j8Ssla5Ib6BC/W9VQkOucBfnX7VRtyx1vw8=
-github.com/pulumi/terraform-provider-keycloak v0.0.0-20220526120800-abdfa9730405 h1:VgEXIhQ+4w24y0HeG+rr+WIbuhIpwx4tT96COjEJYko=
-github.com/pulumi/terraform-provider-keycloak v0.0.0-20220526120800-abdfa9730405/go.mod h1:QPVBqqagehRW6kFV4EsFyxfoWrclg92DfD5dcXzfk5c=
+github.com/pulumi/terraform-provider-keycloak v0.0.0-20220627121440-100288810647 h1:hw8FmCO9BwykRC2NsRng32YrTxtFxjKNQa7WeTD5HQE=
+github.com/pulumi/terraform-provider-keycloak v0.0.0-20220627121440-100288810647/go.mod h1:QPVBqqagehRW6kFV4EsFyxfoWrclg92DfD5dcXzfk5c=
 github.com/rivo/uniseg v0.2.0 h1:S1pD9weZBuJdFmowNwbpi7BJ8TNftyUImj/0WQi72jY=
 github.com/rivo/uniseg v0.2.0/go.mod h1:J6wj4VEh+S6ZtnVlnTBMWIodfgj8LQOQFoIToxlJtxc=
 github.com/rjeczalik/notify v0.9.2 h1:MiTWrPj55mNDHEiIX5YUSKefw/+lCQVoAFmD6oQm5w8=

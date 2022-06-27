@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "keycloak:authentication/bindings:Bindings":
+		r = &Bindings{}
 	case "keycloak:authentication/execution:Execution":
 		r = &Execution{}
 	case "keycloak:authentication/executionConfig:ExecutionConfig":
@@ -42,6 +44,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"authentication/bindings",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"authentication/execution",

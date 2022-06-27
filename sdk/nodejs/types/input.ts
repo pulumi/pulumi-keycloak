@@ -32,14 +32,14 @@ export interface GetRealmOtpPolicyArgs {
     type?: pulumi.Input<string>;
 }
 
-export interface GetRealmSecurityDefense {
-    bruteForceDetections?: inputs.GetRealmSecurityDefenseBruteForceDetection[];
-    headers?: inputs.GetRealmSecurityDefenseHeader[];
-}
-
 export interface GetRealmSecurityDefenseArgs {
     bruteForceDetections?: pulumi.Input<pulumi.Input<inputs.GetRealmSecurityDefenseBruteForceDetectionArgs>[]>;
     headers?: pulumi.Input<pulumi.Input<inputs.GetRealmSecurityDefenseHeaderArgs>[]>;
+}
+
+export interface GetRealmSecurityDefense {
+    bruteForceDetections?: inputs.GetRealmSecurityDefenseBruteForceDetection[];
+    headers?: inputs.GetRealmSecurityDefenseHeader[];
 }
 
 export interface GetRealmSecurityDefenseBruteForceDetection {
@@ -62,16 +62,6 @@ export interface GetRealmSecurityDefenseBruteForceDetectionArgs {
     waitIncrementSeconds?: pulumi.Input<number>;
 }
 
-export interface GetRealmSecurityDefenseHeader {
-    contentSecurityPolicy?: string;
-    contentSecurityPolicyReportOnly?: string;
-    strictTransportSecurity?: string;
-    xContentTypeOptions?: string;
-    xFrameOptions?: string;
-    xRobotsTag?: string;
-    xXssProtection?: string;
-}
-
 export interface GetRealmSecurityDefenseHeaderArgs {
     contentSecurityPolicy?: pulumi.Input<string>;
     contentSecurityPolicyReportOnly?: pulumi.Input<string>;
@@ -80,6 +70,16 @@ export interface GetRealmSecurityDefenseHeaderArgs {
     xFrameOptions?: pulumi.Input<string>;
     xRobotsTag?: pulumi.Input<string>;
     xXssProtection?: pulumi.Input<string>;
+}
+
+export interface GetRealmSecurityDefenseHeader {
+    contentSecurityPolicy?: string;
+    contentSecurityPolicyReportOnly?: string;
+    strictTransportSecurity?: string;
+    xContentTypeOptions?: string;
+    xFrameOptions?: string;
+    xRobotsTag?: string;
+    xXssProtection?: string;
 }
 
 export interface GetRealmSmtpServerArgs {
@@ -357,6 +357,86 @@ export interface RealmSmtpServerAuth {
     username: pulumi.Input<string>;
 }
 
+export interface RealmUserProfileAttribute {
+    /**
+     * A map of annotations for the group.
+     */
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The display name of the attribute.
+     */
+    displayName?: pulumi.Input<string>;
+    /**
+     * A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
+     */
+    enabledWhenScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The group that the attribute belong to.
+     */
+    group?: pulumi.Input<string>;
+    /**
+     * The name of the group.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The permissions configuration information.
+     */
+    permissions?: pulumi.Input<inputs.RealmUserProfileAttributePermissions>;
+    /**
+     * A list of roles for which the attribute will be required.
+     */
+    requiredForRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A list of scopes for which the attribute will be required.
+     */
+    requiredForScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A list of validators for the attribute.
+     */
+    validators?: pulumi.Input<pulumi.Input<inputs.RealmUserProfileAttributeValidator>[]>;
+}
+
+export interface RealmUserProfileAttributePermissions {
+    /**
+     * A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
+     */
+    edits: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A list of profiles that will be able to view the attribute. One of `admin`, `user`.
+     */
+    views: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface RealmUserProfileAttributeValidator {
+    /**
+     * A map defining the configuration of the validator.
+     */
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The name of the group.
+     */
+    name: pulumi.Input<string>;
+}
+
+export interface RealmUserProfileGroup {
+    /**
+     * A map of annotations for the group.
+     */
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The display description of the group.
+     */
+    displayDescription?: pulumi.Input<string>;
+    /**
+     * The display header of the group.
+     */
+    displayHeader?: pulumi.Input<string>;
+    /**
+     * The name of the group.
+     */
+    name: pulumi.Input<string>;
+}
+
 export interface RealmWebAuthnPasswordlessPolicy {
     /**
      * A set of AAGUIDs for which an authenticator can be registered.
@@ -504,7 +584,6 @@ export interface UsersPermissionsViewScope {
     description?: pulumi.Input<string>;
     policies?: pulumi.Input<pulumi.Input<string>[]>;
 }
-
 export namespace ldap {
     export interface UserFederationCache {
         /**
