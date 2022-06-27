@@ -22,6 +22,10 @@ __all__ = [
     'RealmSecurityDefensesHeaders',
     'RealmSmtpServer',
     'RealmSmtpServerAuth',
+    'RealmUserProfileAttribute',
+    'RealmUserProfileAttributePermissions',
+    'RealmUserProfileAttributeValidator',
+    'RealmUserProfileGroup',
     'RealmWebAuthnPasswordlessPolicy',
     'RealmWebAuthnPolicy',
     'UserFederatedIdentity',
@@ -874,6 +878,275 @@ class RealmSmtpServerAuth(dict):
         The SMTP server username.
         """
         return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class RealmUserProfileAttribute(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "displayName":
+            suggest = "display_name"
+        elif key == "enabledWhenScopes":
+            suggest = "enabled_when_scopes"
+        elif key == "requiredForRoles":
+            suggest = "required_for_roles"
+        elif key == "requiredForScopes":
+            suggest = "required_for_scopes"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RealmUserProfileAttribute. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RealmUserProfileAttribute.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RealmUserProfileAttribute.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 annotations: Optional[Mapping[str, str]] = None,
+                 display_name: Optional[str] = None,
+                 enabled_when_scopes: Optional[Sequence[str]] = None,
+                 group: Optional[str] = None,
+                 permissions: Optional['outputs.RealmUserProfileAttributePermissions'] = None,
+                 required_for_roles: Optional[Sequence[str]] = None,
+                 required_for_scopes: Optional[Sequence[str]] = None,
+                 validators: Optional[Sequence['outputs.RealmUserProfileAttributeValidator']] = None):
+        """
+        :param str name: The name of the group.
+        :param Mapping[str, str] annotations: A map of annotations for the group.
+        :param str display_name: The display name of the attribute.
+        :param Sequence[str] enabled_when_scopes: A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
+        :param str group: The group that the attribute belong to.
+        :param 'RealmUserProfileAttributePermissionsArgs' permissions: The permissions configuration information.
+        :param Sequence[str] required_for_roles: A list of roles for which the attribute will be required.
+        :param Sequence[str] required_for_scopes: A list of scopes for which the attribute will be required.
+        :param Sequence['RealmUserProfileAttributeValidatorArgs'] validators: A list of validators for the attribute.
+        """
+        pulumi.set(__self__, "name", name)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if display_name is not None:
+            pulumi.set(__self__, "display_name", display_name)
+        if enabled_when_scopes is not None:
+            pulumi.set(__self__, "enabled_when_scopes", enabled_when_scopes)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if permissions is not None:
+            pulumi.set(__self__, "permissions", permissions)
+        if required_for_roles is not None:
+            pulumi.set(__self__, "required_for_roles", required_for_roles)
+        if required_for_scopes is not None:
+            pulumi.set(__self__, "required_for_scopes", required_for_scopes)
+        if validators is not None:
+            pulumi.set(__self__, "validators", validators)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the group.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def annotations(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of annotations for the group.
+        """
+        return pulumi.get(self, "annotations")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> Optional[str]:
+        """
+        The display name of the attribute.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="enabledWhenScopes")
+    def enabled_when_scopes(self) -> Optional[Sequence[str]]:
+        """
+        A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
+        """
+        return pulumi.get(self, "enabled_when_scopes")
+
+    @property
+    @pulumi.getter
+    def group(self) -> Optional[str]:
+        """
+        The group that the attribute belong to.
+        """
+        return pulumi.get(self, "group")
+
+    @property
+    @pulumi.getter
+    def permissions(self) -> Optional['outputs.RealmUserProfileAttributePermissions']:
+        """
+        The permissions configuration information.
+        """
+        return pulumi.get(self, "permissions")
+
+    @property
+    @pulumi.getter(name="requiredForRoles")
+    def required_for_roles(self) -> Optional[Sequence[str]]:
+        """
+        A list of roles for which the attribute will be required.
+        """
+        return pulumi.get(self, "required_for_roles")
+
+    @property
+    @pulumi.getter(name="requiredForScopes")
+    def required_for_scopes(self) -> Optional[Sequence[str]]:
+        """
+        A list of scopes for which the attribute will be required.
+        """
+        return pulumi.get(self, "required_for_scopes")
+
+    @property
+    @pulumi.getter
+    def validators(self) -> Optional[Sequence['outputs.RealmUserProfileAttributeValidator']]:
+        """
+        A list of validators for the attribute.
+        """
+        return pulumi.get(self, "validators")
+
+
+@pulumi.output_type
+class RealmUserProfileAttributePermissions(dict):
+    def __init__(__self__, *,
+                 edits: Sequence[str],
+                 views: Sequence[str]):
+        """
+        :param Sequence[str] edits: A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
+        :param Sequence[str] views: A list of profiles that will be able to view the attribute. One of `admin`, `user`.
+        """
+        pulumi.set(__self__, "edits", edits)
+        pulumi.set(__self__, "views", views)
+
+    @property
+    @pulumi.getter
+    def edits(self) -> Sequence[str]:
+        """
+        A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
+        """
+        return pulumi.get(self, "edits")
+
+    @property
+    @pulumi.getter
+    def views(self) -> Sequence[str]:
+        """
+        A list of profiles that will be able to view the attribute. One of `admin`, `user`.
+        """
+        return pulumi.get(self, "views")
+
+
+@pulumi.output_type
+class RealmUserProfileAttributeValidator(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 config: Optional[Mapping[str, str]] = None):
+        """
+        :param str name: The name of the group.
+        :param Mapping[str, str] config: A map defining the configuration of the validator.
+        """
+        pulumi.set(__self__, "name", name)
+        if config is not None:
+            pulumi.set(__self__, "config", config)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the group.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def config(self) -> Optional[Mapping[str, str]]:
+        """
+        A map defining the configuration of the validator.
+        """
+        return pulumi.get(self, "config")
+
+
+@pulumi.output_type
+class RealmUserProfileGroup(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "displayDescription":
+            suggest = "display_description"
+        elif key == "displayHeader":
+            suggest = "display_header"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RealmUserProfileGroup. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RealmUserProfileGroup.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RealmUserProfileGroup.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 annotations: Optional[Mapping[str, str]] = None,
+                 display_description: Optional[str] = None,
+                 display_header: Optional[str] = None):
+        """
+        :param str name: The name of the group.
+        :param Mapping[str, str] annotations: A map of annotations for the group.
+        :param str display_description: The display description of the group.
+        :param str display_header: The display header of the group.
+        """
+        pulumi.set(__self__, "name", name)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if display_description is not None:
+            pulumi.set(__self__, "display_description", display_description)
+        if display_header is not None:
+            pulumi.set(__self__, "display_header", display_header)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the group.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def annotations(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of annotations for the group.
+        """
+        return pulumi.get(self, "annotations")
+
+    @property
+    @pulumi.getter(name="displayDescription")
+    def display_description(self) -> Optional[str]:
+        """
+        The display description of the group.
+        """
+        return pulumi.get(self, "display_description")
+
+    @property
+    @pulumi.getter(name="displayHeader")
+    def display_header(self) -> Optional[str]:
+        """
+        The display header of the group.
+        """
+        return pulumi.get(self, "display_header")
 
 
 @pulumi.output_type

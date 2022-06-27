@@ -2327,6 +2327,561 @@ func (o RealmSmtpServerAuthPtrOutput) Username() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type RealmUserProfileAttribute struct {
+	// A map of annotations for the group.
+	Annotations map[string]string `pulumi:"annotations"`
+	// The display name of the attribute.
+	DisplayName *string `pulumi:"displayName"`
+	// A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
+	EnabledWhenScopes []string `pulumi:"enabledWhenScopes"`
+	// The group that the attribute belong to.
+	Group *string `pulumi:"group"`
+	// The name of the group.
+	Name string `pulumi:"name"`
+	// The permissions configuration information.
+	Permissions *RealmUserProfileAttributePermissions `pulumi:"permissions"`
+	// A list of roles for which the attribute will be required.
+	RequiredForRoles []string `pulumi:"requiredForRoles"`
+	// A list of scopes for which the attribute will be required.
+	RequiredForScopes []string `pulumi:"requiredForScopes"`
+	// A list of validators for the attribute.
+	Validators []RealmUserProfileAttributeValidator `pulumi:"validators"`
+}
+
+// RealmUserProfileAttributeInput is an input type that accepts RealmUserProfileAttributeArgs and RealmUserProfileAttributeOutput values.
+// You can construct a concrete instance of `RealmUserProfileAttributeInput` via:
+//
+//          RealmUserProfileAttributeArgs{...}
+type RealmUserProfileAttributeInput interface {
+	pulumi.Input
+
+	ToRealmUserProfileAttributeOutput() RealmUserProfileAttributeOutput
+	ToRealmUserProfileAttributeOutputWithContext(context.Context) RealmUserProfileAttributeOutput
+}
+
+type RealmUserProfileAttributeArgs struct {
+	// A map of annotations for the group.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// The display name of the attribute.
+	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
+	// A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
+	EnabledWhenScopes pulumi.StringArrayInput `pulumi:"enabledWhenScopes"`
+	// The group that the attribute belong to.
+	Group pulumi.StringPtrInput `pulumi:"group"`
+	// The name of the group.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The permissions configuration information.
+	Permissions RealmUserProfileAttributePermissionsPtrInput `pulumi:"permissions"`
+	// A list of roles for which the attribute will be required.
+	RequiredForRoles pulumi.StringArrayInput `pulumi:"requiredForRoles"`
+	// A list of scopes for which the attribute will be required.
+	RequiredForScopes pulumi.StringArrayInput `pulumi:"requiredForScopes"`
+	// A list of validators for the attribute.
+	Validators RealmUserProfileAttributeValidatorArrayInput `pulumi:"validators"`
+}
+
+func (RealmUserProfileAttributeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmUserProfileAttribute)(nil)).Elem()
+}
+
+func (i RealmUserProfileAttributeArgs) ToRealmUserProfileAttributeOutput() RealmUserProfileAttributeOutput {
+	return i.ToRealmUserProfileAttributeOutputWithContext(context.Background())
+}
+
+func (i RealmUserProfileAttributeArgs) ToRealmUserProfileAttributeOutputWithContext(ctx context.Context) RealmUserProfileAttributeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileAttributeOutput)
+}
+
+// RealmUserProfileAttributeArrayInput is an input type that accepts RealmUserProfileAttributeArray and RealmUserProfileAttributeArrayOutput values.
+// You can construct a concrete instance of `RealmUserProfileAttributeArrayInput` via:
+//
+//          RealmUserProfileAttributeArray{ RealmUserProfileAttributeArgs{...} }
+type RealmUserProfileAttributeArrayInput interface {
+	pulumi.Input
+
+	ToRealmUserProfileAttributeArrayOutput() RealmUserProfileAttributeArrayOutput
+	ToRealmUserProfileAttributeArrayOutputWithContext(context.Context) RealmUserProfileAttributeArrayOutput
+}
+
+type RealmUserProfileAttributeArray []RealmUserProfileAttributeInput
+
+func (RealmUserProfileAttributeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RealmUserProfileAttribute)(nil)).Elem()
+}
+
+func (i RealmUserProfileAttributeArray) ToRealmUserProfileAttributeArrayOutput() RealmUserProfileAttributeArrayOutput {
+	return i.ToRealmUserProfileAttributeArrayOutputWithContext(context.Background())
+}
+
+func (i RealmUserProfileAttributeArray) ToRealmUserProfileAttributeArrayOutputWithContext(ctx context.Context) RealmUserProfileAttributeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileAttributeArrayOutput)
+}
+
+type RealmUserProfileAttributeOutput struct{ *pulumi.OutputState }
+
+func (RealmUserProfileAttributeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmUserProfileAttribute)(nil)).Elem()
+}
+
+func (o RealmUserProfileAttributeOutput) ToRealmUserProfileAttributeOutput() RealmUserProfileAttributeOutput {
+	return o
+}
+
+func (o RealmUserProfileAttributeOutput) ToRealmUserProfileAttributeOutputWithContext(ctx context.Context) RealmUserProfileAttributeOutput {
+	return o
+}
+
+// A map of annotations for the group.
+func (o RealmUserProfileAttributeOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RealmUserProfileAttribute) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// The display name of the attribute.
+func (o RealmUserProfileAttributeOutput) DisplayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RealmUserProfileAttribute) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
+}
+
+// A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
+func (o RealmUserProfileAttributeOutput) EnabledWhenScopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RealmUserProfileAttribute) []string { return v.EnabledWhenScopes }).(pulumi.StringArrayOutput)
+}
+
+// The group that the attribute belong to.
+func (o RealmUserProfileAttributeOutput) Group() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RealmUserProfileAttribute) *string { return v.Group }).(pulumi.StringPtrOutput)
+}
+
+// The name of the group.
+func (o RealmUserProfileAttributeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v RealmUserProfileAttribute) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The permissions configuration information.
+func (o RealmUserProfileAttributeOutput) Permissions() RealmUserProfileAttributePermissionsPtrOutput {
+	return o.ApplyT(func(v RealmUserProfileAttribute) *RealmUserProfileAttributePermissions { return v.Permissions }).(RealmUserProfileAttributePermissionsPtrOutput)
+}
+
+// A list of roles for which the attribute will be required.
+func (o RealmUserProfileAttributeOutput) RequiredForRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RealmUserProfileAttribute) []string { return v.RequiredForRoles }).(pulumi.StringArrayOutput)
+}
+
+// A list of scopes for which the attribute will be required.
+func (o RealmUserProfileAttributeOutput) RequiredForScopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RealmUserProfileAttribute) []string { return v.RequiredForScopes }).(pulumi.StringArrayOutput)
+}
+
+// A list of validators for the attribute.
+func (o RealmUserProfileAttributeOutput) Validators() RealmUserProfileAttributeValidatorArrayOutput {
+	return o.ApplyT(func(v RealmUserProfileAttribute) []RealmUserProfileAttributeValidator { return v.Validators }).(RealmUserProfileAttributeValidatorArrayOutput)
+}
+
+type RealmUserProfileAttributeArrayOutput struct{ *pulumi.OutputState }
+
+func (RealmUserProfileAttributeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RealmUserProfileAttribute)(nil)).Elem()
+}
+
+func (o RealmUserProfileAttributeArrayOutput) ToRealmUserProfileAttributeArrayOutput() RealmUserProfileAttributeArrayOutput {
+	return o
+}
+
+func (o RealmUserProfileAttributeArrayOutput) ToRealmUserProfileAttributeArrayOutputWithContext(ctx context.Context) RealmUserProfileAttributeArrayOutput {
+	return o
+}
+
+func (o RealmUserProfileAttributeArrayOutput) Index(i pulumi.IntInput) RealmUserProfileAttributeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RealmUserProfileAttribute {
+		return vs[0].([]RealmUserProfileAttribute)[vs[1].(int)]
+	}).(RealmUserProfileAttributeOutput)
+}
+
+type RealmUserProfileAttributePermissions struct {
+	// A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
+	Edits []string `pulumi:"edits"`
+	// A list of profiles that will be able to view the attribute. One of `admin`, `user`.
+	Views []string `pulumi:"views"`
+}
+
+// RealmUserProfileAttributePermissionsInput is an input type that accepts RealmUserProfileAttributePermissionsArgs and RealmUserProfileAttributePermissionsOutput values.
+// You can construct a concrete instance of `RealmUserProfileAttributePermissionsInput` via:
+//
+//          RealmUserProfileAttributePermissionsArgs{...}
+type RealmUserProfileAttributePermissionsInput interface {
+	pulumi.Input
+
+	ToRealmUserProfileAttributePermissionsOutput() RealmUserProfileAttributePermissionsOutput
+	ToRealmUserProfileAttributePermissionsOutputWithContext(context.Context) RealmUserProfileAttributePermissionsOutput
+}
+
+type RealmUserProfileAttributePermissionsArgs struct {
+	// A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
+	Edits pulumi.StringArrayInput `pulumi:"edits"`
+	// A list of profiles that will be able to view the attribute. One of `admin`, `user`.
+	Views pulumi.StringArrayInput `pulumi:"views"`
+}
+
+func (RealmUserProfileAttributePermissionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmUserProfileAttributePermissions)(nil)).Elem()
+}
+
+func (i RealmUserProfileAttributePermissionsArgs) ToRealmUserProfileAttributePermissionsOutput() RealmUserProfileAttributePermissionsOutput {
+	return i.ToRealmUserProfileAttributePermissionsOutputWithContext(context.Background())
+}
+
+func (i RealmUserProfileAttributePermissionsArgs) ToRealmUserProfileAttributePermissionsOutputWithContext(ctx context.Context) RealmUserProfileAttributePermissionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileAttributePermissionsOutput)
+}
+
+func (i RealmUserProfileAttributePermissionsArgs) ToRealmUserProfileAttributePermissionsPtrOutput() RealmUserProfileAttributePermissionsPtrOutput {
+	return i.ToRealmUserProfileAttributePermissionsPtrOutputWithContext(context.Background())
+}
+
+func (i RealmUserProfileAttributePermissionsArgs) ToRealmUserProfileAttributePermissionsPtrOutputWithContext(ctx context.Context) RealmUserProfileAttributePermissionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileAttributePermissionsOutput).ToRealmUserProfileAttributePermissionsPtrOutputWithContext(ctx)
+}
+
+// RealmUserProfileAttributePermissionsPtrInput is an input type that accepts RealmUserProfileAttributePermissionsArgs, RealmUserProfileAttributePermissionsPtr and RealmUserProfileAttributePermissionsPtrOutput values.
+// You can construct a concrete instance of `RealmUserProfileAttributePermissionsPtrInput` via:
+//
+//          RealmUserProfileAttributePermissionsArgs{...}
+//
+//  or:
+//
+//          nil
+type RealmUserProfileAttributePermissionsPtrInput interface {
+	pulumi.Input
+
+	ToRealmUserProfileAttributePermissionsPtrOutput() RealmUserProfileAttributePermissionsPtrOutput
+	ToRealmUserProfileAttributePermissionsPtrOutputWithContext(context.Context) RealmUserProfileAttributePermissionsPtrOutput
+}
+
+type realmUserProfileAttributePermissionsPtrType RealmUserProfileAttributePermissionsArgs
+
+func RealmUserProfileAttributePermissionsPtr(v *RealmUserProfileAttributePermissionsArgs) RealmUserProfileAttributePermissionsPtrInput {
+	return (*realmUserProfileAttributePermissionsPtrType)(v)
+}
+
+func (*realmUserProfileAttributePermissionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RealmUserProfileAttributePermissions)(nil)).Elem()
+}
+
+func (i *realmUserProfileAttributePermissionsPtrType) ToRealmUserProfileAttributePermissionsPtrOutput() RealmUserProfileAttributePermissionsPtrOutput {
+	return i.ToRealmUserProfileAttributePermissionsPtrOutputWithContext(context.Background())
+}
+
+func (i *realmUserProfileAttributePermissionsPtrType) ToRealmUserProfileAttributePermissionsPtrOutputWithContext(ctx context.Context) RealmUserProfileAttributePermissionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileAttributePermissionsPtrOutput)
+}
+
+type RealmUserProfileAttributePermissionsOutput struct{ *pulumi.OutputState }
+
+func (RealmUserProfileAttributePermissionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmUserProfileAttributePermissions)(nil)).Elem()
+}
+
+func (o RealmUserProfileAttributePermissionsOutput) ToRealmUserProfileAttributePermissionsOutput() RealmUserProfileAttributePermissionsOutput {
+	return o
+}
+
+func (o RealmUserProfileAttributePermissionsOutput) ToRealmUserProfileAttributePermissionsOutputWithContext(ctx context.Context) RealmUserProfileAttributePermissionsOutput {
+	return o
+}
+
+func (o RealmUserProfileAttributePermissionsOutput) ToRealmUserProfileAttributePermissionsPtrOutput() RealmUserProfileAttributePermissionsPtrOutput {
+	return o.ToRealmUserProfileAttributePermissionsPtrOutputWithContext(context.Background())
+}
+
+func (o RealmUserProfileAttributePermissionsOutput) ToRealmUserProfileAttributePermissionsPtrOutputWithContext(ctx context.Context) RealmUserProfileAttributePermissionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmUserProfileAttributePermissions) *RealmUserProfileAttributePermissions {
+		return &v
+	}).(RealmUserProfileAttributePermissionsPtrOutput)
+}
+
+// A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
+func (o RealmUserProfileAttributePermissionsOutput) Edits() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RealmUserProfileAttributePermissions) []string { return v.Edits }).(pulumi.StringArrayOutput)
+}
+
+// A list of profiles that will be able to view the attribute. One of `admin`, `user`.
+func (o RealmUserProfileAttributePermissionsOutput) Views() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RealmUserProfileAttributePermissions) []string { return v.Views }).(pulumi.StringArrayOutput)
+}
+
+type RealmUserProfileAttributePermissionsPtrOutput struct{ *pulumi.OutputState }
+
+func (RealmUserProfileAttributePermissionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RealmUserProfileAttributePermissions)(nil)).Elem()
+}
+
+func (o RealmUserProfileAttributePermissionsPtrOutput) ToRealmUserProfileAttributePermissionsPtrOutput() RealmUserProfileAttributePermissionsPtrOutput {
+	return o
+}
+
+func (o RealmUserProfileAttributePermissionsPtrOutput) ToRealmUserProfileAttributePermissionsPtrOutputWithContext(ctx context.Context) RealmUserProfileAttributePermissionsPtrOutput {
+	return o
+}
+
+func (o RealmUserProfileAttributePermissionsPtrOutput) Elem() RealmUserProfileAttributePermissionsOutput {
+	return o.ApplyT(func(v *RealmUserProfileAttributePermissions) RealmUserProfileAttributePermissions {
+		if v != nil {
+			return *v
+		}
+		var ret RealmUserProfileAttributePermissions
+		return ret
+	}).(RealmUserProfileAttributePermissionsOutput)
+}
+
+// A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
+func (o RealmUserProfileAttributePermissionsPtrOutput) Edits() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RealmUserProfileAttributePermissions) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Edits
+	}).(pulumi.StringArrayOutput)
+}
+
+// A list of profiles that will be able to view the attribute. One of `admin`, `user`.
+func (o RealmUserProfileAttributePermissionsPtrOutput) Views() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RealmUserProfileAttributePermissions) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Views
+	}).(pulumi.StringArrayOutput)
+}
+
+type RealmUserProfileAttributeValidator struct {
+	// A map defining the configuration of the validator.
+	Config map[string]string `pulumi:"config"`
+	// The name of the group.
+	Name string `pulumi:"name"`
+}
+
+// RealmUserProfileAttributeValidatorInput is an input type that accepts RealmUserProfileAttributeValidatorArgs and RealmUserProfileAttributeValidatorOutput values.
+// You can construct a concrete instance of `RealmUserProfileAttributeValidatorInput` via:
+//
+//          RealmUserProfileAttributeValidatorArgs{...}
+type RealmUserProfileAttributeValidatorInput interface {
+	pulumi.Input
+
+	ToRealmUserProfileAttributeValidatorOutput() RealmUserProfileAttributeValidatorOutput
+	ToRealmUserProfileAttributeValidatorOutputWithContext(context.Context) RealmUserProfileAttributeValidatorOutput
+}
+
+type RealmUserProfileAttributeValidatorArgs struct {
+	// A map defining the configuration of the validator.
+	Config pulumi.StringMapInput `pulumi:"config"`
+	// The name of the group.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (RealmUserProfileAttributeValidatorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmUserProfileAttributeValidator)(nil)).Elem()
+}
+
+func (i RealmUserProfileAttributeValidatorArgs) ToRealmUserProfileAttributeValidatorOutput() RealmUserProfileAttributeValidatorOutput {
+	return i.ToRealmUserProfileAttributeValidatorOutputWithContext(context.Background())
+}
+
+func (i RealmUserProfileAttributeValidatorArgs) ToRealmUserProfileAttributeValidatorOutputWithContext(ctx context.Context) RealmUserProfileAttributeValidatorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileAttributeValidatorOutput)
+}
+
+// RealmUserProfileAttributeValidatorArrayInput is an input type that accepts RealmUserProfileAttributeValidatorArray and RealmUserProfileAttributeValidatorArrayOutput values.
+// You can construct a concrete instance of `RealmUserProfileAttributeValidatorArrayInput` via:
+//
+//          RealmUserProfileAttributeValidatorArray{ RealmUserProfileAttributeValidatorArgs{...} }
+type RealmUserProfileAttributeValidatorArrayInput interface {
+	pulumi.Input
+
+	ToRealmUserProfileAttributeValidatorArrayOutput() RealmUserProfileAttributeValidatorArrayOutput
+	ToRealmUserProfileAttributeValidatorArrayOutputWithContext(context.Context) RealmUserProfileAttributeValidatorArrayOutput
+}
+
+type RealmUserProfileAttributeValidatorArray []RealmUserProfileAttributeValidatorInput
+
+func (RealmUserProfileAttributeValidatorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RealmUserProfileAttributeValidator)(nil)).Elem()
+}
+
+func (i RealmUserProfileAttributeValidatorArray) ToRealmUserProfileAttributeValidatorArrayOutput() RealmUserProfileAttributeValidatorArrayOutput {
+	return i.ToRealmUserProfileAttributeValidatorArrayOutputWithContext(context.Background())
+}
+
+func (i RealmUserProfileAttributeValidatorArray) ToRealmUserProfileAttributeValidatorArrayOutputWithContext(ctx context.Context) RealmUserProfileAttributeValidatorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileAttributeValidatorArrayOutput)
+}
+
+type RealmUserProfileAttributeValidatorOutput struct{ *pulumi.OutputState }
+
+func (RealmUserProfileAttributeValidatorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmUserProfileAttributeValidator)(nil)).Elem()
+}
+
+func (o RealmUserProfileAttributeValidatorOutput) ToRealmUserProfileAttributeValidatorOutput() RealmUserProfileAttributeValidatorOutput {
+	return o
+}
+
+func (o RealmUserProfileAttributeValidatorOutput) ToRealmUserProfileAttributeValidatorOutputWithContext(ctx context.Context) RealmUserProfileAttributeValidatorOutput {
+	return o
+}
+
+// A map defining the configuration of the validator.
+func (o RealmUserProfileAttributeValidatorOutput) Config() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RealmUserProfileAttributeValidator) map[string]string { return v.Config }).(pulumi.StringMapOutput)
+}
+
+// The name of the group.
+func (o RealmUserProfileAttributeValidatorOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v RealmUserProfileAttributeValidator) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type RealmUserProfileAttributeValidatorArrayOutput struct{ *pulumi.OutputState }
+
+func (RealmUserProfileAttributeValidatorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RealmUserProfileAttributeValidator)(nil)).Elem()
+}
+
+func (o RealmUserProfileAttributeValidatorArrayOutput) ToRealmUserProfileAttributeValidatorArrayOutput() RealmUserProfileAttributeValidatorArrayOutput {
+	return o
+}
+
+func (o RealmUserProfileAttributeValidatorArrayOutput) ToRealmUserProfileAttributeValidatorArrayOutputWithContext(ctx context.Context) RealmUserProfileAttributeValidatorArrayOutput {
+	return o
+}
+
+func (o RealmUserProfileAttributeValidatorArrayOutput) Index(i pulumi.IntInput) RealmUserProfileAttributeValidatorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RealmUserProfileAttributeValidator {
+		return vs[0].([]RealmUserProfileAttributeValidator)[vs[1].(int)]
+	}).(RealmUserProfileAttributeValidatorOutput)
+}
+
+type RealmUserProfileGroup struct {
+	// A map of annotations for the group.
+	Annotations map[string]string `pulumi:"annotations"`
+	// The display description of the group.
+	DisplayDescription *string `pulumi:"displayDescription"`
+	// The display header of the group.
+	DisplayHeader *string `pulumi:"displayHeader"`
+	// The name of the group.
+	Name string `pulumi:"name"`
+}
+
+// RealmUserProfileGroupInput is an input type that accepts RealmUserProfileGroupArgs and RealmUserProfileGroupOutput values.
+// You can construct a concrete instance of `RealmUserProfileGroupInput` via:
+//
+//          RealmUserProfileGroupArgs{...}
+type RealmUserProfileGroupInput interface {
+	pulumi.Input
+
+	ToRealmUserProfileGroupOutput() RealmUserProfileGroupOutput
+	ToRealmUserProfileGroupOutputWithContext(context.Context) RealmUserProfileGroupOutput
+}
+
+type RealmUserProfileGroupArgs struct {
+	// A map of annotations for the group.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// The display description of the group.
+	DisplayDescription pulumi.StringPtrInput `pulumi:"displayDescription"`
+	// The display header of the group.
+	DisplayHeader pulumi.StringPtrInput `pulumi:"displayHeader"`
+	// The name of the group.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (RealmUserProfileGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmUserProfileGroup)(nil)).Elem()
+}
+
+func (i RealmUserProfileGroupArgs) ToRealmUserProfileGroupOutput() RealmUserProfileGroupOutput {
+	return i.ToRealmUserProfileGroupOutputWithContext(context.Background())
+}
+
+func (i RealmUserProfileGroupArgs) ToRealmUserProfileGroupOutputWithContext(ctx context.Context) RealmUserProfileGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileGroupOutput)
+}
+
+// RealmUserProfileGroupArrayInput is an input type that accepts RealmUserProfileGroupArray and RealmUserProfileGroupArrayOutput values.
+// You can construct a concrete instance of `RealmUserProfileGroupArrayInput` via:
+//
+//          RealmUserProfileGroupArray{ RealmUserProfileGroupArgs{...} }
+type RealmUserProfileGroupArrayInput interface {
+	pulumi.Input
+
+	ToRealmUserProfileGroupArrayOutput() RealmUserProfileGroupArrayOutput
+	ToRealmUserProfileGroupArrayOutputWithContext(context.Context) RealmUserProfileGroupArrayOutput
+}
+
+type RealmUserProfileGroupArray []RealmUserProfileGroupInput
+
+func (RealmUserProfileGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RealmUserProfileGroup)(nil)).Elem()
+}
+
+func (i RealmUserProfileGroupArray) ToRealmUserProfileGroupArrayOutput() RealmUserProfileGroupArrayOutput {
+	return i.ToRealmUserProfileGroupArrayOutputWithContext(context.Background())
+}
+
+func (i RealmUserProfileGroupArray) ToRealmUserProfileGroupArrayOutputWithContext(ctx context.Context) RealmUserProfileGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileGroupArrayOutput)
+}
+
+type RealmUserProfileGroupOutput struct{ *pulumi.OutputState }
+
+func (RealmUserProfileGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmUserProfileGroup)(nil)).Elem()
+}
+
+func (o RealmUserProfileGroupOutput) ToRealmUserProfileGroupOutput() RealmUserProfileGroupOutput {
+	return o
+}
+
+func (o RealmUserProfileGroupOutput) ToRealmUserProfileGroupOutputWithContext(ctx context.Context) RealmUserProfileGroupOutput {
+	return o
+}
+
+// A map of annotations for the group.
+func (o RealmUserProfileGroupOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RealmUserProfileGroup) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// The display description of the group.
+func (o RealmUserProfileGroupOutput) DisplayDescription() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RealmUserProfileGroup) *string { return v.DisplayDescription }).(pulumi.StringPtrOutput)
+}
+
+// The display header of the group.
+func (o RealmUserProfileGroupOutput) DisplayHeader() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RealmUserProfileGroup) *string { return v.DisplayHeader }).(pulumi.StringPtrOutput)
+}
+
+// The name of the group.
+func (o RealmUserProfileGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v RealmUserProfileGroup) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type RealmUserProfileGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (RealmUserProfileGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RealmUserProfileGroup)(nil)).Elem()
+}
+
+func (o RealmUserProfileGroupArrayOutput) ToRealmUserProfileGroupArrayOutput() RealmUserProfileGroupArrayOutput {
+	return o
+}
+
+func (o RealmUserProfileGroupArrayOutput) ToRealmUserProfileGroupArrayOutputWithContext(ctx context.Context) RealmUserProfileGroupArrayOutput {
+	return o
+}
+
+func (o RealmUserProfileGroupArrayOutput) Index(i pulumi.IntInput) RealmUserProfileGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RealmUserProfileGroup {
+		return vs[0].([]RealmUserProfileGroup)[vs[1].(int)]
+	}).(RealmUserProfileGroupOutput)
+}
+
 type RealmWebAuthnPasswordlessPolicy struct {
 	// A set of AAGUIDs for which an authenticator can be registered.
 	AcceptableAaguids []string `pulumi:"acceptableAaguids"`
@@ -5949,6 +6504,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmSmtpServerPtrInput)(nil)).Elem(), RealmSmtpServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmSmtpServerAuthInput)(nil)).Elem(), RealmSmtpServerAuthArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmSmtpServerAuthPtrInput)(nil)).Elem(), RealmSmtpServerAuthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmUserProfileAttributeInput)(nil)).Elem(), RealmUserProfileAttributeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmUserProfileAttributeArrayInput)(nil)).Elem(), RealmUserProfileAttributeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmUserProfileAttributePermissionsInput)(nil)).Elem(), RealmUserProfileAttributePermissionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmUserProfileAttributePermissionsPtrInput)(nil)).Elem(), RealmUserProfileAttributePermissionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmUserProfileAttributeValidatorInput)(nil)).Elem(), RealmUserProfileAttributeValidatorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmUserProfileAttributeValidatorArrayInput)(nil)).Elem(), RealmUserProfileAttributeValidatorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmUserProfileGroupInput)(nil)).Elem(), RealmUserProfileGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmUserProfileGroupArrayInput)(nil)).Elem(), RealmUserProfileGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmWebAuthnPasswordlessPolicyInput)(nil)).Elem(), RealmWebAuthnPasswordlessPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmWebAuthnPasswordlessPolicyPtrInput)(nil)).Elem(), RealmWebAuthnPasswordlessPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmWebAuthnPolicyInput)(nil)).Elem(), RealmWebAuthnPolicyArgs{})
@@ -6015,6 +6578,14 @@ func init() {
 	pulumi.RegisterOutputType(RealmSmtpServerPtrOutput{})
 	pulumi.RegisterOutputType(RealmSmtpServerAuthOutput{})
 	pulumi.RegisterOutputType(RealmSmtpServerAuthPtrOutput{})
+	pulumi.RegisterOutputType(RealmUserProfileAttributeOutput{})
+	pulumi.RegisterOutputType(RealmUserProfileAttributeArrayOutput{})
+	pulumi.RegisterOutputType(RealmUserProfileAttributePermissionsOutput{})
+	pulumi.RegisterOutputType(RealmUserProfileAttributePermissionsPtrOutput{})
+	pulumi.RegisterOutputType(RealmUserProfileAttributeValidatorOutput{})
+	pulumi.RegisterOutputType(RealmUserProfileAttributeValidatorArrayOutput{})
+	pulumi.RegisterOutputType(RealmUserProfileGroupOutput{})
+	pulumi.RegisterOutputType(RealmUserProfileGroupArrayOutput{})
 	pulumi.RegisterOutputType(RealmWebAuthnPasswordlessPolicyOutput{})
 	pulumi.RegisterOutputType(RealmWebAuthnPasswordlessPolicyPtrOutput{})
 	pulumi.RegisterOutputType(RealmWebAuthnPolicyOutput{})

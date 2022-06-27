@@ -66,6 +66,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RealmKeystoreRsa{}
 	case "keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated":
 		r = &RealmKeystoreRsaGenerated{}
+	case "keycloak:index/realmUserProfile:RealmUserProfile":
+		r = &RealmUserProfile{}
 	case "keycloak:index/requiredAction:RequiredAction":
 		r = &RequiredAction{}
 	case "keycloak:index/role:Role":
@@ -221,6 +223,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"index/realmKeystoreRsaGenerated",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/realmUserProfile",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

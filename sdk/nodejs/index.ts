@@ -38,6 +38,7 @@ export * from "./realmKeystoreHmacGenerated";
 export * from "./realmKeystoreJavaGenerated";
 export * from "./realmKeystoreRsa";
 export * from "./realmKeystoreRsaGenerated";
+export * from "./realmUserProfile";
 export * from "./requiredAction";
 export * from "./role";
 export * from "./user";
@@ -89,6 +90,7 @@ import { RealmKeystoreHmacGenerated } from "./realmKeystoreHmacGenerated";
 import { RealmKeystoreJavaGenerated } from "./realmKeystoreJavaGenerated";
 import { RealmKeystoreRsa } from "./realmKeystoreRsa";
 import { RealmKeystoreRsaGenerated } from "./realmKeystoreRsaGenerated";
+import { RealmUserProfile } from "./realmUserProfile";
 import { RequiredAction } from "./requiredAction";
 import { Role } from "./role";
 import { User } from "./user";
@@ -147,6 +149,8 @@ const _module = {
                 return new RealmKeystoreRsa(name, <any>undefined, { urn })
             case "keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated":
                 return new RealmKeystoreRsaGenerated(name, <any>undefined, { urn })
+            case "keycloak:index/realmUserProfile:RealmUserProfile":
+                return new RealmUserProfile(name, <any>undefined, { urn })
             case "keycloak:index/requiredAction:RequiredAction":
                 return new RequiredAction(name, <any>undefined, { urn })
             case "keycloak:index/role:Role":
@@ -189,6 +193,7 @@ pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreHmacGenera
 pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreJavaGenerated", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreRsa", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreRsaGenerated", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/realmUserProfile", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/requiredAction", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/role", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/user", _module)

@@ -5,12 +5,14 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export * from "./bindings";
 export * from "./execution";
 export * from "./executionConfig";
 export * from "./flow";
 export * from "./subflow";
 
 // Import resources to register:
+import { Bindings } from "./bindings";
 import { Execution } from "./execution";
 import { ExecutionConfig } from "./executionConfig";
 import { Flow } from "./flow";
@@ -20,6 +22,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "keycloak:authentication/bindings:Bindings":
+                return new Bindings(name, <any>undefined, { urn })
             case "keycloak:authentication/execution:Execution":
                 return new Execution(name, <any>undefined, { urn })
             case "keycloak:authentication/executionConfig:ExecutionConfig":
@@ -33,6 +37,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("keycloak", "authentication/bindings", _module)
 pulumi.runtime.registerResourceModule("keycloak", "authentication/execution", _module)
 pulumi.runtime.registerResourceModule("keycloak", "authentication/executionConfig", _module)
 pulumi.runtime.registerResourceModule("keycloak", "authentication/flow", _module)

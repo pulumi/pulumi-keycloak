@@ -15,6 +15,7 @@
     "files": [
         "attributeImporterIdentityProviderMapper.ts",
         "attributeToRoleIdentityMapper.ts",
+        "authentication/bindings.ts",
         "authentication/execution.ts",
         "authentication/executionConfig.ts",
         "authentication/flow.ts",
@@ -100,6 +101,7 @@
         "realmKeystoreJavaGenerated.ts",
         "realmKeystoreRsa.ts",
         "realmKeystoreRsaGenerated.ts",
+        "realmUserProfile.ts",
         "requiredAction.ts",
         "role.ts",
         "saml/client.ts",
