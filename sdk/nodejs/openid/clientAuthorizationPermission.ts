@@ -38,6 +38,7 @@ export class ClientAuthorizationPermission extends pulumi.CustomResource {
     public readonly policies!: pulumi.Output<string[] | undefined>;
     public readonly realmId!: pulumi.Output<string>;
     public readonly resourceServerId!: pulumi.Output<string>;
+    public readonly resourceType!: pulumi.Output<string | undefined>;
     public readonly resources!: pulumi.Output<string[] | undefined>;
     public readonly scopes!: pulumi.Output<string[] | undefined>;
     public readonly type!: pulumi.Output<string | undefined>;
@@ -61,6 +62,7 @@ export class ClientAuthorizationPermission extends pulumi.CustomResource {
             resourceInputs["policies"] = state ? state.policies : undefined;
             resourceInputs["realmId"] = state ? state.realmId : undefined;
             resourceInputs["resourceServerId"] = state ? state.resourceServerId : undefined;
+            resourceInputs["resourceType"] = state ? state.resourceType : undefined;
             resourceInputs["resources"] = state ? state.resources : undefined;
             resourceInputs["scopes"] = state ? state.scopes : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -78,6 +80,7 @@ export class ClientAuthorizationPermission extends pulumi.CustomResource {
             resourceInputs["policies"] = args ? args.policies : undefined;
             resourceInputs["realmId"] = args ? args.realmId : undefined;
             resourceInputs["resourceServerId"] = args ? args.resourceServerId : undefined;
+            resourceInputs["resourceType"] = args ? args.resourceType : undefined;
             resourceInputs["resources"] = args ? args.resources : undefined;
             resourceInputs["scopes"] = args ? args.scopes : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
@@ -97,6 +100,7 @@ export interface ClientAuthorizationPermissionState {
     policies?: pulumi.Input<pulumi.Input<string>[]>;
     realmId?: pulumi.Input<string>;
     resourceServerId?: pulumi.Input<string>;
+    resourceType?: pulumi.Input<string>;
     resources?: pulumi.Input<pulumi.Input<string>[]>;
     scopes?: pulumi.Input<pulumi.Input<string>[]>;
     type?: pulumi.Input<string>;
@@ -112,6 +116,7 @@ export interface ClientAuthorizationPermissionArgs {
     policies?: pulumi.Input<pulumi.Input<string>[]>;
     realmId: pulumi.Input<string>;
     resourceServerId: pulumi.Input<string>;
+    resourceType?: pulumi.Input<string>;
     resources?: pulumi.Input<pulumi.Input<string>[]>;
     scopes?: pulumi.Input<pulumi.Input<string>[]>;
     type?: pulumi.Input<string>;

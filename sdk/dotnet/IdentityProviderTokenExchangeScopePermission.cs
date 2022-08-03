@@ -22,7 +22,7 @@ namespace Pulumi.Keycloak
     ///     {
     ///         var tokenExchangeRealm = new Keycloak.Realm("tokenExchangeRealm", new Keycloak.RealmArgs
     ///         {
-    ///             Realm = "token-exchange_destination_realm",
+    ///             RealmName = "token-exchange_destination_realm",
     ///             Enabled = true,
     ///         });
     ///         var tokenExchangeMyOidcIdp = new Keycloak.Oidc.IdentityProvider("tokenExchangeMyOidcIdp", new Keycloak.Oidc.IdentityProviderArgs

@@ -296,6 +296,44 @@ func (o SubflowOutput) ToSubflowOutputWithContext(ctx context.Context) SubflowOu
 	return o
 }
 
+// The alias for this authentication subflow.
+func (o SubflowOutput) Alias() pulumi.StringOutput {
+	return o.ApplyT(func(v *Subflow) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
+}
+
+// The name of the authenticator. Might be needed to be set with certain custom subflows with specific
+// authenticators. In general this will remain empty.
+func (o SubflowOutput) Authenticator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Subflow) pulumi.StringPtrOutput { return v.Authenticator }).(pulumi.StringPtrOutput)
+}
+
+// A description for the authentication subflow.
+func (o SubflowOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Subflow) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The alias for the parent authentication flow.
+func (o SubflowOutput) ParentFlowAlias() pulumi.StringOutput {
+	return o.ApplyT(func(v *Subflow) pulumi.StringOutput { return v.ParentFlowAlias }).(pulumi.StringOutput)
+}
+
+// The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
+// and `client-flow`. Defaults to `basic-flow`.
+func (o SubflowOutput) ProviderId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Subflow) pulumi.StringPtrOutput { return v.ProviderId }).(pulumi.StringPtrOutput)
+}
+
+// The realm that the authentication subflow exists in.
+func (o SubflowOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Subflow) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
+// or `DISABLED`. Defaults to `DISABLED`.
+func (o SubflowOutput) Requirement() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Subflow) pulumi.StringPtrOutput { return v.Requirement }).(pulumi.StringPtrOutput)
+}
+
 type SubflowArrayOutput struct{ *pulumi.OutputState }
 
 func (SubflowArrayOutput) ElementType() reflect.Type {

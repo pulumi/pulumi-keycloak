@@ -424,6 +424,26 @@ func (o GenericClientRoleMapperOutput) ToGenericClientRoleMapperOutputWithContex
 	return o
 }
 
+// The ID of the client this role mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
+func (o GenericClientRoleMapperOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GenericClientRoleMapper) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the client scope this role mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
+func (o GenericClientRoleMapperOutput) ClientScopeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GenericClientRoleMapper) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
+}
+
+// The realm this role mapper exists within.
+func (o GenericClientRoleMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GenericClientRoleMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The ID of the role to be added to this role mapper.
+func (o GenericClientRoleMapperOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GenericClientRoleMapper) pulumi.StringOutput { return v.RoleId }).(pulumi.StringOutput)
+}
+
 type GenericClientRoleMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (GenericClientRoleMapperArrayOutput) ElementType() reflect.Type {

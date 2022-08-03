@@ -234,6 +234,21 @@ func (o GroupMembershipsOutput) ToGroupMembershipsOutputWithContext(ctx context.
 	return o
 }
 
+// The ID of the group this resource should manage memberships for.
+func (o GroupMembershipsOutput) GroupId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupMemberships) pulumi.StringPtrOutput { return v.GroupId }).(pulumi.StringPtrOutput)
+}
+
+// A list of usernames that belong to this group.
+func (o GroupMembershipsOutput) Members() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GroupMemberships) pulumi.StringArrayOutput { return v.Members }).(pulumi.StringArrayOutput)
+}
+
+// The realm this group exists in.
+func (o GroupMembershipsOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupMemberships) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type GroupMembershipsArrayOutput struct{ *pulumi.OutputState }
 
 func (GroupMembershipsArrayOutput) ElementType() reflect.Type {

@@ -318,6 +318,31 @@ func (o HardcodedRoleProtocolMapperOutput) ToHardcodedRoleProtocolMapperOutputWi
 	return o
 }
 
+// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+func (o HardcodedRoleProtocolMapperOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *HardcodedRoleProtocolMapper) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+func (o HardcodedRoleProtocolMapperOutput) ClientScopeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *HardcodedRoleProtocolMapper) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
+}
+
+// The display name of this protocol mapper in the GUI.
+func (o HardcodedRoleProtocolMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedRoleProtocolMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm this protocol mapper exists within.
+func (o HardcodedRoleProtocolMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedRoleProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The ID of the role to map to an access token.
+func (o HardcodedRoleProtocolMapperOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedRoleProtocolMapper) pulumi.StringOutput { return v.RoleId }).(pulumi.StringOutput)
+}
+
 type HardcodedRoleProtocolMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (HardcodedRoleProtocolMapperArrayOutput) ElementType() reflect.Type {

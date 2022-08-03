@@ -26,7 +26,7 @@ namespace Pulumi.Keycloak.Saml
     ///     {
     ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
     ///         {
-    ///             Realm = "my-realm",
+    ///             RealmName = "my-realm",
     ///             Enabled = true,
     ///         });
     ///         var realmSamlIdentityProvider = new Keycloak.Saml.IdentityProvider("realmSamlIdentityProvider", new Keycloak.Saml.IdentityProviderArgs
@@ -77,6 +77,24 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Output("authenticateByDefault")]
         public Output<bool?> AuthenticateByDefault { get; private set; } = null!;
+
+        /// <summary>
+        /// Ordered list of requested AuthnContext ClassRefs.
+        /// </summary>
+        [Output("authnContextClassRefs")]
+        public Output<ImmutableArray<string>> AuthnContextClassRefs { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the comparison method used to evaluate the requested context classes or statements.
+        /// </summary>
+        [Output("authnContextComparisonType")]
+        public Output<string?> AuthnContextComparisonType { get; private set; } = null!;
+
+        /// <summary>
+        /// Ordered list of requested AuthnContext DeclRefs.
+        /// </summary>
+        [Output("authnContextDeclRefs")]
+        public Output<ImmutableArray<string>> AuthnContextDeclRefs { get; private set; } = null!;
 
         /// <summary>
         /// Does the external IDP support back-channel logout ?.
@@ -325,6 +343,36 @@ namespace Pulumi.Keycloak.Saml
         [Input("authenticateByDefault")]
         public Input<bool>? AuthenticateByDefault { get; set; }
 
+        [Input("authnContextClassRefs")]
+        private InputList<string>? _authnContextClassRefs;
+
+        /// <summary>
+        /// Ordered list of requested AuthnContext ClassRefs.
+        /// </summary>
+        public InputList<string> AuthnContextClassRefs
+        {
+            get => _authnContextClassRefs ?? (_authnContextClassRefs = new InputList<string>());
+            set => _authnContextClassRefs = value;
+        }
+
+        /// <summary>
+        /// Specifies the comparison method used to evaluate the requested context classes or statements.
+        /// </summary>
+        [Input("authnContextComparisonType")]
+        public Input<string>? AuthnContextComparisonType { get; set; }
+
+        [Input("authnContextDeclRefs")]
+        private InputList<string>? _authnContextDeclRefs;
+
+        /// <summary>
+        /// Ordered list of requested AuthnContext DeclRefs.
+        /// </summary>
+        public InputList<string> AuthnContextDeclRefs
+        {
+            get => _authnContextDeclRefs ?? (_authnContextDeclRefs = new InputList<string>());
+            set => _authnContextDeclRefs = value;
+        }
+
         /// <summary>
         /// Does the external IDP support back-channel logout ?.
         /// </summary>
@@ -531,6 +579,36 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Input("authenticateByDefault")]
         public Input<bool>? AuthenticateByDefault { get; set; }
+
+        [Input("authnContextClassRefs")]
+        private InputList<string>? _authnContextClassRefs;
+
+        /// <summary>
+        /// Ordered list of requested AuthnContext ClassRefs.
+        /// </summary>
+        public InputList<string> AuthnContextClassRefs
+        {
+            get => _authnContextClassRefs ?? (_authnContextClassRefs = new InputList<string>());
+            set => _authnContextClassRefs = value;
+        }
+
+        /// <summary>
+        /// Specifies the comparison method used to evaluate the requested context classes or statements.
+        /// </summary>
+        [Input("authnContextComparisonType")]
+        public Input<string>? AuthnContextComparisonType { get; set; }
+
+        [Input("authnContextDeclRefs")]
+        private InputList<string>? _authnContextDeclRefs;
+
+        /// <summary>
+        /// Ordered list of requested AuthnContext DeclRefs.
+        /// </summary>
+        public InputList<string> AuthnContextDeclRefs
+        {
+            get => _authnContextDeclRefs ?? (_authnContextDeclRefs = new InputList<string>());
+            set => _authnContextDeclRefs = value;
+        }
 
         /// <summary>
         /// Does the external IDP support back-channel logout ?.

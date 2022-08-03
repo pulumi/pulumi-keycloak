@@ -20,7 +20,7 @@ import * as utilities from "./utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const defalutRoles = new keycloak.DefaultRoles("defalutRoles", {
+ * const defaultRoles = new keycloak.DefaultRoles("defaultRoles", {
  *     realmId: realm.id,
  *     defaultRoles: ["uma_authorization"],
  * });

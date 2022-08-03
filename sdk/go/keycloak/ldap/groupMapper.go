@@ -419,6 +419,96 @@ func (o GroupMapperOutput) ToGroupMapperOutputWithContext(ctx context.Context) G
 	return o
 }
 
+// When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
+func (o GroupMapperOutput) DropNonExistingGroupsDuringSync() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GroupMapper) pulumi.BoolPtrOutput { return v.DropNonExistingGroupsDuringSync }).(pulumi.BoolPtrOutput)
+}
+
+// The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
+func (o GroupMapperOutput) GroupNameLdapAttribute() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupMapper) pulumi.StringOutput { return v.GroupNameLdapAttribute }).(pulumi.StringOutput)
+}
+
+// List of strings representing the object classes for the group. Must contain at least one.
+func (o GroupMapperOutput) GroupObjectClasses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GroupMapper) pulumi.StringArrayOutput { return v.GroupObjectClasses }).(pulumi.StringArrayOutput)
+}
+
+// When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+func (o GroupMapperOutput) GroupsLdapFilter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupMapper) pulumi.StringPtrOutput { return v.GroupsLdapFilter }).(pulumi.StringPtrOutput)
+}
+
+// Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
+func (o GroupMapperOutput) GroupsPath() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupMapper) pulumi.StringOutput { return v.GroupsPath }).(pulumi.StringOutput)
+}
+
+// When `true`, missing groups in the hierarchy will be ignored.
+func (o GroupMapperOutput) IgnoreMissingGroups() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GroupMapper) pulumi.BoolPtrOutput { return v.IgnoreMissingGroups }).(pulumi.BoolPtrOutput)
+}
+
+// The LDAP DN where groups can be found.
+func (o GroupMapperOutput) LdapGroupsDn() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupMapper) pulumi.StringOutput { return v.LdapGroupsDn }).(pulumi.StringOutput)
+}
+
+// The ID of the LDAP user federation provider to attach this mapper to.
+func (o GroupMapperOutput) LdapUserFederationId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupMapper) pulumi.StringOutput { return v.LdapUserFederationId }).(pulumi.StringOutput)
+}
+
+// Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
+func (o GroupMapperOutput) MappedGroupAttributes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GroupMapper) pulumi.StringArrayOutput { return v.MappedGroupAttributes }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
+func (o GroupMapperOutput) MemberofLdapAttribute() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupMapper) pulumi.StringPtrOutput { return v.MemberofLdapAttribute }).(pulumi.StringPtrOutput)
+}
+
+// Can be one of `DN` or `UID`. Defaults to `DN`.
+func (o GroupMapperOutput) MembershipAttributeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupMapper) pulumi.StringPtrOutput { return v.MembershipAttributeType }).(pulumi.StringPtrOutput)
+}
+
+// The name of the LDAP attribute that is used for membership mappings.
+func (o GroupMapperOutput) MembershipLdapAttribute() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupMapper) pulumi.StringOutput { return v.MembershipLdapAttribute }).(pulumi.StringOutput)
+}
+
+// The name of the LDAP attribute on a user that is used for membership mappings.
+func (o GroupMapperOutput) MembershipUserLdapAttribute() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupMapper) pulumi.StringOutput { return v.MembershipUserLdapAttribute }).(pulumi.StringOutput)
+}
+
+// Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
+func (o GroupMapperOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupMapper) pulumi.StringPtrOutput { return v.Mode }).(pulumi.StringPtrOutput)
+}
+
+// Display name of this mapper when displayed in the console.
+func (o GroupMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
+func (o GroupMapperOutput) PreserveGroupInheritance() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GroupMapper) pulumi.BoolPtrOutput { return v.PreserveGroupInheritance }).(pulumi.BoolPtrOutput)
+}
+
+// The realm that this LDAP mapper will exist in.
+func (o GroupMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
+func (o GroupMapperOutput) UserRolesRetrieveStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupMapper) pulumi.StringPtrOutput { return v.UserRolesRetrieveStrategy }).(pulumi.StringPtrOutput)
+}
+
 type GroupMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (GroupMapperArrayOutput) ElementType() reflect.Type {

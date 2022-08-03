@@ -257,6 +257,36 @@ func (o RequiredActionOutput) ToRequiredActionOutputWithContext(ctx context.Cont
 	return o
 }
 
+// The alias of the action to attach as a required action.
+func (o RequiredActionOutput) Alias() pulumi.StringOutput {
+	return o.ApplyT(func(v *RequiredAction) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
+}
+
+// When `true`, the required action is set as the default action for new users. Defaults to `false`.
+func (o RequiredActionOutput) DefaultAction() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RequiredAction) pulumi.BoolPtrOutput { return v.DefaultAction }).(pulumi.BoolPtrOutput)
+}
+
+// When `false`, the required action is not enabled for new users. Defaults to `false`.
+func (o RequiredActionOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RequiredAction) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// The name of the required action.
+func (o RequiredActionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *RequiredAction) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The priority of the required action.
+func (o RequiredActionOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v *RequiredAction) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
+}
+
+// The realm the required action exists in.
+func (o RequiredActionOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RequiredAction) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type RequiredActionArrayOutput struct{ *pulumi.OutputState }
 
 func (RequiredActionArrayOutput) ElementType() reflect.Type {

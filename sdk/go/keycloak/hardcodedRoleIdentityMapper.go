@@ -199,6 +199,30 @@ func (o HardcodedRoleIdentityMapperOutput) ToHardcodedRoleIdentityMapperOutputWi
 	return o
 }
 
+func (o HardcodedRoleIdentityMapperOutput) ExtraConfig() pulumi.MapOutput {
+	return o.ApplyT(func(v *HardcodedRoleIdentityMapper) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+}
+
+// IDP Alias
+func (o HardcodedRoleIdentityMapperOutput) IdentityProviderAlias() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedRoleIdentityMapper) pulumi.StringOutput { return v.IdentityProviderAlias }).(pulumi.StringOutput)
+}
+
+// IDP Mapper Name
+func (o HardcodedRoleIdentityMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedRoleIdentityMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Realm Name
+func (o HardcodedRoleIdentityMapperOutput) Realm() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedRoleIdentityMapper) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// Role Name
+func (o HardcodedRoleIdentityMapperOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *HardcodedRoleIdentityMapper) pulumi.StringPtrOutput { return v.Role }).(pulumi.StringPtrOutput)
+}
+
 type HardcodedRoleIdentityMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (HardcodedRoleIdentityMapperArrayOutput) ElementType() reflect.Type {

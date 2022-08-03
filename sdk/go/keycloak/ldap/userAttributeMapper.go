@@ -304,6 +304,46 @@ func (o UserAttributeMapperOutput) ToUserAttributeMapperOutputWithContext(ctx co
 	return o
 }
 
+// When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
+func (o UserAttributeMapperOutput) AlwaysReadValueFromLdap() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserAttributeMapper) pulumi.BoolPtrOutput { return v.AlwaysReadValueFromLdap }).(pulumi.BoolPtrOutput)
+}
+
+// When `true`, this attribute must exist in LDAP. Defaults to `false`.
+func (o UserAttributeMapperOutput) IsMandatoryInLdap() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserAttributeMapper) pulumi.BoolPtrOutput { return v.IsMandatoryInLdap }).(pulumi.BoolPtrOutput)
+}
+
+// Name of the mapped attribute on the LDAP object.
+func (o UserAttributeMapperOutput) LdapAttribute() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserAttributeMapper) pulumi.StringOutput { return v.LdapAttribute }).(pulumi.StringOutput)
+}
+
+// The ID of the LDAP user federation provider to attach this mapper to.
+func (o UserAttributeMapperOutput) LdapUserFederationId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserAttributeMapper) pulumi.StringOutput { return v.LdapUserFederationId }).(pulumi.StringOutput)
+}
+
+// Display name of this mapper when displayed in the console.
+func (o UserAttributeMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserAttributeMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
+func (o UserAttributeMapperOutput) ReadOnly() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserAttributeMapper) pulumi.BoolPtrOutput { return v.ReadOnly }).(pulumi.BoolPtrOutput)
+}
+
+// The realm that this LDAP mapper will exist in.
+func (o UserAttributeMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserAttributeMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// Name of the user property or attribute you want to map the LDAP attribute into.
+func (o UserAttributeMapperOutput) UserModelAttribute() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserAttributeMapper) pulumi.StringOutput { return v.UserModelAttribute }).(pulumi.StringOutput)
+}
+
 type UserAttributeMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (UserAttributeMapperArrayOutput) ElementType() reflect.Type {

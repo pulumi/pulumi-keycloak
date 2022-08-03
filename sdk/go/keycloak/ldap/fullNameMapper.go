@@ -279,6 +279,36 @@ func (o FullNameMapperOutput) ToFullNameMapperOutputWithContext(ctx context.Cont
 	return o
 }
 
+// The name of the LDAP attribute containing the user's full name.
+func (o FullNameMapperOutput) LdapFullNameAttribute() pulumi.StringOutput {
+	return o.ApplyT(func(v *FullNameMapper) pulumi.StringOutput { return v.LdapFullNameAttribute }).(pulumi.StringOutput)
+}
+
+// The ID of the LDAP user federation provider to attach this mapper to.
+func (o FullNameMapperOutput) LdapUserFederationId() pulumi.StringOutput {
+	return o.ApplyT(func(v *FullNameMapper) pulumi.StringOutput { return v.LdapUserFederationId }).(pulumi.StringOutput)
+}
+
+// Display name of this mapper when displayed in the console.
+func (o FullNameMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FullNameMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
+func (o FullNameMapperOutput) ReadOnly() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *FullNameMapper) pulumi.BoolPtrOutput { return v.ReadOnly }).(pulumi.BoolPtrOutput)
+}
+
+// The realm that this LDAP mapper will exist in.
+func (o FullNameMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *FullNameMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
+func (o FullNameMapperOutput) WriteOnly() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *FullNameMapper) pulumi.BoolPtrOutput { return v.WriteOnly }).(pulumi.BoolPtrOutput)
+}
+
 type FullNameMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (FullNameMapperArrayOutput) ElementType() reflect.Type {

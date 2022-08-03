@@ -293,6 +293,41 @@ func (o GenericClientProtocolMapperOutput) ToGenericClientProtocolMapperOutputWi
 	return o
 }
 
+// The client this protocol mapper is attached to.
+func (o GenericClientProtocolMapperOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GenericClientProtocolMapper) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The mapper's associated client scope. Cannot be used at the same time as client_id.
+func (o GenericClientProtocolMapperOutput) ClientScopeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GenericClientProtocolMapper) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
+}
+
+// A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+func (o GenericClientProtocolMapperOutput) Config() pulumi.MapOutput {
+	return o.ApplyT(func(v *GenericClientProtocolMapper) pulumi.MapOutput { return v.Config }).(pulumi.MapOutput)
+}
+
+// The display name of this protocol mapper in the GUI.
+func (o GenericClientProtocolMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *GenericClientProtocolMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+func (o GenericClientProtocolMapperOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *GenericClientProtocolMapper) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
+func (o GenericClientProtocolMapperOutput) ProtocolMapper() pulumi.StringOutput {
+	return o.ApplyT(func(v *GenericClientProtocolMapper) pulumi.StringOutput { return v.ProtocolMapper }).(pulumi.StringOutput)
+}
+
+// The realm this protocol mapper exists within.
+func (o GenericClientProtocolMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GenericClientProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type GenericClientProtocolMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (GenericClientProtocolMapperArrayOutput) ElementType() reflect.Type {

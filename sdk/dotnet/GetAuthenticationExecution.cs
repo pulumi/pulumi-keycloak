@@ -28,7 +28,7 @@ namespace Pulumi.Keycloak
         ///     {
         ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
         ///         {
-        ///             Realm = "my-realm",
+        ///             RealmName = "my-realm",
         ///             Enabled = true,
         ///         });
         ///         var browserAuthCookie = Keycloak.GetAuthenticationExecution.Invoke(new Keycloak.GetAuthenticationExecutionInvokeArgs
@@ -64,7 +64,7 @@ namespace Pulumi.Keycloak
         ///     {
         ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
         ///         {
-        ///             Realm = "my-realm",
+        ///             RealmName = "my-realm",
         ///             Enabled = true,
         ///         });
         ///         var browserAuthCookie = Keycloak.GetAuthenticationExecution.Invoke(new Keycloak.GetAuthenticationExecutionInvokeArgs

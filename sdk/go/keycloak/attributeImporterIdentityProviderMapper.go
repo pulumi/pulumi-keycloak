@@ -302,6 +302,48 @@ func (o AttributeImporterIdentityProviderMapperOutput) ToAttributeImporterIdenti
 	return o
 }
 
+// For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attributeName`.
+func (o AttributeImporterIdentityProviderMapperOutput) AttributeFriendlyName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AttributeImporterIdentityProviderMapper) pulumi.StringPtrOutput {
+		return v.AttributeFriendlyName
+	}).(pulumi.StringPtrOutput)
+}
+
+// For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attributeFriendlyName`.
+func (o AttributeImporterIdentityProviderMapperOutput) AttributeName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AttributeImporterIdentityProviderMapper) pulumi.StringPtrOutput { return v.AttributeName }).(pulumi.StringPtrOutput)
+}
+
+// For OIDC based providers, this is the name of the claim to use.
+func (o AttributeImporterIdentityProviderMapperOutput) ClaimName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AttributeImporterIdentityProviderMapper) pulumi.StringPtrOutput { return v.ClaimName }).(pulumi.StringPtrOutput)
+}
+
+// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+func (o AttributeImporterIdentityProviderMapperOutput) ExtraConfig() pulumi.MapOutput {
+	return o.ApplyT(func(v *AttributeImporterIdentityProviderMapper) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+}
+
+// The alias of the associated identity provider.
+func (o AttributeImporterIdentityProviderMapperOutput) IdentityProviderAlias() pulumi.StringOutput {
+	return o.ApplyT(func(v *AttributeImporterIdentityProviderMapper) pulumi.StringOutput { return v.IdentityProviderAlias }).(pulumi.StringOutput)
+}
+
+// The name of the mapper.
+func (o AttributeImporterIdentityProviderMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *AttributeImporterIdentityProviderMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The name of the realm.
+func (o AttributeImporterIdentityProviderMapperOutput) Realm() pulumi.StringOutput {
+	return o.ApplyT(func(v *AttributeImporterIdentityProviderMapper) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// The user attribute or property name to store the mapped result.
+func (o AttributeImporterIdentityProviderMapperOutput) UserAttribute() pulumi.StringOutput {
+	return o.ApplyT(func(v *AttributeImporterIdentityProviderMapper) pulumi.StringOutput { return v.UserAttribute }).(pulumi.StringOutput)
+}
+
 type AttributeImporterIdentityProviderMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (AttributeImporterIdentityProviderMapperArrayOutput) ElementType() reflect.Type {

@@ -361,6 +361,56 @@ func (o HardcodedClaimProtocolMapperOutput) ToHardcodedClaimProtocolMapperOutput
 	return o
 }
 
+// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+func (o HardcodedClaimProtocolMapperOutput) AddToAccessToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *HardcodedClaimProtocolMapper) pulumi.BoolPtrOutput { return v.AddToAccessToken }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+func (o HardcodedClaimProtocolMapperOutput) AddToIdToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *HardcodedClaimProtocolMapper) pulumi.BoolPtrOutput { return v.AddToIdToken }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+func (o HardcodedClaimProtocolMapperOutput) AddToUserinfo() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *HardcodedClaimProtocolMapper) pulumi.BoolPtrOutput { return v.AddToUserinfo }).(pulumi.BoolPtrOutput)
+}
+
+// The name of the claim to insert into a token.
+func (o HardcodedClaimProtocolMapperOutput) ClaimName() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedClaimProtocolMapper) pulumi.StringOutput { return v.ClaimName }).(pulumi.StringOutput)
+}
+
+// The hardcoded value of the claim.
+func (o HardcodedClaimProtocolMapperOutput) ClaimValue() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedClaimProtocolMapper) pulumi.StringOutput { return v.ClaimValue }).(pulumi.StringOutput)
+}
+
+// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+func (o HardcodedClaimProtocolMapperOutput) ClaimValueType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *HardcodedClaimProtocolMapper) pulumi.StringPtrOutput { return v.ClaimValueType }).(pulumi.StringPtrOutput)
+}
+
+// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+func (o HardcodedClaimProtocolMapperOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *HardcodedClaimProtocolMapper) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+func (o HardcodedClaimProtocolMapperOutput) ClientScopeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *HardcodedClaimProtocolMapper) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
+}
+
+// The display name of this protocol mapper in the GUI.
+func (o HardcodedClaimProtocolMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedClaimProtocolMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm this protocol mapper exists within.
+func (o HardcodedClaimProtocolMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedClaimProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type HardcodedClaimProtocolMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (HardcodedClaimProtocolMapperArrayOutput) ElementType() reflect.Type {

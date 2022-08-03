@@ -274,6 +274,56 @@ func (o RealmKeystoreJavaGeneratedOutput) ToRealmKeystoreJavaGeneratedOutputWith
 	return o
 }
 
+// When `false`, key in not used for signing. Defaults to `true`.
+func (o RealmKeystoreJavaGeneratedOutput) Active() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.BoolPtrOutput { return v.Active }).(pulumi.BoolPtrOutput)
+}
+
+// Intended algorithm for the key. Defaults to `RS256`
+func (o RealmKeystoreJavaGeneratedOutput) Algorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.StringPtrOutput { return v.Algorithm }).(pulumi.StringPtrOutput)
+}
+
+// When `false`, key is not accessible in this realm. Defaults to `true`.
+func (o RealmKeystoreJavaGeneratedOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Alias for the private key
+func (o RealmKeystoreJavaGeneratedOutput) KeyAlias() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.StringOutput { return v.KeyAlias }).(pulumi.StringOutput)
+}
+
+// Password for the private key
+func (o RealmKeystoreJavaGeneratedOutput) KeyPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.StringOutput { return v.KeyPassword }).(pulumi.StringOutput)
+}
+
+// Path to keys file on keycloak instance.
+func (o RealmKeystoreJavaGeneratedOutput) Keystore() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.StringOutput { return v.Keystore }).(pulumi.StringOutput)
+}
+
+// Password for the private key.
+func (o RealmKeystoreJavaGeneratedOutput) KeystorePassword() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.StringOutput { return v.KeystorePassword }).(pulumi.StringOutput)
+}
+
+// Display name of provider when linked in admin console.
+func (o RealmKeystoreJavaGeneratedOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Priority for the provider. Defaults to `0`
+func (o RealmKeystoreJavaGeneratedOutput) Priority() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.IntPtrOutput { return v.Priority }).(pulumi.IntPtrOutput)
+}
+
+// The realm this keystore exists in.
+func (o RealmKeystoreJavaGeneratedOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type RealmKeystoreJavaGeneratedArrayOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreJavaGeneratedArrayOutput) ElementType() reflect.Type {

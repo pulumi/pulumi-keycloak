@@ -73,6 +73,12 @@ type IdentityProvider struct {
 	Alias pulumi.StringOutput `pulumi:"alias"`
 	// Authenticate users by default. Defaults to `false`.
 	AuthenticateByDefault pulumi.BoolPtrOutput `pulumi:"authenticateByDefault"`
+	// Ordered list of requested AuthnContext ClassRefs.
+	AuthnContextClassRefs pulumi.StringArrayOutput `pulumi:"authnContextClassRefs"`
+	// Specifies the comparison method used to evaluate the requested context classes or statements.
+	AuthnContextComparisonType pulumi.StringPtrOutput `pulumi:"authnContextComparisonType"`
+	// Ordered list of requested AuthnContext DeclRefs.
+	AuthnContextDeclRefs pulumi.StringArrayOutput `pulumi:"authnContextDeclRefs"`
 	// Does the external IDP support back-channel logout ?.
 	BackchannelSupported pulumi.BoolPtrOutput `pulumi:"backchannelSupported"`
 	// The display name for the realm that is shown when logging in to the admin console.
@@ -183,6 +189,12 @@ type identityProviderState struct {
 	Alias *string `pulumi:"alias"`
 	// Authenticate users by default. Defaults to `false`.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
+	// Ordered list of requested AuthnContext ClassRefs.
+	AuthnContextClassRefs []string `pulumi:"authnContextClassRefs"`
+	// Specifies the comparison method used to evaluate the requested context classes or statements.
+	AuthnContextComparisonType *string `pulumi:"authnContextComparisonType"`
+	// Ordered list of requested AuthnContext DeclRefs.
+	AuthnContextDeclRefs []string `pulumi:"authnContextDeclRefs"`
 	// Does the external IDP support back-channel logout ?.
 	BackchannelSupported *bool `pulumi:"backchannelSupported"`
 	// The display name for the realm that is shown when logging in to the admin console.
@@ -253,6 +265,12 @@ type IdentityProviderState struct {
 	Alias pulumi.StringPtrInput
 	// Authenticate users by default. Defaults to `false`.
 	AuthenticateByDefault pulumi.BoolPtrInput
+	// Ordered list of requested AuthnContext ClassRefs.
+	AuthnContextClassRefs pulumi.StringArrayInput
+	// Specifies the comparison method used to evaluate the requested context classes or statements.
+	AuthnContextComparisonType pulumi.StringPtrInput
+	// Ordered list of requested AuthnContext DeclRefs.
+	AuthnContextDeclRefs pulumi.StringArrayInput
 	// Does the external IDP support back-channel logout ?.
 	BackchannelSupported pulumi.BoolPtrInput
 	// The display name for the realm that is shown when logging in to the admin console.
@@ -327,6 +345,12 @@ type identityProviderArgs struct {
 	Alias string `pulumi:"alias"`
 	// Authenticate users by default. Defaults to `false`.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
+	// Ordered list of requested AuthnContext ClassRefs.
+	AuthnContextClassRefs []string `pulumi:"authnContextClassRefs"`
+	// Specifies the comparison method used to evaluate the requested context classes or statements.
+	AuthnContextComparisonType *string `pulumi:"authnContextComparisonType"`
+	// Ordered list of requested AuthnContext DeclRefs.
+	AuthnContextDeclRefs []string `pulumi:"authnContextDeclRefs"`
 	// Does the external IDP support back-channel logout ?.
 	BackchannelSupported *bool `pulumi:"backchannelSupported"`
 	// The display name for the realm that is shown when logging in to the admin console.
@@ -396,6 +420,12 @@ type IdentityProviderArgs struct {
 	Alias pulumi.StringInput
 	// Authenticate users by default. Defaults to `false`.
 	AuthenticateByDefault pulumi.BoolPtrInput
+	// Ordered list of requested AuthnContext ClassRefs.
+	AuthnContextClassRefs pulumi.StringArrayInput
+	// Specifies the comparison method used to evaluate the requested context classes or statements.
+	AuthnContextComparisonType pulumi.StringPtrInput
+	// Ordered list of requested AuthnContext DeclRefs.
+	AuthnContextDeclRefs pulumi.StringArrayInput
 	// Does the external IDP support back-channel logout ?.
 	BackchannelSupported pulumi.BoolPtrInput
 	// The display name for the realm that is shown when logging in to the admin console.
@@ -542,6 +572,190 @@ func (o IdentityProviderOutput) ToIdentityProviderOutput() IdentityProviderOutpu
 
 func (o IdentityProviderOutput) ToIdentityProviderOutputWithContext(ctx context.Context) IdentityProviderOutput {
 	return o
+}
+
+// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+func (o IdentityProviderOutput) AddReadTokenRoleOnCreate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.AddReadTokenRoleOnCreate }).(pulumi.BoolPtrOutput)
+}
+
+// The unique name of identity provider.
+func (o IdentityProviderOutput) Alias() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
+}
+
+// Authenticate users by default. Defaults to `false`.
+func (o IdentityProviderOutput) AuthenticateByDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.AuthenticateByDefault }).(pulumi.BoolPtrOutput)
+}
+
+// Ordered list of requested AuthnContext ClassRefs.
+func (o IdentityProviderOutput) AuthnContextClassRefs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringArrayOutput { return v.AuthnContextClassRefs }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the comparison method used to evaluate the requested context classes or statements.
+func (o IdentityProviderOutput) AuthnContextComparisonType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.AuthnContextComparisonType }).(pulumi.StringPtrOutput)
+}
+
+// Ordered list of requested AuthnContext DeclRefs.
+func (o IdentityProviderOutput) AuthnContextDeclRefs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringArrayOutput { return v.AuthnContextDeclRefs }).(pulumi.StringArrayOutput)
+}
+
+// Does the external IDP support back-channel logout ?.
+func (o IdentityProviderOutput) BackchannelSupported() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.BackchannelSupported }).(pulumi.BoolPtrOutput)
+}
+
+// The display name for the realm that is shown when logging in to the admin console.
+func (o IdentityProviderOutput) DisplayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.DisplayName }).(pulumi.StringPtrOutput)
+}
+
+// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+func (o IdentityProviderOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// The Entity ID that will be used to uniquely identify this SAML Service Provider.
+func (o IdentityProviderOutput) EntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.EntityId }).(pulumi.StringOutput)
+}
+
+func (o IdentityProviderOutput) ExtraConfig() pulumi.MapOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+}
+
+// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
+func (o IdentityProviderOutput) FirstBrokerLoginFlowAlias() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.FirstBrokerLoginFlowAlias }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
+func (o IdentityProviderOutput) ForceAuthn() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.ForceAuthn }).(pulumi.BoolPtrOutput)
+}
+
+// A number defining the order of this identity provider in the GUI.
+func (o IdentityProviderOutput) GuiOrder() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.GuiOrder }).(pulumi.StringPtrOutput)
+}
+
+// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
+func (o IdentityProviderOutput) HideOnLoginPage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.HideOnLoginPage }).(pulumi.BoolPtrOutput)
+}
+
+// Internal Identity Provider Id
+func (o IdentityProviderOutput) InternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.InternalId }).(pulumi.StringOutput)
+}
+
+// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+func (o IdentityProviderOutput) LinkOnly() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.LinkOnly }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
+func (o IdentityProviderOutput) NameIdPolicyFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.NameIdPolicyFormat }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+func (o IdentityProviderOutput) PostBindingAuthnRequest() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.PostBindingAuthnRequest }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+func (o IdentityProviderOutput) PostBindingLogout() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.PostBindingLogout }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+func (o IdentityProviderOutput) PostBindingResponse() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.PostBindingResponse }).(pulumi.BoolPtrOutput)
+}
+
+// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
+func (o IdentityProviderOutput) PostBrokerLoginFlowAlias() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.PostBrokerLoginFlowAlias }).(pulumi.StringPtrOutput)
+}
+
+// Principal Attribute
+func (o IdentityProviderOutput) PrincipalAttribute() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.PrincipalAttribute }).(pulumi.StringPtrOutput)
+}
+
+// Principal Type
+func (o IdentityProviderOutput) PrincipalType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.PrincipalType }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+func (o IdentityProviderOutput) ProviderId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.ProviderId }).(pulumi.StringPtrOutput)
+}
+
+// The name of the realm. This is unique across Keycloak.
+func (o IdentityProviderOutput) Realm() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// Signing Algorithm. Defaults to empty.
+func (o IdentityProviderOutput) SignatureAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.SignatureAlgorithm }).(pulumi.StringPtrOutput)
+}
+
+// Signing Certificate.
+func (o IdentityProviderOutput) SigningCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.SigningCertificate }).(pulumi.StringPtrOutput)
+}
+
+// The Url that must be used to send logout requests.
+func (o IdentityProviderOutput) SingleLogoutServiceUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.SingleLogoutServiceUrl }).(pulumi.StringPtrOutput)
+}
+
+// The Url that must be used to send authentication requests (SAML AuthnRequest).
+func (o IdentityProviderOutput) SingleSignOnServiceUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.SingleSignOnServiceUrl }).(pulumi.StringOutput)
+}
+
+// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+func (o IdentityProviderOutput) StoreToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.StoreToken }).(pulumi.BoolPtrOutput)
+}
+
+// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+func (o IdentityProviderOutput) SyncMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.SyncMode }).(pulumi.StringPtrOutput)
+}
+
+// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
+func (o IdentityProviderOutput) TrustEmail() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.TrustEmail }).(pulumi.BoolPtrOutput)
+}
+
+// Enable/disable signature validation of SAML responses.
+func (o IdentityProviderOutput) ValidateSignature() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.ValidateSignature }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates whether this service provider expects an encrypted Assertion.
+func (o IdentityProviderOutput) WantAssertionsEncrypted() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.WantAssertionsEncrypted }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates whether this service provider expects a signed Assertion.
+func (o IdentityProviderOutput) WantAssertionsSigned() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.WantAssertionsSigned }).(pulumi.BoolPtrOutput)
+}
+
+// Sign Key Transformer. Defaults to empty.
+func (o IdentityProviderOutput) XmlSignKeyInfoKeyNameTransformer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.XmlSignKeyInfoKeyNameTransformer }).(pulumi.StringPtrOutput)
 }
 
 type IdentityProviderArrayOutput struct{ *pulumi.OutputState }

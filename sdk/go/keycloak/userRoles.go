@@ -276,6 +276,26 @@ func (o UserRolesOutput) ToUserRolesOutputWithContext(ctx context.Context) UserR
 	return o
 }
 
+// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
+func (o UserRolesOutput) Exhaustive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserRoles) pulumi.BoolPtrOutput { return v.Exhaustive }).(pulumi.BoolPtrOutput)
+}
+
+// The realm this user exists in.
+func (o UserRolesOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRoles) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// A list of role IDs to map to the user
+func (o UserRolesOutput) RoleIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *UserRoles) pulumi.StringArrayOutput { return v.RoleIds }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the user this resource should manage roles for.
+func (o UserRolesOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRoles) pulumi.StringOutput { return v.UserId }).(pulumi.StringOutput)
+}
+
 type UserRolesArrayOutput struct{ *pulumi.OutputState }
 
 func (UserRolesArrayOutput) ElementType() reflect.Type {

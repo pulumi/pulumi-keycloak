@@ -249,6 +249,21 @@ func (o MsadLdsUserAccountControlMapperOutput) ToMsadLdsUserAccountControlMapper
 	return o
 }
 
+// The ID of the LDAP user federation provider to attach this mapper to.
+func (o MsadLdsUserAccountControlMapperOutput) LdapUserFederationId() pulumi.StringOutput {
+	return o.ApplyT(func(v *MsadLdsUserAccountControlMapper) pulumi.StringOutput { return v.LdapUserFederationId }).(pulumi.StringOutput)
+}
+
+// Display name of this mapper when displayed in the console.
+func (o MsadLdsUserAccountControlMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *MsadLdsUserAccountControlMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm that this LDAP mapper will exist in.
+func (o MsadLdsUserAccountControlMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *MsadLdsUserAccountControlMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type MsadLdsUserAccountControlMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (MsadLdsUserAccountControlMapperArrayOutput) ElementType() reflect.Type {

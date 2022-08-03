@@ -255,6 +255,36 @@ func (o RealmKeystoreEcdsaGeneratedOutput) ToRealmKeystoreEcdsaGeneratedOutputWi
 	return o
 }
 
+// When `false`, key in not used for signing. Defaults to `true`.
+func (o RealmKeystoreEcdsaGeneratedOutput) Active() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreEcdsaGenerated) pulumi.BoolPtrOutput { return v.Active }).(pulumi.BoolPtrOutput)
+}
+
+// Elliptic Curve used in ECDSA. Defaults to `P-256`.
+func (o RealmKeystoreEcdsaGeneratedOutput) EllipticCurveKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreEcdsaGenerated) pulumi.StringPtrOutput { return v.EllipticCurveKey }).(pulumi.StringPtrOutput)
+}
+
+// When `false`, key is not accessible in this realm. Defaults to `true`.
+func (o RealmKeystoreEcdsaGeneratedOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreEcdsaGenerated) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Display name of provider when linked in admin console.
+func (o RealmKeystoreEcdsaGeneratedOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreEcdsaGenerated) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Priority for the provider. Defaults to `0`
+func (o RealmKeystoreEcdsaGeneratedOutput) Priority() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreEcdsaGenerated) pulumi.IntPtrOutput { return v.Priority }).(pulumi.IntPtrOutput)
+}
+
+// The realm this keystore exists in.
+func (o RealmKeystoreEcdsaGeneratedOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreEcdsaGenerated) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type RealmKeystoreEcdsaGeneratedArrayOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreEcdsaGeneratedArrayOutput) ElementType() reflect.Type {

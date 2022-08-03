@@ -22,7 +22,7 @@ namespace Pulumi.Keycloak
     ///     {
     ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
     ///         {
-    ///             Realm = "test",
+    ///             RealmName = "test",
     ///             Enabled = true,
     ///         });
     ///         var customUserFederation = new Keycloak.CustomUserFederation("customUserFederation", new Keycloak.CustomUserFederationArgs
@@ -92,7 +92,7 @@ namespace Pulumi.Keycloak
         /// Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
         /// </summary>
         [Output("parentId")]
-        public Output<string?> ParentId { get; private set; } = null!;
+        public Output<string> ParentId { get; private set; } = null!;
 
         /// <summary>
         /// Priority of this provider when looking up users. Lower values are first. Defaults to `0`.

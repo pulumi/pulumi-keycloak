@@ -26,7 +26,7 @@ namespace Pulumi.Keycloak.Oidc
     ///     {
     ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
     ///         {
-    ///             Realm = "my-realm",
+    ///             RealmName = "my-realm",
     ///             Enabled = true,
     ///         });
     ///         var realmIdentityProvider = new Keycloak.Oidc.IdentityProvider("realmIdentityProvider", new Keycloak.Oidc.IdentityProviderArgs

@@ -259,6 +259,26 @@ func (o MsadUserAccountControlMapperOutput) ToMsadUserAccountControlMapperOutput
 	return o
 }
 
+// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
+func (o MsadUserAccountControlMapperOutput) LdapPasswordPolicyHintsEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *MsadUserAccountControlMapper) pulumi.BoolPtrOutput { return v.LdapPasswordPolicyHintsEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// The ID of the LDAP user federation provider to attach this mapper to.
+func (o MsadUserAccountControlMapperOutput) LdapUserFederationId() pulumi.StringOutput {
+	return o.ApplyT(func(v *MsadUserAccountControlMapper) pulumi.StringOutput { return v.LdapUserFederationId }).(pulumi.StringOutput)
+}
+
+// Display name of this mapper when displayed in the console.
+func (o MsadUserAccountControlMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *MsadUserAccountControlMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm that this LDAP mapper will exist in.
+func (o MsadUserAccountControlMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *MsadUserAccountControlMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type MsadUserAccountControlMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (MsadUserAccountControlMapperArrayOutput) ElementType() reflect.Type {

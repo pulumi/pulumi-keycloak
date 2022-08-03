@@ -248,6 +248,26 @@ func (o FlowOutput) ToFlowOutputWithContext(ctx context.Context) FlowOutput {
 	return o
 }
 
+// The alias for this authentication flow.
+func (o FlowOutput) Alias() pulumi.StringOutput {
+	return o.ApplyT(func(v *Flow) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
+}
+
+// A description for the authentication flow.
+func (o FlowOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Flow) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+func (o FlowOutput) ProviderId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Flow) pulumi.StringPtrOutput { return v.ProviderId }).(pulumi.StringPtrOutput)
+}
+
+// The realm that the authentication flow exists in.
+func (o FlowOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Flow) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type FlowArrayOutput struct{ *pulumi.OutputState }
 
 func (FlowArrayOutput) ElementType() reflect.Type {

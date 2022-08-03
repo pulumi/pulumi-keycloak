@@ -20,6 +20,7 @@ type ClientAuthorizationPermission struct {
 	Policies         pulumi.StringArrayOutput `pulumi:"policies"`
 	RealmId          pulumi.StringOutput      `pulumi:"realmId"`
 	ResourceServerId pulumi.StringOutput      `pulumi:"resourceServerId"`
+	ResourceType     pulumi.StringPtrOutput   `pulumi:"resourceType"`
 	Resources        pulumi.StringArrayOutput `pulumi:"resources"`
 	Scopes           pulumi.StringArrayOutput `pulumi:"scopes"`
 	Type             pulumi.StringPtrOutput   `pulumi:"type"`
@@ -66,6 +67,7 @@ type clientAuthorizationPermissionState struct {
 	Policies         []string `pulumi:"policies"`
 	RealmId          *string  `pulumi:"realmId"`
 	ResourceServerId *string  `pulumi:"resourceServerId"`
+	ResourceType     *string  `pulumi:"resourceType"`
 	Resources        []string `pulumi:"resources"`
 	Scopes           []string `pulumi:"scopes"`
 	Type             *string  `pulumi:"type"`
@@ -78,6 +80,7 @@ type ClientAuthorizationPermissionState struct {
 	Policies         pulumi.StringArrayInput
 	RealmId          pulumi.StringPtrInput
 	ResourceServerId pulumi.StringPtrInput
+	ResourceType     pulumi.StringPtrInput
 	Resources        pulumi.StringArrayInput
 	Scopes           pulumi.StringArrayInput
 	Type             pulumi.StringPtrInput
@@ -94,6 +97,7 @@ type clientAuthorizationPermissionArgs struct {
 	Policies         []string `pulumi:"policies"`
 	RealmId          string   `pulumi:"realmId"`
 	ResourceServerId string   `pulumi:"resourceServerId"`
+	ResourceType     *string  `pulumi:"resourceType"`
 	Resources        []string `pulumi:"resources"`
 	Scopes           []string `pulumi:"scopes"`
 	Type             *string  `pulumi:"type"`
@@ -107,6 +111,7 @@ type ClientAuthorizationPermissionArgs struct {
 	Policies         pulumi.StringArrayInput
 	RealmId          pulumi.StringInput
 	ResourceServerId pulumi.StringInput
+	ResourceType     pulumi.StringPtrInput
 	Resources        pulumi.StringArrayInput
 	Scopes           pulumi.StringArrayInput
 	Type             pulumi.StringPtrInput
@@ -197,6 +202,46 @@ func (o ClientAuthorizationPermissionOutput) ToClientAuthorizationPermissionOutp
 
 func (o ClientAuthorizationPermissionOutput) ToClientAuthorizationPermissionOutputWithContext(ctx context.Context) ClientAuthorizationPermissionOutput {
 	return o
+}
+
+func (o ClientAuthorizationPermissionOutput) DecisionStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientAuthorizationPermission) pulumi.StringPtrOutput { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientAuthorizationPermissionOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientAuthorizationPermission) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientAuthorizationPermissionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientAuthorizationPermission) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ClientAuthorizationPermissionOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ClientAuthorizationPermission) pulumi.StringArrayOutput { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+func (o ClientAuthorizationPermissionOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientAuthorizationPermission) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o ClientAuthorizationPermissionOutput) ResourceServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientAuthorizationPermission) pulumi.StringOutput { return v.ResourceServerId }).(pulumi.StringOutput)
+}
+
+func (o ClientAuthorizationPermissionOutput) ResourceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientAuthorizationPermission) pulumi.StringPtrOutput { return v.ResourceType }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientAuthorizationPermissionOutput) Resources() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ClientAuthorizationPermission) pulumi.StringArrayOutput { return v.Resources }).(pulumi.StringArrayOutput)
+}
+
+func (o ClientAuthorizationPermissionOutput) Scopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ClientAuthorizationPermission) pulumi.StringArrayOutput { return v.Scopes }).(pulumi.StringArrayOutput)
+}
+
+func (o ClientAuthorizationPermissionOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientAuthorizationPermission) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }
 
 type ClientAuthorizationPermissionArrayOutput struct{ *pulumi.OutputState }

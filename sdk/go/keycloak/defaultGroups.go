@@ -224,6 +224,16 @@ func (o DefaultGroupsOutput) ToDefaultGroupsOutputWithContext(ctx context.Contex
 	return o
 }
 
+// A set of group ids that should be default groups on the realm referenced by `realmId`.
+func (o DefaultGroupsOutput) GroupIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DefaultGroups) pulumi.StringArrayOutput { return v.GroupIds }).(pulumi.StringArrayOutput)
+}
+
+// The realm this group exists in.
+func (o DefaultGroupsOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DefaultGroups) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type DefaultGroupsArrayOutput struct{ *pulumi.OutputState }
 
 func (DefaultGroupsArrayOutput) ElementType() reflect.Type {

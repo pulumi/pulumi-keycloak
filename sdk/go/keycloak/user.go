@@ -316,6 +316,55 @@ func (o UserOutput) ToUserOutputWithContext(ctx context.Context) UserOutput {
 	return o
 }
 
+// A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+func (o UserOutput) Attributes() pulumi.MapOutput {
+	return o.ApplyT(func(v *User) pulumi.MapOutput { return v.Attributes }).(pulumi.MapOutput)
+}
+
+// The user's email.
+func (o UserOutput) Email() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.Email }).(pulumi.StringPtrOutput)
+}
+
+// Whether the email address was validated or not. Default to `false`.
+func (o UserOutput) EmailVerified() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *User) pulumi.BoolPtrOutput { return v.EmailVerified }).(pulumi.BoolPtrOutput)
+}
+
+// When false, this user cannot log in. Defaults to `true`.
+func (o UserOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *User) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+func (o UserOutput) FederatedIdentities() UserFederatedIdentityArrayOutput {
+	return o.ApplyT(func(v *User) UserFederatedIdentityArrayOutput { return v.FederatedIdentities }).(UserFederatedIdentityArrayOutput)
+}
+
+// The user's first name.
+func (o UserOutput) FirstName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.FirstName }).(pulumi.StringPtrOutput)
+}
+
+// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+func (o UserOutput) InitialPassword() UserInitialPasswordPtrOutput {
+	return o.ApplyT(func(v *User) UserInitialPasswordPtrOutput { return v.InitialPassword }).(UserInitialPasswordPtrOutput)
+}
+
+// The user's last name.
+func (o UserOutput) LastName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.LastName }).(pulumi.StringPtrOutput)
+}
+
+// The realm this user belongs to.
+func (o UserOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The unique username of this user.
+func (o UserOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
+}
+
 type UserArrayOutput struct{ *pulumi.OutputState }
 
 func (UserArrayOutput) ElementType() reflect.Type {

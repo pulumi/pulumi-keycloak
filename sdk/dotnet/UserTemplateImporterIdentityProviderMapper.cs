@@ -30,7 +30,7 @@ namespace Pulumi.Keycloak
     ///     {
     ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
     ///         {
-    ///             Realm = "my-realm",
+    ///             RealmName = "my-realm",
     ///             Enabled = true,
     ///         });
     ///         var oidc = new Keycloak.Oidc.IdentityProvider("oidc", new Keycloak.Oidc.IdentityProviderArgs

@@ -436,6 +436,130 @@ func (o GoogleIdentityProviderOutput) ToGoogleIdentityProviderOutputWithContext(
 	return o
 }
 
+// When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
+func (o GoogleIdentityProviderOutput) AcceptsPromptNoneForwardFromClient() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.BoolPtrOutput { return v.AcceptsPromptNoneForwardFromClient }).(pulumi.BoolPtrOutput)
+}
+
+// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+func (o GoogleIdentityProviderOutput) AddReadTokenRoleOnCreate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.BoolPtrOutput { return v.AddReadTokenRoleOnCreate }).(pulumi.BoolPtrOutput)
+}
+
+// (Computed) The alias for the Google identity provider.
+func (o GoogleIdentityProviderOutput) Alias() pulumi.StringOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
+}
+
+// Enable/disable authenticate users by default.
+func (o GoogleIdentityProviderOutput) AuthenticateByDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.BoolPtrOutput { return v.AuthenticateByDefault }).(pulumi.BoolPtrOutput)
+}
+
+// The client or client identifier registered within the identity provider.
+func (o GoogleIdentityProviderOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringOutput { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+func (o GoogleIdentityProviderOutput) ClientSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringOutput { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid profile email`.
+func (o GoogleIdentityProviderOutput) DefaultScopes() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringPtrOutput { return v.DefaultScopes }).(pulumi.StringPtrOutput)
+}
+
+// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
+func (o GoogleIdentityProviderOutput) DisableUserInfo() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.BoolPtrOutput { return v.DisableUserInfo }).(pulumi.BoolPtrOutput)
+}
+
+// (Computed) Display name for the Google identity provider in the GUI.
+func (o GoogleIdentityProviderOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringOutput { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+func (o GoogleIdentityProviderOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+func (o GoogleIdentityProviderOutput) ExtraConfig() pulumi.MapOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+}
+
+// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
+func (o GoogleIdentityProviderOutput) FirstBrokerLoginFlowAlias() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringPtrOutput { return v.FirstBrokerLoginFlowAlias }).(pulumi.StringPtrOutput)
+}
+
+// A number defining the order of this identity provider in the GUI.
+func (o GoogleIdentityProviderOutput) GuiOrder() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringPtrOutput { return v.GuiOrder }).(pulumi.StringPtrOutput)
+}
+
+// When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
+func (o GoogleIdentityProviderOutput) HideOnLoginPage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.BoolPtrOutput { return v.HideOnLoginPage }).(pulumi.BoolPtrOutput)
+}
+
+// Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
+func (o GoogleIdentityProviderOutput) HostedDomain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringPtrOutput { return v.HostedDomain }).(pulumi.StringPtrOutput)
+}
+
+// (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
+func (o GoogleIdentityProviderOutput) InternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringOutput { return v.InternalId }).(pulumi.StringOutput)
+}
+
+// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+func (o GoogleIdentityProviderOutput) LinkOnly() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.BoolPtrOutput { return v.LinkOnly }).(pulumi.BoolPtrOutput)
+}
+
+// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
+func (o GoogleIdentityProviderOutput) PostBrokerLoginFlowAlias() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringPtrOutput { return v.PostBrokerLoginFlowAlias }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
+func (o GoogleIdentityProviderOutput) ProviderId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringPtrOutput { return v.ProviderId }).(pulumi.StringPtrOutput)
+}
+
+// The name of the realm. This is unique across Keycloak.
+func (o GoogleIdentityProviderOutput) Realm() pulumi.StringOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// Sets the "accessType" query parameter to "offline" when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
+func (o GoogleIdentityProviderOutput) RequestRefreshToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.BoolPtrOutput { return v.RequestRefreshToken }).(pulumi.BoolPtrOutput)
+}
+
+// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+func (o GoogleIdentityProviderOutput) StoreToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.BoolPtrOutput { return v.StoreToken }).(pulumi.BoolPtrOutput)
+}
+
+// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+func (o GoogleIdentityProviderOutput) SyncMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringPtrOutput { return v.SyncMode }).(pulumi.StringPtrOutput)
+}
+
+// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
+func (o GoogleIdentityProviderOutput) TrustEmail() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.BoolPtrOutput { return v.TrustEmail }).(pulumi.BoolPtrOutput)
+}
+
+// Sets the "userIp" query parameter when querying Google's User Info service. This will use the user's IP address. This is useful if Google is throttling Keycloak's access to the User Info service.
+func (o GoogleIdentityProviderOutput) UseUserIpParam() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.BoolPtrOutput { return v.UseUserIpParam }).(pulumi.BoolPtrOutput)
+}
+
 type GoogleIdentityProviderArrayOutput struct{ *pulumi.OutputState }
 
 func (GoogleIdentityProviderArrayOutput) ElementType() reflect.Type {

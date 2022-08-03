@@ -14,8 +14,8 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
+ * import * as fs from "fs";
  * import * as keycloak from "@pulumi/keycloak";
- * import * from "fs";
  *
  * const realm = new keycloak.Realm("realm", {
  *     realm: "my-realm",

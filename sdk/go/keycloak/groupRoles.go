@@ -347,6 +347,26 @@ func (o GroupRolesOutput) ToGroupRolesOutputWithContext(ctx context.Context) Gro
 	return o
 }
 
+// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+func (o GroupRolesOutput) Exhaustive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GroupRoles) pulumi.BoolPtrOutput { return v.Exhaustive }).(pulumi.BoolPtrOutput)
+}
+
+// The ID of the group this resource should manage roles for.
+func (o GroupRolesOutput) GroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupRoles) pulumi.StringOutput { return v.GroupId }).(pulumi.StringOutput)
+}
+
+// The realm this group exists in.
+func (o GroupRolesOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupRoles) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// A list of role IDs to map to the group.
+func (o GroupRolesOutput) RoleIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GroupRoles) pulumi.StringArrayOutput { return v.RoleIds }).(pulumi.StringArrayOutput)
+}
+
 type GroupRolesArrayOutput struct{ *pulumi.OutputState }
 
 func (GroupRolesArrayOutput) ElementType() reflect.Type {

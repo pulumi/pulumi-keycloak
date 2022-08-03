@@ -757,6 +757,277 @@ func (o RealmOutput) ToRealmOutputWithContext(ctx context.Context) RealmOutput {
 	return o
 }
 
+// The maximum amount of time a client has to finish the authorization code flow.
+func (o RealmOutput) AccessCodeLifespan() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.AccessCodeLifespan }).(pulumi.StringOutput)
+}
+
+// The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.
+func (o RealmOutput) AccessCodeLifespanLogin() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.AccessCodeLifespanLogin }).(pulumi.StringOutput)
+}
+
+// The maximum amount of time a user has to complete login related actions, such as updating a password.
+func (o RealmOutput) AccessCodeLifespanUserAction() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.AccessCodeLifespanUserAction }).(pulumi.StringOutput)
+}
+
+// The amount of time an access token can be used before it expires.
+func (o RealmOutput) AccessTokenLifespan() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.AccessTokenLifespan }).(pulumi.StringOutput)
+}
+
+// The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.
+func (o RealmOutput) AccessTokenLifespanForImplicitFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.AccessTokenLifespanForImplicitFlow }).(pulumi.StringOutput)
+}
+
+// Used for account management pages.
+func (o RealmOutput) AccountTheme() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.AccountTheme }).(pulumi.StringPtrOutput)
+}
+
+// The maximum time a user has to use an admin-generated permit before it expires.
+func (o RealmOutput) ActionTokenGeneratedByAdminLifespan() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.ActionTokenGeneratedByAdminLifespan }).(pulumi.StringOutput)
+}
+
+// The maximum time a user has to use a user-generated permit before it expires.
+func (o RealmOutput) ActionTokenGeneratedByUserLifespan() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.ActionTokenGeneratedByUserLifespan }).(pulumi.StringOutput)
+}
+
+// Used for the admin console.
+func (o RealmOutput) AdminTheme() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.AdminTheme }).(pulumi.StringPtrOutput)
+}
+
+// A map of custom attributes to add to the realm.
+func (o RealmOutput) Attributes() pulumi.MapOutput {
+	return o.ApplyT(func(v *Realm) pulumi.MapOutput { return v.Attributes }).(pulumi.MapOutput)
+}
+
+// The desired flow for browser authentication. Defaults to `browser`.
+func (o RealmOutput) BrowserFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.BrowserFlow }).(pulumi.StringOutput)
+}
+
+// The desired flow for client authentication. Defaults to `clients`.
+func (o RealmOutput) ClientAuthenticationFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.ClientAuthenticationFlow }).(pulumi.StringOutput)
+}
+
+// The amount of time a session can be idle before it expires. Users can override it for individual clients.
+func (o RealmOutput) ClientSessionIdleTimeout() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.ClientSessionIdleTimeout }).(pulumi.StringOutput)
+}
+
+// The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+func (o RealmOutput) ClientSessionMaxLifespan() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.ClientSessionMaxLifespan }).(pulumi.StringOutput)
+}
+
+func (o RealmOutput) DefaultDefaultClientScopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringArrayOutput { return v.DefaultDefaultClientScopes }).(pulumi.StringArrayOutput)
+}
+
+func (o RealmOutput) DefaultOptionalClientScopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringArrayOutput { return v.DefaultOptionalClientScopes }).(pulumi.StringArrayOutput)
+}
+
+// Default algorithm used to sign tokens for the realm.
+func (o RealmOutput) DefaultSignatureAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.DefaultSignatureAlgorithm }).(pulumi.StringPtrOutput)
+}
+
+// The desired flow for direct access authentication. Defaults to `direct grant`.
+func (o RealmOutput) DirectGrantFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.DirectGrantFlow }).(pulumi.StringOutput)
+}
+
+// The display name for the realm that is shown when logging in to the admin console.
+func (o RealmOutput) DisplayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.DisplayName }).(pulumi.StringPtrOutput)
+}
+
+// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+func (o RealmOutput) DisplayNameHtml() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.DisplayNameHtml }).(pulumi.StringPtrOutput)
+}
+
+// The desired flow for Docker authentication. Defaults to `docker auth`.
+func (o RealmOutput) DockerAuthenticationFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.DockerAuthenticationFlow }).(pulumi.StringOutput)
+}
+
+// When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `loginWithEmailAllowed` is set to `true`.
+func (o RealmOutput) DuplicateEmailsAllowed() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Realm) pulumi.BoolOutput { return v.DuplicateEmailsAllowed }).(pulumi.BoolOutput)
+}
+
+// When true, the username field is editable.
+func (o RealmOutput) EditUsernameAllowed() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Realm) pulumi.BoolOutput { return v.EditUsernameAllowed }).(pulumi.BoolOutput)
+}
+
+// Used for emails that are sent by Keycloak.
+func (o RealmOutput) EmailTheme() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.EmailTheme }).(pulumi.StringPtrOutput)
+}
+
+// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+func (o RealmOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Realm) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+func (o RealmOutput) InternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.InternalId }).(pulumi.StringOutput)
+}
+
+func (o RealmOutput) Internationalization() RealmInternationalizationPtrOutput {
+	return o.ApplyT(func(v *Realm) RealmInternationalizationPtrOutput { return v.Internationalization }).(RealmInternationalizationPtrOutput)
+}
+
+// Used for the login, forgot password, and registration pages.
+func (o RealmOutput) LoginTheme() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.LoginTheme }).(pulumi.StringPtrOutput)
+}
+
+// When true, users may log in with their email address.
+func (o RealmOutput) LoginWithEmailAllowed() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Realm) pulumi.BoolOutput { return v.LoginWithEmailAllowed }).(pulumi.BoolOutput)
+}
+
+// The maximum amount of time a client has to finish the device code flow before it expires.
+func (o RealmOutput) Oauth2DeviceCodeLifespan() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.Oauth2DeviceCodeLifespan }).(pulumi.StringOutput)
+}
+
+// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+func (o RealmOutput) Oauth2DevicePollingInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *Realm) pulumi.IntOutput { return v.Oauth2DevicePollingInterval }).(pulumi.IntOutput)
+}
+
+// The amount of time an offline session can be idle before it expires.
+func (o RealmOutput) OfflineSessionIdleTimeout() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.OfflineSessionIdleTimeout }).(pulumi.StringOutput)
+}
+
+// The maximum amount of time before an offline session expires regardless of activity.
+func (o RealmOutput) OfflineSessionMaxLifespan() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.OfflineSessionMaxLifespan }).(pulumi.StringOutput)
+}
+
+// Enable `offlineSessionMaxLifespan`.
+func (o RealmOutput) OfflineSessionMaxLifespanEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Realm) pulumi.BoolPtrOutput { return v.OfflineSessionMaxLifespanEnabled }).(pulumi.BoolPtrOutput)
+}
+
+func (o RealmOutput) OtpPolicy() RealmOtpPolicyOutput {
+	return o.ApplyT(func(v *Realm) RealmOtpPolicyOutput { return v.OtpPolicy }).(RealmOtpPolicyOutput)
+}
+
+// The password policy for users within the realm.
+func (o RealmOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
+// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+func (o RealmOutput) Realm() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
+func (o RealmOutput) RefreshTokenMaxReuse() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Realm) pulumi.IntPtrOutput { return v.RefreshTokenMaxReuse }).(pulumi.IntPtrOutput)
+}
+
+// When true, user registration will be enabled, and a link for registration will be displayed on the login page.
+func (o RealmOutput) RegistrationAllowed() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Realm) pulumi.BoolOutput { return v.RegistrationAllowed }).(pulumi.BoolOutput)
+}
+
+// When true, the user's email will be used as their username during registration.
+func (o RealmOutput) RegistrationEmailAsUsername() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Realm) pulumi.BoolOutput { return v.RegistrationEmailAsUsername }).(pulumi.BoolOutput)
+}
+
+// The desired flow for user registration. Defaults to `registration`.
+func (o RealmOutput) RegistrationFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.RegistrationFlow }).(pulumi.StringOutput)
+}
+
+// When true, a "remember me" checkbox will be displayed on the login page, and the user's session will not expire between browser restarts.
+func (o RealmOutput) RememberMe() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Realm) pulumi.BoolOutput { return v.RememberMe }).(pulumi.BoolOutput)
+}
+
+// The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
+func (o RealmOutput) ResetCredentialsFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.ResetCredentialsFlow }).(pulumi.StringOutput)
+}
+
+// When true, a "forgot password" link will be displayed on the login page.
+func (o RealmOutput) ResetPasswordAllowed() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Realm) pulumi.BoolOutput { return v.ResetPasswordAllowed }).(pulumi.BoolOutput)
+}
+
+// If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.
+func (o RealmOutput) RevokeRefreshToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Realm) pulumi.BoolPtrOutput { return v.RevokeRefreshToken }).(pulumi.BoolPtrOutput)
+}
+
+func (o RealmOutput) SecurityDefenses() RealmSecurityDefensesPtrOutput {
+	return o.ApplyT(func(v *Realm) RealmSecurityDefensesPtrOutput { return v.SecurityDefenses }).(RealmSecurityDefensesPtrOutput)
+}
+
+func (o RealmOutput) SmtpServer() RealmSmtpServerPtrOutput {
+	return o.ApplyT(func(v *Realm) RealmSmtpServerPtrOutput { return v.SmtpServer }).(RealmSmtpServerPtrOutput)
+}
+
+// Can be one of following values: 'none, 'external' or 'all'
+func (o RealmOutput) SslRequired() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.SslRequired }).(pulumi.StringPtrOutput)
+}
+
+// The amount of time a session can be idle before it expires.
+func (o RealmOutput) SsoSessionIdleTimeout() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.SsoSessionIdleTimeout }).(pulumi.StringOutput)
+}
+
+func (o RealmOutput) SsoSessionIdleTimeoutRememberMe() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.SsoSessionIdleTimeoutRememberMe }).(pulumi.StringOutput)
+}
+
+// The maximum amount of time before a session expires regardless of activity.
+func (o RealmOutput) SsoSessionMaxLifespan() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.SsoSessionMaxLifespan }).(pulumi.StringOutput)
+}
+
+func (o RealmOutput) SsoSessionMaxLifespanRememberMe() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.SsoSessionMaxLifespanRememberMe }).(pulumi.StringOutput)
+}
+
+// When `true`, users are allowed to manage their own resources. Defaults to `false`.
+func (o RealmOutput) UserManagedAccess() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Realm) pulumi.BoolPtrOutput { return v.UserManagedAccess }).(pulumi.BoolPtrOutput)
+}
+
+// When true, users are required to verify their email address after registration and after email address changes.
+func (o RealmOutput) VerifyEmail() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Realm) pulumi.BoolOutput { return v.VerifyEmail }).(pulumi.BoolOutput)
+}
+
+// Configuration for WebAuthn Passwordless Policy authentication.
+func (o RealmOutput) WebAuthnPasswordlessPolicy() RealmWebAuthnPasswordlessPolicyOutput {
+	return o.ApplyT(func(v *Realm) RealmWebAuthnPasswordlessPolicyOutput { return v.WebAuthnPasswordlessPolicy }).(RealmWebAuthnPasswordlessPolicyOutput)
+}
+
+// Configuration for WebAuthn Policy authentication.
+func (o RealmOutput) WebAuthnPolicy() RealmWebAuthnPolicyOutput {
+	return o.ApplyT(func(v *Realm) RealmWebAuthnPolicyOutput { return v.WebAuthnPolicy }).(RealmWebAuthnPolicyOutput)
+}
+
 type RealmArrayOutput struct{ *pulumi.OutputState }
 
 func (RealmArrayOutput) ElementType() reflect.Type {

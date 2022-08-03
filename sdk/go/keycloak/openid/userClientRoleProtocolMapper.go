@@ -376,6 +376,66 @@ func (o UserClientRoleProtocolMapperOutput) ToUserClientRoleProtocolMapperOutput
 	return o
 }
 
+// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+func (o UserClientRoleProtocolMapperOutput) AddToAccessToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserClientRoleProtocolMapper) pulumi.BoolPtrOutput { return v.AddToAccessToken }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+func (o UserClientRoleProtocolMapperOutput) AddToIdToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserClientRoleProtocolMapper) pulumi.BoolPtrOutput { return v.AddToIdToken }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+func (o UserClientRoleProtocolMapperOutput) AddToUserinfo() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserClientRoleProtocolMapper) pulumi.BoolPtrOutput { return v.AddToUserinfo }).(pulumi.BoolPtrOutput)
+}
+
+// The name of the claim to insert into a token.
+func (o UserClientRoleProtocolMapperOutput) ClaimName() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserClientRoleProtocolMapper) pulumi.StringOutput { return v.ClaimName }).(pulumi.StringOutput)
+}
+
+// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+func (o UserClientRoleProtocolMapperOutput) ClaimValueType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserClientRoleProtocolMapper) pulumi.StringPtrOutput { return v.ClaimValueType }).(pulumi.StringPtrOutput)
+}
+
+// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+func (o UserClientRoleProtocolMapperOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserClientRoleProtocolMapper) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The Client ID for role mappings. Just client roles of this client will be added to the token. If this is unset, client roles of all clients will be added to the token.
+func (o UserClientRoleProtocolMapperOutput) ClientIdForRoleMappings() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserClientRoleProtocolMapper) pulumi.StringPtrOutput { return v.ClientIdForRoleMappings }).(pulumi.StringPtrOutput)
+}
+
+// A prefix for each Client Role.
+func (o UserClientRoleProtocolMapperOutput) ClientRolePrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserClientRoleProtocolMapper) pulumi.StringPtrOutput { return v.ClientRolePrefix }).(pulumi.StringPtrOutput)
+}
+
+// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+func (o UserClientRoleProtocolMapperOutput) ClientScopeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserClientRoleProtocolMapper) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
+}
+
+// Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
+func (o UserClientRoleProtocolMapperOutput) Multivalued() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserClientRoleProtocolMapper) pulumi.BoolPtrOutput { return v.Multivalued }).(pulumi.BoolPtrOutput)
+}
+
+// The display name of this protocol mapper in the GUI.
+func (o UserClientRoleProtocolMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserClientRoleProtocolMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm this protocol mapper exists within.
+func (o UserClientRoleProtocolMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserClientRoleProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type UserClientRoleProtocolMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (UserClientRoleProtocolMapperArrayOutput) ElementType() reflect.Type {

@@ -362,6 +362,56 @@ func (o UserPropertyProtocolMapperOutput) ToUserPropertyProtocolMapperOutputWith
 	return o
 }
 
+// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+func (o UserPropertyProtocolMapperOutput) AddToAccessToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.BoolPtrOutput { return v.AddToAccessToken }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+func (o UserPropertyProtocolMapperOutput) AddToIdToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.BoolPtrOutput { return v.AddToIdToken }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+func (o UserPropertyProtocolMapperOutput) AddToUserinfo() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.BoolPtrOutput { return v.AddToUserinfo }).(pulumi.BoolPtrOutput)
+}
+
+// The name of the claim to insert into a token.
+func (o UserPropertyProtocolMapperOutput) ClaimName() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringOutput { return v.ClaimName }).(pulumi.StringOutput)
+}
+
+// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+func (o UserPropertyProtocolMapperOutput) ClaimValueType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringPtrOutput { return v.ClaimValueType }).(pulumi.StringPtrOutput)
+}
+
+// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+func (o UserPropertyProtocolMapperOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified. `clientScopeId` - (Required if `clientId` is not specified) The client scope this protocol mapper is attached to.
+func (o UserPropertyProtocolMapperOutput) ClientScopeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
+}
+
+// The display name of this protocol mapper in the GUI.
+func (o UserPropertyProtocolMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm this protocol mapper exists within.
+func (o UserPropertyProtocolMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The built in user property (such as email) to map a claim for.
+func (o UserPropertyProtocolMapperOutput) UserProperty() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringOutput { return v.UserProperty }).(pulumi.StringOutput)
+}
+
 type UserPropertyProtocolMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (UserPropertyProtocolMapperArrayOutput) ElementType() reflect.Type {

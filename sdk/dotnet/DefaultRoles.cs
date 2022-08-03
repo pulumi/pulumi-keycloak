@@ -27,13 +27,13 @@ namespace Pulumi.Keycloak
     ///     {
     ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
     ///         {
-    ///             Realm = "my-realm",
+    ///             RealmName = "my-realm",
     ///             Enabled = true,
     ///         });
-    ///         var defalutRoles = new Keycloak.DefaultRoles("defalutRoles", new Keycloak.DefaultRolesArgs
+    ///         var defaultRoles = new Keycloak.DefaultRoles("defaultRoles", new Keycloak.DefaultRolesArgs
     ///         {
     ///             RealmId = realm.Id,
-    ///             DefaultRoles = 
+    ///             RoleNames = 
     ///             {
     ///                 "uma_authorization",
     ///             },

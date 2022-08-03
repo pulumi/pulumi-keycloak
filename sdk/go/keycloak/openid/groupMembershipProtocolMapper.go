@@ -346,6 +346,51 @@ func (o GroupMembershipProtocolMapperOutput) ToGroupMembershipProtocolMapperOutp
 	return o
 }
 
+// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+func (o GroupMembershipProtocolMapperOutput) AddToAccessToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GroupMembershipProtocolMapper) pulumi.BoolPtrOutput { return v.AddToAccessToken }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+func (o GroupMembershipProtocolMapperOutput) AddToIdToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GroupMembershipProtocolMapper) pulumi.BoolPtrOutput { return v.AddToIdToken }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+func (o GroupMembershipProtocolMapperOutput) AddToUserinfo() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GroupMembershipProtocolMapper) pulumi.BoolPtrOutput { return v.AddToUserinfo }).(pulumi.BoolPtrOutput)
+}
+
+// The name of the claim to insert into a token.
+func (o GroupMembershipProtocolMapperOutput) ClaimName() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupMembershipProtocolMapper) pulumi.StringOutput { return v.ClaimName }).(pulumi.StringOutput)
+}
+
+// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+func (o GroupMembershipProtocolMapperOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupMembershipProtocolMapper) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+func (o GroupMembershipProtocolMapperOutput) ClientScopeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupMembershipProtocolMapper) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether the full path of the group including its parents will be used. Defaults to `true`.
+func (o GroupMembershipProtocolMapperOutput) FullPath() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GroupMembershipProtocolMapper) pulumi.BoolPtrOutput { return v.FullPath }).(pulumi.BoolPtrOutput)
+}
+
+// The display name of this protocol mapper in the GUI.
+func (o GroupMembershipProtocolMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupMembershipProtocolMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm this protocol mapper exists within.
+func (o GroupMembershipProtocolMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupMembershipProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type GroupMembershipProtocolMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (GroupMembershipProtocolMapperArrayOutput) ElementType() reflect.Type {

@@ -261,6 +261,26 @@ func (o ExecutionConfigOutput) ToExecutionConfigOutputWithContext(ctx context.Co
 	return o
 }
 
+// The name of the configuration.
+func (o ExecutionConfigOutput) Alias() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExecutionConfig) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
+}
+
+// The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+func (o ExecutionConfigOutput) Config() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ExecutionConfig) pulumi.StringMapOutput { return v.Config }).(pulumi.StringMapOutput)
+}
+
+// The authentication execution this configuration is attached to.
+func (o ExecutionConfigOutput) ExecutionId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExecutionConfig) pulumi.StringOutput { return v.ExecutionId }).(pulumi.StringOutput)
+}
+
+// The realm the authentication execution exists in.
+func (o ExecutionConfigOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ExecutionConfig) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type ExecutionConfigArrayOutput struct{ *pulumi.OutputState }
 
 func (ExecutionConfigArrayOutput) ElementType() reflect.Type {

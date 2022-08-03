@@ -290,6 +290,41 @@ func (o ClientPolicyOutput) ToClientPolicyOutputWithContext(ctx context.Context)
 	return o
 }
 
+// The clients allowed by this client policy.
+func (o ClientPolicyOutput) Clients() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ClientPolicy) pulumi.StringArrayOutput { return v.Clients }).(pulumi.StringArrayOutput)
+}
+
+// (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
+func (o ClientPolicyOutput) DecisionStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientPolicy) pulumi.StringPtrOutput { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
+}
+
+// The description of this client policy.
+func (o ClientPolicyOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientPolicy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
+func (o ClientPolicyOutput) Logic() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientPolicy) pulumi.StringPtrOutput { return v.Logic }).(pulumi.StringPtrOutput)
+}
+
+// The name of this client policy.
+func (o ClientPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm this client policy exists within.
+func (o ClientPolicyOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientPolicy) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The ID of the resource server this client policy is attached to.
+func (o ClientPolicyOutput) ResourceServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientPolicy) pulumi.StringOutput { return v.ResourceServerId }).(pulumi.StringOutput)
+}
+
 type ClientPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientPolicyArrayOutput) ElementType() reflect.Type {

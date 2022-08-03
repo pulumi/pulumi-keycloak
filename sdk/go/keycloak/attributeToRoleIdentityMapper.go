@@ -252,6 +252,55 @@ func (o AttributeToRoleIdentityMapperOutput) ToAttributeToRoleIdentityMapperOutp
 	return o
 }
 
+// Attribute Friendly Name
+func (o AttributeToRoleIdentityMapperOutput) AttributeFriendlyName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AttributeToRoleIdentityMapper) pulumi.StringPtrOutput { return v.AttributeFriendlyName }).(pulumi.StringPtrOutput)
+}
+
+// Attribute Name
+func (o AttributeToRoleIdentityMapperOutput) AttributeName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AttributeToRoleIdentityMapper) pulumi.StringPtrOutput { return v.AttributeName }).(pulumi.StringPtrOutput)
+}
+
+// Attribute Value
+func (o AttributeToRoleIdentityMapperOutput) AttributeValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AttributeToRoleIdentityMapper) pulumi.StringPtrOutput { return v.AttributeValue }).(pulumi.StringPtrOutput)
+}
+
+// OIDC Claim Name
+func (o AttributeToRoleIdentityMapperOutput) ClaimName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AttributeToRoleIdentityMapper) pulumi.StringPtrOutput { return v.ClaimName }).(pulumi.StringPtrOutput)
+}
+
+// OIDC Claim Value
+func (o AttributeToRoleIdentityMapperOutput) ClaimValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AttributeToRoleIdentityMapper) pulumi.StringPtrOutput { return v.ClaimValue }).(pulumi.StringPtrOutput)
+}
+
+func (o AttributeToRoleIdentityMapperOutput) ExtraConfig() pulumi.MapOutput {
+	return o.ApplyT(func(v *AttributeToRoleIdentityMapper) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+}
+
+// IDP Alias
+func (o AttributeToRoleIdentityMapperOutput) IdentityProviderAlias() pulumi.StringOutput {
+	return o.ApplyT(func(v *AttributeToRoleIdentityMapper) pulumi.StringOutput { return v.IdentityProviderAlias }).(pulumi.StringOutput)
+}
+
+// IDP Mapper Name
+func (o AttributeToRoleIdentityMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *AttributeToRoleIdentityMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Realm Name
+func (o AttributeToRoleIdentityMapperOutput) Realm() pulumi.StringOutput {
+	return o.ApplyT(func(v *AttributeToRoleIdentityMapper) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// Role Name
+func (o AttributeToRoleIdentityMapperOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v *AttributeToRoleIdentityMapper) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
+}
+
 type AttributeToRoleIdentityMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (AttributeToRoleIdentityMapperArrayOutput) ElementType() reflect.Type {

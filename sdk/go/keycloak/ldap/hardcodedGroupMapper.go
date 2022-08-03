@@ -197,6 +197,26 @@ func (o HardcodedGroupMapperOutput) ToHardcodedGroupMapperOutputWithContext(ctx 
 	return o
 }
 
+// Group to grant to user.
+func (o HardcodedGroupMapperOutput) Group() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedGroupMapper) pulumi.StringOutput { return v.Group }).(pulumi.StringOutput)
+}
+
+// The ldap user federation provider to attach this mapper to.
+func (o HardcodedGroupMapperOutput) LdapUserFederationId() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedGroupMapper) pulumi.StringOutput { return v.LdapUserFederationId }).(pulumi.StringOutput)
+}
+
+// Display name of the mapper when displayed in the console.
+func (o HardcodedGroupMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedGroupMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm in which the ldap user federation provider exists.
+func (o HardcodedGroupMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedGroupMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type HardcodedGroupMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (HardcodedGroupMapperArrayOutput) ElementType() reflect.Type {

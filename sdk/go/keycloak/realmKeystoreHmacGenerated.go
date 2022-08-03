@@ -266,6 +266,41 @@ func (o RealmKeystoreHmacGeneratedOutput) ToRealmKeystoreHmacGeneratedOutputWith
 	return o
 }
 
+// When `false`, key in not used for signing. Defaults to `true`.
+func (o RealmKeystoreHmacGeneratedOutput) Active() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreHmacGenerated) pulumi.BoolPtrOutput { return v.Active }).(pulumi.BoolPtrOutput)
+}
+
+// Intended algorithm for the key. Defaults to `HS256`
+func (o RealmKeystoreHmacGeneratedOutput) Algorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreHmacGenerated) pulumi.StringPtrOutput { return v.Algorithm }).(pulumi.StringPtrOutput)
+}
+
+// When `false`, key is not accessible in this realm. Defaults to `true`.
+func (o RealmKeystoreHmacGeneratedOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreHmacGenerated) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Display name of provider when linked in admin console.
+func (o RealmKeystoreHmacGeneratedOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreHmacGenerated) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Priority for the provider. Defaults to `0`
+func (o RealmKeystoreHmacGeneratedOutput) Priority() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreHmacGenerated) pulumi.IntPtrOutput { return v.Priority }).(pulumi.IntPtrOutput)
+}
+
+// The realm this keystore exists in.
+func (o RealmKeystoreHmacGeneratedOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreHmacGenerated) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// Size in bytes for the generated secret. Defaults to `64`.
+func (o RealmKeystoreHmacGeneratedOutput) SecretSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreHmacGenerated) pulumi.IntPtrOutput { return v.SecretSize }).(pulumi.IntPtrOutput)
+}
+
 type RealmKeystoreHmacGeneratedArrayOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreHmacGeneratedArrayOutput) ElementType() reflect.Type {
