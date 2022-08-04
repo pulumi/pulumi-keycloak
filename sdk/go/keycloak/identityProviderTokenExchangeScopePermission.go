@@ -291,6 +291,52 @@ func (o IdentityProviderTokenExchangeScopePermissionOutput) ToIdentityProviderTo
 	return o
 }
 
+// (Computed) Resource ID representing the identity provider, this automatically created by keycloak.
+func (o IdentityProviderTokenExchangeScopePermissionOutput) AuthorizationIdpResourceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProviderTokenExchangeScopePermission) pulumi.StringOutput {
+		return v.AuthorizationIdpResourceId
+	}).(pulumi.StringOutput)
+}
+
+// (Computed) Resource server ID representing the realm management client on which this permission is managed.
+func (o IdentityProviderTokenExchangeScopePermissionOutput) AuthorizationResourceServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProviderTokenExchangeScopePermission) pulumi.StringOutput {
+		return v.AuthorizationResourceServerId
+	}).(pulumi.StringOutput)
+}
+
+// (Computed) Permission ID representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id', this automatically created by keycloak, the policy ID will be set on this permission.
+func (o IdentityProviderTokenExchangeScopePermissionOutput) AuthorizationTokenExchangeScopePermissionId() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProviderTokenExchangeScopePermission) pulumi.StringOutput {
+		return v.AuthorizationTokenExchangeScopePermissionId
+	}).(pulumi.StringOutput)
+}
+
+// A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
+func (o IdentityProviderTokenExchangeScopePermissionOutput) Clients() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *IdentityProviderTokenExchangeScopePermission) pulumi.StringArrayOutput { return v.Clients }).(pulumi.StringArrayOutput)
+}
+
+// (Computed) Policy ID that will be set on the scope based token exchange permission automatically created by enabling permissions on the reference identity provider.
+func (o IdentityProviderTokenExchangeScopePermissionOutput) PolicyId() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProviderTokenExchangeScopePermission) pulumi.StringOutput { return v.PolicyId }).(pulumi.StringOutput)
+}
+
+// Defaults to "client" This is also the only value policy type supported by this provider.
+func (o IdentityProviderTokenExchangeScopePermissionOutput) PolicyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProviderTokenExchangeScopePermission) pulumi.StringPtrOutput { return v.PolicyType }).(pulumi.StringPtrOutput)
+}
+
+// Alias of the identity provider.
+func (o IdentityProviderTokenExchangeScopePermissionOutput) ProviderAlias() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProviderTokenExchangeScopePermission) pulumi.StringOutput { return v.ProviderAlias }).(pulumi.StringOutput)
+}
+
+// The realm that the identity provider exists in.
+func (o IdentityProviderTokenExchangeScopePermissionOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProviderTokenExchangeScopePermission) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type IdentityProviderTokenExchangeScopePermissionArrayOutput struct{ *pulumi.OutputState }
 
 func (IdentityProviderTokenExchangeScopePermissionArrayOutput) ElementType() reflect.Type {

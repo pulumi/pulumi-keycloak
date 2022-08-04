@@ -179,6 +179,26 @@ func (o ClientAuthorizationScopeOutput) ToClientAuthorizationScopeOutputWithCont
 	return o
 }
 
+func (o ClientAuthorizationScopeOutput) DisplayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientAuthorizationScope) pulumi.StringPtrOutput { return v.DisplayName }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientAuthorizationScopeOutput) IconUri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientAuthorizationScope) pulumi.StringPtrOutput { return v.IconUri }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientAuthorizationScopeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientAuthorizationScope) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ClientAuthorizationScopeOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientAuthorizationScope) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o ClientAuthorizationScopeOutput) ResourceServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientAuthorizationScope) pulumi.StringOutput { return v.ResourceServerId }).(pulumi.StringOutput)
+}
+
 type ClientAuthorizationScopeArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthorizationScopeArrayOutput) ElementType() reflect.Type {

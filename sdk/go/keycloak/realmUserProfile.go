@@ -78,7 +78,7 @@ import (
 // 						&RealmUserProfileAttributeValidatorArgs{
 // 							Name: pulumi.String("pattern"),
 // 							Config: pulumi.StringMap{
-// 								"pattern":       pulumi.String(fmt.Sprintf("%v%v", "^[a-z]+", "$")),
+// 								"pattern":       pulumi.String(fmt.Sprintf("^[a-z]+$")),
 // 								"error_message": pulumi.String("Nope"),
 // 							},
 // 						},
@@ -284,6 +284,21 @@ func (o RealmUserProfileOutput) ToRealmUserProfileOutput() RealmUserProfileOutpu
 
 func (o RealmUserProfileOutput) ToRealmUserProfileOutputWithContext(ctx context.Context) RealmUserProfileOutput {
 	return o
+}
+
+// An ordered list of attributes.
+func (o RealmUserProfileOutput) Attributes() RealmUserProfileAttributeArrayOutput {
+	return o.ApplyT(func(v *RealmUserProfile) RealmUserProfileAttributeArrayOutput { return v.Attributes }).(RealmUserProfileAttributeArrayOutput)
+}
+
+// The group that the attribute belong to.
+func (o RealmUserProfileOutput) Groups() RealmUserProfileGroupArrayOutput {
+	return o.ApplyT(func(v *RealmUserProfile) RealmUserProfileGroupArrayOutput { return v.Groups }).(RealmUserProfileGroupArrayOutput)
+}
+
+// The ID of the realm the user profile applies to.
+func (o RealmUserProfileOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmUserProfile) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }
 
 type RealmUserProfileArrayOutput struct{ *pulumi.OutputState }

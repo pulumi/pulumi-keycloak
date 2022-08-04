@@ -247,6 +247,78 @@ func (o ClientTimePolicyOutput) ToClientTimePolicyOutputWithContext(ctx context.
 	return o
 }
 
+func (o ClientTimePolicyOutput) DayMonth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringPtrOutput { return v.DayMonth }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientTimePolicyOutput) DayMonthEnd() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringPtrOutput { return v.DayMonthEnd }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientTimePolicyOutput) DecisionStrategy() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringOutput { return v.DecisionStrategy }).(pulumi.StringOutput)
+}
+
+func (o ClientTimePolicyOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientTimePolicyOutput) Hour() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringPtrOutput { return v.Hour }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientTimePolicyOutput) HourEnd() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringPtrOutput { return v.HourEnd }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientTimePolicyOutput) Logic() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringPtrOutput { return v.Logic }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientTimePolicyOutput) Minute() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringPtrOutput { return v.Minute }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientTimePolicyOutput) MinuteEnd() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringPtrOutput { return v.MinuteEnd }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientTimePolicyOutput) Month() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringPtrOutput { return v.Month }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientTimePolicyOutput) MonthEnd() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringPtrOutput { return v.MonthEnd }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientTimePolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ClientTimePolicyOutput) NotBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringPtrOutput { return v.NotBefore }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientTimePolicyOutput) NotOnOrAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringPtrOutput { return v.NotOnOrAfter }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientTimePolicyOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o ClientTimePolicyOutput) ResourceServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringOutput { return v.ResourceServerId }).(pulumi.StringOutput)
+}
+
+func (o ClientTimePolicyOutput) Year() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringPtrOutput { return v.Year }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientTimePolicyOutput) YearEnd() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringPtrOutput { return v.YearEnd }).(pulumi.StringPtrOutput)
+}
+
 type ClientTimePolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientTimePolicyArrayOutput) ElementType() reflect.Type {

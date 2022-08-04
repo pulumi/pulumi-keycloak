@@ -263,6 +263,26 @@ func (o ExecutionOutput) ToExecutionOutputWithContext(ctx context.Context) Execu
 	return o
 }
 
+// The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
+func (o ExecutionOutput) Authenticator() pulumi.StringOutput {
+	return o.ApplyT(func(v *Execution) pulumi.StringOutput { return v.Authenticator }).(pulumi.StringOutput)
+}
+
+// The alias of the flow this execution is attached to.
+func (o ExecutionOutput) ParentFlowAlias() pulumi.StringOutput {
+	return o.ApplyT(func(v *Execution) pulumi.StringOutput { return v.ParentFlowAlias }).(pulumi.StringOutput)
+}
+
+// The realm the authentication execution exists in.
+func (o ExecutionOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Execution) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
+func (o ExecutionOutput) Requirement() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Execution) pulumi.StringPtrOutput { return v.Requirement }).(pulumi.StringPtrOutput)
+}
+
 type ExecutionArrayOutput struct{ *pulumi.OutputState }
 
 func (ExecutionArrayOutput) ElementType() reflect.Type {

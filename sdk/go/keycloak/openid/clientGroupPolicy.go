@@ -200,6 +200,38 @@ func (o ClientGroupPolicyOutput) ToClientGroupPolicyOutputWithContext(ctx contex
 	return o
 }
 
+func (o ClientGroupPolicyOutput) DecisionStrategy() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientGroupPolicy) pulumi.StringOutput { return v.DecisionStrategy }).(pulumi.StringOutput)
+}
+
+func (o ClientGroupPolicyOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientGroupPolicy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientGroupPolicyOutput) Groups() ClientGroupPolicyGroupArrayOutput {
+	return o.ApplyT(func(v *ClientGroupPolicy) ClientGroupPolicyGroupArrayOutput { return v.Groups }).(ClientGroupPolicyGroupArrayOutput)
+}
+
+func (o ClientGroupPolicyOutput) GroupsClaim() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientGroupPolicy) pulumi.StringPtrOutput { return v.GroupsClaim }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientGroupPolicyOutput) Logic() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientGroupPolicy) pulumi.StringPtrOutput { return v.Logic }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientGroupPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientGroupPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ClientGroupPolicyOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientGroupPolicy) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o ClientGroupPolicyOutput) ResourceServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientGroupPolicy) pulumi.StringOutput { return v.ResourceServerId }).(pulumi.StringOutput)
+}
+
 type ClientGroupPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientGroupPolicyArrayOutput) ElementType() reflect.Type {

@@ -279,6 +279,41 @@ func (o BindingsOutput) ToBindingsOutputWithContext(ctx context.Context) Binding
 	return o
 }
 
+// The alias of the flow to assign to the realm BrowserFlow.
+func (o BindingsOutput) BrowserFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v *Bindings) pulumi.StringOutput { return v.BrowserFlow }).(pulumi.StringOutput)
+}
+
+// The alias of the flow to assign to the realm ClientAuthenticationFlow.
+func (o BindingsOutput) ClientAuthenticationFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v *Bindings) pulumi.StringOutput { return v.ClientAuthenticationFlow }).(pulumi.StringOutput)
+}
+
+// The alias of the flow to assign to the realm DirectGrantFlow.
+func (o BindingsOutput) DirectGrantFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v *Bindings) pulumi.StringOutput { return v.DirectGrantFlow }).(pulumi.StringOutput)
+}
+
+// The alias of the flow to assign to the realm DockerAuthenticationFlow.
+func (o BindingsOutput) DockerAuthenticationFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v *Bindings) pulumi.StringOutput { return v.DockerAuthenticationFlow }).(pulumi.StringOutput)
+}
+
+// The realm the authentication flow binding exists in.
+func (o BindingsOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Bindings) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The alias of the flow to assign to the realm RegistrationFlow.
+func (o BindingsOutput) RegistrationFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v *Bindings) pulumi.StringOutput { return v.RegistrationFlow }).(pulumi.StringOutput)
+}
+
+// The alias of the flow to assign to the realm ResetCredentialsFlow.
+func (o BindingsOutput) ResetCredentialsFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v *Bindings) pulumi.StringOutput { return v.ResetCredentialsFlow }).(pulumi.StringOutput)
+}
+
 type BindingsArrayOutput struct{ *pulumi.OutputState }
 
 func (BindingsArrayOutput) ElementType() reflect.Type {

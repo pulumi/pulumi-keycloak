@@ -26,7 +26,7 @@ namespace Pulumi.Keycloak.Saml
     ///     {
     ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
     ///         {
-    ///             Realm = "my-realm",
+    ///             RealmName = "my-realm",
     ///             Enabled = true,
     ///         });
     ///         var samlClientScope = new Keycloak.Saml.ClientScope("samlClientScope", new Keycloak.Saml.ClientScopeArgs

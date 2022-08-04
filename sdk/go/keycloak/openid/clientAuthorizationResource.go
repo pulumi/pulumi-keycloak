@@ -204,6 +204,46 @@ func (o ClientAuthorizationResourceOutput) ToClientAuthorizationResourceOutputWi
 	return o
 }
 
+func (o ClientAuthorizationResourceOutput) Attributes() pulumi.MapOutput {
+	return o.ApplyT(func(v *ClientAuthorizationResource) pulumi.MapOutput { return v.Attributes }).(pulumi.MapOutput)
+}
+
+func (o ClientAuthorizationResourceOutput) DisplayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientAuthorizationResource) pulumi.StringPtrOutput { return v.DisplayName }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientAuthorizationResourceOutput) IconUri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientAuthorizationResource) pulumi.StringPtrOutput { return v.IconUri }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientAuthorizationResourceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientAuthorizationResource) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ClientAuthorizationResourceOutput) OwnerManagedAccess() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ClientAuthorizationResource) pulumi.BoolPtrOutput { return v.OwnerManagedAccess }).(pulumi.BoolPtrOutput)
+}
+
+func (o ClientAuthorizationResourceOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientAuthorizationResource) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o ClientAuthorizationResourceOutput) ResourceServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientAuthorizationResource) pulumi.StringOutput { return v.ResourceServerId }).(pulumi.StringOutput)
+}
+
+func (o ClientAuthorizationResourceOutput) Scopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ClientAuthorizationResource) pulumi.StringArrayOutput { return v.Scopes }).(pulumi.StringArrayOutput)
+}
+
+func (o ClientAuthorizationResourceOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientAuthorizationResource) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientAuthorizationResourceOutput) Uris() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ClientAuthorizationResource) pulumi.StringArrayOutput { return v.Uris }).(pulumi.StringArrayOutput)
+}
+
 type ClientAuthorizationResourceArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthorizationResourceArrayOutput) ElementType() reflect.Type {

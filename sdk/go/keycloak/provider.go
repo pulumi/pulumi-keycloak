@@ -134,6 +134,40 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
+func (o ProviderOutput) BasePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.BasePath }).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.ClientId }).(pulumi.StringOutput)
+}
+
+func (o ProviderOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ClientSecret }).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderOutput) Realm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Realm }).(pulumi.StringPtrOutput)
+}
+
+// Allows x509 calls using an unknown CA certificate (for development purposes)
+func (o ProviderOutput) RootCaCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.RootCaCertificate }).(pulumi.StringPtrOutput)
+}
+
+// The base URL of the Keycloak instance, before `/auth`
+func (o ProviderOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
+}
+
+func (o ProviderOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Username }).(pulumi.StringPtrOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderInput)(nil)).Elem(), &Provider{})
 	pulumi.RegisterOutputType(ProviderOutput{})

@@ -246,6 +246,21 @@ func (o ClientServiceAccountRealmRoleOutput) ToClientServiceAccountRealmRoleOutp
 	return o
 }
 
+// The realm that the client and role belong to.
+func (o ClientServiceAccountRealmRoleOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientServiceAccountRealmRole) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The name of the role that is assigned.
+func (o ClientServiceAccountRealmRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientServiceAccountRealmRole) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
+}
+
+// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
+func (o ClientServiceAccountRealmRoleOutput) ServiceAccountUserId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientServiceAccountRealmRole) pulumi.StringOutput { return v.ServiceAccountUserId }).(pulumi.StringOutput)
+}
+
 type ClientServiceAccountRealmRoleArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientServiceAccountRealmRoleArrayOutput) ElementType() reflect.Type {

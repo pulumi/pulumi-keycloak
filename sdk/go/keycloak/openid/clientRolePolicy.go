@@ -200,6 +200,38 @@ func (o ClientRolePolicyOutput) ToClientRolePolicyOutputWithContext(ctx context.
 	return o
 }
 
+func (o ClientRolePolicyOutput) DecisionStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientRolePolicy) pulumi.StringPtrOutput { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientRolePolicyOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientRolePolicy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientRolePolicyOutput) Logic() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientRolePolicy) pulumi.StringPtrOutput { return v.Logic }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientRolePolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientRolePolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ClientRolePolicyOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientRolePolicy) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o ClientRolePolicyOutput) ResourceServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientRolePolicy) pulumi.StringOutput { return v.ResourceServerId }).(pulumi.StringOutput)
+}
+
+func (o ClientRolePolicyOutput) Roles() ClientRolePolicyRoleArrayOutput {
+	return o.ApplyT(func(v *ClientRolePolicy) ClientRolePolicyRoleArrayOutput { return v.Roles }).(ClientRolePolicyRoleArrayOutput)
+}
+
+func (o ClientRolePolicyOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientRolePolicy) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
 type ClientRolePolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientRolePolicyArrayOutput) ElementType() reflect.Type {

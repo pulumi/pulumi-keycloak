@@ -290,6 +290,26 @@ func (o AudienceResolveProtocolMappterOutput) ToAudienceResolveProtocolMappterOu
 	return o
 }
 
+// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+func (o AudienceResolveProtocolMappterOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AudienceResolveProtocolMappter) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+func (o AudienceResolveProtocolMappterOutput) ClientScopeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AudienceResolveProtocolMappter) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
+}
+
+// The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
+func (o AudienceResolveProtocolMappterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *AudienceResolveProtocolMappter) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm this protocol mapper exists within.
+func (o AudienceResolveProtocolMappterOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *AudienceResolveProtocolMappter) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type AudienceResolveProtocolMappterArrayOutput struct{ *pulumi.OutputState }
 
 func (AudienceResolveProtocolMappterArrayOutput) ElementType() reflect.Type {

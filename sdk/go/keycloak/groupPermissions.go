@@ -198,6 +198,45 @@ func (o GroupPermissionsOutput) ToGroupPermissionsOutputWithContext(ctx context.
 	return o
 }
 
+// Resource server id representing the realm management client on which this permission is managed
+func (o GroupPermissionsOutput) AuthorizationResourceServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupPermissions) pulumi.StringOutput { return v.AuthorizationResourceServerId }).(pulumi.StringOutput)
+}
+
+func (o GroupPermissionsOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *GroupPermissions) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+func (o GroupPermissionsOutput) GroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupPermissions) pulumi.StringOutput { return v.GroupId }).(pulumi.StringOutput)
+}
+
+func (o GroupPermissionsOutput) ManageMembersScope() GroupPermissionsManageMembersScopePtrOutput {
+	return o.ApplyT(func(v *GroupPermissions) GroupPermissionsManageMembersScopePtrOutput { return v.ManageMembersScope }).(GroupPermissionsManageMembersScopePtrOutput)
+}
+
+func (o GroupPermissionsOutput) ManageMembershipScope() GroupPermissionsManageMembershipScopePtrOutput {
+	return o.ApplyT(func(v *GroupPermissions) GroupPermissionsManageMembershipScopePtrOutput {
+		return v.ManageMembershipScope
+	}).(GroupPermissionsManageMembershipScopePtrOutput)
+}
+
+func (o GroupPermissionsOutput) ManageScope() GroupPermissionsManageScopePtrOutput {
+	return o.ApplyT(func(v *GroupPermissions) GroupPermissionsManageScopePtrOutput { return v.ManageScope }).(GroupPermissionsManageScopePtrOutput)
+}
+
+func (o GroupPermissionsOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupPermissions) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o GroupPermissionsOutput) ViewMembersScope() GroupPermissionsViewMembersScopePtrOutput {
+	return o.ApplyT(func(v *GroupPermissions) GroupPermissionsViewMembersScopePtrOutput { return v.ViewMembersScope }).(GroupPermissionsViewMembersScopePtrOutput)
+}
+
+func (o GroupPermissionsOutput) ViewScope() GroupPermissionsViewScopePtrOutput {
+	return o.ApplyT(func(v *GroupPermissions) GroupPermissionsViewScopePtrOutput { return v.ViewScope }).(GroupPermissionsViewScopePtrOutput)
+}
+
 type GroupPermissionsArrayOutput struct{ *pulumi.OutputState }
 
 func (GroupPermissionsArrayOutput) ElementType() reflect.Type {

@@ -89,7 +89,7 @@ export class CustomUserFederation extends pulumi.CustomResource {
     /**
      * Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
      */
-    public readonly parentId!: pulumi.Output<string | undefined>;
+    public readonly parentId!: pulumi.Output<string>;
     /**
      * Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
      */

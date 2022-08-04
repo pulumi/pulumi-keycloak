@@ -404,6 +404,36 @@ func (o RoleOutput) ToRoleOutputWithContext(ctx context.Context) RoleOutput {
 	return o
 }
 
+// A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+func (o RoleOutput) Attributes() pulumi.MapOutput {
+	return o.ApplyT(func(v *Role) pulumi.MapOutput { return v.Attributes }).(pulumi.MapOutput)
+}
+
+// When specified, this role will be created as a client role attached to the client with the provided ID
+func (o RoleOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Role) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+func (o RoleOutput) CompositeRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Role) pulumi.StringArrayOutput { return v.CompositeRoles }).(pulumi.StringArrayOutput)
+}
+
+// The description of the role
+func (o RoleOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Role) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The name of the role
+func (o RoleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Role) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm this role exists within.
+func (o RoleOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Role) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type RoleArrayOutput struct{ *pulumi.OutputState }
 
 func (RoleArrayOutput) ElementType() reflect.Type {

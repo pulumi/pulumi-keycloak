@@ -32,7 +32,7 @@ namespace Pulumi.Keycloak.OpenId
         ///     {
         ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
         ///         {
-        ///             Realm = "my-realm",
+        ///             RealmName = "my-realm",
         ///             Enabled = true,
         ///         });
         ///         var clientWithAuthz = new Keycloak.OpenId.Client("clientWithAuthz", new Keycloak.OpenId.ClientArgs
@@ -109,7 +109,7 @@ namespace Pulumi.Keycloak.OpenId
         ///     {
         ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
         ///         {
-        ///             Realm = "my-realm",
+        ///             RealmName = "my-realm",
         ///             Enabled = true,
         ///         });
         ///         var clientWithAuthz = new Keycloak.OpenId.Client("clientWithAuthz", new Keycloak.OpenId.ClientArgs

@@ -222,6 +222,40 @@ func (o HardcodedAttributeIdentityProviderMapperOutput) ToHardcodedAttributeIden
 	return o
 }
 
+// OIDC Claim
+func (o HardcodedAttributeIdentityProviderMapperOutput) AttributeName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *HardcodedAttributeIdentityProviderMapper) pulumi.StringPtrOutput { return v.AttributeName }).(pulumi.StringPtrOutput)
+}
+
+// User Attribute
+func (o HardcodedAttributeIdentityProviderMapperOutput) AttributeValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *HardcodedAttributeIdentityProviderMapper) pulumi.StringPtrOutput { return v.AttributeValue }).(pulumi.StringPtrOutput)
+}
+
+func (o HardcodedAttributeIdentityProviderMapperOutput) ExtraConfig() pulumi.MapOutput {
+	return o.ApplyT(func(v *HardcodedAttributeIdentityProviderMapper) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+}
+
+// IDP Alias
+func (o HardcodedAttributeIdentityProviderMapperOutput) IdentityProviderAlias() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedAttributeIdentityProviderMapper) pulumi.StringOutput { return v.IdentityProviderAlias }).(pulumi.StringOutput)
+}
+
+// IDP Mapper Name
+func (o HardcodedAttributeIdentityProviderMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedAttributeIdentityProviderMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Realm Name
+func (o HardcodedAttributeIdentityProviderMapperOutput) Realm() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedAttributeIdentityProviderMapper) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// Is Attribute Related To a User Session
+func (o HardcodedAttributeIdentityProviderMapperOutput) UserSession() pulumi.BoolOutput {
+	return o.ApplyT(func(v *HardcodedAttributeIdentityProviderMapper) pulumi.BoolOutput { return v.UserSession }).(pulumi.BoolOutput)
+}
+
 type HardcodedAttributeIdentityProviderMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (HardcodedAttributeIdentityProviderMapperArrayOutput) ElementType() reflect.Type {

@@ -195,6 +195,34 @@ func (o ClientAggregatePolicyOutput) ToClientAggregatePolicyOutputWithContext(ct
 	return o
 }
 
+func (o ClientAggregatePolicyOutput) DecisionStrategy() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientAggregatePolicy) pulumi.StringOutput { return v.DecisionStrategy }).(pulumi.StringOutput)
+}
+
+func (o ClientAggregatePolicyOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientAggregatePolicy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientAggregatePolicyOutput) Logic() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientAggregatePolicy) pulumi.StringPtrOutput { return v.Logic }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientAggregatePolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientAggregatePolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ClientAggregatePolicyOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ClientAggregatePolicy) pulumi.StringArrayOutput { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+func (o ClientAggregatePolicyOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientAggregatePolicy) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o ClientAggregatePolicyOutput) ResourceServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientAggregatePolicy) pulumi.StringOutput { return v.ResourceServerId }).(pulumi.StringOutput)
+}
+
 type ClientAggregatePolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientAggregatePolicyArrayOutput) ElementType() reflect.Type {

@@ -70,7 +70,7 @@ type CustomUserFederation struct {
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
-	ParentId pulumi.StringPtrOutput `pulumi:"parentId"`
+	ParentId pulumi.StringOutput `pulumi:"parentId"`
 	// Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
 	// The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
@@ -295,6 +295,56 @@ func (o CustomUserFederationOutput) ToCustomUserFederationOutput() CustomUserFed
 
 func (o CustomUserFederationOutput) ToCustomUserFederationOutputWithContext(ctx context.Context) CustomUserFederationOutput {
 	return o
+}
+
+// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+func (o CustomUserFederationOutput) CachePolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomUserFederation) pulumi.StringPtrOutput { return v.CachePolicy }).(pulumi.StringPtrOutput)
+}
+
+// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+func (o CustomUserFederationOutput) ChangedSyncPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CustomUserFederation) pulumi.IntPtrOutput { return v.ChangedSyncPeriod }).(pulumi.IntPtrOutput)
+}
+
+// The provider configuration handed over to your custom user federation provider.
+func (o CustomUserFederationOutput) Config() pulumi.MapOutput {
+	return o.ApplyT(func(v *CustomUserFederation) pulumi.MapOutput { return v.Config }).(pulumi.MapOutput)
+}
+
+// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+func (o CustomUserFederationOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CustomUserFederation) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
+func (o CustomUserFederationOutput) FullSyncPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CustomUserFederation) pulumi.IntPtrOutput { return v.FullSyncPeriod }).(pulumi.IntPtrOutput)
+}
+
+// Display name of the provider when displayed in the console.
+func (o CustomUserFederationOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *CustomUserFederation) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
+func (o CustomUserFederationOutput) ParentId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CustomUserFederation) pulumi.StringOutput { return v.ParentId }).(pulumi.StringOutput)
+}
+
+// Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+func (o CustomUserFederationOutput) Priority() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CustomUserFederation) pulumi.IntPtrOutput { return v.Priority }).(pulumi.IntPtrOutput)
+}
+
+// The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
+func (o CustomUserFederationOutput) ProviderId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CustomUserFederation) pulumi.StringOutput { return v.ProviderId }).(pulumi.StringOutput)
+}
+
+// The realm that this provider will provide user federation for.
+func (o CustomUserFederationOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CustomUserFederation) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }
 
 type CustomUserFederationArrayOutput struct{ *pulumi.OutputState }

@@ -267,6 +267,41 @@ func (o RealmEventsOutput) ToRealmEventsOutputWithContext(ctx context.Context) R
 	return o
 }
 
+// When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
+func (o RealmEventsOutput) AdminEventsDetailsEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RealmEvents) pulumi.BoolPtrOutput { return v.AdminEventsDetailsEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
+func (o RealmEventsOutput) AdminEventsEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RealmEvents) pulumi.BoolPtrOutput { return v.AdminEventsEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
+func (o RealmEventsOutput) EnabledEventTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RealmEvents) pulumi.StringArrayOutput { return v.EnabledEventTypes }).(pulumi.StringArrayOutput)
+}
+
+// When `true`, events from `enabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `false`.
+func (o RealmEventsOutput) EventsEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RealmEvents) pulumi.BoolPtrOutput { return v.EventsEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
+func (o RealmEventsOutput) EventsExpiration() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RealmEvents) pulumi.IntPtrOutput { return v.EventsExpiration }).(pulumi.IntPtrOutput)
+}
+
+// The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
+func (o RealmEventsOutput) EventsListeners() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RealmEvents) pulumi.StringArrayOutput { return v.EventsListeners }).(pulumi.StringArrayOutput)
+}
+
+// The name of the realm the event settings apply to.
+func (o RealmEventsOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmEvents) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type RealmEventsArrayOutput struct{ *pulumi.OutputState }
 
 func (RealmEventsArrayOutput) ElementType() reflect.Type {

@@ -32,7 +32,7 @@ namespace Pulumi.Keycloak.Saml
         ///     {
         ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
         ///         {
-        ///             Realm = "my-realm",
+        ///             RealmName = "my-realm",
         ///             Enabled = true,
         ///         });
         ///         var samlClient = new Keycloak.Saml.Client("samlClient", new Keycloak.Saml.ClientArgs
@@ -86,7 +86,7 @@ namespace Pulumi.Keycloak.Saml
         ///     {
         ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
         ///         {
-        ///             Realm = "my-realm",
+        ///             RealmName = "my-realm",
         ///             Enabled = true,
         ///         });
         ///         var samlClient = new Keycloak.Saml.Client("samlClient", new Keycloak.Saml.ClientArgs

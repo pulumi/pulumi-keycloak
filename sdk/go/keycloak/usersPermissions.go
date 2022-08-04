@@ -195,6 +195,47 @@ func (o UsersPermissionsOutput) ToUsersPermissionsOutputWithContext(ctx context.
 	return o
 }
 
+// Resource server id representing the realm management client on which this permission is managed
+func (o UsersPermissionsOutput) AuthorizationResourceServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UsersPermissions) pulumi.StringOutput { return v.AuthorizationResourceServerId }).(pulumi.StringOutput)
+}
+
+func (o UsersPermissionsOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *UsersPermissions) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+func (o UsersPermissionsOutput) ImpersonateScope() UsersPermissionsImpersonateScopePtrOutput {
+	return o.ApplyT(func(v *UsersPermissions) UsersPermissionsImpersonateScopePtrOutput { return v.ImpersonateScope }).(UsersPermissionsImpersonateScopePtrOutput)
+}
+
+func (o UsersPermissionsOutput) ManageGroupMembershipScope() UsersPermissionsManageGroupMembershipScopePtrOutput {
+	return o.ApplyT(func(v *UsersPermissions) UsersPermissionsManageGroupMembershipScopePtrOutput {
+		return v.ManageGroupMembershipScope
+	}).(UsersPermissionsManageGroupMembershipScopePtrOutput)
+}
+
+func (o UsersPermissionsOutput) ManageScope() UsersPermissionsManageScopePtrOutput {
+	return o.ApplyT(func(v *UsersPermissions) UsersPermissionsManageScopePtrOutput { return v.ManageScope }).(UsersPermissionsManageScopePtrOutput)
+}
+
+func (o UsersPermissionsOutput) MapRolesScope() UsersPermissionsMapRolesScopePtrOutput {
+	return o.ApplyT(func(v *UsersPermissions) UsersPermissionsMapRolesScopePtrOutput { return v.MapRolesScope }).(UsersPermissionsMapRolesScopePtrOutput)
+}
+
+func (o UsersPermissionsOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UsersPermissions) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o UsersPermissionsOutput) UserImpersonatedScope() UsersPermissionsUserImpersonatedScopePtrOutput {
+	return o.ApplyT(func(v *UsersPermissions) UsersPermissionsUserImpersonatedScopePtrOutput {
+		return v.UserImpersonatedScope
+	}).(UsersPermissionsUserImpersonatedScopePtrOutput)
+}
+
+func (o UsersPermissionsOutput) ViewScope() UsersPermissionsViewScopePtrOutput {
+	return o.ApplyT(func(v *UsersPermissions) UsersPermissionsViewScopePtrOutput { return v.ViewScope }).(UsersPermissionsViewScopePtrOutput)
+}
+
 type UsersPermissionsArrayOutput struct{ *pulumi.OutputState }
 
 func (UsersPermissionsArrayOutput) ElementType() reflect.Type {

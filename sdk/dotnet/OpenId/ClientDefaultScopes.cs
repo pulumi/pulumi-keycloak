@@ -22,7 +22,7 @@ namespace Pulumi.Keycloak.OpenId
     ///     {
     ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
     ///         {
-    ///             Realm = "my-realm",
+    ///             RealmName = "my-realm",
     ///             Enabled = true,
     ///         });
     ///         var client = new Keycloak.OpenId.Client("client", new Keycloak.OpenId.ClientArgs

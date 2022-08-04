@@ -30,6 +30,9 @@ namespace Pulumi.Keycloak.OpenId
         [Output("resourceServerId")]
         public Output<string> ResourceServerId { get; private set; } = null!;
 
+        [Output("resourceType")]
+        public Output<string?> ResourceType { get; private set; } = null!;
+
         [Output("resources")]
         public Output<ImmutableArray<string>> Resources { get; private set; } = null!;
 
@@ -108,6 +111,9 @@ namespace Pulumi.Keycloak.OpenId
         [Input("resourceServerId", required: true)]
         public Input<string> ResourceServerId { get; set; } = null!;
 
+        [Input("resourceType")]
+        public Input<string>? ResourceType { get; set; }
+
         [Input("resources")]
         private InputList<string>? _resources;
         public InputList<string> Resources
@@ -156,6 +162,9 @@ namespace Pulumi.Keycloak.OpenId
 
         [Input("resourceServerId")]
         public Input<string>? ResourceServerId { get; set; }
+
+        [Input("resourceType")]
+        public Input<string>? ResourceType { get; set; }
 
         [Input("resources")]
         private InputList<string>? _resources;

@@ -22,7 +22,7 @@ namespace Pulumi.Keycloak
     ///     {
     ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
     ///         {
-    ///             Realm = "my-realm",
+    ///             RealmName = "my-realm",
     ///             Enabled = true,
     ///         });
     ///         var oidcIdentityProvider = new Keycloak.Oidc.IdentityProvider("oidcIdentityProvider", new Keycloak.Oidc.IdentityProviderArgs

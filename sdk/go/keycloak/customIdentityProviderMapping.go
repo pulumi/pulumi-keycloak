@@ -48,7 +48,7 @@ import (
 // 		_, err = keycloak.NewCustomIdentityProviderMapping(ctx, "oidcCustomIdentityProviderMapping", &keycloak.CustomIdentityProviderMappingArgs{
 // 			Realm:                  realm.ID(),
 // 			IdentityProviderAlias:  oidcIdentityProvider.Alias,
-// 			IdentityProviderMapper: pulumi.String(fmt.Sprintf("%v%v", "%", "s-user-attribute-idp-mapper")),
+// 			IdentityProviderMapper: pulumi.String(fmt.Sprintf("%vs-user-attribute-idp-mapper", "%")),
 // 			ExtraConfig: pulumi.AnyMap{
 // 				"syncMode":      pulumi.Any("INHERIT"),
 // 				"Claim":         pulumi.Any("my-email-claim"),
@@ -264,6 +264,31 @@ func (o CustomIdentityProviderMappingOutput) ToCustomIdentityProviderMappingOutp
 
 func (o CustomIdentityProviderMappingOutput) ToCustomIdentityProviderMappingOutputWithContext(ctx context.Context) CustomIdentityProviderMappingOutput {
 	return o
+}
+
+// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+func (o CustomIdentityProviderMappingOutput) ExtraConfig() pulumi.MapOutput {
+	return o.ApplyT(func(v *CustomIdentityProviderMapping) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+}
+
+// The alias of the associated identity provider.
+func (o CustomIdentityProviderMappingOutput) IdentityProviderAlias() pulumi.StringOutput {
+	return o.ApplyT(func(v *CustomIdentityProviderMapping) pulumi.StringOutput { return v.IdentityProviderAlias }).(pulumi.StringOutput)
+}
+
+// The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
+func (o CustomIdentityProviderMappingOutput) IdentityProviderMapper() pulumi.StringOutput {
+	return o.ApplyT(func(v *CustomIdentityProviderMapping) pulumi.StringOutput { return v.IdentityProviderMapper }).(pulumi.StringOutput)
+}
+
+// The name of the mapper.
+func (o CustomIdentityProviderMappingOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *CustomIdentityProviderMapping) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The name of the realm.
+func (o CustomIdentityProviderMappingOutput) Realm() pulumi.StringOutput {
+	return o.ApplyT(func(v *CustomIdentityProviderMapping) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
 }
 
 type CustomIdentityProviderMappingArrayOutput struct{ *pulumi.OutputState }

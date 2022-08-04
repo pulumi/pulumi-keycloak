@@ -389,6 +389,81 @@ func (o RoleMapperOutput) ToRoleMapperOutputWithContext(ctx context.Context) Rol
 	return o
 }
 
+// When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `useRealmRolesMapping` is `false`.
+func (o RoleMapperOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RoleMapper) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The LDAP DN where roles can be found.
+func (o RoleMapperOutput) LdapRolesDn() pulumi.StringOutput {
+	return o.ApplyT(func(v *RoleMapper) pulumi.StringOutput { return v.LdapRolesDn }).(pulumi.StringOutput)
+}
+
+// The ID of the LDAP user federation provider to attach this mapper to.
+func (o RoleMapperOutput) LdapUserFederationId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RoleMapper) pulumi.StringOutput { return v.LdapUserFederationId }).(pulumi.StringOutput)
+}
+
+// Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when
+func (o RoleMapperOutput) MemberofLdapAttribute() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RoleMapper) pulumi.StringPtrOutput { return v.MemberofLdapAttribute }).(pulumi.StringPtrOutput)
+}
+
+// Can be one of `DN` or `UID`. Defaults to `DN`.
+func (o RoleMapperOutput) MembershipAttributeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RoleMapper) pulumi.StringPtrOutput { return v.MembershipAttributeType }).(pulumi.StringPtrOutput)
+}
+
+// The name of the LDAP attribute that is used for membership mappings.
+func (o RoleMapperOutput) MembershipLdapAttribute() pulumi.StringOutput {
+	return o.ApplyT(func(v *RoleMapper) pulumi.StringOutput { return v.MembershipLdapAttribute }).(pulumi.StringOutput)
+}
+
+// The name of the LDAP attribute on a user that is used for membership mappings.
+func (o RoleMapperOutput) MembershipUserLdapAttribute() pulumi.StringOutput {
+	return o.ApplyT(func(v *RoleMapper) pulumi.StringOutput { return v.MembershipUserLdapAttribute }).(pulumi.StringOutput)
+}
+
+// Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
+func (o RoleMapperOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RoleMapper) pulumi.StringPtrOutput { return v.Mode }).(pulumi.StringPtrOutput)
+}
+
+// Display name of this mapper when displayed in the console.
+func (o RoleMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *RoleMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm that this LDAP mapper will exist in.
+func (o RoleMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RoleMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
+func (o RoleMapperOutput) RoleNameLdapAttribute() pulumi.StringOutput {
+	return o.ApplyT(func(v *RoleMapper) pulumi.StringOutput { return v.RoleNameLdapAttribute }).(pulumi.StringOutput)
+}
+
+// List of strings representing the object classes for the role. Must contain at least one.
+func (o RoleMapperOutput) RoleObjectClasses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RoleMapper) pulumi.StringArrayOutput { return v.RoleObjectClasses }).(pulumi.StringArrayOutput)
+}
+
+// When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+func (o RoleMapperOutput) RolesLdapFilter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RoleMapper) pulumi.StringPtrOutput { return v.RolesLdapFilter }).(pulumi.StringPtrOutput)
+}
+
+// When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
+func (o RoleMapperOutput) UseRealmRolesMapping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RoleMapper) pulumi.BoolPtrOutput { return v.UseRealmRolesMapping }).(pulumi.BoolPtrOutput)
+}
+
+// Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
+func (o RoleMapperOutput) UserRolesRetrieveStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RoleMapper) pulumi.StringPtrOutput { return v.UserRolesRetrieveStrategy }).(pulumi.StringPtrOutput)
+}
+
 type RoleMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (RoleMapperArrayOutput) ElementType() reflect.Type {

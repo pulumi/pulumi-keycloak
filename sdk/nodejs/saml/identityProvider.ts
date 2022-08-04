@@ -84,6 +84,18 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly authenticateByDefault!: pulumi.Output<boolean | undefined>;
     /**
+     * Ordered list of requested AuthnContext ClassRefs.
+     */
+    public readonly authnContextClassRefs!: pulumi.Output<string[] | undefined>;
+    /**
+     * Specifies the comparison method used to evaluate the requested context classes or statements.
+     */
+    public readonly authnContextComparisonType!: pulumi.Output<string | undefined>;
+    /**
+     * Ordered list of requested AuthnContext DeclRefs.
+     */
+    public readonly authnContextDeclRefs!: pulumi.Output<string[] | undefined>;
+    /**
      * Does the external IDP support back-channel logout ?.
      */
     public readonly backchannelSupported!: pulumi.Output<boolean | undefined>;
@@ -221,6 +233,9 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["addReadTokenRoleOnCreate"] = state ? state.addReadTokenRoleOnCreate : undefined;
             resourceInputs["alias"] = state ? state.alias : undefined;
             resourceInputs["authenticateByDefault"] = state ? state.authenticateByDefault : undefined;
+            resourceInputs["authnContextClassRefs"] = state ? state.authnContextClassRefs : undefined;
+            resourceInputs["authnContextComparisonType"] = state ? state.authnContextComparisonType : undefined;
+            resourceInputs["authnContextDeclRefs"] = state ? state.authnContextDeclRefs : undefined;
             resourceInputs["backchannelSupported"] = state ? state.backchannelSupported : undefined;
             resourceInputs["displayName"] = state ? state.displayName : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
@@ -269,6 +284,9 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["addReadTokenRoleOnCreate"] = args ? args.addReadTokenRoleOnCreate : undefined;
             resourceInputs["alias"] = args ? args.alias : undefined;
             resourceInputs["authenticateByDefault"] = args ? args.authenticateByDefault : undefined;
+            resourceInputs["authnContextClassRefs"] = args ? args.authnContextClassRefs : undefined;
+            resourceInputs["authnContextComparisonType"] = args ? args.authnContextComparisonType : undefined;
+            resourceInputs["authnContextDeclRefs"] = args ? args.authnContextDeclRefs : undefined;
             resourceInputs["backchannelSupported"] = args ? args.backchannelSupported : undefined;
             resourceInputs["displayName"] = args ? args.displayName : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
@@ -322,6 +340,18 @@ export interface IdentityProviderState {
      * Authenticate users by default. Defaults to `false`.
      */
     authenticateByDefault?: pulumi.Input<boolean>;
+    /**
+     * Ordered list of requested AuthnContext ClassRefs.
+     */
+    authnContextClassRefs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the comparison method used to evaluate the requested context classes or statements.
+     */
+    authnContextComparisonType?: pulumi.Input<string>;
+    /**
+     * Ordered list of requested AuthnContext DeclRefs.
+     */
+    authnContextDeclRefs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Does the external IDP support back-channel logout ?.
      */
@@ -461,6 +491,18 @@ export interface IdentityProviderArgs {
      * Authenticate users by default. Defaults to `false`.
      */
     authenticateByDefault?: pulumi.Input<boolean>;
+    /**
+     * Ordered list of requested AuthnContext ClassRefs.
+     */
+    authnContextClassRefs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the comparison method used to evaluate the requested context classes or statements.
+     */
+    authnContextComparisonType?: pulumi.Input<string>;
+    /**
+     * Ordered list of requested AuthnContext DeclRefs.
+     */
+    authnContextDeclRefs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Does the external IDP support back-channel logout ?.
      */

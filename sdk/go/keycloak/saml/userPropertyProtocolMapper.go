@@ -301,6 +301,46 @@ func (o UserPropertyProtocolMapperOutput) ToUserPropertyProtocolMapperOutputWith
 	return o
 }
 
+// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+func (o UserPropertyProtocolMapperOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+func (o UserPropertyProtocolMapperOutput) ClientScopeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
+}
+
+// An optional human-friendly name for this attribute.
+func (o UserPropertyProtocolMapperOutput) FriendlyName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringPtrOutput { return v.FriendlyName }).(pulumi.StringPtrOutput)
+}
+
+// The display name of this protocol mapper in the GUI.
+func (o UserPropertyProtocolMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm this protocol mapper exists within.
+func (o UserPropertyProtocolMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The name of the SAML attribute.
+func (o UserPropertyProtocolMapperOutput) SamlAttributeName() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringOutput { return v.SamlAttributeName }).(pulumi.StringOutput)
+}
+
+// The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
+func (o UserPropertyProtocolMapperOutput) SamlAttributeNameFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringOutput { return v.SamlAttributeNameFormat }).(pulumi.StringOutput)
+}
+
+// The property of the Keycloak user model to map.
+func (o UserPropertyProtocolMapperOutput) UserProperty() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringOutput { return v.UserProperty }).(pulumi.StringOutput)
+}
+
 type UserPropertyProtocolMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (UserPropertyProtocolMapperArrayOutput) ElementType() reflect.Type {

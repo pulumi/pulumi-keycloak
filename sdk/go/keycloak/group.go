@@ -262,6 +262,31 @@ func (o GroupOutput) ToGroupOutputWithContext(ctx context.Context) GroupOutput {
 	return o
 }
 
+// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+func (o GroupOutput) Attributes() pulumi.MapOutput {
+	return o.ApplyT(func(v *Group) pulumi.MapOutput { return v.Attributes }).(pulumi.MapOutput)
+}
+
+// The name of the group.
+func (o GroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of this group's parent. If omitted, this group will be defined at the root level.
+func (o GroupOutput) ParentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringPtrOutput { return v.ParentId }).(pulumi.StringPtrOutput)
+}
+
+// (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
+func (o GroupOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
+}
+
+// The realm this group exists in.
+func (o GroupOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type GroupArrayOutput struct{ *pulumi.OutputState }
 
 func (GroupArrayOutput) ElementType() reflect.Type {

@@ -350,6 +350,51 @@ func (o UserSessionNoteProtocolMapperOutput) ToUserSessionNoteProtocolMapperOutp
 	return o
 }
 
+// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+func (o UserSessionNoteProtocolMapperOutput) AddToAccessToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserSessionNoteProtocolMapper) pulumi.BoolPtrOutput { return v.AddToAccessToken }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+func (o UserSessionNoteProtocolMapperOutput) AddToIdToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserSessionNoteProtocolMapper) pulumi.BoolPtrOutput { return v.AddToIdToken }).(pulumi.BoolPtrOutput)
+}
+
+// The name of the claim to insert into a token.
+func (o UserSessionNoteProtocolMapperOutput) ClaimName() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserSessionNoteProtocolMapper) pulumi.StringOutput { return v.ClaimName }).(pulumi.StringOutput)
+}
+
+// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+func (o UserSessionNoteProtocolMapperOutput) ClaimValueType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserSessionNoteProtocolMapper) pulumi.StringPtrOutput { return v.ClaimValueType }).(pulumi.StringPtrOutput)
+}
+
+// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+func (o UserSessionNoteProtocolMapperOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserSessionNoteProtocolMapper) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+func (o UserSessionNoteProtocolMapperOutput) ClientScopeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserSessionNoteProtocolMapper) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
+}
+
+// The display name of this protocol mapper in the GUI.
+func (o UserSessionNoteProtocolMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserSessionNoteProtocolMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm this protocol mapper exists within.
+func (o UserSessionNoteProtocolMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserSessionNoteProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// String value being the name of stored user session note within the UserSessionModel.note map.
+func (o UserSessionNoteProtocolMapperOutput) SessionNote() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserSessionNoteProtocolMapper) pulumi.StringPtrOutput { return v.SessionNote }).(pulumi.StringPtrOutput)
+}
+
 type UserSessionNoteProtocolMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (UserSessionNoteProtocolMapperArrayOutput) ElementType() reflect.Type {

@@ -26,7 +26,7 @@ namespace Pulumi.Keycloak
     ///     {
     ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
     ///         {
-    ///             Realm = "my-realm",
+    ///             RealmName = "my-realm",
     ///         });
     ///         var keystoreEcdsaGenerated = new Keycloak.RealmKeystoreEcdsaGenerated("keystoreEcdsaGenerated", new Keycloak.RealmKeystoreEcdsaGeneratedArgs
     ///         {

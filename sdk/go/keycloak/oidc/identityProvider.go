@@ -517,6 +517,160 @@ func (o IdentityProviderOutput) ToIdentityProviderOutputWithContext(ctx context.
 	return o
 }
 
+// When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
+func (o IdentityProviderOutput) AcceptsPromptNoneForwardFromClient() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.AcceptsPromptNoneForwardFromClient }).(pulumi.BoolPtrOutput)
+}
+
+// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+func (o IdentityProviderOutput) AddReadTokenRoleOnCreate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.AddReadTokenRoleOnCreate }).(pulumi.BoolPtrOutput)
+}
+
+// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+func (o IdentityProviderOutput) Alias() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
+}
+
+// Enable/disable authenticate users by default.
+func (o IdentityProviderOutput) AuthenticateByDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.AuthenticateByDefault }).(pulumi.BoolPtrOutput)
+}
+
+// The Authorization Url.
+func (o IdentityProviderOutput) AuthorizationUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.AuthorizationUrl }).(pulumi.StringOutput)
+}
+
+// Does the external IDP support backchannel logout? Defaults to `true`.
+func (o IdentityProviderOutput) BackchannelSupported() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.BackchannelSupported }).(pulumi.BoolPtrOutput)
+}
+
+// The client or client identifier registered within the identity provider.
+func (o IdentityProviderOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+func (o IdentityProviderOutput) ClientSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
+func (o IdentityProviderOutput) DefaultScopes() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.DefaultScopes }).(pulumi.StringPtrOutput)
+}
+
+// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
+func (o IdentityProviderOutput) DisableUserInfo() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.DisableUserInfo }).(pulumi.BoolPtrOutput)
+}
+
+// Display name for the identity provider in the GUI.
+func (o IdentityProviderOutput) DisplayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.DisplayName }).(pulumi.StringPtrOutput)
+}
+
+// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+func (o IdentityProviderOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+func (o IdentityProviderOutput) ExtraConfig() pulumi.MapOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+}
+
+// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
+func (o IdentityProviderOutput) FirstBrokerLoginFlowAlias() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.FirstBrokerLoginFlowAlias }).(pulumi.StringPtrOutput)
+}
+
+// A number defining the order of this identity provider in the GUI.
+func (o IdentityProviderOutput) GuiOrder() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.GuiOrder }).(pulumi.StringPtrOutput)
+}
+
+// When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
+func (o IdentityProviderOutput) HideOnLoginPage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.HideOnLoginPage }).(pulumi.BoolPtrOutput)
+}
+
+// (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
+func (o IdentityProviderOutput) InternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.InternalId }).(pulumi.StringOutput)
+}
+
+// JSON Web Key Set URL.
+func (o IdentityProviderOutput) JwksUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.JwksUrl }).(pulumi.StringPtrOutput)
+}
+
+// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+func (o IdentityProviderOutput) LinkOnly() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.LinkOnly }).(pulumi.BoolPtrOutput)
+}
+
+// Pass login hint to identity provider.
+func (o IdentityProviderOutput) LoginHint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.LoginHint }).(pulumi.StringPtrOutput)
+}
+
+// The Logout URL is the end session endpoint to use to logout user from external identity provider.
+func (o IdentityProviderOutput) LogoutUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.LogoutUrl }).(pulumi.StringPtrOutput)
+}
+
+// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
+func (o IdentityProviderOutput) PostBrokerLoginFlowAlias() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.PostBrokerLoginFlowAlias }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+func (o IdentityProviderOutput) ProviderId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.ProviderId }).(pulumi.StringPtrOutput)
+}
+
+// The name of the realm. This is unique across Keycloak.
+func (o IdentityProviderOutput) Realm() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+func (o IdentityProviderOutput) StoreToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.StoreToken }).(pulumi.BoolPtrOutput)
+}
+
+// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+func (o IdentityProviderOutput) SyncMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.SyncMode }).(pulumi.StringPtrOutput)
+}
+
+// The Token URL.
+func (o IdentityProviderOutput) TokenUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.TokenUrl }).(pulumi.StringOutput)
+}
+
+// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
+func (o IdentityProviderOutput) TrustEmail() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.TrustEmail }).(pulumi.BoolPtrOutput)
+}
+
+// Pass current locale to identity provider. Defaults to `false`.
+func (o IdentityProviderOutput) UiLocales() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.UiLocales }).(pulumi.BoolPtrOutput)
+}
+
+// User Info URL.
+func (o IdentityProviderOutput) UserInfoUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.UserInfoUrl }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable signature validation of external IDP signatures. Defaults to `false`.
+func (o IdentityProviderOutput) ValidateSignature() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.ValidateSignature }).(pulumi.BoolPtrOutput)
+}
+
 type IdentityProviderArrayOutput struct{ *pulumi.OutputState }
 
 func (IdentityProviderArrayOutput) ElementType() reflect.Type {

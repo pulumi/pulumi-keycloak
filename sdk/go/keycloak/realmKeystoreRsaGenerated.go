@@ -232,6 +232,41 @@ func (o RealmKeystoreRsaGeneratedOutput) ToRealmKeystoreRsaGeneratedOutputWithCo
 	return o
 }
 
+// When `false`, key in not used for signing. Defaults to `true`.
+func (o RealmKeystoreRsaGeneratedOutput) Active() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsaGenerated) pulumi.BoolPtrOutput { return v.Active }).(pulumi.BoolPtrOutput)
+}
+
+// Intended algorithm for the key. Defaults to `RS256`
+func (o RealmKeystoreRsaGeneratedOutput) Algorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsaGenerated) pulumi.StringPtrOutput { return v.Algorithm }).(pulumi.StringPtrOutput)
+}
+
+// When `false`, key is not accessible in this realm. Defaults to `true`.
+func (o RealmKeystoreRsaGeneratedOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsaGenerated) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Size for the generated keys
+func (o RealmKeystoreRsaGeneratedOutput) KeySize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsaGenerated) pulumi.IntPtrOutput { return v.KeySize }).(pulumi.IntPtrOutput)
+}
+
+// Display name of provider when linked in admin console.
+func (o RealmKeystoreRsaGeneratedOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsaGenerated) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Priority for the provider. Defaults to `0`
+func (o RealmKeystoreRsaGeneratedOutput) Priority() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsaGenerated) pulumi.IntPtrOutput { return v.Priority }).(pulumi.IntPtrOutput)
+}
+
+// The realm this keystore exists in.
+func (o RealmKeystoreRsaGeneratedOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsaGenerated) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type RealmKeystoreRsaGeneratedArrayOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreRsaGeneratedArrayOutput) ElementType() reflect.Type {

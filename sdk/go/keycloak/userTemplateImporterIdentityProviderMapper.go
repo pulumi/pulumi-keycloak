@@ -56,7 +56,7 @@ import (
 // 		_, err = keycloak.NewUserTemplateImporterIdentityProviderMapper(ctx, "usernameImporter", &keycloak.UserTemplateImporterIdentityProviderMapperArgs{
 // 			Realm:                 realm.ID(),
 // 			IdentityProviderAlias: oidc.Alias,
-// 			Template:              pulumi.String(fmt.Sprintf("%v%v%v", ALIAS, ".", CLAIM.Email)),
+// 			Template:              pulumi.String(fmt.Sprintf("%v.%v", ALIAS, CLAIM.Email)),
 // 			ExtraConfig: pulumi.AnyMap{
 // 				"syncMode": pulumi.Any("INHERIT"),
 // 			},
@@ -267,6 +267,33 @@ func (o UserTemplateImporterIdentityProviderMapperOutput) ToUserTemplateImporter
 
 func (o UserTemplateImporterIdentityProviderMapperOutput) ToUserTemplateImporterIdentityProviderMapperOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperOutput {
 	return o
+}
+
+// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+func (o UserTemplateImporterIdentityProviderMapperOutput) ExtraConfig() pulumi.MapOutput {
+	return o.ApplyT(func(v *UserTemplateImporterIdentityProviderMapper) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+}
+
+// The alias of the associated identity provider.
+func (o UserTemplateImporterIdentityProviderMapperOutput) IdentityProviderAlias() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserTemplateImporterIdentityProviderMapper) pulumi.StringOutput {
+		return v.IdentityProviderAlias
+	}).(pulumi.StringOutput)
+}
+
+// The name of the mapper.
+func (o UserTemplateImporterIdentityProviderMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserTemplateImporterIdentityProviderMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The name of the realm.
+func (o UserTemplateImporterIdentityProviderMapperOutput) Realm() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserTemplateImporterIdentityProviderMapper) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// Template to use to format the username to import. Substitutions are enclosed in \${}. For example: '\$\${ALIAS}.\$\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\<NAME\> references an ID or Access token claim.
+func (o UserTemplateImporterIdentityProviderMapperOutput) Template() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserTemplateImporterIdentityProviderMapper) pulumi.StringPtrOutput { return v.Template }).(pulumi.StringPtrOutput)
 }
 
 type UserTemplateImporterIdentityProviderMapperArrayOutput struct{ *pulumi.OutputState }

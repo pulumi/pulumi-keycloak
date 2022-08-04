@@ -248,6 +248,46 @@ func (o RealmKeystoreRsaOutput) ToRealmKeystoreRsaOutputWithContext(ctx context.
 	return o
 }
 
+// When `false`, key in not used for signing. Defaults to `true`.
+func (o RealmKeystoreRsaOutput) Active() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.BoolPtrOutput { return v.Active }).(pulumi.BoolPtrOutput)
+}
+
+// Intended algorithm for the key. Defaults to `RS256`
+func (o RealmKeystoreRsaOutput) Algorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringPtrOutput { return v.Algorithm }).(pulumi.StringPtrOutput)
+}
+
+// X509 Certificate encoded in PEM format.
+func (o RealmKeystoreRsaOutput) Certificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
+}
+
+// When `false`, key is not accessible in this realm. Defaults to `true`.
+func (o RealmKeystoreRsaOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Display name of provider when linked in admin console.
+func (o RealmKeystoreRsaOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Priority for the provider. Defaults to `0`
+func (o RealmKeystoreRsaOutput) Priority() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.IntPtrOutput { return v.Priority }).(pulumi.IntPtrOutput)
+}
+
+// Private RSA Key encoded in PEM format.
+func (o RealmKeystoreRsaOutput) PrivateKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
+}
+
+// The realm this keystore exists in.
+func (o RealmKeystoreRsaOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type RealmKeystoreRsaArrayOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreRsaArrayOutput) ElementType() reflect.Type {

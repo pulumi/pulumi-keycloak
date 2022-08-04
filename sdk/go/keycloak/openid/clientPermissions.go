@@ -208,6 +208,55 @@ func (o ClientPermissionsOutput) ToClientPermissionsOutputWithContext(ctx contex
 	return o
 }
 
+// Resource server id representing the realm management client on which this permission is managed
+func (o ClientPermissionsOutput) AuthorizationResourceServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientPermissions) pulumi.StringOutput { return v.AuthorizationResourceServerId }).(pulumi.StringOutput)
+}
+
+func (o ClientPermissionsOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientPermissions) pulumi.StringOutput { return v.ClientId }).(pulumi.StringOutput)
+}
+
+func (o ClientPermissionsOutput) ConfigureScope() ClientPermissionsConfigureScopePtrOutput {
+	return o.ApplyT(func(v *ClientPermissions) ClientPermissionsConfigureScopePtrOutput { return v.ConfigureScope }).(ClientPermissionsConfigureScopePtrOutput)
+}
+
+func (o ClientPermissionsOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ClientPermissions) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+func (o ClientPermissionsOutput) ManageScope() ClientPermissionsManageScopePtrOutput {
+	return o.ApplyT(func(v *ClientPermissions) ClientPermissionsManageScopePtrOutput { return v.ManageScope }).(ClientPermissionsManageScopePtrOutput)
+}
+
+func (o ClientPermissionsOutput) MapRolesClientScopeScope() ClientPermissionsMapRolesClientScopeScopePtrOutput {
+	return o.ApplyT(func(v *ClientPermissions) ClientPermissionsMapRolesClientScopeScopePtrOutput {
+		return v.MapRolesClientScopeScope
+	}).(ClientPermissionsMapRolesClientScopeScopePtrOutput)
+}
+
+func (o ClientPermissionsOutput) MapRolesCompositeScope() ClientPermissionsMapRolesCompositeScopePtrOutput {
+	return o.ApplyT(func(v *ClientPermissions) ClientPermissionsMapRolesCompositeScopePtrOutput {
+		return v.MapRolesCompositeScope
+	}).(ClientPermissionsMapRolesCompositeScopePtrOutput)
+}
+
+func (o ClientPermissionsOutput) MapRolesScope() ClientPermissionsMapRolesScopePtrOutput {
+	return o.ApplyT(func(v *ClientPermissions) ClientPermissionsMapRolesScopePtrOutput { return v.MapRolesScope }).(ClientPermissionsMapRolesScopePtrOutput)
+}
+
+func (o ClientPermissionsOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientPermissions) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o ClientPermissionsOutput) TokenExchangeScope() ClientPermissionsTokenExchangeScopePtrOutput {
+	return o.ApplyT(func(v *ClientPermissions) ClientPermissionsTokenExchangeScopePtrOutput { return v.TokenExchangeScope }).(ClientPermissionsTokenExchangeScopePtrOutput)
+}
+
+func (o ClientPermissionsOutput) ViewScope() ClientPermissionsViewScopePtrOutput {
+	return o.ApplyT(func(v *ClientPermissions) ClientPermissionsViewScopePtrOutput { return v.ViewScope }).(ClientPermissionsViewScopePtrOutput)
+}
+
 type ClientPermissionsArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientPermissionsArrayOutput) ElementType() reflect.Type {

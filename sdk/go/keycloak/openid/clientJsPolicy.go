@@ -200,6 +200,38 @@ func (o ClientJsPolicyOutput) ToClientJsPolicyOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o ClientJsPolicyOutput) Code() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientJsPolicy) pulumi.StringOutput { return v.Code }).(pulumi.StringOutput)
+}
+
+func (o ClientJsPolicyOutput) DecisionStrategy() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientJsPolicy) pulumi.StringOutput { return v.DecisionStrategy }).(pulumi.StringOutput)
+}
+
+func (o ClientJsPolicyOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientJsPolicy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientJsPolicyOutput) Logic() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientJsPolicy) pulumi.StringPtrOutput { return v.Logic }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientJsPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientJsPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ClientJsPolicyOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientJsPolicy) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o ClientJsPolicyOutput) ResourceServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientJsPolicy) pulumi.StringOutput { return v.ResourceServerId }).(pulumi.StringOutput)
+}
+
+func (o ClientJsPolicyOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientJsPolicy) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
+}
+
 type ClientJsPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientJsPolicyArrayOutput) ElementType() reflect.Type {

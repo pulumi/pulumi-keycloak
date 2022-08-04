@@ -381,6 +381,66 @@ func (o UserAttributeProtocolMapperOutput) ToUserAttributeProtocolMapperOutputWi
 	return o
 }
 
+// Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
+func (o UserAttributeProtocolMapperOutput) AddToAccessToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserAttributeProtocolMapper) pulumi.BoolPtrOutput { return v.AddToAccessToken }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
+func (o UserAttributeProtocolMapperOutput) AddToIdToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserAttributeProtocolMapper) pulumi.BoolPtrOutput { return v.AddToIdToken }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
+func (o UserAttributeProtocolMapperOutput) AddToUserinfo() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserAttributeProtocolMapper) pulumi.BoolPtrOutput { return v.AddToUserinfo }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+func (o UserAttributeProtocolMapperOutput) AggregateAttributes() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserAttributeProtocolMapper) pulumi.BoolPtrOutput { return v.AggregateAttributes }).(pulumi.BoolPtrOutput)
+}
+
+// The name of the claim to insert into a token.
+func (o UserAttributeProtocolMapperOutput) ClaimName() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserAttributeProtocolMapper) pulumi.StringOutput { return v.ClaimName }).(pulumi.StringOutput)
+}
+
+// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+func (o UserAttributeProtocolMapperOutput) ClaimValueType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserAttributeProtocolMapper) pulumi.StringPtrOutput { return v.ClaimValueType }).(pulumi.StringPtrOutput)
+}
+
+// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+func (o UserAttributeProtocolMapperOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserAttributeProtocolMapper) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+func (o UserAttributeProtocolMapperOutput) ClientScopeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserAttributeProtocolMapper) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+func (o UserAttributeProtocolMapperOutput) Multivalued() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserAttributeProtocolMapper) pulumi.BoolPtrOutput { return v.Multivalued }).(pulumi.BoolPtrOutput)
+}
+
+// The display name of this protocol mapper in the GUI.
+func (o UserAttributeProtocolMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserAttributeProtocolMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm this protocol mapper exists within.
+func (o UserAttributeProtocolMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserAttributeProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The custom user attribute to map a claim for.
+func (o UserAttributeProtocolMapperOutput) UserAttribute() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserAttributeProtocolMapper) pulumi.StringOutput { return v.UserAttribute }).(pulumi.StringOutput)
+}
+
 type UserAttributeProtocolMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (UserAttributeProtocolMapperArrayOutput) ElementType() reflect.Type {

@@ -47,7 +47,7 @@ namespace Pulumi.Keycloak
     ///             },
     ///             LoginTheme = "base",
     ///             PasswordPolicy = "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername",
-    ///             Realm = "my-realm",
+    ///             RealmName = "my-realm",
     ///             SecurityDefenses = new Keycloak.Inputs.RealmSecurityDefensesArgs
     ///             {
     ///                 BruteForceDetection = new Keycloak.Inputs.RealmSecurityDefensesBruteForceDetectionArgs

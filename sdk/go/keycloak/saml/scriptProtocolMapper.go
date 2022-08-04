@@ -310,6 +310,51 @@ func (o ScriptProtocolMapperOutput) ToScriptProtocolMapperOutputWithContext(ctx 
 	return o
 }
 
+// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+func (o ScriptProtocolMapperOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+func (o ScriptProtocolMapperOutput) ClientScopeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
+}
+
+// An optional human-friendly name for this attribute.
+func (o ScriptProtocolMapperOutput) FriendlyName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.StringPtrOutput { return v.FriendlyName }).(pulumi.StringPtrOutput)
+}
+
+// The display name of this protocol mapper in the GUI.
+func (o ScriptProtocolMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm this protocol mapper exists within.
+func (o ScriptProtocolMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The name of the SAML attribute.
+func (o ScriptProtocolMapperOutput) SamlAttributeName() pulumi.StringOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.StringOutput { return v.SamlAttributeName }).(pulumi.StringOutput)
+}
+
+// The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
+func (o ScriptProtocolMapperOutput) SamlAttributeNameFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.StringOutput { return v.SamlAttributeNameFormat }).(pulumi.StringOutput)
+}
+
+// JavaScript code to compute the attribute value.
+func (o ScriptProtocolMapperOutput) Script() pulumi.StringOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.StringOutput { return v.Script }).(pulumi.StringOutput)
+}
+
+// When `true`, all values will be stored under one attribute with multiple attribute values. Defaults to `true`.
+func (o ScriptProtocolMapperOutput) SingleValueAttribute() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.BoolPtrOutput { return v.SingleValueAttribute }).(pulumi.BoolPtrOutput)
+}
+
 type ScriptProtocolMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (ScriptProtocolMapperArrayOutput) ElementType() reflect.Type {

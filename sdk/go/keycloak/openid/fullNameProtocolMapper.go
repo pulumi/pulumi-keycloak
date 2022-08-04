@@ -321,6 +321,41 @@ func (o FullNameProtocolMapperOutput) ToFullNameProtocolMapperOutputWithContext(
 	return o
 }
 
+// Indicates if the user's full name should be added as a claim to the access token. Defaults to `true`.
+func (o FullNameProtocolMapperOutput) AddToAccessToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *FullNameProtocolMapper) pulumi.BoolPtrOutput { return v.AddToAccessToken }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the user's full name should be added as a claim to the id token. Defaults to `true`.
+func (o FullNameProtocolMapperOutput) AddToIdToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *FullNameProtocolMapper) pulumi.BoolPtrOutput { return v.AddToIdToken }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the user's full name should be added as a claim to the UserInfo response body. Defaults to `true`.
+func (o FullNameProtocolMapperOutput) AddToUserinfo() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *FullNameProtocolMapper) pulumi.BoolPtrOutput { return v.AddToUserinfo }).(pulumi.BoolPtrOutput)
+}
+
+// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+func (o FullNameProtocolMapperOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FullNameProtocolMapper) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+func (o FullNameProtocolMapperOutput) ClientScopeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FullNameProtocolMapper) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
+}
+
+// The display name of this protocol mapper in the GUI.
+func (o FullNameProtocolMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FullNameProtocolMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm this protocol mapper exists within.
+func (o FullNameProtocolMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *FullNameProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type FullNameProtocolMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (FullNameProtocolMapperArrayOutput) ElementType() reflect.Type {

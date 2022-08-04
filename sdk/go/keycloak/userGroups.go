@@ -310,6 +310,26 @@ func (o UserGroupsOutput) ToUserGroupsOutputWithContext(ctx context.Context) Use
 	return o
 }
 
+// Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
+func (o UserGroupsOutput) Exhaustive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserGroups) pulumi.BoolPtrOutput { return v.Exhaustive }).(pulumi.BoolPtrOutput)
+}
+
+// A list of group IDs that the user is member of.
+func (o UserGroupsOutput) GroupIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *UserGroups) pulumi.StringArrayOutput { return v.GroupIds }).(pulumi.StringArrayOutput)
+}
+
+// The realm this group exists in.
+func (o UserGroupsOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserGroups) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The ID of the user this resource should manage groups for.
+func (o UserGroupsOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserGroups) pulumi.StringOutput { return v.UserId }).(pulumi.StringOutput)
+}
+
 type UserGroupsArrayOutput struct{ *pulumi.OutputState }
 
 func (UserGroupsArrayOutput) ElementType() reflect.Type {

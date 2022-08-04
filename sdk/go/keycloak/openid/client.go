@@ -669,6 +669,233 @@ func (o ClientOutput) ToClientOutputWithContext(ctx context.Context) ClientOutpu
 	return o
 }
 
+// The amount of time in seconds before an access token expires. This will override the default for the realm.
+func (o ClientOutput) AccessTokenLifespan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.AccessTokenLifespan }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the type of client, which can be one of the following:
+func (o ClientOutput) AccessType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.AccessType }).(pulumi.StringOutput)
+}
+
+// URL to the admin interface of the client.
+func (o ClientOutput) AdminUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.AdminUrl }).(pulumi.StringPtrOutput)
+}
+
+// Override realm authentication flow bindings
+func (o ClientOutput) AuthenticationFlowBindingOverrides() ClientAuthenticationFlowBindingOverridesPtrOutput {
+	return o.ApplyT(func(v *Client) ClientAuthenticationFlowBindingOverridesPtrOutput {
+		return v.AuthenticationFlowBindingOverrides
+	}).(ClientAuthenticationFlowBindingOverridesPtrOutput)
+}
+
+// When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
+func (o ClientOutput) Authorization() ClientAuthorizationPtrOutput {
+	return o.ApplyT(func(v *Client) ClientAuthorizationPtrOutput { return v.Authorization }).(ClientAuthorizationPtrOutput)
+}
+
+// Specifying whether a "revokeOfflineAccess" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+func (o ClientOutput) BackchannelLogoutRevokeOfflineSessions() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.BackchannelLogoutRevokeOfflineSessions }).(pulumi.BoolPtrOutput)
+}
+
+// When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+func (o ClientOutput) BackchannelLogoutSessionRequired() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.BackchannelLogoutSessionRequired }).(pulumi.BoolPtrOutput)
+}
+
+// The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
+func (o ClientOutput) BackchannelLogoutUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.BackchannelLogoutUrl }).(pulumi.StringPtrOutput)
+}
+
+// Default URL to use when the auth server needs to redirect or link back to the client.
+func (o ClientOutput) BaseUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.BaseUrl }).(pulumi.StringPtrOutput)
+}
+
+// Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+// - `client-secret` (Default) Use client id and client secret to authenticate client.
+// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
+// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
+// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
+func (o ClientOutput) ClientAuthenticatorType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.ClientAuthenticatorType }).(pulumi.StringPtrOutput)
+}
+
+// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
+func (o ClientOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
+func (o ClientOutput) ClientOfflineSessionIdleTimeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.ClientOfflineSessionIdleTimeout }).(pulumi.StringPtrOutput)
+}
+
+// Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.
+func (o ClientOutput) ClientOfflineSessionMaxLifespan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.ClientOfflineSessionMaxLifespan }).(pulumi.StringPtrOutput)
+}
+
+// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
+func (o ClientOutput) ClientSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
+func (o ClientOutput) ClientSessionIdleTimeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.ClientSessionIdleTimeout }).(pulumi.StringPtrOutput)
+}
+
+// Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
+func (o ClientOutput) ClientSessionMaxLifespan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.ClientSessionMaxLifespan }).(pulumi.StringPtrOutput)
+}
+
+// When `true`, users have to consent to client access. Defaults to `false`.
+func (o ClientOutput) ConsentRequired() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.ConsentRequired }).(pulumi.BoolPtrOutput)
+}
+
+// The text to display on the consent screen about permissions specific to this client. This is applicable only when `displayOnConsentScreen` is `true`.
+func (o ClientOutput) ConsentScreenText() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.ConsentScreenText }).(pulumi.StringPtrOutput)
+}
+
+// The description of this client in the GUI.
+func (o ClientOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
+func (o ClientOutput) DirectAccessGrantsEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.DirectAccessGrantsEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consentRequired` is `true`.
+func (o ClientOutput) DisplayOnConsentScreen() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.DisplayOnConsentScreen }).(pulumi.BoolPtrOutput)
+}
+
+// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+func (o ClientOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
+func (o ClientOutput) ExcludeSessionStateFromAuthResponse() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.ExcludeSessionStateFromAuthResponse }).(pulumi.BoolPtrOutput)
+}
+
+func (o ClientOutput) ExtraConfig() pulumi.MapOutput {
+	return o.ApplyT(func(v *Client) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+}
+
+// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
+func (o ClientOutput) FrontchannelLogoutEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.FrontchannelLogoutEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// The frontchannel logout url. This is applicable only when `frontchannelLogoutEnabled` is `true`.
+func (o ClientOutput) FrontchannelLogoutUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.FrontchannelLogoutUrl }).(pulumi.StringPtrOutput)
+}
+
+// Allow to include all roles mappings in the access token.
+func (o ClientOutput) FullScopeAllowed() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.FullScopeAllowed }).(pulumi.BoolPtrOutput)
+}
+
+// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+func (o ClientOutput) ImplicitFlowEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.ImplicitFlowEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// The client login theme. This will override the default theme for the realm.
+func (o ClientOutput) LoginTheme() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.LoginTheme }).(pulumi.StringPtrOutput)
+}
+
+// The display name of this client in the GUI.
+func (o ClientOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
+func (o ClientOutput) Oauth2DeviceAuthorizationGrantEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.Oauth2DeviceAuthorizationGrantEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// The maximum amount of time a client has to finish the device code flow before it expires.
+func (o ClientOutput) Oauth2DeviceCodeLifespan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.Oauth2DeviceCodeLifespan }).(pulumi.StringPtrOutput)
+}
+
+// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+func (o ClientOutput) Oauth2DevicePollingInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.Oauth2DevicePollingInterval }).(pulumi.StringPtrOutput)
+}
+
+// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
+func (o ClientOutput) PkceCodeChallengeMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.PkceCodeChallengeMethod }).(pulumi.StringPtrOutput)
+}
+
+// The realm this client is attached to.
+func (o ClientOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
+func (o ClientOutput) ResourceServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.ResourceServerId }).(pulumi.StringOutput)
+}
+
+// When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
+func (o ClientOutput) RootUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.RootUrl }).(pulumi.StringPtrOutput)
+}
+
+// (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
+func (o ClientOutput) ServiceAccountUserId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.ServiceAccountUserId }).(pulumi.StringOutput)
+}
+
+// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
+func (o ClientOutput) ServiceAccountsEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.ServiceAccountsEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+func (o ClientOutput) StandardFlowEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.StandardFlowEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
+func (o ClientOutput) UseRefreshTokens() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.UseRefreshTokens }).(pulumi.BoolPtrOutput)
+}
+
+// If this is `true`, a refreshToken will be created and added to the token response if the clientCredentials grant is used and a user session will be created. If this is `false` then no refreshToken will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+func (o ClientOutput) UseRefreshTokensClientCredentials() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.UseRefreshTokensClientCredentials }).(pulumi.BoolPtrOutput)
+}
+
+// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
+// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
+// is set to `true`.
+func (o ClientOutput) ValidRedirectUris() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringArrayOutput { return v.ValidRedirectUris }).(pulumi.StringArrayOutput)
+}
+
+// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+func (o ClientOutput) WebOrigins() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringArrayOutput { return v.WebOrigins }).(pulumi.StringArrayOutput)
+}
+
 type ClientArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientArrayOutput) ElementType() reflect.Type {

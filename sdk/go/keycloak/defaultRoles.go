@@ -35,7 +35,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = keycloak.NewDefaultRoles(ctx, "defalutRoles", &keycloak.DefaultRolesArgs{
+// 		_, err = keycloak.NewDefaultRoles(ctx, "defaultRoles", &keycloak.DefaultRolesArgs{
 // 			RealmId: realm.ID(),
 // 			DefaultRoles: pulumi.StringArray{
 // 				pulumi.String("uma_authorization"),
@@ -217,6 +217,16 @@ func (o DefaultRolesOutput) ToDefaultRolesOutput() DefaultRolesOutput {
 
 func (o DefaultRolesOutput) ToDefaultRolesOutputWithContext(ctx context.Context) DefaultRolesOutput {
 	return o
+}
+
+// Realm level roles assigned to new users by default.
+func (o DefaultRolesOutput) DefaultRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DefaultRoles) pulumi.StringArrayOutput { return v.DefaultRoles }).(pulumi.StringArrayOutput)
+}
+
+// The realm this role exists within.
+func (o DefaultRolesOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DefaultRoles) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }
 
 type DefaultRolesArrayOutput struct{ *pulumi.OutputState }

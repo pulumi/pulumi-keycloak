@@ -245,6 +245,31 @@ func (o ClientScopeOutput) ToClientScopeOutputWithContext(ctx context.Context) C
 	return o
 }
 
+// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+func (o ClientScopeOutput) ConsentScreenText() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientScope) pulumi.StringPtrOutput { return v.ConsentScreenText }).(pulumi.StringPtrOutput)
+}
+
+// The description of this client scope in the GUI.
+func (o ClientScopeOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClientScope) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Specify order of the client scope in GUI (such as in Consent page) as integer.
+func (o ClientScopeOutput) GuiOrder() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ClientScope) pulumi.IntPtrOutput { return v.GuiOrder }).(pulumi.IntPtrOutput)
+}
+
+// The display name of this client scope in the GUI.
+func (o ClientScopeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientScope) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm this client scope belongs to.
+func (o ClientScopeOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientScope) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type ClientScopeArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientScopeArrayOutput) ElementType() reflect.Type {

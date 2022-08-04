@@ -331,6 +331,46 @@ func (o AudienceProtocolMapperOutput) ToAudienceProtocolMapperOutputWithContext(
 	return o
 }
 
+// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+func (o AudienceProtocolMapperOutput) AddToAccessToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AudienceProtocolMapper) pulumi.BoolPtrOutput { return v.AddToAccessToken }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+func (o AudienceProtocolMapperOutput) AddToIdToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AudienceProtocolMapper) pulumi.BoolPtrOutput { return v.AddToIdToken }).(pulumi.BoolPtrOutput)
+}
+
+// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+func (o AudienceProtocolMapperOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AudienceProtocolMapper) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+func (o AudienceProtocolMapperOutput) ClientScopeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AudienceProtocolMapper) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
+}
+
+// A client ID to include within the token's `aud` claim. Conflicts with `includedCustomAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
+func (o AudienceProtocolMapperOutput) IncludedClientAudience() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AudienceProtocolMapper) pulumi.StringPtrOutput { return v.IncludedClientAudience }).(pulumi.StringPtrOutput)
+}
+
+// A custom audience to include within the token's `aud` claim. Conflicts with `includedClientAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
+func (o AudienceProtocolMapperOutput) IncludedCustomAudience() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AudienceProtocolMapper) pulumi.StringPtrOutput { return v.IncludedCustomAudience }).(pulumi.StringPtrOutput)
+}
+
+// The display name of this protocol mapper in the GUI.
+func (o AudienceProtocolMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *AudienceProtocolMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm this protocol mapper exists within.
+func (o AudienceProtocolMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *AudienceProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
 type AudienceProtocolMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (AudienceProtocolMapperArrayOutput) ElementType() reflect.Type {

@@ -373,6 +373,61 @@ func (o ScriptProtocolMapperOutput) ToScriptProtocolMapperOutputWithContext(ctx 
 	return o
 }
 
+// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+func (o ScriptProtocolMapperOutput) AddToAccessToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.BoolPtrOutput { return v.AddToAccessToken }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+func (o ScriptProtocolMapperOutput) AddToIdToken() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.BoolPtrOutput { return v.AddToIdToken }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+func (o ScriptProtocolMapperOutput) AddToUserinfo() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.BoolPtrOutput { return v.AddToUserinfo }).(pulumi.BoolPtrOutput)
+}
+
+// The name of the claim to insert into a token.
+func (o ScriptProtocolMapperOutput) ClaimName() pulumi.StringOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.StringOutput { return v.ClaimName }).(pulumi.StringOutput)
+}
+
+// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+func (o ScriptProtocolMapperOutput) ClaimValueType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.StringPtrOutput { return v.ClaimValueType }).(pulumi.StringPtrOutput)
+}
+
+// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+func (o ScriptProtocolMapperOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+func (o ScriptProtocolMapperOutput) ClientScopeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
+}
+
+// Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
+func (o ScriptProtocolMapperOutput) Multivalued() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.BoolPtrOutput { return v.Multivalued }).(pulumi.BoolPtrOutput)
+}
+
+// The display name of this protocol mapper in the GUI.
+func (o ScriptProtocolMapperOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The realm this protocol mapper exists within.
+func (o ScriptProtocolMapperOutput) RealmId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// JavaScript code to compute the claim value.
+func (o ScriptProtocolMapperOutput) Script() pulumi.StringOutput {
+	return o.ApplyT(func(v *ScriptProtocolMapper) pulumi.StringOutput { return v.Script }).(pulumi.StringOutput)
+}
+
 type ScriptProtocolMapperArrayOutput struct{ *pulumi.OutputState }
 
 func (ScriptProtocolMapperArrayOutput) ElementType() reflect.Type {
