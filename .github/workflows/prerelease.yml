@@ -41,7 +41,7 @@ jobs:
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.2.0
+      uses: jaxxstorm/action-install-gh-release@v1.5.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
@@ -107,7 +107,7 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.18.x
+        - 1.19.x
         javaversion:
         - "11"
         language:
@@ -117,9 +117,9 @@ jobs:
         - go
         - java
         nodeversion:
-        - 14.x
+        - 16.x
         pythonversion:
-        - "3.7"
+        - "3.9"
   lint:
     container: golangci/golangci-lint:latest
     name: lint
@@ -139,7 +139,7 @@ jobs:
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.2.0
+      uses: jaxxstorm/action-install-gh-release@v1.5.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
@@ -156,7 +156,7 @@ jobs:
       fail-fast: true
       matrix:
         goversion:
-        - 1.18.x
+        - 1.19.x
   lint_sdk:
     container: golangci/golangci-lint:latest
     name: lint-sdk
@@ -177,7 +177,7 @@ jobs:
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.2.0
+      uses: jaxxstorm/action-install-gh-release@v1.5.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
@@ -194,7 +194,7 @@ jobs:
       fail-fast: true
       matrix:
         goversion:
-        - 1.18.x
+        - 1.19.x
   prerequisites:
     name: prerequisites
     runs-on: ubuntu-latest
@@ -213,14 +213,14 @@ jobs:
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.2.0
+      uses: jaxxstorm/action-install-gh-release@v1.5.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
       uses: pulumi/action-install-pulumi-cli@v2
     - if: github.event_name == 'pull_request'
       name: Install Schema Tools
-      uses: jaxxstorm/action-install-gh-release@v1.2.0
+      uses: jaxxstorm/action-install-gh-release@v1.5.0
       with:
         repo: mikhailshilkov/schema-tools
     - name: Build tfgen & provider binaries
@@ -264,11 +264,11 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.18.x
+        - 1.19.x
         nodeversion:
-        - 14.x
+        - 16.x
         pythonversion:
-        - "3.7"
+        - "3.9"
   publish:
     name: publish
     needs: test
@@ -283,7 +283,7 @@ jobs:
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.2.0
+      uses: jaxxstorm/action-install-gh-release@v1.5.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
@@ -320,11 +320,11 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.18.x
+        - 1.19.x
         nodeversion:
-        - 14.x
+        - 16.x
         pythonversion:
-        - "3.7"
+        - "3.9"
   publish_sdk:
     name: publish_sdk
     needs: publish
@@ -344,7 +344,7 @@ jobs:
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.2.0
+      uses: jaxxstorm/action-install-gh-release@v1.5.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
@@ -427,13 +427,13 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.18.x
+        - 1.19.x
         javaversion:
         - "11"
         nodeversion:
-        - 14.x
+        - 16.x
         pythonversion:
-        - "3.7"
+        - "3.9"
   test:
     name: test
     needs: build_sdk
@@ -453,7 +453,7 @@ jobs:
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.2.0
+      uses: jaxxstorm/action-install-gh-release@v1.5.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
@@ -510,7 +510,7 @@ jobs:
     - name: Install dependencies
       run: make install_${{ matrix.language}}_sdk
     - name: Install gotestfmt
-      uses: jaxxstorm/action-install-gh-release@v1.2.0
+      uses: jaxxstorm/action-install-gh-release@v1.5.0
       with:
         repo: haveyoudebuggedit/gotestfmt
     - name: Run tests
@@ -529,7 +529,7 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.18.x
+        - 1.19.x
         javaversion:
         - "11"
         language:
@@ -539,9 +539,9 @@ jobs:
         - go
         - java
         nodeversion:
-        - 14.x
+        - 16.x
         pythonversion:
-        - "3.7"
+        - "3.9"
 name: prerelease
 on:
   push:
