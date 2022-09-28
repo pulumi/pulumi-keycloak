@@ -10,23 +10,12 @@ import java.util.Objects;
 
 @CustomType
 public final class GetClientAuthorization {
-    private final Boolean allowRemoteResourceManagement;
-    private final String decisionStrategy;
-    private final Boolean keepDefaults;
-    private final String policyEnforcementMode;
+    private Boolean allowRemoteResourceManagement;
+    private String decisionStrategy;
+    private Boolean keepDefaults;
+    private String policyEnforcementMode;
 
-    @CustomType.Constructor
-    private GetClientAuthorization(
-        @CustomType.Parameter("allowRemoteResourceManagement") Boolean allowRemoteResourceManagement,
-        @CustomType.Parameter("decisionStrategy") String decisionStrategy,
-        @CustomType.Parameter("keepDefaults") Boolean keepDefaults,
-        @CustomType.Parameter("policyEnforcementMode") String policyEnforcementMode) {
-        this.allowRemoteResourceManagement = allowRemoteResourceManagement;
-        this.decisionStrategy = decisionStrategy;
-        this.keepDefaults = keepDefaults;
-        this.policyEnforcementMode = policyEnforcementMode;
-    }
-
+    private GetClientAuthorization() {}
     public Boolean allowRemoteResourceManagement() {
         return this.allowRemoteResourceManagement;
     }
@@ -47,17 +36,13 @@ public final class GetClientAuthorization {
     public static Builder builder(GetClientAuthorization defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private Boolean allowRemoteResourceManagement;
         private String decisionStrategy;
         private Boolean keepDefaults;
         private String policyEnforcementMode;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetClientAuthorization defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.allowRemoteResourceManagement = defaults.allowRemoteResourceManagement;
@@ -66,23 +51,33 @@ public final class GetClientAuthorization {
     	      this.policyEnforcementMode = defaults.policyEnforcementMode;
         }
 
+        @CustomType.Setter
         public Builder allowRemoteResourceManagement(Boolean allowRemoteResourceManagement) {
             this.allowRemoteResourceManagement = Objects.requireNonNull(allowRemoteResourceManagement);
             return this;
         }
+        @CustomType.Setter
         public Builder decisionStrategy(String decisionStrategy) {
             this.decisionStrategy = Objects.requireNonNull(decisionStrategy);
             return this;
         }
+        @CustomType.Setter
         public Builder keepDefaults(Boolean keepDefaults) {
             this.keepDefaults = Objects.requireNonNull(keepDefaults);
             return this;
         }
+        @CustomType.Setter
         public Builder policyEnforcementMode(String policyEnforcementMode) {
             this.policyEnforcementMode = Objects.requireNonNull(policyEnforcementMode);
             return this;
-        }        public GetClientAuthorization build() {
-            return new GetClientAuthorization(allowRemoteResourceManagement, decisionStrategy, keepDefaults, policyEnforcementMode);
+        }
+        public GetClientAuthorization build() {
+            final var o = new GetClientAuthorization();
+            o.allowRemoteResourceManagement = allowRemoteResourceManagement;
+            o.decisionStrategy = decisionStrategy;
+            o.keepDefaults = keepDefaults;
+            o.policyEnforcementMode = policyEnforcementMode;
+            return o;
         }
     }
 }

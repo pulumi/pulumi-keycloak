@@ -9,34 +9,21 @@ import java.util.Objects;
 
 @CustomType
 public final class GetClientInstallationProviderResult {
-    private final String clientId;
+    private String clientId;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final String providerId;
-    private final String realmId;
+    private String id;
+    private String providerId;
+    private String realmId;
     /**
      * @return (Computed) The returned document needed for SAML installation.
      * 
      */
-    private final String value;
+    private String value;
 
-    @CustomType.Constructor
-    private GetClientInstallationProviderResult(
-        @CustomType.Parameter("clientId") String clientId,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("providerId") String providerId,
-        @CustomType.Parameter("realmId") String realmId,
-        @CustomType.Parameter("value") String value) {
-        this.clientId = clientId;
-        this.id = id;
-        this.providerId = providerId;
-        this.realmId = realmId;
-        this.value = value;
-    }
-
+    private GetClientInstallationProviderResult() {}
     public String clientId() {
         return this.clientId;
     }
@@ -68,18 +55,14 @@ public final class GetClientInstallationProviderResult {
     public static Builder builder(GetClientInstallationProviderResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String clientId;
         private String id;
         private String providerId;
         private String realmId;
         private String value;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetClientInstallationProviderResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.clientId = defaults.clientId;
@@ -89,27 +72,39 @@ public final class GetClientInstallationProviderResult {
     	      this.value = defaults.value;
         }
 
+        @CustomType.Setter
         public Builder clientId(String clientId) {
             this.clientId = Objects.requireNonNull(clientId);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder providerId(String providerId) {
             this.providerId = Objects.requireNonNull(providerId);
             return this;
         }
+        @CustomType.Setter
         public Builder realmId(String realmId) {
             this.realmId = Objects.requireNonNull(realmId);
             return this;
         }
+        @CustomType.Setter
         public Builder value(String value) {
             this.value = Objects.requireNonNull(value);
             return this;
-        }        public GetClientInstallationProviderResult build() {
-            return new GetClientInstallationProviderResult(clientId, id, providerId, realmId, value);
+        }
+        public GetClientInstallationProviderResult build() {
+            final var o = new GetClientInstallationProviderResult();
+            o.clientId = clientId;
+            o.id = id;
+            o.providerId = providerId;
+            o.realmId = realmId;
+            o.value = value;
+            return o;
         }
     }
 }

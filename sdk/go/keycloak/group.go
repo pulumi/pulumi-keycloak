@@ -27,46 +27,49 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		parentGroup, err := keycloak.NewGroup(ctx, "parentGroup", &keycloak.GroupArgs{
-// 			RealmId: realm.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewGroup(ctx, "childGroup", &keycloak.GroupArgs{
-// 			RealmId:  realm.ID(),
-// 			ParentId: parentGroup.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewGroup(ctx, "childGroupWithOptionalAttributes", &keycloak.GroupArgs{
-// 			RealmId:  realm.ID(),
-// 			ParentId: parentGroup.ID(),
-// 			Attributes: pulumi.AnyMap{
-// 				"foo":        pulumi.Any("bar"),
-// 				"multivalue": pulumi.Any("value1##value2"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			parentGroup, err := keycloak.NewGroup(ctx, "parentGroup", &keycloak.GroupArgs{
+//				RealmId: realm.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewGroup(ctx, "childGroup", &keycloak.GroupArgs{
+//				RealmId:  realm.ID(),
+//				ParentId: parentGroup.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewGroup(ctx, "childGroupWithOptionalAttributes", &keycloak.GroupArgs{
+//				RealmId:  realm.ID(),
+//				ParentId: parentGroup.ID(),
+//				Attributes: pulumi.AnyMap{
+//					"foo":        pulumi.Any("bar"),
+//					"multivalue": pulumi.Any("value1##value2"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -74,7 +77,9 @@ import (
 // Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
+//
+//	$ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
+//
 // ```
 type Group struct {
 	pulumi.CustomResourceState
@@ -201,7 +206,7 @@ func (i *Group) ToGroupOutputWithContext(ctx context.Context) GroupOutput {
 // GroupArrayInput is an input type that accepts GroupArray and GroupArrayOutput values.
 // You can construct a concrete instance of `GroupArrayInput` via:
 //
-//          GroupArray{ GroupArgs{...} }
+//	GroupArray{ GroupArgs{...} }
 type GroupArrayInput interface {
 	pulumi.Input
 
@@ -226,7 +231,7 @@ func (i GroupArray) ToGroupArrayOutputWithContext(ctx context.Context) GroupArra
 // GroupMapInput is an input type that accepts GroupMap and GroupMapOutput values.
 // You can construct a concrete instance of `GroupMapInput` via:
 //
-//          GroupMap{ "key": GroupArgs{...} }
+//	GroupMap{ "key": GroupArgs{...} }
 type GroupMapInput interface {
 	pulumi.Input
 

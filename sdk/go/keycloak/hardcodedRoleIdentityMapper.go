@@ -138,7 +138,7 @@ func (i *HardcodedRoleIdentityMapper) ToHardcodedRoleIdentityMapperOutputWithCon
 // HardcodedRoleIdentityMapperArrayInput is an input type that accepts HardcodedRoleIdentityMapperArray and HardcodedRoleIdentityMapperArrayOutput values.
 // You can construct a concrete instance of `HardcodedRoleIdentityMapperArrayInput` via:
 //
-//          HardcodedRoleIdentityMapperArray{ HardcodedRoleIdentityMapperArgs{...} }
+//	HardcodedRoleIdentityMapperArray{ HardcodedRoleIdentityMapperArgs{...} }
 type HardcodedRoleIdentityMapperArrayInput interface {
 	pulumi.Input
 
@@ -163,7 +163,7 @@ func (i HardcodedRoleIdentityMapperArray) ToHardcodedRoleIdentityMapperArrayOutp
 // HardcodedRoleIdentityMapperMapInput is an input type that accepts HardcodedRoleIdentityMapperMap and HardcodedRoleIdentityMapperMapOutput values.
 // You can construct a concrete instance of `HardcodedRoleIdentityMapperMapInput` via:
 //
-//          HardcodedRoleIdentityMapperMap{ "key": HardcodedRoleIdentityMapperArgs{...} }
+//	HardcodedRoleIdentityMapperMap{ "key": HardcodedRoleIdentityMapperArgs{...} }
 type HardcodedRoleIdentityMapperMapInput interface {
 	pulumi.Input
 

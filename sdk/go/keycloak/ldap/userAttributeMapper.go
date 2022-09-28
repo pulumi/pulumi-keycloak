@@ -23,49 +23,52 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/ldap"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/ldap"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
-// 			RealmId:               realm.ID(),
-// 			UsernameLdapAttribute: pulumi.String("cn"),
-// 			RdnLdapAttribute:      pulumi.String("cn"),
-// 			UuidLdapAttribute:     pulumi.String("entryDN"),
-// 			UserObjectClasses: pulumi.StringArray{
-// 				pulumi.String("simpleSecurityObject"),
-// 				pulumi.String("organizationalRole"),
-// 			},
-// 			ConnectionUrl:  pulumi.String("ldap://openldap"),
-// 			UsersDn:        pulumi.String("dc=example,dc=org"),
-// 			BindDn:         pulumi.String("cn=admin,dc=example,dc=org"),
-// 			BindCredential: pulumi.String("admin"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ldap.NewUserAttributeMapper(ctx, "ldapUserAttributeMapper", &ldap.UserAttributeMapperArgs{
-// 			RealmId:              realm.ID(),
-// 			LdapUserFederationId: ldapUserFederation.ID(),
-// 			UserModelAttribute:   pulumi.String("foo"),
-// 			LdapAttribute:        pulumi.String("bar"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
+//				RealmId:               realm.ID(),
+//				UsernameLdapAttribute: pulumi.String("cn"),
+//				RdnLdapAttribute:      pulumi.String("cn"),
+//				UuidLdapAttribute:     pulumi.String("entryDN"),
+//				UserObjectClasses: pulumi.StringArray{
+//					pulumi.String("simpleSecurityObject"),
+//					pulumi.String("organizationalRole"),
+//				},
+//				ConnectionUrl:  pulumi.String("ldap://openldap"),
+//				UsersDn:        pulumi.String("dc=example,dc=org"),
+//				BindDn:         pulumi.String("cn=admin,dc=example,dc=org"),
+//				BindCredential: pulumi.String("admin"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ldap.NewUserAttributeMapper(ctx, "ldapUserAttributeMapper", &ldap.UserAttributeMapperArgs{
+//				RealmId:              realm.ID(),
+//				LdapUserFederationId: ldapUserFederation.ID(),
+//				UserModelAttribute:   pulumi.String("foo"),
+//				LdapAttribute:        pulumi.String("bar"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -73,7 +76,9 @@ import (
 // LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:ldap/userAttributeMapper:UserAttributeMapper ldap_user_attribute_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+//
+//	$ pulumi import keycloak:ldap/userAttributeMapper:UserAttributeMapper ldap_user_attribute_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+//
 // ```
 type UserAttributeMapper struct {
 	pulumi.CustomResourceState
@@ -243,7 +248,7 @@ func (i *UserAttributeMapper) ToUserAttributeMapperOutputWithContext(ctx context
 // UserAttributeMapperArrayInput is an input type that accepts UserAttributeMapperArray and UserAttributeMapperArrayOutput values.
 // You can construct a concrete instance of `UserAttributeMapperArrayInput` via:
 //
-//          UserAttributeMapperArray{ UserAttributeMapperArgs{...} }
+//	UserAttributeMapperArray{ UserAttributeMapperArgs{...} }
 type UserAttributeMapperArrayInput interface {
 	pulumi.Input
 
@@ -268,7 +273,7 @@ func (i UserAttributeMapperArray) ToUserAttributeMapperArrayOutputWithContext(ct
 // UserAttributeMapperMapInput is an input type that accepts UserAttributeMapperMap and UserAttributeMapperMapOutput values.
 // You can construct a concrete instance of `UserAttributeMapperMapInput` via:
 //
-//          UserAttributeMapperMap{ "key": UserAttributeMapperArgs{...} }
+//	UserAttributeMapperMap{ "key": UserAttributeMapperArgs{...} }
 type UserAttributeMapperMapInput interface {
 	pulumi.Input
 

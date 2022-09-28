@@ -21,37 +21,40 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/oidc"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/oidc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = oidc.NewGoogleIdentityProvider(ctx, "google", &oidc.GoogleIdentityProviderArgs{
-// 			Realm:        realm.ID(),
-// 			ClientId:     pulumi.Any(_var.Google_identity_provider_client_id),
-// 			ClientSecret: pulumi.Any(_var.Google_identity_provider_client_secret),
-// 			TrustEmail:   pulumi.Bool(true),
-// 			HostedDomain: pulumi.String("example.com"),
-// 			SyncMode:     pulumi.String("IMPORT"),
-// 			ExtraConfig: pulumi.AnyMap{
-// 				"myCustomConfigKey": pulumi.Any("myValue"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = oidc.NewGoogleIdentityProvider(ctx, "google", &oidc.GoogleIdentityProviderArgs{
+//				Realm:        realm.ID(),
+//				ClientId:     pulumi.Any(_var.Google_identity_provider_client_id),
+//				ClientSecret: pulumi.Any(_var.Google_identity_provider_client_secret),
+//				TrustEmail:   pulumi.Bool(true),
+//				HostedDomain: pulumi.String("example.com"),
+//				SyncMode:     pulumi.String("IMPORT"),
+//				ExtraConfig: pulumi.AnyMap{
+//					"myCustomConfigKey": pulumi.Any("myValue"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -375,7 +378,7 @@ func (i *GoogleIdentityProvider) ToGoogleIdentityProviderOutputWithContext(ctx c
 // GoogleIdentityProviderArrayInput is an input type that accepts GoogleIdentityProviderArray and GoogleIdentityProviderArrayOutput values.
 // You can construct a concrete instance of `GoogleIdentityProviderArrayInput` via:
 //
-//          GoogleIdentityProviderArray{ GoogleIdentityProviderArgs{...} }
+//	GoogleIdentityProviderArray{ GoogleIdentityProviderArgs{...} }
 type GoogleIdentityProviderArrayInput interface {
 	pulumi.Input
 
@@ -400,7 +403,7 @@ func (i GoogleIdentityProviderArray) ToGoogleIdentityProviderArrayOutputWithCont
 // GoogleIdentityProviderMapInput is an input type that accepts GoogleIdentityProviderMap and GoogleIdentityProviderMapOutput values.
 // You can construct a concrete instance of `GoogleIdentityProviderMapInput` via:
 //
-//          GoogleIdentityProviderMap{ "key": GoogleIdentityProviderArgs{...} }
+//	GoogleIdentityProviderMap{ "key": GoogleIdentityProviderArgs{...} }
 type GoogleIdentityProviderMapInput interface {
 	pulumi.Input
 

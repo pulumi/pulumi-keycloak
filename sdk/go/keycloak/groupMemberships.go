@@ -17,45 +17,48 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
-// 			RealmId: realm.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		user, err := keycloak.NewUser(ctx, "user", &keycloak.UserArgs{
-// 			RealmId:  realm.ID(),
-// 			Username: pulumi.String("my-user"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewGroupMemberships(ctx, "groupMembers", &keycloak.GroupMembershipsArgs{
-// 			RealmId: realm.ID(),
-// 			GroupId: group.ID(),
-// 			Members: pulumi.StringArray{
-// 				user.Username,
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
+//				RealmId: realm.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			user, err := keycloak.NewUser(ctx, "user", &keycloak.UserArgs{
+//				RealmId:  realm.ID(),
+//				Username: pulumi.String("my-user"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewGroupMemberships(ctx, "groupMembers", &keycloak.GroupMembershipsArgs{
+//				RealmId: realm.ID(),
+//				GroupId: group.ID(),
+//				Members: pulumi.StringArray{
+//					user.Username,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -173,7 +176,7 @@ func (i *GroupMemberships) ToGroupMembershipsOutputWithContext(ctx context.Conte
 // GroupMembershipsArrayInput is an input type that accepts GroupMembershipsArray and GroupMembershipsArrayOutput values.
 // You can construct a concrete instance of `GroupMembershipsArrayInput` via:
 //
-//          GroupMembershipsArray{ GroupMembershipsArgs{...} }
+//	GroupMembershipsArray{ GroupMembershipsArgs{...} }
 type GroupMembershipsArrayInput interface {
 	pulumi.Input
 
@@ -198,7 +201,7 @@ func (i GroupMembershipsArray) ToGroupMembershipsArrayOutputWithContext(ctx cont
 // GroupMembershipsMapInput is an input type that accepts GroupMembershipsMap and GroupMembershipsMapOutput values.
 // You can construct a concrete instance of `GroupMembershipsMapInput` via:
 //
-//          GroupMembershipsMap{ "key": GroupMembershipsArgs{...} }
+//	GroupMembershipsMap{ "key": GroupMembershipsArgs{...} }
 type GroupMembershipsMapInput interface {
 	pulumi.Input
 

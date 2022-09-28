@@ -143,7 +143,7 @@ func (i *ClientAuthorizationResource) ToClientAuthorizationResourceOutputWithCon
 // ClientAuthorizationResourceArrayInput is an input type that accepts ClientAuthorizationResourceArray and ClientAuthorizationResourceArrayOutput values.
 // You can construct a concrete instance of `ClientAuthorizationResourceArrayInput` via:
 //
-//          ClientAuthorizationResourceArray{ ClientAuthorizationResourceArgs{...} }
+//	ClientAuthorizationResourceArray{ ClientAuthorizationResourceArgs{...} }
 type ClientAuthorizationResourceArrayInput interface {
 	pulumi.Input
 
@@ -168,7 +168,7 @@ func (i ClientAuthorizationResourceArray) ToClientAuthorizationResourceArrayOutp
 // ClientAuthorizationResourceMapInput is an input type that accepts ClientAuthorizationResourceMap and ClientAuthorizationResourceMapOutput values.
 // You can construct a concrete instance of `ClientAuthorizationResourceMapInput` via:
 //
-//          ClientAuthorizationResourceMap{ "key": ClientAuthorizationResourceArgs{...} }
+//	ClientAuthorizationResourceMap{ "key": ClientAuthorizationResourceArgs{...} }
 type ClientAuthorizationResourceMapInput interface {
 	pulumi.Input
 

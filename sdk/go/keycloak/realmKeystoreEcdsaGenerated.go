@@ -21,31 +21,34 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm: pulumi.String("my-realm"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewRealmKeystoreEcdsaGenerated(ctx, "keystoreEcdsaGenerated", &keycloak.RealmKeystoreEcdsaGeneratedArgs{
-// 			RealmId:          realm.ID(),
-// 			Enabled:          pulumi.Bool(true),
-// 			Active:           pulumi.Bool(true),
-// 			Priority:         pulumi.Int(100),
-// 			EllipticCurveKey: pulumi.String("P-256"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm: pulumi.String("my-realm"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewRealmKeystoreEcdsaGenerated(ctx, "keystoreEcdsaGenerated", &keycloak.RealmKeystoreEcdsaGeneratedArgs{
+//				RealmId:          realm.ID(),
+//				Enabled:          pulumi.Bool(true),
+//				Active:           pulumi.Bool(true),
+//				Priority:         pulumi.Int(100),
+//				EllipticCurveKey: pulumi.String("P-256"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -53,7 +56,9 @@ import (
 // Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated keystore_ecdsa_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+//
+//	$ pulumi import keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated keystore_ecdsa_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+//
 // ```
 type RealmKeystoreEcdsaGenerated struct {
 	pulumi.CustomResourceState
@@ -194,7 +199,7 @@ func (i *RealmKeystoreEcdsaGenerated) ToRealmKeystoreEcdsaGeneratedOutputWithCon
 // RealmKeystoreEcdsaGeneratedArrayInput is an input type that accepts RealmKeystoreEcdsaGeneratedArray and RealmKeystoreEcdsaGeneratedArrayOutput values.
 // You can construct a concrete instance of `RealmKeystoreEcdsaGeneratedArrayInput` via:
 //
-//          RealmKeystoreEcdsaGeneratedArray{ RealmKeystoreEcdsaGeneratedArgs{...} }
+//	RealmKeystoreEcdsaGeneratedArray{ RealmKeystoreEcdsaGeneratedArgs{...} }
 type RealmKeystoreEcdsaGeneratedArrayInput interface {
 	pulumi.Input
 
@@ -219,7 +224,7 @@ func (i RealmKeystoreEcdsaGeneratedArray) ToRealmKeystoreEcdsaGeneratedArrayOutp
 // RealmKeystoreEcdsaGeneratedMapInput is an input type that accepts RealmKeystoreEcdsaGeneratedMap and RealmKeystoreEcdsaGeneratedMapOutput values.
 // You can construct a concrete instance of `RealmKeystoreEcdsaGeneratedMapInput` via:
 //
-//          RealmKeystoreEcdsaGeneratedMap{ "key": RealmKeystoreEcdsaGeneratedArgs{...} }
+//	RealmKeystoreEcdsaGeneratedMap{ "key": RealmKeystoreEcdsaGeneratedArgs{...} }
 type RealmKeystoreEcdsaGeneratedMapInput interface {
 	pulumi.Input
 

@@ -18,29 +18,32 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		masterRealm, err := keycloak.LookupRealm(ctx, &GetRealmArgs{
-// 			Realm: "master",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		defaultAdminUser, err := keycloak.LookupUser(ctx, &GetUserArgs{
-// 			RealmId:  masterRealm.Id,
-// 			Username: "keycloak",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("keycloakUserId", defaultAdminUser.Id)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			masterRealm, err := keycloak.LookupRealm(ctx, &GetRealmArgs{
+//				Realm: "master",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			defaultAdminUser, err := keycloak.LookupUser(ctx, &GetUserArgs{
+//				RealmId:  masterRealm.Id,
+//				Username: "keycloak",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("keycloakUserId", defaultAdminUser.Id)
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupUser(ctx *pulumi.Context, args *LookupUserArgs, opts ...pulumi.InvokeOption) (*LookupUserResult, error) {
 	var rv LookupUserResult

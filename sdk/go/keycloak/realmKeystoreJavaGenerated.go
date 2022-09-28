@@ -20,7 +20,9 @@ import (
 // Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:index/realmKeystoreJavaGenerated:RealmKeystoreJavaGenerated java_keystore my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+//
+//	$ pulumi import keycloak:index/realmKeystoreJavaGenerated:RealmKeystoreJavaGenerated java_keystore my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+//
 // ```
 type RealmKeystoreJavaGenerated struct {
 	pulumi.CustomResourceState
@@ -213,7 +215,7 @@ func (i *RealmKeystoreJavaGenerated) ToRealmKeystoreJavaGeneratedOutputWithConte
 // RealmKeystoreJavaGeneratedArrayInput is an input type that accepts RealmKeystoreJavaGeneratedArray and RealmKeystoreJavaGeneratedArrayOutput values.
 // You can construct a concrete instance of `RealmKeystoreJavaGeneratedArrayInput` via:
 //
-//          RealmKeystoreJavaGeneratedArray{ RealmKeystoreJavaGeneratedArgs{...} }
+//	RealmKeystoreJavaGeneratedArray{ RealmKeystoreJavaGeneratedArgs{...} }
 type RealmKeystoreJavaGeneratedArrayInput interface {
 	pulumi.Input
 
@@ -238,7 +240,7 @@ func (i RealmKeystoreJavaGeneratedArray) ToRealmKeystoreJavaGeneratedArrayOutput
 // RealmKeystoreJavaGeneratedMapInput is an input type that accepts RealmKeystoreJavaGeneratedMap and RealmKeystoreJavaGeneratedMapOutput values.
 // You can construct a concrete instance of `RealmKeystoreJavaGeneratedMapInput` via:
 //
-//          RealmKeystoreJavaGeneratedMap{ "key": RealmKeystoreJavaGeneratedArgs{...} }
+//	RealmKeystoreJavaGeneratedMap{ "key": RealmKeystoreJavaGeneratedArgs{...} }
 type RealmKeystoreJavaGeneratedMapInput interface {
 	pulumi.Input
 

@@ -16,42 +16,29 @@ public final class UserFederationCache {
      * @return Day of the week the entry will become invalid on
      * 
      */
-    private final @Nullable Integer evictionDay;
+    private @Nullable Integer evictionDay;
     /**
      * @return Hour of day the entry will become invalid on.
      * 
      */
-    private final @Nullable Integer evictionHour;
+    private @Nullable Integer evictionHour;
     /**
      * @return Minute of day the entry will become invalid on.
      * 
      */
-    private final @Nullable Integer evictionMinute;
+    private @Nullable Integer evictionMinute;
     /**
      * @return Max lifespan of cache entry (duration string).
      * 
      */
-    private final @Nullable String maxLifespan;
+    private @Nullable String maxLifespan;
     /**
      * @return Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
      * 
      */
-    private final @Nullable String policy;
+    private @Nullable String policy;
 
-    @CustomType.Constructor
-    private UserFederationCache(
-        @CustomType.Parameter("evictionDay") @Nullable Integer evictionDay,
-        @CustomType.Parameter("evictionHour") @Nullable Integer evictionHour,
-        @CustomType.Parameter("evictionMinute") @Nullable Integer evictionMinute,
-        @CustomType.Parameter("maxLifespan") @Nullable String maxLifespan,
-        @CustomType.Parameter("policy") @Nullable String policy) {
-        this.evictionDay = evictionDay;
-        this.evictionHour = evictionHour;
-        this.evictionMinute = evictionMinute;
-        this.maxLifespan = maxLifespan;
-        this.policy = policy;
-    }
-
+    private UserFederationCache() {}
     /**
      * @return Day of the week the entry will become invalid on
      * 
@@ -95,18 +82,14 @@ public final class UserFederationCache {
     public static Builder builder(UserFederationCache defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable Integer evictionDay;
         private @Nullable Integer evictionHour;
         private @Nullable Integer evictionMinute;
         private @Nullable String maxLifespan;
         private @Nullable String policy;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(UserFederationCache defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.evictionDay = defaults.evictionDay;
@@ -116,27 +99,39 @@ public final class UserFederationCache {
     	      this.policy = defaults.policy;
         }
 
+        @CustomType.Setter
         public Builder evictionDay(@Nullable Integer evictionDay) {
             this.evictionDay = evictionDay;
             return this;
         }
+        @CustomType.Setter
         public Builder evictionHour(@Nullable Integer evictionHour) {
             this.evictionHour = evictionHour;
             return this;
         }
+        @CustomType.Setter
         public Builder evictionMinute(@Nullable Integer evictionMinute) {
             this.evictionMinute = evictionMinute;
             return this;
         }
+        @CustomType.Setter
         public Builder maxLifespan(@Nullable String maxLifespan) {
             this.maxLifespan = maxLifespan;
             return this;
         }
+        @CustomType.Setter
         public Builder policy(@Nullable String policy) {
             this.policy = policy;
             return this;
-        }        public UserFederationCache build() {
-            return new UserFederationCache(evictionDay, evictionHour, evictionMinute, maxLifespan, policy);
+        }
+        public UserFederationCache build() {
+            final var o = new UserFederationCache();
+            o.evictionDay = evictionDay;
+            o.evictionHour = evictionHour;
+            o.evictionMinute = evictionMinute;
+            o.maxLifespan = maxLifespan;
+            o.policy = policy;
+            return o;
         }
     }
 }

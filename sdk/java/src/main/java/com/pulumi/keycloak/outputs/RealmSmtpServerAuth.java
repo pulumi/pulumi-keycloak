@@ -13,21 +13,14 @@ public final class RealmSmtpServerAuth {
      * @return The SMTP server password.
      * 
      */
-    private final String password;
+    private String password;
     /**
      * @return The SMTP server username.
      * 
      */
-    private final String username;
+    private String username;
 
-    @CustomType.Constructor
-    private RealmSmtpServerAuth(
-        @CustomType.Parameter("password") String password,
-        @CustomType.Parameter("username") String username) {
-        this.password = password;
-        this.username = username;
-    }
-
+    private RealmSmtpServerAuth() {}
     /**
      * @return The SMTP server password.
      * 
@@ -50,30 +43,32 @@ public final class RealmSmtpServerAuth {
     public static Builder builder(RealmSmtpServerAuth defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String password;
         private String username;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(RealmSmtpServerAuth defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.password = defaults.password;
     	      this.username = defaults.username;
         }
 
+        @CustomType.Setter
         public Builder password(String password) {
             this.password = Objects.requireNonNull(password);
             return this;
         }
+        @CustomType.Setter
         public Builder username(String username) {
             this.username = Objects.requireNonNull(username);
             return this;
-        }        public RealmSmtpServerAuth build() {
-            return new RealmSmtpServerAuth(password, username);
+        }
+        public RealmSmtpServerAuth build() {
+            final var o = new RealmSmtpServerAuth();
+            o.password = password;
+            o.username = username;
+            return o;
         }
     }
 }

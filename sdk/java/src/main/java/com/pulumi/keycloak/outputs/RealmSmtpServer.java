@@ -17,77 +17,54 @@ public final class RealmSmtpServer {
      * @return Enables authentication to the SMTP server.  This block supports the following arguments:
      * 
      */
-    private final @Nullable RealmSmtpServerAuth auth;
+    private @Nullable RealmSmtpServerAuth auth;
     /**
      * @return The email address uses for bounces.
      * 
      */
-    private final @Nullable String envelopeFrom;
+    private @Nullable String envelopeFrom;
     /**
      * @return The email address for the sender.
      * 
      */
-    private final String from;
+    private String from;
     /**
      * @return The display name of the sender email address.
      * 
      */
-    private final @Nullable String fromDisplayName;
+    private @Nullable String fromDisplayName;
     /**
      * @return The host of the SMTP server.
      * 
      */
-    private final String host;
+    private String host;
     /**
      * @return The port of the SMTP server (defaults to 25).
      * 
      */
-    private final @Nullable String port;
+    private @Nullable String port;
     /**
      * @return The &#34;reply to&#34; email address.
      * 
      */
-    private final @Nullable String replyTo;
+    private @Nullable String replyTo;
     /**
      * @return The display name of the &#34;reply to&#34; email address.
      * 
      */
-    private final @Nullable String replyToDisplayName;
+    private @Nullable String replyToDisplayName;
     /**
      * @return When `true`, enables SSL. Defaults to `false`.
      * 
      */
-    private final @Nullable Boolean ssl;
+    private @Nullable Boolean ssl;
     /**
      * @return When `true`, enables StartTLS. Defaults to `false`.
      * 
      */
-    private final @Nullable Boolean starttls;
+    private @Nullable Boolean starttls;
 
-    @CustomType.Constructor
-    private RealmSmtpServer(
-        @CustomType.Parameter("auth") @Nullable RealmSmtpServerAuth auth,
-        @CustomType.Parameter("envelopeFrom") @Nullable String envelopeFrom,
-        @CustomType.Parameter("from") String from,
-        @CustomType.Parameter("fromDisplayName") @Nullable String fromDisplayName,
-        @CustomType.Parameter("host") String host,
-        @CustomType.Parameter("port") @Nullable String port,
-        @CustomType.Parameter("replyTo") @Nullable String replyTo,
-        @CustomType.Parameter("replyToDisplayName") @Nullable String replyToDisplayName,
-        @CustomType.Parameter("ssl") @Nullable Boolean ssl,
-        @CustomType.Parameter("starttls") @Nullable Boolean starttls) {
-        this.auth = auth;
-        this.envelopeFrom = envelopeFrom;
-        this.from = from;
-        this.fromDisplayName = fromDisplayName;
-        this.host = host;
-        this.port = port;
-        this.replyTo = replyTo;
-        this.replyToDisplayName = replyToDisplayName;
-        this.ssl = ssl;
-        this.starttls = starttls;
-    }
-
+    private RealmSmtpServer() {}
     /**
      * @return Enables authentication to the SMTP server.  This block supports the following arguments:
      * 
@@ -166,7 +143,7 @@ public final class RealmSmtpServer {
     public static Builder builder(RealmSmtpServer defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable RealmSmtpServerAuth auth;
         private @Nullable String envelopeFrom;
@@ -178,11 +155,7 @@ public final class RealmSmtpServer {
         private @Nullable String replyToDisplayName;
         private @Nullable Boolean ssl;
         private @Nullable Boolean starttls;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(RealmSmtpServer defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.auth = defaults.auth;
@@ -197,47 +170,69 @@ public final class RealmSmtpServer {
     	      this.starttls = defaults.starttls;
         }
 
+        @CustomType.Setter
         public Builder auth(@Nullable RealmSmtpServerAuth auth) {
             this.auth = auth;
             return this;
         }
+        @CustomType.Setter
         public Builder envelopeFrom(@Nullable String envelopeFrom) {
             this.envelopeFrom = envelopeFrom;
             return this;
         }
+        @CustomType.Setter
         public Builder from(String from) {
             this.from = Objects.requireNonNull(from);
             return this;
         }
+        @CustomType.Setter
         public Builder fromDisplayName(@Nullable String fromDisplayName) {
             this.fromDisplayName = fromDisplayName;
             return this;
         }
+        @CustomType.Setter
         public Builder host(String host) {
             this.host = Objects.requireNonNull(host);
             return this;
         }
+        @CustomType.Setter
         public Builder port(@Nullable String port) {
             this.port = port;
             return this;
         }
+        @CustomType.Setter
         public Builder replyTo(@Nullable String replyTo) {
             this.replyTo = replyTo;
             return this;
         }
+        @CustomType.Setter
         public Builder replyToDisplayName(@Nullable String replyToDisplayName) {
             this.replyToDisplayName = replyToDisplayName;
             return this;
         }
+        @CustomType.Setter
         public Builder ssl(@Nullable Boolean ssl) {
             this.ssl = ssl;
             return this;
         }
+        @CustomType.Setter
         public Builder starttls(@Nullable Boolean starttls) {
             this.starttls = starttls;
             return this;
-        }        public RealmSmtpServer build() {
-            return new RealmSmtpServer(auth, envelopeFrom, from, fromDisplayName, host, port, replyTo, replyToDisplayName, ssl, starttls);
+        }
+        public RealmSmtpServer build() {
+            final var o = new RealmSmtpServer();
+            o.auth = auth;
+            o.envelopeFrom = envelopeFrom;
+            o.from = from;
+            o.fromDisplayName = fromDisplayName;
+            o.host = host;
+            o.port = port;
+            o.replyTo = replyTo;
+            o.replyToDisplayName = replyToDisplayName;
+            o.ssl = ssl;
+            o.starttls = starttls;
+            return o;
         }
     }
 }

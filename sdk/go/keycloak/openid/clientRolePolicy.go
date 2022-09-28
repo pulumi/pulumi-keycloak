@@ -139,7 +139,7 @@ func (i *ClientRolePolicy) ToClientRolePolicyOutputWithContext(ctx context.Conte
 // ClientRolePolicyArrayInput is an input type that accepts ClientRolePolicyArray and ClientRolePolicyArrayOutput values.
 // You can construct a concrete instance of `ClientRolePolicyArrayInput` via:
 //
-//          ClientRolePolicyArray{ ClientRolePolicyArgs{...} }
+//	ClientRolePolicyArray{ ClientRolePolicyArgs{...} }
 type ClientRolePolicyArrayInput interface {
 	pulumi.Input
 
@@ -164,7 +164,7 @@ func (i ClientRolePolicyArray) ToClientRolePolicyArrayOutputWithContext(ctx cont
 // ClientRolePolicyMapInput is an input type that accepts ClientRolePolicyMap and ClientRolePolicyMapOutput values.
 // You can construct a concrete instance of `ClientRolePolicyMapInput` via:
 //
-//          ClientRolePolicyMap{ "key": ClientRolePolicyArgs{...} }
+//	ClientRolePolicyMap{ "key": ClientRolePolicyArgs{...} }
 type ClientRolePolicyMapInput interface {
 	pulumi.Input
 

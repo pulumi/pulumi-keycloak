@@ -137,7 +137,7 @@ func (i *GroupPermissions) ToGroupPermissionsOutputWithContext(ctx context.Conte
 // GroupPermissionsArrayInput is an input type that accepts GroupPermissionsArray and GroupPermissionsArrayOutput values.
 // You can construct a concrete instance of `GroupPermissionsArrayInput` via:
 //
-//          GroupPermissionsArray{ GroupPermissionsArgs{...} }
+//	GroupPermissionsArray{ GroupPermissionsArgs{...} }
 type GroupPermissionsArrayInput interface {
 	pulumi.Input
 
@@ -162,7 +162,7 @@ func (i GroupPermissionsArray) ToGroupPermissionsArrayOutputWithContext(ctx cont
 // GroupPermissionsMapInput is an input type that accepts GroupPermissionsMap and GroupPermissionsMapOutput values.
 // You can construct a concrete instance of `GroupPermissionsMapInput` via:
 //
-//          GroupPermissionsMap{ "key": GroupPermissionsArgs{...} }
+//	GroupPermissionsMap{ "key": GroupPermissionsArgs{...} }
 type GroupPermissionsMapInput interface {
 	pulumi.Input
 

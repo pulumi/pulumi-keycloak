@@ -21,30 +21,33 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewRequiredAction(ctx, "requiredAction", &keycloak.RequiredActionArgs{
-// 			RealmId: realm.Realm,
-// 			Alias:   pulumi.String("webauthn-register"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewRequiredAction(ctx, "requiredAction", &keycloak.RequiredActionArgs{
+//				RealmId: realm.Realm,
+//				Alias:   pulumi.String("webauthn-register"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -52,7 +55,9 @@ import (
 // Authentication executions can be imported using the formats`{{realm}}/{{alias}}`. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias
+//
+//	$ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias
+//
 // ```
 type RequiredAction struct {
 	pulumi.CustomResourceState
@@ -196,7 +201,7 @@ func (i *RequiredAction) ToRequiredActionOutputWithContext(ctx context.Context) 
 // RequiredActionArrayInput is an input type that accepts RequiredActionArray and RequiredActionArrayOutput values.
 // You can construct a concrete instance of `RequiredActionArrayInput` via:
 //
-//          RequiredActionArray{ RequiredActionArgs{...} }
+//	RequiredActionArray{ RequiredActionArgs{...} }
 type RequiredActionArrayInput interface {
 	pulumi.Input
 
@@ -221,7 +226,7 @@ func (i RequiredActionArray) ToRequiredActionArrayOutputWithContext(ctx context.
 // RequiredActionMapInput is an input type that accepts RequiredActionMap and RequiredActionMapOutput values.
 // You can construct a concrete instance of `RequiredActionMapInput` via:
 //
-//          RequiredActionMap{ "key": RequiredActionArgs{...} }
+//	RequiredActionMap{ "key": RequiredActionArgs{...} }
 type RequiredActionMapInput interface {
 	pulumi.Input
 

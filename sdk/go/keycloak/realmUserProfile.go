@@ -28,89 +28,92 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm: pulumi.String("my-realm"),
-// 			Attributes: pulumi.AnyMap{
-// 				"userProfileEnabled": pulumi.Any(true),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewRealmUserProfile(ctx, "userprofile", &keycloak.RealmUserProfileArgs{
-// 			RealmId: pulumi.Any(keycloak_realm.My_realm.Id),
-// 			Attributes: RealmUserProfileAttributeArray{
-// 				&RealmUserProfileAttributeArgs{
-// 					Name:        pulumi.String("field1"),
-// 					DisplayName: pulumi.String("Field 1"),
-// 					Group:       pulumi.String("group1"),
-// 					EnabledWhenScopes: pulumi.StringArray{
-// 						pulumi.String("offline_access"),
-// 					},
-// 					RequiredForRoles: pulumi.StringArray{
-// 						pulumi.String("user"),
-// 					},
-// 					RequiredForScopes: pulumi.StringArray{
-// 						pulumi.String("offline_access"),
-// 					},
-// 					Permissions: &RealmUserProfileAttributePermissionsArgs{
-// 						Views: pulumi.StringArray{
-// 							pulumi.String("admin"),
-// 							pulumi.String("user"),
-// 						},
-// 						Edits: pulumi.StringArray{
-// 							pulumi.String("admin"),
-// 							pulumi.String("user"),
-// 						},
-// 					},
-// 					Validators: RealmUserProfileAttributeValidatorArray{
-// 						&RealmUserProfileAttributeValidatorArgs{
-// 							Name: pulumi.String("person-name-prohibited-characters"),
-// 						},
-// 						&RealmUserProfileAttributeValidatorArgs{
-// 							Name: pulumi.String("pattern"),
-// 							Config: pulumi.StringMap{
-// 								"pattern":       pulumi.String(fmt.Sprintf("^[a-z]+$")),
-// 								"error_message": pulumi.String("Nope"),
-// 							},
-// 						},
-// 					},
-// 					Annotations: pulumi.StringMap{
-// 						"foo": pulumi.String("bar"),
-// 					},
-// 				},
-// 				&RealmUserProfileAttributeArgs{
-// 					Name: pulumi.String("field2"),
-// 				},
-// 			},
-// 			Groups: RealmUserProfileGroupArray{
-// 				&RealmUserProfileGroupArgs{
-// 					Name:               pulumi.String("group1"),
-// 					DisplayHeader:      pulumi.String("Group 1"),
-// 					DisplayDescription: pulumi.String("A first group"),
-// 					Annotations: pulumi.StringMap{
-// 						"foo": pulumi.String("bar"),
-// 					},
-// 				},
-// 				&RealmUserProfileGroupArgs{
-// 					Name: pulumi.String("group2"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm: pulumi.String("my-realm"),
+//				Attributes: pulumi.AnyMap{
+//					"userProfileEnabled": pulumi.Any(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewRealmUserProfile(ctx, "userprofile", &keycloak.RealmUserProfileArgs{
+//				RealmId: pulumi.Any(keycloak_realm.My_realm.Id),
+//				Attributes: RealmUserProfileAttributeArray{
+//					&RealmUserProfileAttributeArgs{
+//						Name:        pulumi.String("field1"),
+//						DisplayName: pulumi.String("Field 1"),
+//						Group:       pulumi.String("group1"),
+//						EnabledWhenScopes: pulumi.StringArray{
+//							pulumi.String("offline_access"),
+//						},
+//						RequiredForRoles: pulumi.StringArray{
+//							pulumi.String("user"),
+//						},
+//						RequiredForScopes: pulumi.StringArray{
+//							pulumi.String("offline_access"),
+//						},
+//						Permissions: &RealmUserProfileAttributePermissionsArgs{
+//							Views: pulumi.StringArray{
+//								pulumi.String("admin"),
+//								pulumi.String("user"),
+//							},
+//							Edits: pulumi.StringArray{
+//								pulumi.String("admin"),
+//								pulumi.String("user"),
+//							},
+//						},
+//						Validators: RealmUserProfileAttributeValidatorArray{
+//							&RealmUserProfileAttributeValidatorArgs{
+//								Name: pulumi.String("person-name-prohibited-characters"),
+//							},
+//							&RealmUserProfileAttributeValidatorArgs{
+//								Name: pulumi.String("pattern"),
+//								Config: pulumi.StringMap{
+//									"pattern":       pulumi.String(fmt.Sprintf("^[a-z]+$")),
+//									"error_message": pulumi.String("Nope"),
+//								},
+//							},
+//						},
+//						Annotations: pulumi.StringMap{
+//							"foo": pulumi.String("bar"),
+//						},
+//					},
+//					&RealmUserProfileAttributeArgs{
+//						Name: pulumi.String("field2"),
+//					},
+//				},
+//				Groups: RealmUserProfileGroupArray{
+//					&RealmUserProfileGroupArgs{
+//						Name:               pulumi.String("group1"),
+//						DisplayHeader:      pulumi.String("Group 1"),
+//						DisplayDescription: pulumi.String("A first group"),
+//						Annotations: pulumi.StringMap{
+//							"foo": pulumi.String("bar"),
+//						},
+//					},
+//					&RealmUserProfileGroupArgs{
+//						Name: pulumi.String("group2"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -225,7 +228,7 @@ func (i *RealmUserProfile) ToRealmUserProfileOutputWithContext(ctx context.Conte
 // RealmUserProfileArrayInput is an input type that accepts RealmUserProfileArray and RealmUserProfileArrayOutput values.
 // You can construct a concrete instance of `RealmUserProfileArrayInput` via:
 //
-//          RealmUserProfileArray{ RealmUserProfileArgs{...} }
+//	RealmUserProfileArray{ RealmUserProfileArgs{...} }
 type RealmUserProfileArrayInput interface {
 	pulumi.Input
 
@@ -250,7 +253,7 @@ func (i RealmUserProfileArray) ToRealmUserProfileArrayOutputWithContext(ctx cont
 // RealmUserProfileMapInput is an input type that accepts RealmUserProfileMap and RealmUserProfileMapOutput values.
 // You can construct a concrete instance of `RealmUserProfileMapInput` via:
 //
-//          RealmUserProfileMap{ "key": RealmUserProfileArgs{...} }
+//	RealmUserProfileMap{ "key": RealmUserProfileArgs{...} }
 type RealmUserProfileMapInput interface {
 	pulumi.Input
 

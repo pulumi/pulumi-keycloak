@@ -23,54 +23,57 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		client, err := openid.NewClient(ctx, "client", &openid.ClientArgs{
-// 			RealmId:                realm.ID(),
-// 			ClientId:               pulumi.String("client"),
-// 			AccessType:             pulumi.String("CONFIDENTIAL"),
-// 			ServiceAccountsEnabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		serviceAccountUser := openid.GetClientServiceAccountUserOutput(ctx, openid.GetClientServiceAccountUserOutputArgs{
-// 			RealmId:  realm.ID(),
-// 			ClientId: client.ID(),
-// 		}, nil)
-// 		offlineAccess := keycloak.LookupRoleOutput(ctx, GetRoleOutputArgs{
-// 			RealmId: realm.ID(),
-// 			Name:    pulumi.String("offline_access"),
-// 		}, nil)
-// 		_, err = keycloak.NewUserRoles(ctx, "serviceAccountUserRoles", &keycloak.UserRolesArgs{
-// 			RealmId: realm.ID(),
-// 			UserId: serviceAccountUser.ApplyT(func(serviceAccountUser openid.GetClientServiceAccountUserResult) (string, error) {
-// 				return serviceAccountUser.Id, nil
-// 			}).(pulumi.StringOutput),
-// 			RoleIds: pulumi.StringArray{
-// 				offlineAccess.ApplyT(func(offlineAccess GetRoleResult) (string, error) {
-// 					return offlineAccess.Id, nil
-// 				}).(pulumi.StringOutput),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			client, err := openid.NewClient(ctx, "client", &openid.ClientArgs{
+//				RealmId:                realm.ID(),
+//				ClientId:               pulumi.String("client"),
+//				AccessType:             pulumi.String("CONFIDENTIAL"),
+//				ServiceAccountsEnabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serviceAccountUser := openid.GetClientServiceAccountUserOutput(ctx, openid.GetClientServiceAccountUserOutputArgs{
+//				RealmId:  realm.ID(),
+//				ClientId: client.ID(),
+//			}, nil)
+//			offlineAccess := keycloak.LookupRoleOutput(ctx, GetRoleOutputArgs{
+//				RealmId: realm.ID(),
+//				Name:    pulumi.String("offline_access"),
+//			}, nil)
+//			_, err = keycloak.NewUserRoles(ctx, "serviceAccountUserRoles", &keycloak.UserRolesArgs{
+//				RealmId: realm.ID(),
+//				UserId: serviceAccountUser.ApplyT(func(serviceAccountUser openid.GetClientServiceAccountUserResult) (string, error) {
+//					return serviceAccountUser.Id, nil
+//				}).(pulumi.StringOutput),
+//				RoleIds: pulumi.StringArray{
+//					offlineAccess.ApplyT(func(offlineAccess GetRoleResult) (string, error) {
+//						return offlineAccess.Id, nil
+//					}).(pulumi.StringOutput),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetClientServiceAccountUser(ctx *pulumi.Context, args *GetClientServiceAccountUserArgs, opts ...pulumi.InvokeOption) (*GetClientServiceAccountUserResult, error) {
 	var rv GetClientServiceAccountUserResult

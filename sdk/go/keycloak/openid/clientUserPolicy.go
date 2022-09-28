@@ -134,7 +134,7 @@ func (i *ClientUserPolicy) ToClientUserPolicyOutputWithContext(ctx context.Conte
 // ClientUserPolicyArrayInput is an input type that accepts ClientUserPolicyArray and ClientUserPolicyArrayOutput values.
 // You can construct a concrete instance of `ClientUserPolicyArrayInput` via:
 //
-//          ClientUserPolicyArray{ ClientUserPolicyArgs{...} }
+//	ClientUserPolicyArray{ ClientUserPolicyArgs{...} }
 type ClientUserPolicyArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +159,7 @@ func (i ClientUserPolicyArray) ToClientUserPolicyArrayOutputWithContext(ctx cont
 // ClientUserPolicyMapInput is an input type that accepts ClientUserPolicyMap and ClientUserPolicyMapOutput values.
 // You can construct a concrete instance of `ClientUserPolicyMapInput` via:
 //
-//          ClientUserPolicyMap{ "key": ClientUserPolicyArgs{...} }
+//	ClientUserPolicyMap{ "key": ClientUserPolicyArgs{...} }
 type ClientUserPolicyMapInput interface {
 	pulumi.Input
 

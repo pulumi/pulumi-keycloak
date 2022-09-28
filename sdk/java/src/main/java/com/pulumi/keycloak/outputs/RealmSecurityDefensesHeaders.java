@@ -15,56 +15,39 @@ public final class RealmSecurityDefensesHeaders {
      * @return Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
      * 
      */
-    private final @Nullable String contentSecurityPolicy;
+    private @Nullable String contentSecurityPolicy;
     /**
      * @return Used for testing Content Security Policies.
      * 
      */
-    private final @Nullable String contentSecurityPolicyReportOnly;
+    private @Nullable String contentSecurityPolicyReportOnly;
     /**
      * @return The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
      * 
      */
-    private final @Nullable String strictTransportSecurity;
+    private @Nullable String strictTransportSecurity;
     /**
      * @return Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type
      * 
      */
-    private final @Nullable String xContentTypeOptions;
+    private @Nullable String xContentTypeOptions;
     /**
      * @return Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the [RFC7034](https://tools.ietf.org/html/rfc7034)
      * 
      */
-    private final @Nullable String xFrameOptions;
+    private @Nullable String xFrameOptions;
     /**
      * @return Prevent pages from appearing in search engines.
      * 
      */
-    private final @Nullable String xRobotsTag;
+    private @Nullable String xRobotsTag;
     /**
      * @return This header configures the Cross-site scripting (XSS) filter in your browser.
      * 
      */
-    private final @Nullable String xXssProtection;
+    private @Nullable String xXssProtection;
 
-    @CustomType.Constructor
-    private RealmSecurityDefensesHeaders(
-        @CustomType.Parameter("contentSecurityPolicy") @Nullable String contentSecurityPolicy,
-        @CustomType.Parameter("contentSecurityPolicyReportOnly") @Nullable String contentSecurityPolicyReportOnly,
-        @CustomType.Parameter("strictTransportSecurity") @Nullable String strictTransportSecurity,
-        @CustomType.Parameter("xContentTypeOptions") @Nullable String xContentTypeOptions,
-        @CustomType.Parameter("xFrameOptions") @Nullable String xFrameOptions,
-        @CustomType.Parameter("xRobotsTag") @Nullable String xRobotsTag,
-        @CustomType.Parameter("xXssProtection") @Nullable String xXssProtection) {
-        this.contentSecurityPolicy = contentSecurityPolicy;
-        this.contentSecurityPolicyReportOnly = contentSecurityPolicyReportOnly;
-        this.strictTransportSecurity = strictTransportSecurity;
-        this.xContentTypeOptions = xContentTypeOptions;
-        this.xFrameOptions = xFrameOptions;
-        this.xRobotsTag = xRobotsTag;
-        this.xXssProtection = xXssProtection;
-    }
-
+    private RealmSecurityDefensesHeaders() {}
     /**
      * @return Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
      * 
@@ -122,7 +105,7 @@ public final class RealmSecurityDefensesHeaders {
     public static Builder builder(RealmSecurityDefensesHeaders defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String contentSecurityPolicy;
         private @Nullable String contentSecurityPolicyReportOnly;
@@ -131,11 +114,7 @@ public final class RealmSecurityDefensesHeaders {
         private @Nullable String xFrameOptions;
         private @Nullable String xRobotsTag;
         private @Nullable String xXssProtection;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(RealmSecurityDefensesHeaders defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.contentSecurityPolicy = defaults.contentSecurityPolicy;
@@ -147,35 +126,51 @@ public final class RealmSecurityDefensesHeaders {
     	      this.xXssProtection = defaults.xXssProtection;
         }
 
+        @CustomType.Setter
         public Builder contentSecurityPolicy(@Nullable String contentSecurityPolicy) {
             this.contentSecurityPolicy = contentSecurityPolicy;
             return this;
         }
+        @CustomType.Setter
         public Builder contentSecurityPolicyReportOnly(@Nullable String contentSecurityPolicyReportOnly) {
             this.contentSecurityPolicyReportOnly = contentSecurityPolicyReportOnly;
             return this;
         }
+        @CustomType.Setter
         public Builder strictTransportSecurity(@Nullable String strictTransportSecurity) {
             this.strictTransportSecurity = strictTransportSecurity;
             return this;
         }
+        @CustomType.Setter
         public Builder xContentTypeOptions(@Nullable String xContentTypeOptions) {
             this.xContentTypeOptions = xContentTypeOptions;
             return this;
         }
+        @CustomType.Setter
         public Builder xFrameOptions(@Nullable String xFrameOptions) {
             this.xFrameOptions = xFrameOptions;
             return this;
         }
+        @CustomType.Setter
         public Builder xRobotsTag(@Nullable String xRobotsTag) {
             this.xRobotsTag = xRobotsTag;
             return this;
         }
+        @CustomType.Setter
         public Builder xXssProtection(@Nullable String xXssProtection) {
             this.xXssProtection = xXssProtection;
             return this;
-        }        public RealmSecurityDefensesHeaders build() {
-            return new RealmSecurityDefensesHeaders(contentSecurityPolicy, contentSecurityPolicyReportOnly, strictTransportSecurity, xContentTypeOptions, xFrameOptions, xRobotsTag, xXssProtection);
+        }
+        public RealmSecurityDefensesHeaders build() {
+            final var o = new RealmSecurityDefensesHeaders();
+            o.contentSecurityPolicy = contentSecurityPolicy;
+            o.contentSecurityPolicyReportOnly = contentSecurityPolicyReportOnly;
+            o.strictTransportSecurity = strictTransportSecurity;
+            o.xContentTypeOptions = xContentTypeOptions;
+            o.xFrameOptions = xFrameOptions;
+            o.xRobotsTag = xRobotsTag;
+            o.xXssProtection = xXssProtection;
+            return o;
         }
     }
 }

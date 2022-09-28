@@ -17,57 +17,60 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/authentication"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/authentication"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		flow, err := authentication.NewFlow(ctx, "flow", &authentication.FlowArgs{
-// 			RealmId: realm.ID(),
-// 			Alias:   pulumi.String("my-flow-alias"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		executionOne, err := authentication.NewExecution(ctx, "executionOne", &authentication.ExecutionArgs{
-// 			RealmId:         realm.ID(),
-// 			ParentFlowAlias: flow.Alias,
-// 			Authenticator:   pulumi.String("auth-cookie"),
-// 			Requirement:     pulumi.String("ALTERNATIVE"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = authentication.NewExecution(ctx, "executionTwo", &authentication.ExecutionArgs{
-// 			RealmId:         realm.ID(),
-// 			ParentFlowAlias: flow.Alias,
-// 			Authenticator:   pulumi.String("identity-provider-redirector"),
-// 			Requirement:     pulumi.String("ALTERNATIVE"),
-// 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			executionOne,
-// 		}))
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = authentication.NewBindings(ctx, "browserAuthenticationBinding", &authentication.BindingsArgs{
-// 			RealmId:     realm.ID(),
-// 			BrowserFlow: flow.Alias,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			flow, err := authentication.NewFlow(ctx, "flow", &authentication.FlowArgs{
+//				RealmId: realm.ID(),
+//				Alias:   pulumi.String("my-flow-alias"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			executionOne, err := authentication.NewExecution(ctx, "executionOne", &authentication.ExecutionArgs{
+//				RealmId:         realm.ID(),
+//				ParentFlowAlias: flow.Alias,
+//				Authenticator:   pulumi.String("auth-cookie"),
+//				Requirement:     pulumi.String("ALTERNATIVE"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = authentication.NewExecution(ctx, "executionTwo", &authentication.ExecutionArgs{
+//				RealmId:         realm.ID(),
+//				ParentFlowAlias: flow.Alias,
+//				Authenticator:   pulumi.String("identity-provider-redirector"),
+//				Requirement:     pulumi.String("ALTERNATIVE"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				executionOne,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			_, err = authentication.NewBindings(ctx, "browserAuthenticationBinding", &authentication.BindingsArgs{
+//				RealmId:     realm.ID(),
+//				BrowserFlow: flow.Alias,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type Bindings struct {
 	pulumi.CustomResourceState
@@ -218,7 +221,7 @@ func (i *Bindings) ToBindingsOutputWithContext(ctx context.Context) BindingsOutp
 // BindingsArrayInput is an input type that accepts BindingsArray and BindingsArrayOutput values.
 // You can construct a concrete instance of `BindingsArrayInput` via:
 //
-//          BindingsArray{ BindingsArgs{...} }
+//	BindingsArray{ BindingsArgs{...} }
 type BindingsArrayInput interface {
 	pulumi.Input
 
@@ -243,7 +246,7 @@ func (i BindingsArray) ToBindingsArrayOutputWithContext(ctx context.Context) Bin
 // BindingsMapInput is an input type that accepts BindingsMap and BindingsMapOutput values.
 // You can construct a concrete instance of `BindingsMapInput` via:
 //
-//          BindingsMap{ "key": BindingsArgs{...} }
+//	BindingsMap{ "key": BindingsArgs{...} }
 type BindingsMapInput interface {
 	pulumi.Input
 

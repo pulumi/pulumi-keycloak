@@ -10,29 +10,14 @@ import java.util.Objects;
 
 @CustomType
 public final class GetRealmOtpPolicy {
-    private final String algorithm;
-    private final Integer digits;
-    private final Integer initialCounter;
-    private final Integer lookAheadWindow;
-    private final Integer period;
-    private final String type;
+    private String algorithm;
+    private Integer digits;
+    private Integer initialCounter;
+    private Integer lookAheadWindow;
+    private Integer period;
+    private String type;
 
-    @CustomType.Constructor
-    private GetRealmOtpPolicy(
-        @CustomType.Parameter("algorithm") String algorithm,
-        @CustomType.Parameter("digits") Integer digits,
-        @CustomType.Parameter("initialCounter") Integer initialCounter,
-        @CustomType.Parameter("lookAheadWindow") Integer lookAheadWindow,
-        @CustomType.Parameter("period") Integer period,
-        @CustomType.Parameter("type") String type) {
-        this.algorithm = algorithm;
-        this.digits = digits;
-        this.initialCounter = initialCounter;
-        this.lookAheadWindow = lookAheadWindow;
-        this.period = period;
-        this.type = type;
-    }
-
+    private GetRealmOtpPolicy() {}
     public String algorithm() {
         return this.algorithm;
     }
@@ -59,7 +44,7 @@ public final class GetRealmOtpPolicy {
     public static Builder builder(GetRealmOtpPolicy defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String algorithm;
         private Integer digits;
@@ -67,11 +52,7 @@ public final class GetRealmOtpPolicy {
         private Integer lookAheadWindow;
         private Integer period;
         private String type;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetRealmOtpPolicy defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.algorithm = defaults.algorithm;
@@ -82,31 +63,45 @@ public final class GetRealmOtpPolicy {
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
         public Builder algorithm(String algorithm) {
             this.algorithm = Objects.requireNonNull(algorithm);
             return this;
         }
+        @CustomType.Setter
         public Builder digits(Integer digits) {
             this.digits = Objects.requireNonNull(digits);
             return this;
         }
+        @CustomType.Setter
         public Builder initialCounter(Integer initialCounter) {
             this.initialCounter = Objects.requireNonNull(initialCounter);
             return this;
         }
+        @CustomType.Setter
         public Builder lookAheadWindow(Integer lookAheadWindow) {
             this.lookAheadWindow = Objects.requireNonNull(lookAheadWindow);
             return this;
         }
+        @CustomType.Setter
         public Builder period(Integer period) {
             this.period = Objects.requireNonNull(period);
             return this;
         }
+        @CustomType.Setter
         public Builder type(String type) {
             this.type = Objects.requireNonNull(type);
             return this;
-        }        public GetRealmOtpPolicy build() {
-            return new GetRealmOtpPolicy(algorithm, digits, initialCounter, lookAheadWindow, period, type);
+        }
+        public GetRealmOtpPolicy build() {
+            final var o = new GetRealmOtpPolicy();
+            o.algorithm = algorithm;
+            o.digits = digits;
+            o.initialCounter = initialCounter;
+            o.lookAheadWindow = lookAheadWindow;
+            o.period = period;
+            o.type = type;
+            return o;
         }
     }
 }

@@ -10,20 +10,11 @@ import java.util.Objects;
 
 @CustomType
 public final class ClientGroupPolicyGroup {
-    private final Boolean extendChildren;
-    private final String id;
-    private final String path;
+    private Boolean extendChildren;
+    private String id;
+    private String path;
 
-    @CustomType.Constructor
-    private ClientGroupPolicyGroup(
-        @CustomType.Parameter("extendChildren") Boolean extendChildren,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("path") String path) {
-        this.extendChildren = extendChildren;
-        this.id = id;
-        this.path = path;
-    }
-
+    private ClientGroupPolicyGroup() {}
     public Boolean extendChildren() {
         return this.extendChildren;
     }
@@ -41,16 +32,12 @@ public final class ClientGroupPolicyGroup {
     public static Builder builder(ClientGroupPolicyGroup defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private Boolean extendChildren;
         private String id;
         private String path;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(ClientGroupPolicyGroup defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.extendChildren = defaults.extendChildren;
@@ -58,19 +45,27 @@ public final class ClientGroupPolicyGroup {
     	      this.path = defaults.path;
         }
 
+        @CustomType.Setter
         public Builder extendChildren(Boolean extendChildren) {
             this.extendChildren = Objects.requireNonNull(extendChildren);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder path(String path) {
             this.path = Objects.requireNonNull(path);
             return this;
-        }        public ClientGroupPolicyGroup build() {
-            return new ClientGroupPolicyGroup(extendChildren, id, path);
+        }
+        public ClientGroupPolicyGroup build() {
+            final var o = new ClientGroupPolicyGroup();
+            o.extendChildren = extendChildren;
+            o.id = id;
+            o.path = path;
+            return o;
         }
     }
 }

@@ -19,44 +19,47 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		offlineAccess := keycloak.LookupRoleOutput(ctx, GetRoleOutputArgs{
-// 			RealmId: realm.ID(),
-// 			Name:    pulumi.String("offline_access"),
-// 		}, nil)
-// 		group := keycloak.LookupGroupOutput(ctx, GetGroupOutputArgs{
-// 			RealmId: realm.ID(),
-// 			Name:    pulumi.String("group"),
-// 		}, nil)
-// 		_, err = keycloak.NewGroupRoles(ctx, "groupRoles", &keycloak.GroupRolesArgs{
-// 			RealmId: realm.ID(),
-// 			GroupId: group.ApplyT(func(group GetGroupResult) (string, error) {
-// 				return group.Id, nil
-// 			}).(pulumi.StringOutput),
-// 			RoleIds: pulumi.StringArray{
-// 				offlineAccess.ApplyT(func(offlineAccess GetRoleResult) (string, error) {
-// 					return offlineAccess.Id, nil
-// 				}).(pulumi.StringOutput),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			offlineAccess := keycloak.LookupRoleOutput(ctx, GetRoleOutputArgs{
+//				RealmId: realm.ID(),
+//				Name:    pulumi.String("offline_access"),
+//			}, nil)
+//			group := keycloak.LookupGroupOutput(ctx, GetGroupOutputArgs{
+//				RealmId: realm.ID(),
+//				Name:    pulumi.String("group"),
+//			}, nil)
+//			_, err = keycloak.NewGroupRoles(ctx, "groupRoles", &keycloak.GroupRolesArgs{
+//				RealmId: realm.ID(),
+//				GroupId: group.ApplyT(func(group GetGroupResult) (string, error) {
+//					return group.Id, nil
+//				}).(pulumi.StringOutput),
+//				RoleIds: pulumi.StringArray{
+//					offlineAccess.ApplyT(func(offlineAccess GetRoleResult) (string, error) {
+//						return offlineAccess.Id, nil
+//					}).(pulumi.StringOutput),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupGroup(ctx *pulumi.Context, args *LookupGroupArgs, opts ...pulumi.InvokeOption) (*LookupGroupResult, error) {
 	var rv LookupGroupResult

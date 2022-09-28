@@ -11,26 +11,13 @@ import java.util.Objects;
 
 @CustomType
 public final class GetClientDescriptionConverterProtocolMapper {
-    private final Map<String,Object> config;
-    private final String id;
-    private final String name;
-    private final String protocol;
-    private final String protocolMapper;
+    private Map<String,Object> config;
+    private String id;
+    private String name;
+    private String protocol;
+    private String protocolMapper;
 
-    @CustomType.Constructor
-    private GetClientDescriptionConverterProtocolMapper(
-        @CustomType.Parameter("config") Map<String,Object> config,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("name") String name,
-        @CustomType.Parameter("protocol") String protocol,
-        @CustomType.Parameter("protocolMapper") String protocolMapper) {
-        this.config = config;
-        this.id = id;
-        this.name = name;
-        this.protocol = protocol;
-        this.protocolMapper = protocolMapper;
-    }
-
+    private GetClientDescriptionConverterProtocolMapper() {}
     public Map<String,Object> config() {
         return this.config;
     }
@@ -54,18 +41,14 @@ public final class GetClientDescriptionConverterProtocolMapper {
     public static Builder builder(GetClientDescriptionConverterProtocolMapper defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private Map<String,Object> config;
         private String id;
         private String name;
         private String protocol;
         private String protocolMapper;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetClientDescriptionConverterProtocolMapper defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.config = defaults.config;
@@ -75,27 +58,39 @@ public final class GetClientDescriptionConverterProtocolMapper {
     	      this.protocolMapper = defaults.protocolMapper;
         }
 
+        @CustomType.Setter
         public Builder config(Map<String,Object> config) {
             this.config = Objects.requireNonNull(config);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
         }
+        @CustomType.Setter
         public Builder protocol(String protocol) {
             this.protocol = Objects.requireNonNull(protocol);
             return this;
         }
+        @CustomType.Setter
         public Builder protocolMapper(String protocolMapper) {
             this.protocolMapper = Objects.requireNonNull(protocolMapper);
             return this;
-        }        public GetClientDescriptionConverterProtocolMapper build() {
-            return new GetClientDescriptionConverterProtocolMapper(config, id, name, protocol, protocolMapper);
+        }
+        public GetClientDescriptionConverterProtocolMapper build() {
+            final var o = new GetClientDescriptionConverterProtocolMapper();
+            o.config = config;
+            o.id = id;
+            o.name = name;
+            o.protocol = protocol;
+            o.protocolMapper = protocolMapper;
+            return o;
         }
     }
 }

@@ -10,32 +10,15 @@ import java.util.Objects;
 
 @CustomType
 public final class GetRealmSecurityDefenseBruteForceDetection {
-    private final Integer failureResetTimeSeconds;
-    private final Integer maxFailureWaitSeconds;
-    private final Integer maxLoginFailures;
-    private final Integer minimumQuickLoginWaitSeconds;
-    private final Boolean permanentLockout;
-    private final Integer quickLoginCheckMilliSeconds;
-    private final Integer waitIncrementSeconds;
+    private Integer failureResetTimeSeconds;
+    private Integer maxFailureWaitSeconds;
+    private Integer maxLoginFailures;
+    private Integer minimumQuickLoginWaitSeconds;
+    private Boolean permanentLockout;
+    private Integer quickLoginCheckMilliSeconds;
+    private Integer waitIncrementSeconds;
 
-    @CustomType.Constructor
-    private GetRealmSecurityDefenseBruteForceDetection(
-        @CustomType.Parameter("failureResetTimeSeconds") Integer failureResetTimeSeconds,
-        @CustomType.Parameter("maxFailureWaitSeconds") Integer maxFailureWaitSeconds,
-        @CustomType.Parameter("maxLoginFailures") Integer maxLoginFailures,
-        @CustomType.Parameter("minimumQuickLoginWaitSeconds") Integer minimumQuickLoginWaitSeconds,
-        @CustomType.Parameter("permanentLockout") Boolean permanentLockout,
-        @CustomType.Parameter("quickLoginCheckMilliSeconds") Integer quickLoginCheckMilliSeconds,
-        @CustomType.Parameter("waitIncrementSeconds") Integer waitIncrementSeconds) {
-        this.failureResetTimeSeconds = failureResetTimeSeconds;
-        this.maxFailureWaitSeconds = maxFailureWaitSeconds;
-        this.maxLoginFailures = maxLoginFailures;
-        this.minimumQuickLoginWaitSeconds = minimumQuickLoginWaitSeconds;
-        this.permanentLockout = permanentLockout;
-        this.quickLoginCheckMilliSeconds = quickLoginCheckMilliSeconds;
-        this.waitIncrementSeconds = waitIncrementSeconds;
-    }
-
+    private GetRealmSecurityDefenseBruteForceDetection() {}
     public Integer failureResetTimeSeconds() {
         return this.failureResetTimeSeconds;
     }
@@ -65,7 +48,7 @@ public final class GetRealmSecurityDefenseBruteForceDetection {
     public static Builder builder(GetRealmSecurityDefenseBruteForceDetection defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private Integer failureResetTimeSeconds;
         private Integer maxFailureWaitSeconds;
@@ -74,11 +57,7 @@ public final class GetRealmSecurityDefenseBruteForceDetection {
         private Boolean permanentLockout;
         private Integer quickLoginCheckMilliSeconds;
         private Integer waitIncrementSeconds;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetRealmSecurityDefenseBruteForceDetection defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.failureResetTimeSeconds = defaults.failureResetTimeSeconds;
@@ -90,35 +69,51 @@ public final class GetRealmSecurityDefenseBruteForceDetection {
     	      this.waitIncrementSeconds = defaults.waitIncrementSeconds;
         }
 
+        @CustomType.Setter
         public Builder failureResetTimeSeconds(Integer failureResetTimeSeconds) {
             this.failureResetTimeSeconds = Objects.requireNonNull(failureResetTimeSeconds);
             return this;
         }
+        @CustomType.Setter
         public Builder maxFailureWaitSeconds(Integer maxFailureWaitSeconds) {
             this.maxFailureWaitSeconds = Objects.requireNonNull(maxFailureWaitSeconds);
             return this;
         }
+        @CustomType.Setter
         public Builder maxLoginFailures(Integer maxLoginFailures) {
             this.maxLoginFailures = Objects.requireNonNull(maxLoginFailures);
             return this;
         }
+        @CustomType.Setter
         public Builder minimumQuickLoginWaitSeconds(Integer minimumQuickLoginWaitSeconds) {
             this.minimumQuickLoginWaitSeconds = Objects.requireNonNull(minimumQuickLoginWaitSeconds);
             return this;
         }
+        @CustomType.Setter
         public Builder permanentLockout(Boolean permanentLockout) {
             this.permanentLockout = Objects.requireNonNull(permanentLockout);
             return this;
         }
+        @CustomType.Setter
         public Builder quickLoginCheckMilliSeconds(Integer quickLoginCheckMilliSeconds) {
             this.quickLoginCheckMilliSeconds = Objects.requireNonNull(quickLoginCheckMilliSeconds);
             return this;
         }
+        @CustomType.Setter
         public Builder waitIncrementSeconds(Integer waitIncrementSeconds) {
             this.waitIncrementSeconds = Objects.requireNonNull(waitIncrementSeconds);
             return this;
-        }        public GetRealmSecurityDefenseBruteForceDetection build() {
-            return new GetRealmSecurityDefenseBruteForceDetection(failureResetTimeSeconds, maxFailureWaitSeconds, maxLoginFailures, minimumQuickLoginWaitSeconds, permanentLockout, quickLoginCheckMilliSeconds, waitIncrementSeconds);
+        }
+        public GetRealmSecurityDefenseBruteForceDetection build() {
+            final var o = new GetRealmSecurityDefenseBruteForceDetection();
+            o.failureResetTimeSeconds = failureResetTimeSeconds;
+            o.maxFailureWaitSeconds = maxFailureWaitSeconds;
+            o.maxLoginFailures = maxLoginFailures;
+            o.minimumQuickLoginWaitSeconds = minimumQuickLoginWaitSeconds;
+            o.permanentLockout = permanentLockout;
+            o.quickLoginCheckMilliSeconds = quickLoginCheckMilliSeconds;
+            o.waitIncrementSeconds = waitIncrementSeconds;
+            return o;
         }
     }
 }

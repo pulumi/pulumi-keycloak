@@ -134,7 +134,7 @@ func (i *UsersPermissions) ToUsersPermissionsOutputWithContext(ctx context.Conte
 // UsersPermissionsArrayInput is an input type that accepts UsersPermissionsArray and UsersPermissionsArrayOutput values.
 // You can construct a concrete instance of `UsersPermissionsArrayInput` via:
 //
-//          UsersPermissionsArray{ UsersPermissionsArgs{...} }
+//	UsersPermissionsArray{ UsersPermissionsArgs{...} }
 type UsersPermissionsArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +159,7 @@ func (i UsersPermissionsArray) ToUsersPermissionsArrayOutputWithContext(ctx cont
 // UsersPermissionsMapInput is an input type that accepts UsersPermissionsMap and UsersPermissionsMapOutput values.
 // You can construct a concrete instance of `UsersPermissionsMapInput` via:
 //
-//          UsersPermissionsMap{ "key": UsersPermissionsArgs{...} }
+//	UsersPermissionsMap{ "key": UsersPermissionsArgs{...} }
 type UsersPermissionsMapInput interface {
 	pulumi.Input
 

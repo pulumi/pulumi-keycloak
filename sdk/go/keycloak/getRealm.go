@@ -19,27 +19,30 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.LookupRealm(ctx, &GetRealmArgs{
-// 			Realm: "my-realm",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewRole(ctx, "group", &keycloak.RoleArgs{
-// 			RealmId: pulumi.String(realm.Id),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.LookupRealm(ctx, &GetRealmArgs{
+//				Realm: "my-realm",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewRole(ctx, "group", &keycloak.RoleArgs{
+//				RealmId: pulumi.String(realm.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupRealm(ctx *pulumi.Context, args *LookupRealmArgs, opts ...pulumi.InvokeOption) (*LookupRealmResult, error) {
 	var rv LookupRealmResult

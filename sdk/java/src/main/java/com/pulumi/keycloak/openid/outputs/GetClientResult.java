@@ -17,150 +17,57 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetClientResult {
-    private final String accessTokenLifespan;
-    private final String accessType;
-    private final String adminUrl;
-    private final List<GetClientAuthenticationFlowBindingOverride> authenticationFlowBindingOverrides;
-    private final List<GetClientAuthorization> authorizations;
-    private final Boolean backchannelLogoutRevokeOfflineSessions;
-    private final Boolean backchannelLogoutSessionRequired;
-    private final String backchannelLogoutUrl;
-    private final String baseUrl;
-    private final String clientAuthenticatorType;
-    private final String clientId;
-    private final String clientOfflineSessionIdleTimeout;
-    private final String clientOfflineSessionMaxLifespan;
-    private final String clientSecret;
-    private final String clientSessionIdleTimeout;
-    private final String clientSessionMaxLifespan;
-    private final Boolean consentRequired;
-    private final @Nullable String consentScreenText;
-    private final String description;
-    private final Boolean directAccessGrantsEnabled;
-    private final @Nullable Boolean displayOnConsentScreen;
-    private final Boolean enabled;
-    private final Boolean excludeSessionStateFromAuthResponse;
-    private final Map<String,Object> extraConfig;
-    private final Boolean frontchannelLogoutEnabled;
-    private final String frontchannelLogoutUrl;
-    private final Boolean fullScopeAllowed;
+    private String accessTokenLifespan;
+    private String accessType;
+    private String adminUrl;
+    private List<GetClientAuthenticationFlowBindingOverride> authenticationFlowBindingOverrides;
+    private List<GetClientAuthorization> authorizations;
+    private Boolean backchannelLogoutRevokeOfflineSessions;
+    private Boolean backchannelLogoutSessionRequired;
+    private String backchannelLogoutUrl;
+    private String baseUrl;
+    private String clientAuthenticatorType;
+    private String clientId;
+    private String clientOfflineSessionIdleTimeout;
+    private String clientOfflineSessionMaxLifespan;
+    private String clientSecret;
+    private String clientSessionIdleTimeout;
+    private String clientSessionMaxLifespan;
+    private Boolean consentRequired;
+    private @Nullable String consentScreenText;
+    private String description;
+    private Boolean directAccessGrantsEnabled;
+    private @Nullable Boolean displayOnConsentScreen;
+    private Boolean enabled;
+    private Boolean excludeSessionStateFromAuthResponse;
+    private Map<String,Object> extraConfig;
+    private Boolean frontchannelLogoutEnabled;
+    private String frontchannelLogoutUrl;
+    private Boolean fullScopeAllowed;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final Boolean implicitFlowEnabled;
-    private final String loginTheme;
-    private final String name;
-    private final @Nullable Boolean oauth2DeviceAuthorizationGrantEnabled;
-    private final @Nullable String oauth2DeviceCodeLifespan;
-    private final @Nullable String oauth2DevicePollingInterval;
-    private final String pkceCodeChallengeMethod;
-    private final String realmId;
-    private final String resourceServerId;
-    private final String rootUrl;
-    private final String serviceAccountUserId;
-    private final Boolean serviceAccountsEnabled;
-    private final Boolean standardFlowEnabled;
-    private final Boolean useRefreshTokens;
-    private final Boolean useRefreshTokensClientCredentials;
-    private final List<String> validRedirectUris;
-    private final List<String> webOrigins;
+    private String id;
+    private Boolean implicitFlowEnabled;
+    private String loginTheme;
+    private String name;
+    private @Nullable Boolean oauth2DeviceAuthorizationGrantEnabled;
+    private @Nullable String oauth2DeviceCodeLifespan;
+    private @Nullable String oauth2DevicePollingInterval;
+    private String pkceCodeChallengeMethod;
+    private String realmId;
+    private String resourceServerId;
+    private String rootUrl;
+    private String serviceAccountUserId;
+    private Boolean serviceAccountsEnabled;
+    private Boolean standardFlowEnabled;
+    private Boolean useRefreshTokens;
+    private Boolean useRefreshTokensClientCredentials;
+    private List<String> validRedirectUris;
+    private List<String> webOrigins;
 
-    @CustomType.Constructor
-    private GetClientResult(
-        @CustomType.Parameter("accessTokenLifespan") String accessTokenLifespan,
-        @CustomType.Parameter("accessType") String accessType,
-        @CustomType.Parameter("adminUrl") String adminUrl,
-        @CustomType.Parameter("authenticationFlowBindingOverrides") List<GetClientAuthenticationFlowBindingOverride> authenticationFlowBindingOverrides,
-        @CustomType.Parameter("authorizations") List<GetClientAuthorization> authorizations,
-        @CustomType.Parameter("backchannelLogoutRevokeOfflineSessions") Boolean backchannelLogoutRevokeOfflineSessions,
-        @CustomType.Parameter("backchannelLogoutSessionRequired") Boolean backchannelLogoutSessionRequired,
-        @CustomType.Parameter("backchannelLogoutUrl") String backchannelLogoutUrl,
-        @CustomType.Parameter("baseUrl") String baseUrl,
-        @CustomType.Parameter("clientAuthenticatorType") String clientAuthenticatorType,
-        @CustomType.Parameter("clientId") String clientId,
-        @CustomType.Parameter("clientOfflineSessionIdleTimeout") String clientOfflineSessionIdleTimeout,
-        @CustomType.Parameter("clientOfflineSessionMaxLifespan") String clientOfflineSessionMaxLifespan,
-        @CustomType.Parameter("clientSecret") String clientSecret,
-        @CustomType.Parameter("clientSessionIdleTimeout") String clientSessionIdleTimeout,
-        @CustomType.Parameter("clientSessionMaxLifespan") String clientSessionMaxLifespan,
-        @CustomType.Parameter("consentRequired") Boolean consentRequired,
-        @CustomType.Parameter("consentScreenText") @Nullable String consentScreenText,
-        @CustomType.Parameter("description") String description,
-        @CustomType.Parameter("directAccessGrantsEnabled") Boolean directAccessGrantsEnabled,
-        @CustomType.Parameter("displayOnConsentScreen") @Nullable Boolean displayOnConsentScreen,
-        @CustomType.Parameter("enabled") Boolean enabled,
-        @CustomType.Parameter("excludeSessionStateFromAuthResponse") Boolean excludeSessionStateFromAuthResponse,
-        @CustomType.Parameter("extraConfig") Map<String,Object> extraConfig,
-        @CustomType.Parameter("frontchannelLogoutEnabled") Boolean frontchannelLogoutEnabled,
-        @CustomType.Parameter("frontchannelLogoutUrl") String frontchannelLogoutUrl,
-        @CustomType.Parameter("fullScopeAllowed") Boolean fullScopeAllowed,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("implicitFlowEnabled") Boolean implicitFlowEnabled,
-        @CustomType.Parameter("loginTheme") String loginTheme,
-        @CustomType.Parameter("name") String name,
-        @CustomType.Parameter("oauth2DeviceAuthorizationGrantEnabled") @Nullable Boolean oauth2DeviceAuthorizationGrantEnabled,
-        @CustomType.Parameter("oauth2DeviceCodeLifespan") @Nullable String oauth2DeviceCodeLifespan,
-        @CustomType.Parameter("oauth2DevicePollingInterval") @Nullable String oauth2DevicePollingInterval,
-        @CustomType.Parameter("pkceCodeChallengeMethod") String pkceCodeChallengeMethod,
-        @CustomType.Parameter("realmId") String realmId,
-        @CustomType.Parameter("resourceServerId") String resourceServerId,
-        @CustomType.Parameter("rootUrl") String rootUrl,
-        @CustomType.Parameter("serviceAccountUserId") String serviceAccountUserId,
-        @CustomType.Parameter("serviceAccountsEnabled") Boolean serviceAccountsEnabled,
-        @CustomType.Parameter("standardFlowEnabled") Boolean standardFlowEnabled,
-        @CustomType.Parameter("useRefreshTokens") Boolean useRefreshTokens,
-        @CustomType.Parameter("useRefreshTokensClientCredentials") Boolean useRefreshTokensClientCredentials,
-        @CustomType.Parameter("validRedirectUris") List<String> validRedirectUris,
-        @CustomType.Parameter("webOrigins") List<String> webOrigins) {
-        this.accessTokenLifespan = accessTokenLifespan;
-        this.accessType = accessType;
-        this.adminUrl = adminUrl;
-        this.authenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
-        this.authorizations = authorizations;
-        this.backchannelLogoutRevokeOfflineSessions = backchannelLogoutRevokeOfflineSessions;
-        this.backchannelLogoutSessionRequired = backchannelLogoutSessionRequired;
-        this.backchannelLogoutUrl = backchannelLogoutUrl;
-        this.baseUrl = baseUrl;
-        this.clientAuthenticatorType = clientAuthenticatorType;
-        this.clientId = clientId;
-        this.clientOfflineSessionIdleTimeout = clientOfflineSessionIdleTimeout;
-        this.clientOfflineSessionMaxLifespan = clientOfflineSessionMaxLifespan;
-        this.clientSecret = clientSecret;
-        this.clientSessionIdleTimeout = clientSessionIdleTimeout;
-        this.clientSessionMaxLifespan = clientSessionMaxLifespan;
-        this.consentRequired = consentRequired;
-        this.consentScreenText = consentScreenText;
-        this.description = description;
-        this.directAccessGrantsEnabled = directAccessGrantsEnabled;
-        this.displayOnConsentScreen = displayOnConsentScreen;
-        this.enabled = enabled;
-        this.excludeSessionStateFromAuthResponse = excludeSessionStateFromAuthResponse;
-        this.extraConfig = extraConfig;
-        this.frontchannelLogoutEnabled = frontchannelLogoutEnabled;
-        this.frontchannelLogoutUrl = frontchannelLogoutUrl;
-        this.fullScopeAllowed = fullScopeAllowed;
-        this.id = id;
-        this.implicitFlowEnabled = implicitFlowEnabled;
-        this.loginTheme = loginTheme;
-        this.name = name;
-        this.oauth2DeviceAuthorizationGrantEnabled = oauth2DeviceAuthorizationGrantEnabled;
-        this.oauth2DeviceCodeLifespan = oauth2DeviceCodeLifespan;
-        this.oauth2DevicePollingInterval = oauth2DevicePollingInterval;
-        this.pkceCodeChallengeMethod = pkceCodeChallengeMethod;
-        this.realmId = realmId;
-        this.resourceServerId = resourceServerId;
-        this.rootUrl = rootUrl;
-        this.serviceAccountUserId = serviceAccountUserId;
-        this.serviceAccountsEnabled = serviceAccountsEnabled;
-        this.standardFlowEnabled = standardFlowEnabled;
-        this.useRefreshTokens = useRefreshTokens;
-        this.useRefreshTokensClientCredentials = useRefreshTokensClientCredentials;
-        this.validRedirectUris = validRedirectUris;
-        this.webOrigins = webOrigins;
-    }
-
+    private GetClientResult() {}
     public String accessTokenLifespan() {
         return this.accessTokenLifespan;
     }
@@ -308,7 +215,7 @@ public final class GetClientResult {
     public static Builder builder(GetClientResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String accessTokenLifespan;
         private String accessType;
@@ -355,11 +262,7 @@ public final class GetClientResult {
         private Boolean useRefreshTokensClientCredentials;
         private List<String> validRedirectUris;
         private List<String> webOrigins;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetClientResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.accessTokenLifespan = defaults.accessTokenLifespan;
@@ -409,18 +312,22 @@ public final class GetClientResult {
     	      this.webOrigins = defaults.webOrigins;
         }
 
+        @CustomType.Setter
         public Builder accessTokenLifespan(String accessTokenLifespan) {
             this.accessTokenLifespan = Objects.requireNonNull(accessTokenLifespan);
             return this;
         }
+        @CustomType.Setter
         public Builder accessType(String accessType) {
             this.accessType = Objects.requireNonNull(accessType);
             return this;
         }
+        @CustomType.Setter
         public Builder adminUrl(String adminUrl) {
             this.adminUrl = Objects.requireNonNull(adminUrl);
             return this;
         }
+        @CustomType.Setter
         public Builder authenticationFlowBindingOverrides(List<GetClientAuthenticationFlowBindingOverride> authenticationFlowBindingOverrides) {
             this.authenticationFlowBindingOverrides = Objects.requireNonNull(authenticationFlowBindingOverrides);
             return this;
@@ -428,6 +335,7 @@ public final class GetClientResult {
         public Builder authenticationFlowBindingOverrides(GetClientAuthenticationFlowBindingOverride... authenticationFlowBindingOverrides) {
             return authenticationFlowBindingOverrides(List.of(authenticationFlowBindingOverrides));
         }
+        @CustomType.Setter
         public Builder authorizations(List<GetClientAuthorization> authorizations) {
             this.authorizations = Objects.requireNonNull(authorizations);
             return this;
@@ -435,158 +343,197 @@ public final class GetClientResult {
         public Builder authorizations(GetClientAuthorization... authorizations) {
             return authorizations(List.of(authorizations));
         }
+        @CustomType.Setter
         public Builder backchannelLogoutRevokeOfflineSessions(Boolean backchannelLogoutRevokeOfflineSessions) {
             this.backchannelLogoutRevokeOfflineSessions = Objects.requireNonNull(backchannelLogoutRevokeOfflineSessions);
             return this;
         }
+        @CustomType.Setter
         public Builder backchannelLogoutSessionRequired(Boolean backchannelLogoutSessionRequired) {
             this.backchannelLogoutSessionRequired = Objects.requireNonNull(backchannelLogoutSessionRequired);
             return this;
         }
+        @CustomType.Setter
         public Builder backchannelLogoutUrl(String backchannelLogoutUrl) {
             this.backchannelLogoutUrl = Objects.requireNonNull(backchannelLogoutUrl);
             return this;
         }
+        @CustomType.Setter
         public Builder baseUrl(String baseUrl) {
             this.baseUrl = Objects.requireNonNull(baseUrl);
             return this;
         }
+        @CustomType.Setter
         public Builder clientAuthenticatorType(String clientAuthenticatorType) {
             this.clientAuthenticatorType = Objects.requireNonNull(clientAuthenticatorType);
             return this;
         }
+        @CustomType.Setter
         public Builder clientId(String clientId) {
             this.clientId = Objects.requireNonNull(clientId);
             return this;
         }
+        @CustomType.Setter
         public Builder clientOfflineSessionIdleTimeout(String clientOfflineSessionIdleTimeout) {
             this.clientOfflineSessionIdleTimeout = Objects.requireNonNull(clientOfflineSessionIdleTimeout);
             return this;
         }
+        @CustomType.Setter
         public Builder clientOfflineSessionMaxLifespan(String clientOfflineSessionMaxLifespan) {
             this.clientOfflineSessionMaxLifespan = Objects.requireNonNull(clientOfflineSessionMaxLifespan);
             return this;
         }
+        @CustomType.Setter
         public Builder clientSecret(String clientSecret) {
             this.clientSecret = Objects.requireNonNull(clientSecret);
             return this;
         }
+        @CustomType.Setter
         public Builder clientSessionIdleTimeout(String clientSessionIdleTimeout) {
             this.clientSessionIdleTimeout = Objects.requireNonNull(clientSessionIdleTimeout);
             return this;
         }
+        @CustomType.Setter
         public Builder clientSessionMaxLifespan(String clientSessionMaxLifespan) {
             this.clientSessionMaxLifespan = Objects.requireNonNull(clientSessionMaxLifespan);
             return this;
         }
+        @CustomType.Setter
         public Builder consentRequired(Boolean consentRequired) {
             this.consentRequired = Objects.requireNonNull(consentRequired);
             return this;
         }
+        @CustomType.Setter
         public Builder consentScreenText(@Nullable String consentScreenText) {
             this.consentScreenText = consentScreenText;
             return this;
         }
+        @CustomType.Setter
         public Builder description(String description) {
             this.description = Objects.requireNonNull(description);
             return this;
         }
+        @CustomType.Setter
         public Builder directAccessGrantsEnabled(Boolean directAccessGrantsEnabled) {
             this.directAccessGrantsEnabled = Objects.requireNonNull(directAccessGrantsEnabled);
             return this;
         }
+        @CustomType.Setter
         public Builder displayOnConsentScreen(@Nullable Boolean displayOnConsentScreen) {
             this.displayOnConsentScreen = displayOnConsentScreen;
             return this;
         }
+        @CustomType.Setter
         public Builder enabled(Boolean enabled) {
             this.enabled = Objects.requireNonNull(enabled);
             return this;
         }
+        @CustomType.Setter
         public Builder excludeSessionStateFromAuthResponse(Boolean excludeSessionStateFromAuthResponse) {
             this.excludeSessionStateFromAuthResponse = Objects.requireNonNull(excludeSessionStateFromAuthResponse);
             return this;
         }
+        @CustomType.Setter
         public Builder extraConfig(Map<String,Object> extraConfig) {
             this.extraConfig = Objects.requireNonNull(extraConfig);
             return this;
         }
+        @CustomType.Setter
         public Builder frontchannelLogoutEnabled(Boolean frontchannelLogoutEnabled) {
             this.frontchannelLogoutEnabled = Objects.requireNonNull(frontchannelLogoutEnabled);
             return this;
         }
+        @CustomType.Setter
         public Builder frontchannelLogoutUrl(String frontchannelLogoutUrl) {
             this.frontchannelLogoutUrl = Objects.requireNonNull(frontchannelLogoutUrl);
             return this;
         }
+        @CustomType.Setter
         public Builder fullScopeAllowed(Boolean fullScopeAllowed) {
             this.fullScopeAllowed = Objects.requireNonNull(fullScopeAllowed);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder implicitFlowEnabled(Boolean implicitFlowEnabled) {
             this.implicitFlowEnabled = Objects.requireNonNull(implicitFlowEnabled);
             return this;
         }
+        @CustomType.Setter
         public Builder loginTheme(String loginTheme) {
             this.loginTheme = Objects.requireNonNull(loginTheme);
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
         }
+        @CustomType.Setter
         public Builder oauth2DeviceAuthorizationGrantEnabled(@Nullable Boolean oauth2DeviceAuthorizationGrantEnabled) {
             this.oauth2DeviceAuthorizationGrantEnabled = oauth2DeviceAuthorizationGrantEnabled;
             return this;
         }
+        @CustomType.Setter
         public Builder oauth2DeviceCodeLifespan(@Nullable String oauth2DeviceCodeLifespan) {
             this.oauth2DeviceCodeLifespan = oauth2DeviceCodeLifespan;
             return this;
         }
+        @CustomType.Setter
         public Builder oauth2DevicePollingInterval(@Nullable String oauth2DevicePollingInterval) {
             this.oauth2DevicePollingInterval = oauth2DevicePollingInterval;
             return this;
         }
+        @CustomType.Setter
         public Builder pkceCodeChallengeMethod(String pkceCodeChallengeMethod) {
             this.pkceCodeChallengeMethod = Objects.requireNonNull(pkceCodeChallengeMethod);
             return this;
         }
+        @CustomType.Setter
         public Builder realmId(String realmId) {
             this.realmId = Objects.requireNonNull(realmId);
             return this;
         }
+        @CustomType.Setter
         public Builder resourceServerId(String resourceServerId) {
             this.resourceServerId = Objects.requireNonNull(resourceServerId);
             return this;
         }
+        @CustomType.Setter
         public Builder rootUrl(String rootUrl) {
             this.rootUrl = Objects.requireNonNull(rootUrl);
             return this;
         }
+        @CustomType.Setter
         public Builder serviceAccountUserId(String serviceAccountUserId) {
             this.serviceAccountUserId = Objects.requireNonNull(serviceAccountUserId);
             return this;
         }
+        @CustomType.Setter
         public Builder serviceAccountsEnabled(Boolean serviceAccountsEnabled) {
             this.serviceAccountsEnabled = Objects.requireNonNull(serviceAccountsEnabled);
             return this;
         }
+        @CustomType.Setter
         public Builder standardFlowEnabled(Boolean standardFlowEnabled) {
             this.standardFlowEnabled = Objects.requireNonNull(standardFlowEnabled);
             return this;
         }
+        @CustomType.Setter
         public Builder useRefreshTokens(Boolean useRefreshTokens) {
             this.useRefreshTokens = Objects.requireNonNull(useRefreshTokens);
             return this;
         }
+        @CustomType.Setter
         public Builder useRefreshTokensClientCredentials(Boolean useRefreshTokensClientCredentials) {
             this.useRefreshTokensClientCredentials = Objects.requireNonNull(useRefreshTokensClientCredentials);
             return this;
         }
+        @CustomType.Setter
         public Builder validRedirectUris(List<String> validRedirectUris) {
             this.validRedirectUris = Objects.requireNonNull(validRedirectUris);
             return this;
@@ -594,14 +541,62 @@ public final class GetClientResult {
         public Builder validRedirectUris(String... validRedirectUris) {
             return validRedirectUris(List.of(validRedirectUris));
         }
+        @CustomType.Setter
         public Builder webOrigins(List<String> webOrigins) {
             this.webOrigins = Objects.requireNonNull(webOrigins);
             return this;
         }
         public Builder webOrigins(String... webOrigins) {
             return webOrigins(List.of(webOrigins));
-        }        public GetClientResult build() {
-            return new GetClientResult(accessTokenLifespan, accessType, adminUrl, authenticationFlowBindingOverrides, authorizations, backchannelLogoutRevokeOfflineSessions, backchannelLogoutSessionRequired, backchannelLogoutUrl, baseUrl, clientAuthenticatorType, clientId, clientOfflineSessionIdleTimeout, clientOfflineSessionMaxLifespan, clientSecret, clientSessionIdleTimeout, clientSessionMaxLifespan, consentRequired, consentScreenText, description, directAccessGrantsEnabled, displayOnConsentScreen, enabled, excludeSessionStateFromAuthResponse, extraConfig, frontchannelLogoutEnabled, frontchannelLogoutUrl, fullScopeAllowed, id, implicitFlowEnabled, loginTheme, name, oauth2DeviceAuthorizationGrantEnabled, oauth2DeviceCodeLifespan, oauth2DevicePollingInterval, pkceCodeChallengeMethod, realmId, resourceServerId, rootUrl, serviceAccountUserId, serviceAccountsEnabled, standardFlowEnabled, useRefreshTokens, useRefreshTokensClientCredentials, validRedirectUris, webOrigins);
+        }
+        public GetClientResult build() {
+            final var o = new GetClientResult();
+            o.accessTokenLifespan = accessTokenLifespan;
+            o.accessType = accessType;
+            o.adminUrl = adminUrl;
+            o.authenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
+            o.authorizations = authorizations;
+            o.backchannelLogoutRevokeOfflineSessions = backchannelLogoutRevokeOfflineSessions;
+            o.backchannelLogoutSessionRequired = backchannelLogoutSessionRequired;
+            o.backchannelLogoutUrl = backchannelLogoutUrl;
+            o.baseUrl = baseUrl;
+            o.clientAuthenticatorType = clientAuthenticatorType;
+            o.clientId = clientId;
+            o.clientOfflineSessionIdleTimeout = clientOfflineSessionIdleTimeout;
+            o.clientOfflineSessionMaxLifespan = clientOfflineSessionMaxLifespan;
+            o.clientSecret = clientSecret;
+            o.clientSessionIdleTimeout = clientSessionIdleTimeout;
+            o.clientSessionMaxLifespan = clientSessionMaxLifespan;
+            o.consentRequired = consentRequired;
+            o.consentScreenText = consentScreenText;
+            o.description = description;
+            o.directAccessGrantsEnabled = directAccessGrantsEnabled;
+            o.displayOnConsentScreen = displayOnConsentScreen;
+            o.enabled = enabled;
+            o.excludeSessionStateFromAuthResponse = excludeSessionStateFromAuthResponse;
+            o.extraConfig = extraConfig;
+            o.frontchannelLogoutEnabled = frontchannelLogoutEnabled;
+            o.frontchannelLogoutUrl = frontchannelLogoutUrl;
+            o.fullScopeAllowed = fullScopeAllowed;
+            o.id = id;
+            o.implicitFlowEnabled = implicitFlowEnabled;
+            o.loginTheme = loginTheme;
+            o.name = name;
+            o.oauth2DeviceAuthorizationGrantEnabled = oauth2DeviceAuthorizationGrantEnabled;
+            o.oauth2DeviceCodeLifespan = oauth2DeviceCodeLifespan;
+            o.oauth2DevicePollingInterval = oauth2DevicePollingInterval;
+            o.pkceCodeChallengeMethod = pkceCodeChallengeMethod;
+            o.realmId = realmId;
+            o.resourceServerId = resourceServerId;
+            o.rootUrl = rootUrl;
+            o.serviceAccountUserId = serviceAccountUserId;
+            o.serviceAccountsEnabled = serviceAccountsEnabled;
+            o.standardFlowEnabled = standardFlowEnabled;
+            o.useRefreshTokens = useRefreshTokens;
+            o.useRefreshTokensClientCredentials = useRefreshTokensClientCredentials;
+            o.validRedirectUris = validRedirectUris;
+            o.webOrigins = webOrigins;
+            return o;
         }
     }
 }

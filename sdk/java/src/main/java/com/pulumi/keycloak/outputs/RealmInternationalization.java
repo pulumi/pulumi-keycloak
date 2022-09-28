@@ -14,21 +14,14 @@ public final class RealmInternationalization {
      * @return The locale to use by default. This locale code must be present within the `supported_locales` list.
      * 
      */
-    private final String defaultLocale;
+    private String defaultLocale;
     /**
      * @return A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
      * 
      */
-    private final List<String> supportedLocales;
+    private List<String> supportedLocales;
 
-    @CustomType.Constructor
-    private RealmInternationalization(
-        @CustomType.Parameter("defaultLocale") String defaultLocale,
-        @CustomType.Parameter("supportedLocales") List<String> supportedLocales) {
-        this.defaultLocale = defaultLocale;
-        this.supportedLocales = supportedLocales;
-    }
-
+    private RealmInternationalization() {}
     /**
      * @return The locale to use by default. This locale code must be present within the `supported_locales` list.
      * 
@@ -51,33 +44,35 @@ public final class RealmInternationalization {
     public static Builder builder(RealmInternationalization defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String defaultLocale;
         private List<String> supportedLocales;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(RealmInternationalization defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.defaultLocale = defaults.defaultLocale;
     	      this.supportedLocales = defaults.supportedLocales;
         }
 
+        @CustomType.Setter
         public Builder defaultLocale(String defaultLocale) {
             this.defaultLocale = Objects.requireNonNull(defaultLocale);
             return this;
         }
+        @CustomType.Setter
         public Builder supportedLocales(List<String> supportedLocales) {
             this.supportedLocales = Objects.requireNonNull(supportedLocales);
             return this;
         }
         public Builder supportedLocales(String... supportedLocales) {
             return supportedLocales(List.of(supportedLocales));
-        }        public RealmInternationalization build() {
-            return new RealmInternationalization(defaultLocale, supportedLocales);
+        }
+        public RealmInternationalization build() {
+            final var o = new RealmInternationalization();
+            o.defaultLocale = defaultLocale;
+            o.supportedLocales = supportedLocales;
+            return o;
         }
     }
 }

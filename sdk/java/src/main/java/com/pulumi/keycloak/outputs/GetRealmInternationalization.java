@@ -10,17 +10,10 @@ import java.util.Objects;
 
 @CustomType
 public final class GetRealmInternationalization {
-    private final String defaultLocale;
-    private final List<String> supportedLocales;
+    private String defaultLocale;
+    private List<String> supportedLocales;
 
-    @CustomType.Constructor
-    private GetRealmInternationalization(
-        @CustomType.Parameter("defaultLocale") String defaultLocale,
-        @CustomType.Parameter("supportedLocales") List<String> supportedLocales) {
-        this.defaultLocale = defaultLocale;
-        this.supportedLocales = supportedLocales;
-    }
-
+    private GetRealmInternationalization() {}
     public String defaultLocale() {
         return this.defaultLocale;
     }
@@ -35,33 +28,35 @@ public final class GetRealmInternationalization {
     public static Builder builder(GetRealmInternationalization defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String defaultLocale;
         private List<String> supportedLocales;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetRealmInternationalization defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.defaultLocale = defaults.defaultLocale;
     	      this.supportedLocales = defaults.supportedLocales;
         }
 
+        @CustomType.Setter
         public Builder defaultLocale(String defaultLocale) {
             this.defaultLocale = Objects.requireNonNull(defaultLocale);
             return this;
         }
+        @CustomType.Setter
         public Builder supportedLocales(List<String> supportedLocales) {
             this.supportedLocales = Objects.requireNonNull(supportedLocales);
             return this;
         }
         public Builder supportedLocales(String... supportedLocales) {
             return supportedLocales(List.of(supportedLocales));
-        }        public GetRealmInternationalization build() {
-            return new GetRealmInternationalization(defaultLocale, supportedLocales);
+        }
+        public GetRealmInternationalization build() {
+            final var o = new GetRealmInternationalization();
+            o.defaultLocale = defaultLocale;
+            o.supportedLocales = supportedLocales;
+            return o;
         }
     }
 }

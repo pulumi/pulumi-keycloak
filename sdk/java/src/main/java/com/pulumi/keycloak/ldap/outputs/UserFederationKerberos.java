@@ -16,35 +16,24 @@ public final class UserFederationKerberos {
      * @return The name of the kerberos realm, e.g. FOO.LOCAL.
      * 
      */
-    private final String kerberosRealm;
+    private String kerberosRealm;
     /**
      * @return Path to the kerberos keytab file on the server with credentials of the service principal.
      * 
      */
-    private final String keyTab;
+    private String keyTab;
     /**
      * @return The kerberos server principal, e.g. &#39;HTTP/host.foo.com@FOO.LOCAL&#39;.
      * 
      */
-    private final String serverPrincipal;
+    private String serverPrincipal;
     /**
      * @return Use kerberos login module instead of ldap service api. Defaults to `false`.
      * 
      */
-    private final @Nullable Boolean useKerberosForPasswordAuthentication;
+    private @Nullable Boolean useKerberosForPasswordAuthentication;
 
-    @CustomType.Constructor
-    private UserFederationKerberos(
-        @CustomType.Parameter("kerberosRealm") String kerberosRealm,
-        @CustomType.Parameter("keyTab") String keyTab,
-        @CustomType.Parameter("serverPrincipal") String serverPrincipal,
-        @CustomType.Parameter("useKerberosForPasswordAuthentication") @Nullable Boolean useKerberosForPasswordAuthentication) {
-        this.kerberosRealm = kerberosRealm;
-        this.keyTab = keyTab;
-        this.serverPrincipal = serverPrincipal;
-        this.useKerberosForPasswordAuthentication = useKerberosForPasswordAuthentication;
-    }
-
+    private UserFederationKerberos() {}
     /**
      * @return The name of the kerberos realm, e.g. FOO.LOCAL.
      * 
@@ -81,17 +70,13 @@ public final class UserFederationKerberos {
     public static Builder builder(UserFederationKerberos defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String kerberosRealm;
         private String keyTab;
         private String serverPrincipal;
         private @Nullable Boolean useKerberosForPasswordAuthentication;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(UserFederationKerberos defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.kerberosRealm = defaults.kerberosRealm;
@@ -100,23 +85,33 @@ public final class UserFederationKerberos {
     	      this.useKerberosForPasswordAuthentication = defaults.useKerberosForPasswordAuthentication;
         }
 
+        @CustomType.Setter
         public Builder kerberosRealm(String kerberosRealm) {
             this.kerberosRealm = Objects.requireNonNull(kerberosRealm);
             return this;
         }
+        @CustomType.Setter
         public Builder keyTab(String keyTab) {
             this.keyTab = Objects.requireNonNull(keyTab);
             return this;
         }
+        @CustomType.Setter
         public Builder serverPrincipal(String serverPrincipal) {
             this.serverPrincipal = Objects.requireNonNull(serverPrincipal);
             return this;
         }
+        @CustomType.Setter
         public Builder useKerberosForPasswordAuthentication(@Nullable Boolean useKerberosForPasswordAuthentication) {
             this.useKerberosForPasswordAuthentication = useKerberosForPasswordAuthentication;
             return this;
-        }        public UserFederationKerberos build() {
-            return new UserFederationKerberos(kerberosRealm, keyTab, serverPrincipal, useKerberosForPasswordAuthentication);
+        }
+        public UserFederationKerberos build() {
+            final var o = new UserFederationKerberos();
+            o.kerberosRealm = kerberosRealm;
+            o.keyTab = keyTab;
+            o.serverPrincipal = serverPrincipal;
+            o.useKerberosForPasswordAuthentication = useKerberosForPasswordAuthentication;
+            return o;
         }
     }
 }

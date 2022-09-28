@@ -139,7 +139,7 @@ func (i *ClientJsPolicy) ToClientJsPolicyOutputWithContext(ctx context.Context) 
 // ClientJsPolicyArrayInput is an input type that accepts ClientJsPolicyArray and ClientJsPolicyArrayOutput values.
 // You can construct a concrete instance of `ClientJsPolicyArrayInput` via:
 //
-//          ClientJsPolicyArray{ ClientJsPolicyArgs{...} }
+//	ClientJsPolicyArray{ ClientJsPolicyArgs{...} }
 type ClientJsPolicyArrayInput interface {
 	pulumi.Input
 
@@ -164,7 +164,7 @@ func (i ClientJsPolicyArray) ToClientJsPolicyArrayOutputWithContext(ctx context.
 // ClientJsPolicyMapInput is an input type that accepts ClientJsPolicyMap and ClientJsPolicyMapOutput values.
 // You can construct a concrete instance of `ClientJsPolicyMapInput` via:
 //
-//          ClientJsPolicyMap{ "key": ClientJsPolicyArgs{...} }
+//	ClientJsPolicyMap{ "key": ClientJsPolicyArgs{...} }
 type ClientJsPolicyMapInput interface {
 	pulumi.Input
 

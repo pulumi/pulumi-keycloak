@@ -21,31 +21,34 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = saml.NewClientScope(ctx, "samlClientScope", &saml.ClientScopeArgs{
-// 			RealmId:     realm.ID(),
-// 			Description: pulumi.String("This scope will map a user's group memberships to SAML assertion"),
-// 			GuiOrder:    pulumi.Int(1),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = saml.NewClientScope(ctx, "samlClientScope", &saml.ClientScopeArgs{
+//				RealmId:     realm.ID(),
+//				Description: pulumi.String("This scope will map a user's group memberships to SAML assertion"),
+//				GuiOrder:    pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -53,7 +56,9 @@ import (
 // Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:saml/clientScope:ClientScope saml_client_scope my-realm/e8a5d115-6985-4de3-a0f5-732e1be4525e
+//
+//	$ pulumi import keycloak:saml/clientScope:ClientScope saml_client_scope my-realm/e8a5d115-6985-4de3-a0f5-732e1be4525e
+//
 // ```
 type ClientScope struct {
 	pulumi.CustomResourceState
@@ -184,7 +189,7 @@ func (i *ClientScope) ToClientScopeOutputWithContext(ctx context.Context) Client
 // ClientScopeArrayInput is an input type that accepts ClientScopeArray and ClientScopeArrayOutput values.
 // You can construct a concrete instance of `ClientScopeArrayInput` via:
 //
-//          ClientScopeArray{ ClientScopeArgs{...} }
+//	ClientScopeArray{ ClientScopeArgs{...} }
 type ClientScopeArrayInput interface {
 	pulumi.Input
 
@@ -209,7 +214,7 @@ func (i ClientScopeArray) ToClientScopeArrayOutputWithContext(ctx context.Contex
 // ClientScopeMapInput is an input type that accepts ClientScopeMap and ClientScopeMapOutput values.
 // You can construct a concrete instance of `ClientScopeMapInput` via:
 //
-//          ClientScopeMap{ "key": ClientScopeArgs{...} }
+//	ClientScopeMap{ "key": ClientScopeArgs{...} }
 type ClientScopeMapInput interface {
 	pulumi.Input
 

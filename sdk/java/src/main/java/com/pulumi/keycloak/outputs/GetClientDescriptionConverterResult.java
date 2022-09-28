@@ -15,129 +15,50 @@ import java.util.Objects;
 
 @CustomType
 public final class GetClientDescriptionConverterResult {
-    private final Map<String,Object> access;
-    private final String adminUrl;
-    private final Map<String,Object> attributes;
-    private final Map<String,Object> authenticationFlowBindingOverrides;
-    private final Boolean authorizationServicesEnabled;
-    private final Map<String,Object> authorizationSettings;
-    private final String baseUrl;
-    private final Boolean bearerOnly;
-    private final String body;
-    private final String clientAuthenticatorType;
-    private final String clientId;
-    private final String consentRequired;
-    private final List<String> defaultClientScopes;
-    private final List<String> defaultRoles;
-    private final String description;
-    private final Boolean directAccessGrantsEnabled;
-    private final Boolean enabled;
-    private final Boolean frontchannelLogout;
-    private final Boolean fullScopeAllowed;
+    private Map<String,Object> access;
+    private String adminUrl;
+    private Map<String,Object> attributes;
+    private Map<String,Object> authenticationFlowBindingOverrides;
+    private Boolean authorizationServicesEnabled;
+    private Map<String,Object> authorizationSettings;
+    private String baseUrl;
+    private Boolean bearerOnly;
+    private String body;
+    private String clientAuthenticatorType;
+    private String clientId;
+    private String consentRequired;
+    private List<String> defaultClientScopes;
+    private List<String> defaultRoles;
+    private String description;
+    private Boolean directAccessGrantsEnabled;
+    private Boolean enabled;
+    private Boolean frontchannelLogout;
+    private Boolean fullScopeAllowed;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final Boolean implicitFlowEnabled;
-    private final String name;
-    private final Integer notBefore;
-    private final List<String> optionalClientScopes;
-    private final String origin;
-    private final String protocol;
-    private final List<GetClientDescriptionConverterProtocolMapper> protocolMappers;
-    private final Boolean publicClient;
-    private final String realmId;
-    private final List<String> redirectUris;
-    private final Map<String,Object> registeredNodes;
-    private final String registrationAccessToken;
-    private final String rootUrl;
-    private final String secret;
-    private final Boolean serviceAccountsEnabled;
-    private final Boolean standardFlowEnabled;
-    private final Boolean surrogateAuthRequired;
-    private final List<String> webOrigins;
+    private String id;
+    private Boolean implicitFlowEnabled;
+    private String name;
+    private Integer notBefore;
+    private List<String> optionalClientScopes;
+    private String origin;
+    private String protocol;
+    private List<GetClientDescriptionConverterProtocolMapper> protocolMappers;
+    private Boolean publicClient;
+    private String realmId;
+    private List<String> redirectUris;
+    private Map<String,Object> registeredNodes;
+    private String registrationAccessToken;
+    private String rootUrl;
+    private String secret;
+    private Boolean serviceAccountsEnabled;
+    private Boolean standardFlowEnabled;
+    private Boolean surrogateAuthRequired;
+    private List<String> webOrigins;
 
-    @CustomType.Constructor
-    private GetClientDescriptionConverterResult(
-        @CustomType.Parameter("access") Map<String,Object> access,
-        @CustomType.Parameter("adminUrl") String adminUrl,
-        @CustomType.Parameter("attributes") Map<String,Object> attributes,
-        @CustomType.Parameter("authenticationFlowBindingOverrides") Map<String,Object> authenticationFlowBindingOverrides,
-        @CustomType.Parameter("authorizationServicesEnabled") Boolean authorizationServicesEnabled,
-        @CustomType.Parameter("authorizationSettings") Map<String,Object> authorizationSettings,
-        @CustomType.Parameter("baseUrl") String baseUrl,
-        @CustomType.Parameter("bearerOnly") Boolean bearerOnly,
-        @CustomType.Parameter("body") String body,
-        @CustomType.Parameter("clientAuthenticatorType") String clientAuthenticatorType,
-        @CustomType.Parameter("clientId") String clientId,
-        @CustomType.Parameter("consentRequired") String consentRequired,
-        @CustomType.Parameter("defaultClientScopes") List<String> defaultClientScopes,
-        @CustomType.Parameter("defaultRoles") List<String> defaultRoles,
-        @CustomType.Parameter("description") String description,
-        @CustomType.Parameter("directAccessGrantsEnabled") Boolean directAccessGrantsEnabled,
-        @CustomType.Parameter("enabled") Boolean enabled,
-        @CustomType.Parameter("frontchannelLogout") Boolean frontchannelLogout,
-        @CustomType.Parameter("fullScopeAllowed") Boolean fullScopeAllowed,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("implicitFlowEnabled") Boolean implicitFlowEnabled,
-        @CustomType.Parameter("name") String name,
-        @CustomType.Parameter("notBefore") Integer notBefore,
-        @CustomType.Parameter("optionalClientScopes") List<String> optionalClientScopes,
-        @CustomType.Parameter("origin") String origin,
-        @CustomType.Parameter("protocol") String protocol,
-        @CustomType.Parameter("protocolMappers") List<GetClientDescriptionConverterProtocolMapper> protocolMappers,
-        @CustomType.Parameter("publicClient") Boolean publicClient,
-        @CustomType.Parameter("realmId") String realmId,
-        @CustomType.Parameter("redirectUris") List<String> redirectUris,
-        @CustomType.Parameter("registeredNodes") Map<String,Object> registeredNodes,
-        @CustomType.Parameter("registrationAccessToken") String registrationAccessToken,
-        @CustomType.Parameter("rootUrl") String rootUrl,
-        @CustomType.Parameter("secret") String secret,
-        @CustomType.Parameter("serviceAccountsEnabled") Boolean serviceAccountsEnabled,
-        @CustomType.Parameter("standardFlowEnabled") Boolean standardFlowEnabled,
-        @CustomType.Parameter("surrogateAuthRequired") Boolean surrogateAuthRequired,
-        @CustomType.Parameter("webOrigins") List<String> webOrigins) {
-        this.access = access;
-        this.adminUrl = adminUrl;
-        this.attributes = attributes;
-        this.authenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
-        this.authorizationServicesEnabled = authorizationServicesEnabled;
-        this.authorizationSettings = authorizationSettings;
-        this.baseUrl = baseUrl;
-        this.bearerOnly = bearerOnly;
-        this.body = body;
-        this.clientAuthenticatorType = clientAuthenticatorType;
-        this.clientId = clientId;
-        this.consentRequired = consentRequired;
-        this.defaultClientScopes = defaultClientScopes;
-        this.defaultRoles = defaultRoles;
-        this.description = description;
-        this.directAccessGrantsEnabled = directAccessGrantsEnabled;
-        this.enabled = enabled;
-        this.frontchannelLogout = frontchannelLogout;
-        this.fullScopeAllowed = fullScopeAllowed;
-        this.id = id;
-        this.implicitFlowEnabled = implicitFlowEnabled;
-        this.name = name;
-        this.notBefore = notBefore;
-        this.optionalClientScopes = optionalClientScopes;
-        this.origin = origin;
-        this.protocol = protocol;
-        this.protocolMappers = protocolMappers;
-        this.publicClient = publicClient;
-        this.realmId = realmId;
-        this.redirectUris = redirectUris;
-        this.registeredNodes = registeredNodes;
-        this.registrationAccessToken = registrationAccessToken;
-        this.rootUrl = rootUrl;
-        this.secret = secret;
-        this.serviceAccountsEnabled = serviceAccountsEnabled;
-        this.standardFlowEnabled = standardFlowEnabled;
-        this.surrogateAuthRequired = surrogateAuthRequired;
-        this.webOrigins = webOrigins;
-    }
-
+    private GetClientDescriptionConverterResult() {}
     public Map<String,Object> access() {
         return this.access;
     }
@@ -264,7 +185,7 @@ public final class GetClientDescriptionConverterResult {
     public static Builder builder(GetClientDescriptionConverterResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private Map<String,Object> access;
         private String adminUrl;
@@ -304,11 +225,7 @@ public final class GetClientDescriptionConverterResult {
         private Boolean standardFlowEnabled;
         private Boolean surrogateAuthRequired;
         private List<String> webOrigins;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetClientDescriptionConverterResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.access = defaults.access;
@@ -351,54 +268,67 @@ public final class GetClientDescriptionConverterResult {
     	      this.webOrigins = defaults.webOrigins;
         }
 
+        @CustomType.Setter
         public Builder access(Map<String,Object> access) {
             this.access = Objects.requireNonNull(access);
             return this;
         }
+        @CustomType.Setter
         public Builder adminUrl(String adminUrl) {
             this.adminUrl = Objects.requireNonNull(adminUrl);
             return this;
         }
+        @CustomType.Setter
         public Builder attributes(Map<String,Object> attributes) {
             this.attributes = Objects.requireNonNull(attributes);
             return this;
         }
+        @CustomType.Setter
         public Builder authenticationFlowBindingOverrides(Map<String,Object> authenticationFlowBindingOverrides) {
             this.authenticationFlowBindingOverrides = Objects.requireNonNull(authenticationFlowBindingOverrides);
             return this;
         }
+        @CustomType.Setter
         public Builder authorizationServicesEnabled(Boolean authorizationServicesEnabled) {
             this.authorizationServicesEnabled = Objects.requireNonNull(authorizationServicesEnabled);
             return this;
         }
+        @CustomType.Setter
         public Builder authorizationSettings(Map<String,Object> authorizationSettings) {
             this.authorizationSettings = Objects.requireNonNull(authorizationSettings);
             return this;
         }
+        @CustomType.Setter
         public Builder baseUrl(String baseUrl) {
             this.baseUrl = Objects.requireNonNull(baseUrl);
             return this;
         }
+        @CustomType.Setter
         public Builder bearerOnly(Boolean bearerOnly) {
             this.bearerOnly = Objects.requireNonNull(bearerOnly);
             return this;
         }
+        @CustomType.Setter
         public Builder body(String body) {
             this.body = Objects.requireNonNull(body);
             return this;
         }
+        @CustomType.Setter
         public Builder clientAuthenticatorType(String clientAuthenticatorType) {
             this.clientAuthenticatorType = Objects.requireNonNull(clientAuthenticatorType);
             return this;
         }
+        @CustomType.Setter
         public Builder clientId(String clientId) {
             this.clientId = Objects.requireNonNull(clientId);
             return this;
         }
+        @CustomType.Setter
         public Builder consentRequired(String consentRequired) {
             this.consentRequired = Objects.requireNonNull(consentRequired);
             return this;
         }
+        @CustomType.Setter
         public Builder defaultClientScopes(List<String> defaultClientScopes) {
             this.defaultClientScopes = Objects.requireNonNull(defaultClientScopes);
             return this;
@@ -406,6 +336,7 @@ public final class GetClientDescriptionConverterResult {
         public Builder defaultClientScopes(String... defaultClientScopes) {
             return defaultClientScopes(List.of(defaultClientScopes));
         }
+        @CustomType.Setter
         public Builder defaultRoles(List<String> defaultRoles) {
             this.defaultRoles = Objects.requireNonNull(defaultRoles);
             return this;
@@ -413,42 +344,52 @@ public final class GetClientDescriptionConverterResult {
         public Builder defaultRoles(String... defaultRoles) {
             return defaultRoles(List.of(defaultRoles));
         }
+        @CustomType.Setter
         public Builder description(String description) {
             this.description = Objects.requireNonNull(description);
             return this;
         }
+        @CustomType.Setter
         public Builder directAccessGrantsEnabled(Boolean directAccessGrantsEnabled) {
             this.directAccessGrantsEnabled = Objects.requireNonNull(directAccessGrantsEnabled);
             return this;
         }
+        @CustomType.Setter
         public Builder enabled(Boolean enabled) {
             this.enabled = Objects.requireNonNull(enabled);
             return this;
         }
+        @CustomType.Setter
         public Builder frontchannelLogout(Boolean frontchannelLogout) {
             this.frontchannelLogout = Objects.requireNonNull(frontchannelLogout);
             return this;
         }
+        @CustomType.Setter
         public Builder fullScopeAllowed(Boolean fullScopeAllowed) {
             this.fullScopeAllowed = Objects.requireNonNull(fullScopeAllowed);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder implicitFlowEnabled(Boolean implicitFlowEnabled) {
             this.implicitFlowEnabled = Objects.requireNonNull(implicitFlowEnabled);
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
         }
+        @CustomType.Setter
         public Builder notBefore(Integer notBefore) {
             this.notBefore = Objects.requireNonNull(notBefore);
             return this;
         }
+        @CustomType.Setter
         public Builder optionalClientScopes(List<String> optionalClientScopes) {
             this.optionalClientScopes = Objects.requireNonNull(optionalClientScopes);
             return this;
@@ -456,14 +397,17 @@ public final class GetClientDescriptionConverterResult {
         public Builder optionalClientScopes(String... optionalClientScopes) {
             return optionalClientScopes(List.of(optionalClientScopes));
         }
+        @CustomType.Setter
         public Builder origin(String origin) {
             this.origin = Objects.requireNonNull(origin);
             return this;
         }
+        @CustomType.Setter
         public Builder protocol(String protocol) {
             this.protocol = Objects.requireNonNull(protocol);
             return this;
         }
+        @CustomType.Setter
         public Builder protocolMappers(List<GetClientDescriptionConverterProtocolMapper> protocolMappers) {
             this.protocolMappers = Objects.requireNonNull(protocolMappers);
             return this;
@@ -471,14 +415,17 @@ public final class GetClientDescriptionConverterResult {
         public Builder protocolMappers(GetClientDescriptionConverterProtocolMapper... protocolMappers) {
             return protocolMappers(List.of(protocolMappers));
         }
+        @CustomType.Setter
         public Builder publicClient(Boolean publicClient) {
             this.publicClient = Objects.requireNonNull(publicClient);
             return this;
         }
+        @CustomType.Setter
         public Builder realmId(String realmId) {
             this.realmId = Objects.requireNonNull(realmId);
             return this;
         }
+        @CustomType.Setter
         public Builder redirectUris(List<String> redirectUris) {
             this.redirectUris = Objects.requireNonNull(redirectUris);
             return this;
@@ -486,42 +433,90 @@ public final class GetClientDescriptionConverterResult {
         public Builder redirectUris(String... redirectUris) {
             return redirectUris(List.of(redirectUris));
         }
+        @CustomType.Setter
         public Builder registeredNodes(Map<String,Object> registeredNodes) {
             this.registeredNodes = Objects.requireNonNull(registeredNodes);
             return this;
         }
+        @CustomType.Setter
         public Builder registrationAccessToken(String registrationAccessToken) {
             this.registrationAccessToken = Objects.requireNonNull(registrationAccessToken);
             return this;
         }
+        @CustomType.Setter
         public Builder rootUrl(String rootUrl) {
             this.rootUrl = Objects.requireNonNull(rootUrl);
             return this;
         }
+        @CustomType.Setter
         public Builder secret(String secret) {
             this.secret = Objects.requireNonNull(secret);
             return this;
         }
+        @CustomType.Setter
         public Builder serviceAccountsEnabled(Boolean serviceAccountsEnabled) {
             this.serviceAccountsEnabled = Objects.requireNonNull(serviceAccountsEnabled);
             return this;
         }
+        @CustomType.Setter
         public Builder standardFlowEnabled(Boolean standardFlowEnabled) {
             this.standardFlowEnabled = Objects.requireNonNull(standardFlowEnabled);
             return this;
         }
+        @CustomType.Setter
         public Builder surrogateAuthRequired(Boolean surrogateAuthRequired) {
             this.surrogateAuthRequired = Objects.requireNonNull(surrogateAuthRequired);
             return this;
         }
+        @CustomType.Setter
         public Builder webOrigins(List<String> webOrigins) {
             this.webOrigins = Objects.requireNonNull(webOrigins);
             return this;
         }
         public Builder webOrigins(String... webOrigins) {
             return webOrigins(List.of(webOrigins));
-        }        public GetClientDescriptionConverterResult build() {
-            return new GetClientDescriptionConverterResult(access, adminUrl, attributes, authenticationFlowBindingOverrides, authorizationServicesEnabled, authorizationSettings, baseUrl, bearerOnly, body, clientAuthenticatorType, clientId, consentRequired, defaultClientScopes, defaultRoles, description, directAccessGrantsEnabled, enabled, frontchannelLogout, fullScopeAllowed, id, implicitFlowEnabled, name, notBefore, optionalClientScopes, origin, protocol, protocolMappers, publicClient, realmId, redirectUris, registeredNodes, registrationAccessToken, rootUrl, secret, serviceAccountsEnabled, standardFlowEnabled, surrogateAuthRequired, webOrigins);
+        }
+        public GetClientDescriptionConverterResult build() {
+            final var o = new GetClientDescriptionConverterResult();
+            o.access = access;
+            o.adminUrl = adminUrl;
+            o.attributes = attributes;
+            o.authenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
+            o.authorizationServicesEnabled = authorizationServicesEnabled;
+            o.authorizationSettings = authorizationSettings;
+            o.baseUrl = baseUrl;
+            o.bearerOnly = bearerOnly;
+            o.body = body;
+            o.clientAuthenticatorType = clientAuthenticatorType;
+            o.clientId = clientId;
+            o.consentRequired = consentRequired;
+            o.defaultClientScopes = defaultClientScopes;
+            o.defaultRoles = defaultRoles;
+            o.description = description;
+            o.directAccessGrantsEnabled = directAccessGrantsEnabled;
+            o.enabled = enabled;
+            o.frontchannelLogout = frontchannelLogout;
+            o.fullScopeAllowed = fullScopeAllowed;
+            o.id = id;
+            o.implicitFlowEnabled = implicitFlowEnabled;
+            o.name = name;
+            o.notBefore = notBefore;
+            o.optionalClientScopes = optionalClientScopes;
+            o.origin = origin;
+            o.protocol = protocol;
+            o.protocolMappers = protocolMappers;
+            o.publicClient = publicClient;
+            o.realmId = realmId;
+            o.redirectUris = redirectUris;
+            o.registeredNodes = registeredNodes;
+            o.registrationAccessToken = registrationAccessToken;
+            o.rootUrl = rootUrl;
+            o.secret = secret;
+            o.serviceAccountsEnabled = serviceAccountsEnabled;
+            o.standardFlowEnabled = standardFlowEnabled;
+            o.surrogateAuthRequired = surrogateAuthRequired;
+            o.webOrigins = webOrigins;
+            return o;
         }
     }
 }

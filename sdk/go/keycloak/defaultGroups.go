@@ -21,37 +21,40 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
-// 			RealmId: realm.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewDefaultGroups(ctx, "default", &keycloak.DefaultGroupsArgs{
-// 			RealmId: realm.ID(),
-// 			GroupIds: pulumi.StringArray{
-// 				group.ID(),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
+//				RealmId: realm.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewDefaultGroups(ctx, "default", &keycloak.DefaultGroupsArgs{
+//				RealmId: realm.ID(),
+//				GroupIds: pulumi.StringArray{
+//					group.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -59,7 +62,9 @@ import (
 // Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm
+//
+//	$ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm
+//
 // ```
 type DefaultGroups struct {
 	pulumi.CustomResourceState
@@ -163,7 +168,7 @@ func (i *DefaultGroups) ToDefaultGroupsOutputWithContext(ctx context.Context) De
 // DefaultGroupsArrayInput is an input type that accepts DefaultGroupsArray and DefaultGroupsArrayOutput values.
 // You can construct a concrete instance of `DefaultGroupsArrayInput` via:
 //
-//          DefaultGroupsArray{ DefaultGroupsArgs{...} }
+//	DefaultGroupsArray{ DefaultGroupsArgs{...} }
 type DefaultGroupsArrayInput interface {
 	pulumi.Input
 
@@ -188,7 +193,7 @@ func (i DefaultGroupsArray) ToDefaultGroupsArrayOutputWithContext(ctx context.Co
 // DefaultGroupsMapInput is an input type that accepts DefaultGroupsMap and DefaultGroupsMapOutput values.
 // You can construct a concrete instance of `DefaultGroupsMapInput` via:
 //
-//          DefaultGroupsMap{ "key": DefaultGroupsArgs{...} }
+//	DefaultGroupsMap{ "key": DefaultGroupsArgs{...} }
 type DefaultGroupsMapInput interface {
 	pulumi.Input
 

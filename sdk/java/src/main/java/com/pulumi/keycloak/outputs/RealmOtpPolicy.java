@@ -16,49 +16,34 @@ public final class RealmOtpPolicy {
      * @return What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
      * 
      */
-    private final @Nullable String algorithm;
+    private @Nullable String algorithm;
     /**
      * @return How many digits the OTP have. Defaults to `6`.
      * 
      */
-    private final @Nullable Integer digits;
+    private @Nullable Integer digits;
     /**
      * @return What should the initial counter value be. Defaults to `2`.
      * 
      */
-    private final @Nullable Integer initialCounter;
+    private @Nullable Integer initialCounter;
     /**
      * @return How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
      * 
      */
-    private final @Nullable Integer lookAheadWindow;
+    private @Nullable Integer lookAheadWindow;
     /**
      * @return How many seconds should an OTP token be valid. Defaults to `30`.
      * 
      */
-    private final @Nullable Integer period;
+    private @Nullable Integer period;
     /**
      * @return One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
      * 
      */
-    private final @Nullable String type;
+    private @Nullable String type;
 
-    @CustomType.Constructor
-    private RealmOtpPolicy(
-        @CustomType.Parameter("algorithm") @Nullable String algorithm,
-        @CustomType.Parameter("digits") @Nullable Integer digits,
-        @CustomType.Parameter("initialCounter") @Nullable Integer initialCounter,
-        @CustomType.Parameter("lookAheadWindow") @Nullable Integer lookAheadWindow,
-        @CustomType.Parameter("period") @Nullable Integer period,
-        @CustomType.Parameter("type") @Nullable String type) {
-        this.algorithm = algorithm;
-        this.digits = digits;
-        this.initialCounter = initialCounter;
-        this.lookAheadWindow = lookAheadWindow;
-        this.period = period;
-        this.type = type;
-    }
-
+    private RealmOtpPolicy() {}
     /**
      * @return What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
      * 
@@ -109,7 +94,7 @@ public final class RealmOtpPolicy {
     public static Builder builder(RealmOtpPolicy defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String algorithm;
         private @Nullable Integer digits;
@@ -117,11 +102,7 @@ public final class RealmOtpPolicy {
         private @Nullable Integer lookAheadWindow;
         private @Nullable Integer period;
         private @Nullable String type;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(RealmOtpPolicy defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.algorithm = defaults.algorithm;
@@ -132,31 +113,45 @@ public final class RealmOtpPolicy {
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
         public Builder algorithm(@Nullable String algorithm) {
             this.algorithm = algorithm;
             return this;
         }
+        @CustomType.Setter
         public Builder digits(@Nullable Integer digits) {
             this.digits = digits;
             return this;
         }
+        @CustomType.Setter
         public Builder initialCounter(@Nullable Integer initialCounter) {
             this.initialCounter = initialCounter;
             return this;
         }
+        @CustomType.Setter
         public Builder lookAheadWindow(@Nullable Integer lookAheadWindow) {
             this.lookAheadWindow = lookAheadWindow;
             return this;
         }
+        @CustomType.Setter
         public Builder period(@Nullable Integer period) {
             this.period = period;
             return this;
         }
+        @CustomType.Setter
         public Builder type(@Nullable String type) {
             this.type = type;
             return this;
-        }        public RealmOtpPolicy build() {
-            return new RealmOtpPolicy(algorithm, digits, initialCounter, lookAheadWindow, period, type);
+        }
+        public RealmOtpPolicy build() {
+            final var o = new RealmOtpPolicy();
+            o.algorithm = algorithm;
+            o.digits = digits;
+            o.initialCounter = initialCounter;
+            o.lookAheadWindow = lookAheadWindow;
+            o.period = period;
+            o.type = type;
+            return o;
         }
     }
 }

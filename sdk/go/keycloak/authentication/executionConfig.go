@@ -20,49 +20,52 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/authentication"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/authentication"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		flow, err := authentication.NewFlow(ctx, "flow", &authentication.FlowArgs{
-// 			RealmId: realm.ID(),
-// 			Alias:   pulumi.String("my-flow-alias"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		execution, err := authentication.NewExecution(ctx, "execution", &authentication.ExecutionArgs{
-// 			RealmId:         realm.ID(),
-// 			ParentFlowAlias: flow.Alias,
-// 			Authenticator:   pulumi.String("identity-provider-redirector"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = authentication.NewExecutionConfig(ctx, "config", &authentication.ExecutionConfigArgs{
-// 			RealmId:     realm.ID(),
-// 			ExecutionId: execution.ID(),
-// 			Alias:       pulumi.String("my-config-alias"),
-// 			Config: pulumi.StringMap{
-// 				"defaultProvider": pulumi.String("my-config-default-idp"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			flow, err := authentication.NewFlow(ctx, "flow", &authentication.FlowArgs{
+//				RealmId: realm.ID(),
+//				Alias:   pulumi.String("my-flow-alias"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			execution, err := authentication.NewExecution(ctx, "execution", &authentication.ExecutionArgs{
+//				RealmId:         realm.ID(),
+//				ParentFlowAlias: flow.Alias,
+//				Authenticator:   pulumi.String("identity-provider-redirector"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = authentication.NewExecutionConfig(ctx, "config", &authentication.ExecutionConfigArgs{
+//				RealmId:     realm.ID(),
+//				ExecutionId: execution.ID(),
+//				Alias:       pulumi.String("my-config-alias"),
+//				Config: pulumi.StringMap{
+//					"defaultProvider": pulumi.String("my-config-default-idp"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -70,7 +73,9 @@ import (
 // Configurations can be imported using the format `{{realm}}/{{authenticationExecutionId}}/{{authenticationExecutionConfigId}}`. If the `authenticationExecutionId` is incorrect, the import will still be successful. A subsequent apply will change the `authenticationExecutionId` to the correct one, which causes the configuration to be replaced. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:authentication/executionConfig:ExecutionConfig config my-realm/be081463-ddbf-4b42-9eff-9c97886f24ff/30559fcf-6fb8-45ea-8c46-2b86f46ebc17
+//
+//	$ pulumi import keycloak:authentication/executionConfig:ExecutionConfig config my-realm/be081463-ddbf-4b42-9eff-9c97886f24ff/30559fcf-6fb8-45ea-8c46-2b86f46ebc17
+//
 // ```
 type ExecutionConfig struct {
 	pulumi.CustomResourceState
@@ -200,7 +205,7 @@ func (i *ExecutionConfig) ToExecutionConfigOutputWithContext(ctx context.Context
 // ExecutionConfigArrayInput is an input type that accepts ExecutionConfigArray and ExecutionConfigArrayOutput values.
 // You can construct a concrete instance of `ExecutionConfigArrayInput` via:
 //
-//          ExecutionConfigArray{ ExecutionConfigArgs{...} }
+//	ExecutionConfigArray{ ExecutionConfigArgs{...} }
 type ExecutionConfigArrayInput interface {
 	pulumi.Input
 
@@ -225,7 +230,7 @@ func (i ExecutionConfigArray) ToExecutionConfigArrayOutputWithContext(ctx contex
 // ExecutionConfigMapInput is an input type that accepts ExecutionConfigMap and ExecutionConfigMapOutput values.
 // You can construct a concrete instance of `ExecutionConfigMapInput` via:
 //
-//          ExecutionConfigMap{ "key": ExecutionConfigArgs{...} }
+//	ExecutionConfigMap{ "key": ExecutionConfigArgs{...} }
 type ExecutionConfigMapInput interface {
 	pulumi.Input
 

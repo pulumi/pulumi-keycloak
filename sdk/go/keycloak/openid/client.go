@@ -23,40 +23,43 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
-// 			RealmId:    realm.ID(),
-// 			ClientId:   pulumi.String("test-client"),
-// 			Enabled:    pulumi.Bool(true),
-// 			AccessType: pulumi.String("CONFIDENTIAL"),
-// 			ValidRedirectUris: pulumi.StringArray{
-// 				pulumi.String("http://localhost:8080/openid-callback"),
-// 			},
-// 			LoginTheme: pulumi.String("keycloak"),
-// 			ExtraConfig: pulumi.AnyMap{
-// 				"key1": pulumi.Any("value1"),
-// 				"key2": pulumi.Any("value2"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
+//				RealmId:    realm.ID(),
+//				ClientId:   pulumi.String("test-client"),
+//				Enabled:    pulumi.Bool(true),
+//				AccessType: pulumi.String("CONFIDENTIAL"),
+//				ValidRedirectUris: pulumi.StringArray{
+//					pulumi.String("http://localhost:8080/openid-callback"),
+//				},
+//				LoginTheme: pulumi.String("keycloak"),
+//				ExtraConfig: pulumi.AnyMap{
+//					"key1": pulumi.Any("value1"),
+//					"key2": pulumi.Any("value2"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -64,7 +67,9 @@ import (
 // Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
+//
+//	$ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
+//
 // ```
 type Client struct {
 	pulumi.CustomResourceState
@@ -608,7 +613,7 @@ func (i *Client) ToClientOutputWithContext(ctx context.Context) ClientOutput {
 // ClientArrayInput is an input type that accepts ClientArray and ClientArrayOutput values.
 // You can construct a concrete instance of `ClientArrayInput` via:
 //
-//          ClientArray{ ClientArgs{...} }
+//	ClientArray{ ClientArgs{...} }
 type ClientArrayInput interface {
 	pulumi.Input
 
@@ -633,7 +638,7 @@ func (i ClientArray) ToClientArrayOutputWithContext(ctx context.Context) ClientA
 // ClientMapInput is an input type that accepts ClientMap and ClientMapOutput values.
 // You can construct a concrete instance of `ClientMapInput` via:
 //
-//          ClientMap{ "key": ClientArgs{...} }
+//	ClientMap{ "key": ClientArgs{...} }
 type ClientMapInput interface {
 	pulumi.Input
 
@@ -839,7 +844,7 @@ func (o ClientOutput) Oauth2DevicePollingInterval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.Oauth2DevicePollingInterval }).(pulumi.StringPtrOutput)
 }
 
-// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
+// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value “.
 func (o ClientOutput) PkceCodeChallengeMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.PkceCodeChallengeMethod }).(pulumi.StringPtrOutput)
 }

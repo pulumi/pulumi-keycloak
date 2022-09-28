@@ -23,44 +23,47 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		realmRole, err := keycloak.NewRole(ctx, "realmRole", &keycloak.RoleArgs{
-// 			RealmId: realm.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		client, err := openid.NewClient(ctx, "client", &openid.ClientArgs{
-// 			RealmId:                realm.ID(),
-// 			ServiceAccountsEnabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = openid.NewClientServiceAccountRealmRole(ctx, "clientServiceAccountRole", &openid.ClientServiceAccountRealmRoleArgs{
-// 			RealmId:              realm.ID(),
-// 			ServiceAccountUserId: client.ServiceAccountUserId,
-// 			Role:                 realmRole.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			realmRole, err := keycloak.NewRole(ctx, "realmRole", &keycloak.RoleArgs{
+//				RealmId: realm.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			client, err := openid.NewClient(ctx, "client", &openid.ClientArgs{
+//				RealmId:                realm.ID(),
+//				ServiceAccountsEnabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClientServiceAccountRealmRole(ctx, "clientServiceAccountRole", &openid.ClientServiceAccountRealmRoleArgs{
+//				RealmId:              realm.ID(),
+//				ServiceAccountUserId: client.ServiceAccountUserId,
+//				Role:                 realmRole.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -68,7 +71,9 @@ import (
 // This resource can be imported using the format `{{realmId}}/{{serviceAccountUserId}}/{{roleId}}`. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:openid/clientServiceAccountRealmRole:ClientServiceAccountRealmRole client_service_account_role my-realm/489ba513-1ceb-49ba-ae0b-1ab1f5099ebf/c7230ab7-8e4e-4135-995d-e81b50696ad8
+//
+//	$ pulumi import keycloak:openid/clientServiceAccountRealmRole:ClientServiceAccountRealmRole client_service_account_role my-realm/489ba513-1ceb-49ba-ae0b-1ab1f5099ebf/c7230ab7-8e4e-4135-995d-e81b50696ad8
+//
 // ```
 type ClientServiceAccountRealmRole struct {
 	pulumi.CustomResourceState
@@ -185,7 +190,7 @@ func (i *ClientServiceAccountRealmRole) ToClientServiceAccountRealmRoleOutputWit
 // ClientServiceAccountRealmRoleArrayInput is an input type that accepts ClientServiceAccountRealmRoleArray and ClientServiceAccountRealmRoleArrayOutput values.
 // You can construct a concrete instance of `ClientServiceAccountRealmRoleArrayInput` via:
 //
-//          ClientServiceAccountRealmRoleArray{ ClientServiceAccountRealmRoleArgs{...} }
+//	ClientServiceAccountRealmRoleArray{ ClientServiceAccountRealmRoleArgs{...} }
 type ClientServiceAccountRealmRoleArrayInput interface {
 	pulumi.Input
 
@@ -210,7 +215,7 @@ func (i ClientServiceAccountRealmRoleArray) ToClientServiceAccountRealmRoleArray
 // ClientServiceAccountRealmRoleMapInput is an input type that accepts ClientServiceAccountRealmRoleMap and ClientServiceAccountRealmRoleMapOutput values.
 // You can construct a concrete instance of `ClientServiceAccountRealmRoleMapInput` via:
 //
-//          ClientServiceAccountRealmRoleMap{ "key": ClientServiceAccountRealmRoleArgs{...} }
+//	ClientServiceAccountRealmRoleMap{ "key": ClientServiceAccountRealmRoleArgs{...} }
 type ClientServiceAccountRealmRoleMapInput interface {
 	pulumi.Input
 

@@ -21,37 +21,40 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/oidc"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/oidc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = oidc.NewIdentityProvider(ctx, "realmIdentityProvider", &oidc.IdentityProviderArgs{
-// 			Realm:            realm.ID(),
-// 			Alias:            pulumi.String("my-idp"),
-// 			AuthorizationUrl: pulumi.String("https://authorizationurl.com"),
-// 			ClientId:         pulumi.String("clientID"),
-// 			ClientSecret:     pulumi.String("clientSecret"),
-// 			TokenUrl:         pulumi.String("https://tokenurl.com"),
-// 			ExtraConfig: pulumi.AnyMap{
-// 				"clientAuthMethod": pulumi.Any("client_secret_post"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = oidc.NewIdentityProvider(ctx, "realmIdentityProvider", &oidc.IdentityProviderArgs{
+//				Realm:            realm.ID(),
+//				Alias:            pulumi.String("my-idp"),
+//				AuthorizationUrl: pulumi.String("https://authorizationurl.com"),
+//				ClientId:         pulumi.String("clientID"),
+//				ClientSecret:     pulumi.String("clientSecret"),
+//				TokenUrl:         pulumi.String("https://tokenurl.com"),
+//				ExtraConfig: pulumi.AnyMap{
+//					"clientAuthMethod": pulumi.Any("client_secret_post"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -59,7 +62,9 @@ import (
 // Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp
+//
+//	$ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp
+//
 // ```
 type IdentityProvider struct {
 	pulumi.CustomResourceState
@@ -456,7 +461,7 @@ func (i *IdentityProvider) ToIdentityProviderOutputWithContext(ctx context.Conte
 // IdentityProviderArrayInput is an input type that accepts IdentityProviderArray and IdentityProviderArrayOutput values.
 // You can construct a concrete instance of `IdentityProviderArrayInput` via:
 //
-//          IdentityProviderArray{ IdentityProviderArgs{...} }
+//	IdentityProviderArray{ IdentityProviderArgs{...} }
 type IdentityProviderArrayInput interface {
 	pulumi.Input
 
@@ -481,7 +486,7 @@ func (i IdentityProviderArray) ToIdentityProviderArrayOutputWithContext(ctx cont
 // IdentityProviderMapInput is an input type that accepts IdentityProviderMap and IdentityProviderMapOutput values.
 // You can construct a concrete instance of `IdentityProviderMapInput` via:
 //
-//          IdentityProviderMap{ "key": IdentityProviderArgs{...} }
+//	IdentityProviderMap{ "key": IdentityProviderArgs{...} }
 type IdentityProviderMapInput interface {
 	pulumi.Input
 

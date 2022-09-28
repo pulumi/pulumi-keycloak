@@ -14,63 +14,44 @@ public final class GetRealmKeysKey {
      * @return Key algorithm (string)
      * 
      */
-    private final String algorithm;
+    private String algorithm;
     /**
      * @return Key certificate (string)
      * 
      */
-    private final String certificate;
+    private String certificate;
     /**
      * @return Key ID (string)
      * 
      */
-    private final String kid;
+    private String kid;
     /**
      * @return Key provider ID (string)
      * 
      */
-    private final String providerId;
+    private String providerId;
     /**
      * @return Key provider priority (int64)
      * 
      */
-    private final Integer providerPriority;
+    private Integer providerPriority;
     /**
      * @return Key public key (string)
      * 
      */
-    private final String publicKey;
+    private String publicKey;
     /**
      * @return When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
      * 
      */
-    private final String status;
+    private String status;
     /**
      * @return Key type (string)
      * 
      */
-    private final String type;
+    private String type;
 
-    @CustomType.Constructor
-    private GetRealmKeysKey(
-        @CustomType.Parameter("algorithm") String algorithm,
-        @CustomType.Parameter("certificate") String certificate,
-        @CustomType.Parameter("kid") String kid,
-        @CustomType.Parameter("providerId") String providerId,
-        @CustomType.Parameter("providerPriority") Integer providerPriority,
-        @CustomType.Parameter("publicKey") String publicKey,
-        @CustomType.Parameter("status") String status,
-        @CustomType.Parameter("type") String type) {
-        this.algorithm = algorithm;
-        this.certificate = certificate;
-        this.kid = kid;
-        this.providerId = providerId;
-        this.providerPriority = providerPriority;
-        this.publicKey = publicKey;
-        this.status = status;
-        this.type = type;
-    }
-
+    private GetRealmKeysKey() {}
     /**
      * @return Key algorithm (string)
      * 
@@ -135,7 +116,7 @@ public final class GetRealmKeysKey {
     public static Builder builder(GetRealmKeysKey defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String algorithm;
         private String certificate;
@@ -145,11 +126,7 @@ public final class GetRealmKeysKey {
         private String publicKey;
         private String status;
         private String type;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetRealmKeysKey defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.algorithm = defaults.algorithm;
@@ -162,39 +139,57 @@ public final class GetRealmKeysKey {
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
         public Builder algorithm(String algorithm) {
             this.algorithm = Objects.requireNonNull(algorithm);
             return this;
         }
+        @CustomType.Setter
         public Builder certificate(String certificate) {
             this.certificate = Objects.requireNonNull(certificate);
             return this;
         }
+        @CustomType.Setter
         public Builder kid(String kid) {
             this.kid = Objects.requireNonNull(kid);
             return this;
         }
+        @CustomType.Setter
         public Builder providerId(String providerId) {
             this.providerId = Objects.requireNonNull(providerId);
             return this;
         }
+        @CustomType.Setter
         public Builder providerPriority(Integer providerPriority) {
             this.providerPriority = Objects.requireNonNull(providerPriority);
             return this;
         }
+        @CustomType.Setter
         public Builder publicKey(String publicKey) {
             this.publicKey = Objects.requireNonNull(publicKey);
             return this;
         }
+        @CustomType.Setter
         public Builder status(String status) {
             this.status = Objects.requireNonNull(status);
             return this;
         }
+        @CustomType.Setter
         public Builder type(String type) {
             this.type = Objects.requireNonNull(type);
             return this;
-        }        public GetRealmKeysKey build() {
-            return new GetRealmKeysKey(algorithm, certificate, kid, providerId, providerPriority, publicKey, status, type);
+        }
+        public GetRealmKeysKey build() {
+            final var o = new GetRealmKeysKey();
+            o.algorithm = algorithm;
+            o.certificate = certificate;
+            o.kid = kid;
+            o.providerId = providerId;
+            o.providerPriority = providerPriority;
+            o.publicKey = publicKey;
+            o.status = status;
+            o.type = type;
+            return o;
         }
     }
 }

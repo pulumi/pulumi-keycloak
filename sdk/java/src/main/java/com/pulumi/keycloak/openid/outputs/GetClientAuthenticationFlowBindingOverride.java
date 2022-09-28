@@ -9,17 +9,10 @@ import java.util.Objects;
 
 @CustomType
 public final class GetClientAuthenticationFlowBindingOverride {
-    private final String browserId;
-    private final String directGrantId;
+    private String browserId;
+    private String directGrantId;
 
-    @CustomType.Constructor
-    private GetClientAuthenticationFlowBindingOverride(
-        @CustomType.Parameter("browserId") String browserId,
-        @CustomType.Parameter("directGrantId") String directGrantId) {
-        this.browserId = browserId;
-        this.directGrantId = directGrantId;
-    }
-
+    private GetClientAuthenticationFlowBindingOverride() {}
     public String browserId() {
         return this.browserId;
     }
@@ -34,30 +27,32 @@ public final class GetClientAuthenticationFlowBindingOverride {
     public static Builder builder(GetClientAuthenticationFlowBindingOverride defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String browserId;
         private String directGrantId;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetClientAuthenticationFlowBindingOverride defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.browserId = defaults.browserId;
     	      this.directGrantId = defaults.directGrantId;
         }
 
+        @CustomType.Setter
         public Builder browserId(String browserId) {
             this.browserId = Objects.requireNonNull(browserId);
             return this;
         }
+        @CustomType.Setter
         public Builder directGrantId(String directGrantId) {
             this.directGrantId = Objects.requireNonNull(directGrantId);
             return this;
-        }        public GetClientAuthenticationFlowBindingOverride build() {
-            return new GetClientAuthenticationFlowBindingOverride(browserId, directGrantId);
+        }
+        public GetClientAuthenticationFlowBindingOverride build() {
+            final var o = new GetClientAuthenticationFlowBindingOverride();
+            o.browserId = browserId;
+            o.directGrantId = directGrantId;
+            return o;
         }
     }
 }

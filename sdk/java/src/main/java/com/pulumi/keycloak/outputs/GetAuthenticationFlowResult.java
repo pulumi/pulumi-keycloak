@@ -9,24 +9,15 @@ import java.util.Objects;
 
 @CustomType
 public final class GetAuthenticationFlowResult {
-    private final String alias;
+    private String alias;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final String realmId;
+    private String id;
+    private String realmId;
 
-    @CustomType.Constructor
-    private GetAuthenticationFlowResult(
-        @CustomType.Parameter("alias") String alias,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("realmId") String realmId) {
-        this.alias = alias;
-        this.id = id;
-        this.realmId = realmId;
-    }
-
+    private GetAuthenticationFlowResult() {}
     public String alias() {
         return this.alias;
     }
@@ -48,16 +39,12 @@ public final class GetAuthenticationFlowResult {
     public static Builder builder(GetAuthenticationFlowResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String alias;
         private String id;
         private String realmId;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetAuthenticationFlowResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.alias = defaults.alias;
@@ -65,19 +52,27 @@ public final class GetAuthenticationFlowResult {
     	      this.realmId = defaults.realmId;
         }
 
+        @CustomType.Setter
         public Builder alias(String alias) {
             this.alias = Objects.requireNonNull(alias);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder realmId(String realmId) {
             this.realmId = Objects.requireNonNull(realmId);
             return this;
-        }        public GetAuthenticationFlowResult build() {
-            return new GetAuthenticationFlowResult(alias, id, realmId);
+        }
+        public GetAuthenticationFlowResult build() {
+            final var o = new GetAuthenticationFlowResult();
+            o.alias = alias;
+            o.id = id;
+            o.realmId = realmId;
+            return o;
         }
     }
 }

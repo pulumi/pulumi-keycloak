@@ -21,32 +21,35 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm: pulumi.String("my-realm"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewRealmKeystoreHmacGenerated(ctx, "keystoreHmacGenerated", &keycloak.RealmKeystoreHmacGeneratedArgs{
-// 			RealmId:    realm.ID(),
-// 			Enabled:    pulumi.Bool(true),
-// 			Active:     pulumi.Bool(true),
-// 			Priority:   pulumi.Int(100),
-// 			Algorithm:  pulumi.String("HS256"),
-// 			SecretSize: pulumi.Int(64),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm: pulumi.String("my-realm"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewRealmKeystoreHmacGenerated(ctx, "keystoreHmacGenerated", &keycloak.RealmKeystoreHmacGeneratedArgs{
+//				RealmId:    realm.ID(),
+//				Enabled:    pulumi.Bool(true),
+//				Active:     pulumi.Bool(true),
+//				Priority:   pulumi.Int(100),
+//				Algorithm:  pulumi.String("HS256"),
+//				SecretSize: pulumi.Int(64),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -54,7 +57,9 @@ import (
 // Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated keystore_hmac_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+//
+//	$ pulumi import keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated keystore_hmac_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+//
 // ```
 type RealmKeystoreHmacGenerated struct {
 	pulumi.CustomResourceState
@@ -205,7 +210,7 @@ func (i *RealmKeystoreHmacGenerated) ToRealmKeystoreHmacGeneratedOutputWithConte
 // RealmKeystoreHmacGeneratedArrayInput is an input type that accepts RealmKeystoreHmacGeneratedArray and RealmKeystoreHmacGeneratedArrayOutput values.
 // You can construct a concrete instance of `RealmKeystoreHmacGeneratedArrayInput` via:
 //
-//          RealmKeystoreHmacGeneratedArray{ RealmKeystoreHmacGeneratedArgs{...} }
+//	RealmKeystoreHmacGeneratedArray{ RealmKeystoreHmacGeneratedArgs{...} }
 type RealmKeystoreHmacGeneratedArrayInput interface {
 	pulumi.Input
 
@@ -230,7 +235,7 @@ func (i RealmKeystoreHmacGeneratedArray) ToRealmKeystoreHmacGeneratedArrayOutput
 // RealmKeystoreHmacGeneratedMapInput is an input type that accepts RealmKeystoreHmacGeneratedMap and RealmKeystoreHmacGeneratedMapOutput values.
 // You can construct a concrete instance of `RealmKeystoreHmacGeneratedMapInput` via:
 //
-//          RealmKeystoreHmacGeneratedMap{ "key": RealmKeystoreHmacGeneratedArgs{...} }
+//	RealmKeystoreHmacGeneratedMap{ "key": RealmKeystoreHmacGeneratedArgs{...} }
 type RealmKeystoreHmacGeneratedMapInput interface {
 	pulumi.Input
 

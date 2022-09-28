@@ -14,21 +14,14 @@ public final class RealmUserProfileAttributePermissions {
      * @return A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
      * 
      */
-    private final List<String> edits;
+    private List<String> edits;
     /**
      * @return A list of profiles that will be able to view the attribute. One of `admin`, `user`.
      * 
      */
-    private final List<String> views;
+    private List<String> views;
 
-    @CustomType.Constructor
-    private RealmUserProfileAttributePermissions(
-        @CustomType.Parameter("edits") List<String> edits,
-        @CustomType.Parameter("views") List<String> views) {
-        this.edits = edits;
-        this.views = views;
-    }
-
+    private RealmUserProfileAttributePermissions() {}
     /**
      * @return A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
      * 
@@ -51,21 +44,18 @@ public final class RealmUserProfileAttributePermissions {
     public static Builder builder(RealmUserProfileAttributePermissions defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private List<String> edits;
         private List<String> views;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(RealmUserProfileAttributePermissions defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.edits = defaults.edits;
     	      this.views = defaults.views;
         }
 
+        @CustomType.Setter
         public Builder edits(List<String> edits) {
             this.edits = Objects.requireNonNull(edits);
             return this;
@@ -73,14 +63,19 @@ public final class RealmUserProfileAttributePermissions {
         public Builder edits(String... edits) {
             return edits(List.of(edits));
         }
+        @CustomType.Setter
         public Builder views(List<String> views) {
             this.views = Objects.requireNonNull(views);
             return this;
         }
         public Builder views(String... views) {
             return views(List.of(views));
-        }        public RealmUserProfileAttributePermissions build() {
-            return new RealmUserProfileAttributePermissions(edits, views);
+        }
+        public RealmUserProfileAttributePermissions build() {
+            final var o = new RealmUserProfileAttributePermissions();
+            o.edits = edits;
+            o.views = views;
+            return o;
         }
     }
 }

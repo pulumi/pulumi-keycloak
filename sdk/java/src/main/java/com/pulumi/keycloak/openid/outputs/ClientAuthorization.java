@@ -16,35 +16,24 @@ public final class ClientAuthorization {
      * @return When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
      * 
      */
-    private final @Nullable Boolean allowRemoteResourceManagement;
+    private @Nullable Boolean allowRemoteResourceManagement;
     /**
      * @return Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
      * 
      */
-    private final @Nullable String decisionStrategy;
+    private @Nullable String decisionStrategy;
     /**
      * @return When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
      * 
      */
-    private final @Nullable Boolean keepDefaults;
+    private @Nullable Boolean keepDefaults;
     /**
      * @return Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
      * 
      */
-    private final String policyEnforcementMode;
+    private String policyEnforcementMode;
 
-    @CustomType.Constructor
-    private ClientAuthorization(
-        @CustomType.Parameter("allowRemoteResourceManagement") @Nullable Boolean allowRemoteResourceManagement,
-        @CustomType.Parameter("decisionStrategy") @Nullable String decisionStrategy,
-        @CustomType.Parameter("keepDefaults") @Nullable Boolean keepDefaults,
-        @CustomType.Parameter("policyEnforcementMode") String policyEnforcementMode) {
-        this.allowRemoteResourceManagement = allowRemoteResourceManagement;
-        this.decisionStrategy = decisionStrategy;
-        this.keepDefaults = keepDefaults;
-        this.policyEnforcementMode = policyEnforcementMode;
-    }
-
+    private ClientAuthorization() {}
     /**
      * @return When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
      * 
@@ -81,17 +70,13 @@ public final class ClientAuthorization {
     public static Builder builder(ClientAuthorization defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable Boolean allowRemoteResourceManagement;
         private @Nullable String decisionStrategy;
         private @Nullable Boolean keepDefaults;
         private String policyEnforcementMode;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(ClientAuthorization defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.allowRemoteResourceManagement = defaults.allowRemoteResourceManagement;
@@ -100,23 +85,33 @@ public final class ClientAuthorization {
     	      this.policyEnforcementMode = defaults.policyEnforcementMode;
         }
 
+        @CustomType.Setter
         public Builder allowRemoteResourceManagement(@Nullable Boolean allowRemoteResourceManagement) {
             this.allowRemoteResourceManagement = allowRemoteResourceManagement;
             return this;
         }
+        @CustomType.Setter
         public Builder decisionStrategy(@Nullable String decisionStrategy) {
             this.decisionStrategy = decisionStrategy;
             return this;
         }
+        @CustomType.Setter
         public Builder keepDefaults(@Nullable Boolean keepDefaults) {
             this.keepDefaults = keepDefaults;
             return this;
         }
+        @CustomType.Setter
         public Builder policyEnforcementMode(String policyEnforcementMode) {
             this.policyEnforcementMode = Objects.requireNonNull(policyEnforcementMode);
             return this;
-        }        public ClientAuthorization build() {
-            return new ClientAuthorization(allowRemoteResourceManagement, decisionStrategy, keepDefaults, policyEnforcementMode);
+        }
+        public ClientAuthorization build() {
+            final var o = new ClientAuthorization();
+            o.allowRemoteResourceManagement = allowRemoteResourceManagement;
+            o.decisionStrategy = decisionStrategy;
+            o.keepDefaults = keepDefaults;
+            o.policyEnforcementMode = policyEnforcementMode;
+            return o;
         }
     }
 }

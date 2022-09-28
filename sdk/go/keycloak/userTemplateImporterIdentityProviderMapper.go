@@ -25,48 +25,51 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/oidc"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/oidc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		oidc, err := oidc.NewIdentityProvider(ctx, "oidc", &oidc.IdentityProviderArgs{
-// 			Realm:            realm.ID(),
-// 			Alias:            pulumi.String("oidc"),
-// 			AuthorizationUrl: pulumi.String("https://example.com/auth"),
-// 			TokenUrl:         pulumi.String("https://example.com/token"),
-// 			ClientId:         pulumi.String("example_id"),
-// 			ClientSecret:     pulumi.String("example_token"),
-// 			DefaultScopes:    pulumi.String("openid random profile"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewUserTemplateImporterIdentityProviderMapper(ctx, "usernameImporter", &keycloak.UserTemplateImporterIdentityProviderMapperArgs{
-// 			Realm:                 realm.ID(),
-// 			IdentityProviderAlias: oidc.Alias,
-// 			Template:              pulumi.String(fmt.Sprintf("%v.%v", ALIAS, CLAIM.Email)),
-// 			ExtraConfig: pulumi.AnyMap{
-// 				"syncMode": pulumi.Any("INHERIT"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			oidc, err := oidc.NewIdentityProvider(ctx, "oidc", &oidc.IdentityProviderArgs{
+//				Realm:            realm.ID(),
+//				Alias:            pulumi.String("oidc"),
+//				AuthorizationUrl: pulumi.String("https://example.com/auth"),
+//				TokenUrl:         pulumi.String("https://example.com/token"),
+//				ClientId:         pulumi.String("example_id"),
+//				ClientSecret:     pulumi.String("example_token"),
+//				DefaultScopes:    pulumi.String("openid random profile"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewUserTemplateImporterIdentityProviderMapper(ctx, "usernameImporter", &keycloak.UserTemplateImporterIdentityProviderMapperArgs{
+//				Realm:                 realm.ID(),
+//				IdentityProviderAlias: oidc.Alias,
+//				Template:              pulumi.String(fmt.Sprintf("%v.%v", ALIAS, CLAIM.Email)),
+//				ExtraConfig: pulumi.AnyMap{
+//					"syncMode": pulumi.Any("INHERIT"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -74,7 +77,9 @@ import (
 // Identity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper username_importer my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
+//
+//	$ pulumi import keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper username_importer my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
+//
 // ```
 type UserTemplateImporterIdentityProviderMapper struct {
 	pulumi.CustomResourceState
@@ -208,7 +213,7 @@ func (i *UserTemplateImporterIdentityProviderMapper) ToUserTemplateImporterIdent
 // UserTemplateImporterIdentityProviderMapperArrayInput is an input type that accepts UserTemplateImporterIdentityProviderMapperArray and UserTemplateImporterIdentityProviderMapperArrayOutput values.
 // You can construct a concrete instance of `UserTemplateImporterIdentityProviderMapperArrayInput` via:
 //
-//          UserTemplateImporterIdentityProviderMapperArray{ UserTemplateImporterIdentityProviderMapperArgs{...} }
+//	UserTemplateImporterIdentityProviderMapperArray{ UserTemplateImporterIdentityProviderMapperArgs{...} }
 type UserTemplateImporterIdentityProviderMapperArrayInput interface {
 	pulumi.Input
 
@@ -233,7 +238,7 @@ func (i UserTemplateImporterIdentityProviderMapperArray) ToUserTemplateImporterI
 // UserTemplateImporterIdentityProviderMapperMapInput is an input type that accepts UserTemplateImporterIdentityProviderMapperMap and UserTemplateImporterIdentityProviderMapperMapOutput values.
 // You can construct a concrete instance of `UserTemplateImporterIdentityProviderMapperMapInput` via:
 //
-//          UserTemplateImporterIdentityProviderMapperMap{ "key": UserTemplateImporterIdentityProviderMapperArgs{...} }
+//	UserTemplateImporterIdentityProviderMapperMap{ "key": UserTemplateImporterIdentityProviderMapperArgs{...} }
 type UserTemplateImporterIdentityProviderMapperMapInput interface {
 	pulumi.Input
 

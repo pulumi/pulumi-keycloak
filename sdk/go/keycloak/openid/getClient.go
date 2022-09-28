@@ -18,31 +18,34 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realmManagement, err := openid.LookupClient(ctx, &openid.LookupClientArgs{
-// 			RealmId:  "my-realm",
-// 			ClientId: "realm-management",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.LookupRole(ctx, &GetRoleArgs{
-// 			RealmId:  "my-realm",
-// 			ClientId: pulumi.StringRef(realmManagement.Id),
-// 			Name:     "realm-admin",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realmManagement, err := openid.LookupClient(ctx, &openid.LookupClientArgs{
+//				RealmId:  "my-realm",
+//				ClientId: "realm-management",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.LookupRole(ctx, &GetRoleArgs{
+//				RealmId:  "my-realm",
+//				ClientId: pulumi.StringRef(realmManagement.Id),
+//				Name:     "realm-admin",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupClient(ctx *pulumi.Context, args *LookupClientArgs, opts ...pulumi.InvokeOption) (*LookupClientResult, error) {
 	var rv LookupClientResult

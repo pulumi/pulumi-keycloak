@@ -544,6 +544,7 @@ export interface UsersPermissionsViewScope {
     description?: string;
     policies?: string[];
 }
+
 export namespace ldap {
     export interface UserFederationCache {
         /**

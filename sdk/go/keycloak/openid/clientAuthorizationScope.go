@@ -118,7 +118,7 @@ func (i *ClientAuthorizationScope) ToClientAuthorizationScopeOutputWithContext(c
 // ClientAuthorizationScopeArrayInput is an input type that accepts ClientAuthorizationScopeArray and ClientAuthorizationScopeArrayOutput values.
 // You can construct a concrete instance of `ClientAuthorizationScopeArrayInput` via:
 //
-//          ClientAuthorizationScopeArray{ ClientAuthorizationScopeArgs{...} }
+//	ClientAuthorizationScopeArray{ ClientAuthorizationScopeArgs{...} }
 type ClientAuthorizationScopeArrayInput interface {
 	pulumi.Input
 
@@ -143,7 +143,7 @@ func (i ClientAuthorizationScopeArray) ToClientAuthorizationScopeArrayOutputWith
 // ClientAuthorizationScopeMapInput is an input type that accepts ClientAuthorizationScopeMap and ClientAuthorizationScopeMapOutput values.
 // You can construct a concrete instance of `ClientAuthorizationScopeMapInput` via:
 //
-//          ClientAuthorizationScopeMap{ "key": ClientAuthorizationScopeArgs{...} }
+//	ClientAuthorizationScopeMap{ "key": ClientAuthorizationScopeArgs{...} }
 type ClientAuthorizationScopeMapInput interface {
 	pulumi.Input
 

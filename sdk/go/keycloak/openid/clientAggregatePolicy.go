@@ -134,7 +134,7 @@ func (i *ClientAggregatePolicy) ToClientAggregatePolicyOutputWithContext(ctx con
 // ClientAggregatePolicyArrayInput is an input type that accepts ClientAggregatePolicyArray and ClientAggregatePolicyArrayOutput values.
 // You can construct a concrete instance of `ClientAggregatePolicyArrayInput` via:
 //
-//          ClientAggregatePolicyArray{ ClientAggregatePolicyArgs{...} }
+//	ClientAggregatePolicyArray{ ClientAggregatePolicyArgs{...} }
 type ClientAggregatePolicyArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +159,7 @@ func (i ClientAggregatePolicyArray) ToClientAggregatePolicyArrayOutputWithContex
 // ClientAggregatePolicyMapInput is an input type that accepts ClientAggregatePolicyMap and ClientAggregatePolicyMapOutput values.
 // You can construct a concrete instance of `ClientAggregatePolicyMapInput` via:
 //
-//          ClientAggregatePolicyMap{ "key": ClientAggregatePolicyArgs{...} }
+//	ClientAggregatePolicyMap{ "key": ClientAggregatePolicyArgs{...} }
 type ClientAggregatePolicyMapInput interface {
 	pulumi.Input
 

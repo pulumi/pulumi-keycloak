@@ -18,27 +18,30 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_ = keycloak.GetAuthenticationExecutionOutput(ctx, GetAuthenticationExecutionOutputArgs{
-// 			RealmId:         realm.ID(),
-// 			ParentFlowAlias: pulumi.String("browser"),
-// 			ProviderId:      pulumi.String("auth-cookie"),
-// 		}, nil)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = keycloak.GetAuthenticationExecutionOutput(ctx, GetAuthenticationExecutionOutputArgs{
+//				RealmId:         realm.ID(),
+//				ParentFlowAlias: pulumi.String("browser"),
+//				ProviderId:      pulumi.String("auth-cookie"),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetAuthenticationExecution(ctx *pulumi.Context, args *GetAuthenticationExecutionArgs, opts ...pulumi.InvokeOption) (*GetAuthenticationExecutionResult, error) {
 	var rv GetAuthenticationExecutionResult

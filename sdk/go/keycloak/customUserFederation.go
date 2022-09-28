@@ -17,34 +17,37 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("test"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewCustomUserFederation(ctx, "customUserFederation", &keycloak.CustomUserFederationArgs{
-// 			RealmId:    realm.ID(),
-// 			ProviderId: pulumi.String("custom"),
-// 			Enabled:    pulumi.Bool(true),
-// 			Config: pulumi.AnyMap{
-// 				"dummyString": pulumi.Any("foobar"),
-// 				"dummyBool":   pulumi.Any(true),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("test"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewCustomUserFederation(ctx, "customUserFederation", &keycloak.CustomUserFederationArgs{
+//				RealmId:    realm.ID(),
+//				ProviderId: pulumi.String("custom"),
+//				Enabled:    pulumi.Bool(true),
+//				Config: pulumi.AnyMap{
+//					"dummyString": pulumi.Any("foobar"),
+//					"dummyBool":   pulumi.Any(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -52,7 +55,9 @@ import (
 // Custom user federation providers can be imported using the format `{{realm_id}}/{{custom_user_federation_id}}`. The ID of the custom user federation provider can be found within the Keycloak GUI and is typically a GUIDbash
 //
 // ```sh
-//  $ pulumi import keycloak:index/customUserFederation:CustomUserFederation custom_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
+//
+//	$ pulumi import keycloak:index/customUserFederation:CustomUserFederation custom_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
+//
 // ```
 type CustomUserFederation struct {
 	pulumi.CustomResourceState
@@ -236,7 +241,7 @@ func (i *CustomUserFederation) ToCustomUserFederationOutputWithContext(ctx conte
 // CustomUserFederationArrayInput is an input type that accepts CustomUserFederationArray and CustomUserFederationArrayOutput values.
 // You can construct a concrete instance of `CustomUserFederationArrayInput` via:
 //
-//          CustomUserFederationArray{ CustomUserFederationArgs{...} }
+//	CustomUserFederationArray{ CustomUserFederationArgs{...} }
 type CustomUserFederationArrayInput interface {
 	pulumi.Input
 
@@ -261,7 +266,7 @@ func (i CustomUserFederationArray) ToCustomUserFederationArrayOutputWithContext(
 // CustomUserFederationMapInput is an input type that accepts CustomUserFederationMap and CustomUserFederationMapOutput values.
 // You can construct a concrete instance of `CustomUserFederationMapInput` via:
 //
-//          CustomUserFederationMap{ "key": CustomUserFederationArgs{...} }
+//	CustomUserFederationMap{ "key": CustomUserFederationArgs{...} }
 type CustomUserFederationMapInput interface {
 	pulumi.Input
 

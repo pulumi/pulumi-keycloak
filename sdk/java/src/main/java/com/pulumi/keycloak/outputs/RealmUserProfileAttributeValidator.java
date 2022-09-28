@@ -15,21 +15,14 @@ public final class RealmUserProfileAttributeValidator {
      * @return A map defining the configuration of the validator.
      * 
      */
-    private final @Nullable Map<String,String> config;
+    private @Nullable Map<String,String> config;
     /**
      * @return The name of the group.
      * 
      */
-    private final String name;
+    private String name;
 
-    @CustomType.Constructor
-    private RealmUserProfileAttributeValidator(
-        @CustomType.Parameter("config") @Nullable Map<String,String> config,
-        @CustomType.Parameter("name") String name) {
-        this.config = config;
-        this.name = name;
-    }
-
+    private RealmUserProfileAttributeValidator() {}
     /**
      * @return A map defining the configuration of the validator.
      * 
@@ -52,30 +45,32 @@ public final class RealmUserProfileAttributeValidator {
     public static Builder builder(RealmUserProfileAttributeValidator defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable Map<String,String> config;
         private String name;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(RealmUserProfileAttributeValidator defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.config = defaults.config;
     	      this.name = defaults.name;
         }
 
+        @CustomType.Setter
         public Builder config(@Nullable Map<String,String> config) {
             this.config = config;
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
-        }        public RealmUserProfileAttributeValidator build() {
-            return new RealmUserProfileAttributeValidator(config, name);
+        }
+        public RealmUserProfileAttributeValidator build() {
+            final var o = new RealmUserProfileAttributeValidator();
+            o.config = config;
+            o.name = name;
+            return o;
         }
     }
 }

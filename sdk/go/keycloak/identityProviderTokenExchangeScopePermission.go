@@ -17,61 +17,64 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/oidc"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/oidc"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		tokenExchangeRealm, err := keycloak.NewRealm(ctx, "tokenExchangeRealm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("token-exchange_destination_realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		tokenExchangeMyOidcIdp, err := oidc.NewIdentityProvider(ctx, "tokenExchangeMyOidcIdp", &oidc.IdentityProviderArgs{
-// 			Realm:            tokenExchangeRealm.ID(),
-// 			Alias:            pulumi.String("myIdp"),
-// 			AuthorizationUrl: pulumi.String("http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/auth"),
-// 			TokenUrl:         pulumi.String("http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/token"),
-// 			ClientId:         pulumi.String("clientId"),
-// 			ClientSecret:     pulumi.String("secret"),
-// 			DefaultScopes:    pulumi.String("openid"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = openid.NewClient(ctx, "token-exchangeWebappClient", &openid.ClientArgs{
-// 			RealmId:             tokenExchangeRealm.ID(),
-// 			ClientId:            pulumi.String("webapp_client"),
-// 			ClientSecret:        pulumi.String("secret"),
-// 			Description:         pulumi.String("a webapp client on the destination realm"),
-// 			AccessType:          pulumi.String("CONFIDENTIAL"),
-// 			StandardFlowEnabled: pulumi.Bool(true),
-// 			ValidRedirectUris: pulumi.StringArray{
-// 				pulumi.String("http://localhost:8080/*"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewIdentityProviderTokenExchangeScopePermission(ctx, "oidcIdpPermission", &keycloak.IdentityProviderTokenExchangeScopePermissionArgs{
-// 			RealmId:       tokenExchangeRealm.ID(),
-// 			ProviderAlias: tokenExchangeMyOidcIdp.Alias,
-// 			PolicyType:    pulumi.String("client"),
-// 			Clients: pulumi.StringArray{
-// 				token_exchangeWebappClient.ID(),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			tokenExchangeRealm, err := keycloak.NewRealm(ctx, "tokenExchangeRealm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("token-exchange_destination_realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tokenExchangeMyOidcIdp, err := oidc.NewIdentityProvider(ctx, "tokenExchangeMyOidcIdp", &oidc.IdentityProviderArgs{
+//				Realm:            tokenExchangeRealm.ID(),
+//				Alias:            pulumi.String("myIdp"),
+//				AuthorizationUrl: pulumi.String("http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/auth"),
+//				TokenUrl:         pulumi.String("http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/token"),
+//				ClientId:         pulumi.String("clientId"),
+//				ClientSecret:     pulumi.String("secret"),
+//				DefaultScopes:    pulumi.String("openid"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClient(ctx, "token-exchangeWebappClient", &openid.ClientArgs{
+//				RealmId:             tokenExchangeRealm.ID(),
+//				ClientId:            pulumi.String("webapp_client"),
+//				ClientSecret:        pulumi.String("secret"),
+//				Description:         pulumi.String("a webapp client on the destination realm"),
+//				AccessType:          pulumi.String("CONFIDENTIAL"),
+//				StandardFlowEnabled: pulumi.Bool(true),
+//				ValidRedirectUris: pulumi.StringArray{
+//					pulumi.String("http://localhost:8080/*"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewIdentityProviderTokenExchangeScopePermission(ctx, "oidcIdpPermission", &keycloak.IdentityProviderTokenExchangeScopePermissionArgs{
+//				RealmId:       tokenExchangeRealm.ID(),
+//				ProviderAlias: tokenExchangeMyOidcIdp.Alias,
+//				PolicyType:    pulumi.String("client"),
+//				Clients: pulumi.StringArray{
+//					token_exchangeWebappClient.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -79,7 +82,9 @@ import (
 // This resource can be imported using the format `{{realm_id}}/{{provider_alias}}`, where `provider_alias` is the alias that you assign to the identity provider upon creation. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission oidc_idp_permission my-realm/myIdp
+//
+//	$ pulumi import keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission oidc_idp_permission my-realm/myIdp
+//
 // ```
 type IdentityProviderTokenExchangeScopePermission struct {
 	pulumi.CustomResourceState
@@ -230,7 +235,7 @@ func (i *IdentityProviderTokenExchangeScopePermission) ToIdentityProviderTokenEx
 // IdentityProviderTokenExchangeScopePermissionArrayInput is an input type that accepts IdentityProviderTokenExchangeScopePermissionArray and IdentityProviderTokenExchangeScopePermissionArrayOutput values.
 // You can construct a concrete instance of `IdentityProviderTokenExchangeScopePermissionArrayInput` via:
 //
-//          IdentityProviderTokenExchangeScopePermissionArray{ IdentityProviderTokenExchangeScopePermissionArgs{...} }
+//	IdentityProviderTokenExchangeScopePermissionArray{ IdentityProviderTokenExchangeScopePermissionArgs{...} }
 type IdentityProviderTokenExchangeScopePermissionArrayInput interface {
 	pulumi.Input
 
@@ -255,7 +260,7 @@ func (i IdentityProviderTokenExchangeScopePermissionArray) ToIdentityProviderTok
 // IdentityProviderTokenExchangeScopePermissionMapInput is an input type that accepts IdentityProviderTokenExchangeScopePermissionMap and IdentityProviderTokenExchangeScopePermissionMapOutput values.
 // You can construct a concrete instance of `IdentityProviderTokenExchangeScopePermissionMapInput` via:
 //
-//          IdentityProviderTokenExchangeScopePermissionMap{ "key": IdentityProviderTokenExchangeScopePermissionArgs{...} }
+//	IdentityProviderTokenExchangeScopePermissionMap{ "key": IdentityProviderTokenExchangeScopePermissionArgs{...} }
 type IdentityProviderTokenExchangeScopePermissionMapInput interface {
 	pulumi.Input
 

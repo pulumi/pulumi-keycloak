@@ -13,23 +13,12 @@ public final class GetAuthenticationExecutionResult {
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final String parentFlowAlias;
-    private final String providerId;
-    private final String realmId;
+    private String id;
+    private String parentFlowAlias;
+    private String providerId;
+    private String realmId;
 
-    @CustomType.Constructor
-    private GetAuthenticationExecutionResult(
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("parentFlowAlias") String parentFlowAlias,
-        @CustomType.Parameter("providerId") String providerId,
-        @CustomType.Parameter("realmId") String realmId) {
-        this.id = id;
-        this.parentFlowAlias = parentFlowAlias;
-        this.providerId = providerId;
-        this.realmId = realmId;
-    }
-
+    private GetAuthenticationExecutionResult() {}
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -54,17 +43,13 @@ public final class GetAuthenticationExecutionResult {
     public static Builder builder(GetAuthenticationExecutionResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String id;
         private String parentFlowAlias;
         private String providerId;
         private String realmId;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetAuthenticationExecutionResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.id = defaults.id;
@@ -73,23 +58,33 @@ public final class GetAuthenticationExecutionResult {
     	      this.realmId = defaults.realmId;
         }
 
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder parentFlowAlias(String parentFlowAlias) {
             this.parentFlowAlias = Objects.requireNonNull(parentFlowAlias);
             return this;
         }
+        @CustomType.Setter
         public Builder providerId(String providerId) {
             this.providerId = Objects.requireNonNull(providerId);
             return this;
         }
+        @CustomType.Setter
         public Builder realmId(String realmId) {
             this.realmId = Objects.requireNonNull(realmId);
             return this;
-        }        public GetAuthenticationExecutionResult build() {
-            return new GetAuthenticationExecutionResult(id, parentFlowAlias, providerId, realmId);
+        }
+        public GetAuthenticationExecutionResult build() {
+            final var o = new GetAuthenticationExecutionResult();
+            o.id = id;
+            o.parentFlowAlias = parentFlowAlias;
+            o.providerId = providerId;
+            o.realmId = realmId;
+            return o;
         }
     }
 }

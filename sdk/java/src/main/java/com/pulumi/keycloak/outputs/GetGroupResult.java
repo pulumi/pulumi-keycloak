@@ -11,33 +11,18 @@ import java.util.Objects;
 
 @CustomType
 public final class GetGroupResult {
-    private final Map<String,Object> attributes;
+    private Map<String,Object> attributes;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final String name;
-    private final String parentId;
-    private final String path;
-    private final String realmId;
+    private String id;
+    private String name;
+    private String parentId;
+    private String path;
+    private String realmId;
 
-    @CustomType.Constructor
-    private GetGroupResult(
-        @CustomType.Parameter("attributes") Map<String,Object> attributes,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("name") String name,
-        @CustomType.Parameter("parentId") String parentId,
-        @CustomType.Parameter("path") String path,
-        @CustomType.Parameter("realmId") String realmId) {
-        this.attributes = attributes;
-        this.id = id;
-        this.name = name;
-        this.parentId = parentId;
-        this.path = path;
-        this.realmId = realmId;
-    }
-
+    private GetGroupResult() {}
     public Map<String,Object> attributes() {
         return this.attributes;
     }
@@ -68,7 +53,7 @@ public final class GetGroupResult {
     public static Builder builder(GetGroupResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private Map<String,Object> attributes;
         private String id;
@@ -76,11 +61,7 @@ public final class GetGroupResult {
         private String parentId;
         private String path;
         private String realmId;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetGroupResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.attributes = defaults.attributes;
@@ -91,31 +72,45 @@ public final class GetGroupResult {
     	      this.realmId = defaults.realmId;
         }
 
+        @CustomType.Setter
         public Builder attributes(Map<String,Object> attributes) {
             this.attributes = Objects.requireNonNull(attributes);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
         }
+        @CustomType.Setter
         public Builder parentId(String parentId) {
             this.parentId = Objects.requireNonNull(parentId);
             return this;
         }
+        @CustomType.Setter
         public Builder path(String path) {
             this.path = Objects.requireNonNull(path);
             return this;
         }
+        @CustomType.Setter
         public Builder realmId(String realmId) {
             this.realmId = Objects.requireNonNull(realmId);
             return this;
-        }        public GetGroupResult build() {
-            return new GetGroupResult(attributes, id, name, parentId, path, realmId);
+        }
+        public GetGroupResult build() {
+            final var o = new GetGroupResult();
+            o.attributes = attributes;
+            o.id = id;
+            o.name = name;
+            o.parentId = parentId;
+            o.path = path;
+            o.realmId = realmId;
+            return o;
         }
     }
 }

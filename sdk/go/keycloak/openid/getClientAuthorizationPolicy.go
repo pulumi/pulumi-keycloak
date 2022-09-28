@@ -22,68 +22,71 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		clientWithAuthz, err := openid.NewClient(ctx, "clientWithAuthz", &openid.ClientArgs{
-// 			ClientId:               pulumi.String("client-with-authz"),
-// 			RealmId:                realm.ID(),
-// 			AccessType:             pulumi.String("CONFIDENTIAL"),
-// 			ServiceAccountsEnabled: pulumi.Bool(true),
-// 			Authorization: &openid.ClientAuthorizationArgs{
-// 				PolicyEnforcementMode: pulumi.String("ENFORCING"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		defaultPermission := openid.GetClientAuthorizationPolicyOutput(ctx, openid.GetClientAuthorizationPolicyOutputArgs{
-// 			RealmId:          realm.ID(),
-// 			ResourceServerId: clientWithAuthz.ResourceServerId,
-// 			Name:             pulumi.String("Default Permission"),
-// 		}, nil)
-// 		resource, err := openid.NewClientAuthorizationResource(ctx, "resource", &openid.ClientAuthorizationResourceArgs{
-// 			ResourceServerId: clientWithAuthz.ResourceServerId,
-// 			RealmId:          realm.ID(),
-// 			Uris: pulumi.StringArray{
-// 				pulumi.String("/endpoint/*"),
-// 			},
-// 			Attributes: pulumi.AnyMap{
-// 				"foo": pulumi.Any("bar"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = openid.NewClientAuthorizationPermission(ctx, "permission", &openid.ClientAuthorizationPermissionArgs{
-// 			ResourceServerId: clientWithAuthz.ResourceServerId,
-// 			RealmId:          realm.ID(),
-// 			Policies: pulumi.StringArray{
-// 				defaultPermission.ApplyT(func(defaultPermission openid.GetClientAuthorizationPolicyResult) (string, error) {
-// 					return defaultPermission.Id, nil
-// 				}).(pulumi.StringOutput),
-// 			},
-// 			Resources: pulumi.StringArray{
-// 				resource.ID(),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			clientWithAuthz, err := openid.NewClient(ctx, "clientWithAuthz", &openid.ClientArgs{
+//				ClientId:               pulumi.String("client-with-authz"),
+//				RealmId:                realm.ID(),
+//				AccessType:             pulumi.String("CONFIDENTIAL"),
+//				ServiceAccountsEnabled: pulumi.Bool(true),
+//				Authorization: &openid.ClientAuthorizationArgs{
+//					PolicyEnforcementMode: pulumi.String("ENFORCING"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			defaultPermission := openid.GetClientAuthorizationPolicyOutput(ctx, openid.GetClientAuthorizationPolicyOutputArgs{
+//				RealmId:          realm.ID(),
+//				ResourceServerId: clientWithAuthz.ResourceServerId,
+//				Name:             pulumi.String("Default Permission"),
+//			}, nil)
+//			resource, err := openid.NewClientAuthorizationResource(ctx, "resource", &openid.ClientAuthorizationResourceArgs{
+//				ResourceServerId: clientWithAuthz.ResourceServerId,
+//				RealmId:          realm.ID(),
+//				Uris: pulumi.StringArray{
+//					pulumi.String("/endpoint/*"),
+//				},
+//				Attributes: pulumi.AnyMap{
+//					"foo": pulumi.Any("bar"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClientAuthorizationPermission(ctx, "permission", &openid.ClientAuthorizationPermissionArgs{
+//				ResourceServerId: clientWithAuthz.ResourceServerId,
+//				RealmId:          realm.ID(),
+//				Policies: pulumi.StringArray{
+//					defaultPermission.ApplyT(func(defaultPermission openid.GetClientAuthorizationPolicyResult) (string, error) {
+//						return defaultPermission.Id, nil
+//					}).(pulumi.StringOutput),
+//				},
+//				Resources: pulumi.StringArray{
+//					resource.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetClientAuthorizationPolicy(ctx *pulumi.Context, args *GetClientAuthorizationPolicyArgs, opts ...pulumi.InvokeOption) (*GetClientAuthorizationPolicyResult, error) {
 	var rv GetClientAuthorizationPolicyResult

@@ -21,40 +21,43 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = saml.NewIdentityProvider(ctx, "realmSamlIdentityProvider", &saml.IdentityProviderArgs{
-// 			Realm:                   realm.ID(),
-// 			Alias:                   pulumi.String("my-saml-idp"),
-// 			EntityId:                pulumi.String("https://domain.com/entity_id"),
-// 			SingleSignOnServiceUrl:  pulumi.String("https://domain.com/adfs/ls/"),
-// 			SingleLogoutServiceUrl:  pulumi.String("https://domain.com/adfs/ls/?wa=wsignout1.0"),
-// 			BackchannelSupported:    pulumi.Bool(true),
-// 			PostBindingResponse:     pulumi.Bool(true),
-// 			PostBindingLogout:       pulumi.Bool(true),
-// 			PostBindingAuthnRequest: pulumi.Bool(true),
-// 			StoreToken:              pulumi.Bool(false),
-// 			TrustEmail:              pulumi.Bool(true),
-// 			ForceAuthn:              pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = saml.NewIdentityProvider(ctx, "realmSamlIdentityProvider", &saml.IdentityProviderArgs{
+//				Realm:                   realm.ID(),
+//				Alias:                   pulumi.String("my-saml-idp"),
+//				EntityId:                pulumi.String("https://domain.com/entity_id"),
+//				SingleSignOnServiceUrl:  pulumi.String("https://domain.com/adfs/ls/"),
+//				SingleLogoutServiceUrl:  pulumi.String("https://domain.com/adfs/ls/?wa=wsignout1.0"),
+//				BackchannelSupported:    pulumi.Bool(true),
+//				PostBindingResponse:     pulumi.Bool(true),
+//				PostBindingLogout:       pulumi.Bool(true),
+//				PostBindingAuthnRequest: pulumi.Bool(true),
+//				StoreToken:              pulumi.Bool(false),
+//				TrustEmail:              pulumi.Bool(true),
+//				ForceAuthn:              pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -62,7 +65,9 @@ import (
 // Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:saml/identityProvider:IdentityProvider realm_saml_identity_provider my-realm/my-saml-idp
+//
+//	$ pulumi import keycloak:saml/identityProvider:IdentityProvider realm_saml_identity_provider my-realm/my-saml-idp
+//
 // ```
 type IdentityProvider struct {
 	pulumi.CustomResourceState
@@ -513,7 +518,7 @@ func (i *IdentityProvider) ToIdentityProviderOutputWithContext(ctx context.Conte
 // IdentityProviderArrayInput is an input type that accepts IdentityProviderArray and IdentityProviderArrayOutput values.
 // You can construct a concrete instance of `IdentityProviderArrayInput` via:
 //
-//          IdentityProviderArray{ IdentityProviderArgs{...} }
+//	IdentityProviderArray{ IdentityProviderArgs{...} }
 type IdentityProviderArrayInput interface {
 	pulumi.Input
 
@@ -538,7 +543,7 @@ func (i IdentityProviderArray) ToIdentityProviderArrayOutputWithContext(ctx cont
 // IdentityProviderMapInput is an input type that accepts IdentityProviderMap and IdentityProviderMapOutput values.
 // You can construct a concrete instance of `IdentityProviderMapInput` via:
 //
-//          IdentityProviderMap{ "key": IdentityProviderArgs{...} }
+//	IdentityProviderMap{ "key": IdentityProviderArgs{...} }
 type IdentityProviderMapInput interface {
 	pulumi.Input
 

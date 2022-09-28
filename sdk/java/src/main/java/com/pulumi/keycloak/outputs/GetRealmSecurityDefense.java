@@ -11,17 +11,10 @@ import java.util.Objects;
 
 @CustomType
 public final class GetRealmSecurityDefense {
-    private final List<GetRealmSecurityDefenseBruteForceDetection> bruteForceDetections;
-    private final List<GetRealmSecurityDefenseHeader> headers;
+    private List<GetRealmSecurityDefenseBruteForceDetection> bruteForceDetections;
+    private List<GetRealmSecurityDefenseHeader> headers;
 
-    @CustomType.Constructor
-    private GetRealmSecurityDefense(
-        @CustomType.Parameter("bruteForceDetections") List<GetRealmSecurityDefenseBruteForceDetection> bruteForceDetections,
-        @CustomType.Parameter("headers") List<GetRealmSecurityDefenseHeader> headers) {
-        this.bruteForceDetections = bruteForceDetections;
-        this.headers = headers;
-    }
-
+    private GetRealmSecurityDefense() {}
     public List<GetRealmSecurityDefenseBruteForceDetection> bruteForceDetections() {
         return this.bruteForceDetections;
     }
@@ -36,21 +29,18 @@ public final class GetRealmSecurityDefense {
     public static Builder builder(GetRealmSecurityDefense defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private List<GetRealmSecurityDefenseBruteForceDetection> bruteForceDetections;
         private List<GetRealmSecurityDefenseHeader> headers;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetRealmSecurityDefense defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.bruteForceDetections = defaults.bruteForceDetections;
     	      this.headers = defaults.headers;
         }
 
+        @CustomType.Setter
         public Builder bruteForceDetections(List<GetRealmSecurityDefenseBruteForceDetection> bruteForceDetections) {
             this.bruteForceDetections = Objects.requireNonNull(bruteForceDetections);
             return this;
@@ -58,14 +48,19 @@ public final class GetRealmSecurityDefense {
         public Builder bruteForceDetections(GetRealmSecurityDefenseBruteForceDetection... bruteForceDetections) {
             return bruteForceDetections(List.of(bruteForceDetections));
         }
+        @CustomType.Setter
         public Builder headers(List<GetRealmSecurityDefenseHeader> headers) {
             this.headers = Objects.requireNonNull(headers);
             return this;
         }
         public Builder headers(GetRealmSecurityDefenseHeader... headers) {
             return headers(List.of(headers));
-        }        public GetRealmSecurityDefense build() {
-            return new GetRealmSecurityDefense(bruteForceDetections, headers);
+        }
+        public GetRealmSecurityDefense build() {
+            final var o = new GetRealmSecurityDefense();
+            o.bruteForceDetections = bruteForceDetections;
+            o.headers = headers;
+            return o;
         }
     }
 }
