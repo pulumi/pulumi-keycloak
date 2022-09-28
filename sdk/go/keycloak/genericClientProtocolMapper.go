@@ -26,45 +26,48 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		samlClient, err := saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
-// 			RealmId:  realm.ID(),
-// 			ClientId: pulumi.String("test-client"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewGenericClientProtocolMapper(ctx, "samlHardcodeAttributeMapper", &keycloak.GenericClientProtocolMapperArgs{
-// 			RealmId:        realm.ID(),
-// 			ClientId:       samlClient.ID(),
-// 			Protocol:       pulumi.String("saml"),
-// 			ProtocolMapper: pulumi.String("saml-hardcode-attribute-mapper"),
-// 			Config: pulumi.AnyMap{
-// 				"attribute.name":       pulumi.Any("name"),
-// 				"attribute.nameformat": pulumi.Any("Basic"),
-// 				"attribute.value":      pulumi.Any("value"),
-// 				"friendly.name":        pulumi.Any("display name"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			samlClient, err := saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
+//				RealmId:  realm.ID(),
+//				ClientId: pulumi.String("test-client"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewGenericClientProtocolMapper(ctx, "samlHardcodeAttributeMapper", &keycloak.GenericClientProtocolMapperArgs{
+//				RealmId:        realm.ID(),
+//				ClientId:       samlClient.ID(),
+//				Protocol:       pulumi.String("saml"),
+//				ProtocolMapper: pulumi.String("saml-hardcode-attribute-mapper"),
+//				Config: pulumi.AnyMap{
+//					"attribute.name":       pulumi.Any("name"),
+//					"attribute.nameformat": pulumi.Any("Basic"),
+//					"attribute.value":      pulumi.Any("value"),
+//					"friendly.name":        pulumi.Any("display name"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -72,7 +75,9 @@ import (
 // Protocol mappers can be imported using the following format`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper saml_hardcode_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+//
+//	$ pulumi import keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper saml_hardcode_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+//
 // ```
 type GenericClientProtocolMapper struct {
 	pulumi.CustomResourceState
@@ -232,7 +237,7 @@ func (i *GenericClientProtocolMapper) ToGenericClientProtocolMapperOutputWithCon
 // GenericClientProtocolMapperArrayInput is an input type that accepts GenericClientProtocolMapperArray and GenericClientProtocolMapperArrayOutput values.
 // You can construct a concrete instance of `GenericClientProtocolMapperArrayInput` via:
 //
-//          GenericClientProtocolMapperArray{ GenericClientProtocolMapperArgs{...} }
+//	GenericClientProtocolMapperArray{ GenericClientProtocolMapperArgs{...} }
 type GenericClientProtocolMapperArrayInput interface {
 	pulumi.Input
 
@@ -257,7 +262,7 @@ func (i GenericClientProtocolMapperArray) ToGenericClientProtocolMapperArrayOutp
 // GenericClientProtocolMapperMapInput is an input type that accepts GenericClientProtocolMapperMap and GenericClientProtocolMapperMapOutput values.
 // You can construct a concrete instance of `GenericClientProtocolMapperMapInput` via:
 //
-//          GenericClientProtocolMapperMap{ "key": GenericClientProtocolMapperArgs{...} }
+//	GenericClientProtocolMapperMap{ "key": GenericClientProtocolMapperArgs{...} }
 type GenericClientProtocolMapperMapInput interface {
 	pulumi.Input
 

@@ -20,7 +20,9 @@ import (
 // Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated keystore_rsa_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+//
+//	$ pulumi import keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated keystore_rsa_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+//
 // ```
 type RealmKeystoreRsaGenerated struct {
 	pulumi.CustomResourceState
@@ -171,7 +173,7 @@ func (i *RealmKeystoreRsaGenerated) ToRealmKeystoreRsaGeneratedOutputWithContext
 // RealmKeystoreRsaGeneratedArrayInput is an input type that accepts RealmKeystoreRsaGeneratedArray and RealmKeystoreRsaGeneratedArrayOutput values.
 // You can construct a concrete instance of `RealmKeystoreRsaGeneratedArrayInput` via:
 //
-//          RealmKeystoreRsaGeneratedArray{ RealmKeystoreRsaGeneratedArgs{...} }
+//	RealmKeystoreRsaGeneratedArray{ RealmKeystoreRsaGeneratedArgs{...} }
 type RealmKeystoreRsaGeneratedArrayInput interface {
 	pulumi.Input
 
@@ -196,7 +198,7 @@ func (i RealmKeystoreRsaGeneratedArray) ToRealmKeystoreRsaGeneratedArrayOutputWi
 // RealmKeystoreRsaGeneratedMapInput is an input type that accepts RealmKeystoreRsaGeneratedMap and RealmKeystoreRsaGeneratedMapOutput values.
 // You can construct a concrete instance of `RealmKeystoreRsaGeneratedMapInput` via:
 //
-//          RealmKeystoreRsaGeneratedMap{ "key": RealmKeystoreRsaGeneratedArgs{...} }
+//	RealmKeystoreRsaGeneratedMap{ "key": RealmKeystoreRsaGeneratedArgs{...} }
 type RealmKeystoreRsaGeneratedMapInput interface {
 	pulumi.Input
 

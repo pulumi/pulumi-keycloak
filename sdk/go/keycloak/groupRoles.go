@@ -18,64 +18,67 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		realmRole, err := keycloak.NewRole(ctx, "realmRole", &keycloak.RoleArgs{
-// 			RealmId:     realm.ID(),
-// 			Description: pulumi.String("My Realm Role"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = openid.NewClient(ctx, "client", &openid.ClientArgs{
-// 			RealmId:    realm.ID(),
-// 			ClientId:   pulumi.String("client"),
-// 			Enabled:    pulumi.Bool(true),
-// 			AccessType: pulumi.String("BEARER-ONLY"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		clientRole, err := keycloak.NewRole(ctx, "clientRole", &keycloak.RoleArgs{
-// 			RealmId:     realm.ID(),
-// 			ClientId:    pulumi.Any(keycloak_client.Client.Id),
-// 			Description: pulumi.String("My Client Role"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
-// 			RealmId: realm.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewGroupRoles(ctx, "groupRoles", &keycloak.GroupRolesArgs{
-// 			RealmId: realm.ID(),
-// 			GroupId: group.ID(),
-// 			RoleIds: pulumi.StringArray{
-// 				realmRole.ID(),
-// 				clientRole.ID(),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			realmRole, err := keycloak.NewRole(ctx, "realmRole", &keycloak.RoleArgs{
+//				RealmId:     realm.ID(),
+//				Description: pulumi.String("My Realm Role"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClient(ctx, "client", &openid.ClientArgs{
+//				RealmId:    realm.ID(),
+//				ClientId:   pulumi.String("client"),
+//				Enabled:    pulumi.Bool(true),
+//				AccessType: pulumi.String("BEARER-ONLY"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			clientRole, err := keycloak.NewRole(ctx, "clientRole", &keycloak.RoleArgs{
+//				RealmId:     realm.ID(),
+//				ClientId:    pulumi.Any(keycloak_client.Client.Id),
+//				Description: pulumi.String("My Client Role"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
+//				RealmId: realm.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewGroupRoles(ctx, "groupRoles", &keycloak.GroupRolesArgs{
+//				RealmId: realm.ID(),
+//				GroupId: group.ID(),
+//				RoleIds: pulumi.StringArray{
+//					realmRole.ID(),
+//					clientRole.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Non Exhaustive Roles)
 //
@@ -83,75 +86,78 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		realmRole, err := keycloak.NewRole(ctx, "realmRole", &keycloak.RoleArgs{
-// 			RealmId:     realm.ID(),
-// 			Description: pulumi.String("My Realm Role"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = openid.NewClient(ctx, "client", &openid.ClientArgs{
-// 			RealmId:    realm.ID(),
-// 			ClientId:   pulumi.String("client"),
-// 			Enabled:    pulumi.Bool(true),
-// 			AccessType: pulumi.String("BEARER-ONLY"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		clientRole, err := keycloak.NewRole(ctx, "clientRole", &keycloak.RoleArgs{
-// 			RealmId:     realm.ID(),
-// 			ClientId:    pulumi.Any(keycloak_client.Client.Id),
-// 			Description: pulumi.String("My Client Role"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
-// 			RealmId: realm.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewGroupRoles(ctx, "groupRoleAssociation1", &keycloak.GroupRolesArgs{
-// 			RealmId:    realm.ID(),
-// 			GroupId:    group.ID(),
-// 			Exhaustive: pulumi.Bool(false),
-// 			RoleIds: pulumi.StringArray{
-// 				realmRole.ID(),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewGroupRoles(ctx, "groupRoleAssociation2", &keycloak.GroupRolesArgs{
-// 			RealmId:    realm.ID(),
-// 			GroupId:    group.ID(),
-// 			Exhaustive: pulumi.Bool(false),
-// 			RoleIds: pulumi.StringArray{
-// 				clientRole.ID(),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			realmRole, err := keycloak.NewRole(ctx, "realmRole", &keycloak.RoleArgs{
+//				RealmId:     realm.ID(),
+//				Description: pulumi.String("My Realm Role"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClient(ctx, "client", &openid.ClientArgs{
+//				RealmId:    realm.ID(),
+//				ClientId:   pulumi.String("client"),
+//				Enabled:    pulumi.Bool(true),
+//				AccessType: pulumi.String("BEARER-ONLY"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			clientRole, err := keycloak.NewRole(ctx, "clientRole", &keycloak.RoleArgs{
+//				RealmId:     realm.ID(),
+//				ClientId:    pulumi.Any(keycloak_client.Client.Id),
+//				Description: pulumi.String("My Client Role"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
+//				RealmId: realm.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewGroupRoles(ctx, "groupRoleAssociation1", &keycloak.GroupRolesArgs{
+//				RealmId:    realm.ID(),
+//				GroupId:    group.ID(),
+//				Exhaustive: pulumi.Bool(false),
+//				RoleIds: pulumi.StringArray{
+//					realmRole.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewGroupRoles(ctx, "groupRoleAssociation2", &keycloak.GroupRolesArgs{
+//				RealmId:    realm.ID(),
+//				GroupId:    group.ID(),
+//				Exhaustive: pulumi.Bool(false),
+//				RoleIds: pulumi.StringArray{
+//					clientRole.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -159,7 +165,9 @@ import (
 // This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+//
+//	$ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+//
 // ```
 type GroupRoles struct {
 	pulumi.CustomResourceState
@@ -286,7 +294,7 @@ func (i *GroupRoles) ToGroupRolesOutputWithContext(ctx context.Context) GroupRol
 // GroupRolesArrayInput is an input type that accepts GroupRolesArray and GroupRolesArrayOutput values.
 // You can construct a concrete instance of `GroupRolesArrayInput` via:
 //
-//          GroupRolesArray{ GroupRolesArgs{...} }
+//	GroupRolesArray{ GroupRolesArgs{...} }
 type GroupRolesArrayInput interface {
 	pulumi.Input
 
@@ -311,7 +319,7 @@ func (i GroupRolesArray) ToGroupRolesArrayOutputWithContext(ctx context.Context)
 // GroupRolesMapInput is an input type that accepts GroupRolesMap and GroupRolesMapOutput values.
 // You can construct a concrete instance of `GroupRolesMapInput` via:
 //
-//          GroupRolesMap{ "key": GroupRolesArgs{...} }
+//	GroupRolesMap{ "key": GroupRolesArgs{...} }
 type GroupRolesMapInput interface {
 	pulumi.Input
 

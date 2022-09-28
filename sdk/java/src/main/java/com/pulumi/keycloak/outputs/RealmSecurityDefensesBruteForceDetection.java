@@ -16,53 +16,36 @@ public final class RealmSecurityDefensesBruteForceDetection {
      * @return When will failure count be reset?
      * 
      */
-    private final @Nullable Integer failureResetTimeSeconds;
-    private final @Nullable Integer maxFailureWaitSeconds;
+    private @Nullable Integer failureResetTimeSeconds;
+    private @Nullable Integer maxFailureWaitSeconds;
     /**
      * @return How many failures before wait is triggered.
      * 
      */
-    private final @Nullable Integer maxLoginFailures;
+    private @Nullable Integer maxLoginFailures;
     /**
      * @return How long to wait after a quick login failure.
      * - ` max_failure_wait_seconds  ` - (Optional) Max. time a user will be locked out.
      * 
      */
-    private final @Nullable Integer minimumQuickLoginWaitSeconds;
+    private @Nullable Integer minimumQuickLoginWaitSeconds;
     /**
      * @return When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
      * 
      */
-    private final @Nullable Boolean permanentLockout;
+    private @Nullable Boolean permanentLockout;
     /**
      * @return Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
      * 
      */
-    private final @Nullable Integer quickLoginCheckMilliSeconds;
+    private @Nullable Integer quickLoginCheckMilliSeconds;
     /**
      * @return This represents the amount of time a user should be locked out when the login failure threshold has been met.
      * 
      */
-    private final @Nullable Integer waitIncrementSeconds;
+    private @Nullable Integer waitIncrementSeconds;
 
-    @CustomType.Constructor
-    private RealmSecurityDefensesBruteForceDetection(
-        @CustomType.Parameter("failureResetTimeSeconds") @Nullable Integer failureResetTimeSeconds,
-        @CustomType.Parameter("maxFailureWaitSeconds") @Nullable Integer maxFailureWaitSeconds,
-        @CustomType.Parameter("maxLoginFailures") @Nullable Integer maxLoginFailures,
-        @CustomType.Parameter("minimumQuickLoginWaitSeconds") @Nullable Integer minimumQuickLoginWaitSeconds,
-        @CustomType.Parameter("permanentLockout") @Nullable Boolean permanentLockout,
-        @CustomType.Parameter("quickLoginCheckMilliSeconds") @Nullable Integer quickLoginCheckMilliSeconds,
-        @CustomType.Parameter("waitIncrementSeconds") @Nullable Integer waitIncrementSeconds) {
-        this.failureResetTimeSeconds = failureResetTimeSeconds;
-        this.maxFailureWaitSeconds = maxFailureWaitSeconds;
-        this.maxLoginFailures = maxLoginFailures;
-        this.minimumQuickLoginWaitSeconds = minimumQuickLoginWaitSeconds;
-        this.permanentLockout = permanentLockout;
-        this.quickLoginCheckMilliSeconds = quickLoginCheckMilliSeconds;
-        this.waitIncrementSeconds = waitIncrementSeconds;
-    }
-
+    private RealmSecurityDefensesBruteForceDetection() {}
     /**
      * @return When will failure count be reset?
      * 
@@ -117,7 +100,7 @@ public final class RealmSecurityDefensesBruteForceDetection {
     public static Builder builder(RealmSecurityDefensesBruteForceDetection defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable Integer failureResetTimeSeconds;
         private @Nullable Integer maxFailureWaitSeconds;
@@ -126,11 +109,7 @@ public final class RealmSecurityDefensesBruteForceDetection {
         private @Nullable Boolean permanentLockout;
         private @Nullable Integer quickLoginCheckMilliSeconds;
         private @Nullable Integer waitIncrementSeconds;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(RealmSecurityDefensesBruteForceDetection defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.failureResetTimeSeconds = defaults.failureResetTimeSeconds;
@@ -142,35 +121,51 @@ public final class RealmSecurityDefensesBruteForceDetection {
     	      this.waitIncrementSeconds = defaults.waitIncrementSeconds;
         }
 
+        @CustomType.Setter
         public Builder failureResetTimeSeconds(@Nullable Integer failureResetTimeSeconds) {
             this.failureResetTimeSeconds = failureResetTimeSeconds;
             return this;
         }
+        @CustomType.Setter
         public Builder maxFailureWaitSeconds(@Nullable Integer maxFailureWaitSeconds) {
             this.maxFailureWaitSeconds = maxFailureWaitSeconds;
             return this;
         }
+        @CustomType.Setter
         public Builder maxLoginFailures(@Nullable Integer maxLoginFailures) {
             this.maxLoginFailures = maxLoginFailures;
             return this;
         }
+        @CustomType.Setter
         public Builder minimumQuickLoginWaitSeconds(@Nullable Integer minimumQuickLoginWaitSeconds) {
             this.minimumQuickLoginWaitSeconds = minimumQuickLoginWaitSeconds;
             return this;
         }
+        @CustomType.Setter
         public Builder permanentLockout(@Nullable Boolean permanentLockout) {
             this.permanentLockout = permanentLockout;
             return this;
         }
+        @CustomType.Setter
         public Builder quickLoginCheckMilliSeconds(@Nullable Integer quickLoginCheckMilliSeconds) {
             this.quickLoginCheckMilliSeconds = quickLoginCheckMilliSeconds;
             return this;
         }
+        @CustomType.Setter
         public Builder waitIncrementSeconds(@Nullable Integer waitIncrementSeconds) {
             this.waitIncrementSeconds = waitIncrementSeconds;
             return this;
-        }        public RealmSecurityDefensesBruteForceDetection build() {
-            return new RealmSecurityDefensesBruteForceDetection(failureResetTimeSeconds, maxFailureWaitSeconds, maxLoginFailures, minimumQuickLoginWaitSeconds, permanentLockout, quickLoginCheckMilliSeconds, waitIncrementSeconds);
+        }
+        public RealmSecurityDefensesBruteForceDetection build() {
+            final var o = new RealmSecurityDefensesBruteForceDetection();
+            o.failureResetTimeSeconds = failureResetTimeSeconds;
+            o.maxFailureWaitSeconds = maxFailureWaitSeconds;
+            o.maxLoginFailures = maxLoginFailures;
+            o.minimumQuickLoginWaitSeconds = minimumQuickLoginWaitSeconds;
+            o.permanentLockout = permanentLockout;
+            o.quickLoginCheckMilliSeconds = quickLoginCheckMilliSeconds;
+            o.waitIncrementSeconds = waitIncrementSeconds;
+            return o;
         }
     }
 }

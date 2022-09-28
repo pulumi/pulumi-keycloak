@@ -20,59 +20,62 @@ import (
 // package main
 //
 // import (
-// 	"io/ioutil"
 //
-// 	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/iam"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"io/ioutil"
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/iam"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func readFileOrPanic(path string) pulumi.StringPtrInput {
-// 	data, err := ioutil.ReadFile(path)
-// 	if err != nil {
-// 		panic(err.Error())
-// 	}
-// 	return pulumi.String(string(data))
-// }
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := ioutil.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		samlClient, err := saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
-// 			RealmId:               realm.ID(),
-// 			ClientId:              pulumi.String("test-saml-client"),
-// 			SignDocuments:         pulumi.Bool(false),
-// 			SignAssertions:        pulumi.Bool(true),
-// 			IncludeAuthnStatement: pulumi.Bool(true),
-// 			SigningCertificate:    readFileOrPanic("saml-cert.pem"),
-// 			SigningPrivateKey:     readFileOrPanic("saml-key.pem"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		samlIdpDescriptor := saml.GetClientInstallationProviderOutput(ctx, saml.GetClientInstallationProviderOutputArgs{
-// 			RealmId:    realm.ID(),
-// 			ClientId:   samlClient.ID(),
-// 			ProviderId: pulumi.String("saml-idp-descriptor"),
-// 		}, nil)
-// 		_, err = iam.NewSamlProvider(ctx, "default", &iam.SamlProviderArgs{
-// 			SamlMetadataDocument: samlIdpDescriptor.ApplyT(func(samlIdpDescriptor saml.GetClientInstallationProviderResult) (string, error) {
-// 				return samlIdpDescriptor.Value, nil
-// 			}).(pulumi.StringOutput),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			samlClient, err := saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
+//				RealmId:               realm.ID(),
+//				ClientId:              pulumi.String("test-saml-client"),
+//				SignDocuments:         pulumi.Bool(false),
+//				SignAssertions:        pulumi.Bool(true),
+//				IncludeAuthnStatement: pulumi.Bool(true),
+//				SigningCertificate:    readFileOrPanic("saml-cert.pem"),
+//				SigningPrivateKey:     readFileOrPanic("saml-key.pem"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			samlIdpDescriptor := saml.GetClientInstallationProviderOutput(ctx, saml.GetClientInstallationProviderOutputArgs{
+//				RealmId:    realm.ID(),
+//				ClientId:   samlClient.ID(),
+//				ProviderId: pulumi.String("saml-idp-descriptor"),
+//			}, nil)
+//			_, err = iam.NewSamlProvider(ctx, "default", &iam.SamlProviderArgs{
+//				SamlMetadataDocument: samlIdpDescriptor.ApplyT(func(samlIdpDescriptor saml.GetClientInstallationProviderResult) (string, error) {
+//					return samlIdpDescriptor.Value, nil
+//				}).(pulumi.StringOutput),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetClientInstallationProvider(ctx *pulumi.Context, args *GetClientInstallationProviderArgs, opts ...pulumi.InvokeOption) (*GetClientInstallationProviderResult, error) {
 	var rv GetClientInstallationProviderResult

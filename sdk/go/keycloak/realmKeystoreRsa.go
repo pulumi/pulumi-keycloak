@@ -20,7 +20,9 @@ import (
 // Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:index/realmKeystoreRsa:RealmKeystoreRsa keystore_rsa my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+//
+//	$ pulumi import keycloak:index/realmKeystoreRsa:RealmKeystoreRsa keystore_rsa my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+//
 // ```
 type RealmKeystoreRsa struct {
 	pulumi.CustomResourceState
@@ -187,7 +189,7 @@ func (i *RealmKeystoreRsa) ToRealmKeystoreRsaOutputWithContext(ctx context.Conte
 // RealmKeystoreRsaArrayInput is an input type that accepts RealmKeystoreRsaArray and RealmKeystoreRsaArrayOutput values.
 // You can construct a concrete instance of `RealmKeystoreRsaArrayInput` via:
 //
-//          RealmKeystoreRsaArray{ RealmKeystoreRsaArgs{...} }
+//	RealmKeystoreRsaArray{ RealmKeystoreRsaArgs{...} }
 type RealmKeystoreRsaArrayInput interface {
 	pulumi.Input
 
@@ -212,7 +214,7 @@ func (i RealmKeystoreRsaArray) ToRealmKeystoreRsaArrayOutputWithContext(ctx cont
 // RealmKeystoreRsaMapInput is an input type that accepts RealmKeystoreRsaMap and RealmKeystoreRsaMapOutput values.
 // You can construct a concrete instance of `RealmKeystoreRsaMapInput` via:
 //
-//          RealmKeystoreRsaMap{ "key": RealmKeystoreRsaArgs{...} }
+//	RealmKeystoreRsaMap{ "key": RealmKeystoreRsaArgs{...} }
 type RealmKeystoreRsaMapInput interface {
 	pulumi.Input
 

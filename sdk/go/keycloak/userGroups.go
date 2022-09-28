@@ -17,108 +17,114 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
-// 			RealmId: realm.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		user, err := keycloak.NewUser(ctx, "user", &keycloak.UserArgs{
-// 			RealmId:  realm.ID(),
-// 			Username: pulumi.String("my-user"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewUserGroups(ctx, "userGroups", &keycloak.UserGroupsArgs{
-// 			RealmId: realm.ID(),
-// 			UserId:  user.ID(),
-// 			GroupIds: pulumi.StringArray{
-// 				group.ID(),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
+//				RealmId: realm.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			user, err := keycloak.NewUser(ctx, "user", &keycloak.UserArgs{
+//				RealmId:  realm.ID(),
+//				Username: pulumi.String("my-user"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewUserGroups(ctx, "userGroups", &keycloak.UserGroupsArgs{
+//				RealmId: realm.ID(),
+//				UserId:  user.ID(),
+//				GroupIds: pulumi.StringArray{
+//					group.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Non Exhaustive Groups)
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		groupFoo, err := keycloak.NewGroup(ctx, "groupFoo", &keycloak.GroupArgs{
-// 			RealmId: realm.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		groupBar, err := keycloak.NewGroup(ctx, "groupBar", &keycloak.GroupArgs{
-// 			RealmId: realm.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		user, err := keycloak.NewUser(ctx, "user", &keycloak.UserArgs{
-// 			RealmId:  realm.ID(),
-// 			Username: pulumi.String("my-user"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewUserGroups(ctx, "userGroupsAssociation1UserGroups", &keycloak.UserGroupsArgs{
-// 			RealmId:    realm.ID(),
-// 			UserId:     user.ID(),
-// 			Exhaustive: pulumi.Bool(false),
-// 			GroupIds: pulumi.StringArray{
-// 				groupFoo.ID(),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewUserGroups(ctx, "userGroupsAssociation1Index/userGroupsUserGroups", &keycloak.UserGroupsArgs{
-// 			RealmId:    realm.ID(),
-// 			UserId:     user.ID(),
-// 			Exhaustive: pulumi.Bool(false),
-// 			GroupIds: pulumi.StringArray{
-// 				groupBar.ID(),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			groupFoo, err := keycloak.NewGroup(ctx, "groupFoo", &keycloak.GroupArgs{
+//				RealmId: realm.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			groupBar, err := keycloak.NewGroup(ctx, "groupBar", &keycloak.GroupArgs{
+//				RealmId: realm.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			user, err := keycloak.NewUser(ctx, "user", &keycloak.UserArgs{
+//				RealmId:  realm.ID(),
+//				Username: pulumi.String("my-user"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewUserGroups(ctx, "userGroupsAssociation1UserGroups", &keycloak.UserGroupsArgs{
+//				RealmId:    realm.ID(),
+//				UserId:     user.ID(),
+//				Exhaustive: pulumi.Bool(false),
+//				GroupIds: pulumi.StringArray{
+//					groupFoo.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewUserGroups(ctx, "userGroupsAssociation1Index/userGroupsUserGroups", &keycloak.UserGroupsArgs{
+//				RealmId:    realm.ID(),
+//				UserId:     user.ID(),
+//				Exhaustive: pulumi.Bool(false),
+//				GroupIds: pulumi.StringArray{
+//					groupBar.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -249,7 +255,7 @@ func (i *UserGroups) ToUserGroupsOutputWithContext(ctx context.Context) UserGrou
 // UserGroupsArrayInput is an input type that accepts UserGroupsArray and UserGroupsArrayOutput values.
 // You can construct a concrete instance of `UserGroupsArrayInput` via:
 //
-//          UserGroupsArray{ UserGroupsArgs{...} }
+//	UserGroupsArray{ UserGroupsArgs{...} }
 type UserGroupsArrayInput interface {
 	pulumi.Input
 
@@ -274,7 +280,7 @@ func (i UserGroupsArray) ToUserGroupsArrayOutputWithContext(ctx context.Context)
 // UserGroupsMapInput is an input type that accepts UserGroupsMap and UserGroupsMapOutput values.
 // You can construct a concrete instance of `UserGroupsMapInput` via:
 //
-//          UserGroupsMap{ "key": UserGroupsArgs{...} }
+//	UserGroupsMap{ "key": UserGroupsArgs{...} }
 type UserGroupsMapInput interface {
 	pulumi.Input
 

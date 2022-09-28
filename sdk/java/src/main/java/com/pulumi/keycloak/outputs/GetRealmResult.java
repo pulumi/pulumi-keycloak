@@ -22,186 +22,69 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetRealmResult {
-    private final String accessCodeLifespan;
-    private final String accessCodeLifespanLogin;
-    private final String accessCodeLifespanUserAction;
-    private final String accessTokenLifespan;
-    private final String accessTokenLifespanForImplicitFlow;
-    private final String accountTheme;
-    private final String actionTokenGeneratedByAdminLifespan;
-    private final String actionTokenGeneratedByUserLifespan;
-    private final String adminTheme;
-    private final Map<String,Object> attributes;
-    private final String browserFlow;
-    private final String clientAuthenticationFlow;
-    private final String clientSessionIdleTimeout;
-    private final String clientSessionMaxLifespan;
-    private final List<String> defaultDefaultClientScopes;
-    private final List<String> defaultOptionalClientScopes;
-    private final String defaultSignatureAlgorithm;
-    private final String directGrantFlow;
-    private final String displayName;
-    private final @Nullable String displayNameHtml;
-    private final String dockerAuthenticationFlow;
-    private final Boolean duplicateEmailsAllowed;
-    private final Boolean editUsernameAllowed;
-    private final String emailTheme;
-    private final Boolean enabled;
+    private String accessCodeLifespan;
+    private String accessCodeLifespanLogin;
+    private String accessCodeLifespanUserAction;
+    private String accessTokenLifespan;
+    private String accessTokenLifespanForImplicitFlow;
+    private String accountTheme;
+    private String actionTokenGeneratedByAdminLifespan;
+    private String actionTokenGeneratedByUserLifespan;
+    private String adminTheme;
+    private Map<String,Object> attributes;
+    private String browserFlow;
+    private String clientAuthenticationFlow;
+    private String clientSessionIdleTimeout;
+    private String clientSessionMaxLifespan;
+    private List<String> defaultDefaultClientScopes;
+    private List<String> defaultOptionalClientScopes;
+    private String defaultSignatureAlgorithm;
+    private String directGrantFlow;
+    private String displayName;
+    private @Nullable String displayNameHtml;
+    private String dockerAuthenticationFlow;
+    private Boolean duplicateEmailsAllowed;
+    private Boolean editUsernameAllowed;
+    private String emailTheme;
+    private Boolean enabled;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final String internalId;
-    private final List<GetRealmInternationalization> internationalizations;
-    private final String loginTheme;
-    private final Boolean loginWithEmailAllowed;
-    private final String oauth2DeviceCodeLifespan;
-    private final Integer oauth2DevicePollingInterval;
-    private final String offlineSessionIdleTimeout;
-    private final String offlineSessionMaxLifespan;
-    private final Boolean offlineSessionMaxLifespanEnabled;
-    private final GetRealmOtpPolicy otpPolicy;
-    private final String passwordPolicy;
-    private final String realm;
-    private final Integer refreshTokenMaxReuse;
-    private final Boolean registrationAllowed;
-    private final Boolean registrationEmailAsUsername;
-    private final String registrationFlow;
-    private final Boolean rememberMe;
-    private final String resetCredentialsFlow;
-    private final Boolean resetPasswordAllowed;
-    private final Boolean revokeRefreshToken;
-    private final List<GetRealmSecurityDefense> securityDefenses;
-    private final List<GetRealmSmtpServer> smtpServers;
-    private final String sslRequired;
-    private final String ssoSessionIdleTimeout;
-    private final String ssoSessionIdleTimeoutRememberMe;
-    private final String ssoSessionMaxLifespan;
-    private final String ssoSessionMaxLifespanRememberMe;
-    private final Boolean userManagedAccess;
-    private final Boolean verifyEmail;
-    private final GetRealmWebAuthnPasswordlessPolicy webAuthnPasswordlessPolicy;
-    private final GetRealmWebAuthnPolicy webAuthnPolicy;
+    private String id;
+    private String internalId;
+    private List<GetRealmInternationalization> internationalizations;
+    private String loginTheme;
+    private Boolean loginWithEmailAllowed;
+    private String oauth2DeviceCodeLifespan;
+    private Integer oauth2DevicePollingInterval;
+    private String offlineSessionIdleTimeout;
+    private String offlineSessionMaxLifespan;
+    private Boolean offlineSessionMaxLifespanEnabled;
+    private GetRealmOtpPolicy otpPolicy;
+    private String passwordPolicy;
+    private String realm;
+    private Integer refreshTokenMaxReuse;
+    private Boolean registrationAllowed;
+    private Boolean registrationEmailAsUsername;
+    private String registrationFlow;
+    private Boolean rememberMe;
+    private String resetCredentialsFlow;
+    private Boolean resetPasswordAllowed;
+    private Boolean revokeRefreshToken;
+    private List<GetRealmSecurityDefense> securityDefenses;
+    private List<GetRealmSmtpServer> smtpServers;
+    private String sslRequired;
+    private String ssoSessionIdleTimeout;
+    private String ssoSessionIdleTimeoutRememberMe;
+    private String ssoSessionMaxLifespan;
+    private String ssoSessionMaxLifespanRememberMe;
+    private Boolean userManagedAccess;
+    private Boolean verifyEmail;
+    private GetRealmWebAuthnPasswordlessPolicy webAuthnPasswordlessPolicy;
+    private GetRealmWebAuthnPolicy webAuthnPolicy;
 
-    @CustomType.Constructor
-    private GetRealmResult(
-        @CustomType.Parameter("accessCodeLifespan") String accessCodeLifespan,
-        @CustomType.Parameter("accessCodeLifespanLogin") String accessCodeLifespanLogin,
-        @CustomType.Parameter("accessCodeLifespanUserAction") String accessCodeLifespanUserAction,
-        @CustomType.Parameter("accessTokenLifespan") String accessTokenLifespan,
-        @CustomType.Parameter("accessTokenLifespanForImplicitFlow") String accessTokenLifespanForImplicitFlow,
-        @CustomType.Parameter("accountTheme") String accountTheme,
-        @CustomType.Parameter("actionTokenGeneratedByAdminLifespan") String actionTokenGeneratedByAdminLifespan,
-        @CustomType.Parameter("actionTokenGeneratedByUserLifespan") String actionTokenGeneratedByUserLifespan,
-        @CustomType.Parameter("adminTheme") String adminTheme,
-        @CustomType.Parameter("attributes") Map<String,Object> attributes,
-        @CustomType.Parameter("browserFlow") String browserFlow,
-        @CustomType.Parameter("clientAuthenticationFlow") String clientAuthenticationFlow,
-        @CustomType.Parameter("clientSessionIdleTimeout") String clientSessionIdleTimeout,
-        @CustomType.Parameter("clientSessionMaxLifespan") String clientSessionMaxLifespan,
-        @CustomType.Parameter("defaultDefaultClientScopes") List<String> defaultDefaultClientScopes,
-        @CustomType.Parameter("defaultOptionalClientScopes") List<String> defaultOptionalClientScopes,
-        @CustomType.Parameter("defaultSignatureAlgorithm") String defaultSignatureAlgorithm,
-        @CustomType.Parameter("directGrantFlow") String directGrantFlow,
-        @CustomType.Parameter("displayName") String displayName,
-        @CustomType.Parameter("displayNameHtml") @Nullable String displayNameHtml,
-        @CustomType.Parameter("dockerAuthenticationFlow") String dockerAuthenticationFlow,
-        @CustomType.Parameter("duplicateEmailsAllowed") Boolean duplicateEmailsAllowed,
-        @CustomType.Parameter("editUsernameAllowed") Boolean editUsernameAllowed,
-        @CustomType.Parameter("emailTheme") String emailTheme,
-        @CustomType.Parameter("enabled") Boolean enabled,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("internalId") String internalId,
-        @CustomType.Parameter("internationalizations") List<GetRealmInternationalization> internationalizations,
-        @CustomType.Parameter("loginTheme") String loginTheme,
-        @CustomType.Parameter("loginWithEmailAllowed") Boolean loginWithEmailAllowed,
-        @CustomType.Parameter("oauth2DeviceCodeLifespan") String oauth2DeviceCodeLifespan,
-        @CustomType.Parameter("oauth2DevicePollingInterval") Integer oauth2DevicePollingInterval,
-        @CustomType.Parameter("offlineSessionIdleTimeout") String offlineSessionIdleTimeout,
-        @CustomType.Parameter("offlineSessionMaxLifespan") String offlineSessionMaxLifespan,
-        @CustomType.Parameter("offlineSessionMaxLifespanEnabled") Boolean offlineSessionMaxLifespanEnabled,
-        @CustomType.Parameter("otpPolicy") GetRealmOtpPolicy otpPolicy,
-        @CustomType.Parameter("passwordPolicy") String passwordPolicy,
-        @CustomType.Parameter("realm") String realm,
-        @CustomType.Parameter("refreshTokenMaxReuse") Integer refreshTokenMaxReuse,
-        @CustomType.Parameter("registrationAllowed") Boolean registrationAllowed,
-        @CustomType.Parameter("registrationEmailAsUsername") Boolean registrationEmailAsUsername,
-        @CustomType.Parameter("registrationFlow") String registrationFlow,
-        @CustomType.Parameter("rememberMe") Boolean rememberMe,
-        @CustomType.Parameter("resetCredentialsFlow") String resetCredentialsFlow,
-        @CustomType.Parameter("resetPasswordAllowed") Boolean resetPasswordAllowed,
-        @CustomType.Parameter("revokeRefreshToken") Boolean revokeRefreshToken,
-        @CustomType.Parameter("securityDefenses") List<GetRealmSecurityDefense> securityDefenses,
-        @CustomType.Parameter("smtpServers") List<GetRealmSmtpServer> smtpServers,
-        @CustomType.Parameter("sslRequired") String sslRequired,
-        @CustomType.Parameter("ssoSessionIdleTimeout") String ssoSessionIdleTimeout,
-        @CustomType.Parameter("ssoSessionIdleTimeoutRememberMe") String ssoSessionIdleTimeoutRememberMe,
-        @CustomType.Parameter("ssoSessionMaxLifespan") String ssoSessionMaxLifespan,
-        @CustomType.Parameter("ssoSessionMaxLifespanRememberMe") String ssoSessionMaxLifespanRememberMe,
-        @CustomType.Parameter("userManagedAccess") Boolean userManagedAccess,
-        @CustomType.Parameter("verifyEmail") Boolean verifyEmail,
-        @CustomType.Parameter("webAuthnPasswordlessPolicy") GetRealmWebAuthnPasswordlessPolicy webAuthnPasswordlessPolicy,
-        @CustomType.Parameter("webAuthnPolicy") GetRealmWebAuthnPolicy webAuthnPolicy) {
-        this.accessCodeLifespan = accessCodeLifespan;
-        this.accessCodeLifespanLogin = accessCodeLifespanLogin;
-        this.accessCodeLifespanUserAction = accessCodeLifespanUserAction;
-        this.accessTokenLifespan = accessTokenLifespan;
-        this.accessTokenLifespanForImplicitFlow = accessTokenLifespanForImplicitFlow;
-        this.accountTheme = accountTheme;
-        this.actionTokenGeneratedByAdminLifespan = actionTokenGeneratedByAdminLifespan;
-        this.actionTokenGeneratedByUserLifespan = actionTokenGeneratedByUserLifespan;
-        this.adminTheme = adminTheme;
-        this.attributes = attributes;
-        this.browserFlow = browserFlow;
-        this.clientAuthenticationFlow = clientAuthenticationFlow;
-        this.clientSessionIdleTimeout = clientSessionIdleTimeout;
-        this.clientSessionMaxLifespan = clientSessionMaxLifespan;
-        this.defaultDefaultClientScopes = defaultDefaultClientScopes;
-        this.defaultOptionalClientScopes = defaultOptionalClientScopes;
-        this.defaultSignatureAlgorithm = defaultSignatureAlgorithm;
-        this.directGrantFlow = directGrantFlow;
-        this.displayName = displayName;
-        this.displayNameHtml = displayNameHtml;
-        this.dockerAuthenticationFlow = dockerAuthenticationFlow;
-        this.duplicateEmailsAllowed = duplicateEmailsAllowed;
-        this.editUsernameAllowed = editUsernameAllowed;
-        this.emailTheme = emailTheme;
-        this.enabled = enabled;
-        this.id = id;
-        this.internalId = internalId;
-        this.internationalizations = internationalizations;
-        this.loginTheme = loginTheme;
-        this.loginWithEmailAllowed = loginWithEmailAllowed;
-        this.oauth2DeviceCodeLifespan = oauth2DeviceCodeLifespan;
-        this.oauth2DevicePollingInterval = oauth2DevicePollingInterval;
-        this.offlineSessionIdleTimeout = offlineSessionIdleTimeout;
-        this.offlineSessionMaxLifespan = offlineSessionMaxLifespan;
-        this.offlineSessionMaxLifespanEnabled = offlineSessionMaxLifespanEnabled;
-        this.otpPolicy = otpPolicy;
-        this.passwordPolicy = passwordPolicy;
-        this.realm = realm;
-        this.refreshTokenMaxReuse = refreshTokenMaxReuse;
-        this.registrationAllowed = registrationAllowed;
-        this.registrationEmailAsUsername = registrationEmailAsUsername;
-        this.registrationFlow = registrationFlow;
-        this.rememberMe = rememberMe;
-        this.resetCredentialsFlow = resetCredentialsFlow;
-        this.resetPasswordAllowed = resetPasswordAllowed;
-        this.revokeRefreshToken = revokeRefreshToken;
-        this.securityDefenses = securityDefenses;
-        this.smtpServers = smtpServers;
-        this.sslRequired = sslRequired;
-        this.ssoSessionIdleTimeout = ssoSessionIdleTimeout;
-        this.ssoSessionIdleTimeoutRememberMe = ssoSessionIdleTimeoutRememberMe;
-        this.ssoSessionMaxLifespan = ssoSessionMaxLifespan;
-        this.ssoSessionMaxLifespanRememberMe = ssoSessionMaxLifespanRememberMe;
-        this.userManagedAccess = userManagedAccess;
-        this.verifyEmail = verifyEmail;
-        this.webAuthnPasswordlessPolicy = webAuthnPasswordlessPolicy;
-        this.webAuthnPolicy = webAuthnPolicy;
-    }
-
+    private GetRealmResult() {}
     public String accessCodeLifespan() {
         return this.accessCodeLifespan;
     }
@@ -385,7 +268,7 @@ public final class GetRealmResult {
     public static Builder builder(GetRealmResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String accessCodeLifespan;
         private String accessCodeLifespanLogin;
@@ -444,11 +327,7 @@ public final class GetRealmResult {
         private Boolean verifyEmail;
         private GetRealmWebAuthnPasswordlessPolicy webAuthnPasswordlessPolicy;
         private GetRealmWebAuthnPolicy webAuthnPolicy;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetRealmResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.accessCodeLifespan = defaults.accessCodeLifespan;
@@ -510,62 +389,77 @@ public final class GetRealmResult {
     	      this.webAuthnPolicy = defaults.webAuthnPolicy;
         }
 
+        @CustomType.Setter
         public Builder accessCodeLifespan(String accessCodeLifespan) {
             this.accessCodeLifespan = Objects.requireNonNull(accessCodeLifespan);
             return this;
         }
+        @CustomType.Setter
         public Builder accessCodeLifespanLogin(String accessCodeLifespanLogin) {
             this.accessCodeLifespanLogin = Objects.requireNonNull(accessCodeLifespanLogin);
             return this;
         }
+        @CustomType.Setter
         public Builder accessCodeLifespanUserAction(String accessCodeLifespanUserAction) {
             this.accessCodeLifespanUserAction = Objects.requireNonNull(accessCodeLifespanUserAction);
             return this;
         }
+        @CustomType.Setter
         public Builder accessTokenLifespan(String accessTokenLifespan) {
             this.accessTokenLifespan = Objects.requireNonNull(accessTokenLifespan);
             return this;
         }
+        @CustomType.Setter
         public Builder accessTokenLifespanForImplicitFlow(String accessTokenLifespanForImplicitFlow) {
             this.accessTokenLifespanForImplicitFlow = Objects.requireNonNull(accessTokenLifespanForImplicitFlow);
             return this;
         }
+        @CustomType.Setter
         public Builder accountTheme(String accountTheme) {
             this.accountTheme = Objects.requireNonNull(accountTheme);
             return this;
         }
+        @CustomType.Setter
         public Builder actionTokenGeneratedByAdminLifespan(String actionTokenGeneratedByAdminLifespan) {
             this.actionTokenGeneratedByAdminLifespan = Objects.requireNonNull(actionTokenGeneratedByAdminLifespan);
             return this;
         }
+        @CustomType.Setter
         public Builder actionTokenGeneratedByUserLifespan(String actionTokenGeneratedByUserLifespan) {
             this.actionTokenGeneratedByUserLifespan = Objects.requireNonNull(actionTokenGeneratedByUserLifespan);
             return this;
         }
+        @CustomType.Setter
         public Builder adminTheme(String adminTheme) {
             this.adminTheme = Objects.requireNonNull(adminTheme);
             return this;
         }
+        @CustomType.Setter
         public Builder attributes(Map<String,Object> attributes) {
             this.attributes = Objects.requireNonNull(attributes);
             return this;
         }
+        @CustomType.Setter
         public Builder browserFlow(String browserFlow) {
             this.browserFlow = Objects.requireNonNull(browserFlow);
             return this;
         }
+        @CustomType.Setter
         public Builder clientAuthenticationFlow(String clientAuthenticationFlow) {
             this.clientAuthenticationFlow = Objects.requireNonNull(clientAuthenticationFlow);
             return this;
         }
+        @CustomType.Setter
         public Builder clientSessionIdleTimeout(String clientSessionIdleTimeout) {
             this.clientSessionIdleTimeout = Objects.requireNonNull(clientSessionIdleTimeout);
             return this;
         }
+        @CustomType.Setter
         public Builder clientSessionMaxLifespan(String clientSessionMaxLifespan) {
             this.clientSessionMaxLifespan = Objects.requireNonNull(clientSessionMaxLifespan);
             return this;
         }
+        @CustomType.Setter
         public Builder defaultDefaultClientScopes(List<String> defaultDefaultClientScopes) {
             this.defaultDefaultClientScopes = Objects.requireNonNull(defaultDefaultClientScopes);
             return this;
@@ -573,6 +467,7 @@ public final class GetRealmResult {
         public Builder defaultDefaultClientScopes(String... defaultDefaultClientScopes) {
             return defaultDefaultClientScopes(List.of(defaultDefaultClientScopes));
         }
+        @CustomType.Setter
         public Builder defaultOptionalClientScopes(List<String> defaultOptionalClientScopes) {
             this.defaultOptionalClientScopes = Objects.requireNonNull(defaultOptionalClientScopes);
             return this;
@@ -580,50 +475,62 @@ public final class GetRealmResult {
         public Builder defaultOptionalClientScopes(String... defaultOptionalClientScopes) {
             return defaultOptionalClientScopes(List.of(defaultOptionalClientScopes));
         }
+        @CustomType.Setter
         public Builder defaultSignatureAlgorithm(String defaultSignatureAlgorithm) {
             this.defaultSignatureAlgorithm = Objects.requireNonNull(defaultSignatureAlgorithm);
             return this;
         }
+        @CustomType.Setter
         public Builder directGrantFlow(String directGrantFlow) {
             this.directGrantFlow = Objects.requireNonNull(directGrantFlow);
             return this;
         }
+        @CustomType.Setter
         public Builder displayName(String displayName) {
             this.displayName = Objects.requireNonNull(displayName);
             return this;
         }
+        @CustomType.Setter
         public Builder displayNameHtml(@Nullable String displayNameHtml) {
             this.displayNameHtml = displayNameHtml;
             return this;
         }
+        @CustomType.Setter
         public Builder dockerAuthenticationFlow(String dockerAuthenticationFlow) {
             this.dockerAuthenticationFlow = Objects.requireNonNull(dockerAuthenticationFlow);
             return this;
         }
+        @CustomType.Setter
         public Builder duplicateEmailsAllowed(Boolean duplicateEmailsAllowed) {
             this.duplicateEmailsAllowed = Objects.requireNonNull(duplicateEmailsAllowed);
             return this;
         }
+        @CustomType.Setter
         public Builder editUsernameAllowed(Boolean editUsernameAllowed) {
             this.editUsernameAllowed = Objects.requireNonNull(editUsernameAllowed);
             return this;
         }
+        @CustomType.Setter
         public Builder emailTheme(String emailTheme) {
             this.emailTheme = Objects.requireNonNull(emailTheme);
             return this;
         }
+        @CustomType.Setter
         public Builder enabled(Boolean enabled) {
             this.enabled = Objects.requireNonNull(enabled);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder internalId(String internalId) {
             this.internalId = Objects.requireNonNull(internalId);
             return this;
         }
+        @CustomType.Setter
         public Builder internationalizations(List<GetRealmInternationalization> internationalizations) {
             this.internationalizations = Objects.requireNonNull(internationalizations);
             return this;
@@ -631,78 +538,97 @@ public final class GetRealmResult {
         public Builder internationalizations(GetRealmInternationalization... internationalizations) {
             return internationalizations(List.of(internationalizations));
         }
+        @CustomType.Setter
         public Builder loginTheme(String loginTheme) {
             this.loginTheme = Objects.requireNonNull(loginTheme);
             return this;
         }
+        @CustomType.Setter
         public Builder loginWithEmailAllowed(Boolean loginWithEmailAllowed) {
             this.loginWithEmailAllowed = Objects.requireNonNull(loginWithEmailAllowed);
             return this;
         }
+        @CustomType.Setter
         public Builder oauth2DeviceCodeLifespan(String oauth2DeviceCodeLifespan) {
             this.oauth2DeviceCodeLifespan = Objects.requireNonNull(oauth2DeviceCodeLifespan);
             return this;
         }
+        @CustomType.Setter
         public Builder oauth2DevicePollingInterval(Integer oauth2DevicePollingInterval) {
             this.oauth2DevicePollingInterval = Objects.requireNonNull(oauth2DevicePollingInterval);
             return this;
         }
+        @CustomType.Setter
         public Builder offlineSessionIdleTimeout(String offlineSessionIdleTimeout) {
             this.offlineSessionIdleTimeout = Objects.requireNonNull(offlineSessionIdleTimeout);
             return this;
         }
+        @CustomType.Setter
         public Builder offlineSessionMaxLifespan(String offlineSessionMaxLifespan) {
             this.offlineSessionMaxLifespan = Objects.requireNonNull(offlineSessionMaxLifespan);
             return this;
         }
+        @CustomType.Setter
         public Builder offlineSessionMaxLifespanEnabled(Boolean offlineSessionMaxLifespanEnabled) {
             this.offlineSessionMaxLifespanEnabled = Objects.requireNonNull(offlineSessionMaxLifespanEnabled);
             return this;
         }
+        @CustomType.Setter
         public Builder otpPolicy(GetRealmOtpPolicy otpPolicy) {
             this.otpPolicy = Objects.requireNonNull(otpPolicy);
             return this;
         }
+        @CustomType.Setter
         public Builder passwordPolicy(String passwordPolicy) {
             this.passwordPolicy = Objects.requireNonNull(passwordPolicy);
             return this;
         }
+        @CustomType.Setter
         public Builder realm(String realm) {
             this.realm = Objects.requireNonNull(realm);
             return this;
         }
+        @CustomType.Setter
         public Builder refreshTokenMaxReuse(Integer refreshTokenMaxReuse) {
             this.refreshTokenMaxReuse = Objects.requireNonNull(refreshTokenMaxReuse);
             return this;
         }
+        @CustomType.Setter
         public Builder registrationAllowed(Boolean registrationAllowed) {
             this.registrationAllowed = Objects.requireNonNull(registrationAllowed);
             return this;
         }
+        @CustomType.Setter
         public Builder registrationEmailAsUsername(Boolean registrationEmailAsUsername) {
             this.registrationEmailAsUsername = Objects.requireNonNull(registrationEmailAsUsername);
             return this;
         }
+        @CustomType.Setter
         public Builder registrationFlow(String registrationFlow) {
             this.registrationFlow = Objects.requireNonNull(registrationFlow);
             return this;
         }
+        @CustomType.Setter
         public Builder rememberMe(Boolean rememberMe) {
             this.rememberMe = Objects.requireNonNull(rememberMe);
             return this;
         }
+        @CustomType.Setter
         public Builder resetCredentialsFlow(String resetCredentialsFlow) {
             this.resetCredentialsFlow = Objects.requireNonNull(resetCredentialsFlow);
             return this;
         }
+        @CustomType.Setter
         public Builder resetPasswordAllowed(Boolean resetPasswordAllowed) {
             this.resetPasswordAllowed = Objects.requireNonNull(resetPasswordAllowed);
             return this;
         }
+        @CustomType.Setter
         public Builder revokeRefreshToken(Boolean revokeRefreshToken) {
             this.revokeRefreshToken = Objects.requireNonNull(revokeRefreshToken);
             return this;
         }
+        @CustomType.Setter
         public Builder securityDefenses(List<GetRealmSecurityDefense> securityDefenses) {
             this.securityDefenses = Objects.requireNonNull(securityDefenses);
             return this;
@@ -710,6 +636,7 @@ public final class GetRealmResult {
         public Builder securityDefenses(GetRealmSecurityDefense... securityDefenses) {
             return securityDefenses(List.of(securityDefenses));
         }
+        @CustomType.Setter
         public Builder smtpServers(List<GetRealmSmtpServer> smtpServers) {
             this.smtpServers = Objects.requireNonNull(smtpServers);
             return this;
@@ -717,43 +644,111 @@ public final class GetRealmResult {
         public Builder smtpServers(GetRealmSmtpServer... smtpServers) {
             return smtpServers(List.of(smtpServers));
         }
+        @CustomType.Setter
         public Builder sslRequired(String sslRequired) {
             this.sslRequired = Objects.requireNonNull(sslRequired);
             return this;
         }
+        @CustomType.Setter
         public Builder ssoSessionIdleTimeout(String ssoSessionIdleTimeout) {
             this.ssoSessionIdleTimeout = Objects.requireNonNull(ssoSessionIdleTimeout);
             return this;
         }
+        @CustomType.Setter
         public Builder ssoSessionIdleTimeoutRememberMe(String ssoSessionIdleTimeoutRememberMe) {
             this.ssoSessionIdleTimeoutRememberMe = Objects.requireNonNull(ssoSessionIdleTimeoutRememberMe);
             return this;
         }
+        @CustomType.Setter
         public Builder ssoSessionMaxLifespan(String ssoSessionMaxLifespan) {
             this.ssoSessionMaxLifespan = Objects.requireNonNull(ssoSessionMaxLifespan);
             return this;
         }
+        @CustomType.Setter
         public Builder ssoSessionMaxLifespanRememberMe(String ssoSessionMaxLifespanRememberMe) {
             this.ssoSessionMaxLifespanRememberMe = Objects.requireNonNull(ssoSessionMaxLifespanRememberMe);
             return this;
         }
+        @CustomType.Setter
         public Builder userManagedAccess(Boolean userManagedAccess) {
             this.userManagedAccess = Objects.requireNonNull(userManagedAccess);
             return this;
         }
+        @CustomType.Setter
         public Builder verifyEmail(Boolean verifyEmail) {
             this.verifyEmail = Objects.requireNonNull(verifyEmail);
             return this;
         }
+        @CustomType.Setter
         public Builder webAuthnPasswordlessPolicy(GetRealmWebAuthnPasswordlessPolicy webAuthnPasswordlessPolicy) {
             this.webAuthnPasswordlessPolicy = Objects.requireNonNull(webAuthnPasswordlessPolicy);
             return this;
         }
+        @CustomType.Setter
         public Builder webAuthnPolicy(GetRealmWebAuthnPolicy webAuthnPolicy) {
             this.webAuthnPolicy = Objects.requireNonNull(webAuthnPolicy);
             return this;
-        }        public GetRealmResult build() {
-            return new GetRealmResult(accessCodeLifespan, accessCodeLifespanLogin, accessCodeLifespanUserAction, accessTokenLifespan, accessTokenLifespanForImplicitFlow, accountTheme, actionTokenGeneratedByAdminLifespan, actionTokenGeneratedByUserLifespan, adminTheme, attributes, browserFlow, clientAuthenticationFlow, clientSessionIdleTimeout, clientSessionMaxLifespan, defaultDefaultClientScopes, defaultOptionalClientScopes, defaultSignatureAlgorithm, directGrantFlow, displayName, displayNameHtml, dockerAuthenticationFlow, duplicateEmailsAllowed, editUsernameAllowed, emailTheme, enabled, id, internalId, internationalizations, loginTheme, loginWithEmailAllowed, oauth2DeviceCodeLifespan, oauth2DevicePollingInterval, offlineSessionIdleTimeout, offlineSessionMaxLifespan, offlineSessionMaxLifespanEnabled, otpPolicy, passwordPolicy, realm, refreshTokenMaxReuse, registrationAllowed, registrationEmailAsUsername, registrationFlow, rememberMe, resetCredentialsFlow, resetPasswordAllowed, revokeRefreshToken, securityDefenses, smtpServers, sslRequired, ssoSessionIdleTimeout, ssoSessionIdleTimeoutRememberMe, ssoSessionMaxLifespan, ssoSessionMaxLifespanRememberMe, userManagedAccess, verifyEmail, webAuthnPasswordlessPolicy, webAuthnPolicy);
+        }
+        public GetRealmResult build() {
+            final var o = new GetRealmResult();
+            o.accessCodeLifespan = accessCodeLifespan;
+            o.accessCodeLifespanLogin = accessCodeLifespanLogin;
+            o.accessCodeLifespanUserAction = accessCodeLifespanUserAction;
+            o.accessTokenLifespan = accessTokenLifespan;
+            o.accessTokenLifespanForImplicitFlow = accessTokenLifespanForImplicitFlow;
+            o.accountTheme = accountTheme;
+            o.actionTokenGeneratedByAdminLifespan = actionTokenGeneratedByAdminLifespan;
+            o.actionTokenGeneratedByUserLifespan = actionTokenGeneratedByUserLifespan;
+            o.adminTheme = adminTheme;
+            o.attributes = attributes;
+            o.browserFlow = browserFlow;
+            o.clientAuthenticationFlow = clientAuthenticationFlow;
+            o.clientSessionIdleTimeout = clientSessionIdleTimeout;
+            o.clientSessionMaxLifespan = clientSessionMaxLifespan;
+            o.defaultDefaultClientScopes = defaultDefaultClientScopes;
+            o.defaultOptionalClientScopes = defaultOptionalClientScopes;
+            o.defaultSignatureAlgorithm = defaultSignatureAlgorithm;
+            o.directGrantFlow = directGrantFlow;
+            o.displayName = displayName;
+            o.displayNameHtml = displayNameHtml;
+            o.dockerAuthenticationFlow = dockerAuthenticationFlow;
+            o.duplicateEmailsAllowed = duplicateEmailsAllowed;
+            o.editUsernameAllowed = editUsernameAllowed;
+            o.emailTheme = emailTheme;
+            o.enabled = enabled;
+            o.id = id;
+            o.internalId = internalId;
+            o.internationalizations = internationalizations;
+            o.loginTheme = loginTheme;
+            o.loginWithEmailAllowed = loginWithEmailAllowed;
+            o.oauth2DeviceCodeLifespan = oauth2DeviceCodeLifespan;
+            o.oauth2DevicePollingInterval = oauth2DevicePollingInterval;
+            o.offlineSessionIdleTimeout = offlineSessionIdleTimeout;
+            o.offlineSessionMaxLifespan = offlineSessionMaxLifespan;
+            o.offlineSessionMaxLifespanEnabled = offlineSessionMaxLifespanEnabled;
+            o.otpPolicy = otpPolicy;
+            o.passwordPolicy = passwordPolicy;
+            o.realm = realm;
+            o.refreshTokenMaxReuse = refreshTokenMaxReuse;
+            o.registrationAllowed = registrationAllowed;
+            o.registrationEmailAsUsername = registrationEmailAsUsername;
+            o.registrationFlow = registrationFlow;
+            o.rememberMe = rememberMe;
+            o.resetCredentialsFlow = resetCredentialsFlow;
+            o.resetPasswordAllowed = resetPasswordAllowed;
+            o.revokeRefreshToken = revokeRefreshToken;
+            o.securityDefenses = securityDefenses;
+            o.smtpServers = smtpServers;
+            o.sslRequired = sslRequired;
+            o.ssoSessionIdleTimeout = ssoSessionIdleTimeout;
+            o.ssoSessionIdleTimeoutRememberMe = ssoSessionIdleTimeoutRememberMe;
+            o.ssoSessionMaxLifespan = ssoSessionMaxLifespan;
+            o.ssoSessionMaxLifespanRememberMe = ssoSessionMaxLifespanRememberMe;
+            o.userManagedAccess = userManagedAccess;
+            o.verifyEmail = verifyEmail;
+            o.webAuthnPasswordlessPolicy = webAuthnPasswordlessPolicy;
+            o.webAuthnPolicy = webAuthnPolicy;
+            return o;
         }
     }
 }

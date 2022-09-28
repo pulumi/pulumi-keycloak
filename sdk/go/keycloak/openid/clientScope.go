@@ -22,32 +22,35 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = openid.NewClientScope(ctx, "openidClientScope", &openid.ClientScopeArgs{
-// 			RealmId:             realm.ID(),
-// 			Description:         pulumi.String("When requested, this scope will map a user's group memberships to a claim"),
-// 			IncludeInTokenScope: pulumi.Bool(true),
-// 			GuiOrder:            pulumi.Int(1),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClientScope(ctx, "openidClientScope", &openid.ClientScopeArgs{
+//				RealmId:             realm.ID(),
+//				Description:         pulumi.String("When requested, this scope will map a user's group memberships to a claim"),
+//				IncludeInTokenScope: pulumi.Bool(true),
+//				GuiOrder:            pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -55,7 +58,9 @@ import (
 // Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:openid/clientScope:ClientScope openid_client_scope my-realm/8e8f7fe1-df9b-40ed-bed3-4597aa0dac52
+//
+//	$ pulumi import keycloak:openid/clientScope:ClientScope openid_client_scope my-realm/8e8f7fe1-df9b-40ed-bed3-4597aa0dac52
+//
 // ```
 type ClientScope struct {
 	pulumi.CustomResourceState
@@ -196,7 +201,7 @@ func (i *ClientScope) ToClientScopeOutputWithContext(ctx context.Context) Client
 // ClientScopeArrayInput is an input type that accepts ClientScopeArray and ClientScopeArrayOutput values.
 // You can construct a concrete instance of `ClientScopeArrayInput` via:
 //
-//          ClientScopeArray{ ClientScopeArgs{...} }
+//	ClientScopeArray{ ClientScopeArgs{...} }
 type ClientScopeArrayInput interface {
 	pulumi.Input
 
@@ -221,7 +226,7 @@ func (i ClientScopeArray) ToClientScopeArrayOutputWithContext(ctx context.Contex
 // ClientScopeMapInput is an input type that accepts ClientScopeMap and ClientScopeMapOutput values.
 // You can construct a concrete instance of `ClientScopeMapInput` via:
 //
-//          ClientScopeMap{ "key": ClientScopeArgs{...} }
+//	ClientScopeMap{ "key": ClientScopeArgs{...} }
 type ClientScopeMapInput interface {
 	pulumi.Input
 

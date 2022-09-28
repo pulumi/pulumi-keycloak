@@ -12,41 +12,18 @@ import java.util.Objects;
 
 @CustomType
 public final class GetRealmWebAuthnPasswordlessPolicy {
-    private final List<String> acceptableAaguids;
-    private final String attestationConveyancePreference;
-    private final String authenticatorAttachment;
-    private final Boolean avoidSameAuthenticatorRegister;
-    private final Integer createTimeout;
-    private final String relyingPartyEntityName;
-    private final String relyingPartyId;
-    private final String requireResidentKey;
-    private final List<String> signatureAlgorithms;
-    private final String userVerificationRequirement;
+    private List<String> acceptableAaguids;
+    private String attestationConveyancePreference;
+    private String authenticatorAttachment;
+    private Boolean avoidSameAuthenticatorRegister;
+    private Integer createTimeout;
+    private String relyingPartyEntityName;
+    private String relyingPartyId;
+    private String requireResidentKey;
+    private List<String> signatureAlgorithms;
+    private String userVerificationRequirement;
 
-    @CustomType.Constructor
-    private GetRealmWebAuthnPasswordlessPolicy(
-        @CustomType.Parameter("acceptableAaguids") List<String> acceptableAaguids,
-        @CustomType.Parameter("attestationConveyancePreference") String attestationConveyancePreference,
-        @CustomType.Parameter("authenticatorAttachment") String authenticatorAttachment,
-        @CustomType.Parameter("avoidSameAuthenticatorRegister") Boolean avoidSameAuthenticatorRegister,
-        @CustomType.Parameter("createTimeout") Integer createTimeout,
-        @CustomType.Parameter("relyingPartyEntityName") String relyingPartyEntityName,
-        @CustomType.Parameter("relyingPartyId") String relyingPartyId,
-        @CustomType.Parameter("requireResidentKey") String requireResidentKey,
-        @CustomType.Parameter("signatureAlgorithms") List<String> signatureAlgorithms,
-        @CustomType.Parameter("userVerificationRequirement") String userVerificationRequirement) {
-        this.acceptableAaguids = acceptableAaguids;
-        this.attestationConveyancePreference = attestationConveyancePreference;
-        this.authenticatorAttachment = authenticatorAttachment;
-        this.avoidSameAuthenticatorRegister = avoidSameAuthenticatorRegister;
-        this.createTimeout = createTimeout;
-        this.relyingPartyEntityName = relyingPartyEntityName;
-        this.relyingPartyId = relyingPartyId;
-        this.requireResidentKey = requireResidentKey;
-        this.signatureAlgorithms = signatureAlgorithms;
-        this.userVerificationRequirement = userVerificationRequirement;
-    }
-
+    private GetRealmWebAuthnPasswordlessPolicy() {}
     public List<String> acceptableAaguids() {
         return this.acceptableAaguids;
     }
@@ -85,7 +62,7 @@ public final class GetRealmWebAuthnPasswordlessPolicy {
     public static Builder builder(GetRealmWebAuthnPasswordlessPolicy defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private List<String> acceptableAaguids;
         private String attestationConveyancePreference;
@@ -97,11 +74,7 @@ public final class GetRealmWebAuthnPasswordlessPolicy {
         private String requireResidentKey;
         private List<String> signatureAlgorithms;
         private String userVerificationRequirement;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetRealmWebAuthnPasswordlessPolicy defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.acceptableAaguids = defaults.acceptableAaguids;
@@ -116,6 +89,7 @@ public final class GetRealmWebAuthnPasswordlessPolicy {
     	      this.userVerificationRequirement = defaults.userVerificationRequirement;
         }
 
+        @CustomType.Setter
         public Builder acceptableAaguids(List<String> acceptableAaguids) {
             this.acceptableAaguids = Objects.requireNonNull(acceptableAaguids);
             return this;
@@ -123,34 +97,42 @@ public final class GetRealmWebAuthnPasswordlessPolicy {
         public Builder acceptableAaguids(String... acceptableAaguids) {
             return acceptableAaguids(List.of(acceptableAaguids));
         }
+        @CustomType.Setter
         public Builder attestationConveyancePreference(String attestationConveyancePreference) {
             this.attestationConveyancePreference = Objects.requireNonNull(attestationConveyancePreference);
             return this;
         }
+        @CustomType.Setter
         public Builder authenticatorAttachment(String authenticatorAttachment) {
             this.authenticatorAttachment = Objects.requireNonNull(authenticatorAttachment);
             return this;
         }
+        @CustomType.Setter
         public Builder avoidSameAuthenticatorRegister(Boolean avoidSameAuthenticatorRegister) {
             this.avoidSameAuthenticatorRegister = Objects.requireNonNull(avoidSameAuthenticatorRegister);
             return this;
         }
+        @CustomType.Setter
         public Builder createTimeout(Integer createTimeout) {
             this.createTimeout = Objects.requireNonNull(createTimeout);
             return this;
         }
+        @CustomType.Setter
         public Builder relyingPartyEntityName(String relyingPartyEntityName) {
             this.relyingPartyEntityName = Objects.requireNonNull(relyingPartyEntityName);
             return this;
         }
+        @CustomType.Setter
         public Builder relyingPartyId(String relyingPartyId) {
             this.relyingPartyId = Objects.requireNonNull(relyingPartyId);
             return this;
         }
+        @CustomType.Setter
         public Builder requireResidentKey(String requireResidentKey) {
             this.requireResidentKey = Objects.requireNonNull(requireResidentKey);
             return this;
         }
+        @CustomType.Setter
         public Builder signatureAlgorithms(List<String> signatureAlgorithms) {
             this.signatureAlgorithms = Objects.requireNonNull(signatureAlgorithms);
             return this;
@@ -158,11 +140,24 @@ public final class GetRealmWebAuthnPasswordlessPolicy {
         public Builder signatureAlgorithms(String... signatureAlgorithms) {
             return signatureAlgorithms(List.of(signatureAlgorithms));
         }
+        @CustomType.Setter
         public Builder userVerificationRequirement(String userVerificationRequirement) {
             this.userVerificationRequirement = Objects.requireNonNull(userVerificationRequirement);
             return this;
-        }        public GetRealmWebAuthnPasswordlessPolicy build() {
-            return new GetRealmWebAuthnPasswordlessPolicy(acceptableAaguids, attestationConveyancePreference, authenticatorAttachment, avoidSameAuthenticatorRegister, createTimeout, relyingPartyEntityName, relyingPartyId, requireResidentKey, signatureAlgorithms, userVerificationRequirement);
+        }
+        public GetRealmWebAuthnPasswordlessPolicy build() {
+            final var o = new GetRealmWebAuthnPasswordlessPolicy();
+            o.acceptableAaguids = acceptableAaguids;
+            o.attestationConveyancePreference = attestationConveyancePreference;
+            o.authenticatorAttachment = authenticatorAttachment;
+            o.avoidSameAuthenticatorRegister = avoidSameAuthenticatorRegister;
+            o.createTimeout = createTimeout;
+            o.relyingPartyEntityName = relyingPartyEntityName;
+            o.relyingPartyId = relyingPartyId;
+            o.requireResidentKey = requireResidentKey;
+            o.signatureAlgorithms = signatureAlgorithms;
+            o.userVerificationRequirement = userVerificationRequirement;
+            return o;
         }
     }
 }

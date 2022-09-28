@@ -20,7 +20,7 @@ type ClientAuthenticationFlowBindingOverrides struct {
 // ClientAuthenticationFlowBindingOverridesInput is an input type that accepts ClientAuthenticationFlowBindingOverridesArgs and ClientAuthenticationFlowBindingOverridesOutput values.
 // You can construct a concrete instance of `ClientAuthenticationFlowBindingOverridesInput` via:
 //
-//          ClientAuthenticationFlowBindingOverridesArgs{...}
+//	ClientAuthenticationFlowBindingOverridesArgs{...}
 type ClientAuthenticationFlowBindingOverridesInput interface {
 	pulumi.Input
 
@@ -58,11 +58,11 @@ func (i ClientAuthenticationFlowBindingOverridesArgs) ToClientAuthenticationFlow
 // ClientAuthenticationFlowBindingOverridesPtrInput is an input type that accepts ClientAuthenticationFlowBindingOverridesArgs, ClientAuthenticationFlowBindingOverridesPtr and ClientAuthenticationFlowBindingOverridesPtrOutput values.
 // You can construct a concrete instance of `ClientAuthenticationFlowBindingOverridesPtrInput` via:
 //
-//          ClientAuthenticationFlowBindingOverridesArgs{...}
+//	        ClientAuthenticationFlowBindingOverridesArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ClientAuthenticationFlowBindingOverridesPtrInput interface {
 	pulumi.Input
 
@@ -174,7 +174,7 @@ type GetClientAuthenticationFlowBindingOverride struct {
 // GetClientAuthenticationFlowBindingOverrideInput is an input type that accepts GetClientAuthenticationFlowBindingOverrideArgs and GetClientAuthenticationFlowBindingOverrideOutput values.
 // You can construct a concrete instance of `GetClientAuthenticationFlowBindingOverrideInput` via:
 //
-//          GetClientAuthenticationFlowBindingOverrideArgs{...}
+//	GetClientAuthenticationFlowBindingOverrideArgs{...}
 type GetClientAuthenticationFlowBindingOverrideInput interface {
 	pulumi.Input
 
@@ -202,7 +202,7 @@ func (i GetClientAuthenticationFlowBindingOverrideArgs) ToGetClientAuthenticatio
 // GetClientAuthenticationFlowBindingOverrideArrayInput is an input type that accepts GetClientAuthenticationFlowBindingOverrideArray and GetClientAuthenticationFlowBindingOverrideArrayOutput values.
 // You can construct a concrete instance of `GetClientAuthenticationFlowBindingOverrideArrayInput` via:
 //
-//          GetClientAuthenticationFlowBindingOverrideArray{ GetClientAuthenticationFlowBindingOverrideArgs{...} }
+//	GetClientAuthenticationFlowBindingOverrideArray{ GetClientAuthenticationFlowBindingOverrideArgs{...} }
 type GetClientAuthenticationFlowBindingOverrideArrayInput interface {
 	pulumi.Input
 

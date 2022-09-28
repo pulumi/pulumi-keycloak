@@ -24,40 +24,43 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		samlClient, err := saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
-// 			RealmId:  realm.ID(),
-// 			ClientId: pulumi.String("saml-client"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = saml.NewScriptProtocolMapper(ctx, "samlScriptMapper", &saml.ScriptProtocolMapperArgs{
-// 			RealmId:                 realm.ID(),
-// 			ClientId:                samlClient.ID(),
-// 			Script:                  pulumi.String("exports = 'foo';"),
-// 			SamlAttributeName:       pulumi.String("displayName"),
-// 			SamlAttributeNameFormat: pulumi.String("Unspecified"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			samlClient, err := saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
+//				RealmId:  realm.ID(),
+//				ClientId: pulumi.String("saml-client"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = saml.NewScriptProtocolMapper(ctx, "samlScriptMapper", &saml.ScriptProtocolMapperArgs{
+//				RealmId:                 realm.ID(),
+//				ClientId:                samlClient.ID(),
+//				Script:                  pulumi.String("exports = 'foo';"),
+//				SamlAttributeName:       pulumi.String("displayName"),
+//				SamlAttributeNameFormat: pulumi.String("Unspecified"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -65,11 +68,15 @@ import (
 // Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper saml_script_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+//
+//	$ pulumi import keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper saml_script_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+//
 // ```
 //
 // ```sh
-//  $ pulumi import keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper saml_script_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+//
+//	$ pulumi import keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper saml_script_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+//
 // ```
 type ScriptProtocolMapper struct {
 	pulumi.CustomResourceState
@@ -249,7 +256,7 @@ func (i *ScriptProtocolMapper) ToScriptProtocolMapperOutputWithContext(ctx conte
 // ScriptProtocolMapperArrayInput is an input type that accepts ScriptProtocolMapperArray and ScriptProtocolMapperArrayOutput values.
 // You can construct a concrete instance of `ScriptProtocolMapperArrayInput` via:
 //
-//          ScriptProtocolMapperArray{ ScriptProtocolMapperArgs{...} }
+//	ScriptProtocolMapperArray{ ScriptProtocolMapperArgs{...} }
 type ScriptProtocolMapperArrayInput interface {
 	pulumi.Input
 
@@ -274,7 +281,7 @@ func (i ScriptProtocolMapperArray) ToScriptProtocolMapperArrayOutputWithContext(
 // ScriptProtocolMapperMapInput is an input type that accepts ScriptProtocolMapperMap and ScriptProtocolMapperMapOutput values.
 // You can construct a concrete instance of `ScriptProtocolMapperMapInput` via:
 //
-//          ScriptProtocolMapperMap{ "key": ScriptProtocolMapperArgs{...} }
+//	ScriptProtocolMapperMap{ "key": ScriptProtocolMapperArgs{...} }
 type ScriptProtocolMapperMapInput interface {
 	pulumi.Input
 

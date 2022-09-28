@@ -17,51 +17,54 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		client, err := openid.NewClient(ctx, "client", &openid.ClientArgs{
-// 			RealmId:    realm.ID(),
-// 			ClientId:   pulumi.String("test-client"),
-// 			AccessType: pulumi.String("CONFIDENTIAL"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		clientScope, err := openid.NewClientScope(ctx, "clientScope", &openid.ClientScopeArgs{
-// 			RealmId: realm.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = openid.NewClientDefaultScopes(ctx, "clientDefaultScopes", &openid.ClientDefaultScopesArgs{
-// 			RealmId:  realm.ID(),
-// 			ClientId: client.ID(),
-// 			DefaultScopes: pulumi.StringArray{
-// 				pulumi.String("profile"),
-// 				pulumi.String("email"),
-// 				pulumi.String("roles"),
-// 				pulumi.String("web-origins"),
-// 				clientScope.Name,
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			client, err := openid.NewClient(ctx, "client", &openid.ClientArgs{
+//				RealmId:    realm.ID(),
+//				ClientId:   pulumi.String("test-client"),
+//				AccessType: pulumi.String("CONFIDENTIAL"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			clientScope, err := openid.NewClientScope(ctx, "clientScope", &openid.ClientScopeArgs{
+//				RealmId: realm.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClientDefaultScopes(ctx, "clientDefaultScopes", &openid.ClientDefaultScopesArgs{
+//				RealmId:  realm.ID(),
+//				ClientId: client.ID(),
+//				DefaultScopes: pulumi.StringArray{
+//					pulumi.String("profile"),
+//					pulumi.String("email"),
+//					pulumi.String("roles"),
+//					pulumi.String("web-origins"),
+//					clientScope.Name,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -182,7 +185,7 @@ func (i *ClientDefaultScopes) ToClientDefaultScopesOutputWithContext(ctx context
 // ClientDefaultScopesArrayInput is an input type that accepts ClientDefaultScopesArray and ClientDefaultScopesArrayOutput values.
 // You can construct a concrete instance of `ClientDefaultScopesArrayInput` via:
 //
-//          ClientDefaultScopesArray{ ClientDefaultScopesArgs{...} }
+//	ClientDefaultScopesArray{ ClientDefaultScopesArgs{...} }
 type ClientDefaultScopesArrayInput interface {
 	pulumi.Input
 
@@ -207,7 +210,7 @@ func (i ClientDefaultScopesArray) ToClientDefaultScopesArrayOutputWithContext(ct
 // ClientDefaultScopesMapInput is an input type that accepts ClientDefaultScopesMap and ClientDefaultScopesMapOutput values.
 // You can construct a concrete instance of `ClientDefaultScopesMapInput` via:
 //
-//          ClientDefaultScopesMap{ "key": ClientDefaultScopesArgs{...} }
+//	ClientDefaultScopesMap{ "key": ClientDefaultScopesArgs{...} }
 type ClientDefaultScopesMapInput interface {
 	pulumi.Input
 

@@ -143,7 +143,7 @@ func (i *ClientAuthorizationPermission) ToClientAuthorizationPermissionOutputWit
 // ClientAuthorizationPermissionArrayInput is an input type that accepts ClientAuthorizationPermissionArray and ClientAuthorizationPermissionArrayOutput values.
 // You can construct a concrete instance of `ClientAuthorizationPermissionArrayInput` via:
 //
-//          ClientAuthorizationPermissionArray{ ClientAuthorizationPermissionArgs{...} }
+//	ClientAuthorizationPermissionArray{ ClientAuthorizationPermissionArgs{...} }
 type ClientAuthorizationPermissionArrayInput interface {
 	pulumi.Input
 
@@ -168,7 +168,7 @@ func (i ClientAuthorizationPermissionArray) ToClientAuthorizationPermissionArray
 // ClientAuthorizationPermissionMapInput is an input type that accepts ClientAuthorizationPermissionMap and ClientAuthorizationPermissionMapOutput values.
 // You can construct a concrete instance of `ClientAuthorizationPermissionMapInput` via:
 //
-//          ClientAuthorizationPermissionMap{ "key": ClientAuthorizationPermissionArgs{...} }
+//	ClientAuthorizationPermissionMap{ "key": ClientAuthorizationPermissionArgs{...} }
 type ClientAuthorizationPermissionMapInput interface {
 	pulumi.Input
 

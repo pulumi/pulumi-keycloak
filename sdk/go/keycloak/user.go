@@ -23,52 +23,55 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewUser(ctx, "user", &keycloak.UserArgs{
-// 			RealmId:   realm.ID(),
-// 			Username:  pulumi.String("bob"),
-// 			Enabled:   pulumi.Bool(true),
-// 			Email:     pulumi.String("bob@domain.com"),
-// 			FirstName: pulumi.String("Bob"),
-// 			LastName:  pulumi.String("Bobson"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewUser(ctx, "userWithInitialPassword", &keycloak.UserArgs{
-// 			RealmId:   realm.ID(),
-// 			Username:  pulumi.String("alice"),
-// 			Enabled:   pulumi.Bool(true),
-// 			Email:     pulumi.String("alice@domain.com"),
-// 			FirstName: pulumi.String("Alice"),
-// 			LastName:  pulumi.String("Aliceberg"),
-// 			Attributes: pulumi.AnyMap{
-// 				"foo":        pulumi.Any("bar"),
-// 				"multivalue": pulumi.Any("value1##value2"),
-// 			},
-// 			InitialPassword: &UserInitialPasswordArgs{
-// 				Value:     pulumi.String("some password"),
-// 				Temporary: pulumi.Bool(true),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewUser(ctx, "user", &keycloak.UserArgs{
+//				RealmId:   realm.ID(),
+//				Username:  pulumi.String("bob"),
+//				Enabled:   pulumi.Bool(true),
+//				Email:     pulumi.String("bob@domain.com"),
+//				FirstName: pulumi.String("Bob"),
+//				LastName:  pulumi.String("Bobson"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewUser(ctx, "userWithInitialPassword", &keycloak.UserArgs{
+//				RealmId:   realm.ID(),
+//				Username:  pulumi.String("alice"),
+//				Enabled:   pulumi.Bool(true),
+//				Email:     pulumi.String("alice@domain.com"),
+//				FirstName: pulumi.String("Alice"),
+//				LastName:  pulumi.String("Aliceberg"),
+//				Attributes: pulumi.AnyMap{
+//					"foo":        pulumi.Any("bar"),
+//					"multivalue": pulumi.Any("value1##value2"),
+//				},
+//				InitialPassword: &UserInitialPasswordArgs{
+//					Value:     pulumi.String("some password"),
+//					Temporary: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -76,7 +79,9 @@ import (
 // Users can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak assigns to the user upon creation. This value can be found in the GUI when editing the user. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:index/user:User user my-realm/60c3f971-b1d3-4b3a-9035-d16d7540a5e4
+//
+//	$ pulumi import keycloak:index/user:User user my-realm/60c3f971-b1d3-4b3a-9035-d16d7540a5e4
+//
 // ```
 type User struct {
 	pulumi.CustomResourceState
@@ -255,7 +260,7 @@ func (i *User) ToUserOutputWithContext(ctx context.Context) UserOutput {
 // UserArrayInput is an input type that accepts UserArray and UserArrayOutput values.
 // You can construct a concrete instance of `UserArrayInput` via:
 //
-//          UserArray{ UserArgs{...} }
+//	UserArray{ UserArgs{...} }
 type UserArrayInput interface {
 	pulumi.Input
 
@@ -280,7 +285,7 @@ func (i UserArray) ToUserArrayOutputWithContext(ctx context.Context) UserArrayOu
 // UserMapInput is an input type that accepts UserMap and UserMapOutput values.
 // You can construct a concrete instance of `UserMapInput` via:
 //
-//          UserMap{ "key": UserArgs{...} }
+//	UserMap{ "key": UserArgs{...} }
 type UserMapInput interface {
 	pulumi.Input
 

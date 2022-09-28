@@ -161,7 +161,7 @@ func (i *HardcodedAttributeIdentityProviderMapper) ToHardcodedAttributeIdentityP
 // HardcodedAttributeIdentityProviderMapperArrayInput is an input type that accepts HardcodedAttributeIdentityProviderMapperArray and HardcodedAttributeIdentityProviderMapperArrayOutput values.
 // You can construct a concrete instance of `HardcodedAttributeIdentityProviderMapperArrayInput` via:
 //
-//          HardcodedAttributeIdentityProviderMapperArray{ HardcodedAttributeIdentityProviderMapperArgs{...} }
+//	HardcodedAttributeIdentityProviderMapperArray{ HardcodedAttributeIdentityProviderMapperArgs{...} }
 type HardcodedAttributeIdentityProviderMapperArrayInput interface {
 	pulumi.Input
 
@@ -186,7 +186,7 @@ func (i HardcodedAttributeIdentityProviderMapperArray) ToHardcodedAttributeIdent
 // HardcodedAttributeIdentityProviderMapperMapInput is an input type that accepts HardcodedAttributeIdentityProviderMapperMap and HardcodedAttributeIdentityProviderMapperMapOutput values.
 // You can construct a concrete instance of `HardcodedAttributeIdentityProviderMapperMapInput` via:
 //
-//          HardcodedAttributeIdentityProviderMapperMap{ "key": HardcodedAttributeIdentityProviderMapperArgs{...} }
+//	HardcodedAttributeIdentityProviderMapperMap{ "key": HardcodedAttributeIdentityProviderMapperArgs{...} }
 type HardcodedAttributeIdentityProviderMapperMapInput interface {
 	pulumi.Input
 

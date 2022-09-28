@@ -10,17 +10,10 @@ import java.util.Objects;
 
 @CustomType
 public final class ClientRolePolicyRole {
-    private final String id;
-    private final Boolean required;
+    private String id;
+    private Boolean required;
 
-    @CustomType.Constructor
-    private ClientRolePolicyRole(
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("required") Boolean required) {
-        this.id = id;
-        this.required = required;
-    }
-
+    private ClientRolePolicyRole() {}
     public String id() {
         return this.id;
     }
@@ -35,30 +28,32 @@ public final class ClientRolePolicyRole {
     public static Builder builder(ClientRolePolicyRole defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String id;
         private Boolean required;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(ClientRolePolicyRole defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.id = defaults.id;
     	      this.required = defaults.required;
         }
 
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder required(Boolean required) {
             this.required = Objects.requireNonNull(required);
             return this;
-        }        public ClientRolePolicyRole build() {
-            return new ClientRolePolicyRole(id, required);
+        }
+        public ClientRolePolicyRole build() {
+            final var o = new ClientRolePolicyRole();
+            o.id = id;
+            o.required = required;
+            return o;
         }
     }
 }

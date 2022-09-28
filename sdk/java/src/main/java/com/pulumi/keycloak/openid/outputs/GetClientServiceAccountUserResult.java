@@ -14,48 +14,23 @@ import java.util.Objects;
 
 @CustomType
 public final class GetClientServiceAccountUserResult {
-    private final Map<String,Object> attributes;
-    private final String clientId;
-    private final String email;
-    private final Boolean emailVerified;
-    private final Boolean enabled;
-    private final List<GetClientServiceAccountUserFederatedIdentity> federatedIdentities;
-    private final String firstName;
+    private Map<String,Object> attributes;
+    private String clientId;
+    private String email;
+    private Boolean emailVerified;
+    private Boolean enabled;
+    private List<GetClientServiceAccountUserFederatedIdentity> federatedIdentities;
+    private String firstName;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final String lastName;
-    private final String realmId;
-    private final String username;
+    private String id;
+    private String lastName;
+    private String realmId;
+    private String username;
 
-    @CustomType.Constructor
-    private GetClientServiceAccountUserResult(
-        @CustomType.Parameter("attributes") Map<String,Object> attributes,
-        @CustomType.Parameter("clientId") String clientId,
-        @CustomType.Parameter("email") String email,
-        @CustomType.Parameter("emailVerified") Boolean emailVerified,
-        @CustomType.Parameter("enabled") Boolean enabled,
-        @CustomType.Parameter("federatedIdentities") List<GetClientServiceAccountUserFederatedIdentity> federatedIdentities,
-        @CustomType.Parameter("firstName") String firstName,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("lastName") String lastName,
-        @CustomType.Parameter("realmId") String realmId,
-        @CustomType.Parameter("username") String username) {
-        this.attributes = attributes;
-        this.clientId = clientId;
-        this.email = email;
-        this.emailVerified = emailVerified;
-        this.enabled = enabled;
-        this.federatedIdentities = federatedIdentities;
-        this.firstName = firstName;
-        this.id = id;
-        this.lastName = lastName;
-        this.realmId = realmId;
-        this.username = username;
-    }
-
+    private GetClientServiceAccountUserResult() {}
     public Map<String,Object> attributes() {
         return this.attributes;
     }
@@ -101,7 +76,7 @@ public final class GetClientServiceAccountUserResult {
     public static Builder builder(GetClientServiceAccountUserResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private Map<String,Object> attributes;
         private String clientId;
@@ -114,11 +89,7 @@ public final class GetClientServiceAccountUserResult {
         private String lastName;
         private String realmId;
         private String username;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetClientServiceAccountUserResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.attributes = defaults.attributes;
@@ -134,26 +105,32 @@ public final class GetClientServiceAccountUserResult {
     	      this.username = defaults.username;
         }
 
+        @CustomType.Setter
         public Builder attributes(Map<String,Object> attributes) {
             this.attributes = Objects.requireNonNull(attributes);
             return this;
         }
+        @CustomType.Setter
         public Builder clientId(String clientId) {
             this.clientId = Objects.requireNonNull(clientId);
             return this;
         }
+        @CustomType.Setter
         public Builder email(String email) {
             this.email = Objects.requireNonNull(email);
             return this;
         }
+        @CustomType.Setter
         public Builder emailVerified(Boolean emailVerified) {
             this.emailVerified = Objects.requireNonNull(emailVerified);
             return this;
         }
+        @CustomType.Setter
         public Builder enabled(Boolean enabled) {
             this.enabled = Objects.requireNonNull(enabled);
             return this;
         }
+        @CustomType.Setter
         public Builder federatedIdentities(List<GetClientServiceAccountUserFederatedIdentity> federatedIdentities) {
             this.federatedIdentities = Objects.requireNonNull(federatedIdentities);
             return this;
@@ -161,27 +138,45 @@ public final class GetClientServiceAccountUserResult {
         public Builder federatedIdentities(GetClientServiceAccountUserFederatedIdentity... federatedIdentities) {
             return federatedIdentities(List.of(federatedIdentities));
         }
+        @CustomType.Setter
         public Builder firstName(String firstName) {
             this.firstName = Objects.requireNonNull(firstName);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder lastName(String lastName) {
             this.lastName = Objects.requireNonNull(lastName);
             return this;
         }
+        @CustomType.Setter
         public Builder realmId(String realmId) {
             this.realmId = Objects.requireNonNull(realmId);
             return this;
         }
+        @CustomType.Setter
         public Builder username(String username) {
             this.username = Objects.requireNonNull(username);
             return this;
-        }        public GetClientServiceAccountUserResult build() {
-            return new GetClientServiceAccountUserResult(attributes, clientId, email, emailVerified, enabled, federatedIdentities, firstName, id, lastName, realmId, username);
+        }
+        public GetClientServiceAccountUserResult build() {
+            final var o = new GetClientServiceAccountUserResult();
+            o.attributes = attributes;
+            o.clientId = clientId;
+            o.email = email;
+            o.emailVerified = emailVerified;
+            o.enabled = enabled;
+            o.federatedIdentities = federatedIdentities;
+            o.firstName = firstName;
+            o.id = id;
+            o.lastName = lastName;
+            o.realmId = realmId;
+            o.username = username;
+            return o;
         }
     }
 }

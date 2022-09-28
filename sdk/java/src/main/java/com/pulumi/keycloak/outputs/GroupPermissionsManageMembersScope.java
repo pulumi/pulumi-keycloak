@@ -12,20 +12,11 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GroupPermissionsManageMembersScope {
-    private final @Nullable String decisionStrategy;
-    private final @Nullable String description;
-    private final @Nullable List<String> policies;
+    private @Nullable String decisionStrategy;
+    private @Nullable String description;
+    private @Nullable List<String> policies;
 
-    @CustomType.Constructor
-    private GroupPermissionsManageMembersScope(
-        @CustomType.Parameter("decisionStrategy") @Nullable String decisionStrategy,
-        @CustomType.Parameter("description") @Nullable String description,
-        @CustomType.Parameter("policies") @Nullable List<String> policies) {
-        this.decisionStrategy = decisionStrategy;
-        this.description = description;
-        this.policies = policies;
-    }
-
+    private GroupPermissionsManageMembersScope() {}
     public Optional<String> decisionStrategy() {
         return Optional.ofNullable(this.decisionStrategy);
     }
@@ -43,16 +34,12 @@ public final class GroupPermissionsManageMembersScope {
     public static Builder builder(GroupPermissionsManageMembersScope defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String decisionStrategy;
         private @Nullable String description;
         private @Nullable List<String> policies;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GroupPermissionsManageMembersScope defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.decisionStrategy = defaults.decisionStrategy;
@@ -60,22 +47,30 @@ public final class GroupPermissionsManageMembersScope {
     	      this.policies = defaults.policies;
         }
 
+        @CustomType.Setter
         public Builder decisionStrategy(@Nullable String decisionStrategy) {
             this.decisionStrategy = decisionStrategy;
             return this;
         }
+        @CustomType.Setter
         public Builder description(@Nullable String description) {
             this.description = description;
             return this;
         }
+        @CustomType.Setter
         public Builder policies(@Nullable List<String> policies) {
             this.policies = policies;
             return this;
         }
         public Builder policies(String... policies) {
             return policies(List.of(policies));
-        }        public GroupPermissionsManageMembersScope build() {
-            return new GroupPermissionsManageMembersScope(decisionStrategy, description, policies);
+        }
+        public GroupPermissionsManageMembersScope build() {
+            final var o = new GroupPermissionsManageMembersScope();
+            o.decisionStrategy = decisionStrategy;
+            o.description = description;
+            o.policies = policies;
+            return o;
         }
     }
 }

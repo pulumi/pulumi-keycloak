@@ -24,50 +24,53 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/authentication"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/authentication"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		flow, err := authentication.NewFlow(ctx, "flow", &authentication.FlowArgs{
-// 			RealmId: realm.ID(),
-// 			Alias:   pulumi.String("my-flow-alias"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		executionOne, err := authentication.NewExecution(ctx, "executionOne", &authentication.ExecutionArgs{
-// 			RealmId:         realm.ID(),
-// 			ParentFlowAlias: flow.Alias,
-// 			Authenticator:   pulumi.String("auth-cookie"),
-// 			Requirement:     pulumi.String("ALTERNATIVE"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = authentication.NewExecution(ctx, "executionTwo", &authentication.ExecutionArgs{
-// 			RealmId:         realm.ID(),
-// 			ParentFlowAlias: flow.Alias,
-// 			Authenticator:   pulumi.String("identity-provider-redirector"),
-// 			Requirement:     pulumi.String("ALTERNATIVE"),
-// 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			executionOne,
-// 		}))
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			flow, err := authentication.NewFlow(ctx, "flow", &authentication.FlowArgs{
+//				RealmId: realm.ID(),
+//				Alias:   pulumi.String("my-flow-alias"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			executionOne, err := authentication.NewExecution(ctx, "executionOne", &authentication.ExecutionArgs{
+//				RealmId:         realm.ID(),
+//				ParentFlowAlias: flow.Alias,
+//				Authenticator:   pulumi.String("auth-cookie"),
+//				Requirement:     pulumi.String("ALTERNATIVE"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = authentication.NewExecution(ctx, "executionTwo", &authentication.ExecutionArgs{
+//				RealmId:         realm.ID(),
+//				ParentFlowAlias: flow.Alias,
+//				Authenticator:   pulumi.String("identity-provider-redirector"),
+//				Requirement:     pulumi.String("ALTERNATIVE"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				executionOne,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -75,7 +78,9 @@ import (
 // Authentication executions can be imported using the formats`{{realmId}}/{{parentFlowAlias}}/{{authenticationExecutionId}}`. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:authentication/execution:Execution execution_one my-realm/my-flow-alias/30559fcf-6fb8-45ea-8c46-2b86f46ebc17
+//
+//	$ pulumi import keycloak:authentication/execution:Execution execution_one my-realm/my-flow-alias/30559fcf-6fb8-45ea-8c46-2b86f46ebc17
+//
 // ```
 type Execution struct {
 	pulumi.CustomResourceState
@@ -202,7 +207,7 @@ func (i *Execution) ToExecutionOutputWithContext(ctx context.Context) ExecutionO
 // ExecutionArrayInput is an input type that accepts ExecutionArray and ExecutionArrayOutput values.
 // You can construct a concrete instance of `ExecutionArrayInput` via:
 //
-//          ExecutionArray{ ExecutionArgs{...} }
+//	ExecutionArray{ ExecutionArgs{...} }
 type ExecutionArrayInput interface {
 	pulumi.Input
 
@@ -227,7 +232,7 @@ func (i ExecutionArray) ToExecutionArrayOutputWithContext(ctx context.Context) E
 // ExecutionMapInput is an input type that accepts ExecutionMap and ExecutionMapOutput values.
 // You can construct a concrete instance of `ExecutionMapInput` via:
 //
-//          ExecutionMap{ "key": ExecutionArgs{...} }
+//	ExecutionMap{ "key": ExecutionArgs{...} }
 type ExecutionMapInput interface {
 	pulumi.Input
 

@@ -16,21 +16,14 @@ public final class UserInitialPassword {
      * @return If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
      * 
      */
-    private final @Nullable Boolean temporary;
+    private @Nullable Boolean temporary;
     /**
      * @return The initial password.
      * 
      */
-    private final String value;
+    private String value;
 
-    @CustomType.Constructor
-    private UserInitialPassword(
-        @CustomType.Parameter("temporary") @Nullable Boolean temporary,
-        @CustomType.Parameter("value") String value) {
-        this.temporary = temporary;
-        this.value = value;
-    }
-
+    private UserInitialPassword() {}
     /**
      * @return If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
      * 
@@ -53,30 +46,32 @@ public final class UserInitialPassword {
     public static Builder builder(UserInitialPassword defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable Boolean temporary;
         private String value;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(UserInitialPassword defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.temporary = defaults.temporary;
     	      this.value = defaults.value;
         }
 
+        @CustomType.Setter
         public Builder temporary(@Nullable Boolean temporary) {
             this.temporary = temporary;
             return this;
         }
+        @CustomType.Setter
         public Builder value(String value) {
             this.value = Objects.requireNonNull(value);
             return this;
-        }        public UserInitialPassword build() {
-            return new UserInitialPassword(temporary, value);
+        }
+        public UserInitialPassword build() {
+            final var o = new UserInitialPassword();
+            o.temporary = temporary;
+            o.value = value;
+            return o;
         }
     }
 }

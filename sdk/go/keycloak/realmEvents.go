@@ -19,39 +19,42 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewRealmEvents(ctx, "realmEvents", &keycloak.RealmEventsArgs{
-// 			RealmId:                   realm.ID(),
-// 			EventsEnabled:             pulumi.Bool(true),
-// 			EventsExpiration:          pulumi.Int(3600),
-// 			AdminEventsEnabled:        pulumi.Bool(true),
-// 			AdminEventsDetailsEnabled: pulumi.Bool(true),
-// 			EnabledEventTypes: pulumi.StringArray{
-// 				pulumi.String("LOGIN"),
-// 				pulumi.String("LOGOUT"),
-// 			},
-// 			EventsListeners: pulumi.StringArray{
-// 				pulumi.String("jboss-logging"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewRealmEvents(ctx, "realmEvents", &keycloak.RealmEventsArgs{
+//				RealmId:                   realm.ID(),
+//				EventsEnabled:             pulumi.Bool(true),
+//				EventsExpiration:          pulumi.Int(3600),
+//				AdminEventsEnabled:        pulumi.Bool(true),
+//				AdminEventsDetailsEnabled: pulumi.Bool(true),
+//				EnabledEventTypes: pulumi.StringArray{
+//					pulumi.String("LOGIN"),
+//					pulumi.String("LOGOUT"),
+//				},
+//				EventsListeners: pulumi.StringArray{
+//					pulumi.String("jboss-logging"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -206,7 +209,7 @@ func (i *RealmEvents) ToRealmEventsOutputWithContext(ctx context.Context) RealmE
 // RealmEventsArrayInput is an input type that accepts RealmEventsArray and RealmEventsArrayOutput values.
 // You can construct a concrete instance of `RealmEventsArrayInput` via:
 //
-//          RealmEventsArray{ RealmEventsArgs{...} }
+//	RealmEventsArray{ RealmEventsArgs{...} }
 type RealmEventsArrayInput interface {
 	pulumi.Input
 
@@ -231,7 +234,7 @@ func (i RealmEventsArray) ToRealmEventsArrayOutputWithContext(ctx context.Contex
 // RealmEventsMapInput is an input type that accepts RealmEventsMap and RealmEventsMapOutput values.
 // You can construct a concrete instance of `RealmEventsMapInput` via:
 //
-//          RealmEventsMap{ "key": RealmEventsArgs{...} }
+//	RealmEventsMap{ "key": RealmEventsArgs{...} }
 type RealmEventsMapInput interface {
 	pulumi.Input
 

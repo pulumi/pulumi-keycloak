@@ -25,45 +25,48 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		openidClient, err := openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
-// 			RealmId:    realm.ID(),
-// 			ClientId:   pulumi.String("client"),
-// 			Enabled:    pulumi.Bool(true),
-// 			AccessType: pulumi.String("CONFIDENTIAL"),
-// 			ValidRedirectUris: pulumi.StringArray{
-// 				pulumi.String("http://localhost:8080/openid-callback"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = openid.NewUserSessionNoteProtocolMapper(ctx, "userSessionNoteMapper", &openid.UserSessionNoteProtocolMapperArgs{
-// 			RealmId:        realm.ID(),
-// 			ClientId:       openidClient.ID(),
-// 			ClaimName:      pulumi.String("foo"),
-// 			ClaimValueType: pulumi.String("String"),
-// 			SessionNote:    pulumi.String("bar"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			openidClient, err := openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
+//				RealmId:    realm.ID(),
+//				ClientId:   pulumi.String("client"),
+//				Enabled:    pulumi.Bool(true),
+//				AccessType: pulumi.String("CONFIDENTIAL"),
+//				ValidRedirectUris: pulumi.StringArray{
+//					pulumi.String("http://localhost:8080/openid-callback"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewUserSessionNoteProtocolMapper(ctx, "userSessionNoteMapper", &openid.UserSessionNoteProtocolMapperArgs{
+//				RealmId:        realm.ID(),
+//				ClientId:       openidClient.ID(),
+//				ClaimName:      pulumi.String("foo"),
+//				ClaimValueType: pulumi.String("String"),
+//				SessionNote:    pulumi.String("bar"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Client Scope)
 //
@@ -71,39 +74,42 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		clientScope, err := openid.NewClientScope(ctx, "clientScope", &openid.ClientScopeArgs{
-// 			RealmId: realm.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = openid.NewUserSessionNoteProtocolMapper(ctx, "userSessionNoteMapper", &openid.UserSessionNoteProtocolMapperArgs{
-// 			RealmId:        realm.ID(),
-// 			ClientScopeId:  clientScope.ID(),
-// 			ClaimName:      pulumi.String("foo"),
-// 			ClaimValueType: pulumi.String("String"),
-// 			SessionNote:    pulumi.String("bar"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			clientScope, err := openid.NewClientScope(ctx, "clientScope", &openid.ClientScopeArgs{
+//				RealmId: realm.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewUserSessionNoteProtocolMapper(ctx, "userSessionNoteMapper", &openid.UserSessionNoteProtocolMapperArgs{
+//				RealmId:        realm.ID(),
+//				ClientScopeId:  clientScope.ID(),
+//				ClaimName:      pulumi.String("foo"),
+//				ClaimValueType: pulumi.String("String"),
+//				SessionNote:    pulumi.String("bar"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -111,11 +117,15 @@ import (
 // Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper user_session_note_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+//
+//	$ pulumi import keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper user_session_note_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+//
 // ```
 //
 // ```sh
-//  $ pulumi import keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper user_session_note_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+//
+//	$ pulumi import keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper user_session_note_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+//
 // ```
 type UserSessionNoteProtocolMapper struct {
 	pulumi.CustomResourceState
@@ -289,7 +299,7 @@ func (i *UserSessionNoteProtocolMapper) ToUserSessionNoteProtocolMapperOutputWit
 // UserSessionNoteProtocolMapperArrayInput is an input type that accepts UserSessionNoteProtocolMapperArray and UserSessionNoteProtocolMapperArrayOutput values.
 // You can construct a concrete instance of `UserSessionNoteProtocolMapperArrayInput` via:
 //
-//          UserSessionNoteProtocolMapperArray{ UserSessionNoteProtocolMapperArgs{...} }
+//	UserSessionNoteProtocolMapperArray{ UserSessionNoteProtocolMapperArgs{...} }
 type UserSessionNoteProtocolMapperArrayInput interface {
 	pulumi.Input
 
@@ -314,7 +324,7 @@ func (i UserSessionNoteProtocolMapperArray) ToUserSessionNoteProtocolMapperArray
 // UserSessionNoteProtocolMapperMapInput is an input type that accepts UserSessionNoteProtocolMapperMap and UserSessionNoteProtocolMapperMapOutput values.
 // You can construct a concrete instance of `UserSessionNoteProtocolMapperMapInput` via:
 //
-//          UserSessionNoteProtocolMapperMap{ "key": UserSessionNoteProtocolMapperArgs{...} }
+//	UserSessionNoteProtocolMapperMap{ "key": UserSessionNoteProtocolMapperArgs{...} }
 type UserSessionNoteProtocolMapperMapInput interface {
 	pulumi.Input
 

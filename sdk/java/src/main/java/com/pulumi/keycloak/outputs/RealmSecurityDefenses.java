@@ -12,17 +12,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class RealmSecurityDefenses {
-    private final @Nullable RealmSecurityDefensesBruteForceDetection bruteForceDetection;
-    private final @Nullable RealmSecurityDefensesHeaders headers;
+    private @Nullable RealmSecurityDefensesBruteForceDetection bruteForceDetection;
+    private @Nullable RealmSecurityDefensesHeaders headers;
 
-    @CustomType.Constructor
-    private RealmSecurityDefenses(
-        @CustomType.Parameter("bruteForceDetection") @Nullable RealmSecurityDefensesBruteForceDetection bruteForceDetection,
-        @CustomType.Parameter("headers") @Nullable RealmSecurityDefensesHeaders headers) {
-        this.bruteForceDetection = bruteForceDetection;
-        this.headers = headers;
-    }
-
+    private RealmSecurityDefenses() {}
     public Optional<RealmSecurityDefensesBruteForceDetection> bruteForceDetection() {
         return Optional.ofNullable(this.bruteForceDetection);
     }
@@ -37,30 +30,32 @@ public final class RealmSecurityDefenses {
     public static Builder builder(RealmSecurityDefenses defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable RealmSecurityDefensesBruteForceDetection bruteForceDetection;
         private @Nullable RealmSecurityDefensesHeaders headers;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(RealmSecurityDefenses defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.bruteForceDetection = defaults.bruteForceDetection;
     	      this.headers = defaults.headers;
         }
 
+        @CustomType.Setter
         public Builder bruteForceDetection(@Nullable RealmSecurityDefensesBruteForceDetection bruteForceDetection) {
             this.bruteForceDetection = bruteForceDetection;
             return this;
         }
+        @CustomType.Setter
         public Builder headers(@Nullable RealmSecurityDefensesHeaders headers) {
             this.headers = headers;
             return this;
-        }        public RealmSecurityDefenses build() {
-            return new RealmSecurityDefenses(bruteForceDetection, headers);
+        }
+        public RealmSecurityDefenses build() {
+            final var o = new RealmSecurityDefenses();
+            o.bruteForceDetection = bruteForceDetection;
+            o.headers = headers;
+            return o;
         }
     }
 }

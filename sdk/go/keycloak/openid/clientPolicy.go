@@ -21,58 +21,61 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		openidClient, err := openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
-// 			ClientId:               pulumi.String("openid_client"),
-// 			RealmId:                realm.ID(),
-// 			AccessType:             pulumi.String("CONFIDENTIAL"),
-// 			ServiceAccountsEnabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = openid.NewClientPermissions(ctx, "myPermission", &openid.ClientPermissionsArgs{
-// 			RealmId:  realm.ID(),
-// 			ClientId: openidClient.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		realmManagement, err := openid.LookupClient(ctx, &openid.LookupClientArgs{
-// 			RealmId:  "my-realm",
-// 			ClientId: "realm-management",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = openid.NewClientPolicy(ctx, "tokenExchange", &openid.ClientPolicyArgs{
-// 			ResourceServerId: pulumi.String(realmManagement.Id),
-// 			RealmId:          realm.ID(),
-// 			Logic:            pulumi.String("POSITIVE"),
-// 			DecisionStrategy: pulumi.String("UNANIMOUS"),
-// 			Clients: pulumi.StringArray{
-// 				openidClient.ID(),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			openidClient, err := openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
+//				ClientId:               pulumi.String("openid_client"),
+//				RealmId:                realm.ID(),
+//				AccessType:             pulumi.String("CONFIDENTIAL"),
+//				ServiceAccountsEnabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClientPermissions(ctx, "myPermission", &openid.ClientPermissionsArgs{
+//				RealmId:  realm.ID(),
+//				ClientId: openidClient.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			realmManagement, err := openid.LookupClient(ctx, &openid.LookupClientArgs{
+//				RealmId:  "my-realm",
+//				ClientId: "realm-management",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClientPolicy(ctx, "tokenExchange", &openid.ClientPolicyArgs{
+//				ResourceServerId: pulumi.String(realmManagement.Id),
+//				RealmId:          realm.ID(),
+//				Logic:            pulumi.String("POSITIVE"),
+//				DecisionStrategy: pulumi.String("UNANIMOUS"),
+//				Clients: pulumi.StringArray{
+//					openidClient.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type ClientPolicy struct {
 	pulumi.CustomResourceState
@@ -229,7 +232,7 @@ func (i *ClientPolicy) ToClientPolicyOutputWithContext(ctx context.Context) Clie
 // ClientPolicyArrayInput is an input type that accepts ClientPolicyArray and ClientPolicyArrayOutput values.
 // You can construct a concrete instance of `ClientPolicyArrayInput` via:
 //
-//          ClientPolicyArray{ ClientPolicyArgs{...} }
+//	ClientPolicyArray{ ClientPolicyArgs{...} }
 type ClientPolicyArrayInput interface {
 	pulumi.Input
 
@@ -254,7 +257,7 @@ func (i ClientPolicyArray) ToClientPolicyArrayOutputWithContext(ctx context.Cont
 // ClientPolicyMapInput is an input type that accepts ClientPolicyMap and ClientPolicyMapOutput values.
 // You can construct a concrete instance of `ClientPolicyMapInput` via:
 //
-//          ClientPolicyMap{ "key": ClientPolicyArgs{...} }
+//	ClientPolicyMap{ "key": ClientPolicyArgs{...} }
 type ClientPolicyMapInput interface {
 	pulumi.Input
 

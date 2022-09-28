@@ -9,20 +9,11 @@ import java.util.Objects;
 
 @CustomType
 public final class GetClientServiceAccountUserFederatedIdentity {
-    private final String identityProvider;
-    private final String userId;
-    private final String userName;
+    private String identityProvider;
+    private String userId;
+    private String userName;
 
-    @CustomType.Constructor
-    private GetClientServiceAccountUserFederatedIdentity(
-        @CustomType.Parameter("identityProvider") String identityProvider,
-        @CustomType.Parameter("userId") String userId,
-        @CustomType.Parameter("userName") String userName) {
-        this.identityProvider = identityProvider;
-        this.userId = userId;
-        this.userName = userName;
-    }
-
+    private GetClientServiceAccountUserFederatedIdentity() {}
     public String identityProvider() {
         return this.identityProvider;
     }
@@ -40,16 +31,12 @@ public final class GetClientServiceAccountUserFederatedIdentity {
     public static Builder builder(GetClientServiceAccountUserFederatedIdentity defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String identityProvider;
         private String userId;
         private String userName;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetClientServiceAccountUserFederatedIdentity defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.identityProvider = defaults.identityProvider;
@@ -57,19 +44,27 @@ public final class GetClientServiceAccountUserFederatedIdentity {
     	      this.userName = defaults.userName;
         }
 
+        @CustomType.Setter
         public Builder identityProvider(String identityProvider) {
             this.identityProvider = Objects.requireNonNull(identityProvider);
             return this;
         }
+        @CustomType.Setter
         public Builder userId(String userId) {
             this.userId = Objects.requireNonNull(userId);
             return this;
         }
+        @CustomType.Setter
         public Builder userName(String userName) {
             this.userName = Objects.requireNonNull(userName);
             return this;
-        }        public GetClientServiceAccountUserFederatedIdentity build() {
-            return new GetClientServiceAccountUserFederatedIdentity(identityProvider, userId, userName);
+        }
+        public GetClientServiceAccountUserFederatedIdentity build() {
+            final var o = new GetClientServiceAccountUserFederatedIdentity();
+            o.identityProvider = identityProvider;
+            o.userId = userId;
+            o.userName = userName;
+            return o;
         }
     }
 }

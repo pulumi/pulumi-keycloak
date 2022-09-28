@@ -16,35 +16,24 @@ public final class RealmUserProfileGroup {
      * @return A map of annotations for the group.
      * 
      */
-    private final @Nullable Map<String,String> annotations;
+    private @Nullable Map<String,String> annotations;
     /**
      * @return The display description of the group.
      * 
      */
-    private final @Nullable String displayDescription;
+    private @Nullable String displayDescription;
     /**
      * @return The display header of the group.
      * 
      */
-    private final @Nullable String displayHeader;
+    private @Nullable String displayHeader;
     /**
      * @return The name of the group.
      * 
      */
-    private final String name;
+    private String name;
 
-    @CustomType.Constructor
-    private RealmUserProfileGroup(
-        @CustomType.Parameter("annotations") @Nullable Map<String,String> annotations,
-        @CustomType.Parameter("displayDescription") @Nullable String displayDescription,
-        @CustomType.Parameter("displayHeader") @Nullable String displayHeader,
-        @CustomType.Parameter("name") String name) {
-        this.annotations = annotations;
-        this.displayDescription = displayDescription;
-        this.displayHeader = displayHeader;
-        this.name = name;
-    }
-
+    private RealmUserProfileGroup() {}
     /**
      * @return A map of annotations for the group.
      * 
@@ -81,17 +70,13 @@ public final class RealmUserProfileGroup {
     public static Builder builder(RealmUserProfileGroup defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable Map<String,String> annotations;
         private @Nullable String displayDescription;
         private @Nullable String displayHeader;
         private String name;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(RealmUserProfileGroup defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.annotations = defaults.annotations;
@@ -100,23 +85,33 @@ public final class RealmUserProfileGroup {
     	      this.name = defaults.name;
         }
 
+        @CustomType.Setter
         public Builder annotations(@Nullable Map<String,String> annotations) {
             this.annotations = annotations;
             return this;
         }
+        @CustomType.Setter
         public Builder displayDescription(@Nullable String displayDescription) {
             this.displayDescription = displayDescription;
             return this;
         }
+        @CustomType.Setter
         public Builder displayHeader(@Nullable String displayHeader) {
             this.displayHeader = displayHeader;
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
-        }        public RealmUserProfileGroup build() {
-            return new RealmUserProfileGroup(annotations, displayDescription, displayHeader, name);
+        }
+        public RealmUserProfileGroup build() {
+            final var o = new RealmUserProfileGroup();
+            o.annotations = annotations;
+            o.displayDescription = displayDescription;
+            o.displayHeader = displayHeader;
+            o.name = name;
+            return o;
         }
     }
 }

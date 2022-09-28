@@ -12,38 +12,25 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetRealmKeysResult {
-    private final @Nullable List<String> algorithms;
+    private @Nullable List<String> algorithms;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
+    private String id;
     /**
      * @return (Computed) A list of keys that match the filter criteria. Each key has the following attributes:
      * 
      */
-    private final List<GetRealmKeysKey> keys;
-    private final String realmId;
+    private List<GetRealmKeysKey> keys;
+    private String realmId;
     /**
      * @return Key status (string)
      * 
      */
-    private final @Nullable List<String> statuses;
+    private @Nullable List<String> statuses;
 
-    @CustomType.Constructor
-    private GetRealmKeysResult(
-        @CustomType.Parameter("algorithms") @Nullable List<String> algorithms,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("keys") List<GetRealmKeysKey> keys,
-        @CustomType.Parameter("realmId") String realmId,
-        @CustomType.Parameter("statuses") @Nullable List<String> statuses) {
-        this.algorithms = algorithms;
-        this.id = id;
-        this.keys = keys;
-        this.realmId = realmId;
-        this.statuses = statuses;
-    }
-
+    private GetRealmKeysResult() {}
     public List<String> algorithms() {
         return this.algorithms == null ? List.of() : this.algorithms;
     }
@@ -79,18 +66,14 @@ public final class GetRealmKeysResult {
     public static Builder builder(GetRealmKeysResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable List<String> algorithms;
         private String id;
         private List<GetRealmKeysKey> keys;
         private String realmId;
         private @Nullable List<String> statuses;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetRealmKeysResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.algorithms = defaults.algorithms;
@@ -100,6 +83,7 @@ public final class GetRealmKeysResult {
     	      this.statuses = defaults.statuses;
         }
 
+        @CustomType.Setter
         public Builder algorithms(@Nullable List<String> algorithms) {
             this.algorithms = algorithms;
             return this;
@@ -107,10 +91,12 @@ public final class GetRealmKeysResult {
         public Builder algorithms(String... algorithms) {
             return algorithms(List.of(algorithms));
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder keys(List<GetRealmKeysKey> keys) {
             this.keys = Objects.requireNonNull(keys);
             return this;
@@ -118,18 +104,27 @@ public final class GetRealmKeysResult {
         public Builder keys(GetRealmKeysKey... keys) {
             return keys(List.of(keys));
         }
+        @CustomType.Setter
         public Builder realmId(String realmId) {
             this.realmId = Objects.requireNonNull(realmId);
             return this;
         }
+        @CustomType.Setter
         public Builder statuses(@Nullable List<String> statuses) {
             this.statuses = statuses;
             return this;
         }
         public Builder statuses(String... statuses) {
             return statuses(List.of(statuses));
-        }        public GetRealmKeysResult build() {
-            return new GetRealmKeysResult(algorithms, id, keys, realmId, statuses);
+        }
+        public GetRealmKeysResult build() {
+            final var o = new GetRealmKeysResult();
+            o.algorithms = algorithms;
+            o.id = id;
+            o.keys = keys;
+            o.realmId = realmId;
+            o.statuses = statuses;
+            return o;
         }
     }
 }

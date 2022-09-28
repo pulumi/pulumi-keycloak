@@ -136,7 +136,7 @@ func (i *HardcodedGroupMapper) ToHardcodedGroupMapperOutputWithContext(ctx conte
 // HardcodedGroupMapperArrayInput is an input type that accepts HardcodedGroupMapperArray and HardcodedGroupMapperArrayOutput values.
 // You can construct a concrete instance of `HardcodedGroupMapperArrayInput` via:
 //
-//          HardcodedGroupMapperArray{ HardcodedGroupMapperArgs{...} }
+//	HardcodedGroupMapperArray{ HardcodedGroupMapperArgs{...} }
 type HardcodedGroupMapperArrayInput interface {
 	pulumi.Input
 
@@ -161,7 +161,7 @@ func (i HardcodedGroupMapperArray) ToHardcodedGroupMapperArrayOutputWithContext(
 // HardcodedGroupMapperMapInput is an input type that accepts HardcodedGroupMapperMap and HardcodedGroupMapperMapOutput values.
 // You can construct a concrete instance of `HardcodedGroupMapperMapInput` via:
 //
-//          HardcodedGroupMapperMap{ "key": HardcodedGroupMapperArgs{...} }
+//	HardcodedGroupMapperMap{ "key": HardcodedGroupMapperArgs{...} }
 type HardcodedGroupMapperMapInput interface {
 	pulumi.Input
 

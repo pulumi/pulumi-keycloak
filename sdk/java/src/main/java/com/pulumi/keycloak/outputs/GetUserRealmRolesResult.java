@@ -14,27 +14,16 @@ public final class GetUserRealmRolesResult {
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final String realmId;
+    private String id;
+    private String realmId;
     /**
      * @return (Computed) A list of realm roles that belong to this user.
      * 
      */
-    private final List<String> roleNames;
-    private final String userId;
+    private List<String> roleNames;
+    private String userId;
 
-    @CustomType.Constructor
-    private GetUserRealmRolesResult(
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("realmId") String realmId,
-        @CustomType.Parameter("roleNames") List<String> roleNames,
-        @CustomType.Parameter("userId") String userId) {
-        this.id = id;
-        this.realmId = realmId;
-        this.roleNames = roleNames;
-        this.userId = userId;
-    }
-
+    private GetUserRealmRolesResult() {}
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -63,17 +52,13 @@ public final class GetUserRealmRolesResult {
     public static Builder builder(GetUserRealmRolesResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String id;
         private String realmId;
         private List<String> roleNames;
         private String userId;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetUserRealmRolesResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.id = defaults.id;
@@ -82,14 +67,17 @@ public final class GetUserRealmRolesResult {
     	      this.userId = defaults.userId;
         }
 
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder realmId(String realmId) {
             this.realmId = Objects.requireNonNull(realmId);
             return this;
         }
+        @CustomType.Setter
         public Builder roleNames(List<String> roleNames) {
             this.roleNames = Objects.requireNonNull(roleNames);
             return this;
@@ -97,11 +85,18 @@ public final class GetUserRealmRolesResult {
         public Builder roleNames(String... roleNames) {
             return roleNames(List.of(roleNames));
         }
+        @CustomType.Setter
         public Builder userId(String userId) {
             this.userId = Objects.requireNonNull(userId);
             return this;
-        }        public GetUserRealmRolesResult build() {
-            return new GetUserRealmRolesResult(id, realmId, roleNames, userId);
+        }
+        public GetUserRealmRolesResult build() {
+            final var o = new GetUserRealmRolesResult();
+            o.id = id;
+            o.realmId = realmId;
+            o.roleNames = roleNames;
+            o.userId = userId;
+            return o;
         }
     }
 }

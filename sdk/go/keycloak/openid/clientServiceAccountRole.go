@@ -23,53 +23,56 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		client1, err := openid.NewClient(ctx, "client1", &openid.ClientArgs{
-// 			RealmId: realm.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		client1Role, err := keycloak.NewRole(ctx, "client1Role", &keycloak.RoleArgs{
-// 			RealmId:     realm.ID(),
-// 			ClientId:    client1.ID(),
-// 			Description: pulumi.String("A role that client1 provides"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		client2, err := openid.NewClient(ctx, "client2", &openid.ClientArgs{
-// 			RealmId:                realm.ID(),
-// 			ServiceAccountsEnabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = openid.NewClientServiceAccountRole(ctx, "client2ServiceAccountRole", &openid.ClientServiceAccountRoleArgs{
-// 			RealmId:              realm.ID(),
-// 			ServiceAccountUserId: client2.ServiceAccountUserId,
-// 			ClientId:             client1.ID(),
-// 			Role:                 client1Role.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			client1, err := openid.NewClient(ctx, "client1", &openid.ClientArgs{
+//				RealmId: realm.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			client1Role, err := keycloak.NewRole(ctx, "client1Role", &keycloak.RoleArgs{
+//				RealmId:     realm.ID(),
+//				ClientId:    client1.ID(),
+//				Description: pulumi.String("A role that client1 provides"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			client2, err := openid.NewClient(ctx, "client2", &openid.ClientArgs{
+//				RealmId:                realm.ID(),
+//				ServiceAccountsEnabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClientServiceAccountRole(ctx, "client2ServiceAccountRole", &openid.ClientServiceAccountRoleArgs{
+//				RealmId:              realm.ID(),
+//				ServiceAccountUserId: client2.ServiceAccountUserId,
+//				ClientId:             client1.ID(),
+//				Role:                 client1Role.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -77,7 +80,9 @@ import (
 // This resource can be imported using the format `{{realmId}}/{{serviceAccountUserId}}/{{clientId}}/{{roleId}}`. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:openid/clientServiceAccountRole:ClientServiceAccountRole client2_service_account_role my-realm/489ba513-1ceb-49ba-ae0b-1ab1f5099ebf/baf01820-0f8b-4494-9be2-fb3bc8a397a4/c7230ab7-8e4e-4135-995d-e81b50696ad8
+//
+//	$ pulumi import keycloak:openid/clientServiceAccountRole:ClientServiceAccountRole client2_service_account_role my-realm/489ba513-1ceb-49ba-ae0b-1ab1f5099ebf/baf01820-0f8b-4494-9be2-fb3bc8a397a4/c7230ab7-8e4e-4135-995d-e81b50696ad8
+//
 // ```
 type ClientServiceAccountRole struct {
 	pulumi.CustomResourceState
@@ -207,7 +212,7 @@ func (i *ClientServiceAccountRole) ToClientServiceAccountRoleOutputWithContext(c
 // ClientServiceAccountRoleArrayInput is an input type that accepts ClientServiceAccountRoleArray and ClientServiceAccountRoleArrayOutput values.
 // You can construct a concrete instance of `ClientServiceAccountRoleArrayInput` via:
 //
-//          ClientServiceAccountRoleArray{ ClientServiceAccountRoleArgs{...} }
+//	ClientServiceAccountRoleArray{ ClientServiceAccountRoleArgs{...} }
 type ClientServiceAccountRoleArrayInput interface {
 	pulumi.Input
 
@@ -232,7 +237,7 @@ func (i ClientServiceAccountRoleArray) ToClientServiceAccountRoleArrayOutputWith
 // ClientServiceAccountRoleMapInput is an input type that accepts ClientServiceAccountRoleMap and ClientServiceAccountRoleMapOutput values.
 // You can construct a concrete instance of `ClientServiceAccountRoleMapInput` via:
 //
-//          ClientServiceAccountRoleMap{ "key": ClientServiceAccountRoleArgs{...} }
+//	ClientServiceAccountRoleMap{ "key": ClientServiceAccountRoleArgs{...} }
 type ClientServiceAccountRoleMapInput interface {
 	pulumi.Input
 

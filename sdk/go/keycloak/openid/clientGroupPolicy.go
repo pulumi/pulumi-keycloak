@@ -139,7 +139,7 @@ func (i *ClientGroupPolicy) ToClientGroupPolicyOutputWithContext(ctx context.Con
 // ClientGroupPolicyArrayInput is an input type that accepts ClientGroupPolicyArray and ClientGroupPolicyArrayOutput values.
 // You can construct a concrete instance of `ClientGroupPolicyArrayInput` via:
 //
-//          ClientGroupPolicyArray{ ClientGroupPolicyArgs{...} }
+//	ClientGroupPolicyArray{ ClientGroupPolicyArgs{...} }
 type ClientGroupPolicyArrayInput interface {
 	pulumi.Input
 
@@ -164,7 +164,7 @@ func (i ClientGroupPolicyArray) ToClientGroupPolicyArrayOutputWithContext(ctx co
 // ClientGroupPolicyMapInput is an input type that accepts ClientGroupPolicyMap and ClientGroupPolicyMapOutput values.
 // You can construct a concrete instance of `ClientGroupPolicyMapInput` via:
 //
-//          ClientGroupPolicyMap{ "key": ClientGroupPolicyArgs{...} }
+//	ClientGroupPolicyMap{ "key": ClientGroupPolicyArgs{...} }
 type ClientGroupPolicyMapInput interface {
 	pulumi.Input
 

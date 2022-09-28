@@ -20,7 +20,7 @@ type ClientAuthenticationFlowBindingOverrides struct {
 // ClientAuthenticationFlowBindingOverridesInput is an input type that accepts ClientAuthenticationFlowBindingOverridesArgs and ClientAuthenticationFlowBindingOverridesOutput values.
 // You can construct a concrete instance of `ClientAuthenticationFlowBindingOverridesInput` via:
 //
-//          ClientAuthenticationFlowBindingOverridesArgs{...}
+//	ClientAuthenticationFlowBindingOverridesArgs{...}
 type ClientAuthenticationFlowBindingOverridesInput interface {
 	pulumi.Input
 
@@ -58,11 +58,11 @@ func (i ClientAuthenticationFlowBindingOverridesArgs) ToClientAuthenticationFlow
 // ClientAuthenticationFlowBindingOverridesPtrInput is an input type that accepts ClientAuthenticationFlowBindingOverridesArgs, ClientAuthenticationFlowBindingOverridesPtr and ClientAuthenticationFlowBindingOverridesPtrOutput values.
 // You can construct a concrete instance of `ClientAuthenticationFlowBindingOverridesPtrInput` via:
 //
-//          ClientAuthenticationFlowBindingOverridesArgs{...}
+//	        ClientAuthenticationFlowBindingOverridesArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ClientAuthenticationFlowBindingOverridesPtrInput interface {
 	pulumi.Input
 
@@ -180,7 +180,7 @@ type ClientAuthorization struct {
 // ClientAuthorizationInput is an input type that accepts ClientAuthorizationArgs and ClientAuthorizationOutput values.
 // You can construct a concrete instance of `ClientAuthorizationInput` via:
 //
-//          ClientAuthorizationArgs{...}
+//	ClientAuthorizationArgs{...}
 type ClientAuthorizationInput interface {
 	pulumi.Input
 
@@ -222,11 +222,11 @@ func (i ClientAuthorizationArgs) ToClientAuthorizationPtrOutputWithContext(ctx c
 // ClientAuthorizationPtrInput is an input type that accepts ClientAuthorizationArgs, ClientAuthorizationPtr and ClientAuthorizationPtrOutput values.
 // You can construct a concrete instance of `ClientAuthorizationPtrInput` via:
 //
-//          ClientAuthorizationArgs{...}
+//	        ClientAuthorizationArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ClientAuthorizationPtrInput interface {
 	pulumi.Input
 
@@ -369,7 +369,7 @@ type ClientGroupPolicyGroup struct {
 // ClientGroupPolicyGroupInput is an input type that accepts ClientGroupPolicyGroupArgs and ClientGroupPolicyGroupOutput values.
 // You can construct a concrete instance of `ClientGroupPolicyGroupInput` via:
 //
-//          ClientGroupPolicyGroupArgs{...}
+//	ClientGroupPolicyGroupArgs{...}
 type ClientGroupPolicyGroupInput interface {
 	pulumi.Input
 
@@ -398,7 +398,7 @@ func (i ClientGroupPolicyGroupArgs) ToClientGroupPolicyGroupOutputWithContext(ct
 // ClientGroupPolicyGroupArrayInput is an input type that accepts ClientGroupPolicyGroupArray and ClientGroupPolicyGroupArrayOutput values.
 // You can construct a concrete instance of `ClientGroupPolicyGroupArrayInput` via:
 //
-//          ClientGroupPolicyGroupArray{ ClientGroupPolicyGroupArgs{...} }
+//	ClientGroupPolicyGroupArray{ ClientGroupPolicyGroupArgs{...} }
 type ClientGroupPolicyGroupArrayInput interface {
 	pulumi.Input
 
@@ -475,7 +475,7 @@ type ClientPermissionsConfigureScope struct {
 // ClientPermissionsConfigureScopeInput is an input type that accepts ClientPermissionsConfigureScopeArgs and ClientPermissionsConfigureScopeOutput values.
 // You can construct a concrete instance of `ClientPermissionsConfigureScopeInput` via:
 //
-//          ClientPermissionsConfigureScopeArgs{...}
+//	ClientPermissionsConfigureScopeArgs{...}
 type ClientPermissionsConfigureScopeInput interface {
 	pulumi.Input
 
@@ -512,11 +512,11 @@ func (i ClientPermissionsConfigureScopeArgs) ToClientPermissionsConfigureScopePt
 // ClientPermissionsConfigureScopePtrInput is an input type that accepts ClientPermissionsConfigureScopeArgs, ClientPermissionsConfigureScopePtr and ClientPermissionsConfigureScopePtrOutput values.
 // You can construct a concrete instance of `ClientPermissionsConfigureScopePtrInput` via:
 //
-//          ClientPermissionsConfigureScopeArgs{...}
+//	        ClientPermissionsConfigureScopeArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ClientPermissionsConfigureScopePtrInput interface {
 	pulumi.Input
 
@@ -638,7 +638,7 @@ type ClientPermissionsManageScope struct {
 // ClientPermissionsManageScopeInput is an input type that accepts ClientPermissionsManageScopeArgs and ClientPermissionsManageScopeOutput values.
 // You can construct a concrete instance of `ClientPermissionsManageScopeInput` via:
 //
-//          ClientPermissionsManageScopeArgs{...}
+//	ClientPermissionsManageScopeArgs{...}
 type ClientPermissionsManageScopeInput interface {
 	pulumi.Input
 
@@ -675,11 +675,11 @@ func (i ClientPermissionsManageScopeArgs) ToClientPermissionsManageScopePtrOutpu
 // ClientPermissionsManageScopePtrInput is an input type that accepts ClientPermissionsManageScopeArgs, ClientPermissionsManageScopePtr and ClientPermissionsManageScopePtrOutput values.
 // You can construct a concrete instance of `ClientPermissionsManageScopePtrInput` via:
 //
-//          ClientPermissionsManageScopeArgs{...}
+//	        ClientPermissionsManageScopeArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ClientPermissionsManageScopePtrInput interface {
 	pulumi.Input
 
@@ -801,7 +801,7 @@ type ClientPermissionsMapRolesClientScopeScope struct {
 // ClientPermissionsMapRolesClientScopeScopeInput is an input type that accepts ClientPermissionsMapRolesClientScopeScopeArgs and ClientPermissionsMapRolesClientScopeScopeOutput values.
 // You can construct a concrete instance of `ClientPermissionsMapRolesClientScopeScopeInput` via:
 //
-//          ClientPermissionsMapRolesClientScopeScopeArgs{...}
+//	ClientPermissionsMapRolesClientScopeScopeArgs{...}
 type ClientPermissionsMapRolesClientScopeScopeInput interface {
 	pulumi.Input
 
@@ -838,11 +838,11 @@ func (i ClientPermissionsMapRolesClientScopeScopeArgs) ToClientPermissionsMapRol
 // ClientPermissionsMapRolesClientScopeScopePtrInput is an input type that accepts ClientPermissionsMapRolesClientScopeScopeArgs, ClientPermissionsMapRolesClientScopeScopePtr and ClientPermissionsMapRolesClientScopeScopePtrOutput values.
 // You can construct a concrete instance of `ClientPermissionsMapRolesClientScopeScopePtrInput` via:
 //
-//          ClientPermissionsMapRolesClientScopeScopeArgs{...}
+//	        ClientPermissionsMapRolesClientScopeScopeArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ClientPermissionsMapRolesClientScopeScopePtrInput interface {
 	pulumi.Input
 
@@ -964,7 +964,7 @@ type ClientPermissionsMapRolesCompositeScope struct {
 // ClientPermissionsMapRolesCompositeScopeInput is an input type that accepts ClientPermissionsMapRolesCompositeScopeArgs and ClientPermissionsMapRolesCompositeScopeOutput values.
 // You can construct a concrete instance of `ClientPermissionsMapRolesCompositeScopeInput` via:
 //
-//          ClientPermissionsMapRolesCompositeScopeArgs{...}
+//	ClientPermissionsMapRolesCompositeScopeArgs{...}
 type ClientPermissionsMapRolesCompositeScopeInput interface {
 	pulumi.Input
 
@@ -1001,11 +1001,11 @@ func (i ClientPermissionsMapRolesCompositeScopeArgs) ToClientPermissionsMapRoles
 // ClientPermissionsMapRolesCompositeScopePtrInput is an input type that accepts ClientPermissionsMapRolesCompositeScopeArgs, ClientPermissionsMapRolesCompositeScopePtr and ClientPermissionsMapRolesCompositeScopePtrOutput values.
 // You can construct a concrete instance of `ClientPermissionsMapRolesCompositeScopePtrInput` via:
 //
-//          ClientPermissionsMapRolesCompositeScopeArgs{...}
+//	        ClientPermissionsMapRolesCompositeScopeArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ClientPermissionsMapRolesCompositeScopePtrInput interface {
 	pulumi.Input
 
@@ -1127,7 +1127,7 @@ type ClientPermissionsMapRolesScope struct {
 // ClientPermissionsMapRolesScopeInput is an input type that accepts ClientPermissionsMapRolesScopeArgs and ClientPermissionsMapRolesScopeOutput values.
 // You can construct a concrete instance of `ClientPermissionsMapRolesScopeInput` via:
 //
-//          ClientPermissionsMapRolesScopeArgs{...}
+//	ClientPermissionsMapRolesScopeArgs{...}
 type ClientPermissionsMapRolesScopeInput interface {
 	pulumi.Input
 
@@ -1164,11 +1164,11 @@ func (i ClientPermissionsMapRolesScopeArgs) ToClientPermissionsMapRolesScopePtrO
 // ClientPermissionsMapRolesScopePtrInput is an input type that accepts ClientPermissionsMapRolesScopeArgs, ClientPermissionsMapRolesScopePtr and ClientPermissionsMapRolesScopePtrOutput values.
 // You can construct a concrete instance of `ClientPermissionsMapRolesScopePtrInput` via:
 //
-//          ClientPermissionsMapRolesScopeArgs{...}
+//	        ClientPermissionsMapRolesScopeArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ClientPermissionsMapRolesScopePtrInput interface {
 	pulumi.Input
 
@@ -1290,7 +1290,7 @@ type ClientPermissionsTokenExchangeScope struct {
 // ClientPermissionsTokenExchangeScopeInput is an input type that accepts ClientPermissionsTokenExchangeScopeArgs and ClientPermissionsTokenExchangeScopeOutput values.
 // You can construct a concrete instance of `ClientPermissionsTokenExchangeScopeInput` via:
 //
-//          ClientPermissionsTokenExchangeScopeArgs{...}
+//	ClientPermissionsTokenExchangeScopeArgs{...}
 type ClientPermissionsTokenExchangeScopeInput interface {
 	pulumi.Input
 
@@ -1327,11 +1327,11 @@ func (i ClientPermissionsTokenExchangeScopeArgs) ToClientPermissionsTokenExchang
 // ClientPermissionsTokenExchangeScopePtrInput is an input type that accepts ClientPermissionsTokenExchangeScopeArgs, ClientPermissionsTokenExchangeScopePtr and ClientPermissionsTokenExchangeScopePtrOutput values.
 // You can construct a concrete instance of `ClientPermissionsTokenExchangeScopePtrInput` via:
 //
-//          ClientPermissionsTokenExchangeScopeArgs{...}
+//	        ClientPermissionsTokenExchangeScopeArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ClientPermissionsTokenExchangeScopePtrInput interface {
 	pulumi.Input
 
@@ -1453,7 +1453,7 @@ type ClientPermissionsViewScope struct {
 // ClientPermissionsViewScopeInput is an input type that accepts ClientPermissionsViewScopeArgs and ClientPermissionsViewScopeOutput values.
 // You can construct a concrete instance of `ClientPermissionsViewScopeInput` via:
 //
-//          ClientPermissionsViewScopeArgs{...}
+//	ClientPermissionsViewScopeArgs{...}
 type ClientPermissionsViewScopeInput interface {
 	pulumi.Input
 
@@ -1490,11 +1490,11 @@ func (i ClientPermissionsViewScopeArgs) ToClientPermissionsViewScopePtrOutputWit
 // ClientPermissionsViewScopePtrInput is an input type that accepts ClientPermissionsViewScopeArgs, ClientPermissionsViewScopePtr and ClientPermissionsViewScopePtrOutput values.
 // You can construct a concrete instance of `ClientPermissionsViewScopePtrInput` via:
 //
-//          ClientPermissionsViewScopeArgs{...}
+//	        ClientPermissionsViewScopeArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ClientPermissionsViewScopePtrInput interface {
 	pulumi.Input
 
@@ -1615,7 +1615,7 @@ type ClientRolePolicyRole struct {
 // ClientRolePolicyRoleInput is an input type that accepts ClientRolePolicyRoleArgs and ClientRolePolicyRoleOutput values.
 // You can construct a concrete instance of `ClientRolePolicyRoleInput` via:
 //
-//          ClientRolePolicyRoleArgs{...}
+//	ClientRolePolicyRoleArgs{...}
 type ClientRolePolicyRoleInput interface {
 	pulumi.Input
 
@@ -1643,7 +1643,7 @@ func (i ClientRolePolicyRoleArgs) ToClientRolePolicyRoleOutputWithContext(ctx co
 // ClientRolePolicyRoleArrayInput is an input type that accepts ClientRolePolicyRoleArray and ClientRolePolicyRoleArrayOutput values.
 // You can construct a concrete instance of `ClientRolePolicyRoleArrayInput` via:
 //
-//          ClientRolePolicyRoleArray{ ClientRolePolicyRoleArgs{...} }
+//	ClientRolePolicyRoleArray{ ClientRolePolicyRoleArgs{...} }
 type ClientRolePolicyRoleArrayInput interface {
 	pulumi.Input
 
@@ -1715,7 +1715,7 @@ type GetClientAuthenticationFlowBindingOverride struct {
 // GetClientAuthenticationFlowBindingOverrideInput is an input type that accepts GetClientAuthenticationFlowBindingOverrideArgs and GetClientAuthenticationFlowBindingOverrideOutput values.
 // You can construct a concrete instance of `GetClientAuthenticationFlowBindingOverrideInput` via:
 //
-//          GetClientAuthenticationFlowBindingOverrideArgs{...}
+//	GetClientAuthenticationFlowBindingOverrideArgs{...}
 type GetClientAuthenticationFlowBindingOverrideInput interface {
 	pulumi.Input
 
@@ -1743,7 +1743,7 @@ func (i GetClientAuthenticationFlowBindingOverrideArgs) ToGetClientAuthenticatio
 // GetClientAuthenticationFlowBindingOverrideArrayInput is an input type that accepts GetClientAuthenticationFlowBindingOverrideArray and GetClientAuthenticationFlowBindingOverrideArrayOutput values.
 // You can construct a concrete instance of `GetClientAuthenticationFlowBindingOverrideArrayInput` via:
 //
-//          GetClientAuthenticationFlowBindingOverrideArray{ GetClientAuthenticationFlowBindingOverrideArgs{...} }
+//	GetClientAuthenticationFlowBindingOverrideArray{ GetClientAuthenticationFlowBindingOverrideArgs{...} }
 type GetClientAuthenticationFlowBindingOverrideArrayInput interface {
 	pulumi.Input
 
@@ -1817,7 +1817,7 @@ type GetClientAuthorization struct {
 // GetClientAuthorizationInput is an input type that accepts GetClientAuthorizationArgs and GetClientAuthorizationOutput values.
 // You can construct a concrete instance of `GetClientAuthorizationInput` via:
 //
-//          GetClientAuthorizationArgs{...}
+//	GetClientAuthorizationArgs{...}
 type GetClientAuthorizationInput interface {
 	pulumi.Input
 
@@ -1847,7 +1847,7 @@ func (i GetClientAuthorizationArgs) ToGetClientAuthorizationOutputWithContext(ct
 // GetClientAuthorizationArrayInput is an input type that accepts GetClientAuthorizationArray and GetClientAuthorizationArrayOutput values.
 // You can construct a concrete instance of `GetClientAuthorizationArrayInput` via:
 //
-//          GetClientAuthorizationArray{ GetClientAuthorizationArgs{...} }
+//	GetClientAuthorizationArray{ GetClientAuthorizationArgs{...} }
 type GetClientAuthorizationArrayInput interface {
 	pulumi.Input
 
@@ -1928,7 +1928,7 @@ type GetClientServiceAccountUserFederatedIdentity struct {
 // GetClientServiceAccountUserFederatedIdentityInput is an input type that accepts GetClientServiceAccountUserFederatedIdentityArgs and GetClientServiceAccountUserFederatedIdentityOutput values.
 // You can construct a concrete instance of `GetClientServiceAccountUserFederatedIdentityInput` via:
 //
-//          GetClientServiceAccountUserFederatedIdentityArgs{...}
+//	GetClientServiceAccountUserFederatedIdentityArgs{...}
 type GetClientServiceAccountUserFederatedIdentityInput interface {
 	pulumi.Input
 
@@ -1957,7 +1957,7 @@ func (i GetClientServiceAccountUserFederatedIdentityArgs) ToGetClientServiceAcco
 // GetClientServiceAccountUserFederatedIdentityArrayInput is an input type that accepts GetClientServiceAccountUserFederatedIdentityArray and GetClientServiceAccountUserFederatedIdentityArrayOutput values.
 // You can construct a concrete instance of `GetClientServiceAccountUserFederatedIdentityArrayInput` via:
 //
-//          GetClientServiceAccountUserFederatedIdentityArray{ GetClientServiceAccountUserFederatedIdentityArgs{...} }
+//	GetClientServiceAccountUserFederatedIdentityArray{ GetClientServiceAccountUserFederatedIdentityArgs{...} }
 type GetClientServiceAccountUserFederatedIdentityArrayInput interface {
 	pulumi.Input
 

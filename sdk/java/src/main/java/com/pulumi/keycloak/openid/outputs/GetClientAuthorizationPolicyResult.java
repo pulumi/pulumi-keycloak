@@ -14,72 +14,47 @@ public final class GetClientAuthorizationPolicyResult {
      * @return (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
      * 
      */
-    private final String decisionStrategy;
+    private String decisionStrategy;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
+    private String id;
     /**
      * @return (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
      * 
      */
-    private final String logic;
-    private final String name;
+    private String logic;
+    private String name;
     /**
      * @return (Computed) The ID of the owning resource. Applies to resources.
      * 
      */
-    private final String owner;
+    private String owner;
     /**
      * @return (Computed) The IDs of the policies that must be applied to scopes/resources for this policy/permission. Applies to policies and permissions.
      * 
      */
-    private final List<String> policies;
-    private final String realmId;
-    private final String resourceServerId;
+    private List<String> policies;
+    private String realmId;
+    private String resourceServerId;
     /**
      * @return (Computed) The IDs of the resources that this permission applies to. Applies to resource-based permissions.
      * 
      */
-    private final List<String> resources;
+    private List<String> resources;
     /**
      * @return (Computed) The IDs of the scopes that this permission applies to. Applies to scope-based permissions.
      * 
      */
-    private final List<String> scopes;
+    private List<String> scopes;
     /**
      * @return (Computed) The type of this policy / permission. For permissions, this could be `resource` or `scope`. For policies, this could be any type of authorization policy, such as `js`.
      * 
      */
-    private final String type;
+    private String type;
 
-    @CustomType.Constructor
-    private GetClientAuthorizationPolicyResult(
-        @CustomType.Parameter("decisionStrategy") String decisionStrategy,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("logic") String logic,
-        @CustomType.Parameter("name") String name,
-        @CustomType.Parameter("owner") String owner,
-        @CustomType.Parameter("policies") List<String> policies,
-        @CustomType.Parameter("realmId") String realmId,
-        @CustomType.Parameter("resourceServerId") String resourceServerId,
-        @CustomType.Parameter("resources") List<String> resources,
-        @CustomType.Parameter("scopes") List<String> scopes,
-        @CustomType.Parameter("type") String type) {
-        this.decisionStrategy = decisionStrategy;
-        this.id = id;
-        this.logic = logic;
-        this.name = name;
-        this.owner = owner;
-        this.policies = policies;
-        this.realmId = realmId;
-        this.resourceServerId = resourceServerId;
-        this.resources = resources;
-        this.scopes = scopes;
-        this.type = type;
-    }
-
+    private GetClientAuthorizationPolicyResult() {}
     /**
      * @return (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
      * 
@@ -153,7 +128,7 @@ public final class GetClientAuthorizationPolicyResult {
     public static Builder builder(GetClientAuthorizationPolicyResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String decisionStrategy;
         private String id;
@@ -166,11 +141,7 @@ public final class GetClientAuthorizationPolicyResult {
         private List<String> resources;
         private List<String> scopes;
         private String type;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetClientAuthorizationPolicyResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.decisionStrategy = defaults.decisionStrategy;
@@ -186,26 +157,32 @@ public final class GetClientAuthorizationPolicyResult {
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
         public Builder decisionStrategy(String decisionStrategy) {
             this.decisionStrategy = Objects.requireNonNull(decisionStrategy);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder logic(String logic) {
             this.logic = Objects.requireNonNull(logic);
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
         }
+        @CustomType.Setter
         public Builder owner(String owner) {
             this.owner = Objects.requireNonNull(owner);
             return this;
         }
+        @CustomType.Setter
         public Builder policies(List<String> policies) {
             this.policies = Objects.requireNonNull(policies);
             return this;
@@ -213,14 +190,17 @@ public final class GetClientAuthorizationPolicyResult {
         public Builder policies(String... policies) {
             return policies(List.of(policies));
         }
+        @CustomType.Setter
         public Builder realmId(String realmId) {
             this.realmId = Objects.requireNonNull(realmId);
             return this;
         }
+        @CustomType.Setter
         public Builder resourceServerId(String resourceServerId) {
             this.resourceServerId = Objects.requireNonNull(resourceServerId);
             return this;
         }
+        @CustomType.Setter
         public Builder resources(List<String> resources) {
             this.resources = Objects.requireNonNull(resources);
             return this;
@@ -228,6 +208,7 @@ public final class GetClientAuthorizationPolicyResult {
         public Builder resources(String... resources) {
             return resources(List.of(resources));
         }
+        @CustomType.Setter
         public Builder scopes(List<String> scopes) {
             this.scopes = Objects.requireNonNull(scopes);
             return this;
@@ -235,11 +216,25 @@ public final class GetClientAuthorizationPolicyResult {
         public Builder scopes(String... scopes) {
             return scopes(List.of(scopes));
         }
+        @CustomType.Setter
         public Builder type(String type) {
             this.type = Objects.requireNonNull(type);
             return this;
-        }        public GetClientAuthorizationPolicyResult build() {
-            return new GetClientAuthorizationPolicyResult(decisionStrategy, id, logic, name, owner, policies, realmId, resourceServerId, resources, scopes, type);
+        }
+        public GetClientAuthorizationPolicyResult build() {
+            final var o = new GetClientAuthorizationPolicyResult();
+            o.decisionStrategy = decisionStrategy;
+            o.id = id;
+            o.logic = logic;
+            o.name = name;
+            o.owner = owner;
+            o.policies = policies;
+            o.realmId = realmId;
+            o.resourceServerId = resourceServerId;
+            o.resources = resources;
+            o.scopes = scopes;
+            o.type = type;
+            return o;
         }
     }
 }

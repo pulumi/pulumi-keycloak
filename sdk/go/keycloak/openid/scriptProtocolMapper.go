@@ -27,44 +27,47 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		openidClient, err := openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
-// 			RealmId:    realm.ID(),
-// 			ClientId:   pulumi.String("client"),
-// 			Enabled:    pulumi.Bool(true),
-// 			AccessType: pulumi.String("CONFIDENTIAL"),
-// 			ValidRedirectUris: pulumi.StringArray{
-// 				pulumi.String("http://localhost:8080/openid-callback"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = openid.NewScriptProtocolMapper(ctx, "scriptMapper", &openid.ScriptProtocolMapperArgs{
-// 			RealmId:   realm.ID(),
-// 			ClientId:  openidClient.ID(),
-// 			ClaimName: pulumi.String("foo"),
-// 			Script:    pulumi.String("exports = 'foo';"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			openidClient, err := openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
+//				RealmId:    realm.ID(),
+//				ClientId:   pulumi.String("client"),
+//				Enabled:    pulumi.Bool(true),
+//				AccessType: pulumi.String("CONFIDENTIAL"),
+//				ValidRedirectUris: pulumi.StringArray{
+//					pulumi.String("http://localhost:8080/openid-callback"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewScriptProtocolMapper(ctx, "scriptMapper", &openid.ScriptProtocolMapperArgs{
+//				RealmId:   realm.ID(),
+//				ClientId:  openidClient.ID(),
+//				ClaimName: pulumi.String("foo"),
+//				Script:    pulumi.String("exports = 'foo';"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Client Scope)
 //
@@ -72,38 +75,41 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		clientScope, err := openid.NewClientScope(ctx, "clientScope", &openid.ClientScopeArgs{
-// 			RealmId: realm.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = openid.NewScriptProtocolMapper(ctx, "scriptMapper", &openid.ScriptProtocolMapperArgs{
-// 			RealmId:       realm.ID(),
-// 			ClientScopeId: clientScope.ID(),
-// 			ClaimName:     pulumi.String("foo"),
-// 			Script:        pulumi.String("exports = 'foo';"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			clientScope, err := openid.NewClientScope(ctx, "clientScope", &openid.ClientScopeArgs{
+//				RealmId: realm.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewScriptProtocolMapper(ctx, "scriptMapper", &openid.ScriptProtocolMapperArgs{
+//				RealmId:       realm.ID(),
+//				ClientScopeId: clientScope.ID(),
+//				ClaimName:     pulumi.String("foo"),
+//				Script:        pulumi.String("exports = 'foo';"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -111,11 +117,15 @@ import (
 // Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper script_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+//
+//	$ pulumi import keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper script_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+//
 // ```
 //
 // ```sh
-//  $ pulumi import keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper script_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+//
+//	$ pulumi import keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper script_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+//
 // ```
 type ScriptProtocolMapper struct {
 	pulumi.CustomResourceState
@@ -312,7 +322,7 @@ func (i *ScriptProtocolMapper) ToScriptProtocolMapperOutputWithContext(ctx conte
 // ScriptProtocolMapperArrayInput is an input type that accepts ScriptProtocolMapperArray and ScriptProtocolMapperArrayOutput values.
 // You can construct a concrete instance of `ScriptProtocolMapperArrayInput` via:
 //
-//          ScriptProtocolMapperArray{ ScriptProtocolMapperArgs{...} }
+//	ScriptProtocolMapperArray{ ScriptProtocolMapperArgs{...} }
 type ScriptProtocolMapperArrayInput interface {
 	pulumi.Input
 
@@ -337,7 +347,7 @@ func (i ScriptProtocolMapperArray) ToScriptProtocolMapperArrayOutputWithContext(
 // ScriptProtocolMapperMapInput is an input type that accepts ScriptProtocolMapperMap and ScriptProtocolMapperMapOutput values.
 // You can construct a concrete instance of `ScriptProtocolMapperMapInput` via:
 //
-//          ScriptProtocolMapperMap{ "key": ScriptProtocolMapperArgs{...} }
+//	ScriptProtocolMapperMap{ "key": ScriptProtocolMapperArgs{...} }
 type ScriptProtocolMapperMapInput interface {
 	pulumi.Input
 

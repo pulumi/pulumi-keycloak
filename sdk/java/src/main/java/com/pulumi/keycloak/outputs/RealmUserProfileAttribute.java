@@ -19,70 +19,49 @@ public final class RealmUserProfileAttribute {
      * @return A map of annotations for the group.
      * 
      */
-    private final @Nullable Map<String,String> annotations;
+    private @Nullable Map<String,String> annotations;
     /**
      * @return The display name of the attribute.
      * 
      */
-    private final @Nullable String displayName;
+    private @Nullable String displayName;
     /**
      * @return A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
      * 
      */
-    private final @Nullable List<String> enabledWhenScopes;
+    private @Nullable List<String> enabledWhenScopes;
     /**
      * @return The group that the attribute belong to.
      * 
      */
-    private final @Nullable String group;
+    private @Nullable String group;
     /**
      * @return The name of the group.
      * 
      */
-    private final String name;
+    private String name;
     /**
      * @return The permissions configuration information.
      * 
      */
-    private final @Nullable RealmUserProfileAttributePermissions permissions;
+    private @Nullable RealmUserProfileAttributePermissions permissions;
     /**
      * @return A list of roles for which the attribute will be required.
      * 
      */
-    private final @Nullable List<String> requiredForRoles;
+    private @Nullable List<String> requiredForRoles;
     /**
      * @return A list of scopes for which the attribute will be required.
      * 
      */
-    private final @Nullable List<String> requiredForScopes;
+    private @Nullable List<String> requiredForScopes;
     /**
      * @return A list of validators for the attribute.
      * 
      */
-    private final @Nullable List<RealmUserProfileAttributeValidator> validators;
+    private @Nullable List<RealmUserProfileAttributeValidator> validators;
 
-    @CustomType.Constructor
-    private RealmUserProfileAttribute(
-        @CustomType.Parameter("annotations") @Nullable Map<String,String> annotations,
-        @CustomType.Parameter("displayName") @Nullable String displayName,
-        @CustomType.Parameter("enabledWhenScopes") @Nullable List<String> enabledWhenScopes,
-        @CustomType.Parameter("group") @Nullable String group,
-        @CustomType.Parameter("name") String name,
-        @CustomType.Parameter("permissions") @Nullable RealmUserProfileAttributePermissions permissions,
-        @CustomType.Parameter("requiredForRoles") @Nullable List<String> requiredForRoles,
-        @CustomType.Parameter("requiredForScopes") @Nullable List<String> requiredForScopes,
-        @CustomType.Parameter("validators") @Nullable List<RealmUserProfileAttributeValidator> validators) {
-        this.annotations = annotations;
-        this.displayName = displayName;
-        this.enabledWhenScopes = enabledWhenScopes;
-        this.group = group;
-        this.name = name;
-        this.permissions = permissions;
-        this.requiredForRoles = requiredForRoles;
-        this.requiredForScopes = requiredForScopes;
-        this.validators = validators;
-    }
-
+    private RealmUserProfileAttribute() {}
     /**
      * @return A map of annotations for the group.
      * 
@@ -154,7 +133,7 @@ public final class RealmUserProfileAttribute {
     public static Builder builder(RealmUserProfileAttribute defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable Map<String,String> annotations;
         private @Nullable String displayName;
@@ -165,11 +144,7 @@ public final class RealmUserProfileAttribute {
         private @Nullable List<String> requiredForRoles;
         private @Nullable List<String> requiredForScopes;
         private @Nullable List<RealmUserProfileAttributeValidator> validators;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(RealmUserProfileAttribute defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.annotations = defaults.annotations;
@@ -183,14 +158,17 @@ public final class RealmUserProfileAttribute {
     	      this.validators = defaults.validators;
         }
 
+        @CustomType.Setter
         public Builder annotations(@Nullable Map<String,String> annotations) {
             this.annotations = annotations;
             return this;
         }
+        @CustomType.Setter
         public Builder displayName(@Nullable String displayName) {
             this.displayName = displayName;
             return this;
         }
+        @CustomType.Setter
         public Builder enabledWhenScopes(@Nullable List<String> enabledWhenScopes) {
             this.enabledWhenScopes = enabledWhenScopes;
             return this;
@@ -198,18 +176,22 @@ public final class RealmUserProfileAttribute {
         public Builder enabledWhenScopes(String... enabledWhenScopes) {
             return enabledWhenScopes(List.of(enabledWhenScopes));
         }
+        @CustomType.Setter
         public Builder group(@Nullable String group) {
             this.group = group;
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
         }
+        @CustomType.Setter
         public Builder permissions(@Nullable RealmUserProfileAttributePermissions permissions) {
             this.permissions = permissions;
             return this;
         }
+        @CustomType.Setter
         public Builder requiredForRoles(@Nullable List<String> requiredForRoles) {
             this.requiredForRoles = requiredForRoles;
             return this;
@@ -217,6 +199,7 @@ public final class RealmUserProfileAttribute {
         public Builder requiredForRoles(String... requiredForRoles) {
             return requiredForRoles(List.of(requiredForRoles));
         }
+        @CustomType.Setter
         public Builder requiredForScopes(@Nullable List<String> requiredForScopes) {
             this.requiredForScopes = requiredForScopes;
             return this;
@@ -224,14 +207,26 @@ public final class RealmUserProfileAttribute {
         public Builder requiredForScopes(String... requiredForScopes) {
             return requiredForScopes(List.of(requiredForScopes));
         }
+        @CustomType.Setter
         public Builder validators(@Nullable List<RealmUserProfileAttributeValidator> validators) {
             this.validators = validators;
             return this;
         }
         public Builder validators(RealmUserProfileAttributeValidator... validators) {
             return validators(List.of(validators));
-        }        public RealmUserProfileAttribute build() {
-            return new RealmUserProfileAttribute(annotations, displayName, enabledWhenScopes, group, name, permissions, requiredForRoles, requiredForScopes, validators);
+        }
+        public RealmUserProfileAttribute build() {
+            final var o = new RealmUserProfileAttribute();
+            o.annotations = annotations;
+            o.displayName = displayName;
+            o.enabledWhenScopes = enabledWhenScopes;
+            o.group = group;
+            o.name = name;
+            o.permissions = permissions;
+            o.requiredForRoles = requiredForRoles;
+            o.requiredForScopes = requiredForScopes;
+            o.validators = validators;
+            return o;
         }
     }
 }

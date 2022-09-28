@@ -17,62 +17,65 @@ import (
 // package main
 //
 // import (
-// 	"io/ioutil"
 //
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"io/ioutil"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func readFileOrPanic(path string) pulumi.StringPtrInput {
-// 	data, err := ioutil.ReadFile(path)
-// 	if err != nil {
-// 		panic(err.Error())
-// 	}
-// 	return pulumi.String(string(data))
-// }
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := ioutil.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
-// 			RealmId:               realm.ID(),
-// 			ClientId:              pulumi.String("saml-client"),
-// 			SignDocuments:         pulumi.Bool(false),
-// 			SignAssertions:        pulumi.Bool(true),
-// 			IncludeAuthnStatement: pulumi.Bool(true),
-// 			SigningCertificate:    readFileOrPanic("saml-cert.pem"),
-// 			SigningPrivateKey:     readFileOrPanic("saml-key.pem"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		clientScope, err := saml.NewClientScope(ctx, "clientScope", &saml.ClientScopeArgs{
-// 			RealmId: realm.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = saml.NewClientDefaultScope(ctx, "clientDefaultScopes", &saml.ClientDefaultScopeArgs{
-// 			RealmId:  realm.ID(),
-// 			ClientId: pulumi.Any(keycloak_saml_client.Client.Id),
-// 			DefaultScopes: pulumi.StringArray{
-// 				pulumi.String("role_list"),
-// 				clientScope.Name,
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
+//				RealmId:               realm.ID(),
+//				ClientId:              pulumi.String("saml-client"),
+//				SignDocuments:         pulumi.Bool(false),
+//				SignAssertions:        pulumi.Bool(true),
+//				IncludeAuthnStatement: pulumi.Bool(true),
+//				SigningCertificate:    readFileOrPanic("saml-cert.pem"),
+//				SigningPrivateKey:     readFileOrPanic("saml-key.pem"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			clientScope, err := saml.NewClientScope(ctx, "clientScope", &saml.ClientScopeArgs{
+//				RealmId: realm.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = saml.NewClientDefaultScope(ctx, "clientDefaultScopes", &saml.ClientDefaultScopeArgs{
+//				RealmId:  realm.ID(),
+//				ClientId: pulumi.Any(keycloak_saml_client.Client.Id),
+//				DefaultScopes: pulumi.StringArray{
+//					pulumi.String("role_list"),
+//					clientScope.Name,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -193,7 +196,7 @@ func (i *ClientDefaultScope) ToClientDefaultScopeOutputWithContext(ctx context.C
 // ClientDefaultScopeArrayInput is an input type that accepts ClientDefaultScopeArray and ClientDefaultScopeArrayOutput values.
 // You can construct a concrete instance of `ClientDefaultScopeArrayInput` via:
 //
-//          ClientDefaultScopeArray{ ClientDefaultScopeArgs{...} }
+//	ClientDefaultScopeArray{ ClientDefaultScopeArgs{...} }
 type ClientDefaultScopeArrayInput interface {
 	pulumi.Input
 
@@ -218,7 +221,7 @@ func (i ClientDefaultScopeArray) ToClientDefaultScopeArrayOutputWithContext(ctx 
 // ClientDefaultScopeMapInput is an input type that accepts ClientDefaultScopeMap and ClientDefaultScopeMapOutput values.
 // You can construct a concrete instance of `ClientDefaultScopeMapInput` via:
 //
-//          ClientDefaultScopeMap{ "key": ClientDefaultScopeArgs{...} }
+//	ClientDefaultScopeMap{ "key": ClientDefaultScopeArgs{...} }
 type ClientDefaultScopeMapInput interface {
 	pulumi.Input
 

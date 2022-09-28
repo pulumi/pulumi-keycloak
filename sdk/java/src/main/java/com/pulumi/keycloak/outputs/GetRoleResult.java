@@ -14,40 +14,23 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetRoleResult {
-    private final Map<String,Object> attributes;
-    private final @Nullable String clientId;
-    private final List<String> compositeRoles;
+    private Map<String,Object> attributes;
+    private @Nullable String clientId;
+    private List<String> compositeRoles;
     /**
      * @return (Computed) The description of the role.
      * 
      */
-    private final String description;
+    private String description;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final String name;
-    private final String realmId;
+    private String id;
+    private String name;
+    private String realmId;
 
-    @CustomType.Constructor
-    private GetRoleResult(
-        @CustomType.Parameter("attributes") Map<String,Object> attributes,
-        @CustomType.Parameter("clientId") @Nullable String clientId,
-        @CustomType.Parameter("compositeRoles") List<String> compositeRoles,
-        @CustomType.Parameter("description") String description,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("name") String name,
-        @CustomType.Parameter("realmId") String realmId) {
-        this.attributes = attributes;
-        this.clientId = clientId;
-        this.compositeRoles = compositeRoles;
-        this.description = description;
-        this.id = id;
-        this.name = name;
-        this.realmId = realmId;
-    }
-
+    private GetRoleResult() {}
     public Map<String,Object> attributes() {
         return this.attributes;
     }
@@ -85,7 +68,7 @@ public final class GetRoleResult {
     public static Builder builder(GetRoleResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private Map<String,Object> attributes;
         private @Nullable String clientId;
@@ -94,11 +77,7 @@ public final class GetRoleResult {
         private String id;
         private String name;
         private String realmId;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetRoleResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.attributes = defaults.attributes;
@@ -110,14 +89,17 @@ public final class GetRoleResult {
     	      this.realmId = defaults.realmId;
         }
 
+        @CustomType.Setter
         public Builder attributes(Map<String,Object> attributes) {
             this.attributes = Objects.requireNonNull(attributes);
             return this;
         }
+        @CustomType.Setter
         public Builder clientId(@Nullable String clientId) {
             this.clientId = clientId;
             return this;
         }
+        @CustomType.Setter
         public Builder compositeRoles(List<String> compositeRoles) {
             this.compositeRoles = Objects.requireNonNull(compositeRoles);
             return this;
@@ -125,23 +107,36 @@ public final class GetRoleResult {
         public Builder compositeRoles(String... compositeRoles) {
             return compositeRoles(List.of(compositeRoles));
         }
+        @CustomType.Setter
         public Builder description(String description) {
             this.description = Objects.requireNonNull(description);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
         }
+        @CustomType.Setter
         public Builder realmId(String realmId) {
             this.realmId = Objects.requireNonNull(realmId);
             return this;
-        }        public GetRoleResult build() {
-            return new GetRoleResult(attributes, clientId, compositeRoles, description, id, name, realmId);
+        }
+        public GetRoleResult build() {
+            final var o = new GetRoleResult();
+            o.attributes = attributes;
+            o.clientId = clientId;
+            o.compositeRoles = compositeRoles;
+            o.description = description;
+            o.id = id;
+            o.name = name;
+            o.realmId = realmId;
+            return o;
         }
     }
 }

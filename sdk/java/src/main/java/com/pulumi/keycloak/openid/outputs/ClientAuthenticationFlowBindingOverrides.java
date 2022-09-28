@@ -15,21 +15,14 @@ public final class ClientAuthenticationFlowBindingOverrides {
      * @return Browser flow id, (flow needs to exist)
      * 
      */
-    private final @Nullable String browserId;
+    private @Nullable String browserId;
     /**
      * @return Direct grant flow id (flow needs to exist)
      * 
      */
-    private final @Nullable String directGrantId;
+    private @Nullable String directGrantId;
 
-    @CustomType.Constructor
-    private ClientAuthenticationFlowBindingOverrides(
-        @CustomType.Parameter("browserId") @Nullable String browserId,
-        @CustomType.Parameter("directGrantId") @Nullable String directGrantId) {
-        this.browserId = browserId;
-        this.directGrantId = directGrantId;
-    }
-
+    private ClientAuthenticationFlowBindingOverrides() {}
     /**
      * @return Browser flow id, (flow needs to exist)
      * 
@@ -52,30 +45,32 @@ public final class ClientAuthenticationFlowBindingOverrides {
     public static Builder builder(ClientAuthenticationFlowBindingOverrides defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String browserId;
         private @Nullable String directGrantId;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(ClientAuthenticationFlowBindingOverrides defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.browserId = defaults.browserId;
     	      this.directGrantId = defaults.directGrantId;
         }
 
+        @CustomType.Setter
         public Builder browserId(@Nullable String browserId) {
             this.browserId = browserId;
             return this;
         }
+        @CustomType.Setter
         public Builder directGrantId(@Nullable String directGrantId) {
             this.directGrantId = directGrantId;
             return this;
-        }        public ClientAuthenticationFlowBindingOverrides build() {
-            return new ClientAuthenticationFlowBindingOverrides(browserId, directGrantId);
+        }
+        public ClientAuthenticationFlowBindingOverrides build() {
+            final var o = new ClientAuthenticationFlowBindingOverrides();
+            o.browserId = browserId;
+            o.directGrantId = directGrantId;
+            return o;
         }
     }
 }

@@ -186,7 +186,7 @@ func (i *ClientTimePolicy) ToClientTimePolicyOutputWithContext(ctx context.Conte
 // ClientTimePolicyArrayInput is an input type that accepts ClientTimePolicyArray and ClientTimePolicyArrayOutput values.
 // You can construct a concrete instance of `ClientTimePolicyArrayInput` via:
 //
-//          ClientTimePolicyArray{ ClientTimePolicyArgs{...} }
+//	ClientTimePolicyArray{ ClientTimePolicyArgs{...} }
 type ClientTimePolicyArrayInput interface {
 	pulumi.Input
 
@@ -211,7 +211,7 @@ func (i ClientTimePolicyArray) ToClientTimePolicyArrayOutputWithContext(ctx cont
 // ClientTimePolicyMapInput is an input type that accepts ClientTimePolicyMap and ClientTimePolicyMapOutput values.
 // You can construct a concrete instance of `ClientTimePolicyMapInput` via:
 //
-//          ClientTimePolicyMap{ "key": ClientTimePolicyArgs{...} }
+//	ClientTimePolicyMap{ "key": ClientTimePolicyArgs{...} }
 type ClientTimePolicyMapInput interface {
 	pulumi.Input
 

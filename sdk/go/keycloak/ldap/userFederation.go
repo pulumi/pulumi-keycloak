@@ -24,48 +24,51 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/ldap"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/ldap"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
-// 			RealmId:               realm.ID(),
-// 			Enabled:               pulumi.Bool(true),
-// 			UsernameLdapAttribute: pulumi.String("cn"),
-// 			RdnLdapAttribute:      pulumi.String("cn"),
-// 			UuidLdapAttribute:     pulumi.String("entryDN"),
-// 			UserObjectClasses: pulumi.StringArray{
-// 				pulumi.String("simpleSecurityObject"),
-// 				pulumi.String("organizationalRole"),
-// 			},
-// 			ConnectionUrl:     pulumi.String("ldap://openldap"),
-// 			UsersDn:           pulumi.String("dc=example,dc=org"),
-// 			BindDn:            pulumi.String("cn=admin,dc=example,dc=org"),
-// 			BindCredential:    pulumi.String("admin"),
-// 			ConnectionTimeout: pulumi.String("5s"),
-// 			ReadTimeout:       pulumi.String("10s"),
-// 			Kerberos: &ldap.UserFederationKerberosArgs{
-// 				KerberosRealm:   pulumi.String("FOO.LOCAL"),
-// 				ServerPrincipal: pulumi.String("HTTP/host.foo.com@FOO.LOCAL"),
-// 				KeyTab:          pulumi.String("/etc/host.keytab"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
+//				RealmId:               realm.ID(),
+//				Enabled:               pulumi.Bool(true),
+//				UsernameLdapAttribute: pulumi.String("cn"),
+//				RdnLdapAttribute:      pulumi.String("cn"),
+//				UuidLdapAttribute:     pulumi.String("entryDN"),
+//				UserObjectClasses: pulumi.StringArray{
+//					pulumi.String("simpleSecurityObject"),
+//					pulumi.String("organizationalRole"),
+//				},
+//				ConnectionUrl:     pulumi.String("ldap://openldap"),
+//				UsersDn:           pulumi.String("dc=example,dc=org"),
+//				BindDn:            pulumi.String("cn=admin,dc=example,dc=org"),
+//				BindCredential:    pulumi.String("admin"),
+//				ConnectionTimeout: pulumi.String("5s"),
+//				ReadTimeout:       pulumi.String("10s"),
+//				Kerberos: &ldap.UserFederationKerberosArgs{
+//					KerberosRealm:   pulumi.String("FOO.LOCAL"),
+//					ServerPrincipal: pulumi.String("HTTP/host.foo.com@FOO.LOCAL"),
+//					KeyTab:          pulumi.String("/etc/host.keytab"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -73,7 +76,9 @@ import (
 // LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`. The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUIDbash
 //
 // ```sh
-//  $ pulumi import keycloak:ldap/userFederation:UserFederation ldap_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
+//
+//	$ pulumi import keycloak:ldap/userFederation:UserFederation ldap_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
+//
 // ```
 type UserFederation struct {
 	pulumi.CustomResourceState
@@ -492,7 +497,7 @@ func (i *UserFederation) ToUserFederationOutputWithContext(ctx context.Context) 
 // UserFederationArrayInput is an input type that accepts UserFederationArray and UserFederationArrayOutput values.
 // You can construct a concrete instance of `UserFederationArrayInput` via:
 //
-//          UserFederationArray{ UserFederationArgs{...} }
+//	UserFederationArray{ UserFederationArgs{...} }
 type UserFederationArrayInput interface {
 	pulumi.Input
 
@@ -517,7 +522,7 @@ func (i UserFederationArray) ToUserFederationArrayOutputWithContext(ctx context.
 // UserFederationMapInput is an input type that accepts UserFederationMap and UserFederationMapOutput values.
 // You can construct a concrete instance of `UserFederationMapInput` via:
 //
-//          UserFederationMap{ "key": UserFederationArgs{...} }
+//	UserFederationMap{ "key": UserFederationArgs{...} }
 type UserFederationMapInput interface {
 	pulumi.Input
 

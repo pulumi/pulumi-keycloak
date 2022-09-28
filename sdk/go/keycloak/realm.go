@@ -22,75 +22,78 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			AccessCodeLifespan: pulumi.String("1h"),
-// 			Attributes: pulumi.AnyMap{
-// 				"mycustomAttribute": pulumi.Any("myCustomValue"),
-// 			},
-// 			DisplayName:     pulumi.String("my realm"),
-// 			DisplayNameHtml: pulumi.String("<b>my realm</b>"),
-// 			Enabled:         pulumi.Bool(true),
-// 			Internationalization: &RealmInternationalizationArgs{
-// 				DefaultLocale: pulumi.String("en"),
-// 				SupportedLocales: pulumi.StringArray{
-// 					pulumi.String("en"),
-// 					pulumi.String("de"),
-// 					pulumi.String("es"),
-// 				},
-// 			},
-// 			LoginTheme:     pulumi.String("base"),
-// 			PasswordPolicy: pulumi.String("upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername"),
-// 			Realm:          pulumi.String("my-realm"),
-// 			SecurityDefenses: &RealmSecurityDefensesArgs{
-// 				BruteForceDetection: &RealmSecurityDefensesBruteForceDetectionArgs{
-// 					FailureResetTimeSeconds:      pulumi.Int(43200),
-// 					MaxFailureWaitSeconds:        pulumi.Int(900),
-// 					MaxLoginFailures:             pulumi.Int(30),
-// 					MinimumQuickLoginWaitSeconds: pulumi.Int(60),
-// 					PermanentLockout:             pulumi.Bool(false),
-// 					QuickLoginCheckMilliSeconds:  pulumi.Int(1000),
-// 					WaitIncrementSeconds:         pulumi.Int(60),
-// 				},
-// 				Headers: &RealmSecurityDefensesHeadersArgs{
-// 					ContentSecurityPolicy:           pulumi.String("frame-src 'self'; frame-ancestors 'self'; object-src 'none';"),
-// 					ContentSecurityPolicyReportOnly: pulumi.String(""),
-// 					StrictTransportSecurity:         pulumi.String("max-age=31536000; includeSubDomains"),
-// 					XContentTypeOptions:             pulumi.String("nosniff"),
-// 					XFrameOptions:                   pulumi.String("DENY"),
-// 					XRobotsTag:                      pulumi.String("none"),
-// 					XXssProtection:                  pulumi.String("1; mode=block"),
-// 				},
-// 			},
-// 			SmtpServer: &RealmSmtpServerArgs{
-// 				Auth: &RealmSmtpServerAuthArgs{
-// 					Password: pulumi.String("password"),
-// 					Username: pulumi.String("tom"),
-// 				},
-// 				From: pulumi.String("example@example.com"),
-// 				Host: pulumi.String("smtp.example.com"),
-// 			},
-// 			SslRequired: pulumi.String("external"),
-// 			WebAuthnPolicy: &RealmWebAuthnPolicyArgs{
-// 				RelyingPartyEntityName: pulumi.String("Example"),
-// 				RelyingPartyId:         pulumi.String("keycloak.example.com"),
-// 				SignatureAlgorithms: pulumi.StringArray{
-// 					pulumi.String("ES256"),
-// 					pulumi.String("RS256"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				AccessCodeLifespan: pulumi.String("1h"),
+//				Attributes: pulumi.AnyMap{
+//					"mycustomAttribute": pulumi.Any("myCustomValue"),
+//				},
+//				DisplayName:     pulumi.String("my realm"),
+//				DisplayNameHtml: pulumi.String("<b>my realm</b>"),
+//				Enabled:         pulumi.Bool(true),
+//				Internationalization: &RealmInternationalizationArgs{
+//					DefaultLocale: pulumi.String("en"),
+//					SupportedLocales: pulumi.StringArray{
+//						pulumi.String("en"),
+//						pulumi.String("de"),
+//						pulumi.String("es"),
+//					},
+//				},
+//				LoginTheme:     pulumi.String("base"),
+//				PasswordPolicy: pulumi.String("upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername"),
+//				Realm:          pulumi.String("my-realm"),
+//				SecurityDefenses: &RealmSecurityDefensesArgs{
+//					BruteForceDetection: &RealmSecurityDefensesBruteForceDetectionArgs{
+//						FailureResetTimeSeconds:      pulumi.Int(43200),
+//						MaxFailureWaitSeconds:        pulumi.Int(900),
+//						MaxLoginFailures:             pulumi.Int(30),
+//						MinimumQuickLoginWaitSeconds: pulumi.Int(60),
+//						PermanentLockout:             pulumi.Bool(false),
+//						QuickLoginCheckMilliSeconds:  pulumi.Int(1000),
+//						WaitIncrementSeconds:         pulumi.Int(60),
+//					},
+//					Headers: &RealmSecurityDefensesHeadersArgs{
+//						ContentSecurityPolicy:           pulumi.String("frame-src 'self'; frame-ancestors 'self'; object-src 'none';"),
+//						ContentSecurityPolicyReportOnly: pulumi.String(""),
+//						StrictTransportSecurity:         pulumi.String("max-age=31536000; includeSubDomains"),
+//						XContentTypeOptions:             pulumi.String("nosniff"),
+//						XFrameOptions:                   pulumi.String("DENY"),
+//						XRobotsTag:                      pulumi.String("none"),
+//						XXssProtection:                  pulumi.String("1; mode=block"),
+//					},
+//				},
+//				SmtpServer: &RealmSmtpServerArgs{
+//					Auth: &RealmSmtpServerAuthArgs{
+//						Password: pulumi.String("password"),
+//						Username: pulumi.String("tom"),
+//					},
+//					From: pulumi.String("example@example.com"),
+//					Host: pulumi.String("smtp.example.com"),
+//				},
+//				SslRequired: pulumi.String("external"),
+//				WebAuthnPolicy: &RealmWebAuthnPolicyArgs{
+//					RelyingPartyEntityName: pulumi.String("Example"),
+//					RelyingPartyId:         pulumi.String("keycloak.example.com"),
+//					SignatureAlgorithms: pulumi.StringArray{
+//						pulumi.String("ES256"),
+//						pulumi.String("RS256"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ## Default Client Scopes
 //
@@ -102,7 +105,9 @@ import (
 // Realms can be imported using their name. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:index/realm:Realm realm my-realm
+//
+//	$ pulumi import keycloak:index/realm:Realm realm my-realm
+//
 // ```
 type Realm struct {
 	pulumi.CustomResourceState
@@ -696,7 +701,7 @@ func (i *Realm) ToRealmOutputWithContext(ctx context.Context) RealmOutput {
 // RealmArrayInput is an input type that accepts RealmArray and RealmArrayOutput values.
 // You can construct a concrete instance of `RealmArrayInput` via:
 //
-//          RealmArray{ RealmArgs{...} }
+//	RealmArray{ RealmArgs{...} }
 type RealmArrayInput interface {
 	pulumi.Input
 
@@ -721,7 +726,7 @@ func (i RealmArray) ToRealmArrayOutputWithContext(ctx context.Context) RealmArra
 // RealmMapInput is an input type that accepts RealmMap and RealmMapOutput values.
 // You can construct a concrete instance of `RealmMapInput` via:
 //
-//          RealmMap{ "key": RealmArgs{...} }
+//	RealmMap{ "key": RealmArgs{...} }
 type RealmMapInput interface {
 	pulumi.Input
 

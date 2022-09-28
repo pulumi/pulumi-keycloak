@@ -22,45 +22,48 @@ import (
 // package main
 //
 // import (
-// 	"io/ioutil"
 //
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"io/ioutil"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/saml"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func readFileOrPanic(path string) pulumi.StringPtrInput {
-// 	data, err := ioutil.ReadFile(path)
-// 	if err != nil {
-// 		panic(err.Error())
-// 	}
-// 	return pulumi.String(string(data))
-// }
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := ioutil.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
-// 			RealmId:               realm.ID(),
-// 			ClientId:              pulumi.String("saml-client"),
-// 			SignDocuments:         pulumi.Bool(false),
-// 			SignAssertions:        pulumi.Bool(true),
-// 			IncludeAuthnStatement: pulumi.Bool(true),
-// 			SigningCertificate:    readFileOrPanic("saml-cert.pem"),
-// 			SigningPrivateKey:     readFileOrPanic("saml-key.pem"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
+//				RealmId:               realm.ID(),
+//				ClientId:              pulumi.String("saml-client"),
+//				SignDocuments:         pulumi.Bool(false),
+//				SignAssertions:        pulumi.Bool(true),
+//				IncludeAuthnStatement: pulumi.Bool(true),
+//				SigningCertificate:    readFileOrPanic("saml-cert.pem"),
+//				SigningPrivateKey:     readFileOrPanic("saml-key.pem"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -68,7 +71,9 @@ import (
 // Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:saml/client:Client saml_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
+//
+//	$ pulumi import keycloak:saml/client:Client saml_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
+//
 // ```
 type Client struct {
 	pulumi.CustomResourceState
@@ -505,7 +510,7 @@ func (i *Client) ToClientOutputWithContext(ctx context.Context) ClientOutput {
 // ClientArrayInput is an input type that accepts ClientArray and ClientArrayOutput values.
 // You can construct a concrete instance of `ClientArrayInput` via:
 //
-//          ClientArray{ ClientArgs{...} }
+//	ClientArray{ ClientArgs{...} }
 type ClientArrayInput interface {
 	pulumi.Input
 
@@ -530,7 +535,7 @@ func (i ClientArray) ToClientArrayOutputWithContext(ctx context.Context) ClientA
 // ClientMapInput is an input type that accepts ClientMap and ClientMapOutput values.
 // You can construct a concrete instance of `ClientMapInput` via:
 //
-//          ClientMap{ "key": ClientArgs{...} }
+//	ClientMap{ "key": ClientArgs{...} }
 type ClientMapInput interface {
 	pulumi.Input
 

@@ -21,57 +21,60 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/ldap"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak/ldap"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm:   pulumi.String("my-realm"),
-// 			Enabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
-// 			RealmId:               realm.ID(),
-// 			UsernameLdapAttribute: pulumi.String("cn"),
-// 			RdnLdapAttribute:      pulumi.String("cn"),
-// 			UuidLdapAttribute:     pulumi.String("entryDN"),
-// 			UserObjectClasses: pulumi.StringArray{
-// 				pulumi.String("simpleSecurityObject"),
-// 				pulumi.String("organizationalRole"),
-// 			},
-// 			ConnectionUrl:  pulumi.String("ldap://openldap"),
-// 			UsersDn:        pulumi.String("dc=example,dc=org"),
-// 			BindDn:         pulumi.String("cn=admin,dc=example,dc=org"),
-// 			BindCredential: pulumi.String("admin"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ldap.NewRoleMapper(ctx, "ldapRoleMapper", &ldap.RoleMapperArgs{
-// 			RealmId:               realm.ID(),
-// 			LdapUserFederationId:  ldapUserFederation.ID(),
-// 			LdapRolesDn:           pulumi.String("dc=example,dc=org"),
-// 			RoleNameLdapAttribute: pulumi.String("cn"),
-// 			RoleObjectClasses: pulumi.StringArray{
-// 				pulumi.String("groupOfNames"),
-// 			},
-// 			MembershipAttributeType:     pulumi.String("DN"),
-// 			MembershipLdapAttribute:     pulumi.String("member"),
-// 			MembershipUserLdapAttribute: pulumi.String("cn"),
-// 			UserRolesRetrieveStrategy:   pulumi.String("GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE"),
-// 			MemberofLdapAttribute:       pulumi.String("memberOf"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
+//				RealmId:               realm.ID(),
+//				UsernameLdapAttribute: pulumi.String("cn"),
+//				RdnLdapAttribute:      pulumi.String("cn"),
+//				UuidLdapAttribute:     pulumi.String("entryDN"),
+//				UserObjectClasses: pulumi.StringArray{
+//					pulumi.String("simpleSecurityObject"),
+//					pulumi.String("organizationalRole"),
+//				},
+//				ConnectionUrl:  pulumi.String("ldap://openldap"),
+//				UsersDn:        pulumi.String("dc=example,dc=org"),
+//				BindDn:         pulumi.String("cn=admin,dc=example,dc=org"),
+//				BindCredential: pulumi.String("admin"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ldap.NewRoleMapper(ctx, "ldapRoleMapper", &ldap.RoleMapperArgs{
+//				RealmId:               realm.ID(),
+//				LdapUserFederationId:  ldapUserFederation.ID(),
+//				LdapRolesDn:           pulumi.String("dc=example,dc=org"),
+//				RoleNameLdapAttribute: pulumi.String("cn"),
+//				RoleObjectClasses: pulumi.StringArray{
+//					pulumi.String("groupOfNames"),
+//				},
+//				MembershipAttributeType:     pulumi.String("DN"),
+//				MembershipLdapAttribute:     pulumi.String("member"),
+//				MembershipUserLdapAttribute: pulumi.String("cn"),
+//				UserRolesRetrieveStrategy:   pulumi.String("GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE"),
+//				MemberofLdapAttribute:       pulumi.String("memberOf"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -79,7 +82,9 @@ import (
 // LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:ldap/roleMapper:RoleMapper ldap_role_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+//
+//	$ pulumi import keycloak:ldap/roleMapper:RoleMapper ldap_role_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+//
 // ```
 type RoleMapper struct {
 	pulumi.CustomResourceState
@@ -328,7 +333,7 @@ func (i *RoleMapper) ToRoleMapperOutputWithContext(ctx context.Context) RoleMapp
 // RoleMapperArrayInput is an input type that accepts RoleMapperArray and RoleMapperArrayOutput values.
 // You can construct a concrete instance of `RoleMapperArrayInput` via:
 //
-//          RoleMapperArray{ RoleMapperArgs{...} }
+//	RoleMapperArray{ RoleMapperArgs{...} }
 type RoleMapperArrayInput interface {
 	pulumi.Input
 
@@ -353,7 +358,7 @@ func (i RoleMapperArray) ToRoleMapperArrayOutputWithContext(ctx context.Context)
 // RoleMapperMapInput is an input type that accepts RoleMapperMap and RoleMapperMapOutput values.
 // You can construct a concrete instance of `RoleMapperMapInput` via:
 //
-//          RoleMapperMap{ "key": RoleMapperArgs{...} }
+//	RoleMapperMap{ "key": RoleMapperArgs{...} }
 type RoleMapperMapInput interface {
 	pulumi.Input
 

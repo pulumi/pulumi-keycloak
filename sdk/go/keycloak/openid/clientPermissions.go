@@ -147,7 +147,7 @@ func (i *ClientPermissions) ToClientPermissionsOutputWithContext(ctx context.Con
 // ClientPermissionsArrayInput is an input type that accepts ClientPermissionsArray and ClientPermissionsArrayOutput values.
 // You can construct a concrete instance of `ClientPermissionsArrayInput` via:
 //
-//          ClientPermissionsArray{ ClientPermissionsArgs{...} }
+//	ClientPermissionsArray{ ClientPermissionsArgs{...} }
 type ClientPermissionsArrayInput interface {
 	pulumi.Input
 
@@ -172,7 +172,7 @@ func (i ClientPermissionsArray) ToClientPermissionsArrayOutputWithContext(ctx co
 // ClientPermissionsMapInput is an input type that accepts ClientPermissionsMap and ClientPermissionsMapOutput values.
 // You can construct a concrete instance of `ClientPermissionsMapInput` via:
 //
-//          ClientPermissionsMap{ "key": ClientPermissionsArgs{...} }
+//	ClientPermissionsMap{ "key": ClientPermissionsArgs{...} }
 type ClientPermissionsMapInput interface {
 	pulumi.Input
 

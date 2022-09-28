@@ -14,132 +14,51 @@ import java.util.Objects;
 
 @CustomType
 public final class GetClientResult {
-    private final String assertionConsumerPostUrl;
-    private final String assertionConsumerRedirectUrl;
-    private final List<GetClientAuthenticationFlowBindingOverride> authenticationFlowBindingOverrides;
-    private final String baseUrl;
-    private final String canonicalizationMethod;
-    private final String clientId;
-    private final Boolean clientSignatureRequired;
-    private final String description;
-    private final Boolean enabled;
-    private final Boolean encryptAssertions;
-    private final String encryptionCertificate;
-    private final String encryptionCertificateSha1;
-    private final Map<String,Object> extraConfig;
-    private final Boolean forceNameIdFormat;
-    private final Boolean forcePostBinding;
-    private final Boolean frontChannelLogout;
-    private final Boolean fullScopeAllowed;
+    private String assertionConsumerPostUrl;
+    private String assertionConsumerRedirectUrl;
+    private List<GetClientAuthenticationFlowBindingOverride> authenticationFlowBindingOverrides;
+    private String baseUrl;
+    private String canonicalizationMethod;
+    private String clientId;
+    private Boolean clientSignatureRequired;
+    private String description;
+    private Boolean enabled;
+    private Boolean encryptAssertions;
+    private String encryptionCertificate;
+    private String encryptionCertificateSha1;
+    private Map<String,Object> extraConfig;
+    private Boolean forceNameIdFormat;
+    private Boolean forcePostBinding;
+    private Boolean frontChannelLogout;
+    private Boolean fullScopeAllowed;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final String idpInitiatedSsoRelayState;
-    private final String idpInitiatedSsoUrlName;
-    private final Boolean includeAuthnStatement;
-    private final String loginTheme;
-    private final String logoutServicePostBindingUrl;
-    private final String logoutServiceRedirectBindingUrl;
-    private final String masterSamlProcessingUrl;
-    private final String name;
-    private final String nameIdFormat;
-    private final String realmId;
-    private final String rootUrl;
-    private final String samlSignatureKeyName;
-    private final Boolean signAssertions;
-    private final Boolean signDocuments;
-    private final String signatureAlgorithm;
-    private final String signatureKeyName;
-    private final String signingCertificate;
-    private final String signingCertificateSha1;
-    private final String signingPrivateKey;
-    private final String signingPrivateKeySha1;
-    private final List<String> validRedirectUris;
+    private String id;
+    private String idpInitiatedSsoRelayState;
+    private String idpInitiatedSsoUrlName;
+    private Boolean includeAuthnStatement;
+    private String loginTheme;
+    private String logoutServicePostBindingUrl;
+    private String logoutServiceRedirectBindingUrl;
+    private String masterSamlProcessingUrl;
+    private String name;
+    private String nameIdFormat;
+    private String realmId;
+    private String rootUrl;
+    private String samlSignatureKeyName;
+    private Boolean signAssertions;
+    private Boolean signDocuments;
+    private String signatureAlgorithm;
+    private String signatureKeyName;
+    private String signingCertificate;
+    private String signingCertificateSha1;
+    private String signingPrivateKey;
+    private String signingPrivateKeySha1;
+    private List<String> validRedirectUris;
 
-    @CustomType.Constructor
-    private GetClientResult(
-        @CustomType.Parameter("assertionConsumerPostUrl") String assertionConsumerPostUrl,
-        @CustomType.Parameter("assertionConsumerRedirectUrl") String assertionConsumerRedirectUrl,
-        @CustomType.Parameter("authenticationFlowBindingOverrides") List<GetClientAuthenticationFlowBindingOverride> authenticationFlowBindingOverrides,
-        @CustomType.Parameter("baseUrl") String baseUrl,
-        @CustomType.Parameter("canonicalizationMethod") String canonicalizationMethod,
-        @CustomType.Parameter("clientId") String clientId,
-        @CustomType.Parameter("clientSignatureRequired") Boolean clientSignatureRequired,
-        @CustomType.Parameter("description") String description,
-        @CustomType.Parameter("enabled") Boolean enabled,
-        @CustomType.Parameter("encryptAssertions") Boolean encryptAssertions,
-        @CustomType.Parameter("encryptionCertificate") String encryptionCertificate,
-        @CustomType.Parameter("encryptionCertificateSha1") String encryptionCertificateSha1,
-        @CustomType.Parameter("extraConfig") Map<String,Object> extraConfig,
-        @CustomType.Parameter("forceNameIdFormat") Boolean forceNameIdFormat,
-        @CustomType.Parameter("forcePostBinding") Boolean forcePostBinding,
-        @CustomType.Parameter("frontChannelLogout") Boolean frontChannelLogout,
-        @CustomType.Parameter("fullScopeAllowed") Boolean fullScopeAllowed,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("idpInitiatedSsoRelayState") String idpInitiatedSsoRelayState,
-        @CustomType.Parameter("idpInitiatedSsoUrlName") String idpInitiatedSsoUrlName,
-        @CustomType.Parameter("includeAuthnStatement") Boolean includeAuthnStatement,
-        @CustomType.Parameter("loginTheme") String loginTheme,
-        @CustomType.Parameter("logoutServicePostBindingUrl") String logoutServicePostBindingUrl,
-        @CustomType.Parameter("logoutServiceRedirectBindingUrl") String logoutServiceRedirectBindingUrl,
-        @CustomType.Parameter("masterSamlProcessingUrl") String masterSamlProcessingUrl,
-        @CustomType.Parameter("name") String name,
-        @CustomType.Parameter("nameIdFormat") String nameIdFormat,
-        @CustomType.Parameter("realmId") String realmId,
-        @CustomType.Parameter("rootUrl") String rootUrl,
-        @CustomType.Parameter("samlSignatureKeyName") String samlSignatureKeyName,
-        @CustomType.Parameter("signAssertions") Boolean signAssertions,
-        @CustomType.Parameter("signDocuments") Boolean signDocuments,
-        @CustomType.Parameter("signatureAlgorithm") String signatureAlgorithm,
-        @CustomType.Parameter("signatureKeyName") String signatureKeyName,
-        @CustomType.Parameter("signingCertificate") String signingCertificate,
-        @CustomType.Parameter("signingCertificateSha1") String signingCertificateSha1,
-        @CustomType.Parameter("signingPrivateKey") String signingPrivateKey,
-        @CustomType.Parameter("signingPrivateKeySha1") String signingPrivateKeySha1,
-        @CustomType.Parameter("validRedirectUris") List<String> validRedirectUris) {
-        this.assertionConsumerPostUrl = assertionConsumerPostUrl;
-        this.assertionConsumerRedirectUrl = assertionConsumerRedirectUrl;
-        this.authenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
-        this.baseUrl = baseUrl;
-        this.canonicalizationMethod = canonicalizationMethod;
-        this.clientId = clientId;
-        this.clientSignatureRequired = clientSignatureRequired;
-        this.description = description;
-        this.enabled = enabled;
-        this.encryptAssertions = encryptAssertions;
-        this.encryptionCertificate = encryptionCertificate;
-        this.encryptionCertificateSha1 = encryptionCertificateSha1;
-        this.extraConfig = extraConfig;
-        this.forceNameIdFormat = forceNameIdFormat;
-        this.forcePostBinding = forcePostBinding;
-        this.frontChannelLogout = frontChannelLogout;
-        this.fullScopeAllowed = fullScopeAllowed;
-        this.id = id;
-        this.idpInitiatedSsoRelayState = idpInitiatedSsoRelayState;
-        this.idpInitiatedSsoUrlName = idpInitiatedSsoUrlName;
-        this.includeAuthnStatement = includeAuthnStatement;
-        this.loginTheme = loginTheme;
-        this.logoutServicePostBindingUrl = logoutServicePostBindingUrl;
-        this.logoutServiceRedirectBindingUrl = logoutServiceRedirectBindingUrl;
-        this.masterSamlProcessingUrl = masterSamlProcessingUrl;
-        this.name = name;
-        this.nameIdFormat = nameIdFormat;
-        this.realmId = realmId;
-        this.rootUrl = rootUrl;
-        this.samlSignatureKeyName = samlSignatureKeyName;
-        this.signAssertions = signAssertions;
-        this.signDocuments = signDocuments;
-        this.signatureAlgorithm = signatureAlgorithm;
-        this.signatureKeyName = signatureKeyName;
-        this.signingCertificate = signingCertificate;
-        this.signingCertificateSha1 = signingCertificateSha1;
-        this.signingPrivateKey = signingPrivateKey;
-        this.signingPrivateKeySha1 = signingPrivateKeySha1;
-        this.validRedirectUris = validRedirectUris;
-    }
-
+    private GetClientResult() {}
     public String assertionConsumerPostUrl() {
         return this.assertionConsumerPostUrl;
     }
@@ -269,7 +188,7 @@ public final class GetClientResult {
     public static Builder builder(GetClientResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String assertionConsumerPostUrl;
         private String assertionConsumerRedirectUrl;
@@ -310,11 +229,7 @@ public final class GetClientResult {
         private String signingPrivateKey;
         private String signingPrivateKeySha1;
         private List<String> validRedirectUris;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetClientResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.assertionConsumerPostUrl = defaults.assertionConsumerPostUrl;
@@ -358,14 +273,17 @@ public final class GetClientResult {
     	      this.validRedirectUris = defaults.validRedirectUris;
         }
 
+        @CustomType.Setter
         public Builder assertionConsumerPostUrl(String assertionConsumerPostUrl) {
             this.assertionConsumerPostUrl = Objects.requireNonNull(assertionConsumerPostUrl);
             return this;
         }
+        @CustomType.Setter
         public Builder assertionConsumerRedirectUrl(String assertionConsumerRedirectUrl) {
             this.assertionConsumerRedirectUrl = Objects.requireNonNull(assertionConsumerRedirectUrl);
             return this;
         }
+        @CustomType.Setter
         public Builder authenticationFlowBindingOverrides(List<GetClientAuthenticationFlowBindingOverride> authenticationFlowBindingOverrides) {
             this.authenticationFlowBindingOverrides = Objects.requireNonNull(authenticationFlowBindingOverrides);
             return this;
@@ -373,154 +291,231 @@ public final class GetClientResult {
         public Builder authenticationFlowBindingOverrides(GetClientAuthenticationFlowBindingOverride... authenticationFlowBindingOverrides) {
             return authenticationFlowBindingOverrides(List.of(authenticationFlowBindingOverrides));
         }
+        @CustomType.Setter
         public Builder baseUrl(String baseUrl) {
             this.baseUrl = Objects.requireNonNull(baseUrl);
             return this;
         }
+        @CustomType.Setter
         public Builder canonicalizationMethod(String canonicalizationMethod) {
             this.canonicalizationMethod = Objects.requireNonNull(canonicalizationMethod);
             return this;
         }
+        @CustomType.Setter
         public Builder clientId(String clientId) {
             this.clientId = Objects.requireNonNull(clientId);
             return this;
         }
+        @CustomType.Setter
         public Builder clientSignatureRequired(Boolean clientSignatureRequired) {
             this.clientSignatureRequired = Objects.requireNonNull(clientSignatureRequired);
             return this;
         }
+        @CustomType.Setter
         public Builder description(String description) {
             this.description = Objects.requireNonNull(description);
             return this;
         }
+        @CustomType.Setter
         public Builder enabled(Boolean enabled) {
             this.enabled = Objects.requireNonNull(enabled);
             return this;
         }
+        @CustomType.Setter
         public Builder encryptAssertions(Boolean encryptAssertions) {
             this.encryptAssertions = Objects.requireNonNull(encryptAssertions);
             return this;
         }
+        @CustomType.Setter
         public Builder encryptionCertificate(String encryptionCertificate) {
             this.encryptionCertificate = Objects.requireNonNull(encryptionCertificate);
             return this;
         }
+        @CustomType.Setter
         public Builder encryptionCertificateSha1(String encryptionCertificateSha1) {
             this.encryptionCertificateSha1 = Objects.requireNonNull(encryptionCertificateSha1);
             return this;
         }
+        @CustomType.Setter
         public Builder extraConfig(Map<String,Object> extraConfig) {
             this.extraConfig = Objects.requireNonNull(extraConfig);
             return this;
         }
+        @CustomType.Setter
         public Builder forceNameIdFormat(Boolean forceNameIdFormat) {
             this.forceNameIdFormat = Objects.requireNonNull(forceNameIdFormat);
             return this;
         }
+        @CustomType.Setter
         public Builder forcePostBinding(Boolean forcePostBinding) {
             this.forcePostBinding = Objects.requireNonNull(forcePostBinding);
             return this;
         }
+        @CustomType.Setter
         public Builder frontChannelLogout(Boolean frontChannelLogout) {
             this.frontChannelLogout = Objects.requireNonNull(frontChannelLogout);
             return this;
         }
+        @CustomType.Setter
         public Builder fullScopeAllowed(Boolean fullScopeAllowed) {
             this.fullScopeAllowed = Objects.requireNonNull(fullScopeAllowed);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder idpInitiatedSsoRelayState(String idpInitiatedSsoRelayState) {
             this.idpInitiatedSsoRelayState = Objects.requireNonNull(idpInitiatedSsoRelayState);
             return this;
         }
+        @CustomType.Setter
         public Builder idpInitiatedSsoUrlName(String idpInitiatedSsoUrlName) {
             this.idpInitiatedSsoUrlName = Objects.requireNonNull(idpInitiatedSsoUrlName);
             return this;
         }
+        @CustomType.Setter
         public Builder includeAuthnStatement(Boolean includeAuthnStatement) {
             this.includeAuthnStatement = Objects.requireNonNull(includeAuthnStatement);
             return this;
         }
+        @CustomType.Setter
         public Builder loginTheme(String loginTheme) {
             this.loginTheme = Objects.requireNonNull(loginTheme);
             return this;
         }
+        @CustomType.Setter
         public Builder logoutServicePostBindingUrl(String logoutServicePostBindingUrl) {
             this.logoutServicePostBindingUrl = Objects.requireNonNull(logoutServicePostBindingUrl);
             return this;
         }
+        @CustomType.Setter
         public Builder logoutServiceRedirectBindingUrl(String logoutServiceRedirectBindingUrl) {
             this.logoutServiceRedirectBindingUrl = Objects.requireNonNull(logoutServiceRedirectBindingUrl);
             return this;
         }
+        @CustomType.Setter
         public Builder masterSamlProcessingUrl(String masterSamlProcessingUrl) {
             this.masterSamlProcessingUrl = Objects.requireNonNull(masterSamlProcessingUrl);
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
         }
+        @CustomType.Setter
         public Builder nameIdFormat(String nameIdFormat) {
             this.nameIdFormat = Objects.requireNonNull(nameIdFormat);
             return this;
         }
+        @CustomType.Setter
         public Builder realmId(String realmId) {
             this.realmId = Objects.requireNonNull(realmId);
             return this;
         }
+        @CustomType.Setter
         public Builder rootUrl(String rootUrl) {
             this.rootUrl = Objects.requireNonNull(rootUrl);
             return this;
         }
+        @CustomType.Setter
         public Builder samlSignatureKeyName(String samlSignatureKeyName) {
             this.samlSignatureKeyName = Objects.requireNonNull(samlSignatureKeyName);
             return this;
         }
+        @CustomType.Setter
         public Builder signAssertions(Boolean signAssertions) {
             this.signAssertions = Objects.requireNonNull(signAssertions);
             return this;
         }
+        @CustomType.Setter
         public Builder signDocuments(Boolean signDocuments) {
             this.signDocuments = Objects.requireNonNull(signDocuments);
             return this;
         }
+        @CustomType.Setter
         public Builder signatureAlgorithm(String signatureAlgorithm) {
             this.signatureAlgorithm = Objects.requireNonNull(signatureAlgorithm);
             return this;
         }
+        @CustomType.Setter
         public Builder signatureKeyName(String signatureKeyName) {
             this.signatureKeyName = Objects.requireNonNull(signatureKeyName);
             return this;
         }
+        @CustomType.Setter
         public Builder signingCertificate(String signingCertificate) {
             this.signingCertificate = Objects.requireNonNull(signingCertificate);
             return this;
         }
+        @CustomType.Setter
         public Builder signingCertificateSha1(String signingCertificateSha1) {
             this.signingCertificateSha1 = Objects.requireNonNull(signingCertificateSha1);
             return this;
         }
+        @CustomType.Setter
         public Builder signingPrivateKey(String signingPrivateKey) {
             this.signingPrivateKey = Objects.requireNonNull(signingPrivateKey);
             return this;
         }
+        @CustomType.Setter
         public Builder signingPrivateKeySha1(String signingPrivateKeySha1) {
             this.signingPrivateKeySha1 = Objects.requireNonNull(signingPrivateKeySha1);
             return this;
         }
+        @CustomType.Setter
         public Builder validRedirectUris(List<String> validRedirectUris) {
             this.validRedirectUris = Objects.requireNonNull(validRedirectUris);
             return this;
         }
         public Builder validRedirectUris(String... validRedirectUris) {
             return validRedirectUris(List.of(validRedirectUris));
-        }        public GetClientResult build() {
-            return new GetClientResult(assertionConsumerPostUrl, assertionConsumerRedirectUrl, authenticationFlowBindingOverrides, baseUrl, canonicalizationMethod, clientId, clientSignatureRequired, description, enabled, encryptAssertions, encryptionCertificate, encryptionCertificateSha1, extraConfig, forceNameIdFormat, forcePostBinding, frontChannelLogout, fullScopeAllowed, id, idpInitiatedSsoRelayState, idpInitiatedSsoUrlName, includeAuthnStatement, loginTheme, logoutServicePostBindingUrl, logoutServiceRedirectBindingUrl, masterSamlProcessingUrl, name, nameIdFormat, realmId, rootUrl, samlSignatureKeyName, signAssertions, signDocuments, signatureAlgorithm, signatureKeyName, signingCertificate, signingCertificateSha1, signingPrivateKey, signingPrivateKeySha1, validRedirectUris);
+        }
+        public GetClientResult build() {
+            final var o = new GetClientResult();
+            o.assertionConsumerPostUrl = assertionConsumerPostUrl;
+            o.assertionConsumerRedirectUrl = assertionConsumerRedirectUrl;
+            o.authenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
+            o.baseUrl = baseUrl;
+            o.canonicalizationMethod = canonicalizationMethod;
+            o.clientId = clientId;
+            o.clientSignatureRequired = clientSignatureRequired;
+            o.description = description;
+            o.enabled = enabled;
+            o.encryptAssertions = encryptAssertions;
+            o.encryptionCertificate = encryptionCertificate;
+            o.encryptionCertificateSha1 = encryptionCertificateSha1;
+            o.extraConfig = extraConfig;
+            o.forceNameIdFormat = forceNameIdFormat;
+            o.forcePostBinding = forcePostBinding;
+            o.frontChannelLogout = frontChannelLogout;
+            o.fullScopeAllowed = fullScopeAllowed;
+            o.id = id;
+            o.idpInitiatedSsoRelayState = idpInitiatedSsoRelayState;
+            o.idpInitiatedSsoUrlName = idpInitiatedSsoUrlName;
+            o.includeAuthnStatement = includeAuthnStatement;
+            o.loginTheme = loginTheme;
+            o.logoutServicePostBindingUrl = logoutServicePostBindingUrl;
+            o.logoutServiceRedirectBindingUrl = logoutServiceRedirectBindingUrl;
+            o.masterSamlProcessingUrl = masterSamlProcessingUrl;
+            o.name = name;
+            o.nameIdFormat = nameIdFormat;
+            o.realmId = realmId;
+            o.rootUrl = rootUrl;
+            o.samlSignatureKeyName = samlSignatureKeyName;
+            o.signAssertions = signAssertions;
+            o.signDocuments = signDocuments;
+            o.signatureAlgorithm = signatureAlgorithm;
+            o.signatureKeyName = signatureKeyName;
+            o.signingCertificate = signingCertificate;
+            o.signingCertificateSha1 = signingCertificateSha1;
+            o.signingPrivateKey = signingPrivateKey;
+            o.signingPrivateKeySha1 = signingPrivateKeySha1;
+            o.validRedirectUris = validRedirectUris;
+            return o;
         }
     }
 }

@@ -21,31 +21,34 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-// 			Realm: pulumi.String("my-realm"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = keycloak.NewRealmKeystoreAesGenerated(ctx, "keystoreAesGenerated", &keycloak.RealmKeystoreAesGeneratedArgs{
-// 			RealmId:    realm.ID(),
-// 			Enabled:    pulumi.Bool(true),
-// 			Active:     pulumi.Bool(true),
-// 			Priority:   pulumi.Int(100),
-// 			SecretSize: pulumi.Int(16),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm: pulumi.String("my-realm"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewRealmKeystoreAesGenerated(ctx, "keystoreAesGenerated", &keycloak.RealmKeystoreAesGeneratedArgs{
+//				RealmId:    realm.ID(),
+//				Enabled:    pulumi.Bool(true),
+//				Active:     pulumi.Bool(true),
+//				Priority:   pulumi.Int(100),
+//				SecretSize: pulumi.Int(16),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -53,7 +56,9 @@ import (
 // Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
 //
 // ```sh
-//  $ pulumi import keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated keystore_aes_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+//
+//	$ pulumi import keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated keystore_aes_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+//
 // ```
 type RealmKeystoreAesGenerated struct {
 	pulumi.CustomResourceState
@@ -194,7 +199,7 @@ func (i *RealmKeystoreAesGenerated) ToRealmKeystoreAesGeneratedOutputWithContext
 // RealmKeystoreAesGeneratedArrayInput is an input type that accepts RealmKeystoreAesGeneratedArray and RealmKeystoreAesGeneratedArrayOutput values.
 // You can construct a concrete instance of `RealmKeystoreAesGeneratedArrayInput` via:
 //
-//          RealmKeystoreAesGeneratedArray{ RealmKeystoreAesGeneratedArgs{...} }
+//	RealmKeystoreAesGeneratedArray{ RealmKeystoreAesGeneratedArgs{...} }
 type RealmKeystoreAesGeneratedArrayInput interface {
 	pulumi.Input
 
@@ -219,7 +224,7 @@ func (i RealmKeystoreAesGeneratedArray) ToRealmKeystoreAesGeneratedArrayOutputWi
 // RealmKeystoreAesGeneratedMapInput is an input type that accepts RealmKeystoreAesGeneratedMap and RealmKeystoreAesGeneratedMapOutput values.
 // You can construct a concrete instance of `RealmKeystoreAesGeneratedMapInput` via:
 //
-//          RealmKeystoreAesGeneratedMap{ "key": RealmKeystoreAesGeneratedArgs{...} }
+//	RealmKeystoreAesGeneratedMap{ "key": RealmKeystoreAesGeneratedArgs{...} }
 type RealmKeystoreAesGeneratedMapInput interface {
 	pulumi.Input
 

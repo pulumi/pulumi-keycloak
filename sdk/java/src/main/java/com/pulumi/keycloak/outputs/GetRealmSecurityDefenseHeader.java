@@ -9,32 +9,15 @@ import java.util.Objects;
 
 @CustomType
 public final class GetRealmSecurityDefenseHeader {
-    private final String contentSecurityPolicy;
-    private final String contentSecurityPolicyReportOnly;
-    private final String strictTransportSecurity;
-    private final String xContentTypeOptions;
-    private final String xFrameOptions;
-    private final String xRobotsTag;
-    private final String xXssProtection;
+    private String contentSecurityPolicy;
+    private String contentSecurityPolicyReportOnly;
+    private String strictTransportSecurity;
+    private String xContentTypeOptions;
+    private String xFrameOptions;
+    private String xRobotsTag;
+    private String xXssProtection;
 
-    @CustomType.Constructor
-    private GetRealmSecurityDefenseHeader(
-        @CustomType.Parameter("contentSecurityPolicy") String contentSecurityPolicy,
-        @CustomType.Parameter("contentSecurityPolicyReportOnly") String contentSecurityPolicyReportOnly,
-        @CustomType.Parameter("strictTransportSecurity") String strictTransportSecurity,
-        @CustomType.Parameter("xContentTypeOptions") String xContentTypeOptions,
-        @CustomType.Parameter("xFrameOptions") String xFrameOptions,
-        @CustomType.Parameter("xRobotsTag") String xRobotsTag,
-        @CustomType.Parameter("xXssProtection") String xXssProtection) {
-        this.contentSecurityPolicy = contentSecurityPolicy;
-        this.contentSecurityPolicyReportOnly = contentSecurityPolicyReportOnly;
-        this.strictTransportSecurity = strictTransportSecurity;
-        this.xContentTypeOptions = xContentTypeOptions;
-        this.xFrameOptions = xFrameOptions;
-        this.xRobotsTag = xRobotsTag;
-        this.xXssProtection = xXssProtection;
-    }
-
+    private GetRealmSecurityDefenseHeader() {}
     public String contentSecurityPolicy() {
         return this.contentSecurityPolicy;
     }
@@ -64,7 +47,7 @@ public final class GetRealmSecurityDefenseHeader {
     public static Builder builder(GetRealmSecurityDefenseHeader defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String contentSecurityPolicy;
         private String contentSecurityPolicyReportOnly;
@@ -73,11 +56,7 @@ public final class GetRealmSecurityDefenseHeader {
         private String xFrameOptions;
         private String xRobotsTag;
         private String xXssProtection;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetRealmSecurityDefenseHeader defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.contentSecurityPolicy = defaults.contentSecurityPolicy;
@@ -89,35 +68,51 @@ public final class GetRealmSecurityDefenseHeader {
     	      this.xXssProtection = defaults.xXssProtection;
         }
 
+        @CustomType.Setter
         public Builder contentSecurityPolicy(String contentSecurityPolicy) {
             this.contentSecurityPolicy = Objects.requireNonNull(contentSecurityPolicy);
             return this;
         }
+        @CustomType.Setter
         public Builder contentSecurityPolicyReportOnly(String contentSecurityPolicyReportOnly) {
             this.contentSecurityPolicyReportOnly = Objects.requireNonNull(contentSecurityPolicyReportOnly);
             return this;
         }
+        @CustomType.Setter
         public Builder strictTransportSecurity(String strictTransportSecurity) {
             this.strictTransportSecurity = Objects.requireNonNull(strictTransportSecurity);
             return this;
         }
+        @CustomType.Setter
         public Builder xContentTypeOptions(String xContentTypeOptions) {
             this.xContentTypeOptions = Objects.requireNonNull(xContentTypeOptions);
             return this;
         }
+        @CustomType.Setter
         public Builder xFrameOptions(String xFrameOptions) {
             this.xFrameOptions = Objects.requireNonNull(xFrameOptions);
             return this;
         }
+        @CustomType.Setter
         public Builder xRobotsTag(String xRobotsTag) {
             this.xRobotsTag = Objects.requireNonNull(xRobotsTag);
             return this;
         }
+        @CustomType.Setter
         public Builder xXssProtection(String xXssProtection) {
             this.xXssProtection = Objects.requireNonNull(xXssProtection);
             return this;
-        }        public GetRealmSecurityDefenseHeader build() {
-            return new GetRealmSecurityDefenseHeader(contentSecurityPolicy, contentSecurityPolicyReportOnly, strictTransportSecurity, xContentTypeOptions, xFrameOptions, xRobotsTag, xXssProtection);
+        }
+        public GetRealmSecurityDefenseHeader build() {
+            final var o = new GetRealmSecurityDefenseHeader();
+            o.contentSecurityPolicy = contentSecurityPolicy;
+            o.contentSecurityPolicyReportOnly = contentSecurityPolicyReportOnly;
+            o.strictTransportSecurity = strictTransportSecurity;
+            o.xContentTypeOptions = xContentTypeOptions;
+            o.xFrameOptions = xFrameOptions;
+            o.xRobotsTag = xRobotsTag;
+            o.xXssProtection = xXssProtection;
+            return o;
         }
     }
 }

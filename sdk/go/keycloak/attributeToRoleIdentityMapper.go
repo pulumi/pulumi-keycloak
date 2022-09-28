@@ -191,7 +191,7 @@ func (i *AttributeToRoleIdentityMapper) ToAttributeToRoleIdentityMapperOutputWit
 // AttributeToRoleIdentityMapperArrayInput is an input type that accepts AttributeToRoleIdentityMapperArray and AttributeToRoleIdentityMapperArrayOutput values.
 // You can construct a concrete instance of `AttributeToRoleIdentityMapperArrayInput` via:
 //
-//          AttributeToRoleIdentityMapperArray{ AttributeToRoleIdentityMapperArgs{...} }
+//	AttributeToRoleIdentityMapperArray{ AttributeToRoleIdentityMapperArgs{...} }
 type AttributeToRoleIdentityMapperArrayInput interface {
 	pulumi.Input
 
@@ -216,7 +216,7 @@ func (i AttributeToRoleIdentityMapperArray) ToAttributeToRoleIdentityMapperArray
 // AttributeToRoleIdentityMapperMapInput is an input type that accepts AttributeToRoleIdentityMapperMap and AttributeToRoleIdentityMapperMapOutput values.
 // You can construct a concrete instance of `AttributeToRoleIdentityMapperMapInput` via:
 //
-//          AttributeToRoleIdentityMapperMap{ "key": AttributeToRoleIdentityMapperArgs{...} }
+//	AttributeToRoleIdentityMapperMap{ "key": AttributeToRoleIdentityMapperArgs{...} }
 type AttributeToRoleIdentityMapperMapInput interface {
 	pulumi.Input
 
