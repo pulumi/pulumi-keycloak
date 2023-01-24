@@ -25,6 +25,7 @@ import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 )
 
 // all of the token components used below.
@@ -40,14 +41,9 @@ const (
 	authenticationMod = "Authentication" // the Authentication module
 )
 
-var namespaceMap = map[string]string{
-	"keycloak": "Keycloak",
-}
-
 // makeMember manufactures a type token for the package and the given module and type.
 func makeMember(mod string, mem string) tokens.ModuleMember {
 	moduleName := strings.ToLower(mod)
-	namespaceMap[moduleName] = mod
 	fn := string(unicode.ToLower(rune(mem[0]))) + mem[1:]
 	token := moduleName + "/" + fn
 	return tokens.ModuleMember(mainPkg + ":" + token + ":" + mem)
@@ -350,9 +346,28 @@ func Provider() tfbridge.ProviderInfo {
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
-			Namespaces: namespaceMap,
+			Namespaces: map[string]string{
+				"authentication": "Authentication",
+				"index":          "index",
+				"keycloak":       "Keycloak",
+				"ldap":           "Ldap",
+				"oidc":           "Oidc",
+				"openid":         "OpenId",
+				"saml":           "Saml",
+			},
 		},
 	}
+
+	err := prov.ComputeDefaults(tfbridge.TokensKnownModules("keycloak_", mainMod, []string{
+		"ldap_",
+		"oidc_",
+		"openid_",
+		"saml_",
+		"authentication_",
+	}, func(module, name string) (string, error) {
+		return string(makeMember(module, name)), nil
+	}))
+	contract.AssertNoError(err)
 
 	prov.SetAutonaming(255, "-")
 
