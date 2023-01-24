@@ -5,18 +5,31 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./bindings";
-export * from "./execution";
-export * from "./executionConfig";
-export * from "./flow";
-export * from "./subflow";
+export { BindingsArgs, BindingsState } from "./bindings";
+export type Bindings = import("./bindings").Bindings;
+export const Bindings: typeof import("./bindings").Bindings = null as any;
+utilities.lazyLoad(exports, ["Bindings"], () => require("./bindings"));
 
-// Import resources to register:
-import { Bindings } from "./bindings";
-import { Execution } from "./execution";
-import { ExecutionConfig } from "./executionConfig";
-import { Flow } from "./flow";
-import { Subflow } from "./subflow";
+export { ExecutionArgs, ExecutionState } from "./execution";
+export type Execution = import("./execution").Execution;
+export const Execution: typeof import("./execution").Execution = null as any;
+utilities.lazyLoad(exports, ["Execution"], () => require("./execution"));
+
+export { ExecutionConfigArgs, ExecutionConfigState } from "./executionConfig";
+export type ExecutionConfig = import("./executionConfig").ExecutionConfig;
+export const ExecutionConfig: typeof import("./executionConfig").ExecutionConfig = null as any;
+utilities.lazyLoad(exports, ["ExecutionConfig"], () => require("./executionConfig"));
+
+export { FlowArgs, FlowState } from "./flow";
+export type Flow = import("./flow").Flow;
+export const Flow: typeof import("./flow").Flow = null as any;
+utilities.lazyLoad(exports, ["Flow"], () => require("./flow"));
+
+export { SubflowArgs, SubflowState } from "./subflow";
+export type Subflow = import("./subflow").Subflow;
+export const Subflow: typeof import("./subflow").Subflow = null as any;
+utilities.lazyLoad(exports, ["Subflow"], () => require("./subflow"));
+
 
 const _module = {
     version: utilities.getVersion(),

@@ -19,38 +19,37 @@ namespace Pulumi.Keycloak.OpenId
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var openidClient = new Keycloak.OpenId.Client("openidClient", new Keycloak.OpenId.ClientArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = "test-client",
-    ///             Enabled = true,
-    ///             AccessType = "CONFIDENTIAL",
-    ///             ValidRedirectUris = 
-    ///             {
-    ///                 "http://localhost:8080/openid-callback",
-    ///             },
-    ///             LoginTheme = "keycloak",
-    ///             ExtraConfig = 
-    ///             {
-    ///                 { "key1", "value1" },
-    ///                 { "key2", "value2" },
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var openidClient = new Keycloak.OpenId.Client("openidClient", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "test-client",
+    ///         Enabled = true,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ValidRedirectUris = new[]
+    ///         {
+    ///             "http://localhost:8080/openid-callback",
+    ///         },
+    ///         LoginTheme = "keycloak",
+    ///         ExtraConfig = 
+    ///         {
+    ///             { "key1", "value1" },
+    ///             { "key2", "value2" },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -62,13 +61,13 @@ namespace Pulumi.Keycloak.OpenId
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:openid/client:Client")]
-    public partial class Client : Pulumi.CustomResource
+    public partial class Client : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The amount of time in seconds before an access token expires. This will override the default for the realm.
         /// </summary>
         [Output("accessTokenLifespan")]
-        public Output<string?> AccessTokenLifespan { get; private set; } = null!;
+        public Output<string> AccessTokenLifespan { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the type of client, which can be one of the following:
@@ -80,7 +79,7 @@ namespace Pulumi.Keycloak.OpenId
         /// URL to the admin interface of the client.
         /// </summary>
         [Output("adminUrl")]
-        public Output<string?> AdminUrl { get; private set; } = null!;
+        public Output<string> AdminUrl { get; private set; } = null!;
 
         /// <summary>
         /// Override realm authentication flow bindings
@@ -116,7 +115,7 @@ namespace Pulumi.Keycloak.OpenId
         /// Default URL to use when the auth server needs to redirect or link back to the client.
         /// </summary>
         [Output("baseUrl")]
-        public Output<string?> BaseUrl { get; private set; } = null!;
+        public Output<string> BaseUrl { get; private set; } = null!;
 
         /// <summary>
         /// Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
@@ -138,13 +137,13 @@ namespace Pulumi.Keycloak.OpenId
         /// Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
         /// </summary>
         [Output("clientOfflineSessionIdleTimeout")]
-        public Output<string?> ClientOfflineSessionIdleTimeout { get; private set; } = null!;
+        public Output<string> ClientOfflineSessionIdleTimeout { get; private set; } = null!;
 
         /// <summary>
         /// Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.
         /// </summary>
         [Output("clientOfflineSessionMaxLifespan")]
-        public Output<string?> ClientOfflineSessionMaxLifespan { get; private set; } = null!;
+        public Output<string> ClientOfflineSessionMaxLifespan { get; private set; } = null!;
 
         /// <summary>
         /// The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
@@ -156,43 +155,43 @@ namespace Pulumi.Keycloak.OpenId
         /// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
         /// </summary>
         [Output("clientSessionIdleTimeout")]
-        public Output<string?> ClientSessionIdleTimeout { get; private set; } = null!;
+        public Output<string> ClientSessionIdleTimeout { get; private set; } = null!;
 
         /// <summary>
         /// Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
         /// </summary>
         [Output("clientSessionMaxLifespan")]
-        public Output<string?> ClientSessionMaxLifespan { get; private set; } = null!;
+        public Output<string> ClientSessionMaxLifespan { get; private set; } = null!;
 
         /// <summary>
         /// When `true`, users have to consent to client access. Defaults to `false`.
         /// </summary>
         [Output("consentRequired")]
-        public Output<bool?> ConsentRequired { get; private set; } = null!;
+        public Output<bool> ConsentRequired { get; private set; } = null!;
 
         /// <summary>
         /// The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.
         /// </summary>
         [Output("consentScreenText")]
-        public Output<string?> ConsentScreenText { get; private set; } = null!;
+        public Output<string> ConsentScreenText { get; private set; } = null!;
 
         /// <summary>
         /// The description of this client in the GUI.
         /// </summary>
         [Output("description")]
-        public Output<string?> Description { get; private set; } = null!;
+        public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
         /// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
         /// </summary>
         [Output("directAccessGrantsEnabled")]
-        public Output<bool?> DirectAccessGrantsEnabled { get; private set; } = null!;
+        public Output<bool> DirectAccessGrantsEnabled { get; private set; } = null!;
 
         /// <summary>
         /// When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
         /// </summary>
         [Output("displayOnConsentScreen")]
-        public Output<bool?> DisplayOnConsentScreen { get; private set; } = null!;
+        public Output<bool> DisplayOnConsentScreen { get; private set; } = null!;
 
         /// <summary>
         /// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
@@ -204,7 +203,7 @@ namespace Pulumi.Keycloak.OpenId
         /// When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
         /// </summary>
         [Output("excludeSessionStateFromAuthResponse")]
-        public Output<bool?> ExcludeSessionStateFromAuthResponse { get; private set; } = null!;
+        public Output<bool> ExcludeSessionStateFromAuthResponse { get; private set; } = null!;
 
         [Output("extraConfig")]
         public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
@@ -213,7 +212,7 @@ namespace Pulumi.Keycloak.OpenId
         /// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
         /// </summary>
         [Output("frontchannelLogoutEnabled")]
-        public Output<bool?> FrontchannelLogoutEnabled { get; private set; } = null!;
+        public Output<bool> FrontchannelLogoutEnabled { get; private set; } = null!;
 
         /// <summary>
         /// The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
@@ -231,7 +230,13 @@ namespace Pulumi.Keycloak.OpenId
         /// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
         /// </summary>
         [Output("implicitFlowEnabled")]
-        public Output<bool?> ImplicitFlowEnabled { get; private set; } = null!;
+        public Output<bool> ImplicitFlowEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
+        /// </summary>
+        [Output("import")]
+        public Output<bool?> Import { get; private set; } = null!;
 
         /// <summary>
         /// The client login theme. This will override the default theme for the realm.
@@ -285,7 +290,7 @@ namespace Pulumi.Keycloak.OpenId
         /// When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
         /// </summary>
         [Output("rootUrl")]
-        public Output<string?> RootUrl { get; private set; } = null!;
+        public Output<string> RootUrl { get; private set; } = null!;
 
         /// <summary>
         /// (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
@@ -297,13 +302,13 @@ namespace Pulumi.Keycloak.OpenId
         /// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
         /// </summary>
         [Output("serviceAccountsEnabled")]
-        public Output<bool?> ServiceAccountsEnabled { get; private set; } = null!;
+        public Output<bool> ServiceAccountsEnabled { get; private set; } = null!;
 
         /// <summary>
         /// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
         /// </summary>
         [Output("standardFlowEnabled")]
-        public Output<bool?> StandardFlowEnabled { get; private set; } = null!;
+        public Output<bool> StandardFlowEnabled { get; private set; } = null!;
 
         /// <summary>
         /// If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
@@ -316,6 +321,12 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Output("useRefreshTokensClientCredentials")]
         public Output<bool?> UseRefreshTokensClientCredentials { get; private set; } = null!;
+
+        /// <summary>
+        /// A list of valid URIs a browser is permitted to redirect to after a successful logout.
+        /// </summary>
+        [Output("validPostLogoutRedirectUris")]
+        public Output<ImmutableArray<string>> ValidPostLogoutRedirectUris { get; private set; } = null!;
 
         /// <summary>
         /// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
@@ -354,6 +365,10 @@ namespace Pulumi.Keycloak.OpenId
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "clientSecret",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -375,7 +390,7 @@ namespace Pulumi.Keycloak.OpenId
         }
     }
 
-    public sealed class ClientArgs : Pulumi.ResourceArgs
+    public sealed class ClientArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The amount of time in seconds before an access token expires. This will override the default for the realm.
@@ -459,11 +474,21 @@ namespace Pulumi.Keycloak.OpenId
         [Input("clientOfflineSessionMaxLifespan")]
         public Input<string>? ClientOfflineSessionMaxLifespan { get; set; }
 
+        [Input("clientSecret")]
+        private Input<string>? _clientSecret;
+
         /// <summary>
         /// The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
         /// </summary>
-        [Input("clientSecret")]
-        public Input<string>? ClientSecret { get; set; }
+        public Input<string>? ClientSecret
+        {
+            get => _clientSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
@@ -552,6 +577,12 @@ namespace Pulumi.Keycloak.OpenId
         public Input<bool>? ImplicitFlowEnabled { get; set; }
 
         /// <summary>
+        /// When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
+        /// </summary>
+        [Input("import")]
+        public Input<bool>? Import { get; set; }
+
+        /// <summary>
         /// The client login theme. This will override the default theme for the realm.
         /// </summary>
         [Input("loginTheme")]
@@ -623,6 +654,18 @@ namespace Pulumi.Keycloak.OpenId
         [Input("useRefreshTokensClientCredentials")]
         public Input<bool>? UseRefreshTokensClientCredentials { get; set; }
 
+        [Input("validPostLogoutRedirectUris")]
+        private InputList<string>? _validPostLogoutRedirectUris;
+
+        /// <summary>
+        /// A list of valid URIs a browser is permitted to redirect to after a successful logout.
+        /// </summary>
+        public InputList<string> ValidPostLogoutRedirectUris
+        {
+            get => _validPostLogoutRedirectUris ?? (_validPostLogoutRedirectUris = new InputList<string>());
+            set => _validPostLogoutRedirectUris = value;
+        }
+
         [Input("validRedirectUris")]
         private InputList<string>? _validRedirectUris;
 
@@ -652,9 +695,10 @@ namespace Pulumi.Keycloak.OpenId
         public ClientArgs()
         {
         }
+        public static new ClientArgs Empty => new ClientArgs();
     }
 
-    public sealed class ClientState : Pulumi.ResourceArgs
+    public sealed class ClientState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The amount of time in seconds before an access token expires. This will override the default for the realm.
@@ -738,11 +782,21 @@ namespace Pulumi.Keycloak.OpenId
         [Input("clientOfflineSessionMaxLifespan")]
         public Input<string>? ClientOfflineSessionMaxLifespan { get; set; }
 
+        [Input("clientSecret")]
+        private Input<string>? _clientSecret;
+
         /// <summary>
         /// The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
         /// </summary>
-        [Input("clientSecret")]
-        public Input<string>? ClientSecret { get; set; }
+        public Input<string>? ClientSecret
+        {
+            get => _clientSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
@@ -829,6 +883,12 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("implicitFlowEnabled")]
         public Input<bool>? ImplicitFlowEnabled { get; set; }
+
+        /// <summary>
+        /// When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
+        /// </summary>
+        [Input("import")]
+        public Input<bool>? Import { get; set; }
 
         /// <summary>
         /// The client login theme. This will override the default theme for the realm.
@@ -914,6 +974,18 @@ namespace Pulumi.Keycloak.OpenId
         [Input("useRefreshTokensClientCredentials")]
         public Input<bool>? UseRefreshTokensClientCredentials { get; set; }
 
+        [Input("validPostLogoutRedirectUris")]
+        private InputList<string>? _validPostLogoutRedirectUris;
+
+        /// <summary>
+        /// A list of valid URIs a browser is permitted to redirect to after a successful logout.
+        /// </summary>
+        public InputList<string> ValidPostLogoutRedirectUris
+        {
+            get => _validPostLogoutRedirectUris ?? (_validPostLogoutRedirectUris = new InputList<string>());
+            set => _validPostLogoutRedirectUris = value;
+        }
+
         [Input("validRedirectUris")]
         private InputList<string>? _validRedirectUris;
 
@@ -943,5 +1015,6 @@ namespace Pulumi.Keycloak.OpenId
         public ClientState()
         {
         }
+        public static new ClientState Empty => new ClientState();
     }
 }

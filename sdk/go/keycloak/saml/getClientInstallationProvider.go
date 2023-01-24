@@ -65,9 +65,9 @@ import (
 //				ProviderId: pulumi.String("saml-idp-descriptor"),
 //			}, nil)
 //			_, err = iam.NewSamlProvider(ctx, "default", &iam.SamlProviderArgs{
-//				SamlMetadataDocument: samlIdpDescriptor.ApplyT(func(samlIdpDescriptor saml.GetClientInstallationProviderResult) (string, error) {
-//					return samlIdpDescriptor.Value, nil
-//				}).(pulumi.StringOutput),
+//				SamlMetadataDocument: samlIdpDescriptor.ApplyT(func(samlIdpDescriptor saml.GetClientInstallationProviderResult) (*string, error) {
+//					return &samlIdpDescriptor.Value, nil
+//				}).(pulumi.StringPtrOutput),
 //			})
 //			if err != nil {
 //				return err

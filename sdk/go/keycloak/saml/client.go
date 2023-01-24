@@ -109,7 +109,7 @@ type Client struct {
 	ForcePostBinding pulumi.BoolPtrOutput `pulumi:"forcePostBinding"`
 	// When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
 	FrontChannelLogout pulumi.BoolPtrOutput `pulumi:"frontChannelLogout"`
-	// - Allow to include all roles mappings in the access token
+	// Allow to include all roles mappings in the access token
 	FullScopeAllowed pulumi.BoolPtrOutput `pulumi:"fullScopeAllowed"`
 	// Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
 	IdpInitiatedSsoRelayState pulumi.StringPtrOutput `pulumi:"idpInitiatedSsoRelayState"`
@@ -137,7 +137,7 @@ type Client struct {
 	SignAssertions pulumi.BoolPtrOutput `pulumi:"signAssertions"`
 	// When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
 	SignDocuments pulumi.BoolPtrOutput `pulumi:"signDocuments"`
-	// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+	// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
 	SignatureAlgorithm pulumi.StringPtrOutput `pulumi:"signatureAlgorithm"`
 	// The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
 	SignatureKeyName pulumi.StringPtrOutput `pulumi:"signatureKeyName"`
@@ -219,7 +219,7 @@ type clientState struct {
 	ForcePostBinding *bool `pulumi:"forcePostBinding"`
 	// When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
 	FrontChannelLogout *bool `pulumi:"frontChannelLogout"`
-	// - Allow to include all roles mappings in the access token
+	// Allow to include all roles mappings in the access token
 	FullScopeAllowed *bool `pulumi:"fullScopeAllowed"`
 	// Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
 	IdpInitiatedSsoRelayState *string `pulumi:"idpInitiatedSsoRelayState"`
@@ -247,7 +247,7 @@ type clientState struct {
 	SignAssertions *bool `pulumi:"signAssertions"`
 	// When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
 	SignDocuments *bool `pulumi:"signDocuments"`
-	// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+	// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
 	SignatureAlgorithm *string `pulumi:"signatureAlgorithm"`
 	// The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
 	SignatureKeyName *string `pulumi:"signatureKeyName"`
@@ -295,7 +295,7 @@ type ClientState struct {
 	ForcePostBinding pulumi.BoolPtrInput
 	// When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
 	FrontChannelLogout pulumi.BoolPtrInput
-	// - Allow to include all roles mappings in the access token
+	// Allow to include all roles mappings in the access token
 	FullScopeAllowed pulumi.BoolPtrInput
 	// Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
 	IdpInitiatedSsoRelayState pulumi.StringPtrInput
@@ -323,7 +323,7 @@ type ClientState struct {
 	SignAssertions pulumi.BoolPtrInput
 	// When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
 	SignDocuments pulumi.BoolPtrInput
-	// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+	// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
 	SignatureAlgorithm pulumi.StringPtrInput
 	// The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
 	SignatureKeyName pulumi.StringPtrInput
@@ -373,7 +373,7 @@ type clientArgs struct {
 	ForcePostBinding *bool `pulumi:"forcePostBinding"`
 	// When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
 	FrontChannelLogout *bool `pulumi:"frontChannelLogout"`
-	// - Allow to include all roles mappings in the access token
+	// Allow to include all roles mappings in the access token
 	FullScopeAllowed *bool `pulumi:"fullScopeAllowed"`
 	// Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
 	IdpInitiatedSsoRelayState *string `pulumi:"idpInitiatedSsoRelayState"`
@@ -401,7 +401,7 @@ type clientArgs struct {
 	SignAssertions *bool `pulumi:"signAssertions"`
 	// When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
 	SignDocuments *bool `pulumi:"signDocuments"`
-	// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+	// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
 	SignatureAlgorithm *string `pulumi:"signatureAlgorithm"`
 	// The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
 	SignatureKeyName *string `pulumi:"signatureKeyName"`
@@ -444,7 +444,7 @@ type ClientArgs struct {
 	ForcePostBinding pulumi.BoolPtrInput
 	// When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
 	FrontChannelLogout pulumi.BoolPtrInput
-	// - Allow to include all roles mappings in the access token
+	// Allow to include all roles mappings in the access token
 	FullScopeAllowed pulumi.BoolPtrInput
 	// Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
 	IdpInitiatedSsoRelayState pulumi.StringPtrInput
@@ -472,7 +472,7 @@ type ClientArgs struct {
 	SignAssertions pulumi.BoolPtrInput
 	// When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
 	SignDocuments pulumi.BoolPtrInput
-	// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+	// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
 	SignatureAlgorithm pulumi.StringPtrInput
 	// The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
 	SignatureKeyName pulumi.StringPtrInput
@@ -652,7 +652,7 @@ func (o ClientOutput) FrontChannelLogout() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.FrontChannelLogout }).(pulumi.BoolPtrOutput)
 }
 
-// - Allow to include all roles mappings in the access token
+// Allow to include all roles mappings in the access token
 func (o ClientOutput) FullScopeAllowed() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.FullScopeAllowed }).(pulumi.BoolPtrOutput)
 }
@@ -722,7 +722,7 @@ func (o ClientOutput) SignDocuments() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.SignDocuments }).(pulumi.BoolPtrOutput)
 }
 
-// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
 func (o ClientOutput) SignatureAlgorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.SignatureAlgorithm }).(pulumi.StringPtrOutput)
 }

@@ -18,43 +18,43 @@ namespace Pulumi.Keycloak.Ldap
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new Keycloak.Ldap.UserFederationArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             UsernameLdapAttribute = "cn",
-    ///             RdnLdapAttribute = "cn",
-    ///             UuidLdapAttribute = "entryDN",
-    ///             UserObjectClasses = 
-    ///             {
-    ///                 "simpleSecurityObject",
-    ///                 "organizationalRole",
-    ///             },
-    ///             ConnectionUrl = "ldap://openldap",
-    ///             UsersDn = "dc=example,dc=org",
-    ///             BindDn = "cn=admin,dc=example,dc=org",
-    ///             BindCredential = "admin",
-    ///         });
-    ///         var ldapFullNameMapper = new Keycloak.Ldap.FullNameMapper("ldapFullNameMapper", new Keycloak.Ldap.FullNameMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             LdapUserFederationId = ldapUserFederation.Id,
-    ///             LdapFullNameAttribute = "cn",
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         UsernameLdapAttribute = "cn",
+    ///         RdnLdapAttribute = "cn",
+    ///         UuidLdapAttribute = "entryDN",
+    ///         UserObjectClasses = new[]
+    ///         {
+    ///             "simpleSecurityObject",
+    ///             "organizationalRole",
+    ///         },
+    ///         ConnectionUrl = "ldap://openldap",
+    ///         UsersDn = "dc=example,dc=org",
+    ///         BindDn = "cn=admin,dc=example,dc=org",
+    ///         BindCredential = "admin",
+    ///     });
+    /// 
+    ///     var ldapFullNameMapper = new Keycloak.Ldap.FullNameMapper("ldapFullNameMapper", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         LdapUserFederationId = ldapUserFederation.Id,
+    ///         LdapFullNameAttribute = "cn",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -66,7 +66,7 @@ namespace Pulumi.Keycloak.Ldap
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:ldap/fullNameMapper:FullNameMapper")]
-    public partial class FullNameMapper : Pulumi.CustomResource
+    public partial class FullNameMapper : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the LDAP attribute containing the user's full name.
@@ -148,7 +148,7 @@ namespace Pulumi.Keycloak.Ldap
         }
     }
 
-    public sealed class FullNameMapperArgs : Pulumi.ResourceArgs
+    public sealed class FullNameMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the LDAP attribute containing the user's full name.
@@ -189,9 +189,10 @@ namespace Pulumi.Keycloak.Ldap
         public FullNameMapperArgs()
         {
         }
+        public static new FullNameMapperArgs Empty => new FullNameMapperArgs();
     }
 
-    public sealed class FullNameMapperState : Pulumi.ResourceArgs
+    public sealed class FullNameMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the LDAP attribute containing the user's full name.
@@ -232,5 +233,6 @@ namespace Pulumi.Keycloak.Ldap
         public FullNameMapperState()
         {
         }
+        public static new FullNameMapperState Empty => new FullNameMapperState();
     }
 }

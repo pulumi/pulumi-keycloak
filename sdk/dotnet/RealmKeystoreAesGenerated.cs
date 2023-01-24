@@ -17,28 +17,27 @@ namespace Pulumi.Keycloak
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///         });
-    ///         var keystoreAesGenerated = new Keycloak.RealmKeystoreAesGenerated("keystoreAesGenerated", new Keycloak.RealmKeystoreAesGeneratedArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Enabled = true,
-    ///             Active = true,
-    ///             Priority = 100,
-    ///             SecretSize = 16,
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///     });
     /// 
-    /// }
+    ///     var keystoreAesGenerated = new Keycloak.RealmKeystoreAesGenerated("keystoreAesGenerated", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Enabled = true,
+    ///         Active = true,
+    ///         Priority = 100,
+    ///         SecretSize = 16,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -50,7 +49,7 @@ namespace Pulumi.Keycloak
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated")]
-    public partial class RealmKeystoreAesGenerated : Pulumi.CustomResource
+    public partial class RealmKeystoreAesGenerated : global::Pulumi.CustomResource
     {
         /// <summary>
         /// When `false`, key in not used for signing. Defaults to `true`.
@@ -132,7 +131,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class RealmKeystoreAesGeneratedArgs : Pulumi.ResourceArgs
+    public sealed class RealmKeystoreAesGeneratedArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `false`, key in not used for signing. Defaults to `true`.
@@ -173,9 +172,10 @@ namespace Pulumi.Keycloak
         public RealmKeystoreAesGeneratedArgs()
         {
         }
+        public static new RealmKeystoreAesGeneratedArgs Empty => new RealmKeystoreAesGeneratedArgs();
     }
 
-    public sealed class RealmKeystoreAesGeneratedState : Pulumi.ResourceArgs
+    public sealed class RealmKeystoreAesGeneratedState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `false`, key in not used for signing. Defaults to `true`.
@@ -216,5 +216,6 @@ namespace Pulumi.Keycloak
         public RealmKeystoreAesGeneratedState()
         {
         }
+        public static new RealmKeystoreAesGeneratedState Empty => new RealmKeystoreAesGeneratedState();
     }
 }

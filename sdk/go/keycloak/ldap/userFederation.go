@@ -99,6 +99,8 @@ type UserFederation struct {
 	ConnectionUrl pulumi.StringOutput `pulumi:"connectionUrl"`
 	// Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
 	CustomUserSearchFilter pulumi.StringPtrOutput `pulumi:"customUserSearchFilter"`
+	// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+	DeleteDefaultMappers pulumi.BoolPtrOutput `pulumi:"deleteDefaultMappers"`
 	// Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
 	EditMode pulumi.StringPtrOutput `pulumi:"editMode"`
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
@@ -122,8 +124,6 @@ type UserFederation struct {
 	// The realm that this provider will provide user federation for.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
 	// Can be one of `ONE_LEVEL` or `SUBTREE`:
-	// - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
-	// - `SUBTREE`: Search entire LDAP subtree.
 	SearchScope pulumi.StringPtrOutput `pulumi:"searchScope"`
 	// When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
 	StartTls pulumi.BoolPtrOutput `pulumi:"startTls"`
@@ -177,6 +177,13 @@ func NewUserFederation(ctx *pulumi.Context,
 	if args.UuidLdapAttribute == nil {
 		return nil, errors.New("invalid value for required argument 'UuidLdapAttribute'")
 	}
+	if args.BindCredential != nil {
+		args.BindCredential = pulumi.ToSecret(args.BindCredential).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"bindCredential",
+	})
+	opts = append(opts, secrets)
 	var resource UserFederation
 	err := ctx.RegisterResource("keycloak:ldap/userFederation:UserFederation", name, args, &resource, opts...)
 	if err != nil {
@@ -215,6 +222,8 @@ type userFederationState struct {
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
 	CustomUserSearchFilter *string `pulumi:"customUserSearchFilter"`
+	// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+	DeleteDefaultMappers *bool `pulumi:"deleteDefaultMappers"`
 	// Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
 	EditMode *string `pulumi:"editMode"`
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
@@ -238,8 +247,6 @@ type userFederationState struct {
 	// The realm that this provider will provide user federation for.
 	RealmId *string `pulumi:"realmId"`
 	// Can be one of `ONE_LEVEL` or `SUBTREE`:
-	// - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
-	// - `SUBTREE`: Search entire LDAP subtree.
 	SearchScope *string `pulumi:"searchScope"`
 	// When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
 	StartTls *bool `pulumi:"startTls"`
@@ -282,6 +289,8 @@ type UserFederationState struct {
 	ConnectionUrl pulumi.StringPtrInput
 	// Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
 	CustomUserSearchFilter pulumi.StringPtrInput
+	// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+	DeleteDefaultMappers pulumi.BoolPtrInput
 	// Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
 	EditMode pulumi.StringPtrInput
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
@@ -305,8 +314,6 @@ type UserFederationState struct {
 	// The realm that this provider will provide user federation for.
 	RealmId pulumi.StringPtrInput
 	// Can be one of `ONE_LEVEL` or `SUBTREE`:
-	// - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
-	// - `SUBTREE`: Search entire LDAP subtree.
 	SearchScope pulumi.StringPtrInput
 	// When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
 	StartTls pulumi.BoolPtrInput
@@ -353,6 +360,8 @@ type userFederationArgs struct {
 	ConnectionUrl string `pulumi:"connectionUrl"`
 	// Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
 	CustomUserSearchFilter *string `pulumi:"customUserSearchFilter"`
+	// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+	DeleteDefaultMappers *bool `pulumi:"deleteDefaultMappers"`
 	// Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
 	EditMode *string `pulumi:"editMode"`
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
@@ -376,8 +385,6 @@ type userFederationArgs struct {
 	// The realm that this provider will provide user federation for.
 	RealmId string `pulumi:"realmId"`
 	// Can be one of `ONE_LEVEL` or `SUBTREE`:
-	// - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
-	// - `SUBTREE`: Search entire LDAP subtree.
 	SearchScope *string `pulumi:"searchScope"`
 	// When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
 	StartTls *bool `pulumi:"startTls"`
@@ -421,6 +428,8 @@ type UserFederationArgs struct {
 	ConnectionUrl pulumi.StringInput
 	// Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
 	CustomUserSearchFilter pulumi.StringPtrInput
+	// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+	DeleteDefaultMappers pulumi.BoolPtrInput
 	// Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
 	EditMode pulumi.StringPtrInput
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
@@ -444,8 +453,6 @@ type UserFederationArgs struct {
 	// The realm that this provider will provide user federation for.
 	RealmId pulumi.StringInput
 	// Can be one of `ONE_LEVEL` or `SUBTREE`:
-	// - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
-	// - `SUBTREE`: Search entire LDAP subtree.
 	SearchScope pulumi.StringPtrInput
 	// When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
 	StartTls pulumi.BoolPtrInput
@@ -598,6 +605,11 @@ func (o UserFederationOutput) CustomUserSearchFilter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserFederation) pulumi.StringPtrOutput { return v.CustomUserSearchFilter }).(pulumi.StringPtrOutput)
 }
 
+// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+func (o UserFederationOutput) DeleteDefaultMappers() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserFederation) pulumi.BoolPtrOutput { return v.DeleteDefaultMappers }).(pulumi.BoolPtrOutput)
+}
+
 // Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
 func (o UserFederationOutput) EditMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserFederation) pulumi.StringPtrOutput { return v.EditMode }).(pulumi.StringPtrOutput)
@@ -654,8 +666,6 @@ func (o UserFederationOutput) RealmId() pulumi.StringOutput {
 }
 
 // Can be one of `ONE_LEVEL` or `SUBTREE`:
-// - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
-// - `SUBTREE`: Search entire LDAP subtree.
 func (o UserFederationOutput) SearchScope() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserFederation) pulumi.StringPtrOutput { return v.SearchScope }).(pulumi.StringPtrOutput)
 }

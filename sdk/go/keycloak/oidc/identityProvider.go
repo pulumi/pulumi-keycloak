@@ -102,6 +102,8 @@ type IdentityProvider struct {
 	HideOnLoginPage pulumi.BoolPtrOutput `pulumi:"hideOnLoginPage"`
 	// (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
 	InternalId pulumi.StringOutput `pulumi:"internalId"`
+	// The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+	Issuer pulumi.StringPtrOutput `pulumi:"issuer"`
 	// JSON Web Key Set URL.
 	JwksUrl pulumi.StringPtrOutput `pulumi:"jwksUrl"`
 	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
@@ -157,6 +159,13 @@ func NewIdentityProvider(ctx *pulumi.Context,
 	if args.TokenUrl == nil {
 		return nil, errors.New("invalid value for required argument 'TokenUrl'")
 	}
+	if args.ClientSecret != nil {
+		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"clientSecret",
+	})
+	opts = append(opts, secrets)
 	var resource IdentityProvider
 	err := ctx.RegisterResource("keycloak:oidc/identityProvider:IdentityProvider", name, args, &resource, opts...)
 	if err != nil {
@@ -212,6 +221,8 @@ type identityProviderState struct {
 	HideOnLoginPage *bool `pulumi:"hideOnLoginPage"`
 	// (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
 	InternalId *string `pulumi:"internalId"`
+	// The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+	Issuer *string `pulumi:"issuer"`
 	// JSON Web Key Set URL.
 	JwksUrl *string `pulumi:"jwksUrl"`
 	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
@@ -276,6 +287,8 @@ type IdentityProviderState struct {
 	HideOnLoginPage pulumi.BoolPtrInput
 	// (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
 	InternalId pulumi.StringPtrInput
+	// The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+	Issuer pulumi.StringPtrInput
 	// JSON Web Key Set URL.
 	JwksUrl pulumi.StringPtrInput
 	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
@@ -342,6 +355,8 @@ type identityProviderArgs struct {
 	GuiOrder *string `pulumi:"guiOrder"`
 	// When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
 	HideOnLoginPage *bool `pulumi:"hideOnLoginPage"`
+	// The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+	Issuer *string `pulumi:"issuer"`
 	// JSON Web Key Set URL.
 	JwksUrl *string `pulumi:"jwksUrl"`
 	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
@@ -405,6 +420,8 @@ type IdentityProviderArgs struct {
 	GuiOrder pulumi.StringPtrInput
 	// When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
 	HideOnLoginPage pulumi.BoolPtrInput
+	// The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+	Issuer pulumi.StringPtrInput
 	// JSON Web Key Set URL.
 	JwksUrl pulumi.StringPtrInput
 	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
@@ -604,6 +621,11 @@ func (o IdentityProviderOutput) HideOnLoginPage() pulumi.BoolPtrOutput {
 // (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
 func (o IdentityProviderOutput) InternalId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.InternalId }).(pulumi.StringOutput)
+}
+
+// The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+func (o IdentityProviderOutput) Issuer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.Issuer }).(pulumi.StringPtrOutput)
 }
 
 // JSON Web Key Set URL.

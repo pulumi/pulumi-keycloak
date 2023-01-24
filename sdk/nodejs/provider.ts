@@ -65,6 +65,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["initialLogin"] = pulumi.output(args ? args.initialLogin : undefined).apply(JSON.stringify);
             resourceInputs["password"] = args ? args.password : undefined;
             resourceInputs["realm"] = args ? args.realm : undefined;
+            resourceInputs["redHatSso"] = pulumi.output(args ? args.redHatSso : undefined).apply(JSON.stringify);
             resourceInputs["rootCaCertificate"] = args ? args.rootCaCertificate : undefined;
             resourceInputs["tlsInsecureSkipVerify"] = pulumi.output(args ? args.tlsInsecureSkipVerify : undefined).apply(JSON.stringify);
             resourceInputs["url"] = args ? args.url : undefined;
@@ -93,6 +94,11 @@ export interface ProviderArgs {
     initialLogin?: pulumi.Input<boolean>;
     password?: pulumi.Input<string>;
     realm?: pulumi.Input<string>;
+    /**
+     * When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
+     * returned from the /serverinfo API endpoint.
+     */
+    redHatSso?: pulumi.Input<boolean>;
     /**
      * Allows x509 calls using an unknown CA certificate (for development purposes)
      */

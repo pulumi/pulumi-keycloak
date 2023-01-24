@@ -92,6 +92,23 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
+     * returned from the /serverinfo API endpoint.
+     * 
+     */
+    @Import(name="redHatSso", json=true)
+    private @Nullable Output<Boolean> redHatSso;
+
+    /**
+     * @return When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
+     * returned from the /serverinfo API endpoint.
+     * 
+     */
+    public Optional<Output<Boolean>> redHatSso() {
+        return Optional.ofNullable(this.redHatSso);
+    }
+
+    /**
      * Allows x509 calls using an unknown CA certificate (for development purposes)
      * 
      */
@@ -156,6 +173,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         this.initialLogin = $.initialLogin;
         this.password = $.password;
         this.realm = $.realm;
+        this.redHatSso = $.redHatSso;
         this.rootCaCertificate = $.rootCaCertificate;
         this.tlsInsecureSkipVerify = $.tlsInsecureSkipVerify;
         this.url = $.url;
@@ -274,6 +292,29 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder realm(String realm) {
             return realm(Output.of(realm));
+        }
+
+        /**
+         * @param redHatSso When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
+         * returned from the /serverinfo API endpoint.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redHatSso(@Nullable Output<Boolean> redHatSso) {
+            $.redHatSso = redHatSso;
+            return this;
+        }
+
+        /**
+         * @param redHatSso When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
+         * returned from the /serverinfo API endpoint.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redHatSso(Boolean redHatSso) {
+            return redHatSso(Output.of(redHatSso));
         }
 
         /**

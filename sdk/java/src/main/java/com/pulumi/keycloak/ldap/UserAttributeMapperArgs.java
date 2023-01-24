@@ -32,6 +32,36 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+     * 
+     */
+    @Import(name="attributeDefaultValue")
+    private @Nullable Output<String> attributeDefaultValue;
+
+    /**
+     * @return Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+     * 
+     */
+    public Optional<Output<String>> attributeDefaultValue() {
+        return Optional.ofNullable(this.attributeDefaultValue);
+    }
+
+    /**
+     * Should be true for binary LDAP attributes.
+     * 
+     */
+    @Import(name="isBinaryAttribute")
+    private @Nullable Output<Boolean> isBinaryAttribute;
+
+    /**
+     * @return Should be true for binary LDAP attributes.
+     * 
+     */
+    public Optional<Output<Boolean>> isBinaryAttribute() {
+        return Optional.ofNullable(this.isBinaryAttribute);
+    }
+
+    /**
      * When `true`, this attribute must exist in LDAP. Defaults to `false`.
      * 
      */
@@ -140,6 +170,8 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
 
     private UserAttributeMapperArgs(UserAttributeMapperArgs $) {
         this.alwaysReadValueFromLdap = $.alwaysReadValueFromLdap;
+        this.attributeDefaultValue = $.attributeDefaultValue;
+        this.isBinaryAttribute = $.isBinaryAttribute;
         this.isMandatoryInLdap = $.isMandatoryInLdap;
         this.ldapAttribute = $.ldapAttribute;
         this.ldapUserFederationId = $.ldapUserFederationId;
@@ -186,6 +218,48 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
          */
         public Builder alwaysReadValueFromLdap(Boolean alwaysReadValueFromLdap) {
             return alwaysReadValueFromLdap(Output.of(alwaysReadValueFromLdap));
+        }
+
+        /**
+         * @param attributeDefaultValue Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder attributeDefaultValue(@Nullable Output<String> attributeDefaultValue) {
+            $.attributeDefaultValue = attributeDefaultValue;
+            return this;
+        }
+
+        /**
+         * @param attributeDefaultValue Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder attributeDefaultValue(String attributeDefaultValue) {
+            return attributeDefaultValue(Output.of(attributeDefaultValue));
+        }
+
+        /**
+         * @param isBinaryAttribute Should be true for binary LDAP attributes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isBinaryAttribute(@Nullable Output<Boolean> isBinaryAttribute) {
+            $.isBinaryAttribute = isBinaryAttribute;
+            return this;
+        }
+
+        /**
+         * @param isBinaryAttribute Should be true for binary LDAP attributes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isBinaryAttribute(Boolean isBinaryAttribute) {
+            return isBinaryAttribute(Output.of(isBinaryAttribute));
         }
 
         /**

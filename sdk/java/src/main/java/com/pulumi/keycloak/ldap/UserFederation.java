@@ -207,6 +207,20 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.customUserSearchFilter);
     }
     /**
+     * When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+     * 
+     */
+    @Export(name="deleteDefaultMappers", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> deleteDefaultMappers;
+
+    /**
+     * @return When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+     * 
+     */
+    public Output<Optional<Boolean>> deleteDefaultMappers() {
+        return Codegen.optional(this.deleteDefaultMappers);
+    }
+    /**
      * Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
      * 
      */
@@ -362,8 +376,6 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
     }
     /**
      * Can be one of `ONE_LEVEL` or `SUBTREE`:
-     * - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
-     * - `SUBTREE`: Search entire LDAP subtree.
      * 
      */
     @Export(name="searchScope", type=String.class, parameters={})
@@ -371,8 +383,6 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Can be one of `ONE_LEVEL` or `SUBTREE`:
-     * - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
-     * - `SUBTREE`: Search entire LDAP subtree.
      * 
      */
     public Output<Optional<String>> searchScope() {
@@ -565,6 +575,9 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "bindCredential"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

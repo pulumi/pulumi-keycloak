@@ -69,7 +69,7 @@ import javax.annotation.Nullable;
  *         var usernameImporter = new UserTemplateImporterIdentityProviderMapper(&#34;usernameImporter&#34;, UserTemplateImporterIdentityProviderMapperArgs.builder()        
  *             .realm(realm.id())
  *             .identityProviderAlias(oidc.alias())
- *             .template(String.format(&#34;%s.%s&#34;, ALIAS,CLAIM.email()))
+ *             .template(&#34;${ALIAS}.${CLAIM.email}&#34;)
  *             .extraConfig(Map.of(&#34;syncMode&#34;, &#34;INHERIT&#34;))
  *             .build());
  * 

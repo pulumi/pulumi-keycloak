@@ -18,110 +18,108 @@ namespace Pulumi.Keycloak.Ldap
     /// ### Realm Role)
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new Keycloak.Ldap.UserFederationArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             UsernameLdapAttribute = "cn",
-    ///             RdnLdapAttribute = "cn",
-    ///             UuidLdapAttribute = "entryDN",
-    ///             UserObjectClasses = 
-    ///             {
-    ///                 "simpleSecurityObject",
-    ///                 "organizationalRole",
-    ///             },
-    ///             ConnectionUrl = "ldap://openldap",
-    ///             UsersDn = "dc=example,dc=org",
-    ///             BindDn = "cn=admin,dc=example,dc=org",
-    ///             BindCredential = "admin",
-    ///         });
-    ///         var realmAdminRole = new Keycloak.Role("realmAdminRole", new Keycloak.RoleArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Description = "My Realm Role",
-    ///         });
-    ///         var assignAdminRoleToAllUsers = new Keycloak.Ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers", new Keycloak.Ldap.HardcodedRoleMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             LdapUserFederationId = ldapUserFederation.Id,
-    ///             Role = realmAdminRole.Name,
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         UsernameLdapAttribute = "cn",
+    ///         RdnLdapAttribute = "cn",
+    ///         UuidLdapAttribute = "entryDN",
+    ///         UserObjectClasses = new[]
+    ///         {
+    ///             "simpleSecurityObject",
+    ///             "organizationalRole",
+    ///         },
+    ///         ConnectionUrl = "ldap://openldap",
+    ///         UsersDn = "dc=example,dc=org",
+    ///         BindDn = "cn=admin,dc=example,dc=org",
+    ///         BindCredential = "admin",
+    ///     });
+    /// 
+    ///     var realmAdminRole = new Keycloak.Role("realmAdminRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Description = "My Realm Role",
+    ///     });
+    /// 
+    ///     var assignAdminRoleToAllUsers = new Keycloak.Ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         LdapUserFederationId = ldapUserFederation.Id,
+    ///         Role = realmAdminRole.Name,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### Client Role)
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new Keycloak.Ldap.UserFederationArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             UsernameLdapAttribute = "cn",
-    ///             RdnLdapAttribute = "cn",
-    ///             UuidLdapAttribute = "entryDN",
-    ///             UserObjectClasses = 
-    ///             {
-    ///                 "simpleSecurityObject",
-    ///                 "organizationalRole",
-    ///             },
-    ///             ConnectionUrl = "ldap://openldap",
-    ///             UsersDn = "dc=example,dc=org",
-    ///             BindDn = "cn=admin,dc=example,dc=org",
-    ///             BindCredential = "admin",
-    ///         });
-    ///         var realmManagement = Keycloak.OpenId.GetClient.Invoke(new Keycloak.OpenId.GetClientInvokeArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = "realm-management",
-    ///         });
-    ///         var createClient = Output.Tuple(realm.Id, realmManagement).Apply(values =&gt;
-    ///         {
-    ///             var id = values.Item1;
-    ///             var realmManagement = values.Item2;
-    ///             return Keycloak.GetRole.Invoke(new Keycloak.GetRoleInvokeArgs
-    ///             {
-    ///                 RealmId = id,
-    ///                 ClientId = realmManagement.Id,
-    ///                 Name = "create-client",
-    ///             });
-    ///         });
-    ///         var assignAdminRoleToAllUsers = new Keycloak.Ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers", new Keycloak.Ldap.HardcodedRoleMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             LdapUserFederationId = ldapUserFederation.Id,
-    ///             Role = Output.Tuple(realmManagement, createClient).Apply(values =&gt;
-    ///             {
-    ///                 var realmManagement = values.Item1;
-    ///                 var createClient = values.Item2;
-    ///                 return $"{realmManagement.ClientId}.{createClient.Name}";
-    ///             }),
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         UsernameLdapAttribute = "cn",
+    ///         RdnLdapAttribute = "cn",
+    ///         UuidLdapAttribute = "entryDN",
+    ///         UserObjectClasses = new[]
+    ///         {
+    ///             "simpleSecurityObject",
+    ///             "organizationalRole",
+    ///         },
+    ///         ConnectionUrl = "ldap://openldap",
+    ///         UsersDn = "dc=example,dc=org",
+    ///         BindDn = "cn=admin,dc=example,dc=org",
+    ///         BindCredential = "admin",
+    ///     });
+    /// 
+    ///     var realmManagement = Keycloak.OpenId.GetClient.Invoke(new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "realm-management",
+    ///     });
+    /// 
+    ///     var createClient = Keycloak.GetRole.Invoke(new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = realmManagement.Apply(getClientResult =&gt; getClientResult.Id),
+    ///         Name = "create-client",
+    ///     });
+    /// 
+    ///     var assignAdminRoleToAllUsers = new Keycloak.Ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         LdapUserFederationId = ldapUserFederation.Id,
+    ///         Role = Output.Tuple(realmManagement.Apply(getClientResult =&gt; getClientResult), createClient.Apply(getRoleResult =&gt; getRoleResult)).Apply(values =&gt;
+    ///         {
+    ///             var realmManagement = values.Item1;
+    ///             var createClient = values.Item2;
+    ///             return $"{realmManagement.Apply(getClientResult =&gt; getClientResult.ClientId)}.{createClient.Apply(getRoleResult =&gt; getRoleResult.Name)}";
+    ///         }),
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -133,7 +131,7 @@ namespace Pulumi.Keycloak.Ldap
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper")]
-    public partial class HardcodedRoleMapper : Pulumi.CustomResource
+    public partial class HardcodedRoleMapper : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The ID of the LDAP user federation provider to attach this mapper to.
@@ -203,7 +201,7 @@ namespace Pulumi.Keycloak.Ldap
         }
     }
 
-    public sealed class HardcodedRoleMapperArgs : Pulumi.ResourceArgs
+    public sealed class HardcodedRoleMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the LDAP user federation provider to attach this mapper to.
@@ -232,9 +230,10 @@ namespace Pulumi.Keycloak.Ldap
         public HardcodedRoleMapperArgs()
         {
         }
+        public static new HardcodedRoleMapperArgs Empty => new HardcodedRoleMapperArgs();
     }
 
-    public sealed class HardcodedRoleMapperState : Pulumi.ResourceArgs
+    public sealed class HardcodedRoleMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the LDAP user federation provider to attach this mapper to.
@@ -263,5 +262,6 @@ namespace Pulumi.Keycloak.Ldap
         public HardcodedRoleMapperState()
         {
         }
+        public static new HardcodedRoleMapperState Empty => new HardcodedRoleMapperState();
     }
 }

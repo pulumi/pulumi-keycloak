@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class GetRealmSecurityDefenseHeaderInputArgs : Pulumi.ResourceArgs
+    public sealed class GetRealmSecurityDefenseHeaderInputArgs : global::Pulumi.ResourceArgs
     {
         [Input("contentSecurityPolicy", required: true)]
         public Input<string> ContentSecurityPolicy { get; set; } = null!;
@@ -36,5 +36,6 @@ namespace Pulumi.Keycloak.Inputs
         public GetRealmSecurityDefenseHeaderInputArgs()
         {
         }
+        public static new GetRealmSecurityDefenseHeaderInputArgs Empty => new GetRealmSecurityDefenseHeaderInputArgs();
     }
 }

@@ -296,14 +296,14 @@ public class Client extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.frontChannelLogout);
     }
     /**
-     * - Allow to include all roles mappings in the access token
+     * Allow to include all roles mappings in the access token
      * 
      */
     @Export(name="fullScopeAllowed", type=Boolean.class, parameters={})
     private Output</* @Nullable */ Boolean> fullScopeAllowed;
 
     /**
-     * @return - Allow to include all roles mappings in the access token
+     * @return Allow to include all roles mappings in the access token
      * 
      */
     public Output<Optional<Boolean>> fullScopeAllowed() {
@@ -492,14 +492,14 @@ public class Client extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.signDocuments);
     }
     /**
-     * The signature algorithm used to sign documents. Should be one of &#34;RSA_SHA1&#34;, &#34;RSA_SHA256&#34;, &#34;RSA_SHA512&#34;, or &#34;DSA_SHA1&#34;.
+     * The signature algorithm used to sign documents. Should be one of &#34;RSA_SHA1&#34;, &#34;RSA_SHA256&#34;, &#34;RSA_SHA256_MGF1, &#34;RSA_SHA512&#34;, &#34;RSA_SHA512_MGF1&#34; or &#34;DSA_SHA1&#34;.
      * 
      */
     @Export(name="signatureAlgorithm", type=String.class, parameters={})
     private Output</* @Nullable */ String> signatureAlgorithm;
 
     /**
-     * @return The signature algorithm used to sign documents. Should be one of &#34;RSA_SHA1&#34;, &#34;RSA_SHA256&#34;, &#34;RSA_SHA512&#34;, or &#34;DSA_SHA1&#34;.
+     * @return The signature algorithm used to sign documents. Should be one of &#34;RSA_SHA1&#34;, &#34;RSA_SHA256&#34;, &#34;RSA_SHA256_MGF1, &#34;RSA_SHA512&#34;, &#34;RSA_SHA512_MGF1&#34; or &#34;DSA_SHA1&#34;.
      * 
      */
     public Output<Optional<String>> signatureAlgorithm() {

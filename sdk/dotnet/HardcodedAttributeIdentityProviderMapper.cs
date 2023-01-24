@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     [KeycloakResourceType("keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper")]
-    public partial class HardcodedAttributeIdentityProviderMapper : Pulumi.CustomResource
+    public partial class HardcodedAttributeIdentityProviderMapper : global::Pulumi.CustomResource
     {
         /// <summary>
         /// OIDC Claim
@@ -95,7 +95,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class HardcodedAttributeIdentityProviderMapperArgs : Pulumi.ResourceArgs
+    public sealed class HardcodedAttributeIdentityProviderMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// OIDC Claim
@@ -144,9 +144,10 @@ namespace Pulumi.Keycloak
         public HardcodedAttributeIdentityProviderMapperArgs()
         {
         }
+        public static new HardcodedAttributeIdentityProviderMapperArgs Empty => new HardcodedAttributeIdentityProviderMapperArgs();
     }
 
-    public sealed class HardcodedAttributeIdentityProviderMapperState : Pulumi.ResourceArgs
+    public sealed class HardcodedAttributeIdentityProviderMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// OIDC Claim
@@ -195,5 +196,6 @@ namespace Pulumi.Keycloak
         public HardcodedAttributeIdentityProviderMapperState()
         {
         }
+        public static new HardcodedAttributeIdentityProviderMapperState Empty => new HardcodedAttributeIdentityProviderMapperState();
     }
 }

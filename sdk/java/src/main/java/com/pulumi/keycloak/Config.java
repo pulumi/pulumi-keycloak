@@ -47,6 +47,14 @@ public final class Config {
         return Codegen.stringProp("realm").config(config).get();
     }
 /**
+ * When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
+ * returned from the /serverinfo API endpoint.
+ * 
+ */
+    public Optional<Boolean> redHatSso() {
+        return Codegen.booleanProp("redHatSso").config(config).get();
+    }
+/**
  * Allows x509 calls using an unknown CA certificate (for development purposes)
  * 
  */

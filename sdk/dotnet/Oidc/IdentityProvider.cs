@@ -17,34 +17,33 @@ namespace Pulumi.Keycloak.Oidc
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var realmIdentityProvider = new Keycloak.Oidc.IdentityProvider("realmIdentityProvider", new Keycloak.Oidc.IdentityProviderArgs
-    ///         {
-    ///             Realm = realm.Id,
-    ///             Alias = "my-idp",
-    ///             AuthorizationUrl = "https://authorizationurl.com",
-    ///             ClientId = "clientID",
-    ///             ClientSecret = "clientSecret",
-    ///             TokenUrl = "https://tokenurl.com",
-    ///             ExtraConfig = 
-    ///             {
-    ///                 { "clientAuthMethod", "client_secret_post" },
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var realmIdentityProvider = new Keycloak.Oidc.IdentityProvider("realmIdentityProvider", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         Alias = "my-idp",
+    ///         AuthorizationUrl = "https://authorizationurl.com",
+    ///         ClientId = "clientID",
+    ///         ClientSecret = "clientSecret",
+    ///         TokenUrl = "https://tokenurl.com",
+    ///         ExtraConfig = 
+    ///         {
+    ///             { "clientAuthMethod", "client_secret_post" },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -56,7 +55,7 @@ namespace Pulumi.Keycloak.Oidc
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:oidc/identityProvider:IdentityProvider")]
-    public partial class IdentityProvider : Pulumi.CustomResource
+    public partial class IdentityProvider : global::Pulumi.CustomResource
     {
         /// <summary>
         /// When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
@@ -156,6 +155,12 @@ namespace Pulumi.Keycloak.Oidc
         /// </summary>
         [Output("internalId")]
         public Output<string> InternalId { get; private set; } = null!;
+
+        /// <summary>
+        /// The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+        /// </summary>
+        [Output("issuer")]
+        public Output<string?> Issuer { get; private set; } = null!;
 
         /// <summary>
         /// JSON Web Key Set URL.
@@ -264,6 +269,10 @@ namespace Pulumi.Keycloak.Oidc
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "clientSecret",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -285,7 +294,7 @@ namespace Pulumi.Keycloak.Oidc
         }
     }
 
-    public sealed class IdentityProviderArgs : Pulumi.ResourceArgs
+    public sealed class IdentityProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
@@ -329,11 +338,21 @@ namespace Pulumi.Keycloak.Oidc
         [Input("clientId", required: true)]
         public Input<string> ClientId { get; set; } = null!;
 
+        [Input("clientSecret", required: true)]
+        private Input<string>? _clientSecret;
+
         /// <summary>
         /// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
         /// </summary>
-        [Input("clientSecret", required: true)]
-        public Input<string> ClientSecret { get; set; } = null!;
+        public Input<string>? ClientSecret
+        {
+            get => _clientSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
@@ -384,6 +403,12 @@ namespace Pulumi.Keycloak.Oidc
         /// </summary>
         [Input("hideOnLoginPage")]
         public Input<bool>? HideOnLoginPage { get; set; }
+
+        /// <summary>
+        /// The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+        /// </summary>
+        [Input("issuer")]
+        public Input<string>? Issuer { get; set; }
 
         /// <summary>
         /// JSON Web Key Set URL.
@@ -472,9 +497,10 @@ namespace Pulumi.Keycloak.Oidc
         public IdentityProviderArgs()
         {
         }
+        public static new IdentityProviderArgs Empty => new IdentityProviderArgs();
     }
 
-    public sealed class IdentityProviderState : Pulumi.ResourceArgs
+    public sealed class IdentityProviderState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
@@ -518,11 +544,21 @@ namespace Pulumi.Keycloak.Oidc
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
+        [Input("clientSecret")]
+        private Input<string>? _clientSecret;
+
         /// <summary>
         /// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
         /// </summary>
-        [Input("clientSecret")]
-        public Input<string>? ClientSecret { get; set; }
+        public Input<string>? ClientSecret
+        {
+            get => _clientSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
@@ -579,6 +615,12 @@ namespace Pulumi.Keycloak.Oidc
         /// </summary>
         [Input("internalId")]
         public Input<string>? InternalId { get; set; }
+
+        /// <summary>
+        /// The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+        /// </summary>
+        [Input("issuer")]
+        public Input<string>? Issuer { get; set; }
 
         /// <summary>
         /// JSON Web Key Set URL.
@@ -667,5 +709,6 @@ namespace Pulumi.Keycloak.Oidc
         public IdentityProviderState()
         {
         }
+        public static new IdentityProviderState Empty => new IdentityProviderState();
     }
 }

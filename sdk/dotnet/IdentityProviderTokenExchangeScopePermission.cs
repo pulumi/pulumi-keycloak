@@ -13,55 +13,56 @@ namespace Pulumi.Keycloak
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var tokenExchangeRealm = new Keycloak.Realm("tokenExchangeRealm", new()
     ///     {
-    ///         var tokenExchangeRealm = new Keycloak.Realm("tokenExchangeRealm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "token-exchange_destination_realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var tokenExchangeMyOidcIdp = new Keycloak.Oidc.IdentityProvider("tokenExchangeMyOidcIdp", new Keycloak.Oidc.IdentityProviderArgs
-    ///         {
-    ///             Realm = tokenExchangeRealm.Id,
-    ///             Alias = "myIdp",
-    ///             AuthorizationUrl = "http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/auth",
-    ///             TokenUrl = "http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/token",
-    ///             ClientId = "clientId",
-    ///             ClientSecret = "secret",
-    ///             DefaultScopes = "openid",
-    ///         });
-    ///         var token_exchangeWebappClient = new Keycloak.OpenId.Client("token-exchangeWebappClient", new Keycloak.OpenId.ClientArgs
-    ///         {
-    ///             RealmId = tokenExchangeRealm.Id,
-    ///             ClientId = "webapp_client",
-    ///             ClientSecret = "secret",
-    ///             Description = "a webapp client on the destination realm",
-    ///             AccessType = "CONFIDENTIAL",
-    ///             StandardFlowEnabled = true,
-    ///             ValidRedirectUris = 
-    ///             {
-    ///                 "http://localhost:8080/*",
-    ///             },
-    ///         });
-    ///         //relevant part
-    ///         var oidcIdpPermission = new Keycloak.IdentityProviderTokenExchangeScopePermission("oidcIdpPermission", new Keycloak.IdentityProviderTokenExchangeScopePermissionArgs
-    ///         {
-    ///             RealmId = tokenExchangeRealm.Id,
-    ///             ProviderAlias = tokenExchangeMyOidcIdp.Alias,
-    ///             PolicyType = "client",
-    ///             Clients = 
-    ///             {
-    ///                 token_exchangeWebappClient.Id,
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "token-exchange_destination_realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var tokenExchangeMyOidcIdp = new Keycloak.Oidc.IdentityProvider("tokenExchangeMyOidcIdp", new()
+    ///     {
+    ///         Realm = tokenExchangeRealm.Id,
+    ///         Alias = "myIdp",
+    ///         AuthorizationUrl = "http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/auth",
+    ///         TokenUrl = "http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/token",
+    ///         ClientId = "clientId",
+    ///         ClientSecret = "secret",
+    ///         DefaultScopes = "openid",
+    ///     });
+    /// 
+    ///     var token_exchangeWebappClient = new Keycloak.OpenId.Client("token-exchangeWebappClient", new()
+    ///     {
+    ///         RealmId = tokenExchangeRealm.Id,
+    ///         ClientId = "webapp_client",
+    ///         ClientSecret = "secret",
+    ///         Description = "a webapp client on the destination realm",
+    ///         AccessType = "CONFIDENTIAL",
+    ///         StandardFlowEnabled = true,
+    ///         ValidRedirectUris = new[]
+    ///         {
+    ///             "http://localhost:8080/*",
+    ///         },
+    ///     });
+    /// 
+    ///     //relevant part
+    ///     var oidcIdpPermission = new Keycloak.IdentityProviderTokenExchangeScopePermission("oidcIdpPermission", new()
+    ///     {
+    ///         RealmId = tokenExchangeRealm.Id,
+    ///         ProviderAlias = tokenExchangeMyOidcIdp.Alias,
+    ///         PolicyType = "client",
+    ///         Clients = new[]
+    ///         {
+    ///             token_exchangeWebappClient.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -73,7 +74,7 @@ namespace Pulumi.Keycloak
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission")]
-    public partial class IdentityProviderTokenExchangeScopePermission : Pulumi.CustomResource
+    public partial class IdentityProviderTokenExchangeScopePermission : global::Pulumi.CustomResource
     {
         /// <summary>
         /// (Computed) Resource ID representing the identity provider, this automatically created by keycloak.
@@ -167,7 +168,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class IdentityProviderTokenExchangeScopePermissionArgs : Pulumi.ResourceArgs
+    public sealed class IdentityProviderTokenExchangeScopePermissionArgs : global::Pulumi.ResourceArgs
     {
         [Input("clients", required: true)]
         private InputList<string>? _clients;
@@ -202,9 +203,10 @@ namespace Pulumi.Keycloak
         public IdentityProviderTokenExchangeScopePermissionArgs()
         {
         }
+        public static new IdentityProviderTokenExchangeScopePermissionArgs Empty => new IdentityProviderTokenExchangeScopePermissionArgs();
     }
 
-    public sealed class IdentityProviderTokenExchangeScopePermissionState : Pulumi.ResourceArgs
+    public sealed class IdentityProviderTokenExchangeScopePermissionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// (Computed) Resource ID representing the identity provider, this automatically created by keycloak.
@@ -263,5 +265,6 @@ namespace Pulumi.Keycloak
         public IdentityProviderTokenExchangeScopePermissionState()
         {
         }
+        public static new IdentityProviderTokenExchangeScopePermissionState Empty => new IdentityProviderTokenExchangeScopePermissionState();
     }
 }

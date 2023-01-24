@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class GetRealmSmtpServerArgs : Pulumi.InvokeArgs
+    public sealed class GetRealmSmtpServerArgs : global::Pulumi.InvokeArgs
     {
         [Input("auths", required: true)]
         private List<Inputs.GetRealmSmtpServerAuthArgs>? _auths;
@@ -50,5 +50,6 @@ namespace Pulumi.Keycloak.Inputs
         public GetRealmSmtpServerArgs()
         {
         }
+        public static new GetRealmSmtpServerArgs Empty => new GetRealmSmtpServerArgs();
     }
 }

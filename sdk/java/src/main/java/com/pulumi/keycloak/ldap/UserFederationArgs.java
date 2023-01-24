@@ -141,6 +141,21 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
+     * When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+     * 
+     */
+    @Import(name="deleteDefaultMappers")
+    private @Nullable Output<Boolean> deleteDefaultMappers;
+
+    /**
+     * @return When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> deleteDefaultMappers() {
+        return Optional.ofNullable(this.deleteDefaultMappers);
+    }
+
+    /**
      * Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
      * 
      */
@@ -307,8 +322,6 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
 
     /**
      * Can be one of `ONE_LEVEL` or `SUBTREE`:
-     * - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
-     * - `SUBTREE`: Search entire LDAP subtree.
      * 
      */
     @Import(name="searchScope")
@@ -316,8 +329,6 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
 
     /**
      * @return Can be one of `ONE_LEVEL` or `SUBTREE`:
-     * - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
-     * - `SUBTREE`: Search entire LDAP subtree.
      * 
      */
     public Optional<Output<String>> searchScope() {
@@ -500,6 +511,7 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
         this.connectionTimeout = $.connectionTimeout;
         this.connectionUrl = $.connectionUrl;
         this.customUserSearchFilter = $.customUserSearchFilter;
+        this.deleteDefaultMappers = $.deleteDefaultMappers;
         this.editMode = $.editMode;
         this.enabled = $.enabled;
         this.fullSyncPeriod = $.fullSyncPeriod;
@@ -709,6 +721,27 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
          */
         public Builder customUserSearchFilter(String customUserSearchFilter) {
             return customUserSearchFilter(Output.of(customUserSearchFilter));
+        }
+
+        /**
+         * @param deleteDefaultMappers When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteDefaultMappers(@Nullable Output<Boolean> deleteDefaultMappers) {
+            $.deleteDefaultMappers = deleteDefaultMappers;
+            return this;
+        }
+
+        /**
+         * @param deleteDefaultMappers When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteDefaultMappers(Boolean deleteDefaultMappers) {
+            return deleteDefaultMappers(Output.of(deleteDefaultMappers));
         }
 
         /**
@@ -944,8 +977,6 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param searchScope Can be one of `ONE_LEVEL` or `SUBTREE`:
-         * - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
-         * - `SUBTREE`: Search entire LDAP subtree.
          * 
          * @return builder
          * 
@@ -957,8 +988,6 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param searchScope Can be one of `ONE_LEVEL` or `SUBTREE`:
-         * - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
-         * - `SUBTREE`: Search entire LDAP subtree.
          * 
          * @return builder
          * 

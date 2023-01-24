@@ -13,90 +13,94 @@ namespace Pulumi.Keycloak
     /// ## Example Usage
     /// ### Exhaustive Groups)
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var @group = new Keycloak.Group("group", new Keycloak.GroupArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///         });
-    ///         var user = new Keycloak.User("user", new Keycloak.UserArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Username = "my-user",
-    ///         });
-    ///         var userGroups = new Keycloak.UserGroups("userGroups", new Keycloak.UserGroupsArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             UserId = user.Id,
-    ///             GroupIds = 
-    ///             {
-    ///                 @group.Id,
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var @group = new Keycloak.Group("group", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var user = new Keycloak.User("user", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Username = "my-user",
+    ///     });
+    /// 
+    ///     var userGroups = new Keycloak.UserGroups("userGroups", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         UserId = user.Id,
+    ///         GroupIds = new[]
+    ///         {
+    ///             @group.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### Non Exhaustive Groups)
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var groupFoo = new Keycloak.Group("groupFoo", new Keycloak.GroupArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///         });
-    ///         var groupBar = new Keycloak.Group("groupBar", new Keycloak.GroupArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///         });
-    ///         var user = new Keycloak.User("user", new Keycloak.UserArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Username = "my-user",
-    ///         });
-    ///         var userGroupsAssociation1UserGroups = new Keycloak.UserGroups("userGroupsAssociation1UserGroups", new Keycloak.UserGroupsArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             UserId = user.Id,
-    ///             Exhaustive = false,
-    ///             GroupIds = 
-    ///             {
-    ///                 groupFoo.Id,
-    ///             },
-    ///         });
-    ///         var userGroupsAssociation1Index_userGroupsUserGroups = new Keycloak.UserGroups("userGroupsAssociation1Index/userGroupsUserGroups", new Keycloak.UserGroupsArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             UserId = user.Id,
-    ///             Exhaustive = false,
-    ///             GroupIds = 
-    ///             {
-    ///                 groupBar.Id,
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var groupFoo = new Keycloak.Group("groupFoo", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var groupBar = new Keycloak.Group("groupBar", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var user = new Keycloak.User("user", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Username = "my-user",
+    ///     });
+    /// 
+    ///     var userGroupsAssociation1UserGroups = new Keycloak.UserGroups("userGroupsAssociation1UserGroups", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         UserId = user.Id,
+    ///         Exhaustive = false,
+    ///         GroupIds = new[]
+    ///         {
+    ///             groupFoo.Id,
+    ///         },
+    ///     });
+    /// 
+    ///     var userGroupsAssociation1Index_userGroupsUserGroups = new Keycloak.UserGroups("userGroupsAssociation1Index/userGroupsUserGroups", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         UserId = user.Id,
+    ///         Exhaustive = false,
+    ///         GroupIds = new[]
+    ///         {
+    ///             groupBar.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -104,7 +108,7 @@ namespace Pulumi.Keycloak
     /// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
     /// </summary>
     [KeycloakResourceType("keycloak:index/userGroups:UserGroups")]
-    public partial class UserGroups : Pulumi.CustomResource
+    public partial class UserGroups : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
@@ -174,7 +178,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class UserGroupsArgs : Pulumi.ResourceArgs
+    public sealed class UserGroupsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
@@ -209,9 +213,10 @@ namespace Pulumi.Keycloak
         public UserGroupsArgs()
         {
         }
+        public static new UserGroupsArgs Empty => new UserGroupsArgs();
     }
 
-    public sealed class UserGroupsState : Pulumi.ResourceArgs
+    public sealed class UserGroupsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
@@ -246,5 +251,6 @@ namespace Pulumi.Keycloak
         public UserGroupsState()
         {
         }
+        public static new UserGroupsState Empty => new UserGroupsState();
     }
 }

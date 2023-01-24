@@ -23,7 +23,7 @@ namespace Pulumi.Keycloak
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated")]
-    public partial class RealmKeystoreRsaGenerated : Pulumi.CustomResource
+    public partial class RealmKeystoreRsaGenerated : global::Pulumi.CustomResource
     {
         /// <summary>
         /// When `false`, key in not used for signing. Defaults to `true`.
@@ -111,7 +111,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class RealmKeystoreRsaGeneratedArgs : Pulumi.ResourceArgs
+    public sealed class RealmKeystoreRsaGeneratedArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `false`, key in not used for signing. Defaults to `true`.
@@ -158,9 +158,10 @@ namespace Pulumi.Keycloak
         public RealmKeystoreRsaGeneratedArgs()
         {
         }
+        public static new RealmKeystoreRsaGeneratedArgs Empty => new RealmKeystoreRsaGeneratedArgs();
     }
 
-    public sealed class RealmKeystoreRsaGeneratedState : Pulumi.ResourceArgs
+    public sealed class RealmKeystoreRsaGeneratedState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `false`, key in not used for signing. Defaults to `true`.
@@ -207,5 +208,6 @@ namespace Pulumi.Keycloak
         public RealmKeystoreRsaGeneratedState()
         {
         }
+        public static new RealmKeystoreRsaGeneratedState Empty => new RealmKeystoreRsaGeneratedState();
     }
 }

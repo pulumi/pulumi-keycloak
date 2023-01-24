@@ -18,34 +18,34 @@ namespace Pulumi.Keycloak.Authentication
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var flow = new Keycloak.Authentication.Flow("flow", new Keycloak.Authentication.FlowArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Alias = "my-flow-alias",
-    ///         });
-    ///         var subflow = new Keycloak.Authentication.Subflow("subflow", new Keycloak.Authentication.SubflowArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Alias = "my-subflow-alias",
-    ///             ParentFlowAlias = flow.Alias,
-    ///             ProviderId = "basic-flow",
-    ///             Requirement = "ALTERNATIVE",
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var flow = new Keycloak.Authentication.Flow("flow", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Alias = "my-flow-alias",
+    ///     });
+    /// 
+    ///     var subflow = new Keycloak.Authentication.Subflow("subflow", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Alias = "my-subflow-alias",
+    ///         ParentFlowAlias = flow.Alias,
+    ///         ProviderId = "basic-flow",
+    ///         Requirement = "ALTERNATIVE",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -57,7 +57,7 @@ namespace Pulumi.Keycloak.Authentication
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:authentication/subflow:Subflow")]
-    public partial class Subflow : Pulumi.CustomResource
+    public partial class Subflow : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The alias for this authentication subflow.
@@ -148,7 +148,7 @@ namespace Pulumi.Keycloak.Authentication
         }
     }
 
-    public sealed class SubflowArgs : Pulumi.ResourceArgs
+    public sealed class SubflowArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The alias for this authentication subflow.
@@ -198,9 +198,10 @@ namespace Pulumi.Keycloak.Authentication
         public SubflowArgs()
         {
         }
+        public static new SubflowArgs Empty => new SubflowArgs();
     }
 
-    public sealed class SubflowState : Pulumi.ResourceArgs
+    public sealed class SubflowState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The alias for this authentication subflow.
@@ -250,5 +251,6 @@ namespace Pulumi.Keycloak.Authentication
         public SubflowState()
         {
         }
+        public static new SubflowState Empty => new SubflowState();
     }
 }

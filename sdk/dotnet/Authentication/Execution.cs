@@ -20,48 +20,49 @@ namespace Pulumi.Keycloak.Authentication
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var flow = new Keycloak.Authentication.Flow("flow", new Keycloak.Authentication.FlowArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Alias = "my-flow-alias",
-    ///         });
-    ///         // first execution
-    ///         var executionOne = new Keycloak.Authentication.Execution("executionOne", new Keycloak.Authentication.ExecutionArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ParentFlowAlias = flow.Alias,
-    ///             Authenticator = "auth-cookie",
-    ///             Requirement = "ALTERNATIVE",
-    ///         });
-    ///         // second execution
-    ///         var executionTwo = new Keycloak.Authentication.Execution("executionTwo", new Keycloak.Authentication.ExecutionArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ParentFlowAlias = flow.Alias,
-    ///             Authenticator = "identity-provider-redirector",
-    ///             Requirement = "ALTERNATIVE",
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 executionOne,
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var flow = new Keycloak.Authentication.Flow("flow", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Alias = "my-flow-alias",
+    ///     });
+    /// 
+    ///     // first execution
+    ///     var executionOne = new Keycloak.Authentication.Execution("executionOne", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ParentFlowAlias = flow.Alias,
+    ///         Authenticator = "auth-cookie",
+    ///         Requirement = "ALTERNATIVE",
+    ///     });
+    /// 
+    ///     // second execution
+    ///     var executionTwo = new Keycloak.Authentication.Execution("executionTwo", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ParentFlowAlias = flow.Alias,
+    ///         Authenticator = "identity-provider-redirector",
+    ///         Requirement = "ALTERNATIVE",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             executionOne,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -73,7 +74,7 @@ namespace Pulumi.Keycloak.Authentication
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:authentication/execution:Execution")]
-    public partial class Execution : Pulumi.CustomResource
+    public partial class Execution : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
@@ -143,7 +144,7 @@ namespace Pulumi.Keycloak.Authentication
         }
     }
 
-    public sealed class ExecutionArgs : Pulumi.ResourceArgs
+    public sealed class ExecutionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
@@ -172,9 +173,10 @@ namespace Pulumi.Keycloak.Authentication
         public ExecutionArgs()
         {
         }
+        public static new ExecutionArgs Empty => new ExecutionArgs();
     }
 
-    public sealed class ExecutionState : Pulumi.ResourceArgs
+    public sealed class ExecutionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
@@ -203,5 +205,6 @@ namespace Pulumi.Keycloak.Authentication
         public ExecutionState()
         {
         }
+        public static new ExecutionState Empty => new ExecutionState();
     }
 }

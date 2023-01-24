@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -116,6 +117,10 @@ export class UserFederation extends pulumi.CustomResource {
      */
     public readonly customUserSearchFilter!: pulumi.Output<string | undefined>;
     /**
+     * When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+     */
+    public readonly deleteDefaultMappers!: pulumi.Output<boolean | undefined>;
+    /**
      * Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
      */
     public readonly editMode!: pulumi.Output<string | undefined>;
@@ -161,8 +166,6 @@ export class UserFederation extends pulumi.CustomResource {
     public readonly realmId!: pulumi.Output<string>;
     /**
      * Can be one of `ONE_LEVEL` or `SUBTREE`:
-     * - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
-     * - `SUBTREE`: Search entire LDAP subtree.
      */
     public readonly searchScope!: pulumi.Output<string | undefined>;
     /**
@@ -231,6 +234,7 @@ export class UserFederation extends pulumi.CustomResource {
             resourceInputs["connectionTimeout"] = state ? state.connectionTimeout : undefined;
             resourceInputs["connectionUrl"] = state ? state.connectionUrl : undefined;
             resourceInputs["customUserSearchFilter"] = state ? state.customUserSearchFilter : undefined;
+            resourceInputs["deleteDefaultMappers"] = state ? state.deleteDefaultMappers : undefined;
             resourceInputs["editMode"] = state ? state.editMode : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
             resourceInputs["fullSyncPeriod"] = state ? state.fullSyncPeriod : undefined;
@@ -278,13 +282,14 @@ export class UserFederation extends pulumi.CustomResource {
                 throw new Error("Missing required property 'uuidLdapAttribute'");
             }
             resourceInputs["batchSizeForSync"] = args ? args.batchSizeForSync : undefined;
-            resourceInputs["bindCredential"] = args ? args.bindCredential : undefined;
+            resourceInputs["bindCredential"] = args?.bindCredential ? pulumi.secret(args.bindCredential) : undefined;
             resourceInputs["bindDn"] = args ? args.bindDn : undefined;
             resourceInputs["cache"] = args ? args.cache : undefined;
             resourceInputs["changedSyncPeriod"] = args ? args.changedSyncPeriod : undefined;
             resourceInputs["connectionTimeout"] = args ? args.connectionTimeout : undefined;
             resourceInputs["connectionUrl"] = args ? args.connectionUrl : undefined;
             resourceInputs["customUserSearchFilter"] = args ? args.customUserSearchFilter : undefined;
+            resourceInputs["deleteDefaultMappers"] = args ? args.deleteDefaultMappers : undefined;
             resourceInputs["editMode"] = args ? args.editMode : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["fullSyncPeriod"] = args ? args.fullSyncPeriod : undefined;
@@ -310,6 +315,8 @@ export class UserFederation extends pulumi.CustomResource {
             resourceInputs["vendor"] = args ? args.vendor : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["bindCredential"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(UserFederation.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -350,6 +357,10 @@ export interface UserFederationState {
      * Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
      */
     customUserSearchFilter?: pulumi.Input<string>;
+    /**
+     * When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+     */
+    deleteDefaultMappers?: pulumi.Input<boolean>;
     /**
      * Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
      */
@@ -396,8 +407,6 @@ export interface UserFederationState {
     realmId?: pulumi.Input<string>;
     /**
      * Can be one of `ONE_LEVEL` or `SUBTREE`:
-     * - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
-     * - `SUBTREE`: Search entire LDAP subtree.
      */
     searchScope?: pulumi.Input<string>;
     /**
@@ -483,6 +492,10 @@ export interface UserFederationArgs {
      */
     customUserSearchFilter?: pulumi.Input<string>;
     /**
+     * When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+     */
+    deleteDefaultMappers?: pulumi.Input<boolean>;
+    /**
      * Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
      */
     editMode?: pulumi.Input<string>;
@@ -528,8 +541,6 @@ export interface UserFederationArgs {
     realmId: pulumi.Input<string>;
     /**
      * Can be one of `ONE_LEVEL` or `SUBTREE`:
-     * - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
-     * - `SUBTREE`: Search entire LDAP subtree.
      */
     searchScope?: pulumi.Input<string>;
     /**

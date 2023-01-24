@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface GetRealmInternationalization {
     defaultLocale?: string;
@@ -359,7 +360,7 @@ export interface RealmSmtpServerAuth {
 
 export interface RealmUserProfileAttribute {
     /**
-     * A map of annotations for the group.
+     * A map of annotations for the attribute. Values can be a String or a json object.
      */
     annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -371,11 +372,11 @@ export interface RealmUserProfileAttribute {
      */
     enabledWhenScopes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The group that the attribute belong to.
+     * A list of groups.
      */
     group?: pulumi.Input<string>;
     /**
-     * The name of the group.
+     * The name of the attribute.
      */
     name: pulumi.Input<string>;
     /**
@@ -409,18 +410,18 @@ export interface RealmUserProfileAttributePermissions {
 
 export interface RealmUserProfileAttributeValidator {
     /**
-     * A map defining the configuration of the validator.
+     * A map defining the configuration of the validator. Values can be a String or a json object.
      */
     config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The name of the group.
+     * The name of the attribute.
      */
     name: pulumi.Input<string>;
 }
 
 export interface RealmUserProfileGroup {
     /**
-     * A map of annotations for the group.
+     * A map of annotations for the attribute. Values can be a String or a json object.
      */
     annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -432,7 +433,7 @@ export interface RealmUserProfileGroup {
      */
     displayHeader?: pulumi.Input<string>;
     /**
-     * The name of the group.
+     * The name of the attribute.
      */
     name: pulumi.Input<string>;
 }

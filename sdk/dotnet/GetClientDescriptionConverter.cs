@@ -20,22 +20,22 @@ namespace Pulumi.Keycloak
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Keycloak = Pulumi.Keycloak;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var realm = new Keycloak.Realm("realm", new()
         ///     {
-        ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-        ///         {
-        ///             RealmName = "my-realm",
-        ///             Enabled = true,
-        ///         });
-        ///         var samlClientClientDescriptionConverter = Keycloak.GetClientDescriptionConverter.Invoke(new Keycloak.GetClientDescriptionConverterInvokeArgs
-        ///         {
-        ///             RealmId = realm.Id,
-        ///             Body = @"	&lt;md:EntityDescriptor xmlns:md=""urn:oasis:names:tc:SAML:2.0:metadata"" validUntil=""2021-04-17T12:41:46Z"" cacheDuration=""PT604800S"" entityID=""FakeEntityId""&gt;
+        ///         RealmName = "my-realm",
+        ///         Enabled = true,
+        ///     });
+        /// 
+        ///     var samlClientClientDescriptionConverter = Keycloak.GetClientDescriptionConverter.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         Body = @"	&lt;md:EntityDescriptor xmlns:md=""urn:oasis:names:tc:SAML:2.0:metadata"" validUntil=""2021-04-17T12:41:46Z"" cacheDuration=""PT604800S"" entityID=""FakeEntityId""&gt;
         ///     &lt;md:SPSSODescriptor AuthnRequestsSigned=""false"" WantAssertionsSigned=""false"" protocolSupportEnumeration=""urn:oasis:names:tc:SAML:2.0:protocol""&gt;
         ///         &lt;md:KeyDescriptor use=""signing""&gt;
         /// 			&lt;ds:KeyInfo xmlns:ds=""http://www.w3.org/2000/09/xmldsig#""&gt;
@@ -63,21 +63,21 @@ namespace Pulumi.Keycloak
         ///     &lt;/md:SPSSODescriptor&gt;
         /// &lt;/md:EntityDescriptor&gt;
         /// ",
-        ///         });
-        ///         var samlClientClient = new Keycloak.Saml.Client("samlClientClient", new Keycloak.Saml.ClientArgs
-        ///         {
-        ///             RealmId = realm.Id,
-        ///             ClientId = samlClientClientDescriptionConverter.Apply(samlClientClientDescriptionConverter =&gt; samlClientClientDescriptionConverter.ClientId),
-        ///         });
-        ///     }
+        ///     });
         /// 
-        /// }
+        ///     var samlClientClient = new Keycloak.Saml.Client("samlClientClient", new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         ClientId = samlClientClientDescriptionConverter.Apply(getClientDescriptionConverterResult =&gt; getClientDescriptionConverterResult.ClientId),
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetClientDescriptionConverterResult> InvokeAsync(GetClientDescriptionConverterArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetClientDescriptionConverterResult>("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", args ?? new GetClientDescriptionConverterArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetClientDescriptionConverterResult>("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", args ?? new GetClientDescriptionConverterArgs(), options.WithDefaults());
 
         /// <summary>
         /// This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/6.0/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
@@ -88,22 +88,22 @@ namespace Pulumi.Keycloak
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Keycloak = Pulumi.Keycloak;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var realm = new Keycloak.Realm("realm", new()
         ///     {
-        ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-        ///         {
-        ///             RealmName = "my-realm",
-        ///             Enabled = true,
-        ///         });
-        ///         var samlClientClientDescriptionConverter = Keycloak.GetClientDescriptionConverter.Invoke(new Keycloak.GetClientDescriptionConverterInvokeArgs
-        ///         {
-        ///             RealmId = realm.Id,
-        ///             Body = @"	&lt;md:EntityDescriptor xmlns:md=""urn:oasis:names:tc:SAML:2.0:metadata"" validUntil=""2021-04-17T12:41:46Z"" cacheDuration=""PT604800S"" entityID=""FakeEntityId""&gt;
+        ///         RealmName = "my-realm",
+        ///         Enabled = true,
+        ///     });
+        /// 
+        ///     var samlClientClientDescriptionConverter = Keycloak.GetClientDescriptionConverter.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         Body = @"	&lt;md:EntityDescriptor xmlns:md=""urn:oasis:names:tc:SAML:2.0:metadata"" validUntil=""2021-04-17T12:41:46Z"" cacheDuration=""PT604800S"" entityID=""FakeEntityId""&gt;
         ///     &lt;md:SPSSODescriptor AuthnRequestsSigned=""false"" WantAssertionsSigned=""false"" protocolSupportEnumeration=""urn:oasis:names:tc:SAML:2.0:protocol""&gt;
         ///         &lt;md:KeyDescriptor use=""signing""&gt;
         /// 			&lt;ds:KeyInfo xmlns:ds=""http://www.w3.org/2000/09/xmldsig#""&gt;
@@ -131,25 +131,25 @@ namespace Pulumi.Keycloak
         ///     &lt;/md:SPSSODescriptor&gt;
         /// &lt;/md:EntityDescriptor&gt;
         /// ",
-        ///         });
-        ///         var samlClientClient = new Keycloak.Saml.Client("samlClientClient", new Keycloak.Saml.ClientArgs
-        ///         {
-        ///             RealmId = realm.Id,
-        ///             ClientId = samlClientClientDescriptionConverter.Apply(samlClientClientDescriptionConverter =&gt; samlClientClientDescriptionConverter.ClientId),
-        ///         });
-        ///     }
+        ///     });
         /// 
-        /// }
+        ///     var samlClientClient = new Keycloak.Saml.Client("samlClientClient", new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         ClientId = samlClientClientDescriptionConverter.Apply(getClientDescriptionConverterResult =&gt; getClientDescriptionConverterResult.ClientId),
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetClientDescriptionConverterResult> Invoke(GetClientDescriptionConverterInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetClientDescriptionConverterResult>("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", args ?? new GetClientDescriptionConverterInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetClientDescriptionConverterResult>("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", args ?? new GetClientDescriptionConverterInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetClientDescriptionConverterArgs : Pulumi.InvokeArgs
+    public sealed class GetClientDescriptionConverterArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The body of the request to convert.
@@ -166,9 +166,10 @@ namespace Pulumi.Keycloak
         public GetClientDescriptionConverterArgs()
         {
         }
+        public static new GetClientDescriptionConverterArgs Empty => new GetClientDescriptionConverterArgs();
     }
 
-    public sealed class GetClientDescriptionConverterInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetClientDescriptionConverterInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The body of the request to convert.
@@ -185,6 +186,7 @@ namespace Pulumi.Keycloak
         public GetClientDescriptionConverterInvokeArgs()
         {
         }
+        public static new GetClientDescriptionConverterInvokeArgs Empty => new GetClientDescriptionConverterInvokeArgs();
     }
 
 

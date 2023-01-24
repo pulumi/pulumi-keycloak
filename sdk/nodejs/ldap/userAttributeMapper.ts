@@ -84,6 +84,14 @@ export class UserAttributeMapper extends pulumi.CustomResource {
      */
     public readonly alwaysReadValueFromLdap!: pulumi.Output<boolean | undefined>;
     /**
+     * Default value to set in LDAP if `isMandatoryInLdap` is true and the value is empty.
+     */
+    public readonly attributeDefaultValue!: pulumi.Output<string | undefined>;
+    /**
+     * Should be true for binary LDAP attributes.
+     */
+    public readonly isBinaryAttribute!: pulumi.Output<boolean | undefined>;
+    /**
      * When `true`, this attribute must exist in LDAP. Defaults to `false`.
      */
     public readonly isMandatoryInLdap!: pulumi.Output<boolean | undefined>;
@@ -126,6 +134,8 @@ export class UserAttributeMapper extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as UserAttributeMapperState | undefined;
             resourceInputs["alwaysReadValueFromLdap"] = state ? state.alwaysReadValueFromLdap : undefined;
+            resourceInputs["attributeDefaultValue"] = state ? state.attributeDefaultValue : undefined;
+            resourceInputs["isBinaryAttribute"] = state ? state.isBinaryAttribute : undefined;
             resourceInputs["isMandatoryInLdap"] = state ? state.isMandatoryInLdap : undefined;
             resourceInputs["ldapAttribute"] = state ? state.ldapAttribute : undefined;
             resourceInputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
@@ -148,6 +158,8 @@ export class UserAttributeMapper extends pulumi.CustomResource {
                 throw new Error("Missing required property 'userModelAttribute'");
             }
             resourceInputs["alwaysReadValueFromLdap"] = args ? args.alwaysReadValueFromLdap : undefined;
+            resourceInputs["attributeDefaultValue"] = args ? args.attributeDefaultValue : undefined;
+            resourceInputs["isBinaryAttribute"] = args ? args.isBinaryAttribute : undefined;
             resourceInputs["isMandatoryInLdap"] = args ? args.isMandatoryInLdap : undefined;
             resourceInputs["ldapAttribute"] = args ? args.ldapAttribute : undefined;
             resourceInputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
@@ -169,6 +181,14 @@ export interface UserAttributeMapperState {
      * When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
      */
     alwaysReadValueFromLdap?: pulumi.Input<boolean>;
+    /**
+     * Default value to set in LDAP if `isMandatoryInLdap` is true and the value is empty.
+     */
+    attributeDefaultValue?: pulumi.Input<string>;
+    /**
+     * Should be true for binary LDAP attributes.
+     */
+    isBinaryAttribute?: pulumi.Input<boolean>;
     /**
      * When `true`, this attribute must exist in LDAP. Defaults to `false`.
      */
@@ -207,6 +227,14 @@ export interface UserAttributeMapperArgs {
      * When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
      */
     alwaysReadValueFromLdap?: pulumi.Input<boolean>;
+    /**
+     * Default value to set in LDAP if `isMandatoryInLdap` is true and the value is empty.
+     */
+    attributeDefaultValue?: pulumi.Input<string>;
+    /**
+     * Should be true for binary LDAP attributes.
+     */
+    isBinaryAttribute?: pulumi.Input<boolean>;
     /**
      * When `true`, this attribute must exist in LDAP. Defaults to `false`.
      */

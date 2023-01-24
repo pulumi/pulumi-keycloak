@@ -18,32 +18,31 @@ namespace Pulumi.Keycloak.Saml
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using System.IO;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var samlClient = new Keycloak.Saml.Client("samlClient", new Keycloak.Saml.ClientArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = "saml-client",
-    ///             SignDocuments = false,
-    ///             SignAssertions = true,
-    ///             IncludeAuthnStatement = true,
-    ///             SigningCertificate = File.ReadAllText("saml-cert.pem"),
-    ///             SigningPrivateKey = File.ReadAllText("saml-key.pem"),
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var samlClient = new Keycloak.Saml.Client("samlClient", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "saml-client",
+    ///         SignDocuments = false,
+    ///         SignAssertions = true,
+    ///         IncludeAuthnStatement = true,
+    ///         SigningCertificate = File.ReadAllText("saml-cert.pem"),
+    ///         SigningPrivateKey = File.ReadAllText("saml-key.pem"),
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -55,7 +54,7 @@ namespace Pulumi.Keycloak.Saml
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:saml/client:Client")]
-    public partial class Client : Pulumi.CustomResource
+    public partial class Client : global::Pulumi.CustomResource
     {
         /// <summary>
         /// SAML POST Binding URL for the client's assertion consumer service (login responses).
@@ -151,7 +150,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<bool?> FrontChannelLogout { get; private set; } = null!;
 
         /// <summary>
-        /// - Allow to include all roles mappings in the access token
+        /// Allow to include all roles mappings in the access token
         /// </summary>
         [Output("fullScopeAllowed")]
         public Output<bool?> FullScopeAllowed { get; private set; } = null!;
@@ -235,7 +234,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<bool?> SignDocuments { get; private set; } = null!;
 
         /// <summary>
-        /// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+        /// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
         /// </summary>
         [Output("signatureAlgorithm")]
         public Output<string?> SignatureAlgorithm { get; private set; } = null!;
@@ -320,7 +319,7 @@ namespace Pulumi.Keycloak.Saml
         }
     }
 
-    public sealed class ClientArgs : Pulumi.ResourceArgs
+    public sealed class ClientArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// SAML POST Binding URL for the client's assertion consumer service (login responses).
@@ -415,7 +414,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? FrontChannelLogout { get; set; }
 
         /// <summary>
-        /// - Allow to include all roles mappings in the access token
+        /// Allow to include all roles mappings in the access token
         /// </summary>
         [Input("fullScopeAllowed")]
         public Input<bool>? FullScopeAllowed { get; set; }
@@ -499,7 +498,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? SignDocuments { get; set; }
 
         /// <summary>
-        /// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+        /// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
         /// </summary>
         [Input("signatureAlgorithm")]
         public Input<string>? SignatureAlgorithm { get; set; }
@@ -537,9 +536,10 @@ namespace Pulumi.Keycloak.Saml
         public ClientArgs()
         {
         }
+        public static new ClientArgs Empty => new ClientArgs();
     }
 
-    public sealed class ClientState : Pulumi.ResourceArgs
+    public sealed class ClientState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// SAML POST Binding URL for the client's assertion consumer service (login responses).
@@ -640,7 +640,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? FrontChannelLogout { get; set; }
 
         /// <summary>
-        /// - Allow to include all roles mappings in the access token
+        /// Allow to include all roles mappings in the access token
         /// </summary>
         [Input("fullScopeAllowed")]
         public Input<bool>? FullScopeAllowed { get; set; }
@@ -724,7 +724,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? SignDocuments { get; set; }
 
         /// <summary>
-        /// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+        /// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
         /// </summary>
         [Input("signatureAlgorithm")]
         public Input<string>? SignatureAlgorithm { get; set; }
@@ -774,5 +774,6 @@ namespace Pulumi.Keycloak.Saml
         public ClientState()
         {
         }
+        public static new ClientState Empty => new ClientState();
     }
 }

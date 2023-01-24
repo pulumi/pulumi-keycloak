@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class RealmUserProfileAttribute {
     /**
-     * @return A map of annotations for the group.
+     * @return A map of annotations for the attribute. Values can be a String or a json object.
      * 
      */
     private @Nullable Map<String,String> annotations;
@@ -31,12 +31,12 @@ public final class RealmUserProfileAttribute {
      */
     private @Nullable List<String> enabledWhenScopes;
     /**
-     * @return The group that the attribute belong to.
+     * @return A list of groups.
      * 
      */
     private @Nullable String group;
     /**
-     * @return The name of the group.
+     * @return The name of the attribute.
      * 
      */
     private String name;
@@ -63,7 +63,7 @@ public final class RealmUserProfileAttribute {
 
     private RealmUserProfileAttribute() {}
     /**
-     * @return A map of annotations for the group.
+     * @return A map of annotations for the attribute. Values can be a String or a json object.
      * 
      */
     public Map<String,String> annotations() {
@@ -84,14 +84,14 @@ public final class RealmUserProfileAttribute {
         return this.enabledWhenScopes == null ? List.of() : this.enabledWhenScopes;
     }
     /**
-     * @return The group that the attribute belong to.
+     * @return A list of groups.
      * 
      */
     public Optional<String> group() {
         return Optional.ofNullable(this.group);
     }
     /**
-     * @return The name of the group.
+     * @return The name of the attribute.
      * 
      */
     public String name() {

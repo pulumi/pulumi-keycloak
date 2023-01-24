@@ -19,33 +19,32 @@ namespace Pulumi.Keycloak.OpenId
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Keycloak = Pulumi.Keycloak;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var realmManagement = Keycloak.OpenId.GetClient.Invoke(new()
         ///     {
-        ///         var realmManagement = Output.Create(Keycloak.OpenId.GetClient.InvokeAsync(new Keycloak.OpenId.GetClientArgs
-        ///         {
-        ///             RealmId = "my-realm",
-        ///             ClientId = "realm-management",
-        ///         }));
-        ///         var admin = realmManagement.Apply(realmManagement =&gt; Output.Create(Keycloak.GetRole.InvokeAsync(new Keycloak.GetRoleArgs
-        ///         {
-        ///             RealmId = "my-realm",
-        ///             ClientId = realmManagement.Id,
-        ///             Name = "realm-admin",
-        ///         })));
-        ///     }
+        ///         RealmId = "my-realm",
+        ///         ClientId = "realm-management",
+        ///     });
         /// 
-        /// }
+        ///     var admin = Keycloak.GetRole.Invoke(new()
+        ///     {
+        ///         RealmId = "my-realm",
+        ///         ClientId = realmManagement.Apply(getClientResult =&gt; getClientResult.Id),
+        ///         Name = "realm-admin",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetClientResult> InvokeAsync(GetClientArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetClientResult>("keycloak:openid/getClient:getClient", args ?? new GetClientArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetClientResult>("keycloak:openid/getClient:getClient", args ?? new GetClientArgs(), options.WithDefaults());
 
         /// <summary>
         /// This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
@@ -55,37 +54,36 @@ namespace Pulumi.Keycloak.OpenId
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Keycloak = Pulumi.Keycloak;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var realmManagement = Keycloak.OpenId.GetClient.Invoke(new()
         ///     {
-        ///         var realmManagement = Output.Create(Keycloak.OpenId.GetClient.InvokeAsync(new Keycloak.OpenId.GetClientArgs
-        ///         {
-        ///             RealmId = "my-realm",
-        ///             ClientId = "realm-management",
-        ///         }));
-        ///         var admin = realmManagement.Apply(realmManagement =&gt; Output.Create(Keycloak.GetRole.InvokeAsync(new Keycloak.GetRoleArgs
-        ///         {
-        ///             RealmId = "my-realm",
-        ///             ClientId = realmManagement.Id,
-        ///             Name = "realm-admin",
-        ///         })));
-        ///     }
+        ///         RealmId = "my-realm",
+        ///         ClientId = "realm-management",
+        ///     });
         /// 
-        /// }
+        ///     var admin = Keycloak.GetRole.Invoke(new()
+        ///     {
+        ///         RealmId = "my-realm",
+        ///         ClientId = realmManagement.Apply(getClientResult =&gt; getClientResult.Id),
+        ///         Name = "realm-admin",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetClientResult> Invoke(GetClientInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetClientResult>("keycloak:openid/getClient:getClient", args ?? new GetClientInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetClientResult>("keycloak:openid/getClient:getClient", args ?? new GetClientInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetClientArgs : Pulumi.InvokeArgs
+    public sealed class GetClientArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The client id (not its unique ID).
@@ -125,9 +123,10 @@ namespace Pulumi.Keycloak.OpenId
         public GetClientArgs()
         {
         }
+        public static new GetClientArgs Empty => new GetClientArgs();
     }
 
-    public sealed class GetClientInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetClientInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The client id (not its unique ID).
@@ -167,6 +166,7 @@ namespace Pulumi.Keycloak.OpenId
         public GetClientInvokeArgs()
         {
         }
+        public static new GetClientInvokeArgs Empty => new GetClientInvokeArgs();
     }
 
 
@@ -219,6 +219,7 @@ namespace Pulumi.Keycloak.OpenId
         public readonly bool StandardFlowEnabled;
         public readonly bool UseRefreshTokens;
         public readonly bool UseRefreshTokensClientCredentials;
+        public readonly ImmutableArray<string> ValidPostLogoutRedirectUris;
         public readonly ImmutableArray<string> ValidRedirectUris;
         public readonly ImmutableArray<string> WebOrigins;
 
@@ -310,6 +311,8 @@ namespace Pulumi.Keycloak.OpenId
 
             bool useRefreshTokensClientCredentials,
 
+            ImmutableArray<string> validPostLogoutRedirectUris,
+
             ImmutableArray<string> validRedirectUris,
 
             ImmutableArray<string> webOrigins)
@@ -357,6 +360,7 @@ namespace Pulumi.Keycloak.OpenId
             StandardFlowEnabled = standardFlowEnabled;
             UseRefreshTokens = useRefreshTokens;
             UseRefreshTokensClientCredentials = useRefreshTokensClientCredentials;
+            ValidPostLogoutRedirectUris = validPostLogoutRedirectUris;
             ValidRedirectUris = validRedirectUris;
             WebOrigins = webOrigins;
         }

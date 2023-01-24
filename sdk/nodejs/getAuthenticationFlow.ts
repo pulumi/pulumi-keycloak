@@ -24,11 +24,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getAuthenticationFlow(args: GetAuthenticationFlowArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthenticationFlowResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getAuthenticationFlow:getAuthenticationFlow", {
         "alias": args.alias,
         "realmId": args.realmId,
@@ -60,9 +57,27 @@ export interface GetAuthenticationFlowResult {
     readonly id: string;
     readonly realmId: string;
 }
-
+/**
+ * This data source can be used to fetch the ID of an authentication flow within Keycloak.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const browserAuthCookie = keycloak.getAuthenticationFlowOutput({
+ *     realmId: realm.id,
+ *     alias: "browser",
+ * });
+ * ```
+ */
 export function getAuthenticationFlowOutput(args: GetAuthenticationFlowOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthenticationFlowResult> {
-    return pulumi.output(args).apply(a => getAuthenticationFlow(a, opts))
+    return pulumi.output(args).apply((a: any) => getAuthenticationFlow(a, opts))
 }
 
 /**

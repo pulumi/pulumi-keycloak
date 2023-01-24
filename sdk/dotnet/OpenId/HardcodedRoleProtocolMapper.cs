@@ -21,75 +21,77 @@ namespace Pulumi.Keycloak.OpenId
     /// ### Client)
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var role = new Keycloak.Role("role", new Keycloak.RoleArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///         });
-    ///         var openidClient = new Keycloak.OpenId.Client("openidClient", new Keycloak.OpenId.ClientArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = "client",
-    ///             Enabled = true,
-    ///             AccessType = "CONFIDENTIAL",
-    ///             ValidRedirectUris = 
-    ///             {
-    ///                 "http://localhost:8080/openid-callback",
-    ///             },
-    ///         });
-    ///         var hardcodedRoleMapper = new Keycloak.OpenId.HardcodedRoleProtocolMapper("hardcodedRoleMapper", new Keycloak.OpenId.HardcodedRoleProtocolMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = openidClient.Id,
-    ///             RoleId = role.Id,
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var role = new Keycloak.Role("role", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var openidClient = new Keycloak.OpenId.Client("openidClient", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "client",
+    ///         Enabled = true,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ValidRedirectUris = new[]
+    ///         {
+    ///             "http://localhost:8080/openid-callback",
+    ///         },
+    ///     });
+    /// 
+    ///     var hardcodedRoleMapper = new Keycloak.OpenId.HardcodedRoleProtocolMapper("hardcodedRoleMapper", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = openidClient.Id,
+    ///         RoleId = role.Id,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### Client Scope)
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var role = new Keycloak.Role("role", new Keycloak.RoleArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///         });
-    ///         var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new Keycloak.OpenId.ClientScopeArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///         });
-    ///         var hardcodedRoleMapper = new Keycloak.OpenId.HardcodedRoleProtocolMapper("hardcodedRoleMapper", new Keycloak.OpenId.HardcodedRoleProtocolMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientScopeId = clientScope.Id,
-    ///             RoleId = role.Id,
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var role = new Keycloak.Role("role", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var hardcodedRoleMapper = new Keycloak.OpenId.HardcodedRoleProtocolMapper("hardcodedRoleMapper", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientScopeId = clientScope.Id,
+    ///         RoleId = role.Id,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -105,7 +107,7 @@ namespace Pulumi.Keycloak.OpenId
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper")]
-    public partial class HardcodedRoleProtocolMapper : Pulumi.CustomResource
+    public partial class HardcodedRoleProtocolMapper : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
@@ -181,7 +183,7 @@ namespace Pulumi.Keycloak.OpenId
         }
     }
 
-    public sealed class HardcodedRoleProtocolMapperArgs : Pulumi.ResourceArgs
+    public sealed class HardcodedRoleProtocolMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
@@ -216,9 +218,10 @@ namespace Pulumi.Keycloak.OpenId
         public HardcodedRoleProtocolMapperArgs()
         {
         }
+        public static new HardcodedRoleProtocolMapperArgs Empty => new HardcodedRoleProtocolMapperArgs();
     }
 
-    public sealed class HardcodedRoleProtocolMapperState : Pulumi.ResourceArgs
+    public sealed class HardcodedRoleProtocolMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
@@ -253,5 +256,6 @@ namespace Pulumi.Keycloak.OpenId
         public HardcodedRoleProtocolMapperState()
         {
         }
+        public static new HardcodedRoleProtocolMapperState Empty => new HardcodedRoleProtocolMapperState();
     }
 }

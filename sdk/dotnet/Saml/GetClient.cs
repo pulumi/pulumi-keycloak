@@ -19,33 +19,32 @@ namespace Pulumi.Keycloak.Saml
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Keycloak = Pulumi.Keycloak;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var realmManagement = Keycloak.Saml.GetClient.Invoke(new()
         ///     {
-        ///         var realmManagement = Output.Create(Keycloak.Saml.GetClient.InvokeAsync(new Keycloak.Saml.GetClientArgs
-        ///         {
-        ///             RealmId = "my-realm",
-        ///             ClientId = "realm-management",
-        ///         }));
-        ///         var admin = realmManagement.Apply(realmManagement =&gt; Output.Create(Keycloak.GetRole.InvokeAsync(new Keycloak.GetRoleArgs
-        ///         {
-        ///             RealmId = "my-realm",
-        ///             ClientId = realmManagement.Id,
-        ///             Name = "realm-admin",
-        ///         })));
-        ///     }
+        ///         RealmId = "my-realm",
+        ///         ClientId = "realm-management",
+        ///     });
         /// 
-        /// }
+        ///     var admin = Keycloak.GetRole.Invoke(new()
+        ///     {
+        ///         RealmId = "my-realm",
+        ///         ClientId = realmManagement.Apply(getClientResult =&gt; getClientResult.Id),
+        ///         Name = "realm-admin",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetClientResult> InvokeAsync(GetClientArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetClientResult>("keycloak:saml/getClient:getClient", args ?? new GetClientArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetClientResult>("keycloak:saml/getClient:getClient", args ?? new GetClientArgs(), options.WithDefaults());
 
         /// <summary>
         /// This data source can be used to fetch properties of a Keycloak client that uses the SAML protocol.
@@ -55,37 +54,36 @@ namespace Pulumi.Keycloak.Saml
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Keycloak = Pulumi.Keycloak;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var realmManagement = Keycloak.Saml.GetClient.Invoke(new()
         ///     {
-        ///         var realmManagement = Output.Create(Keycloak.Saml.GetClient.InvokeAsync(new Keycloak.Saml.GetClientArgs
-        ///         {
-        ///             RealmId = "my-realm",
-        ///             ClientId = "realm-management",
-        ///         }));
-        ///         var admin = realmManagement.Apply(realmManagement =&gt; Output.Create(Keycloak.GetRole.InvokeAsync(new Keycloak.GetRoleArgs
-        ///         {
-        ///             RealmId = "my-realm",
-        ///             ClientId = realmManagement.Id,
-        ///             Name = "realm-admin",
-        ///         })));
-        ///     }
+        ///         RealmId = "my-realm",
+        ///         ClientId = "realm-management",
+        ///     });
         /// 
-        /// }
+        ///     var admin = Keycloak.GetRole.Invoke(new()
+        ///     {
+        ///         RealmId = "my-realm",
+        ///         ClientId = realmManagement.Apply(getClientResult =&gt; getClientResult.Id),
+        ///         Name = "realm-admin",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetClientResult> Invoke(GetClientInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetClientResult>("keycloak:saml/getClient:getClient", args ?? new GetClientInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetClientResult>("keycloak:saml/getClient:getClient", args ?? new GetClientInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetClientArgs : Pulumi.InvokeArgs
+    public sealed class GetClientArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The client id (not its unique ID).
@@ -102,9 +100,10 @@ namespace Pulumi.Keycloak.Saml
         public GetClientArgs()
         {
         }
+        public static new GetClientArgs Empty => new GetClientArgs();
     }
 
-    public sealed class GetClientInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetClientInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The client id (not its unique ID).
@@ -121,6 +120,7 @@ namespace Pulumi.Keycloak.Saml
         public GetClientInvokeArgs()
         {
         }
+        public static new GetClientInvokeArgs Empty => new GetClientInvokeArgs();
     }
 
 

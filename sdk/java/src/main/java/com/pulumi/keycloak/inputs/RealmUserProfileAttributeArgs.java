@@ -20,14 +20,14 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
     public static final RealmUserProfileAttributeArgs Empty = new RealmUserProfileAttributeArgs();
 
     /**
-     * A map of annotations for the group.
+     * A map of annotations for the attribute. Values can be a String or a json object.
      * 
      */
     @Import(name="annotations")
     private @Nullable Output<Map<String,String>> annotations;
 
     /**
-     * @return A map of annotations for the group.
+     * @return A map of annotations for the attribute. Values can be a String or a json object.
      * 
      */
     public Optional<Output<Map<String,String>>> annotations() {
@@ -65,14 +65,14 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * The group that the attribute belong to.
+     * A list of groups.
      * 
      */
     @Import(name="group")
     private @Nullable Output<String> group;
 
     /**
-     * @return The group that the attribute belong to.
+     * @return A list of groups.
      * 
      */
     public Optional<Output<String>> group() {
@@ -80,14 +80,14 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * The name of the group.
+     * The name of the attribute.
      * 
      */
     @Import(name="name", required=true)
     private Output<String> name;
 
     /**
-     * @return The name of the group.
+     * @return The name of the attribute.
      * 
      */
     public Output<String> name() {
@@ -187,7 +187,7 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param annotations A map of annotations for the group.
+         * @param annotations A map of annotations for the attribute. Values can be a String or a json object.
          * 
          * @return builder
          * 
@@ -198,7 +198,7 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param annotations A map of annotations for the group.
+         * @param annotations A map of annotations for the attribute. Values can be a String or a json object.
          * 
          * @return builder
          * 
@@ -260,7 +260,7 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param group The group that the attribute belong to.
+         * @param group A list of groups.
          * 
          * @return builder
          * 
@@ -271,7 +271,7 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param group The group that the attribute belong to.
+         * @param group A list of groups.
          * 
          * @return builder
          * 
@@ -281,7 +281,7 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param name The name of the group.
+         * @param name The name of the attribute.
          * 
          * @return builder
          * 
@@ -292,7 +292,7 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param name The name of the group.
+         * @param name The name of the attribute.
          * 
          * @return builder
          * 

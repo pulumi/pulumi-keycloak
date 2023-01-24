@@ -130,6 +130,13 @@ func NewGoogleIdentityProvider(ctx *pulumi.Context,
 	if args.Realm == nil {
 		return nil, errors.New("invalid value for required argument 'Realm'")
 	}
+	if args.ClientSecret != nil {
+		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"clientSecret",
+	})
+	opts = append(opts, secrets)
 	var resource GoogleIdentityProvider
 	err := ctx.RegisterResource("keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider", name, args, &resource, opts...)
 	if err != nil {

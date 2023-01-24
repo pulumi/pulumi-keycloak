@@ -19,49 +19,49 @@ namespace Pulumi.Keycloak
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var user = new Keycloak.User("user", new Keycloak.UserArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Username = "bob",
-    ///             Enabled = true,
-    ///             Email = "bob@domain.com",
-    ///             FirstName = "Bob",
-    ///             LastName = "Bobson",
-    ///         });
-    ///         var userWithInitialPassword = new Keycloak.User("userWithInitialPassword", new Keycloak.UserArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Username = "alice",
-    ///             Enabled = true,
-    ///             Email = "alice@domain.com",
-    ///             FirstName = "Alice",
-    ///             LastName = "Aliceberg",
-    ///             Attributes = 
-    ///             {
-    ///                 { "foo", "bar" },
-    ///                 { "multivalue", "value1##value2" },
-    ///             },
-    ///             InitialPassword = new Keycloak.Inputs.UserInitialPasswordArgs
-    ///             {
-    ///                 Value = "some password",
-    ///                 Temporary = true,
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var user = new Keycloak.User("user", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Username = "bob",
+    ///         Enabled = true,
+    ///         Email = "bob@domain.com",
+    ///         FirstName = "Bob",
+    ///         LastName = "Bobson",
+    ///     });
+    /// 
+    ///     var userWithInitialPassword = new Keycloak.User("userWithInitialPassword", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Username = "alice",
+    ///         Enabled = true,
+    ///         Email = "alice@domain.com",
+    ///         FirstName = "Alice",
+    ///         LastName = "Aliceberg",
+    ///         Attributes = 
+    ///         {
+    ///             { "foo", "bar" },
+    ///             { "multivalue", "value1##value2" },
+    ///         },
+    ///         InitialPassword = new Keycloak.Inputs.UserInitialPasswordArgs
+    ///         {
+    ///             Value = "some password",
+    ///             Temporary = true,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -73,7 +73,7 @@ namespace Pulumi.Keycloak
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/user:User")]
-    public partial class User : Pulumi.CustomResource
+    public partial class User : global::Pulumi.CustomResource
     {
         /// <summary>
         /// A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
@@ -176,7 +176,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class UserArgs : Pulumi.ResourceArgs
+    public sealed class UserArgs : global::Pulumi.ResourceArgs
     {
         [Input("attributes")]
         private InputMap<object>? _attributes;
@@ -249,9 +249,10 @@ namespace Pulumi.Keycloak
         public UserArgs()
         {
         }
+        public static new UserArgs Empty => new UserArgs();
     }
 
-    public sealed class UserState : Pulumi.ResourceArgs
+    public sealed class UserState : global::Pulumi.ResourceArgs
     {
         [Input("attributes")]
         private InputMap<object>? _attributes;
@@ -324,5 +325,6 @@ namespace Pulumi.Keycloak
         public UserState()
         {
         }
+        public static new UserState Empty => new UserState();
     }
 }

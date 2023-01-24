@@ -67,7 +67,7 @@ class ClientArgs:
         :param pulumi.Input[bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
         :param pulumi.Input[bool] force_post_binding: When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
         :param pulumi.Input[bool] front_channel_logout: When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
-        :param pulumi.Input[bool] full_scope_allowed: - Allow to include all roles mappings in the access token
+        :param pulumi.Input[bool] full_scope_allowed: Allow to include all roles mappings in the access token
         :param pulumi.Input[str] idp_initiated_sso_relay_state: Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
         :param pulumi.Input[str] idp_initiated_sso_url_name: URL fragment name to reference client when you want to do IDP Initiated SSO.
         :param pulumi.Input[bool] include_authn_statement: When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
@@ -80,7 +80,7 @@ class ClientArgs:
         :param pulumi.Input[str] root_url: When specified, this value is prepended to all relative URLs.
         :param pulumi.Input[bool] sign_assertions: When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
         :param pulumi.Input[bool] sign_documents: When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
-        :param pulumi.Input[str] signature_algorithm: The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+        :param pulumi.Input[str] signature_algorithm: The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
         :param pulumi.Input[str] signature_key_name: The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
         :param pulumi.Input[str] signing_certificate: If documents or assertions from the client are signed, this certificate will be used to verify the signature.
         :param pulumi.Input[str] signing_private_key: If documents or assertions from the client are signed, this private key will be used to verify the signature.
@@ -346,7 +346,7 @@ class ClientArgs:
     @pulumi.getter(name="fullScopeAllowed")
     def full_scope_allowed(self) -> Optional[pulumi.Input[bool]]:
         """
-        - Allow to include all roles mappings in the access token
+        Allow to include all roles mappings in the access token
         """
         return pulumi.get(self, "full_scope_allowed")
 
@@ -502,7 +502,7 @@ class ClientArgs:
     @pulumi.getter(name="signatureAlgorithm")
     def signature_algorithm(self) -> Optional[pulumi.Input[str]]:
         """
-        The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+        The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
         """
         return pulumi.get(self, "signature_algorithm")
 
@@ -616,7 +616,7 @@ class _ClientState:
         :param pulumi.Input[bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
         :param pulumi.Input[bool] force_post_binding: When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
         :param pulumi.Input[bool] front_channel_logout: When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
-        :param pulumi.Input[bool] full_scope_allowed: - Allow to include all roles mappings in the access token
+        :param pulumi.Input[bool] full_scope_allowed: Allow to include all roles mappings in the access token
         :param pulumi.Input[str] idp_initiated_sso_relay_state: Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
         :param pulumi.Input[str] idp_initiated_sso_url_name: URL fragment name to reference client when you want to do IDP Initiated SSO.
         :param pulumi.Input[bool] include_authn_statement: When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
@@ -630,7 +630,7 @@ class _ClientState:
         :param pulumi.Input[str] root_url: When specified, this value is prepended to all relative URLs.
         :param pulumi.Input[bool] sign_assertions: When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
         :param pulumi.Input[bool] sign_documents: When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
-        :param pulumi.Input[str] signature_algorithm: The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+        :param pulumi.Input[str] signature_algorithm: The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
         :param pulumi.Input[str] signature_key_name: The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
         :param pulumi.Input[str] signing_certificate: If documents or assertions from the client are signed, this certificate will be used to verify the signature.
         :param pulumi.Input[str] signing_certificate_sha1: (Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.
@@ -906,7 +906,7 @@ class _ClientState:
     @pulumi.getter(name="fullScopeAllowed")
     def full_scope_allowed(self) -> Optional[pulumi.Input[bool]]:
         """
-        - Allow to include all roles mappings in the access token
+        Allow to include all roles mappings in the access token
         """
         return pulumi.get(self, "full_scope_allowed")
 
@@ -1074,7 +1074,7 @@ class _ClientState:
     @pulumi.getter(name="signatureAlgorithm")
     def signature_algorithm(self) -> Optional[pulumi.Input[str]]:
         """
-        The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+        The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
         """
         return pulumi.get(self, "signature_algorithm")
 
@@ -1244,7 +1244,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
         :param pulumi.Input[bool] force_post_binding: When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
         :param pulumi.Input[bool] front_channel_logout: When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
-        :param pulumi.Input[bool] full_scope_allowed: - Allow to include all roles mappings in the access token
+        :param pulumi.Input[bool] full_scope_allowed: Allow to include all roles mappings in the access token
         :param pulumi.Input[str] idp_initiated_sso_relay_state: Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
         :param pulumi.Input[str] idp_initiated_sso_url_name: URL fragment name to reference client when you want to do IDP Initiated SSO.
         :param pulumi.Input[bool] include_authn_statement: When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
@@ -1258,7 +1258,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[str] root_url: When specified, this value is prepended to all relative URLs.
         :param pulumi.Input[bool] sign_assertions: When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
         :param pulumi.Input[bool] sign_documents: When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
-        :param pulumi.Input[str] signature_algorithm: The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+        :param pulumi.Input[str] signature_algorithm: The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
         :param pulumi.Input[str] signature_key_name: The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
         :param pulumi.Input[str] signing_certificate: If documents or assertions from the client are signed, this certificate will be used to verify the signature.
         :param pulumi.Input[str] signing_private_key: If documents or assertions from the client are signed, this private key will be used to verify the signature.
@@ -1471,7 +1471,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
         :param pulumi.Input[bool] force_post_binding: When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
         :param pulumi.Input[bool] front_channel_logout: When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
-        :param pulumi.Input[bool] full_scope_allowed: - Allow to include all roles mappings in the access token
+        :param pulumi.Input[bool] full_scope_allowed: Allow to include all roles mappings in the access token
         :param pulumi.Input[str] idp_initiated_sso_relay_state: Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
         :param pulumi.Input[str] idp_initiated_sso_url_name: URL fragment name to reference client when you want to do IDP Initiated SSO.
         :param pulumi.Input[bool] include_authn_statement: When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
@@ -1485,7 +1485,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[str] root_url: When specified, this value is prepended to all relative URLs.
         :param pulumi.Input[bool] sign_assertions: When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
         :param pulumi.Input[bool] sign_documents: When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
-        :param pulumi.Input[str] signature_algorithm: The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+        :param pulumi.Input[str] signature_algorithm: The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
         :param pulumi.Input[str] signature_key_name: The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
         :param pulumi.Input[str] signing_certificate: If documents or assertions from the client are signed, this certificate will be used to verify the signature.
         :param pulumi.Input[str] signing_certificate_sha1: (Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.
@@ -1665,7 +1665,7 @@ class Client(pulumi.CustomResource):
     @pulumi.getter(name="fullScopeAllowed")
     def full_scope_allowed(self) -> pulumi.Output[Optional[bool]]:
         """
-        - Allow to include all roles mappings in the access token
+        Allow to include all roles mappings in the access token
         """
         return pulumi.get(self, "full_scope_allowed")
 
@@ -1777,7 +1777,7 @@ class Client(pulumi.CustomResource):
     @pulumi.getter(name="signatureAlgorithm")
     def signature_algorithm(self) -> pulumi.Output[Optional[str]]:
         """
-        The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+        The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
         """
         return pulumi.get(self, "signature_algorithm")
 

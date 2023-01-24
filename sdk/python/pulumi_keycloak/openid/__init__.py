@@ -27,6 +27,7 @@ from .client_user_policy import *
 from .full_name_protocol_mapper import *
 from .get_client import *
 from .get_client_authorization_policy import *
+from .get_client_scope import *
 from .get_client_service_account_user import *
 from .group_membership_protocol_mapper import *
 from .hardcoded_claim_protocol_mapper import *

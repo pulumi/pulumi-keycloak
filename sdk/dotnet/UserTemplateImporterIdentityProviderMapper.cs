@@ -21,41 +21,41 @@ namespace Pulumi.Keycloak
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var oidc = new Keycloak.Oidc.IdentityProvider("oidc", new Keycloak.Oidc.IdentityProviderArgs
-    ///         {
-    ///             Realm = realm.Id,
-    ///             Alias = "oidc",
-    ///             AuthorizationUrl = "https://example.com/auth",
-    ///             TokenUrl = "https://example.com/token",
-    ///             ClientId = "example_id",
-    ///             ClientSecret = "example_token",
-    ///             DefaultScopes = "openid random profile",
-    ///         });
-    ///         var usernameImporter = new Keycloak.UserTemplateImporterIdentityProviderMapper("usernameImporter", new Keycloak.UserTemplateImporterIdentityProviderMapperArgs
-    ///         {
-    ///             Realm = realm.Id,
-    ///             IdentityProviderAlias = oidc.Alias,
-    ///             Template = $"{ALIAS}.{CLAIM.Email}",
-    ///             ExtraConfig = 
-    ///             {
-    ///                 { "syncMode", "INHERIT" },
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var oidc = new Keycloak.Oidc.IdentityProvider("oidc", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         Alias = "oidc",
+    ///         AuthorizationUrl = "https://example.com/auth",
+    ///         TokenUrl = "https://example.com/token",
+    ///         ClientId = "example_id",
+    ///         ClientSecret = "example_token",
+    ///         DefaultScopes = "openid random profile",
+    ///     });
+    /// 
+    ///     var usernameImporter = new Keycloak.UserTemplateImporterIdentityProviderMapper("usernameImporter", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         IdentityProviderAlias = oidc.Alias,
+    ///         Template = "${ALIAS}.${CLAIM.email}",
+    ///         ExtraConfig = 
+    ///         {
+    ///             { "syncMode", "INHERIT" },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -67,7 +67,7 @@ namespace Pulumi.Keycloak
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper")]
-    public partial class UserTemplateImporterIdentityProviderMapper : Pulumi.CustomResource
+    public partial class UserTemplateImporterIdentityProviderMapper : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
@@ -143,7 +143,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class UserTemplateImporterIdentityProviderMapperArgs : Pulumi.ResourceArgs
+    public sealed class UserTemplateImporterIdentityProviderMapperArgs : global::Pulumi.ResourceArgs
     {
         [Input("extraConfig")]
         private InputMap<object>? _extraConfig;
@@ -184,9 +184,10 @@ namespace Pulumi.Keycloak
         public UserTemplateImporterIdentityProviderMapperArgs()
         {
         }
+        public static new UserTemplateImporterIdentityProviderMapperArgs Empty => new UserTemplateImporterIdentityProviderMapperArgs();
     }
 
-    public sealed class UserTemplateImporterIdentityProviderMapperState : Pulumi.ResourceArgs
+    public sealed class UserTemplateImporterIdentityProviderMapperState : global::Pulumi.ResourceArgs
     {
         [Input("extraConfig")]
         private InputMap<object>? _extraConfig;
@@ -227,5 +228,6 @@ namespace Pulumi.Keycloak
         public UserTemplateImporterIdentityProviderMapperState()
         {
         }
+        public static new UserTemplateImporterIdentityProviderMapperState Empty => new UserTemplateImporterIdentityProviderMapperState();
     }
 }

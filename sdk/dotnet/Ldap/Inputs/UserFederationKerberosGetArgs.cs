@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Ldap.Inputs
 {
 
-    public sealed class UserFederationKerberosGetArgs : Pulumi.ResourceArgs
+    public sealed class UserFederationKerberosGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the kerberos realm, e.g. FOO.LOCAL.
@@ -39,5 +39,6 @@ namespace Pulumi.Keycloak.Ldap.Inputs
         public UserFederationKerberosGetArgs()
         {
         }
+        public static new UserFederationKerberosGetArgs Empty => new UserFederationKerberosGetArgs();
     }
 }

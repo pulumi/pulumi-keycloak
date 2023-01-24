@@ -34,7 +34,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.LookupRole(ctx, &GetRoleArgs{
+//			_, err = keycloak.LookupRole(ctx, &keycloak.LookupRoleArgs{
 //				RealmId:  "my-realm",
 //				ClientId: pulumi.StringRef(realmManagement.Id),
 //				Name:     "realm-admin",
@@ -116,6 +116,7 @@ type LookupClientResult struct {
 	StandardFlowEnabled                   bool     `pulumi:"standardFlowEnabled"`
 	UseRefreshTokens                      bool     `pulumi:"useRefreshTokens"`
 	UseRefreshTokensClientCredentials     bool     `pulumi:"useRefreshTokensClientCredentials"`
+	ValidPostLogoutRedirectUris           []string `pulumi:"validPostLogoutRedirectUris"`
 	ValidRedirectUris                     []string `pulumi:"validRedirectUris"`
 	WebOrigins                            []string `pulumi:"webOrigins"`
 }
@@ -339,6 +340,10 @@ func (o LookupClientResultOutput) UseRefreshTokens() pulumi.BoolOutput {
 
 func (o LookupClientResultOutput) UseRefreshTokensClientCredentials() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupClientResult) bool { return v.UseRefreshTokensClientCredentials }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) ValidPostLogoutRedirectUris() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupClientResult) []string { return v.ValidPostLogoutRedirectUris }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupClientResultOutput) ValidRedirectUris() pulumi.StringArrayOutput {

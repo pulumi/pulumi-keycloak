@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId
 {
     [KeycloakResourceType("keycloak:openid/clientPermissions:ClientPermissions")]
-    public partial class ClientPermissions : Pulumi.CustomResource
+    public partial class ClientPermissions : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Resource server id representing the realm management client on which this permission is managed
@@ -92,7 +92,7 @@ namespace Pulumi.Keycloak.OpenId
         }
     }
 
-    public sealed class ClientPermissionsArgs : Pulumi.ResourceArgs
+    public sealed class ClientPermissionsArgs : global::Pulumi.ResourceArgs
     {
         [Input("clientId", required: true)]
         public Input<string> ClientId { get; set; } = null!;
@@ -124,9 +124,10 @@ namespace Pulumi.Keycloak.OpenId
         public ClientPermissionsArgs()
         {
         }
+        public static new ClientPermissionsArgs Empty => new ClientPermissionsArgs();
     }
 
-    public sealed class ClientPermissionsState : Pulumi.ResourceArgs
+    public sealed class ClientPermissionsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Resource server id representing the realm management client on which this permission is managed
@@ -167,5 +168,6 @@ namespace Pulumi.Keycloak.OpenId
         public ClientPermissionsState()
         {
         }
+        public static new ClientPermissionsState Empty => new ClientPermissionsState();
     }
 }

@@ -251,6 +251,21 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+     * 
+     */
+    @Import(name="issuer")
+    private @Nullable Output<String> issuer;
+
+    /**
+     * @return The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+     * 
+     */
+    public Optional<Output<String>> issuer() {
+        return Optional.ofNullable(this.issuer);
+    }
+
+    /**
      * JSON Web Key Set URL.
      * 
      */
@@ -479,6 +494,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         this.firstBrokerLoginFlowAlias = $.firstBrokerLoginFlowAlias;
         this.guiOrder = $.guiOrder;
         this.hideOnLoginPage = $.hideOnLoginPage;
+        this.issuer = $.issuer;
         this.jwksUrl = $.jwksUrl;
         this.linkOnly = $.linkOnly;
         this.loginHint = $.loginHint;
@@ -835,6 +851,27 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder hideOnLoginPage(Boolean hideOnLoginPage) {
             return hideOnLoginPage(Output.of(hideOnLoginPage));
+        }
+
+        /**
+         * @param issuer The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder issuer(@Nullable Output<String> issuer) {
+            $.issuer = issuer;
+            return this;
+        }
+
+        /**
+         * @param issuer The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder issuer(String issuer) {
+            return issuer(Output.of(issuer));
         }
 
         /**

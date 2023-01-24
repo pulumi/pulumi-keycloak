@@ -17,29 +17,28 @@ namespace Pulumi.Keycloak
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///         });
-    ///         var keystoreHmacGenerated = new Keycloak.RealmKeystoreHmacGenerated("keystoreHmacGenerated", new Keycloak.RealmKeystoreHmacGeneratedArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Enabled = true,
-    ///             Active = true,
-    ///             Priority = 100,
-    ///             Algorithm = "HS256",
-    ///             SecretSize = 64,
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///     });
     /// 
-    /// }
+    ///     var keystoreHmacGenerated = new Keycloak.RealmKeystoreHmacGenerated("keystoreHmacGenerated", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Enabled = true,
+    ///         Active = true,
+    ///         Priority = 100,
+    ///         Algorithm = "HS256",
+    ///         SecretSize = 64,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -51,7 +50,7 @@ namespace Pulumi.Keycloak
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated")]
-    public partial class RealmKeystoreHmacGenerated : Pulumi.CustomResource
+    public partial class RealmKeystoreHmacGenerated : global::Pulumi.CustomResource
     {
         /// <summary>
         /// When `false`, key in not used for signing. Defaults to `true`.
@@ -139,7 +138,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class RealmKeystoreHmacGeneratedArgs : Pulumi.ResourceArgs
+    public sealed class RealmKeystoreHmacGeneratedArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `false`, key in not used for signing. Defaults to `true`.
@@ -186,9 +185,10 @@ namespace Pulumi.Keycloak
         public RealmKeystoreHmacGeneratedArgs()
         {
         }
+        public static new RealmKeystoreHmacGeneratedArgs Empty => new RealmKeystoreHmacGeneratedArgs();
     }
 
-    public sealed class RealmKeystoreHmacGeneratedState : Pulumi.ResourceArgs
+    public sealed class RealmKeystoreHmacGeneratedState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `false`, key in not used for signing. Defaults to `true`.
@@ -235,5 +235,6 @@ namespace Pulumi.Keycloak
         public RealmKeystoreHmacGeneratedState()
         {
         }
+        public static new RealmKeystoreHmacGeneratedState Empty => new RealmKeystoreHmacGeneratedState();
     }
 }

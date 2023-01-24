@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &FullNameMapper{}
 	case "keycloak:ldap/groupMapper:GroupMapper":
 		r = &GroupMapper{}
+	case "keycloak:ldap/hardcodedAttributeMapper:HardcodedAttributeMapper":
+		r = &HardcodedAttributeMapper{}
 	case "keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper":
 		r = &HardcodedGroupMapper{}
 	case "keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper":
@@ -60,6 +62,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"ldap/groupMapper",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"ldap/hardcodedAttributeMapper",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

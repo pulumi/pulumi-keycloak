@@ -22,7 +22,7 @@ class GetClientResult:
     """
     A collection of values returned by getClient.
     """
-    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, authentication_flow_binding_overrides=None, authorizations=None, backchannel_logout_revoke_offline_sessions=None, backchannel_logout_session_required=None, backchannel_logout_url=None, base_url=None, client_authenticator_type=None, client_id=None, client_offline_session_idle_timeout=None, client_offline_session_max_lifespan=None, client_secret=None, client_session_idle_timeout=None, client_session_max_lifespan=None, consent_required=None, consent_screen_text=None, description=None, direct_access_grants_enabled=None, display_on_consent_screen=None, enabled=None, exclude_session_state_from_auth_response=None, extra_config=None, frontchannel_logout_enabled=None, frontchannel_logout_url=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, oauth2_device_authorization_grant_enabled=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, use_refresh_tokens=None, use_refresh_tokens_client_credentials=None, valid_redirect_uris=None, web_origins=None):
+    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, authentication_flow_binding_overrides=None, authorizations=None, backchannel_logout_revoke_offline_sessions=None, backchannel_logout_session_required=None, backchannel_logout_url=None, base_url=None, client_authenticator_type=None, client_id=None, client_offline_session_idle_timeout=None, client_offline_session_max_lifespan=None, client_secret=None, client_session_idle_timeout=None, client_session_max_lifespan=None, consent_required=None, consent_screen_text=None, description=None, direct_access_grants_enabled=None, display_on_consent_screen=None, enabled=None, exclude_session_state_from_auth_response=None, extra_config=None, frontchannel_logout_enabled=None, frontchannel_logout_url=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, oauth2_device_authorization_grant_enabled=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, use_refresh_tokens=None, use_refresh_tokens_client_credentials=None, valid_post_logout_redirect_uris=None, valid_redirect_uris=None, web_origins=None):
         if access_token_lifespan and not isinstance(access_token_lifespan, str):
             raise TypeError("Expected argument 'access_token_lifespan' to be a str")
         pulumi.set(__self__, "access_token_lifespan", access_token_lifespan)
@@ -152,6 +152,9 @@ class GetClientResult:
         if use_refresh_tokens_client_credentials and not isinstance(use_refresh_tokens_client_credentials, bool):
             raise TypeError("Expected argument 'use_refresh_tokens_client_credentials' to be a bool")
         pulumi.set(__self__, "use_refresh_tokens_client_credentials", use_refresh_tokens_client_credentials)
+        if valid_post_logout_redirect_uris and not isinstance(valid_post_logout_redirect_uris, list):
+            raise TypeError("Expected argument 'valid_post_logout_redirect_uris' to be a list")
+        pulumi.set(__self__, "valid_post_logout_redirect_uris", valid_post_logout_redirect_uris)
         if valid_redirect_uris and not isinstance(valid_redirect_uris, list):
             raise TypeError("Expected argument 'valid_redirect_uris' to be a list")
         pulumi.set(__self__, "valid_redirect_uris", valid_redirect_uris)
@@ -378,6 +381,11 @@ class GetClientResult:
         return pulumi.get(self, "use_refresh_tokens_client_credentials")
 
     @property
+    @pulumi.getter(name="validPostLogoutRedirectUris")
+    def valid_post_logout_redirect_uris(self) -> Sequence[str]:
+        return pulumi.get(self, "valid_post_logout_redirect_uris")
+
+    @property
     @pulumi.getter(name="validRedirectUris")
     def valid_redirect_uris(self) -> Sequence[str]:
         return pulumi.get(self, "valid_redirect_uris")
@@ -437,6 +445,7 @@ class AwaitableGetClientResult(GetClientResult):
             standard_flow_enabled=self.standard_flow_enabled,
             use_refresh_tokens=self.use_refresh_tokens,
             use_refresh_tokens_client_credentials=self.use_refresh_tokens_client_credentials,
+            valid_post_logout_redirect_uris=self.valid_post_logout_redirect_uris,
             valid_redirect_uris=self.valid_redirect_uris,
             web_origins=self.web_origins)
 
@@ -526,6 +535,7 @@ def get_client(client_id: Optional[str] = None,
         standard_flow_enabled=__ret__.standard_flow_enabled,
         use_refresh_tokens=__ret__.use_refresh_tokens,
         use_refresh_tokens_client_credentials=__ret__.use_refresh_tokens_client_credentials,
+        valid_post_logout_redirect_uris=__ret__.valid_post_logout_redirect_uris,
         valid_redirect_uris=__ret__.valid_redirect_uris,
         web_origins=__ret__.web_origins)
 

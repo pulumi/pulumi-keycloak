@@ -164,6 +164,8 @@ class GenericClientRoleMapper(pulumi.CustomResource):
                  role_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        !> **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `GenericRoleMapper` instead.
+
         Allow for creating and managing a client's scope mappings within Keycloak.
 
         By default, all the user role mappings of the user are added as claims within the token (OIDC) or assertion (SAML). When
@@ -291,6 +293,8 @@ class GenericClientRoleMapper(pulumi.CustomResource):
                  args: GenericClientRoleMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        !> **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `GenericRoleMapper` instead.
+
         Allow for creating and managing a client's scope mappings within Keycloak.
 
         By default, all the user role mappings of the user are added as claims within the token (OIDC) or assertion (SAML). When

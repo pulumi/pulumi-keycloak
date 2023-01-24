@@ -23,6 +23,7 @@ class ProviderArgs:
                  initial_login: Optional[pulumi.Input[bool]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
+                 red_hat_sso: Optional[pulumi.Input[bool]] = None,
                  root_ca_certificate: Optional[pulumi.Input[str]] = None,
                  tls_insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  username: Optional[pulumi.Input[str]] = None):
@@ -31,6 +32,8 @@ class ProviderArgs:
         :param pulumi.Input[str] url: The base URL of the Keycloak instance, before `/auth`
         :param pulumi.Input[int] client_timeout: Timeout (in seconds) of the Keycloak client
         :param pulumi.Input[bool] initial_login: Whether or not to login to Keycloak instance on provider initialization
+        :param pulumi.Input[bool] red_hat_sso: When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
+               returned from the /serverinfo API endpoint.
         :param pulumi.Input[str] root_ca_certificate: Allows x509 calls using an unknown CA certificate (for development purposes)
         :param pulumi.Input[bool] tls_insecure_skip_verify: Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
                should be avoided.
@@ -53,6 +56,8 @@ class ProviderArgs:
             pulumi.set(__self__, "password", password)
         if realm is not None:
             pulumi.set(__self__, "realm", realm)
+        if red_hat_sso is not None:
+            pulumi.set(__self__, "red_hat_sso", red_hat_sso)
         if root_ca_certificate is not None:
             pulumi.set(__self__, "root_ca_certificate", root_ca_certificate)
         if tls_insecure_skip_verify is not None:
@@ -151,6 +156,19 @@ class ProviderArgs:
         pulumi.set(self, "realm", value)
 
     @property
+    @pulumi.getter(name="redHatSso")
+    def red_hat_sso(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
+        returned from the /serverinfo API endpoint.
+        """
+        return pulumi.get(self, "red_hat_sso")
+
+    @red_hat_sso.setter
+    def red_hat_sso(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "red_hat_sso", value)
+
+    @property
     @pulumi.getter(name="rootCaCertificate")
     def root_ca_certificate(self) -> Optional[pulumi.Input[str]]:
         """
@@ -198,6 +216,7 @@ class Provider(pulumi.ProviderResource):
                  initial_login: Optional[pulumi.Input[bool]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
+                 red_hat_sso: Optional[pulumi.Input[bool]] = None,
                  root_ca_certificate: Optional[pulumi.Input[str]] = None,
                  tls_insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  url: Optional[pulumi.Input[str]] = None,
@@ -213,6 +232,8 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] client_timeout: Timeout (in seconds) of the Keycloak client
         :param pulumi.Input[bool] initial_login: Whether or not to login to Keycloak instance on provider initialization
+        :param pulumi.Input[bool] red_hat_sso: When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
+               returned from the /serverinfo API endpoint.
         :param pulumi.Input[str] root_ca_certificate: Allows x509 calls using an unknown CA certificate (for development purposes)
         :param pulumi.Input[bool] tls_insecure_skip_verify: Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
                should be avoided.
@@ -253,6 +274,7 @@ class Provider(pulumi.ProviderResource):
                  initial_login: Optional[pulumi.Input[bool]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
+                 red_hat_sso: Optional[pulumi.Input[bool]] = None,
                  root_ca_certificate: Optional[pulumi.Input[str]] = None,
                  tls_insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  url: Optional[pulumi.Input[str]] = None,
@@ -278,6 +300,7 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["initial_login"] = pulumi.Output.from_input(initial_login).apply(pulumi.runtime.to_json) if initial_login is not None else None
             __props__.__dict__["password"] = password
             __props__.__dict__["realm"] = realm
+            __props__.__dict__["red_hat_sso"] = pulumi.Output.from_input(red_hat_sso).apply(pulumi.runtime.to_json) if red_hat_sso is not None else None
             __props__.__dict__["root_ca_certificate"] = root_ca_certificate
             __props__.__dict__["tls_insecure_skip_verify"] = pulumi.Output.from_input(tls_insecure_skip_verify).apply(pulumi.runtime.to_json) if tls_insecure_skip_verify is not None else None
             if url is None and not opts.urn:

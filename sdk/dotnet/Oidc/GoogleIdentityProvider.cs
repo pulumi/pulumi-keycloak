@@ -17,34 +17,33 @@ namespace Pulumi.Keycloak.Oidc
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var google = new Keycloak.Oidc.GoogleIdentityProvider("google", new Keycloak.Oidc.GoogleIdentityProviderArgs
-    ///         {
-    ///             Realm = realm.Id,
-    ///             ClientId = @var.Google_identity_provider_client_id,
-    ///             ClientSecret = @var.Google_identity_provider_client_secret,
-    ///             TrustEmail = true,
-    ///             HostedDomain = "example.com",
-    ///             SyncMode = "IMPORT",
-    ///             ExtraConfig = 
-    ///             {
-    ///                 { "myCustomConfigKey", "myValue" },
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var google = new Keycloak.Oidc.GoogleIdentityProvider("google", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         ClientId = @var.Google_identity_provider_client_id,
+    ///         ClientSecret = @var.Google_identity_provider_client_secret,
+    ///         TrustEmail = true,
+    ///         HostedDomain = "example.com",
+    ///         SyncMode = "IMPORT",
+    ///         ExtraConfig = 
+    ///         {
+    ///             { "myCustomConfigKey", "myValue" },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -52,7 +51,7 @@ namespace Pulumi.Keycloak.Oidc
     /// This resource does not yet support importing.
     /// </summary>
     [KeycloakResourceType("keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider")]
-    public partial class GoogleIdentityProvider : Pulumi.CustomResource
+    public partial class GoogleIdentityProvider : global::Pulumi.CustomResource
     {
         /// <summary>
         /// When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
@@ -224,6 +223,10 @@ namespace Pulumi.Keycloak.Oidc
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "clientSecret",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -245,7 +248,7 @@ namespace Pulumi.Keycloak.Oidc
         }
     }
 
-    public sealed class GoogleIdentityProviderArgs : Pulumi.ResourceArgs
+    public sealed class GoogleIdentityProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
@@ -271,11 +274,21 @@ namespace Pulumi.Keycloak.Oidc
         [Input("clientId", required: true)]
         public Input<string> ClientId { get; set; } = null!;
 
+        [Input("clientSecret", required: true)]
+        private Input<string>? _clientSecret;
+
         /// <summary>
         /// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
         /// </summary>
-        [Input("clientSecret", required: true)]
-        public Input<string> ClientSecret { get; set; } = null!;
+        public Input<string>? ClientSecret
+        {
+            get => _clientSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid profile email`.
@@ -384,9 +397,10 @@ namespace Pulumi.Keycloak.Oidc
         public GoogleIdentityProviderArgs()
         {
         }
+        public static new GoogleIdentityProviderArgs Empty => new GoogleIdentityProviderArgs();
     }
 
-    public sealed class GoogleIdentityProviderState : Pulumi.ResourceArgs
+    public sealed class GoogleIdentityProviderState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
@@ -418,11 +432,21 @@ namespace Pulumi.Keycloak.Oidc
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
+        [Input("clientSecret")]
+        private Input<string>? _clientSecret;
+
         /// <summary>
         /// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
         /// </summary>
-        [Input("clientSecret")]
-        public Input<string>? ClientSecret { get; set; }
+        public Input<string>? ClientSecret
+        {
+            get => _clientSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid profile email`.
@@ -543,5 +567,6 @@ namespace Pulumi.Keycloak.Oidc
         public GoogleIdentityProviderState()
         {
         }
+        public static new GoogleIdentityProviderState Empty => new GoogleIdentityProviderState();
     }
 }

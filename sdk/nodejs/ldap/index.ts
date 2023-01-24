@@ -5,26 +5,56 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./fullNameMapper";
-export * from "./groupMapper";
-export * from "./hardcodedGroupMapper";
-export * from "./hardcodedRoleMapper";
-export * from "./msadLdsUserAccountControlMapper";
-export * from "./msadUserAccountControlMapper";
-export * from "./roleMapper";
-export * from "./userAttributeMapper";
-export * from "./userFederation";
+export { FullNameMapperArgs, FullNameMapperState } from "./fullNameMapper";
+export type FullNameMapper = import("./fullNameMapper").FullNameMapper;
+export const FullNameMapper: typeof import("./fullNameMapper").FullNameMapper = null as any;
+utilities.lazyLoad(exports, ["FullNameMapper"], () => require("./fullNameMapper"));
 
-// Import resources to register:
-import { FullNameMapper } from "./fullNameMapper";
-import { GroupMapper } from "./groupMapper";
-import { HardcodedGroupMapper } from "./hardcodedGroupMapper";
-import { HardcodedRoleMapper } from "./hardcodedRoleMapper";
-import { MsadLdsUserAccountControlMapper } from "./msadLdsUserAccountControlMapper";
-import { MsadUserAccountControlMapper } from "./msadUserAccountControlMapper";
-import { RoleMapper } from "./roleMapper";
-import { UserAttributeMapper } from "./userAttributeMapper";
-import { UserFederation } from "./userFederation";
+export { GroupMapperArgs, GroupMapperState } from "./groupMapper";
+export type GroupMapper = import("./groupMapper").GroupMapper;
+export const GroupMapper: typeof import("./groupMapper").GroupMapper = null as any;
+utilities.lazyLoad(exports, ["GroupMapper"], () => require("./groupMapper"));
+
+export { HardcodedAttributeMapperArgs, HardcodedAttributeMapperState } from "./hardcodedAttributeMapper";
+export type HardcodedAttributeMapper = import("./hardcodedAttributeMapper").HardcodedAttributeMapper;
+export const HardcodedAttributeMapper: typeof import("./hardcodedAttributeMapper").HardcodedAttributeMapper = null as any;
+utilities.lazyLoad(exports, ["HardcodedAttributeMapper"], () => require("./hardcodedAttributeMapper"));
+
+export { HardcodedGroupMapperArgs, HardcodedGroupMapperState } from "./hardcodedGroupMapper";
+export type HardcodedGroupMapper = import("./hardcodedGroupMapper").HardcodedGroupMapper;
+export const HardcodedGroupMapper: typeof import("./hardcodedGroupMapper").HardcodedGroupMapper = null as any;
+utilities.lazyLoad(exports, ["HardcodedGroupMapper"], () => require("./hardcodedGroupMapper"));
+
+export { HardcodedRoleMapperArgs, HardcodedRoleMapperState } from "./hardcodedRoleMapper";
+export type HardcodedRoleMapper = import("./hardcodedRoleMapper").HardcodedRoleMapper;
+export const HardcodedRoleMapper: typeof import("./hardcodedRoleMapper").HardcodedRoleMapper = null as any;
+utilities.lazyLoad(exports, ["HardcodedRoleMapper"], () => require("./hardcodedRoleMapper"));
+
+export { MsadLdsUserAccountControlMapperArgs, MsadLdsUserAccountControlMapperState } from "./msadLdsUserAccountControlMapper";
+export type MsadLdsUserAccountControlMapper = import("./msadLdsUserAccountControlMapper").MsadLdsUserAccountControlMapper;
+export const MsadLdsUserAccountControlMapper: typeof import("./msadLdsUserAccountControlMapper").MsadLdsUserAccountControlMapper = null as any;
+utilities.lazyLoad(exports, ["MsadLdsUserAccountControlMapper"], () => require("./msadLdsUserAccountControlMapper"));
+
+export { MsadUserAccountControlMapperArgs, MsadUserAccountControlMapperState } from "./msadUserAccountControlMapper";
+export type MsadUserAccountControlMapper = import("./msadUserAccountControlMapper").MsadUserAccountControlMapper;
+export const MsadUserAccountControlMapper: typeof import("./msadUserAccountControlMapper").MsadUserAccountControlMapper = null as any;
+utilities.lazyLoad(exports, ["MsadUserAccountControlMapper"], () => require("./msadUserAccountControlMapper"));
+
+export { RoleMapperArgs, RoleMapperState } from "./roleMapper";
+export type RoleMapper = import("./roleMapper").RoleMapper;
+export const RoleMapper: typeof import("./roleMapper").RoleMapper = null as any;
+utilities.lazyLoad(exports, ["RoleMapper"], () => require("./roleMapper"));
+
+export { UserAttributeMapperArgs, UserAttributeMapperState } from "./userAttributeMapper";
+export type UserAttributeMapper = import("./userAttributeMapper").UserAttributeMapper;
+export const UserAttributeMapper: typeof import("./userAttributeMapper").UserAttributeMapper = null as any;
+utilities.lazyLoad(exports, ["UserAttributeMapper"], () => require("./userAttributeMapper"));
+
+export { UserFederationArgs, UserFederationState } from "./userFederation";
+export type UserFederation = import("./userFederation").UserFederation;
+export const UserFederation: typeof import("./userFederation").UserFederation = null as any;
+utilities.lazyLoad(exports, ["UserFederation"], () => require("./userFederation"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -34,6 +64,8 @@ const _module = {
                 return new FullNameMapper(name, <any>undefined, { urn })
             case "keycloak:ldap/groupMapper:GroupMapper":
                 return new GroupMapper(name, <any>undefined, { urn })
+            case "keycloak:ldap/hardcodedAttributeMapper:HardcodedAttributeMapper":
+                return new HardcodedAttributeMapper(name, <any>undefined, { urn })
             case "keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper":
                 return new HardcodedGroupMapper(name, <any>undefined, { urn })
             case "keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper":
@@ -55,6 +87,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("keycloak", "ldap/fullNameMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "ldap/groupMapper", _module)
+pulumi.runtime.registerResourceModule("keycloak", "ldap/hardcodedAttributeMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "ldap/hardcodedGroupMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "ldap/hardcodedRoleMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "ldap/msadLdsUserAccountControlMapper", _module)

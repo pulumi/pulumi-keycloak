@@ -54,6 +54,14 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('realm')
 
     @property
+    def red_hat_sso(self) -> Optional[bool]:
+        """
+        When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
+        returned from the /serverinfo API endpoint.
+        """
+        return __config__.get_bool('redHatSso')
+
+    @property
     def root_ca_certificate(self) -> Optional[str]:
         """
         Allows x509 calls using an unknown CA certificate (for development purposes)

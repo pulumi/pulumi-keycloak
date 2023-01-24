@@ -17,27 +17,26 @@ namespace Pulumi.Keycloak.Saml
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var samlClientScope = new Keycloak.Saml.ClientScope("samlClientScope", new Keycloak.Saml.ClientScopeArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Description = "This scope will map a user's group memberships to SAML assertion",
-    ///             GuiOrder = 1,
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var samlClientScope = new Keycloak.Saml.ClientScope("samlClientScope", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Description = "This scope will map a user's group memberships to SAML assertion",
+    ///         GuiOrder = 1,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -49,7 +48,7 @@ namespace Pulumi.Keycloak.Saml
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:saml/clientScope:ClientScope")]
-    public partial class ClientScope : Pulumi.CustomResource
+    public partial class ClientScope : global::Pulumi.CustomResource
     {
         /// <summary>
         /// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
@@ -125,7 +124,7 @@ namespace Pulumi.Keycloak.Saml
         }
     }
 
-    public sealed class ClientScopeArgs : Pulumi.ResourceArgs
+    public sealed class ClientScopeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
@@ -160,9 +159,10 @@ namespace Pulumi.Keycloak.Saml
         public ClientScopeArgs()
         {
         }
+        public static new ClientScopeArgs Empty => new ClientScopeArgs();
     }
 
-    public sealed class ClientScopeState : Pulumi.ResourceArgs
+    public sealed class ClientScopeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
@@ -197,5 +197,6 @@ namespace Pulumi.Keycloak.Saml
         public ClientScopeState()
         {
         }
+        public static new ClientScopeState Empty => new ClientScopeState();
     }
 }

@@ -115,7 +115,9 @@ class RealmArgs:
         :param pulumi.Input[bool] revoke_refresh_token: If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.
         :param pulumi.Input[str] ssl_required: Can be one of following values: 'none, 'external' or 'all'
         :param pulumi.Input[str] sso_session_idle_timeout: The amount of time a session can be idle before it expires.
+        :param pulumi.Input[str] sso_session_idle_timeout_remember_me: Similar to `sso_session_idle_timeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
         :param pulumi.Input[str] sso_session_max_lifespan: The maximum amount of time before a session expires regardless of activity.
+        :param pulumi.Input[str] sso_session_max_lifespan_remember_me: Similar to `sso_session_max_lifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
         :param pulumi.Input[bool] user_managed_access: When `true`, users are allowed to manage their own resources. Defaults to `false`.
         :param pulumi.Input[bool] verify_email: When true, users are required to verify their email address after registration and after email address changes.
         :param pulumi.Input['RealmWebAuthnPasswordlessPolicyArgs'] web_authn_passwordless_policy: Configuration for WebAuthn Passwordless Policy authentication.
@@ -792,6 +794,9 @@ class RealmArgs:
     @property
     @pulumi.getter(name="ssoSessionIdleTimeoutRememberMe")
     def sso_session_idle_timeout_remember_me(self) -> Optional[pulumi.Input[str]]:
+        """
+        Similar to `sso_session_idle_timeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
+        """
         return pulumi.get(self, "sso_session_idle_timeout_remember_me")
 
     @sso_session_idle_timeout_remember_me.setter
@@ -813,6 +818,9 @@ class RealmArgs:
     @property
     @pulumi.getter(name="ssoSessionMaxLifespanRememberMe")
     def sso_session_max_lifespan_remember_me(self) -> Optional[pulumi.Input[str]]:
+        """
+        Similar to `sso_session_max_lifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
+        """
         return pulumi.get(self, "sso_session_max_lifespan_remember_me")
 
     @sso_session_max_lifespan_remember_me.setter
@@ -971,7 +979,9 @@ class _RealmState:
         :param pulumi.Input[bool] revoke_refresh_token: If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.
         :param pulumi.Input[str] ssl_required: Can be one of following values: 'none, 'external' or 'all'
         :param pulumi.Input[str] sso_session_idle_timeout: The amount of time a session can be idle before it expires.
+        :param pulumi.Input[str] sso_session_idle_timeout_remember_me: Similar to `sso_session_idle_timeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
         :param pulumi.Input[str] sso_session_max_lifespan: The maximum amount of time before a session expires regardless of activity.
+        :param pulumi.Input[str] sso_session_max_lifespan_remember_me: Similar to `sso_session_max_lifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
         :param pulumi.Input[bool] user_managed_access: When `true`, users are allowed to manage their own resources. Defaults to `false`.
         :param pulumi.Input[bool] verify_email: When true, users are required to verify their email address after registration and after email address changes.
         :param pulumi.Input['RealmWebAuthnPasswordlessPolicyArgs'] web_authn_passwordless_policy: Configuration for WebAuthn Passwordless Policy authentication.
@@ -1660,6 +1670,9 @@ class _RealmState:
     @property
     @pulumi.getter(name="ssoSessionIdleTimeoutRememberMe")
     def sso_session_idle_timeout_remember_me(self) -> Optional[pulumi.Input[str]]:
+        """
+        Similar to `sso_session_idle_timeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
+        """
         return pulumi.get(self, "sso_session_idle_timeout_remember_me")
 
     @sso_session_idle_timeout_remember_me.setter
@@ -1681,6 +1694,9 @@ class _RealmState:
     @property
     @pulumi.getter(name="ssoSessionMaxLifespanRememberMe")
     def sso_session_max_lifespan_remember_me(self) -> Optional[pulumi.Input[str]]:
+        """
+        Similar to `sso_session_max_lifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
+        """
         return pulumi.get(self, "sso_session_max_lifespan_remember_me")
 
     @sso_session_max_lifespan_remember_me.setter
@@ -1923,7 +1939,9 @@ class Realm(pulumi.CustomResource):
         :param pulumi.Input[bool] revoke_refresh_token: If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.
         :param pulumi.Input[str] ssl_required: Can be one of following values: 'none, 'external' or 'all'
         :param pulumi.Input[str] sso_session_idle_timeout: The amount of time a session can be idle before it expires.
+        :param pulumi.Input[str] sso_session_idle_timeout_remember_me: Similar to `sso_session_idle_timeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
         :param pulumi.Input[str] sso_session_max_lifespan: The maximum amount of time before a session expires regardless of activity.
+        :param pulumi.Input[str] sso_session_max_lifespan_remember_me: Similar to `sso_session_max_lifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
         :param pulumi.Input[bool] user_managed_access: When `true`, users are allowed to manage their own resources. Defaults to `false`.
         :param pulumi.Input[bool] verify_email: When true, users are required to verify their email address after registration and after email address changes.
         :param pulumi.Input[pulumi.InputType['RealmWebAuthnPasswordlessPolicyArgs']] web_authn_passwordless_policy: Configuration for WebAuthn Passwordless Policy authentication.
@@ -2269,7 +2287,9 @@ class Realm(pulumi.CustomResource):
         :param pulumi.Input[bool] revoke_refresh_token: If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.
         :param pulumi.Input[str] ssl_required: Can be one of following values: 'none, 'external' or 'all'
         :param pulumi.Input[str] sso_session_idle_timeout: The amount of time a session can be idle before it expires.
+        :param pulumi.Input[str] sso_session_idle_timeout_remember_me: Similar to `sso_session_idle_timeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
         :param pulumi.Input[str] sso_session_max_lifespan: The maximum amount of time before a session expires regardless of activity.
+        :param pulumi.Input[str] sso_session_max_lifespan_remember_me: Similar to `sso_session_max_lifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
         :param pulumi.Input[bool] user_managed_access: When `true`, users are allowed to manage their own resources. Defaults to `false`.
         :param pulumi.Input[bool] verify_email: When true, users are required to verify their email address after registration and after email address changes.
         :param pulumi.Input[pulumi.InputType['RealmWebAuthnPasswordlessPolicyArgs']] web_authn_passwordless_policy: Configuration for WebAuthn Passwordless Policy authentication.
@@ -2711,6 +2731,9 @@ class Realm(pulumi.CustomResource):
     @property
     @pulumi.getter(name="ssoSessionIdleTimeoutRememberMe")
     def sso_session_idle_timeout_remember_me(self) -> pulumi.Output[str]:
+        """
+        Similar to `sso_session_idle_timeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
+        """
         return pulumi.get(self, "sso_session_idle_timeout_remember_me")
 
     @property
@@ -2724,6 +2747,9 @@ class Realm(pulumi.CustomResource):
     @property
     @pulumi.getter(name="ssoSessionMaxLifespanRememberMe")
     def sso_session_max_lifespan_remember_me(self) -> pulumi.Output[str]:
+        """
+        Similar to `sso_session_max_lifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
+        """
         return pulumi.get(self, "sso_session_max_lifespan_remember_me")
 
     @property

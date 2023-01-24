@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class RealmWebAuthnPasswordlessPolicyArgs : Pulumi.ResourceArgs
+    public sealed class RealmWebAuthnPasswordlessPolicyArgs : global::Pulumi.ResourceArgs
     {
         [Input("acceptableAaguids")]
         private InputList<string>? _acceptableAaguids;
@@ -87,5 +87,6 @@ namespace Pulumi.Keycloak.Inputs
         public RealmWebAuthnPasswordlessPolicyArgs()
         {
         }
+        public static new RealmWebAuthnPasswordlessPolicyArgs Empty => new RealmWebAuthnPasswordlessPolicyArgs();
     }
 }

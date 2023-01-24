@@ -23,40 +23,41 @@ namespace Pulumi.Keycloak
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var parentGroup = new Keycloak.Group("parentGroup", new Keycloak.GroupArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///         });
-    ///         var childGroup = new Keycloak.Group("childGroup", new Keycloak.GroupArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ParentId = parentGroup.Id,
-    ///         });
-    ///         var childGroupWithOptionalAttributes = new Keycloak.Group("childGroupWithOptionalAttributes", new Keycloak.GroupArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ParentId = parentGroup.Id,
-    ///             Attributes = 
-    ///             {
-    ///                 { "foo", "bar" },
-    ///                 { "multivalue", "value1##value2" },
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var parentGroup = new Keycloak.Group("parentGroup", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var childGroup = new Keycloak.Group("childGroup", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ParentId = parentGroup.Id,
+    ///     });
+    /// 
+    ///     var childGroupWithOptionalAttributes = new Keycloak.Group("childGroupWithOptionalAttributes", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ParentId = parentGroup.Id,
+    ///         Attributes = 
+    ///         {
+    ///             { "foo", "bar" },
+    ///             { "multivalue", "value1##value2" },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -68,7 +69,7 @@ namespace Pulumi.Keycloak
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/group:Group")]
-    public partial class Group : Pulumi.CustomResource
+    public partial class Group : global::Pulumi.CustomResource
     {
         /// <summary>
         /// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
@@ -144,7 +145,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class GroupArgs : Pulumi.ResourceArgs
+    public sealed class GroupArgs : global::Pulumi.ResourceArgs
     {
         [Input("attributes")]
         private InputMap<object>? _attributes;
@@ -179,9 +180,10 @@ namespace Pulumi.Keycloak
         public GroupArgs()
         {
         }
+        public static new GroupArgs Empty => new GroupArgs();
     }
 
-    public sealed class GroupState : Pulumi.ResourceArgs
+    public sealed class GroupState : global::Pulumi.ResourceArgs
     {
         [Input("attributes")]
         private InputMap<object>? _attributes;
@@ -222,5 +224,6 @@ namespace Pulumi.Keycloak
         public GroupState()
         {
         }
+        public static new GroupState Empty => new GroupState();
     }
 }

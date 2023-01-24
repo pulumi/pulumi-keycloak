@@ -167,14 +167,14 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.authnContextDeclRefs);
     }
     /**
-     * Does the external IDP support back-channel logout ?.
+     * Does the external IDP support backchannel logout?. Defaults to `false`.
      * 
      */
     @Export(name="backchannelSupported", type=Boolean.class, parameters={})
     private Output</* @Nullable */ Boolean> backchannelSupported;
 
     /**
-     * @return Does the external IDP support back-channel logout ?.
+     * @return Does the external IDP support backchannel logout?. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> backchannelSupported() {
@@ -383,28 +383,28 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.postBrokerLoginFlowAlias);
     }
     /**
-     * Principal Attribute
+     * The principal attribute.
      * 
      */
     @Export(name="principalAttribute", type=String.class, parameters={})
     private Output</* @Nullable */ String> principalAttribute;
 
     /**
-     * @return Principal Attribute
+     * @return The principal attribute.
      * 
      */
     public Output<Optional<String>> principalAttribute() {
         return Codegen.optional(this.principalAttribute);
     }
     /**
-     * Principal Type
+     * The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
      * 
      */
     @Export(name="principalType", type=String.class, parameters={})
     private Output</* @Nullable */ String> principalType;
 
     /**
-     * @return Principal Type
+     * @return The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
      * 
      */
     public Output<Optional<String>> principalType() {
@@ -509,14 +509,14 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.storeToken);
     }
     /**
-     * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+     * The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
      * 
      */
     @Export(name="syncMode", type=String.class, parameters={})
     private Output</* @Nullable */ String> syncMode;
 
     /**
-     * @return The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+     * @return The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
      * 
      */
     public Output<Optional<String>> syncMode() {
@@ -579,14 +579,14 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.wantAssertionsSigned);
     }
     /**
-     * Sign Key Transformer. Defaults to empty.
+     * The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
      * 
      */
     @Export(name="xmlSignKeyInfoKeyNameTransformer", type=String.class, parameters={})
     private Output</* @Nullable */ String> xmlSignKeyInfoKeyNameTransformer;
 
     /**
-     * @return Sign Key Transformer. Defaults to empty.
+     * @return The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
      * 
      */
     public Output<Optional<String>> xmlSignKeyInfoKeyNameTransformer() {

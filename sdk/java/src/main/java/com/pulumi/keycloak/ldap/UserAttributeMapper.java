@@ -104,6 +104,34 @@ public class UserAttributeMapper extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.alwaysReadValueFromLdap);
     }
     /**
+     * Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+     * 
+     */
+    @Export(name="attributeDefaultValue", type=String.class, parameters={})
+    private Output</* @Nullable */ String> attributeDefaultValue;
+
+    /**
+     * @return Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+     * 
+     */
+    public Output<Optional<String>> attributeDefaultValue() {
+        return Codegen.optional(this.attributeDefaultValue);
+    }
+    /**
+     * Should be true for binary LDAP attributes.
+     * 
+     */
+    @Export(name="isBinaryAttribute", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> isBinaryAttribute;
+
+    /**
+     * @return Should be true for binary LDAP attributes.
+     * 
+     */
+    public Output<Optional<Boolean>> isBinaryAttribute() {
+        return Codegen.optional(this.isBinaryAttribute);
+    }
+    /**
      * When `true`, this attribute must exist in LDAP. Defaults to `false`.
      * 
      */

@@ -24,11 +24,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getUser(args: GetUserArgs, opts?: pulumi.InvokeOptions): Promise<GetUserResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getUser:getUser", {
         "realmId": args.realmId,
         "username": args.username,
@@ -88,9 +85,27 @@ export interface GetUserResult {
     readonly realmId: string;
     readonly username: string;
 }
-
+/**
+ * This data source can be used to fetch properties of a user within Keycloak.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const masterRealm = keycloak.getRealm({
+ *     realm: "master",
+ * });
+ * const defaultAdminUser = masterRealm.then(masterRealm => keycloak.getUser({
+ *     realmId: masterRealm.id,
+ *     username: "keycloak",
+ * }));
+ * export const keycloakUserId = defaultAdminUser.then(defaultAdminUser => defaultAdminUser.id);
+ * ```
+ */
 export function getUserOutput(args: GetUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserResult> {
-    return pulumi.output(args).apply(a => getUser(a, opts))
+    return pulumi.output(args).apply((a: any) => getUser(a, opts))
 }
 
 /**

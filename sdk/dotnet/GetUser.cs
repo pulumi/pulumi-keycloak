@@ -19,34 +19,34 @@ namespace Pulumi.Keycloak
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Keycloak = Pulumi.Keycloak;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var masterRealm = Keycloak.GetRealm.Invoke(new()
         ///     {
-        ///         var masterRealm = Output.Create(Keycloak.GetRealm.InvokeAsync(new Keycloak.GetRealmArgs
-        ///         {
-        ///             Realm = "master",
-        ///         }));
-        ///         var defaultAdminUser = masterRealm.Apply(masterRealm =&gt; Output.Create(Keycloak.GetUser.InvokeAsync(new Keycloak.GetUserArgs
-        ///         {
-        ///             RealmId = masterRealm.Id,
-        ///             Username = "keycloak",
-        ///         })));
-        ///         this.KeycloakUserId = defaultAdminUser.Apply(defaultAdminUser =&gt; defaultAdminUser.Id);
-        ///     }
+        ///         Realm = "master",
+        ///     });
         /// 
-        ///     [Output("keycloakUserId")]
-        ///     public Output&lt;string&gt; KeycloakUserId { get; set; }
-        /// }
+        ///     var defaultAdminUser = Keycloak.GetUser.Invoke(new()
+        ///     {
+        ///         RealmId = masterRealm.Apply(getRealmResult =&gt; getRealmResult.Id),
+        ///         Username = "keycloak",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["keycloakUserId"] = defaultAdminUser.Apply(getUserResult =&gt; getUserResult.Id),
+        ///     };
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetUserResult> InvokeAsync(GetUserArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetUserResult>("keycloak:index/getUser:getUser", args ?? new GetUserArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetUserResult>("keycloak:index/getUser:getUser", args ?? new GetUserArgs(), options.WithDefaults());
 
         /// <summary>
         /// This data source can be used to fetch properties of a user within Keycloak.
@@ -56,38 +56,38 @@ namespace Pulumi.Keycloak
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Keycloak = Pulumi.Keycloak;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var masterRealm = Keycloak.GetRealm.Invoke(new()
         ///     {
-        ///         var masterRealm = Output.Create(Keycloak.GetRealm.InvokeAsync(new Keycloak.GetRealmArgs
-        ///         {
-        ///             Realm = "master",
-        ///         }));
-        ///         var defaultAdminUser = masterRealm.Apply(masterRealm =&gt; Output.Create(Keycloak.GetUser.InvokeAsync(new Keycloak.GetUserArgs
-        ///         {
-        ///             RealmId = masterRealm.Id,
-        ///             Username = "keycloak",
-        ///         })));
-        ///         this.KeycloakUserId = defaultAdminUser.Apply(defaultAdminUser =&gt; defaultAdminUser.Id);
-        ///     }
+        ///         Realm = "master",
+        ///     });
         /// 
-        ///     [Output("keycloakUserId")]
-        ///     public Output&lt;string&gt; KeycloakUserId { get; set; }
-        /// }
+        ///     var defaultAdminUser = Keycloak.GetUser.Invoke(new()
+        ///     {
+        ///         RealmId = masterRealm.Apply(getRealmResult =&gt; getRealmResult.Id),
+        ///         Username = "keycloak",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["keycloakUserId"] = defaultAdminUser.Apply(getUserResult =&gt; getUserResult.Id),
+        ///     };
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetUserResult> Invoke(GetUserInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetUserResult>("keycloak:index/getUser:getUser", args ?? new GetUserInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetUserResult>("keycloak:index/getUser:getUser", args ?? new GetUserInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetUserArgs : Pulumi.InvokeArgs
+    public sealed class GetUserArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The realm this user belongs to.
@@ -104,9 +104,10 @@ namespace Pulumi.Keycloak
         public GetUserArgs()
         {
         }
+        public static new GetUserArgs Empty => new GetUserArgs();
     }
 
-    public sealed class GetUserInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetUserInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The realm this user belongs to.
@@ -123,6 +124,7 @@ namespace Pulumi.Keycloak
         public GetUserInvokeArgs()
         {
         }
+        public static new GetUserInvokeArgs Empty => new GetUserInvokeArgs();
     }
 
 

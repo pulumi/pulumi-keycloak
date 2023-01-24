@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class GetRealmSecurityDefenseBruteForceDetectionInputArgs : Pulumi.ResourceArgs
+    public sealed class GetRealmSecurityDefenseBruteForceDetectionInputArgs : global::Pulumi.ResourceArgs
     {
         [Input("failureResetTimeSeconds", required: true)]
         public Input<int> FailureResetTimeSeconds { get; set; } = null!;
@@ -36,5 +36,6 @@ namespace Pulumi.Keycloak.Inputs
         public GetRealmSecurityDefenseBruteForceDetectionInputArgs()
         {
         }
+        public static new GetRealmSecurityDefenseBruteForceDetectionInputArgs Empty => new GetRealmSecurityDefenseBruteForceDetectionInputArgs();
     }
 }

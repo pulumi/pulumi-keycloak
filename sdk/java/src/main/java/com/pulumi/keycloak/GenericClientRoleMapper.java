@@ -15,6 +15,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * !&gt; **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `keycloak.GenericRoleMapper` instead.
+ * 
  * Allow for creating and managing a client&#39;s scope mappings within Keycloak.
  * 
  * By default, all the user role mappings of the user are added as claims within the token (OIDC) or assertion (SAML). When

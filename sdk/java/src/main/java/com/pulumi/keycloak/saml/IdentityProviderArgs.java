@@ -110,14 +110,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Does the external IDP support back-channel logout ?.
+     * Does the external IDP support backchannel logout?. Defaults to `false`.
      * 
      */
     @Import(name="backchannelSupported")
     private @Nullable Output<Boolean> backchannelSupported;
 
     /**
-     * @return Does the external IDP support back-channel logout ?.
+     * @return Does the external IDP support backchannel logout?. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> backchannelSupported() {
@@ -327,14 +327,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Principal Attribute
+     * The principal attribute.
      * 
      */
     @Import(name="principalAttribute")
     private @Nullable Output<String> principalAttribute;
 
     /**
-     * @return Principal Attribute
+     * @return The principal attribute.
      * 
      */
     public Optional<Output<String>> principalAttribute() {
@@ -342,14 +342,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Principal Type
+     * The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
      * 
      */
     @Import(name="principalType")
     private @Nullable Output<String> principalType;
 
     /**
-     * @return Principal Type
+     * @return The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
      * 
      */
     public Optional<Output<String>> principalType() {
@@ -462,14 +462,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+     * The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
      * 
      */
     @Import(name="syncMode")
     private @Nullable Output<String> syncMode;
 
     /**
-     * @return The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+     * @return The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
      * 
      */
     public Optional<Output<String>> syncMode() {
@@ -537,14 +537,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Sign Key Transformer. Defaults to empty.
+     * The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
      * 
      */
     @Import(name="xmlSignKeyInfoKeyNameTransformer")
     private @Nullable Output<String> xmlSignKeyInfoKeyNameTransformer;
 
     /**
-     * @return Sign Key Transformer. Defaults to empty.
+     * @return The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
      * 
      */
     public Optional<Output<String>> xmlSignKeyInfoKeyNameTransformer() {
@@ -757,7 +757,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param backchannelSupported Does the external IDP support back-channel logout ?.
+         * @param backchannelSupported Does the external IDP support backchannel logout?. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -768,7 +768,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param backchannelSupported Does the external IDP support back-channel logout ?.
+         * @param backchannelSupported Does the external IDP support backchannel logout?. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -1060,7 +1060,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param principalAttribute Principal Attribute
+         * @param principalAttribute The principal attribute.
          * 
          * @return builder
          * 
@@ -1071,7 +1071,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param principalAttribute Principal Attribute
+         * @param principalAttribute The principal attribute.
          * 
          * @return builder
          * 
@@ -1081,7 +1081,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param principalType Principal Type
+         * @param principalType The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
          * 
          * @return builder
          * 
@@ -1092,7 +1092,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param principalType Principal Type
+         * @param principalType The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
          * 
          * @return builder
          * 
@@ -1249,7 +1249,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param syncMode The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+         * @param syncMode The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
          * 
          * @return builder
          * 
@@ -1260,7 +1260,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param syncMode The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+         * @param syncMode The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
          * 
          * @return builder
          * 
@@ -1354,7 +1354,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param xmlSignKeyInfoKeyNameTransformer Sign Key Transformer. Defaults to empty.
+         * @param xmlSignKeyInfoKeyNameTransformer The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
          * 
          * @return builder
          * 
@@ -1365,7 +1365,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param xmlSignKeyInfoKeyNameTransformer Sign Key Transformer. Defaults to empty.
+         * @param xmlSignKeyInfoKeyNameTransformer The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
          * 
          * @return builder
          * 

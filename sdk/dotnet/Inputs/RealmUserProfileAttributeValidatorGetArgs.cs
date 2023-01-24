@@ -10,13 +10,13 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class RealmUserProfileAttributeValidatorGetArgs : Pulumi.ResourceArgs
+    public sealed class RealmUserProfileAttributeValidatorGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("config")]
         private InputMap<string>? _config;
 
         /// <summary>
-        /// A map defining the configuration of the validator.
+        /// A map defining the configuration of the validator. Values can be a String or a json object.
         /// </summary>
         public InputMap<string> Config
         {
@@ -25,7 +25,7 @@ namespace Pulumi.Keycloak.Inputs
         }
 
         /// <summary>
-        /// The name of the group.
+        /// The name of the attribute.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -33,5 +33,6 @@ namespace Pulumi.Keycloak.Inputs
         public RealmUserProfileAttributeValidatorGetArgs()
         {
         }
+        public static new RealmUserProfileAttributeValidatorGetArgs Empty => new RealmUserProfileAttributeValidatorGetArgs();
     }
 }

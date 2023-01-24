@@ -12,10 +12,13 @@ import com.pulumi.keycloak.openid.inputs.GetClientArgs;
 import com.pulumi.keycloak.openid.inputs.GetClientAuthorizationPolicyArgs;
 import com.pulumi.keycloak.openid.inputs.GetClientAuthorizationPolicyPlainArgs;
 import com.pulumi.keycloak.openid.inputs.GetClientPlainArgs;
+import com.pulumi.keycloak.openid.inputs.GetClientScopeArgs;
+import com.pulumi.keycloak.openid.inputs.GetClientScopePlainArgs;
 import com.pulumi.keycloak.openid.inputs.GetClientServiceAccountUserArgs;
 import com.pulumi.keycloak.openid.inputs.GetClientServiceAccountUserPlainArgs;
 import com.pulumi.keycloak.openid.outputs.GetClientAuthorizationPolicyResult;
 import com.pulumi.keycloak.openid.outputs.GetClientResult;
+import com.pulumi.keycloak.openid.outputs.GetClientScopeResult;
 import com.pulumi.keycloak.openid.outputs.GetClientServiceAccountUserResult;
 import java.util.concurrent.CompletableFuture;
 
@@ -527,6 +530,190 @@ public final class OpenidFunctions {
      */
     public static CompletableFuture<GetClientAuthorizationPolicyResult> getClientAuthorizationPolicyPlain(GetClientAuthorizationPolicyPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", TypeShape.of(GetClientAuthorizationPolicyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.openid.OpenidFunctions;
+     * import com.pulumi.keycloak.openid.inputs.GetClientScopeArgs;
+     * import com.pulumi.keycloak.openid.AudienceProtocolMapper;
+     * import com.pulumi.keycloak.openid.AudienceProtocolMapperArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var offlineAccess = OpenidFunctions.getClientScope(GetClientScopeArgs.builder()
+     *             .realmId(&#34;my-realm&#34;)
+     *             .name(&#34;offline_access&#34;)
+     *             .build());
+     * 
+     *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
+     *             .realmId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.realmId()))
+     *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.id()))
+     *             .includedCustomAudience(&#34;foo&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetClientScopeResult> getClientScope(GetClientScopeArgs args) {
+        return getClientScope(args, InvokeOptions.Empty);
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.openid.OpenidFunctions;
+     * import com.pulumi.keycloak.openid.inputs.GetClientScopeArgs;
+     * import com.pulumi.keycloak.openid.AudienceProtocolMapper;
+     * import com.pulumi.keycloak.openid.AudienceProtocolMapperArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var offlineAccess = OpenidFunctions.getClientScope(GetClientScopeArgs.builder()
+     *             .realmId(&#34;my-realm&#34;)
+     *             .name(&#34;offline_access&#34;)
+     *             .build());
+     * 
+     *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
+     *             .realmId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.realmId()))
+     *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.id()))
+     *             .includedCustomAudience(&#34;foo&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetClientScopeResult> getClientScopePlain(GetClientScopePlainArgs args) {
+        return getClientScopePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.openid.OpenidFunctions;
+     * import com.pulumi.keycloak.openid.inputs.GetClientScopeArgs;
+     * import com.pulumi.keycloak.openid.AudienceProtocolMapper;
+     * import com.pulumi.keycloak.openid.AudienceProtocolMapperArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var offlineAccess = OpenidFunctions.getClientScope(GetClientScopeArgs.builder()
+     *             .realmId(&#34;my-realm&#34;)
+     *             .name(&#34;offline_access&#34;)
+     *             .build());
+     * 
+     *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
+     *             .realmId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.realmId()))
+     *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.id()))
+     *             .includedCustomAudience(&#34;foo&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetClientScopeResult> getClientScope(GetClientScopeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("keycloak:openid/getClientScope:getClientScope", TypeShape.of(GetClientScopeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.openid.OpenidFunctions;
+     * import com.pulumi.keycloak.openid.inputs.GetClientScopeArgs;
+     * import com.pulumi.keycloak.openid.AudienceProtocolMapper;
+     * import com.pulumi.keycloak.openid.AudienceProtocolMapperArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var offlineAccess = OpenidFunctions.getClientScope(GetClientScopeArgs.builder()
+     *             .realmId(&#34;my-realm&#34;)
+     *             .name(&#34;offline_access&#34;)
+     *             .build());
+     * 
+     *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
+     *             .realmId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.realmId()))
+     *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.id()))
+     *             .includedCustomAudience(&#34;foo&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetClientScopeResult> getClientScopePlain(GetClientScopePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("keycloak:openid/getClientScope:getClientScope", TypeShape.of(GetClientScopeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * This data source can be used to fetch information about the service account user that is associated with an OpenID client

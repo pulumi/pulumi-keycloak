@@ -23,70 +23,72 @@ namespace Pulumi.Keycloak.OpenId
         /// source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Keycloak = Pulumi.Keycloak;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var realm = new Keycloak.Realm("realm", new()
         ///     {
-        ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-        ///         {
-        ///             RealmName = "my-realm",
-        ///             Enabled = true,
-        ///         });
-        ///         var clientWithAuthz = new Keycloak.OpenId.Client("clientWithAuthz", new Keycloak.OpenId.ClientArgs
-        ///         {
-        ///             ClientId = "client-with-authz",
-        ///             RealmId = realm.Id,
-        ///             AccessType = "CONFIDENTIAL",
-        ///             ServiceAccountsEnabled = true,
-        ///             Authorization = new Keycloak.OpenId.Inputs.ClientAuthorizationArgs
-        ///             {
-        ///                 PolicyEnforcementMode = "ENFORCING",
-        ///             },
-        ///         });
-        ///         var defaultPermission = Keycloak.OpenId.GetClientAuthorizationPolicy.Invoke(new Keycloak.OpenId.GetClientAuthorizationPolicyInvokeArgs
-        ///         {
-        ///             RealmId = realm.Id,
-        ///             ResourceServerId = clientWithAuthz.ResourceServerId,
-        ///             Name = "Default Permission",
-        ///         });
-        ///         var resource = new Keycloak.OpenId.ClientAuthorizationResource("resource", new Keycloak.OpenId.ClientAuthorizationResourceArgs
-        ///         {
-        ///             ResourceServerId = clientWithAuthz.ResourceServerId,
-        ///             RealmId = realm.Id,
-        ///             Uris = 
-        ///             {
-        ///                 "/endpoint/*",
-        ///             },
-        ///             Attributes = 
-        ///             {
-        ///                 { "foo", "bar" },
-        ///             },
-        ///         });
-        ///         var permission = new Keycloak.OpenId.ClientAuthorizationPermission("permission", new Keycloak.OpenId.ClientAuthorizationPermissionArgs
-        ///         {
-        ///             ResourceServerId = clientWithAuthz.ResourceServerId,
-        ///             RealmId = realm.Id,
-        ///             Policies = 
-        ///             {
-        ///                 defaultPermission.Apply(defaultPermission =&gt; defaultPermission.Id),
-        ///             },
-        ///             Resources = 
-        ///             {
-        ///                 resource.Id,
-        ///             },
-        ///         });
-        ///     }
+        ///         RealmName = "my-realm",
+        ///         Enabled = true,
+        ///     });
         /// 
-        /// }
+        ///     var clientWithAuthz = new Keycloak.OpenId.Client("clientWithAuthz", new()
+        ///     {
+        ///         ClientId = "client-with-authz",
+        ///         RealmId = realm.Id,
+        ///         AccessType = "CONFIDENTIAL",
+        ///         ServiceAccountsEnabled = true,
+        ///         Authorization = new Keycloak.OpenId.Inputs.ClientAuthorizationArgs
+        ///         {
+        ///             PolicyEnforcementMode = "ENFORCING",
+        ///         },
+        ///     });
+        /// 
+        ///     var defaultPermission = Keycloak.OpenId.GetClientAuthorizationPolicy.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         ResourceServerId = clientWithAuthz.ResourceServerId,
+        ///         Name = "Default Permission",
+        ///     });
+        /// 
+        ///     var resource = new Keycloak.OpenId.ClientAuthorizationResource("resource", new()
+        ///     {
+        ///         ResourceServerId = clientWithAuthz.ResourceServerId,
+        ///         RealmId = realm.Id,
+        ///         Uris = new[]
+        ///         {
+        ///             "/endpoint/*",
+        ///         },
+        ///         Attributes = 
+        ///         {
+        ///             { "foo", "bar" },
+        ///         },
+        ///     });
+        /// 
+        ///     var permission = new Keycloak.OpenId.ClientAuthorizationPermission("permission", new()
+        ///     {
+        ///         ResourceServerId = clientWithAuthz.ResourceServerId,
+        ///         RealmId = realm.Id,
+        ///         Policies = new[]
+        ///         {
+        ///             defaultPermission.Apply(getClientAuthorizationPolicyResult =&gt; getClientAuthorizationPolicyResult.Id),
+        ///         },
+        ///         Resources = new[]
+        ///         {
+        ///             resource.Id,
+        ///         },
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetClientAuthorizationPolicyResult> InvokeAsync(GetClientAuthorizationPolicyArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetClientAuthorizationPolicyResult>("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", args ?? new GetClientAuthorizationPolicyArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetClientAuthorizationPolicyResult>("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", args ?? new GetClientAuthorizationPolicyArgs(), options.WithDefaults());
 
         /// <summary>
         /// This data source can be used to fetch policy and permission information for an OpenID client that has authorization enabled.
@@ -100,74 +102,76 @@ namespace Pulumi.Keycloak.OpenId
         /// source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Keycloak = Pulumi.Keycloak;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var realm = new Keycloak.Realm("realm", new()
         ///     {
-        ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-        ///         {
-        ///             RealmName = "my-realm",
-        ///             Enabled = true,
-        ///         });
-        ///         var clientWithAuthz = new Keycloak.OpenId.Client("clientWithAuthz", new Keycloak.OpenId.ClientArgs
-        ///         {
-        ///             ClientId = "client-with-authz",
-        ///             RealmId = realm.Id,
-        ///             AccessType = "CONFIDENTIAL",
-        ///             ServiceAccountsEnabled = true,
-        ///             Authorization = new Keycloak.OpenId.Inputs.ClientAuthorizationArgs
-        ///             {
-        ///                 PolicyEnforcementMode = "ENFORCING",
-        ///             },
-        ///         });
-        ///         var defaultPermission = Keycloak.OpenId.GetClientAuthorizationPolicy.Invoke(new Keycloak.OpenId.GetClientAuthorizationPolicyInvokeArgs
-        ///         {
-        ///             RealmId = realm.Id,
-        ///             ResourceServerId = clientWithAuthz.ResourceServerId,
-        ///             Name = "Default Permission",
-        ///         });
-        ///         var resource = new Keycloak.OpenId.ClientAuthorizationResource("resource", new Keycloak.OpenId.ClientAuthorizationResourceArgs
-        ///         {
-        ///             ResourceServerId = clientWithAuthz.ResourceServerId,
-        ///             RealmId = realm.Id,
-        ///             Uris = 
-        ///             {
-        ///                 "/endpoint/*",
-        ///             },
-        ///             Attributes = 
-        ///             {
-        ///                 { "foo", "bar" },
-        ///             },
-        ///         });
-        ///         var permission = new Keycloak.OpenId.ClientAuthorizationPermission("permission", new Keycloak.OpenId.ClientAuthorizationPermissionArgs
-        ///         {
-        ///             ResourceServerId = clientWithAuthz.ResourceServerId,
-        ///             RealmId = realm.Id,
-        ///             Policies = 
-        ///             {
-        ///                 defaultPermission.Apply(defaultPermission =&gt; defaultPermission.Id),
-        ///             },
-        ///             Resources = 
-        ///             {
-        ///                 resource.Id,
-        ///             },
-        ///         });
-        ///     }
+        ///         RealmName = "my-realm",
+        ///         Enabled = true,
+        ///     });
         /// 
-        /// }
+        ///     var clientWithAuthz = new Keycloak.OpenId.Client("clientWithAuthz", new()
+        ///     {
+        ///         ClientId = "client-with-authz",
+        ///         RealmId = realm.Id,
+        ///         AccessType = "CONFIDENTIAL",
+        ///         ServiceAccountsEnabled = true,
+        ///         Authorization = new Keycloak.OpenId.Inputs.ClientAuthorizationArgs
+        ///         {
+        ///             PolicyEnforcementMode = "ENFORCING",
+        ///         },
+        ///     });
+        /// 
+        ///     var defaultPermission = Keycloak.OpenId.GetClientAuthorizationPolicy.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         ResourceServerId = clientWithAuthz.ResourceServerId,
+        ///         Name = "Default Permission",
+        ///     });
+        /// 
+        ///     var resource = new Keycloak.OpenId.ClientAuthorizationResource("resource", new()
+        ///     {
+        ///         ResourceServerId = clientWithAuthz.ResourceServerId,
+        ///         RealmId = realm.Id,
+        ///         Uris = new[]
+        ///         {
+        ///             "/endpoint/*",
+        ///         },
+        ///         Attributes = 
+        ///         {
+        ///             { "foo", "bar" },
+        ///         },
+        ///     });
+        /// 
+        ///     var permission = new Keycloak.OpenId.ClientAuthorizationPermission("permission", new()
+        ///     {
+        ///         ResourceServerId = clientWithAuthz.ResourceServerId,
+        ///         RealmId = realm.Id,
+        ///         Policies = new[]
+        ///         {
+        ///             defaultPermission.Apply(getClientAuthorizationPolicyResult =&gt; getClientAuthorizationPolicyResult.Id),
+        ///         },
+        ///         Resources = new[]
+        ///         {
+        ///             resource.Id,
+        ///         },
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetClientAuthorizationPolicyResult> Invoke(GetClientAuthorizationPolicyInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetClientAuthorizationPolicyResult>("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", args ?? new GetClientAuthorizationPolicyInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetClientAuthorizationPolicyResult>("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", args ?? new GetClientAuthorizationPolicyInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetClientAuthorizationPolicyArgs : Pulumi.InvokeArgs
+    public sealed class GetClientAuthorizationPolicyArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the authorization policy.
@@ -190,9 +194,10 @@ namespace Pulumi.Keycloak.OpenId
         public GetClientAuthorizationPolicyArgs()
         {
         }
+        public static new GetClientAuthorizationPolicyArgs Empty => new GetClientAuthorizationPolicyArgs();
     }
 
-    public sealed class GetClientAuthorizationPolicyInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetClientAuthorizationPolicyInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the authorization policy.
@@ -215,6 +220,7 @@ namespace Pulumi.Keycloak.OpenId
         public GetClientAuthorizationPolicyInvokeArgs()
         {
         }
+        public static new GetClientAuthorizationPolicyInvokeArgs Empty => new GetClientAuthorizationPolicyInvokeArgs();
     }
 
 

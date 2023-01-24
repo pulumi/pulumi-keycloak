@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class GetRealmInternationalizationInputArgs : Pulumi.ResourceArgs
+    public sealed class GetRealmInternationalizationInputArgs : global::Pulumi.ResourceArgs
     {
         [Input("defaultLocale", required: true)]
         public Input<string> DefaultLocale { get; set; } = null!;
@@ -26,5 +26,6 @@ namespace Pulumi.Keycloak.Inputs
         public GetRealmInternationalizationInputArgs()
         {
         }
+        public static new GetRealmInternationalizationInputArgs Empty => new GetRealmInternationalizationInputArgs();
     }
 }

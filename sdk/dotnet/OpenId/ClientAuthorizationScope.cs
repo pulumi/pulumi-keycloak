@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId
 {
     [KeycloakResourceType("keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope")]
-    public partial class ClientAuthorizationScope : Pulumi.CustomResource
+    public partial class ClientAuthorizationScope : global::Pulumi.CustomResource
     {
         [Output("displayName")]
         public Output<string?> DisplayName { get; private set; } = null!;
@@ -71,7 +71,7 @@ namespace Pulumi.Keycloak.OpenId
         }
     }
 
-    public sealed class ClientAuthorizationScopeArgs : Pulumi.ResourceArgs
+    public sealed class ClientAuthorizationScopeArgs : global::Pulumi.ResourceArgs
     {
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
@@ -91,9 +91,10 @@ namespace Pulumi.Keycloak.OpenId
         public ClientAuthorizationScopeArgs()
         {
         }
+        public static new ClientAuthorizationScopeArgs Empty => new ClientAuthorizationScopeArgs();
     }
 
-    public sealed class ClientAuthorizationScopeState : Pulumi.ResourceArgs
+    public sealed class ClientAuthorizationScopeState : global::Pulumi.ResourceArgs
     {
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
@@ -113,5 +114,6 @@ namespace Pulumi.Keycloak.OpenId
         public ClientAuthorizationScopeState()
         {
         }
+        public static new ClientAuthorizationScopeState Empty => new ClientAuthorizationScopeState();
     }
 }

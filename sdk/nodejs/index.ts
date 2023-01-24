@@ -5,47 +5,221 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export * from "./attributeImporterIdentityProviderMapper";
-export * from "./attributeToRoleIdentityMapper";
-export * from "./customIdentityProviderMapping";
-export * from "./customUserFederation";
-export * from "./defaultGroups";
-export * from "./defaultRoles";
-export * from "./genericClientProtocolMapper";
-export * from "./genericClientRoleMapper";
-export * from "./getAuthenticationExecution";
-export * from "./getAuthenticationFlow";
-export * from "./getClientDescriptionConverter";
-export * from "./getGroup";
-export * from "./getRealm";
-export * from "./getRealmKeys";
-export * from "./getRole";
-export * from "./getUser";
-export * from "./getUserRealmRoles";
-export * from "./group";
-export * from "./groupMemberships";
-export * from "./groupPermissions";
-export * from "./groupRoles";
-export * from "./hardcodedAttributeIdentityProviderMapper";
-export * from "./hardcodedRoleIdentityMapper";
-export * from "./identityProviderTokenExchangeScopePermission";
-export * from "./provider";
-export * from "./realm";
-export * from "./realmEvents";
-export * from "./realmKeystoreAesGenerated";
-export * from "./realmKeystoreEcdsaGenerated";
-export * from "./realmKeystoreHmacGenerated";
-export * from "./realmKeystoreJavaGenerated";
-export * from "./realmKeystoreRsa";
-export * from "./realmKeystoreRsaGenerated";
-export * from "./realmUserProfile";
-export * from "./requiredAction";
-export * from "./role";
-export * from "./user";
-export * from "./userGroups";
-export * from "./userRoles";
-export * from "./userTemplateImporterIdentityProviderMapper";
-export * from "./usersPermissions";
+export { AttributeImporterIdentityProviderMapperArgs, AttributeImporterIdentityProviderMapperState } from "./attributeImporterIdentityProviderMapper";
+export type AttributeImporterIdentityProviderMapper = import("./attributeImporterIdentityProviderMapper").AttributeImporterIdentityProviderMapper;
+export const AttributeImporterIdentityProviderMapper: typeof import("./attributeImporterIdentityProviderMapper").AttributeImporterIdentityProviderMapper = null as any;
+utilities.lazyLoad(exports, ["AttributeImporterIdentityProviderMapper"], () => require("./attributeImporterIdentityProviderMapper"));
+
+export { AttributeToRoleIdentityMapperArgs, AttributeToRoleIdentityMapperState } from "./attributeToRoleIdentityMapper";
+export type AttributeToRoleIdentityMapper = import("./attributeToRoleIdentityMapper").AttributeToRoleIdentityMapper;
+export const AttributeToRoleIdentityMapper: typeof import("./attributeToRoleIdentityMapper").AttributeToRoleIdentityMapper = null as any;
+utilities.lazyLoad(exports, ["AttributeToRoleIdentityMapper"], () => require("./attributeToRoleIdentityMapper"));
+
+export { CustomIdentityProviderMappingArgs, CustomIdentityProviderMappingState } from "./customIdentityProviderMapping";
+export type CustomIdentityProviderMapping = import("./customIdentityProviderMapping").CustomIdentityProviderMapping;
+export const CustomIdentityProviderMapping: typeof import("./customIdentityProviderMapping").CustomIdentityProviderMapping = null as any;
+utilities.lazyLoad(exports, ["CustomIdentityProviderMapping"], () => require("./customIdentityProviderMapping"));
+
+export { CustomUserFederationArgs, CustomUserFederationState } from "./customUserFederation";
+export type CustomUserFederation = import("./customUserFederation").CustomUserFederation;
+export const CustomUserFederation: typeof import("./customUserFederation").CustomUserFederation = null as any;
+utilities.lazyLoad(exports, ["CustomUserFederation"], () => require("./customUserFederation"));
+
+export { DefaultGroupsArgs, DefaultGroupsState } from "./defaultGroups";
+export type DefaultGroups = import("./defaultGroups").DefaultGroups;
+export const DefaultGroups: typeof import("./defaultGroups").DefaultGroups = null as any;
+utilities.lazyLoad(exports, ["DefaultGroups"], () => require("./defaultGroups"));
+
+export { DefaultRolesArgs, DefaultRolesState } from "./defaultRoles";
+export type DefaultRoles = import("./defaultRoles").DefaultRoles;
+export const DefaultRoles: typeof import("./defaultRoles").DefaultRoles = null as any;
+utilities.lazyLoad(exports, ["DefaultRoles"], () => require("./defaultRoles"));
+
+export { GenericClientProtocolMapperArgs, GenericClientProtocolMapperState } from "./genericClientProtocolMapper";
+export type GenericClientProtocolMapper = import("./genericClientProtocolMapper").GenericClientProtocolMapper;
+export const GenericClientProtocolMapper: typeof import("./genericClientProtocolMapper").GenericClientProtocolMapper = null as any;
+utilities.lazyLoad(exports, ["GenericClientProtocolMapper"], () => require("./genericClientProtocolMapper"));
+
+export { GenericClientRoleMapperArgs, GenericClientRoleMapperState } from "./genericClientRoleMapper";
+export type GenericClientRoleMapper = import("./genericClientRoleMapper").GenericClientRoleMapper;
+export const GenericClientRoleMapper: typeof import("./genericClientRoleMapper").GenericClientRoleMapper = null as any;
+utilities.lazyLoad(exports, ["GenericClientRoleMapper"], () => require("./genericClientRoleMapper"));
+
+export { GenericProtocolMapperArgs, GenericProtocolMapperState } from "./genericProtocolMapper";
+export type GenericProtocolMapper = import("./genericProtocolMapper").GenericProtocolMapper;
+export const GenericProtocolMapper: typeof import("./genericProtocolMapper").GenericProtocolMapper = null as any;
+utilities.lazyLoad(exports, ["GenericProtocolMapper"], () => require("./genericProtocolMapper"));
+
+export { GenericRoleMapperArgs, GenericRoleMapperState } from "./genericRoleMapper";
+export type GenericRoleMapper = import("./genericRoleMapper").GenericRoleMapper;
+export const GenericRoleMapper: typeof import("./genericRoleMapper").GenericRoleMapper = null as any;
+utilities.lazyLoad(exports, ["GenericRoleMapper"], () => require("./genericRoleMapper"));
+
+export { GetAuthenticationExecutionArgs, GetAuthenticationExecutionResult, GetAuthenticationExecutionOutputArgs } from "./getAuthenticationExecution";
+export const getAuthenticationExecution: typeof import("./getAuthenticationExecution").getAuthenticationExecution = null as any;
+export const getAuthenticationExecutionOutput: typeof import("./getAuthenticationExecution").getAuthenticationExecutionOutput = null as any;
+utilities.lazyLoad(exports, ["getAuthenticationExecution","getAuthenticationExecutionOutput"], () => require("./getAuthenticationExecution"));
+
+export { GetAuthenticationFlowArgs, GetAuthenticationFlowResult, GetAuthenticationFlowOutputArgs } from "./getAuthenticationFlow";
+export const getAuthenticationFlow: typeof import("./getAuthenticationFlow").getAuthenticationFlow = null as any;
+export const getAuthenticationFlowOutput: typeof import("./getAuthenticationFlow").getAuthenticationFlowOutput = null as any;
+utilities.lazyLoad(exports, ["getAuthenticationFlow","getAuthenticationFlowOutput"], () => require("./getAuthenticationFlow"));
+
+export { GetClientDescriptionConverterArgs, GetClientDescriptionConverterResult, GetClientDescriptionConverterOutputArgs } from "./getClientDescriptionConverter";
+export const getClientDescriptionConverter: typeof import("./getClientDescriptionConverter").getClientDescriptionConverter = null as any;
+export const getClientDescriptionConverterOutput: typeof import("./getClientDescriptionConverter").getClientDescriptionConverterOutput = null as any;
+utilities.lazyLoad(exports, ["getClientDescriptionConverter","getClientDescriptionConverterOutput"], () => require("./getClientDescriptionConverter"));
+
+export { GetGroupArgs, GetGroupResult, GetGroupOutputArgs } from "./getGroup";
+export const getGroup: typeof import("./getGroup").getGroup = null as any;
+export const getGroupOutput: typeof import("./getGroup").getGroupOutput = null as any;
+utilities.lazyLoad(exports, ["getGroup","getGroupOutput"], () => require("./getGroup"));
+
+export { GetRealmArgs, GetRealmResult, GetRealmOutputArgs } from "./getRealm";
+export const getRealm: typeof import("./getRealm").getRealm = null as any;
+export const getRealmOutput: typeof import("./getRealm").getRealmOutput = null as any;
+utilities.lazyLoad(exports, ["getRealm","getRealmOutput"], () => require("./getRealm"));
+
+export { GetRealmKeysArgs, GetRealmKeysResult, GetRealmKeysOutputArgs } from "./getRealmKeys";
+export const getRealmKeys: typeof import("./getRealmKeys").getRealmKeys = null as any;
+export const getRealmKeysOutput: typeof import("./getRealmKeys").getRealmKeysOutput = null as any;
+utilities.lazyLoad(exports, ["getRealmKeys","getRealmKeysOutput"], () => require("./getRealmKeys"));
+
+export { GetRoleArgs, GetRoleResult, GetRoleOutputArgs } from "./getRole";
+export const getRole: typeof import("./getRole").getRole = null as any;
+export const getRoleOutput: typeof import("./getRole").getRoleOutput = null as any;
+utilities.lazyLoad(exports, ["getRole","getRoleOutput"], () => require("./getRole"));
+
+export { GetUserArgs, GetUserResult, GetUserOutputArgs } from "./getUser";
+export const getUser: typeof import("./getUser").getUser = null as any;
+export const getUserOutput: typeof import("./getUser").getUserOutput = null as any;
+utilities.lazyLoad(exports, ["getUser","getUserOutput"], () => require("./getUser"));
+
+export { GetUserRealmRolesArgs, GetUserRealmRolesResult, GetUserRealmRolesOutputArgs } from "./getUserRealmRoles";
+export const getUserRealmRoles: typeof import("./getUserRealmRoles").getUserRealmRoles = null as any;
+export const getUserRealmRolesOutput: typeof import("./getUserRealmRoles").getUserRealmRolesOutput = null as any;
+utilities.lazyLoad(exports, ["getUserRealmRoles","getUserRealmRolesOutput"], () => require("./getUserRealmRoles"));
+
+export { GroupArgs, GroupState } from "./group";
+export type Group = import("./group").Group;
+export const Group: typeof import("./group").Group = null as any;
+utilities.lazyLoad(exports, ["Group"], () => require("./group"));
+
+export { GroupMembershipsArgs, GroupMembershipsState } from "./groupMemberships";
+export type GroupMemberships = import("./groupMemberships").GroupMemberships;
+export const GroupMemberships: typeof import("./groupMemberships").GroupMemberships = null as any;
+utilities.lazyLoad(exports, ["GroupMemberships"], () => require("./groupMemberships"));
+
+export { GroupPermissionsArgs, GroupPermissionsState } from "./groupPermissions";
+export type GroupPermissions = import("./groupPermissions").GroupPermissions;
+export const GroupPermissions: typeof import("./groupPermissions").GroupPermissions = null as any;
+utilities.lazyLoad(exports, ["GroupPermissions"], () => require("./groupPermissions"));
+
+export { GroupRolesArgs, GroupRolesState } from "./groupRoles";
+export type GroupRoles = import("./groupRoles").GroupRoles;
+export const GroupRoles: typeof import("./groupRoles").GroupRoles = null as any;
+utilities.lazyLoad(exports, ["GroupRoles"], () => require("./groupRoles"));
+
+export { HardcodedAttributeIdentityProviderMapperArgs, HardcodedAttributeIdentityProviderMapperState } from "./hardcodedAttributeIdentityProviderMapper";
+export type HardcodedAttributeIdentityProviderMapper = import("./hardcodedAttributeIdentityProviderMapper").HardcodedAttributeIdentityProviderMapper;
+export const HardcodedAttributeIdentityProviderMapper: typeof import("./hardcodedAttributeIdentityProviderMapper").HardcodedAttributeIdentityProviderMapper = null as any;
+utilities.lazyLoad(exports, ["HardcodedAttributeIdentityProviderMapper"], () => require("./hardcodedAttributeIdentityProviderMapper"));
+
+export { HardcodedRoleIdentityMapperArgs, HardcodedRoleIdentityMapperState } from "./hardcodedRoleIdentityMapper";
+export type HardcodedRoleIdentityMapper = import("./hardcodedRoleIdentityMapper").HardcodedRoleIdentityMapper;
+export const HardcodedRoleIdentityMapper: typeof import("./hardcodedRoleIdentityMapper").HardcodedRoleIdentityMapper = null as any;
+utilities.lazyLoad(exports, ["HardcodedRoleIdentityMapper"], () => require("./hardcodedRoleIdentityMapper"));
+
+export { IdentityProviderTokenExchangeScopePermissionArgs, IdentityProviderTokenExchangeScopePermissionState } from "./identityProviderTokenExchangeScopePermission";
+export type IdentityProviderTokenExchangeScopePermission = import("./identityProviderTokenExchangeScopePermission").IdentityProviderTokenExchangeScopePermission;
+export const IdentityProviderTokenExchangeScopePermission: typeof import("./identityProviderTokenExchangeScopePermission").IdentityProviderTokenExchangeScopePermission = null as any;
+utilities.lazyLoad(exports, ["IdentityProviderTokenExchangeScopePermission"], () => require("./identityProviderTokenExchangeScopePermission"));
+
+export { ProviderArgs } from "./provider";
+export type Provider = import("./provider").Provider;
+export const Provider: typeof import("./provider").Provider = null as any;
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+
+export { RealmArgs, RealmState } from "./realm";
+export type Realm = import("./realm").Realm;
+export const Realm: typeof import("./realm").Realm = null as any;
+utilities.lazyLoad(exports, ["Realm"], () => require("./realm"));
+
+export { RealmEventsArgs, RealmEventsState } from "./realmEvents";
+export type RealmEvents = import("./realmEvents").RealmEvents;
+export const RealmEvents: typeof import("./realmEvents").RealmEvents = null as any;
+utilities.lazyLoad(exports, ["RealmEvents"], () => require("./realmEvents"));
+
+export { RealmKeystoreAesGeneratedArgs, RealmKeystoreAesGeneratedState } from "./realmKeystoreAesGenerated";
+export type RealmKeystoreAesGenerated = import("./realmKeystoreAesGenerated").RealmKeystoreAesGenerated;
+export const RealmKeystoreAesGenerated: typeof import("./realmKeystoreAesGenerated").RealmKeystoreAesGenerated = null as any;
+utilities.lazyLoad(exports, ["RealmKeystoreAesGenerated"], () => require("./realmKeystoreAesGenerated"));
+
+export { RealmKeystoreEcdsaGeneratedArgs, RealmKeystoreEcdsaGeneratedState } from "./realmKeystoreEcdsaGenerated";
+export type RealmKeystoreEcdsaGenerated = import("./realmKeystoreEcdsaGenerated").RealmKeystoreEcdsaGenerated;
+export const RealmKeystoreEcdsaGenerated: typeof import("./realmKeystoreEcdsaGenerated").RealmKeystoreEcdsaGenerated = null as any;
+utilities.lazyLoad(exports, ["RealmKeystoreEcdsaGenerated"], () => require("./realmKeystoreEcdsaGenerated"));
+
+export { RealmKeystoreHmacGeneratedArgs, RealmKeystoreHmacGeneratedState } from "./realmKeystoreHmacGenerated";
+export type RealmKeystoreHmacGenerated = import("./realmKeystoreHmacGenerated").RealmKeystoreHmacGenerated;
+export const RealmKeystoreHmacGenerated: typeof import("./realmKeystoreHmacGenerated").RealmKeystoreHmacGenerated = null as any;
+utilities.lazyLoad(exports, ["RealmKeystoreHmacGenerated"], () => require("./realmKeystoreHmacGenerated"));
+
+export { RealmKeystoreJavaGeneratedArgs, RealmKeystoreJavaGeneratedState } from "./realmKeystoreJavaGenerated";
+export type RealmKeystoreJavaGenerated = import("./realmKeystoreJavaGenerated").RealmKeystoreJavaGenerated;
+export const RealmKeystoreJavaGenerated: typeof import("./realmKeystoreJavaGenerated").RealmKeystoreJavaGenerated = null as any;
+utilities.lazyLoad(exports, ["RealmKeystoreJavaGenerated"], () => require("./realmKeystoreJavaGenerated"));
+
+export { RealmKeystoreRsaArgs, RealmKeystoreRsaState } from "./realmKeystoreRsa";
+export type RealmKeystoreRsa = import("./realmKeystoreRsa").RealmKeystoreRsa;
+export const RealmKeystoreRsa: typeof import("./realmKeystoreRsa").RealmKeystoreRsa = null as any;
+utilities.lazyLoad(exports, ["RealmKeystoreRsa"], () => require("./realmKeystoreRsa"));
+
+export { RealmKeystoreRsaGeneratedArgs, RealmKeystoreRsaGeneratedState } from "./realmKeystoreRsaGenerated";
+export type RealmKeystoreRsaGenerated = import("./realmKeystoreRsaGenerated").RealmKeystoreRsaGenerated;
+export const RealmKeystoreRsaGenerated: typeof import("./realmKeystoreRsaGenerated").RealmKeystoreRsaGenerated = null as any;
+utilities.lazyLoad(exports, ["RealmKeystoreRsaGenerated"], () => require("./realmKeystoreRsaGenerated"));
+
+export { RealmUserProfileArgs, RealmUserProfileState } from "./realmUserProfile";
+export type RealmUserProfile = import("./realmUserProfile").RealmUserProfile;
+export const RealmUserProfile: typeof import("./realmUserProfile").RealmUserProfile = null as any;
+utilities.lazyLoad(exports, ["RealmUserProfile"], () => require("./realmUserProfile"));
+
+export { RequiredActionArgs, RequiredActionState } from "./requiredAction";
+export type RequiredAction = import("./requiredAction").RequiredAction;
+export const RequiredAction: typeof import("./requiredAction").RequiredAction = null as any;
+utilities.lazyLoad(exports, ["RequiredAction"], () => require("./requiredAction"));
+
+export { RoleArgs, RoleState } from "./role";
+export type Role = import("./role").Role;
+export const Role: typeof import("./role").Role = null as any;
+utilities.lazyLoad(exports, ["Role"], () => require("./role"));
+
+export { UserArgs, UserState } from "./user";
+export type User = import("./user").User;
+export const User: typeof import("./user").User = null as any;
+utilities.lazyLoad(exports, ["User"], () => require("./user"));
+
+export { UserGroupsArgs, UserGroupsState } from "./userGroups";
+export type UserGroups = import("./userGroups").UserGroups;
+export const UserGroups: typeof import("./userGroups").UserGroups = null as any;
+utilities.lazyLoad(exports, ["UserGroups"], () => require("./userGroups"));
+
+export { UserRolesArgs, UserRolesState } from "./userRoles";
+export type UserRoles = import("./userRoles").UserRoles;
+export const UserRoles: typeof import("./userRoles").UserRoles = null as any;
+utilities.lazyLoad(exports, ["UserRoles"], () => require("./userRoles"));
+
+export { UserTemplateImporterIdentityProviderMapperArgs, UserTemplateImporterIdentityProviderMapperState } from "./userTemplateImporterIdentityProviderMapper";
+export type UserTemplateImporterIdentityProviderMapper = import("./userTemplateImporterIdentityProviderMapper").UserTemplateImporterIdentityProviderMapper;
+export const UserTemplateImporterIdentityProviderMapper: typeof import("./userTemplateImporterIdentityProviderMapper").UserTemplateImporterIdentityProviderMapper = null as any;
+utilities.lazyLoad(exports, ["UserTemplateImporterIdentityProviderMapper"], () => require("./userTemplateImporterIdentityProviderMapper"));
+
+export { UsersPermissionsArgs, UsersPermissionsState } from "./usersPermissions";
+export type UsersPermissions = import("./usersPermissions").UsersPermissions;
+export const UsersPermissions: typeof import("./usersPermissions").UsersPermissions = null as any;
+utilities.lazyLoad(exports, ["UsersPermissions"], () => require("./usersPermissions"));
+
 
 // Export sub-modules:
 import * as authentication from "./authentication";
@@ -65,39 +239,6 @@ export {
     saml,
     types,
 };
-
-// Import resources to register:
-import { AttributeImporterIdentityProviderMapper } from "./attributeImporterIdentityProviderMapper";
-import { AttributeToRoleIdentityMapper } from "./attributeToRoleIdentityMapper";
-import { CustomIdentityProviderMapping } from "./customIdentityProviderMapping";
-import { CustomUserFederation } from "./customUserFederation";
-import { DefaultGroups } from "./defaultGroups";
-import { DefaultRoles } from "./defaultRoles";
-import { GenericClientProtocolMapper } from "./genericClientProtocolMapper";
-import { GenericClientRoleMapper } from "./genericClientRoleMapper";
-import { Group } from "./group";
-import { GroupMemberships } from "./groupMemberships";
-import { GroupPermissions } from "./groupPermissions";
-import { GroupRoles } from "./groupRoles";
-import { HardcodedAttributeIdentityProviderMapper } from "./hardcodedAttributeIdentityProviderMapper";
-import { HardcodedRoleIdentityMapper } from "./hardcodedRoleIdentityMapper";
-import { IdentityProviderTokenExchangeScopePermission } from "./identityProviderTokenExchangeScopePermission";
-import { Realm } from "./realm";
-import { RealmEvents } from "./realmEvents";
-import { RealmKeystoreAesGenerated } from "./realmKeystoreAesGenerated";
-import { RealmKeystoreEcdsaGenerated } from "./realmKeystoreEcdsaGenerated";
-import { RealmKeystoreHmacGenerated } from "./realmKeystoreHmacGenerated";
-import { RealmKeystoreJavaGenerated } from "./realmKeystoreJavaGenerated";
-import { RealmKeystoreRsa } from "./realmKeystoreRsa";
-import { RealmKeystoreRsaGenerated } from "./realmKeystoreRsaGenerated";
-import { RealmUserProfile } from "./realmUserProfile";
-import { RequiredAction } from "./requiredAction";
-import { Role } from "./role";
-import { User } from "./user";
-import { UserGroups } from "./userGroups";
-import { UserRoles } from "./userRoles";
-import { UserTemplateImporterIdentityProviderMapper } from "./userTemplateImporterIdentityProviderMapper";
-import { UsersPermissions } from "./usersPermissions";
 
 const _module = {
     version: utilities.getVersion(),
@@ -119,6 +260,10 @@ const _module = {
                 return new GenericClientProtocolMapper(name, <any>undefined, { urn })
             case "keycloak:index/genericClientRoleMapper:GenericClientRoleMapper":
                 return new GenericClientRoleMapper(name, <any>undefined, { urn })
+            case "keycloak:index/genericProtocolMapper:GenericProtocolMapper":
+                return new GenericProtocolMapper(name, <any>undefined, { urn })
+            case "keycloak:index/genericRoleMapper:GenericRoleMapper":
+                return new GenericRoleMapper(name, <any>undefined, { urn })
             case "keycloak:index/group:Group":
                 return new Group(name, <any>undefined, { urn })
             case "keycloak:index/groupMemberships:GroupMemberships":
@@ -178,6 +323,8 @@ pulumi.runtime.registerResourceModule("keycloak", "index/defaultGroups", _module
 pulumi.runtime.registerResourceModule("keycloak", "index/defaultRoles", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/genericClientProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/genericClientRoleMapper", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/genericProtocolMapper", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/genericRoleMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/group", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/groupMemberships", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/groupPermissions", _module)
@@ -201,9 +348,6 @@ pulumi.runtime.registerResourceModule("keycloak", "index/userGroups", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/userRoles", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/userTemplateImporterIdentityProviderMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/usersPermissions", _module)
-
-import { Provider } from "./provider";
-
 pulumi.runtime.registerResourcePackage("keycloak", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

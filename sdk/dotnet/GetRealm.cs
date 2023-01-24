@@ -20,30 +20,29 @@ namespace Pulumi.Keycloak
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Keycloak = Pulumi.Keycloak;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var realm = Keycloak.GetRealm.Invoke(new()
         ///     {
-        ///         var realm = Output.Create(Keycloak.GetRealm.InvokeAsync(new Keycloak.GetRealmArgs
-        ///         {
-        ///             Realm = "my-realm",
-        ///         }));
-        ///         var @group = new Keycloak.Role("group", new Keycloak.RoleArgs
-        ///         {
-        ///             RealmId = realm.Apply(realm =&gt; realm.Id),
-        ///         });
-        ///     }
+        ///         Realm = "my-realm",
+        ///     });
         /// 
-        /// }
+        ///     var @group = new Keycloak.Role("group", new()
+        ///     {
+        ///         RealmId = realm.Apply(getRealmResult =&gt; getRealmResult.Id),
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetRealmResult> InvokeAsync(GetRealmArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetRealmResult>("keycloak:index/getRealm:getRealm", args ?? new GetRealmArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetRealmResult>("keycloak:index/getRealm:getRealm", args ?? new GetRealmArgs(), options.WithDefaults());
 
         /// <summary>
         /// This data source can be used to fetch properties of a Keycloak realm for
@@ -54,34 +53,33 @@ namespace Pulumi.Keycloak
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Keycloak = Pulumi.Keycloak;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var realm = Keycloak.GetRealm.Invoke(new()
         ///     {
-        ///         var realm = Output.Create(Keycloak.GetRealm.InvokeAsync(new Keycloak.GetRealmArgs
-        ///         {
-        ///             Realm = "my-realm",
-        ///         }));
-        ///         var @group = new Keycloak.Role("group", new Keycloak.RoleArgs
-        ///         {
-        ///             RealmId = realm.Apply(realm =&gt; realm.Id),
-        ///         });
-        ///     }
+        ///         Realm = "my-realm",
+        ///     });
         /// 
-        /// }
+        ///     var @group = new Keycloak.Role("group", new()
+        ///     {
+        ///         RealmId = realm.Apply(getRealmResult =&gt; getRealmResult.Id),
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetRealmResult> Invoke(GetRealmInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetRealmResult>("keycloak:index/getRealm:getRealm", args ?? new GetRealmInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetRealmResult>("keycloak:index/getRealm:getRealm", args ?? new GetRealmInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetRealmArgs : Pulumi.InvokeArgs
+    public sealed class GetRealmArgs : global::Pulumi.InvokeArgs
     {
         [Input("attributes")]
         private Dictionary<string, object>? _attributes;
@@ -152,9 +150,10 @@ namespace Pulumi.Keycloak
         public GetRealmArgs()
         {
         }
+        public static new GetRealmArgs Empty => new GetRealmArgs();
     }
 
-    public sealed class GetRealmInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetRealmInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("attributes")]
         private InputMap<object>? _attributes;
@@ -225,6 +224,7 @@ namespace Pulumi.Keycloak
         public GetRealmInvokeArgs()
         {
         }
+        public static new GetRealmInvokeArgs Empty => new GetRealmInvokeArgs();
     }
 
 

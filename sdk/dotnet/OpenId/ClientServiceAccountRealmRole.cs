@@ -19,36 +19,37 @@ namespace Pulumi.Keycloak.OpenId
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var realmRole = new Keycloak.Role("realmRole", new Keycloak.RoleArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///         });
-    ///         var client = new Keycloak.OpenId.Client("client", new Keycloak.OpenId.ClientArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ServiceAccountsEnabled = true,
-    ///         });
-    ///         var clientServiceAccountRole = new Keycloak.OpenId.ClientServiceAccountRealmRole("clientServiceAccountRole", new Keycloak.OpenId.ClientServiceAccountRealmRoleArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ServiceAccountUserId = client.ServiceAccountUserId,
-    ///             Role = realmRole.Name,
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var realmRole = new Keycloak.Role("realmRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var client = new Keycloak.OpenId.Client("client", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ServiceAccountsEnabled = true,
+    ///     });
+    /// 
+    ///     var clientServiceAccountRole = new Keycloak.OpenId.ClientServiceAccountRealmRole("clientServiceAccountRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ServiceAccountUserId = client.ServiceAccountUserId,
+    ///         Role = realmRole.Name,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -60,7 +61,7 @@ namespace Pulumi.Keycloak.OpenId
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:openid/clientServiceAccountRealmRole:ClientServiceAccountRealmRole")]
-    public partial class ClientServiceAccountRealmRole : Pulumi.CustomResource
+    public partial class ClientServiceAccountRealmRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The realm that the client and role belong to.
@@ -124,7 +125,7 @@ namespace Pulumi.Keycloak.OpenId
         }
     }
 
-    public sealed class ClientServiceAccountRealmRoleArgs : Pulumi.ResourceArgs
+    public sealed class ClientServiceAccountRealmRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The realm that the client and role belong to.
@@ -147,9 +148,10 @@ namespace Pulumi.Keycloak.OpenId
         public ClientServiceAccountRealmRoleArgs()
         {
         }
+        public static new ClientServiceAccountRealmRoleArgs Empty => new ClientServiceAccountRealmRoleArgs();
     }
 
-    public sealed class ClientServiceAccountRealmRoleState : Pulumi.ResourceArgs
+    public sealed class ClientServiceAccountRealmRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The realm that the client and role belong to.
@@ -172,5 +174,6 @@ namespace Pulumi.Keycloak.OpenId
         public ClientServiceAccountRealmRoleState()
         {
         }
+        public static new ClientServiceAccountRealmRoleState Empty => new ClientServiceAccountRealmRoleState();
     }
 }

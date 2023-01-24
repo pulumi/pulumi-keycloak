@@ -872,11 +872,11 @@ class RealmUserProfileAttributeArgs:
                  required_for_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  validators: Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeValidatorArgs']]]] = None):
         """
-        :param pulumi.Input[str] name: The name of the group.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: A map of annotations for the group.
+        :param pulumi.Input[str] name: The name of the attribute.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: A map of annotations for the attribute. Values can be a String or a json object.
         :param pulumi.Input[str] display_name: The display name of the attribute.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] enabled_when_scopes: A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
-        :param pulumi.Input[str] group: The group that the attribute belong to.
+        :param pulumi.Input[str] group: A list of groups.
         :param pulumi.Input['RealmUserProfileAttributePermissionsArgs'] permissions: The permissions configuration information.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] required_for_roles: A list of roles for which the attribute will be required.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] required_for_scopes: A list of scopes for which the attribute will be required.
@@ -904,7 +904,7 @@ class RealmUserProfileAttributeArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The name of the group.
+        The name of the attribute.
         """
         return pulumi.get(self, "name")
 
@@ -916,7 +916,7 @@ class RealmUserProfileAttributeArgs:
     @pulumi.getter
     def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        A map of annotations for the group.
+        A map of annotations for the attribute. Values can be a String or a json object.
         """
         return pulumi.get(self, "annotations")
 
@@ -952,7 +952,7 @@ class RealmUserProfileAttributeArgs:
     @pulumi.getter
     def group(self) -> Optional[pulumi.Input[str]]:
         """
-        The group that the attribute belong to.
+        A list of groups.
         """
         return pulumi.get(self, "group")
 
@@ -1052,8 +1052,8 @@ class RealmUserProfileAttributeValidatorArgs:
                  name: pulumi.Input[str],
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[str] name: The name of the group.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: A map defining the configuration of the validator.
+        :param pulumi.Input[str] name: The name of the attribute.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: A map defining the configuration of the validator. Values can be a String or a json object.
         """
         pulumi.set(__self__, "name", name)
         if config is not None:
@@ -1063,7 +1063,7 @@ class RealmUserProfileAttributeValidatorArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The name of the group.
+        The name of the attribute.
         """
         return pulumi.get(self, "name")
 
@@ -1075,7 +1075,7 @@ class RealmUserProfileAttributeValidatorArgs:
     @pulumi.getter
     def config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        A map defining the configuration of the validator.
+        A map defining the configuration of the validator. Values can be a String or a json object.
         """
         return pulumi.get(self, "config")
 
@@ -1092,8 +1092,8 @@ class RealmUserProfileGroupArgs:
                  display_description: Optional[pulumi.Input[str]] = None,
                  display_header: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: The name of the group.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: A map of annotations for the group.
+        :param pulumi.Input[str] name: The name of the attribute.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: A map of annotations for the attribute. Values can be a String or a json object.
         :param pulumi.Input[str] display_description: The display description of the group.
         :param pulumi.Input[str] display_header: The display header of the group.
         """
@@ -1109,7 +1109,7 @@ class RealmUserProfileGroupArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The name of the group.
+        The name of the attribute.
         """
         return pulumi.get(self, "name")
 
@@ -1121,7 +1121,7 @@ class RealmUserProfileGroupArgs:
     @pulumi.getter
     def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        A map of annotations for the group.
+        A map of annotations for the attribute. Values can be a String or a json object.
         """
         return pulumi.get(self, "annotations")
 

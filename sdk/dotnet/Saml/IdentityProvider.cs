@@ -17,36 +17,35 @@ namespace Pulumi.Keycloak.Saml
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var realmSamlIdentityProvider = new Keycloak.Saml.IdentityProvider("realmSamlIdentityProvider", new Keycloak.Saml.IdentityProviderArgs
-    ///         {
-    ///             Realm = realm.Id,
-    ///             Alias = "my-saml-idp",
-    ///             EntityId = "https://domain.com/entity_id",
-    ///             SingleSignOnServiceUrl = "https://domain.com/adfs/ls/",
-    ///             SingleLogoutServiceUrl = "https://domain.com/adfs/ls/?wa=wsignout1.0",
-    ///             BackchannelSupported = true,
-    ///             PostBindingResponse = true,
-    ///             PostBindingLogout = true,
-    ///             PostBindingAuthnRequest = true,
-    ///             StoreToken = false,
-    ///             TrustEmail = true,
-    ///             ForceAuthn = true,
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var realmSamlIdentityProvider = new Keycloak.Saml.IdentityProvider("realmSamlIdentityProvider", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         Alias = "my-saml-idp",
+    ///         EntityId = "https://domain.com/entity_id",
+    ///         SingleSignOnServiceUrl = "https://domain.com/adfs/ls/",
+    ///         SingleLogoutServiceUrl = "https://domain.com/adfs/ls/?wa=wsignout1.0",
+    ///         BackchannelSupported = true,
+    ///         PostBindingResponse = true,
+    ///         PostBindingLogout = true,
+    ///         PostBindingAuthnRequest = true,
+    ///         StoreToken = false,
+    ///         TrustEmail = true,
+    ///         ForceAuthn = true,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -58,7 +57,7 @@ namespace Pulumi.Keycloak.Saml
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:saml/identityProvider:IdentityProvider")]
-    public partial class IdentityProvider : Pulumi.CustomResource
+    public partial class IdentityProvider : global::Pulumi.CustomResource
     {
         /// <summary>
         /// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
@@ -97,7 +96,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<ImmutableArray<string>> AuthnContextDeclRefs { get; private set; } = null!;
 
         /// <summary>
-        /// Does the external IDP support back-channel logout ?.
+        /// Does the external IDP support backchannel logout?. Defaults to `false`.
         /// </summary>
         [Output("backchannelSupported")]
         public Output<bool?> BackchannelSupported { get; private set; } = null!;
@@ -190,13 +189,13 @@ namespace Pulumi.Keycloak.Saml
         public Output<string?> PostBrokerLoginFlowAlias { get; private set; } = null!;
 
         /// <summary>
-        /// Principal Attribute
+        /// The principal attribute.
         /// </summary>
         [Output("principalAttribute")]
         public Output<string?> PrincipalAttribute { get; private set; } = null!;
 
         /// <summary>
-        /// Principal Type
+        /// The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
         /// </summary>
         [Output("principalType")]
         public Output<string?> PrincipalType { get; private set; } = null!;
@@ -244,7 +243,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<bool?> StoreToken { get; private set; } = null!;
 
         /// <summary>
-        /// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+        /// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
         /// </summary>
         [Output("syncMode")]
         public Output<string?> SyncMode { get; private set; } = null!;
@@ -274,7 +273,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<bool?> WantAssertionsSigned { get; private set; } = null!;
 
         /// <summary>
-        /// Sign Key Transformer. Defaults to empty.
+        /// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
         /// </summary>
         [Output("xmlSignKeyInfoKeyNameTransformer")]
         public Output<string?> XmlSignKeyInfoKeyNameTransformer { get; private set; } = null!;
@@ -323,7 +322,7 @@ namespace Pulumi.Keycloak.Saml
         }
     }
 
-    public sealed class IdentityProviderArgs : Pulumi.ResourceArgs
+    public sealed class IdentityProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
@@ -374,7 +373,7 @@ namespace Pulumi.Keycloak.Saml
         }
 
         /// <summary>
-        /// Does the external IDP support back-channel logout ?.
+        /// Does the external IDP support backchannel logout?. Defaults to `false`.
         /// </summary>
         [Input("backchannelSupported")]
         public Input<bool>? BackchannelSupported { get; set; }
@@ -466,13 +465,13 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? PostBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
-        /// Principal Attribute
+        /// The principal attribute.
         /// </summary>
         [Input("principalAttribute")]
         public Input<string>? PrincipalAttribute { get; set; }
 
         /// <summary>
-        /// Principal Type
+        /// The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
         /// </summary>
         [Input("principalType")]
         public Input<string>? PrincipalType { get; set; }
@@ -520,7 +519,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? StoreToken { get; set; }
 
         /// <summary>
-        /// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+        /// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
         /// </summary>
         [Input("syncMode")]
         public Input<string>? SyncMode { get; set; }
@@ -550,7 +549,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? WantAssertionsSigned { get; set; }
 
         /// <summary>
-        /// Sign Key Transformer. Defaults to empty.
+        /// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
         /// </summary>
         [Input("xmlSignKeyInfoKeyNameTransformer")]
         public Input<string>? XmlSignKeyInfoKeyNameTransformer { get; set; }
@@ -558,9 +557,10 @@ namespace Pulumi.Keycloak.Saml
         public IdentityProviderArgs()
         {
         }
+        public static new IdentityProviderArgs Empty => new IdentityProviderArgs();
     }
 
-    public sealed class IdentityProviderState : Pulumi.ResourceArgs
+    public sealed class IdentityProviderState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
@@ -611,7 +611,7 @@ namespace Pulumi.Keycloak.Saml
         }
 
         /// <summary>
-        /// Does the external IDP support back-channel logout ?.
+        /// Does the external IDP support backchannel logout?. Defaults to `false`.
         /// </summary>
         [Input("backchannelSupported")]
         public Input<bool>? BackchannelSupported { get; set; }
@@ -709,13 +709,13 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? PostBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
-        /// Principal Attribute
+        /// The principal attribute.
         /// </summary>
         [Input("principalAttribute")]
         public Input<string>? PrincipalAttribute { get; set; }
 
         /// <summary>
-        /// Principal Type
+        /// The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
         /// </summary>
         [Input("principalType")]
         public Input<string>? PrincipalType { get; set; }
@@ -763,7 +763,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? StoreToken { get; set; }
 
         /// <summary>
-        /// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+        /// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
         /// </summary>
         [Input("syncMode")]
         public Input<string>? SyncMode { get; set; }
@@ -793,7 +793,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? WantAssertionsSigned { get; set; }
 
         /// <summary>
-        /// Sign Key Transformer. Defaults to empty.
+        /// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
         /// </summary>
         [Input("xmlSignKeyInfoKeyNameTransformer")]
         public Input<string>? XmlSignKeyInfoKeyNameTransformer { get; set; }
@@ -801,5 +801,6 @@ namespace Pulumi.Keycloak.Saml
         public IdentityProviderState()
         {
         }
+        public static new IdentityProviderState Empty => new IdentityProviderState();
     }
 }

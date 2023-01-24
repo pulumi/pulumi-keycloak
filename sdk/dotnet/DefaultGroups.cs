@@ -17,33 +17,33 @@ namespace Pulumi.Keycloak
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var @group = new Keycloak.Group("group", new Keycloak.GroupArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///         });
-    ///         var @default = new Keycloak.DefaultGroups("default", new Keycloak.DefaultGroupsArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             GroupIds = 
-    ///             {
-    ///                 @group.Id,
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var @group = new Keycloak.Group("group", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var @default = new Keycloak.DefaultGroups("default", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         GroupIds = new[]
+    ///         {
+    ///             @group.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -55,7 +55,7 @@ namespace Pulumi.Keycloak
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/defaultGroups:DefaultGroups")]
-    public partial class DefaultGroups : Pulumi.CustomResource
+    public partial class DefaultGroups : global::Pulumi.CustomResource
     {
         /// <summary>
         /// A set of group ids that should be default groups on the realm referenced by `realm_id`.
@@ -113,7 +113,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class DefaultGroupsArgs : Pulumi.ResourceArgs
+    public sealed class DefaultGroupsArgs : global::Pulumi.ResourceArgs
     {
         [Input("groupIds", required: true)]
         private InputList<string>? _groupIds;
@@ -136,9 +136,10 @@ namespace Pulumi.Keycloak
         public DefaultGroupsArgs()
         {
         }
+        public static new DefaultGroupsArgs Empty => new DefaultGroupsArgs();
     }
 
-    public sealed class DefaultGroupsState : Pulumi.ResourceArgs
+    public sealed class DefaultGroupsState : global::Pulumi.ResourceArgs
     {
         [Input("groupIds")]
         private InputList<string>? _groupIds;
@@ -161,5 +162,6 @@ namespace Pulumi.Keycloak
         public DefaultGroupsState()
         {
         }
+        public static new DefaultGroupsState Empty => new DefaultGroupsState();
     }
 }

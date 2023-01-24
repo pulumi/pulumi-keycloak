@@ -38,7 +38,7 @@ import (
 //				DisplayName:     pulumi.String("my realm"),
 //				DisplayNameHtml: pulumi.String("<b>my realm</b>"),
 //				Enabled:         pulumi.Bool(true),
-//				Internationalization: &RealmInternationalizationArgs{
+//				Internationalization: &keycloak.RealmInternationalizationArgs{
 //					DefaultLocale: pulumi.String("en"),
 //					SupportedLocales: pulumi.StringArray{
 //						pulumi.String("en"),
@@ -49,8 +49,8 @@ import (
 //				LoginTheme:     pulumi.String("base"),
 //				PasswordPolicy: pulumi.String("upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername"),
 //				Realm:          pulumi.String("my-realm"),
-//				SecurityDefenses: &RealmSecurityDefensesArgs{
-//					BruteForceDetection: &RealmSecurityDefensesBruteForceDetectionArgs{
+//				SecurityDefenses: &keycloak.RealmSecurityDefensesArgs{
+//					BruteForceDetection: &keycloak.RealmSecurityDefensesBruteForceDetectionArgs{
 //						FailureResetTimeSeconds:      pulumi.Int(43200),
 //						MaxFailureWaitSeconds:        pulumi.Int(900),
 //						MaxLoginFailures:             pulumi.Int(30),
@@ -59,7 +59,7 @@ import (
 //						QuickLoginCheckMilliSeconds:  pulumi.Int(1000),
 //						WaitIncrementSeconds:         pulumi.Int(60),
 //					},
-//					Headers: &RealmSecurityDefensesHeadersArgs{
+//					Headers: &keycloak.RealmSecurityDefensesHeadersArgs{
 //						ContentSecurityPolicy:           pulumi.String("frame-src 'self'; frame-ancestors 'self'; object-src 'none';"),
 //						ContentSecurityPolicyReportOnly: pulumi.String(""),
 //						StrictTransportSecurity:         pulumi.String("max-age=31536000; includeSubDomains"),
@@ -69,8 +69,8 @@ import (
 //						XXssProtection:                  pulumi.String("1; mode=block"),
 //					},
 //				},
-//				SmtpServer: &RealmSmtpServerArgs{
-//					Auth: &RealmSmtpServerAuthArgs{
+//				SmtpServer: &keycloak.RealmSmtpServerArgs{
+//					Auth: &keycloak.RealmSmtpServerAuthArgs{
 //						Password: pulumi.String("password"),
 //						Username: pulumi.String("tom"),
 //					},
@@ -78,7 +78,7 @@ import (
 //					Host: pulumi.String("smtp.example.com"),
 //				},
 //				SslRequired: pulumi.String("external"),
-//				WebAuthnPolicy: &RealmWebAuthnPolicyArgs{
+//				WebAuthnPolicy: &keycloak.RealmWebAuthnPolicyArgs{
 //					RelyingPartyEntityName: pulumi.String("Example"),
 //					RelyingPartyId:         pulumi.String("keycloak.example.com"),
 //					SignatureAlgorithms: pulumi.StringArray{
@@ -202,10 +202,12 @@ type Realm struct {
 	// Can be one of following values: 'none, 'external' or 'all'
 	SslRequired pulumi.StringPtrOutput `pulumi:"sslRequired"`
 	// The amount of time a session can be idle before it expires.
-	SsoSessionIdleTimeout           pulumi.StringOutput `pulumi:"ssoSessionIdleTimeout"`
+	SsoSessionIdleTimeout pulumi.StringOutput `pulumi:"ssoSessionIdleTimeout"`
+	// Similar to `ssoSessionIdleTimeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionIdleTimeout`.
 	SsoSessionIdleTimeoutRememberMe pulumi.StringOutput `pulumi:"ssoSessionIdleTimeoutRememberMe"`
 	// The maximum amount of time before a session expires regardless of activity.
-	SsoSessionMaxLifespan           pulumi.StringOutput `pulumi:"ssoSessionMaxLifespan"`
+	SsoSessionMaxLifespan pulumi.StringOutput `pulumi:"ssoSessionMaxLifespan"`
+	// Similar to `ssoSessionMaxLifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionMaxLifespan`.
 	SsoSessionMaxLifespanRememberMe pulumi.StringOutput `pulumi:"ssoSessionMaxLifespanRememberMe"`
 	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
 	UserManagedAccess pulumi.BoolPtrOutput `pulumi:"userManagedAccess"`
@@ -339,10 +341,12 @@ type realmState struct {
 	// Can be one of following values: 'none, 'external' or 'all'
 	SslRequired *string `pulumi:"sslRequired"`
 	// The amount of time a session can be idle before it expires.
-	SsoSessionIdleTimeout           *string `pulumi:"ssoSessionIdleTimeout"`
+	SsoSessionIdleTimeout *string `pulumi:"ssoSessionIdleTimeout"`
+	// Similar to `ssoSessionIdleTimeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionIdleTimeout`.
 	SsoSessionIdleTimeoutRememberMe *string `pulumi:"ssoSessionIdleTimeoutRememberMe"`
 	// The maximum amount of time before a session expires regardless of activity.
-	SsoSessionMaxLifespan           *string `pulumi:"ssoSessionMaxLifespan"`
+	SsoSessionMaxLifespan *string `pulumi:"ssoSessionMaxLifespan"`
+	// Similar to `ssoSessionMaxLifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionMaxLifespan`.
 	SsoSessionMaxLifespanRememberMe *string `pulumi:"ssoSessionMaxLifespanRememberMe"`
 	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
 	UserManagedAccess *bool `pulumi:"userManagedAccess"`
@@ -445,10 +449,12 @@ type RealmState struct {
 	// Can be one of following values: 'none, 'external' or 'all'
 	SslRequired pulumi.StringPtrInput
 	// The amount of time a session can be idle before it expires.
-	SsoSessionIdleTimeout           pulumi.StringPtrInput
+	SsoSessionIdleTimeout pulumi.StringPtrInput
+	// Similar to `ssoSessionIdleTimeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionIdleTimeout`.
 	SsoSessionIdleTimeoutRememberMe pulumi.StringPtrInput
 	// The maximum amount of time before a session expires regardless of activity.
-	SsoSessionMaxLifespan           pulumi.StringPtrInput
+	SsoSessionMaxLifespan pulumi.StringPtrInput
+	// Similar to `ssoSessionMaxLifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionMaxLifespan`.
 	SsoSessionMaxLifespanRememberMe pulumi.StringPtrInput
 	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
 	UserManagedAccess pulumi.BoolPtrInput
@@ -554,10 +560,12 @@ type realmArgs struct {
 	// Can be one of following values: 'none, 'external' or 'all'
 	SslRequired *string `pulumi:"sslRequired"`
 	// The amount of time a session can be idle before it expires.
-	SsoSessionIdleTimeout           *string `pulumi:"ssoSessionIdleTimeout"`
+	SsoSessionIdleTimeout *string `pulumi:"ssoSessionIdleTimeout"`
+	// Similar to `ssoSessionIdleTimeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionIdleTimeout`.
 	SsoSessionIdleTimeoutRememberMe *string `pulumi:"ssoSessionIdleTimeoutRememberMe"`
 	// The maximum amount of time before a session expires regardless of activity.
-	SsoSessionMaxLifespan           *string `pulumi:"ssoSessionMaxLifespan"`
+	SsoSessionMaxLifespan *string `pulumi:"ssoSessionMaxLifespan"`
+	// Similar to `ssoSessionMaxLifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionMaxLifespan`.
 	SsoSessionMaxLifespanRememberMe *string `pulumi:"ssoSessionMaxLifespanRememberMe"`
 	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
 	UserManagedAccess *bool `pulumi:"userManagedAccess"`
@@ -660,10 +668,12 @@ type RealmArgs struct {
 	// Can be one of following values: 'none, 'external' or 'all'
 	SslRequired pulumi.StringPtrInput
 	// The amount of time a session can be idle before it expires.
-	SsoSessionIdleTimeout           pulumi.StringPtrInput
+	SsoSessionIdleTimeout pulumi.StringPtrInput
+	// Similar to `ssoSessionIdleTimeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionIdleTimeout`.
 	SsoSessionIdleTimeoutRememberMe pulumi.StringPtrInput
 	// The maximum amount of time before a session expires regardless of activity.
-	SsoSessionMaxLifespan           pulumi.StringPtrInput
+	SsoSessionMaxLifespan pulumi.StringPtrInput
+	// Similar to `ssoSessionMaxLifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionMaxLifespan`.
 	SsoSessionMaxLifespanRememberMe pulumi.StringPtrInput
 	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
 	UserManagedAccess pulumi.BoolPtrInput
@@ -1000,6 +1010,7 @@ func (o RealmOutput) SsoSessionIdleTimeout() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.SsoSessionIdleTimeout }).(pulumi.StringOutput)
 }
 
+// Similar to `ssoSessionIdleTimeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionIdleTimeout`.
 func (o RealmOutput) SsoSessionIdleTimeoutRememberMe() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.SsoSessionIdleTimeoutRememberMe }).(pulumi.StringOutput)
 }
@@ -1009,6 +1020,7 @@ func (o RealmOutput) SsoSessionMaxLifespan() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.SsoSessionMaxLifespan }).(pulumi.StringOutput)
 }
 
+// Similar to `ssoSessionMaxLifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionMaxLifespan`.
 func (o RealmOutput) SsoSessionMaxLifespanRememberMe() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.SsoSessionMaxLifespanRememberMe }).(pulumi.StringOutput)
 }

@@ -22,42 +22,42 @@ namespace Pulumi.Keycloak
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var oidcIdentityProvider = new Keycloak.Oidc.IdentityProvider("oidcIdentityProvider", new Keycloak.Oidc.IdentityProviderArgs
-    ///         {
-    ///             Realm = realm.Id,
-    ///             Alias = "oidc",
-    ///             AuthorizationUrl = "https://example.com/auth",
-    ///             TokenUrl = "https://example.com/token",
-    ///             ClientId = "example_id",
-    ///             ClientSecret = "example_token",
-    ///             DefaultScopes = "openid random profile",
-    ///         });
-    ///         var oidcAttributeImporterIdentityProviderMapper = new Keycloak.AttributeImporterIdentityProviderMapper("oidcAttributeImporterIdentityProviderMapper", new Keycloak.AttributeImporterIdentityProviderMapperArgs
-    ///         {
-    ///             Realm = realm.Id,
-    ///             ClaimName = "my-email-claim",
-    ///             IdentityProviderAlias = oidcIdentityProvider.Alias,
-    ///             UserAttribute = "email",
-    ///             ExtraConfig = 
-    ///             {
-    ///                 { "syncMode", "INHERIT" },
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var oidcIdentityProvider = new Keycloak.Oidc.IdentityProvider("oidcIdentityProvider", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         Alias = "oidc",
+    ///         AuthorizationUrl = "https://example.com/auth",
+    ///         TokenUrl = "https://example.com/token",
+    ///         ClientId = "example_id",
+    ///         ClientSecret = "example_token",
+    ///         DefaultScopes = "openid random profile",
+    ///     });
+    /// 
+    ///     var oidcAttributeImporterIdentityProviderMapper = new Keycloak.AttributeImporterIdentityProviderMapper("oidcAttributeImporterIdentityProviderMapper", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         ClaimName = "my-email-claim",
+    ///         IdentityProviderAlias = oidcIdentityProvider.Alias,
+    ///         UserAttribute = "email",
+    ///         ExtraConfig = 
+    ///         {
+    ///             { "syncMode", "INHERIT" },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -69,7 +69,7 @@ namespace Pulumi.Keycloak
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/attributeImporterIdentityProviderMapper:AttributeImporterIdentityProviderMapper")]
-    public partial class AttributeImporterIdentityProviderMapper : Pulumi.CustomResource
+    public partial class AttributeImporterIdentityProviderMapper : global::Pulumi.CustomResource
     {
         /// <summary>
         /// For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
@@ -163,7 +163,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class AttributeImporterIdentityProviderMapperArgs : Pulumi.ResourceArgs
+    public sealed class AttributeImporterIdentityProviderMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
@@ -222,9 +222,10 @@ namespace Pulumi.Keycloak
         public AttributeImporterIdentityProviderMapperArgs()
         {
         }
+        public static new AttributeImporterIdentityProviderMapperArgs Empty => new AttributeImporterIdentityProviderMapperArgs();
     }
 
-    public sealed class AttributeImporterIdentityProviderMapperState : Pulumi.ResourceArgs
+    public sealed class AttributeImporterIdentityProviderMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
@@ -283,5 +284,6 @@ namespace Pulumi.Keycloak
         public AttributeImporterIdentityProviderMapperState()
         {
         }
+        public static new AttributeImporterIdentityProviderMapperState Empty => new AttributeImporterIdentityProviderMapperState();
     }
 }

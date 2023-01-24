@@ -225,7 +225,7 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
         username_importer = keycloak.UserTemplateImporterIdentityProviderMapper("usernameImporter",
             realm=realm.id,
             identity_provider_alias=oidc.alias,
-            template=f"{alias}.{claim['email']}",
+            template="${ALIAS}.${CLAIM.email}",
             extra_config={
                 "syncMode": "INHERIT",
             })
@@ -282,7 +282,7 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
         username_importer = keycloak.UserTemplateImporterIdentityProviderMapper("usernameImporter",
             realm=realm.id,
             identity_provider_alias=oidc.alias,
-            template=f"{alias}.{claim['email']}",
+            template="${ALIAS}.${CLAIM.email}",
             extra_config={
                 "syncMode": "INHERIT",
             })

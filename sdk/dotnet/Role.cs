@@ -18,161 +18,165 @@ namespace Pulumi.Keycloak
     /// ### Realm Role)
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var realmRole = new Keycloak.Role("realmRole", new Keycloak.RoleArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Description = "My Realm Role",
-    ///             Attributes = 
-    ///             {
-    ///                 { "key", "value" },
-    ///                 { "multivalue", "value1##value2" },
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var realmRole = new Keycloak.Role("realmRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Description = "My Realm Role",
+    ///         Attributes = 
+    ///         {
+    ///             { "key", "value" },
+    ///             { "multivalue", "value1##value2" },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### Client Role)
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var openidClient = new Keycloak.OpenId.Client("openidClient", new Keycloak.OpenId.ClientArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = "client",
-    ///             Enabled = true,
-    ///             AccessType = "CONFIDENTIAL",
-    ///             ValidRedirectUris = 
-    ///             {
-    ///                 "http://localhost:8080/openid-callback",
-    ///             },
-    ///         });
-    ///         var clientRole = new Keycloak.Role("clientRole", new Keycloak.RoleArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = keycloak_client.Openid_client.Id,
-    ///             Description = "My Client Role",
-    ///             Attributes = 
-    ///             {
-    ///                 { "key", "value" },
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var openidClient = new Keycloak.OpenId.Client("openidClient", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "client",
+    ///         Enabled = true,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ValidRedirectUris = new[]
+    ///         {
+    ///             "http://localhost:8080/openid-callback",
+    ///         },
+    ///     });
+    /// 
+    ///     var clientRole = new Keycloak.Role("clientRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = keycloak_client.Openid_client.Id,
+    ///         Description = "My Client Role",
+    ///         Attributes = 
+    ///         {
+    ///             { "key", "value" },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### Composite Role)
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         // realm roles
-    ///         var createRole = new Keycloak.Role("createRole", new Keycloak.RoleArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Attributes = 
-    ///             {
-    ///                 { "key", "value" },
-    ///             },
-    ///         });
-    ///         var readRole = new Keycloak.Role("readRole", new Keycloak.RoleArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Attributes = 
-    ///             {
-    ///                 { "key", "value" },
-    ///             },
-    ///         });
-    ///         var updateRole = new Keycloak.Role("updateRole", new Keycloak.RoleArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Attributes = 
-    ///             {
-    ///                 { "key", "value" },
-    ///             },
-    ///         });
-    ///         var deleteRole = new Keycloak.Role("deleteRole", new Keycloak.RoleArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Attributes = 
-    ///             {
-    ///                 { "key", "value" },
-    ///             },
-    ///         });
-    ///         // client role
-    ///         var openidClient = new Keycloak.OpenId.Client("openidClient", new Keycloak.OpenId.ClientArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = "client",
-    ///             Enabled = true,
-    ///             AccessType = "CONFIDENTIAL",
-    ///             ValidRedirectUris = 
-    ///             {
-    ///                 "http://localhost:8080/openid-callback",
-    ///             },
-    ///         });
-    ///         var clientRole = new Keycloak.Role("clientRole", new Keycloak.RoleArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = keycloak_client.Openid_client.Id,
-    ///             Description = "My Client Role",
-    ///             Attributes = 
-    ///             {
-    ///                 { "key", "value" },
-    ///             },
-    ///         });
-    ///         var adminRole = new Keycloak.Role("adminRole", new Keycloak.RoleArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             CompositeRoles = 
-    ///             {
-    ///                 createRole.Id,
-    ///                 readRole.Id,
-    ///                 updateRole.Id,
-    ///                 deleteRole.Id,
-    ///                 clientRole.Id,
-    ///             },
-    ///             Attributes = 
-    ///             {
-    ///                 { "key", "value" },
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     // realm roles
+    ///     var createRole = new Keycloak.Role("createRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Attributes = 
+    ///         {
+    ///             { "key", "value" },
+    ///         },
+    ///     });
+    /// 
+    ///     var readRole = new Keycloak.Role("readRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Attributes = 
+    ///         {
+    ///             { "key", "value" },
+    ///         },
+    ///     });
+    /// 
+    ///     var updateRole = new Keycloak.Role("updateRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Attributes = 
+    ///         {
+    ///             { "key", "value" },
+    ///         },
+    ///     });
+    /// 
+    ///     var deleteRole = new Keycloak.Role("deleteRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Attributes = 
+    ///         {
+    ///             { "key", "value" },
+    ///         },
+    ///     });
+    /// 
+    ///     // client role
+    ///     var openidClient = new Keycloak.OpenId.Client("openidClient", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "client",
+    ///         Enabled = true,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ValidRedirectUris = new[]
+    ///         {
+    ///             "http://localhost:8080/openid-callback",
+    ///         },
+    ///     });
+    /// 
+    ///     var clientRole = new Keycloak.Role("clientRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = keycloak_client.Openid_client.Id,
+    ///         Description = "My Client Role",
+    ///         Attributes = 
+    ///         {
+    ///             { "key", "value" },
+    ///         },
+    ///     });
+    /// 
+    ///     var adminRole = new Keycloak.Role("adminRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         CompositeRoles = new[]
+    ///         {
+    ///             createRole.Id,
+    ///             readRole.Id,
+    ///             updateRole.Id,
+    ///             deleteRole.Id,
+    ///             clientRole.Id,
+    ///         },
+    ///         Attributes = 
+    ///         {
+    ///             { "key", "value" },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -184,7 +188,7 @@ namespace Pulumi.Keycloak
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/role:Role")]
-    public partial class Role : Pulumi.CustomResource
+    public partial class Role : global::Pulumi.CustomResource
     {
         /// <summary>
         /// A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
@@ -266,7 +270,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class RoleArgs : Pulumi.ResourceArgs
+    public sealed class RoleArgs : global::Pulumi.ResourceArgs
     {
         [Input("attributes")]
         private InputMap<object>? _attributes;
@@ -319,9 +323,10 @@ namespace Pulumi.Keycloak
         public RoleArgs()
         {
         }
+        public static new RoleArgs Empty => new RoleArgs();
     }
 
-    public sealed class RoleState : Pulumi.ResourceArgs
+    public sealed class RoleState : global::Pulumi.ResourceArgs
     {
         [Input("attributes")]
         private InputMap<object>? _attributes;
@@ -374,5 +379,6 @@ namespace Pulumi.Keycloak
         public RoleState()
         {
         }
+        public static new RoleState Empty => new RoleState();
     }
 }

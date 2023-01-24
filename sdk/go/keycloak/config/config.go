@@ -41,6 +41,12 @@ func GetRealm(ctx *pulumi.Context) string {
 	return config.Get(ctx, "keycloak:realm")
 }
 
+// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
+// returned from the /serverinfo API endpoint.
+func GetRedHatSso(ctx *pulumi.Context) bool {
+	return config.GetBool(ctx, "keycloak:redHatSso")
+}
+
 // Allows x509 calls using an unknown CA certificate (for development purposes)
 func GetRootCaCertificate(ctx *pulumi.Context) string {
 	return config.Get(ctx, "keycloak:rootCaCertificate")

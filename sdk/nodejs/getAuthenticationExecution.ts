@@ -25,11 +25,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getAuthenticationExecution(args: GetAuthenticationExecutionArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthenticationExecutionResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getAuthenticationExecution:getAuthenticationExecution", {
         "parentFlowAlias": args.parentFlowAlias,
         "providerId": args.providerId,
@@ -67,9 +64,28 @@ export interface GetAuthenticationExecutionResult {
     readonly providerId: string;
     readonly realmId: string;
 }
-
+/**
+ * This data source can be used to fetch the ID of an authentication execution within Keycloak.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const browserAuthCookie = keycloak.getAuthenticationExecutionOutput({
+ *     realmId: realm.id,
+ *     parentFlowAlias: "browser",
+ *     providerId: "auth-cookie",
+ * });
+ * ```
+ */
 export function getAuthenticationExecutionOutput(args: GetAuthenticationExecutionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthenticationExecutionResult> {
-    return pulumi.output(args).apply(a => getAuthenticationExecution(a, opts))
+    return pulumi.output(args).apply((a: any) => getAuthenticationExecution(a, opts))
 }
 
 /**

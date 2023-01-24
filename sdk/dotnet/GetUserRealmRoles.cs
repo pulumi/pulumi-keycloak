@@ -19,44 +19,40 @@ namespace Pulumi.Keycloak
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Keycloak = Pulumi.Keycloak;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var masterRealm = Keycloak.GetRealm.Invoke(new()
         ///     {
-        ///         var masterRealm = Output.Create(Keycloak.GetRealm.InvokeAsync(new Keycloak.GetRealmArgs
-        ///         {
-        ///             Realm = "master",
-        ///         }));
-        ///         var defaultAdminUser = masterRealm.Apply(masterRealm =&gt; Output.Create(Keycloak.GetUser.InvokeAsync(new Keycloak.GetUserArgs
-        ///         {
-        ///             RealmId = masterRealm.Id,
-        ///             Username = "keycloak",
-        ///         })));
-        ///         var userRealmRoles = Output.Tuple(masterRealm, defaultAdminUser).Apply(values =&gt;
-        ///         {
-        ///             var masterRealm = values.Item1;
-        ///             var defaultAdminUser = values.Item2;
-        ///             return Output.Create(Keycloak.GetUserRealmRoles.InvokeAsync(new Keycloak.GetUserRealmRolesArgs
-        ///             {
-        ///                 RealmId = masterRealm.Id,
-        ///                 UserId = defaultAdminUser.Id,
-        ///             }));
-        ///         });
-        ///         this.KeycloakUserRoleNames = userRealmRoles.Apply(userRealmRoles =&gt; userRealmRoles.RoleNames);
-        ///     }
+        ///         Realm = "master",
+        ///     });
         /// 
-        ///     [Output("keycloakUserRoleNames")]
-        ///     public Output&lt;string&gt; KeycloakUserRoleNames { get; set; }
-        /// }
+        ///     var defaultAdminUser = Keycloak.GetUser.Invoke(new()
+        ///     {
+        ///         RealmId = masterRealm.Apply(getRealmResult =&gt; getRealmResult.Id),
+        ///         Username = "keycloak",
+        ///     });
+        /// 
+        ///     var userRealmRoles = Keycloak.GetUserRealmRoles.Invoke(new()
+        ///     {
+        ///         RealmId = masterRealm.Apply(getRealmResult =&gt; getRealmResult.Id),
+        ///         UserId = defaultAdminUser.Apply(getUserResult =&gt; getUserResult.Id),
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["keycloakUserRoleNames"] = userRealmRoles.Apply(getUserRealmRolesResult =&gt; getUserRealmRolesResult.RoleNames),
+        ///     };
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetUserRealmRolesResult> InvokeAsync(GetUserRealmRolesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetUserRealmRolesResult>("keycloak:index/getUserRealmRoles:getUserRealmRoles", args ?? new GetUserRealmRolesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetUserRealmRolesResult>("keycloak:index/getUserRealmRoles:getUserRealmRoles", args ?? new GetUserRealmRolesArgs(), options.WithDefaults());
 
         /// <summary>
         /// This data source can be used to fetch the realm roles of a user within Keycloak.
@@ -66,48 +62,44 @@ namespace Pulumi.Keycloak
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Keycloak = Pulumi.Keycloak;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var masterRealm = Keycloak.GetRealm.Invoke(new()
         ///     {
-        ///         var masterRealm = Output.Create(Keycloak.GetRealm.InvokeAsync(new Keycloak.GetRealmArgs
-        ///         {
-        ///             Realm = "master",
-        ///         }));
-        ///         var defaultAdminUser = masterRealm.Apply(masterRealm =&gt; Output.Create(Keycloak.GetUser.InvokeAsync(new Keycloak.GetUserArgs
-        ///         {
-        ///             RealmId = masterRealm.Id,
-        ///             Username = "keycloak",
-        ///         })));
-        ///         var userRealmRoles = Output.Tuple(masterRealm, defaultAdminUser).Apply(values =&gt;
-        ///         {
-        ///             var masterRealm = values.Item1;
-        ///             var defaultAdminUser = values.Item2;
-        ///             return Output.Create(Keycloak.GetUserRealmRoles.InvokeAsync(new Keycloak.GetUserRealmRolesArgs
-        ///             {
-        ///                 RealmId = masterRealm.Id,
-        ///                 UserId = defaultAdminUser.Id,
-        ///             }));
-        ///         });
-        ///         this.KeycloakUserRoleNames = userRealmRoles.Apply(userRealmRoles =&gt; userRealmRoles.RoleNames);
-        ///     }
+        ///         Realm = "master",
+        ///     });
         /// 
-        ///     [Output("keycloakUserRoleNames")]
-        ///     public Output&lt;string&gt; KeycloakUserRoleNames { get; set; }
-        /// }
+        ///     var defaultAdminUser = Keycloak.GetUser.Invoke(new()
+        ///     {
+        ///         RealmId = masterRealm.Apply(getRealmResult =&gt; getRealmResult.Id),
+        ///         Username = "keycloak",
+        ///     });
+        /// 
+        ///     var userRealmRoles = Keycloak.GetUserRealmRoles.Invoke(new()
+        ///     {
+        ///         RealmId = masterRealm.Apply(getRealmResult =&gt; getRealmResult.Id),
+        ///         UserId = defaultAdminUser.Apply(getUserResult =&gt; getUserResult.Id),
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["keycloakUserRoleNames"] = userRealmRoles.Apply(getUserRealmRolesResult =&gt; getUserRealmRolesResult.RoleNames),
+        ///     };
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetUserRealmRolesResult> Invoke(GetUserRealmRolesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetUserRealmRolesResult>("keycloak:index/getUserRealmRoles:getUserRealmRoles", args ?? new GetUserRealmRolesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetUserRealmRolesResult>("keycloak:index/getUserRealmRoles:getUserRealmRoles", args ?? new GetUserRealmRolesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetUserRealmRolesArgs : Pulumi.InvokeArgs
+    public sealed class GetUserRealmRolesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The realm this user belongs to.
@@ -124,9 +116,10 @@ namespace Pulumi.Keycloak
         public GetUserRealmRolesArgs()
         {
         }
+        public static new GetUserRealmRolesArgs Empty => new GetUserRealmRolesArgs();
     }
 
-    public sealed class GetUserRealmRolesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetUserRealmRolesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The realm this user belongs to.
@@ -143,6 +136,7 @@ namespace Pulumi.Keycloak
         public GetUserRealmRolesInvokeArgs()
         {
         }
+        public static new GetUserRealmRolesInvokeArgs Empty => new GetUserRealmRolesInvokeArgs();
     }
 
 

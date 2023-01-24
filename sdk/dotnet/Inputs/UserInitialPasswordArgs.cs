@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class UserInitialPasswordArgs : Pulumi.ResourceArgs
+    public sealed class UserInitialPasswordArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
@@ -18,14 +18,25 @@ namespace Pulumi.Keycloak.Inputs
         [Input("temporary")]
         public Input<bool>? Temporary { get; set; }
 
+        [Input("value", required: true)]
+        private Input<string>? _value;
+
         /// <summary>
         /// The initial password.
         /// </summary>
-        [Input("value", required: true)]
-        public Input<string> Value { get; set; } = null!;
+        public Input<string>? Value
+        {
+            get => _value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _value = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public UserInitialPasswordArgs()
         {
         }
+        public static new UserInitialPasswordArgs Empty => new UserInitialPasswordArgs();
     }
 }

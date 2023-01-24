@@ -238,14 +238,14 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * - Allow to include all roles mappings in the access token
+     * Allow to include all roles mappings in the access token
      * 
      */
     @Import(name="fullScopeAllowed")
     private @Nullable Output<Boolean> fullScopeAllowed;
 
     /**
-     * @return - Allow to include all roles mappings in the access token
+     * @return Allow to include all roles mappings in the access token
      * 
      */
     public Optional<Output<Boolean>> fullScopeAllowed() {
@@ -448,14 +448,14 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The signature algorithm used to sign documents. Should be one of &#34;RSA_SHA1&#34;, &#34;RSA_SHA256&#34;, &#34;RSA_SHA512&#34;, or &#34;DSA_SHA1&#34;.
+     * The signature algorithm used to sign documents. Should be one of &#34;RSA_SHA1&#34;, &#34;RSA_SHA256&#34;, &#34;RSA_SHA256_MGF1, &#34;RSA_SHA512&#34;, &#34;RSA_SHA512_MGF1&#34; or &#34;DSA_SHA1&#34;.
      * 
      */
     @Import(name="signatureAlgorithm")
     private @Nullable Output<String> signatureAlgorithm;
 
     /**
-     * @return The signature algorithm used to sign documents. Should be one of &#34;RSA_SHA1&#34;, &#34;RSA_SHA256&#34;, &#34;RSA_SHA512&#34;, or &#34;DSA_SHA1&#34;.
+     * @return The signature algorithm used to sign documents. Should be one of &#34;RSA_SHA1&#34;, &#34;RSA_SHA256&#34;, &#34;RSA_SHA256_MGF1, &#34;RSA_SHA512&#34;, &#34;RSA_SHA512_MGF1&#34; or &#34;DSA_SHA1&#34;.
      * 
      */
     public Optional<Output<String>> signatureAlgorithm() {
@@ -883,7 +883,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param fullScopeAllowed - Allow to include all roles mappings in the access token
+         * @param fullScopeAllowed Allow to include all roles mappings in the access token
          * 
          * @return builder
          * 
@@ -894,7 +894,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param fullScopeAllowed - Allow to include all roles mappings in the access token
+         * @param fullScopeAllowed Allow to include all roles mappings in the access token
          * 
          * @return builder
          * 
@@ -1177,7 +1177,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param signatureAlgorithm The signature algorithm used to sign documents. Should be one of &#34;RSA_SHA1&#34;, &#34;RSA_SHA256&#34;, &#34;RSA_SHA512&#34;, or &#34;DSA_SHA1&#34;.
+         * @param signatureAlgorithm The signature algorithm used to sign documents. Should be one of &#34;RSA_SHA1&#34;, &#34;RSA_SHA256&#34;, &#34;RSA_SHA256_MGF1, &#34;RSA_SHA512&#34;, &#34;RSA_SHA512_MGF1&#34; or &#34;DSA_SHA1&#34;.
          * 
          * @return builder
          * 
@@ -1188,7 +1188,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param signatureAlgorithm The signature algorithm used to sign documents. Should be one of &#34;RSA_SHA1&#34;, &#34;RSA_SHA256&#34;, &#34;RSA_SHA512&#34;, or &#34;DSA_SHA1&#34;.
+         * @param signatureAlgorithm The signature algorithm used to sign documents. Should be one of &#34;RSA_SHA1&#34;, &#34;RSA_SHA256&#34;, &#34;RSA_SHA256_MGF1, &#34;RSA_SHA512&#34;, &#34;RSA_SHA512_MGF1&#34; or &#34;DSA_SHA1&#34;.
          * 
          * @return builder
          * 

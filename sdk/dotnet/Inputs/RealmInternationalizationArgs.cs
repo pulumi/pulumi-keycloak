@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class RealmInternationalizationArgs : Pulumi.ResourceArgs
+    public sealed class RealmInternationalizationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The locale to use by default. This locale code must be present within the `supported_locales` list.
@@ -33,5 +33,6 @@ namespace Pulumi.Keycloak.Inputs
         public RealmInternationalizationArgs()
         {
         }
+        public static new RealmInternationalizationArgs Empty => new RealmInternationalizationArgs();
     }
 }
