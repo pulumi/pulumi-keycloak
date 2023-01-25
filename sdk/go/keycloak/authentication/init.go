@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
