@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class UsersPermissionsManageScopeArgs : Pulumi.ResourceArgs
+    public sealed class UsersPermissionsManageScopeArgs : global::Pulumi.ResourceArgs
     {
         [Input("decisionStrategy")]
         public Input<string>? DecisionStrategy { get; set; }
@@ -29,5 +29,6 @@ namespace Pulumi.Keycloak.Inputs
         public UsersPermissionsManageScopeArgs()
         {
         }
+        public static new UsersPermissionsManageScopeArgs Empty => new UsersPermissionsManageScopeArgs();
     }
 }

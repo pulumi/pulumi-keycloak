@@ -28,7 +28,7 @@ public final class SamlFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.keycloak.saml.SamlFunctions;
-     * import com.pulumi.keycloak.openid.inputs.GetClientArgs;
+     * import com.pulumi.keycloak.saml.inputs.GetClientArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRoleArgs;
      * import java.util.List;
@@ -74,7 +74,7 @@ public final class SamlFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.keycloak.saml.SamlFunctions;
-     * import com.pulumi.keycloak.openid.inputs.GetClientArgs;
+     * import com.pulumi.keycloak.saml.inputs.GetClientArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRoleArgs;
      * import java.util.List;
@@ -120,7 +120,7 @@ public final class SamlFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.keycloak.saml.SamlFunctions;
-     * import com.pulumi.keycloak.openid.inputs.GetClientArgs;
+     * import com.pulumi.keycloak.saml.inputs.GetClientArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRoleArgs;
      * import java.util.List;
@@ -166,7 +166,7 @@ public final class SamlFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.keycloak.saml.SamlFunctions;
-     * import com.pulumi.keycloak.openid.inputs.GetClientArgs;
+     * import com.pulumi.keycloak.saml.inputs.GetClientArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRoleArgs;
      * import java.util.List;

@@ -21,7 +21,7 @@ namespace Pulumi.Keycloak
         /// - If no key matches the filter criteria, then an error will be returned.
         /// </summary>
         public static Task<GetRealmKeysResult> InvokeAsync(GetRealmKeysArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetRealmKeysResult>("keycloak:index/getRealmKeys:getRealmKeys", args ?? new GetRealmKeysArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetRealmKeysResult>("keycloak:index/getRealmKeys:getRealmKeys", args ?? new GetRealmKeysArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
@@ -33,11 +33,11 @@ namespace Pulumi.Keycloak
         /// - If no key matches the filter criteria, then an error will be returned.
         /// </summary>
         public static Output<GetRealmKeysResult> Invoke(GetRealmKeysInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetRealmKeysResult>("keycloak:index/getRealmKeys:getRealmKeys", args ?? new GetRealmKeysInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetRealmKeysResult>("keycloak:index/getRealmKeys:getRealmKeys", args ?? new GetRealmKeysInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetRealmKeysArgs : Pulumi.InvokeArgs
+    public sealed class GetRealmKeysArgs : global::Pulumi.InvokeArgs
     {
         [Input("algorithms")]
         private List<string>? _algorithms;
@@ -72,9 +72,10 @@ namespace Pulumi.Keycloak
         public GetRealmKeysArgs()
         {
         }
+        public static new GetRealmKeysArgs Empty => new GetRealmKeysArgs();
     }
 
-    public sealed class GetRealmKeysInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetRealmKeysInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("algorithms")]
         private InputList<string>? _algorithms;
@@ -109,6 +110,7 @@ namespace Pulumi.Keycloak
         public GetRealmKeysInvokeArgs()
         {
         }
+        public static new GetRealmKeysInvokeArgs Empty => new GetRealmKeysInvokeArgs();
     }
 
 

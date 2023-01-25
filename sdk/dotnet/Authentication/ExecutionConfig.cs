@@ -16,42 +16,43 @@ namespace Pulumi.Keycloak.Authentication
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var flow = new Keycloak.Authentication.Flow("flow", new Keycloak.Authentication.FlowArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Alias = "my-flow-alias",
-    ///         });
-    ///         var execution = new Keycloak.Authentication.Execution("execution", new Keycloak.Authentication.ExecutionArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ParentFlowAlias = flow.Alias,
-    ///             Authenticator = "identity-provider-redirector",
-    ///         });
-    ///         var config = new Keycloak.Authentication.ExecutionConfig("config", new Keycloak.Authentication.ExecutionConfigArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ExecutionId = execution.Id,
-    ///             Alias = "my-config-alias",
-    ///             Config = 
-    ///             {
-    ///                 { "defaultProvider", "my-config-default-idp" },
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var flow = new Keycloak.Authentication.Flow("flow", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Alias = "my-flow-alias",
+    ///     });
+    /// 
+    ///     var execution = new Keycloak.Authentication.Execution("execution", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ParentFlowAlias = flow.Alias,
+    ///         Authenticator = "identity-provider-redirector",
+    ///     });
+    /// 
+    ///     var config = new Keycloak.Authentication.ExecutionConfig("config", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ExecutionId = execution.Id,
+    ///         Alias = "my-config-alias",
+    ///         Config = 
+    ///         {
+    ///             { "defaultProvider", "my-config-default-idp" },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -63,7 +64,7 @@ namespace Pulumi.Keycloak.Authentication
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:authentication/executionConfig:ExecutionConfig")]
-    public partial class ExecutionConfig : Pulumi.CustomResource
+    public partial class ExecutionConfig : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the configuration.
@@ -133,7 +134,7 @@ namespace Pulumi.Keycloak.Authentication
         }
     }
 
-    public sealed class ExecutionConfigArgs : Pulumi.ResourceArgs
+    public sealed class ExecutionConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the configuration.
@@ -168,9 +169,10 @@ namespace Pulumi.Keycloak.Authentication
         public ExecutionConfigArgs()
         {
         }
+        public static new ExecutionConfigArgs Empty => new ExecutionConfigArgs();
     }
 
-    public sealed class ExecutionConfigState : Pulumi.ResourceArgs
+    public sealed class ExecutionConfigState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the configuration.
@@ -205,5 +207,6 @@ namespace Pulumi.Keycloak.Authentication
         public ExecutionConfigState()
         {
         }
+        public static new ExecutionConfigState Empty => new ExecutionConfigState();
     }
 }

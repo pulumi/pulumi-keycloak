@@ -10,13 +10,13 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class RealmUserProfileGroupArgs : Pulumi.ResourceArgs
+    public sealed class RealmUserProfileGroupArgs : global::Pulumi.ResourceArgs
     {
         [Input("annotations")]
         private InputMap<string>? _annotations;
 
         /// <summary>
-        /// A map of annotations for the group.
+        /// A map of annotations for the attribute. Values can be a String or a json object.
         /// </summary>
         public InputMap<string> Annotations
         {
@@ -37,7 +37,7 @@ namespace Pulumi.Keycloak.Inputs
         public Input<string>? DisplayHeader { get; set; }
 
         /// <summary>
-        /// The name of the group.
+        /// The name of the attribute.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -45,5 +45,6 @@ namespace Pulumi.Keycloak.Inputs
         public RealmUserProfileGroupArgs()
         {
         }
+        public static new RealmUserProfileGroupArgs Empty => new RealmUserProfileGroupArgs();
     }
 }

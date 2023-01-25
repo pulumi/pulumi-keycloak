@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class RealmSecurityDefensesHeadersArgs : Pulumi.ResourceArgs
+    public sealed class RealmSecurityDefensesHeadersArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
@@ -57,5 +57,6 @@ namespace Pulumi.Keycloak.Inputs
         public RealmSecurityDefensesHeadersArgs()
         {
         }
+        public static new RealmSecurityDefensesHeadersArgs Empty => new RealmSecurityDefensesHeadersArgs();
     }
 }

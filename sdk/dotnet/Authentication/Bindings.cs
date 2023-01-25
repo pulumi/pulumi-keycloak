@@ -13,57 +13,59 @@ namespace Pulumi.Keycloak.Authentication
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var flow = new Keycloak.Authentication.Flow("flow", new Keycloak.Authentication.FlowArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Alias = "my-flow-alias",
-    ///         });
-    ///         // first execution
-    ///         var executionOne = new Keycloak.Authentication.Execution("executionOne", new Keycloak.Authentication.ExecutionArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ParentFlowAlias = flow.Alias,
-    ///             Authenticator = "auth-cookie",
-    ///             Requirement = "ALTERNATIVE",
-    ///         });
-    ///         // second execution
-    ///         var executionTwo = new Keycloak.Authentication.Execution("executionTwo", new Keycloak.Authentication.ExecutionArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ParentFlowAlias = flow.Alias,
-    ///             Authenticator = "identity-provider-redirector",
-    ///             Requirement = "ALTERNATIVE",
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 executionOne,
-    ///             },
-    ///         });
-    ///         var browserAuthenticationBinding = new Keycloak.Authentication.Bindings("browserAuthenticationBinding", new Keycloak.Authentication.BindingsArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             BrowserFlow = flow.Alias,
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var flow = new Keycloak.Authentication.Flow("flow", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Alias = "my-flow-alias",
+    ///     });
+    /// 
+    ///     // first execution
+    ///     var executionOne = new Keycloak.Authentication.Execution("executionOne", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ParentFlowAlias = flow.Alias,
+    ///         Authenticator = "auth-cookie",
+    ///         Requirement = "ALTERNATIVE",
+    ///     });
+    /// 
+    ///     // second execution
+    ///     var executionTwo = new Keycloak.Authentication.Execution("executionTwo", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ParentFlowAlias = flow.Alias,
+    ///         Authenticator = "identity-provider-redirector",
+    ///         Requirement = "ALTERNATIVE",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             executionOne,
+    ///         },
+    ///     });
+    /// 
+    ///     var browserAuthenticationBinding = new Keycloak.Authentication.Bindings("browserAuthenticationBinding", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         BrowserFlow = flow.Alias,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:authentication/bindings:Bindings")]
-    public partial class Bindings : Pulumi.CustomResource
+    public partial class Bindings : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The alias of the flow to assign to the realm BrowserFlow.
@@ -151,7 +153,7 @@ namespace Pulumi.Keycloak.Authentication
         }
     }
 
-    public sealed class BindingsArgs : Pulumi.ResourceArgs
+    public sealed class BindingsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The alias of the flow to assign to the realm BrowserFlow.
@@ -198,9 +200,10 @@ namespace Pulumi.Keycloak.Authentication
         public BindingsArgs()
         {
         }
+        public static new BindingsArgs Empty => new BindingsArgs();
     }
 
-    public sealed class BindingsState : Pulumi.ResourceArgs
+    public sealed class BindingsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The alias of the flow to assign to the realm BrowserFlow.
@@ -247,5 +250,6 @@ namespace Pulumi.Keycloak.Authentication
         public BindingsState()
         {
         }
+        public static new BindingsState Empty => new BindingsState();
     }
 }

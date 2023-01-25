@@ -18,84 +18,82 @@ namespace Pulumi.Keycloak
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         AccessCodeLifespan = "1h",
+    ///         Attributes = 
     ///         {
-    ///             AccessCodeLifespan = "1h",
-    ///             Attributes = 
+    ///             { "mycustomAttribute", "myCustomValue" },
+    ///         },
+    ///         DisplayName = "my realm",
+    ///         DisplayNameHtml = "&lt;b&gt;my realm&lt;/b&gt;",
+    ///         Enabled = true,
+    ///         Internationalization = new Keycloak.Inputs.RealmInternationalizationArgs
+    ///         {
+    ///             DefaultLocale = "en",
+    ///             SupportedLocales = new[]
     ///             {
-    ///                 { "mycustomAttribute", "myCustomValue" },
+    ///                 "en",
+    ///                 "de",
+    ///                 "es",
     ///             },
-    ///             DisplayName = "my realm",
-    ///             DisplayNameHtml = "&lt;b&gt;my realm&lt;/b&gt;",
-    ///             Enabled = true,
-    ///             Internationalization = new Keycloak.Inputs.RealmInternationalizationArgs
+    ///         },
+    ///         LoginTheme = "base",
+    ///         PasswordPolicy = "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername",
+    ///         RealmName = "my-realm",
+    ///         SecurityDefenses = new Keycloak.Inputs.RealmSecurityDefensesArgs
+    ///         {
+    ///             BruteForceDetection = new Keycloak.Inputs.RealmSecurityDefensesBruteForceDetectionArgs
     ///             {
-    ///                 DefaultLocale = "en",
-    ///                 SupportedLocales = 
-    ///                 {
-    ///                     "en",
-    ///                     "de",
-    ///                     "es",
-    ///                 },
+    ///                 FailureResetTimeSeconds = 43200,
+    ///                 MaxFailureWaitSeconds = 900,
+    ///                 MaxLoginFailures = 30,
+    ///                 MinimumQuickLoginWaitSeconds = 60,
+    ///                 PermanentLockout = false,
+    ///                 QuickLoginCheckMilliSeconds = 1000,
+    ///                 WaitIncrementSeconds = 60,
     ///             },
-    ///             LoginTheme = "base",
-    ///             PasswordPolicy = "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername",
-    ///             RealmName = "my-realm",
-    ///             SecurityDefenses = new Keycloak.Inputs.RealmSecurityDefensesArgs
+    ///             Headers = new Keycloak.Inputs.RealmSecurityDefensesHeadersArgs
     ///             {
-    ///                 BruteForceDetection = new Keycloak.Inputs.RealmSecurityDefensesBruteForceDetectionArgs
-    ///                 {
-    ///                     FailureResetTimeSeconds = 43200,
-    ///                     MaxFailureWaitSeconds = 900,
-    ///                     MaxLoginFailures = 30,
-    ///                     MinimumQuickLoginWaitSeconds = 60,
-    ///                     PermanentLockout = false,
-    ///                     QuickLoginCheckMilliSeconds = 1000,
-    ///                     WaitIncrementSeconds = 60,
-    ///                 },
-    ///                 Headers = new Keycloak.Inputs.RealmSecurityDefensesHeadersArgs
-    ///                 {
-    ///                     ContentSecurityPolicy = "frame-src 'self'; frame-ancestors 'self'; object-src 'none';",
-    ///                     ContentSecurityPolicyReportOnly = "",
-    ///                     StrictTransportSecurity = "max-age=31536000; includeSubDomains",
-    ///                     XContentTypeOptions = "nosniff",
-    ///                     XFrameOptions = "DENY",
-    ///                     XRobotsTag = "none",
-    ///                     XXssProtection = "1; mode=block",
-    ///                 },
+    ///                 ContentSecurityPolicy = "frame-src 'self'; frame-ancestors 'self'; object-src 'none';",
+    ///                 ContentSecurityPolicyReportOnly = "",
+    ///                 StrictTransportSecurity = "max-age=31536000; includeSubDomains",
+    ///                 XContentTypeOptions = "nosniff",
+    ///                 XFrameOptions = "DENY",
+    ///                 XRobotsTag = "none",
+    ///                 XXssProtection = "1; mode=block",
     ///             },
-    ///             SmtpServer = new Keycloak.Inputs.RealmSmtpServerArgs
+    ///         },
+    ///         SmtpServer = new Keycloak.Inputs.RealmSmtpServerArgs
+    ///         {
+    ///             Auth = new Keycloak.Inputs.RealmSmtpServerAuthArgs
     ///             {
-    ///                 Auth = new Keycloak.Inputs.RealmSmtpServerAuthArgs
-    ///                 {
-    ///                     Password = "password",
-    ///                     Username = "tom",
-    ///                 },
-    ///                 From = "example@example.com",
-    ///                 Host = "smtp.example.com",
+    ///                 Password = "password",
+    ///                 Username = "tom",
     ///             },
-    ///             SslRequired = "external",
-    ///             WebAuthnPolicy = new Keycloak.Inputs.RealmWebAuthnPolicyArgs
+    ///             From = "example@example.com",
+    ///             Host = "smtp.example.com",
+    ///         },
+    ///         SslRequired = "external",
+    ///         WebAuthnPolicy = new Keycloak.Inputs.RealmWebAuthnPolicyArgs
+    ///         {
+    ///             RelyingPartyEntityName = "Example",
+    ///             RelyingPartyId = "keycloak.example.com",
+    ///             SignatureAlgorithms = new[]
     ///             {
-    ///                 RelyingPartyEntityName = "Example",
-    ///                 RelyingPartyId = "keycloak.example.com",
-    ///                 SignatureAlgorithms = 
-    ///                 {
-    ///                     "ES256",
-    ///                     "RS256",
-    ///                 },
+    ///                 "ES256",
+    ///                 "RS256",
     ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ## Default Client Scopes
     /// 
@@ -111,7 +109,7 @@ namespace Pulumi.Keycloak
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/realm:Realm")]
-    public partial class Realm : Pulumi.CustomResource
+    public partial class Realm : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The maximum amount of time a client has to finish the authorization code flow.
@@ -386,6 +384,9 @@ namespace Pulumi.Keycloak
         [Output("ssoSessionIdleTimeout")]
         public Output<string> SsoSessionIdleTimeout { get; private set; } = null!;
 
+        /// <summary>
+        /// Similar to `sso_session_idle_timeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
+        /// </summary>
         [Output("ssoSessionIdleTimeoutRememberMe")]
         public Output<string> SsoSessionIdleTimeoutRememberMe { get; private set; } = null!;
 
@@ -395,6 +396,9 @@ namespace Pulumi.Keycloak
         [Output("ssoSessionMaxLifespan")]
         public Output<string> SsoSessionMaxLifespan { get; private set; } = null!;
 
+        /// <summary>
+        /// Similar to `sso_session_max_lifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
+        /// </summary>
         [Output("ssoSessionMaxLifespanRememberMe")]
         public Output<string> SsoSessionMaxLifespanRememberMe { get; private set; } = null!;
 
@@ -466,7 +470,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class RealmArgs : Pulumi.ResourceArgs
+    public sealed class RealmArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The maximum amount of time a client has to finish the authorization code flow.
@@ -754,6 +758,9 @@ namespace Pulumi.Keycloak
         [Input("ssoSessionIdleTimeout")]
         public Input<string>? SsoSessionIdleTimeout { get; set; }
 
+        /// <summary>
+        /// Similar to `sso_session_idle_timeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
+        /// </summary>
         [Input("ssoSessionIdleTimeoutRememberMe")]
         public Input<string>? SsoSessionIdleTimeoutRememberMe { get; set; }
 
@@ -763,6 +770,9 @@ namespace Pulumi.Keycloak
         [Input("ssoSessionMaxLifespan")]
         public Input<string>? SsoSessionMaxLifespan { get; set; }
 
+        /// <summary>
+        /// Similar to `sso_session_max_lifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
+        /// </summary>
         [Input("ssoSessionMaxLifespanRememberMe")]
         public Input<string>? SsoSessionMaxLifespanRememberMe { get; set; }
 
@@ -793,9 +803,10 @@ namespace Pulumi.Keycloak
         public RealmArgs()
         {
         }
+        public static new RealmArgs Empty => new RealmArgs();
     }
 
-    public sealed class RealmState : Pulumi.ResourceArgs
+    public sealed class RealmState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The maximum amount of time a client has to finish the authorization code flow.
@@ -1086,6 +1097,9 @@ namespace Pulumi.Keycloak
         [Input("ssoSessionIdleTimeout")]
         public Input<string>? SsoSessionIdleTimeout { get; set; }
 
+        /// <summary>
+        /// Similar to `sso_session_idle_timeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
+        /// </summary>
         [Input("ssoSessionIdleTimeoutRememberMe")]
         public Input<string>? SsoSessionIdleTimeoutRememberMe { get; set; }
 
@@ -1095,6 +1109,9 @@ namespace Pulumi.Keycloak
         [Input("ssoSessionMaxLifespan")]
         public Input<string>? SsoSessionMaxLifespan { get; set; }
 
+        /// <summary>
+        /// Similar to `sso_session_max_lifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
+        /// </summary>
         [Input("ssoSessionMaxLifespanRememberMe")]
         public Input<string>? SsoSessionMaxLifespanRememberMe { get; set; }
 
@@ -1125,5 +1142,6 @@ namespace Pulumi.Keycloak
         public RealmState()
         {
         }
+        public static new RealmState Empty => new RealmState();
     }
 }

@@ -17,14 +17,14 @@ public final class RealmUserProfileAttributeValidatorArgs extends com.pulumi.res
     public static final RealmUserProfileAttributeValidatorArgs Empty = new RealmUserProfileAttributeValidatorArgs();
 
     /**
-     * A map defining the configuration of the validator.
+     * A map defining the configuration of the validator. Values can be a String or a json object.
      * 
      */
     @Import(name="config")
     private @Nullable Output<Map<String,String>> config;
 
     /**
-     * @return A map defining the configuration of the validator.
+     * @return A map defining the configuration of the validator. Values can be a String or a json object.
      * 
      */
     public Optional<Output<Map<String,String>>> config() {
@@ -32,14 +32,14 @@ public final class RealmUserProfileAttributeValidatorArgs extends com.pulumi.res
     }
 
     /**
-     * The name of the group.
+     * The name of the attribute.
      * 
      */
     @Import(name="name", required=true)
     private Output<String> name;
 
     /**
-     * @return The name of the group.
+     * @return The name of the attribute.
      * 
      */
     public Output<String> name() {
@@ -72,7 +72,7 @@ public final class RealmUserProfileAttributeValidatorArgs extends com.pulumi.res
         }
 
         /**
-         * @param config A map defining the configuration of the validator.
+         * @param config A map defining the configuration of the validator. Values can be a String or a json object.
          * 
          * @return builder
          * 
@@ -83,7 +83,7 @@ public final class RealmUserProfileAttributeValidatorArgs extends com.pulumi.res
         }
 
         /**
-         * @param config A map defining the configuration of the validator.
+         * @param config A map defining the configuration of the validator. Values can be a String or a json object.
          * 
          * @return builder
          * 
@@ -93,7 +93,7 @@ public final class RealmUserProfileAttributeValidatorArgs extends com.pulumi.res
         }
 
         /**
-         * @param name The name of the group.
+         * @param name The name of the attribute.
          * 
          * @return builder
          * 
@@ -104,7 +104,7 @@ public final class RealmUserProfileAttributeValidatorArgs extends com.pulumi.res
         }
 
         /**
-         * @param name The name of the group.
+         * @param name The name of the attribute.
          * 
          * @return builder
          * 

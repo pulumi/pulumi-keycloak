@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class RealmUserProfileAttributePermissionsGetArgs : Pulumi.ResourceArgs
+    public sealed class RealmUserProfileAttributePermissionsGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("edits", required: true)]
         private InputList<string>? _edits;
@@ -39,5 +39,6 @@ namespace Pulumi.Keycloak.Inputs
         public RealmUserProfileAttributePermissionsGetArgs()
         {
         }
+        public static new RealmUserProfileAttributePermissionsGetArgs Empty => new RealmUserProfileAttributePermissionsGetArgs();
     }
 }

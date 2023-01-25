@@ -21,67 +21,67 @@ namespace Pulumi.Keycloak.OpenId
     /// ### Client)
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var openidClient = new Keycloak.OpenId.Client("openidClient", new Keycloak.OpenId.ClientArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = "client",
-    ///             Enabled = true,
-    ///             AccessType = "CONFIDENTIAL",
-    ///             ValidRedirectUris = 
-    ///             {
-    ///                 "http://localhost:8080/openid-callback",
-    ///             },
-    ///         });
-    ///         var groupMembershipMapper = new Keycloak.OpenId.GroupMembershipProtocolMapper("groupMembershipMapper", new Keycloak.OpenId.GroupMembershipProtocolMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = openidClient.Id,
-    ///             ClaimName = "groups",
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var openidClient = new Keycloak.OpenId.Client("openidClient", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "client",
+    ///         Enabled = true,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ValidRedirectUris = new[]
+    ///         {
+    ///             "http://localhost:8080/openid-callback",
+    ///         },
+    ///     });
+    /// 
+    ///     var groupMembershipMapper = new Keycloak.OpenId.GroupMembershipProtocolMapper("groupMembershipMapper", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = openidClient.Id,
+    ///         ClaimName = "groups",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### Client Scope)
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new Keycloak.OpenId.ClientScopeArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///         });
-    ///         var groupMembershipMapper = new Keycloak.OpenId.GroupMembershipProtocolMapper("groupMembershipMapper", new Keycloak.OpenId.GroupMembershipProtocolMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientScopeId = clientScope.Id,
-    ///             ClaimName = "groups",
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var groupMembershipMapper = new Keycloak.OpenId.GroupMembershipProtocolMapper("groupMembershipMapper", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientScopeId = clientScope.Id,
+    ///         ClaimName = "groups",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -97,7 +97,7 @@ namespace Pulumi.Keycloak.OpenId
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:openid/groupMembershipProtocolMapper:GroupMembershipProtocolMapper")]
-    public partial class GroupMembershipProtocolMapper : Pulumi.CustomResource
+    public partial class GroupMembershipProtocolMapper : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
@@ -197,7 +197,7 @@ namespace Pulumi.Keycloak.OpenId
         }
     }
 
-    public sealed class GroupMembershipProtocolMapperArgs : Pulumi.ResourceArgs
+    public sealed class GroupMembershipProtocolMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
@@ -256,9 +256,10 @@ namespace Pulumi.Keycloak.OpenId
         public GroupMembershipProtocolMapperArgs()
         {
         }
+        public static new GroupMembershipProtocolMapperArgs Empty => new GroupMembershipProtocolMapperArgs();
     }
 
-    public sealed class GroupMembershipProtocolMapperState : Pulumi.ResourceArgs
+    public sealed class GroupMembershipProtocolMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
@@ -317,5 +318,6 @@ namespace Pulumi.Keycloak.OpenId
         public GroupMembershipProtocolMapperState()
         {
         }
+        public static new GroupMembershipProtocolMapperState Empty => new GroupMembershipProtocolMapperState();
     }
 }

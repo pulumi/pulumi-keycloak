@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class RealmSmtpServerGetArgs : Pulumi.ResourceArgs
+    public sealed class RealmSmtpServerGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Enables authentication to the SMTP server.  This block supports the following arguments:
@@ -75,5 +75,6 @@ namespace Pulumi.Keycloak.Inputs
         public RealmSmtpServerGetArgs()
         {
         }
+        public static new RealmSmtpServerGetArgs Empty => new RealmSmtpServerGetArgs();
     }
 }

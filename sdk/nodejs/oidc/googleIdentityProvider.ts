@@ -215,7 +215,7 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
             resourceInputs["addReadTokenRoleOnCreate"] = args ? args.addReadTokenRoleOnCreate : undefined;
             resourceInputs["authenticateByDefault"] = args ? args.authenticateByDefault : undefined;
             resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["clientSecret"] = args ? args.clientSecret : undefined;
+            resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
             resourceInputs["defaultScopes"] = args ? args.defaultScopes : undefined;
             resourceInputs["disableUserInfo"] = args ? args.disableUserInfo : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
@@ -238,6 +238,8 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
             resourceInputs["internalId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["clientSecret"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(GoogleIdentityProvider.__pulumiType, name, resourceInputs, opts);
     }
 }

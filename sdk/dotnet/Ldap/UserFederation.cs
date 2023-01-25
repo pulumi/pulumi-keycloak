@@ -20,46 +20,45 @@ namespace Pulumi.Keycloak.Ldap
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new Keycloak.Ldap.UserFederationArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Enabled = true,
-    ///             UsernameLdapAttribute = "cn",
-    ///             RdnLdapAttribute = "cn",
-    ///             UuidLdapAttribute = "entryDN",
-    ///             UserObjectClasses = 
-    ///             {
-    ///                 "simpleSecurityObject",
-    ///                 "organizationalRole",
-    ///             },
-    ///             ConnectionUrl = "ldap://openldap",
-    ///             UsersDn = "dc=example,dc=org",
-    ///             BindDn = "cn=admin,dc=example,dc=org",
-    ///             BindCredential = "admin",
-    ///             ConnectionTimeout = "5s",
-    ///             ReadTimeout = "10s",
-    ///             Kerberos = new Keycloak.Ldap.Inputs.UserFederationKerberosArgs
-    ///             {
-    ///                 KerberosRealm = "FOO.LOCAL",
-    ///                 ServerPrincipal = "HTTP/host.foo.com@FOO.LOCAL",
-    ///                 KeyTab = "/etc/host.keytab",
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Enabled = true,
+    ///         UsernameLdapAttribute = "cn",
+    ///         RdnLdapAttribute = "cn",
+    ///         UuidLdapAttribute = "entryDN",
+    ///         UserObjectClasses = new[]
+    ///         {
+    ///             "simpleSecurityObject",
+    ///             "organizationalRole",
+    ///         },
+    ///         ConnectionUrl = "ldap://openldap",
+    ///         UsersDn = "dc=example,dc=org",
+    ///         BindDn = "cn=admin,dc=example,dc=org",
+    ///         BindCredential = "admin",
+    ///         ConnectionTimeout = "5s",
+    ///         ReadTimeout = "10s",
+    ///         Kerberos = new Keycloak.Ldap.Inputs.UserFederationKerberosArgs
+    ///         {
+    ///             KerberosRealm = "FOO.LOCAL",
+    ///             ServerPrincipal = "HTTP/host.foo.com@FOO.LOCAL",
+    ///             KeyTab = "/etc/host.keytab",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -71,7 +70,7 @@ namespace Pulumi.Keycloak.Ldap
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:ldap/userFederation:UserFederation")]
-    public partial class UserFederation : Pulumi.CustomResource
+    public partial class UserFederation : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The number of users to sync within a single transaction. Defaults to `1000`.
@@ -120,6 +119,12 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Output("customUserSearchFilter")]
         public Output<string?> CustomUserSearchFilter { get; private set; } = null!;
+
+        /// <summary>
+        /// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+        /// </summary>
+        [Output("deleteDefaultMappers")]
+        public Output<bool?> DeleteDefaultMappers { get; private set; } = null!;
 
         /// <summary>
         /// Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
@@ -189,8 +194,6 @@ namespace Pulumi.Keycloak.Ldap
 
         /// <summary>
         /// Can be one of `ONE_LEVEL` or `SUBTREE`:
-        /// - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
-        /// - `SUBTREE`: Search entire LDAP subtree.
         /// </summary>
         [Output("searchScope")]
         public Output<string?> SearchScope { get; private set; } = null!;
@@ -284,6 +287,10 @@ namespace Pulumi.Keycloak.Ldap
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "bindCredential",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -305,7 +312,7 @@ namespace Pulumi.Keycloak.Ldap
         }
     }
 
-    public sealed class UserFederationArgs : Pulumi.ResourceArgs
+    public sealed class UserFederationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The number of users to sync within a single transaction. Defaults to `1000`.
@@ -313,11 +320,21 @@ namespace Pulumi.Keycloak.Ldap
         [Input("batchSizeForSync")]
         public Input<int>? BatchSizeForSync { get; set; }
 
+        [Input("bindCredential")]
+        private Input<string>? _bindCredential;
+
         /// <summary>
         /// Password of LDAP admin. This attribute must be set if `bind_dn` is set.
         /// </summary>
-        [Input("bindCredential")]
-        public Input<string>? BindCredential { get; set; }
+        public Input<string>? BindCredential
+        {
+            get => _bindCredential;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _bindCredential = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
@@ -354,6 +371,12 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Input("customUserSearchFilter")]
         public Input<string>? CustomUserSearchFilter { get; set; }
+
+        /// <summary>
+        /// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+        /// </summary>
+        [Input("deleteDefaultMappers")]
+        public Input<bool>? DeleteDefaultMappers { get; set; }
 
         /// <summary>
         /// Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
@@ -423,8 +446,6 @@ namespace Pulumi.Keycloak.Ldap
 
         /// <summary>
         /// Can be one of `ONE_LEVEL` or `SUBTREE`:
-        /// - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
-        /// - `SUBTREE`: Search entire LDAP subtree.
         /// </summary>
         [Input("searchScope")]
         public Input<string>? SearchScope { get; set; }
@@ -504,9 +525,10 @@ namespace Pulumi.Keycloak.Ldap
         public UserFederationArgs()
         {
         }
+        public static new UserFederationArgs Empty => new UserFederationArgs();
     }
 
-    public sealed class UserFederationState : Pulumi.ResourceArgs
+    public sealed class UserFederationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The number of users to sync within a single transaction. Defaults to `1000`.
@@ -514,11 +536,21 @@ namespace Pulumi.Keycloak.Ldap
         [Input("batchSizeForSync")]
         public Input<int>? BatchSizeForSync { get; set; }
 
+        [Input("bindCredential")]
+        private Input<string>? _bindCredential;
+
         /// <summary>
         /// Password of LDAP admin. This attribute must be set if `bind_dn` is set.
         /// </summary>
-        [Input("bindCredential")]
-        public Input<string>? BindCredential { get; set; }
+        public Input<string>? BindCredential
+        {
+            get => _bindCredential;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _bindCredential = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
@@ -555,6 +587,12 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Input("customUserSearchFilter")]
         public Input<string>? CustomUserSearchFilter { get; set; }
+
+        /// <summary>
+        /// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+        /// </summary>
+        [Input("deleteDefaultMappers")]
+        public Input<bool>? DeleteDefaultMappers { get; set; }
 
         /// <summary>
         /// Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
@@ -624,8 +662,6 @@ namespace Pulumi.Keycloak.Ldap
 
         /// <summary>
         /// Can be one of `ONE_LEVEL` or `SUBTREE`:
-        /// - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
-        /// - `SUBTREE`: Search entire LDAP subtree.
         /// </summary>
         [Input("searchScope")]
         public Input<string>? SearchScope { get; set; }
@@ -705,5 +741,6 @@ namespace Pulumi.Keycloak.Ldap
         public UserFederationState()
         {
         }
+        public static new UserFederationState Empty => new UserFederationState();
     }
 }

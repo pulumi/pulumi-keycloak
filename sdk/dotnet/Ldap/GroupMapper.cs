@@ -18,52 +18,52 @@ namespace Pulumi.Keycloak.Ldap
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new Keycloak.Ldap.UserFederationArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             UsernameLdapAttribute = "cn",
-    ///             RdnLdapAttribute = "cn",
-    ///             UuidLdapAttribute = "entryDN",
-    ///             UserObjectClasses = 
-    ///             {
-    ///                 "simpleSecurityObject",
-    ///                 "organizationalRole",
-    ///             },
-    ///             ConnectionUrl = "ldap://openldap",
-    ///             UsersDn = "dc=example,dc=org",
-    ///             BindDn = "cn=admin,dc=example,dc=org",
-    ///             BindCredential = "admin",
-    ///         });
-    ///         var ldapGroupMapper = new Keycloak.Ldap.GroupMapper("ldapGroupMapper", new Keycloak.Ldap.GroupMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             LdapUserFederationId = ldapUserFederation.Id,
-    ///             LdapGroupsDn = "dc=example,dc=org",
-    ///             GroupNameLdapAttribute = "cn",
-    ///             GroupObjectClasses = 
-    ///             {
-    ///                 "groupOfNames",
-    ///             },
-    ///             MembershipAttributeType = "DN",
-    ///             MembershipLdapAttribute = "member",
-    ///             MembershipUserLdapAttribute = "cn",
-    ///             MemberofLdapAttribute = "memberOf",
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         UsernameLdapAttribute = "cn",
+    ///         RdnLdapAttribute = "cn",
+    ///         UuidLdapAttribute = "entryDN",
+    ///         UserObjectClasses = new[]
+    ///         {
+    ///             "simpleSecurityObject",
+    ///             "organizationalRole",
+    ///         },
+    ///         ConnectionUrl = "ldap://openldap",
+    ///         UsersDn = "dc=example,dc=org",
+    ///         BindDn = "cn=admin,dc=example,dc=org",
+    ///         BindCredential = "admin",
+    ///     });
+    /// 
+    ///     var ldapGroupMapper = new Keycloak.Ldap.GroupMapper("ldapGroupMapper", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         LdapUserFederationId = ldapUserFederation.Id,
+    ///         LdapGroupsDn = "dc=example,dc=org",
+    ///         GroupNameLdapAttribute = "cn",
+    ///         GroupObjectClasses = new[]
+    ///         {
+    ///             "groupOfNames",
+    ///         },
+    ///         MembershipAttributeType = "DN",
+    ///         MembershipLdapAttribute = "member",
+    ///         MembershipUserLdapAttribute = "cn",
+    ///         MemberofLdapAttribute = "memberOf",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -75,7 +75,7 @@ namespace Pulumi.Keycloak.Ldap
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:ldap/groupMapper:GroupMapper")]
-    public partial class GroupMapper : Pulumi.CustomResource
+    public partial class GroupMapper : global::Pulumi.CustomResource
     {
         /// <summary>
         /// When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
@@ -229,7 +229,7 @@ namespace Pulumi.Keycloak.Ldap
         }
     }
 
-    public sealed class GroupMapperArgs : Pulumi.ResourceArgs
+    public sealed class GroupMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
@@ -354,9 +354,10 @@ namespace Pulumi.Keycloak.Ldap
         public GroupMapperArgs()
         {
         }
+        public static new GroupMapperArgs Empty => new GroupMapperArgs();
     }
 
-    public sealed class GroupMapperState : Pulumi.ResourceArgs
+    public sealed class GroupMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
@@ -481,5 +482,6 @@ namespace Pulumi.Keycloak.Ldap
         public GroupMapperState()
         {
         }
+        public static new GroupMapperState Empty => new GroupMapperState();
     }
 }

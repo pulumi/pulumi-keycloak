@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Ldap
 {
     [KeycloakResourceType("keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper")]
-    public partial class HardcodedGroupMapper : Pulumi.CustomResource
+    public partial class HardcodedGroupMapper : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Group to grant to user.
@@ -80,7 +80,7 @@ namespace Pulumi.Keycloak.Ldap
         }
     }
 
-    public sealed class HardcodedGroupMapperArgs : Pulumi.ResourceArgs
+    public sealed class HardcodedGroupMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Group to grant to user.
@@ -109,9 +109,10 @@ namespace Pulumi.Keycloak.Ldap
         public HardcodedGroupMapperArgs()
         {
         }
+        public static new HardcodedGroupMapperArgs Empty => new HardcodedGroupMapperArgs();
     }
 
-    public sealed class HardcodedGroupMapperState : Pulumi.ResourceArgs
+    public sealed class HardcodedGroupMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Group to grant to user.
@@ -140,5 +141,6 @@ namespace Pulumi.Keycloak.Ldap
         public HardcodedGroupMapperState()
         {
         }
+        public static new HardcodedGroupMapperState Empty => new HardcodedGroupMapperState();
     }
 }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId.Inputs
 {
 
-    public sealed class ClientGroupPolicyGroupGetArgs : Pulumi.ResourceArgs
+    public sealed class ClientGroupPolicyGroupGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("extendChildren", required: true)]
         public Input<bool> ExtendChildren { get; set; } = null!;
@@ -24,5 +24,6 @@ namespace Pulumi.Keycloak.OpenId.Inputs
         public ClientGroupPolicyGroupGetArgs()
         {
         }
+        public static new ClientGroupPolicyGroupGetArgs Empty => new ClientGroupPolicyGroupGetArgs();
     }
 }

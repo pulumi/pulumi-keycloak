@@ -5,12 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./googleIdentityProvider";
-export * from "./identityProvider";
+export { GoogleIdentityProviderArgs, GoogleIdentityProviderState } from "./googleIdentityProvider";
+export type GoogleIdentityProvider = import("./googleIdentityProvider").GoogleIdentityProvider;
+export const GoogleIdentityProvider: typeof import("./googleIdentityProvider").GoogleIdentityProvider = null as any;
+utilities.lazyLoad(exports, ["GoogleIdentityProvider"], () => require("./googleIdentityProvider"));
 
-// Import resources to register:
-import { GoogleIdentityProvider } from "./googleIdentityProvider";
-import { IdentityProvider } from "./identityProvider";
+export { IdentityProviderArgs, IdentityProviderState } from "./identityProvider";
+export type IdentityProvider = import("./identityProvider").IdentityProvider;
+export const IdentityProvider: typeof import("./identityProvider").IdentityProvider = null as any;
+utilities.lazyLoad(exports, ["IdentityProvider"], () => require("./identityProvider"));
+
 
 const _module = {
     version: utilities.getVersion(),

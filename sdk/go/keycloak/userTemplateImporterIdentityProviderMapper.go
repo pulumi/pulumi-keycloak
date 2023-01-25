@@ -58,7 +58,7 @@ import (
 //			_, err = keycloak.NewUserTemplateImporterIdentityProviderMapper(ctx, "usernameImporter", &keycloak.UserTemplateImporterIdentityProviderMapperArgs{
 //				Realm:                 realm.ID(),
 //				IdentityProviderAlias: oidc.Alias,
-//				Template:              pulumi.String(fmt.Sprintf("%v.%v", ALIAS, CLAIM.Email)),
+//				Template:              pulumi.String(fmt.Sprintf("${ALIAS}.${CLAIM.email}")),
 //				ExtraConfig: pulumi.AnyMap{
 //					"syncMode": pulumi.Any("INHERIT"),
 //				},

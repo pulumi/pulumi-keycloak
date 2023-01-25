@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class RealmSecurityDefensesBruteForceDetectionArgs : Pulumi.ResourceArgs
+    public sealed class RealmSecurityDefensesBruteForceDetectionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When will failure count be reset?
@@ -55,5 +55,6 @@ namespace Pulumi.Keycloak.Inputs
         public RealmSecurityDefensesBruteForceDetectionArgs()
         {
         }
+        public static new RealmSecurityDefensesBruteForceDetectionArgs Empty => new RealmSecurityDefensesBruteForceDetectionArgs();
     }
 }

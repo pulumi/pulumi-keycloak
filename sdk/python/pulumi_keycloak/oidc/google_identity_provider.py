@@ -940,7 +940,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             __props__.__dict__["client_id"] = client_id
             if client_secret is None and not opts.urn:
                 raise TypeError("Missing required property 'client_secret'")
-            __props__.__dict__["client_secret"] = client_secret
+            __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
             __props__.__dict__["default_scopes"] = default_scopes
             __props__.__dict__["disable_user_info"] = disable_user_info
             __props__.__dict__["enabled"] = enabled
@@ -963,6 +963,8 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             __props__.__dict__["alias"] = None
             __props__.__dict__["display_name"] = None
             __props__.__dict__["internal_id"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientSecret"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(GoogleIdentityProvider, __self__).__init__(
             'keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider',
             resource_name,

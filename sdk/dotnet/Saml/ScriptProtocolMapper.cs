@@ -20,34 +20,34 @@ namespace Pulumi.Keycloak.Saml
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var samlClient = new Keycloak.Saml.Client("samlClient", new Keycloak.Saml.ClientArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = "saml-client",
-    ///         });
-    ///         var samlScriptMapper = new Keycloak.Saml.ScriptProtocolMapper("samlScriptMapper", new Keycloak.Saml.ScriptProtocolMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = samlClient.Id,
-    ///             Script = "exports = 'foo';",
-    ///             SamlAttributeName = "displayName",
-    ///             SamlAttributeNameFormat = "Unspecified",
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var samlClient = new Keycloak.Saml.Client("samlClient", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "saml-client",
+    ///     });
+    /// 
+    ///     var samlScriptMapper = new Keycloak.Saml.ScriptProtocolMapper("samlScriptMapper", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = samlClient.Id,
+    ///         Script = "exports = 'foo';",
+    ///         SamlAttributeName = "displayName",
+    ///         SamlAttributeNameFormat = "Unspecified",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -63,7 +63,7 @@ namespace Pulumi.Keycloak.Saml
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper")]
-    public partial class ScriptProtocolMapper : Pulumi.CustomResource
+    public partial class ScriptProtocolMapper : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
@@ -163,7 +163,7 @@ namespace Pulumi.Keycloak.Saml
         }
     }
 
-    public sealed class ScriptProtocolMapperArgs : Pulumi.ResourceArgs
+    public sealed class ScriptProtocolMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
@@ -222,9 +222,10 @@ namespace Pulumi.Keycloak.Saml
         public ScriptProtocolMapperArgs()
         {
         }
+        public static new ScriptProtocolMapperArgs Empty => new ScriptProtocolMapperArgs();
     }
 
-    public sealed class ScriptProtocolMapperState : Pulumi.ResourceArgs
+    public sealed class ScriptProtocolMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
@@ -283,5 +284,6 @@ namespace Pulumi.Keycloak.Saml
         public ScriptProtocolMapperState()
         {
         }
+        public static new ScriptProtocolMapperState Empty => new ScriptProtocolMapperState();
     }
 }

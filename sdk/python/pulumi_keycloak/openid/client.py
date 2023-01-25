@@ -45,6 +45,7 @@ class ClientArgs:
                  frontchannel_logout_url: Optional[pulumi.Input[str]] = None,
                  full_scope_allowed: Optional[pulumi.Input[bool]] = None,
                  implicit_flow_enabled: Optional[pulumi.Input[bool]] = None,
+                 import_: Optional[pulumi.Input[bool]] = None,
                  login_theme: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  oauth2_device_authorization_grant_enabled: Optional[pulumi.Input[bool]] = None,
@@ -56,6 +57,7 @@ class ClientArgs:
                  standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
                  use_refresh_tokens: Optional[pulumi.Input[bool]] = None,
                  use_refresh_tokens_client_credentials: Optional[pulumi.Input[bool]] = None,
+                 valid_post_logout_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
@@ -92,6 +94,7 @@ class ClientArgs:
         :param pulumi.Input[str] frontchannel_logout_url: The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
         :param pulumi.Input[bool] full_scope_allowed: Allow to include all roles mappings in the access token.
         :param pulumi.Input[bool] implicit_flow_enabled: When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[bool] import_: When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
         :param pulumi.Input[str] login_theme: The client login theme. This will override the default theme for the realm.
         :param pulumi.Input[str] name: The display name of this client in the GUI.
         :param pulumi.Input[bool] oauth2_device_authorization_grant_enabled: Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
@@ -103,6 +106,7 @@ class ClientArgs:
         :param pulumi.Input[bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[bool] use_refresh_tokens: If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
         :param pulumi.Input[bool] use_refresh_tokens_client_credentials: If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_post_logout_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful logout.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
                wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
                is set to `true`.
@@ -163,6 +167,8 @@ class ClientArgs:
             pulumi.set(__self__, "full_scope_allowed", full_scope_allowed)
         if implicit_flow_enabled is not None:
             pulumi.set(__self__, "implicit_flow_enabled", implicit_flow_enabled)
+        if import_ is not None:
+            pulumi.set(__self__, "import_", import_)
         if login_theme is not None:
             pulumi.set(__self__, "login_theme", login_theme)
         if name is not None:
@@ -185,6 +191,8 @@ class ClientArgs:
             pulumi.set(__self__, "use_refresh_tokens", use_refresh_tokens)
         if use_refresh_tokens_client_credentials is not None:
             pulumi.set(__self__, "use_refresh_tokens_client_credentials", use_refresh_tokens_client_credentials)
+        if valid_post_logout_redirect_uris is not None:
+            pulumi.set(__self__, "valid_post_logout_redirect_uris", valid_post_logout_redirect_uris)
         if valid_redirect_uris is not None:
             pulumi.set(__self__, "valid_redirect_uris", valid_redirect_uris)
         if web_origins is not None:
@@ -540,6 +548,18 @@ class ClientArgs:
         pulumi.set(self, "implicit_flow_enabled", value)
 
     @property
+    @pulumi.getter(name="import")
+    def import_(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
+        """
+        return pulumi.get(self, "import_")
+
+    @import_.setter
+    def import_(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "import_", value)
+
+    @property
     @pulumi.getter(name="loginTheme")
     def login_theme(self) -> Optional[pulumi.Input[str]]:
         """
@@ -672,6 +692,18 @@ class ClientArgs:
         pulumi.set(self, "use_refresh_tokens_client_credentials", value)
 
     @property
+    @pulumi.getter(name="validPostLogoutRedirectUris")
+    def valid_post_logout_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of valid URIs a browser is permitted to redirect to after a successful logout.
+        """
+        return pulumi.get(self, "valid_post_logout_redirect_uris")
+
+    @valid_post_logout_redirect_uris.setter
+    def valid_post_logout_redirect_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "valid_post_logout_redirect_uris", value)
+
+    @property
     @pulumi.getter(name="validRedirectUris")
     def valid_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -729,6 +761,7 @@ class _ClientState:
                  frontchannel_logout_url: Optional[pulumi.Input[str]] = None,
                  full_scope_allowed: Optional[pulumi.Input[bool]] = None,
                  implicit_flow_enabled: Optional[pulumi.Input[bool]] = None,
+                 import_: Optional[pulumi.Input[bool]] = None,
                  login_theme: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  oauth2_device_authorization_grant_enabled: Optional[pulumi.Input[bool]] = None,
@@ -743,6 +776,7 @@ class _ClientState:
                  standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
                  use_refresh_tokens: Optional[pulumi.Input[bool]] = None,
                  use_refresh_tokens_client_credentials: Optional[pulumi.Input[bool]] = None,
+                 valid_post_logout_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
@@ -778,6 +812,7 @@ class _ClientState:
         :param pulumi.Input[str] frontchannel_logout_url: The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
         :param pulumi.Input[bool] full_scope_allowed: Allow to include all roles mappings in the access token.
         :param pulumi.Input[bool] implicit_flow_enabled: When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[bool] import_: When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
         :param pulumi.Input[str] login_theme: The client login theme. This will override the default theme for the realm.
         :param pulumi.Input[str] name: The display name of this client in the GUI.
         :param pulumi.Input[bool] oauth2_device_authorization_grant_enabled: Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
@@ -792,6 +827,7 @@ class _ClientState:
         :param pulumi.Input[bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[bool] use_refresh_tokens: If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
         :param pulumi.Input[bool] use_refresh_tokens_client_credentials: If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_post_logout_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful logout.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
                wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
                is set to `true`.
@@ -853,6 +889,8 @@ class _ClientState:
             pulumi.set(__self__, "full_scope_allowed", full_scope_allowed)
         if implicit_flow_enabled is not None:
             pulumi.set(__self__, "implicit_flow_enabled", implicit_flow_enabled)
+        if import_ is not None:
+            pulumi.set(__self__, "import_", import_)
         if login_theme is not None:
             pulumi.set(__self__, "login_theme", login_theme)
         if name is not None:
@@ -881,6 +919,8 @@ class _ClientState:
             pulumi.set(__self__, "use_refresh_tokens", use_refresh_tokens)
         if use_refresh_tokens_client_credentials is not None:
             pulumi.set(__self__, "use_refresh_tokens_client_credentials", use_refresh_tokens_client_credentials)
+        if valid_post_logout_redirect_uris is not None:
+            pulumi.set(__self__, "valid_post_logout_redirect_uris", valid_post_logout_redirect_uris)
         if valid_redirect_uris is not None:
             pulumi.set(__self__, "valid_redirect_uris", valid_redirect_uris)
         if web_origins is not None:
@@ -1224,6 +1264,18 @@ class _ClientState:
         pulumi.set(self, "implicit_flow_enabled", value)
 
     @property
+    @pulumi.getter(name="import")
+    def import_(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
+        """
+        return pulumi.get(self, "import_")
+
+    @import_.setter
+    def import_(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "import_", value)
+
+    @property
     @pulumi.getter(name="loginTheme")
     def login_theme(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1392,6 +1444,18 @@ class _ClientState:
         pulumi.set(self, "use_refresh_tokens_client_credentials", value)
 
     @property
+    @pulumi.getter(name="validPostLogoutRedirectUris")
+    def valid_post_logout_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of valid URIs a browser is permitted to redirect to after a successful logout.
+        """
+        return pulumi.get(self, "valid_post_logout_redirect_uris")
+
+    @valid_post_logout_redirect_uris.setter
+    def valid_post_logout_redirect_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "valid_post_logout_redirect_uris", value)
+
+    @property
     @pulumi.getter(name="validRedirectUris")
     def valid_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -1451,6 +1515,7 @@ class Client(pulumi.CustomResource):
                  frontchannel_logout_url: Optional[pulumi.Input[str]] = None,
                  full_scope_allowed: Optional[pulumi.Input[bool]] = None,
                  implicit_flow_enabled: Optional[pulumi.Input[bool]] = None,
+                 import_: Optional[pulumi.Input[bool]] = None,
                  login_theme: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  oauth2_device_authorization_grant_enabled: Optional[pulumi.Input[bool]] = None,
@@ -1463,6 +1528,7 @@ class Client(pulumi.CustomResource):
                  standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
                  use_refresh_tokens: Optional[pulumi.Input[bool]] = None,
                  use_refresh_tokens_client_credentials: Optional[pulumi.Input[bool]] = None,
+                 valid_post_logout_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -1536,6 +1602,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[str] frontchannel_logout_url: The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
         :param pulumi.Input[bool] full_scope_allowed: Allow to include all roles mappings in the access token.
         :param pulumi.Input[bool] implicit_flow_enabled: When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[bool] import_: When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
         :param pulumi.Input[str] login_theme: The client login theme. This will override the default theme for the realm.
         :param pulumi.Input[str] name: The display name of this client in the GUI.
         :param pulumi.Input[bool] oauth2_device_authorization_grant_enabled: Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
@@ -1548,6 +1615,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[bool] use_refresh_tokens: If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
         :param pulumi.Input[bool] use_refresh_tokens_client_credentials: If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_post_logout_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful logout.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
                wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
                is set to `true`.
@@ -1639,6 +1707,7 @@ class Client(pulumi.CustomResource):
                  frontchannel_logout_url: Optional[pulumi.Input[str]] = None,
                  full_scope_allowed: Optional[pulumi.Input[bool]] = None,
                  implicit_flow_enabled: Optional[pulumi.Input[bool]] = None,
+                 import_: Optional[pulumi.Input[bool]] = None,
                  login_theme: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  oauth2_device_authorization_grant_enabled: Optional[pulumi.Input[bool]] = None,
@@ -1651,6 +1720,7 @@ class Client(pulumi.CustomResource):
                  standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
                  use_refresh_tokens: Optional[pulumi.Input[bool]] = None,
                  use_refresh_tokens_client_credentials: Optional[pulumi.Input[bool]] = None,
+                 valid_post_logout_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -1679,7 +1749,7 @@ class Client(pulumi.CustomResource):
             __props__.__dict__["client_id"] = client_id
             __props__.__dict__["client_offline_session_idle_timeout"] = client_offline_session_idle_timeout
             __props__.__dict__["client_offline_session_max_lifespan"] = client_offline_session_max_lifespan
-            __props__.__dict__["client_secret"] = client_secret
+            __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
             __props__.__dict__["client_session_idle_timeout"] = client_session_idle_timeout
             __props__.__dict__["client_session_max_lifespan"] = client_session_max_lifespan
             __props__.__dict__["consent_required"] = consent_required
@@ -1694,6 +1764,7 @@ class Client(pulumi.CustomResource):
             __props__.__dict__["frontchannel_logout_url"] = frontchannel_logout_url
             __props__.__dict__["full_scope_allowed"] = full_scope_allowed
             __props__.__dict__["implicit_flow_enabled"] = implicit_flow_enabled
+            __props__.__dict__["import_"] = import_
             __props__.__dict__["login_theme"] = login_theme
             __props__.__dict__["name"] = name
             __props__.__dict__["oauth2_device_authorization_grant_enabled"] = oauth2_device_authorization_grant_enabled
@@ -1708,10 +1779,13 @@ class Client(pulumi.CustomResource):
             __props__.__dict__["standard_flow_enabled"] = standard_flow_enabled
             __props__.__dict__["use_refresh_tokens"] = use_refresh_tokens
             __props__.__dict__["use_refresh_tokens_client_credentials"] = use_refresh_tokens_client_credentials
+            __props__.__dict__["valid_post_logout_redirect_uris"] = valid_post_logout_redirect_uris
             __props__.__dict__["valid_redirect_uris"] = valid_redirect_uris
             __props__.__dict__["web_origins"] = web_origins
             __props__.__dict__["resource_server_id"] = None
             __props__.__dict__["service_account_user_id"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientSecret"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Client, __self__).__init__(
             'keycloak:openid/client:Client',
             resource_name,
@@ -1750,6 +1824,7 @@ class Client(pulumi.CustomResource):
             frontchannel_logout_url: Optional[pulumi.Input[str]] = None,
             full_scope_allowed: Optional[pulumi.Input[bool]] = None,
             implicit_flow_enabled: Optional[pulumi.Input[bool]] = None,
+            import_: Optional[pulumi.Input[bool]] = None,
             login_theme: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             oauth2_device_authorization_grant_enabled: Optional[pulumi.Input[bool]] = None,
@@ -1764,6 +1839,7 @@ class Client(pulumi.CustomResource):
             standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
             use_refresh_tokens: Optional[pulumi.Input[bool]] = None,
             use_refresh_tokens_client_credentials: Optional[pulumi.Input[bool]] = None,
+            valid_post_logout_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Client':
         """
@@ -1804,6 +1880,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[str] frontchannel_logout_url: The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
         :param pulumi.Input[bool] full_scope_allowed: Allow to include all roles mappings in the access token.
         :param pulumi.Input[bool] implicit_flow_enabled: When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[bool] import_: When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
         :param pulumi.Input[str] login_theme: The client login theme. This will override the default theme for the realm.
         :param pulumi.Input[str] name: The display name of this client in the GUI.
         :param pulumi.Input[bool] oauth2_device_authorization_grant_enabled: Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
@@ -1818,6 +1895,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[bool] use_refresh_tokens: If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
         :param pulumi.Input[bool] use_refresh_tokens_client_credentials: If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_post_logout_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful logout.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
                wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
                is set to `true`.
@@ -1855,6 +1933,7 @@ class Client(pulumi.CustomResource):
         __props__.__dict__["frontchannel_logout_url"] = frontchannel_logout_url
         __props__.__dict__["full_scope_allowed"] = full_scope_allowed
         __props__.__dict__["implicit_flow_enabled"] = implicit_flow_enabled
+        __props__.__dict__["import_"] = import_
         __props__.__dict__["login_theme"] = login_theme
         __props__.__dict__["name"] = name
         __props__.__dict__["oauth2_device_authorization_grant_enabled"] = oauth2_device_authorization_grant_enabled
@@ -1869,13 +1948,14 @@ class Client(pulumi.CustomResource):
         __props__.__dict__["standard_flow_enabled"] = standard_flow_enabled
         __props__.__dict__["use_refresh_tokens"] = use_refresh_tokens
         __props__.__dict__["use_refresh_tokens_client_credentials"] = use_refresh_tokens_client_credentials
+        __props__.__dict__["valid_post_logout_redirect_uris"] = valid_post_logout_redirect_uris
         __props__.__dict__["valid_redirect_uris"] = valid_redirect_uris
         __props__.__dict__["web_origins"] = web_origins
         return Client(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="accessTokenLifespan")
-    def access_token_lifespan(self) -> pulumi.Output[Optional[str]]:
+    def access_token_lifespan(self) -> pulumi.Output[str]:
         """
         The amount of time in seconds before an access token expires. This will override the default for the realm.
         """
@@ -1891,7 +1971,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="adminUrl")
-    def admin_url(self) -> pulumi.Output[Optional[str]]:
+    def admin_url(self) -> pulumi.Output[str]:
         """
         URL to the admin interface of the client.
         """
@@ -1939,7 +2019,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="baseUrl")
-    def base_url(self) -> pulumi.Output[Optional[str]]:
+    def base_url(self) -> pulumi.Output[str]:
         """
         Default URL to use when the auth server needs to redirect or link back to the client.
         """
@@ -1967,7 +2047,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientOfflineSessionIdleTimeout")
-    def client_offline_session_idle_timeout(self) -> pulumi.Output[Optional[str]]:
+    def client_offline_session_idle_timeout(self) -> pulumi.Output[str]:
         """
         Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
         """
@@ -1975,7 +2055,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientOfflineSessionMaxLifespan")
-    def client_offline_session_max_lifespan(self) -> pulumi.Output[Optional[str]]:
+    def client_offline_session_max_lifespan(self) -> pulumi.Output[str]:
         """
         Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.
         """
@@ -1991,7 +2071,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientSessionIdleTimeout")
-    def client_session_idle_timeout(self) -> pulumi.Output[Optional[str]]:
+    def client_session_idle_timeout(self) -> pulumi.Output[str]:
         """
         Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
         """
@@ -1999,7 +2079,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientSessionMaxLifespan")
-    def client_session_max_lifespan(self) -> pulumi.Output[Optional[str]]:
+    def client_session_max_lifespan(self) -> pulumi.Output[str]:
         """
         Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
         """
@@ -2007,7 +2087,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="consentRequired")
-    def consent_required(self) -> pulumi.Output[Optional[bool]]:
+    def consent_required(self) -> pulumi.Output[bool]:
         """
         When `true`, users have to consent to client access. Defaults to `false`.
         """
@@ -2015,7 +2095,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="consentScreenText")
-    def consent_screen_text(self) -> pulumi.Output[Optional[str]]:
+    def consent_screen_text(self) -> pulumi.Output[str]:
         """
         The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.
         """
@@ -2023,7 +2103,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def description(self) -> pulumi.Output[Optional[str]]:
+    def description(self) -> pulumi.Output[str]:
         """
         The description of this client in the GUI.
         """
@@ -2031,7 +2111,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="directAccessGrantsEnabled")
-    def direct_access_grants_enabled(self) -> pulumi.Output[Optional[bool]]:
+    def direct_access_grants_enabled(self) -> pulumi.Output[bool]:
         """
         When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
         """
@@ -2039,7 +2119,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="displayOnConsentScreen")
-    def display_on_consent_screen(self) -> pulumi.Output[Optional[bool]]:
+    def display_on_consent_screen(self) -> pulumi.Output[bool]:
         """
         When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
         """
@@ -2055,7 +2135,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="excludeSessionStateFromAuthResponse")
-    def exclude_session_state_from_auth_response(self) -> pulumi.Output[Optional[bool]]:
+    def exclude_session_state_from_auth_response(self) -> pulumi.Output[bool]:
         """
         When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
         """
@@ -2068,7 +2148,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="frontchannelLogoutEnabled")
-    def frontchannel_logout_enabled(self) -> pulumi.Output[Optional[bool]]:
+    def frontchannel_logout_enabled(self) -> pulumi.Output[bool]:
         """
         When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
         """
@@ -2092,11 +2172,19 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="implicitFlowEnabled")
-    def implicit_flow_enabled(self) -> pulumi.Output[Optional[bool]]:
+    def implicit_flow_enabled(self) -> pulumi.Output[bool]:
         """
         When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
         """
         return pulumi.get(self, "implicit_flow_enabled")
+
+    @property
+    @pulumi.getter(name="import")
+    def import_(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
+        """
+        return pulumi.get(self, "import_")
 
     @property
     @pulumi.getter(name="loginTheme")
@@ -2164,7 +2252,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="rootUrl")
-    def root_url(self) -> pulumi.Output[Optional[str]]:
+    def root_url(self) -> pulumi.Output[str]:
         """
         When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
         """
@@ -2180,7 +2268,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="serviceAccountsEnabled")
-    def service_accounts_enabled(self) -> pulumi.Output[Optional[bool]]:
+    def service_accounts_enabled(self) -> pulumi.Output[bool]:
         """
         When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
         """
@@ -2188,7 +2276,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="standardFlowEnabled")
-    def standard_flow_enabled(self) -> pulumi.Output[Optional[bool]]:
+    def standard_flow_enabled(self) -> pulumi.Output[bool]:
         """
         When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
         """
@@ -2211,8 +2299,16 @@ class Client(pulumi.CustomResource):
         return pulumi.get(self, "use_refresh_tokens_client_credentials")
 
     @property
+    @pulumi.getter(name="validPostLogoutRedirectUris")
+    def valid_post_logout_redirect_uris(self) -> pulumi.Output[Sequence[str]]:
+        """
+        A list of valid URIs a browser is permitted to redirect to after a successful logout.
+        """
+        return pulumi.get(self, "valid_post_logout_redirect_uris")
+
+    @property
     @pulumi.getter(name="validRedirectUris")
-    def valid_redirect_uris(self) -> pulumi.Output[Optional[Sequence[str]]]:
+    def valid_redirect_uris(self) -> pulumi.Output[Sequence[str]]:
         """
         A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
         wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
@@ -2222,7 +2318,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="webOrigins")
-    def web_origins(self) -> pulumi.Output[Optional[Sequence[str]]]:
+    def web_origins(self) -> pulumi.Output[Sequence[str]]:
         """
         A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
         """

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class RealmSecurityDefensesArgs : Pulumi.ResourceArgs
+    public sealed class RealmSecurityDefensesArgs : global::Pulumi.ResourceArgs
     {
         [Input("bruteForceDetection")]
         public Input<Inputs.RealmSecurityDefensesBruteForceDetectionArgs>? BruteForceDetection { get; set; }
@@ -21,5 +21,6 @@ namespace Pulumi.Keycloak.Inputs
         public RealmSecurityDefensesArgs()
         {
         }
+        public static new RealmSecurityDefensesArgs Empty => new RealmSecurityDefensesArgs();
     }
 }

@@ -72,9 +72,9 @@ import (
 //				ResourceServerId: clientWithAuthz.ResourceServerId,
 //				RealmId:          realm.ID(),
 //				Policies: pulumi.StringArray{
-//					defaultPermission.ApplyT(func(defaultPermission openid.GetClientAuthorizationPolicyResult) (string, error) {
-//						return defaultPermission.Id, nil
-//					}).(pulumi.StringOutput),
+//					defaultPermission.ApplyT(func(defaultPermission openid.GetClientAuthorizationPolicyResult) (*string, error) {
+//						return &defaultPermission.Id, nil
+//					}).(pulumi.StringPtrOutput),
 //				},
 //				Resources: pulumi.StringArray{
 //					resource.ID(),

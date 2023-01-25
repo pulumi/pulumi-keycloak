@@ -18,28 +18,27 @@ namespace Pulumi.Keycloak.OpenId
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var openidClientScope = new Keycloak.OpenId.ClientScope("openidClientScope", new Keycloak.OpenId.ClientScopeArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Description = "When requested, this scope will map a user's group memberships to a claim",
-    ///             IncludeInTokenScope = true,
-    ///             GuiOrder = 1,
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var openidClientScope = new Keycloak.OpenId.ClientScope("openidClientScope", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Description = "When requested, this scope will map a user's group memberships to a claim",
+    ///         IncludeInTokenScope = true,
+    ///         GuiOrder = 1,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -51,7 +50,7 @@ namespace Pulumi.Keycloak.OpenId
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:openid/clientScope:ClientScope")]
-    public partial class ClientScope : Pulumi.CustomResource
+    public partial class ClientScope : global::Pulumi.CustomResource
     {
         /// <summary>
         /// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
@@ -133,7 +132,7 @@ namespace Pulumi.Keycloak.OpenId
         }
     }
 
-    public sealed class ClientScopeArgs : Pulumi.ResourceArgs
+    public sealed class ClientScopeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
@@ -174,9 +173,10 @@ namespace Pulumi.Keycloak.OpenId
         public ClientScopeArgs()
         {
         }
+        public static new ClientScopeArgs Empty => new ClientScopeArgs();
     }
 
-    public sealed class ClientScopeState : Pulumi.ResourceArgs
+    public sealed class ClientScopeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
@@ -217,5 +217,6 @@ namespace Pulumi.Keycloak.OpenId
         public ClientScopeState()
         {
         }
+        public static new ClientScopeState Empty => new ClientScopeState();
     }
 }

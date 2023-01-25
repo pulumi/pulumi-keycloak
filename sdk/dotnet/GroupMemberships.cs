@@ -13,39 +13,40 @@ namespace Pulumi.Keycloak
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var @group = new Keycloak.Group("group", new Keycloak.GroupArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///         });
-    ///         var user = new Keycloak.User("user", new Keycloak.UserArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Username = "my-user",
-    ///         });
-    ///         var groupMembers = new Keycloak.GroupMemberships("groupMembers", new Keycloak.GroupMembershipsArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             GroupId = @group.Id,
-    ///             Members = 
-    ///             {
-    ///                 user.Username,
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var @group = new Keycloak.Group("group", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var user = new Keycloak.User("user", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Username = "my-user",
+    ///     });
+    /// 
+    ///     var groupMembers = new Keycloak.GroupMemberships("groupMembers", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         GroupId = @group.Id,
+    ///         Members = new[]
+    ///         {
+    ///             user.Username,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -53,7 +54,7 @@ namespace Pulumi.Keycloak
     /// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server. [1]providers/mrparkers/keycloak/latest/docs/resources/group_memberships
     /// </summary>
     [KeycloakResourceType("keycloak:index/groupMemberships:GroupMemberships")]
-    public partial class GroupMemberships : Pulumi.CustomResource
+    public partial class GroupMemberships : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The ID of the group this resource should manage memberships for.
@@ -117,7 +118,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class GroupMembershipsArgs : Pulumi.ResourceArgs
+    public sealed class GroupMembershipsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the group this resource should manage memberships for.
@@ -146,9 +147,10 @@ namespace Pulumi.Keycloak
         public GroupMembershipsArgs()
         {
         }
+        public static new GroupMembershipsArgs Empty => new GroupMembershipsArgs();
     }
 
-    public sealed class GroupMembershipsState : Pulumi.ResourceArgs
+    public sealed class GroupMembershipsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the group this resource should manage memberships for.
@@ -177,5 +179,6 @@ namespace Pulumi.Keycloak
         public GroupMembershipsState()
         {
         }
+        public static new GroupMembershipsState Empty => new GroupMembershipsState();
     }
 }

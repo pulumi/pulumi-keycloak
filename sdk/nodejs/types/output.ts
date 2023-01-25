@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface GetClientDescriptionConverterProtocolMapper {
     config: {[key: string]: any};
@@ -319,7 +320,7 @@ export interface RealmSmtpServerAuth {
 
 export interface RealmUserProfileAttribute {
     /**
-     * A map of annotations for the group.
+     * A map of annotations for the attribute. Values can be a String or a json object.
      */
     annotations?: {[key: string]: string};
     /**
@@ -331,11 +332,11 @@ export interface RealmUserProfileAttribute {
      */
     enabledWhenScopes?: string[];
     /**
-     * The group that the attribute belong to.
+     * A list of groups.
      */
     group?: string;
     /**
-     * The name of the group.
+     * The name of the attribute.
      */
     name: string;
     /**
@@ -369,18 +370,18 @@ export interface RealmUserProfileAttributePermissions {
 
 export interface RealmUserProfileAttributeValidator {
     /**
-     * A map defining the configuration of the validator.
+     * A map defining the configuration of the validator. Values can be a String or a json object.
      */
     config?: {[key: string]: string};
     /**
-     * The name of the group.
+     * The name of the attribute.
      */
     name: string;
 }
 
 export interface RealmUserProfileGroup {
     /**
-     * A map of annotations for the group.
+     * A map of annotations for the attribute. Values can be a String or a json object.
      */
     annotations?: {[key: string]: string};
     /**
@@ -392,7 +393,7 @@ export interface RealmUserProfileGroup {
      */
     displayHeader?: string;
     /**
-     * The name of the group.
+     * The name of the attribute.
      */
     name: string;
 }

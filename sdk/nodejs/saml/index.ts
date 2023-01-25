@@ -5,24 +5,51 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./client";
-export * from "./clientDefaultScope";
-export * from "./clientScope";
-export * from "./getClient";
-export * from "./getClientInstallationProvider";
-export * from "./identityProvider";
-export * from "./scriptProtocolMapper";
-export * from "./userAttributeProtocolMapper";
-export * from "./userPropertyProtocolMapper";
+export { ClientArgs, ClientState } from "./client";
+export type Client = import("./client").Client;
+export const Client: typeof import("./client").Client = null as any;
+utilities.lazyLoad(exports, ["Client"], () => require("./client"));
 
-// Import resources to register:
-import { Client } from "./client";
-import { ClientDefaultScope } from "./clientDefaultScope";
-import { ClientScope } from "./clientScope";
-import { IdentityProvider } from "./identityProvider";
-import { ScriptProtocolMapper } from "./scriptProtocolMapper";
-import { UserAttributeProtocolMapper } from "./userAttributeProtocolMapper";
-import { UserPropertyProtocolMapper } from "./userPropertyProtocolMapper";
+export { ClientDefaultScopeArgs, ClientDefaultScopeState } from "./clientDefaultScope";
+export type ClientDefaultScope = import("./clientDefaultScope").ClientDefaultScope;
+export const ClientDefaultScope: typeof import("./clientDefaultScope").ClientDefaultScope = null as any;
+utilities.lazyLoad(exports, ["ClientDefaultScope"], () => require("./clientDefaultScope"));
+
+export { ClientScopeArgs, ClientScopeState } from "./clientScope";
+export type ClientScope = import("./clientScope").ClientScope;
+export const ClientScope: typeof import("./clientScope").ClientScope = null as any;
+utilities.lazyLoad(exports, ["ClientScope"], () => require("./clientScope"));
+
+export { GetClientArgs, GetClientResult, GetClientOutputArgs } from "./getClient";
+export const getClient: typeof import("./getClient").getClient = null as any;
+export const getClientOutput: typeof import("./getClient").getClientOutput = null as any;
+utilities.lazyLoad(exports, ["getClient","getClientOutput"], () => require("./getClient"));
+
+export { GetClientInstallationProviderArgs, GetClientInstallationProviderResult, GetClientInstallationProviderOutputArgs } from "./getClientInstallationProvider";
+export const getClientInstallationProvider: typeof import("./getClientInstallationProvider").getClientInstallationProvider = null as any;
+export const getClientInstallationProviderOutput: typeof import("./getClientInstallationProvider").getClientInstallationProviderOutput = null as any;
+utilities.lazyLoad(exports, ["getClientInstallationProvider","getClientInstallationProviderOutput"], () => require("./getClientInstallationProvider"));
+
+export { IdentityProviderArgs, IdentityProviderState } from "./identityProvider";
+export type IdentityProvider = import("./identityProvider").IdentityProvider;
+export const IdentityProvider: typeof import("./identityProvider").IdentityProvider = null as any;
+utilities.lazyLoad(exports, ["IdentityProvider"], () => require("./identityProvider"));
+
+export { ScriptProtocolMapperArgs, ScriptProtocolMapperState } from "./scriptProtocolMapper";
+export type ScriptProtocolMapper = import("./scriptProtocolMapper").ScriptProtocolMapper;
+export const ScriptProtocolMapper: typeof import("./scriptProtocolMapper").ScriptProtocolMapper = null as any;
+utilities.lazyLoad(exports, ["ScriptProtocolMapper"], () => require("./scriptProtocolMapper"));
+
+export { UserAttributeProtocolMapperArgs, UserAttributeProtocolMapperState } from "./userAttributeProtocolMapper";
+export type UserAttributeProtocolMapper = import("./userAttributeProtocolMapper").UserAttributeProtocolMapper;
+export const UserAttributeProtocolMapper: typeof import("./userAttributeProtocolMapper").UserAttributeProtocolMapper = null as any;
+utilities.lazyLoad(exports, ["UserAttributeProtocolMapper"], () => require("./userAttributeProtocolMapper"));
+
+export { UserPropertyProtocolMapperArgs, UserPropertyProtocolMapperState } from "./userPropertyProtocolMapper";
+export type UserPropertyProtocolMapper = import("./userPropertyProtocolMapper").UserPropertyProtocolMapper;
+export const UserPropertyProtocolMapper: typeof import("./userPropertyProtocolMapper").UserPropertyProtocolMapper = null as any;
+utilities.lazyLoad(exports, ["UserPropertyProtocolMapper"], () => require("./userPropertyProtocolMapper"));
+
 
 const _module = {
     version: utilities.getVersion(),

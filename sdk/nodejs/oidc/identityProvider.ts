@@ -134,6 +134,10 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public /*out*/ readonly internalId!: pulumi.Output<string>;
     /**
+     * The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+     */
+    public readonly issuer!: pulumi.Output<string | undefined>;
+    /**
      * JSON Web Key Set URL.
      */
     public readonly jwksUrl!: pulumi.Output<string | undefined>;
@@ -220,6 +224,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["guiOrder"] = state ? state.guiOrder : undefined;
             resourceInputs["hideOnLoginPage"] = state ? state.hideOnLoginPage : undefined;
             resourceInputs["internalId"] = state ? state.internalId : undefined;
+            resourceInputs["issuer"] = state ? state.issuer : undefined;
             resourceInputs["jwksUrl"] = state ? state.jwksUrl : undefined;
             resourceInputs["linkOnly"] = state ? state.linkOnly : undefined;
             resourceInputs["loginHint"] = state ? state.loginHint : undefined;
@@ -261,7 +266,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["authorizationUrl"] = args ? args.authorizationUrl : undefined;
             resourceInputs["backchannelSupported"] = args ? args.backchannelSupported : undefined;
             resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["clientSecret"] = args ? args.clientSecret : undefined;
+            resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
             resourceInputs["defaultScopes"] = args ? args.defaultScopes : undefined;
             resourceInputs["disableUserInfo"] = args ? args.disableUserInfo : undefined;
             resourceInputs["displayName"] = args ? args.displayName : undefined;
@@ -270,6 +275,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["firstBrokerLoginFlowAlias"] = args ? args.firstBrokerLoginFlowAlias : undefined;
             resourceInputs["guiOrder"] = args ? args.guiOrder : undefined;
             resourceInputs["hideOnLoginPage"] = args ? args.hideOnLoginPage : undefined;
+            resourceInputs["issuer"] = args ? args.issuer : undefined;
             resourceInputs["jwksUrl"] = args ? args.jwksUrl : undefined;
             resourceInputs["linkOnly"] = args ? args.linkOnly : undefined;
             resourceInputs["loginHint"] = args ? args.loginHint : undefined;
@@ -287,6 +293,8 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["internalId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["clientSecret"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(IdentityProvider.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -360,6 +368,10 @@ export interface IdentityProviderState {
      * (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
      */
     internalId?: pulumi.Input<string>;
+    /**
+     * The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+     */
+    issuer?: pulumi.Input<string>;
     /**
      * JSON Web Key Set URL.
      */
@@ -483,6 +495,10 @@ export interface IdentityProviderArgs {
      * When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
      */
     hideOnLoginPage?: pulumi.Input<boolean>;
+    /**
+     * The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+     */
+    issuer?: pulumi.Input<string>;
     /**
      * JSON Web Key Set URL.
      */

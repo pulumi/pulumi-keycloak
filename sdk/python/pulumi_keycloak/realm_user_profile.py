@@ -23,7 +23,7 @@ class RealmUserProfileArgs:
         The set of arguments for constructing a RealmUserProfile resource.
         :param pulumi.Input[str] realm_id: The ID of the realm the user profile applies to.
         :param pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]] attributes: An ordered list of attributes.
-        :param pulumi.Input[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]] groups: The group that the attribute belong to.
+        :param pulumi.Input[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]] groups: A list of groups.
         """
         pulumi.set(__self__, "realm_id", realm_id)
         if attributes is not None:
@@ -59,7 +59,7 @@ class RealmUserProfileArgs:
     @pulumi.getter
     def groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]]:
         """
-        The group that the attribute belong to.
+        A list of groups.
         """
         return pulumi.get(self, "groups")
 
@@ -77,7 +77,7 @@ class _RealmUserProfileState:
         """
         Input properties used for looking up and filtering RealmUserProfile resources.
         :param pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]] attributes: An ordered list of attributes.
-        :param pulumi.Input[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]] groups: The group that the attribute belong to.
+        :param pulumi.Input[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]] groups: A list of groups.
         :param pulumi.Input[str] realm_id: The ID of the realm the user profile applies to.
         """
         if attributes is not None:
@@ -103,7 +103,7 @@ class _RealmUserProfileState:
     @pulumi.getter
     def groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]]:
         """
-        The group that the attribute belong to.
+        A list of groups.
         """
         return pulumi.get(self, "groups")
 
@@ -149,6 +149,7 @@ class RealmUserProfile(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import json
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
@@ -194,6 +195,17 @@ class RealmUserProfile(pulumi.CustomResource):
                 ),
                 keycloak.RealmUserProfileAttributeArgs(
                     name="field2",
+                    validators=[keycloak.RealmUserProfileAttributeValidatorArgs(
+                        name="options",
+                        config={
+                            "options": json.dumps(["opt1"]),
+                        },
+                    )],
+                    annotations={
+                        "foo": json.dumps({
+                            "key": "val",
+                        }),
+                    },
                 ),
             ],
             groups=[
@@ -203,6 +215,9 @@ class RealmUserProfile(pulumi.CustomResource):
                     display_description="A first group",
                     annotations={
                         "foo": "bar",
+                        "foo2": json.dumps({
+                            "key": "val",
+                        }),
                     },
                 ),
                 keycloak.RealmUserProfileGroupArgs(
@@ -218,7 +233,7 @@ class RealmUserProfile(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RealmUserProfileAttributeArgs']]]] attributes: An ordered list of attributes.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RealmUserProfileGroupArgs']]]] groups: The group that the attribute belong to.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RealmUserProfileGroupArgs']]]] groups: A list of groups.
         :param pulumi.Input[str] realm_id: The ID of the realm the user profile applies to.
         """
         ...
@@ -243,6 +258,7 @@ class RealmUserProfile(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import json
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
@@ -288,6 +304,17 @@ class RealmUserProfile(pulumi.CustomResource):
                 ),
                 keycloak.RealmUserProfileAttributeArgs(
                     name="field2",
+                    validators=[keycloak.RealmUserProfileAttributeValidatorArgs(
+                        name="options",
+                        config={
+                            "options": json.dumps(["opt1"]),
+                        },
+                    )],
+                    annotations={
+                        "foo": json.dumps({
+                            "key": "val",
+                        }),
+                    },
                 ),
             ],
             groups=[
@@ -297,6 +324,9 @@ class RealmUserProfile(pulumi.CustomResource):
                     display_description="A first group",
                     annotations={
                         "foo": "bar",
+                        "foo2": json.dumps({
+                            "key": "val",
+                        }),
                     },
                 ),
                 keycloak.RealmUserProfileGroupArgs(
@@ -362,7 +392,7 @@ class RealmUserProfile(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RealmUserProfileAttributeArgs']]]] attributes: An ordered list of attributes.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RealmUserProfileGroupArgs']]]] groups: The group that the attribute belong to.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RealmUserProfileGroupArgs']]]] groups: A list of groups.
         :param pulumi.Input[str] realm_id: The ID of the realm the user profile applies to.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -386,7 +416,7 @@ class RealmUserProfile(pulumi.CustomResource):
     @pulumi.getter
     def groups(self) -> pulumi.Output[Optional[Sequence['outputs.RealmUserProfileGroup']]]:
         """
-        The group that the attribute belong to.
+        A list of groups.
         """
         return pulumi.get(self, "groups")
 

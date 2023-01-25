@@ -64,6 +64,7 @@ public final class GetClientResult {
     private Boolean standardFlowEnabled;
     private Boolean useRefreshTokens;
     private Boolean useRefreshTokensClientCredentials;
+    private List<String> validPostLogoutRedirectUris;
     private List<String> validRedirectUris;
     private List<String> webOrigins;
 
@@ -201,6 +202,9 @@ public final class GetClientResult {
     public Boolean useRefreshTokensClientCredentials() {
         return this.useRefreshTokensClientCredentials;
     }
+    public List<String> validPostLogoutRedirectUris() {
+        return this.validPostLogoutRedirectUris;
+    }
     public List<String> validRedirectUris() {
         return this.validRedirectUris;
     }
@@ -260,6 +264,7 @@ public final class GetClientResult {
         private Boolean standardFlowEnabled;
         private Boolean useRefreshTokens;
         private Boolean useRefreshTokensClientCredentials;
+        private List<String> validPostLogoutRedirectUris;
         private List<String> validRedirectUris;
         private List<String> webOrigins;
         public Builder() {}
@@ -308,6 +313,7 @@ public final class GetClientResult {
     	      this.standardFlowEnabled = defaults.standardFlowEnabled;
     	      this.useRefreshTokens = defaults.useRefreshTokens;
     	      this.useRefreshTokensClientCredentials = defaults.useRefreshTokensClientCredentials;
+    	      this.validPostLogoutRedirectUris = defaults.validPostLogoutRedirectUris;
     	      this.validRedirectUris = defaults.validRedirectUris;
     	      this.webOrigins = defaults.webOrigins;
         }
@@ -534,6 +540,14 @@ public final class GetClientResult {
             return this;
         }
         @CustomType.Setter
+        public Builder validPostLogoutRedirectUris(List<String> validPostLogoutRedirectUris) {
+            this.validPostLogoutRedirectUris = Objects.requireNonNull(validPostLogoutRedirectUris);
+            return this;
+        }
+        public Builder validPostLogoutRedirectUris(String... validPostLogoutRedirectUris) {
+            return validPostLogoutRedirectUris(List.of(validPostLogoutRedirectUris));
+        }
+        @CustomType.Setter
         public Builder validRedirectUris(List<String> validRedirectUris) {
             this.validRedirectUris = Objects.requireNonNull(validRedirectUris);
             return this;
@@ -594,6 +608,7 @@ public final class GetClientResult {
             o.standardFlowEnabled = standardFlowEnabled;
             o.useRefreshTokens = useRefreshTokens;
             o.useRefreshTokensClientCredentials = useRefreshTokensClientCredentials;
+            o.validPostLogoutRedirectUris = validPostLogoutRedirectUris;
             o.validRedirectUris = validRedirectUris;
             o.webOrigins = webOrigins;
             return o;

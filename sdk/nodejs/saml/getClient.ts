@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -26,11 +27,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Promise<GetClientResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:saml/getClient:getClient", {
         "clientId": args.clientId,
         "realmId": args.realmId,
@@ -98,9 +96,28 @@ export interface GetClientResult {
     readonly signingPrivateKeySha1: string;
     readonly validRedirectUris: string[];
 }
-
+/**
+ * This data source can be used to fetch properties of a Keycloak client that uses the SAML protocol.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realmManagement = keycloak.saml.getClient({
+ *     realmId: "my-realm",
+ *     clientId: "realm-management",
+ * });
+ * const admin = realmManagement.then(realmManagement => keycloak.getRole({
+ *     realmId: "my-realm",
+ *     clientId: realmManagement.id,
+ *     name: "realm-admin",
+ * }));
+ * ```
+ */
 export function getClientOutput(args: GetClientOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientResult> {
-    return pulumi.output(args).apply(a => getClient(a, opts))
+    return pulumi.output(args).apply((a: any) => getClient(a, opts))
 }
 
 /**

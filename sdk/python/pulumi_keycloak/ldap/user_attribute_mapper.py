@@ -19,6 +19,8 @@ class UserAttributeMapperArgs:
                  realm_id: pulumi.Input[str],
                  user_model_attribute: pulumi.Input[str],
                  always_read_value_from_ldap: Optional[pulumi.Input[bool]] = None,
+                 attribute_default_value: Optional[pulumi.Input[str]] = None,
+                 is_binary_attribute: Optional[pulumi.Input[bool]] = None,
                  is_mandatory_in_ldap: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  read_only: Optional[pulumi.Input[bool]] = None):
@@ -29,6 +31,8 @@ class UserAttributeMapperArgs:
         :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
         :param pulumi.Input[str] user_model_attribute: Name of the user property or attribute you want to map the LDAP attribute into.
         :param pulumi.Input[bool] always_read_value_from_ldap: When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
+        :param pulumi.Input[str] attribute_default_value: Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        :param pulumi.Input[bool] is_binary_attribute: Should be true for binary LDAP attributes.
         :param pulumi.Input[bool] is_mandatory_in_ldap: When `true`, this attribute must exist in LDAP. Defaults to `false`.
         :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[bool] read_only: When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
@@ -39,6 +43,10 @@ class UserAttributeMapperArgs:
         pulumi.set(__self__, "user_model_attribute", user_model_attribute)
         if always_read_value_from_ldap is not None:
             pulumi.set(__self__, "always_read_value_from_ldap", always_read_value_from_ldap)
+        if attribute_default_value is not None:
+            pulumi.set(__self__, "attribute_default_value", attribute_default_value)
+        if is_binary_attribute is not None:
+            pulumi.set(__self__, "is_binary_attribute", is_binary_attribute)
         if is_mandatory_in_ldap is not None:
             pulumi.set(__self__, "is_mandatory_in_ldap", is_mandatory_in_ldap)
         if name is not None:
@@ -107,6 +115,30 @@ class UserAttributeMapperArgs:
         pulumi.set(self, "always_read_value_from_ldap", value)
 
     @property
+    @pulumi.getter(name="attributeDefaultValue")
+    def attribute_default_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        """
+        return pulumi.get(self, "attribute_default_value")
+
+    @attribute_default_value.setter
+    def attribute_default_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "attribute_default_value", value)
+
+    @property
+    @pulumi.getter(name="isBinaryAttribute")
+    def is_binary_attribute(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Should be true for binary LDAP attributes.
+        """
+        return pulumi.get(self, "is_binary_attribute")
+
+    @is_binary_attribute.setter
+    def is_binary_attribute(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_binary_attribute", value)
+
+    @property
     @pulumi.getter(name="isMandatoryInLdap")
     def is_mandatory_in_ldap(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -147,6 +179,8 @@ class UserAttributeMapperArgs:
 class _UserAttributeMapperState:
     def __init__(__self__, *,
                  always_read_value_from_ldap: Optional[pulumi.Input[bool]] = None,
+                 attribute_default_value: Optional[pulumi.Input[str]] = None,
+                 is_binary_attribute: Optional[pulumi.Input[bool]] = None,
                  is_mandatory_in_ldap: Optional[pulumi.Input[bool]] = None,
                  ldap_attribute: Optional[pulumi.Input[str]] = None,
                  ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
@@ -157,6 +191,8 @@ class _UserAttributeMapperState:
         """
         Input properties used for looking up and filtering UserAttributeMapper resources.
         :param pulumi.Input[bool] always_read_value_from_ldap: When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
+        :param pulumi.Input[str] attribute_default_value: Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        :param pulumi.Input[bool] is_binary_attribute: Should be true for binary LDAP attributes.
         :param pulumi.Input[bool] is_mandatory_in_ldap: When `true`, this attribute must exist in LDAP. Defaults to `false`.
         :param pulumi.Input[str] ldap_attribute: Name of the mapped attribute on the LDAP object.
         :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
@@ -167,6 +203,10 @@ class _UserAttributeMapperState:
         """
         if always_read_value_from_ldap is not None:
             pulumi.set(__self__, "always_read_value_from_ldap", always_read_value_from_ldap)
+        if attribute_default_value is not None:
+            pulumi.set(__self__, "attribute_default_value", attribute_default_value)
+        if is_binary_attribute is not None:
+            pulumi.set(__self__, "is_binary_attribute", is_binary_attribute)
         if is_mandatory_in_ldap is not None:
             pulumi.set(__self__, "is_mandatory_in_ldap", is_mandatory_in_ldap)
         if ldap_attribute is not None:
@@ -193,6 +233,30 @@ class _UserAttributeMapperState:
     @always_read_value_from_ldap.setter
     def always_read_value_from_ldap(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "always_read_value_from_ldap", value)
+
+    @property
+    @pulumi.getter(name="attributeDefaultValue")
+    def attribute_default_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        """
+        return pulumi.get(self, "attribute_default_value")
+
+    @attribute_default_value.setter
+    def attribute_default_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "attribute_default_value", value)
+
+    @property
+    @pulumi.getter(name="isBinaryAttribute")
+    def is_binary_attribute(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Should be true for binary LDAP attributes.
+        """
+        return pulumi.get(self, "is_binary_attribute")
+
+    @is_binary_attribute.setter
+    def is_binary_attribute(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_binary_attribute", value)
 
     @property
     @pulumi.getter(name="isMandatoryInLdap")
@@ -285,6 +349,8 @@ class UserAttributeMapper(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  always_read_value_from_ldap: Optional[pulumi.Input[bool]] = None,
+                 attribute_default_value: Optional[pulumi.Input[str]] = None,
+                 is_binary_attribute: Optional[pulumi.Input[bool]] = None,
                  is_mandatory_in_ldap: Optional[pulumi.Input[bool]] = None,
                  ldap_attribute: Optional[pulumi.Input[str]] = None,
                  ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
@@ -340,6 +406,8 @@ class UserAttributeMapper(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] always_read_value_from_ldap: When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
+        :param pulumi.Input[str] attribute_default_value: Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        :param pulumi.Input[bool] is_binary_attribute: Should be true for binary LDAP attributes.
         :param pulumi.Input[bool] is_mandatory_in_ldap: When `true`, this attribute must exist in LDAP. Defaults to `false`.
         :param pulumi.Input[str] ldap_attribute: Name of the mapped attribute on the LDAP object.
         :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
@@ -414,6 +482,8 @@ class UserAttributeMapper(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  always_read_value_from_ldap: Optional[pulumi.Input[bool]] = None,
+                 attribute_default_value: Optional[pulumi.Input[str]] = None,
+                 is_binary_attribute: Optional[pulumi.Input[bool]] = None,
                  is_mandatory_in_ldap: Optional[pulumi.Input[bool]] = None,
                  ldap_attribute: Optional[pulumi.Input[str]] = None,
                  ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
@@ -431,6 +501,8 @@ class UserAttributeMapper(pulumi.CustomResource):
             __props__ = UserAttributeMapperArgs.__new__(UserAttributeMapperArgs)
 
             __props__.__dict__["always_read_value_from_ldap"] = always_read_value_from_ldap
+            __props__.__dict__["attribute_default_value"] = attribute_default_value
+            __props__.__dict__["is_binary_attribute"] = is_binary_attribute
             __props__.__dict__["is_mandatory_in_ldap"] = is_mandatory_in_ldap
             if ldap_attribute is None and not opts.urn:
                 raise TypeError("Missing required property 'ldap_attribute'")
@@ -457,6 +529,8 @@ class UserAttributeMapper(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             always_read_value_from_ldap: Optional[pulumi.Input[bool]] = None,
+            attribute_default_value: Optional[pulumi.Input[str]] = None,
+            is_binary_attribute: Optional[pulumi.Input[bool]] = None,
             is_mandatory_in_ldap: Optional[pulumi.Input[bool]] = None,
             ldap_attribute: Optional[pulumi.Input[str]] = None,
             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
@@ -472,6 +546,8 @@ class UserAttributeMapper(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] always_read_value_from_ldap: When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
+        :param pulumi.Input[str] attribute_default_value: Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        :param pulumi.Input[bool] is_binary_attribute: Should be true for binary LDAP attributes.
         :param pulumi.Input[bool] is_mandatory_in_ldap: When `true`, this attribute must exist in LDAP. Defaults to `false`.
         :param pulumi.Input[str] ldap_attribute: Name of the mapped attribute on the LDAP object.
         :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
@@ -485,6 +561,8 @@ class UserAttributeMapper(pulumi.CustomResource):
         __props__ = _UserAttributeMapperState.__new__(_UserAttributeMapperState)
 
         __props__.__dict__["always_read_value_from_ldap"] = always_read_value_from_ldap
+        __props__.__dict__["attribute_default_value"] = attribute_default_value
+        __props__.__dict__["is_binary_attribute"] = is_binary_attribute
         __props__.__dict__["is_mandatory_in_ldap"] = is_mandatory_in_ldap
         __props__.__dict__["ldap_attribute"] = ldap_attribute
         __props__.__dict__["ldap_user_federation_id"] = ldap_user_federation_id
@@ -501,6 +579,22 @@ class UserAttributeMapper(pulumi.CustomResource):
         When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
         """
         return pulumi.get(self, "always_read_value_from_ldap")
+
+    @property
+    @pulumi.getter(name="attributeDefaultValue")
+    def attribute_default_value(self) -> pulumi.Output[Optional[str]]:
+        """
+        Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        """
+        return pulumi.get(self, "attribute_default_value")
+
+    @property
+    @pulumi.getter(name="isBinaryAttribute")
+    def is_binary_attribute(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Should be true for binary LDAP attributes.
+        """
+        return pulumi.get(self, "is_binary_attribute")
 
     @property
     @pulumi.getter(name="isMandatoryInLdap")

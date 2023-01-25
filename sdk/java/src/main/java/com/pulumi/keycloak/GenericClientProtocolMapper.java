@@ -17,6 +17,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * !&gt; **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `keycloak.GenericProtocolMapper` instead.
+ * 
  * Allows for creating and managing protocol mappers for both types of clients (openid-connect and saml) within Keycloak.
  * 
  * There are two uses cases for using this resource:

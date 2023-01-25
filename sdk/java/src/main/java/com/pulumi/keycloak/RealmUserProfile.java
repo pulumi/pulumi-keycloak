@@ -43,6 +43,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.keycloak.inputs.RealmUserProfileAttributeArgs;
  * import com.pulumi.keycloak.inputs.RealmUserProfileAttributePermissionsArgs;
  * import com.pulumi.keycloak.inputs.RealmUserProfileGroupArgs;
+ * import static com.pulumi.codegen.internal.Serialization.*;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -94,13 +95,28 @@ import javax.annotation.Nullable;
  *                     .build(),
  *                 RealmUserProfileAttributeArgs.builder()
  *                     .name(&#34;field2&#34;)
+ *                     .validators(RealmUserProfileAttributeValidatorArgs.builder()
+ *                         .name(&#34;options&#34;)
+ *                         .config(Map.of(&#34;options&#34;, serializeJson(
+ *                             jsonArray(&#34;opt1&#34;))))
+ *                         .build())
+ *                     .annotations(Map.of(&#34;foo&#34;, serializeJson(
+ *                         jsonObject(
+ *                             jsonProperty(&#34;key&#34;, &#34;val&#34;)
+ *                         ))))
  *                     .build())
  *             .groups(            
  *                 RealmUserProfileGroupArgs.builder()
  *                     .name(&#34;group1&#34;)
  *                     .displayHeader(&#34;Group 1&#34;)
  *                     .displayDescription(&#34;A first group&#34;)
- *                     .annotations(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+ *                     .annotations(Map.ofEntries(
+ *                         Map.entry(&#34;foo&#34;, &#34;bar&#34;),
+ *                         Map.entry(&#34;foo2&#34;, serializeJson(
+ *                             jsonObject(
+ *                                 jsonProperty(&#34;key&#34;, &#34;val&#34;)
+ *                             )))
+ *                     ))
  *                     .build(),
  *                 RealmUserProfileGroupArgs.builder()
  *                     .name(&#34;group2&#34;)
@@ -133,14 +149,14 @@ public class RealmUserProfile extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.attributes);
     }
     /**
-     * The group that the attribute belong to.
+     * A list of groups.
      * 
      */
     @Export(name="groups", type=List.class, parameters={RealmUserProfileGroup.class})
     private Output</* @Nullable */ List<RealmUserProfileGroup>> groups;
 
     /**
-     * @return The group that the attribute belong to.
+     * @return A list of groups.
      * 
      */
     public Output<Optional<List<RealmUserProfileGroup>>> groups() {

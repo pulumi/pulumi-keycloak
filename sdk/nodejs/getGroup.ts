@@ -34,11 +34,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getGroup(args: GetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetGroupResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getGroup:getGroup", {
         "name": args.name,
         "realmId": args.realmId,
@@ -73,9 +70,37 @@ export interface GetGroupResult {
     readonly path: string;
     readonly realmId: string;
 }
-
+/**
+ * This data source can be used to fetch properties of a Keycloak group for
+ * usage with other resources, such as `keycloak.GroupRoles`.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const offlineAccess = keycloak.getRoleOutput({
+ *     realmId: realm.id,
+ *     name: "offline_access",
+ * });
+ * const group = keycloak.getGroupOutput({
+ *     realmId: realm.id,
+ *     name: "group",
+ * });
+ * const groupRoles = new keycloak.GroupRoles("groupRoles", {
+ *     realmId: realm.id,
+ *     groupId: group.apply(group => group.id),
+ *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
+ * });
+ * ```
+ */
 export function getGroupOutput(args: GetGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGroupResult> {
-    return pulumi.output(args).apply(a => getGroup(a, opts))
+    return pulumi.output(args).apply((a: any) => getGroup(a, opts))
 }
 
 /**

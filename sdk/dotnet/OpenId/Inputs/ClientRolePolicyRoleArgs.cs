@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId.Inputs
 {
 
-    public sealed class ClientRolePolicyRoleArgs : Pulumi.ResourceArgs
+    public sealed class ClientRolePolicyRoleArgs : global::Pulumi.ResourceArgs
     {
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;
@@ -21,5 +21,6 @@ namespace Pulumi.Keycloak.OpenId.Inputs
         public ClientRolePolicyRoleArgs()
         {
         }
+        public static new ClientRolePolicyRoleArgs Empty => new ClientRolePolicyRoleArgs();
     }
 }

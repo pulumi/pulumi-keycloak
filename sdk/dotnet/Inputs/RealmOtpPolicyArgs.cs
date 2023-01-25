@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class RealmOtpPolicyArgs : Pulumi.ResourceArgs
+    public sealed class RealmOtpPolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
@@ -51,5 +51,6 @@ namespace Pulumi.Keycloak.Inputs
         public RealmOtpPolicyArgs()
         {
         }
+        public static new RealmOtpPolicyArgs Empty => new RealmOtpPolicyArgs();
     }
 }

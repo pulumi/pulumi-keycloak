@@ -5,69 +5,171 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./audienceProtocolMapper";
-export * from "./audienceResolveProtocolMappter";
-export * from "./client";
-export * from "./clientAggregatePolicy";
-export * from "./clientAuthorizationPermission";
-export * from "./clientAuthorizationResource";
-export * from "./clientAuthorizationScope";
-export * from "./clientDefaultScopes";
-export * from "./clientGroupPolicy";
-export * from "./clientJsPolicy";
-export * from "./clientOptionalScopes";
-export * from "./clientPermissions";
-export * from "./clientPolicy";
-export * from "./clientRolePolicy";
-export * from "./clientScope";
-export * from "./clientServiceAccountRealmRole";
-export * from "./clientServiceAccountRole";
-export * from "./clientTimePolicy";
-export * from "./clientUserPolicy";
-export * from "./fullNameProtocolMapper";
-export * from "./getClient";
-export * from "./getClientAuthorizationPolicy";
-export * from "./getClientServiceAccountUser";
-export * from "./groupMembershipProtocolMapper";
-export * from "./hardcodedClaimProtocolMapper";
-export * from "./hardcodedRoleProtocolMapper";
-export * from "./scriptProtocolMapper";
-export * from "./userAttributeProtocolMapper";
-export * from "./userClientRoleProtocolMapper";
-export * from "./userPropertyProtocolMapper";
-export * from "./userRealmRoleProtocolMapper";
-export * from "./userSessionNoteProtocolMapper";
+export { AudienceProtocolMapperArgs, AudienceProtocolMapperState } from "./audienceProtocolMapper";
+export type AudienceProtocolMapper = import("./audienceProtocolMapper").AudienceProtocolMapper;
+export const AudienceProtocolMapper: typeof import("./audienceProtocolMapper").AudienceProtocolMapper = null as any;
+utilities.lazyLoad(exports, ["AudienceProtocolMapper"], () => require("./audienceProtocolMapper"));
 
-// Import resources to register:
-import { AudienceProtocolMapper } from "./audienceProtocolMapper";
-import { AudienceResolveProtocolMappter } from "./audienceResolveProtocolMappter";
-import { Client } from "./client";
-import { ClientAggregatePolicy } from "./clientAggregatePolicy";
-import { ClientAuthorizationPermission } from "./clientAuthorizationPermission";
-import { ClientAuthorizationResource } from "./clientAuthorizationResource";
-import { ClientAuthorizationScope } from "./clientAuthorizationScope";
-import { ClientDefaultScopes } from "./clientDefaultScopes";
-import { ClientGroupPolicy } from "./clientGroupPolicy";
-import { ClientJsPolicy } from "./clientJsPolicy";
-import { ClientOptionalScopes } from "./clientOptionalScopes";
-import { ClientPermissions } from "./clientPermissions";
-import { ClientPolicy } from "./clientPolicy";
-import { ClientRolePolicy } from "./clientRolePolicy";
-import { ClientScope } from "./clientScope";
-import { ClientServiceAccountRealmRole } from "./clientServiceAccountRealmRole";
-import { ClientServiceAccountRole } from "./clientServiceAccountRole";
-import { ClientTimePolicy } from "./clientTimePolicy";
-import { ClientUserPolicy } from "./clientUserPolicy";
-import { FullNameProtocolMapper } from "./fullNameProtocolMapper";
-import { GroupMembershipProtocolMapper } from "./groupMembershipProtocolMapper";
-import { HardcodedClaimProtocolMapper } from "./hardcodedClaimProtocolMapper";
-import { HardcodedRoleProtocolMapper } from "./hardcodedRoleProtocolMapper";
-import { ScriptProtocolMapper } from "./scriptProtocolMapper";
-import { UserAttributeProtocolMapper } from "./userAttributeProtocolMapper";
-import { UserClientRoleProtocolMapper } from "./userClientRoleProtocolMapper";
-import { UserPropertyProtocolMapper } from "./userPropertyProtocolMapper";
-import { UserRealmRoleProtocolMapper } from "./userRealmRoleProtocolMapper";
-import { UserSessionNoteProtocolMapper } from "./userSessionNoteProtocolMapper";
+export { AudienceResolveProtocolMappterArgs, AudienceResolveProtocolMappterState } from "./audienceResolveProtocolMappter";
+export type AudienceResolveProtocolMappter = import("./audienceResolveProtocolMappter").AudienceResolveProtocolMappter;
+export const AudienceResolveProtocolMappter: typeof import("./audienceResolveProtocolMappter").AudienceResolveProtocolMappter = null as any;
+utilities.lazyLoad(exports, ["AudienceResolveProtocolMappter"], () => require("./audienceResolveProtocolMappter"));
+
+export { ClientArgs, ClientState } from "./client";
+export type Client = import("./client").Client;
+export const Client: typeof import("./client").Client = null as any;
+utilities.lazyLoad(exports, ["Client"], () => require("./client"));
+
+export { ClientAggregatePolicyArgs, ClientAggregatePolicyState } from "./clientAggregatePolicy";
+export type ClientAggregatePolicy = import("./clientAggregatePolicy").ClientAggregatePolicy;
+export const ClientAggregatePolicy: typeof import("./clientAggregatePolicy").ClientAggregatePolicy = null as any;
+utilities.lazyLoad(exports, ["ClientAggregatePolicy"], () => require("./clientAggregatePolicy"));
+
+export { ClientAuthorizationPermissionArgs, ClientAuthorizationPermissionState } from "./clientAuthorizationPermission";
+export type ClientAuthorizationPermission = import("./clientAuthorizationPermission").ClientAuthorizationPermission;
+export const ClientAuthorizationPermission: typeof import("./clientAuthorizationPermission").ClientAuthorizationPermission = null as any;
+utilities.lazyLoad(exports, ["ClientAuthorizationPermission"], () => require("./clientAuthorizationPermission"));
+
+export { ClientAuthorizationResourceArgs, ClientAuthorizationResourceState } from "./clientAuthorizationResource";
+export type ClientAuthorizationResource = import("./clientAuthorizationResource").ClientAuthorizationResource;
+export const ClientAuthorizationResource: typeof import("./clientAuthorizationResource").ClientAuthorizationResource = null as any;
+utilities.lazyLoad(exports, ["ClientAuthorizationResource"], () => require("./clientAuthorizationResource"));
+
+export { ClientAuthorizationScopeArgs, ClientAuthorizationScopeState } from "./clientAuthorizationScope";
+export type ClientAuthorizationScope = import("./clientAuthorizationScope").ClientAuthorizationScope;
+export const ClientAuthorizationScope: typeof import("./clientAuthorizationScope").ClientAuthorizationScope = null as any;
+utilities.lazyLoad(exports, ["ClientAuthorizationScope"], () => require("./clientAuthorizationScope"));
+
+export { ClientDefaultScopesArgs, ClientDefaultScopesState } from "./clientDefaultScopes";
+export type ClientDefaultScopes = import("./clientDefaultScopes").ClientDefaultScopes;
+export const ClientDefaultScopes: typeof import("./clientDefaultScopes").ClientDefaultScopes = null as any;
+utilities.lazyLoad(exports, ["ClientDefaultScopes"], () => require("./clientDefaultScopes"));
+
+export { ClientGroupPolicyArgs, ClientGroupPolicyState } from "./clientGroupPolicy";
+export type ClientGroupPolicy = import("./clientGroupPolicy").ClientGroupPolicy;
+export const ClientGroupPolicy: typeof import("./clientGroupPolicy").ClientGroupPolicy = null as any;
+utilities.lazyLoad(exports, ["ClientGroupPolicy"], () => require("./clientGroupPolicy"));
+
+export { ClientJsPolicyArgs, ClientJsPolicyState } from "./clientJsPolicy";
+export type ClientJsPolicy = import("./clientJsPolicy").ClientJsPolicy;
+export const ClientJsPolicy: typeof import("./clientJsPolicy").ClientJsPolicy = null as any;
+utilities.lazyLoad(exports, ["ClientJsPolicy"], () => require("./clientJsPolicy"));
+
+export { ClientOptionalScopesArgs, ClientOptionalScopesState } from "./clientOptionalScopes";
+export type ClientOptionalScopes = import("./clientOptionalScopes").ClientOptionalScopes;
+export const ClientOptionalScopes: typeof import("./clientOptionalScopes").ClientOptionalScopes = null as any;
+utilities.lazyLoad(exports, ["ClientOptionalScopes"], () => require("./clientOptionalScopes"));
+
+export { ClientPermissionsArgs, ClientPermissionsState } from "./clientPermissions";
+export type ClientPermissions = import("./clientPermissions").ClientPermissions;
+export const ClientPermissions: typeof import("./clientPermissions").ClientPermissions = null as any;
+utilities.lazyLoad(exports, ["ClientPermissions"], () => require("./clientPermissions"));
+
+export { ClientPolicyArgs, ClientPolicyState } from "./clientPolicy";
+export type ClientPolicy = import("./clientPolicy").ClientPolicy;
+export const ClientPolicy: typeof import("./clientPolicy").ClientPolicy = null as any;
+utilities.lazyLoad(exports, ["ClientPolicy"], () => require("./clientPolicy"));
+
+export { ClientRolePolicyArgs, ClientRolePolicyState } from "./clientRolePolicy";
+export type ClientRolePolicy = import("./clientRolePolicy").ClientRolePolicy;
+export const ClientRolePolicy: typeof import("./clientRolePolicy").ClientRolePolicy = null as any;
+utilities.lazyLoad(exports, ["ClientRolePolicy"], () => require("./clientRolePolicy"));
+
+export { ClientScopeArgs, ClientScopeState } from "./clientScope";
+export type ClientScope = import("./clientScope").ClientScope;
+export const ClientScope: typeof import("./clientScope").ClientScope = null as any;
+utilities.lazyLoad(exports, ["ClientScope"], () => require("./clientScope"));
+
+export { ClientServiceAccountRealmRoleArgs, ClientServiceAccountRealmRoleState } from "./clientServiceAccountRealmRole";
+export type ClientServiceAccountRealmRole = import("./clientServiceAccountRealmRole").ClientServiceAccountRealmRole;
+export const ClientServiceAccountRealmRole: typeof import("./clientServiceAccountRealmRole").ClientServiceAccountRealmRole = null as any;
+utilities.lazyLoad(exports, ["ClientServiceAccountRealmRole"], () => require("./clientServiceAccountRealmRole"));
+
+export { ClientServiceAccountRoleArgs, ClientServiceAccountRoleState } from "./clientServiceAccountRole";
+export type ClientServiceAccountRole = import("./clientServiceAccountRole").ClientServiceAccountRole;
+export const ClientServiceAccountRole: typeof import("./clientServiceAccountRole").ClientServiceAccountRole = null as any;
+utilities.lazyLoad(exports, ["ClientServiceAccountRole"], () => require("./clientServiceAccountRole"));
+
+export { ClientTimePolicyArgs, ClientTimePolicyState } from "./clientTimePolicy";
+export type ClientTimePolicy = import("./clientTimePolicy").ClientTimePolicy;
+export const ClientTimePolicy: typeof import("./clientTimePolicy").ClientTimePolicy = null as any;
+utilities.lazyLoad(exports, ["ClientTimePolicy"], () => require("./clientTimePolicy"));
+
+export { ClientUserPolicyArgs, ClientUserPolicyState } from "./clientUserPolicy";
+export type ClientUserPolicy = import("./clientUserPolicy").ClientUserPolicy;
+export const ClientUserPolicy: typeof import("./clientUserPolicy").ClientUserPolicy = null as any;
+utilities.lazyLoad(exports, ["ClientUserPolicy"], () => require("./clientUserPolicy"));
+
+export { FullNameProtocolMapperArgs, FullNameProtocolMapperState } from "./fullNameProtocolMapper";
+export type FullNameProtocolMapper = import("./fullNameProtocolMapper").FullNameProtocolMapper;
+export const FullNameProtocolMapper: typeof import("./fullNameProtocolMapper").FullNameProtocolMapper = null as any;
+utilities.lazyLoad(exports, ["FullNameProtocolMapper"], () => require("./fullNameProtocolMapper"));
+
+export { GetClientArgs, GetClientResult, GetClientOutputArgs } from "./getClient";
+export const getClient: typeof import("./getClient").getClient = null as any;
+export const getClientOutput: typeof import("./getClient").getClientOutput = null as any;
+utilities.lazyLoad(exports, ["getClient","getClientOutput"], () => require("./getClient"));
+
+export { GetClientAuthorizationPolicyArgs, GetClientAuthorizationPolicyResult, GetClientAuthorizationPolicyOutputArgs } from "./getClientAuthorizationPolicy";
+export const getClientAuthorizationPolicy: typeof import("./getClientAuthorizationPolicy").getClientAuthorizationPolicy = null as any;
+export const getClientAuthorizationPolicyOutput: typeof import("./getClientAuthorizationPolicy").getClientAuthorizationPolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getClientAuthorizationPolicy","getClientAuthorizationPolicyOutput"], () => require("./getClientAuthorizationPolicy"));
+
+export { GetClientScopeArgs, GetClientScopeResult, GetClientScopeOutputArgs } from "./getClientScope";
+export const getClientScope: typeof import("./getClientScope").getClientScope = null as any;
+export const getClientScopeOutput: typeof import("./getClientScope").getClientScopeOutput = null as any;
+utilities.lazyLoad(exports, ["getClientScope","getClientScopeOutput"], () => require("./getClientScope"));
+
+export { GetClientServiceAccountUserArgs, GetClientServiceAccountUserResult, GetClientServiceAccountUserOutputArgs } from "./getClientServiceAccountUser";
+export const getClientServiceAccountUser: typeof import("./getClientServiceAccountUser").getClientServiceAccountUser = null as any;
+export const getClientServiceAccountUserOutput: typeof import("./getClientServiceAccountUser").getClientServiceAccountUserOutput = null as any;
+utilities.lazyLoad(exports, ["getClientServiceAccountUser","getClientServiceAccountUserOutput"], () => require("./getClientServiceAccountUser"));
+
+export { GroupMembershipProtocolMapperArgs, GroupMembershipProtocolMapperState } from "./groupMembershipProtocolMapper";
+export type GroupMembershipProtocolMapper = import("./groupMembershipProtocolMapper").GroupMembershipProtocolMapper;
+export const GroupMembershipProtocolMapper: typeof import("./groupMembershipProtocolMapper").GroupMembershipProtocolMapper = null as any;
+utilities.lazyLoad(exports, ["GroupMembershipProtocolMapper"], () => require("./groupMembershipProtocolMapper"));
+
+export { HardcodedClaimProtocolMapperArgs, HardcodedClaimProtocolMapperState } from "./hardcodedClaimProtocolMapper";
+export type HardcodedClaimProtocolMapper = import("./hardcodedClaimProtocolMapper").HardcodedClaimProtocolMapper;
+export const HardcodedClaimProtocolMapper: typeof import("./hardcodedClaimProtocolMapper").HardcodedClaimProtocolMapper = null as any;
+utilities.lazyLoad(exports, ["HardcodedClaimProtocolMapper"], () => require("./hardcodedClaimProtocolMapper"));
+
+export { HardcodedRoleProtocolMapperArgs, HardcodedRoleProtocolMapperState } from "./hardcodedRoleProtocolMapper";
+export type HardcodedRoleProtocolMapper = import("./hardcodedRoleProtocolMapper").HardcodedRoleProtocolMapper;
+export const HardcodedRoleProtocolMapper: typeof import("./hardcodedRoleProtocolMapper").HardcodedRoleProtocolMapper = null as any;
+utilities.lazyLoad(exports, ["HardcodedRoleProtocolMapper"], () => require("./hardcodedRoleProtocolMapper"));
+
+export { ScriptProtocolMapperArgs, ScriptProtocolMapperState } from "./scriptProtocolMapper";
+export type ScriptProtocolMapper = import("./scriptProtocolMapper").ScriptProtocolMapper;
+export const ScriptProtocolMapper: typeof import("./scriptProtocolMapper").ScriptProtocolMapper = null as any;
+utilities.lazyLoad(exports, ["ScriptProtocolMapper"], () => require("./scriptProtocolMapper"));
+
+export { UserAttributeProtocolMapperArgs, UserAttributeProtocolMapperState } from "./userAttributeProtocolMapper";
+export type UserAttributeProtocolMapper = import("./userAttributeProtocolMapper").UserAttributeProtocolMapper;
+export const UserAttributeProtocolMapper: typeof import("./userAttributeProtocolMapper").UserAttributeProtocolMapper = null as any;
+utilities.lazyLoad(exports, ["UserAttributeProtocolMapper"], () => require("./userAttributeProtocolMapper"));
+
+export { UserClientRoleProtocolMapperArgs, UserClientRoleProtocolMapperState } from "./userClientRoleProtocolMapper";
+export type UserClientRoleProtocolMapper = import("./userClientRoleProtocolMapper").UserClientRoleProtocolMapper;
+export const UserClientRoleProtocolMapper: typeof import("./userClientRoleProtocolMapper").UserClientRoleProtocolMapper = null as any;
+utilities.lazyLoad(exports, ["UserClientRoleProtocolMapper"], () => require("./userClientRoleProtocolMapper"));
+
+export { UserPropertyProtocolMapperArgs, UserPropertyProtocolMapperState } from "./userPropertyProtocolMapper";
+export type UserPropertyProtocolMapper = import("./userPropertyProtocolMapper").UserPropertyProtocolMapper;
+export const UserPropertyProtocolMapper: typeof import("./userPropertyProtocolMapper").UserPropertyProtocolMapper = null as any;
+utilities.lazyLoad(exports, ["UserPropertyProtocolMapper"], () => require("./userPropertyProtocolMapper"));
+
+export { UserRealmRoleProtocolMapperArgs, UserRealmRoleProtocolMapperState } from "./userRealmRoleProtocolMapper";
+export type UserRealmRoleProtocolMapper = import("./userRealmRoleProtocolMapper").UserRealmRoleProtocolMapper;
+export const UserRealmRoleProtocolMapper: typeof import("./userRealmRoleProtocolMapper").UserRealmRoleProtocolMapper = null as any;
+utilities.lazyLoad(exports, ["UserRealmRoleProtocolMapper"], () => require("./userRealmRoleProtocolMapper"));
+
+export { UserSessionNoteProtocolMapperArgs, UserSessionNoteProtocolMapperState } from "./userSessionNoteProtocolMapper";
+export type UserSessionNoteProtocolMapper = import("./userSessionNoteProtocolMapper").UserSessionNoteProtocolMapper;
+export const UserSessionNoteProtocolMapper: typeof import("./userSessionNoteProtocolMapper").UserSessionNoteProtocolMapper = null as any;
+utilities.lazyLoad(exports, ["UserSessionNoteProtocolMapper"], () => require("./userSessionNoteProtocolMapper"));
+
 
 const _module = {
     version: utilities.getVersion(),

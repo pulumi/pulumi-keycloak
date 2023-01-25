@@ -14,58 +14,61 @@ namespace Pulumi.Keycloak
     /// ### Exhaustive Roles)
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var realmRole = new Keycloak.Role("realmRole", new Keycloak.RoleArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Description = "My Realm Role",
-    ///         });
-    ///         var client = new Keycloak.OpenId.Client("client", new Keycloak.OpenId.ClientArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = "client",
-    ///             Enabled = true,
-    ///             AccessType = "BEARER-ONLY",
-    ///         });
-    ///         var clientRole = new Keycloak.Role("clientRole", new Keycloak.RoleArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = keycloak_client.Client.Id,
-    ///             Description = "My Client Role",
-    ///         });
-    ///         var user = new Keycloak.User("user", new Keycloak.UserArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Username = "bob",
-    ///             Enabled = true,
-    ///             Email = "bob@domain.com",
-    ///             FirstName = "Bob",
-    ///             LastName = "Bobson",
-    ///         });
-    ///         var userRoles = new Keycloak.UserRoles("userRoles", new Keycloak.UserRolesArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             UserId = user.Id,
-    ///             RoleIds = 
-    ///             {
-    ///                 realmRole.Id,
-    ///                 clientRole.Id,
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var realmRole = new Keycloak.Role("realmRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Description = "My Realm Role",
+    ///     });
+    /// 
+    ///     var client = new Keycloak.OpenId.Client("client", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "client",
+    ///         Enabled = true,
+    ///         AccessType = "BEARER-ONLY",
+    ///     });
+    /// 
+    ///     var clientRole = new Keycloak.Role("clientRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = keycloak_client.Client.Id,
+    ///         Description = "My Client Role",
+    ///     });
+    /// 
+    ///     var user = new Keycloak.User("user", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Username = "bob",
+    ///         Enabled = true,
+    ///         Email = "bob@domain.com",
+    ///         FirstName = "Bob",
+    ///         LastName = "Bobson",
+    ///     });
+    /// 
+    ///     var userRoles = new Keycloak.UserRoles("userRoles", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         UserId = user.Id,
+    ///         RoleIds = new[]
+    ///         {
+    ///             realmRole.Id,
+    ///             clientRole.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -77,7 +80,7 @@ namespace Pulumi.Keycloak
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/userRoles:UserRoles")]
-    public partial class UserRoles : Pulumi.CustomResource
+    public partial class UserRoles : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
@@ -147,7 +150,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class UserRolesArgs : Pulumi.ResourceArgs
+    public sealed class UserRolesArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
@@ -182,9 +185,10 @@ namespace Pulumi.Keycloak
         public UserRolesArgs()
         {
         }
+        public static new UserRolesArgs Empty => new UserRolesArgs();
     }
 
-    public sealed class UserRolesState : Pulumi.ResourceArgs
+    public sealed class UserRolesState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
@@ -219,5 +223,6 @@ namespace Pulumi.Keycloak
         public UserRolesState()
         {
         }
+        public static new UserRolesState Empty => new UserRolesState();
     }
 }

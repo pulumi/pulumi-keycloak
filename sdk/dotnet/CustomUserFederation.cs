@@ -13,32 +13,31 @@ namespace Pulumi.Keycloak
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "test",
-    ///             Enabled = true,
-    ///         });
-    ///         var customUserFederation = new Keycloak.CustomUserFederation("customUserFederation", new Keycloak.CustomUserFederationArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ProviderId = "custom",
-    ///             Enabled = true,
-    ///             Config = 
-    ///             {
-    ///                 { "dummyString", "foobar" },
-    ///                 { "dummyBool", true },
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "test",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var customUserFederation = new Keycloak.CustomUserFederation("customUserFederation", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ProviderId = "custom",
+    ///         Enabled = true,
+    ///         Config = 
+    ///         {
+    ///             { "dummyString", "foobar" },
+    ///             { "dummyBool", true },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -50,7 +49,7 @@ namespace Pulumi.Keycloak
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/customUserFederation:CustomUserFederation")]
-    public partial class CustomUserFederation : Pulumi.CustomResource
+    public partial class CustomUserFederation : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
@@ -156,7 +155,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class CustomUserFederationArgs : Pulumi.ResourceArgs
+    public sealed class CustomUserFederationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
@@ -227,9 +226,10 @@ namespace Pulumi.Keycloak
         public CustomUserFederationArgs()
         {
         }
+        public static new CustomUserFederationArgs Empty => new CustomUserFederationArgs();
     }
 
-    public sealed class CustomUserFederationState : Pulumi.ResourceArgs
+    public sealed class CustomUserFederationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
@@ -300,5 +300,6 @@ namespace Pulumi.Keycloak
         public CustomUserFederationState()
         {
         }
+        public static new CustomUserFederationState Empty => new CustomUserFederationState();
     }
 }

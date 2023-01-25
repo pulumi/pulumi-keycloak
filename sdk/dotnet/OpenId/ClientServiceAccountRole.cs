@@ -19,45 +19,47 @@ namespace Pulumi.Keycloak.OpenId
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         // client1 provides a role to other clients
-    ///         var client1 = new Keycloak.OpenId.Client("client1", new Keycloak.OpenId.ClientArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///         });
-    ///         var client1Role = new Keycloak.Role("client1Role", new Keycloak.RoleArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = client1.Id,
-    ///             Description = "A role that client1 provides",
-    ///         });
-    ///         // client2 is assigned the role of client1
-    ///         var client2 = new Keycloak.OpenId.Client("client2", new Keycloak.OpenId.ClientArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ServiceAccountsEnabled = true,
-    ///         });
-    ///         var client2ServiceAccountRole = new Keycloak.OpenId.ClientServiceAccountRole("client2ServiceAccountRole", new Keycloak.OpenId.ClientServiceAccountRoleArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ServiceAccountUserId = client2.ServiceAccountUserId,
-    ///             ClientId = client1.Id,
-    ///             Role = client1Role.Name,
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     // client1 provides a role to other clients
+    ///     var client1 = new Keycloak.OpenId.Client("client1", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var client1Role = new Keycloak.Role("client1Role", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = client1.Id,
+    ///         Description = "A role that client1 provides",
+    ///     });
+    /// 
+    ///     // client2 is assigned the role of client1
+    ///     var client2 = new Keycloak.OpenId.Client("client2", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ServiceAccountsEnabled = true,
+    ///     });
+    /// 
+    ///     var client2ServiceAccountRole = new Keycloak.OpenId.ClientServiceAccountRole("client2ServiceAccountRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ServiceAccountUserId = client2.ServiceAccountUserId,
+    ///         ClientId = client1.Id,
+    ///         Role = client1Role.Name,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -69,7 +71,7 @@ namespace Pulumi.Keycloak.OpenId
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:openid/clientServiceAccountRole:ClientServiceAccountRole")]
-    public partial class ClientServiceAccountRole : Pulumi.CustomResource
+    public partial class ClientServiceAccountRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The id of the client that provides the role.
@@ -139,7 +141,7 @@ namespace Pulumi.Keycloak.OpenId
         }
     }
 
-    public sealed class ClientServiceAccountRoleArgs : Pulumi.ResourceArgs
+    public sealed class ClientServiceAccountRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the client that provides the role.
@@ -168,9 +170,10 @@ namespace Pulumi.Keycloak.OpenId
         public ClientServiceAccountRoleArgs()
         {
         }
+        public static new ClientServiceAccountRoleArgs Empty => new ClientServiceAccountRoleArgs();
     }
 
-    public sealed class ClientServiceAccountRoleState : Pulumi.ResourceArgs
+    public sealed class ClientServiceAccountRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the client that provides the role.
@@ -199,5 +202,6 @@ namespace Pulumi.Keycloak.OpenId
         public ClientServiceAccountRoleState()
         {
         }
+        public static new ClientServiceAccountRoleState Empty => new ClientServiceAccountRoleState();
     }
 }

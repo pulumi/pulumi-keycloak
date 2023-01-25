@@ -21,43 +21,43 @@ namespace Pulumi.Keycloak.Ldap
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new Keycloak.Ldap.UserFederationArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             UsernameLdapAttribute = "cn",
-    ///             RdnLdapAttribute = "cn",
-    ///             UuidLdapAttribute = "objectGUID",
-    ///             UserObjectClasses = 
-    ///             {
-    ///                 "person",
-    ///                 "organizationalPerson",
-    ///                 "user",
-    ///             },
-    ///             ConnectionUrl = "ldap://my-ad-server",
-    ///             UsersDn = "dc=example,dc=org",
-    ///             BindDn = "cn=admin,dc=example,dc=org",
-    ///             BindCredential = "admin",
-    ///         });
-    ///         var msadUserAccountControlMapper = new Keycloak.Ldap.MsadUserAccountControlMapper("msadUserAccountControlMapper", new Keycloak.Ldap.MsadUserAccountControlMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             LdapUserFederationId = ldapUserFederation.Id,
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         UsernameLdapAttribute = "cn",
+    ///         RdnLdapAttribute = "cn",
+    ///         UuidLdapAttribute = "objectGUID",
+    ///         UserObjectClasses = new[]
+    ///         {
+    ///             "person",
+    ///             "organizationalPerson",
+    ///             "user",
+    ///         },
+    ///         ConnectionUrl = "ldap://my-ad-server",
+    ///         UsersDn = "dc=example,dc=org",
+    ///         BindDn = "cn=admin,dc=example,dc=org",
+    ///         BindCredential = "admin",
+    ///     });
+    /// 
+    ///     var msadUserAccountControlMapper = new Keycloak.Ldap.MsadUserAccountControlMapper("msadUserAccountControlMapper", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         LdapUserFederationId = ldapUserFederation.Id,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -69,7 +69,7 @@ namespace Pulumi.Keycloak.Ldap
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper")]
-    public partial class MsadUserAccountControlMapper : Pulumi.CustomResource
+    public partial class MsadUserAccountControlMapper : global::Pulumi.CustomResource
     {
         /// <summary>
         /// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
@@ -139,7 +139,7 @@ namespace Pulumi.Keycloak.Ldap
         }
     }
 
-    public sealed class MsadUserAccountControlMapperArgs : Pulumi.ResourceArgs
+    public sealed class MsadUserAccountControlMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
@@ -168,9 +168,10 @@ namespace Pulumi.Keycloak.Ldap
         public MsadUserAccountControlMapperArgs()
         {
         }
+        public static new MsadUserAccountControlMapperArgs Empty => new MsadUserAccountControlMapperArgs();
     }
 
-    public sealed class MsadUserAccountControlMapperState : Pulumi.ResourceArgs
+    public sealed class MsadUserAccountControlMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
@@ -199,5 +200,6 @@ namespace Pulumi.Keycloak.Ldap
         public MsadUserAccountControlMapperState()
         {
         }
+        public static new MsadUserAccountControlMapperState Empty => new MsadUserAccountControlMapperState();
     }
 }

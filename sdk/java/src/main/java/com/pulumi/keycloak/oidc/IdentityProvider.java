@@ -13,6 +13,7 @@ import com.pulumi.keycloak.oidc.inputs.IdentityProviderState;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -307,6 +308,20 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return this.internalId;
     }
     /**
+     * The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+     * 
+     */
+    @Export(name="issuer", type=String.class, parameters={})
+    private Output</* @Nullable */ String> issuer;
+
+    /**
+     * @return The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+     * 
+     */
+    public Output<Optional<String>> issuer() {
+        return Codegen.optional(this.issuer);
+    }
+    /**
      * JSON Web Key Set URL.
      * 
      */
@@ -535,6 +550,9 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "clientSecret"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

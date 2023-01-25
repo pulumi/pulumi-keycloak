@@ -34,14 +34,14 @@ public final class RealmUserProfileState extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The group that the attribute belong to.
+     * A list of groups.
      * 
      */
     @Import(name="groups")
     private @Nullable Output<List<RealmUserProfileGroupArgs>> groups;
 
     /**
-     * @return The group that the attribute belong to.
+     * @return A list of groups.
      * 
      */
     public Optional<Output<List<RealmUserProfileGroupArgs>>> groups() {
@@ -121,7 +121,7 @@ public final class RealmUserProfileState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param groups The group that the attribute belong to.
+         * @param groups A list of groups.
          * 
          * @return builder
          * 
@@ -132,7 +132,7 @@ public final class RealmUserProfileState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param groups The group that the attribute belong to.
+         * @param groups A list of groups.
          * 
          * @return builder
          * 
@@ -142,7 +142,7 @@ public final class RealmUserProfileState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param groups The group that the attribute belong to.
+         * @param groups A list of groups.
          * 
          * @return builder
          * 

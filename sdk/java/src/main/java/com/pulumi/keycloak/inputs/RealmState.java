@@ -705,9 +705,17 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.ssoSessionIdleTimeout);
     }
 
+    /**
+     * Similar to `sso_session_idle_timeout`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
+     * 
+     */
     @Import(name="ssoSessionIdleTimeoutRememberMe")
     private @Nullable Output<String> ssoSessionIdleTimeoutRememberMe;
 
+    /**
+     * @return Similar to `sso_session_idle_timeout`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
+     * 
+     */
     public Optional<Output<String>> ssoSessionIdleTimeoutRememberMe() {
         return Optional.ofNullable(this.ssoSessionIdleTimeoutRememberMe);
     }
@@ -727,9 +735,17 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.ssoSessionMaxLifespan);
     }
 
+    /**
+     * Similar to `sso_session_max_lifespan`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
+     * 
+     */
     @Import(name="ssoSessionMaxLifespanRememberMe")
     private @Nullable Output<String> ssoSessionMaxLifespanRememberMe;
 
+    /**
+     * @return Similar to `sso_session_max_lifespan`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
+     * 
+     */
     public Optional<Output<String>> ssoSessionMaxLifespanRememberMe() {
         return Optional.ofNullable(this.ssoSessionMaxLifespanRememberMe);
     }
@@ -1826,11 +1842,23 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
             return ssoSessionIdleTimeout(Output.of(ssoSessionIdleTimeout));
         }
 
+        /**
+         * @param ssoSessionIdleTimeoutRememberMe Similar to `sso_session_idle_timeout`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ssoSessionIdleTimeoutRememberMe(@Nullable Output<String> ssoSessionIdleTimeoutRememberMe) {
             $.ssoSessionIdleTimeoutRememberMe = ssoSessionIdleTimeoutRememberMe;
             return this;
         }
 
+        /**
+         * @param ssoSessionIdleTimeoutRememberMe Similar to `sso_session_idle_timeout`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ssoSessionIdleTimeoutRememberMe(String ssoSessionIdleTimeoutRememberMe) {
             return ssoSessionIdleTimeoutRememberMe(Output.of(ssoSessionIdleTimeoutRememberMe));
         }
@@ -1856,11 +1884,23 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
             return ssoSessionMaxLifespan(Output.of(ssoSessionMaxLifespan));
         }
 
+        /**
+         * @param ssoSessionMaxLifespanRememberMe Similar to `sso_session_max_lifespan`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ssoSessionMaxLifespanRememberMe(@Nullable Output<String> ssoSessionMaxLifespanRememberMe) {
             $.ssoSessionMaxLifespanRememberMe = ssoSessionMaxLifespanRememberMe;
             return this;
         }
 
+        /**
+         * @param ssoSessionMaxLifespanRememberMe Similar to `sso_session_max_lifespan`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ssoSessionMaxLifespanRememberMe(String ssoSessionMaxLifespanRememberMe) {
             return ssoSessionMaxLifespanRememberMe(Output.of(ssoSessionMaxLifespanRememberMe));
         }

@@ -60,7 +60,7 @@ import (
 //					"foo":        pulumi.Any("bar"),
 //					"multivalue": pulumi.Any("value1##value2"),
 //				},
-//				InitialPassword: &UserInitialPasswordArgs{
+//				InitialPassword: &keycloak.UserInitialPasswordArgs{
 //					Value:     pulumi.String("some password"),
 //					Temporary: pulumi.Bool(true),
 //				},

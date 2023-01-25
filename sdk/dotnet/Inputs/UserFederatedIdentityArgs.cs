@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class UserFederatedIdentityArgs : Pulumi.ResourceArgs
+    public sealed class UserFederatedIdentityArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the identity provider
@@ -33,5 +33,6 @@ namespace Pulumi.Keycloak.Inputs
         public UserFederatedIdentityArgs()
         {
         }
+        public static new UserFederatedIdentityArgs Empty => new UserFederatedIdentityArgs();
     }
 }

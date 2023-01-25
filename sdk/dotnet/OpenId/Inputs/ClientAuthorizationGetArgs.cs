@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId.Inputs
 {
 
-    public sealed class ClientAuthorizationGetArgs : Pulumi.ResourceArgs
+    public sealed class ClientAuthorizationGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
@@ -39,5 +39,6 @@ namespace Pulumi.Keycloak.OpenId.Inputs
         public ClientAuthorizationGetArgs()
         {
         }
+        public static new ClientAuthorizationGetArgs Empty => new ClientAuthorizationGetArgs();
     }
 }

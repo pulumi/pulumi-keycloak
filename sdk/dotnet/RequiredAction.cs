@@ -17,27 +17,26 @@ namespace Pulumi.Keycloak
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var requiredAction = new Keycloak.RequiredAction("requiredAction", new Keycloak.RequiredActionArgs
-    ///         {
-    ///             RealmId = realm.RealmName,
-    ///             Alias = "webauthn-register",
-    ///             Enabled = true,
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var requiredAction = new Keycloak.RequiredAction("requiredAction", new()
+    ///     {
+    ///         RealmId = realm.RealmName,
+    ///         Alias = "webauthn-register",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -49,7 +48,7 @@ namespace Pulumi.Keycloak
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/requiredAction:RequiredAction")]
-    public partial class RequiredAction : Pulumi.CustomResource
+    public partial class RequiredAction : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The alias of the action to attach as a required action.
@@ -131,7 +130,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class RequiredActionArgs : Pulumi.ResourceArgs
+    public sealed class RequiredActionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The alias of the action to attach as a required action.
@@ -172,9 +171,10 @@ namespace Pulumi.Keycloak
         public RequiredActionArgs()
         {
         }
+        public static new RequiredActionArgs Empty => new RequiredActionArgs();
     }
 
-    public sealed class RequiredActionState : Pulumi.ResourceArgs
+    public sealed class RequiredActionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The alias of the action to attach as a required action.
@@ -215,5 +215,6 @@ namespace Pulumi.Keycloak
         public RequiredActionState()
         {
         }
+        public static new RequiredActionState Empty => new RequiredActionState();
     }
 }

@@ -442,6 +442,21 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
+     * 
+     */
+    @Import(name="import")
+    private @Nullable Output<Boolean> import_;
+
+    /**
+     * @return When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
+     * 
+     */
+    public Optional<Output<Boolean>> import_() {
+        return Optional.ofNullable(this.import_);
+    }
+
+    /**
      * The client login theme. This will override the default theme for the realm.
      * 
      */
@@ -622,6 +637,21 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * A list of valid URIs a browser is permitted to redirect to after a successful logout.
+     * 
+     */
+    @Import(name="validPostLogoutRedirectUris")
+    private @Nullable Output<List<String>> validPostLogoutRedirectUris;
+
+    /**
+     * @return A list of valid URIs a browser is permitted to redirect to after a successful logout.
+     * 
+     */
+    public Optional<Output<List<String>>> validPostLogoutRedirectUris() {
+        return Optional.ofNullable(this.validPostLogoutRedirectUris);
+    }
+
+    /**
      * A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
      * wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
      * is set to `true`.
@@ -686,6 +716,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         this.frontchannelLogoutUrl = $.frontchannelLogoutUrl;
         this.fullScopeAllowed = $.fullScopeAllowed;
         this.implicitFlowEnabled = $.implicitFlowEnabled;
+        this.import_ = $.import_;
         this.loginTheme = $.loginTheme;
         this.name = $.name;
         this.oauth2DeviceAuthorizationGrantEnabled = $.oauth2DeviceAuthorizationGrantEnabled;
@@ -698,6 +729,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         this.standardFlowEnabled = $.standardFlowEnabled;
         this.useRefreshTokens = $.useRefreshTokens;
         this.useRefreshTokensClientCredentials = $.useRefreshTokensClientCredentials;
+        this.validPostLogoutRedirectUris = $.validPostLogoutRedirectUris;
         this.validRedirectUris = $.validRedirectUris;
         this.webOrigins = $.webOrigins;
     }
@@ -1305,6 +1337,27 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param import_ When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder import_(@Nullable Output<Boolean> import_) {
+            $.import_ = import_;
+            return this;
+        }
+
+        /**
+         * @param import_ When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder import_(Boolean import_) {
+            return import_(Output.of(import_));
+        }
+
+        /**
          * @param loginTheme The client login theme. This will override the default theme for the realm.
          * 
          * @return builder
@@ -1554,6 +1607,37 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder useRefreshTokensClientCredentials(Boolean useRefreshTokensClientCredentials) {
             return useRefreshTokensClientCredentials(Output.of(useRefreshTokensClientCredentials));
+        }
+
+        /**
+         * @param validPostLogoutRedirectUris A list of valid URIs a browser is permitted to redirect to after a successful logout.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder validPostLogoutRedirectUris(@Nullable Output<List<String>> validPostLogoutRedirectUris) {
+            $.validPostLogoutRedirectUris = validPostLogoutRedirectUris;
+            return this;
+        }
+
+        /**
+         * @param validPostLogoutRedirectUris A list of valid URIs a browser is permitted to redirect to after a successful logout.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder validPostLogoutRedirectUris(List<String> validPostLogoutRedirectUris) {
+            return validPostLogoutRedirectUris(Output.of(validPostLogoutRedirectUris));
+        }
+
+        /**
+         * @param validPostLogoutRedirectUris A list of valid URIs a browser is permitted to redirect to after a successful logout.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder validPostLogoutRedirectUris(String... validPostLogoutRedirectUris) {
+            return validPostLogoutRedirectUris(List.of(validPostLogoutRedirectUris));
         }
 
         /**

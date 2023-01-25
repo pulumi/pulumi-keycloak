@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -67,6 +68,17 @@ import * as utilities from "./utilities";
  *         },
  *         {
  *             name: "field2",
+ *             validators: [{
+ *                 name: "options",
+ *                 config: {
+ *                     options: JSON.stringify(["opt1"]),
+ *                 },
+ *             }],
+ *             annotations: {
+ *                 foo: JSON.stringify({
+ *                     key: "val",
+ *                 }),
+ *             },
  *         },
  *     ],
  *     groups: [
@@ -76,6 +88,9 @@ import * as utilities from "./utilities";
  *             displayDescription: "A first group",
  *             annotations: {
  *                 foo: "bar",
+ *                 foo2: JSON.stringify({
+ *                     key: "val",
+ *                 }),
  *             },
  *         },
  *         {
@@ -122,7 +137,7 @@ export class RealmUserProfile extends pulumi.CustomResource {
      */
     public readonly attributes!: pulumi.Output<outputs.RealmUserProfileAttribute[] | undefined>;
     /**
-     * The group that the attribute belong to.
+     * A list of groups.
      */
     public readonly groups!: pulumi.Output<outputs.RealmUserProfileGroup[] | undefined>;
     /**
@@ -169,7 +184,7 @@ export interface RealmUserProfileState {
      */
     attributes?: pulumi.Input<pulumi.Input<inputs.RealmUserProfileAttribute>[]>;
     /**
-     * The group that the attribute belong to.
+     * A list of groups.
      */
     groups?: pulumi.Input<pulumi.Input<inputs.RealmUserProfileGroup>[]>;
     /**
@@ -187,7 +202,7 @@ export interface RealmUserProfileArgs {
      */
     attributes?: pulumi.Input<pulumi.Input<inputs.RealmUserProfileAttribute>[]>;
     /**
-     * The group that the attribute belong to.
+     * A list of groups.
      */
     groups?: pulumi.Input<pulumi.Input<inputs.RealmUserProfileGroup>[]>;
     /**

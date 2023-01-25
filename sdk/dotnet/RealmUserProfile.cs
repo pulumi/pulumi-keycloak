@@ -24,103 +24,128 @@ namespace Pulumi.Keycloak
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Text.Json;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
+    ///         RealmName = "my-realm",
+    ///         Attributes = 
     ///         {
-    ///             RealmName = "my-realm",
-    ///             Attributes = 
-    ///             {
-    ///                 { "userProfileEnabled", true },
-    ///             },
-    ///         });
-    ///         var userprofile = new Keycloak.RealmUserProfile("userprofile", new Keycloak.RealmUserProfileArgs
+    ///             { "userProfileEnabled", true },
+    ///         },
+    ///     });
+    /// 
+    ///     var userprofile = new Keycloak.RealmUserProfile("userprofile", new()
+    ///     {
+    ///         RealmId = keycloak_realm.My_realm.Id,
+    ///         Attributes = new[]
     ///         {
-    ///             RealmId = keycloak_realm.My_realm.Id,
-    ///             Attributes = 
+    ///             new Keycloak.Inputs.RealmUserProfileAttributeArgs
     ///             {
-    ///                 new Keycloak.Inputs.RealmUserProfileAttributeArgs
+    ///                 Name = "field1",
+    ///                 DisplayName = "Field 1",
+    ///                 Group = "group1",
+    ///                 EnabledWhenScopes = new[]
     ///                 {
-    ///                     Name = "field1",
-    ///                     DisplayName = "Field 1",
-    ///                     Group = "group1",
-    ///                     EnabledWhenScopes = 
+    ///                     "offline_access",
+    ///                 },
+    ///                 RequiredForRoles = new[]
+    ///                 {
+    ///                     "user",
+    ///                 },
+    ///                 RequiredForScopes = new[]
+    ///                 {
+    ///                     "offline_access",
+    ///                 },
+    ///                 Permissions = new Keycloak.Inputs.RealmUserProfileAttributePermissionsArgs
+    ///                 {
+    ///                     Views = new[]
     ///                     {
-    ///                         "offline_access",
-    ///                     },
-    ///                     RequiredForRoles = 
-    ///                     {
+    ///                         "admin",
     ///                         "user",
     ///                     },
-    ///                     RequiredForScopes = 
+    ///                     Edits = new[]
     ///                     {
-    ///                         "offline_access",
-    ///                     },
-    ///                     Permissions = new Keycloak.Inputs.RealmUserProfileAttributePermissionsArgs
-    ///                     {
-    ///                         Views = 
-    ///                         {
-    ///                             "admin",
-    ///                             "user",
-    ///                         },
-    ///                         Edits = 
-    ///                         {
-    ///                             "admin",
-    ///                             "user",
-    ///                         },
-    ///                     },
-    ///                     Validators = 
-    ///                     {
-    ///                         new Keycloak.Inputs.RealmUserProfileAttributeValidatorArgs
-    ///                         {
-    ///                             Name = "person-name-prohibited-characters",
-    ///                         },
-    ///                         new Keycloak.Inputs.RealmUserProfileAttributeValidatorArgs
-    ///                         {
-    ///                             Name = "pattern",
-    ///                             Config = 
-    ///                             {
-    ///                                 { "pattern", "^[a-z]+$" },
-    ///                                 { "error_message", "Nope" },
-    ///                             },
-    ///                         },
-    ///                     },
-    ///                     Annotations = 
-    ///                     {
-    ///                         { "foo", "bar" },
+    ///                         "admin",
+    ///                         "user",
     ///                     },
     ///                 },
-    ///                 new Keycloak.Inputs.RealmUserProfileAttributeArgs
+    ///                 Validators = new[]
     ///                 {
-    ///                     Name = "field2",
+    ///                     new Keycloak.Inputs.RealmUserProfileAttributeValidatorArgs
+    ///                     {
+    ///                         Name = "person-name-prohibited-characters",
+    ///                     },
+    ///                     new Keycloak.Inputs.RealmUserProfileAttributeValidatorArgs
+    ///                     {
+    ///                         Name = "pattern",
+    ///                         Config = 
+    ///                         {
+    ///                             { "pattern", "^[a-z]+$" },
+    ///                             { "error_message", "Nope" },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Annotations = 
+    ///                 {
+    ///                     { "foo", "bar" },
     ///                 },
     ///             },
-    ///             Groups = 
+    ///             new Keycloak.Inputs.RealmUserProfileAttributeArgs
     ///             {
-    ///                 new Keycloak.Inputs.RealmUserProfileGroupArgs
+    ///                 Name = "field2",
+    ///                 Validators = new[]
     ///                 {
-    ///                     Name = "group1",
-    ///                     DisplayHeader = "Group 1",
-    ///                     DisplayDescription = "A first group",
-    ///                     Annotations = 
+    ///                     new Keycloak.Inputs.RealmUserProfileAttributeValidatorArgs
     ///                     {
-    ///                         { "foo", "bar" },
+    ///                         Name = "options",
+    ///                         Config = 
+    ///                         {
+    ///                             { "options", JsonSerializer.Serialize(new[]
+    ///                             {
+    ///                                 "opt1",
+    ///                             }) },
+    ///                         },
     ///                     },
     ///                 },
-    ///                 new Keycloak.Inputs.RealmUserProfileGroupArgs
+    ///                 Annotations = 
     ///                 {
-    ///                     Name = "group2",
+    ///                     { "foo", JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         ["key"] = "val",
+    ///                     }) },
     ///                 },
     ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///         Groups = new[]
+    ///         {
+    ///             new Keycloak.Inputs.RealmUserProfileGroupArgs
+    ///             {
+    ///                 Name = "group1",
+    ///                 DisplayHeader = "Group 1",
+    ///                 DisplayDescription = "A first group",
+    ///                 Annotations = 
+    ///                 {
+    ///                     { "foo", "bar" },
+    ///                     { "foo2", JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         ["key"] = "val",
+    ///                     }) },
+    ///                 },
+    ///             },
+    ///             new Keycloak.Inputs.RealmUserProfileGroupArgs
+    ///             {
+    ///                 Name = "group2",
+    ///             },
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -128,7 +153,7 @@ namespace Pulumi.Keycloak
     /// This resource currently does not support importing.
     /// </summary>
     [KeycloakResourceType("keycloak:index/realmUserProfile:RealmUserProfile")]
-    public partial class RealmUserProfile : Pulumi.CustomResource
+    public partial class RealmUserProfile : global::Pulumi.CustomResource
     {
         /// <summary>
         /// An ordered list of attributes.
@@ -137,7 +162,7 @@ namespace Pulumi.Keycloak
         public Output<ImmutableArray<Outputs.RealmUserProfileAttribute>> Attributes { get; private set; } = null!;
 
         /// <summary>
-        /// The group that the attribute belong to.
+        /// A list of groups.
         /// </summary>
         [Output("groups")]
         public Output<ImmutableArray<Outputs.RealmUserProfileGroup>> Groups { get; private set; } = null!;
@@ -192,7 +217,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class RealmUserProfileArgs : Pulumi.ResourceArgs
+    public sealed class RealmUserProfileArgs : global::Pulumi.ResourceArgs
     {
         [Input("attributes")]
         private InputList<Inputs.RealmUserProfileAttributeArgs>? _attributes;
@@ -210,7 +235,7 @@ namespace Pulumi.Keycloak
         private InputList<Inputs.RealmUserProfileGroupArgs>? _groups;
 
         /// <summary>
-        /// The group that the attribute belong to.
+        /// A list of groups.
         /// </summary>
         public InputList<Inputs.RealmUserProfileGroupArgs> Groups
         {
@@ -227,9 +252,10 @@ namespace Pulumi.Keycloak
         public RealmUserProfileArgs()
         {
         }
+        public static new RealmUserProfileArgs Empty => new RealmUserProfileArgs();
     }
 
-    public sealed class RealmUserProfileState : Pulumi.ResourceArgs
+    public sealed class RealmUserProfileState : global::Pulumi.ResourceArgs
     {
         [Input("attributes")]
         private InputList<Inputs.RealmUserProfileAttributeGetArgs>? _attributes;
@@ -247,7 +273,7 @@ namespace Pulumi.Keycloak
         private InputList<Inputs.RealmUserProfileGroupGetArgs>? _groups;
 
         /// <summary>
-        /// The group that the attribute belong to.
+        /// A list of groups.
         /// </summary>
         public InputList<Inputs.RealmUserProfileGroupGetArgs> Groups
         {
@@ -264,5 +290,6 @@ namespace Pulumi.Keycloak
         public RealmUserProfileState()
         {
         }
+        public static new RealmUserProfileState Empty => new RealmUserProfileState();
     }
 }

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -15,11 +16,8 @@ import * as utilities from "./utilities";
  * - If no key matches the filter criteria, then an error will be returned.
  */
 export function getRealmKeys(args: GetRealmKeysArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmKeysResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getRealmKeys:getRealmKeys", {
         "algorithms": args.algorithms,
         "realmId": args.realmId,
@@ -64,9 +62,17 @@ export interface GetRealmKeysResult {
      */
     readonly statuses?: string[];
 }
-
+/**
+ * Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
+ *
+ * Remarks:
+ *
+ * - A key must meet all filter criteria
+ * - This data source may return more than one value.
+ * - If no key matches the filter criteria, then an error will be returned.
+ */
 export function getRealmKeysOutput(args: GetRealmKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRealmKeysResult> {
-    return pulumi.output(args).apply(a => getRealmKeys(a, opts))
+    return pulumi.output(args).apply((a: any) => getRealmKeys(a, opts))
 }
 
 /**

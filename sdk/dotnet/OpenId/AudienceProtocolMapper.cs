@@ -19,67 +19,67 @@ namespace Pulumi.Keycloak.OpenId
     /// ### Client)
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var openidClient = new Keycloak.OpenId.Client("openidClient", new Keycloak.OpenId.ClientArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = "client",
-    ///             Enabled = true,
-    ///             AccessType = "CONFIDENTIAL",
-    ///             ValidRedirectUris = 
-    ///             {
-    ///                 "http://localhost:8080/openid-callback",
-    ///             },
-    ///         });
-    ///         var audienceMapper = new Keycloak.OpenId.AudienceProtocolMapper("audienceMapper", new Keycloak.OpenId.AudienceProtocolMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = openidClient.Id,
-    ///             IncludedCustomAudience = "foo",
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var openidClient = new Keycloak.OpenId.Client("openidClient", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "client",
+    ///         Enabled = true,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ValidRedirectUris = new[]
+    ///         {
+    ///             "http://localhost:8080/openid-callback",
+    ///         },
+    ///     });
+    /// 
+    ///     var audienceMapper = new Keycloak.OpenId.AudienceProtocolMapper("audienceMapper", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = openidClient.Id,
+    ///         IncludedCustomAudience = "foo",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### Client Scope)
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new Keycloak.OpenId.ClientScopeArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///         });
-    ///         var audienceMapper = new Keycloak.OpenId.AudienceProtocolMapper("audienceMapper", new Keycloak.OpenId.AudienceProtocolMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientScopeId = clientScope.Id,
-    ///             IncludedCustomAudience = "foo",
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var audienceMapper = new Keycloak.OpenId.AudienceProtocolMapper("audienceMapper", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientScopeId = clientScope.Id,
+    ///         IncludedCustomAudience = "foo",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -95,7 +95,7 @@ namespace Pulumi.Keycloak.OpenId
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper")]
-    public partial class AudienceProtocolMapper : Pulumi.CustomResource
+    public partial class AudienceProtocolMapper : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
@@ -189,7 +189,7 @@ namespace Pulumi.Keycloak.OpenId
         }
     }
 
-    public sealed class AudienceProtocolMapperArgs : Pulumi.ResourceArgs
+    public sealed class AudienceProtocolMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
@@ -242,9 +242,10 @@ namespace Pulumi.Keycloak.OpenId
         public AudienceProtocolMapperArgs()
         {
         }
+        public static new AudienceProtocolMapperArgs Empty => new AudienceProtocolMapperArgs();
     }
 
-    public sealed class AudienceProtocolMapperState : Pulumi.ResourceArgs
+    public sealed class AudienceProtocolMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
@@ -297,5 +298,6 @@ namespace Pulumi.Keycloak.OpenId
         public AudienceProtocolMapperState()
         {
         }
+        public static new AudienceProtocolMapperState Empty => new AudienceProtocolMapperState();
     }
 }

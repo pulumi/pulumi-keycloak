@@ -78,6 +78,18 @@ Object.defineProperty(exports, "realm", {
 });
 
 /**
+ * When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
+ * returned from the /serverinfo API endpoint.
+ */
+export declare const redHatSso: boolean | undefined;
+Object.defineProperty(exports, "redHatSso", {
+    get() {
+        return __config.getObject<boolean>("redHatSso");
+    },
+    enumerable: true,
+});
+
+/**
  * Allows x509 calls using an unknown CA certificate (for development purposes)
  */
 export declare const rootCaCertificate: string | undefined;

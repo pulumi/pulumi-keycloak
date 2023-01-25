@@ -763,9 +763,17 @@ public class Realm extends com.pulumi.resources.CustomResource {
     public Output<String> ssoSessionIdleTimeout() {
         return this.ssoSessionIdleTimeout;
     }
+    /**
+     * Similar to `sso_session_idle_timeout`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
+     * 
+     */
     @Export(name="ssoSessionIdleTimeoutRememberMe", type=String.class, parameters={})
     private Output<String> ssoSessionIdleTimeoutRememberMe;
 
+    /**
+     * @return Similar to `sso_session_idle_timeout`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
+     * 
+     */
     public Output<String> ssoSessionIdleTimeoutRememberMe() {
         return this.ssoSessionIdleTimeoutRememberMe;
     }
@@ -783,9 +791,17 @@ public class Realm extends com.pulumi.resources.CustomResource {
     public Output<String> ssoSessionMaxLifespan() {
         return this.ssoSessionMaxLifespan;
     }
+    /**
+     * Similar to `sso_session_max_lifespan`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
+     * 
+     */
     @Export(name="ssoSessionMaxLifespanRememberMe", type=String.class, parameters={})
     private Output<String> ssoSessionMaxLifespanRememberMe;
 
+    /**
+     * @return Similar to `sso_session_max_lifespan`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
+     * 
+     */
     public Output<String> ssoSessionMaxLifespanRememberMe() {
         return this.ssoSessionMaxLifespanRememberMe;
     }

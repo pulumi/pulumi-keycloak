@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     [KeycloakResourceType("keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper")]
-    public partial class HardcodedRoleIdentityMapper : Pulumi.CustomResource
+    public partial class HardcodedRoleIdentityMapper : global::Pulumi.CustomResource
     {
         [Output("extraConfig")]
         public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
@@ -83,7 +83,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class HardcodedRoleIdentityMapperArgs : Pulumi.ResourceArgs
+    public sealed class HardcodedRoleIdentityMapperArgs : global::Pulumi.ResourceArgs
     {
         [Input("extraConfig")]
         private InputMap<object>? _extraConfig;
@@ -120,9 +120,10 @@ namespace Pulumi.Keycloak
         public HardcodedRoleIdentityMapperArgs()
         {
         }
+        public static new HardcodedRoleIdentityMapperArgs Empty => new HardcodedRoleIdentityMapperArgs();
     }
 
-    public sealed class HardcodedRoleIdentityMapperState : Pulumi.ResourceArgs
+    public sealed class HardcodedRoleIdentityMapperState : global::Pulumi.ResourceArgs
     {
         [Input("extraConfig")]
         private InputMap<object>? _extraConfig;
@@ -159,5 +160,6 @@ namespace Pulumi.Keycloak
         public HardcodedRoleIdentityMapperState()
         {
         }
+        public static new HardcodedRoleIdentityMapperState Empty => new HardcodedRoleIdentityMapperState();
     }
 }

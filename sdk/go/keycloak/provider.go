@@ -65,6 +65,9 @@ type providerArgs struct {
 	InitialLogin *bool   `pulumi:"initialLogin"`
 	Password     *string `pulumi:"password"`
 	Realm        *string `pulumi:"realm"`
+	// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
+	// returned from the /serverinfo API endpoint.
+	RedHatSso *bool `pulumi:"redHatSso"`
 	// Allows x509 calls using an unknown CA certificate (for development purposes)
 	RootCaCertificate *string `pulumi:"rootCaCertificate"`
 	// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
@@ -87,6 +90,9 @@ type ProviderArgs struct {
 	InitialLogin pulumi.BoolPtrInput
 	Password     pulumi.StringPtrInput
 	Realm        pulumi.StringPtrInput
+	// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
+	// returned from the /serverinfo API endpoint.
+	RedHatSso pulumi.BoolPtrInput
 	// Allows x509 calls using an unknown CA certificate (for development purposes)
 	RootCaCertificate pulumi.StringPtrInput
 	// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and

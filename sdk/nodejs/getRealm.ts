@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -22,11 +23,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getRealm:getRealm", {
         "attributes": args.attributes,
         "defaultDefaultClientScopes": args.defaultDefaultClientScopes,
@@ -127,9 +125,24 @@ export interface GetRealmResult {
     readonly webAuthnPasswordlessPolicy: outputs.GetRealmWebAuthnPasswordlessPolicy;
     readonly webAuthnPolicy: outputs.GetRealmWebAuthnPolicy;
 }
-
+/**
+ * This data source can be used to fetch properties of a Keycloak realm for
+ * usage with other resources.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = keycloak.getRealm({
+ *     realm: "my-realm",
+ * });
+ * const group = new keycloak.Role("group", {realmId: realm.then(realm => realm.id)});
+ * ```
+ */
 export function getRealmOutput(args: GetRealmOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRealmResult> {
-    return pulumi.output(args).apply(a => getRealm(a, opts))
+    return pulumi.output(args).apply((a: any) => getRealm(a, opts))
 }
 
 /**

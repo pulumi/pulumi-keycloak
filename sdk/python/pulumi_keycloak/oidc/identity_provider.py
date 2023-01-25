@@ -32,6 +32,7 @@ class IdentityProviderArgs:
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
+                 issuer: Optional[pulumi.Input[str]] = None,
                  jwks_url: Optional[pulumi.Input[str]] = None,
                  link_only: Optional[pulumi.Input[bool]] = None,
                  login_hint: Optional[pulumi.Input[str]] = None,
@@ -63,6 +64,7 @@ class IdentityProviderArgs:
         :param pulumi.Input[str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
+        :param pulumi.Input[str] issuer: The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
         :param pulumi.Input[str] jwks_url: JSON Web Key Set URL.
         :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] login_hint: Pass login hint to identity provider.
@@ -106,6 +108,8 @@ class IdentityProviderArgs:
             pulumi.set(__self__, "gui_order", gui_order)
         if hide_on_login_page is not None:
             pulumi.set(__self__, "hide_on_login_page", hide_on_login_page)
+        if issuer is not None:
+            pulumi.set(__self__, "issuer", issuer)
         if jwks_url is not None:
             pulumi.set(__self__, "jwks_url", jwks_url)
         if link_only is not None:
@@ -345,6 +349,18 @@ class IdentityProviderArgs:
         pulumi.set(self, "hide_on_login_page", value)
 
     @property
+    @pulumi.getter
+    def issuer(self) -> Optional[pulumi.Input[str]]:
+        """
+        The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+        """
+        return pulumi.get(self, "issuer")
+
+    @issuer.setter
+    def issuer(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "issuer", value)
+
+    @property
     @pulumi.getter(name="jwksUrl")
     def jwks_url(self) -> Optional[pulumi.Input[str]]:
         """
@@ -509,6 +525,7 @@ class _IdentityProviderState:
                  gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
                  internal_id: Optional[pulumi.Input[str]] = None,
+                 issuer: Optional[pulumi.Input[str]] = None,
                  jwks_url: Optional[pulumi.Input[str]] = None,
                  link_only: Optional[pulumi.Input[bool]] = None,
                  login_hint: Optional[pulumi.Input[str]] = None,
@@ -541,6 +558,7 @@ class _IdentityProviderState:
         :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
         :param pulumi.Input[str] internal_id: (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
+        :param pulumi.Input[str] issuer: The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
         :param pulumi.Input[str] jwks_url: JSON Web Key Set URL.
         :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] login_hint: Pass login hint to identity provider.
@@ -590,6 +608,8 @@ class _IdentityProviderState:
             pulumi.set(__self__, "hide_on_login_page", hide_on_login_page)
         if internal_id is not None:
             pulumi.set(__self__, "internal_id", internal_id)
+        if issuer is not None:
+            pulumi.set(__self__, "issuer", issuer)
         if jwks_url is not None:
             pulumi.set(__self__, "jwks_url", jwks_url)
         if link_only is not None:
@@ -821,6 +841,18 @@ class _IdentityProviderState:
         pulumi.set(self, "internal_id", value)
 
     @property
+    @pulumi.getter
+    def issuer(self) -> Optional[pulumi.Input[str]]:
+        """
+        The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+        """
+        return pulumi.get(self, "issuer")
+
+    @issuer.setter
+    def issuer(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "issuer", value)
+
+    @property
     @pulumi.getter(name="jwksUrl")
     def jwks_url(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1010,6 +1042,7 @@ class IdentityProvider(pulumi.CustomResource):
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
+                 issuer: Optional[pulumi.Input[str]] = None,
                  jwks_url: Optional[pulumi.Input[str]] = None,
                  link_only: Optional[pulumi.Input[bool]] = None,
                  login_hint: Optional[pulumi.Input[str]] = None,
@@ -1076,6 +1109,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
+        :param pulumi.Input[str] issuer: The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
         :param pulumi.Input[str] jwks_url: JSON Web Key Set URL.
         :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] login_hint: Pass login hint to identity provider.
@@ -1162,6 +1196,7 @@ class IdentityProvider(pulumi.CustomResource):
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
+                 issuer: Optional[pulumi.Input[str]] = None,
                  jwks_url: Optional[pulumi.Input[str]] = None,
                  link_only: Optional[pulumi.Input[bool]] = None,
                  login_hint: Optional[pulumi.Input[str]] = None,
@@ -1200,7 +1235,7 @@ class IdentityProvider(pulumi.CustomResource):
             __props__.__dict__["client_id"] = client_id
             if client_secret is None and not opts.urn:
                 raise TypeError("Missing required property 'client_secret'")
-            __props__.__dict__["client_secret"] = client_secret
+            __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
             __props__.__dict__["default_scopes"] = default_scopes
             __props__.__dict__["disable_user_info"] = disable_user_info
             __props__.__dict__["display_name"] = display_name
@@ -1209,6 +1244,7 @@ class IdentityProvider(pulumi.CustomResource):
             __props__.__dict__["first_broker_login_flow_alias"] = first_broker_login_flow_alias
             __props__.__dict__["gui_order"] = gui_order
             __props__.__dict__["hide_on_login_page"] = hide_on_login_page
+            __props__.__dict__["issuer"] = issuer
             __props__.__dict__["jwks_url"] = jwks_url
             __props__.__dict__["link_only"] = link_only
             __props__.__dict__["login_hint"] = login_hint
@@ -1228,6 +1264,8 @@ class IdentityProvider(pulumi.CustomResource):
             __props__.__dict__["user_info_url"] = user_info_url
             __props__.__dict__["validate_signature"] = validate_signature
             __props__.__dict__["internal_id"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientSecret"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(IdentityProvider, __self__).__init__(
             'keycloak:oidc/identityProvider:IdentityProvider',
             resource_name,
@@ -1255,6 +1293,7 @@ class IdentityProvider(pulumi.CustomResource):
             gui_order: Optional[pulumi.Input[str]] = None,
             hide_on_login_page: Optional[pulumi.Input[bool]] = None,
             internal_id: Optional[pulumi.Input[str]] = None,
+            issuer: Optional[pulumi.Input[str]] = None,
             jwks_url: Optional[pulumi.Input[str]] = None,
             link_only: Optional[pulumi.Input[bool]] = None,
             login_hint: Optional[pulumi.Input[str]] = None,
@@ -1292,6 +1331,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
         :param pulumi.Input[str] internal_id: (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
+        :param pulumi.Input[str] issuer: The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
         :param pulumi.Input[str] jwks_url: JSON Web Key Set URL.
         :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] login_hint: Pass login hint to identity provider.
@@ -1328,6 +1368,7 @@ class IdentityProvider(pulumi.CustomResource):
         __props__.__dict__["gui_order"] = gui_order
         __props__.__dict__["hide_on_login_page"] = hide_on_login_page
         __props__.__dict__["internal_id"] = internal_id
+        __props__.__dict__["issuer"] = issuer
         __props__.__dict__["jwks_url"] = jwks_url
         __props__.__dict__["link_only"] = link_only
         __props__.__dict__["login_hint"] = login_hint
@@ -1476,6 +1517,14 @@ class IdentityProvider(pulumi.CustomResource):
         (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
         """
         return pulumi.get(self, "internal_id")
+
+    @property
+    @pulumi.getter
+    def issuer(self) -> pulumi.Output[Optional[str]]:
+        """
+        The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
+        """
+        return pulumi.get(self, "issuer")
 
     @property
     @pulumi.getter(name="jwksUrl")

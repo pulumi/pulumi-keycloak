@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -131,7 +132,7 @@ export class Client extends pulumi.CustomResource {
      */
     public readonly frontChannelLogout!: pulumi.Output<boolean | undefined>;
     /**
-     * - Allow to include all roles mappings in the access token
+     * Allow to include all roles mappings in the access token
      */
     public readonly fullScopeAllowed!: pulumi.Output<boolean | undefined>;
     /**
@@ -187,7 +188,7 @@ export class Client extends pulumi.CustomResource {
      */
     public readonly signDocuments!: pulumi.Output<boolean | undefined>;
     /**
-     * The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+     * The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
      */
     public readonly signatureAlgorithm!: pulumi.Output<string | undefined>;
     /**
@@ -382,7 +383,7 @@ export interface ClientState {
      */
     frontChannelLogout?: pulumi.Input<boolean>;
     /**
-     * - Allow to include all roles mappings in the access token
+     * Allow to include all roles mappings in the access token
      */
     fullScopeAllowed?: pulumi.Input<boolean>;
     /**
@@ -438,7 +439,7 @@ export interface ClientState {
      */
     signDocuments?: pulumi.Input<boolean>;
     /**
-     * The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+     * The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
      */
     signatureAlgorithm?: pulumi.Input<string>;
     /**
@@ -529,7 +530,7 @@ export interface ClientArgs {
      */
     frontChannelLogout?: pulumi.Input<boolean>;
     /**
-     * - Allow to include all roles mappings in the access token
+     * Allow to include all roles mappings in the access token
      */
     fullScopeAllowed?: pulumi.Input<boolean>;
     /**
@@ -585,7 +586,7 @@ export interface ClientArgs {
      */
     signDocuments?: pulumi.Input<boolean>;
     /**
-     * The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA512", or "DSA_SHA1".
+     * The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
      */
     signatureAlgorithm?: pulumi.Input<string>;
     /**

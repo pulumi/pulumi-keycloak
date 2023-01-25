@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
+    /// !&gt; **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `keycloak.GenericProtocolMapper` instead.
+    /// 
     /// Allows for creating and managing protocol mappers for both types of clients (openid-connect and saml) within Keycloak.
     /// 
     /// There are two uses cases for using this resource:
@@ -22,40 +24,40 @@ namespace Pulumi.Keycloak
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var samlClient = new Keycloak.Saml.Client("samlClient", new Keycloak.Saml.ClientArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = "test-client",
-    ///         });
-    ///         var samlHardcodeAttributeMapper = new Keycloak.GenericClientProtocolMapper("samlHardcodeAttributeMapper", new Keycloak.GenericClientProtocolMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = samlClient.Id,
-    ///             Protocol = "saml",
-    ///             ProtocolMapper = "saml-hardcode-attribute-mapper",
-    ///             Config = 
-    ///             {
-    ///                 { "attribute.name", "name" },
-    ///                 { "attribute.nameformat", "Basic" },
-    ///                 { "attribute.value", "value" },
-    ///                 { "friendly.name", "display name" },
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var samlClient = new Keycloak.Saml.Client("samlClient", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "test-client",
+    ///     });
+    /// 
+    ///     var samlHardcodeAttributeMapper = new Keycloak.GenericClientProtocolMapper("samlHardcodeAttributeMapper", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = samlClient.Id,
+    ///         Protocol = "saml",
+    ///         ProtocolMapper = "saml-hardcode-attribute-mapper",
+    ///         Config = 
+    ///         {
+    ///             { "attribute.name", "name" },
+    ///             { "attribute.nameformat", "Basic" },
+    ///             { "attribute.value", "value" },
+    ///             { "friendly.name", "display name" },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -67,7 +69,7 @@ namespace Pulumi.Keycloak
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper")]
-    public partial class GenericClientProtocolMapper : Pulumi.CustomResource
+    public partial class GenericClientProtocolMapper : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The client this protocol mapper is attached to.
@@ -155,7 +157,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class GenericClientProtocolMapperArgs : Pulumi.ResourceArgs
+    public sealed class GenericClientProtocolMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The client this protocol mapper is attached to.
@@ -208,9 +210,10 @@ namespace Pulumi.Keycloak
         public GenericClientProtocolMapperArgs()
         {
         }
+        public static new GenericClientProtocolMapperArgs Empty => new GenericClientProtocolMapperArgs();
     }
 
-    public sealed class GenericClientProtocolMapperState : Pulumi.ResourceArgs
+    public sealed class GenericClientProtocolMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The client this protocol mapper is attached to.
@@ -263,5 +266,6 @@ namespace Pulumi.Keycloak
         public GenericClientProtocolMapperState()
         {
         }
+        public static new GenericClientProtocolMapperState Empty => new GenericClientProtocolMapperState();
     }
 }

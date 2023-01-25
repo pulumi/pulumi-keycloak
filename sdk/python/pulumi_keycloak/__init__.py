@@ -13,6 +13,8 @@ from .default_groups import *
 from .default_roles import *
 from .generic_client_protocol_mapper import *
 from .generic_client_role_mapper import *
+from .generic_protocol_mapper import *
+from .generic_role_mapper import *
 from .get_authentication_execution import *
 from .get_authentication_flow import *
 from .get_client_description_converter import *
@@ -176,6 +178,22 @@ _utilities.register(
   "fqn": "pulumi_keycloak",
   "classes": {
    "keycloak:index/genericClientRoleMapper:GenericClientRoleMapper": "GenericClientRoleMapper"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "index/genericProtocolMapper",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/genericProtocolMapper:GenericProtocolMapper": "GenericProtocolMapper"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "index/genericRoleMapper",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/genericRoleMapper:GenericRoleMapper": "GenericRoleMapper"
   }
  },
  {
@@ -376,6 +394,14 @@ _utilities.register(
   "fqn": "pulumi_keycloak.ldap",
   "classes": {
    "keycloak:ldap/groupMapper:GroupMapper": "GroupMapper"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "ldap/hardcodedAttributeMapper",
+  "fqn": "pulumi_keycloak.ldap",
+  "classes": {
+   "keycloak:ldap/hardcodedAttributeMapper:HardcodedAttributeMapper": "HardcodedAttributeMapper"
   }
  },
  {

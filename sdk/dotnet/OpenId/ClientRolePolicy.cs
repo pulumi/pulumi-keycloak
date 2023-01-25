@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId
 {
     [KeycloakResourceType("keycloak:openid/clientRolePolicy:ClientRolePolicy")]
-    public partial class ClientRolePolicy : Pulumi.CustomResource
+    public partial class ClientRolePolicy : global::Pulumi.CustomResource
     {
         [Output("decisionStrategy")]
         public Output<string?> DecisionStrategy { get; private set; } = null!;
@@ -80,7 +80,7 @@ namespace Pulumi.Keycloak.OpenId
         }
     }
 
-    public sealed class ClientRolePolicyArgs : Pulumi.ResourceArgs
+    public sealed class ClientRolePolicyArgs : global::Pulumi.ResourceArgs
     {
         [Input("decisionStrategy")]
         public Input<string>? DecisionStrategy { get; set; }
@@ -114,9 +114,10 @@ namespace Pulumi.Keycloak.OpenId
         public ClientRolePolicyArgs()
         {
         }
+        public static new ClientRolePolicyArgs Empty => new ClientRolePolicyArgs();
     }
 
-    public sealed class ClientRolePolicyState : Pulumi.ResourceArgs
+    public sealed class ClientRolePolicyState : global::Pulumi.ResourceArgs
     {
         [Input("decisionStrategy")]
         public Input<string>? DecisionStrategy { get; set; }
@@ -150,5 +151,6 @@ namespace Pulumi.Keycloak.OpenId
         public ClientRolePolicyState()
         {
         }
+        public static new ClientRolePolicyState Empty => new ClientRolePolicyState();
     }
 }

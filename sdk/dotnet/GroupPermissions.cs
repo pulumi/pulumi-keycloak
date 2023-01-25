@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     [KeycloakResourceType("keycloak:index/groupPermissions:GroupPermissions")]
-    public partial class GroupPermissions : Pulumi.CustomResource
+    public partial class GroupPermissions : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Resource server id representing the realm management client on which this permission is managed
@@ -86,7 +86,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class GroupPermissionsArgs : Pulumi.ResourceArgs
+    public sealed class GroupPermissionsArgs : global::Pulumi.ResourceArgs
     {
         [Input("groupId", required: true)]
         public Input<string> GroupId { get; set; } = null!;
@@ -112,9 +112,10 @@ namespace Pulumi.Keycloak
         public GroupPermissionsArgs()
         {
         }
+        public static new GroupPermissionsArgs Empty => new GroupPermissionsArgs();
     }
 
-    public sealed class GroupPermissionsState : Pulumi.ResourceArgs
+    public sealed class GroupPermissionsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Resource server id representing the realm management client on which this permission is managed
@@ -149,5 +150,6 @@ namespace Pulumi.Keycloak
         public GroupPermissionsState()
         {
         }
+        public static new GroupPermissionsState Empty => new GroupPermissionsState();
     }
 }

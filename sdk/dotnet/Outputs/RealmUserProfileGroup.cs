@@ -14,7 +14,7 @@ namespace Pulumi.Keycloak.Outputs
     public sealed class RealmUserProfileGroup
     {
         /// <summary>
-        /// A map of annotations for the group.
+        /// A map of annotations for the attribute. Values can be a String or a json object.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Annotations;
         /// <summary>
@@ -26,7 +26,7 @@ namespace Pulumi.Keycloak.Outputs
         /// </summary>
         public readonly string? DisplayHeader;
         /// <summary>
-        /// The name of the group.
+        /// The name of the attribute.
         /// </summary>
         public readonly string Name;
 

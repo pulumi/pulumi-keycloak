@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId.Inputs
 {
 
-    public sealed class ClientPermissionsMapRolesCompositeScopeGetArgs : Pulumi.ResourceArgs
+    public sealed class ClientPermissionsMapRolesCompositeScopeGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("decisionStrategy")]
         public Input<string>? DecisionStrategy { get; set; }
@@ -29,5 +29,6 @@ namespace Pulumi.Keycloak.OpenId.Inputs
         public ClientPermissionsMapRolesCompositeScopeGetArgs()
         {
         }
+        public static new ClientPermissionsMapRolesCompositeScopeGetArgs Empty => new ClientPermissionsMapRolesCompositeScopeGetArgs();
     }
 }

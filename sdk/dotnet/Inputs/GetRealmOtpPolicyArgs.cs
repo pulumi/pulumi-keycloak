@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Inputs
 {
 
-    public sealed class GetRealmOtpPolicyInputArgs : Pulumi.ResourceArgs
+    public sealed class GetRealmOtpPolicyInputArgs : global::Pulumi.ResourceArgs
     {
         [Input("algorithm", required: true)]
         public Input<string> Algorithm { get; set; } = null!;
@@ -33,5 +33,6 @@ namespace Pulumi.Keycloak.Inputs
         public GetRealmOtpPolicyInputArgs()
         {
         }
+        public static new GetRealmOtpPolicyInputArgs Empty => new GetRealmOtpPolicyInputArgs();
     }
 }

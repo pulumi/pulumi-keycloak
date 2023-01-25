@@ -21,71 +21,71 @@ namespace Pulumi.Keycloak.OpenId
     /// ### Client)
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var openidClient = new Keycloak.OpenId.Client("openidClient", new Keycloak.OpenId.ClientArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = "client",
-    ///             Enabled = true,
-    ///             AccessType = "CONFIDENTIAL",
-    ///             ValidRedirectUris = 
-    ///             {
-    ///                 "http://localhost:8080/openid-callback",
-    ///             },
-    ///         });
-    ///         var userSessionNoteMapper = new Keycloak.OpenId.UserSessionNoteProtocolMapper("userSessionNoteMapper", new Keycloak.OpenId.UserSessionNoteProtocolMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = openidClient.Id,
-    ///             ClaimName = "foo",
-    ///             ClaimValueType = "String",
-    ///             SessionNote = "bar",
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var openidClient = new Keycloak.OpenId.Client("openidClient", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "client",
+    ///         Enabled = true,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ValidRedirectUris = new[]
+    ///         {
+    ///             "http://localhost:8080/openid-callback",
+    ///         },
+    ///     });
+    /// 
+    ///     var userSessionNoteMapper = new Keycloak.OpenId.UserSessionNoteProtocolMapper("userSessionNoteMapper", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = openidClient.Id,
+    ///         ClaimName = "foo",
+    ///         ClaimValueType = "String",
+    ///         SessionNote = "bar",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### Client Scope)
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new Keycloak.OpenId.ClientScopeArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///         });
-    ///         var userSessionNoteMapper = new Keycloak.OpenId.UserSessionNoteProtocolMapper("userSessionNoteMapper", new Keycloak.OpenId.UserSessionNoteProtocolMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientScopeId = clientScope.Id,
-    ///             ClaimName = "foo",
-    ///             ClaimValueType = "String",
-    ///             SessionNote = "bar",
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var userSessionNoteMapper = new Keycloak.OpenId.UserSessionNoteProtocolMapper("userSessionNoteMapper", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientScopeId = clientScope.Id,
+    ///         ClaimName = "foo",
+    ///         ClaimValueType = "String",
+    ///         SessionNote = "bar",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -101,7 +101,7 @@ namespace Pulumi.Keycloak.OpenId
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper")]
-    public partial class UserSessionNoteProtocolMapper : Pulumi.CustomResource
+    public partial class UserSessionNoteProtocolMapper : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
@@ -201,7 +201,7 @@ namespace Pulumi.Keycloak.OpenId
         }
     }
 
-    public sealed class UserSessionNoteProtocolMapperArgs : Pulumi.ResourceArgs
+    public sealed class UserSessionNoteProtocolMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
@@ -260,9 +260,10 @@ namespace Pulumi.Keycloak.OpenId
         public UserSessionNoteProtocolMapperArgs()
         {
         }
+        public static new UserSessionNoteProtocolMapperArgs Empty => new UserSessionNoteProtocolMapperArgs();
     }
 
-    public sealed class UserSessionNoteProtocolMapperState : Pulumi.ResourceArgs
+    public sealed class UserSessionNoteProtocolMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
@@ -321,5 +322,6 @@ namespace Pulumi.Keycloak.OpenId
         public UserSessionNoteProtocolMapperState()
         {
         }
+        public static new UserSessionNoteProtocolMapperState Empty => new UserSessionNoteProtocolMapperState();
     }
 }

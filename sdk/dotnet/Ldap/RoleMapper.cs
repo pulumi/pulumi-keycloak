@@ -17,53 +17,53 @@ namespace Pulumi.Keycloak.Ldap
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new Keycloak.Ldap.UserFederationArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             UsernameLdapAttribute = "cn",
-    ///             RdnLdapAttribute = "cn",
-    ///             UuidLdapAttribute = "entryDN",
-    ///             UserObjectClasses = 
-    ///             {
-    ///                 "simpleSecurityObject",
-    ///                 "organizationalRole",
-    ///             },
-    ///             ConnectionUrl = "ldap://openldap",
-    ///             UsersDn = "dc=example,dc=org",
-    ///             BindDn = "cn=admin,dc=example,dc=org",
-    ///             BindCredential = "admin",
-    ///         });
-    ///         var ldapRoleMapper = new Keycloak.Ldap.RoleMapper("ldapRoleMapper", new Keycloak.Ldap.RoleMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             LdapUserFederationId = ldapUserFederation.Id,
-    ///             LdapRolesDn = "dc=example,dc=org",
-    ///             RoleNameLdapAttribute = "cn",
-    ///             RoleObjectClasses = 
-    ///             {
-    ///                 "groupOfNames",
-    ///             },
-    ///             MembershipAttributeType = "DN",
-    ///             MembershipLdapAttribute = "member",
-    ///             MembershipUserLdapAttribute = "cn",
-    ///             UserRolesRetrieveStrategy = "GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE",
-    ///             MemberofLdapAttribute = "memberOf",
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         UsernameLdapAttribute = "cn",
+    ///         RdnLdapAttribute = "cn",
+    ///         UuidLdapAttribute = "entryDN",
+    ///         UserObjectClasses = new[]
+    ///         {
+    ///             "simpleSecurityObject",
+    ///             "organizationalRole",
+    ///         },
+    ///         ConnectionUrl = "ldap://openldap",
+    ///         UsersDn = "dc=example,dc=org",
+    ///         BindDn = "cn=admin,dc=example,dc=org",
+    ///         BindCredential = "admin",
+    ///     });
+    /// 
+    ///     var ldapRoleMapper = new Keycloak.Ldap.RoleMapper("ldapRoleMapper", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         LdapUserFederationId = ldapUserFederation.Id,
+    ///         LdapRolesDn = "dc=example,dc=org",
+    ///         RoleNameLdapAttribute = "cn",
+    ///         RoleObjectClasses = new[]
+    ///         {
+    ///             "groupOfNames",
+    ///         },
+    ///         MembershipAttributeType = "DN",
+    ///         MembershipLdapAttribute = "member",
+    ///         MembershipUserLdapAttribute = "cn",
+    ///         UserRolesRetrieveStrategy = "GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE",
+    ///         MemberofLdapAttribute = "memberOf",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -75,7 +75,7 @@ namespace Pulumi.Keycloak.Ldap
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:ldap/roleMapper:RoleMapper")]
-    public partial class RoleMapper : Pulumi.CustomResource
+    public partial class RoleMapper : global::Pulumi.CustomResource
     {
         /// <summary>
         /// When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
@@ -211,7 +211,7 @@ namespace Pulumi.Keycloak.Ldap
         }
     }
 
-    public sealed class RoleMapperArgs : Pulumi.ResourceArgs
+    public sealed class RoleMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
@@ -312,9 +312,10 @@ namespace Pulumi.Keycloak.Ldap
         public RoleMapperArgs()
         {
         }
+        public static new RoleMapperArgs Empty => new RoleMapperArgs();
     }
 
-    public sealed class RoleMapperState : Pulumi.ResourceArgs
+    public sealed class RoleMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
@@ -415,5 +416,6 @@ namespace Pulumi.Keycloak.Ldap
         public RoleMapperState()
         {
         }
+        public static new RoleMapperState Empty => new RoleMapperState();
     }
 }

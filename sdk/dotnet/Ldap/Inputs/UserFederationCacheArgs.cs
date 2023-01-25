@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Ldap.Inputs
 {
 
-    public sealed class UserFederationCacheArgs : Pulumi.ResourceArgs
+    public sealed class UserFederationCacheArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Day of the week the entry will become invalid on
@@ -45,5 +45,6 @@ namespace Pulumi.Keycloak.Ldap.Inputs
         public UserFederationCacheArgs()
         {
         }
+        public static new UserFederationCacheArgs Empty => new UserFederationCacheArgs();
     }
 }

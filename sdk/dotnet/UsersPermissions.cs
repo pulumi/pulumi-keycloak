@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     [KeycloakResourceType("keycloak:index/usersPermissions:UsersPermissions")]
-    public partial class UsersPermissions : Pulumi.CustomResource
+    public partial class UsersPermissions : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Resource server id representing the realm management client on which this permission is managed
@@ -86,7 +86,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class UsersPermissionsArgs : Pulumi.ResourceArgs
+    public sealed class UsersPermissionsArgs : global::Pulumi.ResourceArgs
     {
         [Input("impersonateScope")]
         public Input<Inputs.UsersPermissionsImpersonateScopeArgs>? ImpersonateScope { get; set; }
@@ -112,9 +112,10 @@ namespace Pulumi.Keycloak
         public UsersPermissionsArgs()
         {
         }
+        public static new UsersPermissionsArgs Empty => new UsersPermissionsArgs();
     }
 
-    public sealed class UsersPermissionsState : Pulumi.ResourceArgs
+    public sealed class UsersPermissionsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Resource server id representing the realm management client on which this permission is managed
@@ -149,5 +150,6 @@ namespace Pulumi.Keycloak
         public UsersPermissionsState()
         {
         }
+        public static new UsersPermissionsState Empty => new UsersPermissionsState();
     }
 }

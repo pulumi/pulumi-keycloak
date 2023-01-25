@@ -18,29 +18,28 @@ namespace Pulumi.Keycloak
     /// ### Realm Role)
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var defaultRoles = new Keycloak.DefaultRoles("defaultRoles", new Keycloak.DefaultRolesArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             RoleNames = 
-    ///             {
-    ///                 "uma_authorization",
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var defaultRoles = new Keycloak.DefaultRoles("defaultRoles", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         RoleNames = new[]
+    ///         {
+    ///             "uma_authorization",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -52,7 +51,7 @@ namespace Pulumi.Keycloak
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/defaultRoles:DefaultRoles")]
-    public partial class DefaultRoles : Pulumi.CustomResource
+    public partial class DefaultRoles : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Realm level roles assigned to new users by default.
@@ -110,7 +109,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class DefaultRolesArgs : Pulumi.ResourceArgs
+    public sealed class DefaultRolesArgs : global::Pulumi.ResourceArgs
     {
         [Input("defaultRoles", required: true)]
         private InputList<string>? _defaultRoles;
@@ -133,9 +132,10 @@ namespace Pulumi.Keycloak
         public DefaultRolesArgs()
         {
         }
+        public static new DefaultRolesArgs Empty => new DefaultRolesArgs();
     }
 
-    public sealed class DefaultRolesState : Pulumi.ResourceArgs
+    public sealed class DefaultRolesState : global::Pulumi.ResourceArgs
     {
         [Input("defaultRoles")]
         private InputList<string>? _defaultRoles;
@@ -158,5 +158,6 @@ namespace Pulumi.Keycloak
         public DefaultRolesState()
         {
         }
+        public static new DefaultRolesState Empty => new DefaultRolesState();
     }
 }

@@ -34,7 +34,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			offlineAccess := keycloak.LookupRoleOutput(ctx, GetRoleOutputArgs{
+//			offlineAccess := keycloak.LookupRoleOutput(ctx, keycloak.GetRoleOutputArgs{
 //				RealmId: realm.ID(),
 //				Name:    pulumi.String("offline_access"),
 //			}, nil)
@@ -48,9 +48,9 @@ import (
 //				RealmId: realm.ID(),
 //				GroupId: group.ID(),
 //				RoleIds: pulumi.StringArray{
-//					offlineAccess.ApplyT(func(offlineAccess GetRoleResult) (string, error) {
-//						return offlineAccess.Id, nil
-//					}).(pulumi.StringOutput),
+//					offlineAccess.ApplyT(func(offlineAccess keycloak.GetRoleResult) (*string, error) {
+//						return &offlineAccess.Id, nil
+//					}).(pulumi.StringPtrOutput),
 //				},
 //			})
 //			if err != nil {

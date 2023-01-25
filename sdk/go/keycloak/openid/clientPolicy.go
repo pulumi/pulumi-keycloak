@@ -61,7 +61,7 @@ import (
 //				return err
 //			}
 //			_, err = openid.NewClientPolicy(ctx, "tokenExchange", &openid.ClientPolicyArgs{
-//				ResourceServerId: pulumi.String(realmManagement.Id),
+//				ResourceServerId: *pulumi.String(realmManagement.Id),
 //				RealmId:          realm.ID(),
 //				Logic:            pulumi.String("POSITIVE"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),

@@ -22,69 +22,69 @@ namespace Pulumi.Keycloak.OpenId
     /// ### Client)
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var openidClient = new Keycloak.OpenId.Client("openidClient", new Keycloak.OpenId.ClientArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = "client",
-    ///             Enabled = true,
-    ///             AccessType = "CONFIDENTIAL",
-    ///             ValidRedirectUris = 
-    ///             {
-    ///                 "http://localhost:8080/openid-callback",
-    ///             },
-    ///         });
-    ///         var userPropertyMapper = new Keycloak.OpenId.UserPropertyProtocolMapper("userPropertyMapper", new Keycloak.OpenId.UserPropertyProtocolMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = openidClient.Id,
-    ///             UserProperty = "email",
-    ///             ClaimName = "email",
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var openidClient = new Keycloak.OpenId.Client("openidClient", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "client",
+    ///         Enabled = true,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ValidRedirectUris = new[]
+    ///         {
+    ///             "http://localhost:8080/openid-callback",
+    ///         },
+    ///     });
+    /// 
+    ///     var userPropertyMapper = new Keycloak.OpenId.UserPropertyProtocolMapper("userPropertyMapper", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = openidClient.Id,
+    ///         UserProperty = "email",
+    ///         ClaimName = "email",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### Client Scope)
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new Keycloak.OpenId.ClientScopeArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///         });
-    ///         var userPropertyMapper = new Keycloak.OpenId.UserPropertyProtocolMapper("userPropertyMapper", new Keycloak.OpenId.UserPropertyProtocolMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientScopeId = clientScope.Id,
-    ///             UserProperty = "email",
-    ///             ClaimName = "email",
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var userPropertyMapper = new Keycloak.OpenId.UserPropertyProtocolMapper("userPropertyMapper", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientScopeId = clientScope.Id,
+    ///         UserProperty = "email",
+    ///         ClaimName = "email",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -100,7 +100,7 @@ namespace Pulumi.Keycloak.OpenId
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:openid/userPropertyProtocolMapper:UserPropertyProtocolMapper")]
-    public partial class UserPropertyProtocolMapper : Pulumi.CustomResource
+    public partial class UserPropertyProtocolMapper : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
@@ -206,7 +206,7 @@ namespace Pulumi.Keycloak.OpenId
         }
     }
 
-    public sealed class UserPropertyProtocolMapperArgs : Pulumi.ResourceArgs
+    public sealed class UserPropertyProtocolMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
@@ -271,9 +271,10 @@ namespace Pulumi.Keycloak.OpenId
         public UserPropertyProtocolMapperArgs()
         {
         }
+        public static new UserPropertyProtocolMapperArgs Empty => new UserPropertyProtocolMapperArgs();
     }
 
-    public sealed class UserPropertyProtocolMapperState : Pulumi.ResourceArgs
+    public sealed class UserPropertyProtocolMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
@@ -338,5 +339,6 @@ namespace Pulumi.Keycloak.OpenId
         public UserPropertyProtocolMapperState()
         {
         }
+        public static new UserPropertyProtocolMapperState Empty => new UserPropertyProtocolMapperState();
     }
 }

@@ -36,6 +36,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &GenericClientProtocolMapper{}
 	case "keycloak:index/genericClientRoleMapper:GenericClientRoleMapper":
 		r = &GenericClientRoleMapper{}
+	case "keycloak:index/genericProtocolMapper:GenericProtocolMapper":
+		r = &GenericProtocolMapper{}
+	case "keycloak:index/genericRoleMapper:GenericRoleMapper":
+		r = &GenericRoleMapper{}
 	case "keycloak:index/group:Group":
 		r = &Group{}
 	case "keycloak:index/groupMemberships:GroupMemberships":
@@ -148,6 +152,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"index/genericClientRoleMapper",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/genericProtocolMapper",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/genericRoleMapper",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

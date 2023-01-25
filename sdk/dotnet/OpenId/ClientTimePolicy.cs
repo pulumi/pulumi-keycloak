@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId
 {
     [KeycloakResourceType("keycloak:openid/clientTimePolicy:ClientTimePolicy")]
-    public partial class ClientTimePolicy : Pulumi.CustomResource
+    public partial class ClientTimePolicy : global::Pulumi.CustomResource
     {
         [Output("dayMonth")]
         public Output<string?> DayMonth { get; private set; } = null!;
@@ -110,7 +110,7 @@ namespace Pulumi.Keycloak.OpenId
         }
     }
 
-    public sealed class ClientTimePolicyArgs : Pulumi.ResourceArgs
+    public sealed class ClientTimePolicyArgs : global::Pulumi.ResourceArgs
     {
         [Input("dayMonth")]
         public Input<string>? DayMonth { get; set; }
@@ -169,9 +169,10 @@ namespace Pulumi.Keycloak.OpenId
         public ClientTimePolicyArgs()
         {
         }
+        public static new ClientTimePolicyArgs Empty => new ClientTimePolicyArgs();
     }
 
-    public sealed class ClientTimePolicyState : Pulumi.ResourceArgs
+    public sealed class ClientTimePolicyState : global::Pulumi.ResourceArgs
     {
         [Input("dayMonth")]
         public Input<string>? DayMonth { get; set; }
@@ -230,5 +231,6 @@ namespace Pulumi.Keycloak.OpenId
         public ClientTimePolicyState()
         {
         }
+        public static new ClientTimePolicyState Empty => new ClientTimePolicyState();
     }
 }

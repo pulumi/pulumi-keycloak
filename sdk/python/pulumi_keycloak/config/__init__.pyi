@@ -31,6 +31,12 @@ password: Optional[str]
 
 realm: Optional[str]
 
+redHatSso: Optional[bool]
+"""
+When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
+returned from the /serverinfo API endpoint.
+"""
+
 rootCaCertificate: Optional[str]
 """
 Allows x509 calls using an unknown CA certificate (for development purposes)

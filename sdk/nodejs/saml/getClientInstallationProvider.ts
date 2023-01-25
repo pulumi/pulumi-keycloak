@@ -39,11 +39,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getClientInstallationProvider(args: GetClientInstallationProviderArgs, opts?: pulumi.InvokeOptions): Promise<GetClientInstallationProviderResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", {
         "clientId": args.clientId,
         "providerId": args.providerId,
@@ -85,9 +82,42 @@ export interface GetClientInstallationProviderResult {
      */
     readonly value: string;
 }
-
+/**
+ * This data source can be used to retrieve Installation Provider of a SAML Client.
+ *
+ * ## Example Usage
+ *
+ * In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as fs from "fs";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const samlClient = new keycloak.saml.Client("samlClient", {
+ *     realmId: realm.id,
+ *     clientId: "test-saml-client",
+ *     signDocuments: false,
+ *     signAssertions: true,
+ *     includeAuthnStatement: true,
+ *     signingCertificate: fs.readFileSync("saml-cert.pem"),
+ *     signingPrivateKey: fs.readFileSync("saml-key.pem"),
+ * });
+ * const samlIdpDescriptor = keycloak.saml.getClientInstallationProviderOutput({
+ *     realmId: realm.id,
+ *     clientId: samlClient.id,
+ *     providerId: "saml-idp-descriptor",
+ * });
+ * const _default = new aws.iam.SamlProvider("default", {samlMetadataDocument: samlIdpDescriptor.apply(samlIdpDescriptor => samlIdpDescriptor.value)});
+ * ```
+ */
 export function getClientInstallationProviderOutput(args: GetClientInstallationProviderOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientInstallationProviderResult> {
-    return pulumi.output(args).apply(a => getClientInstallationProvider(a, opts))
+    return pulumi.output(args).apply((a: any) => getClientInstallationProvider(a, opts))
 }
 
 /**

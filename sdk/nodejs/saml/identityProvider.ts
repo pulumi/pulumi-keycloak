@@ -96,7 +96,7 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly authnContextDeclRefs!: pulumi.Output<string[] | undefined>;
     /**
-     * Does the external IDP support back-channel logout ?.
+     * Does the external IDP support backchannel logout?. Defaults to `false`.
      */
     public readonly backchannelSupported!: pulumi.Output<boolean | undefined>;
     /**
@@ -157,11 +157,11 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly postBrokerLoginFlowAlias!: pulumi.Output<string | undefined>;
     /**
-     * Principal Attribute
+     * The principal attribute.
      */
     public readonly principalAttribute!: pulumi.Output<string | undefined>;
     /**
-     * Principal Type
+     * The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
      */
     public readonly principalType!: pulumi.Output<string | undefined>;
     /**
@@ -193,7 +193,7 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly storeToken!: pulumi.Output<boolean | undefined>;
     /**
-     * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+     * The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
      */
     public readonly syncMode!: pulumi.Output<string | undefined>;
     /**
@@ -213,7 +213,7 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly wantAssertionsSigned!: pulumi.Output<boolean | undefined>;
     /**
-     * Sign Key Transformer. Defaults to empty.
+     * The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
      */
     public readonly xmlSignKeyInfoKeyNameTransformer!: pulumi.Output<string | undefined>;
 
@@ -353,7 +353,7 @@ export interface IdentityProviderState {
      */
     authnContextDeclRefs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Does the external IDP support back-channel logout ?.
+     * Does the external IDP support backchannel logout?. Defaults to `false`.
      */
     backchannelSupported?: pulumi.Input<boolean>;
     /**
@@ -414,11 +414,11 @@ export interface IdentityProviderState {
      */
     postBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
-     * Principal Attribute
+     * The principal attribute.
      */
     principalAttribute?: pulumi.Input<string>;
     /**
-     * Principal Type
+     * The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
      */
     principalType?: pulumi.Input<string>;
     /**
@@ -450,7 +450,7 @@ export interface IdentityProviderState {
      */
     storeToken?: pulumi.Input<boolean>;
     /**
-     * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+     * The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
      */
     syncMode?: pulumi.Input<string>;
     /**
@@ -470,7 +470,7 @@ export interface IdentityProviderState {
      */
     wantAssertionsSigned?: pulumi.Input<boolean>;
     /**
-     * Sign Key Transformer. Defaults to empty.
+     * The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
      */
     xmlSignKeyInfoKeyNameTransformer?: pulumi.Input<string>;
 }
@@ -504,7 +504,7 @@ export interface IdentityProviderArgs {
      */
     authnContextDeclRefs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Does the external IDP support back-channel logout ?.
+     * Does the external IDP support backchannel logout?. Defaults to `false`.
      */
     backchannelSupported?: pulumi.Input<boolean>;
     /**
@@ -561,11 +561,11 @@ export interface IdentityProviderArgs {
      */
     postBrokerLoginFlowAlias?: pulumi.Input<string>;
     /**
-     * Principal Attribute
+     * The principal attribute.
      */
     principalAttribute?: pulumi.Input<string>;
     /**
-     * Principal Type
+     * The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
      */
     principalType?: pulumi.Input<string>;
     /**
@@ -597,7 +597,7 @@ export interface IdentityProviderArgs {
      */
     storeToken?: pulumi.Input<boolean>;
     /**
-     * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+     * The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
      */
     syncMode?: pulumi.Input<string>;
     /**
@@ -617,7 +617,7 @@ export interface IdentityProviderArgs {
      */
     wantAssertionsSigned?: pulumi.Input<boolean>;
     /**
-     * Sign Key Transformer. Defaults to empty.
+     * The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
      */
     xmlSignKeyInfoKeyNameTransformer?: pulumi.Input<string>;
 }

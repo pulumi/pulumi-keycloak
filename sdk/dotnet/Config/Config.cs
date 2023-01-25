@@ -30,7 +30,7 @@ namespace Pulumi.Keycloak
             }
         }
 
-        private static readonly Pulumi.Config __config = new Pulumi.Config("keycloak");
+        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("keycloak");
 
         private static readonly __Value<ImmutableDictionary<string, string>?> _additionalHeaders = new __Value<ImmutableDictionary<string, string>?>(() => __config.GetObject<ImmutableDictionary<string, string>>("additionalHeaders"));
         public static ImmutableDictionary<string, string>? AdditionalHeaders
@@ -92,6 +92,17 @@ namespace Pulumi.Keycloak
         {
             get => _realm.Get();
             set => _realm.Set(value);
+        }
+
+        private static readonly __Value<bool?> _redHatSso = new __Value<bool?>(() => __config.GetBoolean("redHatSso"));
+        /// <summary>
+        /// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
+        /// returned from the /serverinfo API endpoint.
+        /// </summary>
+        public static bool? RedHatSso
+        {
+            get => _redHatSso.Get();
+            set => _redHatSso.Set(value);
         }
 
         private static readonly __Value<string?> _rootCaCertificate = new __Value<string?>(() => __config.Get("rootCaCertificate"));

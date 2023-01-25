@@ -21,34 +21,34 @@ namespace Pulumi.Keycloak.Saml
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var samlClient = new Keycloak.Saml.Client("samlClient", new Keycloak.Saml.ClientArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = "saml-client",
-    ///         });
-    ///         var samlUserAttributeMapper = new Keycloak.Saml.UserAttributeProtocolMapper("samlUserAttributeMapper", new Keycloak.Saml.UserAttributeProtocolMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ClientId = samlClient.Id,
-    ///             UserAttribute = "displayName",
-    ///             SamlAttributeName = "displayName",
-    ///             SamlAttributeNameFormat = "Unspecified",
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var samlClient = new Keycloak.Saml.Client("samlClient", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "saml-client",
+    ///     });
+    /// 
+    ///     var samlUserAttributeMapper = new Keycloak.Saml.UserAttributeProtocolMapper("samlUserAttributeMapper", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = samlClient.Id,
+    ///         UserAttribute = "displayName",
+    ///         SamlAttributeName = "displayName",
+    ///         SamlAttributeNameFormat = "Unspecified",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -64,7 +64,7 @@ namespace Pulumi.Keycloak.Saml
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper")]
-    public partial class UserAttributeProtocolMapper : Pulumi.CustomResource
+    public partial class UserAttributeProtocolMapper : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
@@ -158,7 +158,7 @@ namespace Pulumi.Keycloak.Saml
         }
     }
 
-    public sealed class UserAttributeProtocolMapperArgs : Pulumi.ResourceArgs
+    public sealed class UserAttributeProtocolMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
@@ -211,9 +211,10 @@ namespace Pulumi.Keycloak.Saml
         public UserAttributeProtocolMapperArgs()
         {
         }
+        public static new UserAttributeProtocolMapperArgs Empty => new UserAttributeProtocolMapperArgs();
     }
 
-    public sealed class UserAttributeProtocolMapperState : Pulumi.ResourceArgs
+    public sealed class UserAttributeProtocolMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
@@ -266,5 +267,6 @@ namespace Pulumi.Keycloak.Saml
         public UserAttributeProtocolMapperState()
         {
         }
+        public static new UserAttributeProtocolMapperState Empty => new UserAttributeProtocolMapperState();
     }
 }

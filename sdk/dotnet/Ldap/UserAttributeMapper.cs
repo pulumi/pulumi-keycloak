@@ -19,44 +19,44 @@ namespace Pulumi.Keycloak.Ldap
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new Keycloak.Ldap.UserFederationArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             UsernameLdapAttribute = "cn",
-    ///             RdnLdapAttribute = "cn",
-    ///             UuidLdapAttribute = "entryDN",
-    ///             UserObjectClasses = 
-    ///             {
-    ///                 "simpleSecurityObject",
-    ///                 "organizationalRole",
-    ///             },
-    ///             ConnectionUrl = "ldap://openldap",
-    ///             UsersDn = "dc=example,dc=org",
-    ///             BindDn = "cn=admin,dc=example,dc=org",
-    ///             BindCredential = "admin",
-    ///         });
-    ///         var ldapUserAttributeMapper = new Keycloak.Ldap.UserAttributeMapper("ldapUserAttributeMapper", new Keycloak.Ldap.UserAttributeMapperArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             LdapUserFederationId = ldapUserFederation.Id,
-    ///             UserModelAttribute = "foo",
-    ///             LdapAttribute = "bar",
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         UsernameLdapAttribute = "cn",
+    ///         RdnLdapAttribute = "cn",
+    ///         UuidLdapAttribute = "entryDN",
+    ///         UserObjectClasses = new[]
+    ///         {
+    ///             "simpleSecurityObject",
+    ///             "organizationalRole",
+    ///         },
+    ///         ConnectionUrl = "ldap://openldap",
+    ///         UsersDn = "dc=example,dc=org",
+    ///         BindDn = "cn=admin,dc=example,dc=org",
+    ///         BindCredential = "admin",
+    ///     });
+    /// 
+    ///     var ldapUserAttributeMapper = new Keycloak.Ldap.UserAttributeMapper("ldapUserAttributeMapper", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         LdapUserFederationId = ldapUserFederation.Id,
+    ///         UserModelAttribute = "foo",
+    ///         LdapAttribute = "bar",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -68,13 +68,25 @@ namespace Pulumi.Keycloak.Ldap
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:ldap/userAttributeMapper:UserAttributeMapper")]
-    public partial class UserAttributeMapper : Pulumi.CustomResource
+    public partial class UserAttributeMapper : global::Pulumi.CustomResource
     {
         /// <summary>
         /// When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
         /// </summary>
         [Output("alwaysReadValueFromLdap")]
         public Output<bool?> AlwaysReadValueFromLdap { get; private set; } = null!;
+
+        /// <summary>
+        /// Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        /// </summary>
+        [Output("attributeDefaultValue")]
+        public Output<string?> AttributeDefaultValue { get; private set; } = null!;
+
+        /// <summary>
+        /// Should be true for binary LDAP attributes.
+        /// </summary>
+        [Output("isBinaryAttribute")]
+        public Output<bool?> IsBinaryAttribute { get; private set; } = null!;
 
         /// <summary>
         /// When `true`, this attribute must exist in LDAP. Defaults to `false`.
@@ -162,13 +174,25 @@ namespace Pulumi.Keycloak.Ldap
         }
     }
 
-    public sealed class UserAttributeMapperArgs : Pulumi.ResourceArgs
+    public sealed class UserAttributeMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
         /// </summary>
         [Input("alwaysReadValueFromLdap")]
         public Input<bool>? AlwaysReadValueFromLdap { get; set; }
+
+        /// <summary>
+        /// Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        /// </summary>
+        [Input("attributeDefaultValue")]
+        public Input<string>? AttributeDefaultValue { get; set; }
+
+        /// <summary>
+        /// Should be true for binary LDAP attributes.
+        /// </summary>
+        [Input("isBinaryAttribute")]
+        public Input<bool>? IsBinaryAttribute { get; set; }
 
         /// <summary>
         /// When `true`, this attribute must exist in LDAP. Defaults to `false`.
@@ -215,15 +239,28 @@ namespace Pulumi.Keycloak.Ldap
         public UserAttributeMapperArgs()
         {
         }
+        public static new UserAttributeMapperArgs Empty => new UserAttributeMapperArgs();
     }
 
-    public sealed class UserAttributeMapperState : Pulumi.ResourceArgs
+    public sealed class UserAttributeMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
         /// </summary>
         [Input("alwaysReadValueFromLdap")]
         public Input<bool>? AlwaysReadValueFromLdap { get; set; }
+
+        /// <summary>
+        /// Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        /// </summary>
+        [Input("attributeDefaultValue")]
+        public Input<string>? AttributeDefaultValue { get; set; }
+
+        /// <summary>
+        /// Should be true for binary LDAP attributes.
+        /// </summary>
+        [Input("isBinaryAttribute")]
+        public Input<bool>? IsBinaryAttribute { get; set; }
 
         /// <summary>
         /// When `true`, this attribute must exist in LDAP. Defaults to `false`.
@@ -270,5 +307,6 @@ namespace Pulumi.Keycloak.Ldap
         public UserAttributeMapperState()
         {
         }
+        public static new UserAttributeMapperState Empty => new UserAttributeMapperState();
     }
 }

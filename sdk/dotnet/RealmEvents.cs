@@ -15,38 +15,37 @@ namespace Pulumi.Keycloak
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var realmEvents = new Keycloak.RealmEvents("realmEvents", new Keycloak.RealmEventsArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             EventsEnabled = true,
-    ///             EventsExpiration = 3600,
-    ///             AdminEventsEnabled = true,
-    ///             AdminEventsDetailsEnabled = true,
-    ///             EnabledEventTypes = 
-    ///             {
-    ///                 "LOGIN",
-    ///                 "LOGOUT",
-    ///             },
-    ///             EventsListeners = 
-    ///             {
-    ///                 "jboss-logging",
-    ///             },
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var realmEvents = new Keycloak.RealmEvents("realmEvents", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         EventsEnabled = true,
+    ///         EventsExpiration = 3600,
+    ///         AdminEventsEnabled = true,
+    ///         AdminEventsDetailsEnabled = true,
+    ///         EnabledEventTypes = new[]
+    ///         {
+    ///             "LOGIN",
+    ///             "LOGOUT",
+    ///         },
+    ///         EventsListeners = new[]
+    ///         {
+    ///             "jboss-logging",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -54,7 +53,7 @@ namespace Pulumi.Keycloak
     /// This resource currently does not support importing.
     /// </summary>
     [KeycloakResourceType("keycloak:index/realmEvents:RealmEvents")]
-    public partial class RealmEvents : Pulumi.CustomResource
+    public partial class RealmEvents : global::Pulumi.CustomResource
     {
         /// <summary>
         /// When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
@@ -142,7 +141,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class RealmEventsArgs : Pulumi.ResourceArgs
+    public sealed class RealmEventsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
@@ -201,9 +200,10 @@ namespace Pulumi.Keycloak
         public RealmEventsArgs()
         {
         }
+        public static new RealmEventsArgs Empty => new RealmEventsArgs();
     }
 
-    public sealed class RealmEventsState : Pulumi.ResourceArgs
+    public sealed class RealmEventsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
@@ -262,5 +262,6 @@ namespace Pulumi.Keycloak
         public RealmEventsState()
         {
         }
+        public static new RealmEventsState Empty => new RealmEventsState();
     }
 }

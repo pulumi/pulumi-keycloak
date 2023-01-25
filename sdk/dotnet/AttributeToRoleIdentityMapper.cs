@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     [KeycloakResourceType("keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper")]
-    public partial class AttributeToRoleIdentityMapper : Pulumi.CustomResource
+    public partial class AttributeToRoleIdentityMapper : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Attribute Friendly Name
@@ -113,7 +113,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class AttributeToRoleIdentityMapperArgs : Pulumi.ResourceArgs
+    public sealed class AttributeToRoleIdentityMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Attribute Friendly Name
@@ -180,9 +180,10 @@ namespace Pulumi.Keycloak
         public AttributeToRoleIdentityMapperArgs()
         {
         }
+        public static new AttributeToRoleIdentityMapperArgs Empty => new AttributeToRoleIdentityMapperArgs();
     }
 
-    public sealed class AttributeToRoleIdentityMapperState : Pulumi.ResourceArgs
+    public sealed class AttributeToRoleIdentityMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Attribute Friendly Name
@@ -249,5 +250,6 @@ namespace Pulumi.Keycloak
         public AttributeToRoleIdentityMapperState()
         {
         }
+        public static new AttributeToRoleIdentityMapperState Empty => new AttributeToRoleIdentityMapperState();
     }
 }

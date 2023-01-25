@@ -29,6 +29,7 @@ import (
 //
 // import (
 //
+//	"encoding/json"
 //	"fmt"
 //
 //	"github.com/pulumi/pulumi-keycloak/sdk/v4/go/keycloak"
@@ -47,10 +48,31 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			tmpJSON0, err := json.Marshal([]string{
+//				"opt1",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			tmpJSON1, err := json.Marshal(map[string]interface{}{
+//				"key": "val",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json1 := string(tmpJSON1)
+//			tmpJSON2, err := json.Marshal(map[string]interface{}{
+//				"key": "val",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json2 := string(tmpJSON2)
 //			_, err = keycloak.NewRealmUserProfile(ctx, "userprofile", &keycloak.RealmUserProfileArgs{
 //				RealmId: pulumi.Any(keycloak_realm.My_realm.Id),
-//				Attributes: RealmUserProfileAttributeArray{
-//					&RealmUserProfileAttributeArgs{
+//				Attributes: keycloak.RealmUserProfileAttributeArray{
+//					&keycloak.RealmUserProfileAttributeArgs{
 //						Name:        pulumi.String("field1"),
 //						DisplayName: pulumi.String("Field 1"),
 //						Group:       pulumi.String("group1"),
@@ -63,7 +85,7 @@ import (
 //						RequiredForScopes: pulumi.StringArray{
 //							pulumi.String("offline_access"),
 //						},
-//						Permissions: &RealmUserProfileAttributePermissionsArgs{
+//						Permissions: &keycloak.RealmUserProfileAttributePermissionsArgs{
 //							Views: pulumi.StringArray{
 //								pulumi.String("admin"),
 //								pulumi.String("user"),
@@ -73,11 +95,11 @@ import (
 //								pulumi.String("user"),
 //							},
 //						},
-//						Validators: RealmUserProfileAttributeValidatorArray{
-//							&RealmUserProfileAttributeValidatorArgs{
+//						Validators: keycloak.RealmUserProfileAttributeValidatorArray{
+//							&keycloak.RealmUserProfileAttributeValidatorArgs{
 //								Name: pulumi.String("person-name-prohibited-characters"),
 //							},
-//							&RealmUserProfileAttributeValidatorArgs{
+//							&keycloak.RealmUserProfileAttributeValidatorArgs{
 //								Name: pulumi.String("pattern"),
 //								Config: pulumi.StringMap{
 //									"pattern":       pulumi.String(fmt.Sprintf("^[a-z]+$")),
@@ -89,20 +111,32 @@ import (
 //							"foo": pulumi.String("bar"),
 //						},
 //					},
-//					&RealmUserProfileAttributeArgs{
+//					&keycloak.RealmUserProfileAttributeArgs{
 //						Name: pulumi.String("field2"),
+//						Validators: keycloak.RealmUserProfileAttributeValidatorArray{
+//							&keycloak.RealmUserProfileAttributeValidatorArgs{
+//								Name: pulumi.String("options"),
+//								Config: pulumi.StringMap{
+//									"options": pulumi.String(json0),
+//								},
+//							},
+//						},
+//						Annotations: pulumi.StringMap{
+//							"foo": pulumi.String(json1),
+//						},
 //					},
 //				},
-//				Groups: RealmUserProfileGroupArray{
-//					&RealmUserProfileGroupArgs{
+//				Groups: keycloak.RealmUserProfileGroupArray{
+//					&keycloak.RealmUserProfileGroupArgs{
 //						Name:               pulumi.String("group1"),
 //						DisplayHeader:      pulumi.String("Group 1"),
 //						DisplayDescription: pulumi.String("A first group"),
 //						Annotations: pulumi.StringMap{
-//							"foo": pulumi.String("bar"),
+//							"foo":  pulumi.String("bar"),
+//							"foo2": pulumi.String(json2),
 //						},
 //					},
-//					&RealmUserProfileGroupArgs{
+//					&keycloak.RealmUserProfileGroupArgs{
 //						Name: pulumi.String("group2"),
 //					},
 //				},
@@ -124,7 +158,7 @@ type RealmUserProfile struct {
 
 	// An ordered list of attributes.
 	Attributes RealmUserProfileAttributeArrayOutput `pulumi:"attributes"`
-	// The group that the attribute belong to.
+	// A list of groups.
 	Groups RealmUserProfileGroupArrayOutput `pulumi:"groups"`
 	// The ID of the realm the user profile applies to.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
@@ -164,7 +198,7 @@ func GetRealmUserProfile(ctx *pulumi.Context,
 type realmUserProfileState struct {
 	// An ordered list of attributes.
 	Attributes []RealmUserProfileAttribute `pulumi:"attributes"`
-	// The group that the attribute belong to.
+	// A list of groups.
 	Groups []RealmUserProfileGroup `pulumi:"groups"`
 	// The ID of the realm the user profile applies to.
 	RealmId *string `pulumi:"realmId"`
@@ -173,7 +207,7 @@ type realmUserProfileState struct {
 type RealmUserProfileState struct {
 	// An ordered list of attributes.
 	Attributes RealmUserProfileAttributeArrayInput
-	// The group that the attribute belong to.
+	// A list of groups.
 	Groups RealmUserProfileGroupArrayInput
 	// The ID of the realm the user profile applies to.
 	RealmId pulumi.StringPtrInput
@@ -186,7 +220,7 @@ func (RealmUserProfileState) ElementType() reflect.Type {
 type realmUserProfileArgs struct {
 	// An ordered list of attributes.
 	Attributes []RealmUserProfileAttribute `pulumi:"attributes"`
-	// The group that the attribute belong to.
+	// A list of groups.
 	Groups []RealmUserProfileGroup `pulumi:"groups"`
 	// The ID of the realm the user profile applies to.
 	RealmId string `pulumi:"realmId"`
@@ -196,7 +230,7 @@ type realmUserProfileArgs struct {
 type RealmUserProfileArgs struct {
 	// An ordered list of attributes.
 	Attributes RealmUserProfileAttributeArrayInput
-	// The group that the attribute belong to.
+	// A list of groups.
 	Groups RealmUserProfileGroupArrayInput
 	// The ID of the realm the user profile applies to.
 	RealmId pulumi.StringInput
@@ -294,7 +328,7 @@ func (o RealmUserProfileOutput) Attributes() RealmUserProfileAttributeArrayOutpu
 	return o.ApplyT(func(v *RealmUserProfile) RealmUserProfileAttributeArrayOutput { return v.Attributes }).(RealmUserProfileAttributeArrayOutput)
 }
 
-// The group that the attribute belong to.
+// A list of groups.
 func (o RealmUserProfileOutput) Groups() RealmUserProfileGroupArrayOutput {
 	return o.ApplyT(func(v *RealmUserProfile) RealmUserProfileGroupArrayOutput { return v.Groups }).(RealmUserProfileGroupArrayOutput)
 }

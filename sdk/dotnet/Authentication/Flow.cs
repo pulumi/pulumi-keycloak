@@ -19,33 +19,33 @@ namespace Pulumi.Keycloak.Authentication
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         var realm = new Keycloak.Realm("realm", new Keycloak.RealmArgs
-    ///         {
-    ///             RealmName = "my-realm",
-    ///             Enabled = true,
-    ///         });
-    ///         var flow = new Keycloak.Authentication.Flow("flow", new Keycloak.Authentication.FlowArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             Alias = "my-flow-alias",
-    ///         });
-    ///         var execution = new Keycloak.Authentication.Execution("execution", new Keycloak.Authentication.ExecutionArgs
-    ///         {
-    ///             RealmId = realm.Id,
-    ///             ParentFlowAlias = flow.Alias,
-    ///             Authenticator = "identity-provider-redirector",
-    ///             Requirement = "REQUIRED",
-    ///         });
-    ///     }
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var flow = new Keycloak.Authentication.Flow("flow", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Alias = "my-flow-alias",
+    ///     });
+    /// 
+    ///     var execution = new Keycloak.Authentication.Execution("execution", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ParentFlowAlias = flow.Alias,
+    ///         Authenticator = "identity-provider-redirector",
+    ///         Requirement = "REQUIRED",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -57,7 +57,7 @@ namespace Pulumi.Keycloak.Authentication
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:authentication/flow:Flow")]
-    public partial class Flow : Pulumi.CustomResource
+    public partial class Flow : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The alias for this authentication flow.
@@ -127,7 +127,7 @@ namespace Pulumi.Keycloak.Authentication
         }
     }
 
-    public sealed class FlowArgs : Pulumi.ResourceArgs
+    public sealed class FlowArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The alias for this authentication flow.
@@ -156,9 +156,10 @@ namespace Pulumi.Keycloak.Authentication
         public FlowArgs()
         {
         }
+        public static new FlowArgs Empty => new FlowArgs();
     }
 
-    public sealed class FlowState : Pulumi.ResourceArgs
+    public sealed class FlowState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The alias for this authentication flow.
@@ -187,5 +188,6 @@ namespace Pulumi.Keycloak.Authentication
         public FlowState()
         {
         }
+        public static new FlowState Empty => new FlowState();
     }
 }

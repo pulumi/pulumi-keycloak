@@ -16,7 +16,7 @@ namespace Pulumi.Keycloak
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
     [KeycloakResourceType("pulumi:providers:keycloak")]
-    public partial class Provider : Pulumi.ProviderResource
+    public partial class Provider : global::Pulumi.ProviderResource
     {
         [Output("basePath")]
         public Output<string?> BasePath { get; private set; } = null!;
@@ -74,7 +74,7 @@ namespace Pulumi.Keycloak
         }
     }
 
-    public sealed class ProviderArgs : Pulumi.ResourceArgs
+    public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
         [Input("additionalHeaders", json: true)]
         private InputMap<string>? _additionalHeaders;
@@ -112,6 +112,13 @@ namespace Pulumi.Keycloak
         public Input<string>? Realm { get; set; }
 
         /// <summary>
+        /// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
+        /// returned from the /serverinfo API endpoint.
+        /// </summary>
+        [Input("redHatSso", json: true)]
+        public Input<bool>? RedHatSso { get; set; }
+
+        /// <summary>
         /// Allows x509 calls using an unknown CA certificate (for development purposes)
         /// </summary>
         [Input("rootCaCertificate")]
@@ -137,5 +144,6 @@ namespace Pulumi.Keycloak
         {
             ClientTimeout = Utilities.GetEnvInt32("KEYCLOAK_CLIENT_TIMEOUT") ?? 5;
         }
+        public static new ProviderArgs Empty => new ProviderArgs();
     }
 }

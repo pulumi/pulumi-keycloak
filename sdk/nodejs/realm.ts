@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -291,11 +292,17 @@ export class Realm extends pulumi.CustomResource {
      * The amount of time a session can be idle before it expires.
      */
     public readonly ssoSessionIdleTimeout!: pulumi.Output<string>;
+    /**
+     * Similar to `ssoSessionIdleTimeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionIdleTimeout`.
+     */
     public readonly ssoSessionIdleTimeoutRememberMe!: pulumi.Output<string>;
     /**
      * The maximum amount of time before a session expires regardless of activity.
      */
     public readonly ssoSessionMaxLifespan!: pulumi.Output<string>;
+    /**
+     * Similar to `ssoSessionMaxLifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionMaxLifespan`.
+     */
     public readonly ssoSessionMaxLifespanRememberMe!: pulumi.Output<string>;
     /**
      * When `true`, users are allowed to manage their own resources. Defaults to `false`.
@@ -629,11 +636,17 @@ export interface RealmState {
      * The amount of time a session can be idle before it expires.
      */
     ssoSessionIdleTimeout?: pulumi.Input<string>;
+    /**
+     * Similar to `ssoSessionIdleTimeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionIdleTimeout`.
+     */
     ssoSessionIdleTimeoutRememberMe?: pulumi.Input<string>;
     /**
      * The maximum amount of time before a session expires regardless of activity.
      */
     ssoSessionMaxLifespan?: pulumi.Input<string>;
+    /**
+     * Similar to `ssoSessionMaxLifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionMaxLifespan`.
+     */
     ssoSessionMaxLifespanRememberMe?: pulumi.Input<string>;
     /**
      * When `true`, users are allowed to manage their own resources. Defaults to `false`.
@@ -831,11 +844,17 @@ export interface RealmArgs {
      * The amount of time a session can be idle before it expires.
      */
     ssoSessionIdleTimeout?: pulumi.Input<string>;
+    /**
+     * Similar to `ssoSessionIdleTimeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionIdleTimeout`.
+     */
     ssoSessionIdleTimeoutRememberMe?: pulumi.Input<string>;
     /**
      * The maximum amount of time before a session expires regardless of activity.
      */
     ssoSessionMaxLifespan?: pulumi.Input<string>;
+    /**
+     * Similar to `ssoSessionMaxLifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionMaxLifespan`.
+     */
     ssoSessionMaxLifespanRememberMe?: pulumi.Input<string>;
     /**
      * When `true`, users are allowed to manage their own resources. Defaults to `false`.

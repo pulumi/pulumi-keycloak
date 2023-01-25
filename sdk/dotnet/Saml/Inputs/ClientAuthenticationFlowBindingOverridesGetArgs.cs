@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Saml.Inputs
 {
 
-    public sealed class ClientAuthenticationFlowBindingOverridesGetArgs : Pulumi.ResourceArgs
+    public sealed class ClientAuthenticationFlowBindingOverridesGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Browser flow id, (flow needs to exist)
@@ -27,5 +27,6 @@ namespace Pulumi.Keycloak.Saml.Inputs
         public ClientAuthenticationFlowBindingOverridesGetArgs()
         {
         }
+        public static new ClientAuthenticationFlowBindingOverridesGetArgs Empty => new ClientAuthenticationFlowBindingOverridesGetArgs();
     }
 }
