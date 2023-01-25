@@ -9,4 +9,4 @@ until $(curl --output /dev/null --silent --head --fail --max-time 2 ${KEYCLOAK_U
     sleep 2
 done
 
-echo
+echo " ready"
