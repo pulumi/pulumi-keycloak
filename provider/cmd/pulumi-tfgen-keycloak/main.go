@@ -15,8 +15,8 @@
 package main
 
 import (
-	keycloak "github.com/pulumi/pulumi-keycloak/provider/v4"
-	"github.com/pulumi/pulumi-keycloak/provider/v4/pkg/version"
+	keycloak "github.com/pulumi/pulumi-keycloak/provider/v5"
+	"github.com/pulumi/pulumi-keycloak/provider/v5/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 )
 

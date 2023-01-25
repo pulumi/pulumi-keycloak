@@ -21,6 +21,7 @@ import (
 )
 
 func TestAccRealmGo(t *testing.T) {
+	t.Skip("Temporarily skip while releasing new major version")
 	test := getGoBaseOptions().
 		With(integration.ProgramTestOptions{
 			Dir: filepath.Join(getCwd(t), "realm", "go"),
