@@ -1,6 +1,6 @@
 module github.com/pulumi/pulumi-keycloak/provider/v5
 
-go 1.18
+go 1.19
 
 replace (
 	github.com/hashicorp/go-getter v1.5.0 => github.com/hashicorp/go-getter v1.4.0
@@ -15,7 +15,6 @@ require github.com/pulumi/pulumi-keycloak/provider/pkg/version v0.0.0
 require (
 	github.com/mrparkers/terraform-provider-keycloak v0.0.0-00010101000000-000000000000
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.38.1
-	github.com/pulumi/pulumi/pkg/v3 v3.51.0
 	github.com/pulumi/pulumi/sdk/v3 v3.51.0
 )
 
@@ -184,6 +183,7 @@ require (
 	github.com/posener/complete v1.2.3 // indirect
 	github.com/pulumi/pulumi-java/pkg v0.7.1 // indirect
 	github.com/pulumi/pulumi-yaml v1.0.4 // indirect
+	github.com/pulumi/pulumi/pkg/v3 v3.51.0 // indirect
 	github.com/pulumi/schema-tools v0.1.0 // indirect
 	github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
