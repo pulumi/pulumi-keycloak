@@ -23,6 +23,7 @@ import (
 	"github.com/mrparkers/terraform-provider-keycloak/provider"
 	"github.com/pulumi/pulumi-keycloak/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/x"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
@@ -359,15 +360,13 @@ func Provider() tfbridge.ProviderInfo {
 		},
 	}
 
-	err := prov.ComputeDefaults(tfbridge.TokensKnownModules("keycloak_", mainMod, []string{
+	err := x.ComputeDefaults(&prov, x.TokensKnownModules("keycloak_", mainMod, []string{
 		"ldap_",
 		"oidc_",
 		"openid_",
 		"saml_",
 		"authentication_",
-	}, func(module, name string) (string, error) {
-		return string(makeMember(module, name)), nil
-	}))
+	}, x.MakeStandardToken(mainPkg)))
 	contract.AssertNoError(err)
 
 	prov.SetAutonaming(255, "-")
