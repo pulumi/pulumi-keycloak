@@ -80,6 +80,7 @@ func Provider() tfbridge.ProviderInfo {
 		License:           "Apache-2.0",
 		Homepage:          "https://pulumi.io",
 		Repository:        "https://github.com/pulumi/pulumi-keycloak",
+		UpstreamRepoPath:  "./upstream",
 		TFProviderLicense: refProviderLicense(tfbridge.MITLicenseType),
 		Config: map[string]*tfbridge.SchemaInfo{
 			"client_timeout": {
