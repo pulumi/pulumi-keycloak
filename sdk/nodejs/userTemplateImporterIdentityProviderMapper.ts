@@ -35,7 +35,7 @@ import * as utilities from "./utilities";
  * const usernameImporter = new keycloak.UserTemplateImporterIdentityProviderMapper("usernameImporter", {
  *     realm: realm.id,
  *     identityProviderAlias: oidc.alias,
- *     template: `${ALIAS}.${CLAIM.email}`,
+ *     template: "${ALIAS}.${CLAIM.email}",
  *     extraConfig: {
  *         syncMode: "INHERIT",
  *     },
