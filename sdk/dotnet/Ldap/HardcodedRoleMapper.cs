@@ -111,7 +111,7 @@ namespace Pulumi.Keycloak.Ldap
     ///     {
     ///         RealmId = realm.Id,
     ///         LdapUserFederationId = ldapUserFederation.Id,
-    ///         Role = Output.Tuple(realmManagement.Apply(getClientResult =&gt; getClientResult), createClient.Apply(getRoleResult =&gt; getRoleResult)).Apply(values =&gt;
+    ///         Role = Output.Tuple(realmManagement, createClient).Apply(values =&gt;
     ///         {
     ///             var realmManagement = values.Item1;
     ///             var createClient = values.Item2;

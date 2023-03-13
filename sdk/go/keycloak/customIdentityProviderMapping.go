@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,8 +17,6 @@ import (
 // package main
 //
 // import (
-//
-//	"fmt"
 //
 //	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
 //	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/oidc"
@@ -50,7 +48,7 @@ import (
 //			_, err = keycloak.NewCustomIdentityProviderMapping(ctx, "oidcCustomIdentityProviderMapping", &keycloak.CustomIdentityProviderMappingArgs{
 //				Realm:                  realm.ID(),
 //				IdentityProviderAlias:  oidcIdentityProvider.Alias,
-//				IdentityProviderMapper: pulumi.String(fmt.Sprintf("%vs-user-attribute-idp-mapper", "%")),
+//				IdentityProviderMapper: pulumi.String("%s-user-attribute-idp-mapper"),
 //				ExtraConfig: pulumi.AnyMap{
 //					"syncMode":      pulumi.Any("INHERIT"),
 //					"Claim":         pulumi.Any("my-email-claim"),

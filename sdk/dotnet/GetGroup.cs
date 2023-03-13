@@ -47,7 +47,7 @@ namespace Pulumi.Keycloak
         ///     var groupRoles = new Keycloak.GroupRoles("groupRoles", new()
         ///     {
         ///         RealmId = realm.Id,
-        ///         GroupId = @group.Apply(getGroupResult =&gt; getGroupResult).Apply(@group =&gt; @group.Apply(getGroupResult =&gt; getGroupResult.Id)),
+        ///         GroupId = @group.Apply(@group =&gt; @group.Apply(getGroupResult =&gt; getGroupResult.Id)),
         ///         RoleIds = new[]
         ///         {
         ///             offlineAccess.Apply(getRoleResult =&gt; getRoleResult.Id),
@@ -98,7 +98,7 @@ namespace Pulumi.Keycloak
         ///     var groupRoles = new Keycloak.GroupRoles("groupRoles", new()
         ///     {
         ///         RealmId = realm.Id,
-        ///         GroupId = @group.Apply(getGroupResult =&gt; getGroupResult).Apply(@group =&gt; @group.Apply(getGroupResult =&gt; getGroupResult.Id)),
+        ///         GroupId = @group.Apply(@group =&gt; @group.Apply(getGroupResult =&gt; getGroupResult.Id)),
         ///         RoleIds = new[]
         ///         {
         ///             offlineAccess.Apply(getRoleResult =&gt; getRoleResult.Id),

@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  * const oidcCustomIdentityProviderMapping = new keycloak.CustomIdentityProviderMapping("oidcCustomIdentityProviderMapping", {
  *     realm: realm.id,
  *     identityProviderAlias: oidcIdentityProvider.alias,
- *     identityProviderMapper: `%s-user-attribute-idp-mapper`,
+ *     identityProviderMapper: "%s-user-attribute-idp-mapper",
  *     extraConfig: {
  *         syncMode: "INHERIT",
  *         Claim: "my-email-claim",
