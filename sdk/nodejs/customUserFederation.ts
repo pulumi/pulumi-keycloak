@@ -22,6 +22,7 @@ import * as utilities from "./utilities";
  *     config: {
  *         dummyString: "foobar",
  *         dummyBool: true,
+ *         multivalue: "value1##value2",
  *     },
  * });
  * ```
@@ -71,7 +72,7 @@ export class CustomUserFederation extends pulumi.CustomResource {
      */
     public readonly changedSyncPeriod!: pulumi.Output<number | undefined>;
     /**
-     * The provider configuration handed over to your custom user federation provider.
+     * The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
      */
     public readonly config!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
@@ -163,7 +164,7 @@ export interface CustomUserFederationState {
      */
     changedSyncPeriod?: pulumi.Input<number>;
     /**
-     * The provider configuration handed over to your custom user federation provider.
+     * The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
      */
     config?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -209,7 +210,7 @@ export interface CustomUserFederationArgs {
      */
     changedSyncPeriod?: pulumi.Input<number>;
     /**
-     * The provider configuration handed over to your custom user federation provider.
+     * The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
      */
     config?: pulumi.Input<{[key: string]: any}>;
     /**

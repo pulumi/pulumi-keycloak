@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,7 +30,6 @@ import (
 // import (
 //
 //	"encoding/json"
-//	"fmt"
 //
 //	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -102,8 +101,8 @@ import (
 //							&keycloak.RealmUserProfileAttributeValidatorArgs{
 //								Name: pulumi.String("pattern"),
 //								Config: pulumi.StringMap{
-//									"pattern":       pulumi.String(fmt.Sprintf("^[a-z]+$")),
-//									"error_message": pulumi.String("Nope"),
+//									"pattern":       pulumi.String("^[a-z]+$"),
+//									"error-message": pulumi.String("Nope"),
 //								},
 //							},
 //						},

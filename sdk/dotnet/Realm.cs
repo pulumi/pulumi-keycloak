@@ -255,6 +255,9 @@ namespace Pulumi.Keycloak
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
+        /// <summary>
+        /// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+        /// </summary>
         [Output("internalId")]
         public Output<string> InternalId { get; private set; } = null!;
 
@@ -632,6 +635,12 @@ namespace Pulumi.Keycloak
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        /// <summary>
+        /// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+        /// </summary>
+        [Input("internalId")]
+        public Input<string>? InternalId { get; set; }
+
         [Input("internationalization")]
         public Input<Inputs.RealmInternationalizationArgs>? Internationalization { get; set; }
 
@@ -968,6 +977,9 @@ namespace Pulumi.Keycloak
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        /// <summary>
+        /// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+        /// </summary>
         [Input("internalId")]
         public Input<string>? InternalId { get; set; }
 

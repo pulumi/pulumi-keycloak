@@ -467,9 +467,17 @@ public class Realm extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> enabled() {
         return Codegen.optional(this.enabled);
     }
+    /**
+     * When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+     * 
+     */
     @Export(name="internalId", type=String.class, parameters={})
     private Output<String> internalId;
 
+    /**
+     * @return When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+     * 
+     */
     public Output<String> internalId() {
         return this.internalId;
     }

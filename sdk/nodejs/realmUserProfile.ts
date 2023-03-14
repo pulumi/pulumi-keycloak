@@ -57,8 +57,8 @@ import * as utilities from "./utilities";
  *                 {
  *                     name: "pattern",
  *                     config: {
- *                         pattern: `^[a-z]+$`,
- *                         error_message: "Nope",
+ *                         pattern: "^[a-z]+$",
+ *                         "error-message": "Nope",
  *                     },
  *                 },
  *             ],

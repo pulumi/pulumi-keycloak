@@ -42,6 +42,7 @@ class RealmArgs:
                  edit_username_allowed: Optional[pulumi.Input[bool]] = None,
                  email_theme: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
+                 internal_id: Optional[pulumi.Input[str]] = None,
                  internationalization: Optional[pulumi.Input['RealmInternationalizationArgs']] = None,
                  login_theme: Optional[pulumi.Input[str]] = None,
                  login_with_email_allowed: Optional[pulumi.Input[bool]] = None,
@@ -97,6 +98,7 @@ class RealmArgs:
         :param pulumi.Input[bool] edit_username_allowed: When true, the username field is editable.
         :param pulumi.Input[str] email_theme: Used for emails that are sent by Keycloak.
         :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        :param pulumi.Input[str] internal_id: When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
         :param pulumi.Input[str] login_theme: Used for the login, forgot password, and registration pages.
         :param pulumi.Input[bool] login_with_email_allowed: When true, users may log in with their email address.
         :param pulumi.Input[str] oauth2_device_code_lifespan: The maximum amount of time a client has to finish the device code flow before it expires.
@@ -174,6 +176,8 @@ class RealmArgs:
             pulumi.set(__self__, "email_theme", email_theme)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if internal_id is not None:
+            pulumi.set(__self__, "internal_id", internal_id)
         if internationalization is not None:
             pulumi.set(__self__, "internationalization", internationalization)
         if login_theme is not None:
@@ -538,6 +542,18 @@ class RealmArgs:
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="internalId")
+    def internal_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+        """
+        return pulumi.get(self, "internal_id")
+
+    @internal_id.setter
+    def internal_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internal_id", value)
 
     @property
     @pulumi.getter
@@ -960,6 +976,7 @@ class _RealmState:
         :param pulumi.Input[bool] edit_username_allowed: When true, the username field is editable.
         :param pulumi.Input[str] email_theme: Used for emails that are sent by Keycloak.
         :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        :param pulumi.Input[str] internal_id: When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
         :param pulumi.Input[str] login_theme: Used for the login, forgot password, and registration pages.
         :param pulumi.Input[bool] login_with_email_allowed: When true, users may log in with their email address.
         :param pulumi.Input[str] oauth2_device_code_lifespan: The maximum amount of time a client has to finish the device code flow before it expires.
@@ -1397,6 +1414,9 @@ class _RealmState:
     @property
     @pulumi.getter(name="internalId")
     def internal_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+        """
         return pulumi.get(self, "internal_id")
 
     @internal_id.setter
@@ -1782,6 +1802,7 @@ class Realm(pulumi.CustomResource):
                  edit_username_allowed: Optional[pulumi.Input[bool]] = None,
                  email_theme: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
+                 internal_id: Optional[pulumi.Input[str]] = None,
                  internationalization: Optional[pulumi.Input[pulumi.InputType['RealmInternationalizationArgs']]] = None,
                  login_theme: Optional[pulumi.Input[str]] = None,
                  login_with_email_allowed: Optional[pulumi.Input[bool]] = None,
@@ -1920,6 +1941,7 @@ class Realm(pulumi.CustomResource):
         :param pulumi.Input[bool] edit_username_allowed: When true, the username field is editable.
         :param pulumi.Input[str] email_theme: Used for emails that are sent by Keycloak.
         :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        :param pulumi.Input[str] internal_id: When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
         :param pulumi.Input[str] login_theme: Used for the login, forgot password, and registration pages.
         :param pulumi.Input[bool] login_with_email_allowed: When true, users may log in with their email address.
         :param pulumi.Input[str] oauth2_device_code_lifespan: The maximum amount of time a client has to finish the device code flow before it expires.
@@ -2075,6 +2097,7 @@ class Realm(pulumi.CustomResource):
                  edit_username_allowed: Optional[pulumi.Input[bool]] = None,
                  email_theme: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
+                 internal_id: Optional[pulumi.Input[str]] = None,
                  internationalization: Optional[pulumi.Input[pulumi.InputType['RealmInternationalizationArgs']]] = None,
                  login_theme: Optional[pulumi.Input[str]] = None,
                  login_with_email_allowed: Optional[pulumi.Input[bool]] = None,
@@ -2139,6 +2162,7 @@ class Realm(pulumi.CustomResource):
             __props__.__dict__["edit_username_allowed"] = edit_username_allowed
             __props__.__dict__["email_theme"] = email_theme
             __props__.__dict__["enabled"] = enabled
+            __props__.__dict__["internal_id"] = internal_id
             __props__.__dict__["internationalization"] = internationalization
             __props__.__dict__["login_theme"] = login_theme
             __props__.__dict__["login_with_email_allowed"] = login_with_email_allowed
@@ -2171,7 +2195,6 @@ class Realm(pulumi.CustomResource):
             __props__.__dict__["verify_email"] = verify_email
             __props__.__dict__["web_authn_passwordless_policy"] = web_authn_passwordless_policy
             __props__.__dict__["web_authn_policy"] = web_authn_policy
-            __props__.__dict__["internal_id"] = None
         super(Realm, __self__).__init__(
             'keycloak:index/realm:Realm',
             resource_name,
@@ -2268,6 +2291,7 @@ class Realm(pulumi.CustomResource):
         :param pulumi.Input[bool] edit_username_allowed: When true, the username field is editable.
         :param pulumi.Input[str] email_theme: Used for emails that are sent by Keycloak.
         :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        :param pulumi.Input[str] internal_id: When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
         :param pulumi.Input[str] login_theme: Used for the login, forgot password, and registration pages.
         :param pulumi.Input[bool] login_with_email_allowed: When true, users may log in with their email address.
         :param pulumi.Input[str] oauth2_device_code_lifespan: The maximum amount of time a client has to finish the device code flow before it expires.
@@ -2554,6 +2578,9 @@ class Realm(pulumi.CustomResource):
     @property
     @pulumi.getter(name="internalId")
     def internal_id(self) -> pulumi.Output[str]:
+        """
+        When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+        """
         return pulumi.get(self, "internal_id")
 
     @property

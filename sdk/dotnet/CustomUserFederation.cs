@@ -34,6 +34,7 @@ namespace Pulumi.Keycloak
     ///         {
     ///             { "dummyString", "foobar" },
     ///             { "dummyBool", true },
+    ///             { "multivalue", "value1##value2" },
     ///         },
     ///     });
     /// 
@@ -64,7 +65,7 @@ namespace Pulumi.Keycloak
         public Output<int?> ChangedSyncPeriod { get; private set; } = null!;
 
         /// <summary>
-        /// The provider configuration handed over to your custom user federation provider.
+        /// The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
         /// </summary>
         [Output("config")]
         public Output<ImmutableDictionary<string, object>?> Config { get; private set; } = null!;
@@ -173,7 +174,7 @@ namespace Pulumi.Keycloak
         private InputMap<object>? _config;
 
         /// <summary>
-        /// The provider configuration handed over to your custom user federation provider.
+        /// The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
         /// </summary>
         public InputMap<object> Config
         {
@@ -247,7 +248,7 @@ namespace Pulumi.Keycloak
         private InputMap<object>? _config;
 
         /// <summary>
-        /// The provider configuration handed over to your custom user federation provider.
+        /// The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
         /// </summary>
         public InputMap<object> Config
         {

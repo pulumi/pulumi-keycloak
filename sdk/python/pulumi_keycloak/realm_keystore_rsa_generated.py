@@ -27,7 +27,7 @@ class RealmKeystoreRsaGeneratedArgs:
         :param pulumi.Input[bool] active: When `false`, key in not used for signing. Defaults to `true`.
         :param pulumi.Input[str] algorithm: Intended algorithm for the key. Defaults to `RS256`
         :param pulumi.Input[bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
-        :param pulumi.Input[int] key_size: Size for the generated keys
+        :param pulumi.Input[int] key_size: Size for the generated keys. Defaults to `2048`.
         :param pulumi.Input[str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[int] priority: Priority for the provider. Defaults to `0`
         """
@@ -97,7 +97,7 @@ class RealmKeystoreRsaGeneratedArgs:
     @pulumi.getter(name="keySize")
     def key_size(self) -> Optional[pulumi.Input[int]]:
         """
-        Size for the generated keys
+        Size for the generated keys. Defaults to `2048`.
         """
         return pulumi.get(self, "key_size")
 
@@ -145,7 +145,7 @@ class _RealmKeystoreRsaGeneratedState:
         :param pulumi.Input[bool] active: When `false`, key in not used for signing. Defaults to `true`.
         :param pulumi.Input[str] algorithm: Intended algorithm for the key. Defaults to `RS256`
         :param pulumi.Input[bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
-        :param pulumi.Input[int] key_size: Size for the generated keys
+        :param pulumi.Input[int] key_size: Size for the generated keys. Defaults to `2048`.
         :param pulumi.Input[str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[str] realm_id: The realm this keystore exists in.
@@ -205,7 +205,7 @@ class _RealmKeystoreRsaGeneratedState:
     @pulumi.getter(name="keySize")
     def key_size(self) -> Optional[pulumi.Input[int]]:
         """
-        Size for the generated keys
+        Size for the generated keys. Defaults to `2048`.
         """
         return pulumi.get(self, "key_size")
 
@@ -268,6 +268,22 @@ class RealmKeystoreRsaGenerated(pulumi.CustomResource):
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        keystore_rsa_generated = keycloak.RealmKeystoreRsaGenerated("keystoreRsaGenerated",
+            realm_id=realm.id,
+            enabled=True,
+            active=True,
+            priority=100,
+            algorithm="RS256",
+            key_size=2048)
+        ```
+
         ## Import
 
         Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
@@ -281,7 +297,7 @@ class RealmKeystoreRsaGenerated(pulumi.CustomResource):
         :param pulumi.Input[bool] active: When `false`, key in not used for signing. Defaults to `true`.
         :param pulumi.Input[str] algorithm: Intended algorithm for the key. Defaults to `RS256`
         :param pulumi.Input[bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
-        :param pulumi.Input[int] key_size: Size for the generated keys
+        :param pulumi.Input[int] key_size: Size for the generated keys. Defaults to `2048`.
         :param pulumi.Input[str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[str] realm_id: The realm this keystore exists in.
@@ -296,6 +312,22 @@ class RealmKeystoreRsaGenerated(pulumi.CustomResource):
         Allows for creating and managing `rsa-generated` Realm keystores within Keycloak.
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        keystore_rsa_generated = keycloak.RealmKeystoreRsaGenerated("keystoreRsaGenerated",
+            realm_id=realm.id,
+            enabled=True,
+            active=True,
+            priority=100,
+            algorithm="RS256",
+            key_size=2048)
+        ```
 
         ## Import
 
@@ -372,7 +404,7 @@ class RealmKeystoreRsaGenerated(pulumi.CustomResource):
         :param pulumi.Input[bool] active: When `false`, key in not used for signing. Defaults to `true`.
         :param pulumi.Input[str] algorithm: Intended algorithm for the key. Defaults to `RS256`
         :param pulumi.Input[bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
-        :param pulumi.Input[int] key_size: Size for the generated keys
+        :param pulumi.Input[int] key_size: Size for the generated keys. Defaults to `2048`.
         :param pulumi.Input[str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[str] realm_id: The realm this keystore exists in.
@@ -418,7 +450,7 @@ class RealmKeystoreRsaGenerated(pulumi.CustomResource):
     @pulumi.getter(name="keySize")
     def key_size(self) -> pulumi.Output[Optional[int]]:
         """
-        Size for the generated keys
+        Size for the generated keys. Defaults to `2048`.
         """
         return pulumi.get(self, "key_size")
 

@@ -14,6 +14,33 @@ namespace Pulumi.Keycloak
     /// 
     /// A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///     });
+    /// 
+    ///     var keystoreRsaGenerated = new Keycloak.RealmKeystoreRsaGenerated("keystoreRsaGenerated", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Enabled = true,
+    ///         Active = true,
+    ///         Priority = 100,
+    ///         Algorithm = "RS256",
+    ///         KeySize = 2048,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
@@ -44,7 +71,7 @@ namespace Pulumi.Keycloak
         public Output<bool?> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// Size for the generated keys
+        /// Size for the generated keys. Defaults to `2048`.
         /// </summary>
         [Output("keySize")]
         public Output<int?> KeySize { get; private set; } = null!;
@@ -132,7 +159,7 @@ namespace Pulumi.Keycloak
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// Size for the generated keys
+        /// Size for the generated keys. Defaults to `2048`.
         /// </summary>
         [Input("keySize")]
         public Input<int>? KeySize { get; set; }
@@ -182,7 +209,7 @@ namespace Pulumi.Keycloak
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// Size for the generated keys
+        /// Size for the generated keys. Defaults to `2048`.
         /// </summary>
         [Input("keySize")]
         public Input<int>? KeySize { get; set; }

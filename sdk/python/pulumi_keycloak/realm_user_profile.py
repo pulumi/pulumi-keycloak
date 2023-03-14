@@ -185,7 +185,7 @@ class RealmUserProfile(pulumi.CustomResource):
                             name="pattern",
                             config={
                                 "pattern": "^[a-z]+$",
-                                "error_message": "Nope",
+                                "error-message": "Nope",
                             },
                         ),
                     ],
@@ -294,7 +294,7 @@ class RealmUserProfile(pulumi.CustomResource):
                             name="pattern",
                             config={
                                 "pattern": "^[a-z]+$",
-                                "error_message": "Nope",
+                                "error-message": "Nope",
                             },
                         ),
                     ],
