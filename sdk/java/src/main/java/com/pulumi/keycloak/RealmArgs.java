@@ -385,6 +385,21 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.enabled);
     }
 
+    /**
+     * When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+     * 
+     */
+    @Import(name="internalId")
+    private @Nullable Output<String> internalId;
+
+    /**
+     * @return When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+     * 
+     */
+    public Optional<Output<String>> internalId() {
+        return Optional.ofNullable(this.internalId);
+    }
+
     @Import(name="internationalization")
     private @Nullable Output<RealmInternationalizationArgs> internationalization;
 
@@ -831,6 +846,7 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         this.editUsernameAllowed = $.editUsernameAllowed;
         this.emailTheme = $.emailTheme;
         this.enabled = $.enabled;
+        this.internalId = $.internalId;
         this.internationalization = $.internationalization;
         this.loginTheme = $.loginTheme;
         this.loginWithEmailAllowed = $.loginWithEmailAllowed;
@@ -1388,6 +1404,27 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder enabled(Boolean enabled) {
             return enabled(Output.of(enabled));
+        }
+
+        /**
+         * @param internalId When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder internalId(@Nullable Output<String> internalId) {
+            $.internalId = internalId;
+            return this;
+        }
+
+        /**
+         * @param internalId When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder internalId(String internalId) {
+            return internalId(Output.of(internalId));
         }
 
         public Builder internationalization(@Nullable Output<RealmInternationalizationArgs> internationalization) {

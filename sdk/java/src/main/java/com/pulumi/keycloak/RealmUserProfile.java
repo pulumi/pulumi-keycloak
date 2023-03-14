@@ -88,7 +88,7 @@ import javax.annotation.Nullable;
  *                             .name(&#34;pattern&#34;)
  *                             .config(Map.ofEntries(
  *                                 Map.entry(&#34;pattern&#34;, &#34;^[a-z]+$&#34;),
- *                                 Map.entry(&#34;error_message&#34;, &#34;Nope&#34;)
+ *                                 Map.entry(&#34;error-message&#34;, &#34;Nope&#34;)
  *                             ))
  *                             .build())
  *                     .annotations(Map.of(&#34;foo&#34;, &#34;bar&#34;))

@@ -22,7 +22,6 @@ import javax.annotation.Nullable;
  * A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
  * 
  * ## Example Usage
- * 
  * ```java
  * package generated_program;
  * 
@@ -56,7 +55,7 @@ import javax.annotation.Nullable;
  *             .active(true)
  *             .priority(100)
  *             .algorithm(&#34;RS256&#34;)
- *             .keystoreSize(2048)
+ *             .keySize(2048)
  *             .build());
  * 
  *     }
@@ -117,14 +116,14 @@ public class RealmKeystoreRsaGenerated extends com.pulumi.resources.CustomResour
         return Codegen.optional(this.enabled);
     }
     /**
-     * Size for the generated keys
+     * Size for the generated keys. Defaults to `2048`.
      * 
      */
     @Export(name="keySize", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> keySize;
 
     /**
-     * @return Size for the generated keys
+     * @return Size for the generated keys. Defaults to `2048`.
      * 
      */
     public Output<Optional<Integer>> keySize() {

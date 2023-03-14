@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -43,7 +43,7 @@ func NewProvider(ctx *pulumi.Context,
 	if args.Url == nil {
 		return nil, errors.New("invalid value for required argument 'Url'")
 	}
-	if isZero(args.ClientTimeout) {
+	if args.ClientTimeout == nil {
 		args.ClientTimeout = pulumi.IntPtr(getEnvOrDefault(5, parseEnvInt, "KEYCLOAK_CLIENT_TIMEOUT").(int))
 	}
 	var resource Provider

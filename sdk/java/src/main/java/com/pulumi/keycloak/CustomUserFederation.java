@@ -54,7 +54,8 @@ import javax.annotation.Nullable;
  *             .enabled(true)
  *             .config(Map.ofEntries(
  *                 Map.entry(&#34;dummyString&#34;, &#34;foobar&#34;),
- *                 Map.entry(&#34;dummyBool&#34;, true)
+ *                 Map.entry(&#34;dummyBool&#34;, true),
+ *                 Map.entry(&#34;multivalue&#34;, &#34;value1##value2&#34;)
  *             ))
  *             .build());
  * 
@@ -102,14 +103,14 @@ public class CustomUserFederation extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.changedSyncPeriod);
     }
     /**
-     * The provider configuration handed over to your custom user federation provider.
+     * The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
      * 
      */
     @Export(name="config", type=Map.class, parameters={String.class, Object.class})
     private Output</* @Nullable */ Map<String,Object>> config;
 
     /**
-     * @return The provider configuration handed over to your custom user federation provider.
+     * @return The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
      * 
      */
     public Output<Optional<Map<String,Object>>> config() {

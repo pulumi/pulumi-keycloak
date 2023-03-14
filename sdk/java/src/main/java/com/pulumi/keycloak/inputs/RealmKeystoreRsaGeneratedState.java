@@ -63,14 +63,14 @@ public final class RealmKeystoreRsaGeneratedState extends com.pulumi.resources.R
     }
 
     /**
-     * Size for the generated keys
+     * Size for the generated keys. Defaults to `2048`.
      * 
      */
     @Import(name="keySize")
     private @Nullable Output<Integer> keySize;
 
     /**
-     * @return Size for the generated keys
+     * @return Size for the generated keys. Defaults to `2048`.
      * 
      */
     public Optional<Output<Integer>> keySize() {
@@ -216,7 +216,7 @@ public final class RealmKeystoreRsaGeneratedState extends com.pulumi.resources.R
         }
 
         /**
-         * @param keySize Size for the generated keys
+         * @param keySize Size for the generated keys. Defaults to `2048`.
          * 
          * @return builder
          * 
@@ -227,7 +227,7 @@ public final class RealmKeystoreRsaGeneratedState extends com.pulumi.resources.R
         }
 
         /**
-         * @param keySize Size for the generated keys
+         * @param keySize Size for the generated keys. Defaults to `2048`.
          * 
          * @return builder
          * 

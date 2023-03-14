@@ -7,13 +7,50 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Allows for creating and managing `rsa-generated` Realm keystores within Keycloak.
 //
 // A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm: pulumi.String("my-realm"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewRealmKeystoreRsaGenerated(ctx, "keystoreRsaGenerated", &keycloak.RealmKeystoreRsaGeneratedArgs{
+//				RealmId:   realm.ID(),
+//				Enabled:   pulumi.Bool(true),
+//				Active:    pulumi.Bool(true),
+//				Priority:  pulumi.Int(100),
+//				Algorithm: pulumi.String("RS256"),
+//				KeySize:   pulumi.Int(2048),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //
@@ -33,7 +70,7 @@ type RealmKeystoreRsaGenerated struct {
 	Algorithm pulumi.StringPtrOutput `pulumi:"algorithm"`
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
-	// Size for the generated keys
+	// Size for the generated keys. Defaults to `2048`.
 	KeySize pulumi.IntPtrOutput `pulumi:"keySize"`
 	// Display name of provider when linked in admin console.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -81,7 +118,7 @@ type realmKeystoreRsaGeneratedState struct {
 	Algorithm *string `pulumi:"algorithm"`
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
-	// Size for the generated keys
+	// Size for the generated keys. Defaults to `2048`.
 	KeySize *int `pulumi:"keySize"`
 	// Display name of provider when linked in admin console.
 	Name *string `pulumi:"name"`
@@ -98,7 +135,7 @@ type RealmKeystoreRsaGeneratedState struct {
 	Algorithm pulumi.StringPtrInput
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
-	// Size for the generated keys
+	// Size for the generated keys. Defaults to `2048`.
 	KeySize pulumi.IntPtrInput
 	// Display name of provider when linked in admin console.
 	Name pulumi.StringPtrInput
@@ -119,7 +156,7 @@ type realmKeystoreRsaGeneratedArgs struct {
 	Algorithm *string `pulumi:"algorithm"`
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
-	// Size for the generated keys
+	// Size for the generated keys. Defaults to `2048`.
 	KeySize *int `pulumi:"keySize"`
 	// Display name of provider when linked in admin console.
 	Name *string `pulumi:"name"`
@@ -137,7 +174,7 @@ type RealmKeystoreRsaGeneratedArgs struct {
 	Algorithm pulumi.StringPtrInput
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
-	// Size for the generated keys
+	// Size for the generated keys. Defaults to `2048`.
 	KeySize pulumi.IntPtrInput
 	// Display name of provider when linked in admin console.
 	Name pulumi.StringPtrInput
@@ -249,7 +286,7 @@ func (o RealmKeystoreRsaGeneratedOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RealmKeystoreRsaGenerated) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// Size for the generated keys
+// Size for the generated keys. Defaults to `2048`.
 func (o RealmKeystoreRsaGeneratedOutput) KeySize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RealmKeystoreRsaGenerated) pulumi.IntPtrOutput { return v.KeySize }).(pulumi.IntPtrOutput)
 }

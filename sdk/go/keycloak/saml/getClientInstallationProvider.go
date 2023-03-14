@@ -21,7 +21,7 @@ import (
 //
 // import (
 //
-//	"io/ioutil"
+//	"os"
 //
 //	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/iam"
 //	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
@@ -31,7 +31,7 @@ import (
 // )
 //
 //	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
+//		data, err := os.ReadFile(path)
 //		if err != nil {
 //			panic(err.Error())
 //		}

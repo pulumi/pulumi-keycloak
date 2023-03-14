@@ -9,6 +9,23 @@ import * as utilities from "./utilities";
  *
  * A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {realm: "my-realm"});
+ * const keystoreRsaGenerated = new keycloak.RealmKeystoreRsaGenerated("keystoreRsaGenerated", {
+ *     realmId: realm.id,
+ *     enabled: true,
+ *     active: true,
+ *     priority: 100,
+ *     algorithm: "RS256",
+ *     keySize: 2048,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
@@ -58,7 +75,7 @@ export class RealmKeystoreRsaGenerated extends pulumi.CustomResource {
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
     /**
-     * Size for the generated keys
+     * Size for the generated keys. Defaults to `2048`.
      */
     public readonly keySize!: pulumi.Output<number | undefined>;
     /**
@@ -129,7 +146,7 @@ export interface RealmKeystoreRsaGeneratedState {
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * Size for the generated keys
+     * Size for the generated keys. Defaults to `2048`.
      */
     keySize?: pulumi.Input<number>;
     /**
@@ -163,7 +180,7 @@ export interface RealmKeystoreRsaGeneratedArgs {
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * Size for the generated keys
+     * Size for the generated keys. Defaults to `2048`.
      */
     keySize?: pulumi.Input<number>;
     /**

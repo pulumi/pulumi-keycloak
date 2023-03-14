@@ -87,7 +87,7 @@ namespace Pulumi.Keycloak
     ///                         Config = 
     ///                         {
     ///                             { "pattern", "^[a-z]+$" },
-    ///                             { "error_message", "Nope" },
+    ///                             { "error-message", "Nope" },
     ///                         },
     ///                     },
     ///                 },

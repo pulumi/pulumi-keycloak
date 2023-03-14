@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -39,6 +39,7 @@ import (
 //				Config: pulumi.AnyMap{
 //					"dummyString": pulumi.Any("foobar"),
 //					"dummyBool":   pulumi.Any(true),
+//					"multivalue":  pulumi.Any("value1##value2"),
 //				},
 //			})
 //			if err != nil {
@@ -66,7 +67,7 @@ type CustomUserFederation struct {
 	CachePolicy pulumi.StringPtrOutput `pulumi:"cachePolicy"`
 	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod pulumi.IntPtrOutput `pulumi:"changedSyncPeriod"`
-	// The provider configuration handed over to your custom user federation provider.
+	// The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
 	Config pulumi.MapOutput `pulumi:"config"`
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
@@ -123,7 +124,7 @@ type customUserFederationState struct {
 	CachePolicy *string `pulumi:"cachePolicy"`
 	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod *int `pulumi:"changedSyncPeriod"`
-	// The provider configuration handed over to your custom user federation provider.
+	// The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
 	Config map[string]interface{} `pulumi:"config"`
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
@@ -146,7 +147,7 @@ type CustomUserFederationState struct {
 	CachePolicy pulumi.StringPtrInput
 	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod pulumi.IntPtrInput
-	// The provider configuration handed over to your custom user federation provider.
+	// The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
 	Config pulumi.MapInput
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
@@ -173,7 +174,7 @@ type customUserFederationArgs struct {
 	CachePolicy *string `pulumi:"cachePolicy"`
 	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod *int `pulumi:"changedSyncPeriod"`
-	// The provider configuration handed over to your custom user federation provider.
+	// The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
 	Config map[string]interface{} `pulumi:"config"`
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
@@ -197,7 +198,7 @@ type CustomUserFederationArgs struct {
 	CachePolicy pulumi.StringPtrInput
 	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod pulumi.IntPtrInput
-	// The provider configuration handed over to your custom user federation provider.
+	// The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
 	Config pulumi.MapInput
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
@@ -312,7 +313,7 @@ func (o CustomUserFederationOutput) ChangedSyncPeriod() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *CustomUserFederation) pulumi.IntPtrOutput { return v.ChangedSyncPeriod }).(pulumi.IntPtrOutput)
 }
 
-// The provider configuration handed over to your custom user federation provider.
+// The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
 func (o CustomUserFederationOutput) Config() pulumi.MapOutput {
 	return o.ApplyT(func(v *CustomUserFederation) pulumi.MapOutput { return v.Config }).(pulumi.MapOutput)
 }

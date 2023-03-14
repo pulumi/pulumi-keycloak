@@ -211,7 +211,10 @@ export class Realm extends pulumi.CustomResource {
      * When `false`, users and clients will not be able to access this realm. Defaults to `true`.
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
-    public /*out*/ readonly internalId!: pulumi.Output<string>;
+    /**
+     * When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+     */
+    public readonly internalId!: pulumi.Output<string>;
     public readonly internationalization!: pulumi.Output<outputs.RealmInternationalization | undefined>;
     /**
      * Used for the login, forgot password, and registration pages.
@@ -420,6 +423,7 @@ export class Realm extends pulumi.CustomResource {
             resourceInputs["editUsernameAllowed"] = args ? args.editUsernameAllowed : undefined;
             resourceInputs["emailTheme"] = args ? args.emailTheme : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["internalId"] = args ? args.internalId : undefined;
             resourceInputs["internationalization"] = args ? args.internationalization : undefined;
             resourceInputs["loginTheme"] = args ? args.loginTheme : undefined;
             resourceInputs["loginWithEmailAllowed"] = args ? args.loginWithEmailAllowed : undefined;
@@ -450,7 +454,6 @@ export class Realm extends pulumi.CustomResource {
             resourceInputs["verifyEmail"] = args ? args.verifyEmail : undefined;
             resourceInputs["webAuthnPasswordlessPolicy"] = args ? args.webAuthnPasswordlessPolicy : undefined;
             resourceInputs["webAuthnPolicy"] = args ? args.webAuthnPolicy : undefined;
-            resourceInputs["internalId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Realm.__pulumiType, name, resourceInputs, opts);
@@ -555,6 +558,9 @@ export interface RealmState {
      * When `false`, users and clients will not be able to access this realm. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+     */
     internalId?: pulumi.Input<string>;
     internationalization?: pulumi.Input<inputs.RealmInternationalization>;
     /**
@@ -764,6 +770,10 @@ export interface RealmArgs {
      * When `false`, users and clients will not be able to access this realm. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+     */
+    internalId?: pulumi.Input<string>;
     internationalization?: pulumi.Input<inputs.RealmInternationalization>;
     /**
      * Used for the login, forgot password, and registration pages.

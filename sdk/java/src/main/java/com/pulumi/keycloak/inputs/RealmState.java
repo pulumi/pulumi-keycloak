@@ -385,9 +385,17 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.enabled);
     }
 
+    /**
+     * When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+     * 
+     */
     @Import(name="internalId")
     private @Nullable Output<String> internalId;
 
+    /**
+     * @return When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+     * 
+     */
     public Optional<Output<String>> internalId() {
         return Optional.ofNullable(this.internalId);
     }
@@ -1398,11 +1406,23 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
             return enabled(Output.of(enabled));
         }
 
+        /**
+         * @param internalId When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder internalId(@Nullable Output<String> internalId) {
             $.internalId = internalId;
             return this;
         }
 
+        /**
+         * @param internalId When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder internalId(String internalId) {
             return internalId(Output.of(internalId));
         }

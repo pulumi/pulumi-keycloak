@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -159,7 +159,8 @@ type Realm struct {
 	// Used for emails that are sent by Keycloak.
 	EmailTheme pulumi.StringPtrOutput `pulumi:"emailTheme"`
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
-	Enabled              pulumi.BoolPtrOutput               `pulumi:"enabled"`
+	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
+	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
 	InternalId           pulumi.StringOutput                `pulumi:"internalId"`
 	Internationalization RealmInternationalizationPtrOutput `pulumi:"internationalization"`
 	// Used for the login, forgot password, and registration pages.
@@ -298,7 +299,8 @@ type realmState struct {
 	// Used for emails that are sent by Keycloak.
 	EmailTheme *string `pulumi:"emailTheme"`
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
-	Enabled              *bool                      `pulumi:"enabled"`
+	Enabled *bool `pulumi:"enabled"`
+	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
 	InternalId           *string                    `pulumi:"internalId"`
 	Internationalization *RealmInternationalization `pulumi:"internationalization"`
 	// Used for the login, forgot password, and registration pages.
@@ -406,7 +408,8 @@ type RealmState struct {
 	// Used for emails that are sent by Keycloak.
 	EmailTheme pulumi.StringPtrInput
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
-	Enabled              pulumi.BoolPtrInput
+	Enabled pulumi.BoolPtrInput
+	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
 	InternalId           pulumi.StringPtrInput
 	Internationalization RealmInternationalizationPtrInput
 	// Used for the login, forgot password, and registration pages.
@@ -518,7 +521,9 @@ type realmArgs struct {
 	// Used for emails that are sent by Keycloak.
 	EmailTheme *string `pulumi:"emailTheme"`
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
-	Enabled              *bool                      `pulumi:"enabled"`
+	Enabled *bool `pulumi:"enabled"`
+	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+	InternalId           *string                    `pulumi:"internalId"`
 	Internationalization *RealmInternationalization `pulumi:"internationalization"`
 	// Used for the login, forgot password, and registration pages.
 	LoginTheme *string `pulumi:"loginTheme"`
@@ -626,7 +631,9 @@ type RealmArgs struct {
 	// Used for emails that are sent by Keycloak.
 	EmailTheme pulumi.StringPtrInput
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
-	Enabled              pulumi.BoolPtrInput
+	Enabled pulumi.BoolPtrInput
+	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+	InternalId           pulumi.StringPtrInput
 	Internationalization RealmInternationalizationPtrInput
 	// Used for the login, forgot password, and registration pages.
 	LoginTheme pulumi.StringPtrInput
@@ -895,6 +902,7 @@ func (o RealmOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
+// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
 func (o RealmOutput) InternalId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.InternalId }).(pulumi.StringOutput)
 }
