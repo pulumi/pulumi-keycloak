@@ -19,11 +19,11 @@ build: install_plugins provider build_sdks install_sdks
 
 build_sdks: build_nodejs build_python build_go build_dotnet build_java
 
-install_go_sdk: 
+install_go_sdk:
 
-install_java_sdk: 
+install_java_sdk:
 
-install_python_sdk: 
+install_python_sdk:
 
 install_sdks: install_dotnet_sdk install_python_sdk install_nodejs_sdk install_java_sdk
 
@@ -71,10 +71,10 @@ build_python: upstream
 		rm ./bin/setup.py.bak && rm ./bin/go.mod && \
 		cd ./bin && python3 setup.py build sdist
 
-clean: 
+clean:
 	rm -rf sdk/{dotnet,nodejs,go,python}
 
-cleanup: 
+cleanup:
 	rm -r $(WORKING_DIR)/bin
 	rm -f provider/cmd/$(PROVIDER)/schema.go
 
@@ -88,11 +88,11 @@ help:
 	sed "s/\(.\+\):\s*\(.*\) #\s*\(.*\)/`printf "\033[93m"`\1`printf "\033[0m"`	\3 [\2]/" | \
 	expand -t20
 
-install_dotnet_sdk: 
+install_dotnet_sdk:
 	mkdir -p $(WORKING_DIR)/nuget
 	find . -name '*.nupkg' -print -exec cp -p {} $(WORKING_DIR)/nuget \;
 
-install_nodejs_sdk: 
+install_nodejs_sdk:
 	yarn link --cwd $(WORKING_DIR)/sdk/nodejs/bin
 
 install_plugins:
@@ -128,7 +128,7 @@ else
 	@cd upstream && git commit --quiet -m "existing patches"
 endif
 
-test: 
+test:
 	cd examples && go test -v -tags=all -parallel $(TESTPARALLELISM) -timeout 2h
 
 tfgen: install_plugins upstream
