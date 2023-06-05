@@ -10,10 +10,25 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Authentication
 {
     /// <summary>
+    /// Allows for creating and managing realm authentication flow bindings within Keycloak.
+    /// 
+    /// [Authentication flows](https://www.keycloak.org/docs/latest/server_admin/index.html#_authentication-flows) describe a sequence
+    /// of actions that a user or service must perform in order to be authenticated to Keycloak. The authentication flow itself
+    /// is a container for these actions, which are otherwise known as executions.
+    /// 
+    /// Realms assign authentication flows to supported user flows such as `registration` and `browser`. This resource allows the
+    /// updating of realm authentication flow bindings to custom authentication flows created by `keycloak.authentication.Flow`.
+    /// 
+    /// Note that you can also use the `keycloak.Realm` resource to assign authentication flow bindings at the realm level. This
+    /// resource is useful if you would like to create a realm and an authentication flow, and assign this flow to the realm within
+    /// a single run of `pulumi up`. In any case, do not attempt to use both the arguments within the `keycloak.Realm` resource
+    /// and this resource to manage authentication flow bindings, you should choose one or the other.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 

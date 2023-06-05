@@ -27,7 +27,11 @@ func GetClientTimeout(ctx *pulumi.Context) int {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault(5, parseEnvInt, "KEYCLOAK_CLIENT_TIMEOUT").(int)
+	var value int
+	if d := getEnvOrDefault(5, parseEnvInt, "KEYCLOAK_CLIENT_TIMEOUT"); d != nil {
+		value = d.(int)
+	}
+	return value
 }
 
 // Whether or not to login to Keycloak instance on provider initialization

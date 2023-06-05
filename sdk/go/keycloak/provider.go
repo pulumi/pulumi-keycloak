@@ -44,7 +44,9 @@ func NewProvider(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Url'")
 	}
 	if args.ClientTimeout == nil {
-		args.ClientTimeout = pulumi.IntPtr(getEnvOrDefault(5, parseEnvInt, "KEYCLOAK_CLIENT_TIMEOUT").(int))
+		if d := getEnvOrDefault(5, parseEnvInt, "KEYCLOAK_CLIENT_TIMEOUT"); d != nil {
+			args.ClientTimeout = pulumi.IntPtr(d.(int))
+		}
 	}
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:keycloak", name, args, &resource, opts...)

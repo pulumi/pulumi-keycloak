@@ -165,7 +165,7 @@ def get_client_authorization_policy(name: Optional[str] = None,
     ## Example Usage
 
     In this example, we'll create a new OpenID client with authorization enabled. This will cause Keycloak to create a default
-    permission for this client called "Default Permission". We'll use the _openid_get_client_authorization_policy_ data
+    permission for this client called "Default Permission". We'll use the `openid_get_client_authorization_policy` data
     source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
 
     ```python
@@ -237,7 +237,7 @@ def get_client_authorization_policy_output(name: Optional[pulumi.Input[str]] = N
     ## Example Usage
 
     In this example, we'll create a new OpenID client with authorization enabled. This will cause Keycloak to create a default
-    permission for this client called "Default Permission". We'll use the _openid_get_client_authorization_policy_ data
+    permission for this client called "Default Permission". We'll use the `openid_get_client_authorization_policy` data
     source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
 
     ```python

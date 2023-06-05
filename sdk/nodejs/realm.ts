@@ -226,6 +226,8 @@ export class Realm extends pulumi.CustomResource {
     public readonly loginWithEmailAllowed!: pulumi.Output<boolean>;
     /**
      * The maximum amount of time a client has to finish the device code flow before it expires.
+     *
+     * The attributes below should be specified in seconds.
      */
     public readonly oauth2DeviceCodeLifespan!: pulumi.Output<string>;
     /**
@@ -247,6 +249,8 @@ export class Realm extends pulumi.CustomResource {
     public readonly otpPolicy!: pulumi.Output<outputs.RealmOtpPolicy>;
     /**
      * The password policy for users within the realm.
+     *
+     * The arguments below can be used to configure authentication flow bindings:
      */
     public readonly passwordPolicy!: pulumi.Output<string | undefined>;
     /**
@@ -255,6 +259,8 @@ export class Realm extends pulumi.CustomResource {
     public readonly realm!: pulumi.Output<string>;
     /**
      * Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
+     *
+     * The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
      */
     public readonly refreshTokenMaxReuse!: pulumi.Output<number | undefined>;
     /**
@@ -317,6 +323,8 @@ export class Realm extends pulumi.CustomResource {
     public readonly verifyEmail!: pulumi.Output<boolean>;
     /**
      * Configuration for WebAuthn Passwordless Policy authentication.
+     *
+     * Each of these attributes are blocks with the following attributes:
      */
     public readonly webAuthnPasswordlessPolicy!: pulumi.Output<outputs.RealmWebAuthnPasswordlessPolicy>;
     /**
@@ -573,6 +581,8 @@ export interface RealmState {
     loginWithEmailAllowed?: pulumi.Input<boolean>;
     /**
      * The maximum amount of time a client has to finish the device code flow before it expires.
+     *
+     * The attributes below should be specified in seconds.
      */
     oauth2DeviceCodeLifespan?: pulumi.Input<string>;
     /**
@@ -594,6 +604,8 @@ export interface RealmState {
     otpPolicy?: pulumi.Input<inputs.RealmOtpPolicy>;
     /**
      * The password policy for users within the realm.
+     *
+     * The arguments below can be used to configure authentication flow bindings:
      */
     passwordPolicy?: pulumi.Input<string>;
     /**
@@ -602,6 +614,8 @@ export interface RealmState {
     realm?: pulumi.Input<string>;
     /**
      * Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
+     *
+     * The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
      */
     refreshTokenMaxReuse?: pulumi.Input<number>;
     /**
@@ -664,6 +678,8 @@ export interface RealmState {
     verifyEmail?: pulumi.Input<boolean>;
     /**
      * Configuration for WebAuthn Passwordless Policy authentication.
+     *
+     * Each of these attributes are blocks with the following attributes:
      */
     webAuthnPasswordlessPolicy?: pulumi.Input<inputs.RealmWebAuthnPasswordlessPolicy>;
     /**
@@ -785,6 +801,8 @@ export interface RealmArgs {
     loginWithEmailAllowed?: pulumi.Input<boolean>;
     /**
      * The maximum amount of time a client has to finish the device code flow before it expires.
+     *
+     * The attributes below should be specified in seconds.
      */
     oauth2DeviceCodeLifespan?: pulumi.Input<string>;
     /**
@@ -806,6 +824,8 @@ export interface RealmArgs {
     otpPolicy?: pulumi.Input<inputs.RealmOtpPolicy>;
     /**
      * The password policy for users within the realm.
+     *
+     * The arguments below can be used to configure authentication flow bindings:
      */
     passwordPolicy?: pulumi.Input<string>;
     /**
@@ -814,6 +834,8 @@ export interface RealmArgs {
     realm: pulumi.Input<string>;
     /**
      * Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
+     *
+     * The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
      */
     refreshTokenMaxReuse?: pulumi.Input<number>;
     /**
@@ -876,6 +898,8 @@ export interface RealmArgs {
     verifyEmail?: pulumi.Input<boolean>;
     /**
      * Configuration for WebAuthn Passwordless Policy authentication.
+     *
+     * Each of these attributes are blocks with the following attributes:
      */
     webAuthnPasswordlessPolicy?: pulumi.Input<inputs.RealmWebAuthnPasswordlessPolicy>;
     /**
