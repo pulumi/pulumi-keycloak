@@ -38,6 +38,7 @@ def readme():
 
 
 setup(name='pulumi_keycloak',
+      python_requires='>=3.7',
       version=VERSION,
       description="A Pulumi package for creating and managing keycloak cloud resources.",
       long_description=readme(),

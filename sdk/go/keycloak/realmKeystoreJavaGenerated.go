@@ -15,6 +15,46 @@ import (
 //
 // A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm: pulumi.String("my-realm"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewRealmKeystoreJavaGenerated(ctx, "javaKeystore", &keycloak.RealmKeystoreJavaGeneratedArgs{
+//				RealmId:          realm.ID(),
+//				Enabled:          pulumi.Bool(true),
+//				Active:           pulumi.Bool(true),
+//				Keystore:         pulumi.String("<path to your keystore>"),
+//				KeystorePassword: pulumi.String("<password for keystore>"),
+//				KeyAlias:         pulumi.String("<alias for the private key>"),
+//				KeyPassword:      pulumi.String("<password for the private key>"),
+//				Priority:         pulumi.Int(100),
+//				Algorithm:        pulumi.String("RS256"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
@@ -33,13 +73,13 @@ type RealmKeystoreJavaGenerated struct {
 	Algorithm pulumi.StringPtrOutput `pulumi:"algorithm"`
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
-	// Alias for the private key
+	// Alias for the private key.
 	KeyAlias pulumi.StringOutput `pulumi:"keyAlias"`
-	// Password for the private key
+	// Password for the private key.
 	KeyPassword pulumi.StringOutput `pulumi:"keyPassword"`
 	// Path to keys file on keycloak instance.
 	Keystore pulumi.StringOutput `pulumi:"keystore"`
-	// Password for the private key.
+	// Password for the keys.
 	KeystorePassword pulumi.StringOutput `pulumi:"keystorePassword"`
 	// Display name of provider when linked in admin console.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -99,13 +139,13 @@ type realmKeystoreJavaGeneratedState struct {
 	Algorithm *string `pulumi:"algorithm"`
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
-	// Alias for the private key
+	// Alias for the private key.
 	KeyAlias *string `pulumi:"keyAlias"`
-	// Password for the private key
+	// Password for the private key.
 	KeyPassword *string `pulumi:"keyPassword"`
 	// Path to keys file on keycloak instance.
 	Keystore *string `pulumi:"keystore"`
-	// Password for the private key.
+	// Password for the keys.
 	KeystorePassword *string `pulumi:"keystorePassword"`
 	// Display name of provider when linked in admin console.
 	Name *string `pulumi:"name"`
@@ -122,13 +162,13 @@ type RealmKeystoreJavaGeneratedState struct {
 	Algorithm pulumi.StringPtrInput
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
-	// Alias for the private key
+	// Alias for the private key.
 	KeyAlias pulumi.StringPtrInput
-	// Password for the private key
+	// Password for the private key.
 	KeyPassword pulumi.StringPtrInput
 	// Path to keys file on keycloak instance.
 	Keystore pulumi.StringPtrInput
-	// Password for the private key.
+	// Password for the keys.
 	KeystorePassword pulumi.StringPtrInput
 	// Display name of provider when linked in admin console.
 	Name pulumi.StringPtrInput
@@ -149,13 +189,13 @@ type realmKeystoreJavaGeneratedArgs struct {
 	Algorithm *string `pulumi:"algorithm"`
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
-	// Alias for the private key
+	// Alias for the private key.
 	KeyAlias string `pulumi:"keyAlias"`
-	// Password for the private key
+	// Password for the private key.
 	KeyPassword string `pulumi:"keyPassword"`
 	// Path to keys file on keycloak instance.
 	Keystore string `pulumi:"keystore"`
-	// Password for the private key.
+	// Password for the keys.
 	KeystorePassword string `pulumi:"keystorePassword"`
 	// Display name of provider when linked in admin console.
 	Name *string `pulumi:"name"`
@@ -173,13 +213,13 @@ type RealmKeystoreJavaGeneratedArgs struct {
 	Algorithm pulumi.StringPtrInput
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
-	// Alias for the private key
+	// Alias for the private key.
 	KeyAlias pulumi.StringInput
-	// Password for the private key
+	// Password for the private key.
 	KeyPassword pulumi.StringInput
 	// Path to keys file on keycloak instance.
 	Keystore pulumi.StringInput
-	// Password for the private key.
+	// Password for the keys.
 	KeystorePassword pulumi.StringInput
 	// Display name of provider when linked in admin console.
 	Name pulumi.StringPtrInput
@@ -291,12 +331,12 @@ func (o RealmKeystoreJavaGeneratedOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// Alias for the private key
+// Alias for the private key.
 func (o RealmKeystoreJavaGeneratedOutput) KeyAlias() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.StringOutput { return v.KeyAlias }).(pulumi.StringOutput)
 }
 
-// Password for the private key
+// Password for the private key.
 func (o RealmKeystoreJavaGeneratedOutput) KeyPassword() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.StringOutput { return v.KeyPassword }).(pulumi.StringOutput)
 }
@@ -306,7 +346,7 @@ func (o RealmKeystoreJavaGeneratedOutput) Keystore() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.StringOutput { return v.Keystore }).(pulumi.StringOutput)
 }
 
-// Password for the private key.
+// Password for the keys.
 func (o RealmKeystoreJavaGeneratedOutput) KeystorePassword() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.StringOutput { return v.KeystorePassword }).(pulumi.StringOutput)
 }

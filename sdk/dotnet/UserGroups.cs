@@ -10,10 +10,16 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
+    /// Allows for managing a Keycloak user's groups.
+    /// 
+    /// If `exhaustive` is true, this resource attempts to be an **authoritative** source over user groups: groups that are manually added to the user will be removed, and groups that are manually removed from the user group will be added upon the next run of `pulumi up`.
+    /// If `exhaustive` is false, this resource is a partial assignation of groups to a user. As a result, you can get multiple `keycloak.UserGroups` for the same `user_id`.
+    /// 
     /// ## Example Usage
     /// ### Exhaustive Groups)
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
@@ -51,6 +57,7 @@ namespace Pulumi.Keycloak
     /// ### Non Exhaustive Groups)
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 

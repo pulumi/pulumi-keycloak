@@ -9,6 +9,26 @@ import * as utilities from "./utilities";
  *
  * A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {realm: "my-realm"});
+ * const javaKeystore = new keycloak.RealmKeystoreJavaGenerated("javaKeystore", {
+ *     realmId: realm.id,
+ *     enabled: true,
+ *     active: true,
+ *     keystore: "<path to your keystore>",
+ *     keystorePassword: "<password for keystore>",
+ *     keyAlias: "<alias for the private key>",
+ *     keyPassword: "<password for the private key>",
+ *     priority: 100,
+ *     algorithm: "RS256",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
@@ -58,11 +78,11 @@ export class RealmKeystoreJavaGenerated extends pulumi.CustomResource {
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
     /**
-     * Alias for the private key
+     * Alias for the private key.
      */
     public readonly keyAlias!: pulumi.Output<string>;
     /**
-     * Password for the private key
+     * Password for the private key.
      */
     public readonly keyPassword!: pulumi.Output<string>;
     /**
@@ -70,7 +90,7 @@ export class RealmKeystoreJavaGenerated extends pulumi.CustomResource {
      */
     public readonly keystore!: pulumi.Output<string>;
     /**
-     * Password for the private key.
+     * Password for the keys.
      */
     public readonly keystorePassword!: pulumi.Output<string>;
     /**
@@ -159,11 +179,11 @@ export interface RealmKeystoreJavaGeneratedState {
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * Alias for the private key
+     * Alias for the private key.
      */
     keyAlias?: pulumi.Input<string>;
     /**
-     * Password for the private key
+     * Password for the private key.
      */
     keyPassword?: pulumi.Input<string>;
     /**
@@ -171,7 +191,7 @@ export interface RealmKeystoreJavaGeneratedState {
      */
     keystore?: pulumi.Input<string>;
     /**
-     * Password for the private key.
+     * Password for the keys.
      */
     keystorePassword?: pulumi.Input<string>;
     /**
@@ -205,11 +225,11 @@ export interface RealmKeystoreJavaGeneratedArgs {
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * Alias for the private key
+     * Alias for the private key.
      */
     keyAlias: pulumi.Input<string>;
     /**
-     * Password for the private key
+     * Password for the private key.
      */
     keyPassword: pulumi.Input<string>;
     /**
@@ -217,7 +237,7 @@ export interface RealmKeystoreJavaGeneratedArgs {
      */
     keystore: pulumi.Input<string>;
     /**
-     * Password for the private key.
+     * Password for the keys.
      */
     keystorePassword: pulumi.Input<string>;
     /**

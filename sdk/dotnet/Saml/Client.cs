@@ -20,6 +20,7 @@ namespace Pulumi.Keycloak.Saml
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 

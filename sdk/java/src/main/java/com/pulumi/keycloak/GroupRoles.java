@@ -17,6 +17,15 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Allows you to manage roles assigned to a Keycloak group.
+ * 
+ * If `exhaustive` is true, this resource attempts to be an **authoritative** source over group roles: roles that are manually added to the group will be removed, and roles that are manually removed from the
+ * group will be added upon the next run of `pulumi up`.
+ * If `exhaustive` is false, this resource is a partial assignation of roles to a group. As a result, you can get multiple `keycloak.GroupRoles` for the same `group_id`.
+ * 
+ * Note that when assigning composite roles to a group, you may see a non-empty plan following a `pulumi up` if you
+ * assign a role and a composite that includes that role to the same group.
+ * 
  * ## Example Usage
  * ### Exhaustive Roles)
  * ```java

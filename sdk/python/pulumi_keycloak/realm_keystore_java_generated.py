@@ -26,10 +26,10 @@ class RealmKeystoreJavaGeneratedArgs:
                  priority: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a RealmKeystoreJavaGenerated resource.
-        :param pulumi.Input[str] key_alias: Alias for the private key
-        :param pulumi.Input[str] key_password: Password for the private key
+        :param pulumi.Input[str] key_alias: Alias for the private key.
+        :param pulumi.Input[str] key_password: Password for the private key.
         :param pulumi.Input[str] keystore: Path to keys file on keycloak instance.
-        :param pulumi.Input[str] keystore_password: Password for the private key.
+        :param pulumi.Input[str] keystore_password: Password for the keys.
         :param pulumi.Input[str] realm_id: The realm this keystore exists in.
         :param pulumi.Input[bool] active: When `false`, key in not used for signing. Defaults to `true`.
         :param pulumi.Input[str] algorithm: Intended algorithm for the key. Defaults to `RS256`
@@ -57,7 +57,7 @@ class RealmKeystoreJavaGeneratedArgs:
     @pulumi.getter(name="keyAlias")
     def key_alias(self) -> pulumi.Input[str]:
         """
-        Alias for the private key
+        Alias for the private key.
         """
         return pulumi.get(self, "key_alias")
 
@@ -69,7 +69,7 @@ class RealmKeystoreJavaGeneratedArgs:
     @pulumi.getter(name="keyPassword")
     def key_password(self) -> pulumi.Input[str]:
         """
-        Password for the private key
+        Password for the private key.
         """
         return pulumi.get(self, "key_password")
 
@@ -93,7 +93,7 @@ class RealmKeystoreJavaGeneratedArgs:
     @pulumi.getter(name="keystorePassword")
     def keystore_password(self) -> pulumi.Input[str]:
         """
-        Password for the private key.
+        Password for the keys.
         """
         return pulumi.get(self, "keystore_password")
 
@@ -192,10 +192,10 @@ class _RealmKeystoreJavaGeneratedState:
         :param pulumi.Input[bool] active: When `false`, key in not used for signing. Defaults to `true`.
         :param pulumi.Input[str] algorithm: Intended algorithm for the key. Defaults to `RS256`
         :param pulumi.Input[bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
-        :param pulumi.Input[str] key_alias: Alias for the private key
-        :param pulumi.Input[str] key_password: Password for the private key
+        :param pulumi.Input[str] key_alias: Alias for the private key.
+        :param pulumi.Input[str] key_password: Password for the private key.
         :param pulumi.Input[str] keystore: Path to keys file on keycloak instance.
-        :param pulumi.Input[str] keystore_password: Password for the private key.
+        :param pulumi.Input[str] keystore_password: Password for the keys.
         :param pulumi.Input[str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[str] realm_id: The realm this keystore exists in.
@@ -261,7 +261,7 @@ class _RealmKeystoreJavaGeneratedState:
     @pulumi.getter(name="keyAlias")
     def key_alias(self) -> Optional[pulumi.Input[str]]:
         """
-        Alias for the private key
+        Alias for the private key.
         """
         return pulumi.get(self, "key_alias")
 
@@ -273,7 +273,7 @@ class _RealmKeystoreJavaGeneratedState:
     @pulumi.getter(name="keyPassword")
     def key_password(self) -> Optional[pulumi.Input[str]]:
         """
-        Password for the private key
+        Password for the private key.
         """
         return pulumi.get(self, "key_password")
 
@@ -297,7 +297,7 @@ class _RealmKeystoreJavaGeneratedState:
     @pulumi.getter(name="keystorePassword")
     def keystore_password(self) -> Optional[pulumi.Input[str]]:
         """
-        Password for the private key.
+        Password for the keys.
         """
         return pulumi.get(self, "keystore_password")
 
@@ -363,6 +363,25 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        java_keystore = keycloak.RealmKeystoreJavaGenerated("javaKeystore",
+            realm_id=realm.id,
+            enabled=True,
+            active=True,
+            keystore="<path to your keystore>",
+            keystore_password="<password for keystore>",
+            key_alias="<alias for the private key>",
+            key_password="<password for the private key>",
+            priority=100,
+            algorithm="RS256")
+        ```
+
         ## Import
 
         Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
@@ -376,10 +395,10 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
         :param pulumi.Input[bool] active: When `false`, key in not used for signing. Defaults to `true`.
         :param pulumi.Input[str] algorithm: Intended algorithm for the key. Defaults to `RS256`
         :param pulumi.Input[bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
-        :param pulumi.Input[str] key_alias: Alias for the private key
-        :param pulumi.Input[str] key_password: Password for the private key
+        :param pulumi.Input[str] key_alias: Alias for the private key.
+        :param pulumi.Input[str] key_password: Password for the private key.
         :param pulumi.Input[str] keystore: Path to keys file on keycloak instance.
-        :param pulumi.Input[str] keystore_password: Password for the private key.
+        :param pulumi.Input[str] keystore_password: Password for the keys.
         :param pulumi.Input[str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[str] realm_id: The realm this keystore exists in.
@@ -394,6 +413,25 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
         Allows for creating and managing `java-keystore` Realm keystores within Keycloak.
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        java_keystore = keycloak.RealmKeystoreJavaGenerated("javaKeystore",
+            realm_id=realm.id,
+            enabled=True,
+            active=True,
+            keystore="<path to your keystore>",
+            keystore_password="<password for keystore>",
+            key_alias="<alias for the private key>",
+            key_password="<password for the private key>",
+            priority=100,
+            algorithm="RS256")
+        ```
 
         ## Import
 
@@ -487,10 +525,10 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
         :param pulumi.Input[bool] active: When `false`, key in not used for signing. Defaults to `true`.
         :param pulumi.Input[str] algorithm: Intended algorithm for the key. Defaults to `RS256`
         :param pulumi.Input[bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
-        :param pulumi.Input[str] key_alias: Alias for the private key
-        :param pulumi.Input[str] key_password: Password for the private key
+        :param pulumi.Input[str] key_alias: Alias for the private key.
+        :param pulumi.Input[str] key_password: Password for the private key.
         :param pulumi.Input[str] keystore: Path to keys file on keycloak instance.
-        :param pulumi.Input[str] keystore_password: Password for the private key.
+        :param pulumi.Input[str] keystore_password: Password for the keys.
         :param pulumi.Input[str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[str] realm_id: The realm this keystore exists in.
@@ -539,7 +577,7 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
     @pulumi.getter(name="keyAlias")
     def key_alias(self) -> pulumi.Output[str]:
         """
-        Alias for the private key
+        Alias for the private key.
         """
         return pulumi.get(self, "key_alias")
 
@@ -547,7 +585,7 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
     @pulumi.getter(name="keyPassword")
     def key_password(self) -> pulumi.Output[str]:
         """
-        Password for the private key
+        Password for the private key.
         """
         return pulumi.get(self, "key_password")
 
@@ -563,7 +601,7 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
     @pulumi.getter(name="keystorePassword")
     def keystore_password(self) -> pulumi.Output[str]:
         """
-        Password for the private key.
+        Password for the keys.
         """
         return pulumi.get(self, "keystore_password")
 

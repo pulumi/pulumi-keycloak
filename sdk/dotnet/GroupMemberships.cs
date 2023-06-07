@@ -10,10 +10,27 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
+    /// Allows for managing a Keycloak group's members.
+    /// 
+    /// Note that this resource attempts to be an **authoritative** source over group members. When this resource takes control
+    /// over a group's members, users that are manually added to the group will be removed, and users that are manually removed
+    /// from the group will be added upon the next run of `pulumi up`.
+    /// 
+    /// Also note that you should not use `keycloak.GroupMemberships` with a group has been assigned as a default group via
+    /// `keycloak.DefaultGroups`.
+    /// 
+    /// This resource **should not** be used to control membership of a group that has its members federated from an external
+    /// source via group mapping.
+    /// 
+    /// To non-exclusively manage the group's of a user, see the [`keycloak.UserGroups` resource][1]
+    /// 
+    /// This resource paginates its data loading on refresh by 50 items.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 

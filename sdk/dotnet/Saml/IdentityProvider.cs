@@ -18,6 +18,7 @@ namespace Pulumi.Keycloak.Saml
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
@@ -157,6 +158,12 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Output("linkOnly")]
         public Output<bool?> LinkOnly { get; private set; } = null!;
+
+        /// <summary>
+        /// Login Hint.
+        /// </summary>
+        [Output("loginHint")]
+        public Output<string?> LoginHint { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
@@ -435,6 +442,12 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? LinkOnly { get; set; }
 
         /// <summary>
+        /// Login Hint.
+        /// </summary>
+        [Input("loginHint")]
+        public Input<string>? LoginHint { get; set; }
+
+        /// <summary>
         /// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
         /// </summary>
         [Input("nameIdPolicyFormat")]
@@ -677,6 +690,12 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
+
+        /// <summary>
+        /// Login Hint.
+        /// </summary>
+        [Input("loginHint")]
+        public Input<string>? LoginHint { get; set; }
 
         /// <summary>
         /// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.

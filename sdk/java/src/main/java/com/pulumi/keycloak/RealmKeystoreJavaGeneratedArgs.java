@@ -63,14 +63,14 @@ public final class RealmKeystoreJavaGeneratedArgs extends com.pulumi.resources.R
     }
 
     /**
-     * Alias for the private key
+     * Alias for the private key.
      * 
      */
     @Import(name="keyAlias", required=true)
     private Output<String> keyAlias;
 
     /**
-     * @return Alias for the private key
+     * @return Alias for the private key.
      * 
      */
     public Output<String> keyAlias() {
@@ -78,14 +78,14 @@ public final class RealmKeystoreJavaGeneratedArgs extends com.pulumi.resources.R
     }
 
     /**
-     * Password for the private key
+     * Password for the private key.
      * 
      */
     @Import(name="keyPassword", required=true)
     private Output<String> keyPassword;
 
     /**
-     * @return Password for the private key
+     * @return Password for the private key.
      * 
      */
     public Output<String> keyPassword() {
@@ -108,14 +108,14 @@ public final class RealmKeystoreJavaGeneratedArgs extends com.pulumi.resources.R
     }
 
     /**
-     * Password for the private key.
+     * Password for the keys.
      * 
      */
     @Import(name="keystorePassword", required=true)
     private Output<String> keystorePassword;
 
     /**
-     * @return Password for the private key.
+     * @return Password for the keys.
      * 
      */
     public Output<String> keystorePassword() {
@@ -264,7 +264,7 @@ public final class RealmKeystoreJavaGeneratedArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param keyAlias Alias for the private key
+         * @param keyAlias Alias for the private key.
          * 
          * @return builder
          * 
@@ -275,7 +275,7 @@ public final class RealmKeystoreJavaGeneratedArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param keyAlias Alias for the private key
+         * @param keyAlias Alias for the private key.
          * 
          * @return builder
          * 
@@ -285,7 +285,7 @@ public final class RealmKeystoreJavaGeneratedArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param keyPassword Password for the private key
+         * @param keyPassword Password for the private key.
          * 
          * @return builder
          * 
@@ -296,7 +296,7 @@ public final class RealmKeystoreJavaGeneratedArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param keyPassword Password for the private key
+         * @param keyPassword Password for the private key.
          * 
          * @return builder
          * 
@@ -327,7 +327,7 @@ public final class RealmKeystoreJavaGeneratedArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param keystorePassword Password for the private key.
+         * @param keystorePassword Password for the keys.
          * 
          * @return builder
          * 
@@ -338,7 +338,7 @@ public final class RealmKeystoreJavaGeneratedArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param keystorePassword Password for the private key.
+         * @param keystorePassword Password for the keys.
          * 
          * @return builder
          * 

@@ -21,6 +21,50 @@ import javax.annotation.Nullable;
  * 
  * A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
  * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.RealmKeystoreJavaGenerated;
+ * import com.pulumi.keycloak.RealmKeystoreJavaGeneratedArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
+ *             .realm(&#34;my-realm&#34;)
+ *             .build());
+ * 
+ *         var javaKeystore = new RealmKeystoreJavaGenerated(&#34;javaKeystore&#34;, RealmKeystoreJavaGeneratedArgs.builder()        
+ *             .realmId(realm.id())
+ *             .enabled(true)
+ *             .active(true)
+ *             .keystore(&#34;&lt;path to your keystore&gt;&#34;)
+ *             .keystorePassword(&#34;&lt;password for keystore&gt;&#34;)
+ *             .keyAlias(&#34;&lt;alias for the private key&gt;&#34;)
+ *             .keyPassword(&#34;&lt;password for the private key&gt;&#34;)
+ *             .priority(100)
+ *             .algorithm(&#34;RS256&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ## Import
  * 
  * Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
@@ -75,28 +119,28 @@ public class RealmKeystoreJavaGenerated extends com.pulumi.resources.CustomResou
         return Codegen.optional(this.enabled);
     }
     /**
-     * Alias for the private key
+     * Alias for the private key.
      * 
      */
     @Export(name="keyAlias", type=String.class, parameters={})
     private Output<String> keyAlias;
 
     /**
-     * @return Alias for the private key
+     * @return Alias for the private key.
      * 
      */
     public Output<String> keyAlias() {
         return this.keyAlias;
     }
     /**
-     * Password for the private key
+     * Password for the private key.
      * 
      */
     @Export(name="keyPassword", type=String.class, parameters={})
     private Output<String> keyPassword;
 
     /**
-     * @return Password for the private key
+     * @return Password for the private key.
      * 
      */
     public Output<String> keyPassword() {
@@ -117,14 +161,14 @@ public class RealmKeystoreJavaGenerated extends com.pulumi.resources.CustomResou
         return this.keystore;
     }
     /**
-     * Password for the private key.
+     * Password for the keys.
      * 
      */
     @Export(name="keystorePassword", type=String.class, parameters={})
     private Output<String> keystorePassword;
 
     /**
-     * @return Password for the private key.
+     * @return Password for the keys.
      * 
      */
     public Output<String> keystorePassword() {

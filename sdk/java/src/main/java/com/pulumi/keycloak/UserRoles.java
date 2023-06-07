@@ -17,6 +17,15 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Allows you to manage roles assigned to a Keycloak user.
+ * 
+ * If `exhaustive` is true, this resource attempts to be an **authoritative** source over user roles: roles that are manually added to the user will be removed, and roles that are manually removed from the
+ * user will be added upon the next run of `pulumi up`.
+ * If `exhaustive` is false, this resource is a partial assignation of roles to a user. As a result, you can use multiple `keycloak.UserRoles` for the same `user_id`.
+ * 
+ * Note that when assigning composite roles to a user, you may see a non-empty plan following a `pulumi up` if you assign
+ * a role and a composite that includes that role to the same user.
+ * 
  * ## Example Usage
  * ### Exhaustive Roles)
  * ```java
