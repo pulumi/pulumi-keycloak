@@ -440,12 +440,16 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * The maximum amount of time a client has to finish the device code flow before it expires.
      * 
+     * The attributes below should be specified in seconds.
+     * 
      */
     @Import(name="oauth2DeviceCodeLifespan")
     private @Nullable Output<String> oauth2DeviceCodeLifespan;
 
     /**
      * @return The maximum amount of time a client has to finish the device code flow before it expires.
+     * 
+     * The attributes below should be specified in seconds.
      * 
      */
     public Optional<Output<String>> oauth2DeviceCodeLifespan() {
@@ -522,12 +526,16 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * The password policy for users within the realm.
      * 
+     * The arguments below can be used to configure authentication flow bindings:
+     * 
      */
     @Import(name="passwordPolicy")
     private @Nullable Output<String> passwordPolicy;
 
     /**
      * @return The password policy for users within the realm.
+     * 
+     * The arguments below can be used to configure authentication flow bindings:
      * 
      */
     public Optional<Output<String>> passwordPolicy() {
@@ -552,12 +560,16 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Maximum number of times a refresh token can be reused before they are revoked. If unspecified and &#39;revoke_refresh_token&#39; is enabled the default value is 0 and refresh tokens can not be reused.
      * 
+     * The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak&#39;s default settings.
+     * 
      */
     @Import(name="refreshTokenMaxReuse")
     private @Nullable Output<Integer> refreshTokenMaxReuse;
 
     /**
      * @return Maximum number of times a refresh token can be reused before they are revoked. If unspecified and &#39;revoke_refresh_token&#39; is enabled the default value is 0 and refresh tokens can not be reused.
+     * 
+     * The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak&#39;s default settings.
      * 
      */
     public Optional<Output<Integer>> refreshTokenMaxReuse() {
@@ -791,12 +803,16 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Configuration for WebAuthn Passwordless Policy authentication.
      * 
+     * Each of these attributes are blocks with the following attributes:
+     * 
      */
     @Import(name="webAuthnPasswordlessPolicy")
     private @Nullable Output<RealmWebAuthnPasswordlessPolicyArgs> webAuthnPasswordlessPolicy;
 
     /**
      * @return Configuration for WebAuthn Passwordless Policy authentication.
+     * 
+     * Each of these attributes are blocks with the following attributes:
      * 
      */
     public Optional<Output<RealmWebAuthnPasswordlessPolicyArgs>> webAuthnPasswordlessPolicy() {
@@ -1481,6 +1497,8 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param oauth2DeviceCodeLifespan The maximum amount of time a client has to finish the device code flow before it expires.
          * 
+         * The attributes below should be specified in seconds.
+         * 
          * @return builder
          * 
          */
@@ -1491,6 +1509,8 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param oauth2DeviceCodeLifespan The maximum amount of time a client has to finish the device code flow before it expires.
+         * 
+         * The attributes below should be specified in seconds.
          * 
          * @return builder
          * 
@@ -1595,6 +1615,8 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param passwordPolicy The password policy for users within the realm.
          * 
+         * The arguments below can be used to configure authentication flow bindings:
+         * 
          * @return builder
          * 
          */
@@ -1605,6 +1627,8 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param passwordPolicy The password policy for users within the realm.
+         * 
+         * The arguments below can be used to configure authentication flow bindings:
          * 
          * @return builder
          * 
@@ -1637,6 +1661,8 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param refreshTokenMaxReuse Maximum number of times a refresh token can be reused before they are revoked. If unspecified and &#39;revoke_refresh_token&#39; is enabled the default value is 0 and refresh tokens can not be reused.
          * 
+         * The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak&#39;s default settings.
+         * 
          * @return builder
          * 
          */
@@ -1647,6 +1673,8 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param refreshTokenMaxReuse Maximum number of times a refresh token can be reused before they are revoked. If unspecified and &#39;revoke_refresh_token&#39; is enabled the default value is 0 and refresh tokens can not be reused.
+         * 
+         * The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak&#39;s default settings.
          * 
          * @return builder
          * 
@@ -1970,6 +1998,8 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param webAuthnPasswordlessPolicy Configuration for WebAuthn Passwordless Policy authentication.
          * 
+         * Each of these attributes are blocks with the following attributes:
+         * 
          * @return builder
          * 
          */
@@ -1980,6 +2010,8 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param webAuthnPasswordlessPolicy Configuration for WebAuthn Passwordless Policy authentication.
+         * 
+         * Each of these attributes are blocks with the following attributes:
          * 
          * @return builder
          * 

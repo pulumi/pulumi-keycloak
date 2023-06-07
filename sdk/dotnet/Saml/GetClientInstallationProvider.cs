@@ -23,6 +23,7 @@ namespace Pulumi.Keycloak.Saml
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.IO;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Aws = Pulumi.Aws;
         /// using Keycloak = Pulumi.Keycloak;
@@ -78,6 +79,7 @@ namespace Pulumi.Keycloak.Saml
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.IO;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Aws = Pulumi.Aws;
         /// using Keycloak = Pulumi.Keycloak;

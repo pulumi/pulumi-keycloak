@@ -102,12 +102,18 @@ class RealmArgs:
         :param pulumi.Input[str] login_theme: Used for the login, forgot password, and registration pages.
         :param pulumi.Input[bool] login_with_email_allowed: When true, users may log in with their email address.
         :param pulumi.Input[str] oauth2_device_code_lifespan: The maximum amount of time a client has to finish the device code flow before it expires.
+               
+               The attributes below should be specified in seconds.
         :param pulumi.Input[int] oauth2_device_polling_interval: The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
         :param pulumi.Input[str] offline_session_idle_timeout: The amount of time an offline session can be idle before it expires.
         :param pulumi.Input[str] offline_session_max_lifespan: The maximum amount of time before an offline session expires regardless of activity.
         :param pulumi.Input[bool] offline_session_max_lifespan_enabled: Enable `offline_session_max_lifespan`.
         :param pulumi.Input[str] password_policy: The password policy for users within the realm.
+               
+               The arguments below can be used to configure authentication flow bindings:
         :param pulumi.Input[int] refresh_token_max_reuse: Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
+               
+               The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
         :param pulumi.Input[bool] registration_allowed: When true, user registration will be enabled, and a link for registration will be displayed on the login page.
         :param pulumi.Input[bool] registration_email_as_username: When true, the user's email will be used as their username during registration.
         :param pulumi.Input[str] registration_flow: The desired flow for user registration. Defaults to `registration`.
@@ -123,6 +129,8 @@ class RealmArgs:
         :param pulumi.Input[bool] user_managed_access: When `true`, users are allowed to manage their own resources. Defaults to `false`.
         :param pulumi.Input[bool] verify_email: When true, users are required to verify their email address after registration and after email address changes.
         :param pulumi.Input['RealmWebAuthnPasswordlessPolicyArgs'] web_authn_passwordless_policy: Configuration for WebAuthn Passwordless Policy authentication.
+               
+               Each of these attributes are blocks with the following attributes:
         :param pulumi.Input['RealmWebAuthnPolicyArgs'] web_authn_policy: Configuration for WebAuthn Policy authentication.
         """
         pulumi.set(__self__, "realm", realm)
@@ -593,6 +601,8 @@ class RealmArgs:
     def oauth2_device_code_lifespan(self) -> Optional[pulumi.Input[str]]:
         """
         The maximum amount of time a client has to finish the device code flow before it expires.
+
+        The attributes below should be specified in seconds.
         """
         return pulumi.get(self, "oauth2_device_code_lifespan")
 
@@ -662,6 +672,8 @@ class RealmArgs:
     def password_policy(self) -> Optional[pulumi.Input[str]]:
         """
         The password policy for users within the realm.
+
+        The arguments below can be used to configure authentication flow bindings:
         """
         return pulumi.get(self, "password_policy")
 
@@ -674,6 +686,8 @@ class RealmArgs:
     def refresh_token_max_reuse(self) -> Optional[pulumi.Input[int]]:
         """
         Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
+
+        The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
         """
         return pulumi.get(self, "refresh_token_max_reuse")
 
@@ -872,6 +886,8 @@ class RealmArgs:
     def web_authn_passwordless_policy(self) -> Optional[pulumi.Input['RealmWebAuthnPasswordlessPolicyArgs']]:
         """
         Configuration for WebAuthn Passwordless Policy authentication.
+
+        Each of these attributes are blocks with the following attributes:
         """
         return pulumi.get(self, "web_authn_passwordless_policy")
 
@@ -980,13 +996,19 @@ class _RealmState:
         :param pulumi.Input[str] login_theme: Used for the login, forgot password, and registration pages.
         :param pulumi.Input[bool] login_with_email_allowed: When true, users may log in with their email address.
         :param pulumi.Input[str] oauth2_device_code_lifespan: The maximum amount of time a client has to finish the device code flow before it expires.
+               
+               The attributes below should be specified in seconds.
         :param pulumi.Input[int] oauth2_device_polling_interval: The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
         :param pulumi.Input[str] offline_session_idle_timeout: The amount of time an offline session can be idle before it expires.
         :param pulumi.Input[str] offline_session_max_lifespan: The maximum amount of time before an offline session expires regardless of activity.
         :param pulumi.Input[bool] offline_session_max_lifespan_enabled: Enable `offline_session_max_lifespan`.
         :param pulumi.Input[str] password_policy: The password policy for users within the realm.
+               
+               The arguments below can be used to configure authentication flow bindings:
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
         :param pulumi.Input[int] refresh_token_max_reuse: Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
+               
+               The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
         :param pulumi.Input[bool] registration_allowed: When true, user registration will be enabled, and a link for registration will be displayed on the login page.
         :param pulumi.Input[bool] registration_email_as_username: When true, the user's email will be used as their username during registration.
         :param pulumi.Input[str] registration_flow: The desired flow for user registration. Defaults to `registration`.
@@ -1002,6 +1024,8 @@ class _RealmState:
         :param pulumi.Input[bool] user_managed_access: When `true`, users are allowed to manage their own resources. Defaults to `false`.
         :param pulumi.Input[bool] verify_email: When true, users are required to verify their email address after registration and after email address changes.
         :param pulumi.Input['RealmWebAuthnPasswordlessPolicyArgs'] web_authn_passwordless_policy: Configuration for WebAuthn Passwordless Policy authentication.
+               
+               Each of these attributes are blocks with the following attributes:
         :param pulumi.Input['RealmWebAuthnPolicyArgs'] web_authn_policy: Configuration for WebAuthn Policy authentication.
         """
         if access_code_lifespan is not None:
@@ -1461,6 +1485,8 @@ class _RealmState:
     def oauth2_device_code_lifespan(self) -> Optional[pulumi.Input[str]]:
         """
         The maximum amount of time a client has to finish the device code flow before it expires.
+
+        The attributes below should be specified in seconds.
         """
         return pulumi.get(self, "oauth2_device_code_lifespan")
 
@@ -1530,6 +1556,8 @@ class _RealmState:
     def password_policy(self) -> Optional[pulumi.Input[str]]:
         """
         The password policy for users within the realm.
+
+        The arguments below can be used to configure authentication flow bindings:
         """
         return pulumi.get(self, "password_policy")
 
@@ -1554,6 +1582,8 @@ class _RealmState:
     def refresh_token_max_reuse(self) -> Optional[pulumi.Input[int]]:
         """
         Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
+
+        The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
         """
         return pulumi.get(self, "refresh_token_max_reuse")
 
@@ -1752,6 +1782,8 @@ class _RealmState:
     def web_authn_passwordless_policy(self) -> Optional[pulumi.Input['RealmWebAuthnPasswordlessPolicyArgs']]:
         """
         Configuration for WebAuthn Passwordless Policy authentication.
+
+        Each of these attributes are blocks with the following attributes:
         """
         return pulumi.get(self, "web_authn_passwordless_policy")
 
@@ -1945,13 +1977,19 @@ class Realm(pulumi.CustomResource):
         :param pulumi.Input[str] login_theme: Used for the login, forgot password, and registration pages.
         :param pulumi.Input[bool] login_with_email_allowed: When true, users may log in with their email address.
         :param pulumi.Input[str] oauth2_device_code_lifespan: The maximum amount of time a client has to finish the device code flow before it expires.
+               
+               The attributes below should be specified in seconds.
         :param pulumi.Input[int] oauth2_device_polling_interval: The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
         :param pulumi.Input[str] offline_session_idle_timeout: The amount of time an offline session can be idle before it expires.
         :param pulumi.Input[str] offline_session_max_lifespan: The maximum amount of time before an offline session expires regardless of activity.
         :param pulumi.Input[bool] offline_session_max_lifespan_enabled: Enable `offline_session_max_lifespan`.
         :param pulumi.Input[str] password_policy: The password policy for users within the realm.
+               
+               The arguments below can be used to configure authentication flow bindings:
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
         :param pulumi.Input[int] refresh_token_max_reuse: Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
+               
+               The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
         :param pulumi.Input[bool] registration_allowed: When true, user registration will be enabled, and a link for registration will be displayed on the login page.
         :param pulumi.Input[bool] registration_email_as_username: When true, the user's email will be used as their username during registration.
         :param pulumi.Input[str] registration_flow: The desired flow for user registration. Defaults to `registration`.
@@ -1967,6 +2005,8 @@ class Realm(pulumi.CustomResource):
         :param pulumi.Input[bool] user_managed_access: When `true`, users are allowed to manage their own resources. Defaults to `false`.
         :param pulumi.Input[bool] verify_email: When true, users are required to verify their email address after registration and after email address changes.
         :param pulumi.Input[pulumi.InputType['RealmWebAuthnPasswordlessPolicyArgs']] web_authn_passwordless_policy: Configuration for WebAuthn Passwordless Policy authentication.
+               
+               Each of these attributes are blocks with the following attributes:
         :param pulumi.Input[pulumi.InputType['RealmWebAuthnPolicyArgs']] web_authn_policy: Configuration for WebAuthn Policy authentication.
         """
         ...
@@ -2295,13 +2335,19 @@ class Realm(pulumi.CustomResource):
         :param pulumi.Input[str] login_theme: Used for the login, forgot password, and registration pages.
         :param pulumi.Input[bool] login_with_email_allowed: When true, users may log in with their email address.
         :param pulumi.Input[str] oauth2_device_code_lifespan: The maximum amount of time a client has to finish the device code flow before it expires.
+               
+               The attributes below should be specified in seconds.
         :param pulumi.Input[int] oauth2_device_polling_interval: The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
         :param pulumi.Input[str] offline_session_idle_timeout: The amount of time an offline session can be idle before it expires.
         :param pulumi.Input[str] offline_session_max_lifespan: The maximum amount of time before an offline session expires regardless of activity.
         :param pulumi.Input[bool] offline_session_max_lifespan_enabled: Enable `offline_session_max_lifespan`.
         :param pulumi.Input[str] password_policy: The password policy for users within the realm.
+               
+               The arguments below can be used to configure authentication flow bindings:
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
         :param pulumi.Input[int] refresh_token_max_reuse: Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
+               
+               The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
         :param pulumi.Input[bool] registration_allowed: When true, user registration will be enabled, and a link for registration will be displayed on the login page.
         :param pulumi.Input[bool] registration_email_as_username: When true, the user's email will be used as their username during registration.
         :param pulumi.Input[str] registration_flow: The desired flow for user registration. Defaults to `registration`.
@@ -2317,6 +2363,8 @@ class Realm(pulumi.CustomResource):
         :param pulumi.Input[bool] user_managed_access: When `true`, users are allowed to manage their own resources. Defaults to `false`.
         :param pulumi.Input[bool] verify_email: When true, users are required to verify their email address after registration and after email address changes.
         :param pulumi.Input[pulumi.InputType['RealmWebAuthnPasswordlessPolicyArgs']] web_authn_passwordless_policy: Configuration for WebAuthn Passwordless Policy authentication.
+               
+               Each of these attributes are blocks with the following attributes:
         :param pulumi.Input[pulumi.InputType['RealmWebAuthnPolicyArgs']] web_authn_policy: Configuration for WebAuthn Policy authentication.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -2609,6 +2657,8 @@ class Realm(pulumi.CustomResource):
     def oauth2_device_code_lifespan(self) -> pulumi.Output[str]:
         """
         The maximum amount of time a client has to finish the device code flow before it expires.
+
+        The attributes below should be specified in seconds.
         """
         return pulumi.get(self, "oauth2_device_code_lifespan")
 
@@ -2654,6 +2704,8 @@ class Realm(pulumi.CustomResource):
     def password_policy(self) -> pulumi.Output[Optional[str]]:
         """
         The password policy for users within the realm.
+
+        The arguments below can be used to configure authentication flow bindings:
         """
         return pulumi.get(self, "password_policy")
 
@@ -2670,6 +2722,8 @@ class Realm(pulumi.CustomResource):
     def refresh_token_max_reuse(self) -> pulumi.Output[Optional[int]]:
         """
         Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
+
+        The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
         """
         return pulumi.get(self, "refresh_token_max_reuse")
 
@@ -2800,6 +2854,8 @@ class Realm(pulumi.CustomResource):
     def web_authn_passwordless_policy(self) -> pulumi.Output['outputs.RealmWebAuthnPasswordlessPolicy']:
         """
         Configuration for WebAuthn Passwordless Policy authentication.
+
+        Each of these attributes are blocks with the following attributes:
         """
         return pulumi.get(self, "web_authn_passwordless_policy")
 

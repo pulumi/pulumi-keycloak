@@ -19,6 +19,7 @@ namespace Pulumi.Keycloak
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
@@ -278,6 +279,8 @@ namespace Pulumi.Keycloak
 
         /// <summary>
         /// The maximum amount of time a client has to finish the device code flow before it expires.
+        /// 
+        /// The attributes below should be specified in seconds.
         /// </summary>
         [Output("oauth2DeviceCodeLifespan")]
         public Output<string> Oauth2DeviceCodeLifespan { get; private set; } = null!;
@@ -311,6 +314,8 @@ namespace Pulumi.Keycloak
 
         /// <summary>
         /// The password policy for users within the realm.
+        /// 
+        /// The arguments below can be used to configure authentication flow bindings:
         /// </summary>
         [Output("passwordPolicy")]
         public Output<string?> PasswordPolicy { get; private set; } = null!;
@@ -323,6 +328,8 @@ namespace Pulumi.Keycloak
 
         /// <summary>
         /// Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
+        /// 
+        /// The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
         /// </summary>
         [Output("refreshTokenMaxReuse")]
         public Output<int?> RefreshTokenMaxReuse { get; private set; } = null!;
@@ -419,6 +426,8 @@ namespace Pulumi.Keycloak
 
         /// <summary>
         /// Configuration for WebAuthn Passwordless Policy authentication.
+        /// 
+        /// Each of these attributes are blocks with the following attributes:
         /// </summary>
         [Output("webAuthnPasswordlessPolicy")]
         public Output<Outputs.RealmWebAuthnPasswordlessPolicy> WebAuthnPasswordlessPolicy { get; private set; } = null!;
@@ -658,6 +667,8 @@ namespace Pulumi.Keycloak
 
         /// <summary>
         /// The maximum amount of time a client has to finish the device code flow before it expires.
+        /// 
+        /// The attributes below should be specified in seconds.
         /// </summary>
         [Input("oauth2DeviceCodeLifespan")]
         public Input<string>? Oauth2DeviceCodeLifespan { get; set; }
@@ -691,6 +702,8 @@ namespace Pulumi.Keycloak
 
         /// <summary>
         /// The password policy for users within the realm.
+        /// 
+        /// The arguments below can be used to configure authentication flow bindings:
         /// </summary>
         [Input("passwordPolicy")]
         public Input<string>? PasswordPolicy { get; set; }
@@ -703,6 +716,8 @@ namespace Pulumi.Keycloak
 
         /// <summary>
         /// Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
+        /// 
+        /// The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
         /// </summary>
         [Input("refreshTokenMaxReuse")]
         public Input<int>? RefreshTokenMaxReuse { get; set; }
@@ -799,6 +814,8 @@ namespace Pulumi.Keycloak
 
         /// <summary>
         /// Configuration for WebAuthn Passwordless Policy authentication.
+        /// 
+        /// Each of these attributes are blocks with the following attributes:
         /// </summary>
         [Input("webAuthnPasswordlessPolicy")]
         public Input<Inputs.RealmWebAuthnPasswordlessPolicyArgs>? WebAuthnPasswordlessPolicy { get; set; }
@@ -1000,6 +1017,8 @@ namespace Pulumi.Keycloak
 
         /// <summary>
         /// The maximum amount of time a client has to finish the device code flow before it expires.
+        /// 
+        /// The attributes below should be specified in seconds.
         /// </summary>
         [Input("oauth2DeviceCodeLifespan")]
         public Input<string>? Oauth2DeviceCodeLifespan { get; set; }
@@ -1033,6 +1052,8 @@ namespace Pulumi.Keycloak
 
         /// <summary>
         /// The password policy for users within the realm.
+        /// 
+        /// The arguments below can be used to configure authentication flow bindings:
         /// </summary>
         [Input("passwordPolicy")]
         public Input<string>? PasswordPolicy { get; set; }
@@ -1045,6 +1066,8 @@ namespace Pulumi.Keycloak
 
         /// <summary>
         /// Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
+        /// 
+        /// The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
         /// </summary>
         [Input("refreshTokenMaxReuse")]
         public Input<int>? RefreshTokenMaxReuse { get; set; }
@@ -1141,6 +1164,8 @@ namespace Pulumi.Keycloak
 
         /// <summary>
         /// Configuration for WebAuthn Passwordless Policy authentication.
+        /// 
+        /// Each of these attributes are blocks with the following attributes:
         /// </summary>
         [Input("webAuthnPasswordlessPolicy")]
         public Input<Inputs.RealmWebAuthnPasswordlessPolicyGetArgs>? WebAuthnPasswordlessPolicy { get; set; }

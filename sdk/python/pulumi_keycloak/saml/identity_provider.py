@@ -32,6 +32,7 @@ class IdentityProviderArgs:
                  gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
                  link_only: Optional[pulumi.Input[bool]] = None,
+                 login_hint: Optional[pulumi.Input[str]] = None,
                  name_id_policy_format: Optional[pulumi.Input[str]] = None,
                  post_binding_authn_request: Optional[pulumi.Input[bool]] = None,
                  post_binding_logout: Optional[pulumi.Input[bool]] = None,
@@ -69,6 +70,7 @@ class IdentityProviderArgs:
         :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
         :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[str] login_hint: Login Hint.
         :param pulumi.Input[str] name_id_policy_format: Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
         :param pulumi.Input[bool] post_binding_authn_request: Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
@@ -120,6 +122,8 @@ class IdentityProviderArgs:
             pulumi.set(__self__, "hide_on_login_page", hide_on_login_page)
         if link_only is not None:
             pulumi.set(__self__, "link_only", link_only)
+        if login_hint is not None:
+            pulumi.set(__self__, "login_hint", login_hint)
         if name_id_policy_format is not None:
             pulumi.set(__self__, "name_id_policy_format", name_id_policy_format)
         if post_binding_authn_request is not None:
@@ -371,6 +375,18 @@ class IdentityProviderArgs:
         pulumi.set(self, "link_only", value)
 
     @property
+    @pulumi.getter(name="loginHint")
+    def login_hint(self) -> Optional[pulumi.Input[str]]:
+        """
+        Login Hint.
+        """
+        return pulumi.get(self, "login_hint")
+
+    @login_hint.setter
+    def login_hint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "login_hint", value)
+
+    @property
     @pulumi.getter(name="nameIdPolicyFormat")
     def name_id_policy_format(self) -> Optional[pulumi.Input[str]]:
         """
@@ -607,6 +623,7 @@ class _IdentityProviderState:
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
                  internal_id: Optional[pulumi.Input[str]] = None,
                  link_only: Optional[pulumi.Input[bool]] = None,
+                 login_hint: Optional[pulumi.Input[str]] = None,
                  name_id_policy_format: Optional[pulumi.Input[str]] = None,
                  post_binding_authn_request: Optional[pulumi.Input[bool]] = None,
                  post_binding_logout: Optional[pulumi.Input[bool]] = None,
@@ -645,6 +662,7 @@ class _IdentityProviderState:
         :param pulumi.Input[bool] hide_on_login_page: If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
         :param pulumi.Input[str] internal_id: Internal Identity Provider Id
         :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[str] login_hint: Login Hint.
         :param pulumi.Input[str] name_id_policy_format: Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
         :param pulumi.Input[bool] post_binding_authn_request: Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
@@ -700,6 +718,8 @@ class _IdentityProviderState:
             pulumi.set(__self__, "internal_id", internal_id)
         if link_only is not None:
             pulumi.set(__self__, "link_only", link_only)
+        if login_hint is not None:
+            pulumi.set(__self__, "login_hint", login_hint)
         if name_id_policy_format is not None:
             pulumi.set(__self__, "name_id_policy_format", name_id_policy_format)
         if post_binding_authn_request is not None:
@@ -941,6 +961,18 @@ class _IdentityProviderState:
     @link_only.setter
     def link_only(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "link_only", value)
+
+    @property
+    @pulumi.getter(name="loginHint")
+    def login_hint(self) -> Optional[pulumi.Input[str]]:
+        """
+        Login Hint.
+        """
+        return pulumi.get(self, "login_hint")
+
+    @login_hint.setter
+    def login_hint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "login_hint", value)
 
     @property
     @pulumi.getter(name="nameIdPolicyFormat")
@@ -1204,6 +1236,7 @@ class IdentityProvider(pulumi.CustomResource):
                  gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
                  link_only: Optional[pulumi.Input[bool]] = None,
+                 login_hint: Optional[pulumi.Input[str]] = None,
                  name_id_policy_format: Optional[pulumi.Input[str]] = None,
                  post_binding_authn_request: Optional[pulumi.Input[bool]] = None,
                  post_binding_logout: Optional[pulumi.Input[bool]] = None,
@@ -1279,6 +1312,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
         :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[str] login_hint: Login Hint.
         :param pulumi.Input[str] name_id_policy_format: Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
         :param pulumi.Input[bool] post_binding_authn_request: Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
@@ -1374,6 +1408,7 @@ class IdentityProvider(pulumi.CustomResource):
                  gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
                  link_only: Optional[pulumi.Input[bool]] = None,
+                 login_hint: Optional[pulumi.Input[str]] = None,
                  name_id_policy_format: Optional[pulumi.Input[str]] = None,
                  post_binding_authn_request: Optional[pulumi.Input[bool]] = None,
                  post_binding_logout: Optional[pulumi.Input[bool]] = None,
@@ -1423,6 +1458,7 @@ class IdentityProvider(pulumi.CustomResource):
             __props__.__dict__["gui_order"] = gui_order
             __props__.__dict__["hide_on_login_page"] = hide_on_login_page
             __props__.__dict__["link_only"] = link_only
+            __props__.__dict__["login_hint"] = login_hint
             __props__.__dict__["name_id_policy_format"] = name_id_policy_format
             __props__.__dict__["post_binding_authn_request"] = post_binding_authn_request
             __props__.__dict__["post_binding_logout"] = post_binding_logout
@@ -1475,6 +1511,7 @@ class IdentityProvider(pulumi.CustomResource):
             hide_on_login_page: Optional[pulumi.Input[bool]] = None,
             internal_id: Optional[pulumi.Input[str]] = None,
             link_only: Optional[pulumi.Input[bool]] = None,
+            login_hint: Optional[pulumi.Input[str]] = None,
             name_id_policy_format: Optional[pulumi.Input[str]] = None,
             post_binding_authn_request: Optional[pulumi.Input[bool]] = None,
             post_binding_logout: Optional[pulumi.Input[bool]] = None,
@@ -1518,6 +1555,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[bool] hide_on_login_page: If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
         :param pulumi.Input[str] internal_id: Internal Identity Provider Id
         :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[str] login_hint: Login Hint.
         :param pulumi.Input[str] name_id_policy_format: Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
         :param pulumi.Input[bool] post_binding_authn_request: Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
@@ -1560,6 +1598,7 @@ class IdentityProvider(pulumi.CustomResource):
         __props__.__dict__["hide_on_login_page"] = hide_on_login_page
         __props__.__dict__["internal_id"] = internal_id
         __props__.__dict__["link_only"] = link_only
+        __props__.__dict__["login_hint"] = login_hint
         __props__.__dict__["name_id_policy_format"] = name_id_policy_format
         __props__.__dict__["post_binding_authn_request"] = post_binding_authn_request
         __props__.__dict__["post_binding_logout"] = post_binding_logout
@@ -1714,6 +1753,14 @@ class IdentityProvider(pulumi.CustomResource):
         When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         """
         return pulumi.get(self, "link_only")
+
+    @property
+    @pulumi.getter(name="loginHint")
+    def login_hint(self) -> pulumi.Output[Optional[str]]:
+        """
+        Login Hint.
+        """
+        return pulumi.get(self, "login_hint")
 
     @property
     @pulumi.getter(name="nameIdPolicyFormat")

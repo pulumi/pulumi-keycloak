@@ -518,12 +518,16 @@ public class Realm extends com.pulumi.resources.CustomResource {
     /**
      * The maximum amount of time a client has to finish the device code flow before it expires.
      * 
+     * The attributes below should be specified in seconds.
+     * 
      */
     @Export(name="oauth2DeviceCodeLifespan", type=String.class, parameters={})
     private Output<String> oauth2DeviceCodeLifespan;
 
     /**
      * @return The maximum amount of time a client has to finish the device code flow before it expires.
+     * 
+     * The attributes below should be specified in seconds.
      * 
      */
     public Output<String> oauth2DeviceCodeLifespan() {
@@ -594,12 +598,16 @@ public class Realm extends com.pulumi.resources.CustomResource {
     /**
      * The password policy for users within the realm.
      * 
+     * The arguments below can be used to configure authentication flow bindings:
+     * 
      */
     @Export(name="passwordPolicy", type=String.class, parameters={})
     private Output</* @Nullable */ String> passwordPolicy;
 
     /**
      * @return The password policy for users within the realm.
+     * 
+     * The arguments below can be used to configure authentication flow bindings:
      * 
      */
     public Output<Optional<String>> passwordPolicy() {
@@ -622,12 +630,16 @@ public class Realm extends com.pulumi.resources.CustomResource {
     /**
      * Maximum number of times a refresh token can be reused before they are revoked. If unspecified and &#39;revoke_refresh_token&#39; is enabled the default value is 0 and refresh tokens can not be reused.
      * 
+     * The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak&#39;s default settings.
+     * 
      */
     @Export(name="refreshTokenMaxReuse", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> refreshTokenMaxReuse;
 
     /**
      * @return Maximum number of times a refresh token can be reused before they are revoked. If unspecified and &#39;revoke_refresh_token&#39; is enabled the default value is 0 and refresh tokens can not be reused.
+     * 
+     * The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak&#39;s default settings.
      * 
      */
     public Output<Optional<Integer>> refreshTokenMaxReuse() {
@@ -844,12 +856,16 @@ public class Realm extends com.pulumi.resources.CustomResource {
     /**
      * Configuration for WebAuthn Passwordless Policy authentication.
      * 
+     * Each of these attributes are blocks with the following attributes:
+     * 
      */
     @Export(name="webAuthnPasswordlessPolicy", type=RealmWebAuthnPasswordlessPolicy.class, parameters={})
     private Output<RealmWebAuthnPasswordlessPolicy> webAuthnPasswordlessPolicy;
 
     /**
      * @return Configuration for WebAuthn Passwordless Policy authentication.
+     * 
+     * Each of these attributes are blocks with the following attributes:
      * 
      */
     public Output<RealmWebAuthnPasswordlessPolicy> webAuthnPasswordlessPolicy() {

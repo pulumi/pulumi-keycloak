@@ -137,6 +137,10 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly linkOnly!: pulumi.Output<boolean | undefined>;
     /**
+     * Login Hint.
+     */
+    public readonly loginHint!: pulumi.Output<string | undefined>;
+    /**
      * Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
      */
     public readonly nameIdPolicyFormat!: pulumi.Output<string | undefined>;
@@ -247,6 +251,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["hideOnLoginPage"] = state ? state.hideOnLoginPage : undefined;
             resourceInputs["internalId"] = state ? state.internalId : undefined;
             resourceInputs["linkOnly"] = state ? state.linkOnly : undefined;
+            resourceInputs["loginHint"] = state ? state.loginHint : undefined;
             resourceInputs["nameIdPolicyFormat"] = state ? state.nameIdPolicyFormat : undefined;
             resourceInputs["postBindingAuthnRequest"] = state ? state.postBindingAuthnRequest : undefined;
             resourceInputs["postBindingLogout"] = state ? state.postBindingLogout : undefined;
@@ -297,6 +302,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["guiOrder"] = args ? args.guiOrder : undefined;
             resourceInputs["hideOnLoginPage"] = args ? args.hideOnLoginPage : undefined;
             resourceInputs["linkOnly"] = args ? args.linkOnly : undefined;
+            resourceInputs["loginHint"] = args ? args.loginHint : undefined;
             resourceInputs["nameIdPolicyFormat"] = args ? args.nameIdPolicyFormat : undefined;
             resourceInputs["postBindingAuthnRequest"] = args ? args.postBindingAuthnRequest : undefined;
             resourceInputs["postBindingLogout"] = args ? args.postBindingLogout : undefined;
@@ -393,6 +399,10 @@ export interface IdentityProviderState {
      * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
     linkOnly?: pulumi.Input<boolean>;
+    /**
+     * Login Hint.
+     */
+    loginHint?: pulumi.Input<string>;
     /**
      * Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
      */
@@ -540,6 +550,10 @@ export interface IdentityProviderArgs {
      * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
     linkOnly?: pulumi.Input<boolean>;
+    /**
+     * Login Hint.
+     */
+    loginHint?: pulumi.Input<string>;
     /**
      * Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
      */

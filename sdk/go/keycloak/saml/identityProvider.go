@@ -105,6 +105,8 @@ type IdentityProvider struct {
 	InternalId pulumi.StringOutput `pulumi:"internalId"`
 	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly pulumi.BoolPtrOutput `pulumi:"linkOnly"`
+	// Login Hint.
+	LoginHint pulumi.StringPtrOutput `pulumi:"loginHint"`
 	// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
 	NameIdPolicyFormat pulumi.StringPtrOutput `pulumi:"nameIdPolicyFormat"`
 	// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
@@ -221,6 +223,8 @@ type identityProviderState struct {
 	InternalId *string `pulumi:"internalId"`
 	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly *bool `pulumi:"linkOnly"`
+	// Login Hint.
+	LoginHint *string `pulumi:"loginHint"`
 	// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
 	NameIdPolicyFormat *string `pulumi:"nameIdPolicyFormat"`
 	// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
@@ -297,6 +301,8 @@ type IdentityProviderState struct {
 	InternalId pulumi.StringPtrInput
 	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly pulumi.BoolPtrInput
+	// Login Hint.
+	LoginHint pulumi.StringPtrInput
 	// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
 	NameIdPolicyFormat pulumi.StringPtrInput
 	// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
@@ -375,6 +381,8 @@ type identityProviderArgs struct {
 	HideOnLoginPage *bool `pulumi:"hideOnLoginPage"`
 	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly *bool `pulumi:"linkOnly"`
+	// Login Hint.
+	LoginHint *string `pulumi:"loginHint"`
 	// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
 	NameIdPolicyFormat *string `pulumi:"nameIdPolicyFormat"`
 	// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
@@ -450,6 +458,8 @@ type IdentityProviderArgs struct {
 	HideOnLoginPage pulumi.BoolPtrInput
 	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly pulumi.BoolPtrInput
+	// Login Hint.
+	LoginHint pulumi.StringPtrInput
 	// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
 	NameIdPolicyFormat pulumi.StringPtrInput
 	// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
@@ -661,6 +671,11 @@ func (o IdentityProviderOutput) InternalId() pulumi.StringOutput {
 // When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 func (o IdentityProviderOutput) LinkOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.LinkOnly }).(pulumi.BoolPtrOutput)
+}
+
+// Login Hint.
+func (o IdentityProviderOutput) LoginHint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.LoginHint }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the URI reference corresponding to a name identifier format. Defaults to empty.

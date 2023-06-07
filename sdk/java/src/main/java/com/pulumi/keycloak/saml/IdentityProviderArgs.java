@@ -252,6 +252,21 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * Login Hint.
+     * 
+     */
+    @Import(name="loginHint")
+    private @Nullable Output<String> loginHint;
+
+    /**
+     * @return Login Hint.
+     * 
+     */
+    public Optional<Output<String>> loginHint() {
+        return Optional.ofNullable(this.loginHint);
+    }
+
+    /**
      * Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
      * 
      */
@@ -570,6 +585,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         this.guiOrder = $.guiOrder;
         this.hideOnLoginPage = $.hideOnLoginPage;
         this.linkOnly = $.linkOnly;
+        this.loginHint = $.loginHint;
         this.nameIdPolicyFormat = $.nameIdPolicyFormat;
         this.postBindingAuthnRequest = $.postBindingAuthnRequest;
         this.postBindingLogout = $.postBindingLogout;
@@ -952,6 +968,27 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder linkOnly(Boolean linkOnly) {
             return linkOnly(Output.of(linkOnly));
+        }
+
+        /**
+         * @param loginHint Login Hint.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder loginHint(@Nullable Output<String> loginHint) {
+            $.loginHint = loginHint;
+            return this;
+        }
+
+        /**
+         * @param loginHint Login Hint.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder loginHint(String loginHint) {
+            return loginHint(Output.of(loginHint));
         }
 
         /**

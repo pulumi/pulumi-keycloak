@@ -366,7 +366,7 @@ func Provider() tfbridge.ProviderInfo {
 		"saml_",
 		"authentication_",
 	}, x.MakeStandardToken(mainPkg)))
-	contract.AssertNoError(err)
+	contract.AssertNoErrorf(err, "failed to compute default modules")
 
 	prov.SetAutonaming(255, "-")
 

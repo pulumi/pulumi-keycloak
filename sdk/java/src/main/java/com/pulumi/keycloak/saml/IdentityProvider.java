@@ -313,6 +313,20 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.linkOnly);
     }
     /**
+     * Login Hint.
+     * 
+     */
+    @Export(name="loginHint", type=String.class, parameters={})
+    private Output</* @Nullable */ String> loginHint;
+
+    /**
+     * @return Login Hint.
+     * 
+     */
+    public Output<Optional<String>> loginHint() {
+        return Codegen.optional(this.loginHint);
+    }
+    /**
      * Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
      * 
      */

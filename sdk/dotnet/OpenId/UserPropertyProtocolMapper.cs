@@ -23,6 +23,7 @@ namespace Pulumi.Keycloak.OpenId
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 
@@ -60,6 +61,7 @@ namespace Pulumi.Keycloak.OpenId
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Keycloak = Pulumi.Keycloak;
     /// 

@@ -14,6 +14,37 @@ namespace Pulumi.Keycloak
     /// 
     /// A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///     });
+    /// 
+    ///     var javaKeystore = new Keycloak.RealmKeystoreJavaGenerated("javaKeystore", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Enabled = true,
+    ///         Active = true,
+    ///         Keystore = "&lt;path to your keystore&gt;",
+    ///         KeystorePassword = "&lt;password for keystore&gt;",
+    ///         KeyAlias = "&lt;alias for the private key&gt;",
+    ///         KeyPassword = "&lt;password for the private key&gt;",
+    ///         Priority = 100,
+    ///         Algorithm = "RS256",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
@@ -44,13 +75,13 @@ namespace Pulumi.Keycloak
         public Output<bool?> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// Alias for the private key
+        /// Alias for the private key.
         /// </summary>
         [Output("keyAlias")]
         public Output<string> KeyAlias { get; private set; } = null!;
 
         /// <summary>
-        /// Password for the private key
+        /// Password for the private key.
         /// </summary>
         [Output("keyPassword")]
         public Output<string> KeyPassword { get; private set; } = null!;
@@ -62,7 +93,7 @@ namespace Pulumi.Keycloak
         public Output<string> Keystore { get; private set; } = null!;
 
         /// <summary>
-        /// Password for the private key.
+        /// Password for the keys.
         /// </summary>
         [Output("keystorePassword")]
         public Output<string> KeystorePassword { get; private set; } = null!;
@@ -150,13 +181,13 @@ namespace Pulumi.Keycloak
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// Alias for the private key
+        /// Alias for the private key.
         /// </summary>
         [Input("keyAlias", required: true)]
         public Input<string> KeyAlias { get; set; } = null!;
 
         /// <summary>
-        /// Password for the private key
+        /// Password for the private key.
         /// </summary>
         [Input("keyPassword", required: true)]
         public Input<string> KeyPassword { get; set; } = null!;
@@ -168,7 +199,7 @@ namespace Pulumi.Keycloak
         public Input<string> Keystore { get; set; } = null!;
 
         /// <summary>
-        /// Password for the private key.
+        /// Password for the keys.
         /// </summary>
         [Input("keystorePassword", required: true)]
         public Input<string> KeystorePassword { get; set; } = null!;
@@ -218,13 +249,13 @@ namespace Pulumi.Keycloak
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// Alias for the private key
+        /// Alias for the private key.
         /// </summary>
         [Input("keyAlias")]
         public Input<string>? KeyAlias { get; set; }
 
         /// <summary>
-        /// Password for the private key
+        /// Password for the private key.
         /// </summary>
         [Input("keyPassword")]
         public Input<string>? KeyPassword { get; set; }
@@ -236,7 +267,7 @@ namespace Pulumi.Keycloak
         public Input<string>? Keystore { get; set; }
 
         /// <summary>
-        /// Password for the private key.
+        /// Password for the keys.
         /// </summary>
         [Input("keystorePassword")]
         public Input<string>? KeystorePassword { get; set; }
