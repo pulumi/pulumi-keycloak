@@ -1,6 +1,6 @@
 module github.com/pulumi/pulumi-keycloak/provider/v5
 
-go 1.19
+go 1.20
 
 replace (
 	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20230327102345-3fa930f86570

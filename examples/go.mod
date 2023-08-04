@@ -1,6 +1,6 @@
 module github.com/pulumi/pulumi-keycloak/examples/v4
 
-go 1.19
+go 1.20
 
 require github.com/pulumi/pulumi/pkg/v3 v3.56.0
 
