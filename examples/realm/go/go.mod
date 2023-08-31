@@ -1,6 +1,6 @@
 module github.com/pulumi/pulumi-keycloak/examples/realm/go
 
-go 1.20
+go 1.21
 
 require (
 	github.com/pulumi/pulumi-keycloak/sdk/v4 v4.0.1
