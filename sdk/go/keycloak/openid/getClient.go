@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
@@ -48,6 +50,7 @@ import (
 //
 // ```
 func LookupClient(ctx *pulumi.Context, args *LookupClientArgs, opts ...pulumi.InvokeOption) (*LookupClientResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupClientResult
 	err := ctx.Invoke("keycloak:openid/getClient:getClient", args, &rv, opts...)
 	if err != nil {
@@ -165,6 +168,12 @@ func (o LookupClientResultOutput) ToLookupClientResultOutput() LookupClientResul
 
 func (o LookupClientResultOutput) ToLookupClientResultOutputWithContext(ctx context.Context) LookupClientResultOutput {
 	return o
+}
+
+func (o LookupClientResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupClientResult] {
+	return pulumix.Output[LookupClientResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupClientResultOutput) AccessTokenLifespan() pulumi.StringOutput {

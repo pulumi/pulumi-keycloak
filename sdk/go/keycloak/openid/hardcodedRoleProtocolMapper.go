@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing hardcoded role protocol mappers within Keycloak.
@@ -163,6 +165,7 @@ func NewHardcodedRoleProtocolMapper(ctx *pulumi.Context,
 	if args.RoleId == nil {
 		return nil, errors.New("invalid value for required argument 'RoleId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource HardcodedRoleProtocolMapper
 	err := ctx.RegisterResource("keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper", name, args, &resource, opts...)
 	if err != nil {
@@ -264,6 +267,12 @@ func (i *HardcodedRoleProtocolMapper) ToHardcodedRoleProtocolMapperOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleProtocolMapperOutput)
 }
 
+func (i *HardcodedRoleProtocolMapper) ToOutput(ctx context.Context) pulumix.Output[*HardcodedRoleProtocolMapper] {
+	return pulumix.Output[*HardcodedRoleProtocolMapper]{
+		OutputState: i.ToHardcodedRoleProtocolMapperOutputWithContext(ctx).OutputState,
+	}
+}
+
 // HardcodedRoleProtocolMapperArrayInput is an input type that accepts HardcodedRoleProtocolMapperArray and HardcodedRoleProtocolMapperArrayOutput values.
 // You can construct a concrete instance of `HardcodedRoleProtocolMapperArrayInput` via:
 //
@@ -287,6 +296,12 @@ func (i HardcodedRoleProtocolMapperArray) ToHardcodedRoleProtocolMapperArrayOutp
 
 func (i HardcodedRoleProtocolMapperArray) ToHardcodedRoleProtocolMapperArrayOutputWithContext(ctx context.Context) HardcodedRoleProtocolMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleProtocolMapperArrayOutput)
+}
+
+func (i HardcodedRoleProtocolMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*HardcodedRoleProtocolMapper] {
+	return pulumix.Output[[]*HardcodedRoleProtocolMapper]{
+		OutputState: i.ToHardcodedRoleProtocolMapperArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // HardcodedRoleProtocolMapperMapInput is an input type that accepts HardcodedRoleProtocolMapperMap and HardcodedRoleProtocolMapperMapOutput values.
@@ -314,6 +329,12 @@ func (i HardcodedRoleProtocolMapperMap) ToHardcodedRoleProtocolMapperMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleProtocolMapperMapOutput)
 }
 
+func (i HardcodedRoleProtocolMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*HardcodedRoleProtocolMapper] {
+	return pulumix.Output[map[string]*HardcodedRoleProtocolMapper]{
+		OutputState: i.ToHardcodedRoleProtocolMapperMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type HardcodedRoleProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (HardcodedRoleProtocolMapperOutput) ElementType() reflect.Type {
@@ -326,6 +347,12 @@ func (o HardcodedRoleProtocolMapperOutput) ToHardcodedRoleProtocolMapperOutput()
 
 func (o HardcodedRoleProtocolMapperOutput) ToHardcodedRoleProtocolMapperOutputWithContext(ctx context.Context) HardcodedRoleProtocolMapperOutput {
 	return o
+}
+
+func (o HardcodedRoleProtocolMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*HardcodedRoleProtocolMapper] {
+	return pulumix.Output[*HardcodedRoleProtocolMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
@@ -367,6 +394,12 @@ func (o HardcodedRoleProtocolMapperArrayOutput) ToHardcodedRoleProtocolMapperArr
 	return o
 }
 
+func (o HardcodedRoleProtocolMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*HardcodedRoleProtocolMapper] {
+	return pulumix.Output[[]*HardcodedRoleProtocolMapper]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o HardcodedRoleProtocolMapperArrayOutput) Index(i pulumi.IntInput) HardcodedRoleProtocolMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *HardcodedRoleProtocolMapper {
 		return vs[0].([]*HardcodedRoleProtocolMapper)[vs[1].(int)]
@@ -385,6 +418,12 @@ func (o HardcodedRoleProtocolMapperMapOutput) ToHardcodedRoleProtocolMapperMapOu
 
 func (o HardcodedRoleProtocolMapperMapOutput) ToHardcodedRoleProtocolMapperMapOutputWithContext(ctx context.Context) HardcodedRoleProtocolMapperMapOutput {
 	return o
+}
+
+func (o HardcodedRoleProtocolMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*HardcodedRoleProtocolMapper] {
+	return pulumix.Output[map[string]*HardcodedRoleProtocolMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o HardcodedRoleProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) HardcodedRoleProtocolMapperOutput {

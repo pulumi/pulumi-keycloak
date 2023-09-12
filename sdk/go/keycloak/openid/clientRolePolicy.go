@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ClientRolePolicy struct {
@@ -43,6 +45,7 @@ func NewClientRolePolicy(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ClientRolePolicy
 	err := ctx.RegisterResource("keycloak:openid/clientRolePolicy:ClientRolePolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -136,6 +139,12 @@ func (i *ClientRolePolicy) ToClientRolePolicyOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(ClientRolePolicyOutput)
 }
 
+func (i *ClientRolePolicy) ToOutput(ctx context.Context) pulumix.Output[*ClientRolePolicy] {
+	return pulumix.Output[*ClientRolePolicy]{
+		OutputState: i.ToClientRolePolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ClientRolePolicyArrayInput is an input type that accepts ClientRolePolicyArray and ClientRolePolicyArrayOutput values.
 // You can construct a concrete instance of `ClientRolePolicyArrayInput` via:
 //
@@ -159,6 +168,12 @@ func (i ClientRolePolicyArray) ToClientRolePolicyArrayOutput() ClientRolePolicyA
 
 func (i ClientRolePolicyArray) ToClientRolePolicyArrayOutputWithContext(ctx context.Context) ClientRolePolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientRolePolicyArrayOutput)
+}
+
+func (i ClientRolePolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*ClientRolePolicy] {
+	return pulumix.Output[[]*ClientRolePolicy]{
+		OutputState: i.ToClientRolePolicyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ClientRolePolicyMapInput is an input type that accepts ClientRolePolicyMap and ClientRolePolicyMapOutput values.
@@ -186,6 +201,12 @@ func (i ClientRolePolicyMap) ToClientRolePolicyMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(ClientRolePolicyMapOutput)
 }
 
+func (i ClientRolePolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientRolePolicy] {
+	return pulumix.Output[map[string]*ClientRolePolicy]{
+		OutputState: i.ToClientRolePolicyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ClientRolePolicyOutput struct{ *pulumi.OutputState }
 
 func (ClientRolePolicyOutput) ElementType() reflect.Type {
@@ -198,6 +219,12 @@ func (o ClientRolePolicyOutput) ToClientRolePolicyOutput() ClientRolePolicyOutpu
 
 func (o ClientRolePolicyOutput) ToClientRolePolicyOutputWithContext(ctx context.Context) ClientRolePolicyOutput {
 	return o
+}
+
+func (o ClientRolePolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientRolePolicy] {
+	return pulumix.Output[*ClientRolePolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ClientRolePolicyOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -246,6 +273,12 @@ func (o ClientRolePolicyArrayOutput) ToClientRolePolicyArrayOutputWithContext(ct
 	return o
 }
 
+func (o ClientRolePolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ClientRolePolicy] {
+	return pulumix.Output[[]*ClientRolePolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ClientRolePolicyArrayOutput) Index(i pulumi.IntInput) ClientRolePolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ClientRolePolicy {
 		return vs[0].([]*ClientRolePolicy)[vs[1].(int)]
@@ -264,6 +297,12 @@ func (o ClientRolePolicyMapOutput) ToClientRolePolicyMapOutput() ClientRolePolic
 
 func (o ClientRolePolicyMapOutput) ToClientRolePolicyMapOutputWithContext(ctx context.Context) ClientRolePolicyMapOutput {
 	return o
+}
+
+func (o ClientRolePolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientRolePolicy] {
+	return pulumix.Output[map[string]*ClientRolePolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ClientRolePolicyMapOutput) MapIndex(k pulumi.StringInput) ClientRolePolicyOutput {

@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing audience protocol mappers within Keycloak.
@@ -152,6 +154,7 @@ func NewAudienceProtocolMapper(ctx *pulumi.Context,
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AudienceProtocolMapper
 	err := ctx.RegisterResource("keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper", name, args, &resource, opts...)
 	if err != nil {
@@ -277,6 +280,12 @@ func (i *AudienceProtocolMapper) ToAudienceProtocolMapperOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(AudienceProtocolMapperOutput)
 }
 
+func (i *AudienceProtocolMapper) ToOutput(ctx context.Context) pulumix.Output[*AudienceProtocolMapper] {
+	return pulumix.Output[*AudienceProtocolMapper]{
+		OutputState: i.ToAudienceProtocolMapperOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AudienceProtocolMapperArrayInput is an input type that accepts AudienceProtocolMapperArray and AudienceProtocolMapperArrayOutput values.
 // You can construct a concrete instance of `AudienceProtocolMapperArrayInput` via:
 //
@@ -300,6 +309,12 @@ func (i AudienceProtocolMapperArray) ToAudienceProtocolMapperArrayOutput() Audie
 
 func (i AudienceProtocolMapperArray) ToAudienceProtocolMapperArrayOutputWithContext(ctx context.Context) AudienceProtocolMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AudienceProtocolMapperArrayOutput)
+}
+
+func (i AudienceProtocolMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*AudienceProtocolMapper] {
+	return pulumix.Output[[]*AudienceProtocolMapper]{
+		OutputState: i.ToAudienceProtocolMapperArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AudienceProtocolMapperMapInput is an input type that accepts AudienceProtocolMapperMap and AudienceProtocolMapperMapOutput values.
@@ -327,6 +342,12 @@ func (i AudienceProtocolMapperMap) ToAudienceProtocolMapperMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(AudienceProtocolMapperMapOutput)
 }
 
+func (i AudienceProtocolMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AudienceProtocolMapper] {
+	return pulumix.Output[map[string]*AudienceProtocolMapper]{
+		OutputState: i.ToAudienceProtocolMapperMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AudienceProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (AudienceProtocolMapperOutput) ElementType() reflect.Type {
@@ -339,6 +360,12 @@ func (o AudienceProtocolMapperOutput) ToAudienceProtocolMapperOutput() AudienceP
 
 func (o AudienceProtocolMapperOutput) ToAudienceProtocolMapperOutputWithContext(ctx context.Context) AudienceProtocolMapperOutput {
 	return o
+}
+
+func (o AudienceProtocolMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*AudienceProtocolMapper] {
+	return pulumix.Output[*AudienceProtocolMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
@@ -395,6 +422,12 @@ func (o AudienceProtocolMapperArrayOutput) ToAudienceProtocolMapperArrayOutputWi
 	return o
 }
 
+func (o AudienceProtocolMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AudienceProtocolMapper] {
+	return pulumix.Output[[]*AudienceProtocolMapper]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AudienceProtocolMapperArrayOutput) Index(i pulumi.IntInput) AudienceProtocolMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AudienceProtocolMapper {
 		return vs[0].([]*AudienceProtocolMapper)[vs[1].(int)]
@@ -413,6 +446,12 @@ func (o AudienceProtocolMapperMapOutput) ToAudienceProtocolMapperMapOutput() Aud
 
 func (o AudienceProtocolMapperMapOutput) ToAudienceProtocolMapperMapOutputWithContext(ctx context.Context) AudienceProtocolMapperMapOutput {
 	return o
+}
+
+func (o AudienceProtocolMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AudienceProtocolMapper] {
+	return pulumix.Output[map[string]*AudienceProtocolMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AudienceProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) AudienceProtocolMapperOutput {

@@ -129,11 +129,11 @@ def get_client_installation_provider(client_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('keycloak:saml/getClientInstallationProvider:getClientInstallationProvider', __args__, opts=opts, typ=GetClientInstallationProviderResult).value
 
     return AwaitableGetClientInstallationProviderResult(
-        client_id=__ret__.client_id,
-        id=__ret__.id,
-        provider_id=__ret__.provider_id,
-        realm_id=__ret__.realm_id,
-        value=__ret__.value)
+        client_id=pulumi.get(__ret__, 'client_id'),
+        id=pulumi.get(__ret__, 'id'),
+        provider_id=pulumi.get(__ret__, 'provider_id'),
+        realm_id=pulumi.get(__ret__, 'realm_id'),
+        value=pulumi.get(__ret__, 'value'))
 
 
 @_utilities.lift_output_func(get_client_installation_provider)

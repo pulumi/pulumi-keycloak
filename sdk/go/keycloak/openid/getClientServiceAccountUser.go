@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This data source can be used to fetch information about the service account user that is associated with an OpenID client
@@ -76,6 +78,7 @@ import (
 //
 // ```
 func GetClientServiceAccountUser(ctx *pulumi.Context, args *GetClientServiceAccountUserArgs, opts ...pulumi.InvokeOption) (*GetClientServiceAccountUserResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetClientServiceAccountUserResult
 	err := ctx.Invoke("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", args, &rv, opts...)
 	if err != nil {
@@ -146,6 +149,12 @@ func (o GetClientServiceAccountUserResultOutput) ToGetClientServiceAccountUserRe
 
 func (o GetClientServiceAccountUserResultOutput) ToGetClientServiceAccountUserResultOutputWithContext(ctx context.Context) GetClientServiceAccountUserResultOutput {
 	return o
+}
+
+func (o GetClientServiceAccountUserResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetClientServiceAccountUserResult] {
+	return pulumix.Output[GetClientServiceAccountUserResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetClientServiceAccountUserResultOutput) Attributes() pulumi.MapOutput {

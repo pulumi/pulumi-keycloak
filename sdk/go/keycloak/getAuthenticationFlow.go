@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This data source can be used to fetch the ID of an authentication flow within Keycloak.
@@ -43,6 +45,7 @@ import (
 //
 // ```
 func GetAuthenticationFlow(ctx *pulumi.Context, args *GetAuthenticationFlowArgs, opts ...pulumi.InvokeOption) (*GetAuthenticationFlowResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAuthenticationFlowResult
 	err := ctx.Invoke("keycloak:index/getAuthenticationFlow:getAuthenticationFlow", args, &rv, opts...)
 	if err != nil {
@@ -105,6 +108,12 @@ func (o GetAuthenticationFlowResultOutput) ToGetAuthenticationFlowResultOutput()
 
 func (o GetAuthenticationFlowResultOutput) ToGetAuthenticationFlowResultOutputWithContext(ctx context.Context) GetAuthenticationFlowResultOutput {
 	return o
+}
+
+func (o GetAuthenticationFlowResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAuthenticationFlowResult] {
+	return pulumix.Output[GetAuthenticationFlowResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetAuthenticationFlowResultOutput) Alias() pulumi.StringOutput {

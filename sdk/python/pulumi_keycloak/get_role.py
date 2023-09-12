@@ -140,13 +140,13 @@ def get_role(client_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('keycloak:index/getRole:getRole', __args__, opts=opts, typ=GetRoleResult).value
 
     return AwaitableGetRoleResult(
-        attributes=__ret__.attributes,
-        client_id=__ret__.client_id,
-        composite_roles=__ret__.composite_roles,
-        description=__ret__.description,
-        id=__ret__.id,
-        name=__ret__.name,
-        realm_id=__ret__.realm_id)
+        attributes=pulumi.get(__ret__, 'attributes'),
+        client_id=pulumi.get(__ret__, 'client_id'),
+        composite_roles=pulumi.get(__ret__, 'composite_roles'),
+        description=pulumi.get(__ret__, 'description'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        realm_id=pulumi.get(__ret__, 'realm_id'))
 
 
 @_utilities.lift_output_func(get_role)

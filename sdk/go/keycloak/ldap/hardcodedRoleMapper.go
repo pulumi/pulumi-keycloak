@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing hardcoded role mappers for Keycloak users federated via LDAP.
@@ -186,6 +188,7 @@ func NewHardcodedRoleMapper(ctx *pulumi.Context,
 	if args.Role == nil {
 		return nil, errors.New("invalid value for required argument 'Role'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource HardcodedRoleMapper
 	err := ctx.RegisterResource("keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper", name, args, &resource, opts...)
 	if err != nil {
@@ -279,6 +282,12 @@ func (i *HardcodedRoleMapper) ToHardcodedRoleMapperOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleMapperOutput)
 }
 
+func (i *HardcodedRoleMapper) ToOutput(ctx context.Context) pulumix.Output[*HardcodedRoleMapper] {
+	return pulumix.Output[*HardcodedRoleMapper]{
+		OutputState: i.ToHardcodedRoleMapperOutputWithContext(ctx).OutputState,
+	}
+}
+
 // HardcodedRoleMapperArrayInput is an input type that accepts HardcodedRoleMapperArray and HardcodedRoleMapperArrayOutput values.
 // You can construct a concrete instance of `HardcodedRoleMapperArrayInput` via:
 //
@@ -302,6 +311,12 @@ func (i HardcodedRoleMapperArray) ToHardcodedRoleMapperArrayOutput() HardcodedRo
 
 func (i HardcodedRoleMapperArray) ToHardcodedRoleMapperArrayOutputWithContext(ctx context.Context) HardcodedRoleMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleMapperArrayOutput)
+}
+
+func (i HardcodedRoleMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*HardcodedRoleMapper] {
+	return pulumix.Output[[]*HardcodedRoleMapper]{
+		OutputState: i.ToHardcodedRoleMapperArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // HardcodedRoleMapperMapInput is an input type that accepts HardcodedRoleMapperMap and HardcodedRoleMapperMapOutput values.
@@ -329,6 +344,12 @@ func (i HardcodedRoleMapperMap) ToHardcodedRoleMapperMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleMapperMapOutput)
 }
 
+func (i HardcodedRoleMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*HardcodedRoleMapper] {
+	return pulumix.Output[map[string]*HardcodedRoleMapper]{
+		OutputState: i.ToHardcodedRoleMapperMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type HardcodedRoleMapperOutput struct{ *pulumi.OutputState }
 
 func (HardcodedRoleMapperOutput) ElementType() reflect.Type {
@@ -341,6 +362,12 @@ func (o HardcodedRoleMapperOutput) ToHardcodedRoleMapperOutput() HardcodedRoleMa
 
 func (o HardcodedRoleMapperOutput) ToHardcodedRoleMapperOutputWithContext(ctx context.Context) HardcodedRoleMapperOutput {
 	return o
+}
+
+func (o HardcodedRoleMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*HardcodedRoleMapper] {
+	return pulumix.Output[*HardcodedRoleMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of the LDAP user federation provider to attach this mapper to.
@@ -377,6 +404,12 @@ func (o HardcodedRoleMapperArrayOutput) ToHardcodedRoleMapperArrayOutputWithCont
 	return o
 }
 
+func (o HardcodedRoleMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*HardcodedRoleMapper] {
+	return pulumix.Output[[]*HardcodedRoleMapper]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o HardcodedRoleMapperArrayOutput) Index(i pulumi.IntInput) HardcodedRoleMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *HardcodedRoleMapper {
 		return vs[0].([]*HardcodedRoleMapper)[vs[1].(int)]
@@ -395,6 +428,12 @@ func (o HardcodedRoleMapperMapOutput) ToHardcodedRoleMapperMapOutput() Hardcoded
 
 func (o HardcodedRoleMapperMapOutput) ToHardcodedRoleMapperMapOutputWithContext(ctx context.Context) HardcodedRoleMapperMapOutput {
 	return o
+}
+
+func (o HardcodedRoleMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*HardcodedRoleMapper] {
+	return pulumix.Output[map[string]*HardcodedRoleMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o HardcodedRoleMapperMapOutput) MapIndex(k pulumi.StringInput) HardcodedRoleMapperOutput {

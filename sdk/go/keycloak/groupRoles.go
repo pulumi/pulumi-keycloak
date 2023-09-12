@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows you to manage roles assigned to a Keycloak group.
@@ -207,6 +209,7 @@ func NewGroupRoles(ctx *pulumi.Context,
 	if args.RoleIds == nil {
 		return nil, errors.New("invalid value for required argument 'RoleIds'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource GroupRoles
 	err := ctx.RegisterResource("keycloak:index/groupRoles:GroupRoles", name, args, &resource, opts...)
 	if err != nil {
@@ -300,6 +303,12 @@ func (i *GroupRoles) ToGroupRolesOutputWithContext(ctx context.Context) GroupRol
 	return pulumi.ToOutputWithContext(ctx, i).(GroupRolesOutput)
 }
 
+func (i *GroupRoles) ToOutput(ctx context.Context) pulumix.Output[*GroupRoles] {
+	return pulumix.Output[*GroupRoles]{
+		OutputState: i.ToGroupRolesOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GroupRolesArrayInput is an input type that accepts GroupRolesArray and GroupRolesArrayOutput values.
 // You can construct a concrete instance of `GroupRolesArrayInput` via:
 //
@@ -323,6 +332,12 @@ func (i GroupRolesArray) ToGroupRolesArrayOutput() GroupRolesArrayOutput {
 
 func (i GroupRolesArray) ToGroupRolesArrayOutputWithContext(ctx context.Context) GroupRolesArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupRolesArrayOutput)
+}
+
+func (i GroupRolesArray) ToOutput(ctx context.Context) pulumix.Output[[]*GroupRoles] {
+	return pulumix.Output[[]*GroupRoles]{
+		OutputState: i.ToGroupRolesArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // GroupRolesMapInput is an input type that accepts GroupRolesMap and GroupRolesMapOutput values.
@@ -350,6 +365,12 @@ func (i GroupRolesMap) ToGroupRolesMapOutputWithContext(ctx context.Context) Gro
 	return pulumi.ToOutputWithContext(ctx, i).(GroupRolesMapOutput)
 }
 
+func (i GroupRolesMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*GroupRoles] {
+	return pulumix.Output[map[string]*GroupRoles]{
+		OutputState: i.ToGroupRolesMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GroupRolesOutput struct{ *pulumi.OutputState }
 
 func (GroupRolesOutput) ElementType() reflect.Type {
@@ -362,6 +383,12 @@ func (o GroupRolesOutput) ToGroupRolesOutput() GroupRolesOutput {
 
 func (o GroupRolesOutput) ToGroupRolesOutputWithContext(ctx context.Context) GroupRolesOutput {
 	return o
+}
+
+func (o GroupRolesOutput) ToOutput(ctx context.Context) pulumix.Output[*GroupRoles] {
+	return pulumix.Output[*GroupRoles]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
@@ -398,6 +425,12 @@ func (o GroupRolesArrayOutput) ToGroupRolesArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o GroupRolesArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*GroupRoles] {
+	return pulumix.Output[[]*GroupRoles]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GroupRolesArrayOutput) Index(i pulumi.IntInput) GroupRolesOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GroupRoles {
 		return vs[0].([]*GroupRoles)[vs[1].(int)]
@@ -416,6 +449,12 @@ func (o GroupRolesMapOutput) ToGroupRolesMapOutput() GroupRolesMapOutput {
 
 func (o GroupRolesMapOutput) ToGroupRolesMapOutputWithContext(ctx context.Context) GroupRolesMapOutput {
 	return o
+}
+
+func (o GroupRolesMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*GroupRoles] {
+	return pulumix.Output[map[string]*GroupRoles]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GroupRolesMapOutput) MapIndex(k pulumi.StringInput) GroupRolesOutput {

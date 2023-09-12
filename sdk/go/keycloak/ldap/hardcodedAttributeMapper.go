@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing hardcoded attribute mappers for Keycloak users federated via LDAP.
@@ -115,6 +117,7 @@ func NewHardcodedAttributeMapper(ctx *pulumi.Context,
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource HardcodedAttributeMapper
 	err := ctx.RegisterResource("keycloak:ldap/hardcodedAttributeMapper:HardcodedAttributeMapper", name, args, &resource, opts...)
 	if err != nil {
@@ -216,6 +219,12 @@ func (i *HardcodedAttributeMapper) ToHardcodedAttributeMapperOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedAttributeMapperOutput)
 }
 
+func (i *HardcodedAttributeMapper) ToOutput(ctx context.Context) pulumix.Output[*HardcodedAttributeMapper] {
+	return pulumix.Output[*HardcodedAttributeMapper]{
+		OutputState: i.ToHardcodedAttributeMapperOutputWithContext(ctx).OutputState,
+	}
+}
+
 // HardcodedAttributeMapperArrayInput is an input type that accepts HardcodedAttributeMapperArray and HardcodedAttributeMapperArrayOutput values.
 // You can construct a concrete instance of `HardcodedAttributeMapperArrayInput` via:
 //
@@ -239,6 +248,12 @@ func (i HardcodedAttributeMapperArray) ToHardcodedAttributeMapperArrayOutput() H
 
 func (i HardcodedAttributeMapperArray) ToHardcodedAttributeMapperArrayOutputWithContext(ctx context.Context) HardcodedAttributeMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedAttributeMapperArrayOutput)
+}
+
+func (i HardcodedAttributeMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*HardcodedAttributeMapper] {
+	return pulumix.Output[[]*HardcodedAttributeMapper]{
+		OutputState: i.ToHardcodedAttributeMapperArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // HardcodedAttributeMapperMapInput is an input type that accepts HardcodedAttributeMapperMap and HardcodedAttributeMapperMapOutput values.
@@ -266,6 +281,12 @@ func (i HardcodedAttributeMapperMap) ToHardcodedAttributeMapperMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedAttributeMapperMapOutput)
 }
 
+func (i HardcodedAttributeMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*HardcodedAttributeMapper] {
+	return pulumix.Output[map[string]*HardcodedAttributeMapper]{
+		OutputState: i.ToHardcodedAttributeMapperMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type HardcodedAttributeMapperOutput struct{ *pulumi.OutputState }
 
 func (HardcodedAttributeMapperOutput) ElementType() reflect.Type {
@@ -278,6 +299,12 @@ func (o HardcodedAttributeMapperOutput) ToHardcodedAttributeMapperOutput() Hardc
 
 func (o HardcodedAttributeMapperOutput) ToHardcodedAttributeMapperOutputWithContext(ctx context.Context) HardcodedAttributeMapperOutput {
 	return o
+}
+
+func (o HardcodedAttributeMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*HardcodedAttributeMapper] {
+	return pulumix.Output[*HardcodedAttributeMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The name of the LDAP attribute to set.
@@ -319,6 +346,12 @@ func (o HardcodedAttributeMapperArrayOutput) ToHardcodedAttributeMapperArrayOutp
 	return o
 }
 
+func (o HardcodedAttributeMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*HardcodedAttributeMapper] {
+	return pulumix.Output[[]*HardcodedAttributeMapper]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o HardcodedAttributeMapperArrayOutput) Index(i pulumi.IntInput) HardcodedAttributeMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *HardcodedAttributeMapper {
 		return vs[0].([]*HardcodedAttributeMapper)[vs[1].(int)]
@@ -337,6 +370,12 @@ func (o HardcodedAttributeMapperMapOutput) ToHardcodedAttributeMapperMapOutput()
 
 func (o HardcodedAttributeMapperMapOutput) ToHardcodedAttributeMapperMapOutputWithContext(ctx context.Context) HardcodedAttributeMapperMapOutput {
 	return o
+}
+
+func (o HardcodedAttributeMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*HardcodedAttributeMapper] {
+	return pulumix.Output[map[string]*HardcodedAttributeMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o HardcodedAttributeMapperMapOutput) MapIndex(k pulumi.StringInput) HardcodedAttributeMapperOutput {

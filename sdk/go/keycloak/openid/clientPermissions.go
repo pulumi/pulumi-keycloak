@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ClientPermissions struct {
@@ -41,6 +43,7 @@ func NewClientPermissions(ctx *pulumi.Context,
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ClientPermissions
 	err := ctx.RegisterResource("keycloak:openid/clientPermissions:ClientPermissions", name, args, &resource, opts...)
 	if err != nil {
@@ -144,6 +147,12 @@ func (i *ClientPermissions) ToClientPermissionsOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsOutput)
 }
 
+func (i *ClientPermissions) ToOutput(ctx context.Context) pulumix.Output[*ClientPermissions] {
+	return pulumix.Output[*ClientPermissions]{
+		OutputState: i.ToClientPermissionsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ClientPermissionsArrayInput is an input type that accepts ClientPermissionsArray and ClientPermissionsArrayOutput values.
 // You can construct a concrete instance of `ClientPermissionsArrayInput` via:
 //
@@ -167,6 +176,12 @@ func (i ClientPermissionsArray) ToClientPermissionsArrayOutput() ClientPermissio
 
 func (i ClientPermissionsArray) ToClientPermissionsArrayOutputWithContext(ctx context.Context) ClientPermissionsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsArrayOutput)
+}
+
+func (i ClientPermissionsArray) ToOutput(ctx context.Context) pulumix.Output[[]*ClientPermissions] {
+	return pulumix.Output[[]*ClientPermissions]{
+		OutputState: i.ToClientPermissionsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ClientPermissionsMapInput is an input type that accepts ClientPermissionsMap and ClientPermissionsMapOutput values.
@@ -194,6 +209,12 @@ func (i ClientPermissionsMap) ToClientPermissionsMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsMapOutput)
 }
 
+func (i ClientPermissionsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientPermissions] {
+	return pulumix.Output[map[string]*ClientPermissions]{
+		OutputState: i.ToClientPermissionsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ClientPermissionsOutput struct{ *pulumi.OutputState }
 
 func (ClientPermissionsOutput) ElementType() reflect.Type {
@@ -206,6 +227,12 @@ func (o ClientPermissionsOutput) ToClientPermissionsOutput() ClientPermissionsOu
 
 func (o ClientPermissionsOutput) ToClientPermissionsOutputWithContext(ctx context.Context) ClientPermissionsOutput {
 	return o
+}
+
+func (o ClientPermissionsOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientPermissions] {
+	return pulumix.Output[*ClientPermissions]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Resource server id representing the realm management client on which this permission is managed
@@ -271,6 +298,12 @@ func (o ClientPermissionsArrayOutput) ToClientPermissionsArrayOutputWithContext(
 	return o
 }
 
+func (o ClientPermissionsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ClientPermissions] {
+	return pulumix.Output[[]*ClientPermissions]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ClientPermissionsArrayOutput) Index(i pulumi.IntInput) ClientPermissionsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ClientPermissions {
 		return vs[0].([]*ClientPermissions)[vs[1].(int)]
@@ -289,6 +322,12 @@ func (o ClientPermissionsMapOutput) ToClientPermissionsMapOutput() ClientPermiss
 
 func (o ClientPermissionsMapOutput) ToClientPermissionsMapOutputWithContext(ctx context.Context) ClientPermissionsMapOutput {
 	return o
+}
+
+func (o ClientPermissionsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientPermissions] {
+	return pulumix.Output[map[string]*ClientPermissions]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ClientPermissionsMapOutput) MapIndex(k pulumi.StringInput) ClientPermissionsOutput {

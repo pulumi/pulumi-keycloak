@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing full name protocol mappers within Keycloak.
@@ -150,6 +152,7 @@ func NewFullNameProtocolMapper(ctx *pulumi.Context,
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FullNameProtocolMapper
 	err := ctx.RegisterResource("keycloak:openid/fullNameProtocolMapper:FullNameProtocolMapper", name, args, &resource, opts...)
 	if err != nil {
@@ -267,6 +270,12 @@ func (i *FullNameProtocolMapper) ToFullNameProtocolMapperOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(FullNameProtocolMapperOutput)
 }
 
+func (i *FullNameProtocolMapper) ToOutput(ctx context.Context) pulumix.Output[*FullNameProtocolMapper] {
+	return pulumix.Output[*FullNameProtocolMapper]{
+		OutputState: i.ToFullNameProtocolMapperOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FullNameProtocolMapperArrayInput is an input type that accepts FullNameProtocolMapperArray and FullNameProtocolMapperArrayOutput values.
 // You can construct a concrete instance of `FullNameProtocolMapperArrayInput` via:
 //
@@ -290,6 +299,12 @@ func (i FullNameProtocolMapperArray) ToFullNameProtocolMapperArrayOutput() FullN
 
 func (i FullNameProtocolMapperArray) ToFullNameProtocolMapperArrayOutputWithContext(ctx context.Context) FullNameProtocolMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FullNameProtocolMapperArrayOutput)
+}
+
+func (i FullNameProtocolMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*FullNameProtocolMapper] {
+	return pulumix.Output[[]*FullNameProtocolMapper]{
+		OutputState: i.ToFullNameProtocolMapperArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FullNameProtocolMapperMapInput is an input type that accepts FullNameProtocolMapperMap and FullNameProtocolMapperMapOutput values.
@@ -317,6 +332,12 @@ func (i FullNameProtocolMapperMap) ToFullNameProtocolMapperMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(FullNameProtocolMapperMapOutput)
 }
 
+func (i FullNameProtocolMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FullNameProtocolMapper] {
+	return pulumix.Output[map[string]*FullNameProtocolMapper]{
+		OutputState: i.ToFullNameProtocolMapperMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FullNameProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (FullNameProtocolMapperOutput) ElementType() reflect.Type {
@@ -329,6 +350,12 @@ func (o FullNameProtocolMapperOutput) ToFullNameProtocolMapperOutput() FullNameP
 
 func (o FullNameProtocolMapperOutput) ToFullNameProtocolMapperOutputWithContext(ctx context.Context) FullNameProtocolMapperOutput {
 	return o
+}
+
+func (o FullNameProtocolMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*FullNameProtocolMapper] {
+	return pulumix.Output[*FullNameProtocolMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Indicates if the user's full name should be added as a claim to the access token. Defaults to `true`.
@@ -380,6 +407,12 @@ func (o FullNameProtocolMapperArrayOutput) ToFullNameProtocolMapperArrayOutputWi
 	return o
 }
 
+func (o FullNameProtocolMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FullNameProtocolMapper] {
+	return pulumix.Output[[]*FullNameProtocolMapper]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FullNameProtocolMapperArrayOutput) Index(i pulumi.IntInput) FullNameProtocolMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FullNameProtocolMapper {
 		return vs[0].([]*FullNameProtocolMapper)[vs[1].(int)]
@@ -398,6 +431,12 @@ func (o FullNameProtocolMapperMapOutput) ToFullNameProtocolMapperMapOutput() Ful
 
 func (o FullNameProtocolMapperMapOutput) ToFullNameProtocolMapperMapOutputWithContext(ctx context.Context) FullNameProtocolMapperMapOutput {
 	return o
+}
+
+func (o FullNameProtocolMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FullNameProtocolMapper] {
+	return pulumix.Output[map[string]*FullNameProtocolMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FullNameProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) FullNameProtocolMapperOutput {

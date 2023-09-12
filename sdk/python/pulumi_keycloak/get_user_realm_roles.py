@@ -105,10 +105,10 @@ def get_user_realm_roles(realm_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('keycloak:index/getUserRealmRoles:getUserRealmRoles', __args__, opts=opts, typ=GetUserRealmRolesResult).value
 
     return AwaitableGetUserRealmRolesResult(
-        id=__ret__.id,
-        realm_id=__ret__.realm_id,
-        role_names=__ret__.role_names,
-        user_id=__ret__.user_id)
+        id=pulumi.get(__ret__, 'id'),
+        realm_id=pulumi.get(__ret__, 'realm_id'),
+        role_names=pulumi.get(__ret__, 'role_names'),
+        user_id=pulumi.get(__ret__, 'user_id'))
 
 
 @_utilities.lift_output_func(get_user_realm_roles)

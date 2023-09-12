@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing protocol mappers for both types of clients (openid-connect and saml) within Keycloak.
@@ -117,6 +119,7 @@ func NewGenericProtocolMapper(ctx *pulumi.Context,
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource GenericProtocolMapper
 	err := ctx.RegisterResource("keycloak:index/genericProtocolMapper:GenericProtocolMapper", name, args, &resource, opts...)
 	if err != nil {
@@ -234,6 +237,12 @@ func (i *GenericProtocolMapper) ToGenericProtocolMapperOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(GenericProtocolMapperOutput)
 }
 
+func (i *GenericProtocolMapper) ToOutput(ctx context.Context) pulumix.Output[*GenericProtocolMapper] {
+	return pulumix.Output[*GenericProtocolMapper]{
+		OutputState: i.ToGenericProtocolMapperOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GenericProtocolMapperArrayInput is an input type that accepts GenericProtocolMapperArray and GenericProtocolMapperArrayOutput values.
 // You can construct a concrete instance of `GenericProtocolMapperArrayInput` via:
 //
@@ -257,6 +266,12 @@ func (i GenericProtocolMapperArray) ToGenericProtocolMapperArrayOutput() Generic
 
 func (i GenericProtocolMapperArray) ToGenericProtocolMapperArrayOutputWithContext(ctx context.Context) GenericProtocolMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GenericProtocolMapperArrayOutput)
+}
+
+func (i GenericProtocolMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*GenericProtocolMapper] {
+	return pulumix.Output[[]*GenericProtocolMapper]{
+		OutputState: i.ToGenericProtocolMapperArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // GenericProtocolMapperMapInput is an input type that accepts GenericProtocolMapperMap and GenericProtocolMapperMapOutput values.
@@ -284,6 +299,12 @@ func (i GenericProtocolMapperMap) ToGenericProtocolMapperMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(GenericProtocolMapperMapOutput)
 }
 
+func (i GenericProtocolMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*GenericProtocolMapper] {
+	return pulumix.Output[map[string]*GenericProtocolMapper]{
+		OutputState: i.ToGenericProtocolMapperMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GenericProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (GenericProtocolMapperOutput) ElementType() reflect.Type {
@@ -296,6 +317,12 @@ func (o GenericProtocolMapperOutput) ToGenericProtocolMapperOutput() GenericProt
 
 func (o GenericProtocolMapperOutput) ToGenericProtocolMapperOutputWithContext(ctx context.Context) GenericProtocolMapperOutput {
 	return o
+}
+
+func (o GenericProtocolMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*GenericProtocolMapper] {
+	return pulumix.Output[*GenericProtocolMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of the client this protocol mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
@@ -347,6 +374,12 @@ func (o GenericProtocolMapperArrayOutput) ToGenericProtocolMapperArrayOutputWith
 	return o
 }
 
+func (o GenericProtocolMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*GenericProtocolMapper] {
+	return pulumix.Output[[]*GenericProtocolMapper]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GenericProtocolMapperArrayOutput) Index(i pulumi.IntInput) GenericProtocolMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GenericProtocolMapper {
 		return vs[0].([]*GenericProtocolMapper)[vs[1].(int)]
@@ -365,6 +398,12 @@ func (o GenericProtocolMapperMapOutput) ToGenericProtocolMapperMapOutput() Gener
 
 func (o GenericProtocolMapperMapOutput) ToGenericProtocolMapperMapOutputWithContext(ctx context.Context) GenericProtocolMapperMapOutput {
 	return o
+}
+
+func (o GenericProtocolMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*GenericProtocolMapper] {
+	return pulumix.Output[map[string]*GenericProtocolMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GenericProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) GenericProtocolMapperOutput {

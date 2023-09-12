@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing user attribute protocol mappers for SAML clients within Keycloak.
@@ -119,6 +121,7 @@ func NewUserAttributeProtocolMapper(ctx *pulumi.Context,
 	if args.UserAttribute == nil {
 		return nil, errors.New("invalid value for required argument 'UserAttribute'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserAttributeProtocolMapper
 	err := ctx.RegisterResource("keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper", name, args, &resource, opts...)
 	if err != nil {
@@ -244,6 +247,12 @@ func (i *UserAttributeProtocolMapper) ToUserAttributeProtocolMapperOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(UserAttributeProtocolMapperOutput)
 }
 
+func (i *UserAttributeProtocolMapper) ToOutput(ctx context.Context) pulumix.Output[*UserAttributeProtocolMapper] {
+	return pulumix.Output[*UserAttributeProtocolMapper]{
+		OutputState: i.ToUserAttributeProtocolMapperOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserAttributeProtocolMapperArrayInput is an input type that accepts UserAttributeProtocolMapperArray and UserAttributeProtocolMapperArrayOutput values.
 // You can construct a concrete instance of `UserAttributeProtocolMapperArrayInput` via:
 //
@@ -267,6 +276,12 @@ func (i UserAttributeProtocolMapperArray) ToUserAttributeProtocolMapperArrayOutp
 
 func (i UserAttributeProtocolMapperArray) ToUserAttributeProtocolMapperArrayOutputWithContext(ctx context.Context) UserAttributeProtocolMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserAttributeProtocolMapperArrayOutput)
+}
+
+func (i UserAttributeProtocolMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserAttributeProtocolMapper] {
+	return pulumix.Output[[]*UserAttributeProtocolMapper]{
+		OutputState: i.ToUserAttributeProtocolMapperArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // UserAttributeProtocolMapperMapInput is an input type that accepts UserAttributeProtocolMapperMap and UserAttributeProtocolMapperMapOutput values.
@@ -294,6 +309,12 @@ func (i UserAttributeProtocolMapperMap) ToUserAttributeProtocolMapperMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(UserAttributeProtocolMapperMapOutput)
 }
 
+func (i UserAttributeProtocolMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserAttributeProtocolMapper] {
+	return pulumix.Output[map[string]*UserAttributeProtocolMapper]{
+		OutputState: i.ToUserAttributeProtocolMapperMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserAttributeProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (UserAttributeProtocolMapperOutput) ElementType() reflect.Type {
@@ -306,6 +327,12 @@ func (o UserAttributeProtocolMapperOutput) ToUserAttributeProtocolMapperOutput()
 
 func (o UserAttributeProtocolMapperOutput) ToUserAttributeProtocolMapperOutputWithContext(ctx context.Context) UserAttributeProtocolMapperOutput {
 	return o
+}
+
+func (o UserAttributeProtocolMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*UserAttributeProtocolMapper] {
+	return pulumix.Output[*UserAttributeProtocolMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
@@ -362,6 +389,12 @@ func (o UserAttributeProtocolMapperArrayOutput) ToUserAttributeProtocolMapperArr
 	return o
 }
 
+func (o UserAttributeProtocolMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserAttributeProtocolMapper] {
+	return pulumix.Output[[]*UserAttributeProtocolMapper]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o UserAttributeProtocolMapperArrayOutput) Index(i pulumi.IntInput) UserAttributeProtocolMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserAttributeProtocolMapper {
 		return vs[0].([]*UserAttributeProtocolMapper)[vs[1].(int)]
@@ -380,6 +413,12 @@ func (o UserAttributeProtocolMapperMapOutput) ToUserAttributeProtocolMapperMapOu
 
 func (o UserAttributeProtocolMapperMapOutput) ToUserAttributeProtocolMapperMapOutputWithContext(ctx context.Context) UserAttributeProtocolMapperMapOutput {
 	return o
+}
+
+func (o UserAttributeProtocolMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserAttributeProtocolMapper] {
+	return pulumix.Output[map[string]*UserAttributeProtocolMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserAttributeProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) UserAttributeProtocolMapperOutput {

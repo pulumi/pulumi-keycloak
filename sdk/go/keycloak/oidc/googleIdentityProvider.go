@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing OIDC Identity Providers within Keycloak.
@@ -137,6 +139,7 @@ func NewGoogleIdentityProvider(ctx *pulumi.Context,
 		"clientSecret",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource GoogleIdentityProvider
 	err := ctx.RegisterResource("keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider", name, args, &resource, opts...)
 	if err != nil {
@@ -382,6 +385,12 @@ func (i *GoogleIdentityProvider) ToGoogleIdentityProviderOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(GoogleIdentityProviderOutput)
 }
 
+func (i *GoogleIdentityProvider) ToOutput(ctx context.Context) pulumix.Output[*GoogleIdentityProvider] {
+	return pulumix.Output[*GoogleIdentityProvider]{
+		OutputState: i.ToGoogleIdentityProviderOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GoogleIdentityProviderArrayInput is an input type that accepts GoogleIdentityProviderArray and GoogleIdentityProviderArrayOutput values.
 // You can construct a concrete instance of `GoogleIdentityProviderArrayInput` via:
 //
@@ -405,6 +414,12 @@ func (i GoogleIdentityProviderArray) ToGoogleIdentityProviderArrayOutput() Googl
 
 func (i GoogleIdentityProviderArray) ToGoogleIdentityProviderArrayOutputWithContext(ctx context.Context) GoogleIdentityProviderArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GoogleIdentityProviderArrayOutput)
+}
+
+func (i GoogleIdentityProviderArray) ToOutput(ctx context.Context) pulumix.Output[[]*GoogleIdentityProvider] {
+	return pulumix.Output[[]*GoogleIdentityProvider]{
+		OutputState: i.ToGoogleIdentityProviderArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // GoogleIdentityProviderMapInput is an input type that accepts GoogleIdentityProviderMap and GoogleIdentityProviderMapOutput values.
@@ -432,6 +447,12 @@ func (i GoogleIdentityProviderMap) ToGoogleIdentityProviderMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(GoogleIdentityProviderMapOutput)
 }
 
+func (i GoogleIdentityProviderMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*GoogleIdentityProvider] {
+	return pulumix.Output[map[string]*GoogleIdentityProvider]{
+		OutputState: i.ToGoogleIdentityProviderMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GoogleIdentityProviderOutput struct{ *pulumi.OutputState }
 
 func (GoogleIdentityProviderOutput) ElementType() reflect.Type {
@@ -444,6 +465,12 @@ func (o GoogleIdentityProviderOutput) ToGoogleIdentityProviderOutput() GoogleIde
 
 func (o GoogleIdentityProviderOutput) ToGoogleIdentityProviderOutputWithContext(ctx context.Context) GoogleIdentityProviderOutput {
 	return o
+}
+
+func (o GoogleIdentityProviderOutput) ToOutput(ctx context.Context) pulumix.Output[*GoogleIdentityProvider] {
+	return pulumix.Output[*GoogleIdentityProvider]{
+		OutputState: o.OutputState,
+	}
 }
 
 // When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
@@ -584,6 +611,12 @@ func (o GoogleIdentityProviderArrayOutput) ToGoogleIdentityProviderArrayOutputWi
 	return o
 }
 
+func (o GoogleIdentityProviderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*GoogleIdentityProvider] {
+	return pulumix.Output[[]*GoogleIdentityProvider]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GoogleIdentityProviderArrayOutput) Index(i pulumi.IntInput) GoogleIdentityProviderOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GoogleIdentityProvider {
 		return vs[0].([]*GoogleIdentityProvider)[vs[1].(int)]
@@ -602,6 +635,12 @@ func (o GoogleIdentityProviderMapOutput) ToGoogleIdentityProviderMapOutput() Goo
 
 func (o GoogleIdentityProviderMapOutput) ToGoogleIdentityProviderMapOutputWithContext(ctx context.Context) GoogleIdentityProviderMapOutput {
 	return o
+}
+
+func (o GoogleIdentityProviderMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*GoogleIdentityProvider] {
+	return pulumix.Output[map[string]*GoogleIdentityProvider]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GoogleIdentityProviderMapOutput) MapIndex(k pulumi.StringInput) GoogleIdentityProviderOutput {

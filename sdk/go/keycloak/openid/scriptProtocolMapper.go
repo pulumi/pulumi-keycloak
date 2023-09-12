@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing script protocol mappers within Keycloak.
@@ -170,6 +172,7 @@ func NewScriptProtocolMapper(ctx *pulumi.Context,
 	if args.Script == nil {
 		return nil, errors.New("invalid value for required argument 'Script'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ScriptProtocolMapper
 	err := ctx.RegisterResource("keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper", name, args, &resource, opts...)
 	if err != nil {
@@ -319,6 +322,12 @@ func (i *ScriptProtocolMapper) ToScriptProtocolMapperOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(ScriptProtocolMapperOutput)
 }
 
+func (i *ScriptProtocolMapper) ToOutput(ctx context.Context) pulumix.Output[*ScriptProtocolMapper] {
+	return pulumix.Output[*ScriptProtocolMapper]{
+		OutputState: i.ToScriptProtocolMapperOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ScriptProtocolMapperArrayInput is an input type that accepts ScriptProtocolMapperArray and ScriptProtocolMapperArrayOutput values.
 // You can construct a concrete instance of `ScriptProtocolMapperArrayInput` via:
 //
@@ -342,6 +351,12 @@ func (i ScriptProtocolMapperArray) ToScriptProtocolMapperArrayOutput() ScriptPro
 
 func (i ScriptProtocolMapperArray) ToScriptProtocolMapperArrayOutputWithContext(ctx context.Context) ScriptProtocolMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ScriptProtocolMapperArrayOutput)
+}
+
+func (i ScriptProtocolMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*ScriptProtocolMapper] {
+	return pulumix.Output[[]*ScriptProtocolMapper]{
+		OutputState: i.ToScriptProtocolMapperArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ScriptProtocolMapperMapInput is an input type that accepts ScriptProtocolMapperMap and ScriptProtocolMapperMapOutput values.
@@ -369,6 +384,12 @@ func (i ScriptProtocolMapperMap) ToScriptProtocolMapperMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(ScriptProtocolMapperMapOutput)
 }
 
+func (i ScriptProtocolMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ScriptProtocolMapper] {
+	return pulumix.Output[map[string]*ScriptProtocolMapper]{
+		OutputState: i.ToScriptProtocolMapperMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ScriptProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (ScriptProtocolMapperOutput) ElementType() reflect.Type {
@@ -381,6 +402,12 @@ func (o ScriptProtocolMapperOutput) ToScriptProtocolMapperOutput() ScriptProtoco
 
 func (o ScriptProtocolMapperOutput) ToScriptProtocolMapperOutputWithContext(ctx context.Context) ScriptProtocolMapperOutput {
 	return o
+}
+
+func (o ScriptProtocolMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*ScriptProtocolMapper] {
+	return pulumix.Output[*ScriptProtocolMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Indicates if the property should be added as a claim to the access token. Defaults to `true`.
@@ -452,6 +479,12 @@ func (o ScriptProtocolMapperArrayOutput) ToScriptProtocolMapperArrayOutputWithCo
 	return o
 }
 
+func (o ScriptProtocolMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ScriptProtocolMapper] {
+	return pulumix.Output[[]*ScriptProtocolMapper]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ScriptProtocolMapperArrayOutput) Index(i pulumi.IntInput) ScriptProtocolMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ScriptProtocolMapper {
 		return vs[0].([]*ScriptProtocolMapper)[vs[1].(int)]
@@ -470,6 +503,12 @@ func (o ScriptProtocolMapperMapOutput) ToScriptProtocolMapperMapOutput() ScriptP
 
 func (o ScriptProtocolMapperMapOutput) ToScriptProtocolMapperMapOutputWithContext(ctx context.Context) ScriptProtocolMapperMapOutput {
 	return o
+}
+
+func (o ScriptProtocolMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ScriptProtocolMapper] {
+	return pulumix.Output[map[string]*ScriptProtocolMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ScriptProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) ScriptProtocolMapperOutput {

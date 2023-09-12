@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for managing Realm User Profiles within Keycloak.
@@ -173,6 +175,7 @@ func NewRealmUserProfile(ctx *pulumi.Context,
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RealmUserProfile
 	err := ctx.RegisterResource("keycloak:index/realmUserProfile:RealmUserProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -258,6 +261,12 @@ func (i *RealmUserProfile) ToRealmUserProfileOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileOutput)
 }
 
+func (i *RealmUserProfile) ToOutput(ctx context.Context) pulumix.Output[*RealmUserProfile] {
+	return pulumix.Output[*RealmUserProfile]{
+		OutputState: i.ToRealmUserProfileOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RealmUserProfileArrayInput is an input type that accepts RealmUserProfileArray and RealmUserProfileArrayOutput values.
 // You can construct a concrete instance of `RealmUserProfileArrayInput` via:
 //
@@ -281,6 +290,12 @@ func (i RealmUserProfileArray) ToRealmUserProfileArrayOutput() RealmUserProfileA
 
 func (i RealmUserProfileArray) ToRealmUserProfileArrayOutputWithContext(ctx context.Context) RealmUserProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileArrayOutput)
+}
+
+func (i RealmUserProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*RealmUserProfile] {
+	return pulumix.Output[[]*RealmUserProfile]{
+		OutputState: i.ToRealmUserProfileArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RealmUserProfileMapInput is an input type that accepts RealmUserProfileMap and RealmUserProfileMapOutput values.
@@ -308,6 +323,12 @@ func (i RealmUserProfileMap) ToRealmUserProfileMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileMapOutput)
 }
 
+func (i RealmUserProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RealmUserProfile] {
+	return pulumix.Output[map[string]*RealmUserProfile]{
+		OutputState: i.ToRealmUserProfileMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RealmUserProfileOutput struct{ *pulumi.OutputState }
 
 func (RealmUserProfileOutput) ElementType() reflect.Type {
@@ -320,6 +341,12 @@ func (o RealmUserProfileOutput) ToRealmUserProfileOutput() RealmUserProfileOutpu
 
 func (o RealmUserProfileOutput) ToRealmUserProfileOutputWithContext(ctx context.Context) RealmUserProfileOutput {
 	return o
+}
+
+func (o RealmUserProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*RealmUserProfile] {
+	return pulumix.Output[*RealmUserProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 // An ordered list of attributes.
@@ -351,6 +378,12 @@ func (o RealmUserProfileArrayOutput) ToRealmUserProfileArrayOutputWithContext(ct
 	return o
 }
 
+func (o RealmUserProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RealmUserProfile] {
+	return pulumix.Output[[]*RealmUserProfile]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RealmUserProfileArrayOutput) Index(i pulumi.IntInput) RealmUserProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RealmUserProfile {
 		return vs[0].([]*RealmUserProfile)[vs[1].(int)]
@@ -369,6 +402,12 @@ func (o RealmUserProfileMapOutput) ToRealmUserProfileMapOutput() RealmUserProfil
 
 func (o RealmUserProfileMapOutput) ToRealmUserProfileMapOutputWithContext(ctx context.Context) RealmUserProfileMapOutput {
 	return o
+}
+
+func (o RealmUserProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RealmUserProfile] {
+	return pulumix.Output[map[string]*RealmUserProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RealmUserProfileMapOutput) MapIndex(k pulumi.StringInput) RealmUserProfileOutput {

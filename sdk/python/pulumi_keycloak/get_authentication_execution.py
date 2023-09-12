@@ -105,10 +105,10 @@ def get_authentication_execution(parent_flow_alias: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('keycloak:index/getAuthenticationExecution:getAuthenticationExecution', __args__, opts=opts, typ=GetAuthenticationExecutionResult).value
 
     return AwaitableGetAuthenticationExecutionResult(
-        id=__ret__.id,
-        parent_flow_alias=__ret__.parent_flow_alias,
-        provider_id=__ret__.provider_id,
-        realm_id=__ret__.realm_id)
+        id=pulumi.get(__ret__, 'id'),
+        parent_flow_alias=pulumi.get(__ret__, 'parent_flow_alias'),
+        provider_id=pulumi.get(__ret__, 'provider_id'),
+        realm_id=pulumi.get(__ret__, 'realm_id'))
 
 
 @_utilities.lift_output_func(get_authentication_execution)

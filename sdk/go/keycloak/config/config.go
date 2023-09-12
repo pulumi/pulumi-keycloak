@@ -4,9 +4,12 @@
 package config
 
 import (
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
+
+var _ = internal.GetEnvOrDefault
 
 func GetAdditionalHeaders(ctx *pulumi.Context) string {
 	return config.Get(ctx, "keycloak:additionalHeaders")
@@ -28,7 +31,7 @@ func GetClientTimeout(ctx *pulumi.Context) int {
 		return v
 	}
 	var value int
-	if d := getEnvOrDefault(5, parseEnvInt, "KEYCLOAK_CLIENT_TIMEOUT"); d != nil {
+	if d := internal.GetEnvOrDefault(5, internal.ParseEnvInt, "KEYCLOAK_CLIENT_TIMEOUT"); d != nil {
 		value = d.(int)
 	}
 	return value

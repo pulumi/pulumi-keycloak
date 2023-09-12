@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UsersPermissions struct {
@@ -36,6 +38,7 @@ func NewUsersPermissions(ctx *pulumi.Context,
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UsersPermissions
 	err := ctx.RegisterResource("keycloak:index/usersPermissions:UsersPermissions", name, args, &resource, opts...)
 	if err != nil {
@@ -131,6 +134,12 @@ func (i *UsersPermissions) ToUsersPermissionsOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsOutput)
 }
 
+func (i *UsersPermissions) ToOutput(ctx context.Context) pulumix.Output[*UsersPermissions] {
+	return pulumix.Output[*UsersPermissions]{
+		OutputState: i.ToUsersPermissionsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UsersPermissionsArrayInput is an input type that accepts UsersPermissionsArray and UsersPermissionsArrayOutput values.
 // You can construct a concrete instance of `UsersPermissionsArrayInput` via:
 //
@@ -154,6 +163,12 @@ func (i UsersPermissionsArray) ToUsersPermissionsArrayOutput() UsersPermissionsA
 
 func (i UsersPermissionsArray) ToUsersPermissionsArrayOutputWithContext(ctx context.Context) UsersPermissionsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsArrayOutput)
+}
+
+func (i UsersPermissionsArray) ToOutput(ctx context.Context) pulumix.Output[[]*UsersPermissions] {
+	return pulumix.Output[[]*UsersPermissions]{
+		OutputState: i.ToUsersPermissionsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // UsersPermissionsMapInput is an input type that accepts UsersPermissionsMap and UsersPermissionsMapOutput values.
@@ -181,6 +196,12 @@ func (i UsersPermissionsMap) ToUsersPermissionsMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsMapOutput)
 }
 
+func (i UsersPermissionsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UsersPermissions] {
+	return pulumix.Output[map[string]*UsersPermissions]{
+		OutputState: i.ToUsersPermissionsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UsersPermissionsOutput struct{ *pulumi.OutputState }
 
 func (UsersPermissionsOutput) ElementType() reflect.Type {
@@ -193,6 +214,12 @@ func (o UsersPermissionsOutput) ToUsersPermissionsOutput() UsersPermissionsOutpu
 
 func (o UsersPermissionsOutput) ToUsersPermissionsOutputWithContext(ctx context.Context) UsersPermissionsOutput {
 	return o
+}
+
+func (o UsersPermissionsOutput) ToOutput(ctx context.Context) pulumix.Output[*UsersPermissions] {
+	return pulumix.Output[*UsersPermissions]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Resource server id representing the realm management client on which this permission is managed
@@ -250,6 +277,12 @@ func (o UsersPermissionsArrayOutput) ToUsersPermissionsArrayOutputWithContext(ct
 	return o
 }
 
+func (o UsersPermissionsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UsersPermissions] {
+	return pulumix.Output[[]*UsersPermissions]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o UsersPermissionsArrayOutput) Index(i pulumi.IntInput) UsersPermissionsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UsersPermissions {
 		return vs[0].([]*UsersPermissions)[vs[1].(int)]
@@ -268,6 +301,12 @@ func (o UsersPermissionsMapOutput) ToUsersPermissionsMapOutput() UsersPermission
 
 func (o UsersPermissionsMapOutput) ToUsersPermissionsMapOutputWithContext(ctx context.Context) UsersPermissionsMapOutput {
 	return o
+}
+
+func (o UsersPermissionsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UsersPermissions] {
+	return pulumix.Output[map[string]*UsersPermissions]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UsersPermissionsMapOutput) MapIndex(k pulumi.StringInput) UsersPermissionsOutput {

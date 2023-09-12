@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows you to manage roles assigned to a Keycloak user.
@@ -133,6 +135,7 @@ func NewUserRoles(ctx *pulumi.Context,
 	if args.UserId == nil {
 		return nil, errors.New("invalid value for required argument 'UserId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserRoles
 	err := ctx.RegisterResource("keycloak:index/userRoles:UserRoles", name, args, &resource, opts...)
 	if err != nil {
@@ -226,6 +229,12 @@ func (i *UserRoles) ToUserRolesOutputWithContext(ctx context.Context) UserRolesO
 	return pulumi.ToOutputWithContext(ctx, i).(UserRolesOutput)
 }
 
+func (i *UserRoles) ToOutput(ctx context.Context) pulumix.Output[*UserRoles] {
+	return pulumix.Output[*UserRoles]{
+		OutputState: i.ToUserRolesOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserRolesArrayInput is an input type that accepts UserRolesArray and UserRolesArrayOutput values.
 // You can construct a concrete instance of `UserRolesArrayInput` via:
 //
@@ -249,6 +258,12 @@ func (i UserRolesArray) ToUserRolesArrayOutput() UserRolesArrayOutput {
 
 func (i UserRolesArray) ToUserRolesArrayOutputWithContext(ctx context.Context) UserRolesArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserRolesArrayOutput)
+}
+
+func (i UserRolesArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserRoles] {
+	return pulumix.Output[[]*UserRoles]{
+		OutputState: i.ToUserRolesArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // UserRolesMapInput is an input type that accepts UserRolesMap and UserRolesMapOutput values.
@@ -276,6 +291,12 @@ func (i UserRolesMap) ToUserRolesMapOutputWithContext(ctx context.Context) UserR
 	return pulumi.ToOutputWithContext(ctx, i).(UserRolesMapOutput)
 }
 
+func (i UserRolesMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserRoles] {
+	return pulumix.Output[map[string]*UserRoles]{
+		OutputState: i.ToUserRolesMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserRolesOutput struct{ *pulumi.OutputState }
 
 func (UserRolesOutput) ElementType() reflect.Type {
@@ -288,6 +309,12 @@ func (o UserRolesOutput) ToUserRolesOutput() UserRolesOutput {
 
 func (o UserRolesOutput) ToUserRolesOutputWithContext(ctx context.Context) UserRolesOutput {
 	return o
+}
+
+func (o UserRolesOutput) ToOutput(ctx context.Context) pulumix.Output[*UserRoles] {
+	return pulumix.Output[*UserRoles]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
@@ -324,6 +351,12 @@ func (o UserRolesArrayOutput) ToUserRolesArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o UserRolesArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserRoles] {
+	return pulumix.Output[[]*UserRoles]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o UserRolesArrayOutput) Index(i pulumi.IntInput) UserRolesOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserRoles {
 		return vs[0].([]*UserRoles)[vs[1].(int)]
@@ -342,6 +375,12 @@ func (o UserRolesMapOutput) ToUserRolesMapOutput() UserRolesMapOutput {
 
 func (o UserRolesMapOutput) ToUserRolesMapOutputWithContext(ctx context.Context) UserRolesMapOutput {
 	return o
+}
+
+func (o UserRolesMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserRoles] {
+	return pulumix.Output[map[string]*UserRoles]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserRolesMapOutput) MapIndex(k pulumi.StringInput) UserRolesOutput {

@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -104,6 +106,7 @@ func NewCustomIdentityProviderMapping(ctx *pulumi.Context,
 	if args.Realm == nil {
 		return nil, errors.New("invalid value for required argument 'Realm'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CustomIdentityProviderMapping
 	err := ctx.RegisterResource("keycloak:index/customIdentityProviderMapping:CustomIdentityProviderMapping", name, args, &resource, opts...)
 	if err != nil {
@@ -205,6 +208,12 @@ func (i *CustomIdentityProviderMapping) ToCustomIdentityProviderMappingOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(CustomIdentityProviderMappingOutput)
 }
 
+func (i *CustomIdentityProviderMapping) ToOutput(ctx context.Context) pulumix.Output[*CustomIdentityProviderMapping] {
+	return pulumix.Output[*CustomIdentityProviderMapping]{
+		OutputState: i.ToCustomIdentityProviderMappingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // CustomIdentityProviderMappingArrayInput is an input type that accepts CustomIdentityProviderMappingArray and CustomIdentityProviderMappingArrayOutput values.
 // You can construct a concrete instance of `CustomIdentityProviderMappingArrayInput` via:
 //
@@ -228,6 +237,12 @@ func (i CustomIdentityProviderMappingArray) ToCustomIdentityProviderMappingArray
 
 func (i CustomIdentityProviderMappingArray) ToCustomIdentityProviderMappingArrayOutputWithContext(ctx context.Context) CustomIdentityProviderMappingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CustomIdentityProviderMappingArrayOutput)
+}
+
+func (i CustomIdentityProviderMappingArray) ToOutput(ctx context.Context) pulumix.Output[[]*CustomIdentityProviderMapping] {
+	return pulumix.Output[[]*CustomIdentityProviderMapping]{
+		OutputState: i.ToCustomIdentityProviderMappingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // CustomIdentityProviderMappingMapInput is an input type that accepts CustomIdentityProviderMappingMap and CustomIdentityProviderMappingMapOutput values.
@@ -255,6 +270,12 @@ func (i CustomIdentityProviderMappingMap) ToCustomIdentityProviderMappingMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(CustomIdentityProviderMappingMapOutput)
 }
 
+func (i CustomIdentityProviderMappingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CustomIdentityProviderMapping] {
+	return pulumix.Output[map[string]*CustomIdentityProviderMapping]{
+		OutputState: i.ToCustomIdentityProviderMappingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type CustomIdentityProviderMappingOutput struct{ *pulumi.OutputState }
 
 func (CustomIdentityProviderMappingOutput) ElementType() reflect.Type {
@@ -267,6 +288,12 @@ func (o CustomIdentityProviderMappingOutput) ToCustomIdentityProviderMappingOutp
 
 func (o CustomIdentityProviderMappingOutput) ToCustomIdentityProviderMappingOutputWithContext(ctx context.Context) CustomIdentityProviderMappingOutput {
 	return o
+}
+
+func (o CustomIdentityProviderMappingOutput) ToOutput(ctx context.Context) pulumix.Output[*CustomIdentityProviderMapping] {
+	return pulumix.Output[*CustomIdentityProviderMapping]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
@@ -308,6 +335,12 @@ func (o CustomIdentityProviderMappingArrayOutput) ToCustomIdentityProviderMappin
 	return o
 }
 
+func (o CustomIdentityProviderMappingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CustomIdentityProviderMapping] {
+	return pulumix.Output[[]*CustomIdentityProviderMapping]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o CustomIdentityProviderMappingArrayOutput) Index(i pulumi.IntInput) CustomIdentityProviderMappingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CustomIdentityProviderMapping {
 		return vs[0].([]*CustomIdentityProviderMapping)[vs[1].(int)]
@@ -326,6 +359,12 @@ func (o CustomIdentityProviderMappingMapOutput) ToCustomIdentityProviderMappingM
 
 func (o CustomIdentityProviderMappingMapOutput) ToCustomIdentityProviderMappingMapOutputWithContext(ctx context.Context) CustomIdentityProviderMappingMapOutput {
 	return o
+}
+
+func (o CustomIdentityProviderMappingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CustomIdentityProviderMapping] {
+	return pulumix.Output[map[string]*CustomIdentityProviderMapping]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CustomIdentityProviderMappingMapOutput) MapIndex(k pulumi.StringInput) CustomIdentityProviderMappingOutput {

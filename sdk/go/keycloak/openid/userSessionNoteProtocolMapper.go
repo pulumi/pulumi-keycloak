@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing user session note protocol mappers within Keycloak.
@@ -163,6 +165,7 @@ func NewUserSessionNoteProtocolMapper(ctx *pulumi.Context,
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserSessionNoteProtocolMapper
 	err := ctx.RegisterResource("keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper", name, args, &resource, opts...)
 	if err != nil {
@@ -296,6 +299,12 @@ func (i *UserSessionNoteProtocolMapper) ToUserSessionNoteProtocolMapperOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(UserSessionNoteProtocolMapperOutput)
 }
 
+func (i *UserSessionNoteProtocolMapper) ToOutput(ctx context.Context) pulumix.Output[*UserSessionNoteProtocolMapper] {
+	return pulumix.Output[*UserSessionNoteProtocolMapper]{
+		OutputState: i.ToUserSessionNoteProtocolMapperOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserSessionNoteProtocolMapperArrayInput is an input type that accepts UserSessionNoteProtocolMapperArray and UserSessionNoteProtocolMapperArrayOutput values.
 // You can construct a concrete instance of `UserSessionNoteProtocolMapperArrayInput` via:
 //
@@ -319,6 +328,12 @@ func (i UserSessionNoteProtocolMapperArray) ToUserSessionNoteProtocolMapperArray
 
 func (i UserSessionNoteProtocolMapperArray) ToUserSessionNoteProtocolMapperArrayOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserSessionNoteProtocolMapperArrayOutput)
+}
+
+func (i UserSessionNoteProtocolMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserSessionNoteProtocolMapper] {
+	return pulumix.Output[[]*UserSessionNoteProtocolMapper]{
+		OutputState: i.ToUserSessionNoteProtocolMapperArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // UserSessionNoteProtocolMapperMapInput is an input type that accepts UserSessionNoteProtocolMapperMap and UserSessionNoteProtocolMapperMapOutput values.
@@ -346,6 +361,12 @@ func (i UserSessionNoteProtocolMapperMap) ToUserSessionNoteProtocolMapperMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(UserSessionNoteProtocolMapperMapOutput)
 }
 
+func (i UserSessionNoteProtocolMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserSessionNoteProtocolMapper] {
+	return pulumix.Output[map[string]*UserSessionNoteProtocolMapper]{
+		OutputState: i.ToUserSessionNoteProtocolMapperMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserSessionNoteProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (UserSessionNoteProtocolMapperOutput) ElementType() reflect.Type {
@@ -358,6 +379,12 @@ func (o UserSessionNoteProtocolMapperOutput) ToUserSessionNoteProtocolMapperOutp
 
 func (o UserSessionNoteProtocolMapperOutput) ToUserSessionNoteProtocolMapperOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperOutput {
 	return o
+}
+
+func (o UserSessionNoteProtocolMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*UserSessionNoteProtocolMapper] {
+	return pulumix.Output[*UserSessionNoteProtocolMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Indicates if the property should be added as a claim to the access token. Defaults to `true`.
@@ -419,6 +446,12 @@ func (o UserSessionNoteProtocolMapperArrayOutput) ToUserSessionNoteProtocolMappe
 	return o
 }
 
+func (o UserSessionNoteProtocolMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserSessionNoteProtocolMapper] {
+	return pulumix.Output[[]*UserSessionNoteProtocolMapper]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o UserSessionNoteProtocolMapperArrayOutput) Index(i pulumi.IntInput) UserSessionNoteProtocolMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserSessionNoteProtocolMapper {
 		return vs[0].([]*UserSessionNoteProtocolMapper)[vs[1].(int)]
@@ -437,6 +470,12 @@ func (o UserSessionNoteProtocolMapperMapOutput) ToUserSessionNoteProtocolMapperM
 
 func (o UserSessionNoteProtocolMapperMapOutput) ToUserSessionNoteProtocolMapperMapOutputWithContext(ctx context.Context) UserSessionNoteProtocolMapperMapOutput {
 	return o
+}
+
+func (o UserSessionNoteProtocolMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserSessionNoteProtocolMapper] {
+	return pulumix.Output[map[string]*UserSessionNoteProtocolMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserSessionNoteProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) UserSessionNoteProtocolMapperOutput {

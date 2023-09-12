@@ -130,13 +130,13 @@ def get_client_scope(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('keycloak:openid/getClientScope:getClientScope', __args__, opts=opts, typ=GetClientScopeResult).value
 
     return AwaitableGetClientScopeResult(
-        consent_screen_text=__ret__.consent_screen_text,
-        description=__ret__.description,
-        gui_order=__ret__.gui_order,
-        id=__ret__.id,
-        include_in_token_scope=__ret__.include_in_token_scope,
-        name=__ret__.name,
-        realm_id=__ret__.realm_id)
+        consent_screen_text=pulumi.get(__ret__, 'consent_screen_text'),
+        description=pulumi.get(__ret__, 'description'),
+        gui_order=pulumi.get(__ret__, 'gui_order'),
+        id=pulumi.get(__ret__, 'id'),
+        include_in_token_scope=pulumi.get(__ret__, 'include_in_token_scope'),
+        name=pulumi.get(__ret__, 'name'),
+        realm_id=pulumi.get(__ret__, 'realm_id'))
 
 
 @_utilities.lift_output_func(get_client_scope)

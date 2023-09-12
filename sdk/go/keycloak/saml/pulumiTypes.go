@@ -7,8 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type ClientAuthenticationFlowBindingOverrides struct {
 	// Browser flow id, (flow needs to exist)
@@ -45,6 +49,12 @@ func (i ClientAuthenticationFlowBindingOverridesArgs) ToClientAuthenticationFlow
 
 func (i ClientAuthenticationFlowBindingOverridesArgs) ToClientAuthenticationFlowBindingOverridesOutputWithContext(ctx context.Context) ClientAuthenticationFlowBindingOverridesOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthenticationFlowBindingOverridesOutput)
+}
+
+func (i ClientAuthenticationFlowBindingOverridesArgs) ToOutput(ctx context.Context) pulumix.Output[ClientAuthenticationFlowBindingOverrides] {
+	return pulumix.Output[ClientAuthenticationFlowBindingOverrides]{
+		OutputState: i.ToClientAuthenticationFlowBindingOverridesOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i ClientAuthenticationFlowBindingOverridesArgs) ToClientAuthenticationFlowBindingOverridesPtrOutput() ClientAuthenticationFlowBindingOverridesPtrOutput {
@@ -88,6 +98,12 @@ func (i *clientAuthenticationFlowBindingOverridesPtrType) ToClientAuthentication
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthenticationFlowBindingOverridesPtrOutput)
 }
 
+func (i *clientAuthenticationFlowBindingOverridesPtrType) ToOutput(ctx context.Context) pulumix.Output[*ClientAuthenticationFlowBindingOverrides] {
+	return pulumix.Output[*ClientAuthenticationFlowBindingOverrides]{
+		OutputState: i.ToClientAuthenticationFlowBindingOverridesPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ClientAuthenticationFlowBindingOverridesOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthenticationFlowBindingOverridesOutput) ElementType() reflect.Type {
@@ -112,6 +128,12 @@ func (o ClientAuthenticationFlowBindingOverridesOutput) ToClientAuthenticationFl
 	}).(ClientAuthenticationFlowBindingOverridesPtrOutput)
 }
 
+func (o ClientAuthenticationFlowBindingOverridesOutput) ToOutput(ctx context.Context) pulumix.Output[ClientAuthenticationFlowBindingOverrides] {
+	return pulumix.Output[ClientAuthenticationFlowBindingOverrides]{
+		OutputState: o.OutputState,
+	}
+}
+
 // Browser flow id, (flow needs to exist)
 func (o ClientAuthenticationFlowBindingOverridesOutput) BrowserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClientAuthenticationFlowBindingOverrides) *string { return v.BrowserId }).(pulumi.StringPtrOutput)
@@ -134,6 +156,12 @@ func (o ClientAuthenticationFlowBindingOverridesPtrOutput) ToClientAuthenticatio
 
 func (o ClientAuthenticationFlowBindingOverridesPtrOutput) ToClientAuthenticationFlowBindingOverridesPtrOutputWithContext(ctx context.Context) ClientAuthenticationFlowBindingOverridesPtrOutput {
 	return o
+}
+
+func (o ClientAuthenticationFlowBindingOverridesPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientAuthenticationFlowBindingOverrides] {
+	return pulumix.Output[*ClientAuthenticationFlowBindingOverrides]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ClientAuthenticationFlowBindingOverridesPtrOutput) Elem() ClientAuthenticationFlowBindingOverridesOutput {
@@ -199,6 +227,12 @@ func (i GetClientAuthenticationFlowBindingOverrideArgs) ToGetClientAuthenticatio
 	return pulumi.ToOutputWithContext(ctx, i).(GetClientAuthenticationFlowBindingOverrideOutput)
 }
 
+func (i GetClientAuthenticationFlowBindingOverrideArgs) ToOutput(ctx context.Context) pulumix.Output[GetClientAuthenticationFlowBindingOverride] {
+	return pulumix.Output[GetClientAuthenticationFlowBindingOverride]{
+		OutputState: i.ToGetClientAuthenticationFlowBindingOverrideOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetClientAuthenticationFlowBindingOverrideArrayInput is an input type that accepts GetClientAuthenticationFlowBindingOverrideArray and GetClientAuthenticationFlowBindingOverrideArrayOutput values.
 // You can construct a concrete instance of `GetClientAuthenticationFlowBindingOverrideArrayInput` via:
 //
@@ -224,6 +258,12 @@ func (i GetClientAuthenticationFlowBindingOverrideArray) ToGetClientAuthenticati
 	return pulumi.ToOutputWithContext(ctx, i).(GetClientAuthenticationFlowBindingOverrideArrayOutput)
 }
 
+func (i GetClientAuthenticationFlowBindingOverrideArray) ToOutput(ctx context.Context) pulumix.Output[[]GetClientAuthenticationFlowBindingOverride] {
+	return pulumix.Output[[]GetClientAuthenticationFlowBindingOverride]{
+		OutputState: i.ToGetClientAuthenticationFlowBindingOverrideArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetClientAuthenticationFlowBindingOverrideOutput struct{ *pulumi.OutputState }
 
 func (GetClientAuthenticationFlowBindingOverrideOutput) ElementType() reflect.Type {
@@ -236,6 +276,12 @@ func (o GetClientAuthenticationFlowBindingOverrideOutput) ToGetClientAuthenticat
 
 func (o GetClientAuthenticationFlowBindingOverrideOutput) ToGetClientAuthenticationFlowBindingOverrideOutputWithContext(ctx context.Context) GetClientAuthenticationFlowBindingOverrideOutput {
 	return o
+}
+
+func (o GetClientAuthenticationFlowBindingOverrideOutput) ToOutput(ctx context.Context) pulumix.Output[GetClientAuthenticationFlowBindingOverride] {
+	return pulumix.Output[GetClientAuthenticationFlowBindingOverride]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetClientAuthenticationFlowBindingOverrideOutput) BrowserId() pulumi.StringOutput {
@@ -258,6 +304,12 @@ func (o GetClientAuthenticationFlowBindingOverrideArrayOutput) ToGetClientAuthen
 
 func (o GetClientAuthenticationFlowBindingOverrideArrayOutput) ToGetClientAuthenticationFlowBindingOverrideArrayOutputWithContext(ctx context.Context) GetClientAuthenticationFlowBindingOverrideArrayOutput {
 	return o
+}
+
+func (o GetClientAuthenticationFlowBindingOverrideArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetClientAuthenticationFlowBindingOverride] {
+	return pulumix.Output[[]GetClientAuthenticationFlowBindingOverride]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetClientAuthenticationFlowBindingOverrideArrayOutput) Index(i pulumi.IntInput) GetClientAuthenticationFlowBindingOverrideOutput {

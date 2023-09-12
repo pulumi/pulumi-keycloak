@@ -113,11 +113,11 @@ def get_realm_keys(algorithms: Optional[Sequence[str]] = None,
     __ret__ = pulumi.runtime.invoke('keycloak:index/getRealmKeys:getRealmKeys', __args__, opts=opts, typ=GetRealmKeysResult).value
 
     return AwaitableGetRealmKeysResult(
-        algorithms=__ret__.algorithms,
-        id=__ret__.id,
-        keys=__ret__.keys,
-        realm_id=__ret__.realm_id,
-        statuses=__ret__.statuses)
+        algorithms=pulumi.get(__ret__, 'algorithms'),
+        id=pulumi.get(__ret__, 'id'),
+        keys=pulumi.get(__ret__, 'keys'),
+        realm_id=pulumi.get(__ret__, 'realm_id'),
+        statuses=pulumi.get(__ret__, 'statuses'))
 
 
 @_utilities.lift_output_func(get_realm_keys)
