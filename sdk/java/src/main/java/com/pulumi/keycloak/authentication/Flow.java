@@ -83,7 +83,7 @@ public class Flow extends com.pulumi.resources.CustomResource {
      * The alias for this authentication flow.
      * 
      */
-    @Export(name="alias", type=String.class, parameters={})
+    @Export(name="alias", refs={String.class}, tree="[0]")
     private Output<String> alias;
 
     /**
@@ -97,7 +97,7 @@ public class Flow extends com.pulumi.resources.CustomResource {
      * A description for the authentication flow.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -111,7 +111,7 @@ public class Flow extends com.pulumi.resources.CustomResource {
      * The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
      * 
      */
-    @Export(name="providerId", type=String.class, parameters={})
+    @Export(name="providerId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> providerId;
 
     /**
@@ -125,7 +125,7 @@ public class Flow extends com.pulumi.resources.CustomResource {
      * The realm that the authentication flow exists in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

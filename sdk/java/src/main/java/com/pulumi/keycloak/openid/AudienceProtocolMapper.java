@@ -134,7 +134,7 @@ public class AudienceProtocolMapper extends com.pulumi.resources.CustomResource 
      * Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
      * 
      */
-    @Export(name="addToAccessToken", type=Boolean.class, parameters={})
+    @Export(name="addToAccessToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToAccessToken;
 
     /**
@@ -148,7 +148,7 @@ public class AudienceProtocolMapper extends com.pulumi.resources.CustomResource 
      * Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
      * 
      */
-    @Export(name="addToIdToken", type=Boolean.class, parameters={})
+    @Export(name="addToIdToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToIdToken;
 
     /**
@@ -162,7 +162,7 @@ public class AudienceProtocolMapper extends com.pulumi.resources.CustomResource 
      * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
@@ -176,7 +176,7 @@ public class AudienceProtocolMapper extends com.pulumi.resources.CustomResource 
      * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
-    @Export(name="clientScopeId", type=String.class, parameters={})
+    @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
     /**
@@ -190,7 +190,7 @@ public class AudienceProtocolMapper extends com.pulumi.resources.CustomResource 
      * A client ID to include within the token&#39;s `aud` claim. Conflicts with `included_custom_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
      * 
      */
-    @Export(name="includedClientAudience", type=String.class, parameters={})
+    @Export(name="includedClientAudience", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> includedClientAudience;
 
     /**
@@ -204,7 +204,7 @@ public class AudienceProtocolMapper extends com.pulumi.resources.CustomResource 
      * A custom audience to include within the token&#39;s `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
      * 
      */
-    @Export(name="includedCustomAudience", type=String.class, parameters={})
+    @Export(name="includedCustomAudience", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> includedCustomAudience;
 
     /**
@@ -218,7 +218,7 @@ public class AudienceProtocolMapper extends com.pulumi.resources.CustomResource 
      * The display name of this protocol mapper in the GUI.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -232,7 +232,7 @@ public class AudienceProtocolMapper extends com.pulumi.resources.CustomResource 
      * The realm this protocol mapper exists within.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

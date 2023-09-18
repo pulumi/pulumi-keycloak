@@ -27,7 +27,7 @@ public class UsersPermissions extends com.pulumi.resources.CustomResource {
      * Resource server id representing the realm management client on which this permission is managed
      * 
      */
-    @Export(name="authorizationResourceServerId", type=String.class, parameters={})
+    @Export(name="authorizationResourceServerId", refs={String.class}, tree="[0]")
     private Output<String> authorizationResourceServerId;
 
     /**
@@ -37,49 +37,49 @@ public class UsersPermissions extends com.pulumi.resources.CustomResource {
     public Output<String> authorizationResourceServerId() {
         return this.authorizationResourceServerId;
     }
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> enabled;
 
     public Output<Boolean> enabled() {
         return this.enabled;
     }
-    @Export(name="impersonateScope", type=UsersPermissionsImpersonateScope.class, parameters={})
+    @Export(name="impersonateScope", refs={UsersPermissionsImpersonateScope.class}, tree="[0]")
     private Output</* @Nullable */ UsersPermissionsImpersonateScope> impersonateScope;
 
     public Output<Optional<UsersPermissionsImpersonateScope>> impersonateScope() {
         return Codegen.optional(this.impersonateScope);
     }
-    @Export(name="manageGroupMembershipScope", type=UsersPermissionsManageGroupMembershipScope.class, parameters={})
+    @Export(name="manageGroupMembershipScope", refs={UsersPermissionsManageGroupMembershipScope.class}, tree="[0]")
     private Output</* @Nullable */ UsersPermissionsManageGroupMembershipScope> manageGroupMembershipScope;
 
     public Output<Optional<UsersPermissionsManageGroupMembershipScope>> manageGroupMembershipScope() {
         return Codegen.optional(this.manageGroupMembershipScope);
     }
-    @Export(name="manageScope", type=UsersPermissionsManageScope.class, parameters={})
+    @Export(name="manageScope", refs={UsersPermissionsManageScope.class}, tree="[0]")
     private Output</* @Nullable */ UsersPermissionsManageScope> manageScope;
 
     public Output<Optional<UsersPermissionsManageScope>> manageScope() {
         return Codegen.optional(this.manageScope);
     }
-    @Export(name="mapRolesScope", type=UsersPermissionsMapRolesScope.class, parameters={})
+    @Export(name="mapRolesScope", refs={UsersPermissionsMapRolesScope.class}, tree="[0]")
     private Output</* @Nullable */ UsersPermissionsMapRolesScope> mapRolesScope;
 
     public Output<Optional<UsersPermissionsMapRolesScope>> mapRolesScope() {
         return Codegen.optional(this.mapRolesScope);
     }
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     public Output<String> realmId() {
         return this.realmId;
     }
-    @Export(name="userImpersonatedScope", type=UsersPermissionsUserImpersonatedScope.class, parameters={})
+    @Export(name="userImpersonatedScope", refs={UsersPermissionsUserImpersonatedScope.class}, tree="[0]")
     private Output</* @Nullable */ UsersPermissionsUserImpersonatedScope> userImpersonatedScope;
 
     public Output<Optional<UsersPermissionsUserImpersonatedScope>> userImpersonatedScope() {
         return Codegen.optional(this.userImpersonatedScope);
     }
-    @Export(name="viewScope", type=UsersPermissionsViewScope.class, parameters={})
+    @Export(name="viewScope", refs={UsersPermissionsViewScope.class}, tree="[0]")
     private Output</* @Nullable */ UsersPermissionsViewScope> viewScope;
 
     public Output<Optional<UsersPermissionsViewScope>> viewScope() {

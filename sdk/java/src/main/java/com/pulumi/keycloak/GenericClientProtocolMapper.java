@@ -96,7 +96,7 @@ public class GenericClientProtocolMapper extends com.pulumi.resources.CustomReso
      * The client this protocol mapper is attached to.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
@@ -110,7 +110,7 @@ public class GenericClientProtocolMapper extends com.pulumi.resources.CustomReso
      * The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
      * 
      */
-    @Export(name="clientScopeId", type=String.class, parameters={})
+    @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
     /**
@@ -124,7 +124,7 @@ public class GenericClientProtocolMapper extends com.pulumi.resources.CustomReso
      * A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
      * 
      */
-    @Export(name="config", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="config", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output<Map<String,Object>> config;
 
     /**
@@ -138,7 +138,7 @@ public class GenericClientProtocolMapper extends com.pulumi.resources.CustomReso
      * The display name of this protocol mapper in the GUI.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -152,7 +152,7 @@ public class GenericClientProtocolMapper extends com.pulumi.resources.CustomReso
      * The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
      * 
      */
-    @Export(name="protocol", type=String.class, parameters={})
+    @Export(name="protocol", refs={String.class}, tree="[0]")
     private Output<String> protocol;
 
     /**
@@ -166,7 +166,7 @@ public class GenericClientProtocolMapper extends com.pulumi.resources.CustomReso
      * The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
      * 
      */
-    @Export(name="protocolMapper", type=String.class, parameters={})
+    @Export(name="protocolMapper", refs={String.class}, tree="[0]")
     private Output<String> protocolMapper;
 
     /**
@@ -180,7 +180,7 @@ public class GenericClientProtocolMapper extends com.pulumi.resources.CustomReso
      * The realm this protocol mapper exists within.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

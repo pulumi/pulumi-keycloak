@@ -185,7 +185,7 @@ public class GroupRoles extends com.pulumi.resources.CustomResource {
      * Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
      * 
      */
-    @Export(name="exhaustive", type=Boolean.class, parameters={})
+    @Export(name="exhaustive", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> exhaustive;
 
     /**
@@ -199,7 +199,7 @@ public class GroupRoles extends com.pulumi.resources.CustomResource {
      * The ID of the group this resource should manage roles for.
      * 
      */
-    @Export(name="groupId", type=String.class, parameters={})
+    @Export(name="groupId", refs={String.class}, tree="[0]")
     private Output<String> groupId;
 
     /**
@@ -213,7 +213,7 @@ public class GroupRoles extends com.pulumi.resources.CustomResource {
      * The realm this group exists in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -227,7 +227,7 @@ public class GroupRoles extends com.pulumi.resources.CustomResource {
      * A list of role IDs to map to the group.
      * 
      */
-    @Export(name="roleIds", type=List.class, parameters={String.class})
+    @Export(name="roleIds", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> roleIds;
 
     /**

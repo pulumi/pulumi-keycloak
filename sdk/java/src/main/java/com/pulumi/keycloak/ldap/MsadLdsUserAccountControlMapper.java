@@ -92,7 +92,7 @@ public class MsadLdsUserAccountControlMapper extends com.pulumi.resources.Custom
      * The ID of the LDAP user federation provider to attach this mapper to.
      * 
      */
-    @Export(name="ldapUserFederationId", type=String.class, parameters={})
+    @Export(name="ldapUserFederationId", refs={String.class}, tree="[0]")
     private Output<String> ldapUserFederationId;
 
     /**
@@ -106,7 +106,7 @@ public class MsadLdsUserAccountControlMapper extends com.pulumi.resources.Custom
      * Display name of this mapper when displayed in the console.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -120,7 +120,7 @@ public class MsadLdsUserAccountControlMapper extends com.pulumi.resources.Custom
      * The realm that this LDAP mapper will exist in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

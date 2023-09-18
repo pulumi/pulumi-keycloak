@@ -76,7 +76,7 @@ public class RealmKeystoreAesGenerated extends com.pulumi.resources.CustomResour
      * When `false`, key in not used for signing. Defaults to `true`.
      * 
      */
-    @Export(name="active", type=Boolean.class, parameters={})
+    @Export(name="active", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> active;
 
     /**
@@ -90,7 +90,7 @@ public class RealmKeystoreAesGenerated extends com.pulumi.resources.CustomResour
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
@@ -104,7 +104,7 @@ public class RealmKeystoreAesGenerated extends com.pulumi.resources.CustomResour
      * Display name of provider when linked in admin console.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -118,7 +118,7 @@ public class RealmKeystoreAesGenerated extends com.pulumi.resources.CustomResour
      * Priority for the provider. Defaults to `0`
      * 
      */
-    @Export(name="priority", type=Integer.class, parameters={})
+    @Export(name="priority", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> priority;
 
     /**
@@ -132,7 +132,7 @@ public class RealmKeystoreAesGenerated extends com.pulumi.resources.CustomResour
      * The realm this keystore exists in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -146,7 +146,7 @@ public class RealmKeystoreAesGenerated extends com.pulumi.resources.CustomResour
      * Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.
      * 
      */
-    @Export(name="secretSize", type=Integer.class, parameters={})
+    @Export(name="secretSize", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> secretSize;
 
     /**

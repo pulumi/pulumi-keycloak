@@ -90,7 +90,7 @@ public class ScriptProtocolMapper extends com.pulumi.resources.CustomResource {
      * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
@@ -104,7 +104,7 @@ public class ScriptProtocolMapper extends com.pulumi.resources.CustomResource {
      * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
-    @Export(name="clientScopeId", type=String.class, parameters={})
+    @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
     /**
@@ -118,7 +118,7 @@ public class ScriptProtocolMapper extends com.pulumi.resources.CustomResource {
      * An optional human-friendly name for this attribute.
      * 
      */
-    @Export(name="friendlyName", type=String.class, parameters={})
+    @Export(name="friendlyName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> friendlyName;
 
     /**
@@ -132,7 +132,7 @@ public class ScriptProtocolMapper extends com.pulumi.resources.CustomResource {
      * The display name of this protocol mapper in the GUI.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -146,7 +146,7 @@ public class ScriptProtocolMapper extends com.pulumi.resources.CustomResource {
      * The realm this protocol mapper exists within.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -160,7 +160,7 @@ public class ScriptProtocolMapper extends com.pulumi.resources.CustomResource {
      * The name of the SAML attribute.
      * 
      */
-    @Export(name="samlAttributeName", type=String.class, parameters={})
+    @Export(name="samlAttributeName", refs={String.class}, tree="[0]")
     private Output<String> samlAttributeName;
 
     /**
@@ -174,7 +174,7 @@ public class ScriptProtocolMapper extends com.pulumi.resources.CustomResource {
      * The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
      * 
      */
-    @Export(name="samlAttributeNameFormat", type=String.class, parameters={})
+    @Export(name="samlAttributeNameFormat", refs={String.class}, tree="[0]")
     private Output<String> samlAttributeNameFormat;
 
     /**
@@ -188,7 +188,7 @@ public class ScriptProtocolMapper extends com.pulumi.resources.CustomResource {
      * JavaScript code to compute the attribute value.
      * 
      */
-    @Export(name="script", type=String.class, parameters={})
+    @Export(name="script", refs={String.class}, tree="[0]")
     private Output<String> script;
 
     /**
@@ -202,7 +202,7 @@ public class ScriptProtocolMapper extends com.pulumi.resources.CustomResource {
      * When `true`, all values will be stored under one attribute with multiple attribute values. Defaults to `true`.
      * 
      */
-    @Export(name="singleValueAttribute", type=Boolean.class, parameters={})
+    @Export(name="singleValueAttribute", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> singleValueAttribute;
 
     /**

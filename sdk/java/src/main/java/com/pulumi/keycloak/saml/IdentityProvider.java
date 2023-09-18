@@ -86,7 +86,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
      * 
      */
-    @Export(name="addReadTokenRoleOnCreate", type=Boolean.class, parameters={})
+    @Export(name="addReadTokenRoleOnCreate", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addReadTokenRoleOnCreate;
 
     /**
@@ -100,7 +100,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * The unique name of identity provider.
      * 
      */
-    @Export(name="alias", type=String.class, parameters={})
+    @Export(name="alias", refs={String.class}, tree="[0]")
     private Output<String> alias;
 
     /**
@@ -114,7 +114,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Authenticate users by default. Defaults to `false`.
      * 
      */
-    @Export(name="authenticateByDefault", type=Boolean.class, parameters={})
+    @Export(name="authenticateByDefault", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> authenticateByDefault;
 
     /**
@@ -128,7 +128,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Ordered list of requested AuthnContext ClassRefs.
      * 
      */
-    @Export(name="authnContextClassRefs", type=List.class, parameters={String.class})
+    @Export(name="authnContextClassRefs", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> authnContextClassRefs;
 
     /**
@@ -142,7 +142,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Specifies the comparison method used to evaluate the requested context classes or statements.
      * 
      */
-    @Export(name="authnContextComparisonType", type=String.class, parameters={})
+    @Export(name="authnContextComparisonType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> authnContextComparisonType;
 
     /**
@@ -156,7 +156,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Ordered list of requested AuthnContext DeclRefs.
      * 
      */
-    @Export(name="authnContextDeclRefs", type=List.class, parameters={String.class})
+    @Export(name="authnContextDeclRefs", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> authnContextDeclRefs;
 
     /**
@@ -170,7 +170,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Does the external IDP support backchannel logout?. Defaults to `false`.
      * 
      */
-    @Export(name="backchannelSupported", type=Boolean.class, parameters={})
+    @Export(name="backchannelSupported", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> backchannelSupported;
 
     /**
@@ -184,7 +184,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * The display name for the realm that is shown when logging in to the admin console.
      * 
      */
-    @Export(name="displayName", type=String.class, parameters={})
+    @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> displayName;
 
     /**
@@ -198,7 +198,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * When `false`, users and clients will not be able to access this realm. Defaults to `true`.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
@@ -212,7 +212,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * The Entity ID that will be used to uniquely identify this SAML Service Provider.
      * 
      */
-    @Export(name="entityId", type=String.class, parameters={})
+    @Export(name="entityId", refs={String.class}, tree="[0]")
     private Output<String> entityId;
 
     /**
@@ -222,7 +222,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
     public Output<String> entityId() {
         return this.entityId;
     }
-    @Export(name="extraConfig", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="extraConfig", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> extraConfig;
 
     public Output<Optional<Map<String,Object>>> extraConfig() {
@@ -232,7 +232,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Alias of authentication flow, which is triggered after first login with this identity provider. Term &#39;First Login&#39; means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
      * 
      */
-    @Export(name="firstBrokerLoginFlowAlias", type=String.class, parameters={})
+    @Export(name="firstBrokerLoginFlowAlias", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> firstBrokerLoginFlowAlias;
 
     /**
@@ -246,7 +246,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
      * 
      */
-    @Export(name="forceAuthn", type=Boolean.class, parameters={})
+    @Export(name="forceAuthn", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> forceAuthn;
 
     /**
@@ -260,7 +260,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * A number defining the order of this identity provider in the GUI.
      * 
      */
-    @Export(name="guiOrder", type=String.class, parameters={})
+    @Export(name="guiOrder", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> guiOrder;
 
     /**
@@ -274,7 +274,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * If hidden, then login with this provider is possible only if requested explicitly, e.g. using the &#39;kc_idp_hint&#39; parameter.
      * 
      */
-    @Export(name="hideOnLoginPage", type=Boolean.class, parameters={})
+    @Export(name="hideOnLoginPage", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> hideOnLoginPage;
 
     /**
@@ -288,7 +288,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Internal Identity Provider Id
      * 
      */
-    @Export(name="internalId", type=String.class, parameters={})
+    @Export(name="internalId", refs={String.class}, tree="[0]")
     private Output<String> internalId;
 
     /**
@@ -302,7 +302,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      * 
      */
-    @Export(name="linkOnly", type=Boolean.class, parameters={})
+    @Export(name="linkOnly", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> linkOnly;
 
     /**
@@ -316,7 +316,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Login Hint.
      * 
      */
-    @Export(name="loginHint", type=String.class, parameters={})
+    @Export(name="loginHint", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> loginHint;
 
     /**
@@ -330,7 +330,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
      * 
      */
-    @Export(name="nameIdPolicyFormat", type=String.class, parameters={})
+    @Export(name="nameIdPolicyFormat", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> nameIdPolicyFormat;
 
     /**
@@ -344,7 +344,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      * 
      */
-    @Export(name="postBindingAuthnRequest", type=Boolean.class, parameters={})
+    @Export(name="postBindingAuthnRequest", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> postBindingAuthnRequest;
 
     /**
@@ -358,7 +358,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      * 
      */
-    @Export(name="postBindingLogout", type=Boolean.class, parameters={})
+    @Export(name="postBindingLogout", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> postBindingLogout;
 
     /**
@@ -372,7 +372,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
      * 
      */
-    @Export(name="postBindingResponse", type=Boolean.class, parameters={})
+    @Export(name="postBindingResponse", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> postBindingResponse;
 
     /**
@@ -386,7 +386,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don&#39;t want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
      * 
      */
-    @Export(name="postBrokerLoginFlowAlias", type=String.class, parameters={})
+    @Export(name="postBrokerLoginFlowAlias", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> postBrokerLoginFlowAlias;
 
     /**
@@ -400,7 +400,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * The principal attribute.
      * 
      */
-    @Export(name="principalAttribute", type=String.class, parameters={})
+    @Export(name="principalAttribute", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> principalAttribute;
 
     /**
@@ -414,7 +414,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
      * 
      */
-    @Export(name="principalType", type=String.class, parameters={})
+    @Export(name="principalType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> principalType;
 
     /**
@@ -428,7 +428,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
      * 
      */
-    @Export(name="providerId", type=String.class, parameters={})
+    @Export(name="providerId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> providerId;
 
     /**
@@ -442,7 +442,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * The name of the realm. This is unique across Keycloak.
      * 
      */
-    @Export(name="realm", type=String.class, parameters={})
+    @Export(name="realm", refs={String.class}, tree="[0]")
     private Output<String> realm;
 
     /**
@@ -456,7 +456,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Signing Algorithm. Defaults to empty.
      * 
      */
-    @Export(name="signatureAlgorithm", type=String.class, parameters={})
+    @Export(name="signatureAlgorithm", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> signatureAlgorithm;
 
     /**
@@ -470,7 +470,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Signing Certificate.
      * 
      */
-    @Export(name="signingCertificate", type=String.class, parameters={})
+    @Export(name="signingCertificate", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> signingCertificate;
 
     /**
@@ -484,7 +484,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * The Url that must be used to send logout requests.
      * 
      */
-    @Export(name="singleLogoutServiceUrl", type=String.class, parameters={})
+    @Export(name="singleLogoutServiceUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> singleLogoutServiceUrl;
 
     /**
@@ -498,7 +498,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * The Url that must be used to send authentication requests (SAML AuthnRequest).
      * 
      */
-    @Export(name="singleSignOnServiceUrl", type=String.class, parameters={})
+    @Export(name="singleSignOnServiceUrl", refs={String.class}, tree="[0]")
     private Output<String> singleSignOnServiceUrl;
 
     /**
@@ -512,7 +512,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      * 
      */
-    @Export(name="storeToken", type=Boolean.class, parameters={})
+    @Export(name="storeToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> storeToken;
 
     /**
@@ -526,7 +526,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
      * 
      */
-    @Export(name="syncMode", type=String.class, parameters={})
+    @Export(name="syncMode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> syncMode;
 
     /**
@@ -540,7 +540,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm&#39;s email verification policy. Defaults to `false`.
      * 
      */
-    @Export(name="trustEmail", type=Boolean.class, parameters={})
+    @Export(name="trustEmail", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> trustEmail;
 
     /**
@@ -554,7 +554,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Enable/disable signature validation of SAML responses.
      * 
      */
-    @Export(name="validateSignature", type=Boolean.class, parameters={})
+    @Export(name="validateSignature", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> validateSignature;
 
     /**
@@ -568,7 +568,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Indicates whether this service provider expects an encrypted Assertion.
      * 
      */
-    @Export(name="wantAssertionsEncrypted", type=Boolean.class, parameters={})
+    @Export(name="wantAssertionsEncrypted", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> wantAssertionsEncrypted;
 
     /**
@@ -582,7 +582,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Indicates whether this service provider expects a signed Assertion.
      * 
      */
-    @Export(name="wantAssertionsSigned", type=Boolean.class, parameters={})
+    @Export(name="wantAssertionsSigned", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> wantAssertionsSigned;
 
     /**
@@ -596,7 +596,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
      * 
      */
-    @Export(name="xmlSignKeyInfoKeyNameTransformer", type=String.class, parameters={})
+    @Export(name="xmlSignKeyInfoKeyNameTransformer", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> xmlSignKeyInfoKeyNameTransformer;
 
     /**

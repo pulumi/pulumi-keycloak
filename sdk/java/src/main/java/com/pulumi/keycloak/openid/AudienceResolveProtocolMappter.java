@@ -132,7 +132,7 @@ public class AudienceResolveProtocolMappter extends com.pulumi.resources.CustomR
      * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
@@ -146,7 +146,7 @@ public class AudienceResolveProtocolMappter extends com.pulumi.resources.CustomR
      * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
-    @Export(name="clientScopeId", type=String.class, parameters={})
+    @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
     /**
@@ -160,7 +160,7 @@ public class AudienceResolveProtocolMappter extends com.pulumi.resources.CustomR
      * The display name of this protocol mapper in the GUI. Defaults to &#34;audience resolve&#34;.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -174,7 +174,7 @@ public class AudienceResolveProtocolMappter extends com.pulumi.resources.CustomR
      * The realm this protocol mapper exists within.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

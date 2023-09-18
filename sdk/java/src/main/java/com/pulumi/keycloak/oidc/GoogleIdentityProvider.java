@@ -77,7 +77,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
      * 
      */
-    @Export(name="acceptsPromptNoneForwardFromClient", type=Boolean.class, parameters={})
+    @Export(name="acceptsPromptNoneForwardFromClient", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> acceptsPromptNoneForwardFromClient;
 
     /**
@@ -91,7 +91,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
      * 
      */
-    @Export(name="addReadTokenRoleOnCreate", type=Boolean.class, parameters={})
+    @Export(name="addReadTokenRoleOnCreate", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addReadTokenRoleOnCreate;
 
     /**
@@ -105,7 +105,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * (Computed) The alias for the Google identity provider.
      * 
      */
-    @Export(name="alias", type=String.class, parameters={})
+    @Export(name="alias", refs={String.class}, tree="[0]")
     private Output<String> alias;
 
     /**
@@ -119,7 +119,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * Enable/disable authenticate users by default.
      * 
      */
-    @Export(name="authenticateByDefault", type=Boolean.class, parameters={})
+    @Export(name="authenticateByDefault", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> authenticateByDefault;
 
     /**
@@ -133,7 +133,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * The client or client identifier registered within the identity provider.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output<String> clientId;
 
     /**
@@ -147,7 +147,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
      * 
      */
-    @Export(name="clientSecret", type=String.class, parameters={})
+    @Export(name="clientSecret", refs={String.class}, tree="[0]")
     private Output<String> clientSecret;
 
     /**
@@ -161,7 +161,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid profile email`.
      * 
      */
-    @Export(name="defaultScopes", type=String.class, parameters={})
+    @Export(name="defaultScopes", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> defaultScopes;
 
     /**
@@ -175,7 +175,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
      * 
      */
-    @Export(name="disableUserInfo", type=Boolean.class, parameters={})
+    @Export(name="disableUserInfo", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableUserInfo;
 
     /**
@@ -189,7 +189,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * (Computed) Display name for the Google identity provider in the GUI.
      * 
      */
-    @Export(name="displayName", type=String.class, parameters={})
+    @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output<String> displayName;
 
     /**
@@ -203,7 +203,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
@@ -213,7 +213,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
     public Output<Optional<Boolean>> enabled() {
         return Codegen.optional(this.enabled);
     }
-    @Export(name="extraConfig", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="extraConfig", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> extraConfig;
 
     public Output<Optional<Map<String,Object>>> extraConfig() {
@@ -223,7 +223,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
      * 
      */
-    @Export(name="firstBrokerLoginFlowAlias", type=String.class, parameters={})
+    @Export(name="firstBrokerLoginFlowAlias", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> firstBrokerLoginFlowAlias;
 
     /**
@@ -237,7 +237,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * A number defining the order of this identity provider in the GUI.
      * 
      */
-    @Export(name="guiOrder", type=String.class, parameters={})
+    @Export(name="guiOrder", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> guiOrder;
 
     /**
@@ -251,7 +251,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
      * 
      */
-    @Export(name="hideOnLoginPage", type=Boolean.class, parameters={})
+    @Export(name="hideOnLoginPage", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> hideOnLoginPage;
 
     /**
@@ -265,7 +265,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * Sets the &#34;hd&#34; query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
      * 
      */
-    @Export(name="hostedDomain", type=String.class, parameters={})
+    @Export(name="hostedDomain", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> hostedDomain;
 
     /**
@@ -279,7 +279,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
      * 
      */
-    @Export(name="internalId", type=String.class, parameters={})
+    @Export(name="internalId", refs={String.class}, tree="[0]")
     private Output<String> internalId;
 
     /**
@@ -293,7 +293,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      * 
      */
-    @Export(name="linkOnly", type=Boolean.class, parameters={})
+    @Export(name="linkOnly", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> linkOnly;
 
     /**
@@ -307,7 +307,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
      * 
      */
-    @Export(name="postBrokerLoginFlowAlias", type=String.class, parameters={})
+    @Export(name="postBrokerLoginFlowAlias", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> postBrokerLoginFlowAlias;
 
     /**
@@ -321,7 +321,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
      * 
      */
-    @Export(name="providerId", type=String.class, parameters={})
+    @Export(name="providerId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> providerId;
 
     /**
@@ -335,7 +335,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * The name of the realm. This is unique across Keycloak.
      * 
      */
-    @Export(name="realm", type=String.class, parameters={})
+    @Export(name="realm", refs={String.class}, tree="[0]")
     private Output<String> realm;
 
     /**
@@ -349,7 +349,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * Sets the &#34;access_type&#34; query parameter to &#34;offline&#34; when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
      * 
      */
-    @Export(name="requestRefreshToken", type=Boolean.class, parameters={})
+    @Export(name="requestRefreshToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> requestRefreshToken;
 
     /**
@@ -363,7 +363,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      * 
      */
-    @Export(name="storeToken", type=Boolean.class, parameters={})
+    @Export(name="storeToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> storeToken;
 
     /**
@@ -377,7 +377,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
      * 
      */
-    @Export(name="syncMode", type=String.class, parameters={})
+    @Export(name="syncMode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> syncMode;
 
     /**
@@ -391,7 +391,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm&#39;s email verification policy. Defaults to `false`.
      * 
      */
-    @Export(name="trustEmail", type=Boolean.class, parameters={})
+    @Export(name="trustEmail", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> trustEmail;
 
     /**
@@ -405,7 +405,7 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      * Sets the &#34;userIp&#34; query parameter when querying Google&#39;s User Info service. This will use the user&#39;s IP address. This is useful if Google is throttling Keycloak&#39;s access to the User Info service.
      * 
      */
-    @Export(name="useUserIpParam", type=Boolean.class, parameters={})
+    @Export(name="useUserIpParam", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> useUserIpParam;
 
     /**

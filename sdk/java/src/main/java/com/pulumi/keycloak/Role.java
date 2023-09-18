@@ -209,7 +209,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      * 
      */
-    @Export(name="attributes", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="attributes", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> attributes;
 
     /**
@@ -223,7 +223,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * When specified, this role will be created as a client role attached to the client with the provided ID
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
@@ -237,7 +237,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
      * 
      */
-    @Export(name="compositeRoles", type=List.class, parameters={String.class})
+    @Export(name="compositeRoles", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> compositeRoles;
 
     /**
@@ -251,7 +251,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * The description of the role
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -265,7 +265,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * The name of the role
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -279,7 +279,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * The realm this role exists within.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

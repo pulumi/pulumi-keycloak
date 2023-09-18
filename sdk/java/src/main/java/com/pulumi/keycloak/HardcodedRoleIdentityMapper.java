@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 
 @ResourceType(type="keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper")
 public class HardcodedRoleIdentityMapper extends com.pulumi.resources.CustomResource {
-    @Export(name="extraConfig", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="extraConfig", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> extraConfig;
 
     public Output<Optional<Map<String,Object>>> extraConfig() {
@@ -28,7 +28,7 @@ public class HardcodedRoleIdentityMapper extends com.pulumi.resources.CustomReso
      * IDP Alias
      * 
      */
-    @Export(name="identityProviderAlias", type=String.class, parameters={})
+    @Export(name="identityProviderAlias", refs={String.class}, tree="[0]")
     private Output<String> identityProviderAlias;
 
     /**
@@ -42,7 +42,7 @@ public class HardcodedRoleIdentityMapper extends com.pulumi.resources.CustomReso
      * IDP Mapper Name
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -56,7 +56,7 @@ public class HardcodedRoleIdentityMapper extends com.pulumi.resources.CustomReso
      * Realm Name
      * 
      */
-    @Export(name="realm", type=String.class, parameters={})
+    @Export(name="realm", refs={String.class}, tree="[0]")
     private Output<String> realm;
 
     /**
@@ -70,7 +70,7 @@ public class HardcodedRoleIdentityMapper extends com.pulumi.resources.CustomReso
      * Role Name
      * 
      */
-    @Export(name="role", type=String.class, parameters={})
+    @Export(name="role", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> role;
 
     /**

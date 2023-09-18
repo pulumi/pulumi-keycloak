@@ -74,7 +74,7 @@ public class ClientScope extends com.pulumi.resources.CustomResource {
      * When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
      * 
      */
-    @Export(name="consentScreenText", type=String.class, parameters={})
+    @Export(name="consentScreenText", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> consentScreenText;
 
     /**
@@ -88,7 +88,7 @@ public class ClientScope extends com.pulumi.resources.CustomResource {
      * The description of this client scope in the GUI.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -102,7 +102,7 @@ public class ClientScope extends com.pulumi.resources.CustomResource {
      * Specify order of the client scope in GUI (such as in Consent page) as integer.
      * 
      */
-    @Export(name="guiOrder", type=Integer.class, parameters={})
+    @Export(name="guiOrder", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> guiOrder;
 
     /**
@@ -116,7 +116,7 @@ public class ClientScope extends com.pulumi.resources.CustomResource {
      * The display name of this client scope in the GUI.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -130,7 +130,7 @@ public class ClientScope extends com.pulumi.resources.CustomResource {
      * The realm this client scope belongs to.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

@@ -87,7 +87,7 @@ public class ClientServiceAccountRealmRole extends com.pulumi.resources.CustomRe
      * The realm that the client and role belong to.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -101,7 +101,7 @@ public class ClientServiceAccountRealmRole extends com.pulumi.resources.CustomRe
      * The name of the role that is assigned.
      * 
      */
-    @Export(name="role", type=String.class, parameters={})
+    @Export(name="role", refs={String.class}, tree="[0]")
     private Output<String> role;
 
     /**
@@ -115,7 +115,7 @@ public class ClientServiceAccountRealmRole extends com.pulumi.resources.CustomRe
      * The id of the service account that is assigned the role (the service account of the client that &#34;consumes&#34; the role).
      * 
      */
-    @Export(name="serviceAccountUserId", type=String.class, parameters={})
+    @Export(name="serviceAccountUserId", refs={String.class}, tree="[0]")
     private Output<String> serviceAccountUserId;
 
     /**

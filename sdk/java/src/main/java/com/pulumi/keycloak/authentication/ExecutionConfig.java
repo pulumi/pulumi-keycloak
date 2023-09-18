@@ -88,7 +88,7 @@ public class ExecutionConfig extends com.pulumi.resources.CustomResource {
      * The name of the configuration.
      * 
      */
-    @Export(name="alias", type=String.class, parameters={})
+    @Export(name="alias", refs={String.class}, tree="[0]")
     private Output<String> alias;
 
     /**
@@ -102,7 +102,7 @@ public class ExecutionConfig extends com.pulumi.resources.CustomResource {
      * The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
      * 
      */
-    @Export(name="config", type=Map.class, parameters={String.class, String.class})
+    @Export(name="config", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> config;
 
     /**
@@ -116,7 +116,7 @@ public class ExecutionConfig extends com.pulumi.resources.CustomResource {
      * The authentication execution this configuration is attached to.
      * 
      */
-    @Export(name="executionId", type=String.class, parameters={})
+    @Export(name="executionId", refs={String.class}, tree="[0]")
     private Output<String> executionId;
 
     /**
@@ -130,7 +130,7 @@ public class ExecutionConfig extends com.pulumi.resources.CustomResource {
      * The realm the authentication execution exists in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

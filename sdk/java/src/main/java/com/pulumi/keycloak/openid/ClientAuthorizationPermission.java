@@ -17,61 +17,61 @@ import javax.annotation.Nullable;
 
 @ResourceType(type="keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission")
 public class ClientAuthorizationPermission extends com.pulumi.resources.CustomResource {
-    @Export(name="decisionStrategy", type=String.class, parameters={})
+    @Export(name="decisionStrategy", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> decisionStrategy;
 
     public Output<Optional<String>> decisionStrategy() {
         return Codegen.optional(this.decisionStrategy);
     }
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     public Output<String> name() {
         return this.name;
     }
-    @Export(name="policies", type=List.class, parameters={String.class})
+    @Export(name="policies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> policies;
 
     public Output<Optional<List<String>>> policies() {
         return Codegen.optional(this.policies);
     }
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     public Output<String> realmId() {
         return this.realmId;
     }
-    @Export(name="resourceServerId", type=String.class, parameters={})
+    @Export(name="resourceServerId", refs={String.class}, tree="[0]")
     private Output<String> resourceServerId;
 
     public Output<String> resourceServerId() {
         return this.resourceServerId;
     }
-    @Export(name="resourceType", type=String.class, parameters={})
+    @Export(name="resourceType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> resourceType;
 
     public Output<Optional<String>> resourceType() {
         return Codegen.optional(this.resourceType);
     }
-    @Export(name="resources", type=List.class, parameters={String.class})
+    @Export(name="resources", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> resources;
 
     public Output<Optional<List<String>>> resources() {
         return Codegen.optional(this.resources);
     }
-    @Export(name="scopes", type=List.class, parameters={String.class})
+    @Export(name="scopes", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> scopes;
 
     public Output<Optional<List<String>>> scopes() {
         return Codegen.optional(this.scopes);
     }
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> type;
 
     public Output<Optional<String>> type() {

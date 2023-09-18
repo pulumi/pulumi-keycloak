@@ -18,49 +18,49 @@ import javax.annotation.Nullable;
 
 @ResourceType(type="keycloak:openid/clientGroupPolicy:ClientGroupPolicy")
 public class ClientGroupPolicy extends com.pulumi.resources.CustomResource {
-    @Export(name="decisionStrategy", type=String.class, parameters={})
+    @Export(name="decisionStrategy", refs={String.class}, tree="[0]")
     private Output<String> decisionStrategy;
 
     public Output<String> decisionStrategy() {
         return this.decisionStrategy;
     }
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
-    @Export(name="groups", type=List.class, parameters={ClientGroupPolicyGroup.class})
+    @Export(name="groups", refs={List.class,ClientGroupPolicyGroup.class}, tree="[0,1]")
     private Output<List<ClientGroupPolicyGroup>> groups;
 
     public Output<List<ClientGroupPolicyGroup>> groups() {
         return this.groups;
     }
-    @Export(name="groupsClaim", type=String.class, parameters={})
+    @Export(name="groupsClaim", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> groupsClaim;
 
     public Output<Optional<String>> groupsClaim() {
         return Codegen.optional(this.groupsClaim);
     }
-    @Export(name="logic", type=String.class, parameters={})
+    @Export(name="logic", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> logic;
 
     public Output<Optional<String>> logic() {
         return Codegen.optional(this.logic);
     }
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     public Output<String> name() {
         return this.name;
     }
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     public Output<String> realmId() {
         return this.realmId;
     }
-    @Export(name="resourceServerId", type=String.class, parameters={})
+    @Export(name="resourceServerId", refs={String.class}, tree="[0]")
     private Output<String> resourceServerId;
 
     public Output<String> resourceServerId() {

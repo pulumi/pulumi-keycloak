@@ -140,7 +140,7 @@ public class UserSessionNoteProtocolMapper extends com.pulumi.resources.CustomRe
      * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      * 
      */
-    @Export(name="addToAccessToken", type=Boolean.class, parameters={})
+    @Export(name="addToAccessToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToAccessToken;
 
     /**
@@ -154,7 +154,7 @@ public class UserSessionNoteProtocolMapper extends com.pulumi.resources.CustomRe
      * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      * 
      */
-    @Export(name="addToIdToken", type=Boolean.class, parameters={})
+    @Export(name="addToIdToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToIdToken;
 
     /**
@@ -168,7 +168,7 @@ public class UserSessionNoteProtocolMapper extends com.pulumi.resources.CustomRe
      * The name of the claim to insert into a token.
      * 
      */
-    @Export(name="claimName", type=String.class, parameters={})
+    @Export(name="claimName", refs={String.class}, tree="[0]")
     private Output<String> claimName;
 
     /**
@@ -182,7 +182,7 @@ public class UserSessionNoteProtocolMapper extends com.pulumi.resources.CustomRe
      * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
      * 
      */
-    @Export(name="claimValueType", type=String.class, parameters={})
+    @Export(name="claimValueType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> claimValueType;
 
     /**
@@ -196,7 +196,7 @@ public class UserSessionNoteProtocolMapper extends com.pulumi.resources.CustomRe
      * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
@@ -210,7 +210,7 @@ public class UserSessionNoteProtocolMapper extends com.pulumi.resources.CustomRe
      * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
-    @Export(name="clientScopeId", type=String.class, parameters={})
+    @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
     /**
@@ -224,7 +224,7 @@ public class UserSessionNoteProtocolMapper extends com.pulumi.resources.CustomRe
      * The display name of this protocol mapper in the GUI.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -238,7 +238,7 @@ public class UserSessionNoteProtocolMapper extends com.pulumi.resources.CustomRe
      * The realm this protocol mapper exists within.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -252,7 +252,7 @@ public class UserSessionNoteProtocolMapper extends com.pulumi.resources.CustomRe
      * String value being the name of stored user session note within the UserSessionModel.note map.
      * 
      */
-    @Export(name="sessionNote", type=String.class, parameters={})
+    @Export(name="sessionNote", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> sessionNote;
 
     /**

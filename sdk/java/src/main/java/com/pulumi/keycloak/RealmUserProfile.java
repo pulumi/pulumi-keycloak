@@ -138,7 +138,7 @@ public class RealmUserProfile extends com.pulumi.resources.CustomResource {
      * An ordered list of attributes.
      * 
      */
-    @Export(name="attributes", type=List.class, parameters={RealmUserProfileAttribute.class})
+    @Export(name="attributes", refs={List.class,RealmUserProfileAttribute.class}, tree="[0,1]")
     private Output</* @Nullable */ List<RealmUserProfileAttribute>> attributes;
 
     /**
@@ -152,7 +152,7 @@ public class RealmUserProfile extends com.pulumi.resources.CustomResource {
      * A list of groups.
      * 
      */
-    @Export(name="groups", type=List.class, parameters={RealmUserProfileGroup.class})
+    @Export(name="groups", refs={List.class,RealmUserProfileGroup.class}, tree="[0,1]")
     private Output</* @Nullable */ List<RealmUserProfileGroup>> groups;
 
     /**
@@ -166,7 +166,7 @@ public class RealmUserProfile extends com.pulumi.resources.CustomResource {
      * The ID of the realm the user profile applies to.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

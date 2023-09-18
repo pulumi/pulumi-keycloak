@@ -88,7 +88,7 @@ public class CustomIdentityProviderMapping extends com.pulumi.resources.CustomRe
      * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
      * 
      */
-    @Export(name="extraConfig", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="extraConfig", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> extraConfig;
 
     /**
@@ -102,7 +102,7 @@ public class CustomIdentityProviderMapping extends com.pulumi.resources.CustomRe
      * The alias of the associated identity provider.
      * 
      */
-    @Export(name="identityProviderAlias", type=String.class, parameters={})
+    @Export(name="identityProviderAlias", refs={String.class}, tree="[0]")
     private Output<String> identityProviderAlias;
 
     /**
@@ -116,7 +116,7 @@ public class CustomIdentityProviderMapping extends com.pulumi.resources.CustomRe
      * The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
      * 
      */
-    @Export(name="identityProviderMapper", type=String.class, parameters={})
+    @Export(name="identityProviderMapper", refs={String.class}, tree="[0]")
     private Output<String> identityProviderMapper;
 
     /**
@@ -130,7 +130,7 @@ public class CustomIdentityProviderMapping extends com.pulumi.resources.CustomRe
      * The name of the mapper.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -144,7 +144,7 @@ public class CustomIdentityProviderMapping extends com.pulumi.resources.CustomRe
      * The name of the realm.
      * 
      */
-    @Export(name="realm", type=String.class, parameters={})
+    @Export(name="realm", refs={String.class}, tree="[0]")
     private Output<String> realm;
 
     /**

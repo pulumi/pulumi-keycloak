@@ -94,7 +94,7 @@ public class AttributeImporterIdentityProviderMapper extends com.pulumi.resource
      * For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
      * 
      */
-    @Export(name="attributeFriendlyName", type=String.class, parameters={})
+    @Export(name="attributeFriendlyName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attributeFriendlyName;
 
     /**
@@ -108,7 +108,7 @@ public class AttributeImporterIdentityProviderMapper extends com.pulumi.resource
      * For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
      * 
      */
-    @Export(name="attributeName", type=String.class, parameters={})
+    @Export(name="attributeName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attributeName;
 
     /**
@@ -122,7 +122,7 @@ public class AttributeImporterIdentityProviderMapper extends com.pulumi.resource
      * For OIDC based providers, this is the name of the claim to use.
      * 
      */
-    @Export(name="claimName", type=String.class, parameters={})
+    @Export(name="claimName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> claimName;
 
     /**
@@ -136,7 +136,7 @@ public class AttributeImporterIdentityProviderMapper extends com.pulumi.resource
      * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
      * 
      */
-    @Export(name="extraConfig", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="extraConfig", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> extraConfig;
 
     /**
@@ -150,7 +150,7 @@ public class AttributeImporterIdentityProviderMapper extends com.pulumi.resource
      * The alias of the associated identity provider.
      * 
      */
-    @Export(name="identityProviderAlias", type=String.class, parameters={})
+    @Export(name="identityProviderAlias", refs={String.class}, tree="[0]")
     private Output<String> identityProviderAlias;
 
     /**
@@ -164,7 +164,7 @@ public class AttributeImporterIdentityProviderMapper extends com.pulumi.resource
      * The name of the mapper.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -178,7 +178,7 @@ public class AttributeImporterIdentityProviderMapper extends com.pulumi.resource
      * The name of the realm.
      * 
      */
-    @Export(name="realm", type=String.class, parameters={})
+    @Export(name="realm", refs={String.class}, tree="[0]")
     private Output<String> realm;
 
     /**
@@ -192,7 +192,7 @@ public class AttributeImporterIdentityProviderMapper extends com.pulumi.resource
      * The user attribute or property name to store the mapped result.
      * 
      */
-    @Export(name="userAttribute", type=String.class, parameters={})
+    @Export(name="userAttribute", refs={String.class}, tree="[0]")
     private Output<String> userAttribute;
 
     /**

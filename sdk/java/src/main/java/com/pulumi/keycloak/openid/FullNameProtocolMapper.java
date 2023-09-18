@@ -134,7 +134,7 @@ public class FullNameProtocolMapper extends com.pulumi.resources.CustomResource 
      * Indicates if the user&#39;s full name should be added as a claim to the access token. Defaults to `true`.
      * 
      */
-    @Export(name="addToAccessToken", type=Boolean.class, parameters={})
+    @Export(name="addToAccessToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToAccessToken;
 
     /**
@@ -148,7 +148,7 @@ public class FullNameProtocolMapper extends com.pulumi.resources.CustomResource 
      * Indicates if the user&#39;s full name should be added as a claim to the id token. Defaults to `true`.
      * 
      */
-    @Export(name="addToIdToken", type=Boolean.class, parameters={})
+    @Export(name="addToIdToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToIdToken;
 
     /**
@@ -162,7 +162,7 @@ public class FullNameProtocolMapper extends com.pulumi.resources.CustomResource 
      * Indicates if the user&#39;s full name should be added as a claim to the UserInfo response body. Defaults to `true`.
      * 
      */
-    @Export(name="addToUserinfo", type=Boolean.class, parameters={})
+    @Export(name="addToUserinfo", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToUserinfo;
 
     /**
@@ -176,7 +176,7 @@ public class FullNameProtocolMapper extends com.pulumi.resources.CustomResource 
      * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
@@ -190,7 +190,7 @@ public class FullNameProtocolMapper extends com.pulumi.resources.CustomResource 
      * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
-    @Export(name="clientScopeId", type=String.class, parameters={})
+    @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
     /**
@@ -204,7 +204,7 @@ public class FullNameProtocolMapper extends com.pulumi.resources.CustomResource 
      * The display name of this protocol mapper in the GUI.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -218,7 +218,7 @@ public class FullNameProtocolMapper extends com.pulumi.resources.CustomResource 
      * The realm this protocol mapper exists within.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

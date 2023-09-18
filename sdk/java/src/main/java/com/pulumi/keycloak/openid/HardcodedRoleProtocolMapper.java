@@ -147,7 +147,7 @@ public class HardcodedRoleProtocolMapper extends com.pulumi.resources.CustomReso
      * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
@@ -161,7 +161,7 @@ public class HardcodedRoleProtocolMapper extends com.pulumi.resources.CustomReso
      * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
-    @Export(name="clientScopeId", type=String.class, parameters={})
+    @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
     /**
@@ -175,7 +175,7 @@ public class HardcodedRoleProtocolMapper extends com.pulumi.resources.CustomReso
      * The display name of this protocol mapper in the GUI.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -189,7 +189,7 @@ public class HardcodedRoleProtocolMapper extends com.pulumi.resources.CustomReso
      * The realm this protocol mapper exists within.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -203,7 +203,7 @@ public class HardcodedRoleProtocolMapper extends com.pulumi.resources.CustomReso
      * The ID of the role to map to an access token.
      * 
      */
-    @Export(name="roleId", type=String.class, parameters={})
+    @Export(name="roleId", refs={String.class}, tree="[0]")
     private Output<String> roleId;
 
     /**

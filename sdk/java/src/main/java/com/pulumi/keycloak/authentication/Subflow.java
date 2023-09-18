@@ -83,7 +83,7 @@ public class Subflow extends com.pulumi.resources.CustomResource {
      * The alias for this authentication subflow.
      * 
      */
-    @Export(name="alias", type=String.class, parameters={})
+    @Export(name="alias", refs={String.class}, tree="[0]")
     private Output<String> alias;
 
     /**
@@ -98,7 +98,7 @@ public class Subflow extends com.pulumi.resources.CustomResource {
      * authenticators. In general this will remain empty.
      * 
      */
-    @Export(name="authenticator", type=String.class, parameters={})
+    @Export(name="authenticator", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> authenticator;
 
     /**
@@ -113,7 +113,7 @@ public class Subflow extends com.pulumi.resources.CustomResource {
      * A description for the authentication subflow.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -127,7 +127,7 @@ public class Subflow extends com.pulumi.resources.CustomResource {
      * The alias for the parent authentication flow.
      * 
      */
-    @Export(name="parentFlowAlias", type=String.class, parameters={})
+    @Export(name="parentFlowAlias", refs={String.class}, tree="[0]")
     private Output<String> parentFlowAlias;
 
     /**
@@ -142,7 +142,7 @@ public class Subflow extends com.pulumi.resources.CustomResource {
      * and `client-flow`. Defaults to `basic-flow`.
      * 
      */
-    @Export(name="providerId", type=String.class, parameters={})
+    @Export(name="providerId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> providerId;
 
     /**
@@ -157,7 +157,7 @@ public class Subflow extends com.pulumi.resources.CustomResource {
      * The realm that the authentication subflow exists in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -172,7 +172,7 @@ public class Subflow extends com.pulumi.resources.CustomResource {
      * or `DISABLED`. Defaults to `DISABLED`.
      * 
      */
-    @Export(name="requirement", type=String.class, parameters={})
+    @Export(name="requirement", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> requirement;
 
     /**

@@ -92,7 +92,7 @@ public class UserTemplateImporterIdentityProviderMapper extends com.pulumi.resou
      * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
      * 
      */
-    @Export(name="extraConfig", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="extraConfig", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> extraConfig;
 
     /**
@@ -106,7 +106,7 @@ public class UserTemplateImporterIdentityProviderMapper extends com.pulumi.resou
      * The alias of the associated identity provider.
      * 
      */
-    @Export(name="identityProviderAlias", type=String.class, parameters={})
+    @Export(name="identityProviderAlias", refs={String.class}, tree="[0]")
     private Output<String> identityProviderAlias;
 
     /**
@@ -120,7 +120,7 @@ public class UserTemplateImporterIdentityProviderMapper extends com.pulumi.resou
      * The name of the mapper.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -134,7 +134,7 @@ public class UserTemplateImporterIdentityProviderMapper extends com.pulumi.resou
      * The name of the realm.
      * 
      */
-    @Export(name="realm", type=String.class, parameters={})
+    @Export(name="realm", refs={String.class}, tree="[0]")
     private Output<String> realm;
 
     /**
@@ -148,7 +148,7 @@ public class UserTemplateImporterIdentityProviderMapper extends com.pulumi.resou
      * Template to use to format the username to import. Substitutions are enclosed in \${}. For example: &#39;\$\${ALIAS}.\$\${CLAIM.sub}&#39;. ALIAS is the provider alias. CLAIM.\&lt;NAME\&gt; references an ID or Access token claim.
      * 
      */
-    @Export(name="template", type=String.class, parameters={})
+    @Export(name="template", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> template;
 
     /**

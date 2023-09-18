@@ -88,7 +88,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The amount of time in seconds before an access token expires. This will override the default for the realm.
      * 
      */
-    @Export(name="accessTokenLifespan", type=String.class, parameters={})
+    @Export(name="accessTokenLifespan", refs={String.class}, tree="[0]")
     private Output<String> accessTokenLifespan;
 
     /**
@@ -102,7 +102,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * Specifies the type of client, which can be one of the following:
      * 
      */
-    @Export(name="accessType", type=String.class, parameters={})
+    @Export(name="accessType", refs={String.class}, tree="[0]")
     private Output<String> accessType;
 
     /**
@@ -116,7 +116,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * URL to the admin interface of the client.
      * 
      */
-    @Export(name="adminUrl", type=String.class, parameters={})
+    @Export(name="adminUrl", refs={String.class}, tree="[0]")
     private Output<String> adminUrl;
 
     /**
@@ -130,7 +130,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * Override realm authentication flow bindings
      * 
      */
-    @Export(name="authenticationFlowBindingOverrides", type=ClientAuthenticationFlowBindingOverrides.class, parameters={})
+    @Export(name="authenticationFlowBindingOverrides", refs={ClientAuthenticationFlowBindingOverrides.class}, tree="[0]")
     private Output</* @Nullable */ ClientAuthenticationFlowBindingOverrides> authenticationFlowBindingOverrides;
 
     /**
@@ -144,7 +144,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When this block is present, fine-grained authorization will be enabled for this client. The client&#39;s `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
      * 
      */
-    @Export(name="authorization", type=ClientAuthorization.class, parameters={})
+    @Export(name="authorization", refs={ClientAuthorization.class}, tree="[0]")
     private Output</* @Nullable */ ClientAuthorization> authorization;
 
     /**
@@ -158,7 +158,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * Specifying whether a &#34;revoke_offline_access&#34; event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
      * 
      */
-    @Export(name="backchannelLogoutRevokeOfflineSessions", type=Boolean.class, parameters={})
+    @Export(name="backchannelLogoutRevokeOfflineSessions", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> backchannelLogoutRevokeOfflineSessions;
 
     /**
@@ -172,7 +172,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
      * 
      */
-    @Export(name="backchannelLogoutSessionRequired", type=Boolean.class, parameters={})
+    @Export(name="backchannelLogoutSessionRequired", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> backchannelLogoutSessionRequired;
 
     /**
@@ -186,7 +186,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
      * 
      */
-    @Export(name="backchannelLogoutUrl", type=String.class, parameters={})
+    @Export(name="backchannelLogoutUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backchannelLogoutUrl;
 
     /**
@@ -200,7 +200,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * Default URL to use when the auth server needs to redirect or link back to the client.
      * 
      */
-    @Export(name="baseUrl", type=String.class, parameters={})
+    @Export(name="baseUrl", refs={String.class}, tree="[0]")
     private Output<String> baseUrl;
 
     /**
@@ -218,7 +218,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
      * 
      */
-    @Export(name="clientAuthenticatorType", type=String.class, parameters={})
+    @Export(name="clientAuthenticatorType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientAuthenticatorType;
 
     /**
@@ -236,7 +236,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The Client ID for this client, referenced in the URI during authentication and in issued tokens.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output<String> clientId;
 
     /**
@@ -250,7 +250,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
      * 
      */
-    @Export(name="clientOfflineSessionIdleTimeout", type=String.class, parameters={})
+    @Export(name="clientOfflineSessionIdleTimeout", refs={String.class}, tree="[0]")
     private Output<String> clientOfflineSessionIdleTimeout;
 
     /**
@@ -264,7 +264,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.
      * 
      */
-    @Export(name="clientOfflineSessionMaxLifespan", type=String.class, parameters={})
+    @Export(name="clientOfflineSessionMaxLifespan", refs={String.class}, tree="[0]")
     private Output<String> clientOfflineSessionMaxLifespan;
 
     /**
@@ -278,7 +278,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
      * 
      */
-    @Export(name="clientSecret", type=String.class, parameters={})
+    @Export(name="clientSecret", refs={String.class}, tree="[0]")
     private Output<String> clientSecret;
 
     /**
@@ -292,7 +292,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
      * 
      */
-    @Export(name="clientSessionIdleTimeout", type=String.class, parameters={})
+    @Export(name="clientSessionIdleTimeout", refs={String.class}, tree="[0]")
     private Output<String> clientSessionIdleTimeout;
 
     /**
@@ -306,7 +306,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
      * 
      */
-    @Export(name="clientSessionMaxLifespan", type=String.class, parameters={})
+    @Export(name="clientSessionMaxLifespan", refs={String.class}, tree="[0]")
     private Output<String> clientSessionMaxLifespan;
 
     /**
@@ -320,7 +320,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When `true`, users have to consent to client access. Defaults to `false`.
      * 
      */
-    @Export(name="consentRequired", type=Boolean.class, parameters={})
+    @Export(name="consentRequired", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> consentRequired;
 
     /**
@@ -334,7 +334,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.
      * 
      */
-    @Export(name="consentScreenText", type=String.class, parameters={})
+    @Export(name="consentScreenText", refs={String.class}, tree="[0]")
     private Output<String> consentScreenText;
 
     /**
@@ -348,7 +348,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The description of this client in the GUI.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
@@ -362,7 +362,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
      * 
      */
-    @Export(name="directAccessGrantsEnabled", type=Boolean.class, parameters={})
+    @Export(name="directAccessGrantsEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> directAccessGrantsEnabled;
 
     /**
@@ -376,7 +376,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
      * 
      */
-    @Export(name="displayOnConsentScreen", type=Boolean.class, parameters={})
+    @Export(name="displayOnConsentScreen", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> displayOnConsentScreen;
 
     /**
@@ -390,7 +390,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
@@ -404,7 +404,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
      * 
      */
-    @Export(name="excludeSessionStateFromAuthResponse", type=Boolean.class, parameters={})
+    @Export(name="excludeSessionStateFromAuthResponse", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> excludeSessionStateFromAuthResponse;
 
     /**
@@ -414,7 +414,7 @@ public class Client extends com.pulumi.resources.CustomResource {
     public Output<Boolean> excludeSessionStateFromAuthResponse() {
         return this.excludeSessionStateFromAuthResponse;
     }
-    @Export(name="extraConfig", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="extraConfig", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> extraConfig;
 
     public Output<Optional<Map<String,Object>>> extraConfig() {
@@ -424,7 +424,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
      * 
      */
-    @Export(name="frontchannelLogoutEnabled", type=Boolean.class, parameters={})
+    @Export(name="frontchannelLogoutEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> frontchannelLogoutEnabled;
 
     /**
@@ -438,7 +438,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
      * 
      */
-    @Export(name="frontchannelLogoutUrl", type=String.class, parameters={})
+    @Export(name="frontchannelLogoutUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> frontchannelLogoutUrl;
 
     /**
@@ -452,7 +452,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * Allow to include all roles mappings in the access token.
      * 
      */
-    @Export(name="fullScopeAllowed", type=Boolean.class, parameters={})
+    @Export(name="fullScopeAllowed", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> fullScopeAllowed;
 
     /**
@@ -466,7 +466,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
      * 
      */
-    @Export(name="implicitFlowEnabled", type=Boolean.class, parameters={})
+    @Export(name="implicitFlowEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> implicitFlowEnabled;
 
     /**
@@ -480,7 +480,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
      * 
      */
-    @Export(name="import", type=Boolean.class, parameters={})
+    @Export(name="import", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> import_;
 
     /**
@@ -494,7 +494,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The client login theme. This will override the default theme for the realm.
      * 
      */
-    @Export(name="loginTheme", type=String.class, parameters={})
+    @Export(name="loginTheme", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> loginTheme;
 
     /**
@@ -508,7 +508,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The display name of this client in the GUI.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -522,7 +522,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
      * 
      */
-    @Export(name="oauth2DeviceAuthorizationGrantEnabled", type=Boolean.class, parameters={})
+    @Export(name="oauth2DeviceAuthorizationGrantEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> oauth2DeviceAuthorizationGrantEnabled;
 
     /**
@@ -536,7 +536,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The maximum amount of time a client has to finish the device code flow before it expires.
      * 
      */
-    @Export(name="oauth2DeviceCodeLifespan", type=String.class, parameters={})
+    @Export(name="oauth2DeviceCodeLifespan", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oauth2DeviceCodeLifespan;
 
     /**
@@ -550,7 +550,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
      * 
      */
-    @Export(name="oauth2DevicePollingInterval", type=String.class, parameters={})
+    @Export(name="oauth2DevicePollingInterval", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oauth2DevicePollingInterval;
 
     /**
@@ -564,7 +564,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
      * 
      */
-    @Export(name="pkceCodeChallengeMethod", type=String.class, parameters={})
+    @Export(name="pkceCodeChallengeMethod", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> pkceCodeChallengeMethod;
 
     /**
@@ -578,7 +578,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The realm this client is attached to.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -592,7 +592,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
      * 
      */
-    @Export(name="resourceServerId", type=String.class, parameters={})
+    @Export(name="resourceServerId", refs={String.class}, tree="[0]")
     private Output<String> resourceServerId;
 
     /**
@@ -606,7 +606,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
      * 
      */
-    @Export(name="rootUrl", type=String.class, parameters={})
+    @Export(name="rootUrl", refs={String.class}, tree="[0]")
     private Output<String> rootUrl;
 
     /**
@@ -620,7 +620,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
      * 
      */
-    @Export(name="serviceAccountUserId", type=String.class, parameters={})
+    @Export(name="serviceAccountUserId", refs={String.class}, tree="[0]")
     private Output<String> serviceAccountUserId;
 
     /**
@@ -634,7 +634,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
      * 
      */
-    @Export(name="serviceAccountsEnabled", type=Boolean.class, parameters={})
+    @Export(name="serviceAccountsEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> serviceAccountsEnabled;
 
     /**
@@ -648,7 +648,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
      * 
      */
-    @Export(name="standardFlowEnabled", type=Boolean.class, parameters={})
+    @Export(name="standardFlowEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> standardFlowEnabled;
 
     /**
@@ -662,7 +662,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
      * 
      */
-    @Export(name="useRefreshTokens", type=Boolean.class, parameters={})
+    @Export(name="useRefreshTokens", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> useRefreshTokens;
 
     /**
@@ -676,7 +676,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
      * 
      */
-    @Export(name="useRefreshTokensClientCredentials", type=Boolean.class, parameters={})
+    @Export(name="useRefreshTokensClientCredentials", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> useRefreshTokensClientCredentials;
 
     /**
@@ -690,7 +690,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * A list of valid URIs a browser is permitted to redirect to after a successful logout.
      * 
      */
-    @Export(name="validPostLogoutRedirectUris", type=List.class, parameters={String.class})
+    @Export(name="validPostLogoutRedirectUris", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> validPostLogoutRedirectUris;
 
     /**
@@ -706,7 +706,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * is set to `true`.
      * 
      */
-    @Export(name="validRedirectUris", type=List.class, parameters={String.class})
+    @Export(name="validRedirectUris", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> validRedirectUris;
 
     /**
@@ -722,7 +722,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.&#34;
      * 
      */
-    @Export(name="webOrigins", type=List.class, parameters={String.class})
+    @Export(name="webOrigins", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> webOrigins;
 
     /**

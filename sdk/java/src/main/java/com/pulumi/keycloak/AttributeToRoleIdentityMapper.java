@@ -22,7 +22,7 @@ public class AttributeToRoleIdentityMapper extends com.pulumi.resources.CustomRe
      * Attribute Friendly Name
      * 
      */
-    @Export(name="attributeFriendlyName", type=String.class, parameters={})
+    @Export(name="attributeFriendlyName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attributeFriendlyName;
 
     /**
@@ -36,7 +36,7 @@ public class AttributeToRoleIdentityMapper extends com.pulumi.resources.CustomRe
      * Attribute Name
      * 
      */
-    @Export(name="attributeName", type=String.class, parameters={})
+    @Export(name="attributeName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attributeName;
 
     /**
@@ -50,7 +50,7 @@ public class AttributeToRoleIdentityMapper extends com.pulumi.resources.CustomRe
      * Attribute Value
      * 
      */
-    @Export(name="attributeValue", type=String.class, parameters={})
+    @Export(name="attributeValue", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attributeValue;
 
     /**
@@ -64,7 +64,7 @@ public class AttributeToRoleIdentityMapper extends com.pulumi.resources.CustomRe
      * OIDC Claim Name
      * 
      */
-    @Export(name="claimName", type=String.class, parameters={})
+    @Export(name="claimName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> claimName;
 
     /**
@@ -78,7 +78,7 @@ public class AttributeToRoleIdentityMapper extends com.pulumi.resources.CustomRe
      * OIDC Claim Value
      * 
      */
-    @Export(name="claimValue", type=String.class, parameters={})
+    @Export(name="claimValue", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> claimValue;
 
     /**
@@ -88,7 +88,7 @@ public class AttributeToRoleIdentityMapper extends com.pulumi.resources.CustomRe
     public Output<Optional<String>> claimValue() {
         return Codegen.optional(this.claimValue);
     }
-    @Export(name="extraConfig", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="extraConfig", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> extraConfig;
 
     public Output<Optional<Map<String,Object>>> extraConfig() {
@@ -98,7 +98,7 @@ public class AttributeToRoleIdentityMapper extends com.pulumi.resources.CustomRe
      * IDP Alias
      * 
      */
-    @Export(name="identityProviderAlias", type=String.class, parameters={})
+    @Export(name="identityProviderAlias", refs={String.class}, tree="[0]")
     private Output<String> identityProviderAlias;
 
     /**
@@ -112,7 +112,7 @@ public class AttributeToRoleIdentityMapper extends com.pulumi.resources.CustomRe
      * IDP Mapper Name
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -126,7 +126,7 @@ public class AttributeToRoleIdentityMapper extends com.pulumi.resources.CustomRe
      * Realm Name
      * 
      */
-    @Export(name="realm", type=String.class, parameters={})
+    @Export(name="realm", refs={String.class}, tree="[0]")
     private Output<String> realm;
 
     /**
@@ -140,7 +140,7 @@ public class AttributeToRoleIdentityMapper extends com.pulumi.resources.CustomRe
      * Role Name
      * 
      */
-    @Export(name="role", type=String.class, parameters={})
+    @Export(name="role", refs={String.class}, tree="[0]")
     private Output<String> role;
 
     /**

@@ -78,7 +78,7 @@ public class CustomUserFederation extends com.pulumi.resources.CustomResource {
      * Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
      * 
      */
-    @Export(name="cachePolicy", type=String.class, parameters={})
+    @Export(name="cachePolicy", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> cachePolicy;
 
     /**
@@ -92,7 +92,7 @@ public class CustomUserFederation extends com.pulumi.resources.CustomResource {
      * How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
      * 
      */
-    @Export(name="changedSyncPeriod", type=Integer.class, parameters={})
+    @Export(name="changedSyncPeriod", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> changedSyncPeriod;
 
     /**
@@ -106,7 +106,7 @@ public class CustomUserFederation extends com.pulumi.resources.CustomResource {
      * The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
      * 
      */
-    @Export(name="config", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="config", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> config;
 
     /**
@@ -120,7 +120,7 @@ public class CustomUserFederation extends com.pulumi.resources.CustomResource {
      * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
@@ -134,7 +134,7 @@ public class CustomUserFederation extends com.pulumi.resources.CustomResource {
      * How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
      * 
      */
-    @Export(name="fullSyncPeriod", type=Integer.class, parameters={})
+    @Export(name="fullSyncPeriod", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> fullSyncPeriod;
 
     /**
@@ -148,7 +148,7 @@ public class CustomUserFederation extends com.pulumi.resources.CustomResource {
      * Display name of the provider when displayed in the console.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -162,7 +162,7 @@ public class CustomUserFederation extends com.pulumi.resources.CustomResource {
      * Must be set to the realms&#39; `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
      * 
      */
-    @Export(name="parentId", type=String.class, parameters={})
+    @Export(name="parentId", refs={String.class}, tree="[0]")
     private Output<String> parentId;
 
     /**
@@ -176,7 +176,7 @@ public class CustomUserFederation extends com.pulumi.resources.CustomResource {
      * Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
      * 
      */
-    @Export(name="priority", type=Integer.class, parameters={})
+    @Export(name="priority", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> priority;
 
     /**
@@ -190,7 +190,7 @@ public class CustomUserFederation extends com.pulumi.resources.CustomResource {
      * The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
      * 
      */
-    @Export(name="providerId", type=String.class, parameters={})
+    @Export(name="providerId", refs={String.class}, tree="[0]")
     private Output<String> providerId;
 
     /**
@@ -204,7 +204,7 @@ public class CustomUserFederation extends com.pulumi.resources.CustomResource {
      * The realm that this provider will provide user federation for.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

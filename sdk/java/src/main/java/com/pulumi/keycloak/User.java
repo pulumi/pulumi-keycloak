@@ -102,7 +102,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      * 
      */
-    @Export(name="attributes", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="attributes", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> attributes;
 
     /**
@@ -116,7 +116,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * The user&#39;s email.
      * 
      */
-    @Export(name="email", type=String.class, parameters={})
+    @Export(name="email", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> email;
 
     /**
@@ -130,7 +130,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * Whether the email address was validated or not. Default to `false`.
      * 
      */
-    @Export(name="emailVerified", type=Boolean.class, parameters={})
+    @Export(name="emailVerified", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> emailVerified;
 
     /**
@@ -144,7 +144,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * When false, this user cannot log in. Defaults to `true`.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
@@ -154,7 +154,7 @@ public class User extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> enabled() {
         return Codegen.optional(this.enabled);
     }
-    @Export(name="federatedIdentities", type=List.class, parameters={UserFederatedIdentity.class})
+    @Export(name="federatedIdentities", refs={List.class,UserFederatedIdentity.class}, tree="[0,1]")
     private Output</* @Nullable */ List<UserFederatedIdentity>> federatedIdentities;
 
     public Output<Optional<List<UserFederatedIdentity>>> federatedIdentities() {
@@ -164,7 +164,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * The user&#39;s first name.
      * 
      */
-    @Export(name="firstName", type=String.class, parameters={})
+    @Export(name="firstName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> firstName;
 
     /**
@@ -178,7 +178,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * When given, the user&#39;s initial password will be set. This attribute is only respected during initial user creation.
      * 
      */
-    @Export(name="initialPassword", type=UserInitialPassword.class, parameters={})
+    @Export(name="initialPassword", refs={UserInitialPassword.class}, tree="[0]")
     private Output</* @Nullable */ UserInitialPassword> initialPassword;
 
     /**
@@ -192,7 +192,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * The user&#39;s last name.
      * 
      */
-    @Export(name="lastName", type=String.class, parameters={})
+    @Export(name="lastName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> lastName;
 
     /**
@@ -206,7 +206,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * The realm this user belongs to.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -220,7 +220,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * The unique username of this user.
      * 
      */
-    @Export(name="username", type=String.class, parameters={})
+    @Export(name="username", refs={String.class}, tree="[0]")
     private Output<String> username;
 
     /**

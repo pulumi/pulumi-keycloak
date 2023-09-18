@@ -94,7 +94,7 @@ public class Execution extends com.pulumi.resources.CustomResource {
      * The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser&#39;s development tools.
      * 
      */
-    @Export(name="authenticator", type=String.class, parameters={})
+    @Export(name="authenticator", refs={String.class}, tree="[0]")
     private Output<String> authenticator;
 
     /**
@@ -108,7 +108,7 @@ public class Execution extends com.pulumi.resources.CustomResource {
      * The alias of the flow this execution is attached to.
      * 
      */
-    @Export(name="parentFlowAlias", type=String.class, parameters={})
+    @Export(name="parentFlowAlias", refs={String.class}, tree="[0]")
     private Output<String> parentFlowAlias;
 
     /**
@@ -122,7 +122,7 @@ public class Execution extends com.pulumi.resources.CustomResource {
      * The realm the authentication execution exists in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -136,7 +136,7 @@ public class Execution extends com.pulumi.resources.CustomResource {
      * The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
      * 
      */
-    @Export(name="requirement", type=String.class, parameters={})
+    @Export(name="requirement", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> requirement;
 
     /**

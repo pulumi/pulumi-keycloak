@@ -116,7 +116,7 @@ public class UserRoles extends com.pulumi.resources.CustomResource {
      * Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
      * 
      */
-    @Export(name="exhaustive", type=Boolean.class, parameters={})
+    @Export(name="exhaustive", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> exhaustive;
 
     /**
@@ -130,7 +130,7 @@ public class UserRoles extends com.pulumi.resources.CustomResource {
      * The realm this user exists in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -144,7 +144,7 @@ public class UserRoles extends com.pulumi.resources.CustomResource {
      * A list of role IDs to map to the user
      * 
      */
-    @Export(name="roleIds", type=List.class, parameters={String.class})
+    @Export(name="roleIds", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> roleIds;
 
     /**
@@ -158,7 +158,7 @@ public class UserRoles extends com.pulumi.resources.CustomResource {
      * The ID of the user this resource should manage roles for.
      * 
      */
-    @Export(name="userId", type=String.class, parameters={})
+    @Export(name="userId", refs={String.class}, tree="[0]")
     private Output<String> userId;
 
     /**

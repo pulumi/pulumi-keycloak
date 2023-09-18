@@ -98,7 +98,7 @@ public class GroupMapper extends com.pulumi.resources.CustomResource {
      * When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
      * 
      */
-    @Export(name="dropNonExistingGroupsDuringSync", type=Boolean.class, parameters={})
+    @Export(name="dropNonExistingGroupsDuringSync", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> dropNonExistingGroupsDuringSync;
 
     /**
@@ -112,7 +112,7 @@ public class GroupMapper extends com.pulumi.resources.CustomResource {
      * The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
      * 
      */
-    @Export(name="groupNameLdapAttribute", type=String.class, parameters={})
+    @Export(name="groupNameLdapAttribute", refs={String.class}, tree="[0]")
     private Output<String> groupNameLdapAttribute;
 
     /**
@@ -126,7 +126,7 @@ public class GroupMapper extends com.pulumi.resources.CustomResource {
      * List of strings representing the object classes for the group. Must contain at least one.
      * 
      */
-    @Export(name="groupObjectClasses", type=List.class, parameters={String.class})
+    @Export(name="groupObjectClasses", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> groupObjectClasses;
 
     /**
@@ -140,7 +140,7 @@ public class GroupMapper extends com.pulumi.resources.CustomResource {
      * When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
      * 
      */
-    @Export(name="groupsLdapFilter", type=String.class, parameters={})
+    @Export(name="groupsLdapFilter", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> groupsLdapFilter;
 
     /**
@@ -154,7 +154,7 @@ public class GroupMapper extends com.pulumi.resources.CustomResource {
      * Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
      * 
      */
-    @Export(name="groupsPath", type=String.class, parameters={})
+    @Export(name="groupsPath", refs={String.class}, tree="[0]")
     private Output<String> groupsPath;
 
     /**
@@ -168,7 +168,7 @@ public class GroupMapper extends com.pulumi.resources.CustomResource {
      * When `true`, missing groups in the hierarchy will be ignored.
      * 
      */
-    @Export(name="ignoreMissingGroups", type=Boolean.class, parameters={})
+    @Export(name="ignoreMissingGroups", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> ignoreMissingGroups;
 
     /**
@@ -182,7 +182,7 @@ public class GroupMapper extends com.pulumi.resources.CustomResource {
      * The LDAP DN where groups can be found.
      * 
      */
-    @Export(name="ldapGroupsDn", type=String.class, parameters={})
+    @Export(name="ldapGroupsDn", refs={String.class}, tree="[0]")
     private Output<String> ldapGroupsDn;
 
     /**
@@ -196,7 +196,7 @@ public class GroupMapper extends com.pulumi.resources.CustomResource {
      * The ID of the LDAP user federation provider to attach this mapper to.
      * 
      */
-    @Export(name="ldapUserFederationId", type=String.class, parameters={})
+    @Export(name="ldapUserFederationId", refs={String.class}, tree="[0]")
     private Output<String> ldapUserFederationId;
 
     /**
@@ -210,7 +210,7 @@ public class GroupMapper extends com.pulumi.resources.CustomResource {
      * Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
      * 
      */
-    @Export(name="mappedGroupAttributes", type=List.class, parameters={String.class})
+    @Export(name="mappedGroupAttributes", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> mappedGroupAttributes;
 
     /**
@@ -224,7 +224,7 @@ public class GroupMapper extends com.pulumi.resources.CustomResource {
      * Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
      * 
      */
-    @Export(name="memberofLdapAttribute", type=String.class, parameters={})
+    @Export(name="memberofLdapAttribute", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> memberofLdapAttribute;
 
     /**
@@ -238,7 +238,7 @@ public class GroupMapper extends com.pulumi.resources.CustomResource {
      * Can be one of `DN` or `UID`. Defaults to `DN`.
      * 
      */
-    @Export(name="membershipAttributeType", type=String.class, parameters={})
+    @Export(name="membershipAttributeType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> membershipAttributeType;
 
     /**
@@ -252,7 +252,7 @@ public class GroupMapper extends com.pulumi.resources.CustomResource {
      * The name of the LDAP attribute that is used for membership mappings.
      * 
      */
-    @Export(name="membershipLdapAttribute", type=String.class, parameters={})
+    @Export(name="membershipLdapAttribute", refs={String.class}, tree="[0]")
     private Output<String> membershipLdapAttribute;
 
     /**
@@ -266,7 +266,7 @@ public class GroupMapper extends com.pulumi.resources.CustomResource {
      * The name of the LDAP attribute on a user that is used for membership mappings.
      * 
      */
-    @Export(name="membershipUserLdapAttribute", type=String.class, parameters={})
+    @Export(name="membershipUserLdapAttribute", refs={String.class}, tree="[0]")
     private Output<String> membershipUserLdapAttribute;
 
     /**
@@ -280,7 +280,7 @@ public class GroupMapper extends com.pulumi.resources.CustomResource {
      * Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
      * 
      */
-    @Export(name="mode", type=String.class, parameters={})
+    @Export(name="mode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> mode;
 
     /**
@@ -294,7 +294,7 @@ public class GroupMapper extends com.pulumi.resources.CustomResource {
      * Display name of this mapper when displayed in the console.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -308,7 +308,7 @@ public class GroupMapper extends com.pulumi.resources.CustomResource {
      * When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
      * 
      */
-    @Export(name="preserveGroupInheritance", type=Boolean.class, parameters={})
+    @Export(name="preserveGroupInheritance", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> preserveGroupInheritance;
 
     /**
@@ -322,7 +322,7 @@ public class GroupMapper extends com.pulumi.resources.CustomResource {
      * The realm that this LDAP mapper will exist in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -336,7 +336,7 @@ public class GroupMapper extends com.pulumi.resources.CustomResource {
      * Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
      * 
      */
-    @Export(name="userRolesRetrieveStrategy", type=String.class, parameters={})
+    @Export(name="userRolesRetrieveStrategy", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> userRolesRetrieveStrategy;
 
     /**

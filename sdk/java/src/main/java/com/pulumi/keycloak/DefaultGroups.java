@@ -78,7 +78,7 @@ public class DefaultGroups extends com.pulumi.resources.CustomResource {
      * A set of group ids that should be default groups on the realm referenced by `realm_id`.
      * 
      */
-    @Export(name="groupIds", type=List.class, parameters={String.class})
+    @Export(name="groupIds", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> groupIds;
 
     /**
@@ -92,7 +92,7 @@ public class DefaultGroups extends com.pulumi.resources.CustomResource {
      * The realm this group exists in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
