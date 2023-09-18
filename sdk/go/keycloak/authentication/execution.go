@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing an authentication execution within Keycloak.
@@ -111,6 +113,7 @@ func NewExecution(ctx *pulumi.Context,
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Execution
 	err := ctx.RegisterResource("keycloak:authentication/execution:Execution", name, args, &resource, opts...)
 	if err != nil {
@@ -204,6 +207,12 @@ func (i *Execution) ToExecutionOutputWithContext(ctx context.Context) ExecutionO
 	return pulumi.ToOutputWithContext(ctx, i).(ExecutionOutput)
 }
 
+func (i *Execution) ToOutput(ctx context.Context) pulumix.Output[*Execution] {
+	return pulumix.Output[*Execution]{
+		OutputState: i.ToExecutionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ExecutionArrayInput is an input type that accepts ExecutionArray and ExecutionArrayOutput values.
 // You can construct a concrete instance of `ExecutionArrayInput` via:
 //
@@ -227,6 +236,12 @@ func (i ExecutionArray) ToExecutionArrayOutput() ExecutionArrayOutput {
 
 func (i ExecutionArray) ToExecutionArrayOutputWithContext(ctx context.Context) ExecutionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ExecutionArrayOutput)
+}
+
+func (i ExecutionArray) ToOutput(ctx context.Context) pulumix.Output[[]*Execution] {
+	return pulumix.Output[[]*Execution]{
+		OutputState: i.ToExecutionArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ExecutionMapInput is an input type that accepts ExecutionMap and ExecutionMapOutput values.
@@ -254,6 +269,12 @@ func (i ExecutionMap) ToExecutionMapOutputWithContext(ctx context.Context) Execu
 	return pulumi.ToOutputWithContext(ctx, i).(ExecutionMapOutput)
 }
 
+func (i ExecutionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Execution] {
+	return pulumix.Output[map[string]*Execution]{
+		OutputState: i.ToExecutionMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExecutionOutput struct{ *pulumi.OutputState }
 
 func (ExecutionOutput) ElementType() reflect.Type {
@@ -266,6 +287,12 @@ func (o ExecutionOutput) ToExecutionOutput() ExecutionOutput {
 
 func (o ExecutionOutput) ToExecutionOutputWithContext(ctx context.Context) ExecutionOutput {
 	return o
+}
+
+func (o ExecutionOutput) ToOutput(ctx context.Context) pulumix.Output[*Execution] {
+	return pulumix.Output[*Execution]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
@@ -302,6 +329,12 @@ func (o ExecutionArrayOutput) ToExecutionArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o ExecutionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Execution] {
+	return pulumix.Output[[]*Execution]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ExecutionArrayOutput) Index(i pulumi.IntInput) ExecutionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Execution {
 		return vs[0].([]*Execution)[vs[1].(int)]
@@ -320,6 +353,12 @@ func (o ExecutionMapOutput) ToExecutionMapOutput() ExecutionMapOutput {
 
 func (o ExecutionMapOutput) ToExecutionMapOutputWithContext(ctx context.Context) ExecutionMapOutput {
 	return o
+}
+
+func (o ExecutionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Execution] {
+	return pulumix.Output[map[string]*Execution]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExecutionMapOutput) MapIndex(k pulumi.StringInput) ExecutionOutput {

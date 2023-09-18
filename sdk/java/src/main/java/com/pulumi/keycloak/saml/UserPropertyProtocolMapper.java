@@ -90,7 +90,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
@@ -104,7 +104,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
-    @Export(name="clientScopeId", type=String.class, parameters={})
+    @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
     /**
@@ -118,7 +118,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * An optional human-friendly name for this attribute.
      * 
      */
-    @Export(name="friendlyName", type=String.class, parameters={})
+    @Export(name="friendlyName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> friendlyName;
 
     /**
@@ -132,7 +132,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * The display name of this protocol mapper in the GUI.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -146,7 +146,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * The realm this protocol mapper exists within.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -160,7 +160,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * The name of the SAML attribute.
      * 
      */
-    @Export(name="samlAttributeName", type=String.class, parameters={})
+    @Export(name="samlAttributeName", refs={String.class}, tree="[0]")
     private Output<String> samlAttributeName;
 
     /**
@@ -174,7 +174,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
      * 
      */
-    @Export(name="samlAttributeNameFormat", type=String.class, parameters={})
+    @Export(name="samlAttributeNameFormat", refs={String.class}, tree="[0]")
     private Output<String> samlAttributeNameFormat;
 
     /**
@@ -188,7 +188,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * The property of the Keycloak user model to map.
      * 
      */
-    @Export(name="userProperty", type=String.class, parameters={})
+    @Export(name="userProperty", refs={String.class}, tree="[0]")
     private Output<String> userProperty;
 
     /**

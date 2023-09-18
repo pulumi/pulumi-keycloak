@@ -7,8 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type GroupPermissionsManageMembersScope struct {
 	DecisionStrategy *string  `pulumi:"decisionStrategy"`
@@ -43,6 +47,12 @@ func (i GroupPermissionsManageMembersScopeArgs) ToGroupPermissionsManageMembersS
 
 func (i GroupPermissionsManageMembersScopeArgs) ToGroupPermissionsManageMembersScopeOutputWithContext(ctx context.Context) GroupPermissionsManageMembersScopeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPermissionsManageMembersScopeOutput)
+}
+
+func (i GroupPermissionsManageMembersScopeArgs) ToOutput(ctx context.Context) pulumix.Output[GroupPermissionsManageMembersScope] {
+	return pulumix.Output[GroupPermissionsManageMembersScope]{
+		OutputState: i.ToGroupPermissionsManageMembersScopeOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i GroupPermissionsManageMembersScopeArgs) ToGroupPermissionsManageMembersScopePtrOutput() GroupPermissionsManageMembersScopePtrOutput {
@@ -86,6 +96,12 @@ func (i *groupPermissionsManageMembersScopePtrType) ToGroupPermissionsManageMemb
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPermissionsManageMembersScopePtrOutput)
 }
 
+func (i *groupPermissionsManageMembersScopePtrType) ToOutput(ctx context.Context) pulumix.Output[*GroupPermissionsManageMembersScope] {
+	return pulumix.Output[*GroupPermissionsManageMembersScope]{
+		OutputState: i.ToGroupPermissionsManageMembersScopePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GroupPermissionsManageMembersScopeOutput struct{ *pulumi.OutputState }
 
 func (GroupPermissionsManageMembersScopeOutput) ElementType() reflect.Type {
@@ -108,6 +124,12 @@ func (o GroupPermissionsManageMembersScopeOutput) ToGroupPermissionsManageMember
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v GroupPermissionsManageMembersScope) *GroupPermissionsManageMembersScope {
 		return &v
 	}).(GroupPermissionsManageMembersScopePtrOutput)
+}
+
+func (o GroupPermissionsManageMembersScopeOutput) ToOutput(ctx context.Context) pulumix.Output[GroupPermissionsManageMembersScope] {
+	return pulumix.Output[GroupPermissionsManageMembersScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GroupPermissionsManageMembersScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -134,6 +156,12 @@ func (o GroupPermissionsManageMembersScopePtrOutput) ToGroupPermissionsManageMem
 
 func (o GroupPermissionsManageMembersScopePtrOutput) ToGroupPermissionsManageMembersScopePtrOutputWithContext(ctx context.Context) GroupPermissionsManageMembersScopePtrOutput {
 	return o
+}
+
+func (o GroupPermissionsManageMembersScopePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GroupPermissionsManageMembersScope] {
+	return pulumix.Output[*GroupPermissionsManageMembersScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GroupPermissionsManageMembersScopePtrOutput) Elem() GroupPermissionsManageMembersScopeOutput {
@@ -208,6 +236,12 @@ func (i GroupPermissionsManageMembershipScopeArgs) ToGroupPermissionsManageMembe
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPermissionsManageMembershipScopeOutput)
 }
 
+func (i GroupPermissionsManageMembershipScopeArgs) ToOutput(ctx context.Context) pulumix.Output[GroupPermissionsManageMembershipScope] {
+	return pulumix.Output[GroupPermissionsManageMembershipScope]{
+		OutputState: i.ToGroupPermissionsManageMembershipScopeOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i GroupPermissionsManageMembershipScopeArgs) ToGroupPermissionsManageMembershipScopePtrOutput() GroupPermissionsManageMembershipScopePtrOutput {
 	return i.ToGroupPermissionsManageMembershipScopePtrOutputWithContext(context.Background())
 }
@@ -249,6 +283,12 @@ func (i *groupPermissionsManageMembershipScopePtrType) ToGroupPermissionsManageM
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPermissionsManageMembershipScopePtrOutput)
 }
 
+func (i *groupPermissionsManageMembershipScopePtrType) ToOutput(ctx context.Context) pulumix.Output[*GroupPermissionsManageMembershipScope] {
+	return pulumix.Output[*GroupPermissionsManageMembershipScope]{
+		OutputState: i.ToGroupPermissionsManageMembershipScopePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GroupPermissionsManageMembershipScopeOutput struct{ *pulumi.OutputState }
 
 func (GroupPermissionsManageMembershipScopeOutput) ElementType() reflect.Type {
@@ -271,6 +311,12 @@ func (o GroupPermissionsManageMembershipScopeOutput) ToGroupPermissionsManageMem
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v GroupPermissionsManageMembershipScope) *GroupPermissionsManageMembershipScope {
 		return &v
 	}).(GroupPermissionsManageMembershipScopePtrOutput)
+}
+
+func (o GroupPermissionsManageMembershipScopeOutput) ToOutput(ctx context.Context) pulumix.Output[GroupPermissionsManageMembershipScope] {
+	return pulumix.Output[GroupPermissionsManageMembershipScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GroupPermissionsManageMembershipScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -297,6 +343,12 @@ func (o GroupPermissionsManageMembershipScopePtrOutput) ToGroupPermissionsManage
 
 func (o GroupPermissionsManageMembershipScopePtrOutput) ToGroupPermissionsManageMembershipScopePtrOutputWithContext(ctx context.Context) GroupPermissionsManageMembershipScopePtrOutput {
 	return o
+}
+
+func (o GroupPermissionsManageMembershipScopePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GroupPermissionsManageMembershipScope] {
+	return pulumix.Output[*GroupPermissionsManageMembershipScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GroupPermissionsManageMembershipScopePtrOutput) Elem() GroupPermissionsManageMembershipScopeOutput {
@@ -371,6 +423,12 @@ func (i GroupPermissionsManageScopeArgs) ToGroupPermissionsManageScopeOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPermissionsManageScopeOutput)
 }
 
+func (i GroupPermissionsManageScopeArgs) ToOutput(ctx context.Context) pulumix.Output[GroupPermissionsManageScope] {
+	return pulumix.Output[GroupPermissionsManageScope]{
+		OutputState: i.ToGroupPermissionsManageScopeOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i GroupPermissionsManageScopeArgs) ToGroupPermissionsManageScopePtrOutput() GroupPermissionsManageScopePtrOutput {
 	return i.ToGroupPermissionsManageScopePtrOutputWithContext(context.Background())
 }
@@ -412,6 +470,12 @@ func (i *groupPermissionsManageScopePtrType) ToGroupPermissionsManageScopePtrOut
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPermissionsManageScopePtrOutput)
 }
 
+func (i *groupPermissionsManageScopePtrType) ToOutput(ctx context.Context) pulumix.Output[*GroupPermissionsManageScope] {
+	return pulumix.Output[*GroupPermissionsManageScope]{
+		OutputState: i.ToGroupPermissionsManageScopePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GroupPermissionsManageScopeOutput struct{ *pulumi.OutputState }
 
 func (GroupPermissionsManageScopeOutput) ElementType() reflect.Type {
@@ -434,6 +498,12 @@ func (o GroupPermissionsManageScopeOutput) ToGroupPermissionsManageScopePtrOutpu
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v GroupPermissionsManageScope) *GroupPermissionsManageScope {
 		return &v
 	}).(GroupPermissionsManageScopePtrOutput)
+}
+
+func (o GroupPermissionsManageScopeOutput) ToOutput(ctx context.Context) pulumix.Output[GroupPermissionsManageScope] {
+	return pulumix.Output[GroupPermissionsManageScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GroupPermissionsManageScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -460,6 +530,12 @@ func (o GroupPermissionsManageScopePtrOutput) ToGroupPermissionsManageScopePtrOu
 
 func (o GroupPermissionsManageScopePtrOutput) ToGroupPermissionsManageScopePtrOutputWithContext(ctx context.Context) GroupPermissionsManageScopePtrOutput {
 	return o
+}
+
+func (o GroupPermissionsManageScopePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GroupPermissionsManageScope] {
+	return pulumix.Output[*GroupPermissionsManageScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GroupPermissionsManageScopePtrOutput) Elem() GroupPermissionsManageScopeOutput {
@@ -534,6 +610,12 @@ func (i GroupPermissionsViewMembersScopeArgs) ToGroupPermissionsViewMembersScope
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPermissionsViewMembersScopeOutput)
 }
 
+func (i GroupPermissionsViewMembersScopeArgs) ToOutput(ctx context.Context) pulumix.Output[GroupPermissionsViewMembersScope] {
+	return pulumix.Output[GroupPermissionsViewMembersScope]{
+		OutputState: i.ToGroupPermissionsViewMembersScopeOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i GroupPermissionsViewMembersScopeArgs) ToGroupPermissionsViewMembersScopePtrOutput() GroupPermissionsViewMembersScopePtrOutput {
 	return i.ToGroupPermissionsViewMembersScopePtrOutputWithContext(context.Background())
 }
@@ -575,6 +657,12 @@ func (i *groupPermissionsViewMembersScopePtrType) ToGroupPermissionsViewMembersS
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPermissionsViewMembersScopePtrOutput)
 }
 
+func (i *groupPermissionsViewMembersScopePtrType) ToOutput(ctx context.Context) pulumix.Output[*GroupPermissionsViewMembersScope] {
+	return pulumix.Output[*GroupPermissionsViewMembersScope]{
+		OutputState: i.ToGroupPermissionsViewMembersScopePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GroupPermissionsViewMembersScopeOutput struct{ *pulumi.OutputState }
 
 func (GroupPermissionsViewMembersScopeOutput) ElementType() reflect.Type {
@@ -597,6 +685,12 @@ func (o GroupPermissionsViewMembersScopeOutput) ToGroupPermissionsViewMembersSco
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v GroupPermissionsViewMembersScope) *GroupPermissionsViewMembersScope {
 		return &v
 	}).(GroupPermissionsViewMembersScopePtrOutput)
+}
+
+func (o GroupPermissionsViewMembersScopeOutput) ToOutput(ctx context.Context) pulumix.Output[GroupPermissionsViewMembersScope] {
+	return pulumix.Output[GroupPermissionsViewMembersScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GroupPermissionsViewMembersScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -623,6 +717,12 @@ func (o GroupPermissionsViewMembersScopePtrOutput) ToGroupPermissionsViewMembers
 
 func (o GroupPermissionsViewMembersScopePtrOutput) ToGroupPermissionsViewMembersScopePtrOutputWithContext(ctx context.Context) GroupPermissionsViewMembersScopePtrOutput {
 	return o
+}
+
+func (o GroupPermissionsViewMembersScopePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GroupPermissionsViewMembersScope] {
+	return pulumix.Output[*GroupPermissionsViewMembersScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GroupPermissionsViewMembersScopePtrOutput) Elem() GroupPermissionsViewMembersScopeOutput {
@@ -697,6 +797,12 @@ func (i GroupPermissionsViewScopeArgs) ToGroupPermissionsViewScopeOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPermissionsViewScopeOutput)
 }
 
+func (i GroupPermissionsViewScopeArgs) ToOutput(ctx context.Context) pulumix.Output[GroupPermissionsViewScope] {
+	return pulumix.Output[GroupPermissionsViewScope]{
+		OutputState: i.ToGroupPermissionsViewScopeOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i GroupPermissionsViewScopeArgs) ToGroupPermissionsViewScopePtrOutput() GroupPermissionsViewScopePtrOutput {
 	return i.ToGroupPermissionsViewScopePtrOutputWithContext(context.Background())
 }
@@ -738,6 +844,12 @@ func (i *groupPermissionsViewScopePtrType) ToGroupPermissionsViewScopePtrOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPermissionsViewScopePtrOutput)
 }
 
+func (i *groupPermissionsViewScopePtrType) ToOutput(ctx context.Context) pulumix.Output[*GroupPermissionsViewScope] {
+	return pulumix.Output[*GroupPermissionsViewScope]{
+		OutputState: i.ToGroupPermissionsViewScopePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GroupPermissionsViewScopeOutput struct{ *pulumi.OutputState }
 
 func (GroupPermissionsViewScopeOutput) ElementType() reflect.Type {
@@ -760,6 +872,12 @@ func (o GroupPermissionsViewScopeOutput) ToGroupPermissionsViewScopePtrOutputWit
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v GroupPermissionsViewScope) *GroupPermissionsViewScope {
 		return &v
 	}).(GroupPermissionsViewScopePtrOutput)
+}
+
+func (o GroupPermissionsViewScopeOutput) ToOutput(ctx context.Context) pulumix.Output[GroupPermissionsViewScope] {
+	return pulumix.Output[GroupPermissionsViewScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GroupPermissionsViewScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -786,6 +904,12 @@ func (o GroupPermissionsViewScopePtrOutput) ToGroupPermissionsViewScopePtrOutput
 
 func (o GroupPermissionsViewScopePtrOutput) ToGroupPermissionsViewScopePtrOutputWithContext(ctx context.Context) GroupPermissionsViewScopePtrOutput {
 	return o
+}
+
+func (o GroupPermissionsViewScopePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GroupPermissionsViewScope] {
+	return pulumix.Output[*GroupPermissionsViewScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GroupPermissionsViewScopePtrOutput) Elem() GroupPermissionsViewScopeOutput {
@@ -862,6 +986,12 @@ func (i RealmInternationalizationArgs) ToRealmInternationalizationOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(RealmInternationalizationOutput)
 }
 
+func (i RealmInternationalizationArgs) ToOutput(ctx context.Context) pulumix.Output[RealmInternationalization] {
+	return pulumix.Output[RealmInternationalization]{
+		OutputState: i.ToRealmInternationalizationOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i RealmInternationalizationArgs) ToRealmInternationalizationPtrOutput() RealmInternationalizationPtrOutput {
 	return i.ToRealmInternationalizationPtrOutputWithContext(context.Background())
 }
@@ -903,6 +1033,12 @@ func (i *realmInternationalizationPtrType) ToRealmInternationalizationPtrOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(RealmInternationalizationPtrOutput)
 }
 
+func (i *realmInternationalizationPtrType) ToOutput(ctx context.Context) pulumix.Output[*RealmInternationalization] {
+	return pulumix.Output[*RealmInternationalization]{
+		OutputState: i.ToRealmInternationalizationPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RealmInternationalizationOutput struct{ *pulumi.OutputState }
 
 func (RealmInternationalizationOutput) ElementType() reflect.Type {
@@ -927,6 +1063,12 @@ func (o RealmInternationalizationOutput) ToRealmInternationalizationPtrOutputWit
 	}).(RealmInternationalizationPtrOutput)
 }
 
+func (o RealmInternationalizationOutput) ToOutput(ctx context.Context) pulumix.Output[RealmInternationalization] {
+	return pulumix.Output[RealmInternationalization]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The locale to use by default. This locale code must be present within the `supportedLocales` list.
 func (o RealmInternationalizationOutput) DefaultLocale() pulumi.StringOutput {
 	return o.ApplyT(func(v RealmInternationalization) string { return v.DefaultLocale }).(pulumi.StringOutput)
@@ -949,6 +1091,12 @@ func (o RealmInternationalizationPtrOutput) ToRealmInternationalizationPtrOutput
 
 func (o RealmInternationalizationPtrOutput) ToRealmInternationalizationPtrOutputWithContext(ctx context.Context) RealmInternationalizationPtrOutput {
 	return o
+}
+
+func (o RealmInternationalizationPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*RealmInternationalization] {
+	return pulumix.Output[*RealmInternationalization]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RealmInternationalizationPtrOutput) Elem() RealmInternationalizationOutput {
@@ -1034,6 +1182,12 @@ func (i RealmOtpPolicyArgs) ToRealmOtpPolicyOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(RealmOtpPolicyOutput)
 }
 
+func (i RealmOtpPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[RealmOtpPolicy] {
+	return pulumix.Output[RealmOtpPolicy]{
+		OutputState: i.ToRealmOtpPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i RealmOtpPolicyArgs) ToRealmOtpPolicyPtrOutput() RealmOtpPolicyPtrOutput {
 	return i.ToRealmOtpPolicyPtrOutputWithContext(context.Background())
 }
@@ -1075,6 +1229,12 @@ func (i *realmOtpPolicyPtrType) ToRealmOtpPolicyPtrOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(RealmOtpPolicyPtrOutput)
 }
 
+func (i *realmOtpPolicyPtrType) ToOutput(ctx context.Context) pulumix.Output[*RealmOtpPolicy] {
+	return pulumix.Output[*RealmOtpPolicy]{
+		OutputState: i.ToRealmOtpPolicyPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RealmOtpPolicyOutput struct{ *pulumi.OutputState }
 
 func (RealmOtpPolicyOutput) ElementType() reflect.Type {
@@ -1097,6 +1257,12 @@ func (o RealmOtpPolicyOutput) ToRealmOtpPolicyPtrOutputWithContext(ctx context.C
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmOtpPolicy) *RealmOtpPolicy {
 		return &v
 	}).(RealmOtpPolicyPtrOutput)
+}
+
+func (o RealmOtpPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[RealmOtpPolicy] {
+	return pulumix.Output[RealmOtpPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 // What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
@@ -1141,6 +1307,12 @@ func (o RealmOtpPolicyPtrOutput) ToRealmOtpPolicyPtrOutput() RealmOtpPolicyPtrOu
 
 func (o RealmOtpPolicyPtrOutput) ToRealmOtpPolicyPtrOutputWithContext(ctx context.Context) RealmOtpPolicyPtrOutput {
 	return o
+}
+
+func (o RealmOtpPolicyPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*RealmOtpPolicy] {
+	return pulumix.Output[*RealmOtpPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RealmOtpPolicyPtrOutput) Elem() RealmOtpPolicyOutput {
@@ -1246,6 +1418,12 @@ func (i RealmSecurityDefensesArgs) ToRealmSecurityDefensesOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(RealmSecurityDefensesOutput)
 }
 
+func (i RealmSecurityDefensesArgs) ToOutput(ctx context.Context) pulumix.Output[RealmSecurityDefenses] {
+	return pulumix.Output[RealmSecurityDefenses]{
+		OutputState: i.ToRealmSecurityDefensesOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i RealmSecurityDefensesArgs) ToRealmSecurityDefensesPtrOutput() RealmSecurityDefensesPtrOutput {
 	return i.ToRealmSecurityDefensesPtrOutputWithContext(context.Background())
 }
@@ -1287,6 +1465,12 @@ func (i *realmSecurityDefensesPtrType) ToRealmSecurityDefensesPtrOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(RealmSecurityDefensesPtrOutput)
 }
 
+func (i *realmSecurityDefensesPtrType) ToOutput(ctx context.Context) pulumix.Output[*RealmSecurityDefenses] {
+	return pulumix.Output[*RealmSecurityDefenses]{
+		OutputState: i.ToRealmSecurityDefensesPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RealmSecurityDefensesOutput struct{ *pulumi.OutputState }
 
 func (RealmSecurityDefensesOutput) ElementType() reflect.Type {
@@ -1311,6 +1495,12 @@ func (o RealmSecurityDefensesOutput) ToRealmSecurityDefensesPtrOutputWithContext
 	}).(RealmSecurityDefensesPtrOutput)
 }
 
+func (o RealmSecurityDefensesOutput) ToOutput(ctx context.Context) pulumix.Output[RealmSecurityDefenses] {
+	return pulumix.Output[RealmSecurityDefenses]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RealmSecurityDefensesOutput) BruteForceDetection() RealmSecurityDefensesBruteForceDetectionPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefenses) *RealmSecurityDefensesBruteForceDetection { return v.BruteForceDetection }).(RealmSecurityDefensesBruteForceDetectionPtrOutput)
 }
@@ -1331,6 +1521,12 @@ func (o RealmSecurityDefensesPtrOutput) ToRealmSecurityDefensesPtrOutput() Realm
 
 func (o RealmSecurityDefensesPtrOutput) ToRealmSecurityDefensesPtrOutputWithContext(ctx context.Context) RealmSecurityDefensesPtrOutput {
 	return o
+}
+
+func (o RealmSecurityDefensesPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*RealmSecurityDefenses] {
+	return pulumix.Output[*RealmSecurityDefenses]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RealmSecurityDefensesPtrOutput) Elem() RealmSecurityDefensesOutput {
@@ -1418,6 +1614,12 @@ func (i RealmSecurityDefensesBruteForceDetectionArgs) ToRealmSecurityDefensesBru
 	return pulumi.ToOutputWithContext(ctx, i).(RealmSecurityDefensesBruteForceDetectionOutput)
 }
 
+func (i RealmSecurityDefensesBruteForceDetectionArgs) ToOutput(ctx context.Context) pulumix.Output[RealmSecurityDefensesBruteForceDetection] {
+	return pulumix.Output[RealmSecurityDefensesBruteForceDetection]{
+		OutputState: i.ToRealmSecurityDefensesBruteForceDetectionOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i RealmSecurityDefensesBruteForceDetectionArgs) ToRealmSecurityDefensesBruteForceDetectionPtrOutput() RealmSecurityDefensesBruteForceDetectionPtrOutput {
 	return i.ToRealmSecurityDefensesBruteForceDetectionPtrOutputWithContext(context.Background())
 }
@@ -1459,6 +1661,12 @@ func (i *realmSecurityDefensesBruteForceDetectionPtrType) ToRealmSecurityDefense
 	return pulumi.ToOutputWithContext(ctx, i).(RealmSecurityDefensesBruteForceDetectionPtrOutput)
 }
 
+func (i *realmSecurityDefensesBruteForceDetectionPtrType) ToOutput(ctx context.Context) pulumix.Output[*RealmSecurityDefensesBruteForceDetection] {
+	return pulumix.Output[*RealmSecurityDefensesBruteForceDetection]{
+		OutputState: i.ToRealmSecurityDefensesBruteForceDetectionPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RealmSecurityDefensesBruteForceDetectionOutput struct{ *pulumi.OutputState }
 
 func (RealmSecurityDefensesBruteForceDetectionOutput) ElementType() reflect.Type {
@@ -1481,6 +1689,12 @@ func (o RealmSecurityDefensesBruteForceDetectionOutput) ToRealmSecurityDefensesB
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmSecurityDefensesBruteForceDetection) *RealmSecurityDefensesBruteForceDetection {
 		return &v
 	}).(RealmSecurityDefensesBruteForceDetectionPtrOutput)
+}
+
+func (o RealmSecurityDefensesBruteForceDetectionOutput) ToOutput(ctx context.Context) pulumix.Output[RealmSecurityDefensesBruteForceDetection] {
+	return pulumix.Output[RealmSecurityDefensesBruteForceDetection]{
+		OutputState: o.OutputState,
+	}
 }
 
 // When will failure count be reset?
@@ -1530,6 +1744,12 @@ func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) ToRealmSecurityDefens
 
 func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) ToRealmSecurityDefensesBruteForceDetectionPtrOutputWithContext(ctx context.Context) RealmSecurityDefensesBruteForceDetectionPtrOutput {
 	return o
+}
+
+func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*RealmSecurityDefensesBruteForceDetection] {
+	return pulumix.Output[*RealmSecurityDefensesBruteForceDetection]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) Elem() RealmSecurityDefensesBruteForceDetectionOutput {
@@ -1669,6 +1889,12 @@ func (i RealmSecurityDefensesHeadersArgs) ToRealmSecurityDefensesHeadersOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(RealmSecurityDefensesHeadersOutput)
 }
 
+func (i RealmSecurityDefensesHeadersArgs) ToOutput(ctx context.Context) pulumix.Output[RealmSecurityDefensesHeaders] {
+	return pulumix.Output[RealmSecurityDefensesHeaders]{
+		OutputState: i.ToRealmSecurityDefensesHeadersOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i RealmSecurityDefensesHeadersArgs) ToRealmSecurityDefensesHeadersPtrOutput() RealmSecurityDefensesHeadersPtrOutput {
 	return i.ToRealmSecurityDefensesHeadersPtrOutputWithContext(context.Background())
 }
@@ -1710,6 +1936,12 @@ func (i *realmSecurityDefensesHeadersPtrType) ToRealmSecurityDefensesHeadersPtrO
 	return pulumi.ToOutputWithContext(ctx, i).(RealmSecurityDefensesHeadersPtrOutput)
 }
 
+func (i *realmSecurityDefensesHeadersPtrType) ToOutput(ctx context.Context) pulumix.Output[*RealmSecurityDefensesHeaders] {
+	return pulumix.Output[*RealmSecurityDefensesHeaders]{
+		OutputState: i.ToRealmSecurityDefensesHeadersPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RealmSecurityDefensesHeadersOutput struct{ *pulumi.OutputState }
 
 func (RealmSecurityDefensesHeadersOutput) ElementType() reflect.Type {
@@ -1732,6 +1964,12 @@ func (o RealmSecurityDefensesHeadersOutput) ToRealmSecurityDefensesHeadersPtrOut
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmSecurityDefensesHeaders) *RealmSecurityDefensesHeaders {
 		return &v
 	}).(RealmSecurityDefensesHeadersPtrOutput)
+}
+
+func (o RealmSecurityDefensesHeadersOutput) ToOutput(ctx context.Context) pulumix.Output[RealmSecurityDefensesHeaders] {
+	return pulumix.Output[RealmSecurityDefensesHeaders]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
@@ -1781,6 +2019,12 @@ func (o RealmSecurityDefensesHeadersPtrOutput) ToRealmSecurityDefensesHeadersPtr
 
 func (o RealmSecurityDefensesHeadersPtrOutput) ToRealmSecurityDefensesHeadersPtrOutputWithContext(ctx context.Context) RealmSecurityDefensesHeadersPtrOutput {
 	return o
+}
+
+func (o RealmSecurityDefensesHeadersPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*RealmSecurityDefensesHeaders] {
+	return pulumix.Output[*RealmSecurityDefensesHeaders]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RealmSecurityDefensesHeadersPtrOutput) Elem() RealmSecurityDefensesHeadersOutput {
@@ -1932,6 +2176,12 @@ func (i RealmSmtpServerArgs) ToRealmSmtpServerOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(RealmSmtpServerOutput)
 }
 
+func (i RealmSmtpServerArgs) ToOutput(ctx context.Context) pulumix.Output[RealmSmtpServer] {
+	return pulumix.Output[RealmSmtpServer]{
+		OutputState: i.ToRealmSmtpServerOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i RealmSmtpServerArgs) ToRealmSmtpServerPtrOutput() RealmSmtpServerPtrOutput {
 	return i.ToRealmSmtpServerPtrOutputWithContext(context.Background())
 }
@@ -1973,6 +2223,12 @@ func (i *realmSmtpServerPtrType) ToRealmSmtpServerPtrOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(RealmSmtpServerPtrOutput)
 }
 
+func (i *realmSmtpServerPtrType) ToOutput(ctx context.Context) pulumix.Output[*RealmSmtpServer] {
+	return pulumix.Output[*RealmSmtpServer]{
+		OutputState: i.ToRealmSmtpServerPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RealmSmtpServerOutput struct{ *pulumi.OutputState }
 
 func (RealmSmtpServerOutput) ElementType() reflect.Type {
@@ -1995,6 +2251,12 @@ func (o RealmSmtpServerOutput) ToRealmSmtpServerPtrOutputWithContext(ctx context
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmSmtpServer) *RealmSmtpServer {
 		return &v
 	}).(RealmSmtpServerPtrOutput)
+}
+
+func (o RealmSmtpServerOutput) ToOutput(ctx context.Context) pulumix.Output[RealmSmtpServer] {
+	return pulumix.Output[RealmSmtpServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Enables authentication to the SMTP server.  This block supports the following arguments:
@@ -2059,6 +2321,12 @@ func (o RealmSmtpServerPtrOutput) ToRealmSmtpServerPtrOutput() RealmSmtpServerPt
 
 func (o RealmSmtpServerPtrOutput) ToRealmSmtpServerPtrOutputWithContext(ctx context.Context) RealmSmtpServerPtrOutput {
 	return o
+}
+
+func (o RealmSmtpServerPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*RealmSmtpServer] {
+	return pulumix.Output[*RealmSmtpServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RealmSmtpServerPtrOutput) Elem() RealmSmtpServerOutput {
@@ -2208,6 +2476,12 @@ func (i RealmSmtpServerAuthArgs) ToRealmSmtpServerAuthOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(RealmSmtpServerAuthOutput)
 }
 
+func (i RealmSmtpServerAuthArgs) ToOutput(ctx context.Context) pulumix.Output[RealmSmtpServerAuth] {
+	return pulumix.Output[RealmSmtpServerAuth]{
+		OutputState: i.ToRealmSmtpServerAuthOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i RealmSmtpServerAuthArgs) ToRealmSmtpServerAuthPtrOutput() RealmSmtpServerAuthPtrOutput {
 	return i.ToRealmSmtpServerAuthPtrOutputWithContext(context.Background())
 }
@@ -2249,6 +2523,12 @@ func (i *realmSmtpServerAuthPtrType) ToRealmSmtpServerAuthPtrOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(RealmSmtpServerAuthPtrOutput)
 }
 
+func (i *realmSmtpServerAuthPtrType) ToOutput(ctx context.Context) pulumix.Output[*RealmSmtpServerAuth] {
+	return pulumix.Output[*RealmSmtpServerAuth]{
+		OutputState: i.ToRealmSmtpServerAuthPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RealmSmtpServerAuthOutput struct{ *pulumi.OutputState }
 
 func (RealmSmtpServerAuthOutput) ElementType() reflect.Type {
@@ -2273,6 +2553,12 @@ func (o RealmSmtpServerAuthOutput) ToRealmSmtpServerAuthPtrOutputWithContext(ctx
 	}).(RealmSmtpServerAuthPtrOutput)
 }
 
+func (o RealmSmtpServerAuthOutput) ToOutput(ctx context.Context) pulumix.Output[RealmSmtpServerAuth] {
+	return pulumix.Output[RealmSmtpServerAuth]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The SMTP server password.
 func (o RealmSmtpServerAuthOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v RealmSmtpServerAuth) string { return v.Password }).(pulumi.StringOutput)
@@ -2295,6 +2581,12 @@ func (o RealmSmtpServerAuthPtrOutput) ToRealmSmtpServerAuthPtrOutput() RealmSmtp
 
 func (o RealmSmtpServerAuthPtrOutput) ToRealmSmtpServerAuthPtrOutputWithContext(ctx context.Context) RealmSmtpServerAuthPtrOutput {
 	return o
+}
+
+func (o RealmSmtpServerAuthPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*RealmSmtpServerAuth] {
+	return pulumix.Output[*RealmSmtpServerAuth]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RealmSmtpServerAuthPtrOutput) Elem() RealmSmtpServerAuthOutput {
@@ -2392,6 +2684,12 @@ func (i RealmUserProfileAttributeArgs) ToRealmUserProfileAttributeOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileAttributeOutput)
 }
 
+func (i RealmUserProfileAttributeArgs) ToOutput(ctx context.Context) pulumix.Output[RealmUserProfileAttribute] {
+	return pulumix.Output[RealmUserProfileAttribute]{
+		OutputState: i.ToRealmUserProfileAttributeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RealmUserProfileAttributeArrayInput is an input type that accepts RealmUserProfileAttributeArray and RealmUserProfileAttributeArrayOutput values.
 // You can construct a concrete instance of `RealmUserProfileAttributeArrayInput` via:
 //
@@ -2417,6 +2715,12 @@ func (i RealmUserProfileAttributeArray) ToRealmUserProfileAttributeArrayOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileAttributeArrayOutput)
 }
 
+func (i RealmUserProfileAttributeArray) ToOutput(ctx context.Context) pulumix.Output[[]RealmUserProfileAttribute] {
+	return pulumix.Output[[]RealmUserProfileAttribute]{
+		OutputState: i.ToRealmUserProfileAttributeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RealmUserProfileAttributeOutput struct{ *pulumi.OutputState }
 
 func (RealmUserProfileAttributeOutput) ElementType() reflect.Type {
@@ -2429,6 +2733,12 @@ func (o RealmUserProfileAttributeOutput) ToRealmUserProfileAttributeOutput() Rea
 
 func (o RealmUserProfileAttributeOutput) ToRealmUserProfileAttributeOutputWithContext(ctx context.Context) RealmUserProfileAttributeOutput {
 	return o
+}
+
+func (o RealmUserProfileAttributeOutput) ToOutput(ctx context.Context) pulumix.Output[RealmUserProfileAttribute] {
+	return pulumix.Output[RealmUserProfileAttribute]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A map of annotations for the attribute. Values can be a String or a json object.
@@ -2490,6 +2800,12 @@ func (o RealmUserProfileAttributeArrayOutput) ToRealmUserProfileAttributeArrayOu
 	return o
 }
 
+func (o RealmUserProfileAttributeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]RealmUserProfileAttribute] {
+	return pulumix.Output[[]RealmUserProfileAttribute]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RealmUserProfileAttributeArrayOutput) Index(i pulumi.IntInput) RealmUserProfileAttributeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RealmUserProfileAttribute {
 		return vs[0].([]RealmUserProfileAttribute)[vs[1].(int)]
@@ -2533,6 +2849,12 @@ func (i RealmUserProfileAttributePermissionsArgs) ToRealmUserProfileAttributePer
 	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileAttributePermissionsOutput)
 }
 
+func (i RealmUserProfileAttributePermissionsArgs) ToOutput(ctx context.Context) pulumix.Output[RealmUserProfileAttributePermissions] {
+	return pulumix.Output[RealmUserProfileAttributePermissions]{
+		OutputState: i.ToRealmUserProfileAttributePermissionsOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i RealmUserProfileAttributePermissionsArgs) ToRealmUserProfileAttributePermissionsPtrOutput() RealmUserProfileAttributePermissionsPtrOutput {
 	return i.ToRealmUserProfileAttributePermissionsPtrOutputWithContext(context.Background())
 }
@@ -2574,6 +2896,12 @@ func (i *realmUserProfileAttributePermissionsPtrType) ToRealmUserProfileAttribut
 	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileAttributePermissionsPtrOutput)
 }
 
+func (i *realmUserProfileAttributePermissionsPtrType) ToOutput(ctx context.Context) pulumix.Output[*RealmUserProfileAttributePermissions] {
+	return pulumix.Output[*RealmUserProfileAttributePermissions]{
+		OutputState: i.ToRealmUserProfileAttributePermissionsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RealmUserProfileAttributePermissionsOutput struct{ *pulumi.OutputState }
 
 func (RealmUserProfileAttributePermissionsOutput) ElementType() reflect.Type {
@@ -2598,6 +2926,12 @@ func (o RealmUserProfileAttributePermissionsOutput) ToRealmUserProfileAttributeP
 	}).(RealmUserProfileAttributePermissionsPtrOutput)
 }
 
+func (o RealmUserProfileAttributePermissionsOutput) ToOutput(ctx context.Context) pulumix.Output[RealmUserProfileAttributePermissions] {
+	return pulumix.Output[RealmUserProfileAttributePermissions]{
+		OutputState: o.OutputState,
+	}
+}
+
 // A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
 func (o RealmUserProfileAttributePermissionsOutput) Edits() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RealmUserProfileAttributePermissions) []string { return v.Edits }).(pulumi.StringArrayOutput)
@@ -2620,6 +2954,12 @@ func (o RealmUserProfileAttributePermissionsPtrOutput) ToRealmUserProfileAttribu
 
 func (o RealmUserProfileAttributePermissionsPtrOutput) ToRealmUserProfileAttributePermissionsPtrOutputWithContext(ctx context.Context) RealmUserProfileAttributePermissionsPtrOutput {
 	return o
+}
+
+func (o RealmUserProfileAttributePermissionsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*RealmUserProfileAttributePermissions] {
+	return pulumix.Output[*RealmUserProfileAttributePermissions]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RealmUserProfileAttributePermissionsPtrOutput) Elem() RealmUserProfileAttributePermissionsOutput {
@@ -2689,6 +3029,12 @@ func (i RealmUserProfileAttributeValidatorArgs) ToRealmUserProfileAttributeValid
 	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileAttributeValidatorOutput)
 }
 
+func (i RealmUserProfileAttributeValidatorArgs) ToOutput(ctx context.Context) pulumix.Output[RealmUserProfileAttributeValidator] {
+	return pulumix.Output[RealmUserProfileAttributeValidator]{
+		OutputState: i.ToRealmUserProfileAttributeValidatorOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RealmUserProfileAttributeValidatorArrayInput is an input type that accepts RealmUserProfileAttributeValidatorArray and RealmUserProfileAttributeValidatorArrayOutput values.
 // You can construct a concrete instance of `RealmUserProfileAttributeValidatorArrayInput` via:
 //
@@ -2714,6 +3060,12 @@ func (i RealmUserProfileAttributeValidatorArray) ToRealmUserProfileAttributeVali
 	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileAttributeValidatorArrayOutput)
 }
 
+func (i RealmUserProfileAttributeValidatorArray) ToOutput(ctx context.Context) pulumix.Output[[]RealmUserProfileAttributeValidator] {
+	return pulumix.Output[[]RealmUserProfileAttributeValidator]{
+		OutputState: i.ToRealmUserProfileAttributeValidatorArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RealmUserProfileAttributeValidatorOutput struct{ *pulumi.OutputState }
 
 func (RealmUserProfileAttributeValidatorOutput) ElementType() reflect.Type {
@@ -2726,6 +3078,12 @@ func (o RealmUserProfileAttributeValidatorOutput) ToRealmUserProfileAttributeVal
 
 func (o RealmUserProfileAttributeValidatorOutput) ToRealmUserProfileAttributeValidatorOutputWithContext(ctx context.Context) RealmUserProfileAttributeValidatorOutput {
 	return o
+}
+
+func (o RealmUserProfileAttributeValidatorOutput) ToOutput(ctx context.Context) pulumix.Output[RealmUserProfileAttributeValidator] {
+	return pulumix.Output[RealmUserProfileAttributeValidator]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A map defining the configuration of the validator. Values can be a String or a json object.
@@ -2750,6 +3108,12 @@ func (o RealmUserProfileAttributeValidatorArrayOutput) ToRealmUserProfileAttribu
 
 func (o RealmUserProfileAttributeValidatorArrayOutput) ToRealmUserProfileAttributeValidatorArrayOutputWithContext(ctx context.Context) RealmUserProfileAttributeValidatorArrayOutput {
 	return o
+}
+
+func (o RealmUserProfileAttributeValidatorArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]RealmUserProfileAttributeValidator] {
+	return pulumix.Output[[]RealmUserProfileAttributeValidator]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RealmUserProfileAttributeValidatorArrayOutput) Index(i pulumi.IntInput) RealmUserProfileAttributeValidatorOutput {
@@ -2803,6 +3167,12 @@ func (i RealmUserProfileGroupArgs) ToRealmUserProfileGroupOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileGroupOutput)
 }
 
+func (i RealmUserProfileGroupArgs) ToOutput(ctx context.Context) pulumix.Output[RealmUserProfileGroup] {
+	return pulumix.Output[RealmUserProfileGroup]{
+		OutputState: i.ToRealmUserProfileGroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RealmUserProfileGroupArrayInput is an input type that accepts RealmUserProfileGroupArray and RealmUserProfileGroupArrayOutput values.
 // You can construct a concrete instance of `RealmUserProfileGroupArrayInput` via:
 //
@@ -2828,6 +3198,12 @@ func (i RealmUserProfileGroupArray) ToRealmUserProfileGroupArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(RealmUserProfileGroupArrayOutput)
 }
 
+func (i RealmUserProfileGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]RealmUserProfileGroup] {
+	return pulumix.Output[[]RealmUserProfileGroup]{
+		OutputState: i.ToRealmUserProfileGroupArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RealmUserProfileGroupOutput struct{ *pulumi.OutputState }
 
 func (RealmUserProfileGroupOutput) ElementType() reflect.Type {
@@ -2840,6 +3216,12 @@ func (o RealmUserProfileGroupOutput) ToRealmUserProfileGroupOutput() RealmUserPr
 
 func (o RealmUserProfileGroupOutput) ToRealmUserProfileGroupOutputWithContext(ctx context.Context) RealmUserProfileGroupOutput {
 	return o
+}
+
+func (o RealmUserProfileGroupOutput) ToOutput(ctx context.Context) pulumix.Output[RealmUserProfileGroup] {
+	return pulumix.Output[RealmUserProfileGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A map of annotations for the attribute. Values can be a String or a json object.
@@ -2874,6 +3256,12 @@ func (o RealmUserProfileGroupArrayOutput) ToRealmUserProfileGroupArrayOutput() R
 
 func (o RealmUserProfileGroupArrayOutput) ToRealmUserProfileGroupArrayOutputWithContext(ctx context.Context) RealmUserProfileGroupArrayOutput {
 	return o
+}
+
+func (o RealmUserProfileGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]RealmUserProfileGroup] {
+	return pulumix.Output[[]RealmUserProfileGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RealmUserProfileGroupArrayOutput) Index(i pulumi.IntInput) RealmUserProfileGroupOutput {
@@ -2951,6 +3339,12 @@ func (i RealmWebAuthnPasswordlessPolicyArgs) ToRealmWebAuthnPasswordlessPolicyOu
 	return pulumi.ToOutputWithContext(ctx, i).(RealmWebAuthnPasswordlessPolicyOutput)
 }
 
+func (i RealmWebAuthnPasswordlessPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[RealmWebAuthnPasswordlessPolicy] {
+	return pulumix.Output[RealmWebAuthnPasswordlessPolicy]{
+		OutputState: i.ToRealmWebAuthnPasswordlessPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i RealmWebAuthnPasswordlessPolicyArgs) ToRealmWebAuthnPasswordlessPolicyPtrOutput() RealmWebAuthnPasswordlessPolicyPtrOutput {
 	return i.ToRealmWebAuthnPasswordlessPolicyPtrOutputWithContext(context.Background())
 }
@@ -2992,6 +3386,12 @@ func (i *realmWebAuthnPasswordlessPolicyPtrType) ToRealmWebAuthnPasswordlessPoli
 	return pulumi.ToOutputWithContext(ctx, i).(RealmWebAuthnPasswordlessPolicyPtrOutput)
 }
 
+func (i *realmWebAuthnPasswordlessPolicyPtrType) ToOutput(ctx context.Context) pulumix.Output[*RealmWebAuthnPasswordlessPolicy] {
+	return pulumix.Output[*RealmWebAuthnPasswordlessPolicy]{
+		OutputState: i.ToRealmWebAuthnPasswordlessPolicyPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RealmWebAuthnPasswordlessPolicyOutput struct{ *pulumi.OutputState }
 
 func (RealmWebAuthnPasswordlessPolicyOutput) ElementType() reflect.Type {
@@ -3014,6 +3414,12 @@ func (o RealmWebAuthnPasswordlessPolicyOutput) ToRealmWebAuthnPasswordlessPolicy
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmWebAuthnPasswordlessPolicy) *RealmWebAuthnPasswordlessPolicy {
 		return &v
 	}).(RealmWebAuthnPasswordlessPolicyPtrOutput)
+}
+
+func (o RealmWebAuthnPasswordlessPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[RealmWebAuthnPasswordlessPolicy] {
+	return pulumix.Output[RealmWebAuthnPasswordlessPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A set of AAGUIDs for which an authenticator can be registered.
@@ -3078,6 +3484,12 @@ func (o RealmWebAuthnPasswordlessPolicyPtrOutput) ToRealmWebAuthnPasswordlessPol
 
 func (o RealmWebAuthnPasswordlessPolicyPtrOutput) ToRealmWebAuthnPasswordlessPolicyPtrOutputWithContext(ctx context.Context) RealmWebAuthnPasswordlessPolicyPtrOutput {
 	return o
+}
+
+func (o RealmWebAuthnPasswordlessPolicyPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*RealmWebAuthnPasswordlessPolicy] {
+	return pulumix.Output[*RealmWebAuthnPasswordlessPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RealmWebAuthnPasswordlessPolicyPtrOutput) Elem() RealmWebAuthnPasswordlessPolicyOutput {
@@ -3259,6 +3671,12 @@ func (i RealmWebAuthnPolicyArgs) ToRealmWebAuthnPolicyOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(RealmWebAuthnPolicyOutput)
 }
 
+func (i RealmWebAuthnPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[RealmWebAuthnPolicy] {
+	return pulumix.Output[RealmWebAuthnPolicy]{
+		OutputState: i.ToRealmWebAuthnPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i RealmWebAuthnPolicyArgs) ToRealmWebAuthnPolicyPtrOutput() RealmWebAuthnPolicyPtrOutput {
 	return i.ToRealmWebAuthnPolicyPtrOutputWithContext(context.Background())
 }
@@ -3300,6 +3718,12 @@ func (i *realmWebAuthnPolicyPtrType) ToRealmWebAuthnPolicyPtrOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(RealmWebAuthnPolicyPtrOutput)
 }
 
+func (i *realmWebAuthnPolicyPtrType) ToOutput(ctx context.Context) pulumix.Output[*RealmWebAuthnPolicy] {
+	return pulumix.Output[*RealmWebAuthnPolicy]{
+		OutputState: i.ToRealmWebAuthnPolicyPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RealmWebAuthnPolicyOutput struct{ *pulumi.OutputState }
 
 func (RealmWebAuthnPolicyOutput) ElementType() reflect.Type {
@@ -3322,6 +3746,12 @@ func (o RealmWebAuthnPolicyOutput) ToRealmWebAuthnPolicyPtrOutputWithContext(ctx
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmWebAuthnPolicy) *RealmWebAuthnPolicy {
 		return &v
 	}).(RealmWebAuthnPolicyPtrOutput)
+}
+
+func (o RealmWebAuthnPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[RealmWebAuthnPolicy] {
+	return pulumix.Output[RealmWebAuthnPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A set of AAGUIDs for which an authenticator can be registered.
@@ -3386,6 +3816,12 @@ func (o RealmWebAuthnPolicyPtrOutput) ToRealmWebAuthnPolicyPtrOutput() RealmWebA
 
 func (o RealmWebAuthnPolicyPtrOutput) ToRealmWebAuthnPolicyPtrOutputWithContext(ctx context.Context) RealmWebAuthnPolicyPtrOutput {
 	return o
+}
+
+func (o RealmWebAuthnPolicyPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*RealmWebAuthnPolicy] {
+	return pulumix.Output[*RealmWebAuthnPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RealmWebAuthnPolicyPtrOutput) Elem() RealmWebAuthnPolicyOutput {
@@ -3539,6 +3975,12 @@ func (i UserFederatedIdentityArgs) ToUserFederatedIdentityOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(UserFederatedIdentityOutput)
 }
 
+func (i UserFederatedIdentityArgs) ToOutput(ctx context.Context) pulumix.Output[UserFederatedIdentity] {
+	return pulumix.Output[UserFederatedIdentity]{
+		OutputState: i.ToUserFederatedIdentityOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserFederatedIdentityArrayInput is an input type that accepts UserFederatedIdentityArray and UserFederatedIdentityArrayOutput values.
 // You can construct a concrete instance of `UserFederatedIdentityArrayInput` via:
 //
@@ -3564,6 +4006,12 @@ func (i UserFederatedIdentityArray) ToUserFederatedIdentityArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(UserFederatedIdentityArrayOutput)
 }
 
+func (i UserFederatedIdentityArray) ToOutput(ctx context.Context) pulumix.Output[[]UserFederatedIdentity] {
+	return pulumix.Output[[]UserFederatedIdentity]{
+		OutputState: i.ToUserFederatedIdentityArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserFederatedIdentityOutput struct{ *pulumi.OutputState }
 
 func (UserFederatedIdentityOutput) ElementType() reflect.Type {
@@ -3576,6 +4024,12 @@ func (o UserFederatedIdentityOutput) ToUserFederatedIdentityOutput() UserFederat
 
 func (o UserFederatedIdentityOutput) ToUserFederatedIdentityOutputWithContext(ctx context.Context) UserFederatedIdentityOutput {
 	return o
+}
+
+func (o UserFederatedIdentityOutput) ToOutput(ctx context.Context) pulumix.Output[UserFederatedIdentity] {
+	return pulumix.Output[UserFederatedIdentity]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The name of the identity provider
@@ -3605,6 +4059,12 @@ func (o UserFederatedIdentityArrayOutput) ToUserFederatedIdentityArrayOutput() U
 
 func (o UserFederatedIdentityArrayOutput) ToUserFederatedIdentityArrayOutputWithContext(ctx context.Context) UserFederatedIdentityArrayOutput {
 	return o
+}
+
+func (o UserFederatedIdentityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserFederatedIdentity] {
+	return pulumix.Output[[]UserFederatedIdentity]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserFederatedIdentityArrayOutput) Index(i pulumi.IntInput) UserFederatedIdentityOutput {
@@ -3650,6 +4110,12 @@ func (i UserInitialPasswordArgs) ToUserInitialPasswordOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(UserInitialPasswordOutput)
 }
 
+func (i UserInitialPasswordArgs) ToOutput(ctx context.Context) pulumix.Output[UserInitialPassword] {
+	return pulumix.Output[UserInitialPassword]{
+		OutputState: i.ToUserInitialPasswordOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i UserInitialPasswordArgs) ToUserInitialPasswordPtrOutput() UserInitialPasswordPtrOutput {
 	return i.ToUserInitialPasswordPtrOutputWithContext(context.Background())
 }
@@ -3691,6 +4157,12 @@ func (i *userInitialPasswordPtrType) ToUserInitialPasswordPtrOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(UserInitialPasswordPtrOutput)
 }
 
+func (i *userInitialPasswordPtrType) ToOutput(ctx context.Context) pulumix.Output[*UserInitialPassword] {
+	return pulumix.Output[*UserInitialPassword]{
+		OutputState: i.ToUserInitialPasswordPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserInitialPasswordOutput struct{ *pulumi.OutputState }
 
 func (UserInitialPasswordOutput) ElementType() reflect.Type {
@@ -3715,6 +4187,12 @@ func (o UserInitialPasswordOutput) ToUserInitialPasswordPtrOutputWithContext(ctx
 	}).(UserInitialPasswordPtrOutput)
 }
 
+func (o UserInitialPasswordOutput) ToOutput(ctx context.Context) pulumix.Output[UserInitialPassword] {
+	return pulumix.Output[UserInitialPassword]{
+		OutputState: o.OutputState,
+	}
+}
+
 // If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
 func (o UserInitialPasswordOutput) Temporary() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v UserInitialPassword) *bool { return v.Temporary }).(pulumi.BoolPtrOutput)
@@ -3737,6 +4215,12 @@ func (o UserInitialPasswordPtrOutput) ToUserInitialPasswordPtrOutput() UserIniti
 
 func (o UserInitialPasswordPtrOutput) ToUserInitialPasswordPtrOutputWithContext(ctx context.Context) UserInitialPasswordPtrOutput {
 	return o
+}
+
+func (o UserInitialPasswordPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*UserInitialPassword] {
+	return pulumix.Output[*UserInitialPassword]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserInitialPasswordPtrOutput) Elem() UserInitialPasswordOutput {
@@ -3804,6 +4288,12 @@ func (i UsersPermissionsImpersonateScopeArgs) ToUsersPermissionsImpersonateScope
 	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsImpersonateScopeOutput)
 }
 
+func (i UsersPermissionsImpersonateScopeArgs) ToOutput(ctx context.Context) pulumix.Output[UsersPermissionsImpersonateScope] {
+	return pulumix.Output[UsersPermissionsImpersonateScope]{
+		OutputState: i.ToUsersPermissionsImpersonateScopeOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i UsersPermissionsImpersonateScopeArgs) ToUsersPermissionsImpersonateScopePtrOutput() UsersPermissionsImpersonateScopePtrOutput {
 	return i.ToUsersPermissionsImpersonateScopePtrOutputWithContext(context.Background())
 }
@@ -3845,6 +4335,12 @@ func (i *usersPermissionsImpersonateScopePtrType) ToUsersPermissionsImpersonateS
 	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsImpersonateScopePtrOutput)
 }
 
+func (i *usersPermissionsImpersonateScopePtrType) ToOutput(ctx context.Context) pulumix.Output[*UsersPermissionsImpersonateScope] {
+	return pulumix.Output[*UsersPermissionsImpersonateScope]{
+		OutputState: i.ToUsersPermissionsImpersonateScopePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UsersPermissionsImpersonateScopeOutput struct{ *pulumi.OutputState }
 
 func (UsersPermissionsImpersonateScopeOutput) ElementType() reflect.Type {
@@ -3867,6 +4363,12 @@ func (o UsersPermissionsImpersonateScopeOutput) ToUsersPermissionsImpersonateSco
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v UsersPermissionsImpersonateScope) *UsersPermissionsImpersonateScope {
 		return &v
 	}).(UsersPermissionsImpersonateScopePtrOutput)
+}
+
+func (o UsersPermissionsImpersonateScopeOutput) ToOutput(ctx context.Context) pulumix.Output[UsersPermissionsImpersonateScope] {
+	return pulumix.Output[UsersPermissionsImpersonateScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UsersPermissionsImpersonateScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -3893,6 +4395,12 @@ func (o UsersPermissionsImpersonateScopePtrOutput) ToUsersPermissionsImpersonate
 
 func (o UsersPermissionsImpersonateScopePtrOutput) ToUsersPermissionsImpersonateScopePtrOutputWithContext(ctx context.Context) UsersPermissionsImpersonateScopePtrOutput {
 	return o
+}
+
+func (o UsersPermissionsImpersonateScopePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*UsersPermissionsImpersonateScope] {
+	return pulumix.Output[*UsersPermissionsImpersonateScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UsersPermissionsImpersonateScopePtrOutput) Elem() UsersPermissionsImpersonateScopeOutput {
@@ -3967,6 +4475,12 @@ func (i UsersPermissionsManageGroupMembershipScopeArgs) ToUsersPermissionsManage
 	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsManageGroupMembershipScopeOutput)
 }
 
+func (i UsersPermissionsManageGroupMembershipScopeArgs) ToOutput(ctx context.Context) pulumix.Output[UsersPermissionsManageGroupMembershipScope] {
+	return pulumix.Output[UsersPermissionsManageGroupMembershipScope]{
+		OutputState: i.ToUsersPermissionsManageGroupMembershipScopeOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i UsersPermissionsManageGroupMembershipScopeArgs) ToUsersPermissionsManageGroupMembershipScopePtrOutput() UsersPermissionsManageGroupMembershipScopePtrOutput {
 	return i.ToUsersPermissionsManageGroupMembershipScopePtrOutputWithContext(context.Background())
 }
@@ -4008,6 +4522,12 @@ func (i *usersPermissionsManageGroupMembershipScopePtrType) ToUsersPermissionsMa
 	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsManageGroupMembershipScopePtrOutput)
 }
 
+func (i *usersPermissionsManageGroupMembershipScopePtrType) ToOutput(ctx context.Context) pulumix.Output[*UsersPermissionsManageGroupMembershipScope] {
+	return pulumix.Output[*UsersPermissionsManageGroupMembershipScope]{
+		OutputState: i.ToUsersPermissionsManageGroupMembershipScopePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UsersPermissionsManageGroupMembershipScopeOutput struct{ *pulumi.OutputState }
 
 func (UsersPermissionsManageGroupMembershipScopeOutput) ElementType() reflect.Type {
@@ -4030,6 +4550,12 @@ func (o UsersPermissionsManageGroupMembershipScopeOutput) ToUsersPermissionsMana
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v UsersPermissionsManageGroupMembershipScope) *UsersPermissionsManageGroupMembershipScope {
 		return &v
 	}).(UsersPermissionsManageGroupMembershipScopePtrOutput)
+}
+
+func (o UsersPermissionsManageGroupMembershipScopeOutput) ToOutput(ctx context.Context) pulumix.Output[UsersPermissionsManageGroupMembershipScope] {
+	return pulumix.Output[UsersPermissionsManageGroupMembershipScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UsersPermissionsManageGroupMembershipScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -4056,6 +4582,12 @@ func (o UsersPermissionsManageGroupMembershipScopePtrOutput) ToUsersPermissionsM
 
 func (o UsersPermissionsManageGroupMembershipScopePtrOutput) ToUsersPermissionsManageGroupMembershipScopePtrOutputWithContext(ctx context.Context) UsersPermissionsManageGroupMembershipScopePtrOutput {
 	return o
+}
+
+func (o UsersPermissionsManageGroupMembershipScopePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*UsersPermissionsManageGroupMembershipScope] {
+	return pulumix.Output[*UsersPermissionsManageGroupMembershipScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UsersPermissionsManageGroupMembershipScopePtrOutput) Elem() UsersPermissionsManageGroupMembershipScopeOutput {
@@ -4130,6 +4662,12 @@ func (i UsersPermissionsManageScopeArgs) ToUsersPermissionsManageScopeOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsManageScopeOutput)
 }
 
+func (i UsersPermissionsManageScopeArgs) ToOutput(ctx context.Context) pulumix.Output[UsersPermissionsManageScope] {
+	return pulumix.Output[UsersPermissionsManageScope]{
+		OutputState: i.ToUsersPermissionsManageScopeOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i UsersPermissionsManageScopeArgs) ToUsersPermissionsManageScopePtrOutput() UsersPermissionsManageScopePtrOutput {
 	return i.ToUsersPermissionsManageScopePtrOutputWithContext(context.Background())
 }
@@ -4171,6 +4709,12 @@ func (i *usersPermissionsManageScopePtrType) ToUsersPermissionsManageScopePtrOut
 	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsManageScopePtrOutput)
 }
 
+func (i *usersPermissionsManageScopePtrType) ToOutput(ctx context.Context) pulumix.Output[*UsersPermissionsManageScope] {
+	return pulumix.Output[*UsersPermissionsManageScope]{
+		OutputState: i.ToUsersPermissionsManageScopePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UsersPermissionsManageScopeOutput struct{ *pulumi.OutputState }
 
 func (UsersPermissionsManageScopeOutput) ElementType() reflect.Type {
@@ -4193,6 +4737,12 @@ func (o UsersPermissionsManageScopeOutput) ToUsersPermissionsManageScopePtrOutpu
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v UsersPermissionsManageScope) *UsersPermissionsManageScope {
 		return &v
 	}).(UsersPermissionsManageScopePtrOutput)
+}
+
+func (o UsersPermissionsManageScopeOutput) ToOutput(ctx context.Context) pulumix.Output[UsersPermissionsManageScope] {
+	return pulumix.Output[UsersPermissionsManageScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UsersPermissionsManageScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -4219,6 +4769,12 @@ func (o UsersPermissionsManageScopePtrOutput) ToUsersPermissionsManageScopePtrOu
 
 func (o UsersPermissionsManageScopePtrOutput) ToUsersPermissionsManageScopePtrOutputWithContext(ctx context.Context) UsersPermissionsManageScopePtrOutput {
 	return o
+}
+
+func (o UsersPermissionsManageScopePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*UsersPermissionsManageScope] {
+	return pulumix.Output[*UsersPermissionsManageScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UsersPermissionsManageScopePtrOutput) Elem() UsersPermissionsManageScopeOutput {
@@ -4293,6 +4849,12 @@ func (i UsersPermissionsMapRolesScopeArgs) ToUsersPermissionsMapRolesScopeOutput
 	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsMapRolesScopeOutput)
 }
 
+func (i UsersPermissionsMapRolesScopeArgs) ToOutput(ctx context.Context) pulumix.Output[UsersPermissionsMapRolesScope] {
+	return pulumix.Output[UsersPermissionsMapRolesScope]{
+		OutputState: i.ToUsersPermissionsMapRolesScopeOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i UsersPermissionsMapRolesScopeArgs) ToUsersPermissionsMapRolesScopePtrOutput() UsersPermissionsMapRolesScopePtrOutput {
 	return i.ToUsersPermissionsMapRolesScopePtrOutputWithContext(context.Background())
 }
@@ -4334,6 +4896,12 @@ func (i *usersPermissionsMapRolesScopePtrType) ToUsersPermissionsMapRolesScopePt
 	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsMapRolesScopePtrOutput)
 }
 
+func (i *usersPermissionsMapRolesScopePtrType) ToOutput(ctx context.Context) pulumix.Output[*UsersPermissionsMapRolesScope] {
+	return pulumix.Output[*UsersPermissionsMapRolesScope]{
+		OutputState: i.ToUsersPermissionsMapRolesScopePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UsersPermissionsMapRolesScopeOutput struct{ *pulumi.OutputState }
 
 func (UsersPermissionsMapRolesScopeOutput) ElementType() reflect.Type {
@@ -4356,6 +4924,12 @@ func (o UsersPermissionsMapRolesScopeOutput) ToUsersPermissionsMapRolesScopePtrO
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v UsersPermissionsMapRolesScope) *UsersPermissionsMapRolesScope {
 		return &v
 	}).(UsersPermissionsMapRolesScopePtrOutput)
+}
+
+func (o UsersPermissionsMapRolesScopeOutput) ToOutput(ctx context.Context) pulumix.Output[UsersPermissionsMapRolesScope] {
+	return pulumix.Output[UsersPermissionsMapRolesScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UsersPermissionsMapRolesScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -4382,6 +4956,12 @@ func (o UsersPermissionsMapRolesScopePtrOutput) ToUsersPermissionsMapRolesScopeP
 
 func (o UsersPermissionsMapRolesScopePtrOutput) ToUsersPermissionsMapRolesScopePtrOutputWithContext(ctx context.Context) UsersPermissionsMapRolesScopePtrOutput {
 	return o
+}
+
+func (o UsersPermissionsMapRolesScopePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*UsersPermissionsMapRolesScope] {
+	return pulumix.Output[*UsersPermissionsMapRolesScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UsersPermissionsMapRolesScopePtrOutput) Elem() UsersPermissionsMapRolesScopeOutput {
@@ -4456,6 +5036,12 @@ func (i UsersPermissionsUserImpersonatedScopeArgs) ToUsersPermissionsUserImperso
 	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsUserImpersonatedScopeOutput)
 }
 
+func (i UsersPermissionsUserImpersonatedScopeArgs) ToOutput(ctx context.Context) pulumix.Output[UsersPermissionsUserImpersonatedScope] {
+	return pulumix.Output[UsersPermissionsUserImpersonatedScope]{
+		OutputState: i.ToUsersPermissionsUserImpersonatedScopeOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i UsersPermissionsUserImpersonatedScopeArgs) ToUsersPermissionsUserImpersonatedScopePtrOutput() UsersPermissionsUserImpersonatedScopePtrOutput {
 	return i.ToUsersPermissionsUserImpersonatedScopePtrOutputWithContext(context.Background())
 }
@@ -4497,6 +5083,12 @@ func (i *usersPermissionsUserImpersonatedScopePtrType) ToUsersPermissionsUserImp
 	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsUserImpersonatedScopePtrOutput)
 }
 
+func (i *usersPermissionsUserImpersonatedScopePtrType) ToOutput(ctx context.Context) pulumix.Output[*UsersPermissionsUserImpersonatedScope] {
+	return pulumix.Output[*UsersPermissionsUserImpersonatedScope]{
+		OutputState: i.ToUsersPermissionsUserImpersonatedScopePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UsersPermissionsUserImpersonatedScopeOutput struct{ *pulumi.OutputState }
 
 func (UsersPermissionsUserImpersonatedScopeOutput) ElementType() reflect.Type {
@@ -4519,6 +5111,12 @@ func (o UsersPermissionsUserImpersonatedScopeOutput) ToUsersPermissionsUserImper
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v UsersPermissionsUserImpersonatedScope) *UsersPermissionsUserImpersonatedScope {
 		return &v
 	}).(UsersPermissionsUserImpersonatedScopePtrOutput)
+}
+
+func (o UsersPermissionsUserImpersonatedScopeOutput) ToOutput(ctx context.Context) pulumix.Output[UsersPermissionsUserImpersonatedScope] {
+	return pulumix.Output[UsersPermissionsUserImpersonatedScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UsersPermissionsUserImpersonatedScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -4545,6 +5143,12 @@ func (o UsersPermissionsUserImpersonatedScopePtrOutput) ToUsersPermissionsUserIm
 
 func (o UsersPermissionsUserImpersonatedScopePtrOutput) ToUsersPermissionsUserImpersonatedScopePtrOutputWithContext(ctx context.Context) UsersPermissionsUserImpersonatedScopePtrOutput {
 	return o
+}
+
+func (o UsersPermissionsUserImpersonatedScopePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*UsersPermissionsUserImpersonatedScope] {
+	return pulumix.Output[*UsersPermissionsUserImpersonatedScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UsersPermissionsUserImpersonatedScopePtrOutput) Elem() UsersPermissionsUserImpersonatedScopeOutput {
@@ -4619,6 +5223,12 @@ func (i UsersPermissionsViewScopeArgs) ToUsersPermissionsViewScopeOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsViewScopeOutput)
 }
 
+func (i UsersPermissionsViewScopeArgs) ToOutput(ctx context.Context) pulumix.Output[UsersPermissionsViewScope] {
+	return pulumix.Output[UsersPermissionsViewScope]{
+		OutputState: i.ToUsersPermissionsViewScopeOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i UsersPermissionsViewScopeArgs) ToUsersPermissionsViewScopePtrOutput() UsersPermissionsViewScopePtrOutput {
 	return i.ToUsersPermissionsViewScopePtrOutputWithContext(context.Background())
 }
@@ -4660,6 +5270,12 @@ func (i *usersPermissionsViewScopePtrType) ToUsersPermissionsViewScopePtrOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(UsersPermissionsViewScopePtrOutput)
 }
 
+func (i *usersPermissionsViewScopePtrType) ToOutput(ctx context.Context) pulumix.Output[*UsersPermissionsViewScope] {
+	return pulumix.Output[*UsersPermissionsViewScope]{
+		OutputState: i.ToUsersPermissionsViewScopePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UsersPermissionsViewScopeOutput struct{ *pulumi.OutputState }
 
 func (UsersPermissionsViewScopeOutput) ElementType() reflect.Type {
@@ -4682,6 +5298,12 @@ func (o UsersPermissionsViewScopeOutput) ToUsersPermissionsViewScopePtrOutputWit
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v UsersPermissionsViewScope) *UsersPermissionsViewScope {
 		return &v
 	}).(UsersPermissionsViewScopePtrOutput)
+}
+
+func (o UsersPermissionsViewScopeOutput) ToOutput(ctx context.Context) pulumix.Output[UsersPermissionsViewScope] {
+	return pulumix.Output[UsersPermissionsViewScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UsersPermissionsViewScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -4708,6 +5330,12 @@ func (o UsersPermissionsViewScopePtrOutput) ToUsersPermissionsViewScopePtrOutput
 
 func (o UsersPermissionsViewScopePtrOutput) ToUsersPermissionsViewScopePtrOutputWithContext(ctx context.Context) UsersPermissionsViewScopePtrOutput {
 	return o
+}
+
+func (o UsersPermissionsViewScopePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*UsersPermissionsViewScope] {
+	return pulumix.Output[*UsersPermissionsViewScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UsersPermissionsViewScopePtrOutput) Elem() UsersPermissionsViewScopeOutput {
@@ -4786,6 +5414,12 @@ func (i GetClientDescriptionConverterProtocolMapperArgs) ToGetClientDescriptionC
 	return pulumi.ToOutputWithContext(ctx, i).(GetClientDescriptionConverterProtocolMapperOutput)
 }
 
+func (i GetClientDescriptionConverterProtocolMapperArgs) ToOutput(ctx context.Context) pulumix.Output[GetClientDescriptionConverterProtocolMapper] {
+	return pulumix.Output[GetClientDescriptionConverterProtocolMapper]{
+		OutputState: i.ToGetClientDescriptionConverterProtocolMapperOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetClientDescriptionConverterProtocolMapperArrayInput is an input type that accepts GetClientDescriptionConverterProtocolMapperArray and GetClientDescriptionConverterProtocolMapperArrayOutput values.
 // You can construct a concrete instance of `GetClientDescriptionConverterProtocolMapperArrayInput` via:
 //
@@ -4811,6 +5445,12 @@ func (i GetClientDescriptionConverterProtocolMapperArray) ToGetClientDescription
 	return pulumi.ToOutputWithContext(ctx, i).(GetClientDescriptionConverterProtocolMapperArrayOutput)
 }
 
+func (i GetClientDescriptionConverterProtocolMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]GetClientDescriptionConverterProtocolMapper] {
+	return pulumix.Output[[]GetClientDescriptionConverterProtocolMapper]{
+		OutputState: i.ToGetClientDescriptionConverterProtocolMapperArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetClientDescriptionConverterProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (GetClientDescriptionConverterProtocolMapperOutput) ElementType() reflect.Type {
@@ -4823,6 +5463,12 @@ func (o GetClientDescriptionConverterProtocolMapperOutput) ToGetClientDescriptio
 
 func (o GetClientDescriptionConverterProtocolMapperOutput) ToGetClientDescriptionConverterProtocolMapperOutputWithContext(ctx context.Context) GetClientDescriptionConverterProtocolMapperOutput {
 	return o
+}
+
+func (o GetClientDescriptionConverterProtocolMapperOutput) ToOutput(ctx context.Context) pulumix.Output[GetClientDescriptionConverterProtocolMapper] {
+	return pulumix.Output[GetClientDescriptionConverterProtocolMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetClientDescriptionConverterProtocolMapperOutput) Config() pulumi.MapOutput {
@@ -4857,6 +5503,12 @@ func (o GetClientDescriptionConverterProtocolMapperArrayOutput) ToGetClientDescr
 
 func (o GetClientDescriptionConverterProtocolMapperArrayOutput) ToGetClientDescriptionConverterProtocolMapperArrayOutputWithContext(ctx context.Context) GetClientDescriptionConverterProtocolMapperArrayOutput {
 	return o
+}
+
+func (o GetClientDescriptionConverterProtocolMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetClientDescriptionConverterProtocolMapper] {
+	return pulumix.Output[[]GetClientDescriptionConverterProtocolMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetClientDescriptionConverterProtocolMapperArrayOutput) Index(i pulumi.IntInput) GetClientDescriptionConverterProtocolMapperOutput {
@@ -4898,6 +5550,12 @@ func (i GetRealmInternationalizationArgs) ToGetRealmInternationalizationOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmInternationalizationOutput)
 }
 
+func (i GetRealmInternationalizationArgs) ToOutput(ctx context.Context) pulumix.Output[GetRealmInternationalization] {
+	return pulumix.Output[GetRealmInternationalization]{
+		OutputState: i.ToGetRealmInternationalizationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetRealmInternationalizationArrayInput is an input type that accepts GetRealmInternationalizationArray and GetRealmInternationalizationArrayOutput values.
 // You can construct a concrete instance of `GetRealmInternationalizationArrayInput` via:
 //
@@ -4923,6 +5581,12 @@ func (i GetRealmInternationalizationArray) ToGetRealmInternationalizationArrayOu
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmInternationalizationArrayOutput)
 }
 
+func (i GetRealmInternationalizationArray) ToOutput(ctx context.Context) pulumix.Output[[]GetRealmInternationalization] {
+	return pulumix.Output[[]GetRealmInternationalization]{
+		OutputState: i.ToGetRealmInternationalizationArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetRealmInternationalizationOutput struct{ *pulumi.OutputState }
 
 func (GetRealmInternationalizationOutput) ElementType() reflect.Type {
@@ -4935,6 +5599,12 @@ func (o GetRealmInternationalizationOutput) ToGetRealmInternationalizationOutput
 
 func (o GetRealmInternationalizationOutput) ToGetRealmInternationalizationOutputWithContext(ctx context.Context) GetRealmInternationalizationOutput {
 	return o
+}
+
+func (o GetRealmInternationalizationOutput) ToOutput(ctx context.Context) pulumix.Output[GetRealmInternationalization] {
+	return pulumix.Output[GetRealmInternationalization]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetRealmInternationalizationOutput) DefaultLocale() pulumi.StringOutput {
@@ -4957,6 +5627,12 @@ func (o GetRealmInternationalizationArrayOutput) ToGetRealmInternationalizationA
 
 func (o GetRealmInternationalizationArrayOutput) ToGetRealmInternationalizationArrayOutputWithContext(ctx context.Context) GetRealmInternationalizationArrayOutput {
 	return o
+}
+
+func (o GetRealmInternationalizationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetRealmInternationalization] {
+	return pulumix.Output[[]GetRealmInternationalization]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetRealmInternationalizationArrayOutput) Index(i pulumi.IntInput) GetRealmInternationalizationOutput {
@@ -5026,6 +5702,12 @@ func (i GetRealmKeysKeyArgs) ToGetRealmKeysKeyOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmKeysKeyOutput)
 }
 
+func (i GetRealmKeysKeyArgs) ToOutput(ctx context.Context) pulumix.Output[GetRealmKeysKey] {
+	return pulumix.Output[GetRealmKeysKey]{
+		OutputState: i.ToGetRealmKeysKeyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetRealmKeysKeyArrayInput is an input type that accepts GetRealmKeysKeyArray and GetRealmKeysKeyArrayOutput values.
 // You can construct a concrete instance of `GetRealmKeysKeyArrayInput` via:
 //
@@ -5051,6 +5733,12 @@ func (i GetRealmKeysKeyArray) ToGetRealmKeysKeyArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmKeysKeyArrayOutput)
 }
 
+func (i GetRealmKeysKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]GetRealmKeysKey] {
+	return pulumix.Output[[]GetRealmKeysKey]{
+		OutputState: i.ToGetRealmKeysKeyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetRealmKeysKeyOutput struct{ *pulumi.OutputState }
 
 func (GetRealmKeysKeyOutput) ElementType() reflect.Type {
@@ -5063,6 +5751,12 @@ func (o GetRealmKeysKeyOutput) ToGetRealmKeysKeyOutput() GetRealmKeysKeyOutput {
 
 func (o GetRealmKeysKeyOutput) ToGetRealmKeysKeyOutputWithContext(ctx context.Context) GetRealmKeysKeyOutput {
 	return o
+}
+
+func (o GetRealmKeysKeyOutput) ToOutput(ctx context.Context) pulumix.Output[GetRealmKeysKey] {
+	return pulumix.Output[GetRealmKeysKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Key algorithm (string)
@@ -5119,6 +5813,12 @@ func (o GetRealmKeysKeyArrayOutput) ToGetRealmKeysKeyArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o GetRealmKeysKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetRealmKeysKey] {
+	return pulumix.Output[[]GetRealmKeysKey]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetRealmKeysKeyArrayOutput) Index(i pulumi.IntInput) GetRealmKeysKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRealmKeysKey {
 		return vs[0].([]GetRealmKeysKey)[vs[1].(int)]
@@ -5166,6 +5866,12 @@ func (i GetRealmOtpPolicyArgs) ToGetRealmOtpPolicyOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmOtpPolicyOutput)
 }
 
+func (i GetRealmOtpPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[GetRealmOtpPolicy] {
+	return pulumix.Output[GetRealmOtpPolicy]{
+		OutputState: i.ToGetRealmOtpPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i GetRealmOtpPolicyArgs) ToGetRealmOtpPolicyPtrOutput() GetRealmOtpPolicyPtrOutput {
 	return i.ToGetRealmOtpPolicyPtrOutputWithContext(context.Background())
 }
@@ -5207,6 +5913,12 @@ func (i *getRealmOtpPolicyPtrType) ToGetRealmOtpPolicyPtrOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmOtpPolicyPtrOutput)
 }
 
+func (i *getRealmOtpPolicyPtrType) ToOutput(ctx context.Context) pulumix.Output[*GetRealmOtpPolicy] {
+	return pulumix.Output[*GetRealmOtpPolicy]{
+		OutputState: i.ToGetRealmOtpPolicyPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetRealmOtpPolicyOutput struct{ *pulumi.OutputState }
 
 func (GetRealmOtpPolicyOutput) ElementType() reflect.Type {
@@ -5229,6 +5941,12 @@ func (o GetRealmOtpPolicyOutput) ToGetRealmOtpPolicyPtrOutputWithContext(ctx con
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetRealmOtpPolicy) *GetRealmOtpPolicy {
 		return &v
 	}).(GetRealmOtpPolicyPtrOutput)
+}
+
+func (o GetRealmOtpPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[GetRealmOtpPolicy] {
+	return pulumix.Output[GetRealmOtpPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetRealmOtpPolicyOutput) Algorithm() pulumi.StringOutput {
@@ -5267,6 +5985,12 @@ func (o GetRealmOtpPolicyPtrOutput) ToGetRealmOtpPolicyPtrOutput() GetRealmOtpPo
 
 func (o GetRealmOtpPolicyPtrOutput) ToGetRealmOtpPolicyPtrOutputWithContext(ctx context.Context) GetRealmOtpPolicyPtrOutput {
 	return o
+}
+
+func (o GetRealmOtpPolicyPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetRealmOtpPolicy] {
+	return pulumix.Output[*GetRealmOtpPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetRealmOtpPolicyPtrOutput) Elem() GetRealmOtpPolicyOutput {
@@ -5366,6 +6090,12 @@ func (i GetRealmSecurityDefenseArgs) ToGetRealmSecurityDefenseOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmSecurityDefenseOutput)
 }
 
+func (i GetRealmSecurityDefenseArgs) ToOutput(ctx context.Context) pulumix.Output[GetRealmSecurityDefense] {
+	return pulumix.Output[GetRealmSecurityDefense]{
+		OutputState: i.ToGetRealmSecurityDefenseOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetRealmSecurityDefenseArrayInput is an input type that accepts GetRealmSecurityDefenseArray and GetRealmSecurityDefenseArrayOutput values.
 // You can construct a concrete instance of `GetRealmSecurityDefenseArrayInput` via:
 //
@@ -5391,6 +6121,12 @@ func (i GetRealmSecurityDefenseArray) ToGetRealmSecurityDefenseArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmSecurityDefenseArrayOutput)
 }
 
+func (i GetRealmSecurityDefenseArray) ToOutput(ctx context.Context) pulumix.Output[[]GetRealmSecurityDefense] {
+	return pulumix.Output[[]GetRealmSecurityDefense]{
+		OutputState: i.ToGetRealmSecurityDefenseArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetRealmSecurityDefenseOutput struct{ *pulumi.OutputState }
 
 func (GetRealmSecurityDefenseOutput) ElementType() reflect.Type {
@@ -5403,6 +6139,12 @@ func (o GetRealmSecurityDefenseOutput) ToGetRealmSecurityDefenseOutput() GetReal
 
 func (o GetRealmSecurityDefenseOutput) ToGetRealmSecurityDefenseOutputWithContext(ctx context.Context) GetRealmSecurityDefenseOutput {
 	return o
+}
+
+func (o GetRealmSecurityDefenseOutput) ToOutput(ctx context.Context) pulumix.Output[GetRealmSecurityDefense] {
+	return pulumix.Output[GetRealmSecurityDefense]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetRealmSecurityDefenseOutput) BruteForceDetections() GetRealmSecurityDefenseBruteForceDetectionArrayOutput {
@@ -5427,6 +6169,12 @@ func (o GetRealmSecurityDefenseArrayOutput) ToGetRealmSecurityDefenseArrayOutput
 
 func (o GetRealmSecurityDefenseArrayOutput) ToGetRealmSecurityDefenseArrayOutputWithContext(ctx context.Context) GetRealmSecurityDefenseArrayOutput {
 	return o
+}
+
+func (o GetRealmSecurityDefenseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetRealmSecurityDefense] {
+	return pulumix.Output[[]GetRealmSecurityDefense]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetRealmSecurityDefenseArrayOutput) Index(i pulumi.IntInput) GetRealmSecurityDefenseOutput {
@@ -5478,6 +6226,12 @@ func (i GetRealmSecurityDefenseBruteForceDetectionArgs) ToGetRealmSecurityDefens
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmSecurityDefenseBruteForceDetectionOutput)
 }
 
+func (i GetRealmSecurityDefenseBruteForceDetectionArgs) ToOutput(ctx context.Context) pulumix.Output[GetRealmSecurityDefenseBruteForceDetection] {
+	return pulumix.Output[GetRealmSecurityDefenseBruteForceDetection]{
+		OutputState: i.ToGetRealmSecurityDefenseBruteForceDetectionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetRealmSecurityDefenseBruteForceDetectionArrayInput is an input type that accepts GetRealmSecurityDefenseBruteForceDetectionArray and GetRealmSecurityDefenseBruteForceDetectionArrayOutput values.
 // You can construct a concrete instance of `GetRealmSecurityDefenseBruteForceDetectionArrayInput` via:
 //
@@ -5503,6 +6257,12 @@ func (i GetRealmSecurityDefenseBruteForceDetectionArray) ToGetRealmSecurityDefen
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmSecurityDefenseBruteForceDetectionArrayOutput)
 }
 
+func (i GetRealmSecurityDefenseBruteForceDetectionArray) ToOutput(ctx context.Context) pulumix.Output[[]GetRealmSecurityDefenseBruteForceDetection] {
+	return pulumix.Output[[]GetRealmSecurityDefenseBruteForceDetection]{
+		OutputState: i.ToGetRealmSecurityDefenseBruteForceDetectionArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetRealmSecurityDefenseBruteForceDetectionOutput struct{ *pulumi.OutputState }
 
 func (GetRealmSecurityDefenseBruteForceDetectionOutput) ElementType() reflect.Type {
@@ -5515,6 +6275,12 @@ func (o GetRealmSecurityDefenseBruteForceDetectionOutput) ToGetRealmSecurityDefe
 
 func (o GetRealmSecurityDefenseBruteForceDetectionOutput) ToGetRealmSecurityDefenseBruteForceDetectionOutputWithContext(ctx context.Context) GetRealmSecurityDefenseBruteForceDetectionOutput {
 	return o
+}
+
+func (o GetRealmSecurityDefenseBruteForceDetectionOutput) ToOutput(ctx context.Context) pulumix.Output[GetRealmSecurityDefenseBruteForceDetection] {
+	return pulumix.Output[GetRealmSecurityDefenseBruteForceDetection]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetRealmSecurityDefenseBruteForceDetectionOutput) FailureResetTimeSeconds() pulumi.IntOutput {
@@ -5557,6 +6323,12 @@ func (o GetRealmSecurityDefenseBruteForceDetectionArrayOutput) ToGetRealmSecurit
 
 func (o GetRealmSecurityDefenseBruteForceDetectionArrayOutput) ToGetRealmSecurityDefenseBruteForceDetectionArrayOutputWithContext(ctx context.Context) GetRealmSecurityDefenseBruteForceDetectionArrayOutput {
 	return o
+}
+
+func (o GetRealmSecurityDefenseBruteForceDetectionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetRealmSecurityDefenseBruteForceDetection] {
+	return pulumix.Output[[]GetRealmSecurityDefenseBruteForceDetection]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetRealmSecurityDefenseBruteForceDetectionArrayOutput) Index(i pulumi.IntInput) GetRealmSecurityDefenseBruteForceDetectionOutput {
@@ -5608,6 +6380,12 @@ func (i GetRealmSecurityDefenseHeaderArgs) ToGetRealmSecurityDefenseHeaderOutput
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmSecurityDefenseHeaderOutput)
 }
 
+func (i GetRealmSecurityDefenseHeaderArgs) ToOutput(ctx context.Context) pulumix.Output[GetRealmSecurityDefenseHeader] {
+	return pulumix.Output[GetRealmSecurityDefenseHeader]{
+		OutputState: i.ToGetRealmSecurityDefenseHeaderOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetRealmSecurityDefenseHeaderArrayInput is an input type that accepts GetRealmSecurityDefenseHeaderArray and GetRealmSecurityDefenseHeaderArrayOutput values.
 // You can construct a concrete instance of `GetRealmSecurityDefenseHeaderArrayInput` via:
 //
@@ -5633,6 +6411,12 @@ func (i GetRealmSecurityDefenseHeaderArray) ToGetRealmSecurityDefenseHeaderArray
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmSecurityDefenseHeaderArrayOutput)
 }
 
+func (i GetRealmSecurityDefenseHeaderArray) ToOutput(ctx context.Context) pulumix.Output[[]GetRealmSecurityDefenseHeader] {
+	return pulumix.Output[[]GetRealmSecurityDefenseHeader]{
+		OutputState: i.ToGetRealmSecurityDefenseHeaderArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetRealmSecurityDefenseHeaderOutput struct{ *pulumi.OutputState }
 
 func (GetRealmSecurityDefenseHeaderOutput) ElementType() reflect.Type {
@@ -5645,6 +6429,12 @@ func (o GetRealmSecurityDefenseHeaderOutput) ToGetRealmSecurityDefenseHeaderOutp
 
 func (o GetRealmSecurityDefenseHeaderOutput) ToGetRealmSecurityDefenseHeaderOutputWithContext(ctx context.Context) GetRealmSecurityDefenseHeaderOutput {
 	return o
+}
+
+func (o GetRealmSecurityDefenseHeaderOutput) ToOutput(ctx context.Context) pulumix.Output[GetRealmSecurityDefenseHeader] {
+	return pulumix.Output[GetRealmSecurityDefenseHeader]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetRealmSecurityDefenseHeaderOutput) ContentSecurityPolicy() pulumi.StringOutput {
@@ -5687,6 +6477,12 @@ func (o GetRealmSecurityDefenseHeaderArrayOutput) ToGetRealmSecurityDefenseHeade
 
 func (o GetRealmSecurityDefenseHeaderArrayOutput) ToGetRealmSecurityDefenseHeaderArrayOutputWithContext(ctx context.Context) GetRealmSecurityDefenseHeaderArrayOutput {
 	return o
+}
+
+func (o GetRealmSecurityDefenseHeaderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetRealmSecurityDefenseHeader] {
+	return pulumix.Output[[]GetRealmSecurityDefenseHeader]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetRealmSecurityDefenseHeaderArrayOutput) Index(i pulumi.IntInput) GetRealmSecurityDefenseHeaderOutput {
@@ -5744,6 +6540,12 @@ func (i GetRealmSmtpServerArgs) ToGetRealmSmtpServerOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmSmtpServerOutput)
 }
 
+func (i GetRealmSmtpServerArgs) ToOutput(ctx context.Context) pulumix.Output[GetRealmSmtpServer] {
+	return pulumix.Output[GetRealmSmtpServer]{
+		OutputState: i.ToGetRealmSmtpServerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetRealmSmtpServerArrayInput is an input type that accepts GetRealmSmtpServerArray and GetRealmSmtpServerArrayOutput values.
 // You can construct a concrete instance of `GetRealmSmtpServerArrayInput` via:
 //
@@ -5769,6 +6571,12 @@ func (i GetRealmSmtpServerArray) ToGetRealmSmtpServerArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmSmtpServerArrayOutput)
 }
 
+func (i GetRealmSmtpServerArray) ToOutput(ctx context.Context) pulumix.Output[[]GetRealmSmtpServer] {
+	return pulumix.Output[[]GetRealmSmtpServer]{
+		OutputState: i.ToGetRealmSmtpServerArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetRealmSmtpServerOutput struct{ *pulumi.OutputState }
 
 func (GetRealmSmtpServerOutput) ElementType() reflect.Type {
@@ -5781,6 +6589,12 @@ func (o GetRealmSmtpServerOutput) ToGetRealmSmtpServerOutput() GetRealmSmtpServe
 
 func (o GetRealmSmtpServerOutput) ToGetRealmSmtpServerOutputWithContext(ctx context.Context) GetRealmSmtpServerOutput {
 	return o
+}
+
+func (o GetRealmSmtpServerOutput) ToOutput(ctx context.Context) pulumix.Output[GetRealmSmtpServer] {
+	return pulumix.Output[GetRealmSmtpServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetRealmSmtpServerOutput) Auths() GetRealmSmtpServerAuthArrayOutput {
@@ -5837,6 +6651,12 @@ func (o GetRealmSmtpServerArrayOutput) ToGetRealmSmtpServerArrayOutputWithContex
 	return o
 }
 
+func (o GetRealmSmtpServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetRealmSmtpServer] {
+	return pulumix.Output[[]GetRealmSmtpServer]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetRealmSmtpServerArrayOutput) Index(i pulumi.IntInput) GetRealmSmtpServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRealmSmtpServer {
 		return vs[0].([]GetRealmSmtpServer)[vs[1].(int)]
@@ -5876,6 +6696,12 @@ func (i GetRealmSmtpServerAuthArgs) ToGetRealmSmtpServerAuthOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmSmtpServerAuthOutput)
 }
 
+func (i GetRealmSmtpServerAuthArgs) ToOutput(ctx context.Context) pulumix.Output[GetRealmSmtpServerAuth] {
+	return pulumix.Output[GetRealmSmtpServerAuth]{
+		OutputState: i.ToGetRealmSmtpServerAuthOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetRealmSmtpServerAuthArrayInput is an input type that accepts GetRealmSmtpServerAuthArray and GetRealmSmtpServerAuthArrayOutput values.
 // You can construct a concrete instance of `GetRealmSmtpServerAuthArrayInput` via:
 //
@@ -5901,6 +6727,12 @@ func (i GetRealmSmtpServerAuthArray) ToGetRealmSmtpServerAuthArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmSmtpServerAuthArrayOutput)
 }
 
+func (i GetRealmSmtpServerAuthArray) ToOutput(ctx context.Context) pulumix.Output[[]GetRealmSmtpServerAuth] {
+	return pulumix.Output[[]GetRealmSmtpServerAuth]{
+		OutputState: i.ToGetRealmSmtpServerAuthArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetRealmSmtpServerAuthOutput struct{ *pulumi.OutputState }
 
 func (GetRealmSmtpServerAuthOutput) ElementType() reflect.Type {
@@ -5913,6 +6745,12 @@ func (o GetRealmSmtpServerAuthOutput) ToGetRealmSmtpServerAuthOutput() GetRealmS
 
 func (o GetRealmSmtpServerAuthOutput) ToGetRealmSmtpServerAuthOutputWithContext(ctx context.Context) GetRealmSmtpServerAuthOutput {
 	return o
+}
+
+func (o GetRealmSmtpServerAuthOutput) ToOutput(ctx context.Context) pulumix.Output[GetRealmSmtpServerAuth] {
+	return pulumix.Output[GetRealmSmtpServerAuth]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetRealmSmtpServerAuthOutput) Password() pulumi.StringOutput {
@@ -5935,6 +6773,12 @@ func (o GetRealmSmtpServerAuthArrayOutput) ToGetRealmSmtpServerAuthArrayOutput()
 
 func (o GetRealmSmtpServerAuthArrayOutput) ToGetRealmSmtpServerAuthArrayOutputWithContext(ctx context.Context) GetRealmSmtpServerAuthArrayOutput {
 	return o
+}
+
+func (o GetRealmSmtpServerAuthArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetRealmSmtpServerAuth] {
+	return pulumix.Output[[]GetRealmSmtpServerAuth]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetRealmSmtpServerAuthArrayOutput) Index(i pulumi.IntInput) GetRealmSmtpServerAuthOutput {
@@ -5992,6 +6836,12 @@ func (i GetRealmWebAuthnPasswordlessPolicyArgs) ToGetRealmWebAuthnPasswordlessPo
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmWebAuthnPasswordlessPolicyOutput)
 }
 
+func (i GetRealmWebAuthnPasswordlessPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[GetRealmWebAuthnPasswordlessPolicy] {
+	return pulumix.Output[GetRealmWebAuthnPasswordlessPolicy]{
+		OutputState: i.ToGetRealmWebAuthnPasswordlessPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i GetRealmWebAuthnPasswordlessPolicyArgs) ToGetRealmWebAuthnPasswordlessPolicyPtrOutput() GetRealmWebAuthnPasswordlessPolicyPtrOutput {
 	return i.ToGetRealmWebAuthnPasswordlessPolicyPtrOutputWithContext(context.Background())
 }
@@ -6033,6 +6883,12 @@ func (i *getRealmWebAuthnPasswordlessPolicyPtrType) ToGetRealmWebAuthnPasswordle
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmWebAuthnPasswordlessPolicyPtrOutput)
 }
 
+func (i *getRealmWebAuthnPasswordlessPolicyPtrType) ToOutput(ctx context.Context) pulumix.Output[*GetRealmWebAuthnPasswordlessPolicy] {
+	return pulumix.Output[*GetRealmWebAuthnPasswordlessPolicy]{
+		OutputState: i.ToGetRealmWebAuthnPasswordlessPolicyPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetRealmWebAuthnPasswordlessPolicyOutput struct{ *pulumi.OutputState }
 
 func (GetRealmWebAuthnPasswordlessPolicyOutput) ElementType() reflect.Type {
@@ -6055,6 +6911,12 @@ func (o GetRealmWebAuthnPasswordlessPolicyOutput) ToGetRealmWebAuthnPasswordless
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetRealmWebAuthnPasswordlessPolicy) *GetRealmWebAuthnPasswordlessPolicy {
 		return &v
 	}).(GetRealmWebAuthnPasswordlessPolicyPtrOutput)
+}
+
+func (o GetRealmWebAuthnPasswordlessPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[GetRealmWebAuthnPasswordlessPolicy] {
+	return pulumix.Output[GetRealmWebAuthnPasswordlessPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetRealmWebAuthnPasswordlessPolicyOutput) AcceptableAaguids() pulumi.StringArrayOutput {
@@ -6109,6 +6971,12 @@ func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) ToGetRealmWebAuthnPasswordl
 
 func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) ToGetRealmWebAuthnPasswordlessPolicyPtrOutputWithContext(ctx context.Context) GetRealmWebAuthnPasswordlessPolicyPtrOutput {
 	return o
+}
+
+func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetRealmWebAuthnPasswordlessPolicy] {
+	return pulumix.Output[*GetRealmWebAuthnPasswordlessPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) Elem() GetRealmWebAuthnPasswordlessPolicyOutput {
@@ -6260,6 +7128,12 @@ func (i GetRealmWebAuthnPolicyArgs) ToGetRealmWebAuthnPolicyOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmWebAuthnPolicyOutput)
 }
 
+func (i GetRealmWebAuthnPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[GetRealmWebAuthnPolicy] {
+	return pulumix.Output[GetRealmWebAuthnPolicy]{
+		OutputState: i.ToGetRealmWebAuthnPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i GetRealmWebAuthnPolicyArgs) ToGetRealmWebAuthnPolicyPtrOutput() GetRealmWebAuthnPolicyPtrOutput {
 	return i.ToGetRealmWebAuthnPolicyPtrOutputWithContext(context.Background())
 }
@@ -6301,6 +7175,12 @@ func (i *getRealmWebAuthnPolicyPtrType) ToGetRealmWebAuthnPolicyPtrOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(GetRealmWebAuthnPolicyPtrOutput)
 }
 
+func (i *getRealmWebAuthnPolicyPtrType) ToOutput(ctx context.Context) pulumix.Output[*GetRealmWebAuthnPolicy] {
+	return pulumix.Output[*GetRealmWebAuthnPolicy]{
+		OutputState: i.ToGetRealmWebAuthnPolicyPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetRealmWebAuthnPolicyOutput struct{ *pulumi.OutputState }
 
 func (GetRealmWebAuthnPolicyOutput) ElementType() reflect.Type {
@@ -6323,6 +7203,12 @@ func (o GetRealmWebAuthnPolicyOutput) ToGetRealmWebAuthnPolicyPtrOutputWithConte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetRealmWebAuthnPolicy) *GetRealmWebAuthnPolicy {
 		return &v
 	}).(GetRealmWebAuthnPolicyPtrOutput)
+}
+
+func (o GetRealmWebAuthnPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[GetRealmWebAuthnPolicy] {
+	return pulumix.Output[GetRealmWebAuthnPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetRealmWebAuthnPolicyOutput) AcceptableAaguids() pulumi.StringArrayOutput {
@@ -6377,6 +7263,12 @@ func (o GetRealmWebAuthnPolicyPtrOutput) ToGetRealmWebAuthnPolicyPtrOutput() Get
 
 func (o GetRealmWebAuthnPolicyPtrOutput) ToGetRealmWebAuthnPolicyPtrOutputWithContext(ctx context.Context) GetRealmWebAuthnPolicyPtrOutput {
 	return o
+}
+
+func (o GetRealmWebAuthnPolicyPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetRealmWebAuthnPolicy] {
+	return pulumix.Output[*GetRealmWebAuthnPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetRealmWebAuthnPolicyPtrOutput) Elem() GetRealmWebAuthnPolicyOutput {

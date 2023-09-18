@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing realm authentication flow bindings within Keycloak.
@@ -115,6 +117,7 @@ func NewBindings(ctx *pulumi.Context,
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Bindings
 	err := ctx.RegisterResource("keycloak:authentication/bindings:Bindings", name, args, &resource, opts...)
 	if err != nil {
@@ -232,6 +235,12 @@ func (i *Bindings) ToBindingsOutputWithContext(ctx context.Context) BindingsOutp
 	return pulumi.ToOutputWithContext(ctx, i).(BindingsOutput)
 }
 
+func (i *Bindings) ToOutput(ctx context.Context) pulumix.Output[*Bindings] {
+	return pulumix.Output[*Bindings]{
+		OutputState: i.ToBindingsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // BindingsArrayInput is an input type that accepts BindingsArray and BindingsArrayOutput values.
 // You can construct a concrete instance of `BindingsArrayInput` via:
 //
@@ -255,6 +264,12 @@ func (i BindingsArray) ToBindingsArrayOutput() BindingsArrayOutput {
 
 func (i BindingsArray) ToBindingsArrayOutputWithContext(ctx context.Context) BindingsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BindingsArrayOutput)
+}
+
+func (i BindingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*Bindings] {
+	return pulumix.Output[[]*Bindings]{
+		OutputState: i.ToBindingsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // BindingsMapInput is an input type that accepts BindingsMap and BindingsMapOutput values.
@@ -282,6 +297,12 @@ func (i BindingsMap) ToBindingsMapOutputWithContext(ctx context.Context) Binding
 	return pulumi.ToOutputWithContext(ctx, i).(BindingsMapOutput)
 }
 
+func (i BindingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Bindings] {
+	return pulumix.Output[map[string]*Bindings]{
+		OutputState: i.ToBindingsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type BindingsOutput struct{ *pulumi.OutputState }
 
 func (BindingsOutput) ElementType() reflect.Type {
@@ -294,6 +315,12 @@ func (o BindingsOutput) ToBindingsOutput() BindingsOutput {
 
 func (o BindingsOutput) ToBindingsOutputWithContext(ctx context.Context) BindingsOutput {
 	return o
+}
+
+func (o BindingsOutput) ToOutput(ctx context.Context) pulumix.Output[*Bindings] {
+	return pulumix.Output[*Bindings]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The alias of the flow to assign to the realm BrowserFlow.
@@ -345,6 +372,12 @@ func (o BindingsArrayOutput) ToBindingsArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o BindingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Bindings] {
+	return pulumix.Output[[]*Bindings]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o BindingsArrayOutput) Index(i pulumi.IntInput) BindingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Bindings {
 		return vs[0].([]*Bindings)[vs[1].(int)]
@@ -363,6 +396,12 @@ func (o BindingsMapOutput) ToBindingsMapOutput() BindingsMapOutput {
 
 func (o BindingsMapOutput) ToBindingsMapOutputWithContext(ctx context.Context) BindingsMapOutput {
 	return o
+}
+
+func (o BindingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Bindings] {
+	return pulumix.Output[map[string]*Bindings]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o BindingsMapOutput) MapIndex(k pulumi.StringInput) BindingsOutput {

@@ -126,12 +126,12 @@ def get_group(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('keycloak:index/getGroup:getGroup', __args__, opts=opts, typ=GetGroupResult).value
 
     return AwaitableGetGroupResult(
-        attributes=__ret__.attributes,
-        id=__ret__.id,
-        name=__ret__.name,
-        parent_id=__ret__.parent_id,
-        path=__ret__.path,
-        realm_id=__ret__.realm_id)
+        attributes=pulumi.get(__ret__, 'attributes'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        parent_id=pulumi.get(__ret__, 'parent_id'),
+        path=pulumi.get(__ret__, 'path'),
+        realm_id=pulumi.get(__ret__, 'realm_id'))
 
 
 @_utilities.lift_output_func(get_group)

@@ -17,43 +17,43 @@ import javax.annotation.Nullable;
 
 @ResourceType(type="keycloak:openid/clientUserPolicy:ClientUserPolicy")
 public class ClientUserPolicy extends com.pulumi.resources.CustomResource {
-    @Export(name="decisionStrategy", type=String.class, parameters={})
+    @Export(name="decisionStrategy", refs={String.class}, tree="[0]")
     private Output<String> decisionStrategy;
 
     public Output<String> decisionStrategy() {
         return this.decisionStrategy;
     }
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
-    @Export(name="logic", type=String.class, parameters={})
+    @Export(name="logic", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> logic;
 
     public Output<Optional<String>> logic() {
         return Codegen.optional(this.logic);
     }
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     public Output<String> name() {
         return this.name;
     }
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     public Output<String> realmId() {
         return this.realmId;
     }
-    @Export(name="resourceServerId", type=String.class, parameters={})
+    @Export(name="resourceServerId", refs={String.class}, tree="[0]")
     private Output<String> resourceServerId;
 
     public Output<String> resourceServerId() {
         return this.resourceServerId;
     }
-    @Export(name="users", type=List.class, parameters={String.class})
+    @Export(name="users", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> users;
 
     public Output<List<String>> users() {

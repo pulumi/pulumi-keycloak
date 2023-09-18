@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing `aes-generated` Realm keystores within Keycloak.
@@ -87,6 +89,7 @@ func NewRealmKeystoreAesGenerated(ctx *pulumi.Context,
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RealmKeystoreAesGenerated
 	err := ctx.RegisterResource("keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated", name, args, &resource, opts...)
 	if err != nil {
@@ -196,6 +199,12 @@ func (i *RealmKeystoreAesGenerated) ToRealmKeystoreAesGeneratedOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreAesGeneratedOutput)
 }
 
+func (i *RealmKeystoreAesGenerated) ToOutput(ctx context.Context) pulumix.Output[*RealmKeystoreAesGenerated] {
+	return pulumix.Output[*RealmKeystoreAesGenerated]{
+		OutputState: i.ToRealmKeystoreAesGeneratedOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RealmKeystoreAesGeneratedArrayInput is an input type that accepts RealmKeystoreAesGeneratedArray and RealmKeystoreAesGeneratedArrayOutput values.
 // You can construct a concrete instance of `RealmKeystoreAesGeneratedArrayInput` via:
 //
@@ -219,6 +228,12 @@ func (i RealmKeystoreAesGeneratedArray) ToRealmKeystoreAesGeneratedArrayOutput()
 
 func (i RealmKeystoreAesGeneratedArray) ToRealmKeystoreAesGeneratedArrayOutputWithContext(ctx context.Context) RealmKeystoreAesGeneratedArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreAesGeneratedArrayOutput)
+}
+
+func (i RealmKeystoreAesGeneratedArray) ToOutput(ctx context.Context) pulumix.Output[[]*RealmKeystoreAesGenerated] {
+	return pulumix.Output[[]*RealmKeystoreAesGenerated]{
+		OutputState: i.ToRealmKeystoreAesGeneratedArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RealmKeystoreAesGeneratedMapInput is an input type that accepts RealmKeystoreAesGeneratedMap and RealmKeystoreAesGeneratedMapOutput values.
@@ -246,6 +261,12 @@ func (i RealmKeystoreAesGeneratedMap) ToRealmKeystoreAesGeneratedMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreAesGeneratedMapOutput)
 }
 
+func (i RealmKeystoreAesGeneratedMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RealmKeystoreAesGenerated] {
+	return pulumix.Output[map[string]*RealmKeystoreAesGenerated]{
+		OutputState: i.ToRealmKeystoreAesGeneratedMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RealmKeystoreAesGeneratedOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreAesGeneratedOutput) ElementType() reflect.Type {
@@ -258,6 +279,12 @@ func (o RealmKeystoreAesGeneratedOutput) ToRealmKeystoreAesGeneratedOutput() Rea
 
 func (o RealmKeystoreAesGeneratedOutput) ToRealmKeystoreAesGeneratedOutputWithContext(ctx context.Context) RealmKeystoreAesGeneratedOutput {
 	return o
+}
+
+func (o RealmKeystoreAesGeneratedOutput) ToOutput(ctx context.Context) pulumix.Output[*RealmKeystoreAesGenerated] {
+	return pulumix.Output[*RealmKeystoreAesGenerated]{
+		OutputState: o.OutputState,
+	}
 }
 
 // When `false`, key in not used for signing. Defaults to `true`.
@@ -304,6 +331,12 @@ func (o RealmKeystoreAesGeneratedArrayOutput) ToRealmKeystoreAesGeneratedArrayOu
 	return o
 }
 
+func (o RealmKeystoreAesGeneratedArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RealmKeystoreAesGenerated] {
+	return pulumix.Output[[]*RealmKeystoreAesGenerated]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RealmKeystoreAesGeneratedArrayOutput) Index(i pulumi.IntInput) RealmKeystoreAesGeneratedOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RealmKeystoreAesGenerated {
 		return vs[0].([]*RealmKeystoreAesGenerated)[vs[1].(int)]
@@ -322,6 +355,12 @@ func (o RealmKeystoreAesGeneratedMapOutput) ToRealmKeystoreAesGeneratedMapOutput
 
 func (o RealmKeystoreAesGeneratedMapOutput) ToRealmKeystoreAesGeneratedMapOutputWithContext(ctx context.Context) RealmKeystoreAesGeneratedMapOutput {
 	return o
+}
+
+func (o RealmKeystoreAesGeneratedMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RealmKeystoreAesGenerated] {
+	return pulumix.Output[map[string]*RealmKeystoreAesGenerated]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RealmKeystoreAesGeneratedMapOutput) MapIndex(k pulumi.StringInput) RealmKeystoreAesGeneratedOutput {

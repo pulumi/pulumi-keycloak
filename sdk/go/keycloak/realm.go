@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing Realms within Keycloak.
@@ -238,6 +240,7 @@ func NewRealm(ctx *pulumi.Context,
 	if args.Realm == nil {
 		return nil, errors.New("invalid value for required argument 'Realm'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Realm
 	err := ctx.RegisterResource("keycloak:index/realm:Realm", name, args, &resource, opts...)
 	if err != nil {
@@ -755,6 +758,12 @@ func (i *Realm) ToRealmOutputWithContext(ctx context.Context) RealmOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RealmOutput)
 }
 
+func (i *Realm) ToOutput(ctx context.Context) pulumix.Output[*Realm] {
+	return pulumix.Output[*Realm]{
+		OutputState: i.ToRealmOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RealmArrayInput is an input type that accepts RealmArray and RealmArrayOutput values.
 // You can construct a concrete instance of `RealmArrayInput` via:
 //
@@ -778,6 +787,12 @@ func (i RealmArray) ToRealmArrayOutput() RealmArrayOutput {
 
 func (i RealmArray) ToRealmArrayOutputWithContext(ctx context.Context) RealmArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RealmArrayOutput)
+}
+
+func (i RealmArray) ToOutput(ctx context.Context) pulumix.Output[[]*Realm] {
+	return pulumix.Output[[]*Realm]{
+		OutputState: i.ToRealmArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RealmMapInput is an input type that accepts RealmMap and RealmMapOutput values.
@@ -805,6 +820,12 @@ func (i RealmMap) ToRealmMapOutputWithContext(ctx context.Context) RealmMapOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(RealmMapOutput)
 }
 
+func (i RealmMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Realm] {
+	return pulumix.Output[map[string]*Realm]{
+		OutputState: i.ToRealmMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RealmOutput struct{ *pulumi.OutputState }
 
 func (RealmOutput) ElementType() reflect.Type {
@@ -817,6 +838,12 @@ func (o RealmOutput) ToRealmOutput() RealmOutput {
 
 func (o RealmOutput) ToRealmOutputWithContext(ctx context.Context) RealmOutput {
 	return o
+}
+
+func (o RealmOutput) ToOutput(ctx context.Context) pulumix.Output[*Realm] {
+	return pulumix.Output[*Realm]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The maximum amount of time a client has to finish the authorization code flow.
@@ -1115,6 +1142,12 @@ func (o RealmArrayOutput) ToRealmArrayOutputWithContext(ctx context.Context) Rea
 	return o
 }
 
+func (o RealmArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Realm] {
+	return pulumix.Output[[]*Realm]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RealmArrayOutput) Index(i pulumi.IntInput) RealmOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Realm {
 		return vs[0].([]*Realm)[vs[1].(int)]
@@ -1133,6 +1166,12 @@ func (o RealmMapOutput) ToRealmMapOutput() RealmMapOutput {
 
 func (o RealmMapOutput) ToRealmMapOutputWithContext(ctx context.Context) RealmMapOutput {
 	return o
+}
+
+func (o RealmMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Realm] {
+	return pulumix.Output[map[string]*Realm]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RealmMapOutput) MapIndex(k pulumi.StringInput) RealmOutput {

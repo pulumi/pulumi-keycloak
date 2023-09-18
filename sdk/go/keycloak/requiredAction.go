@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing required actions within Keycloak.
@@ -89,6 +91,7 @@ func NewRequiredAction(ctx *pulumi.Context,
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RequiredAction
 	err := ctx.RegisterResource("keycloak:index/requiredAction:RequiredAction", name, args, &resource, opts...)
 	if err != nil {
@@ -198,6 +201,12 @@ func (i *RequiredAction) ToRequiredActionOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(RequiredActionOutput)
 }
 
+func (i *RequiredAction) ToOutput(ctx context.Context) pulumix.Output[*RequiredAction] {
+	return pulumix.Output[*RequiredAction]{
+		OutputState: i.ToRequiredActionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RequiredActionArrayInput is an input type that accepts RequiredActionArray and RequiredActionArrayOutput values.
 // You can construct a concrete instance of `RequiredActionArrayInput` via:
 //
@@ -221,6 +230,12 @@ func (i RequiredActionArray) ToRequiredActionArrayOutput() RequiredActionArrayOu
 
 func (i RequiredActionArray) ToRequiredActionArrayOutputWithContext(ctx context.Context) RequiredActionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RequiredActionArrayOutput)
+}
+
+func (i RequiredActionArray) ToOutput(ctx context.Context) pulumix.Output[[]*RequiredAction] {
+	return pulumix.Output[[]*RequiredAction]{
+		OutputState: i.ToRequiredActionArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RequiredActionMapInput is an input type that accepts RequiredActionMap and RequiredActionMapOutput values.
@@ -248,6 +263,12 @@ func (i RequiredActionMap) ToRequiredActionMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(RequiredActionMapOutput)
 }
 
+func (i RequiredActionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RequiredAction] {
+	return pulumix.Output[map[string]*RequiredAction]{
+		OutputState: i.ToRequiredActionMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RequiredActionOutput struct{ *pulumi.OutputState }
 
 func (RequiredActionOutput) ElementType() reflect.Type {
@@ -260,6 +281,12 @@ func (o RequiredActionOutput) ToRequiredActionOutput() RequiredActionOutput {
 
 func (o RequiredActionOutput) ToRequiredActionOutputWithContext(ctx context.Context) RequiredActionOutput {
 	return o
+}
+
+func (o RequiredActionOutput) ToOutput(ctx context.Context) pulumix.Output[*RequiredAction] {
+	return pulumix.Output[*RequiredAction]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The alias of the action to attach as a required action.
@@ -306,6 +333,12 @@ func (o RequiredActionArrayOutput) ToRequiredActionArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o RequiredActionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RequiredAction] {
+	return pulumix.Output[[]*RequiredAction]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RequiredActionArrayOutput) Index(i pulumi.IntInput) RequiredActionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RequiredAction {
 		return vs[0].([]*RequiredAction)[vs[1].(int)]
@@ -324,6 +357,12 @@ func (o RequiredActionMapOutput) ToRequiredActionMapOutput() RequiredActionMapOu
 
 func (o RequiredActionMapOutput) ToRequiredActionMapOutputWithContext(ctx context.Context) RequiredActionMapOutput {
 	return o
+}
+
+func (o RequiredActionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RequiredAction] {
+	return pulumix.Output[map[string]*RequiredAction]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RequiredActionMapOutput) MapIndex(k pulumi.StringInput) RequiredActionOutput {

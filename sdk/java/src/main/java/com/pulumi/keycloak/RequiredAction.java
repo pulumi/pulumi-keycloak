@@ -75,7 +75,7 @@ public class RequiredAction extends com.pulumi.resources.CustomResource {
      * The alias of the action to attach as a required action.
      * 
      */
-    @Export(name="alias", type=String.class, parameters={})
+    @Export(name="alias", refs={String.class}, tree="[0]")
     private Output<String> alias;
 
     /**
@@ -89,7 +89,7 @@ public class RequiredAction extends com.pulumi.resources.CustomResource {
      * When `true`, the required action is set as the default action for new users. Defaults to `false`.
      * 
      */
-    @Export(name="defaultAction", type=Boolean.class, parameters={})
+    @Export(name="defaultAction", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> defaultAction;
 
     /**
@@ -103,7 +103,7 @@ public class RequiredAction extends com.pulumi.resources.CustomResource {
      * When `false`, the required action is not enabled for new users. Defaults to `false`.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
@@ -117,7 +117,7 @@ public class RequiredAction extends com.pulumi.resources.CustomResource {
      * The name of the required action.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -131,7 +131,7 @@ public class RequiredAction extends com.pulumi.resources.CustomResource {
      * The priority of the required action.
      * 
      */
-    @Export(name="priority", type=Integer.class, parameters={})
+    @Export(name="priority", refs={Integer.class}, tree="[0]")
     private Output<Integer> priority;
 
     /**
@@ -145,7 +145,7 @@ public class RequiredAction extends com.pulumi.resources.CustomResource {
      * The realm the required action exists in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

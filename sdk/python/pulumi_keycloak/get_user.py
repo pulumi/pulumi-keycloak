@@ -175,16 +175,16 @@ def get_user(realm_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('keycloak:index/getUser:getUser', __args__, opts=opts, typ=GetUserResult).value
 
     return AwaitableGetUserResult(
-        attributes=__ret__.attributes,
-        email=__ret__.email,
-        email_verified=__ret__.email_verified,
-        enabled=__ret__.enabled,
-        federated_identities=__ret__.federated_identities,
-        first_name=__ret__.first_name,
-        id=__ret__.id,
-        last_name=__ret__.last_name,
-        realm_id=__ret__.realm_id,
-        username=__ret__.username)
+        attributes=pulumi.get(__ret__, 'attributes'),
+        email=pulumi.get(__ret__, 'email'),
+        email_verified=pulumi.get(__ret__, 'email_verified'),
+        enabled=pulumi.get(__ret__, 'enabled'),
+        federated_identities=pulumi.get(__ret__, 'federated_identities'),
+        first_name=pulumi.get(__ret__, 'first_name'),
+        id=pulumi.get(__ret__, 'id'),
+        last_name=pulumi.get(__ret__, 'last_name'),
+        realm_id=pulumi.get(__ret__, 'realm_id'),
+        username=pulumi.get(__ret__, 'username'))
 
 
 @_utilities.lift_output_func(get_user)

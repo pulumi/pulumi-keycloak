@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ClientJsPolicy struct {
@@ -43,6 +45,7 @@ func NewClientJsPolicy(ctx *pulumi.Context,
 	if args.ResourceServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ClientJsPolicy
 	err := ctx.RegisterResource("keycloak:openid/clientJsPolicy:ClientJsPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -136,6 +139,12 @@ func (i *ClientJsPolicy) ToClientJsPolicyOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(ClientJsPolicyOutput)
 }
 
+func (i *ClientJsPolicy) ToOutput(ctx context.Context) pulumix.Output[*ClientJsPolicy] {
+	return pulumix.Output[*ClientJsPolicy]{
+		OutputState: i.ToClientJsPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ClientJsPolicyArrayInput is an input type that accepts ClientJsPolicyArray and ClientJsPolicyArrayOutput values.
 // You can construct a concrete instance of `ClientJsPolicyArrayInput` via:
 //
@@ -159,6 +168,12 @@ func (i ClientJsPolicyArray) ToClientJsPolicyArrayOutput() ClientJsPolicyArrayOu
 
 func (i ClientJsPolicyArray) ToClientJsPolicyArrayOutputWithContext(ctx context.Context) ClientJsPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientJsPolicyArrayOutput)
+}
+
+func (i ClientJsPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*ClientJsPolicy] {
+	return pulumix.Output[[]*ClientJsPolicy]{
+		OutputState: i.ToClientJsPolicyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ClientJsPolicyMapInput is an input type that accepts ClientJsPolicyMap and ClientJsPolicyMapOutput values.
@@ -186,6 +201,12 @@ func (i ClientJsPolicyMap) ToClientJsPolicyMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(ClientJsPolicyMapOutput)
 }
 
+func (i ClientJsPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientJsPolicy] {
+	return pulumix.Output[map[string]*ClientJsPolicy]{
+		OutputState: i.ToClientJsPolicyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ClientJsPolicyOutput struct{ *pulumi.OutputState }
 
 func (ClientJsPolicyOutput) ElementType() reflect.Type {
@@ -198,6 +219,12 @@ func (o ClientJsPolicyOutput) ToClientJsPolicyOutput() ClientJsPolicyOutput {
 
 func (o ClientJsPolicyOutput) ToClientJsPolicyOutputWithContext(ctx context.Context) ClientJsPolicyOutput {
 	return o
+}
+
+func (o ClientJsPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientJsPolicy] {
+	return pulumix.Output[*ClientJsPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ClientJsPolicyOutput) Code() pulumi.StringOutput {
@@ -246,6 +273,12 @@ func (o ClientJsPolicyArrayOutput) ToClientJsPolicyArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o ClientJsPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ClientJsPolicy] {
+	return pulumix.Output[[]*ClientJsPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ClientJsPolicyArrayOutput) Index(i pulumi.IntInput) ClientJsPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ClientJsPolicy {
 		return vs[0].([]*ClientJsPolicy)[vs[1].(int)]
@@ -264,6 +297,12 @@ func (o ClientJsPolicyMapOutput) ToClientJsPolicyMapOutput() ClientJsPolicyMapOu
 
 func (o ClientJsPolicyMapOutput) ToClientJsPolicyMapOutputWithContext(ctx context.Context) ClientJsPolicyMapOutput {
 	return o
+}
+
+func (o ClientJsPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientJsPolicy] {
+	return pulumix.Output[map[string]*ClientJsPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ClientJsPolicyMapOutput) MapIndex(k pulumi.StringInput) ClientJsPolicyOutput {

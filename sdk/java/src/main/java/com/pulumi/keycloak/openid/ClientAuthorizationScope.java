@@ -16,31 +16,31 @@ import javax.annotation.Nullable;
 
 @ResourceType(type="keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope")
 public class ClientAuthorizationScope extends com.pulumi.resources.CustomResource {
-    @Export(name="displayName", type=String.class, parameters={})
+    @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> displayName;
 
     public Output<Optional<String>> displayName() {
         return Codegen.optional(this.displayName);
     }
-    @Export(name="iconUri", type=String.class, parameters={})
+    @Export(name="iconUri", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> iconUri;
 
     public Output<Optional<String>> iconUri() {
         return Codegen.optional(this.iconUri);
     }
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     public Output<String> name() {
         return this.name;
     }
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     public Output<String> realmId() {
         return this.realmId;
     }
-    @Export(name="resourceServerId", type=String.class, parameters={})
+    @Export(name="resourceServerId", refs={String.class}, tree="[0]")
     private Output<String> resourceServerId;
 
     public Output<String> resourceServerId() {

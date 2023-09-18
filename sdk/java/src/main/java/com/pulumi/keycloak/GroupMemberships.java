@@ -95,7 +95,7 @@ public class GroupMemberships extends com.pulumi.resources.CustomResource {
      * The ID of the group this resource should manage memberships for.
      * 
      */
-    @Export(name="groupId", type=String.class, parameters={})
+    @Export(name="groupId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> groupId;
 
     /**
@@ -109,7 +109,7 @@ public class GroupMemberships extends com.pulumi.resources.CustomResource {
      * A list of usernames that belong to this group.
      * 
      */
-    @Export(name="members", type=List.class, parameters={String.class})
+    @Export(name="members", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> members;
 
     /**
@@ -123,7 +123,7 @@ public class GroupMemberships extends com.pulumi.resources.CustomResource {
      * The realm this group exists in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

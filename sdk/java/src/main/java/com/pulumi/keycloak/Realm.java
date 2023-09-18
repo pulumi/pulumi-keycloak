@@ -137,7 +137,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The maximum amount of time a client has to finish the authorization code flow.
      * 
      */
-    @Export(name="accessCodeLifespan", type=String.class, parameters={})
+    @Export(name="accessCodeLifespan", refs={String.class}, tree="[0]")
     private Output<String> accessCodeLifespan;
 
     /**
@@ -151,7 +151,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.
      * 
      */
-    @Export(name="accessCodeLifespanLogin", type=String.class, parameters={})
+    @Export(name="accessCodeLifespanLogin", refs={String.class}, tree="[0]")
     private Output<String> accessCodeLifespanLogin;
 
     /**
@@ -165,7 +165,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The maximum amount of time a user has to complete login related actions, such as updating a password.
      * 
      */
-    @Export(name="accessCodeLifespanUserAction", type=String.class, parameters={})
+    @Export(name="accessCodeLifespanUserAction", refs={String.class}, tree="[0]")
     private Output<String> accessCodeLifespanUserAction;
 
     /**
@@ -179,7 +179,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The amount of time an access token can be used before it expires.
      * 
      */
-    @Export(name="accessTokenLifespan", type=String.class, parameters={})
+    @Export(name="accessTokenLifespan", refs={String.class}, tree="[0]")
     private Output<String> accessTokenLifespan;
 
     /**
@@ -193,7 +193,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.
      * 
      */
-    @Export(name="accessTokenLifespanForImplicitFlow", type=String.class, parameters={})
+    @Export(name="accessTokenLifespanForImplicitFlow", refs={String.class}, tree="[0]")
     private Output<String> accessTokenLifespanForImplicitFlow;
 
     /**
@@ -207,7 +207,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * Used for account management pages.
      * 
      */
-    @Export(name="accountTheme", type=String.class, parameters={})
+    @Export(name="accountTheme", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> accountTheme;
 
     /**
@@ -221,7 +221,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The maximum time a user has to use an admin-generated permit before it expires.
      * 
      */
-    @Export(name="actionTokenGeneratedByAdminLifespan", type=String.class, parameters={})
+    @Export(name="actionTokenGeneratedByAdminLifespan", refs={String.class}, tree="[0]")
     private Output<String> actionTokenGeneratedByAdminLifespan;
 
     /**
@@ -235,7 +235,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The maximum time a user has to use a user-generated permit before it expires.
      * 
      */
-    @Export(name="actionTokenGeneratedByUserLifespan", type=String.class, parameters={})
+    @Export(name="actionTokenGeneratedByUserLifespan", refs={String.class}, tree="[0]")
     private Output<String> actionTokenGeneratedByUserLifespan;
 
     /**
@@ -249,7 +249,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * Used for the admin console.
      * 
      */
-    @Export(name="adminTheme", type=String.class, parameters={})
+    @Export(name="adminTheme", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> adminTheme;
 
     /**
@@ -263,7 +263,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * A map of custom attributes to add to the realm.
      * 
      */
-    @Export(name="attributes", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="attributes", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> attributes;
 
     /**
@@ -277,7 +277,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The desired flow for browser authentication. Defaults to `browser`.
      * 
      */
-    @Export(name="browserFlow", type=String.class, parameters={})
+    @Export(name="browserFlow", refs={String.class}, tree="[0]")
     private Output<String> browserFlow;
 
     /**
@@ -291,7 +291,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The desired flow for client authentication. Defaults to `clients`.
      * 
      */
-    @Export(name="clientAuthenticationFlow", type=String.class, parameters={})
+    @Export(name="clientAuthenticationFlow", refs={String.class}, tree="[0]")
     private Output<String> clientAuthenticationFlow;
 
     /**
@@ -305,7 +305,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The amount of time a session can be idle before it expires. Users can override it for individual clients.
      * 
      */
-    @Export(name="clientSessionIdleTimeout", type=String.class, parameters={})
+    @Export(name="clientSessionIdleTimeout", refs={String.class}, tree="[0]")
     private Output<String> clientSessionIdleTimeout;
 
     /**
@@ -319,7 +319,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
      * 
      */
-    @Export(name="clientSessionMaxLifespan", type=String.class, parameters={})
+    @Export(name="clientSessionMaxLifespan", refs={String.class}, tree="[0]")
     private Output<String> clientSessionMaxLifespan;
 
     /**
@@ -329,13 +329,13 @@ public class Realm extends com.pulumi.resources.CustomResource {
     public Output<String> clientSessionMaxLifespan() {
         return this.clientSessionMaxLifespan;
     }
-    @Export(name="defaultDefaultClientScopes", type=List.class, parameters={String.class})
+    @Export(name="defaultDefaultClientScopes", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> defaultDefaultClientScopes;
 
     public Output<Optional<List<String>>> defaultDefaultClientScopes() {
         return Codegen.optional(this.defaultDefaultClientScopes);
     }
-    @Export(name="defaultOptionalClientScopes", type=List.class, parameters={String.class})
+    @Export(name="defaultOptionalClientScopes", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> defaultOptionalClientScopes;
 
     public Output<Optional<List<String>>> defaultOptionalClientScopes() {
@@ -345,7 +345,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * Default algorithm used to sign tokens for the realm.
      * 
      */
-    @Export(name="defaultSignatureAlgorithm", type=String.class, parameters={})
+    @Export(name="defaultSignatureAlgorithm", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> defaultSignatureAlgorithm;
 
     /**
@@ -359,7 +359,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The desired flow for direct access authentication. Defaults to `direct grant`.
      * 
      */
-    @Export(name="directGrantFlow", type=String.class, parameters={})
+    @Export(name="directGrantFlow", refs={String.class}, tree="[0]")
     private Output<String> directGrantFlow;
 
     /**
@@ -373,7 +373,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The display name for the realm that is shown when logging in to the admin console.
      * 
      */
-    @Export(name="displayName", type=String.class, parameters={})
+    @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> displayName;
 
     /**
@@ -387,7 +387,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
      * 
      */
-    @Export(name="displayNameHtml", type=String.class, parameters={})
+    @Export(name="displayNameHtml", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> displayNameHtml;
 
     /**
@@ -401,7 +401,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The desired flow for Docker authentication. Defaults to `docker auth`.
      * 
      */
-    @Export(name="dockerAuthenticationFlow", type=String.class, parameters={})
+    @Export(name="dockerAuthenticationFlow", refs={String.class}, tree="[0]")
     private Output<String> dockerAuthenticationFlow;
 
     /**
@@ -415,7 +415,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `login_with_email_allowed` is set to `true`.
      * 
      */
-    @Export(name="duplicateEmailsAllowed", type=Boolean.class, parameters={})
+    @Export(name="duplicateEmailsAllowed", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> duplicateEmailsAllowed;
 
     /**
@@ -429,7 +429,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * When true, the username field is editable.
      * 
      */
-    @Export(name="editUsernameAllowed", type=Boolean.class, parameters={})
+    @Export(name="editUsernameAllowed", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> editUsernameAllowed;
 
     /**
@@ -443,7 +443,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * Used for emails that are sent by Keycloak.
      * 
      */
-    @Export(name="emailTheme", type=String.class, parameters={})
+    @Export(name="emailTheme", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> emailTheme;
 
     /**
@@ -457,7 +457,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * When `false`, users and clients will not be able to access this realm. Defaults to `true`.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
@@ -471,7 +471,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
      * 
      */
-    @Export(name="internalId", type=String.class, parameters={})
+    @Export(name="internalId", refs={String.class}, tree="[0]")
     private Output<String> internalId;
 
     /**
@@ -481,7 +481,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
     public Output<String> internalId() {
         return this.internalId;
     }
-    @Export(name="internationalization", type=RealmInternationalization.class, parameters={})
+    @Export(name="internationalization", refs={RealmInternationalization.class}, tree="[0]")
     private Output</* @Nullable */ RealmInternationalization> internationalization;
 
     public Output<Optional<RealmInternationalization>> internationalization() {
@@ -491,7 +491,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * Used for the login, forgot password, and registration pages.
      * 
      */
-    @Export(name="loginTheme", type=String.class, parameters={})
+    @Export(name="loginTheme", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> loginTheme;
 
     /**
@@ -505,7 +505,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * When true, users may log in with their email address.
      * 
      */
-    @Export(name="loginWithEmailAllowed", type=Boolean.class, parameters={})
+    @Export(name="loginWithEmailAllowed", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> loginWithEmailAllowed;
 
     /**
@@ -521,7 +521,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The attributes below should be specified in seconds.
      * 
      */
-    @Export(name="oauth2DeviceCodeLifespan", type=String.class, parameters={})
+    @Export(name="oauth2DeviceCodeLifespan", refs={String.class}, tree="[0]")
     private Output<String> oauth2DeviceCodeLifespan;
 
     /**
@@ -537,7 +537,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
      * 
      */
-    @Export(name="oauth2DevicePollingInterval", type=Integer.class, parameters={})
+    @Export(name="oauth2DevicePollingInterval", refs={Integer.class}, tree="[0]")
     private Output<Integer> oauth2DevicePollingInterval;
 
     /**
@@ -551,7 +551,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The amount of time an offline session can be idle before it expires.
      * 
      */
-    @Export(name="offlineSessionIdleTimeout", type=String.class, parameters={})
+    @Export(name="offlineSessionIdleTimeout", refs={String.class}, tree="[0]")
     private Output<String> offlineSessionIdleTimeout;
 
     /**
@@ -565,7 +565,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The maximum amount of time before an offline session expires regardless of activity.
      * 
      */
-    @Export(name="offlineSessionMaxLifespan", type=String.class, parameters={})
+    @Export(name="offlineSessionMaxLifespan", refs={String.class}, tree="[0]")
     private Output<String> offlineSessionMaxLifespan;
 
     /**
@@ -579,7 +579,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * Enable `offline_session_max_lifespan`.
      * 
      */
-    @Export(name="offlineSessionMaxLifespanEnabled", type=Boolean.class, parameters={})
+    @Export(name="offlineSessionMaxLifespanEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> offlineSessionMaxLifespanEnabled;
 
     /**
@@ -589,7 +589,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> offlineSessionMaxLifespanEnabled() {
         return Codegen.optional(this.offlineSessionMaxLifespanEnabled);
     }
-    @Export(name="otpPolicy", type=RealmOtpPolicy.class, parameters={})
+    @Export(name="otpPolicy", refs={RealmOtpPolicy.class}, tree="[0]")
     private Output<RealmOtpPolicy> otpPolicy;
 
     public Output<RealmOtpPolicy> otpPolicy() {
@@ -601,7 +601,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The arguments below can be used to configure authentication flow bindings:
      * 
      */
-    @Export(name="passwordPolicy", type=String.class, parameters={})
+    @Export(name="passwordPolicy", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> passwordPolicy;
 
     /**
@@ -617,7 +617,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak.
      * 
      */
-    @Export(name="realm", type=String.class, parameters={})
+    @Export(name="realm", refs={String.class}, tree="[0]")
     private Output<String> realm;
 
     /**
@@ -633,7 +633,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak&#39;s default settings.
      * 
      */
-    @Export(name="refreshTokenMaxReuse", type=Integer.class, parameters={})
+    @Export(name="refreshTokenMaxReuse", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> refreshTokenMaxReuse;
 
     /**
@@ -649,7 +649,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * When true, user registration will be enabled, and a link for registration will be displayed on the login page.
      * 
      */
-    @Export(name="registrationAllowed", type=Boolean.class, parameters={})
+    @Export(name="registrationAllowed", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> registrationAllowed;
 
     /**
@@ -663,7 +663,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * When true, the user&#39;s email will be used as their username during registration.
      * 
      */
-    @Export(name="registrationEmailAsUsername", type=Boolean.class, parameters={})
+    @Export(name="registrationEmailAsUsername", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> registrationEmailAsUsername;
 
     /**
@@ -677,7 +677,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The desired flow for user registration. Defaults to `registration`.
      * 
      */
-    @Export(name="registrationFlow", type=String.class, parameters={})
+    @Export(name="registrationFlow", refs={String.class}, tree="[0]")
     private Output<String> registrationFlow;
 
     /**
@@ -691,7 +691,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * When true, a &#34;remember me&#34; checkbox will be displayed on the login page, and the user&#39;s session will not expire between browser restarts.
      * 
      */
-    @Export(name="rememberMe", type=Boolean.class, parameters={})
+    @Export(name="rememberMe", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> rememberMe;
 
     /**
@@ -705,7 +705,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
      * 
      */
-    @Export(name="resetCredentialsFlow", type=String.class, parameters={})
+    @Export(name="resetCredentialsFlow", refs={String.class}, tree="[0]")
     private Output<String> resetCredentialsFlow;
 
     /**
@@ -719,7 +719,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * When true, a &#34;forgot password&#34; link will be displayed on the login page.
      * 
      */
-    @Export(name="resetPasswordAllowed", type=Boolean.class, parameters={})
+    @Export(name="resetPasswordAllowed", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> resetPasswordAllowed;
 
     /**
@@ -733,7 +733,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * If enabled a refresh token can only be used number of times specified in &#39;refresh_token_max_reuse&#39; before they are revoked. If unspecified, refresh tokens can be reused.
      * 
      */
-    @Export(name="revokeRefreshToken", type=Boolean.class, parameters={})
+    @Export(name="revokeRefreshToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> revokeRefreshToken;
 
     /**
@@ -743,13 +743,13 @@ public class Realm extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> revokeRefreshToken() {
         return Codegen.optional(this.revokeRefreshToken);
     }
-    @Export(name="securityDefenses", type=RealmSecurityDefenses.class, parameters={})
+    @Export(name="securityDefenses", refs={RealmSecurityDefenses.class}, tree="[0]")
     private Output</* @Nullable */ RealmSecurityDefenses> securityDefenses;
 
     public Output<Optional<RealmSecurityDefenses>> securityDefenses() {
         return Codegen.optional(this.securityDefenses);
     }
-    @Export(name="smtpServer", type=RealmSmtpServer.class, parameters={})
+    @Export(name="smtpServer", refs={RealmSmtpServer.class}, tree="[0]")
     private Output</* @Nullable */ RealmSmtpServer> smtpServer;
 
     public Output<Optional<RealmSmtpServer>> smtpServer() {
@@ -759,7 +759,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * Can be one of following values: &#39;none, &#39;external&#39; or &#39;all&#39;
      * 
      */
-    @Export(name="sslRequired", type=String.class, parameters={})
+    @Export(name="sslRequired", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> sslRequired;
 
     /**
@@ -773,7 +773,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The amount of time a session can be idle before it expires.
      * 
      */
-    @Export(name="ssoSessionIdleTimeout", type=String.class, parameters={})
+    @Export(name="ssoSessionIdleTimeout", refs={String.class}, tree="[0]")
     private Output<String> ssoSessionIdleTimeout;
 
     /**
@@ -787,7 +787,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * Similar to `sso_session_idle_timeout`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
      * 
      */
-    @Export(name="ssoSessionIdleTimeoutRememberMe", type=String.class, parameters={})
+    @Export(name="ssoSessionIdleTimeoutRememberMe", refs={String.class}, tree="[0]")
     private Output<String> ssoSessionIdleTimeoutRememberMe;
 
     /**
@@ -801,7 +801,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * The maximum amount of time before a session expires regardless of activity.
      * 
      */
-    @Export(name="ssoSessionMaxLifespan", type=String.class, parameters={})
+    @Export(name="ssoSessionMaxLifespan", refs={String.class}, tree="[0]")
     private Output<String> ssoSessionMaxLifespan;
 
     /**
@@ -815,7 +815,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * Similar to `sso_session_max_lifespan`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
      * 
      */
-    @Export(name="ssoSessionMaxLifespanRememberMe", type=String.class, parameters={})
+    @Export(name="ssoSessionMaxLifespanRememberMe", refs={String.class}, tree="[0]")
     private Output<String> ssoSessionMaxLifespanRememberMe;
 
     /**
@@ -829,7 +829,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * When `true`, users are allowed to manage their own resources. Defaults to `false`.
      * 
      */
-    @Export(name="userManagedAccess", type=Boolean.class, parameters={})
+    @Export(name="userManagedAccess", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> userManagedAccess;
 
     /**
@@ -843,7 +843,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * When true, users are required to verify their email address after registration and after email address changes.
      * 
      */
-    @Export(name="verifyEmail", type=Boolean.class, parameters={})
+    @Export(name="verifyEmail", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> verifyEmail;
 
     /**
@@ -859,7 +859,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * Each of these attributes are blocks with the following attributes:
      * 
      */
-    @Export(name="webAuthnPasswordlessPolicy", type=RealmWebAuthnPasswordlessPolicy.class, parameters={})
+    @Export(name="webAuthnPasswordlessPolicy", refs={RealmWebAuthnPasswordlessPolicy.class}, tree="[0]")
     private Output<RealmWebAuthnPasswordlessPolicy> webAuthnPasswordlessPolicy;
 
     /**
@@ -875,7 +875,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * Configuration for WebAuthn Policy authentication.
      * 
      */
-    @Export(name="webAuthnPolicy", type=RealmWebAuthnPolicy.class, parameters={})
+    @Export(name="webAuthnPolicy", refs={RealmWebAuthnPolicy.class}, tree="[0]")
     private Output<RealmWebAuthnPolicy> webAuthnPolicy;
 
     /**

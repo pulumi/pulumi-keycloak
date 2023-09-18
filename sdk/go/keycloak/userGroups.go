@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for managing a Keycloak user's groups.
@@ -164,6 +166,7 @@ func NewUserGroups(ctx *pulumi.Context,
 	if args.UserId == nil {
 		return nil, errors.New("invalid value for required argument 'UserId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserGroups
 	err := ctx.RegisterResource("keycloak:index/userGroups:UserGroups", name, args, &resource, opts...)
 	if err != nil {
@@ -257,6 +260,12 @@ func (i *UserGroups) ToUserGroupsOutputWithContext(ctx context.Context) UserGrou
 	return pulumi.ToOutputWithContext(ctx, i).(UserGroupsOutput)
 }
 
+func (i *UserGroups) ToOutput(ctx context.Context) pulumix.Output[*UserGroups] {
+	return pulumix.Output[*UserGroups]{
+		OutputState: i.ToUserGroupsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserGroupsArrayInput is an input type that accepts UserGroupsArray and UserGroupsArrayOutput values.
 // You can construct a concrete instance of `UserGroupsArrayInput` via:
 //
@@ -280,6 +289,12 @@ func (i UserGroupsArray) ToUserGroupsArrayOutput() UserGroupsArrayOutput {
 
 func (i UserGroupsArray) ToUserGroupsArrayOutputWithContext(ctx context.Context) UserGroupsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserGroupsArrayOutput)
+}
+
+func (i UserGroupsArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserGroups] {
+	return pulumix.Output[[]*UserGroups]{
+		OutputState: i.ToUserGroupsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // UserGroupsMapInput is an input type that accepts UserGroupsMap and UserGroupsMapOutput values.
@@ -307,6 +322,12 @@ func (i UserGroupsMap) ToUserGroupsMapOutputWithContext(ctx context.Context) Use
 	return pulumi.ToOutputWithContext(ctx, i).(UserGroupsMapOutput)
 }
 
+func (i UserGroupsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserGroups] {
+	return pulumix.Output[map[string]*UserGroups]{
+		OutputState: i.ToUserGroupsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserGroupsOutput struct{ *pulumi.OutputState }
 
 func (UserGroupsOutput) ElementType() reflect.Type {
@@ -319,6 +340,12 @@ func (o UserGroupsOutput) ToUserGroupsOutput() UserGroupsOutput {
 
 func (o UserGroupsOutput) ToUserGroupsOutputWithContext(ctx context.Context) UserGroupsOutput {
 	return o
+}
+
+func (o UserGroupsOutput) ToOutput(ctx context.Context) pulumix.Output[*UserGroups] {
+	return pulumix.Output[*UserGroups]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
@@ -355,6 +382,12 @@ func (o UserGroupsArrayOutput) ToUserGroupsArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o UserGroupsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserGroups] {
+	return pulumix.Output[[]*UserGroups]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o UserGroupsArrayOutput) Index(i pulumi.IntInput) UserGroupsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserGroups {
 		return vs[0].([]*UserGroups)[vs[1].(int)]
@@ -373,6 +406,12 @@ func (o UserGroupsMapOutput) ToUserGroupsMapOutput() UserGroupsMapOutput {
 
 func (o UserGroupsMapOutput) ToUserGroupsMapOutputWithContext(ctx context.Context) UserGroupsMapOutput {
 	return o
+}
+
+func (o UserGroupsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserGroups] {
+	return pulumix.Output[map[string]*UserGroups]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserGroupsMapOutput) MapIndex(k pulumi.StringInput) UserGroupsOutput {

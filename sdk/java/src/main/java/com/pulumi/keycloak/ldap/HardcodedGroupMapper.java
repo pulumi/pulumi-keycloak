@@ -19,7 +19,7 @@ public class HardcodedGroupMapper extends com.pulumi.resources.CustomResource {
      * Group to grant to user.
      * 
      */
-    @Export(name="group", type=String.class, parameters={})
+    @Export(name="group", refs={String.class}, tree="[0]")
     private Output<String> group;
 
     /**
@@ -33,7 +33,7 @@ public class HardcodedGroupMapper extends com.pulumi.resources.CustomResource {
      * The ldap user federation provider to attach this mapper to.
      * 
      */
-    @Export(name="ldapUserFederationId", type=String.class, parameters={})
+    @Export(name="ldapUserFederationId", refs={String.class}, tree="[0]")
     private Output<String> ldapUserFederationId;
 
     /**
@@ -47,7 +47,7 @@ public class HardcodedGroupMapper extends com.pulumi.resources.CustomResource {
      * Display name of the mapper when displayed in the console.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -61,7 +61,7 @@ public class HardcodedGroupMapper extends com.pulumi.resources.CustomResource {
      * The realm in which the ldap user federation provider exists.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

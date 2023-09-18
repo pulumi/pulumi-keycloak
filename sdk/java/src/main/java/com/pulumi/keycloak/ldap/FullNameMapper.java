@@ -91,7 +91,7 @@ public class FullNameMapper extends com.pulumi.resources.CustomResource {
      * The name of the LDAP attribute containing the user&#39;s full name.
      * 
      */
-    @Export(name="ldapFullNameAttribute", type=String.class, parameters={})
+    @Export(name="ldapFullNameAttribute", refs={String.class}, tree="[0]")
     private Output<String> ldapFullNameAttribute;
 
     /**
@@ -105,7 +105,7 @@ public class FullNameMapper extends com.pulumi.resources.CustomResource {
      * The ID of the LDAP user federation provider to attach this mapper to.
      * 
      */
-    @Export(name="ldapUserFederationId", type=String.class, parameters={})
+    @Export(name="ldapUserFederationId", refs={String.class}, tree="[0]")
     private Output<String> ldapUserFederationId;
 
     /**
@@ -119,7 +119,7 @@ public class FullNameMapper extends com.pulumi.resources.CustomResource {
      * Display name of this mapper when displayed in the console.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -133,7 +133,7 @@ public class FullNameMapper extends com.pulumi.resources.CustomResource {
      * When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
      * 
      */
-    @Export(name="readOnly", type=Boolean.class, parameters={})
+    @Export(name="readOnly", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> readOnly;
 
     /**
@@ -147,7 +147,7 @@ public class FullNameMapper extends com.pulumi.resources.CustomResource {
      * The realm that this LDAP mapper will exist in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -161,7 +161,7 @@ public class FullNameMapper extends com.pulumi.resources.CustomResource {
      * When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
      * 
      */
-    @Export(name="writeOnly", type=Boolean.class, parameters={})
+    @Export(name="writeOnly", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> writeOnly;
 
     /**

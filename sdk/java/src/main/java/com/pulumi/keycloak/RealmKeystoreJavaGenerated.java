@@ -80,7 +80,7 @@ public class RealmKeystoreJavaGenerated extends com.pulumi.resources.CustomResou
      * When `false`, key in not used for signing. Defaults to `true`.
      * 
      */
-    @Export(name="active", type=Boolean.class, parameters={})
+    @Export(name="active", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> active;
 
     /**
@@ -94,7 +94,7 @@ public class RealmKeystoreJavaGenerated extends com.pulumi.resources.CustomResou
      * Intended algorithm for the key. Defaults to `RS256`
      * 
      */
-    @Export(name="algorithm", type=String.class, parameters={})
+    @Export(name="algorithm", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> algorithm;
 
     /**
@@ -108,7 +108,7 @@ public class RealmKeystoreJavaGenerated extends com.pulumi.resources.CustomResou
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
@@ -122,7 +122,7 @@ public class RealmKeystoreJavaGenerated extends com.pulumi.resources.CustomResou
      * Alias for the private key.
      * 
      */
-    @Export(name="keyAlias", type=String.class, parameters={})
+    @Export(name="keyAlias", refs={String.class}, tree="[0]")
     private Output<String> keyAlias;
 
     /**
@@ -136,7 +136,7 @@ public class RealmKeystoreJavaGenerated extends com.pulumi.resources.CustomResou
      * Password for the private key.
      * 
      */
-    @Export(name="keyPassword", type=String.class, parameters={})
+    @Export(name="keyPassword", refs={String.class}, tree="[0]")
     private Output<String> keyPassword;
 
     /**
@@ -150,7 +150,7 @@ public class RealmKeystoreJavaGenerated extends com.pulumi.resources.CustomResou
      * Path to keys file on keycloak instance.
      * 
      */
-    @Export(name="keystore", type=String.class, parameters={})
+    @Export(name="keystore", refs={String.class}, tree="[0]")
     private Output<String> keystore;
 
     /**
@@ -164,7 +164,7 @@ public class RealmKeystoreJavaGenerated extends com.pulumi.resources.CustomResou
      * Password for the keys.
      * 
      */
-    @Export(name="keystorePassword", type=String.class, parameters={})
+    @Export(name="keystorePassword", refs={String.class}, tree="[0]")
     private Output<String> keystorePassword;
 
     /**
@@ -178,7 +178,7 @@ public class RealmKeystoreJavaGenerated extends com.pulumi.resources.CustomResou
      * Display name of provider when linked in admin console.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -192,7 +192,7 @@ public class RealmKeystoreJavaGenerated extends com.pulumi.resources.CustomResou
      * Priority for the provider. Defaults to `0`
      * 
      */
-    @Export(name="priority", type=Integer.class, parameters={})
+    @Export(name="priority", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> priority;
 
     /**
@@ -206,7 +206,7 @@ public class RealmKeystoreJavaGenerated extends com.pulumi.resources.CustomResou
      * The realm this keystore exists in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

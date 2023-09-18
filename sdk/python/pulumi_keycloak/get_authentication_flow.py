@@ -92,9 +92,9 @@ def get_authentication_flow(alias: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('keycloak:index/getAuthenticationFlow:getAuthenticationFlow', __args__, opts=opts, typ=GetAuthenticationFlowResult).value
 
     return AwaitableGetAuthenticationFlowResult(
-        alias=__ret__.alias,
-        id=__ret__.id,
-        realm_id=__ret__.realm_id)
+        alias=pulumi.get(__ret__, 'alias'),
+        id=pulumi.get(__ret__, 'id'),
+        realm_id=pulumi.get(__ret__, 'realm_id'))
 
 
 @_utilities.lift_output_func(get_authentication_flow)

@@ -77,7 +77,7 @@ public class RealmKeystoreRsaGenerated extends com.pulumi.resources.CustomResour
      * When `false`, key in not used for signing. Defaults to `true`.
      * 
      */
-    @Export(name="active", type=Boolean.class, parameters={})
+    @Export(name="active", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> active;
 
     /**
@@ -91,7 +91,7 @@ public class RealmKeystoreRsaGenerated extends com.pulumi.resources.CustomResour
      * Intended algorithm for the key. Defaults to `RS256`
      * 
      */
-    @Export(name="algorithm", type=String.class, parameters={})
+    @Export(name="algorithm", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> algorithm;
 
     /**
@@ -105,7 +105,7 @@ public class RealmKeystoreRsaGenerated extends com.pulumi.resources.CustomResour
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
@@ -119,7 +119,7 @@ public class RealmKeystoreRsaGenerated extends com.pulumi.resources.CustomResour
      * Size for the generated keys. Defaults to `2048`.
      * 
      */
-    @Export(name="keySize", type=Integer.class, parameters={})
+    @Export(name="keySize", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> keySize;
 
     /**
@@ -133,7 +133,7 @@ public class RealmKeystoreRsaGenerated extends com.pulumi.resources.CustomResour
      * Display name of provider when linked in admin console.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -147,7 +147,7 @@ public class RealmKeystoreRsaGenerated extends com.pulumi.resources.CustomResour
      * Priority for the provider. Defaults to `0`
      * 
      */
-    @Export(name="priority", type=Integer.class, parameters={})
+    @Export(name="priority", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> priority;
 
     /**
@@ -161,7 +161,7 @@ public class RealmKeystoreRsaGenerated extends com.pulumi.resources.CustomResour
      * The realm this keystore exists in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

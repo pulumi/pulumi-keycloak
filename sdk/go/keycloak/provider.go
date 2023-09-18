@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The provider type for the keycloak package. By default, resources use package-wide configuration
@@ -44,10 +46,11 @@ func NewProvider(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Url'")
 	}
 	if args.ClientTimeout == nil {
-		if d := getEnvOrDefault(5, parseEnvInt, "KEYCLOAK_CLIENT_TIMEOUT"); d != nil {
+		if d := internal.GetEnvOrDefault(5, internal.ParseEnvInt, "KEYCLOAK_CLIENT_TIMEOUT"); d != nil {
 			args.ClientTimeout = pulumi.IntPtr(d.(int))
 		}
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:keycloak", name, args, &resource, opts...)
 	if err != nil {
@@ -128,6 +131,12 @@ func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
 }
 
+func (i *Provider) ToOutput(ctx context.Context) pulumix.Output[*Provider] {
+	return pulumix.Output[*Provider]{
+		OutputState: i.ToProviderOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderOutput struct{ *pulumi.OutputState }
 
 func (ProviderOutput) ElementType() reflect.Type {
@@ -140,6 +149,12 @@ func (o ProviderOutput) ToProviderOutput() ProviderOutput {
 
 func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
 	return o
+}
+
+func (o ProviderOutput) ToOutput(ctx context.Context) pulumix.Output[*Provider] {
+	return pulumix.Output[*Provider]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderOutput) BasePath() pulumi.StringPtrOutput {

@@ -94,7 +94,7 @@ public class ClientServiceAccountRole extends com.pulumi.resources.CustomResourc
      * The id of the client that provides the role.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output<String> clientId;
 
     /**
@@ -108,7 +108,7 @@ public class ClientServiceAccountRole extends com.pulumi.resources.CustomResourc
      * The realm the clients and roles belong to.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -122,7 +122,7 @@ public class ClientServiceAccountRole extends com.pulumi.resources.CustomResourc
      * The name of the role that is assigned.
      * 
      */
-    @Export(name="role", type=String.class, parameters={})
+    @Export(name="role", refs={String.class}, tree="[0]")
     private Output<String> role;
 
     /**
@@ -136,7 +136,7 @@ public class ClientServiceAccountRole extends com.pulumi.resources.CustomResourc
      * The id of the service account that is assigned the role (the service account of the client that &#34;consumes&#34; the role).
      * 
      */
-    @Export(name="serviceAccountUserId", type=String.class, parameters={})
+    @Export(name="serviceAccountUserId", refs={String.class}, tree="[0]")
     private Output<String> serviceAccountUserId;
 
     /**

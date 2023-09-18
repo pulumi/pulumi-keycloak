@@ -23,7 +23,7 @@ public class HardcodedAttributeIdentityProviderMapper extends com.pulumi.resourc
      * OIDC Claim
      * 
      */
-    @Export(name="attributeName", type=String.class, parameters={})
+    @Export(name="attributeName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attributeName;
 
     /**
@@ -37,7 +37,7 @@ public class HardcodedAttributeIdentityProviderMapper extends com.pulumi.resourc
      * User Attribute
      * 
      */
-    @Export(name="attributeValue", type=String.class, parameters={})
+    @Export(name="attributeValue", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attributeValue;
 
     /**
@@ -47,7 +47,7 @@ public class HardcodedAttributeIdentityProviderMapper extends com.pulumi.resourc
     public Output<Optional<String>> attributeValue() {
         return Codegen.optional(this.attributeValue);
     }
-    @Export(name="extraConfig", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="extraConfig", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> extraConfig;
 
     public Output<Optional<Map<String,Object>>> extraConfig() {
@@ -57,7 +57,7 @@ public class HardcodedAttributeIdentityProviderMapper extends com.pulumi.resourc
      * IDP Alias
      * 
      */
-    @Export(name="identityProviderAlias", type=String.class, parameters={})
+    @Export(name="identityProviderAlias", refs={String.class}, tree="[0]")
     private Output<String> identityProviderAlias;
 
     /**
@@ -71,7 +71,7 @@ public class HardcodedAttributeIdentityProviderMapper extends com.pulumi.resourc
      * IDP Mapper Name
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -85,7 +85,7 @@ public class HardcodedAttributeIdentityProviderMapper extends com.pulumi.resourc
      * Realm Name
      * 
      */
-    @Export(name="realm", type=String.class, parameters={})
+    @Export(name="realm", refs={String.class}, tree="[0]")
     private Output<String> realm;
 
     /**
@@ -99,7 +99,7 @@ public class HardcodedAttributeIdentityProviderMapper extends com.pulumi.resourc
      * Is Attribute Related To a User Session
      * 
      */
-    @Export(name="userSession", type=Boolean.class, parameters={})
+    @Export(name="userSession", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> userSession;
 
     /**

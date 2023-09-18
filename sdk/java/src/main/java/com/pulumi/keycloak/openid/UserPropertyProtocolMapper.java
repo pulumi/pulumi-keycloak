@@ -139,7 +139,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      * 
      */
-    @Export(name="addToAccessToken", type=Boolean.class, parameters={})
+    @Export(name="addToAccessToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToAccessToken;
 
     /**
@@ -153,7 +153,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      * 
      */
-    @Export(name="addToIdToken", type=Boolean.class, parameters={})
+    @Export(name="addToIdToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToIdToken;
 
     /**
@@ -167,7 +167,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      * 
      */
-    @Export(name="addToUserinfo", type=Boolean.class, parameters={})
+    @Export(name="addToUserinfo", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToUserinfo;
 
     /**
@@ -181,7 +181,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * The name of the claim to insert into a token.
      * 
      */
-    @Export(name="claimName", type=String.class, parameters={})
+    @Export(name="claimName", refs={String.class}, tree="[0]")
     private Output<String> claimName;
 
     /**
@@ -195,7 +195,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
      * 
      */
-    @Export(name="claimValueType", type=String.class, parameters={})
+    @Export(name="claimValueType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> claimValueType;
 
     /**
@@ -209,7 +209,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
@@ -223,7 +223,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified. `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
      * 
      */
-    @Export(name="clientScopeId", type=String.class, parameters={})
+    @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
     /**
@@ -237,7 +237,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * The display name of this protocol mapper in the GUI.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -251,7 +251,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * The realm this protocol mapper exists within.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -265,7 +265,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * The built in user property (such as email) to map a claim for.
      * 
      */
-    @Export(name="userProperty", type=String.class, parameters={})
+    @Export(name="userProperty", refs={String.class}, tree="[0]")
     private Output<String> userProperty;
 
     /**

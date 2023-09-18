@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating the "Audience Resolve" OIDC protocol mapper within Keycloak.
@@ -143,6 +145,7 @@ func NewAudienceResolveProtocolMappter(ctx *pulumi.Context,
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AudienceResolveProtocolMappter
 	err := ctx.RegisterResource("keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter", name, args, &resource, opts...)
 	if err != nil {
@@ -236,6 +239,12 @@ func (i *AudienceResolveProtocolMappter) ToAudienceResolveProtocolMappterOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(AudienceResolveProtocolMappterOutput)
 }
 
+func (i *AudienceResolveProtocolMappter) ToOutput(ctx context.Context) pulumix.Output[*AudienceResolveProtocolMappter] {
+	return pulumix.Output[*AudienceResolveProtocolMappter]{
+		OutputState: i.ToAudienceResolveProtocolMappterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AudienceResolveProtocolMappterArrayInput is an input type that accepts AudienceResolveProtocolMappterArray and AudienceResolveProtocolMappterArrayOutput values.
 // You can construct a concrete instance of `AudienceResolveProtocolMappterArrayInput` via:
 //
@@ -259,6 +268,12 @@ func (i AudienceResolveProtocolMappterArray) ToAudienceResolveProtocolMappterArr
 
 func (i AudienceResolveProtocolMappterArray) ToAudienceResolveProtocolMappterArrayOutputWithContext(ctx context.Context) AudienceResolveProtocolMappterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AudienceResolveProtocolMappterArrayOutput)
+}
+
+func (i AudienceResolveProtocolMappterArray) ToOutput(ctx context.Context) pulumix.Output[[]*AudienceResolveProtocolMappter] {
+	return pulumix.Output[[]*AudienceResolveProtocolMappter]{
+		OutputState: i.ToAudienceResolveProtocolMappterArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AudienceResolveProtocolMappterMapInput is an input type that accepts AudienceResolveProtocolMappterMap and AudienceResolveProtocolMappterMapOutput values.
@@ -286,6 +301,12 @@ func (i AudienceResolveProtocolMappterMap) ToAudienceResolveProtocolMappterMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(AudienceResolveProtocolMappterMapOutput)
 }
 
+func (i AudienceResolveProtocolMappterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AudienceResolveProtocolMappter] {
+	return pulumix.Output[map[string]*AudienceResolveProtocolMappter]{
+		OutputState: i.ToAudienceResolveProtocolMappterMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AudienceResolveProtocolMappterOutput struct{ *pulumi.OutputState }
 
 func (AudienceResolveProtocolMappterOutput) ElementType() reflect.Type {
@@ -298,6 +319,12 @@ func (o AudienceResolveProtocolMappterOutput) ToAudienceResolveProtocolMappterOu
 
 func (o AudienceResolveProtocolMappterOutput) ToAudienceResolveProtocolMappterOutputWithContext(ctx context.Context) AudienceResolveProtocolMappterOutput {
 	return o
+}
+
+func (o AudienceResolveProtocolMappterOutput) ToOutput(ctx context.Context) pulumix.Output[*AudienceResolveProtocolMappter] {
+	return pulumix.Output[*AudienceResolveProtocolMappter]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
@@ -334,6 +361,12 @@ func (o AudienceResolveProtocolMappterArrayOutput) ToAudienceResolveProtocolMapp
 	return o
 }
 
+func (o AudienceResolveProtocolMappterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AudienceResolveProtocolMappter] {
+	return pulumix.Output[[]*AudienceResolveProtocolMappter]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AudienceResolveProtocolMappterArrayOutput) Index(i pulumi.IntInput) AudienceResolveProtocolMappterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AudienceResolveProtocolMappter {
 		return vs[0].([]*AudienceResolveProtocolMappter)[vs[1].(int)]
@@ -352,6 +385,12 @@ func (o AudienceResolveProtocolMappterMapOutput) ToAudienceResolveProtocolMappte
 
 func (o AudienceResolveProtocolMappterMapOutput) ToAudienceResolveProtocolMappterMapOutputWithContext(ctx context.Context) AudienceResolveProtocolMappterMapOutput {
 	return o
+}
+
+func (o AudienceResolveProtocolMappterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AudienceResolveProtocolMappter] {
+	return pulumix.Output[map[string]*AudienceResolveProtocolMappter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AudienceResolveProtocolMappterMapOutput) MapIndex(k pulumi.StringInput) AudienceResolveProtocolMappterOutput {

@@ -98,7 +98,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * The number of users to sync within a single transaction. Defaults to `1000`.
      * 
      */
-    @Export(name="batchSizeForSync", type=Integer.class, parameters={})
+    @Export(name="batchSizeForSync", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> batchSizeForSync;
 
     /**
@@ -112,7 +112,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * Password of LDAP admin. This attribute must be set if `bind_dn` is set.
      * 
      */
-    @Export(name="bindCredential", type=String.class, parameters={})
+    @Export(name="bindCredential", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bindCredential;
 
     /**
@@ -126,7 +126,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
      * 
      */
-    @Export(name="bindDn", type=String.class, parameters={})
+    @Export(name="bindDn", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bindDn;
 
     /**
@@ -140,7 +140,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * A block containing the cache settings.
      * 
      */
-    @Export(name="cache", type=UserFederationCache.class, parameters={})
+    @Export(name="cache", refs={UserFederationCache.class}, tree="[0]")
     private Output</* @Nullable */ UserFederationCache> cache;
 
     /**
@@ -154,7 +154,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
      * 
      */
-    @Export(name="changedSyncPeriod", type=Integer.class, parameters={})
+    @Export(name="changedSyncPeriod", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> changedSyncPeriod;
 
     /**
@@ -168,7 +168,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
      * 
      */
-    @Export(name="connectionTimeout", type=String.class, parameters={})
+    @Export(name="connectionTimeout", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> connectionTimeout;
 
     /**
@@ -182,7 +182,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * Connection URL to the LDAP server.
      * 
      */
-    @Export(name="connectionUrl", type=String.class, parameters={})
+    @Export(name="connectionUrl", refs={String.class}, tree="[0]")
     private Output<String> connectionUrl;
 
     /**
@@ -196,7 +196,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
      * 
      */
-    @Export(name="customUserSearchFilter", type=String.class, parameters={})
+    @Export(name="customUserSearchFilter", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> customUserSearchFilter;
 
     /**
@@ -210,7 +210,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
      * 
      */
-    @Export(name="deleteDefaultMappers", type=Boolean.class, parameters={})
+    @Export(name="deleteDefaultMappers", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> deleteDefaultMappers;
 
     /**
@@ -224,7 +224,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
      * 
      */
-    @Export(name="editMode", type=String.class, parameters={})
+    @Export(name="editMode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> editMode;
 
     /**
@@ -238,7 +238,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
@@ -252,7 +252,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
      * 
      */
-    @Export(name="fullSyncPeriod", type=Integer.class, parameters={})
+    @Export(name="fullSyncPeriod", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> fullSyncPeriod;
 
     /**
@@ -266,7 +266,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
      * 
      */
-    @Export(name="importEnabled", type=Boolean.class, parameters={})
+    @Export(name="importEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> importEnabled;
 
     /**
@@ -280,7 +280,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * A block containing the kerberos settings.
      * 
      */
-    @Export(name="kerberos", type=UserFederationKerberos.class, parameters={})
+    @Export(name="kerberos", refs={UserFederationKerberos.class}, tree="[0]")
     private Output</* @Nullable */ UserFederationKerberos> kerberos;
 
     /**
@@ -294,7 +294,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * Display name of the provider when displayed in the console.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -308,7 +308,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
      * 
      */
-    @Export(name="pagination", type=Boolean.class, parameters={})
+    @Export(name="pagination", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> pagination;
 
     /**
@@ -322,7 +322,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
      * 
      */
-    @Export(name="priority", type=Integer.class, parameters={})
+    @Export(name="priority", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> priority;
 
     /**
@@ -336,7 +336,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * Name of the LDAP attribute to use as the relative distinguished name.
      * 
      */
-    @Export(name="rdnLdapAttribute", type=String.class, parameters={})
+    @Export(name="rdnLdapAttribute", refs={String.class}, tree="[0]")
     private Output<String> rdnLdapAttribute;
 
     /**
@@ -350,7 +350,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
      * 
      */
-    @Export(name="readTimeout", type=String.class, parameters={})
+    @Export(name="readTimeout", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> readTimeout;
 
     /**
@@ -364,7 +364,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * The realm that this provider will provide user federation for.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -378,7 +378,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * Can be one of `ONE_LEVEL` or `SUBTREE`:
      * 
      */
-    @Export(name="searchScope", type=String.class, parameters={})
+    @Export(name="searchScope", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> searchScope;
 
     /**
@@ -392,7 +392,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
      * 
      */
-    @Export(name="startTls", type=Boolean.class, parameters={})
+    @Export(name="startTls", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> startTls;
 
     /**
@@ -406,7 +406,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
      * 
      */
-    @Export(name="syncRegistrations", type=Boolean.class, parameters={})
+    @Export(name="syncRegistrations", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> syncRegistrations;
 
     /**
@@ -420,7 +420,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
      * 
      */
-    @Export(name="trustEmail", type=Boolean.class, parameters={})
+    @Export(name="trustEmail", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> trustEmail;
 
     /**
@@ -434,7 +434,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
      * 
      */
-    @Export(name="usePasswordModifyExtendedOp", type=Boolean.class, parameters={})
+    @Export(name="usePasswordModifyExtendedOp", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> usePasswordModifyExtendedOp;
 
     /**
@@ -448,7 +448,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
      * 
      */
-    @Export(name="useTruststoreSpi", type=String.class, parameters={})
+    @Export(name="useTruststoreSpi", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> useTruststoreSpi;
 
     /**
@@ -462,7 +462,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
      * 
      */
-    @Export(name="userObjectClasses", type=List.class, parameters={String.class})
+    @Export(name="userObjectClasses", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> userObjectClasses;
 
     /**
@@ -476,7 +476,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * Name of the LDAP attribute to use as the Keycloak username.
      * 
      */
-    @Export(name="usernameLdapAttribute", type=String.class, parameters={})
+    @Export(name="usernameLdapAttribute", refs={String.class}, tree="[0]")
     private Output<String> usernameLdapAttribute;
 
     /**
@@ -490,7 +490,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * Full DN of LDAP tree where your users are.
      * 
      */
-    @Export(name="usersDn", type=String.class, parameters={})
+    @Export(name="usersDn", refs={String.class}, tree="[0]")
     private Output<String> usersDn;
 
     /**
@@ -504,7 +504,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * Name of the LDAP attribute to use as a unique object identifier for objects in LDAP.
      * 
      */
-    @Export(name="uuidLdapAttribute", type=String.class, parameters={})
+    @Export(name="uuidLdapAttribute", refs={String.class}, tree="[0]")
     private Output<String> uuidLdapAttribute;
 
     /**
@@ -518,7 +518,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * When `true`, Keycloak will validate passwords using the realm policy before updating it.
      * 
      */
-    @Export(name="validatePasswordPolicy", type=Boolean.class, parameters={})
+    @Export(name="validatePasswordPolicy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> validatePasswordPolicy;
 
     /**
@@ -532,7 +532,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
      * 
      */
-    @Export(name="vendor", type=String.class, parameters={})
+    @Export(name="vendor", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> vendor;
 
     /**

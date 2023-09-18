@@ -95,7 +95,7 @@ public class IdentityProviderTokenExchangeScopePermission extends com.pulumi.res
      * (Computed) Resource ID representing the identity provider, this automatically created by keycloak.
      * 
      */
-    @Export(name="authorizationIdpResourceId", type=String.class, parameters={})
+    @Export(name="authorizationIdpResourceId", refs={String.class}, tree="[0]")
     private Output<String> authorizationIdpResourceId;
 
     /**
@@ -109,7 +109,7 @@ public class IdentityProviderTokenExchangeScopePermission extends com.pulumi.res
      * (Computed) Resource server ID representing the realm management client on which this permission is managed.
      * 
      */
-    @Export(name="authorizationResourceServerId", type=String.class, parameters={})
+    @Export(name="authorizationResourceServerId", refs={String.class}, tree="[0]")
     private Output<String> authorizationResourceServerId;
 
     /**
@@ -123,7 +123,7 @@ public class IdentityProviderTokenExchangeScopePermission extends com.pulumi.res
      * (Computed) Permission ID representing the Permission with scope &#39;Token Exchange&#39; and the resource &#39;authorization_idp_resource_id&#39;, this automatically created by keycloak, the policy ID will be set on this permission.
      * 
      */
-    @Export(name="authorizationTokenExchangeScopePermissionId", type=String.class, parameters={})
+    @Export(name="authorizationTokenExchangeScopePermissionId", refs={String.class}, tree="[0]")
     private Output<String> authorizationTokenExchangeScopePermissionId;
 
     /**
@@ -137,7 +137,7 @@ public class IdentityProviderTokenExchangeScopePermission extends com.pulumi.res
      * A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
      * 
      */
-    @Export(name="clients", type=List.class, parameters={String.class})
+    @Export(name="clients", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> clients;
 
     /**
@@ -151,7 +151,7 @@ public class IdentityProviderTokenExchangeScopePermission extends com.pulumi.res
      * (Computed) Policy ID that will be set on the scope based token exchange permission automatically created by enabling permissions on the reference identity provider.
      * 
      */
-    @Export(name="policyId", type=String.class, parameters={})
+    @Export(name="policyId", refs={String.class}, tree="[0]")
     private Output<String> policyId;
 
     /**
@@ -165,7 +165,7 @@ public class IdentityProviderTokenExchangeScopePermission extends com.pulumi.res
      * Defaults to &#34;client&#34; This is also the only value policy type supported by this provider.
      * 
      */
-    @Export(name="policyType", type=String.class, parameters={})
+    @Export(name="policyType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> policyType;
 
     /**
@@ -179,7 +179,7 @@ public class IdentityProviderTokenExchangeScopePermission extends com.pulumi.res
      * Alias of the identity provider.
      * 
      */
-    @Export(name="providerAlias", type=String.class, parameters={})
+    @Export(name="providerAlias", refs={String.class}, tree="[0]")
     private Output<String> providerAlias;
 
     /**
@@ -193,7 +193,7 @@ public class IdentityProviderTokenExchangeScopePermission extends com.pulumi.res
      * The realm that the identity provider exists in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

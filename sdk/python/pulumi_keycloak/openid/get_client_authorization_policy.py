@@ -213,17 +213,17 @@ def get_client_authorization_policy(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy', __args__, opts=opts, typ=GetClientAuthorizationPolicyResult).value
 
     return AwaitableGetClientAuthorizationPolicyResult(
-        decision_strategy=__ret__.decision_strategy,
-        id=__ret__.id,
-        logic=__ret__.logic,
-        name=__ret__.name,
-        owner=__ret__.owner,
-        policies=__ret__.policies,
-        realm_id=__ret__.realm_id,
-        resource_server_id=__ret__.resource_server_id,
-        resources=__ret__.resources,
-        scopes=__ret__.scopes,
-        type=__ret__.type)
+        decision_strategy=pulumi.get(__ret__, 'decision_strategy'),
+        id=pulumi.get(__ret__, 'id'),
+        logic=pulumi.get(__ret__, 'logic'),
+        name=pulumi.get(__ret__, 'name'),
+        owner=pulumi.get(__ret__, 'owner'),
+        policies=pulumi.get(__ret__, 'policies'),
+        realm_id=pulumi.get(__ret__, 'realm_id'),
+        resource_server_id=pulumi.get(__ret__, 'resource_server_id'),
+        resources=pulumi.get(__ret__, 'resources'),
+        scopes=pulumi.get(__ret__, 'scopes'),
+        type=pulumi.get(__ret__, 'type'))
 
 
 @_utilities.lift_output_func(get_client_authorization_policy)

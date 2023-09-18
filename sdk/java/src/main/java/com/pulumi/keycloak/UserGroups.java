@@ -149,7 +149,7 @@ public class UserGroups extends com.pulumi.resources.CustomResource {
      * Indicates if the list of the user&#39;s groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
      * 
      */
-    @Export(name="exhaustive", type=Boolean.class, parameters={})
+    @Export(name="exhaustive", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> exhaustive;
 
     /**
@@ -163,7 +163,7 @@ public class UserGroups extends com.pulumi.resources.CustomResource {
      * A list of group IDs that the user is member of.
      * 
      */
-    @Export(name="groupIds", type=List.class, parameters={String.class})
+    @Export(name="groupIds", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> groupIds;
 
     /**
@@ -177,7 +177,7 @@ public class UserGroups extends com.pulumi.resources.CustomResource {
      * The realm this group exists in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -191,7 +191,7 @@ public class UserGroups extends com.pulumi.resources.CustomResource {
      * The ID of the user this resource should manage groups for.
      * 
      */
-    @Export(name="userId", type=String.class, parameters={})
+    @Export(name="userId", refs={String.class}, tree="[0]")
     private Output<String> userId;
 
     /**

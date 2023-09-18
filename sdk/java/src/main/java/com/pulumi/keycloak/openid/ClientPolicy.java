@@ -91,7 +91,7 @@ public class ClientPolicy extends com.pulumi.resources.CustomResource {
      * The clients allowed by this client policy.
      * 
      */
-    @Export(name="clients", type=List.class, parameters={String.class})
+    @Export(name="clients", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> clients;
 
     /**
@@ -105,7 +105,7 @@ public class ClientPolicy extends com.pulumi.resources.CustomResource {
      * (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
      * 
      */
-    @Export(name="decisionStrategy", type=String.class, parameters={})
+    @Export(name="decisionStrategy", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> decisionStrategy;
 
     /**
@@ -119,7 +119,7 @@ public class ClientPolicy extends com.pulumi.resources.CustomResource {
      * The description of this client policy.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -133,7 +133,7 @@ public class ClientPolicy extends com.pulumi.resources.CustomResource {
      * (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
      * 
      */
-    @Export(name="logic", type=String.class, parameters={})
+    @Export(name="logic", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> logic;
 
     /**
@@ -147,7 +147,7 @@ public class ClientPolicy extends com.pulumi.resources.CustomResource {
      * The name of this client policy.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -161,7 +161,7 @@ public class ClientPolicy extends com.pulumi.resources.CustomResource {
      * The realm this client policy exists within.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -175,7 +175,7 @@ public class ClientPolicy extends com.pulumi.resources.CustomResource {
      * The ID of the resource server this client policy is attached to.
      * 
      */
-    @Export(name="resourceServerId", type=String.class, parameters={})
+    @Export(name="resourceServerId", refs={String.class}, tree="[0]")
     private Output<String> resourceServerId;
 
     /**

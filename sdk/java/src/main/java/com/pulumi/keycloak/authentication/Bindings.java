@@ -99,7 +99,7 @@ public class Bindings extends com.pulumi.resources.CustomResource {
      * The alias of the flow to assign to the realm BrowserFlow.
      * 
      */
-    @Export(name="browserFlow", type=String.class, parameters={})
+    @Export(name="browserFlow", refs={String.class}, tree="[0]")
     private Output<String> browserFlow;
 
     /**
@@ -113,7 +113,7 @@ public class Bindings extends com.pulumi.resources.CustomResource {
      * The alias of the flow to assign to the realm ClientAuthenticationFlow.
      * 
      */
-    @Export(name="clientAuthenticationFlow", type=String.class, parameters={})
+    @Export(name="clientAuthenticationFlow", refs={String.class}, tree="[0]")
     private Output<String> clientAuthenticationFlow;
 
     /**
@@ -127,7 +127,7 @@ public class Bindings extends com.pulumi.resources.CustomResource {
      * The alias of the flow to assign to the realm DirectGrantFlow.
      * 
      */
-    @Export(name="directGrantFlow", type=String.class, parameters={})
+    @Export(name="directGrantFlow", refs={String.class}, tree="[0]")
     private Output<String> directGrantFlow;
 
     /**
@@ -141,7 +141,7 @@ public class Bindings extends com.pulumi.resources.CustomResource {
      * The alias of the flow to assign to the realm DockerAuthenticationFlow.
      * 
      */
-    @Export(name="dockerAuthenticationFlow", type=String.class, parameters={})
+    @Export(name="dockerAuthenticationFlow", refs={String.class}, tree="[0]")
     private Output<String> dockerAuthenticationFlow;
 
     /**
@@ -155,7 +155,7 @@ public class Bindings extends com.pulumi.resources.CustomResource {
      * The realm the authentication flow binding exists in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -169,7 +169,7 @@ public class Bindings extends com.pulumi.resources.CustomResource {
      * The alias of the flow to assign to the realm RegistrationFlow.
      * 
      */
-    @Export(name="registrationFlow", type=String.class, parameters={})
+    @Export(name="registrationFlow", refs={String.class}, tree="[0]")
     private Output<String> registrationFlow;
 
     /**
@@ -183,7 +183,7 @@ public class Bindings extends com.pulumi.resources.CustomResource {
      * The alias of the flow to assign to the realm ResetCredentialsFlow.
      * 
      */
-    @Export(name="resetCredentialsFlow", type=String.class, parameters={})
+    @Export(name="resetCredentialsFlow", refs={String.class}, tree="[0]")
     private Output<String> resetCredentialsFlow;
 
     /**

@@ -275,7 +275,7 @@ public class GenericClientRoleMapper extends com.pulumi.resources.CustomResource
      * The ID of the client this role mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
@@ -289,7 +289,7 @@ public class GenericClientRoleMapper extends com.pulumi.resources.CustomResource
      * The ID of the client scope this role mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
      * 
      */
-    @Export(name="clientScopeId", type=String.class, parameters={})
+    @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
     /**
@@ -303,7 +303,7 @@ public class GenericClientRoleMapper extends com.pulumi.resources.CustomResource
      * The realm this role mapper exists within.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -317,7 +317,7 @@ public class GenericClientRoleMapper extends com.pulumi.resources.CustomResource
      * The ID of the role to be added to this role mapper.
      * 
      */
-    @Export(name="roleId", type=String.class, parameters={})
+    @Export(name="roleId", refs={String.class}, tree="[0]")
     private Output<String> roleId;
 
     /**

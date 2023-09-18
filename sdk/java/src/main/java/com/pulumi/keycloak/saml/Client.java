@@ -83,7 +83,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * SAML POST Binding URL for the client&#39;s assertion consumer service (login responses).
      * 
      */
-    @Export(name="assertionConsumerPostUrl", type=String.class, parameters={})
+    @Export(name="assertionConsumerPostUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> assertionConsumerPostUrl;
 
     /**
@@ -97,7 +97,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * SAML Redirect Binding URL for the client&#39;s assertion consumer service (login responses).
      * 
      */
-    @Export(name="assertionConsumerRedirectUrl", type=String.class, parameters={})
+    @Export(name="assertionConsumerRedirectUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> assertionConsumerRedirectUrl;
 
     /**
@@ -111,7 +111,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * Override realm authentication flow bindings
      * 
      */
-    @Export(name="authenticationFlowBindingOverrides", type=ClientAuthenticationFlowBindingOverrides.class, parameters={})
+    @Export(name="authenticationFlowBindingOverrides", refs={ClientAuthenticationFlowBindingOverrides.class}, tree="[0]")
     private Output</* @Nullable */ ClientAuthenticationFlowBindingOverrides> authenticationFlowBindingOverrides;
 
     /**
@@ -125,7 +125,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When specified, this URL will be used whenever Keycloak needs to link to this client.
      * 
      */
-    @Export(name="baseUrl", type=String.class, parameters={})
+    @Export(name="baseUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> baseUrl;
 
     /**
@@ -139,7 +139,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The Canonicalization Method for XML signatures. Should be one of &#34;EXCLUSIVE&#34;, &#34;EXCLUSIVE_WITH_COMMENTS&#34;, &#34;INCLUSIVE&#34;, or &#34;INCLUSIVE_WITH_COMMENTS&#34;. Defaults to &#34;EXCLUSIVE&#34;.
      * 
      */
-    @Export(name="canonicalizationMethod", type=String.class, parameters={})
+    @Export(name="canonicalizationMethod", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> canonicalizationMethod;
 
     /**
@@ -153,7 +153,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The unique ID of this client, referenced in the URI during authentication and in issued tokens.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output<String> clientId;
 
     /**
@@ -167,7 +167,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
      * 
      */
-    @Export(name="clientSignatureRequired", type=Boolean.class, parameters={})
+    @Export(name="clientSignatureRequired", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> clientSignatureRequired;
 
     /**
@@ -181,7 +181,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The description of this client in the GUI.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -195,7 +195,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
@@ -209,7 +209,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When `true`, the SAML assertions will be encrypted by Keycloak using the client&#39;s public key. Defaults to `false`.
      * 
      */
-    @Export(name="encryptAssertions", type=Boolean.class, parameters={})
+    @Export(name="encryptAssertions", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> encryptAssertions;
 
     /**
@@ -223,7 +223,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * If assertions for the client are encrypted, this certificate will be used for encryption.
      * 
      */
-    @Export(name="encryptionCertificate", type=String.class, parameters={})
+    @Export(name="encryptionCertificate", refs={String.class}, tree="[0]")
     private Output<String> encryptionCertificate;
 
     /**
@@ -237,7 +237,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
      * 
      */
-    @Export(name="encryptionCertificateSha1", type=String.class, parameters={})
+    @Export(name="encryptionCertificateSha1", refs={String.class}, tree="[0]")
     private Output<String> encryptionCertificateSha1;
 
     /**
@@ -247,7 +247,7 @@ public class Client extends com.pulumi.resources.CustomResource {
     public Output<String> encryptionCertificateSha1() {
         return this.encryptionCertificateSha1;
     }
-    @Export(name="extraConfig", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="extraConfig", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> extraConfig;
 
     public Output<Optional<Map<String,Object>>> extraConfig() {
@@ -257,7 +257,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
      * 
      */
-    @Export(name="forceNameIdFormat", type=Boolean.class, parameters={})
+    @Export(name="forceNameIdFormat", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> forceNameIdFormat;
 
     /**
@@ -271,7 +271,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
      * 
      */
-    @Export(name="forcePostBinding", type=Boolean.class, parameters={})
+    @Export(name="forcePostBinding", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> forcePostBinding;
 
     /**
@@ -285,7 +285,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
      * 
      */
-    @Export(name="frontChannelLogout", type=Boolean.class, parameters={})
+    @Export(name="frontChannelLogout", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> frontChannelLogout;
 
     /**
@@ -299,7 +299,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * Allow to include all roles mappings in the access token
      * 
      */
-    @Export(name="fullScopeAllowed", type=Boolean.class, parameters={})
+    @Export(name="fullScopeAllowed", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> fullScopeAllowed;
 
     /**
@@ -313,7 +313,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
      * 
      */
-    @Export(name="idpInitiatedSsoRelayState", type=String.class, parameters={})
+    @Export(name="idpInitiatedSsoRelayState", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> idpInitiatedSsoRelayState;
 
     /**
@@ -327,7 +327,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * URL fragment name to reference client when you want to do IDP Initiated SSO.
      * 
      */
-    @Export(name="idpInitiatedSsoUrlName", type=String.class, parameters={})
+    @Export(name="idpInitiatedSsoUrlName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> idpInitiatedSsoUrlName;
 
     /**
@@ -341,7 +341,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
      * 
      */
-    @Export(name="includeAuthnStatement", type=Boolean.class, parameters={})
+    @Export(name="includeAuthnStatement", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> includeAuthnStatement;
 
     /**
@@ -355,7 +355,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The login theme of this client.
      * 
      */
-    @Export(name="loginTheme", type=String.class, parameters={})
+    @Export(name="loginTheme", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> loginTheme;
 
     /**
@@ -369,7 +369,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * SAML POST Binding URL for the client&#39;s single logout service.
      * 
      */
-    @Export(name="logoutServicePostBindingUrl", type=String.class, parameters={})
+    @Export(name="logoutServicePostBindingUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> logoutServicePostBindingUrl;
 
     /**
@@ -383,7 +383,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * SAML Redirect Binding URL for the client&#39;s single logout service.
      * 
      */
-    @Export(name="logoutServiceRedirectBindingUrl", type=String.class, parameters={})
+    @Export(name="logoutServiceRedirectBindingUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> logoutServiceRedirectBindingUrl;
 
     /**
@@ -397,7 +397,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When specified, this URL will be used for all SAML requests.
      * 
      */
-    @Export(name="masterSamlProcessingUrl", type=String.class, parameters={})
+    @Export(name="masterSamlProcessingUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> masterSamlProcessingUrl;
 
     /**
@@ -411,7 +411,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The display name of this client in the GUI.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -425,7 +425,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * Sets the Name ID format for the subject.
      * 
      */
-    @Export(name="nameIdFormat", type=String.class, parameters={})
+    @Export(name="nameIdFormat", refs={String.class}, tree="[0]")
     private Output<String> nameIdFormat;
 
     /**
@@ -439,7 +439,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The realm this client is attached to.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -453,7 +453,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When specified, this value is prepended to all relative URLs.
      * 
      */
-    @Export(name="rootUrl", type=String.class, parameters={})
+    @Export(name="rootUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> rootUrl;
 
     /**
@@ -467,7 +467,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When `true`, the SAML assertions will be signed by Keycloak using the realm&#39;s private key, and embedded within the SAML XML Auth response. Defaults to `false`.
      * 
      */
-    @Export(name="signAssertions", type=Boolean.class, parameters={})
+    @Export(name="signAssertions", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> signAssertions;
 
     /**
@@ -481,7 +481,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When `true`, the SAML document will be signed by Keycloak using the realm&#39;s private key. Defaults to `true`.
      * 
      */
-    @Export(name="signDocuments", type=Boolean.class, parameters={})
+    @Export(name="signDocuments", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> signDocuments;
 
     /**
@@ -495,7 +495,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The signature algorithm used to sign documents. Should be one of &#34;RSA_SHA1&#34;, &#34;RSA_SHA256&#34;, &#34;RSA_SHA256_MGF1, &#34;RSA_SHA512&#34;, &#34;RSA_SHA512_MGF1&#34; or &#34;DSA_SHA1&#34;.
      * 
      */
-    @Export(name="signatureAlgorithm", type=String.class, parameters={})
+    @Export(name="signatureAlgorithm", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> signatureAlgorithm;
 
     /**
@@ -509,7 +509,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * The value of the `KeyName` element within the signed SAML document. Should be one of &#34;NONE&#34;, &#34;KEY_ID&#34;, or &#34;CERT_SUBJECT&#34;. Defaults to &#34;KEY_ID&#34;.
      * 
      */
-    @Export(name="signatureKeyName", type=String.class, parameters={})
+    @Export(name="signatureKeyName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> signatureKeyName;
 
     /**
@@ -523,7 +523,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * If documents or assertions from the client are signed, this certificate will be used to verify the signature.
      * 
      */
-    @Export(name="signingCertificate", type=String.class, parameters={})
+    @Export(name="signingCertificate", refs={String.class}, tree="[0]")
     private Output<String> signingCertificate;
 
     /**
@@ -537,7 +537,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * (Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.
      * 
      */
-    @Export(name="signingCertificateSha1", type=String.class, parameters={})
+    @Export(name="signingCertificateSha1", refs={String.class}, tree="[0]")
     private Output<String> signingCertificateSha1;
 
     /**
@@ -551,7 +551,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * If documents or assertions from the client are signed, this private key will be used to verify the signature.
      * 
      */
-    @Export(name="signingPrivateKey", type=String.class, parameters={})
+    @Export(name="signingPrivateKey", refs={String.class}, tree="[0]")
     private Output<String> signingPrivateKey;
 
     /**
@@ -565,7 +565,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
      * 
      */
-    @Export(name="signingPrivateKeySha1", type=String.class, parameters={})
+    @Export(name="signingPrivateKeySha1", refs={String.class}, tree="[0]")
     private Output<String> signingPrivateKeySha1;
 
     /**
@@ -579,7 +579,7 @@ public class Client extends com.pulumi.resources.CustomResource {
      * When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
      * 
      */
-    @Export(name="validRedirectUris", type=List.class, parameters={String.class})
+    @Export(name="validRedirectUris", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> validRedirectUris;
 
     /**

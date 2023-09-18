@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -123,6 +125,7 @@ func NewIdentityProviderTokenExchangeScopePermission(ctx *pulumi.Context,
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IdentityProviderTokenExchangeScopePermission
 	err := ctx.RegisterResource("keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission", name, args, &resource, opts...)
 	if err != nil {
@@ -232,6 +235,12 @@ func (i *IdentityProviderTokenExchangeScopePermission) ToIdentityProviderTokenEx
 	return pulumi.ToOutputWithContext(ctx, i).(IdentityProviderTokenExchangeScopePermissionOutput)
 }
 
+func (i *IdentityProviderTokenExchangeScopePermission) ToOutput(ctx context.Context) pulumix.Output[*IdentityProviderTokenExchangeScopePermission] {
+	return pulumix.Output[*IdentityProviderTokenExchangeScopePermission]{
+		OutputState: i.ToIdentityProviderTokenExchangeScopePermissionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // IdentityProviderTokenExchangeScopePermissionArrayInput is an input type that accepts IdentityProviderTokenExchangeScopePermissionArray and IdentityProviderTokenExchangeScopePermissionArrayOutput values.
 // You can construct a concrete instance of `IdentityProviderTokenExchangeScopePermissionArrayInput` via:
 //
@@ -255,6 +264,12 @@ func (i IdentityProviderTokenExchangeScopePermissionArray) ToIdentityProviderTok
 
 func (i IdentityProviderTokenExchangeScopePermissionArray) ToIdentityProviderTokenExchangeScopePermissionArrayOutputWithContext(ctx context.Context) IdentityProviderTokenExchangeScopePermissionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IdentityProviderTokenExchangeScopePermissionArrayOutput)
+}
+
+func (i IdentityProviderTokenExchangeScopePermissionArray) ToOutput(ctx context.Context) pulumix.Output[[]*IdentityProviderTokenExchangeScopePermission] {
+	return pulumix.Output[[]*IdentityProviderTokenExchangeScopePermission]{
+		OutputState: i.ToIdentityProviderTokenExchangeScopePermissionArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // IdentityProviderTokenExchangeScopePermissionMapInput is an input type that accepts IdentityProviderTokenExchangeScopePermissionMap and IdentityProviderTokenExchangeScopePermissionMapOutput values.
@@ -282,6 +297,12 @@ func (i IdentityProviderTokenExchangeScopePermissionMap) ToIdentityProviderToken
 	return pulumi.ToOutputWithContext(ctx, i).(IdentityProviderTokenExchangeScopePermissionMapOutput)
 }
 
+func (i IdentityProviderTokenExchangeScopePermissionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IdentityProviderTokenExchangeScopePermission] {
+	return pulumix.Output[map[string]*IdentityProviderTokenExchangeScopePermission]{
+		OutputState: i.ToIdentityProviderTokenExchangeScopePermissionMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type IdentityProviderTokenExchangeScopePermissionOutput struct{ *pulumi.OutputState }
 
 func (IdentityProviderTokenExchangeScopePermissionOutput) ElementType() reflect.Type {
@@ -294,6 +315,12 @@ func (o IdentityProviderTokenExchangeScopePermissionOutput) ToIdentityProviderTo
 
 func (o IdentityProviderTokenExchangeScopePermissionOutput) ToIdentityProviderTokenExchangeScopePermissionOutputWithContext(ctx context.Context) IdentityProviderTokenExchangeScopePermissionOutput {
 	return o
+}
+
+func (o IdentityProviderTokenExchangeScopePermissionOutput) ToOutput(ctx context.Context) pulumix.Output[*IdentityProviderTokenExchangeScopePermission] {
+	return pulumix.Output[*IdentityProviderTokenExchangeScopePermission]{
+		OutputState: o.OutputState,
+	}
 }
 
 // (Computed) Resource ID representing the identity provider, this automatically created by keycloak.
@@ -356,6 +383,12 @@ func (o IdentityProviderTokenExchangeScopePermissionArrayOutput) ToIdentityProvi
 	return o
 }
 
+func (o IdentityProviderTokenExchangeScopePermissionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IdentityProviderTokenExchangeScopePermission] {
+	return pulumix.Output[[]*IdentityProviderTokenExchangeScopePermission]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o IdentityProviderTokenExchangeScopePermissionArrayOutput) Index(i pulumi.IntInput) IdentityProviderTokenExchangeScopePermissionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IdentityProviderTokenExchangeScopePermission {
 		return vs[0].([]*IdentityProviderTokenExchangeScopePermission)[vs[1].(int)]
@@ -374,6 +407,12 @@ func (o IdentityProviderTokenExchangeScopePermissionMapOutput) ToIdentityProvide
 
 func (o IdentityProviderTokenExchangeScopePermissionMapOutput) ToIdentityProviderTokenExchangeScopePermissionMapOutputWithContext(ctx context.Context) IdentityProviderTokenExchangeScopePermissionMapOutput {
 	return o
+}
+
+func (o IdentityProviderTokenExchangeScopePermissionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IdentityProviderTokenExchangeScopePermission] {
+	return pulumix.Output[map[string]*IdentityProviderTokenExchangeScopePermission]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IdentityProviderTokenExchangeScopePermissionMapOutput) MapIndex(k pulumi.StringInput) IdentityProviderTokenExchangeScopePermissionOutput {

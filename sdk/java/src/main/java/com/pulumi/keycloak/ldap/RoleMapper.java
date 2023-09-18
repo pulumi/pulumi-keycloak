@@ -98,7 +98,7 @@ public class RoleMapper extends com.pulumi.resources.CustomResource {
      * When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
@@ -112,7 +112,7 @@ public class RoleMapper extends com.pulumi.resources.CustomResource {
      * The LDAP DN where roles can be found.
      * 
      */
-    @Export(name="ldapRolesDn", type=String.class, parameters={})
+    @Export(name="ldapRolesDn", refs={String.class}, tree="[0]")
     private Output<String> ldapRolesDn;
 
     /**
@@ -126,7 +126,7 @@ public class RoleMapper extends com.pulumi.resources.CustomResource {
      * The ID of the LDAP user federation provider to attach this mapper to.
      * 
      */
-    @Export(name="ldapUserFederationId", type=String.class, parameters={})
+    @Export(name="ldapUserFederationId", refs={String.class}, tree="[0]")
     private Output<String> ldapUserFederationId;
 
     /**
@@ -140,7 +140,7 @@ public class RoleMapper extends com.pulumi.resources.CustomResource {
      * Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when
      * 
      */
-    @Export(name="memberofLdapAttribute", type=String.class, parameters={})
+    @Export(name="memberofLdapAttribute", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> memberofLdapAttribute;
 
     /**
@@ -154,7 +154,7 @@ public class RoleMapper extends com.pulumi.resources.CustomResource {
      * Can be one of `DN` or `UID`. Defaults to `DN`.
      * 
      */
-    @Export(name="membershipAttributeType", type=String.class, parameters={})
+    @Export(name="membershipAttributeType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> membershipAttributeType;
 
     /**
@@ -168,7 +168,7 @@ public class RoleMapper extends com.pulumi.resources.CustomResource {
      * The name of the LDAP attribute that is used for membership mappings.
      * 
      */
-    @Export(name="membershipLdapAttribute", type=String.class, parameters={})
+    @Export(name="membershipLdapAttribute", refs={String.class}, tree="[0]")
     private Output<String> membershipLdapAttribute;
 
     /**
@@ -182,7 +182,7 @@ public class RoleMapper extends com.pulumi.resources.CustomResource {
      * The name of the LDAP attribute on a user that is used for membership mappings.
      * 
      */
-    @Export(name="membershipUserLdapAttribute", type=String.class, parameters={})
+    @Export(name="membershipUserLdapAttribute", refs={String.class}, tree="[0]")
     private Output<String> membershipUserLdapAttribute;
 
     /**
@@ -196,7 +196,7 @@ public class RoleMapper extends com.pulumi.resources.CustomResource {
      * Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
      * 
      */
-    @Export(name="mode", type=String.class, parameters={})
+    @Export(name="mode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> mode;
 
     /**
@@ -210,7 +210,7 @@ public class RoleMapper extends com.pulumi.resources.CustomResource {
      * Display name of this mapper when displayed in the console.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -224,7 +224,7 @@ public class RoleMapper extends com.pulumi.resources.CustomResource {
      * The realm that this LDAP mapper will exist in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -238,7 +238,7 @@ public class RoleMapper extends com.pulumi.resources.CustomResource {
      * The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
      * 
      */
-    @Export(name="roleNameLdapAttribute", type=String.class, parameters={})
+    @Export(name="roleNameLdapAttribute", refs={String.class}, tree="[0]")
     private Output<String> roleNameLdapAttribute;
 
     /**
@@ -252,7 +252,7 @@ public class RoleMapper extends com.pulumi.resources.CustomResource {
      * List of strings representing the object classes for the role. Must contain at least one.
      * 
      */
-    @Export(name="roleObjectClasses", type=List.class, parameters={String.class})
+    @Export(name="roleObjectClasses", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> roleObjectClasses;
 
     /**
@@ -266,7 +266,7 @@ public class RoleMapper extends com.pulumi.resources.CustomResource {
      * When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
      * 
      */
-    @Export(name="rolesLdapFilter", type=String.class, parameters={})
+    @Export(name="rolesLdapFilter", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> rolesLdapFilter;
 
     /**
@@ -280,7 +280,7 @@ public class RoleMapper extends com.pulumi.resources.CustomResource {
      * When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
      * 
      */
-    @Export(name="useRealmRolesMapping", type=Boolean.class, parameters={})
+    @Export(name="useRealmRolesMapping", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> useRealmRolesMapping;
 
     /**
@@ -294,7 +294,7 @@ public class RoleMapper extends com.pulumi.resources.CustomResource {
      * Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
      * 
      */
-    @Export(name="userRolesRetrieveStrategy", type=String.class, parameters={})
+    @Export(name="userRolesRetrieveStrategy", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> userRolesRetrieveStrategy;
 
     /**

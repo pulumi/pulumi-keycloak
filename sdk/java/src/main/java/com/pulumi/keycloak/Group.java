@@ -93,7 +93,7 @@ public class Group extends com.pulumi.resources.CustomResource {
      * A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      * 
      */
-    @Export(name="attributes", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="attributes", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> attributes;
 
     /**
@@ -107,7 +107,7 @@ public class Group extends com.pulumi.resources.CustomResource {
      * The name of the group.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -121,7 +121,7 @@ public class Group extends com.pulumi.resources.CustomResource {
      * The ID of this group&#39;s parent. If omitted, this group will be defined at the root level.
      * 
      */
-    @Export(name="parentId", type=String.class, parameters={})
+    @Export(name="parentId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> parentId;
 
     /**
@@ -135,7 +135,7 @@ public class Group extends com.pulumi.resources.CustomResource {
      * (Computed) The complete path of the group. For example, the child group&#39;s path in the example configuration would be `/parent-group/child-group`.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output<String> path;
 
     /**
@@ -149,7 +149,7 @@ public class Group extends com.pulumi.resources.CustomResource {
      * The realm this group exists in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing MSAD user account control mappers for Keycloak
@@ -107,6 +109,7 @@ func NewMsadUserAccountControlMapper(ctx *pulumi.Context,
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MsadUserAccountControlMapper
 	err := ctx.RegisterResource("keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper", name, args, &resource, opts...)
 	if err != nil {
@@ -200,6 +203,12 @@ func (i *MsadUserAccountControlMapper) ToMsadUserAccountControlMapperOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(MsadUserAccountControlMapperOutput)
 }
 
+func (i *MsadUserAccountControlMapper) ToOutput(ctx context.Context) pulumix.Output[*MsadUserAccountControlMapper] {
+	return pulumix.Output[*MsadUserAccountControlMapper]{
+		OutputState: i.ToMsadUserAccountControlMapperOutputWithContext(ctx).OutputState,
+	}
+}
+
 // MsadUserAccountControlMapperArrayInput is an input type that accepts MsadUserAccountControlMapperArray and MsadUserAccountControlMapperArrayOutput values.
 // You can construct a concrete instance of `MsadUserAccountControlMapperArrayInput` via:
 //
@@ -223,6 +232,12 @@ func (i MsadUserAccountControlMapperArray) ToMsadUserAccountControlMapperArrayOu
 
 func (i MsadUserAccountControlMapperArray) ToMsadUserAccountControlMapperArrayOutputWithContext(ctx context.Context) MsadUserAccountControlMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MsadUserAccountControlMapperArrayOutput)
+}
+
+func (i MsadUserAccountControlMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*MsadUserAccountControlMapper] {
+	return pulumix.Output[[]*MsadUserAccountControlMapper]{
+		OutputState: i.ToMsadUserAccountControlMapperArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // MsadUserAccountControlMapperMapInput is an input type that accepts MsadUserAccountControlMapperMap and MsadUserAccountControlMapperMapOutput values.
@@ -250,6 +265,12 @@ func (i MsadUserAccountControlMapperMap) ToMsadUserAccountControlMapperMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(MsadUserAccountControlMapperMapOutput)
 }
 
+func (i MsadUserAccountControlMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MsadUserAccountControlMapper] {
+	return pulumix.Output[map[string]*MsadUserAccountControlMapper]{
+		OutputState: i.ToMsadUserAccountControlMapperMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type MsadUserAccountControlMapperOutput struct{ *pulumi.OutputState }
 
 func (MsadUserAccountControlMapperOutput) ElementType() reflect.Type {
@@ -262,6 +283,12 @@ func (o MsadUserAccountControlMapperOutput) ToMsadUserAccountControlMapperOutput
 
 func (o MsadUserAccountControlMapperOutput) ToMsadUserAccountControlMapperOutputWithContext(ctx context.Context) MsadUserAccountControlMapperOutput {
 	return o
+}
+
+func (o MsadUserAccountControlMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*MsadUserAccountControlMapper] {
+	return pulumix.Output[*MsadUserAccountControlMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 // When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
@@ -298,6 +325,12 @@ func (o MsadUserAccountControlMapperArrayOutput) ToMsadUserAccountControlMapperA
 	return o
 }
 
+func (o MsadUserAccountControlMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MsadUserAccountControlMapper] {
+	return pulumix.Output[[]*MsadUserAccountControlMapper]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o MsadUserAccountControlMapperArrayOutput) Index(i pulumi.IntInput) MsadUserAccountControlMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MsadUserAccountControlMapper {
 		return vs[0].([]*MsadUserAccountControlMapper)[vs[1].(int)]
@@ -316,6 +349,12 @@ func (o MsadUserAccountControlMapperMapOutput) ToMsadUserAccountControlMapperMap
 
 func (o MsadUserAccountControlMapperMapOutput) ToMsadUserAccountControlMapperMapOutputWithContext(ctx context.Context) MsadUserAccountControlMapperMapOutput {
 	return o
+}
+
+func (o MsadUserAccountControlMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MsadUserAccountControlMapper] {
+	return pulumix.Output[map[string]*MsadUserAccountControlMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o MsadUserAccountControlMapperMapOutput) MapIndex(k pulumi.StringInput) MsadUserAccountControlMapperOutput {

@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type AttributeToRoleIdentityMapper struct {
@@ -51,6 +53,7 @@ func NewAttributeToRoleIdentityMapper(ctx *pulumi.Context,
 	if args.Role == nil {
 		return nil, errors.New("invalid value for required argument 'Role'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AttributeToRoleIdentityMapper
 	err := ctx.RegisterResource("keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper", name, args, &resource, opts...)
 	if err != nil {
@@ -188,6 +191,12 @@ func (i *AttributeToRoleIdentityMapper) ToAttributeToRoleIdentityMapperOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(AttributeToRoleIdentityMapperOutput)
 }
 
+func (i *AttributeToRoleIdentityMapper) ToOutput(ctx context.Context) pulumix.Output[*AttributeToRoleIdentityMapper] {
+	return pulumix.Output[*AttributeToRoleIdentityMapper]{
+		OutputState: i.ToAttributeToRoleIdentityMapperOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AttributeToRoleIdentityMapperArrayInput is an input type that accepts AttributeToRoleIdentityMapperArray and AttributeToRoleIdentityMapperArrayOutput values.
 // You can construct a concrete instance of `AttributeToRoleIdentityMapperArrayInput` via:
 //
@@ -211,6 +220,12 @@ func (i AttributeToRoleIdentityMapperArray) ToAttributeToRoleIdentityMapperArray
 
 func (i AttributeToRoleIdentityMapperArray) ToAttributeToRoleIdentityMapperArrayOutputWithContext(ctx context.Context) AttributeToRoleIdentityMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AttributeToRoleIdentityMapperArrayOutput)
+}
+
+func (i AttributeToRoleIdentityMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*AttributeToRoleIdentityMapper] {
+	return pulumix.Output[[]*AttributeToRoleIdentityMapper]{
+		OutputState: i.ToAttributeToRoleIdentityMapperArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AttributeToRoleIdentityMapperMapInput is an input type that accepts AttributeToRoleIdentityMapperMap and AttributeToRoleIdentityMapperMapOutput values.
@@ -238,6 +253,12 @@ func (i AttributeToRoleIdentityMapperMap) ToAttributeToRoleIdentityMapperMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(AttributeToRoleIdentityMapperMapOutput)
 }
 
+func (i AttributeToRoleIdentityMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AttributeToRoleIdentityMapper] {
+	return pulumix.Output[map[string]*AttributeToRoleIdentityMapper]{
+		OutputState: i.ToAttributeToRoleIdentityMapperMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AttributeToRoleIdentityMapperOutput struct{ *pulumi.OutputState }
 
 func (AttributeToRoleIdentityMapperOutput) ElementType() reflect.Type {
@@ -250,6 +271,12 @@ func (o AttributeToRoleIdentityMapperOutput) ToAttributeToRoleIdentityMapperOutp
 
 func (o AttributeToRoleIdentityMapperOutput) ToAttributeToRoleIdentityMapperOutputWithContext(ctx context.Context) AttributeToRoleIdentityMapperOutput {
 	return o
+}
+
+func (o AttributeToRoleIdentityMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*AttributeToRoleIdentityMapper] {
+	return pulumix.Output[*AttributeToRoleIdentityMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Attribute Friendly Name
@@ -315,6 +342,12 @@ func (o AttributeToRoleIdentityMapperArrayOutput) ToAttributeToRoleIdentityMappe
 	return o
 }
 
+func (o AttributeToRoleIdentityMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AttributeToRoleIdentityMapper] {
+	return pulumix.Output[[]*AttributeToRoleIdentityMapper]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AttributeToRoleIdentityMapperArrayOutput) Index(i pulumi.IntInput) AttributeToRoleIdentityMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AttributeToRoleIdentityMapper {
 		return vs[0].([]*AttributeToRoleIdentityMapper)[vs[1].(int)]
@@ -333,6 +366,12 @@ func (o AttributeToRoleIdentityMapperMapOutput) ToAttributeToRoleIdentityMapperM
 
 func (o AttributeToRoleIdentityMapperMapOutput) ToAttributeToRoleIdentityMapperMapOutputWithContext(ctx context.Context) AttributeToRoleIdentityMapperMapOutput {
 	return o
+}
+
+func (o AttributeToRoleIdentityMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AttributeToRoleIdentityMapper] {
+	return pulumix.Output[map[string]*AttributeToRoleIdentityMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AttributeToRoleIdentityMapperMapOutput) MapIndex(k pulumi.StringInput) AttributeToRoleIdentityMapperOutput {

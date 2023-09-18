@@ -76,7 +76,7 @@ public class RealmEvents extends com.pulumi.resources.CustomResource {
      * When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
      * 
      */
-    @Export(name="adminEventsDetailsEnabled", type=Boolean.class, parameters={})
+    @Export(name="adminEventsDetailsEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> adminEventsDetailsEnabled;
 
     /**
@@ -90,7 +90,7 @@ public class RealmEvents extends com.pulumi.resources.CustomResource {
      * When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
      * 
      */
-    @Export(name="adminEventsEnabled", type=Boolean.class, parameters={})
+    @Export(name="adminEventsEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> adminEventsEnabled;
 
     /**
@@ -104,7 +104,7 @@ public class RealmEvents extends com.pulumi.resources.CustomResource {
      * The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
      * 
      */
-    @Export(name="enabledEventTypes", type=List.class, parameters={String.class})
+    @Export(name="enabledEventTypes", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> enabledEventTypes;
 
     /**
@@ -118,7 +118,7 @@ public class RealmEvents extends com.pulumi.resources.CustomResource {
      * When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
      * 
      */
-    @Export(name="eventsEnabled", type=Boolean.class, parameters={})
+    @Export(name="eventsEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> eventsEnabled;
 
     /**
@@ -132,7 +132,7 @@ public class RealmEvents extends com.pulumi.resources.CustomResource {
      * The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
      * 
      */
-    @Export(name="eventsExpiration", type=Integer.class, parameters={})
+    @Export(name="eventsExpiration", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> eventsExpiration;
 
     /**
@@ -146,7 +146,7 @@ public class RealmEvents extends com.pulumi.resources.CustomResource {
      * The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
      * 
      */
-    @Export(name="eventsListeners", type=List.class, parameters={String.class})
+    @Export(name="eventsListeners", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> eventsListeners;
 
     /**
@@ -160,7 +160,7 @@ public class RealmEvents extends com.pulumi.resources.CustomResource {
      * The name of the realm the event settings apply to.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

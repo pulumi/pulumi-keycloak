@@ -92,7 +92,7 @@ public class HardcodedAttributeMapper extends com.pulumi.resources.CustomResourc
      * The name of the LDAP attribute to set.
      * 
      */
-    @Export(name="attributeName", type=String.class, parameters={})
+    @Export(name="attributeName", refs={String.class}, tree="[0]")
     private Output<String> attributeName;
 
     /**
@@ -106,7 +106,7 @@ public class HardcodedAttributeMapper extends com.pulumi.resources.CustomResourc
      * The value to set to the LDAP attribute. You can hardcode any value like &#39;foo&#39;.
      * 
      */
-    @Export(name="attributeValue", type=String.class, parameters={})
+    @Export(name="attributeValue", refs={String.class}, tree="[0]")
     private Output<String> attributeValue;
 
     /**
@@ -120,7 +120,7 @@ public class HardcodedAttributeMapper extends com.pulumi.resources.CustomResourc
      * The ID of the LDAP user federation provider to attach this mapper to.
      * 
      */
-    @Export(name="ldapUserFederationId", type=String.class, parameters={})
+    @Export(name="ldapUserFederationId", refs={String.class}, tree="[0]")
     private Output<String> ldapUserFederationId;
 
     /**
@@ -134,7 +134,7 @@ public class HardcodedAttributeMapper extends com.pulumi.resources.CustomResourc
      * Display name of this mapper when displayed in the console.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -148,7 +148,7 @@ public class HardcodedAttributeMapper extends com.pulumi.resources.CustomResourc
      * The realm that this LDAP mapper will exist in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

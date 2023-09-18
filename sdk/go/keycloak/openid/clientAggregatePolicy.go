@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ClientAggregatePolicy struct {
@@ -42,6 +44,7 @@ func NewClientAggregatePolicy(ctx *pulumi.Context,
 	if args.ResourceServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ClientAggregatePolicy
 	err := ctx.RegisterResource("keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -131,6 +134,12 @@ func (i *ClientAggregatePolicy) ToClientAggregatePolicyOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAggregatePolicyOutput)
 }
 
+func (i *ClientAggregatePolicy) ToOutput(ctx context.Context) pulumix.Output[*ClientAggregatePolicy] {
+	return pulumix.Output[*ClientAggregatePolicy]{
+		OutputState: i.ToClientAggregatePolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ClientAggregatePolicyArrayInput is an input type that accepts ClientAggregatePolicyArray and ClientAggregatePolicyArrayOutput values.
 // You can construct a concrete instance of `ClientAggregatePolicyArrayInput` via:
 //
@@ -154,6 +163,12 @@ func (i ClientAggregatePolicyArray) ToClientAggregatePolicyArrayOutput() ClientA
 
 func (i ClientAggregatePolicyArray) ToClientAggregatePolicyArrayOutputWithContext(ctx context.Context) ClientAggregatePolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAggregatePolicyArrayOutput)
+}
+
+func (i ClientAggregatePolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*ClientAggregatePolicy] {
+	return pulumix.Output[[]*ClientAggregatePolicy]{
+		OutputState: i.ToClientAggregatePolicyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ClientAggregatePolicyMapInput is an input type that accepts ClientAggregatePolicyMap and ClientAggregatePolicyMapOutput values.
@@ -181,6 +196,12 @@ func (i ClientAggregatePolicyMap) ToClientAggregatePolicyMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAggregatePolicyMapOutput)
 }
 
+func (i ClientAggregatePolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientAggregatePolicy] {
+	return pulumix.Output[map[string]*ClientAggregatePolicy]{
+		OutputState: i.ToClientAggregatePolicyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ClientAggregatePolicyOutput struct{ *pulumi.OutputState }
 
 func (ClientAggregatePolicyOutput) ElementType() reflect.Type {
@@ -193,6 +214,12 @@ func (o ClientAggregatePolicyOutput) ToClientAggregatePolicyOutput() ClientAggre
 
 func (o ClientAggregatePolicyOutput) ToClientAggregatePolicyOutputWithContext(ctx context.Context) ClientAggregatePolicyOutput {
 	return o
+}
+
+func (o ClientAggregatePolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientAggregatePolicy] {
+	return pulumix.Output[*ClientAggregatePolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ClientAggregatePolicyOutput) DecisionStrategy() pulumi.StringOutput {
@@ -237,6 +264,12 @@ func (o ClientAggregatePolicyArrayOutput) ToClientAggregatePolicyArrayOutputWith
 	return o
 }
 
+func (o ClientAggregatePolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ClientAggregatePolicy] {
+	return pulumix.Output[[]*ClientAggregatePolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ClientAggregatePolicyArrayOutput) Index(i pulumi.IntInput) ClientAggregatePolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ClientAggregatePolicy {
 		return vs[0].([]*ClientAggregatePolicy)[vs[1].(int)]
@@ -255,6 +288,12 @@ func (o ClientAggregatePolicyMapOutput) ToClientAggregatePolicyMapOutput() Clien
 
 func (o ClientAggregatePolicyMapOutput) ToClientAggregatePolicyMapOutputWithContext(ctx context.Context) ClientAggregatePolicyMapOutput {
 	return o
+}
+
+func (o ClientAggregatePolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientAggregatePolicy] {
+	return pulumix.Output[map[string]*ClientAggregatePolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ClientAggregatePolicyMapOutput) MapIndex(k pulumi.StringInput) ClientAggregatePolicyOutput {

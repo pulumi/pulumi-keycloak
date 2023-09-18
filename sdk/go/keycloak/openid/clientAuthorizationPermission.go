@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ClientAuthorizationPermission struct {
@@ -39,6 +41,7 @@ func NewClientAuthorizationPermission(ctx *pulumi.Context,
 	if args.ResourceServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ClientAuthorizationPermission
 	err := ctx.RegisterResource("keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission", name, args, &resource, opts...)
 	if err != nil {
@@ -140,6 +143,12 @@ func (i *ClientAuthorizationPermission) ToClientAuthorizationPermissionOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationPermissionOutput)
 }
 
+func (i *ClientAuthorizationPermission) ToOutput(ctx context.Context) pulumix.Output[*ClientAuthorizationPermission] {
+	return pulumix.Output[*ClientAuthorizationPermission]{
+		OutputState: i.ToClientAuthorizationPermissionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ClientAuthorizationPermissionArrayInput is an input type that accepts ClientAuthorizationPermissionArray and ClientAuthorizationPermissionArrayOutput values.
 // You can construct a concrete instance of `ClientAuthorizationPermissionArrayInput` via:
 //
@@ -163,6 +172,12 @@ func (i ClientAuthorizationPermissionArray) ToClientAuthorizationPermissionArray
 
 func (i ClientAuthorizationPermissionArray) ToClientAuthorizationPermissionArrayOutputWithContext(ctx context.Context) ClientAuthorizationPermissionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationPermissionArrayOutput)
+}
+
+func (i ClientAuthorizationPermissionArray) ToOutput(ctx context.Context) pulumix.Output[[]*ClientAuthorizationPermission] {
+	return pulumix.Output[[]*ClientAuthorizationPermission]{
+		OutputState: i.ToClientAuthorizationPermissionArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ClientAuthorizationPermissionMapInput is an input type that accepts ClientAuthorizationPermissionMap and ClientAuthorizationPermissionMapOutput values.
@@ -190,6 +205,12 @@ func (i ClientAuthorizationPermissionMap) ToClientAuthorizationPermissionMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationPermissionMapOutput)
 }
 
+func (i ClientAuthorizationPermissionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientAuthorizationPermission] {
+	return pulumix.Output[map[string]*ClientAuthorizationPermission]{
+		OutputState: i.ToClientAuthorizationPermissionMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ClientAuthorizationPermissionOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthorizationPermissionOutput) ElementType() reflect.Type {
@@ -202,6 +223,12 @@ func (o ClientAuthorizationPermissionOutput) ToClientAuthorizationPermissionOutp
 
 func (o ClientAuthorizationPermissionOutput) ToClientAuthorizationPermissionOutputWithContext(ctx context.Context) ClientAuthorizationPermissionOutput {
 	return o
+}
+
+func (o ClientAuthorizationPermissionOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientAuthorizationPermission] {
+	return pulumix.Output[*ClientAuthorizationPermission]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ClientAuthorizationPermissionOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -258,6 +285,12 @@ func (o ClientAuthorizationPermissionArrayOutput) ToClientAuthorizationPermissio
 	return o
 }
 
+func (o ClientAuthorizationPermissionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ClientAuthorizationPermission] {
+	return pulumix.Output[[]*ClientAuthorizationPermission]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ClientAuthorizationPermissionArrayOutput) Index(i pulumi.IntInput) ClientAuthorizationPermissionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ClientAuthorizationPermission {
 		return vs[0].([]*ClientAuthorizationPermission)[vs[1].(int)]
@@ -276,6 +309,12 @@ func (o ClientAuthorizationPermissionMapOutput) ToClientAuthorizationPermissionM
 
 func (o ClientAuthorizationPermissionMapOutput) ToClientAuthorizationPermissionMapOutputWithContext(ctx context.Context) ClientAuthorizationPermissionMapOutput {
 	return o
+}
+
+func (o ClientAuthorizationPermissionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientAuthorizationPermission] {
+	return pulumix.Output[map[string]*ClientAuthorizationPermission]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ClientAuthorizationPermissionMapOutput) MapIndex(k pulumi.StringInput) ClientAuthorizationPermissionOutput {

@@ -73,7 +73,7 @@ public class DefaultRoles extends com.pulumi.resources.CustomResource {
      * Realm level roles assigned to new users by default.
      * 
      */
-    @Export(name="defaultRoles", type=List.class, parameters={String.class})
+    @Export(name="defaultRoles", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> defaultRoles;
 
     /**
@@ -87,7 +87,7 @@ public class DefaultRoles extends com.pulumi.resources.CustomResource {
      * The realm this role exists within.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

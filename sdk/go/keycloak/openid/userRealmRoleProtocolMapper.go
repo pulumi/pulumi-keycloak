@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing user realm role protocol mappers within Keycloak.
@@ -163,6 +165,7 @@ func NewUserRealmRoleProtocolMapper(ctx *pulumi.Context,
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserRealmRoleProtocolMapper
 	err := ctx.RegisterResource("keycloak:openid/userRealmRoleProtocolMapper:UserRealmRoleProtocolMapper", name, args, &resource, opts...)
 	if err != nil {
@@ -312,6 +315,12 @@ func (i *UserRealmRoleProtocolMapper) ToUserRealmRoleProtocolMapperOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(UserRealmRoleProtocolMapperOutput)
 }
 
+func (i *UserRealmRoleProtocolMapper) ToOutput(ctx context.Context) pulumix.Output[*UserRealmRoleProtocolMapper] {
+	return pulumix.Output[*UserRealmRoleProtocolMapper]{
+		OutputState: i.ToUserRealmRoleProtocolMapperOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserRealmRoleProtocolMapperArrayInput is an input type that accepts UserRealmRoleProtocolMapperArray and UserRealmRoleProtocolMapperArrayOutput values.
 // You can construct a concrete instance of `UserRealmRoleProtocolMapperArrayInput` via:
 //
@@ -335,6 +344,12 @@ func (i UserRealmRoleProtocolMapperArray) ToUserRealmRoleProtocolMapperArrayOutp
 
 func (i UserRealmRoleProtocolMapperArray) ToUserRealmRoleProtocolMapperArrayOutputWithContext(ctx context.Context) UserRealmRoleProtocolMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserRealmRoleProtocolMapperArrayOutput)
+}
+
+func (i UserRealmRoleProtocolMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserRealmRoleProtocolMapper] {
+	return pulumix.Output[[]*UserRealmRoleProtocolMapper]{
+		OutputState: i.ToUserRealmRoleProtocolMapperArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // UserRealmRoleProtocolMapperMapInput is an input type that accepts UserRealmRoleProtocolMapperMap and UserRealmRoleProtocolMapperMapOutput values.
@@ -362,6 +377,12 @@ func (i UserRealmRoleProtocolMapperMap) ToUserRealmRoleProtocolMapperMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(UserRealmRoleProtocolMapperMapOutput)
 }
 
+func (i UserRealmRoleProtocolMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserRealmRoleProtocolMapper] {
+	return pulumix.Output[map[string]*UserRealmRoleProtocolMapper]{
+		OutputState: i.ToUserRealmRoleProtocolMapperMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserRealmRoleProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (UserRealmRoleProtocolMapperOutput) ElementType() reflect.Type {
@@ -374,6 +395,12 @@ func (o UserRealmRoleProtocolMapperOutput) ToUserRealmRoleProtocolMapperOutput()
 
 func (o UserRealmRoleProtocolMapperOutput) ToUserRealmRoleProtocolMapperOutputWithContext(ctx context.Context) UserRealmRoleProtocolMapperOutput {
 	return o
+}
+
+func (o UserRealmRoleProtocolMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*UserRealmRoleProtocolMapper] {
+	return pulumix.Output[*UserRealmRoleProtocolMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Indicates if the property should be added as a claim to the access token. Defaults to `true`.
@@ -445,6 +472,12 @@ func (o UserRealmRoleProtocolMapperArrayOutput) ToUserRealmRoleProtocolMapperArr
 	return o
 }
 
+func (o UserRealmRoleProtocolMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserRealmRoleProtocolMapper] {
+	return pulumix.Output[[]*UserRealmRoleProtocolMapper]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o UserRealmRoleProtocolMapperArrayOutput) Index(i pulumi.IntInput) UserRealmRoleProtocolMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserRealmRoleProtocolMapper {
 		return vs[0].([]*UserRealmRoleProtocolMapper)[vs[1].(int)]
@@ -463,6 +496,12 @@ func (o UserRealmRoleProtocolMapperMapOutput) ToUserRealmRoleProtocolMapperMapOu
 
 func (o UserRealmRoleProtocolMapperMapOutput) ToUserRealmRoleProtocolMapperMapOutputWithContext(ctx context.Context) UserRealmRoleProtocolMapperMapOutput {
 	return o
+}
+
+func (o UserRealmRoleProtocolMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserRealmRoleProtocolMapper] {
+	return pulumix.Output[map[string]*UserRealmRoleProtocolMapper]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserRealmRoleProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) UserRealmRoleProtocolMapperOutput {

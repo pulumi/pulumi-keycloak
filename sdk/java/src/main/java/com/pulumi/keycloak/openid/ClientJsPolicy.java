@@ -16,49 +16,49 @@ import javax.annotation.Nullable;
 
 @ResourceType(type="keycloak:openid/clientJsPolicy:ClientJsPolicy")
 public class ClientJsPolicy extends com.pulumi.resources.CustomResource {
-    @Export(name="code", type=String.class, parameters={})
+    @Export(name="code", refs={String.class}, tree="[0]")
     private Output<String> code;
 
     public Output<String> code() {
         return this.code;
     }
-    @Export(name="decisionStrategy", type=String.class, parameters={})
+    @Export(name="decisionStrategy", refs={String.class}, tree="[0]")
     private Output<String> decisionStrategy;
 
     public Output<String> decisionStrategy() {
         return this.decisionStrategy;
     }
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
-    @Export(name="logic", type=String.class, parameters={})
+    @Export(name="logic", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> logic;
 
     public Output<Optional<String>> logic() {
         return Codegen.optional(this.logic);
     }
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     public Output<String> name() {
         return this.name;
     }
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     public Output<String> realmId() {
         return this.realmId;
     }
-    @Export(name="resourceServerId", type=String.class, parameters={})
+    @Export(name="resourceServerId", refs={String.class}, tree="[0]")
     private Output<String> resourceServerId;
 
     public Output<String> resourceServerId() {
         return this.resourceServerId;
     }
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> type;
 
     public Output<Optional<String>> type() {

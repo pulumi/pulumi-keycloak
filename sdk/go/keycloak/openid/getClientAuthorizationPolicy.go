@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This data source can be used to fetch policy and permission information for an OpenID client that has authorization enabled.
@@ -89,6 +91,7 @@ import (
 //
 // ```
 func GetClientAuthorizationPolicy(ctx *pulumi.Context, args *GetClientAuthorizationPolicyArgs, opts ...pulumi.InvokeOption) (*GetClientAuthorizationPolicyResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetClientAuthorizationPolicyResult
 	err := ctx.Invoke("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", args, &rv, opts...)
 	if err != nil {
@@ -170,6 +173,12 @@ func (o GetClientAuthorizationPolicyResultOutput) ToGetClientAuthorizationPolicy
 
 func (o GetClientAuthorizationPolicyResultOutput) ToGetClientAuthorizationPolicyResultOutputWithContext(ctx context.Context) GetClientAuthorizationPolicyResultOutput {
 	return o
+}
+
+func (o GetClientAuthorizationPolicyResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetClientAuthorizationPolicyResult] {
+	return pulumix.Output[GetClientAuthorizationPolicyResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.

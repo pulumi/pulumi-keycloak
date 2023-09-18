@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ClientAuthorizationScope struct {
@@ -34,6 +36,7 @@ func NewClientAuthorizationScope(ctx *pulumi.Context,
 	if args.ResourceServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ClientAuthorizationScope
 	err := ctx.RegisterResource("keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope", name, args, &resource, opts...)
 	if err != nil {
@@ -115,6 +118,12 @@ func (i *ClientAuthorizationScope) ToClientAuthorizationScopeOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationScopeOutput)
 }
 
+func (i *ClientAuthorizationScope) ToOutput(ctx context.Context) pulumix.Output[*ClientAuthorizationScope] {
+	return pulumix.Output[*ClientAuthorizationScope]{
+		OutputState: i.ToClientAuthorizationScopeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ClientAuthorizationScopeArrayInput is an input type that accepts ClientAuthorizationScopeArray and ClientAuthorizationScopeArrayOutput values.
 // You can construct a concrete instance of `ClientAuthorizationScopeArrayInput` via:
 //
@@ -138,6 +147,12 @@ func (i ClientAuthorizationScopeArray) ToClientAuthorizationScopeArrayOutput() C
 
 func (i ClientAuthorizationScopeArray) ToClientAuthorizationScopeArrayOutputWithContext(ctx context.Context) ClientAuthorizationScopeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationScopeArrayOutput)
+}
+
+func (i ClientAuthorizationScopeArray) ToOutput(ctx context.Context) pulumix.Output[[]*ClientAuthorizationScope] {
+	return pulumix.Output[[]*ClientAuthorizationScope]{
+		OutputState: i.ToClientAuthorizationScopeArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ClientAuthorizationScopeMapInput is an input type that accepts ClientAuthorizationScopeMap and ClientAuthorizationScopeMapOutput values.
@@ -165,6 +180,12 @@ func (i ClientAuthorizationScopeMap) ToClientAuthorizationScopeMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationScopeMapOutput)
 }
 
+func (i ClientAuthorizationScopeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientAuthorizationScope] {
+	return pulumix.Output[map[string]*ClientAuthorizationScope]{
+		OutputState: i.ToClientAuthorizationScopeMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ClientAuthorizationScopeOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthorizationScopeOutput) ElementType() reflect.Type {
@@ -177,6 +198,12 @@ func (o ClientAuthorizationScopeOutput) ToClientAuthorizationScopeOutput() Clien
 
 func (o ClientAuthorizationScopeOutput) ToClientAuthorizationScopeOutputWithContext(ctx context.Context) ClientAuthorizationScopeOutput {
 	return o
+}
+
+func (o ClientAuthorizationScopeOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientAuthorizationScope] {
+	return pulumix.Output[*ClientAuthorizationScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ClientAuthorizationScopeOutput) DisplayName() pulumi.StringPtrOutput {
@@ -213,6 +240,12 @@ func (o ClientAuthorizationScopeArrayOutput) ToClientAuthorizationScopeArrayOutp
 	return o
 }
 
+func (o ClientAuthorizationScopeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ClientAuthorizationScope] {
+	return pulumix.Output[[]*ClientAuthorizationScope]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ClientAuthorizationScopeArrayOutput) Index(i pulumi.IntInput) ClientAuthorizationScopeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ClientAuthorizationScope {
 		return vs[0].([]*ClientAuthorizationScope)[vs[1].(int)]
@@ -231,6 +264,12 @@ func (o ClientAuthorizationScopeMapOutput) ToClientAuthorizationScopeMapOutput()
 
 func (o ClientAuthorizationScopeMapOutput) ToClientAuthorizationScopeMapOutputWithContext(ctx context.Context) ClientAuthorizationScopeMapOutput {
 	return o
+}
+
+func (o ClientAuthorizationScopeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientAuthorizationScope] {
+	return pulumix.Output[map[string]*ClientAuthorizationScope]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ClientAuthorizationScopeMapOutput) MapIndex(k pulumi.StringInput) ClientAuthorizationScopeOutput {

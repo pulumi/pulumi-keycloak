@@ -76,7 +76,7 @@ public class RealmKeystoreEcdsaGenerated extends com.pulumi.resources.CustomReso
      * When `false`, key in not used for signing. Defaults to `true`.
      * 
      */
-    @Export(name="active", type=Boolean.class, parameters={})
+    @Export(name="active", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> active;
 
     /**
@@ -90,7 +90,7 @@ public class RealmKeystoreEcdsaGenerated extends com.pulumi.resources.CustomReso
      * Elliptic Curve used in ECDSA. Defaults to `P-256`.
      * 
      */
-    @Export(name="ellipticCurveKey", type=String.class, parameters={})
+    @Export(name="ellipticCurveKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> ellipticCurveKey;
 
     /**
@@ -104,7 +104,7 @@ public class RealmKeystoreEcdsaGenerated extends com.pulumi.resources.CustomReso
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
@@ -118,7 +118,7 @@ public class RealmKeystoreEcdsaGenerated extends com.pulumi.resources.CustomReso
      * Display name of provider when linked in admin console.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -132,7 +132,7 @@ public class RealmKeystoreEcdsaGenerated extends com.pulumi.resources.CustomReso
      * Priority for the provider. Defaults to `0`
      * 
      */
-    @Export(name="priority", type=Integer.class, parameters={})
+    @Export(name="priority", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> priority;
 
     /**
@@ -146,7 +146,7 @@ public class RealmKeystoreEcdsaGenerated extends com.pulumi.resources.CustomReso
      * The realm this keystore exists in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

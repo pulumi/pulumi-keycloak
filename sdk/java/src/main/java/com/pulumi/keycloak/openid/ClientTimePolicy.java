@@ -16,109 +16,109 @@ import javax.annotation.Nullable;
 
 @ResourceType(type="keycloak:openid/clientTimePolicy:ClientTimePolicy")
 public class ClientTimePolicy extends com.pulumi.resources.CustomResource {
-    @Export(name="dayMonth", type=String.class, parameters={})
+    @Export(name="dayMonth", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> dayMonth;
 
     public Output<Optional<String>> dayMonth() {
         return Codegen.optional(this.dayMonth);
     }
-    @Export(name="dayMonthEnd", type=String.class, parameters={})
+    @Export(name="dayMonthEnd", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> dayMonthEnd;
 
     public Output<Optional<String>> dayMonthEnd() {
         return Codegen.optional(this.dayMonthEnd);
     }
-    @Export(name="decisionStrategy", type=String.class, parameters={})
+    @Export(name="decisionStrategy", refs={String.class}, tree="[0]")
     private Output<String> decisionStrategy;
 
     public Output<String> decisionStrategy() {
         return this.decisionStrategy;
     }
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
-    @Export(name="hour", type=String.class, parameters={})
+    @Export(name="hour", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> hour;
 
     public Output<Optional<String>> hour() {
         return Codegen.optional(this.hour);
     }
-    @Export(name="hourEnd", type=String.class, parameters={})
+    @Export(name="hourEnd", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> hourEnd;
 
     public Output<Optional<String>> hourEnd() {
         return Codegen.optional(this.hourEnd);
     }
-    @Export(name="logic", type=String.class, parameters={})
+    @Export(name="logic", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> logic;
 
     public Output<Optional<String>> logic() {
         return Codegen.optional(this.logic);
     }
-    @Export(name="minute", type=String.class, parameters={})
+    @Export(name="minute", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> minute;
 
     public Output<Optional<String>> minute() {
         return Codegen.optional(this.minute);
     }
-    @Export(name="minuteEnd", type=String.class, parameters={})
+    @Export(name="minuteEnd", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> minuteEnd;
 
     public Output<Optional<String>> minuteEnd() {
         return Codegen.optional(this.minuteEnd);
     }
-    @Export(name="month", type=String.class, parameters={})
+    @Export(name="month", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> month;
 
     public Output<Optional<String>> month() {
         return Codegen.optional(this.month);
     }
-    @Export(name="monthEnd", type=String.class, parameters={})
+    @Export(name="monthEnd", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> monthEnd;
 
     public Output<Optional<String>> monthEnd() {
         return Codegen.optional(this.monthEnd);
     }
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     public Output<String> name() {
         return this.name;
     }
-    @Export(name="notBefore", type=String.class, parameters={})
+    @Export(name="notBefore", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> notBefore;
 
     public Output<Optional<String>> notBefore() {
         return Codegen.optional(this.notBefore);
     }
-    @Export(name="notOnOrAfter", type=String.class, parameters={})
+    @Export(name="notOnOrAfter", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> notOnOrAfter;
 
     public Output<Optional<String>> notOnOrAfter() {
         return Codegen.optional(this.notOnOrAfter);
     }
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     public Output<String> realmId() {
         return this.realmId;
     }
-    @Export(name="resourceServerId", type=String.class, parameters={})
+    @Export(name="resourceServerId", refs={String.class}, tree="[0]")
     private Output<String> resourceServerId;
 
     public Output<String> resourceServerId() {
         return this.resourceServerId;
     }
-    @Export(name="year", type=String.class, parameters={})
+    @Export(name="year", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> year;
 
     public Output<Optional<String>> year() {
         return Codegen.optional(this.year);
     }
-    @Export(name="yearEnd", type=String.class, parameters={})
+    @Export(name="yearEnd", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> yearEnd;
 
     public Output<Optional<String>> yearEnd() {

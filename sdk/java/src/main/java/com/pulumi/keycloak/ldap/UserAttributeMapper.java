@@ -93,7 +93,7 @@ public class UserAttributeMapper extends com.pulumi.resources.CustomResource {
      * When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
      * 
      */
-    @Export(name="alwaysReadValueFromLdap", type=Boolean.class, parameters={})
+    @Export(name="alwaysReadValueFromLdap", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> alwaysReadValueFromLdap;
 
     /**
@@ -107,7 +107,7 @@ public class UserAttributeMapper extends com.pulumi.resources.CustomResource {
      * Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
      * 
      */
-    @Export(name="attributeDefaultValue", type=String.class, parameters={})
+    @Export(name="attributeDefaultValue", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attributeDefaultValue;
 
     /**
@@ -121,7 +121,7 @@ public class UserAttributeMapper extends com.pulumi.resources.CustomResource {
      * Should be true for binary LDAP attributes.
      * 
      */
-    @Export(name="isBinaryAttribute", type=Boolean.class, parameters={})
+    @Export(name="isBinaryAttribute", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> isBinaryAttribute;
 
     /**
@@ -135,7 +135,7 @@ public class UserAttributeMapper extends com.pulumi.resources.CustomResource {
      * When `true`, this attribute must exist in LDAP. Defaults to `false`.
      * 
      */
-    @Export(name="isMandatoryInLdap", type=Boolean.class, parameters={})
+    @Export(name="isMandatoryInLdap", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> isMandatoryInLdap;
 
     /**
@@ -149,7 +149,7 @@ public class UserAttributeMapper extends com.pulumi.resources.CustomResource {
      * Name of the mapped attribute on the LDAP object.
      * 
      */
-    @Export(name="ldapAttribute", type=String.class, parameters={})
+    @Export(name="ldapAttribute", refs={String.class}, tree="[0]")
     private Output<String> ldapAttribute;
 
     /**
@@ -163,7 +163,7 @@ public class UserAttributeMapper extends com.pulumi.resources.CustomResource {
      * The ID of the LDAP user federation provider to attach this mapper to.
      * 
      */
-    @Export(name="ldapUserFederationId", type=String.class, parameters={})
+    @Export(name="ldapUserFederationId", refs={String.class}, tree="[0]")
     private Output<String> ldapUserFederationId;
 
     /**
@@ -177,7 +177,7 @@ public class UserAttributeMapper extends com.pulumi.resources.CustomResource {
      * Display name of this mapper when displayed in the console.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -191,7 +191,7 @@ public class UserAttributeMapper extends com.pulumi.resources.CustomResource {
      * When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
      * 
      */
-    @Export(name="readOnly", type=Boolean.class, parameters={})
+    @Export(name="readOnly", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> readOnly;
 
     /**
@@ -205,7 +205,7 @@ public class UserAttributeMapper extends com.pulumi.resources.CustomResource {
      * The realm that this LDAP mapper will exist in.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
@@ -219,7 +219,7 @@ public class UserAttributeMapper extends com.pulumi.resources.CustomResource {
      * Name of the user property or attribute you want to map the LDAP attribute into.
      * 
      */
-    @Export(name="userModelAttribute", type=String.class, parameters={})
+    @Export(name="userModelAttribute", refs={String.class}, tree="[0]")
     private Output<String> userModelAttribute;
 
     /**

@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for managing an authentication execution's configuration. If a particular authentication execution supports additional
@@ -109,6 +111,7 @@ func NewExecutionConfig(ctx *pulumi.Context,
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ExecutionConfig
 	err := ctx.RegisterResource("keycloak:authentication/executionConfig:ExecutionConfig", name, args, &resource, opts...)
 	if err != nil {
@@ -202,6 +205,12 @@ func (i *ExecutionConfig) ToExecutionConfigOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(ExecutionConfigOutput)
 }
 
+func (i *ExecutionConfig) ToOutput(ctx context.Context) pulumix.Output[*ExecutionConfig] {
+	return pulumix.Output[*ExecutionConfig]{
+		OutputState: i.ToExecutionConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ExecutionConfigArrayInput is an input type that accepts ExecutionConfigArray and ExecutionConfigArrayOutput values.
 // You can construct a concrete instance of `ExecutionConfigArrayInput` via:
 //
@@ -225,6 +234,12 @@ func (i ExecutionConfigArray) ToExecutionConfigArrayOutput() ExecutionConfigArra
 
 func (i ExecutionConfigArray) ToExecutionConfigArrayOutputWithContext(ctx context.Context) ExecutionConfigArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ExecutionConfigArrayOutput)
+}
+
+func (i ExecutionConfigArray) ToOutput(ctx context.Context) pulumix.Output[[]*ExecutionConfig] {
+	return pulumix.Output[[]*ExecutionConfig]{
+		OutputState: i.ToExecutionConfigArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ExecutionConfigMapInput is an input type that accepts ExecutionConfigMap and ExecutionConfigMapOutput values.
@@ -252,6 +267,12 @@ func (i ExecutionConfigMap) ToExecutionConfigMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(ExecutionConfigMapOutput)
 }
 
+func (i ExecutionConfigMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ExecutionConfig] {
+	return pulumix.Output[map[string]*ExecutionConfig]{
+		OutputState: i.ToExecutionConfigMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExecutionConfigOutput struct{ *pulumi.OutputState }
 
 func (ExecutionConfigOutput) ElementType() reflect.Type {
@@ -264,6 +285,12 @@ func (o ExecutionConfigOutput) ToExecutionConfigOutput() ExecutionConfigOutput {
 
 func (o ExecutionConfigOutput) ToExecutionConfigOutputWithContext(ctx context.Context) ExecutionConfigOutput {
 	return o
+}
+
+func (o ExecutionConfigOutput) ToOutput(ctx context.Context) pulumix.Output[*ExecutionConfig] {
+	return pulumix.Output[*ExecutionConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The name of the configuration.
@@ -300,6 +327,12 @@ func (o ExecutionConfigArrayOutput) ToExecutionConfigArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o ExecutionConfigArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ExecutionConfig] {
+	return pulumix.Output[[]*ExecutionConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ExecutionConfigArrayOutput) Index(i pulumi.IntInput) ExecutionConfigOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ExecutionConfig {
 		return vs[0].([]*ExecutionConfig)[vs[1].(int)]
@@ -318,6 +351,12 @@ func (o ExecutionConfigMapOutput) ToExecutionConfigMapOutput() ExecutionConfigMa
 
 func (o ExecutionConfigMapOutput) ToExecutionConfigMapOutputWithContext(ctx context.Context) ExecutionConfigMapOutput {
 	return o
+}
+
+func (o ExecutionConfigMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ExecutionConfig] {
+	return pulumix.Output[map[string]*ExecutionConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExecutionConfigMapOutput) MapIndex(k pulumi.StringInput) ExecutionConfigOutput {

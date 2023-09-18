@@ -22,31 +22,31 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="pulumi:providers:keycloak")
 public class Provider extends com.pulumi.resources.ProviderResource {
-    @Export(name="basePath", type=String.class, parameters={})
+    @Export(name="basePath", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> basePath;
 
     public Output<Optional<String>> basePath() {
         return Codegen.optional(this.basePath);
     }
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output<String> clientId;
 
     public Output<String> clientId() {
         return this.clientId;
     }
-    @Export(name="clientSecret", type=String.class, parameters={})
+    @Export(name="clientSecret", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientSecret;
 
     public Output<Optional<String>> clientSecret() {
         return Codegen.optional(this.clientSecret);
     }
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> password;
 
     public Output<Optional<String>> password() {
         return Codegen.optional(this.password);
     }
-    @Export(name="realm", type=String.class, parameters={})
+    @Export(name="realm", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> realm;
 
     public Output<Optional<String>> realm() {
@@ -56,7 +56,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Allows x509 calls using an unknown CA certificate (for development purposes)
      * 
      */
-    @Export(name="rootCaCertificate", type=String.class, parameters={})
+    @Export(name="rootCaCertificate", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> rootCaCertificate;
 
     /**
@@ -70,7 +70,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * The base URL of the Keycloak instance, before `/auth`
      * 
      */
-    @Export(name="url", type=String.class, parameters={})
+    @Export(name="url", refs={String.class}, tree="[0]")
     private Output<String> url;
 
     /**
@@ -80,7 +80,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
     public Output<String> url() {
         return this.url;
     }
-    @Export(name="username", type=String.class, parameters={})
+    @Export(name="username", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> username;
 
     public Output<Optional<String>> username() {

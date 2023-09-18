@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
@@ -47,6 +49,7 @@ import (
 //
 // ```
 func LookupClientScope(ctx *pulumi.Context, args *LookupClientScopeArgs, opts ...pulumi.InvokeOption) (*LookupClientScopeResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupClientScopeResult
 	err := ctx.Invoke("keycloak:openid/getClientScope:getClientScope", args, &rv, opts...)
 	if err != nil {
@@ -113,6 +116,12 @@ func (o LookupClientScopeResultOutput) ToLookupClientScopeResultOutput() LookupC
 
 func (o LookupClientScopeResultOutput) ToLookupClientScopeResultOutputWithContext(ctx context.Context) LookupClientScopeResultOutput {
 	return o
+}
+
+func (o LookupClientScopeResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupClientScopeResult] {
+	return pulumix.Output[LookupClientScopeResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupClientScopeResultOutput) ConsentScreenText() pulumi.StringOutput {

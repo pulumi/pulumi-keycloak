@@ -136,7 +136,7 @@ public class GroupMembershipProtocolMapper extends com.pulumi.resources.CustomRe
      * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      * 
      */
-    @Export(name="addToAccessToken", type=Boolean.class, parameters={})
+    @Export(name="addToAccessToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToAccessToken;
 
     /**
@@ -150,7 +150,7 @@ public class GroupMembershipProtocolMapper extends com.pulumi.resources.CustomRe
      * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      * 
      */
-    @Export(name="addToIdToken", type=Boolean.class, parameters={})
+    @Export(name="addToIdToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToIdToken;
 
     /**
@@ -164,7 +164,7 @@ public class GroupMembershipProtocolMapper extends com.pulumi.resources.CustomRe
      * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      * 
      */
-    @Export(name="addToUserinfo", type=Boolean.class, parameters={})
+    @Export(name="addToUserinfo", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToUserinfo;
 
     /**
@@ -178,7 +178,7 @@ public class GroupMembershipProtocolMapper extends com.pulumi.resources.CustomRe
      * The name of the claim to insert into a token.
      * 
      */
-    @Export(name="claimName", type=String.class, parameters={})
+    @Export(name="claimName", refs={String.class}, tree="[0]")
     private Output<String> claimName;
 
     /**
@@ -192,7 +192,7 @@ public class GroupMembershipProtocolMapper extends com.pulumi.resources.CustomRe
      * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
@@ -206,7 +206,7 @@ public class GroupMembershipProtocolMapper extends com.pulumi.resources.CustomRe
      * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
-    @Export(name="clientScopeId", type=String.class, parameters={})
+    @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
     /**
@@ -220,7 +220,7 @@ public class GroupMembershipProtocolMapper extends com.pulumi.resources.CustomRe
      * Indicates whether the full path of the group including its parents will be used. Defaults to `true`.
      * 
      */
-    @Export(name="fullPath", type=Boolean.class, parameters={})
+    @Export(name="fullPath", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> fullPath;
 
     /**
@@ -234,7 +234,7 @@ public class GroupMembershipProtocolMapper extends com.pulumi.resources.CustomRe
      * The display name of this protocol mapper in the GUI.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -248,7 +248,7 @@ public class GroupMembershipProtocolMapper extends com.pulumi.resources.CustomRe
      * The realm this protocol mapper exists within.
      * 
      */
-    @Export(name="realmId", type=String.class, parameters={})
+    @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**

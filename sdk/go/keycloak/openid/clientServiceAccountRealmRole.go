@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for assigning realm roles to the service account of an openid client.
@@ -102,6 +104,7 @@ func NewClientServiceAccountRealmRole(ctx *pulumi.Context,
 	if args.ServiceAccountUserId == nil {
 		return nil, errors.New("invalid value for required argument 'ServiceAccountUserId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ClientServiceAccountRealmRole
 	err := ctx.RegisterResource("keycloak:openid/clientServiceAccountRealmRole:ClientServiceAccountRealmRole", name, args, &resource, opts...)
 	if err != nil {
@@ -187,6 +190,12 @@ func (i *ClientServiceAccountRealmRole) ToClientServiceAccountRealmRoleOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(ClientServiceAccountRealmRoleOutput)
 }
 
+func (i *ClientServiceAccountRealmRole) ToOutput(ctx context.Context) pulumix.Output[*ClientServiceAccountRealmRole] {
+	return pulumix.Output[*ClientServiceAccountRealmRole]{
+		OutputState: i.ToClientServiceAccountRealmRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ClientServiceAccountRealmRoleArrayInput is an input type that accepts ClientServiceAccountRealmRoleArray and ClientServiceAccountRealmRoleArrayOutput values.
 // You can construct a concrete instance of `ClientServiceAccountRealmRoleArrayInput` via:
 //
@@ -210,6 +219,12 @@ func (i ClientServiceAccountRealmRoleArray) ToClientServiceAccountRealmRoleArray
 
 func (i ClientServiceAccountRealmRoleArray) ToClientServiceAccountRealmRoleArrayOutputWithContext(ctx context.Context) ClientServiceAccountRealmRoleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientServiceAccountRealmRoleArrayOutput)
+}
+
+func (i ClientServiceAccountRealmRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*ClientServiceAccountRealmRole] {
+	return pulumix.Output[[]*ClientServiceAccountRealmRole]{
+		OutputState: i.ToClientServiceAccountRealmRoleArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ClientServiceAccountRealmRoleMapInput is an input type that accepts ClientServiceAccountRealmRoleMap and ClientServiceAccountRealmRoleMapOutput values.
@@ -237,6 +252,12 @@ func (i ClientServiceAccountRealmRoleMap) ToClientServiceAccountRealmRoleMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ClientServiceAccountRealmRoleMapOutput)
 }
 
+func (i ClientServiceAccountRealmRoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientServiceAccountRealmRole] {
+	return pulumix.Output[map[string]*ClientServiceAccountRealmRole]{
+		OutputState: i.ToClientServiceAccountRealmRoleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ClientServiceAccountRealmRoleOutput struct{ *pulumi.OutputState }
 
 func (ClientServiceAccountRealmRoleOutput) ElementType() reflect.Type {
@@ -249,6 +270,12 @@ func (o ClientServiceAccountRealmRoleOutput) ToClientServiceAccountRealmRoleOutp
 
 func (o ClientServiceAccountRealmRoleOutput) ToClientServiceAccountRealmRoleOutputWithContext(ctx context.Context) ClientServiceAccountRealmRoleOutput {
 	return o
+}
+
+func (o ClientServiceAccountRealmRoleOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientServiceAccountRealmRole] {
+	return pulumix.Output[*ClientServiceAccountRealmRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The realm that the client and role belong to.
@@ -280,6 +307,12 @@ func (o ClientServiceAccountRealmRoleArrayOutput) ToClientServiceAccountRealmRol
 	return o
 }
 
+func (o ClientServiceAccountRealmRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ClientServiceAccountRealmRole] {
+	return pulumix.Output[[]*ClientServiceAccountRealmRole]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ClientServiceAccountRealmRoleArrayOutput) Index(i pulumi.IntInput) ClientServiceAccountRealmRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ClientServiceAccountRealmRole {
 		return vs[0].([]*ClientServiceAccountRealmRole)[vs[1].(int)]
@@ -298,6 +331,12 @@ func (o ClientServiceAccountRealmRoleMapOutput) ToClientServiceAccountRealmRoleM
 
 func (o ClientServiceAccountRealmRoleMapOutput) ToClientServiceAccountRealmRoleMapOutputWithContext(ctx context.Context) ClientServiceAccountRealmRoleMapOutput {
 	return o
+}
+
+func (o ClientServiceAccountRealmRoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientServiceAccountRealmRole] {
+	return pulumix.Output[map[string]*ClientServiceAccountRealmRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ClientServiceAccountRealmRoleMapOutput) MapIndex(k pulumi.StringInput) ClientServiceAccountRealmRoleOutput {
