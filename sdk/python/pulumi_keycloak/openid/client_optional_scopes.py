@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['ClientOptionalScopesArgs', 'ClientOptionalScopes']
@@ -23,9 +23,22 @@ class ClientOptionalScopesArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] optional_scopes: An array of client scope names to attach to this client as optional scopes.
         :param pulumi.Input[str] realm_id: The realm this client and scopes exists in.
         """
-        pulumi.set(__self__, "client_id", client_id)
-        pulumi.set(__self__, "optional_scopes", optional_scopes)
-        pulumi.set(__self__, "realm_id", realm_id)
+        ClientOptionalScopesArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            client_id=client_id,
+            optional_scopes=optional_scopes,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             client_id: pulumi.Input[str],
+             optional_scopes: pulumi.Input[Sequence[pulumi.Input[str]]],
+             realm_id: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("client_id", client_id)
+        _setter("optional_scopes", optional_scopes)
+        _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter(name="clientId")
@@ -76,12 +89,25 @@ class _ClientOptionalScopesState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] optional_scopes: An array of client scope names to attach to this client as optional scopes.
         :param pulumi.Input[str] realm_id: The realm this client and scopes exists in.
         """
+        _ClientOptionalScopesState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            client_id=client_id,
+            optional_scopes=optional_scopes,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             client_id: Optional[pulumi.Input[str]] = None,
+             optional_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if optional_scopes is not None:
-            pulumi.set(__self__, "optional_scopes", optional_scopes)
+            _setter("optional_scopes", optional_scopes)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter(name="clientId")
@@ -213,6 +239,10 @@ class ClientOptionalScopes(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ClientOptionalScopesArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

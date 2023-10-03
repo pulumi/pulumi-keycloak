@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
@@ -32,10 +32,21 @@ class ClientAuthenticationFlowBindingOverridesArgs:
         :param pulumi.Input[str] browser_id: Browser flow id, (flow needs to exist)
         :param pulumi.Input[str] direct_grant_id: Direct grant flow id (flow needs to exist)
         """
+        ClientAuthenticationFlowBindingOverridesArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            browser_id=browser_id,
+            direct_grant_id=direct_grant_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             browser_id: Optional[pulumi.Input[str]] = None,
+             direct_grant_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if browser_id is not None:
-            pulumi.set(__self__, "browser_id", browser_id)
+            _setter("browser_id", browser_id)
         if direct_grant_id is not None:
-            pulumi.set(__self__, "direct_grant_id", direct_grant_id)
+            _setter("direct_grant_id", direct_grant_id)
 
     @property
     @pulumi.getter(name="browserId")
@@ -75,13 +86,28 @@ class ClientAuthorizationArgs:
         :param pulumi.Input[str] decision_strategy: Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
         :param pulumi.Input[bool] keep_defaults: When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
         """
-        pulumi.set(__self__, "policy_enforcement_mode", policy_enforcement_mode)
+        ClientAuthorizationArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            policy_enforcement_mode=policy_enforcement_mode,
+            allow_remote_resource_management=allow_remote_resource_management,
+            decision_strategy=decision_strategy,
+            keep_defaults=keep_defaults,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             policy_enforcement_mode: pulumi.Input[str],
+             allow_remote_resource_management: Optional[pulumi.Input[bool]] = None,
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             keep_defaults: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("policy_enforcement_mode", policy_enforcement_mode)
         if allow_remote_resource_management is not None:
-            pulumi.set(__self__, "allow_remote_resource_management", allow_remote_resource_management)
+            _setter("allow_remote_resource_management", allow_remote_resource_management)
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if keep_defaults is not None:
-            pulumi.set(__self__, "keep_defaults", keep_defaults)
+            _setter("keep_defaults", keep_defaults)
 
     @property
     @pulumi.getter(name="policyEnforcementMode")
@@ -138,9 +164,22 @@ class ClientGroupPolicyGroupArgs:
                  extend_children: pulumi.Input[bool],
                  id: pulumi.Input[str],
                  path: pulumi.Input[str]):
-        pulumi.set(__self__, "extend_children", extend_children)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "path", path)
+        ClientGroupPolicyGroupArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            extend_children=extend_children,
+            id=id,
+            path=path,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             extend_children: pulumi.Input[bool],
+             id: pulumi.Input[str],
+             path: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("extend_children", extend_children)
+        _setter("id", id)
+        _setter("path", path)
 
     @property
     @pulumi.getter(name="extendChildren")
@@ -176,12 +215,25 @@ class ClientPermissionsConfigureScopeArgs:
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        ClientPermissionsConfigureScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -217,12 +269,25 @@ class ClientPermissionsManageScopeArgs:
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        ClientPermissionsManageScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -258,12 +323,25 @@ class ClientPermissionsMapRolesClientScopeScopeArgs:
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        ClientPermissionsMapRolesClientScopeScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -299,12 +377,25 @@ class ClientPermissionsMapRolesCompositeScopeArgs:
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        ClientPermissionsMapRolesCompositeScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -340,12 +431,25 @@ class ClientPermissionsMapRolesScopeArgs:
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        ClientPermissionsMapRolesScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -381,12 +485,25 @@ class ClientPermissionsTokenExchangeScopeArgs:
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        ClientPermissionsTokenExchangeScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -422,12 +539,25 @@ class ClientPermissionsViewScopeArgs:
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        ClientPermissionsViewScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -462,8 +592,19 @@ class ClientRolePolicyRoleArgs:
     def __init__(__self__, *,
                  id: pulumi.Input[str],
                  required: pulumi.Input[bool]):
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "required", required)
+        ClientRolePolicyRoleArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            required=required,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             id: pulumi.Input[str],
+             required: pulumi.Input[bool],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("id", id)
+        _setter("required", required)
 
     @property
     @pulumi.getter

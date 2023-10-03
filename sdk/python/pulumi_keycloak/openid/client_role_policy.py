@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -27,18 +27,41 @@ class ClientRolePolicyArgs:
         """
         The set of arguments for constructing a ClientRolePolicy resource.
         """
-        pulumi.set(__self__, "realm_id", realm_id)
-        pulumi.set(__self__, "resource_server_id", resource_server_id)
-        pulumi.set(__self__, "roles", roles)
-        pulumi.set(__self__, "type", type)
+        ClientRolePolicyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            realm_id=realm_id,
+            resource_server_id=resource_server_id,
+            roles=roles,
+            type=type,
+            decision_strategy=decision_strategy,
+            description=description,
+            logic=logic,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             realm_id: pulumi.Input[str],
+             resource_server_id: pulumi.Input[str],
+             roles: pulumi.Input[Sequence[pulumi.Input['ClientRolePolicyRoleArgs']]],
+             type: pulumi.Input[str],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             logic: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("realm_id", realm_id)
+        _setter("resource_server_id", resource_server_id)
+        _setter("roles", roles)
+        _setter("type", type)
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if logic is not None:
-            pulumi.set(__self__, "logic", logic)
+            _setter("logic", logic)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="realmId")
@@ -127,22 +150,45 @@ class _ClientRolePolicyState:
         """
         Input properties used for looking up and filtering ClientRolePolicy resources.
         """
+        _ClientRolePolicyState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            logic=logic,
+            name=name,
+            realm_id=realm_id,
+            resource_server_id=resource_server_id,
+            roles=roles,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             logic: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             resource_server_id: Optional[pulumi.Input[str]] = None,
+             roles: Optional[pulumi.Input[Sequence[pulumi.Input['ClientRolePolicyRoleArgs']]]] = None,
+             type: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if logic is not None:
-            pulumi.set(__self__, "logic", logic)
+            _setter("logic", logic)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if resource_server_id is not None:
-            pulumi.set(__self__, "resource_server_id", resource_server_id)
+            _setter("resource_server_id", resource_server_id)
         if roles is not None:
-            pulumi.set(__self__, "roles", roles)
+            _setter("roles", roles)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -254,6 +300,10 @@ class ClientRolePolicy(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ClientRolePolicyArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

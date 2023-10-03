@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['DefaultGroupsArgs', 'DefaultGroups']
@@ -21,8 +21,19 @@ class DefaultGroupsArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] group_ids: A set of group ids that should be default groups on the realm referenced by `realm_id`.
         :param pulumi.Input[str] realm_id: The realm this group exists in.
         """
-        pulumi.set(__self__, "group_ids", group_ids)
-        pulumi.set(__self__, "realm_id", realm_id)
+        DefaultGroupsArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            group_ids=group_ids,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             group_ids: pulumi.Input[Sequence[pulumi.Input[str]]],
+             realm_id: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("group_ids", group_ids)
+        _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter(name="groupIds")
@@ -59,10 +70,21 @@ class _DefaultGroupsState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] group_ids: A set of group ids that should be default groups on the realm referenced by `realm_id`.
         :param pulumi.Input[str] realm_id: The realm this group exists in.
         """
+        _DefaultGroupsState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            group_ids=group_ids,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if group_ids is not None:
-            pulumi.set(__self__, "group_ids", group_ids)
+            _setter("group_ids", group_ids)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter(name="groupIds")
@@ -174,6 +196,10 @@ class DefaultGroups(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            DefaultGroupsArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

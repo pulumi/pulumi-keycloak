@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['UserAttributeProtocolMapperArgs', 'UserAttributeProtocolMapper']
@@ -33,18 +33,41 @@ class UserAttributeProtocolMapperArgs:
         :param pulumi.Input[str] friendly_name: An optional human-friendly name for this attribute.
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         """
-        pulumi.set(__self__, "realm_id", realm_id)
-        pulumi.set(__self__, "saml_attribute_name", saml_attribute_name)
-        pulumi.set(__self__, "saml_attribute_name_format", saml_attribute_name_format)
-        pulumi.set(__self__, "user_attribute", user_attribute)
+        UserAttributeProtocolMapperArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            realm_id=realm_id,
+            saml_attribute_name=saml_attribute_name,
+            saml_attribute_name_format=saml_attribute_name_format,
+            user_attribute=user_attribute,
+            client_id=client_id,
+            client_scope_id=client_scope_id,
+            friendly_name=friendly_name,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             realm_id: pulumi.Input[str],
+             saml_attribute_name: pulumi.Input[str],
+             saml_attribute_name_format: pulumi.Input[str],
+             user_attribute: pulumi.Input[str],
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_scope_id: Optional[pulumi.Input[str]] = None,
+             friendly_name: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("realm_id", realm_id)
+        _setter("saml_attribute_name", saml_attribute_name)
+        _setter("saml_attribute_name_format", saml_attribute_name_format)
+        _setter("user_attribute", user_attribute)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_scope_id is not None:
-            pulumi.set(__self__, "client_scope_id", client_scope_id)
+            _setter("client_scope_id", client_scope_id)
         if friendly_name is not None:
-            pulumi.set(__self__, "friendly_name", friendly_name)
+            _setter("friendly_name", friendly_name)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="realmId")
@@ -165,22 +188,45 @@ class _UserAttributeProtocolMapperState:
         :param pulumi.Input[str] saml_attribute_name_format: The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
         :param pulumi.Input[str] user_attribute: The custom user attribute to map.
         """
+        _UserAttributeProtocolMapperState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            client_id=client_id,
+            client_scope_id=client_scope_id,
+            friendly_name=friendly_name,
+            name=name,
+            realm_id=realm_id,
+            saml_attribute_name=saml_attribute_name,
+            saml_attribute_name_format=saml_attribute_name_format,
+            user_attribute=user_attribute,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_scope_id: Optional[pulumi.Input[str]] = None,
+             friendly_name: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             saml_attribute_name: Optional[pulumi.Input[str]] = None,
+             saml_attribute_name_format: Optional[pulumi.Input[str]] = None,
+             user_attribute: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_scope_id is not None:
-            pulumi.set(__self__, "client_scope_id", client_scope_id)
+            _setter("client_scope_id", client_scope_id)
         if friendly_name is not None:
-            pulumi.set(__self__, "friendly_name", friendly_name)
+            _setter("friendly_name", friendly_name)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if saml_attribute_name is not None:
-            pulumi.set(__self__, "saml_attribute_name", saml_attribute_name)
+            _setter("saml_attribute_name", saml_attribute_name)
         if saml_attribute_name_format is not None:
-            pulumi.set(__self__, "saml_attribute_name_format", saml_attribute_name_format)
+            _setter("saml_attribute_name_format", saml_attribute_name_format)
         if user_attribute is not None:
-            pulumi.set(__self__, "user_attribute", user_attribute)
+            _setter("user_attribute", user_attribute)
 
     @property
     @pulumi.getter(name="clientId")
@@ -402,6 +448,10 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            UserAttributeProtocolMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

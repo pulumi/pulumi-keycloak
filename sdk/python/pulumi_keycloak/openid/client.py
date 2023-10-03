@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -112,91 +112,186 @@ class ClientArgs:
                is set to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
         """
-        pulumi.set(__self__, "access_type", access_type)
-        pulumi.set(__self__, "client_id", client_id)
-        pulumi.set(__self__, "realm_id", realm_id)
+        ClientArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            access_type=access_type,
+            client_id=client_id,
+            realm_id=realm_id,
+            access_token_lifespan=access_token_lifespan,
+            admin_url=admin_url,
+            authentication_flow_binding_overrides=authentication_flow_binding_overrides,
+            authorization=authorization,
+            backchannel_logout_revoke_offline_sessions=backchannel_logout_revoke_offline_sessions,
+            backchannel_logout_session_required=backchannel_logout_session_required,
+            backchannel_logout_url=backchannel_logout_url,
+            base_url=base_url,
+            client_authenticator_type=client_authenticator_type,
+            client_offline_session_idle_timeout=client_offline_session_idle_timeout,
+            client_offline_session_max_lifespan=client_offline_session_max_lifespan,
+            client_secret=client_secret,
+            client_session_idle_timeout=client_session_idle_timeout,
+            client_session_max_lifespan=client_session_max_lifespan,
+            consent_required=consent_required,
+            consent_screen_text=consent_screen_text,
+            description=description,
+            direct_access_grants_enabled=direct_access_grants_enabled,
+            display_on_consent_screen=display_on_consent_screen,
+            enabled=enabled,
+            exclude_session_state_from_auth_response=exclude_session_state_from_auth_response,
+            extra_config=extra_config,
+            frontchannel_logout_enabled=frontchannel_logout_enabled,
+            frontchannel_logout_url=frontchannel_logout_url,
+            full_scope_allowed=full_scope_allowed,
+            implicit_flow_enabled=implicit_flow_enabled,
+            import_=import_,
+            login_theme=login_theme,
+            name=name,
+            oauth2_device_authorization_grant_enabled=oauth2_device_authorization_grant_enabled,
+            oauth2_device_code_lifespan=oauth2_device_code_lifespan,
+            oauth2_device_polling_interval=oauth2_device_polling_interval,
+            pkce_code_challenge_method=pkce_code_challenge_method,
+            root_url=root_url,
+            service_accounts_enabled=service_accounts_enabled,
+            standard_flow_enabled=standard_flow_enabled,
+            use_refresh_tokens=use_refresh_tokens,
+            use_refresh_tokens_client_credentials=use_refresh_tokens_client_credentials,
+            valid_post_logout_redirect_uris=valid_post_logout_redirect_uris,
+            valid_redirect_uris=valid_redirect_uris,
+            web_origins=web_origins,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             access_type: pulumi.Input[str],
+             client_id: pulumi.Input[str],
+             realm_id: pulumi.Input[str],
+             access_token_lifespan: Optional[pulumi.Input[str]] = None,
+             admin_url: Optional[pulumi.Input[str]] = None,
+             authentication_flow_binding_overrides: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']] = None,
+             authorization: Optional[pulumi.Input['ClientAuthorizationArgs']] = None,
+             backchannel_logout_revoke_offline_sessions: Optional[pulumi.Input[bool]] = None,
+             backchannel_logout_session_required: Optional[pulumi.Input[bool]] = None,
+             backchannel_logout_url: Optional[pulumi.Input[str]] = None,
+             base_url: Optional[pulumi.Input[str]] = None,
+             client_authenticator_type: Optional[pulumi.Input[str]] = None,
+             client_offline_session_idle_timeout: Optional[pulumi.Input[str]] = None,
+             client_offline_session_max_lifespan: Optional[pulumi.Input[str]] = None,
+             client_secret: Optional[pulumi.Input[str]] = None,
+             client_session_idle_timeout: Optional[pulumi.Input[str]] = None,
+             client_session_max_lifespan: Optional[pulumi.Input[str]] = None,
+             consent_required: Optional[pulumi.Input[bool]] = None,
+             consent_screen_text: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             direct_access_grants_enabled: Optional[pulumi.Input[bool]] = None,
+             display_on_consent_screen: Optional[pulumi.Input[bool]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             exclude_session_state_from_auth_response: Optional[pulumi.Input[bool]] = None,
+             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             frontchannel_logout_enabled: Optional[pulumi.Input[bool]] = None,
+             frontchannel_logout_url: Optional[pulumi.Input[str]] = None,
+             full_scope_allowed: Optional[pulumi.Input[bool]] = None,
+             implicit_flow_enabled: Optional[pulumi.Input[bool]] = None,
+             import_: Optional[pulumi.Input[bool]] = None,
+             login_theme: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             oauth2_device_authorization_grant_enabled: Optional[pulumi.Input[bool]] = None,
+             oauth2_device_code_lifespan: Optional[pulumi.Input[str]] = None,
+             oauth2_device_polling_interval: Optional[pulumi.Input[str]] = None,
+             pkce_code_challenge_method: Optional[pulumi.Input[str]] = None,
+             root_url: Optional[pulumi.Input[str]] = None,
+             service_accounts_enabled: Optional[pulumi.Input[bool]] = None,
+             standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
+             use_refresh_tokens: Optional[pulumi.Input[bool]] = None,
+             use_refresh_tokens_client_credentials: Optional[pulumi.Input[bool]] = None,
+             valid_post_logout_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("access_type", access_type)
+        _setter("client_id", client_id)
+        _setter("realm_id", realm_id)
         if access_token_lifespan is not None:
-            pulumi.set(__self__, "access_token_lifespan", access_token_lifespan)
+            _setter("access_token_lifespan", access_token_lifespan)
         if admin_url is not None:
-            pulumi.set(__self__, "admin_url", admin_url)
+            _setter("admin_url", admin_url)
         if authentication_flow_binding_overrides is not None:
-            pulumi.set(__self__, "authentication_flow_binding_overrides", authentication_flow_binding_overrides)
+            _setter("authentication_flow_binding_overrides", authentication_flow_binding_overrides)
         if authorization is not None:
-            pulumi.set(__self__, "authorization", authorization)
+            _setter("authorization", authorization)
         if backchannel_logout_revoke_offline_sessions is not None:
-            pulumi.set(__self__, "backchannel_logout_revoke_offline_sessions", backchannel_logout_revoke_offline_sessions)
+            _setter("backchannel_logout_revoke_offline_sessions", backchannel_logout_revoke_offline_sessions)
         if backchannel_logout_session_required is not None:
-            pulumi.set(__self__, "backchannel_logout_session_required", backchannel_logout_session_required)
+            _setter("backchannel_logout_session_required", backchannel_logout_session_required)
         if backchannel_logout_url is not None:
-            pulumi.set(__self__, "backchannel_logout_url", backchannel_logout_url)
+            _setter("backchannel_logout_url", backchannel_logout_url)
         if base_url is not None:
-            pulumi.set(__self__, "base_url", base_url)
+            _setter("base_url", base_url)
         if client_authenticator_type is not None:
-            pulumi.set(__self__, "client_authenticator_type", client_authenticator_type)
+            _setter("client_authenticator_type", client_authenticator_type)
         if client_offline_session_idle_timeout is not None:
-            pulumi.set(__self__, "client_offline_session_idle_timeout", client_offline_session_idle_timeout)
+            _setter("client_offline_session_idle_timeout", client_offline_session_idle_timeout)
         if client_offline_session_max_lifespan is not None:
-            pulumi.set(__self__, "client_offline_session_max_lifespan", client_offline_session_max_lifespan)
+            _setter("client_offline_session_max_lifespan", client_offline_session_max_lifespan)
         if client_secret is not None:
-            pulumi.set(__self__, "client_secret", client_secret)
+            _setter("client_secret", client_secret)
         if client_session_idle_timeout is not None:
-            pulumi.set(__self__, "client_session_idle_timeout", client_session_idle_timeout)
+            _setter("client_session_idle_timeout", client_session_idle_timeout)
         if client_session_max_lifespan is not None:
-            pulumi.set(__self__, "client_session_max_lifespan", client_session_max_lifespan)
+            _setter("client_session_max_lifespan", client_session_max_lifespan)
         if consent_required is not None:
-            pulumi.set(__self__, "consent_required", consent_required)
+            _setter("consent_required", consent_required)
         if consent_screen_text is not None:
-            pulumi.set(__self__, "consent_screen_text", consent_screen_text)
+            _setter("consent_screen_text", consent_screen_text)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if direct_access_grants_enabled is not None:
-            pulumi.set(__self__, "direct_access_grants_enabled", direct_access_grants_enabled)
+            _setter("direct_access_grants_enabled", direct_access_grants_enabled)
         if display_on_consent_screen is not None:
-            pulumi.set(__self__, "display_on_consent_screen", display_on_consent_screen)
+            _setter("display_on_consent_screen", display_on_consent_screen)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if exclude_session_state_from_auth_response is not None:
-            pulumi.set(__self__, "exclude_session_state_from_auth_response", exclude_session_state_from_auth_response)
+            _setter("exclude_session_state_from_auth_response", exclude_session_state_from_auth_response)
         if extra_config is not None:
-            pulumi.set(__self__, "extra_config", extra_config)
+            _setter("extra_config", extra_config)
         if frontchannel_logout_enabled is not None:
-            pulumi.set(__self__, "frontchannel_logout_enabled", frontchannel_logout_enabled)
+            _setter("frontchannel_logout_enabled", frontchannel_logout_enabled)
         if frontchannel_logout_url is not None:
-            pulumi.set(__self__, "frontchannel_logout_url", frontchannel_logout_url)
+            _setter("frontchannel_logout_url", frontchannel_logout_url)
         if full_scope_allowed is not None:
-            pulumi.set(__self__, "full_scope_allowed", full_scope_allowed)
+            _setter("full_scope_allowed", full_scope_allowed)
         if implicit_flow_enabled is not None:
-            pulumi.set(__self__, "implicit_flow_enabled", implicit_flow_enabled)
+            _setter("implicit_flow_enabled", implicit_flow_enabled)
         if import_ is not None:
-            pulumi.set(__self__, "import_", import_)
+            _setter("import_", import_)
         if login_theme is not None:
-            pulumi.set(__self__, "login_theme", login_theme)
+            _setter("login_theme", login_theme)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if oauth2_device_authorization_grant_enabled is not None:
-            pulumi.set(__self__, "oauth2_device_authorization_grant_enabled", oauth2_device_authorization_grant_enabled)
+            _setter("oauth2_device_authorization_grant_enabled", oauth2_device_authorization_grant_enabled)
         if oauth2_device_code_lifespan is not None:
-            pulumi.set(__self__, "oauth2_device_code_lifespan", oauth2_device_code_lifespan)
+            _setter("oauth2_device_code_lifespan", oauth2_device_code_lifespan)
         if oauth2_device_polling_interval is not None:
-            pulumi.set(__self__, "oauth2_device_polling_interval", oauth2_device_polling_interval)
+            _setter("oauth2_device_polling_interval", oauth2_device_polling_interval)
         if pkce_code_challenge_method is not None:
-            pulumi.set(__self__, "pkce_code_challenge_method", pkce_code_challenge_method)
+            _setter("pkce_code_challenge_method", pkce_code_challenge_method)
         if root_url is not None:
-            pulumi.set(__self__, "root_url", root_url)
+            _setter("root_url", root_url)
         if service_accounts_enabled is not None:
-            pulumi.set(__self__, "service_accounts_enabled", service_accounts_enabled)
+            _setter("service_accounts_enabled", service_accounts_enabled)
         if standard_flow_enabled is not None:
-            pulumi.set(__self__, "standard_flow_enabled", standard_flow_enabled)
+            _setter("standard_flow_enabled", standard_flow_enabled)
         if use_refresh_tokens is not None:
-            pulumi.set(__self__, "use_refresh_tokens", use_refresh_tokens)
+            _setter("use_refresh_tokens", use_refresh_tokens)
         if use_refresh_tokens_client_credentials is not None:
-            pulumi.set(__self__, "use_refresh_tokens_client_credentials", use_refresh_tokens_client_credentials)
+            _setter("use_refresh_tokens_client_credentials", use_refresh_tokens_client_credentials)
         if valid_post_logout_redirect_uris is not None:
-            pulumi.set(__self__, "valid_post_logout_redirect_uris", valid_post_logout_redirect_uris)
+            _setter("valid_post_logout_redirect_uris", valid_post_logout_redirect_uris)
         if valid_redirect_uris is not None:
-            pulumi.set(__self__, "valid_redirect_uris", valid_redirect_uris)
+            _setter("valid_redirect_uris", valid_redirect_uris)
         if web_origins is not None:
-            pulumi.set(__self__, "web_origins", web_origins)
+            _setter("web_origins", web_origins)
 
     @property
     @pulumi.getter(name="accessType")
@@ -833,98 +928,197 @@ class _ClientState:
                is set to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
         """
+        _ClientState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            access_token_lifespan=access_token_lifespan,
+            access_type=access_type,
+            admin_url=admin_url,
+            authentication_flow_binding_overrides=authentication_flow_binding_overrides,
+            authorization=authorization,
+            backchannel_logout_revoke_offline_sessions=backchannel_logout_revoke_offline_sessions,
+            backchannel_logout_session_required=backchannel_logout_session_required,
+            backchannel_logout_url=backchannel_logout_url,
+            base_url=base_url,
+            client_authenticator_type=client_authenticator_type,
+            client_id=client_id,
+            client_offline_session_idle_timeout=client_offline_session_idle_timeout,
+            client_offline_session_max_lifespan=client_offline_session_max_lifespan,
+            client_secret=client_secret,
+            client_session_idle_timeout=client_session_idle_timeout,
+            client_session_max_lifespan=client_session_max_lifespan,
+            consent_required=consent_required,
+            consent_screen_text=consent_screen_text,
+            description=description,
+            direct_access_grants_enabled=direct_access_grants_enabled,
+            display_on_consent_screen=display_on_consent_screen,
+            enabled=enabled,
+            exclude_session_state_from_auth_response=exclude_session_state_from_auth_response,
+            extra_config=extra_config,
+            frontchannel_logout_enabled=frontchannel_logout_enabled,
+            frontchannel_logout_url=frontchannel_logout_url,
+            full_scope_allowed=full_scope_allowed,
+            implicit_flow_enabled=implicit_flow_enabled,
+            import_=import_,
+            login_theme=login_theme,
+            name=name,
+            oauth2_device_authorization_grant_enabled=oauth2_device_authorization_grant_enabled,
+            oauth2_device_code_lifespan=oauth2_device_code_lifespan,
+            oauth2_device_polling_interval=oauth2_device_polling_interval,
+            pkce_code_challenge_method=pkce_code_challenge_method,
+            realm_id=realm_id,
+            resource_server_id=resource_server_id,
+            root_url=root_url,
+            service_account_user_id=service_account_user_id,
+            service_accounts_enabled=service_accounts_enabled,
+            standard_flow_enabled=standard_flow_enabled,
+            use_refresh_tokens=use_refresh_tokens,
+            use_refresh_tokens_client_credentials=use_refresh_tokens_client_credentials,
+            valid_post_logout_redirect_uris=valid_post_logout_redirect_uris,
+            valid_redirect_uris=valid_redirect_uris,
+            web_origins=web_origins,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             access_token_lifespan: Optional[pulumi.Input[str]] = None,
+             access_type: Optional[pulumi.Input[str]] = None,
+             admin_url: Optional[pulumi.Input[str]] = None,
+             authentication_flow_binding_overrides: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']] = None,
+             authorization: Optional[pulumi.Input['ClientAuthorizationArgs']] = None,
+             backchannel_logout_revoke_offline_sessions: Optional[pulumi.Input[bool]] = None,
+             backchannel_logout_session_required: Optional[pulumi.Input[bool]] = None,
+             backchannel_logout_url: Optional[pulumi.Input[str]] = None,
+             base_url: Optional[pulumi.Input[str]] = None,
+             client_authenticator_type: Optional[pulumi.Input[str]] = None,
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_offline_session_idle_timeout: Optional[pulumi.Input[str]] = None,
+             client_offline_session_max_lifespan: Optional[pulumi.Input[str]] = None,
+             client_secret: Optional[pulumi.Input[str]] = None,
+             client_session_idle_timeout: Optional[pulumi.Input[str]] = None,
+             client_session_max_lifespan: Optional[pulumi.Input[str]] = None,
+             consent_required: Optional[pulumi.Input[bool]] = None,
+             consent_screen_text: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             direct_access_grants_enabled: Optional[pulumi.Input[bool]] = None,
+             display_on_consent_screen: Optional[pulumi.Input[bool]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             exclude_session_state_from_auth_response: Optional[pulumi.Input[bool]] = None,
+             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             frontchannel_logout_enabled: Optional[pulumi.Input[bool]] = None,
+             frontchannel_logout_url: Optional[pulumi.Input[str]] = None,
+             full_scope_allowed: Optional[pulumi.Input[bool]] = None,
+             implicit_flow_enabled: Optional[pulumi.Input[bool]] = None,
+             import_: Optional[pulumi.Input[bool]] = None,
+             login_theme: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             oauth2_device_authorization_grant_enabled: Optional[pulumi.Input[bool]] = None,
+             oauth2_device_code_lifespan: Optional[pulumi.Input[str]] = None,
+             oauth2_device_polling_interval: Optional[pulumi.Input[str]] = None,
+             pkce_code_challenge_method: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             resource_server_id: Optional[pulumi.Input[str]] = None,
+             root_url: Optional[pulumi.Input[str]] = None,
+             service_account_user_id: Optional[pulumi.Input[str]] = None,
+             service_accounts_enabled: Optional[pulumi.Input[bool]] = None,
+             standard_flow_enabled: Optional[pulumi.Input[bool]] = None,
+             use_refresh_tokens: Optional[pulumi.Input[bool]] = None,
+             use_refresh_tokens_client_credentials: Optional[pulumi.Input[bool]] = None,
+             valid_post_logout_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if access_token_lifespan is not None:
-            pulumi.set(__self__, "access_token_lifespan", access_token_lifespan)
+            _setter("access_token_lifespan", access_token_lifespan)
         if access_type is not None:
-            pulumi.set(__self__, "access_type", access_type)
+            _setter("access_type", access_type)
         if admin_url is not None:
-            pulumi.set(__self__, "admin_url", admin_url)
+            _setter("admin_url", admin_url)
         if authentication_flow_binding_overrides is not None:
-            pulumi.set(__self__, "authentication_flow_binding_overrides", authentication_flow_binding_overrides)
+            _setter("authentication_flow_binding_overrides", authentication_flow_binding_overrides)
         if authorization is not None:
-            pulumi.set(__self__, "authorization", authorization)
+            _setter("authorization", authorization)
         if backchannel_logout_revoke_offline_sessions is not None:
-            pulumi.set(__self__, "backchannel_logout_revoke_offline_sessions", backchannel_logout_revoke_offline_sessions)
+            _setter("backchannel_logout_revoke_offline_sessions", backchannel_logout_revoke_offline_sessions)
         if backchannel_logout_session_required is not None:
-            pulumi.set(__self__, "backchannel_logout_session_required", backchannel_logout_session_required)
+            _setter("backchannel_logout_session_required", backchannel_logout_session_required)
         if backchannel_logout_url is not None:
-            pulumi.set(__self__, "backchannel_logout_url", backchannel_logout_url)
+            _setter("backchannel_logout_url", backchannel_logout_url)
         if base_url is not None:
-            pulumi.set(__self__, "base_url", base_url)
+            _setter("base_url", base_url)
         if client_authenticator_type is not None:
-            pulumi.set(__self__, "client_authenticator_type", client_authenticator_type)
+            _setter("client_authenticator_type", client_authenticator_type)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_offline_session_idle_timeout is not None:
-            pulumi.set(__self__, "client_offline_session_idle_timeout", client_offline_session_idle_timeout)
+            _setter("client_offline_session_idle_timeout", client_offline_session_idle_timeout)
         if client_offline_session_max_lifespan is not None:
-            pulumi.set(__self__, "client_offline_session_max_lifespan", client_offline_session_max_lifespan)
+            _setter("client_offline_session_max_lifespan", client_offline_session_max_lifespan)
         if client_secret is not None:
-            pulumi.set(__self__, "client_secret", client_secret)
+            _setter("client_secret", client_secret)
         if client_session_idle_timeout is not None:
-            pulumi.set(__self__, "client_session_idle_timeout", client_session_idle_timeout)
+            _setter("client_session_idle_timeout", client_session_idle_timeout)
         if client_session_max_lifespan is not None:
-            pulumi.set(__self__, "client_session_max_lifespan", client_session_max_lifespan)
+            _setter("client_session_max_lifespan", client_session_max_lifespan)
         if consent_required is not None:
-            pulumi.set(__self__, "consent_required", consent_required)
+            _setter("consent_required", consent_required)
         if consent_screen_text is not None:
-            pulumi.set(__self__, "consent_screen_text", consent_screen_text)
+            _setter("consent_screen_text", consent_screen_text)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if direct_access_grants_enabled is not None:
-            pulumi.set(__self__, "direct_access_grants_enabled", direct_access_grants_enabled)
+            _setter("direct_access_grants_enabled", direct_access_grants_enabled)
         if display_on_consent_screen is not None:
-            pulumi.set(__self__, "display_on_consent_screen", display_on_consent_screen)
+            _setter("display_on_consent_screen", display_on_consent_screen)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if exclude_session_state_from_auth_response is not None:
-            pulumi.set(__self__, "exclude_session_state_from_auth_response", exclude_session_state_from_auth_response)
+            _setter("exclude_session_state_from_auth_response", exclude_session_state_from_auth_response)
         if extra_config is not None:
-            pulumi.set(__self__, "extra_config", extra_config)
+            _setter("extra_config", extra_config)
         if frontchannel_logout_enabled is not None:
-            pulumi.set(__self__, "frontchannel_logout_enabled", frontchannel_logout_enabled)
+            _setter("frontchannel_logout_enabled", frontchannel_logout_enabled)
         if frontchannel_logout_url is not None:
-            pulumi.set(__self__, "frontchannel_logout_url", frontchannel_logout_url)
+            _setter("frontchannel_logout_url", frontchannel_logout_url)
         if full_scope_allowed is not None:
-            pulumi.set(__self__, "full_scope_allowed", full_scope_allowed)
+            _setter("full_scope_allowed", full_scope_allowed)
         if implicit_flow_enabled is not None:
-            pulumi.set(__self__, "implicit_flow_enabled", implicit_flow_enabled)
+            _setter("implicit_flow_enabled", implicit_flow_enabled)
         if import_ is not None:
-            pulumi.set(__self__, "import_", import_)
+            _setter("import_", import_)
         if login_theme is not None:
-            pulumi.set(__self__, "login_theme", login_theme)
+            _setter("login_theme", login_theme)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if oauth2_device_authorization_grant_enabled is not None:
-            pulumi.set(__self__, "oauth2_device_authorization_grant_enabled", oauth2_device_authorization_grant_enabled)
+            _setter("oauth2_device_authorization_grant_enabled", oauth2_device_authorization_grant_enabled)
         if oauth2_device_code_lifespan is not None:
-            pulumi.set(__self__, "oauth2_device_code_lifespan", oauth2_device_code_lifespan)
+            _setter("oauth2_device_code_lifespan", oauth2_device_code_lifespan)
         if oauth2_device_polling_interval is not None:
-            pulumi.set(__self__, "oauth2_device_polling_interval", oauth2_device_polling_interval)
+            _setter("oauth2_device_polling_interval", oauth2_device_polling_interval)
         if pkce_code_challenge_method is not None:
-            pulumi.set(__self__, "pkce_code_challenge_method", pkce_code_challenge_method)
+            _setter("pkce_code_challenge_method", pkce_code_challenge_method)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if resource_server_id is not None:
-            pulumi.set(__self__, "resource_server_id", resource_server_id)
+            _setter("resource_server_id", resource_server_id)
         if root_url is not None:
-            pulumi.set(__self__, "root_url", root_url)
+            _setter("root_url", root_url)
         if service_account_user_id is not None:
-            pulumi.set(__self__, "service_account_user_id", service_account_user_id)
+            _setter("service_account_user_id", service_account_user_id)
         if service_accounts_enabled is not None:
-            pulumi.set(__self__, "service_accounts_enabled", service_accounts_enabled)
+            _setter("service_accounts_enabled", service_accounts_enabled)
         if standard_flow_enabled is not None:
-            pulumi.set(__self__, "standard_flow_enabled", standard_flow_enabled)
+            _setter("standard_flow_enabled", standard_flow_enabled)
         if use_refresh_tokens is not None:
-            pulumi.set(__self__, "use_refresh_tokens", use_refresh_tokens)
+            _setter("use_refresh_tokens", use_refresh_tokens)
         if use_refresh_tokens_client_credentials is not None:
-            pulumi.set(__self__, "use_refresh_tokens_client_credentials", use_refresh_tokens_client_credentials)
+            _setter("use_refresh_tokens_client_credentials", use_refresh_tokens_client_credentials)
         if valid_post_logout_redirect_uris is not None:
-            pulumi.set(__self__, "valid_post_logout_redirect_uris", valid_post_logout_redirect_uris)
+            _setter("valid_post_logout_redirect_uris", valid_post_logout_redirect_uris)
         if valid_redirect_uris is not None:
-            pulumi.set(__self__, "valid_redirect_uris", valid_redirect_uris)
+            _setter("valid_redirect_uris", valid_redirect_uris)
         if web_origins is not None:
-            pulumi.set(__self__, "web_origins", web_origins)
+            _setter("web_origins", web_origins)
 
     @property
     @pulumi.getter(name="accessTokenLifespan")
@@ -1674,6 +1868,10 @@ class Client(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ClientArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -1737,7 +1935,17 @@ class Client(pulumi.CustomResource):
                 raise TypeError("Missing required property 'access_type'")
             __props__.__dict__["access_type"] = access_type
             __props__.__dict__["admin_url"] = admin_url
+            if authentication_flow_binding_overrides is not None and not isinstance(authentication_flow_binding_overrides, ClientAuthenticationFlowBindingOverridesArgs):
+                authentication_flow_binding_overrides = authentication_flow_binding_overrides or {}
+                def _setter(key, value):
+                    authentication_flow_binding_overrides[key] = value
+                ClientAuthenticationFlowBindingOverridesArgs._configure(_setter, **authentication_flow_binding_overrides)
             __props__.__dict__["authentication_flow_binding_overrides"] = authentication_flow_binding_overrides
+            if authorization is not None and not isinstance(authorization, ClientAuthorizationArgs):
+                authorization = authorization or {}
+                def _setter(key, value):
+                    authorization[key] = value
+                ClientAuthorizationArgs._configure(_setter, **authorization)
             __props__.__dict__["authorization"] = authorization
             __props__.__dict__["backchannel_logout_revoke_offline_sessions"] = backchannel_logout_revoke_offline_sessions
             __props__.__dict__["backchannel_logout_session_required"] = backchannel_logout_session_required

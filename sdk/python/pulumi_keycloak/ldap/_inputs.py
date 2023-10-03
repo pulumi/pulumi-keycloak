@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
@@ -29,16 +29,33 @@ class UserFederationCacheArgs:
         :param pulumi.Input[str] max_lifespan: Max lifespan of cache entry (duration string).
         :param pulumi.Input[str] policy: Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
         """
+        UserFederationCacheArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            eviction_day=eviction_day,
+            eviction_hour=eviction_hour,
+            eviction_minute=eviction_minute,
+            max_lifespan=max_lifespan,
+            policy=policy,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             eviction_day: Optional[pulumi.Input[int]] = None,
+             eviction_hour: Optional[pulumi.Input[int]] = None,
+             eviction_minute: Optional[pulumi.Input[int]] = None,
+             max_lifespan: Optional[pulumi.Input[str]] = None,
+             policy: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if eviction_day is not None:
-            pulumi.set(__self__, "eviction_day", eviction_day)
+            _setter("eviction_day", eviction_day)
         if eviction_hour is not None:
-            pulumi.set(__self__, "eviction_hour", eviction_hour)
+            _setter("eviction_hour", eviction_hour)
         if eviction_minute is not None:
-            pulumi.set(__self__, "eviction_minute", eviction_minute)
+            _setter("eviction_minute", eviction_minute)
         if max_lifespan is not None:
-            pulumi.set(__self__, "max_lifespan", max_lifespan)
+            _setter("max_lifespan", max_lifespan)
         if policy is not None:
-            pulumi.set(__self__, "policy", policy)
+            _setter("policy", policy)
 
     @property
     @pulumi.getter(name="evictionDay")
@@ -114,11 +131,26 @@ class UserFederationKerberosArgs:
         :param pulumi.Input[str] server_principal: The kerberos server principal, e.g. 'HTTP/host.foo.com@FOO.LOCAL'.
         :param pulumi.Input[bool] use_kerberos_for_password_authentication: Use kerberos login module instead of ldap service api. Defaults to `false`.
         """
-        pulumi.set(__self__, "kerberos_realm", kerberos_realm)
-        pulumi.set(__self__, "key_tab", key_tab)
-        pulumi.set(__self__, "server_principal", server_principal)
+        UserFederationKerberosArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            kerberos_realm=kerberos_realm,
+            key_tab=key_tab,
+            server_principal=server_principal,
+            use_kerberos_for_password_authentication=use_kerberos_for_password_authentication,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             kerberos_realm: pulumi.Input[str],
+             key_tab: pulumi.Input[str],
+             server_principal: pulumi.Input[str],
+             use_kerberos_for_password_authentication: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("kerberos_realm", kerberos_realm)
+        _setter("key_tab", key_tab)
+        _setter("server_principal", server_principal)
         if use_kerberos_for_password_authentication is not None:
-            pulumi.set(__self__, "use_kerberos_for_password_authentication", use_kerberos_for_password_authentication)
+            _setter("use_kerberos_for_password_authentication", use_kerberos_for_password_authentication)
 
     @property
     @pulumi.getter(name="kerberosRealm")

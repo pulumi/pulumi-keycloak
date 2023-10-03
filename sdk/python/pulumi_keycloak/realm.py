@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -133,117 +133,236 @@ class RealmArgs:
                Each of these attributes are blocks with the following attributes:
         :param pulumi.Input['RealmWebAuthnPolicyArgs'] web_authn_policy: Configuration for WebAuthn Policy authentication.
         """
-        pulumi.set(__self__, "realm", realm)
+        RealmArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            realm=realm,
+            access_code_lifespan=access_code_lifespan,
+            access_code_lifespan_login=access_code_lifespan_login,
+            access_code_lifespan_user_action=access_code_lifespan_user_action,
+            access_token_lifespan=access_token_lifespan,
+            access_token_lifespan_for_implicit_flow=access_token_lifespan_for_implicit_flow,
+            account_theme=account_theme,
+            action_token_generated_by_admin_lifespan=action_token_generated_by_admin_lifespan,
+            action_token_generated_by_user_lifespan=action_token_generated_by_user_lifespan,
+            admin_theme=admin_theme,
+            attributes=attributes,
+            browser_flow=browser_flow,
+            client_authentication_flow=client_authentication_flow,
+            client_session_idle_timeout=client_session_idle_timeout,
+            client_session_max_lifespan=client_session_max_lifespan,
+            default_default_client_scopes=default_default_client_scopes,
+            default_optional_client_scopes=default_optional_client_scopes,
+            default_signature_algorithm=default_signature_algorithm,
+            direct_grant_flow=direct_grant_flow,
+            display_name=display_name,
+            display_name_html=display_name_html,
+            docker_authentication_flow=docker_authentication_flow,
+            duplicate_emails_allowed=duplicate_emails_allowed,
+            edit_username_allowed=edit_username_allowed,
+            email_theme=email_theme,
+            enabled=enabled,
+            internal_id=internal_id,
+            internationalization=internationalization,
+            login_theme=login_theme,
+            login_with_email_allowed=login_with_email_allowed,
+            oauth2_device_code_lifespan=oauth2_device_code_lifespan,
+            oauth2_device_polling_interval=oauth2_device_polling_interval,
+            offline_session_idle_timeout=offline_session_idle_timeout,
+            offline_session_max_lifespan=offline_session_max_lifespan,
+            offline_session_max_lifespan_enabled=offline_session_max_lifespan_enabled,
+            otp_policy=otp_policy,
+            password_policy=password_policy,
+            refresh_token_max_reuse=refresh_token_max_reuse,
+            registration_allowed=registration_allowed,
+            registration_email_as_username=registration_email_as_username,
+            registration_flow=registration_flow,
+            remember_me=remember_me,
+            reset_credentials_flow=reset_credentials_flow,
+            reset_password_allowed=reset_password_allowed,
+            revoke_refresh_token=revoke_refresh_token,
+            security_defenses=security_defenses,
+            smtp_server=smtp_server,
+            ssl_required=ssl_required,
+            sso_session_idle_timeout=sso_session_idle_timeout,
+            sso_session_idle_timeout_remember_me=sso_session_idle_timeout_remember_me,
+            sso_session_max_lifespan=sso_session_max_lifespan,
+            sso_session_max_lifespan_remember_me=sso_session_max_lifespan_remember_me,
+            user_managed_access=user_managed_access,
+            verify_email=verify_email,
+            web_authn_passwordless_policy=web_authn_passwordless_policy,
+            web_authn_policy=web_authn_policy,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             realm: pulumi.Input[str],
+             access_code_lifespan: Optional[pulumi.Input[str]] = None,
+             access_code_lifespan_login: Optional[pulumi.Input[str]] = None,
+             access_code_lifespan_user_action: Optional[pulumi.Input[str]] = None,
+             access_token_lifespan: Optional[pulumi.Input[str]] = None,
+             access_token_lifespan_for_implicit_flow: Optional[pulumi.Input[str]] = None,
+             account_theme: Optional[pulumi.Input[str]] = None,
+             action_token_generated_by_admin_lifespan: Optional[pulumi.Input[str]] = None,
+             action_token_generated_by_user_lifespan: Optional[pulumi.Input[str]] = None,
+             admin_theme: Optional[pulumi.Input[str]] = None,
+             attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             browser_flow: Optional[pulumi.Input[str]] = None,
+             client_authentication_flow: Optional[pulumi.Input[str]] = None,
+             client_session_idle_timeout: Optional[pulumi.Input[str]] = None,
+             client_session_max_lifespan: Optional[pulumi.Input[str]] = None,
+             default_default_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             default_optional_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             default_signature_algorithm: Optional[pulumi.Input[str]] = None,
+             direct_grant_flow: Optional[pulumi.Input[str]] = None,
+             display_name: Optional[pulumi.Input[str]] = None,
+             display_name_html: Optional[pulumi.Input[str]] = None,
+             docker_authentication_flow: Optional[pulumi.Input[str]] = None,
+             duplicate_emails_allowed: Optional[pulumi.Input[bool]] = None,
+             edit_username_allowed: Optional[pulumi.Input[bool]] = None,
+             email_theme: Optional[pulumi.Input[str]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             internal_id: Optional[pulumi.Input[str]] = None,
+             internationalization: Optional[pulumi.Input['RealmInternationalizationArgs']] = None,
+             login_theme: Optional[pulumi.Input[str]] = None,
+             login_with_email_allowed: Optional[pulumi.Input[bool]] = None,
+             oauth2_device_code_lifespan: Optional[pulumi.Input[str]] = None,
+             oauth2_device_polling_interval: Optional[pulumi.Input[int]] = None,
+             offline_session_idle_timeout: Optional[pulumi.Input[str]] = None,
+             offline_session_max_lifespan: Optional[pulumi.Input[str]] = None,
+             offline_session_max_lifespan_enabled: Optional[pulumi.Input[bool]] = None,
+             otp_policy: Optional[pulumi.Input['RealmOtpPolicyArgs']] = None,
+             password_policy: Optional[pulumi.Input[str]] = None,
+             refresh_token_max_reuse: Optional[pulumi.Input[int]] = None,
+             registration_allowed: Optional[pulumi.Input[bool]] = None,
+             registration_email_as_username: Optional[pulumi.Input[bool]] = None,
+             registration_flow: Optional[pulumi.Input[str]] = None,
+             remember_me: Optional[pulumi.Input[bool]] = None,
+             reset_credentials_flow: Optional[pulumi.Input[str]] = None,
+             reset_password_allowed: Optional[pulumi.Input[bool]] = None,
+             revoke_refresh_token: Optional[pulumi.Input[bool]] = None,
+             security_defenses: Optional[pulumi.Input['RealmSecurityDefensesArgs']] = None,
+             smtp_server: Optional[pulumi.Input['RealmSmtpServerArgs']] = None,
+             ssl_required: Optional[pulumi.Input[str]] = None,
+             sso_session_idle_timeout: Optional[pulumi.Input[str]] = None,
+             sso_session_idle_timeout_remember_me: Optional[pulumi.Input[str]] = None,
+             sso_session_max_lifespan: Optional[pulumi.Input[str]] = None,
+             sso_session_max_lifespan_remember_me: Optional[pulumi.Input[str]] = None,
+             user_managed_access: Optional[pulumi.Input[bool]] = None,
+             verify_email: Optional[pulumi.Input[bool]] = None,
+             web_authn_passwordless_policy: Optional[pulumi.Input['RealmWebAuthnPasswordlessPolicyArgs']] = None,
+             web_authn_policy: Optional[pulumi.Input['RealmWebAuthnPolicyArgs']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("realm", realm)
         if access_code_lifespan is not None:
-            pulumi.set(__self__, "access_code_lifespan", access_code_lifespan)
+            _setter("access_code_lifespan", access_code_lifespan)
         if access_code_lifespan_login is not None:
-            pulumi.set(__self__, "access_code_lifespan_login", access_code_lifespan_login)
+            _setter("access_code_lifespan_login", access_code_lifespan_login)
         if access_code_lifespan_user_action is not None:
-            pulumi.set(__self__, "access_code_lifespan_user_action", access_code_lifespan_user_action)
+            _setter("access_code_lifespan_user_action", access_code_lifespan_user_action)
         if access_token_lifespan is not None:
-            pulumi.set(__self__, "access_token_lifespan", access_token_lifespan)
+            _setter("access_token_lifespan", access_token_lifespan)
         if access_token_lifespan_for_implicit_flow is not None:
-            pulumi.set(__self__, "access_token_lifespan_for_implicit_flow", access_token_lifespan_for_implicit_flow)
+            _setter("access_token_lifespan_for_implicit_flow", access_token_lifespan_for_implicit_flow)
         if account_theme is not None:
-            pulumi.set(__self__, "account_theme", account_theme)
+            _setter("account_theme", account_theme)
         if action_token_generated_by_admin_lifespan is not None:
-            pulumi.set(__self__, "action_token_generated_by_admin_lifespan", action_token_generated_by_admin_lifespan)
+            _setter("action_token_generated_by_admin_lifespan", action_token_generated_by_admin_lifespan)
         if action_token_generated_by_user_lifespan is not None:
-            pulumi.set(__self__, "action_token_generated_by_user_lifespan", action_token_generated_by_user_lifespan)
+            _setter("action_token_generated_by_user_lifespan", action_token_generated_by_user_lifespan)
         if admin_theme is not None:
-            pulumi.set(__self__, "admin_theme", admin_theme)
+            _setter("admin_theme", admin_theme)
         if attributes is not None:
-            pulumi.set(__self__, "attributes", attributes)
+            _setter("attributes", attributes)
         if browser_flow is not None:
-            pulumi.set(__self__, "browser_flow", browser_flow)
+            _setter("browser_flow", browser_flow)
         if client_authentication_flow is not None:
-            pulumi.set(__self__, "client_authentication_flow", client_authentication_flow)
+            _setter("client_authentication_flow", client_authentication_flow)
         if client_session_idle_timeout is not None:
-            pulumi.set(__self__, "client_session_idle_timeout", client_session_idle_timeout)
+            _setter("client_session_idle_timeout", client_session_idle_timeout)
         if client_session_max_lifespan is not None:
-            pulumi.set(__self__, "client_session_max_lifespan", client_session_max_lifespan)
+            _setter("client_session_max_lifespan", client_session_max_lifespan)
         if default_default_client_scopes is not None:
-            pulumi.set(__self__, "default_default_client_scopes", default_default_client_scopes)
+            _setter("default_default_client_scopes", default_default_client_scopes)
         if default_optional_client_scopes is not None:
-            pulumi.set(__self__, "default_optional_client_scopes", default_optional_client_scopes)
+            _setter("default_optional_client_scopes", default_optional_client_scopes)
         if default_signature_algorithm is not None:
-            pulumi.set(__self__, "default_signature_algorithm", default_signature_algorithm)
+            _setter("default_signature_algorithm", default_signature_algorithm)
         if direct_grant_flow is not None:
-            pulumi.set(__self__, "direct_grant_flow", direct_grant_flow)
+            _setter("direct_grant_flow", direct_grant_flow)
         if display_name is not None:
-            pulumi.set(__self__, "display_name", display_name)
+            _setter("display_name", display_name)
         if display_name_html is not None:
-            pulumi.set(__self__, "display_name_html", display_name_html)
+            _setter("display_name_html", display_name_html)
         if docker_authentication_flow is not None:
-            pulumi.set(__self__, "docker_authentication_flow", docker_authentication_flow)
+            _setter("docker_authentication_flow", docker_authentication_flow)
         if duplicate_emails_allowed is not None:
-            pulumi.set(__self__, "duplicate_emails_allowed", duplicate_emails_allowed)
+            _setter("duplicate_emails_allowed", duplicate_emails_allowed)
         if edit_username_allowed is not None:
-            pulumi.set(__self__, "edit_username_allowed", edit_username_allowed)
+            _setter("edit_username_allowed", edit_username_allowed)
         if email_theme is not None:
-            pulumi.set(__self__, "email_theme", email_theme)
+            _setter("email_theme", email_theme)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if internal_id is not None:
-            pulumi.set(__self__, "internal_id", internal_id)
+            _setter("internal_id", internal_id)
         if internationalization is not None:
-            pulumi.set(__self__, "internationalization", internationalization)
+            _setter("internationalization", internationalization)
         if login_theme is not None:
-            pulumi.set(__self__, "login_theme", login_theme)
+            _setter("login_theme", login_theme)
         if login_with_email_allowed is not None:
-            pulumi.set(__self__, "login_with_email_allowed", login_with_email_allowed)
+            _setter("login_with_email_allowed", login_with_email_allowed)
         if oauth2_device_code_lifespan is not None:
-            pulumi.set(__self__, "oauth2_device_code_lifespan", oauth2_device_code_lifespan)
+            _setter("oauth2_device_code_lifespan", oauth2_device_code_lifespan)
         if oauth2_device_polling_interval is not None:
-            pulumi.set(__self__, "oauth2_device_polling_interval", oauth2_device_polling_interval)
+            _setter("oauth2_device_polling_interval", oauth2_device_polling_interval)
         if offline_session_idle_timeout is not None:
-            pulumi.set(__self__, "offline_session_idle_timeout", offline_session_idle_timeout)
+            _setter("offline_session_idle_timeout", offline_session_idle_timeout)
         if offline_session_max_lifespan is not None:
-            pulumi.set(__self__, "offline_session_max_lifespan", offline_session_max_lifespan)
+            _setter("offline_session_max_lifespan", offline_session_max_lifespan)
         if offline_session_max_lifespan_enabled is not None:
-            pulumi.set(__self__, "offline_session_max_lifespan_enabled", offline_session_max_lifespan_enabled)
+            _setter("offline_session_max_lifespan_enabled", offline_session_max_lifespan_enabled)
         if otp_policy is not None:
-            pulumi.set(__self__, "otp_policy", otp_policy)
+            _setter("otp_policy", otp_policy)
         if password_policy is not None:
-            pulumi.set(__self__, "password_policy", password_policy)
+            _setter("password_policy", password_policy)
         if refresh_token_max_reuse is not None:
-            pulumi.set(__self__, "refresh_token_max_reuse", refresh_token_max_reuse)
+            _setter("refresh_token_max_reuse", refresh_token_max_reuse)
         if registration_allowed is not None:
-            pulumi.set(__self__, "registration_allowed", registration_allowed)
+            _setter("registration_allowed", registration_allowed)
         if registration_email_as_username is not None:
-            pulumi.set(__self__, "registration_email_as_username", registration_email_as_username)
+            _setter("registration_email_as_username", registration_email_as_username)
         if registration_flow is not None:
-            pulumi.set(__self__, "registration_flow", registration_flow)
+            _setter("registration_flow", registration_flow)
         if remember_me is not None:
-            pulumi.set(__self__, "remember_me", remember_me)
+            _setter("remember_me", remember_me)
         if reset_credentials_flow is not None:
-            pulumi.set(__self__, "reset_credentials_flow", reset_credentials_flow)
+            _setter("reset_credentials_flow", reset_credentials_flow)
         if reset_password_allowed is not None:
-            pulumi.set(__self__, "reset_password_allowed", reset_password_allowed)
+            _setter("reset_password_allowed", reset_password_allowed)
         if revoke_refresh_token is not None:
-            pulumi.set(__self__, "revoke_refresh_token", revoke_refresh_token)
+            _setter("revoke_refresh_token", revoke_refresh_token)
         if security_defenses is not None:
-            pulumi.set(__self__, "security_defenses", security_defenses)
+            _setter("security_defenses", security_defenses)
         if smtp_server is not None:
-            pulumi.set(__self__, "smtp_server", smtp_server)
+            _setter("smtp_server", smtp_server)
         if ssl_required is not None:
-            pulumi.set(__self__, "ssl_required", ssl_required)
+            _setter("ssl_required", ssl_required)
         if sso_session_idle_timeout is not None:
-            pulumi.set(__self__, "sso_session_idle_timeout", sso_session_idle_timeout)
+            _setter("sso_session_idle_timeout", sso_session_idle_timeout)
         if sso_session_idle_timeout_remember_me is not None:
-            pulumi.set(__self__, "sso_session_idle_timeout_remember_me", sso_session_idle_timeout_remember_me)
+            _setter("sso_session_idle_timeout_remember_me", sso_session_idle_timeout_remember_me)
         if sso_session_max_lifespan is not None:
-            pulumi.set(__self__, "sso_session_max_lifespan", sso_session_max_lifespan)
+            _setter("sso_session_max_lifespan", sso_session_max_lifespan)
         if sso_session_max_lifespan_remember_me is not None:
-            pulumi.set(__self__, "sso_session_max_lifespan_remember_me", sso_session_max_lifespan_remember_me)
+            _setter("sso_session_max_lifespan_remember_me", sso_session_max_lifespan_remember_me)
         if user_managed_access is not None:
-            pulumi.set(__self__, "user_managed_access", user_managed_access)
+            _setter("user_managed_access", user_managed_access)
         if verify_email is not None:
-            pulumi.set(__self__, "verify_email", verify_email)
+            _setter("verify_email", verify_email)
         if web_authn_passwordless_policy is not None:
-            pulumi.set(__self__, "web_authn_passwordless_policy", web_authn_passwordless_policy)
+            _setter("web_authn_passwordless_policy", web_authn_passwordless_policy)
         if web_authn_policy is not None:
-            pulumi.set(__self__, "web_authn_policy", web_authn_policy)
+            _setter("web_authn_policy", web_authn_policy)
 
     @property
     @pulumi.getter
@@ -1028,118 +1147,237 @@ class _RealmState:
                Each of these attributes are blocks with the following attributes:
         :param pulumi.Input['RealmWebAuthnPolicyArgs'] web_authn_policy: Configuration for WebAuthn Policy authentication.
         """
+        _RealmState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            access_code_lifespan=access_code_lifespan,
+            access_code_lifespan_login=access_code_lifespan_login,
+            access_code_lifespan_user_action=access_code_lifespan_user_action,
+            access_token_lifespan=access_token_lifespan,
+            access_token_lifespan_for_implicit_flow=access_token_lifespan_for_implicit_flow,
+            account_theme=account_theme,
+            action_token_generated_by_admin_lifespan=action_token_generated_by_admin_lifespan,
+            action_token_generated_by_user_lifespan=action_token_generated_by_user_lifespan,
+            admin_theme=admin_theme,
+            attributes=attributes,
+            browser_flow=browser_flow,
+            client_authentication_flow=client_authentication_flow,
+            client_session_idle_timeout=client_session_idle_timeout,
+            client_session_max_lifespan=client_session_max_lifespan,
+            default_default_client_scopes=default_default_client_scopes,
+            default_optional_client_scopes=default_optional_client_scopes,
+            default_signature_algorithm=default_signature_algorithm,
+            direct_grant_flow=direct_grant_flow,
+            display_name=display_name,
+            display_name_html=display_name_html,
+            docker_authentication_flow=docker_authentication_flow,
+            duplicate_emails_allowed=duplicate_emails_allowed,
+            edit_username_allowed=edit_username_allowed,
+            email_theme=email_theme,
+            enabled=enabled,
+            internal_id=internal_id,
+            internationalization=internationalization,
+            login_theme=login_theme,
+            login_with_email_allowed=login_with_email_allowed,
+            oauth2_device_code_lifespan=oauth2_device_code_lifespan,
+            oauth2_device_polling_interval=oauth2_device_polling_interval,
+            offline_session_idle_timeout=offline_session_idle_timeout,
+            offline_session_max_lifespan=offline_session_max_lifespan,
+            offline_session_max_lifespan_enabled=offline_session_max_lifespan_enabled,
+            otp_policy=otp_policy,
+            password_policy=password_policy,
+            realm=realm,
+            refresh_token_max_reuse=refresh_token_max_reuse,
+            registration_allowed=registration_allowed,
+            registration_email_as_username=registration_email_as_username,
+            registration_flow=registration_flow,
+            remember_me=remember_me,
+            reset_credentials_flow=reset_credentials_flow,
+            reset_password_allowed=reset_password_allowed,
+            revoke_refresh_token=revoke_refresh_token,
+            security_defenses=security_defenses,
+            smtp_server=smtp_server,
+            ssl_required=ssl_required,
+            sso_session_idle_timeout=sso_session_idle_timeout,
+            sso_session_idle_timeout_remember_me=sso_session_idle_timeout_remember_me,
+            sso_session_max_lifespan=sso_session_max_lifespan,
+            sso_session_max_lifespan_remember_me=sso_session_max_lifespan_remember_me,
+            user_managed_access=user_managed_access,
+            verify_email=verify_email,
+            web_authn_passwordless_policy=web_authn_passwordless_policy,
+            web_authn_policy=web_authn_policy,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             access_code_lifespan: Optional[pulumi.Input[str]] = None,
+             access_code_lifespan_login: Optional[pulumi.Input[str]] = None,
+             access_code_lifespan_user_action: Optional[pulumi.Input[str]] = None,
+             access_token_lifespan: Optional[pulumi.Input[str]] = None,
+             access_token_lifespan_for_implicit_flow: Optional[pulumi.Input[str]] = None,
+             account_theme: Optional[pulumi.Input[str]] = None,
+             action_token_generated_by_admin_lifespan: Optional[pulumi.Input[str]] = None,
+             action_token_generated_by_user_lifespan: Optional[pulumi.Input[str]] = None,
+             admin_theme: Optional[pulumi.Input[str]] = None,
+             attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             browser_flow: Optional[pulumi.Input[str]] = None,
+             client_authentication_flow: Optional[pulumi.Input[str]] = None,
+             client_session_idle_timeout: Optional[pulumi.Input[str]] = None,
+             client_session_max_lifespan: Optional[pulumi.Input[str]] = None,
+             default_default_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             default_optional_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             default_signature_algorithm: Optional[pulumi.Input[str]] = None,
+             direct_grant_flow: Optional[pulumi.Input[str]] = None,
+             display_name: Optional[pulumi.Input[str]] = None,
+             display_name_html: Optional[pulumi.Input[str]] = None,
+             docker_authentication_flow: Optional[pulumi.Input[str]] = None,
+             duplicate_emails_allowed: Optional[pulumi.Input[bool]] = None,
+             edit_username_allowed: Optional[pulumi.Input[bool]] = None,
+             email_theme: Optional[pulumi.Input[str]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             internal_id: Optional[pulumi.Input[str]] = None,
+             internationalization: Optional[pulumi.Input['RealmInternationalizationArgs']] = None,
+             login_theme: Optional[pulumi.Input[str]] = None,
+             login_with_email_allowed: Optional[pulumi.Input[bool]] = None,
+             oauth2_device_code_lifespan: Optional[pulumi.Input[str]] = None,
+             oauth2_device_polling_interval: Optional[pulumi.Input[int]] = None,
+             offline_session_idle_timeout: Optional[pulumi.Input[str]] = None,
+             offline_session_max_lifespan: Optional[pulumi.Input[str]] = None,
+             offline_session_max_lifespan_enabled: Optional[pulumi.Input[bool]] = None,
+             otp_policy: Optional[pulumi.Input['RealmOtpPolicyArgs']] = None,
+             password_policy: Optional[pulumi.Input[str]] = None,
+             realm: Optional[pulumi.Input[str]] = None,
+             refresh_token_max_reuse: Optional[pulumi.Input[int]] = None,
+             registration_allowed: Optional[pulumi.Input[bool]] = None,
+             registration_email_as_username: Optional[pulumi.Input[bool]] = None,
+             registration_flow: Optional[pulumi.Input[str]] = None,
+             remember_me: Optional[pulumi.Input[bool]] = None,
+             reset_credentials_flow: Optional[pulumi.Input[str]] = None,
+             reset_password_allowed: Optional[pulumi.Input[bool]] = None,
+             revoke_refresh_token: Optional[pulumi.Input[bool]] = None,
+             security_defenses: Optional[pulumi.Input['RealmSecurityDefensesArgs']] = None,
+             smtp_server: Optional[pulumi.Input['RealmSmtpServerArgs']] = None,
+             ssl_required: Optional[pulumi.Input[str]] = None,
+             sso_session_idle_timeout: Optional[pulumi.Input[str]] = None,
+             sso_session_idle_timeout_remember_me: Optional[pulumi.Input[str]] = None,
+             sso_session_max_lifespan: Optional[pulumi.Input[str]] = None,
+             sso_session_max_lifespan_remember_me: Optional[pulumi.Input[str]] = None,
+             user_managed_access: Optional[pulumi.Input[bool]] = None,
+             verify_email: Optional[pulumi.Input[bool]] = None,
+             web_authn_passwordless_policy: Optional[pulumi.Input['RealmWebAuthnPasswordlessPolicyArgs']] = None,
+             web_authn_policy: Optional[pulumi.Input['RealmWebAuthnPolicyArgs']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if access_code_lifespan is not None:
-            pulumi.set(__self__, "access_code_lifespan", access_code_lifespan)
+            _setter("access_code_lifespan", access_code_lifespan)
         if access_code_lifespan_login is not None:
-            pulumi.set(__self__, "access_code_lifespan_login", access_code_lifespan_login)
+            _setter("access_code_lifespan_login", access_code_lifespan_login)
         if access_code_lifespan_user_action is not None:
-            pulumi.set(__self__, "access_code_lifespan_user_action", access_code_lifespan_user_action)
+            _setter("access_code_lifespan_user_action", access_code_lifespan_user_action)
         if access_token_lifespan is not None:
-            pulumi.set(__self__, "access_token_lifespan", access_token_lifespan)
+            _setter("access_token_lifespan", access_token_lifespan)
         if access_token_lifespan_for_implicit_flow is not None:
-            pulumi.set(__self__, "access_token_lifespan_for_implicit_flow", access_token_lifespan_for_implicit_flow)
+            _setter("access_token_lifespan_for_implicit_flow", access_token_lifespan_for_implicit_flow)
         if account_theme is not None:
-            pulumi.set(__self__, "account_theme", account_theme)
+            _setter("account_theme", account_theme)
         if action_token_generated_by_admin_lifespan is not None:
-            pulumi.set(__self__, "action_token_generated_by_admin_lifespan", action_token_generated_by_admin_lifespan)
+            _setter("action_token_generated_by_admin_lifespan", action_token_generated_by_admin_lifespan)
         if action_token_generated_by_user_lifespan is not None:
-            pulumi.set(__self__, "action_token_generated_by_user_lifespan", action_token_generated_by_user_lifespan)
+            _setter("action_token_generated_by_user_lifespan", action_token_generated_by_user_lifespan)
         if admin_theme is not None:
-            pulumi.set(__self__, "admin_theme", admin_theme)
+            _setter("admin_theme", admin_theme)
         if attributes is not None:
-            pulumi.set(__self__, "attributes", attributes)
+            _setter("attributes", attributes)
         if browser_flow is not None:
-            pulumi.set(__self__, "browser_flow", browser_flow)
+            _setter("browser_flow", browser_flow)
         if client_authentication_flow is not None:
-            pulumi.set(__self__, "client_authentication_flow", client_authentication_flow)
+            _setter("client_authentication_flow", client_authentication_flow)
         if client_session_idle_timeout is not None:
-            pulumi.set(__self__, "client_session_idle_timeout", client_session_idle_timeout)
+            _setter("client_session_idle_timeout", client_session_idle_timeout)
         if client_session_max_lifespan is not None:
-            pulumi.set(__self__, "client_session_max_lifespan", client_session_max_lifespan)
+            _setter("client_session_max_lifespan", client_session_max_lifespan)
         if default_default_client_scopes is not None:
-            pulumi.set(__self__, "default_default_client_scopes", default_default_client_scopes)
+            _setter("default_default_client_scopes", default_default_client_scopes)
         if default_optional_client_scopes is not None:
-            pulumi.set(__self__, "default_optional_client_scopes", default_optional_client_scopes)
+            _setter("default_optional_client_scopes", default_optional_client_scopes)
         if default_signature_algorithm is not None:
-            pulumi.set(__self__, "default_signature_algorithm", default_signature_algorithm)
+            _setter("default_signature_algorithm", default_signature_algorithm)
         if direct_grant_flow is not None:
-            pulumi.set(__self__, "direct_grant_flow", direct_grant_flow)
+            _setter("direct_grant_flow", direct_grant_flow)
         if display_name is not None:
-            pulumi.set(__self__, "display_name", display_name)
+            _setter("display_name", display_name)
         if display_name_html is not None:
-            pulumi.set(__self__, "display_name_html", display_name_html)
+            _setter("display_name_html", display_name_html)
         if docker_authentication_flow is not None:
-            pulumi.set(__self__, "docker_authentication_flow", docker_authentication_flow)
+            _setter("docker_authentication_flow", docker_authentication_flow)
         if duplicate_emails_allowed is not None:
-            pulumi.set(__self__, "duplicate_emails_allowed", duplicate_emails_allowed)
+            _setter("duplicate_emails_allowed", duplicate_emails_allowed)
         if edit_username_allowed is not None:
-            pulumi.set(__self__, "edit_username_allowed", edit_username_allowed)
+            _setter("edit_username_allowed", edit_username_allowed)
         if email_theme is not None:
-            pulumi.set(__self__, "email_theme", email_theme)
+            _setter("email_theme", email_theme)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if internal_id is not None:
-            pulumi.set(__self__, "internal_id", internal_id)
+            _setter("internal_id", internal_id)
         if internationalization is not None:
-            pulumi.set(__self__, "internationalization", internationalization)
+            _setter("internationalization", internationalization)
         if login_theme is not None:
-            pulumi.set(__self__, "login_theme", login_theme)
+            _setter("login_theme", login_theme)
         if login_with_email_allowed is not None:
-            pulumi.set(__self__, "login_with_email_allowed", login_with_email_allowed)
+            _setter("login_with_email_allowed", login_with_email_allowed)
         if oauth2_device_code_lifespan is not None:
-            pulumi.set(__self__, "oauth2_device_code_lifespan", oauth2_device_code_lifespan)
+            _setter("oauth2_device_code_lifespan", oauth2_device_code_lifespan)
         if oauth2_device_polling_interval is not None:
-            pulumi.set(__self__, "oauth2_device_polling_interval", oauth2_device_polling_interval)
+            _setter("oauth2_device_polling_interval", oauth2_device_polling_interval)
         if offline_session_idle_timeout is not None:
-            pulumi.set(__self__, "offline_session_idle_timeout", offline_session_idle_timeout)
+            _setter("offline_session_idle_timeout", offline_session_idle_timeout)
         if offline_session_max_lifespan is not None:
-            pulumi.set(__self__, "offline_session_max_lifespan", offline_session_max_lifespan)
+            _setter("offline_session_max_lifespan", offline_session_max_lifespan)
         if offline_session_max_lifespan_enabled is not None:
-            pulumi.set(__self__, "offline_session_max_lifespan_enabled", offline_session_max_lifespan_enabled)
+            _setter("offline_session_max_lifespan_enabled", offline_session_max_lifespan_enabled)
         if otp_policy is not None:
-            pulumi.set(__self__, "otp_policy", otp_policy)
+            _setter("otp_policy", otp_policy)
         if password_policy is not None:
-            pulumi.set(__self__, "password_policy", password_policy)
+            _setter("password_policy", password_policy)
         if realm is not None:
-            pulumi.set(__self__, "realm", realm)
+            _setter("realm", realm)
         if refresh_token_max_reuse is not None:
-            pulumi.set(__self__, "refresh_token_max_reuse", refresh_token_max_reuse)
+            _setter("refresh_token_max_reuse", refresh_token_max_reuse)
         if registration_allowed is not None:
-            pulumi.set(__self__, "registration_allowed", registration_allowed)
+            _setter("registration_allowed", registration_allowed)
         if registration_email_as_username is not None:
-            pulumi.set(__self__, "registration_email_as_username", registration_email_as_username)
+            _setter("registration_email_as_username", registration_email_as_username)
         if registration_flow is not None:
-            pulumi.set(__self__, "registration_flow", registration_flow)
+            _setter("registration_flow", registration_flow)
         if remember_me is not None:
-            pulumi.set(__self__, "remember_me", remember_me)
+            _setter("remember_me", remember_me)
         if reset_credentials_flow is not None:
-            pulumi.set(__self__, "reset_credentials_flow", reset_credentials_flow)
+            _setter("reset_credentials_flow", reset_credentials_flow)
         if reset_password_allowed is not None:
-            pulumi.set(__self__, "reset_password_allowed", reset_password_allowed)
+            _setter("reset_password_allowed", reset_password_allowed)
         if revoke_refresh_token is not None:
-            pulumi.set(__self__, "revoke_refresh_token", revoke_refresh_token)
+            _setter("revoke_refresh_token", revoke_refresh_token)
         if security_defenses is not None:
-            pulumi.set(__self__, "security_defenses", security_defenses)
+            _setter("security_defenses", security_defenses)
         if smtp_server is not None:
-            pulumi.set(__self__, "smtp_server", smtp_server)
+            _setter("smtp_server", smtp_server)
         if ssl_required is not None:
-            pulumi.set(__self__, "ssl_required", ssl_required)
+            _setter("ssl_required", ssl_required)
         if sso_session_idle_timeout is not None:
-            pulumi.set(__self__, "sso_session_idle_timeout", sso_session_idle_timeout)
+            _setter("sso_session_idle_timeout", sso_session_idle_timeout)
         if sso_session_idle_timeout_remember_me is not None:
-            pulumi.set(__self__, "sso_session_idle_timeout_remember_me", sso_session_idle_timeout_remember_me)
+            _setter("sso_session_idle_timeout_remember_me", sso_session_idle_timeout_remember_me)
         if sso_session_max_lifespan is not None:
-            pulumi.set(__self__, "sso_session_max_lifespan", sso_session_max_lifespan)
+            _setter("sso_session_max_lifespan", sso_session_max_lifespan)
         if sso_session_max_lifespan_remember_me is not None:
-            pulumi.set(__self__, "sso_session_max_lifespan_remember_me", sso_session_max_lifespan_remember_me)
+            _setter("sso_session_max_lifespan_remember_me", sso_session_max_lifespan_remember_me)
         if user_managed_access is not None:
-            pulumi.set(__self__, "user_managed_access", user_managed_access)
+            _setter("user_managed_access", user_managed_access)
         if verify_email is not None:
-            pulumi.set(__self__, "verify_email", verify_email)
+            _setter("verify_email", verify_email)
         if web_authn_passwordless_policy is not None:
-            pulumi.set(__self__, "web_authn_passwordless_policy", web_authn_passwordless_policy)
+            _setter("web_authn_passwordless_policy", web_authn_passwordless_policy)
         if web_authn_policy is not None:
-            pulumi.set(__self__, "web_authn_policy", web_authn_policy)
+            _setter("web_authn_policy", web_authn_policy)
 
     @property
     @pulumi.getter(name="accessCodeLifespan")
@@ -2107,6 +2345,10 @@ class Realm(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            RealmArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -2203,6 +2445,11 @@ class Realm(pulumi.CustomResource):
             __props__.__dict__["email_theme"] = email_theme
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["internal_id"] = internal_id
+            if internationalization is not None and not isinstance(internationalization, RealmInternationalizationArgs):
+                internationalization = internationalization or {}
+                def _setter(key, value):
+                    internationalization[key] = value
+                RealmInternationalizationArgs._configure(_setter, **internationalization)
             __props__.__dict__["internationalization"] = internationalization
             __props__.__dict__["login_theme"] = login_theme
             __props__.__dict__["login_with_email_allowed"] = login_with_email_allowed
@@ -2211,6 +2458,11 @@ class Realm(pulumi.CustomResource):
             __props__.__dict__["offline_session_idle_timeout"] = offline_session_idle_timeout
             __props__.__dict__["offline_session_max_lifespan"] = offline_session_max_lifespan
             __props__.__dict__["offline_session_max_lifespan_enabled"] = offline_session_max_lifespan_enabled
+            if otp_policy is not None and not isinstance(otp_policy, RealmOtpPolicyArgs):
+                otp_policy = otp_policy or {}
+                def _setter(key, value):
+                    otp_policy[key] = value
+                RealmOtpPolicyArgs._configure(_setter, **otp_policy)
             __props__.__dict__["otp_policy"] = otp_policy
             __props__.__dict__["password_policy"] = password_policy
             if realm is None and not opts.urn:
@@ -2224,7 +2476,17 @@ class Realm(pulumi.CustomResource):
             __props__.__dict__["reset_credentials_flow"] = reset_credentials_flow
             __props__.__dict__["reset_password_allowed"] = reset_password_allowed
             __props__.__dict__["revoke_refresh_token"] = revoke_refresh_token
+            if security_defenses is not None and not isinstance(security_defenses, RealmSecurityDefensesArgs):
+                security_defenses = security_defenses or {}
+                def _setter(key, value):
+                    security_defenses[key] = value
+                RealmSecurityDefensesArgs._configure(_setter, **security_defenses)
             __props__.__dict__["security_defenses"] = security_defenses
+            if smtp_server is not None and not isinstance(smtp_server, RealmSmtpServerArgs):
+                smtp_server = smtp_server or {}
+                def _setter(key, value):
+                    smtp_server[key] = value
+                RealmSmtpServerArgs._configure(_setter, **smtp_server)
             __props__.__dict__["smtp_server"] = smtp_server
             __props__.__dict__["ssl_required"] = ssl_required
             __props__.__dict__["sso_session_idle_timeout"] = sso_session_idle_timeout
@@ -2233,7 +2495,17 @@ class Realm(pulumi.CustomResource):
             __props__.__dict__["sso_session_max_lifespan_remember_me"] = sso_session_max_lifespan_remember_me
             __props__.__dict__["user_managed_access"] = user_managed_access
             __props__.__dict__["verify_email"] = verify_email
+            if web_authn_passwordless_policy is not None and not isinstance(web_authn_passwordless_policy, RealmWebAuthnPasswordlessPolicyArgs):
+                web_authn_passwordless_policy = web_authn_passwordless_policy or {}
+                def _setter(key, value):
+                    web_authn_passwordless_policy[key] = value
+                RealmWebAuthnPasswordlessPolicyArgs._configure(_setter, **web_authn_passwordless_policy)
             __props__.__dict__["web_authn_passwordless_policy"] = web_authn_passwordless_policy
+            if web_authn_policy is not None and not isinstance(web_authn_policy, RealmWebAuthnPolicyArgs):
+                web_authn_policy = web_authn_policy or {}
+                def _setter(key, value):
+                    web_authn_policy[key] = value
+                RealmWebAuthnPolicyArgs._configure(_setter, **web_authn_policy)
             __props__.__dict__["web_authn_policy"] = web_authn_policy
         super(Realm, __self__).__init__(
             'keycloak:index/realm:Realm',

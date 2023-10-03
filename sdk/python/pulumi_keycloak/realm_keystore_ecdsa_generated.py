@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['RealmKeystoreEcdsaGeneratedArgs', 'RealmKeystoreEcdsaGenerated']
@@ -29,17 +29,36 @@ class RealmKeystoreEcdsaGeneratedArgs:
         :param pulumi.Input[str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[int] priority: Priority for the provider. Defaults to `0`
         """
-        pulumi.set(__self__, "realm_id", realm_id)
+        RealmKeystoreEcdsaGeneratedArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            realm_id=realm_id,
+            active=active,
+            elliptic_curve_key=elliptic_curve_key,
+            enabled=enabled,
+            name=name,
+            priority=priority,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             realm_id: pulumi.Input[str],
+             active: Optional[pulumi.Input[bool]] = None,
+             elliptic_curve_key: Optional[pulumi.Input[str]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             priority: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("realm_id", realm_id)
         if active is not None:
-            pulumi.set(__self__, "active", active)
+            _setter("active", active)
         if elliptic_curve_key is not None:
-            pulumi.set(__self__, "elliptic_curve_key", elliptic_curve_key)
+            _setter("elliptic_curve_key", elliptic_curve_key)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if priority is not None:
-            pulumi.set(__self__, "priority", priority)
+            _setter("priority", priority)
 
     @property
     @pulumi.getter(name="realmId")
@@ -132,18 +151,37 @@ class _RealmKeystoreEcdsaGeneratedState:
         :param pulumi.Input[int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[str] realm_id: The realm this keystore exists in.
         """
+        _RealmKeystoreEcdsaGeneratedState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            active=active,
+            elliptic_curve_key=elliptic_curve_key,
+            enabled=enabled,
+            name=name,
+            priority=priority,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             active: Optional[pulumi.Input[bool]] = None,
+             elliptic_curve_key: Optional[pulumi.Input[str]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             priority: Optional[pulumi.Input[int]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if active is not None:
-            pulumi.set(__self__, "active", active)
+            _setter("active", active)
         if elliptic_curve_key is not None:
-            pulumi.set(__self__, "elliptic_curve_key", elliptic_curve_key)
+            _setter("elliptic_curve_key", elliptic_curve_key)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if priority is not None:
-            pulumi.set(__self__, "priority", priority)
+            _setter("priority", priority)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter
@@ -311,6 +349,10 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            RealmKeystoreEcdsaGeneratedArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

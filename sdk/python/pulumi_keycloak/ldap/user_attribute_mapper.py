@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['UserAttributeMapperArgs', 'UserAttributeMapper']
@@ -37,22 +37,49 @@ class UserAttributeMapperArgs:
         :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[bool] read_only: When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
         """
-        pulumi.set(__self__, "ldap_attribute", ldap_attribute)
-        pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
-        pulumi.set(__self__, "realm_id", realm_id)
-        pulumi.set(__self__, "user_model_attribute", user_model_attribute)
+        UserAttributeMapperArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ldap_attribute=ldap_attribute,
+            ldap_user_federation_id=ldap_user_federation_id,
+            realm_id=realm_id,
+            user_model_attribute=user_model_attribute,
+            always_read_value_from_ldap=always_read_value_from_ldap,
+            attribute_default_value=attribute_default_value,
+            is_binary_attribute=is_binary_attribute,
+            is_mandatory_in_ldap=is_mandatory_in_ldap,
+            name=name,
+            read_only=read_only,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ldap_attribute: pulumi.Input[str],
+             ldap_user_federation_id: pulumi.Input[str],
+             realm_id: pulumi.Input[str],
+             user_model_attribute: pulumi.Input[str],
+             always_read_value_from_ldap: Optional[pulumi.Input[bool]] = None,
+             attribute_default_value: Optional[pulumi.Input[str]] = None,
+             is_binary_attribute: Optional[pulumi.Input[bool]] = None,
+             is_mandatory_in_ldap: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             read_only: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("ldap_attribute", ldap_attribute)
+        _setter("ldap_user_federation_id", ldap_user_federation_id)
+        _setter("realm_id", realm_id)
+        _setter("user_model_attribute", user_model_attribute)
         if always_read_value_from_ldap is not None:
-            pulumi.set(__self__, "always_read_value_from_ldap", always_read_value_from_ldap)
+            _setter("always_read_value_from_ldap", always_read_value_from_ldap)
         if attribute_default_value is not None:
-            pulumi.set(__self__, "attribute_default_value", attribute_default_value)
+            _setter("attribute_default_value", attribute_default_value)
         if is_binary_attribute is not None:
-            pulumi.set(__self__, "is_binary_attribute", is_binary_attribute)
+            _setter("is_binary_attribute", is_binary_attribute)
         if is_mandatory_in_ldap is not None:
-            pulumi.set(__self__, "is_mandatory_in_ldap", is_mandatory_in_ldap)
+            _setter("is_mandatory_in_ldap", is_mandatory_in_ldap)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if read_only is not None:
-            pulumi.set(__self__, "read_only", read_only)
+            _setter("read_only", read_only)
 
     @property
     @pulumi.getter(name="ldapAttribute")
@@ -201,26 +228,53 @@ class _UserAttributeMapperState:
         :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
         :param pulumi.Input[str] user_model_attribute: Name of the user property or attribute you want to map the LDAP attribute into.
         """
+        _UserAttributeMapperState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            always_read_value_from_ldap=always_read_value_from_ldap,
+            attribute_default_value=attribute_default_value,
+            is_binary_attribute=is_binary_attribute,
+            is_mandatory_in_ldap=is_mandatory_in_ldap,
+            ldap_attribute=ldap_attribute,
+            ldap_user_federation_id=ldap_user_federation_id,
+            name=name,
+            read_only=read_only,
+            realm_id=realm_id,
+            user_model_attribute=user_model_attribute,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             always_read_value_from_ldap: Optional[pulumi.Input[bool]] = None,
+             attribute_default_value: Optional[pulumi.Input[str]] = None,
+             is_binary_attribute: Optional[pulumi.Input[bool]] = None,
+             is_mandatory_in_ldap: Optional[pulumi.Input[bool]] = None,
+             ldap_attribute: Optional[pulumi.Input[str]] = None,
+             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             read_only: Optional[pulumi.Input[bool]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             user_model_attribute: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if always_read_value_from_ldap is not None:
-            pulumi.set(__self__, "always_read_value_from_ldap", always_read_value_from_ldap)
+            _setter("always_read_value_from_ldap", always_read_value_from_ldap)
         if attribute_default_value is not None:
-            pulumi.set(__self__, "attribute_default_value", attribute_default_value)
+            _setter("attribute_default_value", attribute_default_value)
         if is_binary_attribute is not None:
-            pulumi.set(__self__, "is_binary_attribute", is_binary_attribute)
+            _setter("is_binary_attribute", is_binary_attribute)
         if is_mandatory_in_ldap is not None:
-            pulumi.set(__self__, "is_mandatory_in_ldap", is_mandatory_in_ldap)
+            _setter("is_mandatory_in_ldap", is_mandatory_in_ldap)
         if ldap_attribute is not None:
-            pulumi.set(__self__, "ldap_attribute", ldap_attribute)
+            _setter("ldap_attribute", ldap_attribute)
         if ldap_user_federation_id is not None:
-            pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
+            _setter("ldap_user_federation_id", ldap_user_federation_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if read_only is not None:
-            pulumi.set(__self__, "read_only", read_only)
+            _setter("read_only", read_only)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if user_model_attribute is not None:
-            pulumi.set(__self__, "user_model_attribute", user_model_attribute)
+            _setter("user_model_attribute", user_model_attribute)
 
     @property
     @pulumi.getter(name="alwaysReadValueFromLdap")
@@ -476,6 +530,10 @@ class UserAttributeMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            UserAttributeMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

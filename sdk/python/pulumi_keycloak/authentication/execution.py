@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['ExecutionArgs', 'Execution']
@@ -25,11 +25,26 @@ class ExecutionArgs:
         :param pulumi.Input[str] realm_id: The realm the authentication execution exists in.
         :param pulumi.Input[str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
         """
-        pulumi.set(__self__, "authenticator", authenticator)
-        pulumi.set(__self__, "parent_flow_alias", parent_flow_alias)
-        pulumi.set(__self__, "realm_id", realm_id)
+        ExecutionArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            authenticator=authenticator,
+            parent_flow_alias=parent_flow_alias,
+            realm_id=realm_id,
+            requirement=requirement,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             authenticator: pulumi.Input[str],
+             parent_flow_alias: pulumi.Input[str],
+             realm_id: pulumi.Input[str],
+             requirement: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("authenticator", authenticator)
+        _setter("parent_flow_alias", parent_flow_alias)
+        _setter("realm_id", realm_id)
         if requirement is not None:
-            pulumi.set(__self__, "requirement", requirement)
+            _setter("requirement", requirement)
 
     @property
     @pulumi.getter
@@ -94,14 +109,29 @@ class _ExecutionState:
         :param pulumi.Input[str] realm_id: The realm the authentication execution exists in.
         :param pulumi.Input[str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
         """
+        _ExecutionState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            authenticator=authenticator,
+            parent_flow_alias=parent_flow_alias,
+            realm_id=realm_id,
+            requirement=requirement,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             authenticator: Optional[pulumi.Input[str]] = None,
+             parent_flow_alias: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             requirement: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if authenticator is not None:
-            pulumi.set(__self__, "authenticator", authenticator)
+            _setter("authenticator", authenticator)
         if parent_flow_alias is not None:
-            pulumi.set(__self__, "parent_flow_alias", parent_flow_alias)
+            _setter("parent_flow_alias", parent_flow_alias)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if requirement is not None:
-            pulumi.set(__self__, "requirement", requirement)
+            _setter("requirement", requirement)
 
     @property
     @pulumi.getter
@@ -271,6 +301,10 @@ class Execution(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ExecutionArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

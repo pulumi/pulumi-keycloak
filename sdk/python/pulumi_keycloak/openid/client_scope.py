@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['ClientScopeArgs', 'ClientScope']
@@ -29,17 +29,36 @@ class ClientScopeArgs:
         :param pulumi.Input[bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
         :param pulumi.Input[str] name: The display name of this client scope in the GUI.
         """
-        pulumi.set(__self__, "realm_id", realm_id)
+        ClientScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            realm_id=realm_id,
+            consent_screen_text=consent_screen_text,
+            description=description,
+            gui_order=gui_order,
+            include_in_token_scope=include_in_token_scope,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             realm_id: pulumi.Input[str],
+             consent_screen_text: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             gui_order: Optional[pulumi.Input[int]] = None,
+             include_in_token_scope: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("realm_id", realm_id)
         if consent_screen_text is not None:
-            pulumi.set(__self__, "consent_screen_text", consent_screen_text)
+            _setter("consent_screen_text", consent_screen_text)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if gui_order is not None:
-            pulumi.set(__self__, "gui_order", gui_order)
+            _setter("gui_order", gui_order)
         if include_in_token_scope is not None:
-            pulumi.set(__self__, "include_in_token_scope", include_in_token_scope)
+            _setter("include_in_token_scope", include_in_token_scope)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="realmId")
@@ -132,18 +151,37 @@ class _ClientScopeState:
         :param pulumi.Input[str] name: The display name of this client scope in the GUI.
         :param pulumi.Input[str] realm_id: The realm this client scope belongs to.
         """
+        _ClientScopeState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            consent_screen_text=consent_screen_text,
+            description=description,
+            gui_order=gui_order,
+            include_in_token_scope=include_in_token_scope,
+            name=name,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             consent_screen_text: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             gui_order: Optional[pulumi.Input[int]] = None,
+             include_in_token_scope: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if consent_screen_text is not None:
-            pulumi.set(__self__, "consent_screen_text", consent_screen_text)
+            _setter("consent_screen_text", consent_screen_text)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if gui_order is not None:
-            pulumi.set(__self__, "gui_order", gui_order)
+            _setter("gui_order", gui_order)
         if include_in_token_scope is not None:
-            pulumi.set(__self__, "include_in_token_scope", include_in_token_scope)
+            _setter("include_in_token_scope", include_in_token_scope)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter(name="consentScreenText")
@@ -315,6 +353,10 @@ class ClientScope(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ClientScopeArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['GenericProtocolMapperArgs', 'GenericProtocolMapper']
@@ -31,16 +31,37 @@ class GenericProtocolMapperArgs:
         :param pulumi.Input[str] client_scope_id: The ID of the client scope this protocol mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         """
-        pulumi.set(__self__, "config", config)
-        pulumi.set(__self__, "protocol", protocol)
-        pulumi.set(__self__, "protocol_mapper", protocol_mapper)
-        pulumi.set(__self__, "realm_id", realm_id)
+        GenericProtocolMapperArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            config=config,
+            protocol=protocol,
+            protocol_mapper=protocol_mapper,
+            realm_id=realm_id,
+            client_id=client_id,
+            client_scope_id=client_scope_id,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             config: pulumi.Input[Mapping[str, Any]],
+             protocol: pulumi.Input[str],
+             protocol_mapper: pulumi.Input[str],
+             realm_id: pulumi.Input[str],
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_scope_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("config", config)
+        _setter("protocol", protocol)
+        _setter("protocol_mapper", protocol_mapper)
+        _setter("realm_id", realm_id)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_scope_id is not None:
-            pulumi.set(__self__, "client_scope_id", client_scope_id)
+            _setter("client_scope_id", client_scope_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter
@@ -147,20 +168,41 @@ class _GenericProtocolMapperState:
         :param pulumi.Input[str] protocol_mapper: The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
         :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
         """
+        _GenericProtocolMapperState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            client_id=client_id,
+            client_scope_id=client_scope_id,
+            config=config,
+            name=name,
+            protocol=protocol,
+            protocol_mapper=protocol_mapper,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_scope_id: Optional[pulumi.Input[str]] = None,
+             config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             protocol: Optional[pulumi.Input[str]] = None,
+             protocol_mapper: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_scope_id is not None:
-            pulumi.set(__self__, "client_scope_id", client_scope_id)
+            _setter("client_scope_id", client_scope_id)
         if config is not None:
-            pulumi.set(__self__, "config", config)
+            _setter("config", config)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if protocol is not None:
-            pulumi.set(__self__, "protocol", protocol)
+            _setter("protocol", protocol)
         if protocol_mapper is not None:
-            pulumi.set(__self__, "protocol_mapper", protocol_mapper)
+            _setter("protocol_mapper", protocol_mapper)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter(name="clientId")
@@ -372,6 +414,10 @@ class GenericProtocolMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            GenericProtocolMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['GroupMembershipsArgs', 'GroupMemberships']
@@ -23,10 +23,23 @@ class GroupMembershipsArgs:
         :param pulumi.Input[str] realm_id: The realm this group exists in.
         :param pulumi.Input[str] group_id: The ID of the group this resource should manage memberships for.
         """
-        pulumi.set(__self__, "members", members)
-        pulumi.set(__self__, "realm_id", realm_id)
+        GroupMembershipsArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            members=members,
+            realm_id=realm_id,
+            group_id=group_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             members: pulumi.Input[Sequence[pulumi.Input[str]]],
+             realm_id: pulumi.Input[str],
+             group_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("members", members)
+        _setter("realm_id", realm_id)
         if group_id is not None:
-            pulumi.set(__self__, "group_id", group_id)
+            _setter("group_id", group_id)
 
     @property
     @pulumi.getter
@@ -77,12 +90,25 @@ class _GroupMembershipsState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] members: A list of usernames that belong to this group.
         :param pulumi.Input[str] realm_id: The realm this group exists in.
         """
+        _GroupMembershipsState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            group_id=group_id,
+            members=members,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             group_id: Optional[pulumi.Input[str]] = None,
+             members: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if group_id is not None:
-            pulumi.set(__self__, "group_id", group_id)
+            _setter("group_id", group_id)
         if members is not None:
-            pulumi.set(__self__, "members", members)
+            _setter("members", members)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter(name="groupId")
@@ -232,6 +258,10 @@ class GroupMemberships(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            GroupMembershipsArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

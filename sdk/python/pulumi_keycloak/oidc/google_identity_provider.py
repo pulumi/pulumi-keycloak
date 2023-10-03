@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['GoogleIdentityProviderArgs', 'GoogleIdentityProvider']
@@ -60,47 +60,98 @@ class GoogleIdentityProviderArgs:
         :param pulumi.Input[bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[bool] use_user_ip_param: Sets the "userIp" query parameter when querying Google's User Info service. This will use the user's IP address. This is useful if Google is throttling Keycloak's access to the User Info service.
         """
-        pulumi.set(__self__, "client_id", client_id)
-        pulumi.set(__self__, "client_secret", client_secret)
-        pulumi.set(__self__, "realm", realm)
+        GoogleIdentityProviderArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            client_id=client_id,
+            client_secret=client_secret,
+            realm=realm,
+            accepts_prompt_none_forward_from_client=accepts_prompt_none_forward_from_client,
+            add_read_token_role_on_create=add_read_token_role_on_create,
+            authenticate_by_default=authenticate_by_default,
+            default_scopes=default_scopes,
+            disable_user_info=disable_user_info,
+            enabled=enabled,
+            extra_config=extra_config,
+            first_broker_login_flow_alias=first_broker_login_flow_alias,
+            gui_order=gui_order,
+            hide_on_login_page=hide_on_login_page,
+            hosted_domain=hosted_domain,
+            link_only=link_only,
+            post_broker_login_flow_alias=post_broker_login_flow_alias,
+            provider_id=provider_id,
+            request_refresh_token=request_refresh_token,
+            store_token=store_token,
+            sync_mode=sync_mode,
+            trust_email=trust_email,
+            use_user_ip_param=use_user_ip_param,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             client_id: pulumi.Input[str],
+             client_secret: pulumi.Input[str],
+             realm: pulumi.Input[str],
+             accepts_prompt_none_forward_from_client: Optional[pulumi.Input[bool]] = None,
+             add_read_token_role_on_create: Optional[pulumi.Input[bool]] = None,
+             authenticate_by_default: Optional[pulumi.Input[bool]] = None,
+             default_scopes: Optional[pulumi.Input[str]] = None,
+             disable_user_info: Optional[pulumi.Input[bool]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+             gui_order: Optional[pulumi.Input[str]] = None,
+             hide_on_login_page: Optional[pulumi.Input[bool]] = None,
+             hosted_domain: Optional[pulumi.Input[str]] = None,
+             link_only: Optional[pulumi.Input[bool]] = None,
+             post_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+             provider_id: Optional[pulumi.Input[str]] = None,
+             request_refresh_token: Optional[pulumi.Input[bool]] = None,
+             store_token: Optional[pulumi.Input[bool]] = None,
+             sync_mode: Optional[pulumi.Input[str]] = None,
+             trust_email: Optional[pulumi.Input[bool]] = None,
+             use_user_ip_param: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("client_id", client_id)
+        _setter("client_secret", client_secret)
+        _setter("realm", realm)
         if accepts_prompt_none_forward_from_client is not None:
-            pulumi.set(__self__, "accepts_prompt_none_forward_from_client", accepts_prompt_none_forward_from_client)
+            _setter("accepts_prompt_none_forward_from_client", accepts_prompt_none_forward_from_client)
         if add_read_token_role_on_create is not None:
-            pulumi.set(__self__, "add_read_token_role_on_create", add_read_token_role_on_create)
+            _setter("add_read_token_role_on_create", add_read_token_role_on_create)
         if authenticate_by_default is not None:
-            pulumi.set(__self__, "authenticate_by_default", authenticate_by_default)
+            _setter("authenticate_by_default", authenticate_by_default)
         if default_scopes is not None:
-            pulumi.set(__self__, "default_scopes", default_scopes)
+            _setter("default_scopes", default_scopes)
         if disable_user_info is not None:
-            pulumi.set(__self__, "disable_user_info", disable_user_info)
+            _setter("disable_user_info", disable_user_info)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if extra_config is not None:
-            pulumi.set(__self__, "extra_config", extra_config)
+            _setter("extra_config", extra_config)
         if first_broker_login_flow_alias is not None:
-            pulumi.set(__self__, "first_broker_login_flow_alias", first_broker_login_flow_alias)
+            _setter("first_broker_login_flow_alias", first_broker_login_flow_alias)
         if gui_order is not None:
-            pulumi.set(__self__, "gui_order", gui_order)
+            _setter("gui_order", gui_order)
         if hide_on_login_page is not None:
-            pulumi.set(__self__, "hide_on_login_page", hide_on_login_page)
+            _setter("hide_on_login_page", hide_on_login_page)
         if hosted_domain is not None:
-            pulumi.set(__self__, "hosted_domain", hosted_domain)
+            _setter("hosted_domain", hosted_domain)
         if link_only is not None:
-            pulumi.set(__self__, "link_only", link_only)
+            _setter("link_only", link_only)
         if post_broker_login_flow_alias is not None:
-            pulumi.set(__self__, "post_broker_login_flow_alias", post_broker_login_flow_alias)
+            _setter("post_broker_login_flow_alias", post_broker_login_flow_alias)
         if provider_id is not None:
-            pulumi.set(__self__, "provider_id", provider_id)
+            _setter("provider_id", provider_id)
         if request_refresh_token is not None:
-            pulumi.set(__self__, "request_refresh_token", request_refresh_token)
+            _setter("request_refresh_token", request_refresh_token)
         if store_token is not None:
-            pulumi.set(__self__, "store_token", store_token)
+            _setter("store_token", store_token)
         if sync_mode is not None:
-            pulumi.set(__self__, "sync_mode", sync_mode)
+            _setter("sync_mode", sync_mode)
         if trust_email is not None:
-            pulumi.set(__self__, "trust_email", trust_email)
+            _setter("trust_email", trust_email)
         if use_user_ip_param is not None:
-            pulumi.set(__self__, "use_user_ip_param", use_user_ip_param)
+            _setter("use_user_ip_param", use_user_ip_param)
 
     @property
     @pulumi.getter(name="clientId")
@@ -419,56 +470,113 @@ class _GoogleIdentityProviderState:
         :param pulumi.Input[bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[bool] use_user_ip_param: Sets the "userIp" query parameter when querying Google's User Info service. This will use the user's IP address. This is useful if Google is throttling Keycloak's access to the User Info service.
         """
+        _GoogleIdentityProviderState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            accepts_prompt_none_forward_from_client=accepts_prompt_none_forward_from_client,
+            add_read_token_role_on_create=add_read_token_role_on_create,
+            alias=alias,
+            authenticate_by_default=authenticate_by_default,
+            client_id=client_id,
+            client_secret=client_secret,
+            default_scopes=default_scopes,
+            disable_user_info=disable_user_info,
+            display_name=display_name,
+            enabled=enabled,
+            extra_config=extra_config,
+            first_broker_login_flow_alias=first_broker_login_flow_alias,
+            gui_order=gui_order,
+            hide_on_login_page=hide_on_login_page,
+            hosted_domain=hosted_domain,
+            internal_id=internal_id,
+            link_only=link_only,
+            post_broker_login_flow_alias=post_broker_login_flow_alias,
+            provider_id=provider_id,
+            realm=realm,
+            request_refresh_token=request_refresh_token,
+            store_token=store_token,
+            sync_mode=sync_mode,
+            trust_email=trust_email,
+            use_user_ip_param=use_user_ip_param,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             accepts_prompt_none_forward_from_client: Optional[pulumi.Input[bool]] = None,
+             add_read_token_role_on_create: Optional[pulumi.Input[bool]] = None,
+             alias: Optional[pulumi.Input[str]] = None,
+             authenticate_by_default: Optional[pulumi.Input[bool]] = None,
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_secret: Optional[pulumi.Input[str]] = None,
+             default_scopes: Optional[pulumi.Input[str]] = None,
+             disable_user_info: Optional[pulumi.Input[bool]] = None,
+             display_name: Optional[pulumi.Input[str]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+             gui_order: Optional[pulumi.Input[str]] = None,
+             hide_on_login_page: Optional[pulumi.Input[bool]] = None,
+             hosted_domain: Optional[pulumi.Input[str]] = None,
+             internal_id: Optional[pulumi.Input[str]] = None,
+             link_only: Optional[pulumi.Input[bool]] = None,
+             post_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+             provider_id: Optional[pulumi.Input[str]] = None,
+             realm: Optional[pulumi.Input[str]] = None,
+             request_refresh_token: Optional[pulumi.Input[bool]] = None,
+             store_token: Optional[pulumi.Input[bool]] = None,
+             sync_mode: Optional[pulumi.Input[str]] = None,
+             trust_email: Optional[pulumi.Input[bool]] = None,
+             use_user_ip_param: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if accepts_prompt_none_forward_from_client is not None:
-            pulumi.set(__self__, "accepts_prompt_none_forward_from_client", accepts_prompt_none_forward_from_client)
+            _setter("accepts_prompt_none_forward_from_client", accepts_prompt_none_forward_from_client)
         if add_read_token_role_on_create is not None:
-            pulumi.set(__self__, "add_read_token_role_on_create", add_read_token_role_on_create)
+            _setter("add_read_token_role_on_create", add_read_token_role_on_create)
         if alias is not None:
-            pulumi.set(__self__, "alias", alias)
+            _setter("alias", alias)
         if authenticate_by_default is not None:
-            pulumi.set(__self__, "authenticate_by_default", authenticate_by_default)
+            _setter("authenticate_by_default", authenticate_by_default)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_secret is not None:
-            pulumi.set(__self__, "client_secret", client_secret)
+            _setter("client_secret", client_secret)
         if default_scopes is not None:
-            pulumi.set(__self__, "default_scopes", default_scopes)
+            _setter("default_scopes", default_scopes)
         if disable_user_info is not None:
-            pulumi.set(__self__, "disable_user_info", disable_user_info)
+            _setter("disable_user_info", disable_user_info)
         if display_name is not None:
-            pulumi.set(__self__, "display_name", display_name)
+            _setter("display_name", display_name)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if extra_config is not None:
-            pulumi.set(__self__, "extra_config", extra_config)
+            _setter("extra_config", extra_config)
         if first_broker_login_flow_alias is not None:
-            pulumi.set(__self__, "first_broker_login_flow_alias", first_broker_login_flow_alias)
+            _setter("first_broker_login_flow_alias", first_broker_login_flow_alias)
         if gui_order is not None:
-            pulumi.set(__self__, "gui_order", gui_order)
+            _setter("gui_order", gui_order)
         if hide_on_login_page is not None:
-            pulumi.set(__self__, "hide_on_login_page", hide_on_login_page)
+            _setter("hide_on_login_page", hide_on_login_page)
         if hosted_domain is not None:
-            pulumi.set(__self__, "hosted_domain", hosted_domain)
+            _setter("hosted_domain", hosted_domain)
         if internal_id is not None:
-            pulumi.set(__self__, "internal_id", internal_id)
+            _setter("internal_id", internal_id)
         if link_only is not None:
-            pulumi.set(__self__, "link_only", link_only)
+            _setter("link_only", link_only)
         if post_broker_login_flow_alias is not None:
-            pulumi.set(__self__, "post_broker_login_flow_alias", post_broker_login_flow_alias)
+            _setter("post_broker_login_flow_alias", post_broker_login_flow_alias)
         if provider_id is not None:
-            pulumi.set(__self__, "provider_id", provider_id)
+            _setter("provider_id", provider_id)
         if realm is not None:
-            pulumi.set(__self__, "realm", realm)
+            _setter("realm", realm)
         if request_refresh_token is not None:
-            pulumi.set(__self__, "request_refresh_token", request_refresh_token)
+            _setter("request_refresh_token", request_refresh_token)
         if store_token is not None:
-            pulumi.set(__self__, "store_token", store_token)
+            _setter("store_token", store_token)
         if sync_mode is not None:
-            pulumi.set(__self__, "sync_mode", sync_mode)
+            _setter("sync_mode", sync_mode)
         if trust_email is not None:
-            pulumi.set(__self__, "trust_email", trust_email)
+            _setter("trust_email", trust_email)
         if use_user_ip_param is not None:
-            pulumi.set(__self__, "use_user_ip_param", use_user_ip_param)
+            _setter("use_user_ip_param", use_user_ip_param)
 
     @property
     @pulumi.getter(name="acceptsPromptNoneForwardFromClient")
@@ -896,6 +1004,10 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            GoogleIdentityProviderArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

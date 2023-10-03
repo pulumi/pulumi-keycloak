@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['AttributeImporterIdentityProviderMapperArgs', 'AttributeImporterIdentityProviderMapper']
@@ -33,19 +33,42 @@ class AttributeImporterIdentityProviderMapperArgs:
         :param pulumi.Input[Mapping[str, Any]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         :param pulumi.Input[str] name: The name of the mapper.
         """
-        pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
-        pulumi.set(__self__, "realm", realm)
-        pulumi.set(__self__, "user_attribute", user_attribute)
+        AttributeImporterIdentityProviderMapperArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            identity_provider_alias=identity_provider_alias,
+            realm=realm,
+            user_attribute=user_attribute,
+            attribute_friendly_name=attribute_friendly_name,
+            attribute_name=attribute_name,
+            claim_name=claim_name,
+            extra_config=extra_config,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             identity_provider_alias: pulumi.Input[str],
+             realm: pulumi.Input[str],
+             user_attribute: pulumi.Input[str],
+             attribute_friendly_name: Optional[pulumi.Input[str]] = None,
+             attribute_name: Optional[pulumi.Input[str]] = None,
+             claim_name: Optional[pulumi.Input[str]] = None,
+             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("identity_provider_alias", identity_provider_alias)
+        _setter("realm", realm)
+        _setter("user_attribute", user_attribute)
         if attribute_friendly_name is not None:
-            pulumi.set(__self__, "attribute_friendly_name", attribute_friendly_name)
+            _setter("attribute_friendly_name", attribute_friendly_name)
         if attribute_name is not None:
-            pulumi.set(__self__, "attribute_name", attribute_name)
+            _setter("attribute_name", attribute_name)
         if claim_name is not None:
-            pulumi.set(__self__, "claim_name", claim_name)
+            _setter("claim_name", claim_name)
         if extra_config is not None:
-            pulumi.set(__self__, "extra_config", extra_config)
+            _setter("extra_config", extra_config)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="identityProviderAlias")
@@ -166,22 +189,45 @@ class _AttributeImporterIdentityProviderMapperState:
         :param pulumi.Input[str] realm: The name of the realm.
         :param pulumi.Input[str] user_attribute: The user attribute or property name to store the mapped result.
         """
+        _AttributeImporterIdentityProviderMapperState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            attribute_friendly_name=attribute_friendly_name,
+            attribute_name=attribute_name,
+            claim_name=claim_name,
+            extra_config=extra_config,
+            identity_provider_alias=identity_provider_alias,
+            name=name,
+            realm=realm,
+            user_attribute=user_attribute,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             attribute_friendly_name: Optional[pulumi.Input[str]] = None,
+             attribute_name: Optional[pulumi.Input[str]] = None,
+             claim_name: Optional[pulumi.Input[str]] = None,
+             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             identity_provider_alias: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm: Optional[pulumi.Input[str]] = None,
+             user_attribute: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if attribute_friendly_name is not None:
-            pulumi.set(__self__, "attribute_friendly_name", attribute_friendly_name)
+            _setter("attribute_friendly_name", attribute_friendly_name)
         if attribute_name is not None:
-            pulumi.set(__self__, "attribute_name", attribute_name)
+            _setter("attribute_name", attribute_name)
         if claim_name is not None:
-            pulumi.set(__self__, "claim_name", claim_name)
+            _setter("claim_name", claim_name)
         if extra_config is not None:
-            pulumi.set(__self__, "extra_config", extra_config)
+            _setter("extra_config", extra_config)
         if identity_provider_alias is not None:
-            pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
+            _setter("identity_provider_alias", identity_provider_alias)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm is not None:
-            pulumi.set(__self__, "realm", realm)
+            _setter("realm", realm)
         if user_attribute is not None:
-            pulumi.set(__self__, "user_attribute", user_attribute)
+            _setter("user_attribute", user_attribute)
 
     @property
     @pulumi.getter(name="attributeFriendlyName")
@@ -411,6 +457,10 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            AttributeImporterIdentityProviderMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

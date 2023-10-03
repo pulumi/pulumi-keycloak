@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['CustomUserFederationArgs', 'CustomUserFederation']
@@ -37,24 +37,51 @@ class CustomUserFederationArgs:
         :param pulumi.Input[str] parent_id: Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
         :param pulumi.Input[int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
         """
-        pulumi.set(__self__, "provider_id", provider_id)
-        pulumi.set(__self__, "realm_id", realm_id)
+        CustomUserFederationArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            provider_id=provider_id,
+            realm_id=realm_id,
+            cache_policy=cache_policy,
+            changed_sync_period=changed_sync_period,
+            config=config,
+            enabled=enabled,
+            full_sync_period=full_sync_period,
+            name=name,
+            parent_id=parent_id,
+            priority=priority,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             provider_id: pulumi.Input[str],
+             realm_id: pulumi.Input[str],
+             cache_policy: Optional[pulumi.Input[str]] = None,
+             changed_sync_period: Optional[pulumi.Input[int]] = None,
+             config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             full_sync_period: Optional[pulumi.Input[int]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             parent_id: Optional[pulumi.Input[str]] = None,
+             priority: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("provider_id", provider_id)
+        _setter("realm_id", realm_id)
         if cache_policy is not None:
-            pulumi.set(__self__, "cache_policy", cache_policy)
+            _setter("cache_policy", cache_policy)
         if changed_sync_period is not None:
-            pulumi.set(__self__, "changed_sync_period", changed_sync_period)
+            _setter("changed_sync_period", changed_sync_period)
         if config is not None:
-            pulumi.set(__self__, "config", config)
+            _setter("config", config)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if full_sync_period is not None:
-            pulumi.set(__self__, "full_sync_period", full_sync_period)
+            _setter("full_sync_period", full_sync_period)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if parent_id is not None:
-            pulumi.set(__self__, "parent_id", parent_id)
+            _setter("parent_id", parent_id)
         if priority is not None:
-            pulumi.set(__self__, "priority", priority)
+            _setter("priority", priority)
 
     @property
     @pulumi.getter(name="providerId")
@@ -203,26 +230,53 @@ class _CustomUserFederationState:
         :param pulumi.Input[str] provider_id: The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
         :param pulumi.Input[str] realm_id: The realm that this provider will provide user federation for.
         """
+        _CustomUserFederationState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cache_policy=cache_policy,
+            changed_sync_period=changed_sync_period,
+            config=config,
+            enabled=enabled,
+            full_sync_period=full_sync_period,
+            name=name,
+            parent_id=parent_id,
+            priority=priority,
+            provider_id=provider_id,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cache_policy: Optional[pulumi.Input[str]] = None,
+             changed_sync_period: Optional[pulumi.Input[int]] = None,
+             config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             full_sync_period: Optional[pulumi.Input[int]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             parent_id: Optional[pulumi.Input[str]] = None,
+             priority: Optional[pulumi.Input[int]] = None,
+             provider_id: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if cache_policy is not None:
-            pulumi.set(__self__, "cache_policy", cache_policy)
+            _setter("cache_policy", cache_policy)
         if changed_sync_period is not None:
-            pulumi.set(__self__, "changed_sync_period", changed_sync_period)
+            _setter("changed_sync_period", changed_sync_period)
         if config is not None:
-            pulumi.set(__self__, "config", config)
+            _setter("config", config)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if full_sync_period is not None:
-            pulumi.set(__self__, "full_sync_period", full_sync_period)
+            _setter("full_sync_period", full_sync_period)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if parent_id is not None:
-            pulumi.set(__self__, "parent_id", parent_id)
+            _setter("parent_id", parent_id)
         if priority is not None:
-            pulumi.set(__self__, "priority", priority)
+            _setter("priority", priority)
         if provider_id is not None:
-            pulumi.set(__self__, "provider_id", provider_id)
+            _setter("provider_id", provider_id)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter(name="cachePolicy")
@@ -448,6 +502,10 @@ class CustomUserFederation(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            CustomUserFederationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

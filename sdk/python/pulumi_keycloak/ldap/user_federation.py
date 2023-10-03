@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -83,63 +83,134 @@ class UserFederationArgs:
         :param pulumi.Input[bool] validate_password_policy: When `true`, Keycloak will validate passwords using the realm policy before updating it.
         :param pulumi.Input[str] vendor: Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
         """
-        pulumi.set(__self__, "connection_url", connection_url)
-        pulumi.set(__self__, "rdn_ldap_attribute", rdn_ldap_attribute)
-        pulumi.set(__self__, "realm_id", realm_id)
-        pulumi.set(__self__, "user_object_classes", user_object_classes)
-        pulumi.set(__self__, "username_ldap_attribute", username_ldap_attribute)
-        pulumi.set(__self__, "users_dn", users_dn)
-        pulumi.set(__self__, "uuid_ldap_attribute", uuid_ldap_attribute)
+        UserFederationArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            connection_url=connection_url,
+            rdn_ldap_attribute=rdn_ldap_attribute,
+            realm_id=realm_id,
+            user_object_classes=user_object_classes,
+            username_ldap_attribute=username_ldap_attribute,
+            users_dn=users_dn,
+            uuid_ldap_attribute=uuid_ldap_attribute,
+            batch_size_for_sync=batch_size_for_sync,
+            bind_credential=bind_credential,
+            bind_dn=bind_dn,
+            cache=cache,
+            changed_sync_period=changed_sync_period,
+            connection_timeout=connection_timeout,
+            custom_user_search_filter=custom_user_search_filter,
+            delete_default_mappers=delete_default_mappers,
+            edit_mode=edit_mode,
+            enabled=enabled,
+            full_sync_period=full_sync_period,
+            import_enabled=import_enabled,
+            kerberos=kerberos,
+            name=name,
+            pagination=pagination,
+            priority=priority,
+            read_timeout=read_timeout,
+            search_scope=search_scope,
+            start_tls=start_tls,
+            sync_registrations=sync_registrations,
+            trust_email=trust_email,
+            use_password_modify_extended_op=use_password_modify_extended_op,
+            use_truststore_spi=use_truststore_spi,
+            validate_password_policy=validate_password_policy,
+            vendor=vendor,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             connection_url: pulumi.Input[str],
+             rdn_ldap_attribute: pulumi.Input[str],
+             realm_id: pulumi.Input[str],
+             user_object_classes: pulumi.Input[Sequence[pulumi.Input[str]]],
+             username_ldap_attribute: pulumi.Input[str],
+             users_dn: pulumi.Input[str],
+             uuid_ldap_attribute: pulumi.Input[str],
+             batch_size_for_sync: Optional[pulumi.Input[int]] = None,
+             bind_credential: Optional[pulumi.Input[str]] = None,
+             bind_dn: Optional[pulumi.Input[str]] = None,
+             cache: Optional[pulumi.Input['UserFederationCacheArgs']] = None,
+             changed_sync_period: Optional[pulumi.Input[int]] = None,
+             connection_timeout: Optional[pulumi.Input[str]] = None,
+             custom_user_search_filter: Optional[pulumi.Input[str]] = None,
+             delete_default_mappers: Optional[pulumi.Input[bool]] = None,
+             edit_mode: Optional[pulumi.Input[str]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             full_sync_period: Optional[pulumi.Input[int]] = None,
+             import_enabled: Optional[pulumi.Input[bool]] = None,
+             kerberos: Optional[pulumi.Input['UserFederationKerberosArgs']] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             pagination: Optional[pulumi.Input[bool]] = None,
+             priority: Optional[pulumi.Input[int]] = None,
+             read_timeout: Optional[pulumi.Input[str]] = None,
+             search_scope: Optional[pulumi.Input[str]] = None,
+             start_tls: Optional[pulumi.Input[bool]] = None,
+             sync_registrations: Optional[pulumi.Input[bool]] = None,
+             trust_email: Optional[pulumi.Input[bool]] = None,
+             use_password_modify_extended_op: Optional[pulumi.Input[bool]] = None,
+             use_truststore_spi: Optional[pulumi.Input[str]] = None,
+             validate_password_policy: Optional[pulumi.Input[bool]] = None,
+             vendor: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("connection_url", connection_url)
+        _setter("rdn_ldap_attribute", rdn_ldap_attribute)
+        _setter("realm_id", realm_id)
+        _setter("user_object_classes", user_object_classes)
+        _setter("username_ldap_attribute", username_ldap_attribute)
+        _setter("users_dn", users_dn)
+        _setter("uuid_ldap_attribute", uuid_ldap_attribute)
         if batch_size_for_sync is not None:
-            pulumi.set(__self__, "batch_size_for_sync", batch_size_for_sync)
+            _setter("batch_size_for_sync", batch_size_for_sync)
         if bind_credential is not None:
-            pulumi.set(__self__, "bind_credential", bind_credential)
+            _setter("bind_credential", bind_credential)
         if bind_dn is not None:
-            pulumi.set(__self__, "bind_dn", bind_dn)
+            _setter("bind_dn", bind_dn)
         if cache is not None:
-            pulumi.set(__self__, "cache", cache)
+            _setter("cache", cache)
         if changed_sync_period is not None:
-            pulumi.set(__self__, "changed_sync_period", changed_sync_period)
+            _setter("changed_sync_period", changed_sync_period)
         if connection_timeout is not None:
-            pulumi.set(__self__, "connection_timeout", connection_timeout)
+            _setter("connection_timeout", connection_timeout)
         if custom_user_search_filter is not None:
-            pulumi.set(__self__, "custom_user_search_filter", custom_user_search_filter)
+            _setter("custom_user_search_filter", custom_user_search_filter)
         if delete_default_mappers is not None:
-            pulumi.set(__self__, "delete_default_mappers", delete_default_mappers)
+            _setter("delete_default_mappers", delete_default_mappers)
         if edit_mode is not None:
-            pulumi.set(__self__, "edit_mode", edit_mode)
+            _setter("edit_mode", edit_mode)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if full_sync_period is not None:
-            pulumi.set(__self__, "full_sync_period", full_sync_period)
+            _setter("full_sync_period", full_sync_period)
         if import_enabled is not None:
-            pulumi.set(__self__, "import_enabled", import_enabled)
+            _setter("import_enabled", import_enabled)
         if kerberos is not None:
-            pulumi.set(__self__, "kerberos", kerberos)
+            _setter("kerberos", kerberos)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if pagination is not None:
-            pulumi.set(__self__, "pagination", pagination)
+            _setter("pagination", pagination)
         if priority is not None:
-            pulumi.set(__self__, "priority", priority)
+            _setter("priority", priority)
         if read_timeout is not None:
-            pulumi.set(__self__, "read_timeout", read_timeout)
+            _setter("read_timeout", read_timeout)
         if search_scope is not None:
-            pulumi.set(__self__, "search_scope", search_scope)
+            _setter("search_scope", search_scope)
         if start_tls is not None:
-            pulumi.set(__self__, "start_tls", start_tls)
+            _setter("start_tls", start_tls)
         if sync_registrations is not None:
-            pulumi.set(__self__, "sync_registrations", sync_registrations)
+            _setter("sync_registrations", sync_registrations)
         if trust_email is not None:
-            pulumi.set(__self__, "trust_email", trust_email)
+            _setter("trust_email", trust_email)
         if use_password_modify_extended_op is not None:
-            pulumi.set(__self__, "use_password_modify_extended_op", use_password_modify_extended_op)
+            _setter("use_password_modify_extended_op", use_password_modify_extended_op)
         if use_truststore_spi is not None:
-            pulumi.set(__self__, "use_truststore_spi", use_truststore_spi)
+            _setter("use_truststore_spi", use_truststore_spi)
         if validate_password_policy is not None:
-            pulumi.set(__self__, "validate_password_policy", validate_password_policy)
+            _setter("validate_password_policy", validate_password_policy)
         if vendor is not None:
-            pulumi.set(__self__, "vendor", vendor)
+            _setter("vendor", vendor)
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -596,70 +667,141 @@ class _UserFederationState:
         :param pulumi.Input[bool] validate_password_policy: When `true`, Keycloak will validate passwords using the realm policy before updating it.
         :param pulumi.Input[str] vendor: Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
         """
+        _UserFederationState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            batch_size_for_sync=batch_size_for_sync,
+            bind_credential=bind_credential,
+            bind_dn=bind_dn,
+            cache=cache,
+            changed_sync_period=changed_sync_period,
+            connection_timeout=connection_timeout,
+            connection_url=connection_url,
+            custom_user_search_filter=custom_user_search_filter,
+            delete_default_mappers=delete_default_mappers,
+            edit_mode=edit_mode,
+            enabled=enabled,
+            full_sync_period=full_sync_period,
+            import_enabled=import_enabled,
+            kerberos=kerberos,
+            name=name,
+            pagination=pagination,
+            priority=priority,
+            rdn_ldap_attribute=rdn_ldap_attribute,
+            read_timeout=read_timeout,
+            realm_id=realm_id,
+            search_scope=search_scope,
+            start_tls=start_tls,
+            sync_registrations=sync_registrations,
+            trust_email=trust_email,
+            use_password_modify_extended_op=use_password_modify_extended_op,
+            use_truststore_spi=use_truststore_spi,
+            user_object_classes=user_object_classes,
+            username_ldap_attribute=username_ldap_attribute,
+            users_dn=users_dn,
+            uuid_ldap_attribute=uuid_ldap_attribute,
+            validate_password_policy=validate_password_policy,
+            vendor=vendor,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             batch_size_for_sync: Optional[pulumi.Input[int]] = None,
+             bind_credential: Optional[pulumi.Input[str]] = None,
+             bind_dn: Optional[pulumi.Input[str]] = None,
+             cache: Optional[pulumi.Input['UserFederationCacheArgs']] = None,
+             changed_sync_period: Optional[pulumi.Input[int]] = None,
+             connection_timeout: Optional[pulumi.Input[str]] = None,
+             connection_url: Optional[pulumi.Input[str]] = None,
+             custom_user_search_filter: Optional[pulumi.Input[str]] = None,
+             delete_default_mappers: Optional[pulumi.Input[bool]] = None,
+             edit_mode: Optional[pulumi.Input[str]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             full_sync_period: Optional[pulumi.Input[int]] = None,
+             import_enabled: Optional[pulumi.Input[bool]] = None,
+             kerberos: Optional[pulumi.Input['UserFederationKerberosArgs']] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             pagination: Optional[pulumi.Input[bool]] = None,
+             priority: Optional[pulumi.Input[int]] = None,
+             rdn_ldap_attribute: Optional[pulumi.Input[str]] = None,
+             read_timeout: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             search_scope: Optional[pulumi.Input[str]] = None,
+             start_tls: Optional[pulumi.Input[bool]] = None,
+             sync_registrations: Optional[pulumi.Input[bool]] = None,
+             trust_email: Optional[pulumi.Input[bool]] = None,
+             use_password_modify_extended_op: Optional[pulumi.Input[bool]] = None,
+             use_truststore_spi: Optional[pulumi.Input[str]] = None,
+             user_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             username_ldap_attribute: Optional[pulumi.Input[str]] = None,
+             users_dn: Optional[pulumi.Input[str]] = None,
+             uuid_ldap_attribute: Optional[pulumi.Input[str]] = None,
+             validate_password_policy: Optional[pulumi.Input[bool]] = None,
+             vendor: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if batch_size_for_sync is not None:
-            pulumi.set(__self__, "batch_size_for_sync", batch_size_for_sync)
+            _setter("batch_size_for_sync", batch_size_for_sync)
         if bind_credential is not None:
-            pulumi.set(__self__, "bind_credential", bind_credential)
+            _setter("bind_credential", bind_credential)
         if bind_dn is not None:
-            pulumi.set(__self__, "bind_dn", bind_dn)
+            _setter("bind_dn", bind_dn)
         if cache is not None:
-            pulumi.set(__self__, "cache", cache)
+            _setter("cache", cache)
         if changed_sync_period is not None:
-            pulumi.set(__self__, "changed_sync_period", changed_sync_period)
+            _setter("changed_sync_period", changed_sync_period)
         if connection_timeout is not None:
-            pulumi.set(__self__, "connection_timeout", connection_timeout)
+            _setter("connection_timeout", connection_timeout)
         if connection_url is not None:
-            pulumi.set(__self__, "connection_url", connection_url)
+            _setter("connection_url", connection_url)
         if custom_user_search_filter is not None:
-            pulumi.set(__self__, "custom_user_search_filter", custom_user_search_filter)
+            _setter("custom_user_search_filter", custom_user_search_filter)
         if delete_default_mappers is not None:
-            pulumi.set(__self__, "delete_default_mappers", delete_default_mappers)
+            _setter("delete_default_mappers", delete_default_mappers)
         if edit_mode is not None:
-            pulumi.set(__self__, "edit_mode", edit_mode)
+            _setter("edit_mode", edit_mode)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if full_sync_period is not None:
-            pulumi.set(__self__, "full_sync_period", full_sync_period)
+            _setter("full_sync_period", full_sync_period)
         if import_enabled is not None:
-            pulumi.set(__self__, "import_enabled", import_enabled)
+            _setter("import_enabled", import_enabled)
         if kerberos is not None:
-            pulumi.set(__self__, "kerberos", kerberos)
+            _setter("kerberos", kerberos)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if pagination is not None:
-            pulumi.set(__self__, "pagination", pagination)
+            _setter("pagination", pagination)
         if priority is not None:
-            pulumi.set(__self__, "priority", priority)
+            _setter("priority", priority)
         if rdn_ldap_attribute is not None:
-            pulumi.set(__self__, "rdn_ldap_attribute", rdn_ldap_attribute)
+            _setter("rdn_ldap_attribute", rdn_ldap_attribute)
         if read_timeout is not None:
-            pulumi.set(__self__, "read_timeout", read_timeout)
+            _setter("read_timeout", read_timeout)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if search_scope is not None:
-            pulumi.set(__self__, "search_scope", search_scope)
+            _setter("search_scope", search_scope)
         if start_tls is not None:
-            pulumi.set(__self__, "start_tls", start_tls)
+            _setter("start_tls", start_tls)
         if sync_registrations is not None:
-            pulumi.set(__self__, "sync_registrations", sync_registrations)
+            _setter("sync_registrations", sync_registrations)
         if trust_email is not None:
-            pulumi.set(__self__, "trust_email", trust_email)
+            _setter("trust_email", trust_email)
         if use_password_modify_extended_op is not None:
-            pulumi.set(__self__, "use_password_modify_extended_op", use_password_modify_extended_op)
+            _setter("use_password_modify_extended_op", use_password_modify_extended_op)
         if use_truststore_spi is not None:
-            pulumi.set(__self__, "use_truststore_spi", use_truststore_spi)
+            _setter("use_truststore_spi", use_truststore_spi)
         if user_object_classes is not None:
-            pulumi.set(__self__, "user_object_classes", user_object_classes)
+            _setter("user_object_classes", user_object_classes)
         if username_ldap_attribute is not None:
-            pulumi.set(__self__, "username_ldap_attribute", username_ldap_attribute)
+            _setter("username_ldap_attribute", username_ldap_attribute)
         if users_dn is not None:
-            pulumi.set(__self__, "users_dn", users_dn)
+            _setter("users_dn", users_dn)
         if uuid_ldap_attribute is not None:
-            pulumi.set(__self__, "uuid_ldap_attribute", uuid_ldap_attribute)
+            _setter("uuid_ldap_attribute", uuid_ldap_attribute)
         if validate_password_policy is not None:
-            pulumi.set(__self__, "validate_password_policy", validate_password_policy)
+            _setter("validate_password_policy", validate_password_policy)
         if vendor is not None:
-            pulumi.set(__self__, "vendor", vendor)
+            _setter("vendor", vendor)
 
     @property
     @pulumi.getter(name="batchSizeForSync")
@@ -1231,6 +1373,10 @@ class UserFederation(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            UserFederationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -1280,6 +1426,11 @@ class UserFederation(pulumi.CustomResource):
             __props__.__dict__["batch_size_for_sync"] = batch_size_for_sync
             __props__.__dict__["bind_credential"] = None if bind_credential is None else pulumi.Output.secret(bind_credential)
             __props__.__dict__["bind_dn"] = bind_dn
+            if cache is not None and not isinstance(cache, UserFederationCacheArgs):
+                cache = cache or {}
+                def _setter(key, value):
+                    cache[key] = value
+                UserFederationCacheArgs._configure(_setter, **cache)
             __props__.__dict__["cache"] = cache
             __props__.__dict__["changed_sync_period"] = changed_sync_period
             __props__.__dict__["connection_timeout"] = connection_timeout
@@ -1292,6 +1443,11 @@ class UserFederation(pulumi.CustomResource):
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["full_sync_period"] = full_sync_period
             __props__.__dict__["import_enabled"] = import_enabled
+            if kerberos is not None and not isinstance(kerberos, UserFederationKerberosArgs):
+                kerberos = kerberos or {}
+                def _setter(key, value):
+                    kerberos[key] = value
+                UserFederationKerberosArgs._configure(_setter, **kerberos)
             __props__.__dict__["kerberos"] = kerberos
             __props__.__dict__["name"] = name
             __props__.__dict__["pagination"] = pagination

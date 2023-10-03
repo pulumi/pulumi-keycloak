@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['FlowArgs', 'Flow']
@@ -25,12 +25,27 @@ class FlowArgs:
         :param pulumi.Input[str] description: A description for the authentication flow.
         :param pulumi.Input[str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
         """
-        pulumi.set(__self__, "alias", alias)
-        pulumi.set(__self__, "realm_id", realm_id)
+        FlowArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            alias=alias,
+            realm_id=realm_id,
+            description=description,
+            provider_id=provider_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             alias: pulumi.Input[str],
+             realm_id: pulumi.Input[str],
+             description: Optional[pulumi.Input[str]] = None,
+             provider_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("alias", alias)
+        _setter("realm_id", realm_id)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if provider_id is not None:
-            pulumi.set(__self__, "provider_id", provider_id)
+            _setter("provider_id", provider_id)
 
     @property
     @pulumi.getter
@@ -95,14 +110,29 @@ class _FlowState:
         :param pulumi.Input[str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
         :param pulumi.Input[str] realm_id: The realm that the authentication flow exists in.
         """
+        _FlowState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            alias=alias,
+            description=description,
+            provider_id=provider_id,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             alias: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             provider_id: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if alias is not None:
-            pulumi.set(__self__, "alias", alias)
+            _setter("alias", alias)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if provider_id is not None:
-            pulumi.set(__self__, "provider_id", provider_id)
+            _setter("provider_id", provider_id)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter
@@ -254,6 +284,10 @@ class Flow(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            FlowArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['SubflowArgs', 'Subflow']
@@ -34,17 +34,38 @@ class SubflowArgs:
         :param pulumi.Input[str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
                or `DISABLED`. Defaults to `DISABLED`.
         """
-        pulumi.set(__self__, "alias", alias)
-        pulumi.set(__self__, "parent_flow_alias", parent_flow_alias)
-        pulumi.set(__self__, "realm_id", realm_id)
+        SubflowArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            alias=alias,
+            parent_flow_alias=parent_flow_alias,
+            realm_id=realm_id,
+            authenticator=authenticator,
+            description=description,
+            provider_id=provider_id,
+            requirement=requirement,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             alias: pulumi.Input[str],
+             parent_flow_alias: pulumi.Input[str],
+             realm_id: pulumi.Input[str],
+             authenticator: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             provider_id: Optional[pulumi.Input[str]] = None,
+             requirement: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("alias", alias)
+        _setter("parent_flow_alias", parent_flow_alias)
+        _setter("realm_id", realm_id)
         if authenticator is not None:
-            pulumi.set(__self__, "authenticator", authenticator)
+            _setter("authenticator", authenticator)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if provider_id is not None:
-            pulumi.set(__self__, "provider_id", provider_id)
+            _setter("provider_id", provider_id)
         if requirement is not None:
-            pulumi.set(__self__, "requirement", requirement)
+            _setter("requirement", requirement)
 
     @property
     @pulumi.getter
@@ -157,20 +178,41 @@ class _SubflowState:
         :param pulumi.Input[str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
                or `DISABLED`. Defaults to `DISABLED`.
         """
+        _SubflowState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            alias=alias,
+            authenticator=authenticator,
+            description=description,
+            parent_flow_alias=parent_flow_alias,
+            provider_id=provider_id,
+            realm_id=realm_id,
+            requirement=requirement,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             alias: Optional[pulumi.Input[str]] = None,
+             authenticator: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             parent_flow_alias: Optional[pulumi.Input[str]] = None,
+             provider_id: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             requirement: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if alias is not None:
-            pulumi.set(__self__, "alias", alias)
+            _setter("alias", alias)
         if authenticator is not None:
-            pulumi.set(__self__, "authenticator", authenticator)
+            _setter("authenticator", authenticator)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if parent_flow_alias is not None:
-            pulumi.set(__self__, "parent_flow_alias", parent_flow_alias)
+            _setter("parent_flow_alias", parent_flow_alias)
         if provider_id is not None:
-            pulumi.set(__self__, "provider_id", provider_id)
+            _setter("provider_id", provider_id)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if requirement is not None:
-            pulumi.set(__self__, "requirement", requirement)
+            _setter("requirement", requirement)
 
     @property
     @pulumi.getter
@@ -370,6 +412,10 @@ class Subflow(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            SubflowArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

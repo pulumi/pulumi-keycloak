@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -86,72 +86,147 @@ class ClientArgs:
         :param pulumi.Input[str] signing_private_key: If documents or assertions from the client are signed, this private key will be used to verify the signature.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
         """
-        pulumi.set(__self__, "client_id", client_id)
-        pulumi.set(__self__, "realm_id", realm_id)
+        ClientArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            client_id=client_id,
+            realm_id=realm_id,
+            assertion_consumer_post_url=assertion_consumer_post_url,
+            assertion_consumer_redirect_url=assertion_consumer_redirect_url,
+            authentication_flow_binding_overrides=authentication_flow_binding_overrides,
+            base_url=base_url,
+            canonicalization_method=canonicalization_method,
+            client_signature_required=client_signature_required,
+            description=description,
+            enabled=enabled,
+            encrypt_assertions=encrypt_assertions,
+            encryption_certificate=encryption_certificate,
+            extra_config=extra_config,
+            force_name_id_format=force_name_id_format,
+            force_post_binding=force_post_binding,
+            front_channel_logout=front_channel_logout,
+            full_scope_allowed=full_scope_allowed,
+            idp_initiated_sso_relay_state=idp_initiated_sso_relay_state,
+            idp_initiated_sso_url_name=idp_initiated_sso_url_name,
+            include_authn_statement=include_authn_statement,
+            login_theme=login_theme,
+            logout_service_post_binding_url=logout_service_post_binding_url,
+            logout_service_redirect_binding_url=logout_service_redirect_binding_url,
+            master_saml_processing_url=master_saml_processing_url,
+            name=name,
+            name_id_format=name_id_format,
+            root_url=root_url,
+            sign_assertions=sign_assertions,
+            sign_documents=sign_documents,
+            signature_algorithm=signature_algorithm,
+            signature_key_name=signature_key_name,
+            signing_certificate=signing_certificate,
+            signing_private_key=signing_private_key,
+            valid_redirect_uris=valid_redirect_uris,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             client_id: pulumi.Input[str],
+             realm_id: pulumi.Input[str],
+             assertion_consumer_post_url: Optional[pulumi.Input[str]] = None,
+             assertion_consumer_redirect_url: Optional[pulumi.Input[str]] = None,
+             authentication_flow_binding_overrides: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']] = None,
+             base_url: Optional[pulumi.Input[str]] = None,
+             canonicalization_method: Optional[pulumi.Input[str]] = None,
+             client_signature_required: Optional[pulumi.Input[bool]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             encrypt_assertions: Optional[pulumi.Input[bool]] = None,
+             encryption_certificate: Optional[pulumi.Input[str]] = None,
+             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             force_name_id_format: Optional[pulumi.Input[bool]] = None,
+             force_post_binding: Optional[pulumi.Input[bool]] = None,
+             front_channel_logout: Optional[pulumi.Input[bool]] = None,
+             full_scope_allowed: Optional[pulumi.Input[bool]] = None,
+             idp_initiated_sso_relay_state: Optional[pulumi.Input[str]] = None,
+             idp_initiated_sso_url_name: Optional[pulumi.Input[str]] = None,
+             include_authn_statement: Optional[pulumi.Input[bool]] = None,
+             login_theme: Optional[pulumi.Input[str]] = None,
+             logout_service_post_binding_url: Optional[pulumi.Input[str]] = None,
+             logout_service_redirect_binding_url: Optional[pulumi.Input[str]] = None,
+             master_saml_processing_url: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             name_id_format: Optional[pulumi.Input[str]] = None,
+             root_url: Optional[pulumi.Input[str]] = None,
+             sign_assertions: Optional[pulumi.Input[bool]] = None,
+             sign_documents: Optional[pulumi.Input[bool]] = None,
+             signature_algorithm: Optional[pulumi.Input[str]] = None,
+             signature_key_name: Optional[pulumi.Input[str]] = None,
+             signing_certificate: Optional[pulumi.Input[str]] = None,
+             signing_private_key: Optional[pulumi.Input[str]] = None,
+             valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("client_id", client_id)
+        _setter("realm_id", realm_id)
         if assertion_consumer_post_url is not None:
-            pulumi.set(__self__, "assertion_consumer_post_url", assertion_consumer_post_url)
+            _setter("assertion_consumer_post_url", assertion_consumer_post_url)
         if assertion_consumer_redirect_url is not None:
-            pulumi.set(__self__, "assertion_consumer_redirect_url", assertion_consumer_redirect_url)
+            _setter("assertion_consumer_redirect_url", assertion_consumer_redirect_url)
         if authentication_flow_binding_overrides is not None:
-            pulumi.set(__self__, "authentication_flow_binding_overrides", authentication_flow_binding_overrides)
+            _setter("authentication_flow_binding_overrides", authentication_flow_binding_overrides)
         if base_url is not None:
-            pulumi.set(__self__, "base_url", base_url)
+            _setter("base_url", base_url)
         if canonicalization_method is not None:
-            pulumi.set(__self__, "canonicalization_method", canonicalization_method)
+            _setter("canonicalization_method", canonicalization_method)
         if client_signature_required is not None:
-            pulumi.set(__self__, "client_signature_required", client_signature_required)
+            _setter("client_signature_required", client_signature_required)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if encrypt_assertions is not None:
-            pulumi.set(__self__, "encrypt_assertions", encrypt_assertions)
+            _setter("encrypt_assertions", encrypt_assertions)
         if encryption_certificate is not None:
-            pulumi.set(__self__, "encryption_certificate", encryption_certificate)
+            _setter("encryption_certificate", encryption_certificate)
         if extra_config is not None:
-            pulumi.set(__self__, "extra_config", extra_config)
+            _setter("extra_config", extra_config)
         if force_name_id_format is not None:
-            pulumi.set(__self__, "force_name_id_format", force_name_id_format)
+            _setter("force_name_id_format", force_name_id_format)
         if force_post_binding is not None:
-            pulumi.set(__self__, "force_post_binding", force_post_binding)
+            _setter("force_post_binding", force_post_binding)
         if front_channel_logout is not None:
-            pulumi.set(__self__, "front_channel_logout", front_channel_logout)
+            _setter("front_channel_logout", front_channel_logout)
         if full_scope_allowed is not None:
-            pulumi.set(__self__, "full_scope_allowed", full_scope_allowed)
+            _setter("full_scope_allowed", full_scope_allowed)
         if idp_initiated_sso_relay_state is not None:
-            pulumi.set(__self__, "idp_initiated_sso_relay_state", idp_initiated_sso_relay_state)
+            _setter("idp_initiated_sso_relay_state", idp_initiated_sso_relay_state)
         if idp_initiated_sso_url_name is not None:
-            pulumi.set(__self__, "idp_initiated_sso_url_name", idp_initiated_sso_url_name)
+            _setter("idp_initiated_sso_url_name", idp_initiated_sso_url_name)
         if include_authn_statement is not None:
-            pulumi.set(__self__, "include_authn_statement", include_authn_statement)
+            _setter("include_authn_statement", include_authn_statement)
         if login_theme is not None:
-            pulumi.set(__self__, "login_theme", login_theme)
+            _setter("login_theme", login_theme)
         if logout_service_post_binding_url is not None:
-            pulumi.set(__self__, "logout_service_post_binding_url", logout_service_post_binding_url)
+            _setter("logout_service_post_binding_url", logout_service_post_binding_url)
         if logout_service_redirect_binding_url is not None:
-            pulumi.set(__self__, "logout_service_redirect_binding_url", logout_service_redirect_binding_url)
+            _setter("logout_service_redirect_binding_url", logout_service_redirect_binding_url)
         if master_saml_processing_url is not None:
-            pulumi.set(__self__, "master_saml_processing_url", master_saml_processing_url)
+            _setter("master_saml_processing_url", master_saml_processing_url)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if name_id_format is not None:
-            pulumi.set(__self__, "name_id_format", name_id_format)
+            _setter("name_id_format", name_id_format)
         if root_url is not None:
-            pulumi.set(__self__, "root_url", root_url)
+            _setter("root_url", root_url)
         if sign_assertions is not None:
-            pulumi.set(__self__, "sign_assertions", sign_assertions)
+            _setter("sign_assertions", sign_assertions)
         if sign_documents is not None:
-            pulumi.set(__self__, "sign_documents", sign_documents)
+            _setter("sign_documents", sign_documents)
         if signature_algorithm is not None:
-            pulumi.set(__self__, "signature_algorithm", signature_algorithm)
+            _setter("signature_algorithm", signature_algorithm)
         if signature_key_name is not None:
-            pulumi.set(__self__, "signature_key_name", signature_key_name)
+            _setter("signature_key_name", signature_key_name)
         if signing_certificate is not None:
-            pulumi.set(__self__, "signing_certificate", signing_certificate)
+            _setter("signing_certificate", signing_certificate)
         if signing_private_key is not None:
-            pulumi.set(__self__, "signing_private_key", signing_private_key)
+            _setter("signing_private_key", signing_private_key)
         if valid_redirect_uris is not None:
-            pulumi.set(__self__, "valid_redirect_uris", valid_redirect_uris)
+            _setter("valid_redirect_uris", valid_redirect_uris)
 
     @property
     @pulumi.getter(name="clientId")
@@ -638,80 +713,161 @@ class _ClientState:
         :param pulumi.Input[str] signing_private_key_sha1: (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
         """
+        _ClientState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            assertion_consumer_post_url=assertion_consumer_post_url,
+            assertion_consumer_redirect_url=assertion_consumer_redirect_url,
+            authentication_flow_binding_overrides=authentication_flow_binding_overrides,
+            base_url=base_url,
+            canonicalization_method=canonicalization_method,
+            client_id=client_id,
+            client_signature_required=client_signature_required,
+            description=description,
+            enabled=enabled,
+            encrypt_assertions=encrypt_assertions,
+            encryption_certificate=encryption_certificate,
+            encryption_certificate_sha1=encryption_certificate_sha1,
+            extra_config=extra_config,
+            force_name_id_format=force_name_id_format,
+            force_post_binding=force_post_binding,
+            front_channel_logout=front_channel_logout,
+            full_scope_allowed=full_scope_allowed,
+            idp_initiated_sso_relay_state=idp_initiated_sso_relay_state,
+            idp_initiated_sso_url_name=idp_initiated_sso_url_name,
+            include_authn_statement=include_authn_statement,
+            login_theme=login_theme,
+            logout_service_post_binding_url=logout_service_post_binding_url,
+            logout_service_redirect_binding_url=logout_service_redirect_binding_url,
+            master_saml_processing_url=master_saml_processing_url,
+            name=name,
+            name_id_format=name_id_format,
+            realm_id=realm_id,
+            root_url=root_url,
+            sign_assertions=sign_assertions,
+            sign_documents=sign_documents,
+            signature_algorithm=signature_algorithm,
+            signature_key_name=signature_key_name,
+            signing_certificate=signing_certificate,
+            signing_certificate_sha1=signing_certificate_sha1,
+            signing_private_key=signing_private_key,
+            signing_private_key_sha1=signing_private_key_sha1,
+            valid_redirect_uris=valid_redirect_uris,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             assertion_consumer_post_url: Optional[pulumi.Input[str]] = None,
+             assertion_consumer_redirect_url: Optional[pulumi.Input[str]] = None,
+             authentication_flow_binding_overrides: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']] = None,
+             base_url: Optional[pulumi.Input[str]] = None,
+             canonicalization_method: Optional[pulumi.Input[str]] = None,
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_signature_required: Optional[pulumi.Input[bool]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             encrypt_assertions: Optional[pulumi.Input[bool]] = None,
+             encryption_certificate: Optional[pulumi.Input[str]] = None,
+             encryption_certificate_sha1: Optional[pulumi.Input[str]] = None,
+             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             force_name_id_format: Optional[pulumi.Input[bool]] = None,
+             force_post_binding: Optional[pulumi.Input[bool]] = None,
+             front_channel_logout: Optional[pulumi.Input[bool]] = None,
+             full_scope_allowed: Optional[pulumi.Input[bool]] = None,
+             idp_initiated_sso_relay_state: Optional[pulumi.Input[str]] = None,
+             idp_initiated_sso_url_name: Optional[pulumi.Input[str]] = None,
+             include_authn_statement: Optional[pulumi.Input[bool]] = None,
+             login_theme: Optional[pulumi.Input[str]] = None,
+             logout_service_post_binding_url: Optional[pulumi.Input[str]] = None,
+             logout_service_redirect_binding_url: Optional[pulumi.Input[str]] = None,
+             master_saml_processing_url: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             name_id_format: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             root_url: Optional[pulumi.Input[str]] = None,
+             sign_assertions: Optional[pulumi.Input[bool]] = None,
+             sign_documents: Optional[pulumi.Input[bool]] = None,
+             signature_algorithm: Optional[pulumi.Input[str]] = None,
+             signature_key_name: Optional[pulumi.Input[str]] = None,
+             signing_certificate: Optional[pulumi.Input[str]] = None,
+             signing_certificate_sha1: Optional[pulumi.Input[str]] = None,
+             signing_private_key: Optional[pulumi.Input[str]] = None,
+             signing_private_key_sha1: Optional[pulumi.Input[str]] = None,
+             valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if assertion_consumer_post_url is not None:
-            pulumi.set(__self__, "assertion_consumer_post_url", assertion_consumer_post_url)
+            _setter("assertion_consumer_post_url", assertion_consumer_post_url)
         if assertion_consumer_redirect_url is not None:
-            pulumi.set(__self__, "assertion_consumer_redirect_url", assertion_consumer_redirect_url)
+            _setter("assertion_consumer_redirect_url", assertion_consumer_redirect_url)
         if authentication_flow_binding_overrides is not None:
-            pulumi.set(__self__, "authentication_flow_binding_overrides", authentication_flow_binding_overrides)
+            _setter("authentication_flow_binding_overrides", authentication_flow_binding_overrides)
         if base_url is not None:
-            pulumi.set(__self__, "base_url", base_url)
+            _setter("base_url", base_url)
         if canonicalization_method is not None:
-            pulumi.set(__self__, "canonicalization_method", canonicalization_method)
+            _setter("canonicalization_method", canonicalization_method)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_signature_required is not None:
-            pulumi.set(__self__, "client_signature_required", client_signature_required)
+            _setter("client_signature_required", client_signature_required)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if encrypt_assertions is not None:
-            pulumi.set(__self__, "encrypt_assertions", encrypt_assertions)
+            _setter("encrypt_assertions", encrypt_assertions)
         if encryption_certificate is not None:
-            pulumi.set(__self__, "encryption_certificate", encryption_certificate)
+            _setter("encryption_certificate", encryption_certificate)
         if encryption_certificate_sha1 is not None:
-            pulumi.set(__self__, "encryption_certificate_sha1", encryption_certificate_sha1)
+            _setter("encryption_certificate_sha1", encryption_certificate_sha1)
         if extra_config is not None:
-            pulumi.set(__self__, "extra_config", extra_config)
+            _setter("extra_config", extra_config)
         if force_name_id_format is not None:
-            pulumi.set(__self__, "force_name_id_format", force_name_id_format)
+            _setter("force_name_id_format", force_name_id_format)
         if force_post_binding is not None:
-            pulumi.set(__self__, "force_post_binding", force_post_binding)
+            _setter("force_post_binding", force_post_binding)
         if front_channel_logout is not None:
-            pulumi.set(__self__, "front_channel_logout", front_channel_logout)
+            _setter("front_channel_logout", front_channel_logout)
         if full_scope_allowed is not None:
-            pulumi.set(__self__, "full_scope_allowed", full_scope_allowed)
+            _setter("full_scope_allowed", full_scope_allowed)
         if idp_initiated_sso_relay_state is not None:
-            pulumi.set(__self__, "idp_initiated_sso_relay_state", idp_initiated_sso_relay_state)
+            _setter("idp_initiated_sso_relay_state", idp_initiated_sso_relay_state)
         if idp_initiated_sso_url_name is not None:
-            pulumi.set(__self__, "idp_initiated_sso_url_name", idp_initiated_sso_url_name)
+            _setter("idp_initiated_sso_url_name", idp_initiated_sso_url_name)
         if include_authn_statement is not None:
-            pulumi.set(__self__, "include_authn_statement", include_authn_statement)
+            _setter("include_authn_statement", include_authn_statement)
         if login_theme is not None:
-            pulumi.set(__self__, "login_theme", login_theme)
+            _setter("login_theme", login_theme)
         if logout_service_post_binding_url is not None:
-            pulumi.set(__self__, "logout_service_post_binding_url", logout_service_post_binding_url)
+            _setter("logout_service_post_binding_url", logout_service_post_binding_url)
         if logout_service_redirect_binding_url is not None:
-            pulumi.set(__self__, "logout_service_redirect_binding_url", logout_service_redirect_binding_url)
+            _setter("logout_service_redirect_binding_url", logout_service_redirect_binding_url)
         if master_saml_processing_url is not None:
-            pulumi.set(__self__, "master_saml_processing_url", master_saml_processing_url)
+            _setter("master_saml_processing_url", master_saml_processing_url)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if name_id_format is not None:
-            pulumi.set(__self__, "name_id_format", name_id_format)
+            _setter("name_id_format", name_id_format)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if root_url is not None:
-            pulumi.set(__self__, "root_url", root_url)
+            _setter("root_url", root_url)
         if sign_assertions is not None:
-            pulumi.set(__self__, "sign_assertions", sign_assertions)
+            _setter("sign_assertions", sign_assertions)
         if sign_documents is not None:
-            pulumi.set(__self__, "sign_documents", sign_documents)
+            _setter("sign_documents", sign_documents)
         if signature_algorithm is not None:
-            pulumi.set(__self__, "signature_algorithm", signature_algorithm)
+            _setter("signature_algorithm", signature_algorithm)
         if signature_key_name is not None:
-            pulumi.set(__self__, "signature_key_name", signature_key_name)
+            _setter("signature_key_name", signature_key_name)
         if signing_certificate is not None:
-            pulumi.set(__self__, "signing_certificate", signing_certificate)
+            _setter("signing_certificate", signing_certificate)
         if signing_certificate_sha1 is not None:
-            pulumi.set(__self__, "signing_certificate_sha1", signing_certificate_sha1)
+            _setter("signing_certificate_sha1", signing_certificate_sha1)
         if signing_private_key is not None:
-            pulumi.set(__self__, "signing_private_key", signing_private_key)
+            _setter("signing_private_key", signing_private_key)
         if signing_private_key_sha1 is not None:
-            pulumi.set(__self__, "signing_private_key_sha1", signing_private_key_sha1)
+            _setter("signing_private_key_sha1", signing_private_key_sha1)
         if valid_redirect_uris is not None:
-            pulumi.set(__self__, "valid_redirect_uris", valid_redirect_uris)
+            _setter("valid_redirect_uris", valid_redirect_uris)
 
     @property
     @pulumi.getter(name="assertionConsumerPostUrl")
@@ -1313,6 +1469,10 @@ class Client(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ClientArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -1363,6 +1523,11 @@ class Client(pulumi.CustomResource):
 
             __props__.__dict__["assertion_consumer_post_url"] = assertion_consumer_post_url
             __props__.__dict__["assertion_consumer_redirect_url"] = assertion_consumer_redirect_url
+            if authentication_flow_binding_overrides is not None and not isinstance(authentication_flow_binding_overrides, ClientAuthenticationFlowBindingOverridesArgs):
+                authentication_flow_binding_overrides = authentication_flow_binding_overrides or {}
+                def _setter(key, value):
+                    authentication_flow_binding_overrides[key] = value
+                ClientAuthenticationFlowBindingOverridesArgs._configure(_setter, **authentication_flow_binding_overrides)
             __props__.__dict__["authentication_flow_binding_overrides"] = authentication_flow_binding_overrides
             __props__.__dict__["base_url"] = base_url
             __props__.__dict__["canonicalization_method"] = canonicalization_method

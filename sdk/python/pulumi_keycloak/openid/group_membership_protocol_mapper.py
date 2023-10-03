@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['GroupMembershipProtocolMapperArgs', 'GroupMembershipProtocolMapper']
@@ -35,22 +35,47 @@ class GroupMembershipProtocolMapperArgs:
         :param pulumi.Input[bool] full_path: Indicates whether the full path of the group including its parents will be used. Defaults to `true`.
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         """
-        pulumi.set(__self__, "claim_name", claim_name)
-        pulumi.set(__self__, "realm_id", realm_id)
+        GroupMembershipProtocolMapperArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            claim_name=claim_name,
+            realm_id=realm_id,
+            add_to_access_token=add_to_access_token,
+            add_to_id_token=add_to_id_token,
+            add_to_userinfo=add_to_userinfo,
+            client_id=client_id,
+            client_scope_id=client_scope_id,
+            full_path=full_path,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             claim_name: pulumi.Input[str],
+             realm_id: pulumi.Input[str],
+             add_to_access_token: Optional[pulumi.Input[bool]] = None,
+             add_to_id_token: Optional[pulumi.Input[bool]] = None,
+             add_to_userinfo: Optional[pulumi.Input[bool]] = None,
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_scope_id: Optional[pulumi.Input[str]] = None,
+             full_path: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("claim_name", claim_name)
+        _setter("realm_id", realm_id)
         if add_to_access_token is not None:
-            pulumi.set(__self__, "add_to_access_token", add_to_access_token)
+            _setter("add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
-            pulumi.set(__self__, "add_to_id_token", add_to_id_token)
+            _setter("add_to_id_token", add_to_id_token)
         if add_to_userinfo is not None:
-            pulumi.set(__self__, "add_to_userinfo", add_to_userinfo)
+            _setter("add_to_userinfo", add_to_userinfo)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_scope_id is not None:
-            pulumi.set(__self__, "client_scope_id", client_scope_id)
+            _setter("client_scope_id", client_scope_id)
         if full_path is not None:
-            pulumi.set(__self__, "full_path", full_path)
+            _setter("full_path", full_path)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="claimName")
@@ -185,24 +210,49 @@ class _GroupMembershipProtocolMapperState:
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
         """
+        _GroupMembershipProtocolMapperState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            add_to_access_token=add_to_access_token,
+            add_to_id_token=add_to_id_token,
+            add_to_userinfo=add_to_userinfo,
+            claim_name=claim_name,
+            client_id=client_id,
+            client_scope_id=client_scope_id,
+            full_path=full_path,
+            name=name,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             add_to_access_token: Optional[pulumi.Input[bool]] = None,
+             add_to_id_token: Optional[pulumi.Input[bool]] = None,
+             add_to_userinfo: Optional[pulumi.Input[bool]] = None,
+             claim_name: Optional[pulumi.Input[str]] = None,
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_scope_id: Optional[pulumi.Input[str]] = None,
+             full_path: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if add_to_access_token is not None:
-            pulumi.set(__self__, "add_to_access_token", add_to_access_token)
+            _setter("add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
-            pulumi.set(__self__, "add_to_id_token", add_to_id_token)
+            _setter("add_to_id_token", add_to_id_token)
         if add_to_userinfo is not None:
-            pulumi.set(__self__, "add_to_userinfo", add_to_userinfo)
+            _setter("add_to_userinfo", add_to_userinfo)
         if claim_name is not None:
-            pulumi.set(__self__, "claim_name", claim_name)
+            _setter("claim_name", claim_name)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_scope_id is not None:
-            pulumi.set(__self__, "client_scope_id", client_scope_id)
+            _setter("client_scope_id", client_scope_id)
         if full_path is not None:
-            pulumi.set(__self__, "full_path", full_path)
+            _setter("full_path", full_path)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter(name="addToAccessToken")
@@ -470,6 +520,10 @@ class GroupMembershipProtocolMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            GroupMembershipProtocolMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

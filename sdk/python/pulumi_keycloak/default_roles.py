@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['DefaultRolesArgs', 'DefaultRoles']
@@ -21,8 +21,19 @@ class DefaultRolesArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] default_roles: Realm level roles assigned to new users by default.
         :param pulumi.Input[str] realm_id: The realm this role exists within.
         """
-        pulumi.set(__self__, "default_roles", default_roles)
-        pulumi.set(__self__, "realm_id", realm_id)
+        DefaultRolesArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            default_roles=default_roles,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             default_roles: pulumi.Input[Sequence[pulumi.Input[str]]],
+             realm_id: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("default_roles", default_roles)
+        _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter(name="defaultRoles")
@@ -59,10 +70,21 @@ class _DefaultRolesState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] default_roles: Realm level roles assigned to new users by default.
         :param pulumi.Input[str] realm_id: The realm this role exists within.
         """
+        _DefaultRolesState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            default_roles=default_roles,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             default_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if default_roles is not None:
-            pulumi.set(__self__, "default_roles", default_roles)
+            _setter("default_roles", default_roles)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter(name="defaultRoles")
@@ -174,6 +196,10 @@ class DefaultRoles(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            DefaultRolesArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
