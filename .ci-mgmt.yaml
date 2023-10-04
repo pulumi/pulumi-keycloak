@@ -1,0 +1,16 @@
+provider: keycloak
+docker: true
+setup-script: "testing/setup.sh"
+major-version: 5
+env: # these are in plaintext in the setup script
+  KEYCLOAK_CLIENT_ID: "terraform"
+  KEYCLOAK_CLIENT_SECRET: "884e0f95-0f42-4a63-9b1f-94274655669e"
+  KEYCLOAK_PASSWORD: "password"
+  KEYCLOAK_URL: "http://localhost:8080/auth"
+  KEYCLOAK_USER: "keycloak"
+makeTemplate: bridged
+plugins:
+  - name: aws
+    version: "4.2.0"
+team: ecosystem
+javaGenVersion: "v0.9.5"
