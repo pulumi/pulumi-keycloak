@@ -20,6 +20,59 @@ import (
 // will exist within the realm and will be able to log in to clients. Federated
 // users can have their attributes defined using mappers.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/ldap"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
+//				RealmId:               realm.ID(),
+//				Enabled:               pulumi.Bool(true),
+//				UsernameLdapAttribute: pulumi.String("cn"),
+//				RdnLdapAttribute:      pulumi.String("cn"),
+//				UuidLdapAttribute:     pulumi.String("entryDN"),
+//				UserObjectClasses: pulumi.StringArray{
+//					pulumi.String("simpleSecurityObject"),
+//					pulumi.String("organizationalRole"),
+//				},
+//				ConnectionUrl:     pulumi.String("ldap://openldap"),
+//				UsersDn:           pulumi.String("dc=example,dc=org"),
+//				BindDn:            pulumi.String("cn=admin,dc=example,dc=org"),
+//				BindCredential:    pulumi.String("admin"),
+//				ConnectionTimeout: pulumi.String("5s"),
+//				ReadTimeout:       pulumi.String("10s"),
+//				Kerberos: &ldap.UserFederationKerberosArgs{
+//					KerberosRealm:   pulumi.String("FOO.LOCAL"),
+//					ServerPrincipal: pulumi.String("HTTP/host.foo.com@FOO.LOCAL"),
+//					KeyTab:          pulumi.String("/etc/host.keytab"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`. The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUIDbash

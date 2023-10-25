@@ -5,6 +5,28 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "test",
+ *     enabled: true,
+ * });
+ * const customUserFederation = new keycloak.CustomUserFederation("customUserFederation", {
+ *     realmId: realm.id,
+ *     providerId: "custom",
+ *     enabled: true,
+ *     config: {
+ *         dummyString: "foobar",
+ *         dummyBool: true,
+ *         multivalue: "value1##value2",
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * Custom user federation providers can be imported using the format `{{realm_id}}/{{custom_user_federation_id}}`. The ID of the custom user federation provider can be found within the Keycloak GUI and is typically a GUIDbash

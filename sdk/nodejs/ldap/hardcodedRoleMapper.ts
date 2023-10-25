@@ -10,6 +10,79 @@ import * as utilities from "../utilities";
  * The LDAP hardcoded role mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
  *
  * ## Example Usage
+ * ### Realm Role)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
+ *     realmId: realm.id,
+ *     usernameLdapAttribute: "cn",
+ *     rdnLdapAttribute: "cn",
+ *     uuidLdapAttribute: "entryDN",
+ *     userObjectClasses: [
+ *         "simpleSecurityObject",
+ *         "organizationalRole",
+ *     ],
+ *     connectionUrl: "ldap://openldap",
+ *     usersDn: "dc=example,dc=org",
+ *     bindDn: "cn=admin,dc=example,dc=org",
+ *     bindCredential: "admin",
+ * });
+ * const realmAdminRole = new keycloak.Role("realmAdminRole", {
+ *     realmId: realm.id,
+ *     description: "My Realm Role",
+ * });
+ * const assignAdminRoleToAllUsers = new keycloak.ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers", {
+ *     realmId: realm.id,
+ *     ldapUserFederationId: ldapUserFederation.id,
+ *     role: realmAdminRole.name,
+ * });
+ * ```
+ * ### Client Role)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
+ *     realmId: realm.id,
+ *     usernameLdapAttribute: "cn",
+ *     rdnLdapAttribute: "cn",
+ *     uuidLdapAttribute: "entryDN",
+ *     userObjectClasses: [
+ *         "simpleSecurityObject",
+ *         "organizationalRole",
+ *     ],
+ *     connectionUrl: "ldap://openldap",
+ *     usersDn: "dc=example,dc=org",
+ *     bindDn: "cn=admin,dc=example,dc=org",
+ *     bindCredential: "admin",
+ * });
+ * const realmManagement = keycloak.openid.getClientOutput({
+ *     realmId: realm.id,
+ *     clientId: "realm-management",
+ * });
+ * const createClient = pulumi.all([realm.id, realmManagement]).apply(([id, realmManagement]) => keycloak.getRoleOutput({
+ *     realmId: id,
+ *     clientId: realmManagement.id,
+ *     name: "create-client",
+ * }));
+ * const assignAdminRoleToAllUsers = new keycloak.ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers", {
+ *     realmId: realm.id,
+ *     ldapUserFederationId: ldapUserFederation.id,
+ *     role: pulumi.all([realmManagement, createClient]).apply(([realmManagement, createClient]) => `${realmManagement.clientId}.${createClient.name}`),
+ * });
+ * ```
  *
  * ## Import
  *

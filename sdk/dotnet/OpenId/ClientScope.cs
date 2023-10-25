@@ -15,6 +15,33 @@ namespace Pulumi.Keycloak.OpenId
     /// Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm. They can also
     /// be used by clients to conditionally request claims or roles for a user based on the OAuth 2.0 `scope` parameter.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var openidClientScope = new Keycloak.OpenId.ClientScope("openidClientScope", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Description = "When requested, this scope will map a user's group memberships to a claim",
+    ///         IncludeInTokenScope = true,
+    ///         GuiOrder = 1,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID. Examplebash

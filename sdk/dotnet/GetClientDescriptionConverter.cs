@@ -14,6 +14,68 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/6.0/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
         /// client. This data can then be used to manage the client within Keycloak.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     {
+        ///         RealmName = "my-realm",
+        ///         Enabled = true,
+        ///     });
+        /// 
+        ///     var samlClientClientDescriptionConverter = Keycloak.GetClientDescriptionConverter.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         Body = @"	&lt;md:EntityDescriptor xmlns:md=""urn:oasis:names:tc:SAML:2.0:metadata"" validUntil=""2021-04-17T12:41:46Z"" cacheDuration=""PT604800S"" entityID=""FakeEntityId""&gt;
+        ///     &lt;md:SPSSODescriptor AuthnRequestsSigned=""false"" WantAssertionsSigned=""false"" protocolSupportEnumeration=""urn:oasis:names:tc:SAML:2.0:protocol""&gt;
+        ///         &lt;md:KeyDescriptor use=""signing""&gt;
+        /// 			&lt;ds:KeyInfo xmlns:ds=""http://www.w3.org/2000/09/xmldsig#""&gt;
+        /// 				&lt;ds:X509Data&gt;
+        /// 					&lt;ds:X509Certificate&gt;MIICyDCCAjGgAwIBAgIBADANBgkqhkiG9w0BAQ0FADCBgDELMAkGA1UEBhMCdXMx
+        /// 					CzAJBgNVBAgMAklBMSQwIgYDVQQKDBt0ZXJyYWZvcm0tcHJvdmlkZXIta2V5Y2xv
+        /// 					YWsxHDAaBgNVBAMME21ycGFya2Vycy5naXRodWIuaW8xIDAeBgkqhkiG9w0BCQEW
+        /// 					EW1pY2hhZWxAcGFya2VyLmdnMB4XDTE5MDEwODE0NDYzNloXDTI5MDEwNTE0NDYz
+        /// 					NlowgYAxCzAJBgNVBAYTAnVzMQswCQYDVQQIDAJJQTEkMCIGA1UECgwbdGVycmFm
+        /// 					b3JtLXByb3ZpZGVyLWtleWNsb2FrMRwwGgYDVQQDDBNtcnBhcmtlcnMuZ2l0aHVi
+        /// 					LmlvMSAwHgYJKoZIhvcNAQkBFhFtaWNoYWVsQHBhcmtlci5nZzCBnzANBgkqhkiG
+        /// 					9w0BAQEFAAOBjQAwgYkCgYEAxuZny7uyYxGVPtpie14gNQC4tT9sAvO2sVNDhuoe
+        /// 					qIKLRpNwkHnwQmwe5OxSh9K0BPHp/DNuuVWUqvo4tniEYn3jBr7FwLYLTKojQIxj
+        /// 					53S1UTT9EXq3eP5HsHMD0QnTuca2nlNYUDBm6ud2fQj0Jt5qLx86EbEC28N56IRv
+        /// 					GX8CAwEAAaNQME4wHQYDVR0OBBYEFMLnbQh77j7vhGTpAhKpDhCrBsPZMB8GA1Ud
+        /// 					IwQYMBaAFMLnbQh77j7vhGTpAhKpDhCrBsPZMAwGA1UdEwQFMAMBAf8wDQYJKoZI
+        /// 					hvcNAQENBQADgYEAB8wGrAQY0pAfwbnYSyBt4STbebeRTu1/q1ucfrtc3qsegcd5
+        /// 					n01xTR+T2uZJwqHFPpFjr4IPORiHx3+4BWCweslPD53qBjKUPXcbMO1Revjef6Tj
+        /// 					K3K0AuJ94fxgXVoT61Nzu/a6Lj6RhzU/Dao9mlSbJY+YSbm+ZBpsuRUQ84s=&lt;/ds:X509Certificate&gt;
+        /// 				&lt;/ds:X509Data&gt;
+        /// 			&lt;/ds:KeyInfo&gt;
+        /// 		&lt;/md:KeyDescriptor&gt;
+        /// 		&lt;md:NameIDFormat&gt;urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified&lt;/md:NameIDFormat&gt;
+        ///         &lt;md:AssertionConsumerService Binding=""urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"" Location=""https://localhost/acs/saml/"" index=""1""/&gt;
+        ///     &lt;/md:SPSSODescriptor&gt;
+        /// &lt;/md:EntityDescriptor&gt;
+        /// ",
+        ///     });
+        /// 
+        ///     var samlClientClient = new Keycloak.Saml.Client("samlClientClient", new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         ClientId = samlClientClientDescriptionConverter.Apply(getClientDescriptionConverterResult =&gt; getClientDescriptionConverterResult.ClientId),
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetClientDescriptionConverterResult> InvokeAsync(GetClientDescriptionConverterArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClientDescriptionConverterResult>("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", args ?? new GetClientDescriptionConverterArgs(), options.WithDefaults());
@@ -21,6 +83,68 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/6.0/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
         /// client. This data can then be used to manage the client within Keycloak.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     {
+        ///         RealmName = "my-realm",
+        ///         Enabled = true,
+        ///     });
+        /// 
+        ///     var samlClientClientDescriptionConverter = Keycloak.GetClientDescriptionConverter.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         Body = @"	&lt;md:EntityDescriptor xmlns:md=""urn:oasis:names:tc:SAML:2.0:metadata"" validUntil=""2021-04-17T12:41:46Z"" cacheDuration=""PT604800S"" entityID=""FakeEntityId""&gt;
+        ///     &lt;md:SPSSODescriptor AuthnRequestsSigned=""false"" WantAssertionsSigned=""false"" protocolSupportEnumeration=""urn:oasis:names:tc:SAML:2.0:protocol""&gt;
+        ///         &lt;md:KeyDescriptor use=""signing""&gt;
+        /// 			&lt;ds:KeyInfo xmlns:ds=""http://www.w3.org/2000/09/xmldsig#""&gt;
+        /// 				&lt;ds:X509Data&gt;
+        /// 					&lt;ds:X509Certificate&gt;MIICyDCCAjGgAwIBAgIBADANBgkqhkiG9w0BAQ0FADCBgDELMAkGA1UEBhMCdXMx
+        /// 					CzAJBgNVBAgMAklBMSQwIgYDVQQKDBt0ZXJyYWZvcm0tcHJvdmlkZXIta2V5Y2xv
+        /// 					YWsxHDAaBgNVBAMME21ycGFya2Vycy5naXRodWIuaW8xIDAeBgkqhkiG9w0BCQEW
+        /// 					EW1pY2hhZWxAcGFya2VyLmdnMB4XDTE5MDEwODE0NDYzNloXDTI5MDEwNTE0NDYz
+        /// 					NlowgYAxCzAJBgNVBAYTAnVzMQswCQYDVQQIDAJJQTEkMCIGA1UECgwbdGVycmFm
+        /// 					b3JtLXByb3ZpZGVyLWtleWNsb2FrMRwwGgYDVQQDDBNtcnBhcmtlcnMuZ2l0aHVi
+        /// 					LmlvMSAwHgYJKoZIhvcNAQkBFhFtaWNoYWVsQHBhcmtlci5nZzCBnzANBgkqhkiG
+        /// 					9w0BAQEFAAOBjQAwgYkCgYEAxuZny7uyYxGVPtpie14gNQC4tT9sAvO2sVNDhuoe
+        /// 					qIKLRpNwkHnwQmwe5OxSh9K0BPHp/DNuuVWUqvo4tniEYn3jBr7FwLYLTKojQIxj
+        /// 					53S1UTT9EXq3eP5HsHMD0QnTuca2nlNYUDBm6ud2fQj0Jt5qLx86EbEC28N56IRv
+        /// 					GX8CAwEAAaNQME4wHQYDVR0OBBYEFMLnbQh77j7vhGTpAhKpDhCrBsPZMB8GA1Ud
+        /// 					IwQYMBaAFMLnbQh77j7vhGTpAhKpDhCrBsPZMAwGA1UdEwQFMAMBAf8wDQYJKoZI
+        /// 					hvcNAQENBQADgYEAB8wGrAQY0pAfwbnYSyBt4STbebeRTu1/q1ucfrtc3qsegcd5
+        /// 					n01xTR+T2uZJwqHFPpFjr4IPORiHx3+4BWCweslPD53qBjKUPXcbMO1Revjef6Tj
+        /// 					K3K0AuJ94fxgXVoT61Nzu/a6Lj6RhzU/Dao9mlSbJY+YSbm+ZBpsuRUQ84s=&lt;/ds:X509Certificate&gt;
+        /// 				&lt;/ds:X509Data&gt;
+        /// 			&lt;/ds:KeyInfo&gt;
+        /// 		&lt;/md:KeyDescriptor&gt;
+        /// 		&lt;md:NameIDFormat&gt;urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified&lt;/md:NameIDFormat&gt;
+        ///         &lt;md:AssertionConsumerService Binding=""urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"" Location=""https://localhost/acs/saml/"" index=""1""/&gt;
+        ///     &lt;/md:SPSSODescriptor&gt;
+        /// &lt;/md:EntityDescriptor&gt;
+        /// ",
+        ///     });
+        /// 
+        ///     var samlClientClient = new Keycloak.Saml.Client("samlClientClient", new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         ClientId = samlClientClientDescriptionConverter.Apply(getClientDescriptionConverterResult =&gt; getClientDescriptionConverterResult.ClientId),
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Output<GetClientDescriptionConverterResult> Invoke(GetClientDescriptionConverterInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClientDescriptionConverterResult>("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", args ?? new GetClientDescriptionConverterInvokeArgs(), options.WithDefaults());

@@ -10,6 +10,116 @@ import * as utilities from "./utilities";
  * Roles allow you define privileges within Keycloak and map them to users and groups.
  *
  * ## Example Usage
+ * ### Realm Role)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const realmRole = new keycloak.Role("realmRole", {
+ *     realmId: realm.id,
+ *     description: "My Realm Role",
+ *     attributes: {
+ *         key: "value",
+ *         multivalue: "value1##value2",
+ *     },
+ * });
+ * ```
+ * ### Client Role)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const openidClient = new keycloak.openid.Client("openidClient", {
+ *     realmId: realm.id,
+ *     clientId: "client",
+ *     enabled: true,
+ *     accessType: "CONFIDENTIAL",
+ *     validRedirectUris: ["http://localhost:8080/openid-callback"],
+ * });
+ * const clientRole = new keycloak.Role("clientRole", {
+ *     realmId: realm.id,
+ *     clientId: keycloak_client.openid_client.id,
+ *     description: "My Client Role",
+ *     attributes: {
+ *         key: "value",
+ *     },
+ * });
+ * ```
+ * ### Composite Role)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * // realm roles
+ * const createRole = new keycloak.Role("createRole", {
+ *     realmId: realm.id,
+ *     attributes: {
+ *         key: "value",
+ *     },
+ * });
+ * const readRole = new keycloak.Role("readRole", {
+ *     realmId: realm.id,
+ *     attributes: {
+ *         key: "value",
+ *     },
+ * });
+ * const updateRole = new keycloak.Role("updateRole", {
+ *     realmId: realm.id,
+ *     attributes: {
+ *         key: "value",
+ *     },
+ * });
+ * const deleteRole = new keycloak.Role("deleteRole", {
+ *     realmId: realm.id,
+ *     attributes: {
+ *         key: "value",
+ *     },
+ * });
+ * // client role
+ * const openidClient = new keycloak.openid.Client("openidClient", {
+ *     realmId: realm.id,
+ *     clientId: "client",
+ *     enabled: true,
+ *     accessType: "CONFIDENTIAL",
+ *     validRedirectUris: ["http://localhost:8080/openid-callback"],
+ * });
+ * const clientRole = new keycloak.Role("clientRole", {
+ *     realmId: realm.id,
+ *     clientId: keycloak_client.openid_client.id,
+ *     description: "My Client Role",
+ *     attributes: {
+ *         key: "value",
+ *     },
+ * });
+ * const adminRole = new keycloak.Role("adminRole", {
+ *     realmId: realm.id,
+ *     compositeRoles: [
+ *         createRole.id,
+ *         readRole.id,
+ *         updateRole.id,
+ *         deleteRole.id,
+ *         clientRole.id,
+ *     ],
+ *     attributes: {
+ *         key: "value",
+ *     },
+ * });
+ * ```
  *
  * ## Import
  *

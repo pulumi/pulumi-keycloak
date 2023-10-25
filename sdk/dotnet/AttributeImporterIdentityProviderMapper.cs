@@ -19,6 +19,48 @@ namespace Pulumi.Keycloak
     /// 
     /// &gt; If you are using Keycloak 10 or higher, you will need to specify the `extra_config` argument in order to define a `syncMode` for the mapper.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var oidcIdentityProvider = new Keycloak.Oidc.IdentityProvider("oidcIdentityProvider", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         Alias = "oidc",
+    ///         AuthorizationUrl = "https://example.com/auth",
+    ///         TokenUrl = "https://example.com/token",
+    ///         ClientId = "example_id",
+    ///         ClientSecret = "example_token",
+    ///         DefaultScopes = "openid random profile",
+    ///     });
+    /// 
+    ///     var oidcAttributeImporterIdentityProviderMapper = new Keycloak.AttributeImporterIdentityProviderMapper("oidcAttributeImporterIdentityProviderMapper", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         ClaimName = "my-email-claim",
+    ///         IdentityProviderAlias = oidcIdentityProvider.Alias,
+    ///         UserAttribute = "email",
+    ///         ExtraConfig = 
+    ///         {
+    ///             { "syncMode", "INHERIT" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Identity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID. Examplebash

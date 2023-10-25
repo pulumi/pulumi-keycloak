@@ -287,6 +287,21 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        keystore_ecdsa_generated = keycloak.RealmKeystoreEcdsaGenerated("keystoreEcdsaGenerated",
+            realm_id=realm.id,
+            enabled=True,
+            active=True,
+            priority=100,
+            elliptic_curve_key="P-256")
+        ```
+
         ## Import
 
         Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
@@ -314,6 +329,21 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
         Allows for creating and managing `acdsa_generated` Realm keystores within Keycloak.
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        keystore_ecdsa_generated = keycloak.RealmKeystoreEcdsaGenerated("keystoreEcdsaGenerated",
+            realm_id=realm.id,
+            enabled=True,
+            active=True,
+            priority=100,
+            elliptic_curve_key="P-256")
+        ```
 
         ## Import
 

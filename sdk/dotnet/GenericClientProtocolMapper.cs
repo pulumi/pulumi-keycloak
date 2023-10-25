@@ -21,6 +21,46 @@ namespace Pulumi.Keycloak
     /// Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors.
     /// Therefore, if possible, a specific mapper should be used.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var samlClient = new Keycloak.Saml.Client("samlClient", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "test-client",
+    ///     });
+    /// 
+    ///     var samlHardcodeAttributeMapper = new Keycloak.GenericClientProtocolMapper("samlHardcodeAttributeMapper", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = samlClient.Id,
+    ///         Protocol = "saml",
+    ///         ProtocolMapper = "saml-hardcode-attribute-mapper",
+    ///         Config = 
+    ///         {
+    ///             { "attribute.name", "name" },
+    ///             { "attribute.nameformat", "Basic" },
+    ///             { "attribute.value", "value" },
+    ///             { "friendly.name", "display name" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Protocol mappers can be imported using the following format`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` Examplebash

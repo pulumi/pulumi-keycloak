@@ -14,6 +14,39 @@ namespace Pulumi.Keycloak.Oidc
     /// 
     /// OIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var google = new Keycloak.Oidc.GoogleIdentityProvider("google", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         ClientId = @var.Google_identity_provider_client_id,
+    ///         ClientSecret = @var.Google_identity_provider_client_secret,
+    ///         TrustEmail = true,
+    ///         HostedDomain = "example.com",
+    ///         SyncMode = "IMPORT",
+    ///         ExtraConfig = 
+    ///         {
+    ///             { "myCustomConfigKey", "myValue" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// This resource does not yet support importing.

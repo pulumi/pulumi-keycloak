@@ -181,6 +181,87 @@ class RealmUserProfile(pulumi.CustomResource):
         The realm linked to the `RealmUserProfile` resource must have the user profile feature enabled.
         It can be done via the administration UI, or by setting the `userProfileEnabled` realm attribute to `true`.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            attributes={
+                "userProfileEnabled": True,
+            })
+        userprofile = keycloak.RealmUserProfile("userprofile",
+            realm_id=keycloak_realm["my_realm"]["id"],
+            attributes=[
+                keycloak.RealmUserProfileAttributeArgs(
+                    name="field1",
+                    display_name="Field 1",
+                    group="group1",
+                    enabled_when_scopes=["offline_access"],
+                    required_for_roles=["user"],
+                    required_for_scopes=["offline_access"],
+                    permissions=keycloak.RealmUserProfileAttributePermissionsArgs(
+                        views=[
+                            "admin",
+                            "user",
+                        ],
+                        edits=[
+                            "admin",
+                            "user",
+                        ],
+                    ),
+                    validators=[
+                        keycloak.RealmUserProfileAttributeValidatorArgs(
+                            name="person-name-prohibited-characters",
+                        ),
+                        keycloak.RealmUserProfileAttributeValidatorArgs(
+                            name="pattern",
+                            config={
+                                "pattern": "^[a-z]+$",
+                                "error-message": "Nope",
+                            },
+                        ),
+                    ],
+                    annotations={
+                        "foo": "bar",
+                    },
+                ),
+                keycloak.RealmUserProfileAttributeArgs(
+                    name="field2",
+                    validators=[keycloak.RealmUserProfileAttributeValidatorArgs(
+                        name="options",
+                        config={
+                            "options": json.dumps(["opt1"]),
+                        },
+                    )],
+                    annotations={
+                        "foo": json.dumps({
+                            "key": "val",
+                        }),
+                    },
+                ),
+            ],
+            groups=[
+                keycloak.RealmUserProfileGroupArgs(
+                    name="group1",
+                    display_header="Group 1",
+                    display_description="A first group",
+                    annotations={
+                        "foo": "bar",
+                        "foo2": json.dumps({
+                            "key": "val",
+                        }),
+                    },
+                ),
+                keycloak.RealmUserProfileGroupArgs(
+                    name="group2",
+                ),
+            ])
+        ```
+
         ## Import
 
         This resource currently does not support importing.
@@ -208,6 +289,87 @@ class RealmUserProfile(pulumi.CustomResource):
 
         The realm linked to the `RealmUserProfile` resource must have the user profile feature enabled.
         It can be done via the administration UI, or by setting the `userProfileEnabled` realm attribute to `true`.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            attributes={
+                "userProfileEnabled": True,
+            })
+        userprofile = keycloak.RealmUserProfile("userprofile",
+            realm_id=keycloak_realm["my_realm"]["id"],
+            attributes=[
+                keycloak.RealmUserProfileAttributeArgs(
+                    name="field1",
+                    display_name="Field 1",
+                    group="group1",
+                    enabled_when_scopes=["offline_access"],
+                    required_for_roles=["user"],
+                    required_for_scopes=["offline_access"],
+                    permissions=keycloak.RealmUserProfileAttributePermissionsArgs(
+                        views=[
+                            "admin",
+                            "user",
+                        ],
+                        edits=[
+                            "admin",
+                            "user",
+                        ],
+                    ),
+                    validators=[
+                        keycloak.RealmUserProfileAttributeValidatorArgs(
+                            name="person-name-prohibited-characters",
+                        ),
+                        keycloak.RealmUserProfileAttributeValidatorArgs(
+                            name="pattern",
+                            config={
+                                "pattern": "^[a-z]+$",
+                                "error-message": "Nope",
+                            },
+                        ),
+                    ],
+                    annotations={
+                        "foo": "bar",
+                    },
+                ),
+                keycloak.RealmUserProfileAttributeArgs(
+                    name="field2",
+                    validators=[keycloak.RealmUserProfileAttributeValidatorArgs(
+                        name="options",
+                        config={
+                            "options": json.dumps(["opt1"]),
+                        },
+                    )],
+                    annotations={
+                        "foo": json.dumps({
+                            "key": "val",
+                        }),
+                    },
+                ),
+            ],
+            groups=[
+                keycloak.RealmUserProfileGroupArgs(
+                    name="group1",
+                    display_header="Group 1",
+                    display_description="A first group",
+                    annotations={
+                        "foo": "bar",
+                        "foo2": json.dumps({
+                            "key": "val",
+                        }),
+                    },
+                ),
+                keycloak.RealmUserProfileGroupArgs(
+                    name="group2",
+                ),
+            ])
+        ```
 
         ## Import
 

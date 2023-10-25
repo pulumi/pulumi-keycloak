@@ -1352,6 +1352,38 @@ class UserFederation(pulumi.CustomResource):
         will exist within the realm and will be able to log in to clients. Federated
         users can have their attributes defined using mappers.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            enabled=True,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
+            user_object_classes=[
+                "simpleSecurityObject",
+                "organizationalRole",
+            ],
+            connection_url="ldap://openldap",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin",
+            connection_timeout="5s",
+            read_timeout="10s",
+            kerberos=keycloak.ldap.UserFederationKerberosArgs(
+                kerberos_realm="FOO.LOCAL",
+                server_principal="HTTP/host.foo.com@FOO.LOCAL",
+                key_tab="/etc/host.keytab",
+            ))
+        ```
+
         ## Import
 
         LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`. The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUIDbash
@@ -1408,6 +1440,38 @@ class UserFederation(pulumi.CustomResource):
         from a directory system such as LDAP or Active Directory. Federated users
         will exist within the realm and will be able to log in to clients. Federated
         users can have their attributes defined using mappers.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            enabled=True,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
+            user_object_classes=[
+                "simpleSecurityObject",
+                "organizationalRole",
+            ],
+            connection_url="ldap://openldap",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin",
+            connection_timeout="5s",
+            read_timeout="10s",
+            kerberos=keycloak.ldap.UserFederationKerberosArgs(
+                kerberos_realm="FOO.LOCAL",
+                server_principal="HTTP/host.foo.com@FOO.LOCAL",
+                key_tab="/etc/host.keytab",
+            ))
+        ```
 
         ## Import
 

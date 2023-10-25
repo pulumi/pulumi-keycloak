@@ -222,6 +222,32 @@ class ClientServiceAccountRole(pulumi.CustomResource):
         If you'd like to attach realm roles to a service account, please use the `openid.ClientServiceAccountRealmRole`
         resource.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        # client1 provides a role to other clients
+        client1 = keycloak.openid.Client("client1", realm_id=realm.id)
+        client1_role = keycloak.Role("client1Role",
+            realm_id=realm.id,
+            client_id=client1.id,
+            description="A role that client1 provides")
+        # client2 is assigned the role of client1
+        client2 = keycloak.openid.Client("client2",
+            realm_id=realm.id,
+            service_accounts_enabled=True)
+        client2_service_account_role = keycloak.openid.ClientServiceAccountRole("client2ServiceAccountRole",
+            realm_id=realm.id,
+            service_account_user_id=client2.service_account_user_id,
+            client_id=client1.id,
+            role=client1_role.name)
+        ```
+
         ## Import
 
         This resource can be imported using the format `{{realmId}}/{{serviceAccountUserId}}/{{clientId}}/{{roleId}}`. Examplebash
@@ -249,6 +275,32 @@ class ClientServiceAccountRole(pulumi.CustomResource):
 
         If you'd like to attach realm roles to a service account, please use the `openid.ClientServiceAccountRealmRole`
         resource.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        # client1 provides a role to other clients
+        client1 = keycloak.openid.Client("client1", realm_id=realm.id)
+        client1_role = keycloak.Role("client1Role",
+            realm_id=realm.id,
+            client_id=client1.id,
+            description="A role that client1 provides")
+        # client2 is assigned the role of client1
+        client2 = keycloak.openid.Client("client2",
+            realm_id=realm.id,
+            service_accounts_enabled=True)
+        client2_service_account_role = keycloak.openid.ClientServiceAccountRole("client2ServiceAccountRole",
+            realm_id=realm.id,
+            service_account_user_id=client2.service_account_user_id,
+            client_id=client1.id,
+            role=client1_role.name)
+        ```
 
         ## Import
 

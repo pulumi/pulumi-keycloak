@@ -8,6 +8,23 @@ import * as utilities from "../utilities";
 
 /**
  * This data source can be used to fetch properties of a Keycloak client that uses the SAML protocol.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realmManagement = keycloak.saml.getClient({
+ *     realmId: "my-realm",
+ *     clientId: "realm-management",
+ * });
+ * const admin = realmManagement.then(realmManagement => keycloak.getRole({
+ *     realmId: "my-realm",
+ *     clientId: realmManagement.id,
+ *     name: "realm-admin",
+ * }));
+ * ```
  */
 export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Promise<GetClientResult> {
 
@@ -81,6 +98,23 @@ export interface GetClientResult {
 }
 /**
  * This data source can be used to fetch properties of a Keycloak client that uses the SAML protocol.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realmManagement = keycloak.saml.getClient({
+ *     realmId: "my-realm",
+ *     clientId: "realm-management",
+ * });
+ * const admin = realmManagement.then(realmManagement => keycloak.getRole({
+ *     realmId: "my-realm",
+ *     clientId: realmManagement.id,
+ *     name: "realm-admin",
+ * }));
+ * ```
  */
 export function getClientOutput(args: GetClientOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientResult> {
     return pulumi.output(args).apply((a: any) => getClient(a, opts))

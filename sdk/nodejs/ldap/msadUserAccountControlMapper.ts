@@ -13,6 +13,37 @@ import * as utilities from "../utilities";
  * AD user state to Keycloak in order to enforce settings like expired passwords
  * or disabled accounts.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
+ *     realmId: realm.id,
+ *     usernameLdapAttribute: "cn",
+ *     rdnLdapAttribute: "cn",
+ *     uuidLdapAttribute: "objectGUID",
+ *     userObjectClasses: [
+ *         "person",
+ *         "organizationalPerson",
+ *         "user",
+ *     ],
+ *     connectionUrl: "ldap://my-ad-server",
+ *     usersDn: "dc=example,dc=org",
+ *     bindDn: "cn=admin,dc=example,dc=org",
+ *     bindCredential: "admin",
+ * });
+ * const msadUserAccountControlMapper = new keycloak.ldap.MsadUserAccountControlMapper("msadUserAccountControlMapper", {
+ *     realmId: realm.id,
+ *     ldapUserFederationId: ldapUserFederation.id,
+ * });
+ * ```
+ *
  * ## Import
  *
  * LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash

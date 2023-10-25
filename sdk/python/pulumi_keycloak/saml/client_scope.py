@@ -254,6 +254,21 @@ class ClientScope(pulumi.CustomResource):
 
         Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        saml_client_scope = keycloak.saml.ClientScope("samlClientScope",
+            realm_id=realm.id,
+            description="This scope will map a user's group memberships to SAML assertion",
+            gui_order=1)
+        ```
+
         ## Import
 
         Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID. Examplebash
@@ -280,6 +295,21 @@ class ClientScope(pulumi.CustomResource):
         Allows for creating and managing Keycloak client scopes that can be attached to clients that use the SAML protocol.
 
         Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        saml_client_scope = keycloak.saml.ClientScope("samlClientScope",
+            realm_id=realm.id,
+            description="This scope will map a user's group memberships to SAML assertion",
+            gui_order=1)
+        ```
 
         ## Import
 

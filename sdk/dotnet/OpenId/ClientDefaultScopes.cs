@@ -10,6 +10,51 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var client = new Keycloak.OpenId.Client("client", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "test-client",
+    ///         AccessType = "CONFIDENTIAL",
+    ///     });
+    /// 
+    ///     var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var clientDefaultScopes = new Keycloak.OpenId.ClientDefaultScopes("clientDefaultScopes", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = client.Id,
+    ///         DefaultScopes = new[]
+    ///         {
+    ///             "profile",
+    ///             "email",
+    ///             "roles",
+    ///             "web-origins",
+    ///             clientScope.Name,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.

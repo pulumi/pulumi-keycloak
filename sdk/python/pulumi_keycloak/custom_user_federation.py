@@ -448,6 +448,26 @@ class CustomUserFederation(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="test",
+            enabled=True)
+        custom_user_federation = keycloak.CustomUserFederation("customUserFederation",
+            realm_id=realm.id,
+            provider_id="custom",
+            enabled=True,
+            config={
+                "dummyString": "foobar",
+                "dummyBool": True,
+                "multivalue": "value1##value2",
+            })
+        ```
+
         ## Import
 
         Custom user federation providers can be imported using the format `{{realm_id}}/{{custom_user_federation_id}}`. The ID of the custom user federation provider can be found within the Keycloak GUI and is typically a GUIDbash
@@ -476,6 +496,26 @@ class CustomUserFederation(pulumi.CustomResource):
                  args: CustomUserFederationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="test",
+            enabled=True)
+        custom_user_federation = keycloak.CustomUserFederation("customUserFederation",
+            realm_id=realm.id,
+            provider_id="custom",
+            enabled=True,
+            config={
+                "dummyString": "foobar",
+                "dummyBool": True,
+                "multivalue": "value1##value2",
+            })
+        ```
+
         ## Import
 
         Custom user federation providers can be imported using the format `{{realm_id}}/{{custom_user_federation_id}}`. The ID of the custom user federation provider can be found within the Keycloak GUI and is typically a GUIDbash

@@ -388,6 +388,26 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
         Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
         multiple different clients.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        saml_client = keycloak.saml.Client("samlClient",
+            realm_id=realm.id,
+            client_id="saml-client")
+        saml_user_attribute_mapper = keycloak.saml.UserAttributeProtocolMapper("samlUserAttributeMapper",
+            realm_id=realm.id,
+            client_id=saml_client.id,
+            user_attribute="displayName",
+            saml_attribute_name="displayName",
+            saml_attribute_name_format="Unspecified")
+        ```
+
         ## Import
 
         Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
@@ -425,6 +445,26 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
 
         Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
         multiple different clients.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        saml_client = keycloak.saml.Client("samlClient",
+            realm_id=realm.id,
+            client_id="saml-client")
+        saml_user_attribute_mapper = keycloak.saml.UserAttributeProtocolMapper("samlUserAttributeMapper",
+            realm_id=realm.id,
+            client_id=saml_client.id,
+            user_attribute="displayName",
+            saml_attribute_name="displayName",
+            saml_attribute_name_format="Unspecified")
+        ```
 
         ## Import
 

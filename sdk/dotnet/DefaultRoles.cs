@@ -15,6 +15,33 @@ namespace Pulumi.Keycloak
     /// Note: This feature was added in Keycloak v13, so this resource will not work on older versions of Keycloak.
     /// 
     /// ## Example Usage
+    /// ### Realm Role)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var defaultRoles = new Keycloak.DefaultRoles("defaultRoles", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         RoleNames = new[]
+    ///         {
+    ///             "uma_authorization",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 

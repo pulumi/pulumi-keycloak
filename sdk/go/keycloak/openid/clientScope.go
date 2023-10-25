@@ -18,6 +18,43 @@ import (
 // Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm. They can also
 // be used by clients to conditionally request claims or roles for a user based on the OAuth 2.0 `scope` parameter.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClientScope(ctx, "openidClientScope", &openid.ClientScopeArgs{
+//				RealmId:             realm.ID(),
+//				Description:         pulumi.String("When requested, this scope will map a user's group memberships to a claim"),
+//				IncludeInTokenScope: pulumi.Bool(true),
+//				GuiOrder:            pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID. Examplebash

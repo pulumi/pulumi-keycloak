@@ -222,6 +222,34 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
         AD user state to Keycloak in order to enforce settings like expired passwords
         or disabled accounts.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="objectGUID",
+            user_object_classes=[
+                "person",
+                "organizationalPerson",
+                "user",
+            ],
+            connection_url="ldap://my-ad-server",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        msad_user_account_control_mapper = keycloak.ldap.MsadUserAccountControlMapper("msadUserAccountControlMapper",
+            realm_id=realm.id,
+            ldap_user_federation_id=ldap_user_federation.id)
+        ```
+
         ## Import
 
         LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
@@ -251,6 +279,34 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
         to LDAP user federation providers that are pulling from AD, and it can propagate
         AD user state to Keycloak in order to enforce settings like expired passwords
         or disabled accounts.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="objectGUID",
+            user_object_classes=[
+                "person",
+                "organizationalPerson",
+                "user",
+            ],
+            connection_url="ldap://my-ad-server",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        msad_user_account_control_mapper = keycloak.ldap.MsadUserAccountControlMapper("msadUserAccountControlMapper",
+            realm_id=realm.id,
+            ldap_user_federation_id=ldap_user_federation.id)
+        ```
 
         ## Import
 

@@ -1329,6 +1329,27 @@ class IdentityProvider(pulumi.CustomResource):
 
         OIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        realm_identity_provider = keycloak.oidc.IdentityProvider("realmIdentityProvider",
+            realm=realm.id,
+            alias="my-idp",
+            authorization_url="https://authorizationurl.com",
+            client_id="clientID",
+            client_secret="clientSecret",
+            token_url="https://tokenurl.com",
+            extra_config={
+                "clientAuthMethod": "client_secret_post",
+            })
+        ```
+
         ## Import
 
         Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias. Examplebash
@@ -1380,6 +1401,27 @@ class IdentityProvider(pulumi.CustomResource):
         Allows for creating and managing OIDC Identity Providers within Keycloak.
 
         OIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        realm_identity_provider = keycloak.oidc.IdentityProvider("realmIdentityProvider",
+            realm=realm.id,
+            alias="my-idp",
+            authorization_url="https://authorizationurl.com",
+            client_id="clientID",
+            client_secret="clientSecret",
+            token_url="https://tokenurl.com",
+            extra_config={
+                "clientAuthMethod": "client_secret_post",
+            })
+        ```
 
         ## Import
 

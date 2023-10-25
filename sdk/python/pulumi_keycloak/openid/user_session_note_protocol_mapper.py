@@ -427,6 +427,45 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
         multiple different clients.
 
         ## Example Usage
+        ### Client)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        openid_client = keycloak.openid.Client("openidClient",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
+        user_session_note_mapper = keycloak.openid.UserSessionNoteProtocolMapper("userSessionNoteMapper",
+            realm_id=realm.id,
+            client_id=openid_client.id,
+            claim_name="foo",
+            claim_value_type="String",
+            session_note="bar")
+        ```
+        ### Client Scope)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        user_session_note_mapper = keycloak.openid.UserSessionNoteProtocolMapper("userSessionNoteMapper",
+            realm_id=realm.id,
+            client_scope_id=client_scope.id,
+            claim_name="foo",
+            claim_value_type="String",
+            session_note="bar")
+        ```
 
         ## Import
 
@@ -467,6 +506,45 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
         multiple different clients.
 
         ## Example Usage
+        ### Client)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        openid_client = keycloak.openid.Client("openidClient",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
+        user_session_note_mapper = keycloak.openid.UserSessionNoteProtocolMapper("userSessionNoteMapper",
+            realm_id=realm.id,
+            client_id=openid_client.id,
+            claim_name="foo",
+            claim_value_type="String",
+            session_note="bar")
+        ```
+        ### Client Scope)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        user_session_note_mapper = keycloak.openid.UserSessionNoteProtocolMapper("userSessionNoteMapper",
+            realm_id=realm.id,
+            client_scope_id=client_scope.id,
+            claim_name="foo",
+            claim_value_type="String",
+            session_note="bar")
+        ```
 
         ## Import
 

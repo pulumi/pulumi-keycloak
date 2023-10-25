@@ -328,6 +328,35 @@ class ClientPolicy(pulumi.CustomResource):
         """
         This resource can be used to create client policy.
 
+        ## Example Usage
+
+        In this example, we'll create a new OpenID client, then enabled permissions for the client. A client without permissions disabled cannot be assigned by a client policy. We'll use the `openid.ClientPolicy` resource to create a new client policy, which could be applied to many clients, for a realm and a resource_server_id.
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        openid_client = keycloak.openid.Client("openidClient",
+            client_id="openid_client",
+            realm_id=realm.id,
+            access_type="CONFIDENTIAL",
+            service_accounts_enabled=True)
+        my_permission = keycloak.openid.ClientPermissions("myPermission",
+            realm_id=realm.id,
+            client_id=openid_client.id)
+        realm_management = keycloak.openid.get_client(realm_id="my-realm",
+            client_id="realm-management")
+        token_exchange = keycloak.openid.ClientPolicy("tokenExchange",
+            resource_server_id=realm_management.id,
+            realm_id=realm.id,
+            logic="POSITIVE",
+            decision_strategy="UNANIMOUS",
+            clients=[openid_client.id])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] clients: The clients allowed by this client policy.
@@ -346,6 +375,35 @@ class ClientPolicy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         This resource can be used to create client policy.
+
+        ## Example Usage
+
+        In this example, we'll create a new OpenID client, then enabled permissions for the client. A client without permissions disabled cannot be assigned by a client policy. We'll use the `openid.ClientPolicy` resource to create a new client policy, which could be applied to many clients, for a realm and a resource_server_id.
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        openid_client = keycloak.openid.Client("openidClient",
+            client_id="openid_client",
+            realm_id=realm.id,
+            access_type="CONFIDENTIAL",
+            service_accounts_enabled=True)
+        my_permission = keycloak.openid.ClientPermissions("myPermission",
+            realm_id=realm.id,
+            client_id=openid_client.id)
+        realm_management = keycloak.openid.get_client(realm_id="my-realm",
+            client_id="realm-management")
+        token_exchange = keycloak.openid.ClientPolicy("tokenExchange",
+            resource_server_id=realm_management.id,
+            realm_id=realm.id,
+            logic="POSITIVE",
+            decision_strategy="UNANIMOUS",
+            clients=[openid_client.id])
+        ```
 
         :param str resource_name: The name of the resource.
         :param ClientPolicyArgs args: The arguments to use to populate this resource's properties.

@@ -237,6 +237,28 @@ class Group(pulumi.CustomResource):
         Groups can also be federated from external data sources, such as LDAP or Active Directory. This resource **should not**
         be used to manage groups that were created this way.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        parent_group = keycloak.Group("parentGroup", realm_id=realm.id)
+        child_group = keycloak.Group("childGroup",
+            realm_id=realm.id,
+            parent_id=parent_group.id)
+        child_group_with_optional_attributes = keycloak.Group("childGroupWithOptionalAttributes",
+            realm_id=realm.id,
+            parent_id=parent_group.id,
+            attributes={
+                "foo": "bar",
+                "multivalue": "value1##value2",
+            })
+        ```
+
         ## Import
 
         Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID. Examplebash
@@ -268,6 +290,28 @@ class Group(pulumi.CustomResource):
 
         Groups can also be federated from external data sources, such as LDAP or Active Directory. This resource **should not**
         be used to manage groups that were created this way.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        parent_group = keycloak.Group("parentGroup", realm_id=realm.id)
+        child_group = keycloak.Group("childGroup",
+            realm_id=realm.id,
+            parent_id=parent_group.id)
+        child_group_with_optional_attributes = keycloak.Group("childGroupWithOptionalAttributes",
+            realm_id=realm.id,
+            parent_id=parent_group.id,
+            attributes={
+                "foo": "bar",
+                "multivalue": "value1##value2",
+            })
+        ```
 
         ## Import
 

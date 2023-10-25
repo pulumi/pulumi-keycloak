@@ -215,6 +215,31 @@ class ExecutionConfig(pulumi.CustomResource):
         Allows for managing an authentication execution's configuration. If a particular authentication execution supports additional
         configuration (such as with the `identity-provider-redirector` execution), this can be managed with this resource.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        flow = keycloak.authentication.Flow("flow",
+            realm_id=realm.id,
+            alias="my-flow-alias")
+        execution = keycloak.authentication.Execution("execution",
+            realm_id=realm.id,
+            parent_flow_alias=flow.alias,
+            authenticator="identity-provider-redirector")
+        config = keycloak.authentication.ExecutionConfig("config",
+            realm_id=realm.id,
+            execution_id=execution.id,
+            alias="my-config-alias",
+            config={
+                "defaultProvider": "my-config-default-idp",
+            })
+        ```
+
         ## Import
 
         Configurations can be imported using the format `{{realm}}/{{authenticationExecutionId}}/{{authenticationExecutionConfigId}}`. If the `authenticationExecutionId` is incorrect, the import will still be successful. A subsequent apply will change the `authenticationExecutionId` to the correct one, which causes the configuration to be replaced. Examplebash
@@ -239,6 +264,31 @@ class ExecutionConfig(pulumi.CustomResource):
         """
         Allows for managing an authentication execution's configuration. If a particular authentication execution supports additional
         configuration (such as with the `identity-provider-redirector` execution), this can be managed with this resource.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        flow = keycloak.authentication.Flow("flow",
+            realm_id=realm.id,
+            alias="my-flow-alias")
+        execution = keycloak.authentication.Execution("execution",
+            realm_id=realm.id,
+            parent_flow_alias=flow.alias,
+            authenticator="identity-provider-redirector")
+        config = keycloak.authentication.ExecutionConfig("config",
+            realm_id=realm.id,
+            execution_id=execution.id,
+            alias="my-config-alias",
+            config={
+                "defaultProvider": "my-config-default-idp",
+            })
+        ```
 
         ## Import
 

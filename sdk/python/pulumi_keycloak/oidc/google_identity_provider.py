@@ -1003,6 +1003,27 @@ class GoogleIdentityProvider(pulumi.CustomResource):
 
         OIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        google = keycloak.oidc.GoogleIdentityProvider("google",
+            realm=realm.id,
+            client_id=var["google_identity_provider_client_id"],
+            client_secret=var["google_identity_provider_client_secret"],
+            trust_email=True,
+            hosted_domain="example.com",
+            sync_mode="IMPORT",
+            extra_config={
+                "myCustomConfigKey": "myValue",
+            })
+        ```
+
         ## Import
 
         This resource does not yet support importing.
@@ -1041,6 +1062,27 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         Allows for creating and managing OIDC Identity Providers within Keycloak.
 
         OIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        google = keycloak.oidc.GoogleIdentityProvider("google",
+            realm=realm.id,
+            client_id=var["google_identity_provider_client_id"],
+            client_secret=var["google_identity_provider_client_secret"],
+            trust_email=True,
+            hosted_domain="example.com",
+            sync_mode="IMPORT",
+            extra_config={
+                "myCustomConfigKey": "myValue",
+            })
+        ```
 
         ## Import
 

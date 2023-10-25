@@ -18,6 +18,137 @@ import (
 // The LDAP hardcoded role mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
 //
 // ## Example Usage
+// ### Realm Role)
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/ldap"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
+//				RealmId:               realm.ID(),
+//				UsernameLdapAttribute: pulumi.String("cn"),
+//				RdnLdapAttribute:      pulumi.String("cn"),
+//				UuidLdapAttribute:     pulumi.String("entryDN"),
+//				UserObjectClasses: pulumi.StringArray{
+//					pulumi.String("simpleSecurityObject"),
+//					pulumi.String("organizationalRole"),
+//				},
+//				ConnectionUrl:  pulumi.String("ldap://openldap"),
+//				UsersDn:        pulumi.String("dc=example,dc=org"),
+//				BindDn:         pulumi.String("cn=admin,dc=example,dc=org"),
+//				BindCredential: pulumi.String("admin"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			realmAdminRole, err := keycloak.NewRole(ctx, "realmAdminRole", &keycloak.RoleArgs{
+//				RealmId:     realm.ID(),
+//				Description: pulumi.String("My Realm Role"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ldap.NewHardcodedRoleMapper(ctx, "assignAdminRoleToAllUsers", &ldap.HardcodedRoleMapperArgs{
+//				RealmId:              realm.ID(),
+//				LdapUserFederationId: ldapUserFederation.ID(),
+//				Role:                 realmAdminRole.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Client Role)
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/ldap"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
+//				RealmId:               realm.ID(),
+//				UsernameLdapAttribute: pulumi.String("cn"),
+//				RdnLdapAttribute:      pulumi.String("cn"),
+//				UuidLdapAttribute:     pulumi.String("entryDN"),
+//				UserObjectClasses: pulumi.StringArray{
+//					pulumi.String("simpleSecurityObject"),
+//					pulumi.String("organizationalRole"),
+//				},
+//				ConnectionUrl:  pulumi.String("ldap://openldap"),
+//				UsersDn:        pulumi.String("dc=example,dc=org"),
+//				BindDn:         pulumi.String("cn=admin,dc=example,dc=org"),
+//				BindCredential: pulumi.String("admin"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			realmManagement := openid.LookupClientOutput(ctx, openid.GetClientOutputArgs{
+//				RealmId:  realm.ID(),
+//				ClientId: pulumi.String("realm-management"),
+//			}, nil)
+//			createClient := pulumi.All(realm.ID(), realmManagement).ApplyT(func(_args []interface{}) (keycloak.GetRoleResult, error) {
+//				id := _args[0].(string)
+//				realmManagement := _args[1].(openid.GetClientResult)
+//				return keycloak.LookupRoleOutput(ctx, keycloak.GetRoleOutputArgs{
+//					RealmId:  id,
+//					ClientId: realmManagement.Id,
+//					Name:     "create-client",
+//				}, nil), nil
+//			}).(keycloak.GetRoleResultOutput)
+//			_, err = ldap.NewHardcodedRoleMapper(ctx, "assignAdminRoleToAllUsers", &ldap.HardcodedRoleMapperArgs{
+//				RealmId:              realm.ID(),
+//				LdapUserFederationId: ldapUserFederation.ID(),
+//				Role: pulumi.All(realmManagement, createClient).ApplyT(func(_args []interface{}) (string, error) {
+//					realmManagement := _args[0].(openid.GetClientResult)
+//					createClient := _args[1].(keycloak.GetRoleResult)
+//					return fmt.Sprintf("%v.%v", realmManagement.ClientId, createClient.Name), nil
+//				}).(pulumi.StringOutput),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //

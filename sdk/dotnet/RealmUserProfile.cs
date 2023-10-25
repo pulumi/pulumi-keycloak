@@ -21,6 +21,134 @@ namespace Pulumi.Keycloak
     /// The realm linked to the `keycloak.RealmUserProfile` resource must have the user profile feature enabled.
     /// It can be done via the administration UI, or by setting the `userProfileEnabled` realm attribute to `true`.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Attributes = 
+    ///         {
+    ///             { "userProfileEnabled", true },
+    ///         },
+    ///     });
+    /// 
+    ///     var userprofile = new Keycloak.RealmUserProfile("userprofile", new()
+    ///     {
+    ///         RealmId = keycloak_realm.My_realm.Id,
+    ///         Attributes = new[]
+    ///         {
+    ///             new Keycloak.Inputs.RealmUserProfileAttributeArgs
+    ///             {
+    ///                 Name = "field1",
+    ///                 DisplayName = "Field 1",
+    ///                 Group = "group1",
+    ///                 EnabledWhenScopes = new[]
+    ///                 {
+    ///                     "offline_access",
+    ///                 },
+    ///                 RequiredForRoles = new[]
+    ///                 {
+    ///                     "user",
+    ///                 },
+    ///                 RequiredForScopes = new[]
+    ///                 {
+    ///                     "offline_access",
+    ///                 },
+    ///                 Permissions = new Keycloak.Inputs.RealmUserProfileAttributePermissionsArgs
+    ///                 {
+    ///                     Views = new[]
+    ///                     {
+    ///                         "admin",
+    ///                         "user",
+    ///                     },
+    ///                     Edits = new[]
+    ///                     {
+    ///                         "admin",
+    ///                         "user",
+    ///                     },
+    ///                 },
+    ///                 Validators = new[]
+    ///                 {
+    ///                     new Keycloak.Inputs.RealmUserProfileAttributeValidatorArgs
+    ///                     {
+    ///                         Name = "person-name-prohibited-characters",
+    ///                     },
+    ///                     new Keycloak.Inputs.RealmUserProfileAttributeValidatorArgs
+    ///                     {
+    ///                         Name = "pattern",
+    ///                         Config = 
+    ///                         {
+    ///                             { "pattern", "^[a-z]+$" },
+    ///                             { "error-message", "Nope" },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Annotations = 
+    ///                 {
+    ///                     { "foo", "bar" },
+    ///                 },
+    ///             },
+    ///             new Keycloak.Inputs.RealmUserProfileAttributeArgs
+    ///             {
+    ///                 Name = "field2",
+    ///                 Validators = new[]
+    ///                 {
+    ///                     new Keycloak.Inputs.RealmUserProfileAttributeValidatorArgs
+    ///                     {
+    ///                         Name = "options",
+    ///                         Config = 
+    ///                         {
+    ///                             { "options", JsonSerializer.Serialize(new[]
+    ///                             {
+    ///                                 "opt1",
+    ///                             }) },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Annotations = 
+    ///                 {
+    ///                     { "foo", JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         ["key"] = "val",
+    ///                     }) },
+    ///                 },
+    ///             },
+    ///         },
+    ///         Groups = new[]
+    ///         {
+    ///             new Keycloak.Inputs.RealmUserProfileGroupArgs
+    ///             {
+    ///                 Name = "group1",
+    ///                 DisplayHeader = "Group 1",
+    ///                 DisplayDescription = "A first group",
+    ///                 Annotations = 
+    ///                 {
+    ///                     { "foo", "bar" },
+    ///                     { "foo2", JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         ["key"] = "val",
+    ///                     }) },
+    ///                 },
+    ///             },
+    ///             new Keycloak.Inputs.RealmUserProfileGroupArgs
+    ///             {
+    ///                 Name = "group2",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// This resource currently does not support importing.

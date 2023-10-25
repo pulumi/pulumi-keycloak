@@ -16,6 +16,55 @@ namespace Pulumi.Keycloak
     /// Keycloak is not recommended. Instead, users should be federated from external sources by configuring user federation providers
     /// or identity providers.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var user = new Keycloak.User("user", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Username = "bob",
+    ///         Enabled = true,
+    ///         Email = "bob@domain.com",
+    ///         FirstName = "Bob",
+    ///         LastName = "Bobson",
+    ///     });
+    /// 
+    ///     var userWithInitialPassword = new Keycloak.User("userWithInitialPassword", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Username = "alice",
+    ///         Enabled = true,
+    ///         Email = "alice@domain.com",
+    ///         FirstName = "Alice",
+    ///         LastName = "Aliceberg",
+    ///         Attributes = 
+    ///         {
+    ///             { "foo", "bar" },
+    ///             { "multivalue", "value1##value2" },
+    ///         },
+    ///         InitialPassword = new Keycloak.Inputs.UserInitialPasswordArgs
+    ///         {
+    ///             Value = "some password",
+    ///             Temporary = true,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Users can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak assigns to the user upon creation. This value can be found in the GUI when editing the user. Examplebash

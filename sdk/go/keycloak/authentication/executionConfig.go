@@ -16,6 +16,60 @@ import (
 // Allows for managing an authentication execution's configuration. If a particular authentication execution supports additional
 // configuration (such as with the `identity-provider-redirector` execution), this can be managed with this resource.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/authentication"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			flow, err := authentication.NewFlow(ctx, "flow", &authentication.FlowArgs{
+//				RealmId: realm.ID(),
+//				Alias:   pulumi.String("my-flow-alias"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			execution, err := authentication.NewExecution(ctx, "execution", &authentication.ExecutionArgs{
+//				RealmId:         realm.ID(),
+//				ParentFlowAlias: flow.Alias,
+//				Authenticator:   pulumi.String("identity-provider-redirector"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = authentication.NewExecutionConfig(ctx, "config", &authentication.ExecutionConfigArgs{
+//				RealmId:     realm.ID(),
+//				ExecutionId: execution.ID(),
+//				Alias:       pulumi.String("my-config-alias"),
+//				Config: pulumi.StringMap{
+//					"defaultProvider": pulumi.String("my-config-default-idp"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Configurations can be imported using the format `{{realm}}/{{authenticationExecutionId}}/{{authenticationExecutionConfigId}}`. If the `authenticationExecutionId` is incorrect, the import will still be successful. A subsequent apply will change the `authenticationExecutionId` to the correct one, which causes the configuration to be replaced. Examplebash

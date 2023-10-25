@@ -142,6 +142,34 @@ def get_client_service_account_user(client_id: Optional[str] = None,
     This data source can be used to fetch information about the service account user that is associated with an OpenID client
     that has service accounts enabled.
 
+    ## Example Usage
+
+    In this example, we'll create an OpenID client with service accounts enabled. This causes Keycloak to create a special user
+    that represents the service account. We'll use this data source to grab this user's ID in order to assign some roles to this
+    user, using the `UserRoles` resource.
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.Realm("realm",
+        realm="my-realm",
+        enabled=True)
+    client = keycloak.openid.Client("client",
+        realm_id=realm.id,
+        client_id="client",
+        access_type="CONFIDENTIAL",
+        service_accounts_enabled=True)
+    service_account_user = keycloak.openid.get_client_service_account_user_output(realm_id=realm.id,
+        client_id=client.id)
+    offline_access = keycloak.get_role_output(realm_id=realm.id,
+        name="offline_access")
+    service_account_user_roles = keycloak.UserRoles("serviceAccountUserRoles",
+        realm_id=realm.id,
+        user_id=service_account_user.id,
+        role_ids=[offline_access.id])
+    ```
+
 
     :param str client_id: The ID of the OpenID client with service accounts enabled.
     :param str realm_id: The realm that the OpenID client exists within.
@@ -173,6 +201,34 @@ def get_client_service_account_user_output(client_id: Optional[pulumi.Input[str]
     """
     This data source can be used to fetch information about the service account user that is associated with an OpenID client
     that has service accounts enabled.
+
+    ## Example Usage
+
+    In this example, we'll create an OpenID client with service accounts enabled. This causes Keycloak to create a special user
+    that represents the service account. We'll use this data source to grab this user's ID in order to assign some roles to this
+    user, using the `UserRoles` resource.
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.Realm("realm",
+        realm="my-realm",
+        enabled=True)
+    client = keycloak.openid.Client("client",
+        realm_id=realm.id,
+        client_id="client",
+        access_type="CONFIDENTIAL",
+        service_accounts_enabled=True)
+    service_account_user = keycloak.openid.get_client_service_account_user_output(realm_id=realm.id,
+        client_id=client.id)
+    offline_access = keycloak.get_role_output(realm_id=realm.id,
+        name="offline_access")
+    service_account_user_roles = keycloak.UserRoles("serviceAccountUserRoles",
+        realm_id=realm.id,
+        user_id=service_account_user.id,
+        role_ids=[offline_access.id])
+    ```
 
 
     :param str client_id: The ID of the OpenID client with service accounts enabled.

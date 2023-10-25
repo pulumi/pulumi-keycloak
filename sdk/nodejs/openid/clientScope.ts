@@ -10,6 +10,24 @@ import * as utilities from "../utilities";
  * Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm. They can also
  * be used by clients to conditionally request claims or roles for a user based on the OAuth 2.0 `scope` parameter.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const openidClientScope = new keycloak.openid.ClientScope("openidClientScope", {
+ *     realmId: realm.id,
+ *     description: "When requested, this scope will map a user's group memberships to a claim",
+ *     includeInTokenScope: true,
+ *     guiOrder: 1,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID. Examplebash

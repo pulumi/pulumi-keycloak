@@ -383,6 +383,41 @@ class AudienceProtocolMapper(pulumi.CustomResource):
         string, or it can be mapped to the ID of a pre-existing client.
 
         ## Example Usage
+        ### Client)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        openid_client = keycloak.openid.Client("openidClient",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
+        audience_mapper = keycloak.openid.AudienceProtocolMapper("audienceMapper",
+            realm_id=realm.id,
+            client_id=openid_client.id,
+            included_custom_audience="foo")
+        ```
+        ### Client Scope)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        audience_mapper = keycloak.openid.AudienceProtocolMapper("audienceMapper",
+            realm_id=realm.id,
+            client_scope_id=client_scope.id,
+            included_custom_audience="foo")
+        ```
 
         ## Import
 
@@ -420,6 +455,41 @@ class AudienceProtocolMapper(pulumi.CustomResource):
         string, or it can be mapped to the ID of a pre-existing client.
 
         ## Example Usage
+        ### Client)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        openid_client = keycloak.openid.Client("openidClient",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
+        audience_mapper = keycloak.openid.AudienceProtocolMapper("audienceMapper",
+            realm_id=realm.id,
+            client_id=openid_client.id,
+            included_custom_audience="foo")
+        ```
+        ### Client Scope)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        audience_mapper = keycloak.openid.AudienceProtocolMapper("audienceMapper",
+            realm_id=realm.id,
+            client_scope_id=client_scope.id,
+            included_custom_audience="foo")
+        ```
 
         ## Import
 

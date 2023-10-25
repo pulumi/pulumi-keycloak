@@ -13,6 +13,41 @@ import (
 )
 
 // This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			offlineAccess, err := openid.LookupClientScope(ctx, &openid.LookupClientScopeArgs{
+//				RealmId: "my-realm",
+//				Name:    "offline_access",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewAudienceProtocolMapper(ctx, "audienceMapper", &openid.AudienceProtocolMapperArgs{
+//				RealmId:                *pulumi.String(offlineAccess.RealmId),
+//				ClientScopeId:          *pulumi.String(offlineAccess.Id),
+//				IncludedCustomAudience: pulumi.String("foo"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupClientScope(ctx *pulumi.Context, args *LookupClientScopeArgs, opts ...pulumi.InvokeOption) (*LookupClientScopeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupClientScopeResult

@@ -14,6 +14,36 @@ import * as utilities from "./utilities";
  *
  * > If you are using Keycloak 10 or higher, you will need to specify the `extraConfig` argument in order to define a `syncMode` for the mapper.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const oidcIdentityProvider = new keycloak.oidc.IdentityProvider("oidcIdentityProvider", {
+ *     realm: realm.id,
+ *     alias: "oidc",
+ *     authorizationUrl: "https://example.com/auth",
+ *     tokenUrl: "https://example.com/token",
+ *     clientId: "example_id",
+ *     clientSecret: "example_token",
+ *     defaultScopes: "openid random profile",
+ * });
+ * const oidcAttributeImporterIdentityProviderMapper = new keycloak.AttributeImporterIdentityProviderMapper("oidcAttributeImporterIdentityProviderMapper", {
+ *     realm: realm.id,
+ *     claimName: "my-email-claim",
+ *     identityProviderAlias: oidcIdentityProvider.alias,
+ *     userAttribute: "email",
+ *     extraConfig: {
+ *         syncMode: "INHERIT",
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * Identity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID. Examplebash

@@ -670,6 +670,41 @@ class RoleMapper(pulumi.CustomResource):
 
         The LDAP group mapper can be used to map an LDAP user's roles from some DN to Keycloak roles.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
+            user_object_classes=[
+                "simpleSecurityObject",
+                "organizationalRole",
+            ],
+            connection_url="ldap://openldap",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        ldap_role_mapper = keycloak.ldap.RoleMapper("ldapRoleMapper",
+            realm_id=realm.id,
+            ldap_user_federation_id=ldap_user_federation.id,
+            ldap_roles_dn="dc=example,dc=org",
+            role_name_ldap_attribute="cn",
+            role_object_classes=["groupOfNames"],
+            membership_attribute_type="DN",
+            membership_ldap_attribute="member",
+            membership_user_ldap_attribute="cn",
+            user_roles_retrieve_strategy="GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE",
+            memberof_ldap_attribute="memberOf")
+        ```
+
         ## Import
 
         LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
@@ -706,6 +741,41 @@ class RoleMapper(pulumi.CustomResource):
         Allows for creating and managing role mappers for Keycloak users federated via LDAP.
 
         The LDAP group mapper can be used to map an LDAP user's roles from some DN to Keycloak roles.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
+            user_object_classes=[
+                "simpleSecurityObject",
+                "organizationalRole",
+            ],
+            connection_url="ldap://openldap",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        ldap_role_mapper = keycloak.ldap.RoleMapper("ldapRoleMapper",
+            realm_id=realm.id,
+            ldap_user_federation_id=ldap_user_federation.id,
+            ldap_roles_dn="dc=example,dc=org",
+            role_name_ldap_attribute="cn",
+            role_object_classes=["groupOfNames"],
+            membership_attribute_type="DN",
+            membership_ldap_attribute="member",
+            membership_user_ldap_attribute="cn",
+            user_roles_retrieve_strategy="GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE",
+            memberof_ldap_attribute="memberOf")
+        ```
 
         ## Import
 

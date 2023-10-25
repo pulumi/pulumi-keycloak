@@ -342,6 +342,31 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
         Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors.
         Therefore, if possible, a specific mapper should be used.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        saml_client = keycloak.saml.Client("samlClient",
+            realm_id=realm.id,
+            client_id="test-client")
+        saml_hardcode_attribute_mapper = keycloak.GenericClientProtocolMapper("samlHardcodeAttributeMapper",
+            realm_id=realm.id,
+            client_id=saml_client.id,
+            protocol="saml",
+            protocol_mapper="saml-hardcode-attribute-mapper",
+            config={
+                "attribute.name": "name",
+                "attribute.nameformat": "Basic",
+                "attribute.value": "value",
+                "friendly.name": "display name",
+            })
+        ```
+
         ## Import
 
         Protocol mappers can be imported using the following format`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
@@ -377,6 +402,31 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
 
         Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors.
         Therefore, if possible, a specific mapper should be used.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        saml_client = keycloak.saml.Client("samlClient",
+            realm_id=realm.id,
+            client_id="test-client")
+        saml_hardcode_attribute_mapper = keycloak.GenericClientProtocolMapper("samlHardcodeAttributeMapper",
+            realm_id=realm.id,
+            client_id=saml_client.id,
+            protocol="saml",
+            protocol_mapper="saml-hardcode-attribute-mapper",
+            config={
+                "attribute.name": "name",
+                "attribute.nameformat": "Basic",
+                "attribute.value": "value",
+                "friendly.name": "display name",
+            })
+        ```
 
         ## Import
 

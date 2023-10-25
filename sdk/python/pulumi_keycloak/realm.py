@@ -2324,6 +2324,69 @@ class Realm(pulumi.CustomResource):
         A realm manages a logical collection of users, credentials, roles, and groups. Users log in to realms and can be federated
         from multiple sources.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            access_code_lifespan="1h",
+            attributes={
+                "mycustomAttribute": "myCustomValue",
+            },
+            display_name="my realm",
+            display_name_html="<b>my realm</b>",
+            enabled=True,
+            internationalization=keycloak.RealmInternationalizationArgs(
+                default_locale="en",
+                supported_locales=[
+                    "en",
+                    "de",
+                    "es",
+                ],
+            ),
+            login_theme="base",
+            password_policy="upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername",
+            realm="my-realm",
+            security_defenses=keycloak.RealmSecurityDefensesArgs(
+                brute_force_detection=keycloak.RealmSecurityDefensesBruteForceDetectionArgs(
+                    failure_reset_time_seconds=43200,
+                    max_failure_wait_seconds=900,
+                    max_login_failures=30,
+                    minimum_quick_login_wait_seconds=60,
+                    permanent_lockout=False,
+                    quick_login_check_milli_seconds=1000,
+                    wait_increment_seconds=60,
+                ),
+                headers=keycloak.RealmSecurityDefensesHeadersArgs(
+                    content_security_policy="frame-src 'self'; frame-ancestors 'self'; object-src 'none';",
+                    content_security_policy_report_only="",
+                    strict_transport_security="max-age=31536000; includeSubDomains",
+                    x_content_type_options="nosniff",
+                    x_frame_options="DENY",
+                    x_robots_tag="none",
+                    x_xss_protection="1; mode=block",
+                ),
+            ),
+            smtp_server=keycloak.RealmSmtpServerArgs(
+                auth=keycloak.RealmSmtpServerAuthArgs(
+                    password="password",
+                    username="tom",
+                ),
+                from_="example@example.com",
+                host="smtp.example.com",
+            ),
+            ssl_required="external",
+            web_authn_policy=keycloak.RealmWebAuthnPolicyArgs(
+                relying_party_entity_name="Example",
+                relying_party_id="keycloak.example.com",
+                signature_algorithms=[
+                    "ES256",
+                    "RS256",
+                ],
+            ))
+        ```
         ## Default Client Scopes
 
         - `default_default_client_scopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default default client-scopes.
@@ -2410,6 +2473,69 @@ class Realm(pulumi.CustomResource):
         A realm manages a logical collection of users, credentials, roles, and groups. Users log in to realms and can be federated
         from multiple sources.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            access_code_lifespan="1h",
+            attributes={
+                "mycustomAttribute": "myCustomValue",
+            },
+            display_name="my realm",
+            display_name_html="<b>my realm</b>",
+            enabled=True,
+            internationalization=keycloak.RealmInternationalizationArgs(
+                default_locale="en",
+                supported_locales=[
+                    "en",
+                    "de",
+                    "es",
+                ],
+            ),
+            login_theme="base",
+            password_policy="upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername",
+            realm="my-realm",
+            security_defenses=keycloak.RealmSecurityDefensesArgs(
+                brute_force_detection=keycloak.RealmSecurityDefensesBruteForceDetectionArgs(
+                    failure_reset_time_seconds=43200,
+                    max_failure_wait_seconds=900,
+                    max_login_failures=30,
+                    minimum_quick_login_wait_seconds=60,
+                    permanent_lockout=False,
+                    quick_login_check_milli_seconds=1000,
+                    wait_increment_seconds=60,
+                ),
+                headers=keycloak.RealmSecurityDefensesHeadersArgs(
+                    content_security_policy="frame-src 'self'; frame-ancestors 'self'; object-src 'none';",
+                    content_security_policy_report_only="",
+                    strict_transport_security="max-age=31536000; includeSubDomains",
+                    x_content_type_options="nosniff",
+                    x_frame_options="DENY",
+                    x_robots_tag="none",
+                    x_xss_protection="1; mode=block",
+                ),
+            ),
+            smtp_server=keycloak.RealmSmtpServerArgs(
+                auth=keycloak.RealmSmtpServerAuthArgs(
+                    password="password",
+                    username="tom",
+                ),
+                from_="example@example.com",
+                host="smtp.example.com",
+            ),
+            ssl_required="external",
+            web_authn_policy=keycloak.RealmWebAuthnPolicyArgs(
+                relying_party_entity_name="Example",
+                relying_party_id="keycloak.example.com",
+                signature_algorithms=[
+                    "ES256",
+                    "RS256",
+                ],
+            ))
+        ```
         ## Default Client Scopes
 
         - `default_default_client_scopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default default client-scopes.
