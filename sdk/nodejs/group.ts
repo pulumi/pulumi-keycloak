@@ -15,31 +15,6 @@ import * as utilities from "./utilities";
  * Groups can also be federated from external data sources, such as LDAP or Active Directory. This resource **should not**
  * be used to manage groups that were created this way.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const parentGroup = new keycloak.Group("parentGroup", {realmId: realm.id});
- * const childGroup = new keycloak.Group("childGroup", {
- *     realmId: realm.id,
- *     parentId: parentGroup.id,
- * });
- * const childGroupWithOptionalAttributes = new keycloak.Group("childGroupWithOptionalAttributes", {
- *     realmId: realm.id,
- *     parentId: parentGroup.id,
- *     attributes: {
- *         foo: "bar",
- *         multivalue: "value1##value2",
- *     },
- * });
- * ```
- *
  * ## Import
  *
  * Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID. Examplebash

@@ -10,62 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Keycloak = Pulumi.Keycloak;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var tokenExchangeRealm = new Keycloak.Realm("tokenExchangeRealm", new()
-    ///     {
-    ///         RealmName = "token-exchange_destination_realm",
-    ///         Enabled = true,
-    ///     });
-    /// 
-    ///     var tokenExchangeMyOidcIdp = new Keycloak.Oidc.IdentityProvider("tokenExchangeMyOidcIdp", new()
-    ///     {
-    ///         Realm = tokenExchangeRealm.Id,
-    ///         Alias = "myIdp",
-    ///         AuthorizationUrl = "http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/auth",
-    ///         TokenUrl = "http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/token",
-    ///         ClientId = "clientId",
-    ///         ClientSecret = "secret",
-    ///         DefaultScopes = "openid",
-    ///     });
-    /// 
-    ///     var token_exchangeWebappClient = new Keycloak.OpenId.Client("token-exchangeWebappClient", new()
-    ///     {
-    ///         RealmId = tokenExchangeRealm.Id,
-    ///         ClientId = "webapp_client",
-    ///         ClientSecret = "secret",
-    ///         Description = "a webapp client on the destination realm",
-    ///         AccessType = "CONFIDENTIAL",
-    ///         StandardFlowEnabled = true,
-    ///         ValidRedirectUris = new[]
-    ///         {
-    ///             "http://localhost:8080/*",
-    ///         },
-    ///     });
-    /// 
-    ///     //relevant part
-    ///     var oidcIdpPermission = new Keycloak.IdentityProviderTokenExchangeScopePermission("oidcIdpPermission", new()
-    ///     {
-    ///         RealmId = tokenExchangeRealm.Id,
-    ///         ProviderAlias = tokenExchangeMyOidcIdp.Alias,
-    ///         PolicyType = "client",
-    ///         Clients = new[]
-    ///         {
-    ///             token_exchangeWebappClient.Id,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// This resource can be imported using the format `{{realm_id}}/{{provider_alias}}`, where `provider_alias` is the alias that you assign to the identity provider upon creation. Examplebash

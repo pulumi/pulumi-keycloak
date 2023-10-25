@@ -13,72 +13,12 @@ namespace Pulumi.Keycloak
     {
         /// <summary>
         /// This data source can be used to fetch the ID of an authentication execution within Keycloak.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Keycloak = Pulumi.Keycloak;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
-        ///     {
-        ///         RealmName = "my-realm",
-        ///         Enabled = true,
-        ///     });
-        /// 
-        ///     var browserAuthCookie = Keycloak.GetAuthenticationExecution.Invoke(new()
-        ///     {
-        ///         RealmId = realm.Id,
-        ///         ParentFlowAlias = "browser",
-        ///         ProviderId = "auth-cookie",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetAuthenticationExecutionResult> InvokeAsync(GetAuthenticationExecutionArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAuthenticationExecutionResult>("keycloak:index/getAuthenticationExecution:getAuthenticationExecution", args ?? new GetAuthenticationExecutionArgs(), options.WithDefaults());
 
         /// <summary>
         /// This data source can be used to fetch the ID of an authentication execution within Keycloak.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Keycloak = Pulumi.Keycloak;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
-        ///     {
-        ///         RealmName = "my-realm",
-        ///         Enabled = true,
-        ///     });
-        /// 
-        ///     var browserAuthCookie = Keycloak.GetAuthenticationExecution.Invoke(new()
-        ///     {
-        ///         RealmId = realm.Id,
-        ///         ParentFlowAlias = "browser",
-        ///         ProviderId = "auth-cookie",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetAuthenticationExecutionResult> Invoke(GetAuthenticationExecutionInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAuthenticationExecutionResult>("keycloak:index/getAuthenticationExecution:getAuthenticationExecution", args ?? new GetAuthenticationExecutionInvokeArgs(), options.WithDefaults());

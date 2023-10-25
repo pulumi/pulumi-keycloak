@@ -10,43 +10,6 @@ import * as utilities from "../utilities";
  * The LDAP group mapper can be used to map an LDAP user's groups from some DN to Keycloak groups. This group mapper will also
  * create the groups within Keycloak if they do not already exist.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
- *     realmId: realm.id,
- *     usernameLdapAttribute: "cn",
- *     rdnLdapAttribute: "cn",
- *     uuidLdapAttribute: "entryDN",
- *     userObjectClasses: [
- *         "simpleSecurityObject",
- *         "organizationalRole",
- *     ],
- *     connectionUrl: "ldap://openldap",
- *     usersDn: "dc=example,dc=org",
- *     bindDn: "cn=admin,dc=example,dc=org",
- *     bindCredential: "admin",
- * });
- * const ldapGroupMapper = new keycloak.ldap.GroupMapper("ldapGroupMapper", {
- *     realmId: realm.id,
- *     ldapUserFederationId: ldapUserFederation.id,
- *     ldapGroupsDn: "dc=example,dc=org",
- *     groupNameLdapAttribute: "cn",
- *     groupObjectClasses: ["groupOfNames"],
- *     membershipAttributeType: "DN",
- *     membershipLdapAttribute: "member",
- *     membershipUserLdapAttribute: "cn",
- *     memberofLdapAttribute: "memberOf",
- * });
- * ```
- *
  * ## Import
  *
  * LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash

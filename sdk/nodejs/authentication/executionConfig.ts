@@ -8,35 +8,6 @@ import * as utilities from "../utilities";
  * Allows for managing an authentication execution's configuration. If a particular authentication execution supports additional
  * configuration (such as with the `identity-provider-redirector` execution), this can be managed with this resource.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const flow = new keycloak.authentication.Flow("flow", {
- *     realmId: realm.id,
- *     alias: "my-flow-alias",
- * });
- * const execution = new keycloak.authentication.Execution("execution", {
- *     realmId: realm.id,
- *     parentFlowAlias: flow.alias,
- *     authenticator: "identity-provider-redirector",
- * });
- * const config = new keycloak.authentication.ExecutionConfig("config", {
- *     realmId: realm.id,
- *     executionId: execution.id,
- *     alias: "my-config-alias",
- *     config: {
- *         defaultProvider: "my-config-default-idp",
- *     },
- * });
- * ```
- *
  * ## Import
  *
  * Configurations can be imported using the format `{{realm}}/{{authenticationExecutionId}}/{{authenticationExecutionConfigId}}`. If the `authenticationExecutionId` is incorrect, the import will still be successful. A subsequent apply will change the `authenticationExecutionId` to the correct one, which causes the configuration to be replaced. Examplebash

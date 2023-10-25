@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['GroupRolesArgs', 'GroupRoles']
@@ -25,11 +25,40 @@ class GroupRolesArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_ids: A list of role IDs to map to the group.
         :param pulumi.Input[bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
         """
-        pulumi.set(__self__, "group_id", group_id)
-        pulumi.set(__self__, "realm_id", realm_id)
-        pulumi.set(__self__, "role_ids", role_ids)
+        GroupRolesArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            group_id=group_id,
+            realm_id=realm_id,
+            role_ids=role_ids,
+            exhaustive=exhaustive,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             group_id: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             role_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             exhaustive: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if group_id is None and 'groupId' in kwargs:
+            group_id = kwargs['groupId']
+        if group_id is None:
+            raise TypeError("Missing 'group_id' argument")
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if role_ids is None and 'roleIds' in kwargs:
+            role_ids = kwargs['roleIds']
+        if role_ids is None:
+            raise TypeError("Missing 'role_ids' argument")
+
+        _setter("group_id", group_id)
+        _setter("realm_id", realm_id)
+        _setter("role_ids", role_ids)
         if exhaustive is not None:
-            pulumi.set(__self__, "exhaustive", exhaustive)
+            _setter("exhaustive", exhaustive)
 
     @property
     @pulumi.getter(name="groupId")
@@ -94,14 +123,37 @@ class _GroupRolesState:
         :param pulumi.Input[str] realm_id: The realm this group exists in.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_ids: A list of role IDs to map to the group.
         """
+        _GroupRolesState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            exhaustive=exhaustive,
+            group_id=group_id,
+            realm_id=realm_id,
+            role_ids=role_ids,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             exhaustive: Optional[pulumi.Input[bool]] = None,
+             group_id: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             role_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if group_id is None and 'groupId' in kwargs:
+            group_id = kwargs['groupId']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if role_ids is None and 'roleIds' in kwargs:
+            role_ids = kwargs['roleIds']
+
         if exhaustive is not None:
-            pulumi.set(__self__, "exhaustive", exhaustive)
+            _setter("exhaustive", exhaustive)
         if group_id is not None:
-            pulumi.set(__self__, "group_id", group_id)
+            _setter("group_id", group_id)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if role_ids is not None:
-            pulumi.set(__self__, "role_ids", role_ids)
+            _setter("role_ids", role_ids)
 
     @property
     @pulumi.getter
@@ -173,69 +225,6 @@ class GroupRoles(pulumi.CustomResource):
         assign a role and a composite that includes that role to the same group.
 
         ## Example Usage
-        ### Exhaustive Roles)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        realm_role = keycloak.Role("realmRole",
-            realm_id=realm.id,
-            description="My Realm Role")
-        client = keycloak.openid.Client("client",
-            realm_id=realm.id,
-            client_id="client",
-            enabled=True,
-            access_type="BEARER-ONLY")
-        client_role = keycloak.Role("clientRole",
-            realm_id=realm.id,
-            client_id=keycloak_client["client"]["id"],
-            description="My Client Role")
-        group = keycloak.Group("group", realm_id=realm.id)
-        group_roles = keycloak.GroupRoles("groupRoles",
-            realm_id=realm.id,
-            group_id=group.id,
-            role_ids=[
-                realm_role.id,
-                client_role.id,
-            ])
-        ```
-        ### Non Exhaustive Roles)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        realm_role = keycloak.Role("realmRole",
-            realm_id=realm.id,
-            description="My Realm Role")
-        client = keycloak.openid.Client("client",
-            realm_id=realm.id,
-            client_id="client",
-            enabled=True,
-            access_type="BEARER-ONLY")
-        client_role = keycloak.Role("clientRole",
-            realm_id=realm.id,
-            client_id=keycloak_client["client"]["id"],
-            description="My Client Role")
-        group = keycloak.Group("group", realm_id=realm.id)
-        group_role_association1 = keycloak.GroupRoles("groupRoleAssociation1",
-            realm_id=realm.id,
-            group_id=group.id,
-            exhaustive=False,
-            role_ids=[realm_role.id])
-        group_role_association2 = keycloak.GroupRoles("groupRoleAssociation2",
-            realm_id=realm.id,
-            group_id=group.id,
-            exhaustive=False,
-            role_ids=[client_role.id])
-        ```
 
         ## Import
 
@@ -269,69 +258,6 @@ class GroupRoles(pulumi.CustomResource):
         assign a role and a composite that includes that role to the same group.
 
         ## Example Usage
-        ### Exhaustive Roles)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        realm_role = keycloak.Role("realmRole",
-            realm_id=realm.id,
-            description="My Realm Role")
-        client = keycloak.openid.Client("client",
-            realm_id=realm.id,
-            client_id="client",
-            enabled=True,
-            access_type="BEARER-ONLY")
-        client_role = keycloak.Role("clientRole",
-            realm_id=realm.id,
-            client_id=keycloak_client["client"]["id"],
-            description="My Client Role")
-        group = keycloak.Group("group", realm_id=realm.id)
-        group_roles = keycloak.GroupRoles("groupRoles",
-            realm_id=realm.id,
-            group_id=group.id,
-            role_ids=[
-                realm_role.id,
-                client_role.id,
-            ])
-        ```
-        ### Non Exhaustive Roles)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        realm_role = keycloak.Role("realmRole",
-            realm_id=realm.id,
-            description="My Realm Role")
-        client = keycloak.openid.Client("client",
-            realm_id=realm.id,
-            client_id="client",
-            enabled=True,
-            access_type="BEARER-ONLY")
-        client_role = keycloak.Role("clientRole",
-            realm_id=realm.id,
-            client_id=keycloak_client["client"]["id"],
-            description="My Client Role")
-        group = keycloak.Group("group", realm_id=realm.id)
-        group_role_association1 = keycloak.GroupRoles("groupRoleAssociation1",
-            realm_id=realm.id,
-            group_id=group.id,
-            exhaustive=False,
-            role_ids=[realm_role.id])
-        group_role_association2 = keycloak.GroupRoles("groupRoleAssociation2",
-            realm_id=realm.id,
-            group_id=group.id,
-            exhaustive=False,
-            role_ids=[client_role.id])
-        ```
 
         ## Import
 
@@ -351,6 +277,10 @@ class GroupRoles(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            GroupRolesArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

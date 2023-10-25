@@ -9,32 +9,6 @@ import * as utilities from "../utilities";
  *
  * SAML (Security Assertion Markup Language) identity providers allows users to authenticate through a third-party system using the SAML protocol.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const realmSamlIdentityProvider = new keycloak.saml.IdentityProvider("realmSamlIdentityProvider", {
- *     realm: realm.id,
- *     alias: "my-saml-idp",
- *     entityId: "https://domain.com/entity_id",
- *     singleSignOnServiceUrl: "https://domain.com/adfs/ls/",
- *     singleLogoutServiceUrl: "https://domain.com/adfs/ls/?wa=wsignout1.0",
- *     backchannelSupported: true,
- *     postBindingResponse: true,
- *     postBindingLogout: true,
- *     postBindingAuthnRequest: true,
- *     storeToken: false,
- *     trustEmail: true,
- *     forceAuthn: true,
- * });
- * ```
- *
  * ## Import
  *
  * Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias. Examplebash

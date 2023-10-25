@@ -14,39 +14,6 @@ namespace Pulumi.Keycloak.Oidc
     /// 
     /// OIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Keycloak = Pulumi.Keycloak;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
-    ///     {
-    ///         RealmName = "my-realm",
-    ///         Enabled = true,
-    ///     });
-    /// 
-    ///     var realmIdentityProvider = new Keycloak.Oidc.IdentityProvider("realmIdentityProvider", new()
-    ///     {
-    ///         Realm = realm.Id,
-    ///         Alias = "my-idp",
-    ///         AuthorizationUrl = "https://authorizationurl.com",
-    ///         ClientId = "clientID",
-    ///         ClientSecret = "clientSecret",
-    ///         TokenUrl = "https://tokenurl.com",
-    ///         ExtraConfig = 
-    ///         {
-    ///             { "clientAuthMethod", "client_secret_post" },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias. Examplebash

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -78,20 +78,6 @@ def get_authentication_execution(parent_flow_alias: Optional[str] = None,
     """
     This data source can be used to fetch the ID of an authentication execution within Keycloak.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_keycloak as keycloak
-
-    realm = keycloak.Realm("realm",
-        realm="my-realm",
-        enabled=True)
-    browser_auth_cookie = keycloak.get_authentication_execution_output(realm_id=realm.id,
-        parent_flow_alias="browser",
-        provider_id="auth-cookie")
-    ```
-
 
     :param str parent_flow_alias: The alias of the flow this execution is attached to.
     :param str provider_id: The name of the provider. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools. This was previously known as the "authenticator".
@@ -118,20 +104,6 @@ def get_authentication_execution_output(parent_flow_alias: Optional[pulumi.Input
                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthenticationExecutionResult]:
     """
     This data source can be used to fetch the ID of an authentication execution within Keycloak.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_keycloak as keycloak
-
-    realm = keycloak.Realm("realm",
-        realm="my-realm",
-        enabled=True)
-    browser_auth_cookie = keycloak.get_authentication_execution_output(realm_id=realm.id,
-        parent_flow_alias="browser",
-        provider_id="auth-cookie")
-    ```
 
 
     :param str parent_flow_alias: The alias of the flow this execution is attached to.

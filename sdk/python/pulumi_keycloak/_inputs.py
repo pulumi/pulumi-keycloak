@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -53,12 +53,29 @@ class GroupPermissionsManageMembersScopeArgs:
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        GroupPermissionsManageMembersScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -94,12 +111,29 @@ class GroupPermissionsManageMembershipScopeArgs:
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        GroupPermissionsManageMembershipScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -135,12 +169,29 @@ class GroupPermissionsManageScopeArgs:
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        GroupPermissionsManageScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -176,12 +227,29 @@ class GroupPermissionsViewMembersScopeArgs:
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        GroupPermissionsViewMembersScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -217,12 +285,29 @@ class GroupPermissionsViewScopeArgs:
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        GroupPermissionsViewScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -261,8 +346,29 @@ class RealmInternationalizationArgs:
         :param pulumi.Input[str] default_locale: The locale to use by default. This locale code must be present within the `supported_locales` list.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] supported_locales: A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
         """
-        pulumi.set(__self__, "default_locale", default_locale)
-        pulumi.set(__self__, "supported_locales", supported_locales)
+        RealmInternationalizationArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            default_locale=default_locale,
+            supported_locales=supported_locales,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             default_locale: Optional[pulumi.Input[str]] = None,
+             supported_locales: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if default_locale is None and 'defaultLocale' in kwargs:
+            default_locale = kwargs['defaultLocale']
+        if default_locale is None:
+            raise TypeError("Missing 'default_locale' argument")
+        if supported_locales is None and 'supportedLocales' in kwargs:
+            supported_locales = kwargs['supportedLocales']
+        if supported_locales is None:
+            raise TypeError("Missing 'supported_locales' argument")
+
+        _setter("default_locale", default_locale)
+        _setter("supported_locales", supported_locales)
 
     @property
     @pulumi.getter(name="defaultLocale")
@@ -306,18 +412,43 @@ class RealmOtpPolicyArgs:
         :param pulumi.Input[int] period: How many seconds should an OTP token be valid. Defaults to `30`.
         :param pulumi.Input[str] type: One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
         """
+        RealmOtpPolicyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            algorithm=algorithm,
+            digits=digits,
+            initial_counter=initial_counter,
+            look_ahead_window=look_ahead_window,
+            period=period,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             algorithm: Optional[pulumi.Input[str]] = None,
+             digits: Optional[pulumi.Input[int]] = None,
+             initial_counter: Optional[pulumi.Input[int]] = None,
+             look_ahead_window: Optional[pulumi.Input[int]] = None,
+             period: Optional[pulumi.Input[int]] = None,
+             type: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if initial_counter is None and 'initialCounter' in kwargs:
+            initial_counter = kwargs['initialCounter']
+        if look_ahead_window is None and 'lookAheadWindow' in kwargs:
+            look_ahead_window = kwargs['lookAheadWindow']
+
         if algorithm is not None:
-            pulumi.set(__self__, "algorithm", algorithm)
+            _setter("algorithm", algorithm)
         if digits is not None:
-            pulumi.set(__self__, "digits", digits)
+            _setter("digits", digits)
         if initial_counter is not None:
-            pulumi.set(__self__, "initial_counter", initial_counter)
+            _setter("initial_counter", initial_counter)
         if look_ahead_window is not None:
-            pulumi.set(__self__, "look_ahead_window", look_ahead_window)
+            _setter("look_ahead_window", look_ahead_window)
         if period is not None:
-            pulumi.set(__self__, "period", period)
+            _setter("period", period)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
 
     @property
     @pulumi.getter
@@ -397,10 +528,25 @@ class RealmSecurityDefensesArgs:
     def __init__(__self__, *,
                  brute_force_detection: Optional[pulumi.Input['RealmSecurityDefensesBruteForceDetectionArgs']] = None,
                  headers: Optional[pulumi.Input['RealmSecurityDefensesHeadersArgs']] = None):
+        RealmSecurityDefensesArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            brute_force_detection=brute_force_detection,
+            headers=headers,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             brute_force_detection: Optional[pulumi.Input['RealmSecurityDefensesBruteForceDetectionArgs']] = None,
+             headers: Optional[pulumi.Input['RealmSecurityDefensesHeadersArgs']] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if brute_force_detection is None and 'bruteForceDetection' in kwargs:
+            brute_force_detection = kwargs['bruteForceDetection']
+
         if brute_force_detection is not None:
-            pulumi.set(__self__, "brute_force_detection", brute_force_detection)
+            _setter("brute_force_detection", brute_force_detection)
         if headers is not None:
-            pulumi.set(__self__, "headers", headers)
+            _setter("headers", headers)
 
     @property
     @pulumi.getter(name="bruteForceDetection")
@@ -440,20 +586,57 @@ class RealmSecurityDefensesBruteForceDetectionArgs:
         :param pulumi.Input[int] quick_login_check_milli_seconds: Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
         :param pulumi.Input[int] wait_increment_seconds: This represents the amount of time a user should be locked out when the login failure threshold has been met.
         """
+        RealmSecurityDefensesBruteForceDetectionArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            failure_reset_time_seconds=failure_reset_time_seconds,
+            max_failure_wait_seconds=max_failure_wait_seconds,
+            max_login_failures=max_login_failures,
+            minimum_quick_login_wait_seconds=minimum_quick_login_wait_seconds,
+            permanent_lockout=permanent_lockout,
+            quick_login_check_milli_seconds=quick_login_check_milli_seconds,
+            wait_increment_seconds=wait_increment_seconds,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             failure_reset_time_seconds: Optional[pulumi.Input[int]] = None,
+             max_failure_wait_seconds: Optional[pulumi.Input[int]] = None,
+             max_login_failures: Optional[pulumi.Input[int]] = None,
+             minimum_quick_login_wait_seconds: Optional[pulumi.Input[int]] = None,
+             permanent_lockout: Optional[pulumi.Input[bool]] = None,
+             quick_login_check_milli_seconds: Optional[pulumi.Input[int]] = None,
+             wait_increment_seconds: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if failure_reset_time_seconds is None and 'failureResetTimeSeconds' in kwargs:
+            failure_reset_time_seconds = kwargs['failureResetTimeSeconds']
+        if max_failure_wait_seconds is None and 'maxFailureWaitSeconds' in kwargs:
+            max_failure_wait_seconds = kwargs['maxFailureWaitSeconds']
+        if max_login_failures is None and 'maxLoginFailures' in kwargs:
+            max_login_failures = kwargs['maxLoginFailures']
+        if minimum_quick_login_wait_seconds is None and 'minimumQuickLoginWaitSeconds' in kwargs:
+            minimum_quick_login_wait_seconds = kwargs['minimumQuickLoginWaitSeconds']
+        if permanent_lockout is None and 'permanentLockout' in kwargs:
+            permanent_lockout = kwargs['permanentLockout']
+        if quick_login_check_milli_seconds is None and 'quickLoginCheckMilliSeconds' in kwargs:
+            quick_login_check_milli_seconds = kwargs['quickLoginCheckMilliSeconds']
+        if wait_increment_seconds is None and 'waitIncrementSeconds' in kwargs:
+            wait_increment_seconds = kwargs['waitIncrementSeconds']
+
         if failure_reset_time_seconds is not None:
-            pulumi.set(__self__, "failure_reset_time_seconds", failure_reset_time_seconds)
+            _setter("failure_reset_time_seconds", failure_reset_time_seconds)
         if max_failure_wait_seconds is not None:
-            pulumi.set(__self__, "max_failure_wait_seconds", max_failure_wait_seconds)
+            _setter("max_failure_wait_seconds", max_failure_wait_seconds)
         if max_login_failures is not None:
-            pulumi.set(__self__, "max_login_failures", max_login_failures)
+            _setter("max_login_failures", max_login_failures)
         if minimum_quick_login_wait_seconds is not None:
-            pulumi.set(__self__, "minimum_quick_login_wait_seconds", minimum_quick_login_wait_seconds)
+            _setter("minimum_quick_login_wait_seconds", minimum_quick_login_wait_seconds)
         if permanent_lockout is not None:
-            pulumi.set(__self__, "permanent_lockout", permanent_lockout)
+            _setter("permanent_lockout", permanent_lockout)
         if quick_login_check_milli_seconds is not None:
-            pulumi.set(__self__, "quick_login_check_milli_seconds", quick_login_check_milli_seconds)
+            _setter("quick_login_check_milli_seconds", quick_login_check_milli_seconds)
         if wait_increment_seconds is not None:
-            pulumi.set(__self__, "wait_increment_seconds", wait_increment_seconds)
+            _setter("wait_increment_seconds", wait_increment_seconds)
 
     @property
     @pulumi.getter(name="failureResetTimeSeconds")
@@ -557,20 +740,57 @@ class RealmSecurityDefensesHeadersArgs:
         :param pulumi.Input[str] x_robots_tag: Prevent pages from appearing in search engines.
         :param pulumi.Input[str] x_xss_protection: This header configures the Cross-site scripting (XSS) filter in your browser.
         """
+        RealmSecurityDefensesHeadersArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            content_security_policy=content_security_policy,
+            content_security_policy_report_only=content_security_policy_report_only,
+            strict_transport_security=strict_transport_security,
+            x_content_type_options=x_content_type_options,
+            x_frame_options=x_frame_options,
+            x_robots_tag=x_robots_tag,
+            x_xss_protection=x_xss_protection,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             content_security_policy: Optional[pulumi.Input[str]] = None,
+             content_security_policy_report_only: Optional[pulumi.Input[str]] = None,
+             strict_transport_security: Optional[pulumi.Input[str]] = None,
+             x_content_type_options: Optional[pulumi.Input[str]] = None,
+             x_frame_options: Optional[pulumi.Input[str]] = None,
+             x_robots_tag: Optional[pulumi.Input[str]] = None,
+             x_xss_protection: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if content_security_policy is None and 'contentSecurityPolicy' in kwargs:
+            content_security_policy = kwargs['contentSecurityPolicy']
+        if content_security_policy_report_only is None and 'contentSecurityPolicyReportOnly' in kwargs:
+            content_security_policy_report_only = kwargs['contentSecurityPolicyReportOnly']
+        if strict_transport_security is None and 'strictTransportSecurity' in kwargs:
+            strict_transport_security = kwargs['strictTransportSecurity']
+        if x_content_type_options is None and 'xContentTypeOptions' in kwargs:
+            x_content_type_options = kwargs['xContentTypeOptions']
+        if x_frame_options is None and 'xFrameOptions' in kwargs:
+            x_frame_options = kwargs['xFrameOptions']
+        if x_robots_tag is None and 'xRobotsTag' in kwargs:
+            x_robots_tag = kwargs['xRobotsTag']
+        if x_xss_protection is None and 'xXssProtection' in kwargs:
+            x_xss_protection = kwargs['xXssProtection']
+
         if content_security_policy is not None:
-            pulumi.set(__self__, "content_security_policy", content_security_policy)
+            _setter("content_security_policy", content_security_policy)
         if content_security_policy_report_only is not None:
-            pulumi.set(__self__, "content_security_policy_report_only", content_security_policy_report_only)
+            _setter("content_security_policy_report_only", content_security_policy_report_only)
         if strict_transport_security is not None:
-            pulumi.set(__self__, "strict_transport_security", strict_transport_security)
+            _setter("strict_transport_security", strict_transport_security)
         if x_content_type_options is not None:
-            pulumi.set(__self__, "x_content_type_options", x_content_type_options)
+            _setter("x_content_type_options", x_content_type_options)
         if x_frame_options is not None:
-            pulumi.set(__self__, "x_frame_options", x_frame_options)
+            _setter("x_frame_options", x_frame_options)
         if x_robots_tag is not None:
-            pulumi.set(__self__, "x_robots_tag", x_robots_tag)
+            _setter("x_robots_tag", x_robots_tag)
         if x_xss_protection is not None:
-            pulumi.set(__self__, "x_xss_protection", x_xss_protection)
+            _setter("x_xss_protection", x_xss_protection)
 
     @property
     @pulumi.getter(name="contentSecurityPolicy")
@@ -682,24 +902,67 @@ class RealmSmtpServerArgs:
         :param pulumi.Input[bool] ssl: When `true`, enables SSL. Defaults to `false`.
         :param pulumi.Input[bool] starttls: When `true`, enables StartTLS. Defaults to `false`.
         """
-        pulumi.set(__self__, "from_", from_)
-        pulumi.set(__self__, "host", host)
+        RealmSmtpServerArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            from_=from_,
+            host=host,
+            auth=auth,
+            envelope_from=envelope_from,
+            from_display_name=from_display_name,
+            port=port,
+            reply_to=reply_to,
+            reply_to_display_name=reply_to_display_name,
+            ssl=ssl,
+            starttls=starttls,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             from_: Optional[pulumi.Input[str]] = None,
+             host: Optional[pulumi.Input[str]] = None,
+             auth: Optional[pulumi.Input['RealmSmtpServerAuthArgs']] = None,
+             envelope_from: Optional[pulumi.Input[str]] = None,
+             from_display_name: Optional[pulumi.Input[str]] = None,
+             port: Optional[pulumi.Input[str]] = None,
+             reply_to: Optional[pulumi.Input[str]] = None,
+             reply_to_display_name: Optional[pulumi.Input[str]] = None,
+             ssl: Optional[pulumi.Input[bool]] = None,
+             starttls: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if from_ is None and 'from' in kwargs:
+            from_ = kwargs['from']
+        if from_ is None:
+            raise TypeError("Missing 'from_' argument")
+        if host is None:
+            raise TypeError("Missing 'host' argument")
+        if envelope_from is None and 'envelopeFrom' in kwargs:
+            envelope_from = kwargs['envelopeFrom']
+        if from_display_name is None and 'fromDisplayName' in kwargs:
+            from_display_name = kwargs['fromDisplayName']
+        if reply_to is None and 'replyTo' in kwargs:
+            reply_to = kwargs['replyTo']
+        if reply_to_display_name is None and 'replyToDisplayName' in kwargs:
+            reply_to_display_name = kwargs['replyToDisplayName']
+
+        _setter("from_", from_)
+        _setter("host", host)
         if auth is not None:
-            pulumi.set(__self__, "auth", auth)
+            _setter("auth", auth)
         if envelope_from is not None:
-            pulumi.set(__self__, "envelope_from", envelope_from)
+            _setter("envelope_from", envelope_from)
         if from_display_name is not None:
-            pulumi.set(__self__, "from_display_name", from_display_name)
+            _setter("from_display_name", from_display_name)
         if port is not None:
-            pulumi.set(__self__, "port", port)
+            _setter("port", port)
         if reply_to is not None:
-            pulumi.set(__self__, "reply_to", reply_to)
+            _setter("reply_to", reply_to)
         if reply_to_display_name is not None:
-            pulumi.set(__self__, "reply_to_display_name", reply_to_display_name)
+            _setter("reply_to_display_name", reply_to_display_name)
         if ssl is not None:
-            pulumi.set(__self__, "ssl", ssl)
+            _setter("ssl", ssl)
         if starttls is not None:
-            pulumi.set(__self__, "starttls", starttls)
+            _setter("starttls", starttls)
 
     @property
     @pulumi.getter(name="from")
@@ -831,8 +1094,25 @@ class RealmSmtpServerAuthArgs:
         :param pulumi.Input[str] password: The SMTP server password.
         :param pulumi.Input[str] username: The SMTP server username.
         """
-        pulumi.set(__self__, "password", password)
-        pulumi.set(__self__, "username", username)
+        RealmSmtpServerAuthArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            password=password,
+            username=username,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             password: Optional[pulumi.Input[str]] = None,
+             username: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if password is None:
+            raise TypeError("Missing 'password' argument")
+        if username is None:
+            raise TypeError("Missing 'username' argument")
+
+        _setter("password", password)
+        _setter("username", username)
 
     @property
     @pulumi.getter
@@ -882,23 +1162,60 @@ class RealmUserProfileAttributeArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] required_for_scopes: A list of scopes for which the attribute will be required.
         :param pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeValidatorArgs']]] validators: A list of validators for the attribute.
         """
-        pulumi.set(__self__, "name", name)
+        RealmUserProfileAttributeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            annotations=annotations,
+            display_name=display_name,
+            enabled_when_scopes=enabled_when_scopes,
+            group=group,
+            permissions=permissions,
+            required_for_roles=required_for_roles,
+            required_for_scopes=required_for_scopes,
+            validators=validators,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: Optional[pulumi.Input[str]] = None,
+             annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             display_name: Optional[pulumi.Input[str]] = None,
+             enabled_when_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             group: Optional[pulumi.Input[str]] = None,
+             permissions: Optional[pulumi.Input['RealmUserProfileAttributePermissionsArgs']] = None,
+             required_for_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             required_for_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             validators: Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeValidatorArgs']]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if display_name is None and 'displayName' in kwargs:
+            display_name = kwargs['displayName']
+        if enabled_when_scopes is None and 'enabledWhenScopes' in kwargs:
+            enabled_when_scopes = kwargs['enabledWhenScopes']
+        if required_for_roles is None and 'requiredForRoles' in kwargs:
+            required_for_roles = kwargs['requiredForRoles']
+        if required_for_scopes is None and 'requiredForScopes' in kwargs:
+            required_for_scopes = kwargs['requiredForScopes']
+
+        _setter("name", name)
         if annotations is not None:
-            pulumi.set(__self__, "annotations", annotations)
+            _setter("annotations", annotations)
         if display_name is not None:
-            pulumi.set(__self__, "display_name", display_name)
+            _setter("display_name", display_name)
         if enabled_when_scopes is not None:
-            pulumi.set(__self__, "enabled_when_scopes", enabled_when_scopes)
+            _setter("enabled_when_scopes", enabled_when_scopes)
         if group is not None:
-            pulumi.set(__self__, "group", group)
+            _setter("group", group)
         if permissions is not None:
-            pulumi.set(__self__, "permissions", permissions)
+            _setter("permissions", permissions)
         if required_for_roles is not None:
-            pulumi.set(__self__, "required_for_roles", required_for_roles)
+            _setter("required_for_roles", required_for_roles)
         if required_for_scopes is not None:
-            pulumi.set(__self__, "required_for_scopes", required_for_scopes)
+            _setter("required_for_scopes", required_for_scopes)
         if validators is not None:
-            pulumi.set(__self__, "validators", validators)
+            _setter("validators", validators)
 
     @property
     @pulumi.getter
@@ -1018,8 +1335,25 @@ class RealmUserProfileAttributePermissionsArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] edits: A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] views: A list of profiles that will be able to view the attribute. One of `admin`, `user`.
         """
-        pulumi.set(__self__, "edits", edits)
-        pulumi.set(__self__, "views", views)
+        RealmUserProfileAttributePermissionsArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            edits=edits,
+            views=views,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             edits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             views: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if edits is None:
+            raise TypeError("Missing 'edits' argument")
+        if views is None:
+            raise TypeError("Missing 'views' argument")
+
+        _setter("edits", edits)
+        _setter("views", views)
 
     @property
     @pulumi.getter
@@ -1055,9 +1389,24 @@ class RealmUserProfileAttributeValidatorArgs:
         :param pulumi.Input[str] name: The name of the attribute.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: A map defining the configuration of the validator. Values can be a String or a json object.
         """
-        pulumi.set(__self__, "name", name)
+        RealmUserProfileAttributeValidatorArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            config=config,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: Optional[pulumi.Input[str]] = None,
+             config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+
+        _setter("name", name)
         if config is not None:
-            pulumi.set(__self__, "config", config)
+            _setter("config", config)
 
     @property
     @pulumi.getter
@@ -1097,13 +1446,36 @@ class RealmUserProfileGroupArgs:
         :param pulumi.Input[str] display_description: The display description of the group.
         :param pulumi.Input[str] display_header: The display header of the group.
         """
-        pulumi.set(__self__, "name", name)
+        RealmUserProfileGroupArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            annotations=annotations,
+            display_description=display_description,
+            display_header=display_header,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: Optional[pulumi.Input[str]] = None,
+             annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             display_description: Optional[pulumi.Input[str]] = None,
+             display_header: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if display_description is None and 'displayDescription' in kwargs:
+            display_description = kwargs['displayDescription']
+        if display_header is None and 'displayHeader' in kwargs:
+            display_header = kwargs['displayHeader']
+
+        _setter("name", name)
         if annotations is not None:
-            pulumi.set(__self__, "annotations", annotations)
+            _setter("annotations", annotations)
         if display_description is not None:
-            pulumi.set(__self__, "display_description", display_description)
+            _setter("display_description", display_description)
         if display_header is not None:
-            pulumi.set(__self__, "display_header", display_header)
+            _setter("display_header", display_header)
 
     @property
     @pulumi.getter
@@ -1179,26 +1551,75 @@ class RealmWebAuthnPasswordlessPolicyArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] signature_algorithms: A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are `ES256`, `ES384`, `ES512`, `RS256`, `RS384`, `RS512`, and `RS1`.
         :param pulumi.Input[str] user_verification_requirement: Specifies the policy for verifying a user logging in via WebAuthn. Valid options are `not specified`, `required`, `preferred`, or `discouraged`. Defaults to `not specified`.
         """
+        RealmWebAuthnPasswordlessPolicyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            acceptable_aaguids=acceptable_aaguids,
+            attestation_conveyance_preference=attestation_conveyance_preference,
+            authenticator_attachment=authenticator_attachment,
+            avoid_same_authenticator_register=avoid_same_authenticator_register,
+            create_timeout=create_timeout,
+            relying_party_entity_name=relying_party_entity_name,
+            relying_party_id=relying_party_id,
+            require_resident_key=require_resident_key,
+            signature_algorithms=signature_algorithms,
+            user_verification_requirement=user_verification_requirement,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             acceptable_aaguids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             attestation_conveyance_preference: Optional[pulumi.Input[str]] = None,
+             authenticator_attachment: Optional[pulumi.Input[str]] = None,
+             avoid_same_authenticator_register: Optional[pulumi.Input[bool]] = None,
+             create_timeout: Optional[pulumi.Input[int]] = None,
+             relying_party_entity_name: Optional[pulumi.Input[str]] = None,
+             relying_party_id: Optional[pulumi.Input[str]] = None,
+             require_resident_key: Optional[pulumi.Input[str]] = None,
+             signature_algorithms: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             user_verification_requirement: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if acceptable_aaguids is None and 'acceptableAaguids' in kwargs:
+            acceptable_aaguids = kwargs['acceptableAaguids']
+        if attestation_conveyance_preference is None and 'attestationConveyancePreference' in kwargs:
+            attestation_conveyance_preference = kwargs['attestationConveyancePreference']
+        if authenticator_attachment is None and 'authenticatorAttachment' in kwargs:
+            authenticator_attachment = kwargs['authenticatorAttachment']
+        if avoid_same_authenticator_register is None and 'avoidSameAuthenticatorRegister' in kwargs:
+            avoid_same_authenticator_register = kwargs['avoidSameAuthenticatorRegister']
+        if create_timeout is None and 'createTimeout' in kwargs:
+            create_timeout = kwargs['createTimeout']
+        if relying_party_entity_name is None and 'relyingPartyEntityName' in kwargs:
+            relying_party_entity_name = kwargs['relyingPartyEntityName']
+        if relying_party_id is None and 'relyingPartyId' in kwargs:
+            relying_party_id = kwargs['relyingPartyId']
+        if require_resident_key is None and 'requireResidentKey' in kwargs:
+            require_resident_key = kwargs['requireResidentKey']
+        if signature_algorithms is None and 'signatureAlgorithms' in kwargs:
+            signature_algorithms = kwargs['signatureAlgorithms']
+        if user_verification_requirement is None and 'userVerificationRequirement' in kwargs:
+            user_verification_requirement = kwargs['userVerificationRequirement']
+
         if acceptable_aaguids is not None:
-            pulumi.set(__self__, "acceptable_aaguids", acceptable_aaguids)
+            _setter("acceptable_aaguids", acceptable_aaguids)
         if attestation_conveyance_preference is not None:
-            pulumi.set(__self__, "attestation_conveyance_preference", attestation_conveyance_preference)
+            _setter("attestation_conveyance_preference", attestation_conveyance_preference)
         if authenticator_attachment is not None:
-            pulumi.set(__self__, "authenticator_attachment", authenticator_attachment)
+            _setter("authenticator_attachment", authenticator_attachment)
         if avoid_same_authenticator_register is not None:
-            pulumi.set(__self__, "avoid_same_authenticator_register", avoid_same_authenticator_register)
+            _setter("avoid_same_authenticator_register", avoid_same_authenticator_register)
         if create_timeout is not None:
-            pulumi.set(__self__, "create_timeout", create_timeout)
+            _setter("create_timeout", create_timeout)
         if relying_party_entity_name is not None:
-            pulumi.set(__self__, "relying_party_entity_name", relying_party_entity_name)
+            _setter("relying_party_entity_name", relying_party_entity_name)
         if relying_party_id is not None:
-            pulumi.set(__self__, "relying_party_id", relying_party_id)
+            _setter("relying_party_id", relying_party_id)
         if require_resident_key is not None:
-            pulumi.set(__self__, "require_resident_key", require_resident_key)
+            _setter("require_resident_key", require_resident_key)
         if signature_algorithms is not None:
-            pulumi.set(__self__, "signature_algorithms", signature_algorithms)
+            _setter("signature_algorithms", signature_algorithms)
         if user_verification_requirement is not None:
-            pulumi.set(__self__, "user_verification_requirement", user_verification_requirement)
+            _setter("user_verification_requirement", user_verification_requirement)
 
     @property
     @pulumi.getter(name="acceptableAaguids")
@@ -1346,26 +1767,75 @@ class RealmWebAuthnPolicyArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] signature_algorithms: A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are `ES256`, `ES384`, `ES512`, `RS256`, `RS384`, `RS512`, and `RS1`.
         :param pulumi.Input[str] user_verification_requirement: Specifies the policy for verifying a user logging in via WebAuthn. Valid options are `not specified`, `required`, `preferred`, or `discouraged`. Defaults to `not specified`.
         """
+        RealmWebAuthnPolicyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            acceptable_aaguids=acceptable_aaguids,
+            attestation_conveyance_preference=attestation_conveyance_preference,
+            authenticator_attachment=authenticator_attachment,
+            avoid_same_authenticator_register=avoid_same_authenticator_register,
+            create_timeout=create_timeout,
+            relying_party_entity_name=relying_party_entity_name,
+            relying_party_id=relying_party_id,
+            require_resident_key=require_resident_key,
+            signature_algorithms=signature_algorithms,
+            user_verification_requirement=user_verification_requirement,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             acceptable_aaguids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             attestation_conveyance_preference: Optional[pulumi.Input[str]] = None,
+             authenticator_attachment: Optional[pulumi.Input[str]] = None,
+             avoid_same_authenticator_register: Optional[pulumi.Input[bool]] = None,
+             create_timeout: Optional[pulumi.Input[int]] = None,
+             relying_party_entity_name: Optional[pulumi.Input[str]] = None,
+             relying_party_id: Optional[pulumi.Input[str]] = None,
+             require_resident_key: Optional[pulumi.Input[str]] = None,
+             signature_algorithms: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             user_verification_requirement: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if acceptable_aaguids is None and 'acceptableAaguids' in kwargs:
+            acceptable_aaguids = kwargs['acceptableAaguids']
+        if attestation_conveyance_preference is None and 'attestationConveyancePreference' in kwargs:
+            attestation_conveyance_preference = kwargs['attestationConveyancePreference']
+        if authenticator_attachment is None and 'authenticatorAttachment' in kwargs:
+            authenticator_attachment = kwargs['authenticatorAttachment']
+        if avoid_same_authenticator_register is None and 'avoidSameAuthenticatorRegister' in kwargs:
+            avoid_same_authenticator_register = kwargs['avoidSameAuthenticatorRegister']
+        if create_timeout is None and 'createTimeout' in kwargs:
+            create_timeout = kwargs['createTimeout']
+        if relying_party_entity_name is None and 'relyingPartyEntityName' in kwargs:
+            relying_party_entity_name = kwargs['relyingPartyEntityName']
+        if relying_party_id is None and 'relyingPartyId' in kwargs:
+            relying_party_id = kwargs['relyingPartyId']
+        if require_resident_key is None and 'requireResidentKey' in kwargs:
+            require_resident_key = kwargs['requireResidentKey']
+        if signature_algorithms is None and 'signatureAlgorithms' in kwargs:
+            signature_algorithms = kwargs['signatureAlgorithms']
+        if user_verification_requirement is None and 'userVerificationRequirement' in kwargs:
+            user_verification_requirement = kwargs['userVerificationRequirement']
+
         if acceptable_aaguids is not None:
-            pulumi.set(__self__, "acceptable_aaguids", acceptable_aaguids)
+            _setter("acceptable_aaguids", acceptable_aaguids)
         if attestation_conveyance_preference is not None:
-            pulumi.set(__self__, "attestation_conveyance_preference", attestation_conveyance_preference)
+            _setter("attestation_conveyance_preference", attestation_conveyance_preference)
         if authenticator_attachment is not None:
-            pulumi.set(__self__, "authenticator_attachment", authenticator_attachment)
+            _setter("authenticator_attachment", authenticator_attachment)
         if avoid_same_authenticator_register is not None:
-            pulumi.set(__self__, "avoid_same_authenticator_register", avoid_same_authenticator_register)
+            _setter("avoid_same_authenticator_register", avoid_same_authenticator_register)
         if create_timeout is not None:
-            pulumi.set(__self__, "create_timeout", create_timeout)
+            _setter("create_timeout", create_timeout)
         if relying_party_entity_name is not None:
-            pulumi.set(__self__, "relying_party_entity_name", relying_party_entity_name)
+            _setter("relying_party_entity_name", relying_party_entity_name)
         if relying_party_id is not None:
-            pulumi.set(__self__, "relying_party_id", relying_party_id)
+            _setter("relying_party_id", relying_party_id)
         if require_resident_key is not None:
-            pulumi.set(__self__, "require_resident_key", require_resident_key)
+            _setter("require_resident_key", require_resident_key)
         if signature_algorithms is not None:
-            pulumi.set(__self__, "signature_algorithms", signature_algorithms)
+            _setter("signature_algorithms", signature_algorithms)
         if user_verification_requirement is not None:
-            pulumi.set(__self__, "user_verification_requirement", user_verification_requirement)
+            _setter("user_verification_requirement", user_verification_requirement)
 
     @property
     @pulumi.getter(name="acceptableAaguids")
@@ -1499,9 +1969,36 @@ class UserFederatedIdentityArgs:
         :param pulumi.Input[str] user_id: The ID of the user defined in the identity provider
         :param pulumi.Input[str] user_name: The user name of the user defined in the identity provider
         """
-        pulumi.set(__self__, "identity_provider", identity_provider)
-        pulumi.set(__self__, "user_id", user_id)
-        pulumi.set(__self__, "user_name", user_name)
+        UserFederatedIdentityArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            identity_provider=identity_provider,
+            user_id=user_id,
+            user_name=user_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             identity_provider: Optional[pulumi.Input[str]] = None,
+             user_id: Optional[pulumi.Input[str]] = None,
+             user_name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if identity_provider is None and 'identityProvider' in kwargs:
+            identity_provider = kwargs['identityProvider']
+        if identity_provider is None:
+            raise TypeError("Missing 'identity_provider' argument")
+        if user_id is None and 'userId' in kwargs:
+            user_id = kwargs['userId']
+        if user_id is None:
+            raise TypeError("Missing 'user_id' argument")
+        if user_name is None and 'userName' in kwargs:
+            user_name = kwargs['userName']
+        if user_name is None:
+            raise TypeError("Missing 'user_name' argument")
+
+        _setter("identity_provider", identity_provider)
+        _setter("user_id", user_id)
+        _setter("user_name", user_name)
 
     @property
     @pulumi.getter(name="identityProvider")
@@ -1549,9 +2046,24 @@ class UserInitialPasswordArgs:
         :param pulumi.Input[str] value: The initial password.
         :param pulumi.Input[bool] temporary: If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
         """
-        pulumi.set(__self__, "value", value)
+        UserInitialPasswordArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            value=value,
+            temporary=temporary,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             value: Optional[pulumi.Input[str]] = None,
+             temporary: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if value is None:
+            raise TypeError("Missing 'value' argument")
+
+        _setter("value", value)
         if temporary is not None:
-            pulumi.set(__self__, "temporary", temporary)
+            _setter("temporary", temporary)
 
     @property
     @pulumi.getter
@@ -1584,12 +2096,29 @@ class UsersPermissionsImpersonateScopeArgs:
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        UsersPermissionsImpersonateScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -1625,12 +2154,29 @@ class UsersPermissionsManageGroupMembershipScopeArgs:
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        UsersPermissionsManageGroupMembershipScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -1666,12 +2212,29 @@ class UsersPermissionsManageScopeArgs:
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        UsersPermissionsManageScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -1707,12 +2270,29 @@ class UsersPermissionsMapRolesScopeArgs:
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        UsersPermissionsMapRolesScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -1748,12 +2328,29 @@ class UsersPermissionsUserImpersonatedScopeArgs:
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        UsersPermissionsUserImpersonatedScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -1789,12 +2386,29 @@ class UsersPermissionsViewScopeArgs:
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        UsersPermissionsViewScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -1829,8 +2443,29 @@ class GetRealmInternationalizationArgs:
     def __init__(__self__, *,
                  default_locale: str,
                  supported_locales: Sequence[str]):
-        pulumi.set(__self__, "default_locale", default_locale)
-        pulumi.set(__self__, "supported_locales", supported_locales)
+        GetRealmInternationalizationArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            default_locale=default_locale,
+            supported_locales=supported_locales,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             default_locale: Optional[str] = None,
+             supported_locales: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if default_locale is None and 'defaultLocale' in kwargs:
+            default_locale = kwargs['defaultLocale']
+        if default_locale is None:
+            raise TypeError("Missing 'default_locale' argument")
+        if supported_locales is None and 'supportedLocales' in kwargs:
+            supported_locales = kwargs['supportedLocales']
+        if supported_locales is None:
+            raise TypeError("Missing 'supported_locales' argument")
+
+        _setter("default_locale", default_locale)
+        _setter("supported_locales", supported_locales)
 
     @property
     @pulumi.getter(name="defaultLocale")
@@ -1860,12 +2495,49 @@ class GetRealmOtpPolicyArgs:
                  look_ahead_window: int,
                  period: int,
                  type: str):
-        pulumi.set(__self__, "algorithm", algorithm)
-        pulumi.set(__self__, "digits", digits)
-        pulumi.set(__self__, "initial_counter", initial_counter)
-        pulumi.set(__self__, "look_ahead_window", look_ahead_window)
-        pulumi.set(__self__, "period", period)
-        pulumi.set(__self__, "type", type)
+        GetRealmOtpPolicyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            algorithm=algorithm,
+            digits=digits,
+            initial_counter=initial_counter,
+            look_ahead_window=look_ahead_window,
+            period=period,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             algorithm: Optional[str] = None,
+             digits: Optional[int] = None,
+             initial_counter: Optional[int] = None,
+             look_ahead_window: Optional[int] = None,
+             period: Optional[int] = None,
+             type: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if algorithm is None:
+            raise TypeError("Missing 'algorithm' argument")
+        if digits is None:
+            raise TypeError("Missing 'digits' argument")
+        if initial_counter is None and 'initialCounter' in kwargs:
+            initial_counter = kwargs['initialCounter']
+        if initial_counter is None:
+            raise TypeError("Missing 'initial_counter' argument")
+        if look_ahead_window is None and 'lookAheadWindow' in kwargs:
+            look_ahead_window = kwargs['lookAheadWindow']
+        if look_ahead_window is None:
+            raise TypeError("Missing 'look_ahead_window' argument")
+        if period is None:
+            raise TypeError("Missing 'period' argument")
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+
+        _setter("algorithm", algorithm)
+        _setter("digits", digits)
+        _setter("initial_counter", initial_counter)
+        _setter("look_ahead_window", look_ahead_window)
+        _setter("period", period)
+        _setter("type", type)
 
     @property
     @pulumi.getter
@@ -1927,8 +2599,27 @@ class GetRealmSecurityDefenseArgs:
     def __init__(__self__, *,
                  brute_force_detections: Sequence['GetRealmSecurityDefenseBruteForceDetectionArgs'],
                  headers: Sequence['GetRealmSecurityDefenseHeaderArgs']):
-        pulumi.set(__self__, "brute_force_detections", brute_force_detections)
-        pulumi.set(__self__, "headers", headers)
+        GetRealmSecurityDefenseArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            brute_force_detections=brute_force_detections,
+            headers=headers,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             brute_force_detections: Optional[Sequence['GetRealmSecurityDefenseBruteForceDetectionArgs']] = None,
+             headers: Optional[Sequence['GetRealmSecurityDefenseHeaderArgs']] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if brute_force_detections is None and 'bruteForceDetections' in kwargs:
+            brute_force_detections = kwargs['bruteForceDetections']
+        if brute_force_detections is None:
+            raise TypeError("Missing 'brute_force_detections' argument")
+        if headers is None:
+            raise TypeError("Missing 'headers' argument")
+
+        _setter("brute_force_detections", brute_force_detections)
+        _setter("headers", headers)
 
     @property
     @pulumi.getter(name="bruteForceDetections")
@@ -1959,13 +2650,64 @@ class GetRealmSecurityDefenseBruteForceDetectionArgs:
                  permanent_lockout: bool,
                  quick_login_check_milli_seconds: int,
                  wait_increment_seconds: int):
-        pulumi.set(__self__, "failure_reset_time_seconds", failure_reset_time_seconds)
-        pulumi.set(__self__, "max_failure_wait_seconds", max_failure_wait_seconds)
-        pulumi.set(__self__, "max_login_failures", max_login_failures)
-        pulumi.set(__self__, "minimum_quick_login_wait_seconds", minimum_quick_login_wait_seconds)
-        pulumi.set(__self__, "permanent_lockout", permanent_lockout)
-        pulumi.set(__self__, "quick_login_check_milli_seconds", quick_login_check_milli_seconds)
-        pulumi.set(__self__, "wait_increment_seconds", wait_increment_seconds)
+        GetRealmSecurityDefenseBruteForceDetectionArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            failure_reset_time_seconds=failure_reset_time_seconds,
+            max_failure_wait_seconds=max_failure_wait_seconds,
+            max_login_failures=max_login_failures,
+            minimum_quick_login_wait_seconds=minimum_quick_login_wait_seconds,
+            permanent_lockout=permanent_lockout,
+            quick_login_check_milli_seconds=quick_login_check_milli_seconds,
+            wait_increment_seconds=wait_increment_seconds,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             failure_reset_time_seconds: Optional[int] = None,
+             max_failure_wait_seconds: Optional[int] = None,
+             max_login_failures: Optional[int] = None,
+             minimum_quick_login_wait_seconds: Optional[int] = None,
+             permanent_lockout: Optional[bool] = None,
+             quick_login_check_milli_seconds: Optional[int] = None,
+             wait_increment_seconds: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if failure_reset_time_seconds is None and 'failureResetTimeSeconds' in kwargs:
+            failure_reset_time_seconds = kwargs['failureResetTimeSeconds']
+        if failure_reset_time_seconds is None:
+            raise TypeError("Missing 'failure_reset_time_seconds' argument")
+        if max_failure_wait_seconds is None and 'maxFailureWaitSeconds' in kwargs:
+            max_failure_wait_seconds = kwargs['maxFailureWaitSeconds']
+        if max_failure_wait_seconds is None:
+            raise TypeError("Missing 'max_failure_wait_seconds' argument")
+        if max_login_failures is None and 'maxLoginFailures' in kwargs:
+            max_login_failures = kwargs['maxLoginFailures']
+        if max_login_failures is None:
+            raise TypeError("Missing 'max_login_failures' argument")
+        if minimum_quick_login_wait_seconds is None and 'minimumQuickLoginWaitSeconds' in kwargs:
+            minimum_quick_login_wait_seconds = kwargs['minimumQuickLoginWaitSeconds']
+        if minimum_quick_login_wait_seconds is None:
+            raise TypeError("Missing 'minimum_quick_login_wait_seconds' argument")
+        if permanent_lockout is None and 'permanentLockout' in kwargs:
+            permanent_lockout = kwargs['permanentLockout']
+        if permanent_lockout is None:
+            raise TypeError("Missing 'permanent_lockout' argument")
+        if quick_login_check_milli_seconds is None and 'quickLoginCheckMilliSeconds' in kwargs:
+            quick_login_check_milli_seconds = kwargs['quickLoginCheckMilliSeconds']
+        if quick_login_check_milli_seconds is None:
+            raise TypeError("Missing 'quick_login_check_milli_seconds' argument")
+        if wait_increment_seconds is None and 'waitIncrementSeconds' in kwargs:
+            wait_increment_seconds = kwargs['waitIncrementSeconds']
+        if wait_increment_seconds is None:
+            raise TypeError("Missing 'wait_increment_seconds' argument")
+
+        _setter("failure_reset_time_seconds", failure_reset_time_seconds)
+        _setter("max_failure_wait_seconds", max_failure_wait_seconds)
+        _setter("max_login_failures", max_login_failures)
+        _setter("minimum_quick_login_wait_seconds", minimum_quick_login_wait_seconds)
+        _setter("permanent_lockout", permanent_lockout)
+        _setter("quick_login_check_milli_seconds", quick_login_check_milli_seconds)
+        _setter("wait_increment_seconds", wait_increment_seconds)
 
     @property
     @pulumi.getter(name="failureResetTimeSeconds")
@@ -2041,13 +2783,64 @@ class GetRealmSecurityDefenseHeaderArgs:
                  x_frame_options: str,
                  x_robots_tag: str,
                  x_xss_protection: str):
-        pulumi.set(__self__, "content_security_policy", content_security_policy)
-        pulumi.set(__self__, "content_security_policy_report_only", content_security_policy_report_only)
-        pulumi.set(__self__, "strict_transport_security", strict_transport_security)
-        pulumi.set(__self__, "x_content_type_options", x_content_type_options)
-        pulumi.set(__self__, "x_frame_options", x_frame_options)
-        pulumi.set(__self__, "x_robots_tag", x_robots_tag)
-        pulumi.set(__self__, "x_xss_protection", x_xss_protection)
+        GetRealmSecurityDefenseHeaderArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            content_security_policy=content_security_policy,
+            content_security_policy_report_only=content_security_policy_report_only,
+            strict_transport_security=strict_transport_security,
+            x_content_type_options=x_content_type_options,
+            x_frame_options=x_frame_options,
+            x_robots_tag=x_robots_tag,
+            x_xss_protection=x_xss_protection,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             content_security_policy: Optional[str] = None,
+             content_security_policy_report_only: Optional[str] = None,
+             strict_transport_security: Optional[str] = None,
+             x_content_type_options: Optional[str] = None,
+             x_frame_options: Optional[str] = None,
+             x_robots_tag: Optional[str] = None,
+             x_xss_protection: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if content_security_policy is None and 'contentSecurityPolicy' in kwargs:
+            content_security_policy = kwargs['contentSecurityPolicy']
+        if content_security_policy is None:
+            raise TypeError("Missing 'content_security_policy' argument")
+        if content_security_policy_report_only is None and 'contentSecurityPolicyReportOnly' in kwargs:
+            content_security_policy_report_only = kwargs['contentSecurityPolicyReportOnly']
+        if content_security_policy_report_only is None:
+            raise TypeError("Missing 'content_security_policy_report_only' argument")
+        if strict_transport_security is None and 'strictTransportSecurity' in kwargs:
+            strict_transport_security = kwargs['strictTransportSecurity']
+        if strict_transport_security is None:
+            raise TypeError("Missing 'strict_transport_security' argument")
+        if x_content_type_options is None and 'xContentTypeOptions' in kwargs:
+            x_content_type_options = kwargs['xContentTypeOptions']
+        if x_content_type_options is None:
+            raise TypeError("Missing 'x_content_type_options' argument")
+        if x_frame_options is None and 'xFrameOptions' in kwargs:
+            x_frame_options = kwargs['xFrameOptions']
+        if x_frame_options is None:
+            raise TypeError("Missing 'x_frame_options' argument")
+        if x_robots_tag is None and 'xRobotsTag' in kwargs:
+            x_robots_tag = kwargs['xRobotsTag']
+        if x_robots_tag is None:
+            raise TypeError("Missing 'x_robots_tag' argument")
+        if x_xss_protection is None and 'xXssProtection' in kwargs:
+            x_xss_protection = kwargs['xXssProtection']
+        if x_xss_protection is None:
+            raise TypeError("Missing 'x_xss_protection' argument")
+
+        _setter("content_security_policy", content_security_policy)
+        _setter("content_security_policy_report_only", content_security_policy_report_only)
+        _setter("strict_transport_security", strict_transport_security)
+        _setter("x_content_type_options", x_content_type_options)
+        _setter("x_frame_options", x_frame_options)
+        _setter("x_robots_tag", x_robots_tag)
+        _setter("x_xss_protection", x_xss_protection)
 
     @property
     @pulumi.getter(name="contentSecurityPolicy")
@@ -2126,16 +2919,75 @@ class GetRealmSmtpServerArgs:
                  reply_to_display_name: str,
                  ssl: bool,
                  starttls: bool):
-        pulumi.set(__self__, "auths", auths)
-        pulumi.set(__self__, "envelope_from", envelope_from)
-        pulumi.set(__self__, "from_", from_)
-        pulumi.set(__self__, "from_display_name", from_display_name)
-        pulumi.set(__self__, "host", host)
-        pulumi.set(__self__, "port", port)
-        pulumi.set(__self__, "reply_to", reply_to)
-        pulumi.set(__self__, "reply_to_display_name", reply_to_display_name)
-        pulumi.set(__self__, "ssl", ssl)
-        pulumi.set(__self__, "starttls", starttls)
+        GetRealmSmtpServerArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            auths=auths,
+            envelope_from=envelope_from,
+            from_=from_,
+            from_display_name=from_display_name,
+            host=host,
+            port=port,
+            reply_to=reply_to,
+            reply_to_display_name=reply_to_display_name,
+            ssl=ssl,
+            starttls=starttls,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             auths: Optional[Sequence['GetRealmSmtpServerAuthArgs']] = None,
+             envelope_from: Optional[str] = None,
+             from_: Optional[str] = None,
+             from_display_name: Optional[str] = None,
+             host: Optional[str] = None,
+             port: Optional[str] = None,
+             reply_to: Optional[str] = None,
+             reply_to_display_name: Optional[str] = None,
+             ssl: Optional[bool] = None,
+             starttls: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if auths is None:
+            raise TypeError("Missing 'auths' argument")
+        if envelope_from is None and 'envelopeFrom' in kwargs:
+            envelope_from = kwargs['envelopeFrom']
+        if envelope_from is None:
+            raise TypeError("Missing 'envelope_from' argument")
+        if from_ is None and 'from' in kwargs:
+            from_ = kwargs['from']
+        if from_ is None:
+            raise TypeError("Missing 'from_' argument")
+        if from_display_name is None and 'fromDisplayName' in kwargs:
+            from_display_name = kwargs['fromDisplayName']
+        if from_display_name is None:
+            raise TypeError("Missing 'from_display_name' argument")
+        if host is None:
+            raise TypeError("Missing 'host' argument")
+        if port is None:
+            raise TypeError("Missing 'port' argument")
+        if reply_to is None and 'replyTo' in kwargs:
+            reply_to = kwargs['replyTo']
+        if reply_to is None:
+            raise TypeError("Missing 'reply_to' argument")
+        if reply_to_display_name is None and 'replyToDisplayName' in kwargs:
+            reply_to_display_name = kwargs['replyToDisplayName']
+        if reply_to_display_name is None:
+            raise TypeError("Missing 'reply_to_display_name' argument")
+        if ssl is None:
+            raise TypeError("Missing 'ssl' argument")
+        if starttls is None:
+            raise TypeError("Missing 'starttls' argument")
+
+        _setter("auths", auths)
+        _setter("envelope_from", envelope_from)
+        _setter("from_", from_)
+        _setter("from_display_name", from_display_name)
+        _setter("host", host)
+        _setter("port", port)
+        _setter("reply_to", reply_to)
+        _setter("reply_to_display_name", reply_to_display_name)
+        _setter("ssl", ssl)
+        _setter("starttls", starttls)
 
     @property
     @pulumi.getter
@@ -2233,8 +3085,25 @@ class GetRealmSmtpServerAuthArgs:
     def __init__(__self__, *,
                  password: str,
                  username: str):
-        pulumi.set(__self__, "password", password)
-        pulumi.set(__self__, "username", username)
+        GetRealmSmtpServerAuthArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            password=password,
+            username=username,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             password: Optional[str] = None,
+             username: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if password is None:
+            raise TypeError("Missing 'password' argument")
+        if username is None:
+            raise TypeError("Missing 'username' argument")
+
+        _setter("password", password)
+        _setter("username", username)
 
     @property
     @pulumi.getter
@@ -2268,16 +3137,85 @@ class GetRealmWebAuthnPasswordlessPolicyArgs:
                  require_resident_key: str,
                  signature_algorithms: Sequence[str],
                  user_verification_requirement: str):
-        pulumi.set(__self__, "acceptable_aaguids", acceptable_aaguids)
-        pulumi.set(__self__, "attestation_conveyance_preference", attestation_conveyance_preference)
-        pulumi.set(__self__, "authenticator_attachment", authenticator_attachment)
-        pulumi.set(__self__, "avoid_same_authenticator_register", avoid_same_authenticator_register)
-        pulumi.set(__self__, "create_timeout", create_timeout)
-        pulumi.set(__self__, "relying_party_entity_name", relying_party_entity_name)
-        pulumi.set(__self__, "relying_party_id", relying_party_id)
-        pulumi.set(__self__, "require_resident_key", require_resident_key)
-        pulumi.set(__self__, "signature_algorithms", signature_algorithms)
-        pulumi.set(__self__, "user_verification_requirement", user_verification_requirement)
+        GetRealmWebAuthnPasswordlessPolicyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            acceptable_aaguids=acceptable_aaguids,
+            attestation_conveyance_preference=attestation_conveyance_preference,
+            authenticator_attachment=authenticator_attachment,
+            avoid_same_authenticator_register=avoid_same_authenticator_register,
+            create_timeout=create_timeout,
+            relying_party_entity_name=relying_party_entity_name,
+            relying_party_id=relying_party_id,
+            require_resident_key=require_resident_key,
+            signature_algorithms=signature_algorithms,
+            user_verification_requirement=user_verification_requirement,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             acceptable_aaguids: Optional[Sequence[str]] = None,
+             attestation_conveyance_preference: Optional[str] = None,
+             authenticator_attachment: Optional[str] = None,
+             avoid_same_authenticator_register: Optional[bool] = None,
+             create_timeout: Optional[int] = None,
+             relying_party_entity_name: Optional[str] = None,
+             relying_party_id: Optional[str] = None,
+             require_resident_key: Optional[str] = None,
+             signature_algorithms: Optional[Sequence[str]] = None,
+             user_verification_requirement: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if acceptable_aaguids is None and 'acceptableAaguids' in kwargs:
+            acceptable_aaguids = kwargs['acceptableAaguids']
+        if acceptable_aaguids is None:
+            raise TypeError("Missing 'acceptable_aaguids' argument")
+        if attestation_conveyance_preference is None and 'attestationConveyancePreference' in kwargs:
+            attestation_conveyance_preference = kwargs['attestationConveyancePreference']
+        if attestation_conveyance_preference is None:
+            raise TypeError("Missing 'attestation_conveyance_preference' argument")
+        if authenticator_attachment is None and 'authenticatorAttachment' in kwargs:
+            authenticator_attachment = kwargs['authenticatorAttachment']
+        if authenticator_attachment is None:
+            raise TypeError("Missing 'authenticator_attachment' argument")
+        if avoid_same_authenticator_register is None and 'avoidSameAuthenticatorRegister' in kwargs:
+            avoid_same_authenticator_register = kwargs['avoidSameAuthenticatorRegister']
+        if avoid_same_authenticator_register is None:
+            raise TypeError("Missing 'avoid_same_authenticator_register' argument")
+        if create_timeout is None and 'createTimeout' in kwargs:
+            create_timeout = kwargs['createTimeout']
+        if create_timeout is None:
+            raise TypeError("Missing 'create_timeout' argument")
+        if relying_party_entity_name is None and 'relyingPartyEntityName' in kwargs:
+            relying_party_entity_name = kwargs['relyingPartyEntityName']
+        if relying_party_entity_name is None:
+            raise TypeError("Missing 'relying_party_entity_name' argument")
+        if relying_party_id is None and 'relyingPartyId' in kwargs:
+            relying_party_id = kwargs['relyingPartyId']
+        if relying_party_id is None:
+            raise TypeError("Missing 'relying_party_id' argument")
+        if require_resident_key is None and 'requireResidentKey' in kwargs:
+            require_resident_key = kwargs['requireResidentKey']
+        if require_resident_key is None:
+            raise TypeError("Missing 'require_resident_key' argument")
+        if signature_algorithms is None and 'signatureAlgorithms' in kwargs:
+            signature_algorithms = kwargs['signatureAlgorithms']
+        if signature_algorithms is None:
+            raise TypeError("Missing 'signature_algorithms' argument")
+        if user_verification_requirement is None and 'userVerificationRequirement' in kwargs:
+            user_verification_requirement = kwargs['userVerificationRequirement']
+        if user_verification_requirement is None:
+            raise TypeError("Missing 'user_verification_requirement' argument")
+
+        _setter("acceptable_aaguids", acceptable_aaguids)
+        _setter("attestation_conveyance_preference", attestation_conveyance_preference)
+        _setter("authenticator_attachment", authenticator_attachment)
+        _setter("avoid_same_authenticator_register", avoid_same_authenticator_register)
+        _setter("create_timeout", create_timeout)
+        _setter("relying_party_entity_name", relying_party_entity_name)
+        _setter("relying_party_id", relying_party_id)
+        _setter("require_resident_key", require_resident_key)
+        _setter("signature_algorithms", signature_algorithms)
+        _setter("user_verification_requirement", user_verification_requirement)
 
     @property
     @pulumi.getter(name="acceptableAaguids")
@@ -2383,16 +3321,85 @@ class GetRealmWebAuthnPolicyArgs:
                  require_resident_key: str,
                  signature_algorithms: Sequence[str],
                  user_verification_requirement: str):
-        pulumi.set(__self__, "acceptable_aaguids", acceptable_aaguids)
-        pulumi.set(__self__, "attestation_conveyance_preference", attestation_conveyance_preference)
-        pulumi.set(__self__, "authenticator_attachment", authenticator_attachment)
-        pulumi.set(__self__, "avoid_same_authenticator_register", avoid_same_authenticator_register)
-        pulumi.set(__self__, "create_timeout", create_timeout)
-        pulumi.set(__self__, "relying_party_entity_name", relying_party_entity_name)
-        pulumi.set(__self__, "relying_party_id", relying_party_id)
-        pulumi.set(__self__, "require_resident_key", require_resident_key)
-        pulumi.set(__self__, "signature_algorithms", signature_algorithms)
-        pulumi.set(__self__, "user_verification_requirement", user_verification_requirement)
+        GetRealmWebAuthnPolicyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            acceptable_aaguids=acceptable_aaguids,
+            attestation_conveyance_preference=attestation_conveyance_preference,
+            authenticator_attachment=authenticator_attachment,
+            avoid_same_authenticator_register=avoid_same_authenticator_register,
+            create_timeout=create_timeout,
+            relying_party_entity_name=relying_party_entity_name,
+            relying_party_id=relying_party_id,
+            require_resident_key=require_resident_key,
+            signature_algorithms=signature_algorithms,
+            user_verification_requirement=user_verification_requirement,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             acceptable_aaguids: Optional[Sequence[str]] = None,
+             attestation_conveyance_preference: Optional[str] = None,
+             authenticator_attachment: Optional[str] = None,
+             avoid_same_authenticator_register: Optional[bool] = None,
+             create_timeout: Optional[int] = None,
+             relying_party_entity_name: Optional[str] = None,
+             relying_party_id: Optional[str] = None,
+             require_resident_key: Optional[str] = None,
+             signature_algorithms: Optional[Sequence[str]] = None,
+             user_verification_requirement: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if acceptable_aaguids is None and 'acceptableAaguids' in kwargs:
+            acceptable_aaguids = kwargs['acceptableAaguids']
+        if acceptable_aaguids is None:
+            raise TypeError("Missing 'acceptable_aaguids' argument")
+        if attestation_conveyance_preference is None and 'attestationConveyancePreference' in kwargs:
+            attestation_conveyance_preference = kwargs['attestationConveyancePreference']
+        if attestation_conveyance_preference is None:
+            raise TypeError("Missing 'attestation_conveyance_preference' argument")
+        if authenticator_attachment is None and 'authenticatorAttachment' in kwargs:
+            authenticator_attachment = kwargs['authenticatorAttachment']
+        if authenticator_attachment is None:
+            raise TypeError("Missing 'authenticator_attachment' argument")
+        if avoid_same_authenticator_register is None and 'avoidSameAuthenticatorRegister' in kwargs:
+            avoid_same_authenticator_register = kwargs['avoidSameAuthenticatorRegister']
+        if avoid_same_authenticator_register is None:
+            raise TypeError("Missing 'avoid_same_authenticator_register' argument")
+        if create_timeout is None and 'createTimeout' in kwargs:
+            create_timeout = kwargs['createTimeout']
+        if create_timeout is None:
+            raise TypeError("Missing 'create_timeout' argument")
+        if relying_party_entity_name is None and 'relyingPartyEntityName' in kwargs:
+            relying_party_entity_name = kwargs['relyingPartyEntityName']
+        if relying_party_entity_name is None:
+            raise TypeError("Missing 'relying_party_entity_name' argument")
+        if relying_party_id is None and 'relyingPartyId' in kwargs:
+            relying_party_id = kwargs['relyingPartyId']
+        if relying_party_id is None:
+            raise TypeError("Missing 'relying_party_id' argument")
+        if require_resident_key is None and 'requireResidentKey' in kwargs:
+            require_resident_key = kwargs['requireResidentKey']
+        if require_resident_key is None:
+            raise TypeError("Missing 'require_resident_key' argument")
+        if signature_algorithms is None and 'signatureAlgorithms' in kwargs:
+            signature_algorithms = kwargs['signatureAlgorithms']
+        if signature_algorithms is None:
+            raise TypeError("Missing 'signature_algorithms' argument")
+        if user_verification_requirement is None and 'userVerificationRequirement' in kwargs:
+            user_verification_requirement = kwargs['userVerificationRequirement']
+        if user_verification_requirement is None:
+            raise TypeError("Missing 'user_verification_requirement' argument")
+
+        _setter("acceptable_aaguids", acceptable_aaguids)
+        _setter("attestation_conveyance_preference", attestation_conveyance_preference)
+        _setter("authenticator_attachment", authenticator_attachment)
+        _setter("avoid_same_authenticator_register", avoid_same_authenticator_register)
+        _setter("create_timeout", create_timeout)
+        _setter("relying_party_entity_name", relying_party_entity_name)
+        _setter("relying_party_id", relying_party_id)
+        _setter("require_resident_key", require_resident_key)
+        _setter("signature_algorithms", signature_algorithms)
+        _setter("user_verification_requirement", user_verification_requirement)
 
     @property
     @pulumi.getter(name="acceptableAaguids")

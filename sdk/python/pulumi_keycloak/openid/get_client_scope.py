@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
@@ -104,21 +104,6 @@ def get_client_scope(name: Optional[str] = None,
     """
     This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_keycloak as keycloak
-
-    offline_access = keycloak.openid.get_client_scope(realm_id="my-realm",
-        name="offline_access")
-    # use the data source
-    audience_mapper = keycloak.openid.AudienceProtocolMapper("audienceMapper",
-        realm_id=offline_access.realm_id,
-        client_scope_id=offline_access.id,
-        included_custom_audience="foo")
-    ```
-
 
     :param str name: The name of the client scope.
     :param str realm_id: The realm id.
@@ -145,21 +130,6 @@ def get_client_scope_output(name: Optional[pulumi.Input[str]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientScopeResult]:
     """
     This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_keycloak as keycloak
-
-    offline_access = keycloak.openid.get_client_scope(realm_id="my-realm",
-        name="offline_access")
-    # use the data source
-    audience_mapper = keycloak.openid.AudienceProtocolMapper("audienceMapper",
-        realm_id=offline_access.realm_id,
-        client_scope_id=offline_access.id,
-        included_custom_audience="foo")
-    ```
 
 
     :param str name: The name of the client scope.

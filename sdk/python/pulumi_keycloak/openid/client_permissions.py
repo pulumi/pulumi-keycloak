@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -28,22 +28,71 @@ class ClientPermissionsArgs:
         """
         The set of arguments for constructing a ClientPermissions resource.
         """
-        pulumi.set(__self__, "client_id", client_id)
-        pulumi.set(__self__, "realm_id", realm_id)
+        ClientPermissionsArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            client_id=client_id,
+            realm_id=realm_id,
+            configure_scope=configure_scope,
+            manage_scope=manage_scope,
+            map_roles_client_scope_scope=map_roles_client_scope_scope,
+            map_roles_composite_scope=map_roles_composite_scope,
+            map_roles_scope=map_roles_scope,
+            token_exchange_scope=token_exchange_scope,
+            view_scope=view_scope,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             client_id: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             configure_scope: Optional[pulumi.Input['ClientPermissionsConfigureScopeArgs']] = None,
+             manage_scope: Optional[pulumi.Input['ClientPermissionsManageScopeArgs']] = None,
+             map_roles_client_scope_scope: Optional[pulumi.Input['ClientPermissionsMapRolesClientScopeScopeArgs']] = None,
+             map_roles_composite_scope: Optional[pulumi.Input['ClientPermissionsMapRolesCompositeScopeArgs']] = None,
+             map_roles_scope: Optional[pulumi.Input['ClientPermissionsMapRolesScopeArgs']] = None,
+             token_exchange_scope: Optional[pulumi.Input['ClientPermissionsTokenExchangeScopeArgs']] = None,
+             view_scope: Optional[pulumi.Input['ClientPermissionsViewScopeArgs']] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if client_id is None and 'clientId' in kwargs:
+            client_id = kwargs['clientId']
+        if client_id is None:
+            raise TypeError("Missing 'client_id' argument")
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if configure_scope is None and 'configureScope' in kwargs:
+            configure_scope = kwargs['configureScope']
+        if manage_scope is None and 'manageScope' in kwargs:
+            manage_scope = kwargs['manageScope']
+        if map_roles_client_scope_scope is None and 'mapRolesClientScopeScope' in kwargs:
+            map_roles_client_scope_scope = kwargs['mapRolesClientScopeScope']
+        if map_roles_composite_scope is None and 'mapRolesCompositeScope' in kwargs:
+            map_roles_composite_scope = kwargs['mapRolesCompositeScope']
+        if map_roles_scope is None and 'mapRolesScope' in kwargs:
+            map_roles_scope = kwargs['mapRolesScope']
+        if token_exchange_scope is None and 'tokenExchangeScope' in kwargs:
+            token_exchange_scope = kwargs['tokenExchangeScope']
+        if view_scope is None and 'viewScope' in kwargs:
+            view_scope = kwargs['viewScope']
+
+        _setter("client_id", client_id)
+        _setter("realm_id", realm_id)
         if configure_scope is not None:
-            pulumi.set(__self__, "configure_scope", configure_scope)
+            _setter("configure_scope", configure_scope)
         if manage_scope is not None:
-            pulumi.set(__self__, "manage_scope", manage_scope)
+            _setter("manage_scope", manage_scope)
         if map_roles_client_scope_scope is not None:
-            pulumi.set(__self__, "map_roles_client_scope_scope", map_roles_client_scope_scope)
+            _setter("map_roles_client_scope_scope", map_roles_client_scope_scope)
         if map_roles_composite_scope is not None:
-            pulumi.set(__self__, "map_roles_composite_scope", map_roles_composite_scope)
+            _setter("map_roles_composite_scope", map_roles_composite_scope)
         if map_roles_scope is not None:
-            pulumi.set(__self__, "map_roles_scope", map_roles_scope)
+            _setter("map_roles_scope", map_roles_scope)
         if token_exchange_scope is not None:
-            pulumi.set(__self__, "token_exchange_scope", token_exchange_scope)
+            _setter("token_exchange_scope", token_exchange_scope)
         if view_scope is not None:
-            pulumi.set(__self__, "view_scope", view_scope)
+            _setter("view_scope", view_scope)
 
     @property
     @pulumi.getter(name="clientId")
@@ -145,28 +194,79 @@ class _ClientPermissionsState:
         Input properties used for looking up and filtering ClientPermissions resources.
         :param pulumi.Input[str] authorization_resource_server_id: Resource server id representing the realm management client on which this permission is managed
         """
+        _ClientPermissionsState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            authorization_resource_server_id=authorization_resource_server_id,
+            client_id=client_id,
+            configure_scope=configure_scope,
+            enabled=enabled,
+            manage_scope=manage_scope,
+            map_roles_client_scope_scope=map_roles_client_scope_scope,
+            map_roles_composite_scope=map_roles_composite_scope,
+            map_roles_scope=map_roles_scope,
+            realm_id=realm_id,
+            token_exchange_scope=token_exchange_scope,
+            view_scope=view_scope,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             authorization_resource_server_id: Optional[pulumi.Input[str]] = None,
+             client_id: Optional[pulumi.Input[str]] = None,
+             configure_scope: Optional[pulumi.Input['ClientPermissionsConfigureScopeArgs']] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             manage_scope: Optional[pulumi.Input['ClientPermissionsManageScopeArgs']] = None,
+             map_roles_client_scope_scope: Optional[pulumi.Input['ClientPermissionsMapRolesClientScopeScopeArgs']] = None,
+             map_roles_composite_scope: Optional[pulumi.Input['ClientPermissionsMapRolesCompositeScopeArgs']] = None,
+             map_roles_scope: Optional[pulumi.Input['ClientPermissionsMapRolesScopeArgs']] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             token_exchange_scope: Optional[pulumi.Input['ClientPermissionsTokenExchangeScopeArgs']] = None,
+             view_scope: Optional[pulumi.Input['ClientPermissionsViewScopeArgs']] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if authorization_resource_server_id is None and 'authorizationResourceServerId' in kwargs:
+            authorization_resource_server_id = kwargs['authorizationResourceServerId']
+        if client_id is None and 'clientId' in kwargs:
+            client_id = kwargs['clientId']
+        if configure_scope is None and 'configureScope' in kwargs:
+            configure_scope = kwargs['configureScope']
+        if manage_scope is None and 'manageScope' in kwargs:
+            manage_scope = kwargs['manageScope']
+        if map_roles_client_scope_scope is None and 'mapRolesClientScopeScope' in kwargs:
+            map_roles_client_scope_scope = kwargs['mapRolesClientScopeScope']
+        if map_roles_composite_scope is None and 'mapRolesCompositeScope' in kwargs:
+            map_roles_composite_scope = kwargs['mapRolesCompositeScope']
+        if map_roles_scope is None and 'mapRolesScope' in kwargs:
+            map_roles_scope = kwargs['mapRolesScope']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if token_exchange_scope is None and 'tokenExchangeScope' in kwargs:
+            token_exchange_scope = kwargs['tokenExchangeScope']
+        if view_scope is None and 'viewScope' in kwargs:
+            view_scope = kwargs['viewScope']
+
         if authorization_resource_server_id is not None:
-            pulumi.set(__self__, "authorization_resource_server_id", authorization_resource_server_id)
+            _setter("authorization_resource_server_id", authorization_resource_server_id)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if configure_scope is not None:
-            pulumi.set(__self__, "configure_scope", configure_scope)
+            _setter("configure_scope", configure_scope)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if manage_scope is not None:
-            pulumi.set(__self__, "manage_scope", manage_scope)
+            _setter("manage_scope", manage_scope)
         if map_roles_client_scope_scope is not None:
-            pulumi.set(__self__, "map_roles_client_scope_scope", map_roles_client_scope_scope)
+            _setter("map_roles_client_scope_scope", map_roles_client_scope_scope)
         if map_roles_composite_scope is not None:
-            pulumi.set(__self__, "map_roles_composite_scope", map_roles_composite_scope)
+            _setter("map_roles_composite_scope", map_roles_composite_scope)
         if map_roles_scope is not None:
-            pulumi.set(__self__, "map_roles_scope", map_roles_scope)
+            _setter("map_roles_scope", map_roles_scope)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if token_exchange_scope is not None:
-            pulumi.set(__self__, "token_exchange_scope", token_exchange_scope)
+            _setter("token_exchange_scope", token_exchange_scope)
         if view_scope is not None:
-            pulumi.set(__self__, "view_scope", view_scope)
+            _setter("view_scope", view_scope)
 
     @property
     @pulumi.getter(name="authorizationResourceServerId")
@@ -309,6 +409,10 @@ class ClientPermissions(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ClientPermissionsArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -335,15 +439,22 @@ class ClientPermissions(pulumi.CustomResource):
             if client_id is None and not opts.urn:
                 raise TypeError("Missing required property 'client_id'")
             __props__.__dict__["client_id"] = client_id
+            configure_scope = _utilities.configure(configure_scope, ClientPermissionsConfigureScopeArgs, True)
             __props__.__dict__["configure_scope"] = configure_scope
+            manage_scope = _utilities.configure(manage_scope, ClientPermissionsManageScopeArgs, True)
             __props__.__dict__["manage_scope"] = manage_scope
+            map_roles_client_scope_scope = _utilities.configure(map_roles_client_scope_scope, ClientPermissionsMapRolesClientScopeScopeArgs, True)
             __props__.__dict__["map_roles_client_scope_scope"] = map_roles_client_scope_scope
+            map_roles_composite_scope = _utilities.configure(map_roles_composite_scope, ClientPermissionsMapRolesCompositeScopeArgs, True)
             __props__.__dict__["map_roles_composite_scope"] = map_roles_composite_scope
+            map_roles_scope = _utilities.configure(map_roles_scope, ClientPermissionsMapRolesScopeArgs, True)
             __props__.__dict__["map_roles_scope"] = map_roles_scope
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            token_exchange_scope = _utilities.configure(token_exchange_scope, ClientPermissionsTokenExchangeScopeArgs, True)
             __props__.__dict__["token_exchange_scope"] = token_exchange_scope
+            view_scope = _utilities.configure(view_scope, ClientPermissionsViewScopeArgs, True)
             __props__.__dict__["view_scope"] = view_scope
             __props__.__dict__["authorization_resource_server_id"] = None
             __props__.__dict__["enabled"] = None

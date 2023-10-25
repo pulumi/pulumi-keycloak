@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['RoleMapperArgs', 'RoleMapper']
@@ -47,29 +47,108 @@ class RoleMapperArgs:
         :param pulumi.Input[bool] use_realm_roles_mapping: When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
         :param pulumi.Input[str] user_roles_retrieve_strategy: Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
         """
-        pulumi.set(__self__, "ldap_roles_dn", ldap_roles_dn)
-        pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
-        pulumi.set(__self__, "membership_ldap_attribute", membership_ldap_attribute)
-        pulumi.set(__self__, "membership_user_ldap_attribute", membership_user_ldap_attribute)
-        pulumi.set(__self__, "realm_id", realm_id)
-        pulumi.set(__self__, "role_name_ldap_attribute", role_name_ldap_attribute)
-        pulumi.set(__self__, "role_object_classes", role_object_classes)
+        RoleMapperArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ldap_roles_dn=ldap_roles_dn,
+            ldap_user_federation_id=ldap_user_federation_id,
+            membership_ldap_attribute=membership_ldap_attribute,
+            membership_user_ldap_attribute=membership_user_ldap_attribute,
+            realm_id=realm_id,
+            role_name_ldap_attribute=role_name_ldap_attribute,
+            role_object_classes=role_object_classes,
+            client_id=client_id,
+            memberof_ldap_attribute=memberof_ldap_attribute,
+            membership_attribute_type=membership_attribute_type,
+            mode=mode,
+            name=name,
+            roles_ldap_filter=roles_ldap_filter,
+            use_realm_roles_mapping=use_realm_roles_mapping,
+            user_roles_retrieve_strategy=user_roles_retrieve_strategy,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ldap_roles_dn: Optional[pulumi.Input[str]] = None,
+             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+             membership_ldap_attribute: Optional[pulumi.Input[str]] = None,
+             membership_user_ldap_attribute: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             role_name_ldap_attribute: Optional[pulumi.Input[str]] = None,
+             role_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             client_id: Optional[pulumi.Input[str]] = None,
+             memberof_ldap_attribute: Optional[pulumi.Input[str]] = None,
+             membership_attribute_type: Optional[pulumi.Input[str]] = None,
+             mode: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             roles_ldap_filter: Optional[pulumi.Input[str]] = None,
+             use_realm_roles_mapping: Optional[pulumi.Input[bool]] = None,
+             user_roles_retrieve_strategy: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if ldap_roles_dn is None and 'ldapRolesDn' in kwargs:
+            ldap_roles_dn = kwargs['ldapRolesDn']
+        if ldap_roles_dn is None:
+            raise TypeError("Missing 'ldap_roles_dn' argument")
+        if ldap_user_federation_id is None and 'ldapUserFederationId' in kwargs:
+            ldap_user_federation_id = kwargs['ldapUserFederationId']
+        if ldap_user_federation_id is None:
+            raise TypeError("Missing 'ldap_user_federation_id' argument")
+        if membership_ldap_attribute is None and 'membershipLdapAttribute' in kwargs:
+            membership_ldap_attribute = kwargs['membershipLdapAttribute']
+        if membership_ldap_attribute is None:
+            raise TypeError("Missing 'membership_ldap_attribute' argument")
+        if membership_user_ldap_attribute is None and 'membershipUserLdapAttribute' in kwargs:
+            membership_user_ldap_attribute = kwargs['membershipUserLdapAttribute']
+        if membership_user_ldap_attribute is None:
+            raise TypeError("Missing 'membership_user_ldap_attribute' argument")
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if role_name_ldap_attribute is None and 'roleNameLdapAttribute' in kwargs:
+            role_name_ldap_attribute = kwargs['roleNameLdapAttribute']
+        if role_name_ldap_attribute is None:
+            raise TypeError("Missing 'role_name_ldap_attribute' argument")
+        if role_object_classes is None and 'roleObjectClasses' in kwargs:
+            role_object_classes = kwargs['roleObjectClasses']
+        if role_object_classes is None:
+            raise TypeError("Missing 'role_object_classes' argument")
+        if client_id is None and 'clientId' in kwargs:
+            client_id = kwargs['clientId']
+        if memberof_ldap_attribute is None and 'memberofLdapAttribute' in kwargs:
+            memberof_ldap_attribute = kwargs['memberofLdapAttribute']
+        if membership_attribute_type is None and 'membershipAttributeType' in kwargs:
+            membership_attribute_type = kwargs['membershipAttributeType']
+        if roles_ldap_filter is None and 'rolesLdapFilter' in kwargs:
+            roles_ldap_filter = kwargs['rolesLdapFilter']
+        if use_realm_roles_mapping is None and 'useRealmRolesMapping' in kwargs:
+            use_realm_roles_mapping = kwargs['useRealmRolesMapping']
+        if user_roles_retrieve_strategy is None and 'userRolesRetrieveStrategy' in kwargs:
+            user_roles_retrieve_strategy = kwargs['userRolesRetrieveStrategy']
+
+        _setter("ldap_roles_dn", ldap_roles_dn)
+        _setter("ldap_user_federation_id", ldap_user_federation_id)
+        _setter("membership_ldap_attribute", membership_ldap_attribute)
+        _setter("membership_user_ldap_attribute", membership_user_ldap_attribute)
+        _setter("realm_id", realm_id)
+        _setter("role_name_ldap_attribute", role_name_ldap_attribute)
+        _setter("role_object_classes", role_object_classes)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if memberof_ldap_attribute is not None:
-            pulumi.set(__self__, "memberof_ldap_attribute", memberof_ldap_attribute)
+            _setter("memberof_ldap_attribute", memberof_ldap_attribute)
         if membership_attribute_type is not None:
-            pulumi.set(__self__, "membership_attribute_type", membership_attribute_type)
+            _setter("membership_attribute_type", membership_attribute_type)
         if mode is not None:
-            pulumi.set(__self__, "mode", mode)
+            _setter("mode", mode)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if roles_ldap_filter is not None:
-            pulumi.set(__self__, "roles_ldap_filter", roles_ldap_filter)
+            _setter("roles_ldap_filter", roles_ldap_filter)
         if use_realm_roles_mapping is not None:
-            pulumi.set(__self__, "use_realm_roles_mapping", use_realm_roles_mapping)
+            _setter("use_realm_roles_mapping", use_realm_roles_mapping)
         if user_roles_retrieve_strategy is not None:
-            pulumi.set(__self__, "user_roles_retrieve_strategy", user_roles_retrieve_strategy)
+            _setter("user_roles_retrieve_strategy", user_roles_retrieve_strategy)
 
     @property
     @pulumi.getter(name="ldapRolesDn")
@@ -288,36 +367,101 @@ class _RoleMapperState:
         :param pulumi.Input[bool] use_realm_roles_mapping: When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
         :param pulumi.Input[str] user_roles_retrieve_strategy: Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
         """
+        _RoleMapperState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            client_id=client_id,
+            ldap_roles_dn=ldap_roles_dn,
+            ldap_user_federation_id=ldap_user_federation_id,
+            memberof_ldap_attribute=memberof_ldap_attribute,
+            membership_attribute_type=membership_attribute_type,
+            membership_ldap_attribute=membership_ldap_attribute,
+            membership_user_ldap_attribute=membership_user_ldap_attribute,
+            mode=mode,
+            name=name,
+            realm_id=realm_id,
+            role_name_ldap_attribute=role_name_ldap_attribute,
+            role_object_classes=role_object_classes,
+            roles_ldap_filter=roles_ldap_filter,
+            use_realm_roles_mapping=use_realm_roles_mapping,
+            user_roles_retrieve_strategy=user_roles_retrieve_strategy,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             client_id: Optional[pulumi.Input[str]] = None,
+             ldap_roles_dn: Optional[pulumi.Input[str]] = None,
+             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+             memberof_ldap_attribute: Optional[pulumi.Input[str]] = None,
+             membership_attribute_type: Optional[pulumi.Input[str]] = None,
+             membership_ldap_attribute: Optional[pulumi.Input[str]] = None,
+             membership_user_ldap_attribute: Optional[pulumi.Input[str]] = None,
+             mode: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             role_name_ldap_attribute: Optional[pulumi.Input[str]] = None,
+             role_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             roles_ldap_filter: Optional[pulumi.Input[str]] = None,
+             use_realm_roles_mapping: Optional[pulumi.Input[bool]] = None,
+             user_roles_retrieve_strategy: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if client_id is None and 'clientId' in kwargs:
+            client_id = kwargs['clientId']
+        if ldap_roles_dn is None and 'ldapRolesDn' in kwargs:
+            ldap_roles_dn = kwargs['ldapRolesDn']
+        if ldap_user_federation_id is None and 'ldapUserFederationId' in kwargs:
+            ldap_user_federation_id = kwargs['ldapUserFederationId']
+        if memberof_ldap_attribute is None and 'memberofLdapAttribute' in kwargs:
+            memberof_ldap_attribute = kwargs['memberofLdapAttribute']
+        if membership_attribute_type is None and 'membershipAttributeType' in kwargs:
+            membership_attribute_type = kwargs['membershipAttributeType']
+        if membership_ldap_attribute is None and 'membershipLdapAttribute' in kwargs:
+            membership_ldap_attribute = kwargs['membershipLdapAttribute']
+        if membership_user_ldap_attribute is None and 'membershipUserLdapAttribute' in kwargs:
+            membership_user_ldap_attribute = kwargs['membershipUserLdapAttribute']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if role_name_ldap_attribute is None and 'roleNameLdapAttribute' in kwargs:
+            role_name_ldap_attribute = kwargs['roleNameLdapAttribute']
+        if role_object_classes is None and 'roleObjectClasses' in kwargs:
+            role_object_classes = kwargs['roleObjectClasses']
+        if roles_ldap_filter is None and 'rolesLdapFilter' in kwargs:
+            roles_ldap_filter = kwargs['rolesLdapFilter']
+        if use_realm_roles_mapping is None and 'useRealmRolesMapping' in kwargs:
+            use_realm_roles_mapping = kwargs['useRealmRolesMapping']
+        if user_roles_retrieve_strategy is None and 'userRolesRetrieveStrategy' in kwargs:
+            user_roles_retrieve_strategy = kwargs['userRolesRetrieveStrategy']
+
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if ldap_roles_dn is not None:
-            pulumi.set(__self__, "ldap_roles_dn", ldap_roles_dn)
+            _setter("ldap_roles_dn", ldap_roles_dn)
         if ldap_user_federation_id is not None:
-            pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
+            _setter("ldap_user_federation_id", ldap_user_federation_id)
         if memberof_ldap_attribute is not None:
-            pulumi.set(__self__, "memberof_ldap_attribute", memberof_ldap_attribute)
+            _setter("memberof_ldap_attribute", memberof_ldap_attribute)
         if membership_attribute_type is not None:
-            pulumi.set(__self__, "membership_attribute_type", membership_attribute_type)
+            _setter("membership_attribute_type", membership_attribute_type)
         if membership_ldap_attribute is not None:
-            pulumi.set(__self__, "membership_ldap_attribute", membership_ldap_attribute)
+            _setter("membership_ldap_attribute", membership_ldap_attribute)
         if membership_user_ldap_attribute is not None:
-            pulumi.set(__self__, "membership_user_ldap_attribute", membership_user_ldap_attribute)
+            _setter("membership_user_ldap_attribute", membership_user_ldap_attribute)
         if mode is not None:
-            pulumi.set(__self__, "mode", mode)
+            _setter("mode", mode)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if role_name_ldap_attribute is not None:
-            pulumi.set(__self__, "role_name_ldap_attribute", role_name_ldap_attribute)
+            _setter("role_name_ldap_attribute", role_name_ldap_attribute)
         if role_object_classes is not None:
-            pulumi.set(__self__, "role_object_classes", role_object_classes)
+            _setter("role_object_classes", role_object_classes)
         if roles_ldap_filter is not None:
-            pulumi.set(__self__, "roles_ldap_filter", roles_ldap_filter)
+            _setter("roles_ldap_filter", roles_ldap_filter)
         if use_realm_roles_mapping is not None:
-            pulumi.set(__self__, "use_realm_roles_mapping", use_realm_roles_mapping)
+            _setter("use_realm_roles_mapping", use_realm_roles_mapping)
         if user_roles_retrieve_strategy is not None:
-            pulumi.set(__self__, "user_roles_retrieve_strategy", user_roles_retrieve_strategy)
+            _setter("user_roles_retrieve_strategy", user_roles_retrieve_strategy)
 
     @property
     @pulumi.getter(name="clientId")
@@ -526,41 +670,6 @@ class RoleMapper(pulumi.CustomResource):
 
         The LDAP group mapper can be used to map an LDAP user's roles from some DN to Keycloak roles.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            realm_id=realm.id,
-            username_ldap_attribute="cn",
-            rdn_ldap_attribute="cn",
-            uuid_ldap_attribute="entryDN",
-            user_object_classes=[
-                "simpleSecurityObject",
-                "organizationalRole",
-            ],
-            connection_url="ldap://openldap",
-            users_dn="dc=example,dc=org",
-            bind_dn="cn=admin,dc=example,dc=org",
-            bind_credential="admin")
-        ldap_role_mapper = keycloak.ldap.RoleMapper("ldapRoleMapper",
-            realm_id=realm.id,
-            ldap_user_federation_id=ldap_user_federation.id,
-            ldap_roles_dn="dc=example,dc=org",
-            role_name_ldap_attribute="cn",
-            role_object_classes=["groupOfNames"],
-            membership_attribute_type="DN",
-            membership_ldap_attribute="member",
-            membership_user_ldap_attribute="cn",
-            user_roles_retrieve_strategy="GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE",
-            memberof_ldap_attribute="memberOf")
-        ```
-
         ## Import
 
         LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
@@ -598,41 +707,6 @@ class RoleMapper(pulumi.CustomResource):
 
         The LDAP group mapper can be used to map an LDAP user's roles from some DN to Keycloak roles.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            realm_id=realm.id,
-            username_ldap_attribute="cn",
-            rdn_ldap_attribute="cn",
-            uuid_ldap_attribute="entryDN",
-            user_object_classes=[
-                "simpleSecurityObject",
-                "organizationalRole",
-            ],
-            connection_url="ldap://openldap",
-            users_dn="dc=example,dc=org",
-            bind_dn="cn=admin,dc=example,dc=org",
-            bind_credential="admin")
-        ldap_role_mapper = keycloak.ldap.RoleMapper("ldapRoleMapper",
-            realm_id=realm.id,
-            ldap_user_federation_id=ldap_user_federation.id,
-            ldap_roles_dn="dc=example,dc=org",
-            role_name_ldap_attribute="cn",
-            role_object_classes=["groupOfNames"],
-            membership_attribute_type="DN",
-            membership_ldap_attribute="member",
-            membership_user_ldap_attribute="cn",
-            user_roles_retrieve_strategy="GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE",
-            memberof_ldap_attribute="memberOf")
-        ```
-
         ## Import
 
         LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
@@ -651,6 +725,10 @@ class RoleMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            RoleMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

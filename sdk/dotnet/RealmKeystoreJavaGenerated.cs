@@ -14,37 +14,6 @@ namespace Pulumi.Keycloak
     /// 
     /// A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Keycloak = Pulumi.Keycloak;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
-    ///     {
-    ///         RealmName = "my-realm",
-    ///     });
-    /// 
-    ///     var javaKeystore = new Keycloak.RealmKeystoreJavaGenerated("javaKeystore", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         Enabled = true,
-    ///         Active = true,
-    ///         Keystore = "&lt;path to your keystore&gt;",
-    ///         KeystorePassword = "&lt;password for keystore&gt;",
-    ///         KeyAlias = "&lt;alias for the private key&gt;",
-    ///         KeyPassword = "&lt;password for the private key&gt;",
-    ///         Priority = 100,
-    ///         Algorithm = "RS256",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash

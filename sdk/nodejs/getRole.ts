@@ -7,28 +7,6 @@ import * as utilities from "./utilities";
 /**
  * This data source can be used to fetch properties of a Keycloak role for
  * usage with other resources, such as `keycloak.GroupRoles`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const offlineAccess = keycloak.getRoleOutput({
- *     realmId: realm.id,
- *     name: "offline_access",
- * });
- * const group = new keycloak.Group("group", {realmId: realm.id});
- * const groupRoles = new keycloak.GroupRoles("groupRoles", {
- *     realmId: realm.id,
- *     groupId: group.id,
- *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
- * });
- * ```
  */
 export function getRole(args: GetRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetRoleResult> {
 
@@ -79,28 +57,6 @@ export interface GetRoleResult {
 /**
  * This data source can be used to fetch properties of a Keycloak role for
  * usage with other resources, such as `keycloak.GroupRoles`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const offlineAccess = keycloak.getRoleOutput({
- *     realmId: realm.id,
- *     name: "offline_access",
- * });
- * const group = new keycloak.Group("group", {realmId: realm.id});
- * const groupRoles = new keycloak.GroupRoles("groupRoles", {
- *     realmId: realm.id,
- *     groupId: group.id,
- *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
- * });
- * ```
  */
 export function getRoleOutput(args: GetRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRoleResult> {
     return pulumi.output(args).apply((a: any) => getRole(a, opts))

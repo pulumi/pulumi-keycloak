@@ -5,43 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const tokenExchangeRealm = new keycloak.Realm("tokenExchangeRealm", {
- *     realm: "token-exchange_destination_realm",
- *     enabled: true,
- * });
- * const tokenExchangeMyOidcIdp = new keycloak.oidc.IdentityProvider("tokenExchangeMyOidcIdp", {
- *     realm: tokenExchangeRealm.id,
- *     alias: "myIdp",
- *     authorizationUrl: "http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/auth",
- *     tokenUrl: "http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/token",
- *     clientId: "clientId",
- *     clientSecret: "secret",
- *     defaultScopes: "openid",
- * });
- * const token_exchangeWebappClient = new keycloak.openid.Client("token-exchangeWebappClient", {
- *     realmId: tokenExchangeRealm.id,
- *     clientId: "webapp_client",
- *     clientSecret: "secret",
- *     description: "a webapp client on the destination realm",
- *     accessType: "CONFIDENTIAL",
- *     standardFlowEnabled: true,
- *     validRedirectUris: ["http://localhost:8080/*"],
- * });
- * //relevant part
- * const oidcIdpPermission = new keycloak.IdentityProviderTokenExchangeScopePermission("oidcIdpPermission", {
- *     realmId: tokenExchangeRealm.id,
- *     providerAlias: tokenExchangeMyOidcIdp.alias,
- *     policyType: "client",
- *     clients: [token_exchangeWebappClient.id],
- * });
- * ```
- *
  * ## Import
  *
  * This resource can be imported using the format `{{realm_id}}/{{provider_alias}}`, where `provider_alias` is the alias that you assign to the identity provider upon creation. Examplebash

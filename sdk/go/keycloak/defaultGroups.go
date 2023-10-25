@@ -17,48 +17,6 @@ import (
 //
 // > You should not use `DefaultGroups` with a group whose members are managed by `GroupMemberships`.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Realm:   pulumi.String("my-realm"),
-//				Enabled: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
-//				RealmId: realm.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = keycloak.NewDefaultGroups(ctx, "default", &keycloak.DefaultGroupsArgs{
-//				RealmId: realm.ID(),
-//				GroupIds: pulumi.StringArray{
-//					group.ID(),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in. Examplebash

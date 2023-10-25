@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['RealmKeystoreJavaGeneratedArgs', 'RealmKeystoreJavaGenerated']
@@ -37,21 +37,68 @@ class RealmKeystoreJavaGeneratedArgs:
         :param pulumi.Input[str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[int] priority: Priority for the provider. Defaults to `0`
         """
-        pulumi.set(__self__, "key_alias", key_alias)
-        pulumi.set(__self__, "key_password", key_password)
-        pulumi.set(__self__, "keystore", keystore)
-        pulumi.set(__self__, "keystore_password", keystore_password)
-        pulumi.set(__self__, "realm_id", realm_id)
+        RealmKeystoreJavaGeneratedArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key_alias=key_alias,
+            key_password=key_password,
+            keystore=keystore,
+            keystore_password=keystore_password,
+            realm_id=realm_id,
+            active=active,
+            algorithm=algorithm,
+            enabled=enabled,
+            name=name,
+            priority=priority,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key_alias: Optional[pulumi.Input[str]] = None,
+             key_password: Optional[pulumi.Input[str]] = None,
+             keystore: Optional[pulumi.Input[str]] = None,
+             keystore_password: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             active: Optional[pulumi.Input[bool]] = None,
+             algorithm: Optional[pulumi.Input[str]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             priority: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if key_alias is None and 'keyAlias' in kwargs:
+            key_alias = kwargs['keyAlias']
+        if key_alias is None:
+            raise TypeError("Missing 'key_alias' argument")
+        if key_password is None and 'keyPassword' in kwargs:
+            key_password = kwargs['keyPassword']
+        if key_password is None:
+            raise TypeError("Missing 'key_password' argument")
+        if keystore is None:
+            raise TypeError("Missing 'keystore' argument")
+        if keystore_password is None and 'keystorePassword' in kwargs:
+            keystore_password = kwargs['keystorePassword']
+        if keystore_password is None:
+            raise TypeError("Missing 'keystore_password' argument")
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+
+        _setter("key_alias", key_alias)
+        _setter("key_password", key_password)
+        _setter("keystore", keystore)
+        _setter("keystore_password", keystore_password)
+        _setter("realm_id", realm_id)
         if active is not None:
-            pulumi.set(__self__, "active", active)
+            _setter("active", active)
         if algorithm is not None:
-            pulumi.set(__self__, "algorithm", algorithm)
+            _setter("algorithm", algorithm)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if priority is not None:
-            pulumi.set(__self__, "priority", priority)
+            _setter("priority", priority)
 
     @property
     @pulumi.getter(name="keyAlias")
@@ -200,26 +247,63 @@ class _RealmKeystoreJavaGeneratedState:
         :param pulumi.Input[int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[str] realm_id: The realm this keystore exists in.
         """
+        _RealmKeystoreJavaGeneratedState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            active=active,
+            algorithm=algorithm,
+            enabled=enabled,
+            key_alias=key_alias,
+            key_password=key_password,
+            keystore=keystore,
+            keystore_password=keystore_password,
+            name=name,
+            priority=priority,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             active: Optional[pulumi.Input[bool]] = None,
+             algorithm: Optional[pulumi.Input[str]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             key_alias: Optional[pulumi.Input[str]] = None,
+             key_password: Optional[pulumi.Input[str]] = None,
+             keystore: Optional[pulumi.Input[str]] = None,
+             keystore_password: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             priority: Optional[pulumi.Input[int]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if key_alias is None and 'keyAlias' in kwargs:
+            key_alias = kwargs['keyAlias']
+        if key_password is None and 'keyPassword' in kwargs:
+            key_password = kwargs['keyPassword']
+        if keystore_password is None and 'keystorePassword' in kwargs:
+            keystore_password = kwargs['keystorePassword']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+
         if active is not None:
-            pulumi.set(__self__, "active", active)
+            _setter("active", active)
         if algorithm is not None:
-            pulumi.set(__self__, "algorithm", algorithm)
+            _setter("algorithm", algorithm)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if key_alias is not None:
-            pulumi.set(__self__, "key_alias", key_alias)
+            _setter("key_alias", key_alias)
         if key_password is not None:
-            pulumi.set(__self__, "key_password", key_password)
+            _setter("key_password", key_password)
         if keystore is not None:
-            pulumi.set(__self__, "keystore", keystore)
+            _setter("keystore", keystore)
         if keystore_password is not None:
-            pulumi.set(__self__, "keystore_password", keystore_password)
+            _setter("keystore_password", keystore_password)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if priority is not None:
-            pulumi.set(__self__, "priority", priority)
+            _setter("priority", priority)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter
@@ -363,25 +447,6 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm", realm="my-realm")
-        java_keystore = keycloak.RealmKeystoreJavaGenerated("javaKeystore",
-            realm_id=realm.id,
-            enabled=True,
-            active=True,
-            keystore="<path to your keystore>",
-            keystore_password="<password for keystore>",
-            key_alias="<alias for the private key>",
-            key_password="<password for the private key>",
-            priority=100,
-            algorithm="RS256")
-        ```
-
         ## Import
 
         Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
@@ -414,25 +479,6 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm", realm="my-realm")
-        java_keystore = keycloak.RealmKeystoreJavaGenerated("javaKeystore",
-            realm_id=realm.id,
-            enabled=True,
-            active=True,
-            keystore="<path to your keystore>",
-            keystore_password="<password for keystore>",
-            key_alias="<alias for the private key>",
-            key_password="<password for the private key>",
-            priority=100,
-            algorithm="RS256")
-        ```
-
         ## Import
 
         Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
@@ -451,6 +497,10 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            RealmKeystoreJavaGeneratedArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

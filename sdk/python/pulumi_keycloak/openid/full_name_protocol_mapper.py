@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['FullNameProtocolMapperArgs', 'FullNameProtocolMapper']
@@ -31,19 +31,56 @@ class FullNameProtocolMapperArgs:
         :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         """
-        pulumi.set(__self__, "realm_id", realm_id)
+        FullNameProtocolMapperArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            realm_id=realm_id,
+            add_to_access_token=add_to_access_token,
+            add_to_id_token=add_to_id_token,
+            add_to_userinfo=add_to_userinfo,
+            client_id=client_id,
+            client_scope_id=client_scope_id,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             realm_id: Optional[pulumi.Input[str]] = None,
+             add_to_access_token: Optional[pulumi.Input[bool]] = None,
+             add_to_id_token: Optional[pulumi.Input[bool]] = None,
+             add_to_userinfo: Optional[pulumi.Input[bool]] = None,
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_scope_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if add_to_access_token is None and 'addToAccessToken' in kwargs:
+            add_to_access_token = kwargs['addToAccessToken']
+        if add_to_id_token is None and 'addToIdToken' in kwargs:
+            add_to_id_token = kwargs['addToIdToken']
+        if add_to_userinfo is None and 'addToUserinfo' in kwargs:
+            add_to_userinfo = kwargs['addToUserinfo']
+        if client_id is None and 'clientId' in kwargs:
+            client_id = kwargs['clientId']
+        if client_scope_id is None and 'clientScopeId' in kwargs:
+            client_scope_id = kwargs['clientScopeId']
+
+        _setter("realm_id", realm_id)
         if add_to_access_token is not None:
-            pulumi.set(__self__, "add_to_access_token", add_to_access_token)
+            _setter("add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
-            pulumi.set(__self__, "add_to_id_token", add_to_id_token)
+            _setter("add_to_id_token", add_to_id_token)
         if add_to_userinfo is not None:
-            pulumi.set(__self__, "add_to_userinfo", add_to_userinfo)
+            _setter("add_to_userinfo", add_to_userinfo)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_scope_id is not None:
-            pulumi.set(__self__, "client_scope_id", client_scope_id)
+            _setter("client_scope_id", client_scope_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="realmId")
@@ -150,20 +187,55 @@ class _FullNameProtocolMapperState:
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
         """
+        _FullNameProtocolMapperState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            add_to_access_token=add_to_access_token,
+            add_to_id_token=add_to_id_token,
+            add_to_userinfo=add_to_userinfo,
+            client_id=client_id,
+            client_scope_id=client_scope_id,
+            name=name,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             add_to_access_token: Optional[pulumi.Input[bool]] = None,
+             add_to_id_token: Optional[pulumi.Input[bool]] = None,
+             add_to_userinfo: Optional[pulumi.Input[bool]] = None,
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_scope_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if add_to_access_token is None and 'addToAccessToken' in kwargs:
+            add_to_access_token = kwargs['addToAccessToken']
+        if add_to_id_token is None and 'addToIdToken' in kwargs:
+            add_to_id_token = kwargs['addToIdToken']
+        if add_to_userinfo is None and 'addToUserinfo' in kwargs:
+            add_to_userinfo = kwargs['addToUserinfo']
+        if client_id is None and 'clientId' in kwargs:
+            client_id = kwargs['clientId']
+        if client_scope_id is None and 'clientScopeId' in kwargs:
+            client_scope_id = kwargs['clientScopeId']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+
         if add_to_access_token is not None:
-            pulumi.set(__self__, "add_to_access_token", add_to_access_token)
+            _setter("add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
-            pulumi.set(__self__, "add_to_id_token", add_to_id_token)
+            _setter("add_to_id_token", add_to_id_token)
         if add_to_userinfo is not None:
-            pulumi.set(__self__, "add_to_userinfo", add_to_userinfo)
+            _setter("add_to_userinfo", add_to_userinfo)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_scope_id is not None:
-            pulumi.set(__self__, "client_scope_id", client_scope_id)
+            _setter("client_scope_id", client_scope_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter(name="addToAccessToken")
@@ -272,39 +344,6 @@ class FullNameProtocolMapper(pulumi.CustomResource):
         multiple different clients.
 
         ## Example Usage
-        ### Client)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        openid_client = keycloak.openid.Client("openidClient",
-            realm_id=realm.id,
-            client_id="client",
-            enabled=True,
-            access_type="CONFIDENTIAL",
-            valid_redirect_uris=["http://localhost:8080/openid-callback"])
-        full_name_mapper = keycloak.openid.FullNameProtocolMapper("fullNameMapper",
-            realm_id=realm.id,
-            client_id=openid_client.id)
-        ```
-        ### Client Scope)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        full_name_mapper = keycloak.openid.FullNameProtocolMapper("fullNameMapper",
-            realm_id=realm.id,
-            client_scope_id=client_scope.id)
-        ```
 
         ## Import
 
@@ -343,39 +382,6 @@ class FullNameProtocolMapper(pulumi.CustomResource):
         multiple different clients.
 
         ## Example Usage
-        ### Client)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        openid_client = keycloak.openid.Client("openidClient",
-            realm_id=realm.id,
-            client_id="client",
-            enabled=True,
-            access_type="CONFIDENTIAL",
-            valid_redirect_uris=["http://localhost:8080/openid-callback"])
-        full_name_mapper = keycloak.openid.FullNameProtocolMapper("fullNameMapper",
-            realm_id=realm.id,
-            client_id=openid_client.id)
-        ```
-        ### Client Scope)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        full_name_mapper = keycloak.openid.FullNameProtocolMapper("fullNameMapper",
-            realm_id=realm.id,
-            client_scope_id=client_scope.id)
-        ```
 
         ## Import
 
@@ -399,6 +405,10 @@ class FullNameProtocolMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            FullNameProtocolMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

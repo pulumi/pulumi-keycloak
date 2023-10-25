@@ -6,50 +6,6 @@ import * as utilities from "../utilities";
 
 /**
  * This data source can be used to fetch policy and permission information for an OpenID client that has authorization enabled.
- *
- * ## Example Usage
- *
- * In this example, we'll create a new OpenID client with authorization enabled. This will cause Keycloak to create a default
- * permission for this client called "Default Permission". We'll use the `keycloak.openid.getClientAuthorizationPolicy` data
- * source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const clientWithAuthz = new keycloak.openid.Client("clientWithAuthz", {
- *     clientId: "client-with-authz",
- *     realmId: realm.id,
- *     accessType: "CONFIDENTIAL",
- *     serviceAccountsEnabled: true,
- *     authorization: {
- *         policyEnforcementMode: "ENFORCING",
- *     },
- * });
- * const defaultPermission = keycloak.openid.getClientAuthorizationPolicyOutput({
- *     realmId: realm.id,
- *     resourceServerId: clientWithAuthz.resourceServerId,
- *     name: "Default Permission",
- * });
- * const resource = new keycloak.openid.ClientAuthorizationResource("resource", {
- *     resourceServerId: clientWithAuthz.resourceServerId,
- *     realmId: realm.id,
- *     uris: ["/endpoint/*"],
- *     attributes: {
- *         foo: "bar",
- *     },
- * });
- * const permission = new keycloak.openid.ClientAuthorizationPermission("permission", {
- *     resourceServerId: clientWithAuthz.resourceServerId,
- *     realmId: realm.id,
- *     policies: [defaultPermission.apply(defaultPermission => defaultPermission.id)],
- *     resources: [resource.id],
- * });
- * ```
  */
 export function getClientAuthorizationPolicy(args: GetClientAuthorizationPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetClientAuthorizationPolicyResult> {
 
@@ -121,50 +77,6 @@ export interface GetClientAuthorizationPolicyResult {
 }
 /**
  * This data source can be used to fetch policy and permission information for an OpenID client that has authorization enabled.
- *
- * ## Example Usage
- *
- * In this example, we'll create a new OpenID client with authorization enabled. This will cause Keycloak to create a default
- * permission for this client called "Default Permission". We'll use the `keycloak.openid.getClientAuthorizationPolicy` data
- * source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const clientWithAuthz = new keycloak.openid.Client("clientWithAuthz", {
- *     clientId: "client-with-authz",
- *     realmId: realm.id,
- *     accessType: "CONFIDENTIAL",
- *     serviceAccountsEnabled: true,
- *     authorization: {
- *         policyEnforcementMode: "ENFORCING",
- *     },
- * });
- * const defaultPermission = keycloak.openid.getClientAuthorizationPolicyOutput({
- *     realmId: realm.id,
- *     resourceServerId: clientWithAuthz.resourceServerId,
- *     name: "Default Permission",
- * });
- * const resource = new keycloak.openid.ClientAuthorizationResource("resource", {
- *     resourceServerId: clientWithAuthz.resourceServerId,
- *     realmId: realm.id,
- *     uris: ["/endpoint/*"],
- *     attributes: {
- *         foo: "bar",
- *     },
- * });
- * const permission = new keycloak.openid.ClientAuthorizationPermission("permission", {
- *     resourceServerId: clientWithAuthz.resourceServerId,
- *     realmId: realm.id,
- *     policies: [defaultPermission.apply(defaultPermission => defaultPermission.id)],
- *     resources: [resource.id],
- * });
- * ```
  */
 export function getClientAuthorizationPolicyOutput(args: GetClientAuthorizationPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientAuthorizationPolicyResult> {
     return pulumi.output(args).apply((a: any) => getClientAuthorizationPolicy(a, opts))

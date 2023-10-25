@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['HardcodedAttributeMapperArgs', 'HardcodedAttributeMapper']
@@ -27,12 +27,47 @@ class HardcodedAttributeMapperArgs:
         :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
         :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
         """
-        pulumi.set(__self__, "attribute_name", attribute_name)
-        pulumi.set(__self__, "attribute_value", attribute_value)
-        pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
-        pulumi.set(__self__, "realm_id", realm_id)
+        HardcodedAttributeMapperArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            attribute_name=attribute_name,
+            attribute_value=attribute_value,
+            ldap_user_federation_id=ldap_user_federation_id,
+            realm_id=realm_id,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             attribute_name: Optional[pulumi.Input[str]] = None,
+             attribute_value: Optional[pulumi.Input[str]] = None,
+             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if attribute_name is None and 'attributeName' in kwargs:
+            attribute_name = kwargs['attributeName']
+        if attribute_name is None:
+            raise TypeError("Missing 'attribute_name' argument")
+        if attribute_value is None and 'attributeValue' in kwargs:
+            attribute_value = kwargs['attributeValue']
+        if attribute_value is None:
+            raise TypeError("Missing 'attribute_value' argument")
+        if ldap_user_federation_id is None and 'ldapUserFederationId' in kwargs:
+            ldap_user_federation_id = kwargs['ldapUserFederationId']
+        if ldap_user_federation_id is None:
+            raise TypeError("Missing 'ldap_user_federation_id' argument")
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+
+        _setter("attribute_name", attribute_name)
+        _setter("attribute_value", attribute_value)
+        _setter("ldap_user_federation_id", ldap_user_federation_id)
+        _setter("realm_id", realm_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="attributeName")
@@ -111,16 +146,43 @@ class _HardcodedAttributeMapperState:
         :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
         """
+        _HardcodedAttributeMapperState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            attribute_name=attribute_name,
+            attribute_value=attribute_value,
+            ldap_user_federation_id=ldap_user_federation_id,
+            name=name,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             attribute_name: Optional[pulumi.Input[str]] = None,
+             attribute_value: Optional[pulumi.Input[str]] = None,
+             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if attribute_name is None and 'attributeName' in kwargs:
+            attribute_name = kwargs['attributeName']
+        if attribute_value is None and 'attributeValue' in kwargs:
+            attribute_value = kwargs['attributeValue']
+        if ldap_user_federation_id is None and 'ldapUserFederationId' in kwargs:
+            ldap_user_federation_id = kwargs['ldapUserFederationId']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+
         if attribute_name is not None:
-            pulumi.set(__self__, "attribute_name", attribute_name)
+            _setter("attribute_name", attribute_name)
         if attribute_value is not None:
-            pulumi.set(__self__, "attribute_value", attribute_value)
+            _setter("attribute_value", attribute_value)
         if ldap_user_federation_id is not None:
-            pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
+            _setter("ldap_user_federation_id", ldap_user_federation_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter(name="attributeName")
@@ -201,36 +263,6 @@ class HardcodedAttributeMapper(pulumi.CustomResource):
 
         **NOTE**: This mapper only works when the `sync_registrations` attribute on the `ldap.UserFederation` resource is set to `true`.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            realm_id=realm.id,
-            username_ldap_attribute="cn",
-            rdn_ldap_attribute="cn",
-            uuid_ldap_attribute="entryDN",
-            user_object_classes=[
-                "simpleSecurityObject",
-                "organizationalRole",
-            ],
-            connection_url="ldap://openldap",
-            users_dn="dc=example,dc=org",
-            bind_dn="cn=admin,dc=example,dc=org",
-            bind_credential="admin",
-            sync_registrations=True)
-        assign_bar_to_foo = keycloak.ldap.HardcodedAttributeMapper("assignBarToFoo",
-            realm_id=realm.id,
-            ldap_user_federation_id=ldap_user_federation.id,
-            attribute_name="foo",
-            attribute_value="bar")
-        ```
-
         ## Import
 
         LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
@@ -260,36 +292,6 @@ class HardcodedAttributeMapper(pulumi.CustomResource):
 
         **NOTE**: This mapper only works when the `sync_registrations` attribute on the `ldap.UserFederation` resource is set to `true`.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            realm_id=realm.id,
-            username_ldap_attribute="cn",
-            rdn_ldap_attribute="cn",
-            uuid_ldap_attribute="entryDN",
-            user_object_classes=[
-                "simpleSecurityObject",
-                "organizationalRole",
-            ],
-            connection_url="ldap://openldap",
-            users_dn="dc=example,dc=org",
-            bind_dn="cn=admin,dc=example,dc=org",
-            bind_credential="admin",
-            sync_registrations=True)
-        assign_bar_to_foo = keycloak.ldap.HardcodedAttributeMapper("assignBarToFoo",
-            realm_id=realm.id,
-            ldap_user_federation_id=ldap_user_federation.id,
-            attribute_name="foo",
-            attribute_value="bar")
-        ```
-
         ## Import
 
         LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
@@ -308,6 +310,10 @@ class HardcodedAttributeMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            HardcodedAttributeMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

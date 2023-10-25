@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['MsadUserAccountControlMapperArgs', 'MsadUserAccountControlMapper']
@@ -25,12 +25,39 @@ class MsadUserAccountControlMapperArgs:
         :param pulumi.Input[bool] ldap_password_policy_hints_enabled: When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
         :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
         """
-        pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
-        pulumi.set(__self__, "realm_id", realm_id)
+        MsadUserAccountControlMapperArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ldap_user_federation_id=ldap_user_federation_id,
+            realm_id=realm_id,
+            ldap_password_policy_hints_enabled=ldap_password_policy_hints_enabled,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             ldap_password_policy_hints_enabled: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if ldap_user_federation_id is None and 'ldapUserFederationId' in kwargs:
+            ldap_user_federation_id = kwargs['ldapUserFederationId']
+        if ldap_user_federation_id is None:
+            raise TypeError("Missing 'ldap_user_federation_id' argument")
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if ldap_password_policy_hints_enabled is None and 'ldapPasswordPolicyHintsEnabled' in kwargs:
+            ldap_password_policy_hints_enabled = kwargs['ldapPasswordPolicyHintsEnabled']
+
+        _setter("ldap_user_federation_id", ldap_user_federation_id)
+        _setter("realm_id", realm_id)
         if ldap_password_policy_hints_enabled is not None:
-            pulumi.set(__self__, "ldap_password_policy_hints_enabled", ldap_password_policy_hints_enabled)
+            _setter("ldap_password_policy_hints_enabled", ldap_password_policy_hints_enabled)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="ldapUserFederationId")
@@ -95,14 +122,37 @@ class _MsadUserAccountControlMapperState:
         :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
         """
+        _MsadUserAccountControlMapperState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ldap_password_policy_hints_enabled=ldap_password_policy_hints_enabled,
+            ldap_user_federation_id=ldap_user_federation_id,
+            name=name,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ldap_password_policy_hints_enabled: Optional[pulumi.Input[bool]] = None,
+             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if ldap_password_policy_hints_enabled is None and 'ldapPasswordPolicyHintsEnabled' in kwargs:
+            ldap_password_policy_hints_enabled = kwargs['ldapPasswordPolicyHintsEnabled']
+        if ldap_user_federation_id is None and 'ldapUserFederationId' in kwargs:
+            ldap_user_federation_id = kwargs['ldapUserFederationId']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+
         if ldap_password_policy_hints_enabled is not None:
-            pulumi.set(__self__, "ldap_password_policy_hints_enabled", ldap_password_policy_hints_enabled)
+            _setter("ldap_password_policy_hints_enabled", ldap_password_policy_hints_enabled)
         if ldap_user_federation_id is not None:
-            pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
+            _setter("ldap_user_federation_id", ldap_user_federation_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter(name="ldapPasswordPolicyHintsEnabled")
@@ -172,34 +222,6 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
         AD user state to Keycloak in order to enforce settings like expired passwords
         or disabled accounts.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            realm_id=realm.id,
-            username_ldap_attribute="cn",
-            rdn_ldap_attribute="cn",
-            uuid_ldap_attribute="objectGUID",
-            user_object_classes=[
-                "person",
-                "organizationalPerson",
-                "user",
-            ],
-            connection_url="ldap://my-ad-server",
-            users_dn="dc=example,dc=org",
-            bind_dn="cn=admin,dc=example,dc=org",
-            bind_credential="admin")
-        msad_user_account_control_mapper = keycloak.ldap.MsadUserAccountControlMapper("msadUserAccountControlMapper",
-            realm_id=realm.id,
-            ldap_user_federation_id=ldap_user_federation.id)
-        ```
-
         ## Import
 
         LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
@@ -230,34 +252,6 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
         AD user state to Keycloak in order to enforce settings like expired passwords
         or disabled accounts.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            realm_id=realm.id,
-            username_ldap_attribute="cn",
-            rdn_ldap_attribute="cn",
-            uuid_ldap_attribute="objectGUID",
-            user_object_classes=[
-                "person",
-                "organizationalPerson",
-                "user",
-            ],
-            connection_url="ldap://my-ad-server",
-            users_dn="dc=example,dc=org",
-            bind_dn="cn=admin,dc=example,dc=org",
-            bind_credential="admin")
-        msad_user_account_control_mapper = keycloak.ldap.MsadUserAccountControlMapper("msadUserAccountControlMapper",
-            realm_id=realm.id,
-            ldap_user_federation_id=ldap_user_federation.id)
-        ```
-
         ## Import
 
         LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
@@ -276,6 +270,10 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            MsadUserAccountControlMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

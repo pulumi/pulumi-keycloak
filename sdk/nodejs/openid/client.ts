@@ -13,30 +13,6 @@ import * as utilities from "../utilities";
  * clients are applications that redirect users to Keycloak for authentication
  * in order to take advantage of Keycloak's user sessions for SSO.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const openidClient = new keycloak.openid.Client("openidClient", {
- *     realmId: realm.id,
- *     clientId: "test-client",
- *     enabled: true,
- *     accessType: "CONFIDENTIAL",
- *     validRedirectUris: ["http://localhost:8080/openid-callback"],
- *     loginTheme: "keycloak",
- *     extraConfig: {
- *         key1: "value1",
- *         key2: "value2",
- *     },
- * });
- * ```
- *
  * ## Import
  *
  * Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID. Examplebash

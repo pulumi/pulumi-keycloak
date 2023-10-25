@@ -24,56 +24,6 @@ import (
 // Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors.
 // Therefore, if possible, a specific mapper should be used.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
-//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/saml"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Realm:   pulumi.String("my-realm"),
-//				Enabled: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			samlClient, err := saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
-//				RealmId:  realm.ID(),
-//				ClientId: pulumi.String("test-client"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = keycloak.NewGenericClientProtocolMapper(ctx, "samlHardcodeAttributeMapper", &keycloak.GenericClientProtocolMapperArgs{
-//				RealmId:        realm.ID(),
-//				ClientId:       samlClient.ID(),
-//				Protocol:       pulumi.String("saml"),
-//				ProtocolMapper: pulumi.String("saml-hardcode-attribute-mapper"),
-//				Config: pulumi.AnyMap{
-//					"attribute.name":       pulumi.Any("name"),
-//					"attribute.nameformat": pulumi.Any("Basic"),
-//					"attribute.value":      pulumi.Any("value"),
-//					"friendly.name":        pulumi.Any("display name"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // Protocol mappers can be imported using the following format`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` Examplebash

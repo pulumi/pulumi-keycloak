@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['AttributeToRoleIdentityMapperArgs', 'AttributeToRoleIdentityMapper']
@@ -36,23 +36,72 @@ class AttributeToRoleIdentityMapperArgs:
         :param pulumi.Input[str] claim_value: OIDC Claim Value
         :param pulumi.Input[str] name: IDP Mapper Name
         """
-        pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
-        pulumi.set(__self__, "realm", realm)
-        pulumi.set(__self__, "role", role)
+        AttributeToRoleIdentityMapperArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            identity_provider_alias=identity_provider_alias,
+            realm=realm,
+            role=role,
+            attribute_friendly_name=attribute_friendly_name,
+            attribute_name=attribute_name,
+            attribute_value=attribute_value,
+            claim_name=claim_name,
+            claim_value=claim_value,
+            extra_config=extra_config,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             identity_provider_alias: Optional[pulumi.Input[str]] = None,
+             realm: Optional[pulumi.Input[str]] = None,
+             role: Optional[pulumi.Input[str]] = None,
+             attribute_friendly_name: Optional[pulumi.Input[str]] = None,
+             attribute_name: Optional[pulumi.Input[str]] = None,
+             attribute_value: Optional[pulumi.Input[str]] = None,
+             claim_name: Optional[pulumi.Input[str]] = None,
+             claim_value: Optional[pulumi.Input[str]] = None,
+             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if identity_provider_alias is None and 'identityProviderAlias' in kwargs:
+            identity_provider_alias = kwargs['identityProviderAlias']
+        if identity_provider_alias is None:
+            raise TypeError("Missing 'identity_provider_alias' argument")
+        if realm is None:
+            raise TypeError("Missing 'realm' argument")
+        if role is None:
+            raise TypeError("Missing 'role' argument")
+        if attribute_friendly_name is None and 'attributeFriendlyName' in kwargs:
+            attribute_friendly_name = kwargs['attributeFriendlyName']
+        if attribute_name is None and 'attributeName' in kwargs:
+            attribute_name = kwargs['attributeName']
+        if attribute_value is None and 'attributeValue' in kwargs:
+            attribute_value = kwargs['attributeValue']
+        if claim_name is None and 'claimName' in kwargs:
+            claim_name = kwargs['claimName']
+        if claim_value is None and 'claimValue' in kwargs:
+            claim_value = kwargs['claimValue']
+        if extra_config is None and 'extraConfig' in kwargs:
+            extra_config = kwargs['extraConfig']
+
+        _setter("identity_provider_alias", identity_provider_alias)
+        _setter("realm", realm)
+        _setter("role", role)
         if attribute_friendly_name is not None:
-            pulumi.set(__self__, "attribute_friendly_name", attribute_friendly_name)
+            _setter("attribute_friendly_name", attribute_friendly_name)
         if attribute_name is not None:
-            pulumi.set(__self__, "attribute_name", attribute_name)
+            _setter("attribute_name", attribute_name)
         if attribute_value is not None:
-            pulumi.set(__self__, "attribute_value", attribute_value)
+            _setter("attribute_value", attribute_value)
         if claim_name is not None:
-            pulumi.set(__self__, "claim_name", claim_name)
+            _setter("claim_name", claim_name)
         if claim_value is not None:
-            pulumi.set(__self__, "claim_value", claim_value)
+            _setter("claim_value", claim_value)
         if extra_config is not None:
-            pulumi.set(__self__, "extra_config", extra_config)
+            _setter("extra_config", extra_config)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="identityProviderAlias")
@@ -197,26 +246,69 @@ class _AttributeToRoleIdentityMapperState:
         :param pulumi.Input[str] realm: Realm Name
         :param pulumi.Input[str] role: Role Name
         """
+        _AttributeToRoleIdentityMapperState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            attribute_friendly_name=attribute_friendly_name,
+            attribute_name=attribute_name,
+            attribute_value=attribute_value,
+            claim_name=claim_name,
+            claim_value=claim_value,
+            extra_config=extra_config,
+            identity_provider_alias=identity_provider_alias,
+            name=name,
+            realm=realm,
+            role=role,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             attribute_friendly_name: Optional[pulumi.Input[str]] = None,
+             attribute_name: Optional[pulumi.Input[str]] = None,
+             attribute_value: Optional[pulumi.Input[str]] = None,
+             claim_name: Optional[pulumi.Input[str]] = None,
+             claim_value: Optional[pulumi.Input[str]] = None,
+             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             identity_provider_alias: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm: Optional[pulumi.Input[str]] = None,
+             role: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if attribute_friendly_name is None and 'attributeFriendlyName' in kwargs:
+            attribute_friendly_name = kwargs['attributeFriendlyName']
+        if attribute_name is None and 'attributeName' in kwargs:
+            attribute_name = kwargs['attributeName']
+        if attribute_value is None and 'attributeValue' in kwargs:
+            attribute_value = kwargs['attributeValue']
+        if claim_name is None and 'claimName' in kwargs:
+            claim_name = kwargs['claimName']
+        if claim_value is None and 'claimValue' in kwargs:
+            claim_value = kwargs['claimValue']
+        if extra_config is None and 'extraConfig' in kwargs:
+            extra_config = kwargs['extraConfig']
+        if identity_provider_alias is None and 'identityProviderAlias' in kwargs:
+            identity_provider_alias = kwargs['identityProviderAlias']
+
         if attribute_friendly_name is not None:
-            pulumi.set(__self__, "attribute_friendly_name", attribute_friendly_name)
+            _setter("attribute_friendly_name", attribute_friendly_name)
         if attribute_name is not None:
-            pulumi.set(__self__, "attribute_name", attribute_name)
+            _setter("attribute_name", attribute_name)
         if attribute_value is not None:
-            pulumi.set(__self__, "attribute_value", attribute_value)
+            _setter("attribute_value", attribute_value)
         if claim_name is not None:
-            pulumi.set(__self__, "claim_name", claim_name)
+            _setter("claim_name", claim_name)
         if claim_value is not None:
-            pulumi.set(__self__, "claim_value", claim_value)
+            _setter("claim_value", claim_value)
         if extra_config is not None:
-            pulumi.set(__self__, "extra_config", extra_config)
+            _setter("extra_config", extra_config)
         if identity_provider_alias is not None:
-            pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
+            _setter("identity_provider_alias", identity_provider_alias)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm is not None:
-            pulumi.set(__self__, "realm", realm)
+            _setter("realm", realm)
         if role is not None:
-            pulumi.set(__self__, "role", role)
+            _setter("role", role)
 
     @property
     @pulumi.getter(name="attributeFriendlyName")
@@ -384,6 +476,10 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            AttributeToRoleIdentityMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

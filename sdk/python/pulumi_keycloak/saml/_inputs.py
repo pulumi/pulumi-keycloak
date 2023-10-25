@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
@@ -22,10 +22,27 @@ class ClientAuthenticationFlowBindingOverridesArgs:
         :param pulumi.Input[str] browser_id: Browser flow id, (flow needs to exist)
         :param pulumi.Input[str] direct_grant_id: Direct grant flow id (flow needs to exist)
         """
+        ClientAuthenticationFlowBindingOverridesArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            browser_id=browser_id,
+            direct_grant_id=direct_grant_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             browser_id: Optional[pulumi.Input[str]] = None,
+             direct_grant_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if browser_id is None and 'browserId' in kwargs:
+            browser_id = kwargs['browserId']
+        if direct_grant_id is None and 'directGrantId' in kwargs:
+            direct_grant_id = kwargs['directGrantId']
+
         if browser_id is not None:
-            pulumi.set(__self__, "browser_id", browser_id)
+            _setter("browser_id", browser_id)
         if direct_grant_id is not None:
-            pulumi.set(__self__, "direct_grant_id", direct_grant_id)
+            _setter("direct_grant_id", direct_grant_id)
 
     @property
     @pulumi.getter(name="browserId")

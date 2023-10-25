@@ -17,42 +17,6 @@ import (
 //
 // A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Realm: pulumi.String("my-realm"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = keycloak.NewRealmKeystoreEcdsaGenerated(ctx, "keystoreEcdsaGenerated", &keycloak.RealmKeystoreEcdsaGeneratedArgs{
-//				RealmId:          realm.ID(),
-//				Enabled:          pulumi.Bool(true),
-//				Active:           pulumi.Bool(true),
-//				Priority:         pulumi.Int(100),
-//				EllipticCurveKey: pulumi.String("P-256"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash

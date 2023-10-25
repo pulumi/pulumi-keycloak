@@ -13,48 +13,6 @@ import * as utilities from "../utilities";
  * multiple different clients.
  *
  * ## Example Usage
- * ### Client)
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const openidClient = new keycloak.openid.Client("openidClient", {
- *     realmId: realm.id,
- *     clientId: "client",
- *     enabled: true,
- *     accessType: "CONFIDENTIAL",
- *     validRedirectUris: ["http://localhost:8080/openid-callback"],
- * });
- * const hardcodedClaimMapper = new keycloak.openid.HardcodedClaimProtocolMapper("hardcodedClaimMapper", {
- *     realmId: realm.id,
- *     clientId: openidClient.id,
- *     claimName: "foo",
- *     claimValue: "bar",
- * });
- * ```
- * ### Client Scope)
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
- * const hardcodedClaimMapper = new keycloak.openid.HardcodedClaimProtocolMapper("hardcodedClaimMapper", {
- *     realmId: realm.id,
- *     clientScopeId: clientScope.id,
- *     claimName: "foo",
- *     claimValue: "bar",
- * });
- * ```
  *
  * ## Import
  *

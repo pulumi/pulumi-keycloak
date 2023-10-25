@@ -18,41 +18,6 @@ import (
 // Note: This feature was added in Keycloak v13, so this resource will not work on older versions of Keycloak.
 //
 // ## Example Usage
-// ### Realm Role)
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Realm:   pulumi.String("my-realm"),
-//				Enabled: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = keycloak.NewDefaultRoles(ctx, "defaultRoles", &keycloak.DefaultRolesArgs{
-//				RealmId: realm.ID(),
-//				DefaultRoles: pulumi.StringArray{
-//					pulumi.String("uma_authorization"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 //
 // ## Import
 //

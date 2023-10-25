@@ -14,40 +14,6 @@ import * as utilities from "../utilities";
  * will exist within the realm and will be able to log in to clients. Federated
  * users can have their attributes defined using mappers.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
- *     realmId: realm.id,
- *     enabled: true,
- *     usernameLdapAttribute: "cn",
- *     rdnLdapAttribute: "cn",
- *     uuidLdapAttribute: "entryDN",
- *     userObjectClasses: [
- *         "simpleSecurityObject",
- *         "organizationalRole",
- *     ],
- *     connectionUrl: "ldap://openldap",
- *     usersDn: "dc=example,dc=org",
- *     bindDn: "cn=admin,dc=example,dc=org",
- *     bindCredential: "admin",
- *     connectionTimeout: "5s",
- *     readTimeout: "10s",
- *     kerberos: {
- *         kerberosRealm: "FOO.LOCAL",
- *         serverPrincipal: "HTTP/host.foo.com@FOO.LOCAL",
- *         keyTab: "/etc/host.keytab",
- *     },
- * });
- * ```
- *
  * ## Import
  *
  * LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`. The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUIDbash

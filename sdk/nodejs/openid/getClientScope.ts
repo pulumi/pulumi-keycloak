@@ -6,24 +6,6 @@ import * as utilities from "../utilities";
 
 /**
  * This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const offlineAccess = keycloak.openid.getClientScope({
- *     realmId: "my-realm",
- *     name: "offline_access",
- * });
- * // use the data source
- * const audienceMapper = new keycloak.openid.AudienceProtocolMapper("audienceMapper", {
- *     realmId: offlineAccess.then(offlineAccess => offlineAccess.realmId),
- *     clientScopeId: offlineAccess.then(offlineAccess => offlineAccess.id),
- *     includedCustomAudience: "foo",
- * });
- * ```
  */
 export function getClientScope(args: GetClientScopeArgs, opts?: pulumi.InvokeOptions): Promise<GetClientScopeResult> {
 
@@ -65,24 +47,6 @@ export interface GetClientScopeResult {
 }
 /**
  * This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const offlineAccess = keycloak.openid.getClientScope({
- *     realmId: "my-realm",
- *     name: "offline_access",
- * });
- * // use the data source
- * const audienceMapper = new keycloak.openid.AudienceProtocolMapper("audienceMapper", {
- *     realmId: offlineAccess.then(offlineAccess => offlineAccess.realmId),
- *     clientScopeId: offlineAccess.then(offlineAccess => offlineAccess.id),
- *     includedCustomAudience: "foo",
- * });
- * ```
  */
 export function getClientScopeOutput(args: GetClientScopeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientScopeResult> {
     return pulumi.output(args).apply((a: any) => getClientScope(a, opts))

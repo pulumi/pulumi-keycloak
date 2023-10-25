@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
@@ -52,16 +52,43 @@ class UserFederationCache(dict):
         :param str max_lifespan: Max lifespan of cache entry (duration string).
         :param str policy: Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
         """
+        UserFederationCache._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            eviction_day=eviction_day,
+            eviction_hour=eviction_hour,
+            eviction_minute=eviction_minute,
+            max_lifespan=max_lifespan,
+            policy=policy,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             eviction_day: Optional[int] = None,
+             eviction_hour: Optional[int] = None,
+             eviction_minute: Optional[int] = None,
+             max_lifespan: Optional[str] = None,
+             policy: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if eviction_day is None and 'evictionDay' in kwargs:
+            eviction_day = kwargs['evictionDay']
+        if eviction_hour is None and 'evictionHour' in kwargs:
+            eviction_hour = kwargs['evictionHour']
+        if eviction_minute is None and 'evictionMinute' in kwargs:
+            eviction_minute = kwargs['evictionMinute']
+        if max_lifespan is None and 'maxLifespan' in kwargs:
+            max_lifespan = kwargs['maxLifespan']
+
         if eviction_day is not None:
-            pulumi.set(__self__, "eviction_day", eviction_day)
+            _setter("eviction_day", eviction_day)
         if eviction_hour is not None:
-            pulumi.set(__self__, "eviction_hour", eviction_hour)
+            _setter("eviction_hour", eviction_hour)
         if eviction_minute is not None:
-            pulumi.set(__self__, "eviction_minute", eviction_minute)
+            _setter("eviction_minute", eviction_minute)
         if max_lifespan is not None:
-            pulumi.set(__self__, "max_lifespan", max_lifespan)
+            _setter("max_lifespan", max_lifespan)
         if policy is not None:
-            pulumi.set(__self__, "policy", policy)
+            _setter("policy", policy)
 
     @property
     @pulumi.getter(name="evictionDay")
@@ -140,11 +167,42 @@ class UserFederationKerberos(dict):
         :param str server_principal: The kerberos server principal, e.g. 'HTTP/host.foo.com@FOO.LOCAL'.
         :param bool use_kerberos_for_password_authentication: Use kerberos login module instead of ldap service api. Defaults to `false`.
         """
-        pulumi.set(__self__, "kerberos_realm", kerberos_realm)
-        pulumi.set(__self__, "key_tab", key_tab)
-        pulumi.set(__self__, "server_principal", server_principal)
+        UserFederationKerberos._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            kerberos_realm=kerberos_realm,
+            key_tab=key_tab,
+            server_principal=server_principal,
+            use_kerberos_for_password_authentication=use_kerberos_for_password_authentication,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             kerberos_realm: Optional[str] = None,
+             key_tab: Optional[str] = None,
+             server_principal: Optional[str] = None,
+             use_kerberos_for_password_authentication: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if kerberos_realm is None and 'kerberosRealm' in kwargs:
+            kerberos_realm = kwargs['kerberosRealm']
+        if kerberos_realm is None:
+            raise TypeError("Missing 'kerberos_realm' argument")
+        if key_tab is None and 'keyTab' in kwargs:
+            key_tab = kwargs['keyTab']
+        if key_tab is None:
+            raise TypeError("Missing 'key_tab' argument")
+        if server_principal is None and 'serverPrincipal' in kwargs:
+            server_principal = kwargs['serverPrincipal']
+        if server_principal is None:
+            raise TypeError("Missing 'server_principal' argument")
+        if use_kerberos_for_password_authentication is None and 'useKerberosForPasswordAuthentication' in kwargs:
+            use_kerberos_for_password_authentication = kwargs['useKerberosForPasswordAuthentication']
+
+        _setter("kerberos_realm", kerberos_realm)
+        _setter("key_tab", key_tab)
+        _setter("server_principal", server_principal)
         if use_kerberos_for_password_authentication is not None:
-            pulumi.set(__self__, "use_kerberos_for_password_authentication", use_kerberos_for_password_authentication)
+            _setter("use_kerberos_for_password_authentication", use_kerberos_for_password_authentication)
 
     @property
     @pulumi.getter(name="kerberosRealm")

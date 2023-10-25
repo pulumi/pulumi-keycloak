@@ -9,44 +9,6 @@ import * as utilities from "../utilities";
  *
  * The LDAP group mapper can be used to map an LDAP user's roles from some DN to Keycloak roles.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
- *     realmId: realm.id,
- *     usernameLdapAttribute: "cn",
- *     rdnLdapAttribute: "cn",
- *     uuidLdapAttribute: "entryDN",
- *     userObjectClasses: [
- *         "simpleSecurityObject",
- *         "organizationalRole",
- *     ],
- *     connectionUrl: "ldap://openldap",
- *     usersDn: "dc=example,dc=org",
- *     bindDn: "cn=admin,dc=example,dc=org",
- *     bindCredential: "admin",
- * });
- * const ldapRoleMapper = new keycloak.ldap.RoleMapper("ldapRoleMapper", {
- *     realmId: realm.id,
- *     ldapUserFederationId: ldapUserFederation.id,
- *     ldapRolesDn: "dc=example,dc=org",
- *     roleNameLdapAttribute: "cn",
- *     roleObjectClasses: ["groupOfNames"],
- *     membershipAttributeType: "DN",
- *     membershipLdapAttribute: "member",
- *     membershipUserLdapAttribute: "cn",
- *     userRolesRetrieveStrategy: "GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE",
- *     memberofLdapAttribute: "memberOf",
- * });
- * ```
- *
  * ## Import
  *
  * LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash

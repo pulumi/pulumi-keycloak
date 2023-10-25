@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['ClientScopeArgs', 'ClientScope']
@@ -27,15 +27,42 @@ class ClientScopeArgs:
         :param pulumi.Input[int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
         :param pulumi.Input[str] name: The display name of this client scope in the GUI.
         """
-        pulumi.set(__self__, "realm_id", realm_id)
+        ClientScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            realm_id=realm_id,
+            consent_screen_text=consent_screen_text,
+            description=description,
+            gui_order=gui_order,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             realm_id: Optional[pulumi.Input[str]] = None,
+             consent_screen_text: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             gui_order: Optional[pulumi.Input[int]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if consent_screen_text is None and 'consentScreenText' in kwargs:
+            consent_screen_text = kwargs['consentScreenText']
+        if gui_order is None and 'guiOrder' in kwargs:
+            gui_order = kwargs['guiOrder']
+
+        _setter("realm_id", realm_id)
         if consent_screen_text is not None:
-            pulumi.set(__self__, "consent_screen_text", consent_screen_text)
+            _setter("consent_screen_text", consent_screen_text)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if gui_order is not None:
-            pulumi.set(__self__, "gui_order", gui_order)
+            _setter("gui_order", gui_order)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="realmId")
@@ -114,16 +141,41 @@ class _ClientScopeState:
         :param pulumi.Input[str] name: The display name of this client scope in the GUI.
         :param pulumi.Input[str] realm_id: The realm this client scope belongs to.
         """
+        _ClientScopeState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            consent_screen_text=consent_screen_text,
+            description=description,
+            gui_order=gui_order,
+            name=name,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             consent_screen_text: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             gui_order: Optional[pulumi.Input[int]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if consent_screen_text is None and 'consentScreenText' in kwargs:
+            consent_screen_text = kwargs['consentScreenText']
+        if gui_order is None and 'guiOrder' in kwargs:
+            gui_order = kwargs['guiOrder']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+
         if consent_screen_text is not None:
-            pulumi.set(__self__, "consent_screen_text", consent_screen_text)
+            _setter("consent_screen_text", consent_screen_text)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if gui_order is not None:
-            pulumi.set(__self__, "gui_order", gui_order)
+            _setter("gui_order", gui_order)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter(name="consentScreenText")
@@ -202,21 +254,6 @@ class ClientScope(pulumi.CustomResource):
 
         Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        saml_client_scope = keycloak.saml.ClientScope("samlClientScope",
-            realm_id=realm.id,
-            description="This scope will map a user's group memberships to SAML assertion",
-            gui_order=1)
-        ```
-
         ## Import
 
         Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID. Examplebash
@@ -244,21 +281,6 @@ class ClientScope(pulumi.CustomResource):
 
         Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        saml_client_scope = keycloak.saml.ClientScope("samlClientScope",
-            realm_id=realm.id,
-            description="This scope will map a user's group memberships to SAML assertion",
-            gui_order=1)
-        ```
-
         ## Import
 
         Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID. Examplebash
@@ -277,6 +299,10 @@ class ClientScope(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ClientScopeArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
