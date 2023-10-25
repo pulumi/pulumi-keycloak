@@ -13,37 +13,6 @@ import (
 )
 
 // This data source can be used to fetch the ID of an authentication flow within Keycloak.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Realm:   pulumi.String("my-realm"),
-//				Enabled: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_ = keycloak.GetAuthenticationFlowOutput(ctx, keycloak.GetAuthenticationFlowOutputArgs{
-//				RealmId: realm.ID(),
-//				Alias:   pulumi.String("browser"),
-//			}, nil)
-//			return nil
-//		})
-//	}
-//
-// ```
 func GetAuthenticationFlow(ctx *pulumi.Context, args *GetAuthenticationFlowArgs, opts ...pulumi.InvokeOption) (*GetAuthenticationFlowResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAuthenticationFlowResult

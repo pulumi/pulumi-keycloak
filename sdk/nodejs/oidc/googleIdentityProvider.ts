@@ -9,29 +9,6 @@ import * as utilities from "../utilities";
  *
  * OIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const google = new keycloak.oidc.GoogleIdentityProvider("google", {
- *     realm: realm.id,
- *     clientId: _var.google_identity_provider_client_id,
- *     clientSecret: _var.google_identity_provider_client_secret,
- *     trustEmail: true,
- *     hostedDomain: "example.com",
- *     syncMode: "IMPORT",
- *     extraConfig: {
- *         myCustomConfigKey: "myValue",
- *     },
- * });
- * ```
- *
  * ## Import
  *
  * This resource does not yet support importing.

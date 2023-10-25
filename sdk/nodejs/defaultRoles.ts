@@ -10,21 +10,6 @@ import * as utilities from "./utilities";
  * Note: This feature was added in Keycloak v13, so this resource will not work on older versions of Keycloak.
  *
  * ## Example Usage
- * ### Realm Role)
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const defaultRoles = new keycloak.DefaultRoles("defaultRoles", {
- *     realmId: realm.id,
- *     defaultRoles: ["uma_authorization"],
- * });
- * ```
  *
  * ## Import
  *

@@ -26,68 +26,6 @@ import (
 // resource is useful if you would like to create a realm and an authentication flow, and assign this flow to the realm within
 // a single run of `pulumi up`. In any case, do not attempt to use both the arguments within the `Realm` resource
 // and this resource to manage authentication flow bindings, you should choose one or the other.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
-//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/authentication"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Realm:   pulumi.String("my-realm"),
-//				Enabled: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			flow, err := authentication.NewFlow(ctx, "flow", &authentication.FlowArgs{
-//				RealmId: realm.ID(),
-//				Alias:   pulumi.String("my-flow-alias"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			executionOne, err := authentication.NewExecution(ctx, "executionOne", &authentication.ExecutionArgs{
-//				RealmId:         realm.ID(),
-//				ParentFlowAlias: flow.Alias,
-//				Authenticator:   pulumi.String("auth-cookie"),
-//				Requirement:     pulumi.String("ALTERNATIVE"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = authentication.NewExecution(ctx, "executionTwo", &authentication.ExecutionArgs{
-//				RealmId:         realm.ID(),
-//				ParentFlowAlias: flow.Alias,
-//				Authenticator:   pulumi.String("identity-provider-redirector"),
-//				Requirement:     pulumi.String("ALTERNATIVE"),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				executionOne,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			_, err = authentication.NewBindings(ctx, "browserAuthenticationBinding", &authentication.BindingsArgs{
-//				RealmId:     realm.ID(),
-//				BrowserFlow: flow.Alias,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 type Bindings struct {
 	pulumi.CustomResourceState
 

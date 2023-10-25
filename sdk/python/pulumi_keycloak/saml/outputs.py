@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
@@ -42,10 +42,27 @@ class ClientAuthenticationFlowBindingOverrides(dict):
         :param str browser_id: Browser flow id, (flow needs to exist)
         :param str direct_grant_id: Direct grant flow id (flow needs to exist)
         """
+        ClientAuthenticationFlowBindingOverrides._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            browser_id=browser_id,
+            direct_grant_id=direct_grant_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             browser_id: Optional[str] = None,
+             direct_grant_id: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if browser_id is None and 'browserId' in kwargs:
+            browser_id = kwargs['browserId']
+        if direct_grant_id is None and 'directGrantId' in kwargs:
+            direct_grant_id = kwargs['directGrantId']
+
         if browser_id is not None:
-            pulumi.set(__self__, "browser_id", browser_id)
+            _setter("browser_id", browser_id)
         if direct_grant_id is not None:
-            pulumi.set(__self__, "direct_grant_id", direct_grant_id)
+            _setter("direct_grant_id", direct_grant_id)
 
     @property
     @pulumi.getter(name="browserId")
@@ -69,8 +86,29 @@ class GetClientAuthenticationFlowBindingOverrideResult(dict):
     def __init__(__self__, *,
                  browser_id: str,
                  direct_grant_id: str):
-        pulumi.set(__self__, "browser_id", browser_id)
-        pulumi.set(__self__, "direct_grant_id", direct_grant_id)
+        GetClientAuthenticationFlowBindingOverrideResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            browser_id=browser_id,
+            direct_grant_id=direct_grant_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             browser_id: Optional[str] = None,
+             direct_grant_id: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if browser_id is None and 'browserId' in kwargs:
+            browser_id = kwargs['browserId']
+        if browser_id is None:
+            raise TypeError("Missing 'browser_id' argument")
+        if direct_grant_id is None and 'directGrantId' in kwargs:
+            direct_grant_id = kwargs['directGrantId']
+        if direct_grant_id is None:
+            raise TypeError("Missing 'direct_grant_id' argument")
+
+        _setter("browser_id", browser_id)
+        _setter("direct_grant_id", direct_grant_id)
 
     @property
     @pulumi.getter(name="browserId")

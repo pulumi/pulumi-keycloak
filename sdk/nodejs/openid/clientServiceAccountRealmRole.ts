@@ -11,28 +11,6 @@ import * as utilities from "../utilities";
  * If you'd like to attach client roles to a service account, please use the `keycloak.openid.ClientServiceAccountRole`
  * resource.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const realmRole = new keycloak.Role("realmRole", {realmId: realm.id});
- * const client = new keycloak.openid.Client("client", {
- *     realmId: realm.id,
- *     serviceAccountsEnabled: true,
- * });
- * const clientServiceAccountRole = new keycloak.openid.ClientServiceAccountRealmRole("clientServiceAccountRole", {
- *     realmId: realm.id,
- *     serviceAccountUserId: client.serviceAccountUserId,
- *     role: realmRole.name,
- * });
- * ```
- *
  * ## Import
  *
  * This resource can be imported using the format `{{realmId}}/{{serviceAccountUserId}}/{{roleId}}`. Examplebash

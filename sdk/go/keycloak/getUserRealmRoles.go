@@ -13,47 +13,6 @@ import (
 )
 
 // This data source can be used to fetch the realm roles of a user within Keycloak.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			masterRealm, err := keycloak.LookupRealm(ctx, &keycloak.LookupRealmArgs{
-//				Realm: "master",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			defaultAdminUser, err := keycloak.LookupUser(ctx, &keycloak.LookupUserArgs{
-//				RealmId:  masterRealm.Id,
-//				Username: "keycloak",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			userRealmRoles, err := keycloak.GetUserRealmRoles(ctx, &keycloak.GetUserRealmRolesArgs{
-//				RealmId: masterRealm.Id,
-//				UserId:  defaultAdminUser.Id,
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("keycloakUserRoleNames", userRealmRoles.RoleNames)
-//			return nil
-//		})
-//	}
-//
-// ```
 func GetUserRealmRoles(ctx *pulumi.Context, args *GetUserRealmRolesArgs, opts ...pulumi.InvokeOption) (*GetUserRealmRolesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetUserRealmRolesResult

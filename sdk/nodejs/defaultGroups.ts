@@ -9,23 +9,6 @@ import * as utilities from "./utilities";
  *
  * > You should not use `keycloak.DefaultGroups` with a group whose members are managed by `keycloak.GroupMemberships`.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const group = new keycloak.Group("group", {realmId: realm.id});
- * const _default = new keycloak.DefaultGroups("default", {
- *     realmId: realm.id,
- *     groupIds: [group.id],
- * });
- * ```
- *
  * ## Import
  *
  * Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in. Examplebash

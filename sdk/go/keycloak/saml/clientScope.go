@@ -17,42 +17,6 @@ import (
 //
 // Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
-//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/saml"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Realm:   pulumi.String("my-realm"),
-//				Enabled: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = saml.NewClientScope(ctx, "samlClientScope", &saml.ClientScopeArgs{
-//				RealmId:     realm.ID(),
-//				Description: pulumi.String("This scope will map a user's group memberships to SAML assertion"),
-//				GuiOrder:    pulumi.Int(1),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID. Examplebash

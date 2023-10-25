@@ -9,29 +9,6 @@ import * as utilities from "../utilities";
  *
  * OIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const realmIdentityProvider = new keycloak.oidc.IdentityProvider("realmIdentityProvider", {
- *     realm: realm.id,
- *     alias: "my-idp",
- *     authorizationUrl: "https://authorizationurl.com",
- *     clientId: "clientID",
- *     clientSecret: "clientSecret",
- *     tokenUrl: "https://tokenurl.com",
- *     extraConfig: {
- *         clientAuthMethod: "client_secret_post",
- *     },
- * });
- * ```
- *
  * ## Import
  *
  * Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias. Examplebash

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
@@ -54,10 +54,27 @@ class ClientAuthenticationFlowBindingOverrides(dict):
         :param str browser_id: Browser flow id, (flow needs to exist)
         :param str direct_grant_id: Direct grant flow id (flow needs to exist)
         """
+        ClientAuthenticationFlowBindingOverrides._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            browser_id=browser_id,
+            direct_grant_id=direct_grant_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             browser_id: Optional[str] = None,
+             direct_grant_id: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if browser_id is None and 'browserId' in kwargs:
+            browser_id = kwargs['browserId']
+        if direct_grant_id is None and 'directGrantId' in kwargs:
+            direct_grant_id = kwargs['directGrantId']
+
         if browser_id is not None:
-            pulumi.set(__self__, "browser_id", browser_id)
+            _setter("browser_id", browser_id)
         if direct_grant_id is not None:
-            pulumi.set(__self__, "direct_grant_id", direct_grant_id)
+            _setter("direct_grant_id", direct_grant_id)
 
     @property
     @pulumi.getter(name="browserId")
@@ -112,13 +129,40 @@ class ClientAuthorization(dict):
         :param str decision_strategy: Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
         :param bool keep_defaults: When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
         """
-        pulumi.set(__self__, "policy_enforcement_mode", policy_enforcement_mode)
+        ClientAuthorization._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            policy_enforcement_mode=policy_enforcement_mode,
+            allow_remote_resource_management=allow_remote_resource_management,
+            decision_strategy=decision_strategy,
+            keep_defaults=keep_defaults,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             policy_enforcement_mode: Optional[str] = None,
+             allow_remote_resource_management: Optional[bool] = None,
+             decision_strategy: Optional[str] = None,
+             keep_defaults: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if policy_enforcement_mode is None and 'policyEnforcementMode' in kwargs:
+            policy_enforcement_mode = kwargs['policyEnforcementMode']
+        if policy_enforcement_mode is None:
+            raise TypeError("Missing 'policy_enforcement_mode' argument")
+        if allow_remote_resource_management is None and 'allowRemoteResourceManagement' in kwargs:
+            allow_remote_resource_management = kwargs['allowRemoteResourceManagement']
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+        if keep_defaults is None and 'keepDefaults' in kwargs:
+            keep_defaults = kwargs['keepDefaults']
+
+        _setter("policy_enforcement_mode", policy_enforcement_mode)
         if allow_remote_resource_management is not None:
-            pulumi.set(__self__, "allow_remote_resource_management", allow_remote_resource_management)
+            _setter("allow_remote_resource_management", allow_remote_resource_management)
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if keep_defaults is not None:
-            pulumi.set(__self__, "keep_defaults", keep_defaults)
+            _setter("keep_defaults", keep_defaults)
 
     @property
     @pulumi.getter(name="policyEnforcementMode")
@@ -176,9 +220,32 @@ class ClientGroupPolicyGroup(dict):
                  extend_children: bool,
                  id: str,
                  path: str):
-        pulumi.set(__self__, "extend_children", extend_children)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "path", path)
+        ClientGroupPolicyGroup._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            extend_children=extend_children,
+            id=id,
+            path=path,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             extend_children: Optional[bool] = None,
+             id: Optional[str] = None,
+             path: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if extend_children is None and 'extendChildren' in kwargs:
+            extend_children = kwargs['extendChildren']
+        if extend_children is None:
+            raise TypeError("Missing 'extend_children' argument")
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if path is None:
+            raise TypeError("Missing 'path' argument")
+
+        _setter("extend_children", extend_children)
+        _setter("id", id)
+        _setter("path", path)
 
     @property
     @pulumi.getter(name="extendChildren")
@@ -219,12 +286,29 @@ class ClientPermissionsConfigureScope(dict):
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
                  policies: Optional[Sequence[str]] = None):
+        ClientPermissionsConfigureScope._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[str] = None,
+             description: Optional[str] = None,
+             policies: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -265,12 +349,29 @@ class ClientPermissionsManageScope(dict):
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
                  policies: Optional[Sequence[str]] = None):
+        ClientPermissionsManageScope._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[str] = None,
+             description: Optional[str] = None,
+             policies: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -311,12 +412,29 @@ class ClientPermissionsMapRolesClientScopeScope(dict):
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
                  policies: Optional[Sequence[str]] = None):
+        ClientPermissionsMapRolesClientScopeScope._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[str] = None,
+             description: Optional[str] = None,
+             policies: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -357,12 +475,29 @@ class ClientPermissionsMapRolesCompositeScope(dict):
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
                  policies: Optional[Sequence[str]] = None):
+        ClientPermissionsMapRolesCompositeScope._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[str] = None,
+             description: Optional[str] = None,
+             policies: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -403,12 +538,29 @@ class ClientPermissionsMapRolesScope(dict):
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
                  policies: Optional[Sequence[str]] = None):
+        ClientPermissionsMapRolesScope._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[str] = None,
+             description: Optional[str] = None,
+             policies: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -449,12 +601,29 @@ class ClientPermissionsTokenExchangeScope(dict):
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
                  policies: Optional[Sequence[str]] = None):
+        ClientPermissionsTokenExchangeScope._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[str] = None,
+             description: Optional[str] = None,
+             policies: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -495,12 +664,29 @@ class ClientPermissionsViewScope(dict):
                  decision_strategy: Optional[str] = None,
                  description: Optional[str] = None,
                  policies: Optional[Sequence[str]] = None):
+        ClientPermissionsViewScope._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[str] = None,
+             description: Optional[str] = None,
+             policies: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -523,8 +709,25 @@ class ClientRolePolicyRole(dict):
     def __init__(__self__, *,
                  id: str,
                  required: bool):
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "required", required)
+        ClientRolePolicyRole._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            required=required,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             id: Optional[str] = None,
+             required: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if required is None:
+            raise TypeError("Missing 'required' argument")
+
+        _setter("id", id)
+        _setter("required", required)
 
     @property
     @pulumi.getter
@@ -542,8 +745,29 @@ class GetClientAuthenticationFlowBindingOverrideResult(dict):
     def __init__(__self__, *,
                  browser_id: str,
                  direct_grant_id: str):
-        pulumi.set(__self__, "browser_id", browser_id)
-        pulumi.set(__self__, "direct_grant_id", direct_grant_id)
+        GetClientAuthenticationFlowBindingOverrideResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            browser_id=browser_id,
+            direct_grant_id=direct_grant_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             browser_id: Optional[str] = None,
+             direct_grant_id: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if browser_id is None and 'browserId' in kwargs:
+            browser_id = kwargs['browserId']
+        if browser_id is None:
+            raise TypeError("Missing 'browser_id' argument")
+        if direct_grant_id is None and 'directGrantId' in kwargs:
+            direct_grant_id = kwargs['directGrantId']
+        if direct_grant_id is None:
+            raise TypeError("Missing 'direct_grant_id' argument")
+
+        _setter("browser_id", browser_id)
+        _setter("direct_grant_id", direct_grant_id)
 
     @property
     @pulumi.getter(name="browserId")
@@ -563,10 +787,43 @@ class GetClientAuthorizationResult(dict):
                  decision_strategy: str,
                  keep_defaults: bool,
                  policy_enforcement_mode: str):
-        pulumi.set(__self__, "allow_remote_resource_management", allow_remote_resource_management)
-        pulumi.set(__self__, "decision_strategy", decision_strategy)
-        pulumi.set(__self__, "keep_defaults", keep_defaults)
-        pulumi.set(__self__, "policy_enforcement_mode", policy_enforcement_mode)
+        GetClientAuthorizationResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            allow_remote_resource_management=allow_remote_resource_management,
+            decision_strategy=decision_strategy,
+            keep_defaults=keep_defaults,
+            policy_enforcement_mode=policy_enforcement_mode,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             allow_remote_resource_management: Optional[bool] = None,
+             decision_strategy: Optional[str] = None,
+             keep_defaults: Optional[bool] = None,
+             policy_enforcement_mode: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if allow_remote_resource_management is None and 'allowRemoteResourceManagement' in kwargs:
+            allow_remote_resource_management = kwargs['allowRemoteResourceManagement']
+        if allow_remote_resource_management is None:
+            raise TypeError("Missing 'allow_remote_resource_management' argument")
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+        if decision_strategy is None:
+            raise TypeError("Missing 'decision_strategy' argument")
+        if keep_defaults is None and 'keepDefaults' in kwargs:
+            keep_defaults = kwargs['keepDefaults']
+        if keep_defaults is None:
+            raise TypeError("Missing 'keep_defaults' argument")
+        if policy_enforcement_mode is None and 'policyEnforcementMode' in kwargs:
+            policy_enforcement_mode = kwargs['policyEnforcementMode']
+        if policy_enforcement_mode is None:
+            raise TypeError("Missing 'policy_enforcement_mode' argument")
+
+        _setter("allow_remote_resource_management", allow_remote_resource_management)
+        _setter("decision_strategy", decision_strategy)
+        _setter("keep_defaults", keep_defaults)
+        _setter("policy_enforcement_mode", policy_enforcement_mode)
 
     @property
     @pulumi.getter(name="allowRemoteResourceManagement")
@@ -595,9 +852,36 @@ class GetClientServiceAccountUserFederatedIdentityResult(dict):
                  identity_provider: str,
                  user_id: str,
                  user_name: str):
-        pulumi.set(__self__, "identity_provider", identity_provider)
-        pulumi.set(__self__, "user_id", user_id)
-        pulumi.set(__self__, "user_name", user_name)
+        GetClientServiceAccountUserFederatedIdentityResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            identity_provider=identity_provider,
+            user_id=user_id,
+            user_name=user_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             identity_provider: Optional[str] = None,
+             user_id: Optional[str] = None,
+             user_name: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if identity_provider is None and 'identityProvider' in kwargs:
+            identity_provider = kwargs['identityProvider']
+        if identity_provider is None:
+            raise TypeError("Missing 'identity_provider' argument")
+        if user_id is None and 'userId' in kwargs:
+            user_id = kwargs['userId']
+        if user_id is None:
+            raise TypeError("Missing 'user_id' argument")
+        if user_name is None and 'userName' in kwargs:
+            user_name = kwargs['userName']
+        if user_name is None:
+            raise TypeError("Missing 'user_name' argument")
+
+        _setter("identity_provider", identity_provider)
+        _setter("user_id", user_id)
+        _setter("user_name", user_name)
 
     @property
     @pulumi.getter(name="identityProvider")

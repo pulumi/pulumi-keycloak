@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['RealmKeystoreHmacGeneratedArgs', 'RealmKeystoreHmacGenerated']
@@ -31,19 +31,48 @@ class RealmKeystoreHmacGeneratedArgs:
         :param pulumi.Input[int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[int] secret_size: Size in bytes for the generated secret. Defaults to `64`.
         """
-        pulumi.set(__self__, "realm_id", realm_id)
+        RealmKeystoreHmacGeneratedArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            realm_id=realm_id,
+            active=active,
+            algorithm=algorithm,
+            enabled=enabled,
+            name=name,
+            priority=priority,
+            secret_size=secret_size,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             realm_id: Optional[pulumi.Input[str]] = None,
+             active: Optional[pulumi.Input[bool]] = None,
+             algorithm: Optional[pulumi.Input[str]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             priority: Optional[pulumi.Input[int]] = None,
+             secret_size: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if secret_size is None and 'secretSize' in kwargs:
+            secret_size = kwargs['secretSize']
+
+        _setter("realm_id", realm_id)
         if active is not None:
-            pulumi.set(__self__, "active", active)
+            _setter("active", active)
         if algorithm is not None:
-            pulumi.set(__self__, "algorithm", algorithm)
+            _setter("algorithm", algorithm)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if priority is not None:
-            pulumi.set(__self__, "priority", priority)
+            _setter("priority", priority)
         if secret_size is not None:
-            pulumi.set(__self__, "secret_size", secret_size)
+            _setter("secret_size", secret_size)
 
     @property
     @pulumi.getter(name="realmId")
@@ -150,20 +179,47 @@ class _RealmKeystoreHmacGeneratedState:
         :param pulumi.Input[str] realm_id: The realm this keystore exists in.
         :param pulumi.Input[int] secret_size: Size in bytes for the generated secret. Defaults to `64`.
         """
+        _RealmKeystoreHmacGeneratedState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            active=active,
+            algorithm=algorithm,
+            enabled=enabled,
+            name=name,
+            priority=priority,
+            realm_id=realm_id,
+            secret_size=secret_size,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             active: Optional[pulumi.Input[bool]] = None,
+             algorithm: Optional[pulumi.Input[str]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             priority: Optional[pulumi.Input[int]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             secret_size: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if secret_size is None and 'secretSize' in kwargs:
+            secret_size = kwargs['secretSize']
+
         if active is not None:
-            pulumi.set(__self__, "active", active)
+            _setter("active", active)
         if algorithm is not None:
-            pulumi.set(__self__, "algorithm", algorithm)
+            _setter("algorithm", algorithm)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if priority is not None:
-            pulumi.set(__self__, "priority", priority)
+            _setter("priority", priority)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if secret_size is not None:
-            pulumi.set(__self__, "secret_size", secret_size)
+            _setter("secret_size", secret_size)
 
     @property
     @pulumi.getter
@@ -268,22 +324,6 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm", realm="my-realm")
-        keystore_hmac_generated = keycloak.RealmKeystoreHmacGenerated("keystoreHmacGenerated",
-            realm_id=realm.id,
-            enabled=True,
-            active=True,
-            priority=100,
-            algorithm="HS256",
-            secret_size=64)
-        ```
-
         ## Import
 
         Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
@@ -313,22 +353,6 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm", realm="my-realm")
-        keystore_hmac_generated = keycloak.RealmKeystoreHmacGenerated("keystoreHmacGenerated",
-            realm_id=realm.id,
-            enabled=True,
-            active=True,
-            priority=100,
-            algorithm="HS256",
-            secret_size=64)
-        ```
-
         ## Import
 
         Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
@@ -347,6 +371,10 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            RealmKeystoreHmacGeneratedArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

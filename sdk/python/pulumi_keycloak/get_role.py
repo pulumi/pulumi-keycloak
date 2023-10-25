@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -109,24 +109,6 @@ def get_role(client_id: Optional[str] = None,
     This data source can be used to fetch properties of a Keycloak role for
     usage with other resources, such as `GroupRoles`.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_keycloak as keycloak
-
-    realm = keycloak.Realm("realm",
-        realm="my-realm",
-        enabled=True)
-    offline_access = keycloak.get_role_output(realm_id=realm.id,
-        name="offline_access")
-    group = keycloak.Group("group", realm_id=realm.id)
-    group_roles = keycloak.GroupRoles("groupRoles",
-        realm_id=realm.id,
-        group_id=group.id,
-        role_ids=[offline_access.id])
-    ```
-
 
     :param str client_id: When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloak_client` resource should be used here.
     :param str name: The name of the role.
@@ -157,24 +139,6 @@ def get_role_output(client_id: Optional[pulumi.Input[Optional[str]]] = None,
     """
     This data source can be used to fetch properties of a Keycloak role for
     usage with other resources, such as `GroupRoles`.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_keycloak as keycloak
-
-    realm = keycloak.Realm("realm",
-        realm="my-realm",
-        enabled=True)
-    offline_access = keycloak.get_role_output(realm_id=realm.id,
-        name="offline_access")
-    group = keycloak.Group("group", realm_id=realm.id)
-    group_roles = keycloak.GroupRoles("groupRoles",
-        realm_id=realm.id,
-        group_id=group.id,
-        role_ids=[offline_access.id])
-    ```
 
 
     :param str client_id: When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloak_client` resource should be used here.

@@ -23,61 +23,6 @@ namespace Pulumi.Keycloak.Authentication
     /// resource is useful if you would like to create a realm and an authentication flow, and assign this flow to the realm within
     /// a single run of `pulumi up`. In any case, do not attempt to use both the arguments within the `keycloak.Realm` resource
     /// and this resource to manage authentication flow bindings, you should choose one or the other.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Keycloak = Pulumi.Keycloak;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
-    ///     {
-    ///         RealmName = "my-realm",
-    ///         Enabled = true,
-    ///     });
-    /// 
-    ///     var flow = new Keycloak.Authentication.Flow("flow", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         Alias = "my-flow-alias",
-    ///     });
-    /// 
-    ///     // first execution
-    ///     var executionOne = new Keycloak.Authentication.Execution("executionOne", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         ParentFlowAlias = flow.Alias,
-    ///         Authenticator = "auth-cookie",
-    ///         Requirement = "ALTERNATIVE",
-    ///     });
-    /// 
-    ///     // second execution
-    ///     var executionTwo = new Keycloak.Authentication.Execution("executionTwo", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         ParentFlowAlias = flow.Alias,
-    ///         Authenticator = "identity-provider-redirector",
-    ///         Requirement = "ALTERNATIVE",
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         DependsOn = new[]
-    ///         {
-    ///             executionOne,
-    ///         },
-    ///     });
-    /// 
-    ///     var browserAuthenticationBinding = new Keycloak.Authentication.Bindings("browserAuthenticationBinding", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         BrowserFlow = flow.Alias,
-    ///     });
-    /// 
-    /// });
-    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:authentication/bindings:Bindings")]
     public partial class Bindings : global::Pulumi.CustomResource

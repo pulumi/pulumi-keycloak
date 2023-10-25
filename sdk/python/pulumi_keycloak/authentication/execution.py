@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['ExecutionArgs', 'Execution']
@@ -25,11 +25,38 @@ class ExecutionArgs:
         :param pulumi.Input[str] realm_id: The realm the authentication execution exists in.
         :param pulumi.Input[str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
         """
-        pulumi.set(__self__, "authenticator", authenticator)
-        pulumi.set(__self__, "parent_flow_alias", parent_flow_alias)
-        pulumi.set(__self__, "realm_id", realm_id)
+        ExecutionArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            authenticator=authenticator,
+            parent_flow_alias=parent_flow_alias,
+            realm_id=realm_id,
+            requirement=requirement,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             authenticator: Optional[pulumi.Input[str]] = None,
+             parent_flow_alias: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             requirement: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if authenticator is None:
+            raise TypeError("Missing 'authenticator' argument")
+        if parent_flow_alias is None and 'parentFlowAlias' in kwargs:
+            parent_flow_alias = kwargs['parentFlowAlias']
+        if parent_flow_alias is None:
+            raise TypeError("Missing 'parent_flow_alias' argument")
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+
+        _setter("authenticator", authenticator)
+        _setter("parent_flow_alias", parent_flow_alias)
+        _setter("realm_id", realm_id)
         if requirement is not None:
-            pulumi.set(__self__, "requirement", requirement)
+            _setter("requirement", requirement)
 
     @property
     @pulumi.getter
@@ -94,14 +121,35 @@ class _ExecutionState:
         :param pulumi.Input[str] realm_id: The realm the authentication execution exists in.
         :param pulumi.Input[str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
         """
+        _ExecutionState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            authenticator=authenticator,
+            parent_flow_alias=parent_flow_alias,
+            realm_id=realm_id,
+            requirement=requirement,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             authenticator: Optional[pulumi.Input[str]] = None,
+             parent_flow_alias: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             requirement: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if parent_flow_alias is None and 'parentFlowAlias' in kwargs:
+            parent_flow_alias = kwargs['parentFlowAlias']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+
         if authenticator is not None:
-            pulumi.set(__self__, "authenticator", authenticator)
+            _setter("authenticator", authenticator)
         if parent_flow_alias is not None:
-            pulumi.set(__self__, "parent_flow_alias", parent_flow_alias)
+            _setter("parent_flow_alias", parent_flow_alias)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if requirement is not None:
-            pulumi.set(__self__, "requirement", requirement)
+            _setter("requirement", requirement)
 
     @property
     @pulumi.getter
@@ -170,33 +218,6 @@ class Execution(pulumi.CustomResource):
 
         > Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        flow = keycloak.authentication.Flow("flow",
-            realm_id=realm.id,
-            alias="my-flow-alias")
-        # first execution
-        execution_one = keycloak.authentication.Execution("executionOne",
-            realm_id=realm.id,
-            parent_flow_alias=flow.alias,
-            authenticator="auth-cookie",
-            requirement="ALTERNATIVE")
-        # second execution
-        execution_two = keycloak.authentication.Execution("executionTwo",
-            realm_id=realm.id,
-            parent_flow_alias=flow.alias,
-            authenticator="identity-provider-redirector",
-            requirement="ALTERNATIVE",
-            opts=pulumi.ResourceOptions(depends_on=[execution_one]))
-        ```
-
         ## Import
 
         Authentication executions can be imported using the formats`{{realmId}}/{{parentFlowAlias}}/{{authenticationExecutionId}}`. Examplebash
@@ -226,33 +247,6 @@ class Execution(pulumi.CustomResource):
 
         > Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        flow = keycloak.authentication.Flow("flow",
-            realm_id=realm.id,
-            alias="my-flow-alias")
-        # first execution
-        execution_one = keycloak.authentication.Execution("executionOne",
-            realm_id=realm.id,
-            parent_flow_alias=flow.alias,
-            authenticator="auth-cookie",
-            requirement="ALTERNATIVE")
-        # second execution
-        execution_two = keycloak.authentication.Execution("executionTwo",
-            realm_id=realm.id,
-            parent_flow_alias=flow.alias,
-            authenticator="identity-provider-redirector",
-            requirement="ALTERNATIVE",
-            opts=pulumi.ResourceOptions(depends_on=[execution_one]))
-        ```
-
         ## Import
 
         Authentication executions can be imported using the formats`{{realmId}}/{{parentFlowAlias}}/{{authenticationExecutionId}}`. Examplebash
@@ -271,6 +265,10 @@ class Execution(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ExecutionArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

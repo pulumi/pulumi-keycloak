@@ -13,42 +13,6 @@ import * as utilities from "./utilities";
  * Keycloak is not recommended. Instead, users should be federated from external sources by configuring user federation providers
  * or identity providers.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const user = new keycloak.User("user", {
- *     realmId: realm.id,
- *     username: "bob",
- *     enabled: true,
- *     email: "bob@domain.com",
- *     firstName: "Bob",
- *     lastName: "Bobson",
- * });
- * const userWithInitialPassword = new keycloak.User("userWithInitialPassword", {
- *     realmId: realm.id,
- *     username: "alice",
- *     enabled: true,
- *     email: "alice@domain.com",
- *     firstName: "Alice",
- *     lastName: "Aliceberg",
- *     attributes: {
- *         foo: "bar",
- *         multivalue: "value1##value2",
- *     },
- *     initialPassword: {
- *         value: "some password",
- *         temporary: true,
- *     },
- * });
- * ```
- *
  * ## Import
  *
  * Users can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak assigns to the user upon creation. This value can be found in the GUI when editing the user. Examplebash

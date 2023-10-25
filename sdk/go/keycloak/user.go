@@ -19,63 +19,6 @@ import (
 // Keycloak is not recommended. Instead, users should be federated from external sources by configuring user federation providers
 // or identity providers.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Realm:   pulumi.String("my-realm"),
-//				Enabled: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = keycloak.NewUser(ctx, "user", &keycloak.UserArgs{
-//				RealmId:   realm.ID(),
-//				Username:  pulumi.String("bob"),
-//				Enabled:   pulumi.Bool(true),
-//				Email:     pulumi.String("bob@domain.com"),
-//				FirstName: pulumi.String("Bob"),
-//				LastName:  pulumi.String("Bobson"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = keycloak.NewUser(ctx, "userWithInitialPassword", &keycloak.UserArgs{
-//				RealmId:   realm.ID(),
-//				Username:  pulumi.String("alice"),
-//				Enabled:   pulumi.Bool(true),
-//				Email:     pulumi.String("alice@domain.com"),
-//				FirstName: pulumi.String("Alice"),
-//				LastName:  pulumi.String("Aliceberg"),
-//				Attributes: pulumi.AnyMap{
-//					"foo":        pulumi.Any("bar"),
-//					"multivalue": pulumi.Any("value1##value2"),
-//				},
-//				InitialPassword: &keycloak.UserInitialPasswordArgs{
-//					Value:     pulumi.String("some password"),
-//					Temporary: pulumi.Bool(true),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // Users can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak assigns to the user upon creation. This value can be found in the GUI when editing the user. Examplebash

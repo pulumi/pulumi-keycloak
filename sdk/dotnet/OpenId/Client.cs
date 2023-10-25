@@ -16,43 +16,6 @@ namespace Pulumi.Keycloak.OpenId
     /// clients are applications that redirect users to Keycloak for authentication
     /// in order to take advantage of Keycloak's user sessions for SSO.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Keycloak = Pulumi.Keycloak;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
-    ///     {
-    ///         RealmName = "my-realm",
-    ///         Enabled = true,
-    ///     });
-    /// 
-    ///     var openidClient = new Keycloak.OpenId.Client("openidClient", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         ClientId = "test-client",
-    ///         Enabled = true,
-    ///         AccessType = "CONFIDENTIAL",
-    ///         ValidRedirectUris = new[]
-    ///         {
-    ///             "http://localhost:8080/openid-callback",
-    ///         },
-    ///         LoginTheme = "keycloak",
-    ///         ExtraConfig = 
-    ///         {
-    ///             { "key1", "value1" },
-    ///             { "key2", "value2" },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID. Examplebash

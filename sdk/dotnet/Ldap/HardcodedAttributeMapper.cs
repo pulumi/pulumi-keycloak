@@ -16,51 +16,6 @@ namespace Pulumi.Keycloak.Ldap
     /// 
     /// **NOTE**: This mapper only works when the `sync_registrations` attribute on the `keycloak.ldap.UserFederation` resource is set to `true`.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Keycloak = Pulumi.Keycloak;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
-    ///     {
-    ///         RealmName = "my-realm",
-    ///         Enabled = true,
-    ///     });
-    /// 
-    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         UsernameLdapAttribute = "cn",
-    ///         RdnLdapAttribute = "cn",
-    ///         UuidLdapAttribute = "entryDN",
-    ///         UserObjectClasses = new[]
-    ///         {
-    ///             "simpleSecurityObject",
-    ///             "organizationalRole",
-    ///         },
-    ///         ConnectionUrl = "ldap://openldap",
-    ///         UsersDn = "dc=example,dc=org",
-    ///         BindDn = "cn=admin,dc=example,dc=org",
-    ///         BindCredential = "admin",
-    ///         SyncRegistrations = true,
-    ///     });
-    /// 
-    ///     var assignBarToFoo = new Keycloak.Ldap.HardcodedAttributeMapper("assignBarToFoo", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         LdapUserFederationId = ldapUserFederation.Id,
-    ///         AttributeName = "foo",
-    ///         AttributeValue = "bar",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash

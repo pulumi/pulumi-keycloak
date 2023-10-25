@@ -14,41 +14,6 @@ namespace Pulumi.Keycloak.Saml
     /// 
     /// SAML (Security Assertion Markup Language) identity providers allows users to authenticate through a third-party system using the SAML protocol.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Keycloak = Pulumi.Keycloak;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
-    ///     {
-    ///         RealmName = "my-realm",
-    ///         Enabled = true,
-    ///     });
-    /// 
-    ///     var realmSamlIdentityProvider = new Keycloak.Saml.IdentityProvider("realmSamlIdentityProvider", new()
-    ///     {
-    ///         Realm = realm.Id,
-    ///         Alias = "my-saml-idp",
-    ///         EntityId = "https://domain.com/entity_id",
-    ///         SingleSignOnServiceUrl = "https://domain.com/adfs/ls/",
-    ///         SingleLogoutServiceUrl = "https://domain.com/adfs/ls/?wa=wsignout1.0",
-    ///         BackchannelSupported = true,
-    ///         PostBindingResponse = true,
-    ///         PostBindingLogout = true,
-    ///         PostBindingAuthnRequest = true,
-    ///         StoreToken = false,
-    ///         TrustEmail = true,
-    ///         ForceAuthn = true,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias. Examplebash

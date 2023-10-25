@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['AudienceProtocolMapperArgs', 'AudienceProtocolMapper']
@@ -33,21 +33,62 @@ class AudienceProtocolMapperArgs:
         :param pulumi.Input[str] included_custom_audience: A custom audience to include within the token's `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         """
-        pulumi.set(__self__, "realm_id", realm_id)
+        AudienceProtocolMapperArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            realm_id=realm_id,
+            add_to_access_token=add_to_access_token,
+            add_to_id_token=add_to_id_token,
+            client_id=client_id,
+            client_scope_id=client_scope_id,
+            included_client_audience=included_client_audience,
+            included_custom_audience=included_custom_audience,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             realm_id: Optional[pulumi.Input[str]] = None,
+             add_to_access_token: Optional[pulumi.Input[bool]] = None,
+             add_to_id_token: Optional[pulumi.Input[bool]] = None,
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_scope_id: Optional[pulumi.Input[str]] = None,
+             included_client_audience: Optional[pulumi.Input[str]] = None,
+             included_custom_audience: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if add_to_access_token is None and 'addToAccessToken' in kwargs:
+            add_to_access_token = kwargs['addToAccessToken']
+        if add_to_id_token is None and 'addToIdToken' in kwargs:
+            add_to_id_token = kwargs['addToIdToken']
+        if client_id is None and 'clientId' in kwargs:
+            client_id = kwargs['clientId']
+        if client_scope_id is None and 'clientScopeId' in kwargs:
+            client_scope_id = kwargs['clientScopeId']
+        if included_client_audience is None and 'includedClientAudience' in kwargs:
+            included_client_audience = kwargs['includedClientAudience']
+        if included_custom_audience is None and 'includedCustomAudience' in kwargs:
+            included_custom_audience = kwargs['includedCustomAudience']
+
+        _setter("realm_id", realm_id)
         if add_to_access_token is not None:
-            pulumi.set(__self__, "add_to_access_token", add_to_access_token)
+            _setter("add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
-            pulumi.set(__self__, "add_to_id_token", add_to_id_token)
+            _setter("add_to_id_token", add_to_id_token)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_scope_id is not None:
-            pulumi.set(__self__, "client_scope_id", client_scope_id)
+            _setter("client_scope_id", client_scope_id)
         if included_client_audience is not None:
-            pulumi.set(__self__, "included_client_audience", included_client_audience)
+            _setter("included_client_audience", included_client_audience)
         if included_custom_audience is not None:
-            pulumi.set(__self__, "included_custom_audience", included_custom_audience)
+            _setter("included_custom_audience", included_custom_audience)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="realmId")
@@ -168,22 +209,61 @@ class _AudienceProtocolMapperState:
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
         """
+        _AudienceProtocolMapperState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            add_to_access_token=add_to_access_token,
+            add_to_id_token=add_to_id_token,
+            client_id=client_id,
+            client_scope_id=client_scope_id,
+            included_client_audience=included_client_audience,
+            included_custom_audience=included_custom_audience,
+            name=name,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             add_to_access_token: Optional[pulumi.Input[bool]] = None,
+             add_to_id_token: Optional[pulumi.Input[bool]] = None,
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_scope_id: Optional[pulumi.Input[str]] = None,
+             included_client_audience: Optional[pulumi.Input[str]] = None,
+             included_custom_audience: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if add_to_access_token is None and 'addToAccessToken' in kwargs:
+            add_to_access_token = kwargs['addToAccessToken']
+        if add_to_id_token is None and 'addToIdToken' in kwargs:
+            add_to_id_token = kwargs['addToIdToken']
+        if client_id is None and 'clientId' in kwargs:
+            client_id = kwargs['clientId']
+        if client_scope_id is None and 'clientScopeId' in kwargs:
+            client_scope_id = kwargs['clientScopeId']
+        if included_client_audience is None and 'includedClientAudience' in kwargs:
+            included_client_audience = kwargs['includedClientAudience']
+        if included_custom_audience is None and 'includedCustomAudience' in kwargs:
+            included_custom_audience = kwargs['includedCustomAudience']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+
         if add_to_access_token is not None:
-            pulumi.set(__self__, "add_to_access_token", add_to_access_token)
+            _setter("add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
-            pulumi.set(__self__, "add_to_id_token", add_to_id_token)
+            _setter("add_to_id_token", add_to_id_token)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_scope_id is not None:
-            pulumi.set(__self__, "client_scope_id", client_scope_id)
+            _setter("client_scope_id", client_scope_id)
         if included_client_audience is not None:
-            pulumi.set(__self__, "included_client_audience", included_client_audience)
+            _setter("included_client_audience", included_client_audience)
         if included_custom_audience is not None:
-            pulumi.set(__self__, "included_custom_audience", included_custom_audience)
+            _setter("included_custom_audience", included_custom_audience)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter(name="addToAccessToken")
@@ -303,41 +383,6 @@ class AudienceProtocolMapper(pulumi.CustomResource):
         string, or it can be mapped to the ID of a pre-existing client.
 
         ## Example Usage
-        ### Client)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        openid_client = keycloak.openid.Client("openidClient",
-            realm_id=realm.id,
-            client_id="client",
-            enabled=True,
-            access_type="CONFIDENTIAL",
-            valid_redirect_uris=["http://localhost:8080/openid-callback"])
-        audience_mapper = keycloak.openid.AudienceProtocolMapper("audienceMapper",
-            realm_id=realm.id,
-            client_id=openid_client.id,
-            included_custom_audience="foo")
-        ```
-        ### Client Scope)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        audience_mapper = keycloak.openid.AudienceProtocolMapper("audienceMapper",
-            realm_id=realm.id,
-            client_scope_id=client_scope.id,
-            included_custom_audience="foo")
-        ```
 
         ## Import
 
@@ -375,41 +420,6 @@ class AudienceProtocolMapper(pulumi.CustomResource):
         string, or it can be mapped to the ID of a pre-existing client.
 
         ## Example Usage
-        ### Client)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        openid_client = keycloak.openid.Client("openidClient",
-            realm_id=realm.id,
-            client_id="client",
-            enabled=True,
-            access_type="CONFIDENTIAL",
-            valid_redirect_uris=["http://localhost:8080/openid-callback"])
-        audience_mapper = keycloak.openid.AudienceProtocolMapper("audienceMapper",
-            realm_id=realm.id,
-            client_id=openid_client.id,
-            included_custom_audience="foo")
-        ```
-        ### Client Scope)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        audience_mapper = keycloak.openid.AudienceProtocolMapper("audienceMapper",
-            realm_id=realm.id,
-            client_scope_id=client_scope.id,
-            included_custom_audience="foo")
-        ```
 
         ## Import
 
@@ -433,6 +443,10 @@ class AudienceProtocolMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            AudienceProtocolMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

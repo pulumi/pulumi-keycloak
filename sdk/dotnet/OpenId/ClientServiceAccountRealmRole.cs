@@ -16,43 +16,6 @@ namespace Pulumi.Keycloak.OpenId
     /// If you'd like to attach client roles to a service account, please use the `keycloak.openid.ClientServiceAccountRole`
     /// resource.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Keycloak = Pulumi.Keycloak;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
-    ///     {
-    ///         RealmName = "my-realm",
-    ///         Enabled = true,
-    ///     });
-    /// 
-    ///     var realmRole = new Keycloak.Role("realmRole", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///     });
-    /// 
-    ///     var client = new Keycloak.OpenId.Client("client", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         ServiceAccountsEnabled = true,
-    ///     });
-    /// 
-    ///     var clientServiceAccountRole = new Keycloak.OpenId.ClientServiceAccountRealmRole("clientServiceAccountRole", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         ServiceAccountUserId = client.ServiceAccountUserId,
-    ///         Role = realmRole.Name,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// This resource can be imported using the format `{{realmId}}/{{serviceAccountUserId}}/{{roleId}}`. Examplebash

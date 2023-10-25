@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['UserSessionNoteProtocolMapperArgs', 'UserSessionNoteProtocolMapper']
@@ -35,22 +35,69 @@ class UserSessionNoteProtocolMapperArgs:
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[str] session_note: String value being the name of stored user session note within the UserSessionModel.note map.
         """
-        pulumi.set(__self__, "claim_name", claim_name)
-        pulumi.set(__self__, "realm_id", realm_id)
+        UserSessionNoteProtocolMapperArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            claim_name=claim_name,
+            realm_id=realm_id,
+            add_to_access_token=add_to_access_token,
+            add_to_id_token=add_to_id_token,
+            claim_value_type=claim_value_type,
+            client_id=client_id,
+            client_scope_id=client_scope_id,
+            name=name,
+            session_note=session_note,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             claim_name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             add_to_access_token: Optional[pulumi.Input[bool]] = None,
+             add_to_id_token: Optional[pulumi.Input[bool]] = None,
+             claim_value_type: Optional[pulumi.Input[str]] = None,
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_scope_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             session_note: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if claim_name is None and 'claimName' in kwargs:
+            claim_name = kwargs['claimName']
+        if claim_name is None:
+            raise TypeError("Missing 'claim_name' argument")
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if add_to_access_token is None and 'addToAccessToken' in kwargs:
+            add_to_access_token = kwargs['addToAccessToken']
+        if add_to_id_token is None and 'addToIdToken' in kwargs:
+            add_to_id_token = kwargs['addToIdToken']
+        if claim_value_type is None and 'claimValueType' in kwargs:
+            claim_value_type = kwargs['claimValueType']
+        if client_id is None and 'clientId' in kwargs:
+            client_id = kwargs['clientId']
+        if client_scope_id is None and 'clientScopeId' in kwargs:
+            client_scope_id = kwargs['clientScopeId']
+        if session_note is None and 'sessionNote' in kwargs:
+            session_note = kwargs['sessionNote']
+
+        _setter("claim_name", claim_name)
+        _setter("realm_id", realm_id)
         if add_to_access_token is not None:
-            pulumi.set(__self__, "add_to_access_token", add_to_access_token)
+            _setter("add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
-            pulumi.set(__self__, "add_to_id_token", add_to_id_token)
+            _setter("add_to_id_token", add_to_id_token)
         if claim_value_type is not None:
-            pulumi.set(__self__, "claim_value_type", claim_value_type)
+            _setter("claim_value_type", claim_value_type)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_scope_id is not None:
-            pulumi.set(__self__, "client_scope_id", client_scope_id)
+            _setter("client_scope_id", client_scope_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if session_note is not None:
-            pulumi.set(__self__, "session_note", session_note)
+            _setter("session_note", session_note)
 
     @property
     @pulumi.getter(name="claimName")
@@ -185,24 +232,67 @@ class _UserSessionNoteProtocolMapperState:
         :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
         :param pulumi.Input[str] session_note: String value being the name of stored user session note within the UserSessionModel.note map.
         """
+        _UserSessionNoteProtocolMapperState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            add_to_access_token=add_to_access_token,
+            add_to_id_token=add_to_id_token,
+            claim_name=claim_name,
+            claim_value_type=claim_value_type,
+            client_id=client_id,
+            client_scope_id=client_scope_id,
+            name=name,
+            realm_id=realm_id,
+            session_note=session_note,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             add_to_access_token: Optional[pulumi.Input[bool]] = None,
+             add_to_id_token: Optional[pulumi.Input[bool]] = None,
+             claim_name: Optional[pulumi.Input[str]] = None,
+             claim_value_type: Optional[pulumi.Input[str]] = None,
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_scope_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             session_note: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if add_to_access_token is None and 'addToAccessToken' in kwargs:
+            add_to_access_token = kwargs['addToAccessToken']
+        if add_to_id_token is None and 'addToIdToken' in kwargs:
+            add_to_id_token = kwargs['addToIdToken']
+        if claim_name is None and 'claimName' in kwargs:
+            claim_name = kwargs['claimName']
+        if claim_value_type is None and 'claimValueType' in kwargs:
+            claim_value_type = kwargs['claimValueType']
+        if client_id is None and 'clientId' in kwargs:
+            client_id = kwargs['clientId']
+        if client_scope_id is None and 'clientScopeId' in kwargs:
+            client_scope_id = kwargs['clientScopeId']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if session_note is None and 'sessionNote' in kwargs:
+            session_note = kwargs['sessionNote']
+
         if add_to_access_token is not None:
-            pulumi.set(__self__, "add_to_access_token", add_to_access_token)
+            _setter("add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
-            pulumi.set(__self__, "add_to_id_token", add_to_id_token)
+            _setter("add_to_id_token", add_to_id_token)
         if claim_name is not None:
-            pulumi.set(__self__, "claim_name", claim_name)
+            _setter("claim_name", claim_name)
         if claim_value_type is not None:
-            pulumi.set(__self__, "claim_value_type", claim_value_type)
+            _setter("claim_value_type", claim_value_type)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_scope_id is not None:
-            pulumi.set(__self__, "client_scope_id", client_scope_id)
+            _setter("client_scope_id", client_scope_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if session_note is not None:
-            pulumi.set(__self__, "session_note", session_note)
+            _setter("session_note", session_note)
 
     @property
     @pulumi.getter(name="addToAccessToken")
@@ -337,45 +427,6 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
         multiple different clients.
 
         ## Example Usage
-        ### Client)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        openid_client = keycloak.openid.Client("openidClient",
-            realm_id=realm.id,
-            client_id="client",
-            enabled=True,
-            access_type="CONFIDENTIAL",
-            valid_redirect_uris=["http://localhost:8080/openid-callback"])
-        user_session_note_mapper = keycloak.openid.UserSessionNoteProtocolMapper("userSessionNoteMapper",
-            realm_id=realm.id,
-            client_id=openid_client.id,
-            claim_name="foo",
-            claim_value_type="String",
-            session_note="bar")
-        ```
-        ### Client Scope)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        user_session_note_mapper = keycloak.openid.UserSessionNoteProtocolMapper("userSessionNoteMapper",
-            realm_id=realm.id,
-            client_scope_id=client_scope.id,
-            claim_name="foo",
-            claim_value_type="String",
-            session_note="bar")
-        ```
 
         ## Import
 
@@ -416,45 +467,6 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
         multiple different clients.
 
         ## Example Usage
-        ### Client)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        openid_client = keycloak.openid.Client("openidClient",
-            realm_id=realm.id,
-            client_id="client",
-            enabled=True,
-            access_type="CONFIDENTIAL",
-            valid_redirect_uris=["http://localhost:8080/openid-callback"])
-        user_session_note_mapper = keycloak.openid.UserSessionNoteProtocolMapper("userSessionNoteMapper",
-            realm_id=realm.id,
-            client_id=openid_client.id,
-            claim_name="foo",
-            claim_value_type="String",
-            session_note="bar")
-        ```
-        ### Client Scope)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        user_session_note_mapper = keycloak.openid.UserSessionNoteProtocolMapper("userSessionNoteMapper",
-            realm_id=realm.id,
-            client_scope_id=client_scope.id,
-            claim_name="foo",
-            claim_value_type="String",
-            session_note="bar")
-        ```
 
         ## Import
 
@@ -478,6 +490,10 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            UserSessionNoteProtocolMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['CustomIdentityProviderMappingArgs', 'CustomIdentityProviderMapping']
@@ -27,13 +27,44 @@ class CustomIdentityProviderMappingArgs:
         :param pulumi.Input[Mapping[str, Any]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         :param pulumi.Input[str] name: The name of the mapper.
         """
-        pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
-        pulumi.set(__self__, "identity_provider_mapper", identity_provider_mapper)
-        pulumi.set(__self__, "realm", realm)
+        CustomIdentityProviderMappingArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            identity_provider_alias=identity_provider_alias,
+            identity_provider_mapper=identity_provider_mapper,
+            realm=realm,
+            extra_config=extra_config,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             identity_provider_alias: Optional[pulumi.Input[str]] = None,
+             identity_provider_mapper: Optional[pulumi.Input[str]] = None,
+             realm: Optional[pulumi.Input[str]] = None,
+             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if identity_provider_alias is None and 'identityProviderAlias' in kwargs:
+            identity_provider_alias = kwargs['identityProviderAlias']
+        if identity_provider_alias is None:
+            raise TypeError("Missing 'identity_provider_alias' argument")
+        if identity_provider_mapper is None and 'identityProviderMapper' in kwargs:
+            identity_provider_mapper = kwargs['identityProviderMapper']
+        if identity_provider_mapper is None:
+            raise TypeError("Missing 'identity_provider_mapper' argument")
+        if realm is None:
+            raise TypeError("Missing 'realm' argument")
+        if extra_config is None and 'extraConfig' in kwargs:
+            extra_config = kwargs['extraConfig']
+
+        _setter("identity_provider_alias", identity_provider_alias)
+        _setter("identity_provider_mapper", identity_provider_mapper)
+        _setter("realm", realm)
         if extra_config is not None:
-            pulumi.set(__self__, "extra_config", extra_config)
+            _setter("extra_config", extra_config)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="identityProviderAlias")
@@ -112,16 +143,41 @@ class _CustomIdentityProviderMappingState:
         :param pulumi.Input[str] name: The name of the mapper.
         :param pulumi.Input[str] realm: The name of the realm.
         """
+        _CustomIdentityProviderMappingState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            extra_config=extra_config,
+            identity_provider_alias=identity_provider_alias,
+            identity_provider_mapper=identity_provider_mapper,
+            name=name,
+            realm=realm,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             identity_provider_alias: Optional[pulumi.Input[str]] = None,
+             identity_provider_mapper: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if extra_config is None and 'extraConfig' in kwargs:
+            extra_config = kwargs['extraConfig']
+        if identity_provider_alias is None and 'identityProviderAlias' in kwargs:
+            identity_provider_alias = kwargs['identityProviderAlias']
+        if identity_provider_mapper is None and 'identityProviderMapper' in kwargs:
+            identity_provider_mapper = kwargs['identityProviderMapper']
+
         if extra_config is not None:
-            pulumi.set(__self__, "extra_config", extra_config)
+            _setter("extra_config", extra_config)
         if identity_provider_alias is not None:
-            pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
+            _setter("identity_provider_alias", identity_provider_alias)
         if identity_provider_mapper is not None:
-            pulumi.set(__self__, "identity_provider_mapper", identity_provider_mapper)
+            _setter("identity_provider_mapper", identity_provider_mapper)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm is not None:
-            pulumi.set(__self__, "realm", realm)
+            _setter("realm", realm)
 
     @property
     @pulumi.getter(name="extraConfig")
@@ -196,34 +252,6 @@ class CustomIdentityProviderMapping(pulumi.CustomResource):
                  realm: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        oidc_identity_provider = keycloak.oidc.IdentityProvider("oidcIdentityProvider",
-            realm=realm.id,
-            alias="oidc",
-            authorization_url="https://example.com/auth",
-            token_url="https://example.com/token",
-            client_id="example_id",
-            client_secret="example_token",
-            default_scopes="openid random profile")
-        oidc_custom_identity_provider_mapping = keycloak.CustomIdentityProviderMapping("oidcCustomIdentityProviderMapping",
-            realm=realm.id,
-            identity_provider_alias=oidc_identity_provider.alias,
-            identity_provider_mapper="%s-user-attribute-idp-mapper",
-            extra_config={
-                "syncMode": "INHERIT",
-                "Claim": "my-email-claim",
-                "UserAttribute": "email",
-            })
-        ```
-
         ## Import
 
         Identity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID. Examplebash
@@ -247,34 +275,6 @@ class CustomIdentityProviderMapping(pulumi.CustomResource):
                  args: CustomIdentityProviderMappingArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        oidc_identity_provider = keycloak.oidc.IdentityProvider("oidcIdentityProvider",
-            realm=realm.id,
-            alias="oidc",
-            authorization_url="https://example.com/auth",
-            token_url="https://example.com/token",
-            client_id="example_id",
-            client_secret="example_token",
-            default_scopes="openid random profile")
-        oidc_custom_identity_provider_mapping = keycloak.CustomIdentityProviderMapping("oidcCustomIdentityProviderMapping",
-            realm=realm.id,
-            identity_provider_alias=oidc_identity_provider.alias,
-            identity_provider_mapper="%s-user-attribute-idp-mapper",
-            extra_config={
-                "syncMode": "INHERIT",
-                "Claim": "my-email-claim",
-                "UserAttribute": "email",
-            })
-        ```
-
         ## Import
 
         Identity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID. Examplebash
@@ -293,6 +293,10 @@ class CustomIdentityProviderMapping(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            CustomIdentityProviderMappingArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

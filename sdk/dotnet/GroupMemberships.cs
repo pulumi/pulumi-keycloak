@@ -26,46 +26,6 @@ namespace Pulumi.Keycloak
     /// 
     /// This resource paginates its data loading on refresh by 50 items.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Keycloak = Pulumi.Keycloak;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
-    ///     {
-    ///         RealmName = "my-realm",
-    ///         Enabled = true,
-    ///     });
-    /// 
-    ///     var @group = new Keycloak.Group("group", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///     });
-    /// 
-    ///     var user = new Keycloak.User("user", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         Username = "my-user",
-    ///     });
-    /// 
-    ///     var groupMembers = new Keycloak.GroupMemberships("groupMembers", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         GroupId = @group.Id,
-    ///         Members = new[]
-    ///         {
-    ///             user.Username,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server. [1]providers/mrparkers/keycloak/latest/docs/resources/group_memberships

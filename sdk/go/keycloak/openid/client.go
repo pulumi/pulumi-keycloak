@@ -19,51 +19,6 @@ import (
 // clients are applications that redirect users to Keycloak for authentication
 // in order to take advantage of Keycloak's user sessions for SSO.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
-//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/openid"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Realm:   pulumi.String("my-realm"),
-//				Enabled: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
-//				RealmId:    realm.ID(),
-//				ClientId:   pulumi.String("test-client"),
-//				Enabled:    pulumi.Bool(true),
-//				AccessType: pulumi.String("CONFIDENTIAL"),
-//				ValidRedirectUris: pulumi.StringArray{
-//					pulumi.String("http://localhost:8080/openid-callback"),
-//				},
-//				LoginTheme: pulumi.String("keycloak"),
-//				ExtraConfig: pulumi.AnyMap{
-//					"key1": pulumi.Any("value1"),
-//					"key2": pulumi.Any("value2"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID. Examplebash

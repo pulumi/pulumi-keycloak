@@ -6,22 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * This data source can be used to fetch the ID of an authentication flow within Keycloak.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const browserAuthCookie = keycloak.getAuthenticationFlowOutput({
- *     realmId: realm.id,
- *     alias: "browser",
- * });
- * ```
  */
 export function getAuthenticationFlow(args: GetAuthenticationFlowArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthenticationFlowResult> {
 
@@ -59,22 +43,6 @@ export interface GetAuthenticationFlowResult {
 }
 /**
  * This data source can be used to fetch the ID of an authentication flow within Keycloak.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const browserAuthCookie = keycloak.getAuthenticationFlowOutput({
- *     realmId: realm.id,
- *     alias: "browser",
- * });
- * ```
  */
 export function getAuthenticationFlowOutput(args: GetAuthenticationFlowOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthenticationFlowResult> {
     return pulumi.output(args).apply((a: any) => getAuthenticationFlow(a, opts))

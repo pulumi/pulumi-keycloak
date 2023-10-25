@@ -15,48 +15,6 @@ import * as utilities from "./utilities";
  * a role and a composite that includes that role to the same user.
  *
  * ## Example Usage
- * ### Exhaustive Roles)
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const realmRole = new keycloak.Role("realmRole", {
- *     realmId: realm.id,
- *     description: "My Realm Role",
- * });
- * const client = new keycloak.openid.Client("client", {
- *     realmId: realm.id,
- *     clientId: "client",
- *     enabled: true,
- *     accessType: "BEARER-ONLY",
- * });
- * const clientRole = new keycloak.Role("clientRole", {
- *     realmId: realm.id,
- *     clientId: keycloak_client.client.id,
- *     description: "My Client Role",
- * });
- * const user = new keycloak.User("user", {
- *     realmId: realm.id,
- *     username: "bob",
- *     enabled: true,
- *     email: "bob@domain.com",
- *     firstName: "Bob",
- *     lastName: "Bobson",
- * });
- * const userRoles = new keycloak.UserRoles("userRoles", {
- *     realmId: realm.id,
- *     userId: user.id,
- *     roleIds: [
- *         realmRole.id,
- *         clientRole.id,
- *     ],
- * });
- * ```
  *
  * ## Import
  *

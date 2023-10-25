@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['HardcodedRoleMapperArgs', 'HardcodedRoleMapper']
@@ -25,11 +25,38 @@ class HardcodedRoleMapperArgs:
         :param pulumi.Input[str] role: The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
         :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
         """
-        pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
-        pulumi.set(__self__, "realm_id", realm_id)
-        pulumi.set(__self__, "role", role)
+        HardcodedRoleMapperArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ldap_user_federation_id=ldap_user_federation_id,
+            realm_id=realm_id,
+            role=role,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             role: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if ldap_user_federation_id is None and 'ldapUserFederationId' in kwargs:
+            ldap_user_federation_id = kwargs['ldapUserFederationId']
+        if ldap_user_federation_id is None:
+            raise TypeError("Missing 'ldap_user_federation_id' argument")
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if role is None:
+            raise TypeError("Missing 'role' argument")
+
+        _setter("ldap_user_federation_id", ldap_user_federation_id)
+        _setter("realm_id", realm_id)
+        _setter("role", role)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="ldapUserFederationId")
@@ -94,14 +121,35 @@ class _HardcodedRoleMapperState:
         :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
         :param pulumi.Input[str] role: The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
         """
+        _HardcodedRoleMapperState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ldap_user_federation_id=ldap_user_federation_id,
+            name=name,
+            realm_id=realm_id,
+            role=role,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             role: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if ldap_user_federation_id is None and 'ldapUserFederationId' in kwargs:
+            ldap_user_federation_id = kwargs['ldapUserFederationId']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+
         if ldap_user_federation_id is not None:
-            pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
+            _setter("ldap_user_federation_id", ldap_user_federation_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if role is not None:
-            pulumi.set(__self__, "role", role)
+            _setter("role", role)
 
     @property
     @pulumi.getter(name="ldapUserFederationId")
@@ -168,68 +216,6 @@ class HardcodedRoleMapper(pulumi.CustomResource):
         The LDAP hardcoded role mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
 
         ## Example Usage
-        ### Realm Role)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            realm_id=realm.id,
-            username_ldap_attribute="cn",
-            rdn_ldap_attribute="cn",
-            uuid_ldap_attribute="entryDN",
-            user_object_classes=[
-                "simpleSecurityObject",
-                "organizationalRole",
-            ],
-            connection_url="ldap://openldap",
-            users_dn="dc=example,dc=org",
-            bind_dn="cn=admin,dc=example,dc=org",
-            bind_credential="admin")
-        realm_admin_role = keycloak.Role("realmAdminRole",
-            realm_id=realm.id,
-            description="My Realm Role")
-        assign_admin_role_to_all_users = keycloak.ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers",
-            realm_id=realm.id,
-            ldap_user_federation_id=ldap_user_federation.id,
-            role=realm_admin_role.name)
-        ```
-        ### Client Role)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            realm_id=realm.id,
-            username_ldap_attribute="cn",
-            rdn_ldap_attribute="cn",
-            uuid_ldap_attribute="entryDN",
-            user_object_classes=[
-                "simpleSecurityObject",
-                "organizationalRole",
-            ],
-            connection_url="ldap://openldap",
-            users_dn="dc=example,dc=org",
-            bind_dn="cn=admin,dc=example,dc=org",
-            bind_credential="admin")
-        realm_management = keycloak.openid.get_client_output(realm_id=realm.id,
-            client_id="realm-management")
-        create_client = pulumi.Output.all(realm.id, realm_management).apply(lambda id, realm_management: keycloak.get_role_output(realm_id=id,
-            client_id=realm_management.id,
-            name="create-client"))
-        assign_admin_role_to_all_users = keycloak.ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers",
-            realm_id=realm.id,
-            ldap_user_federation_id=ldap_user_federation.id,
-            role=pulumi.Output.all(realm_management, create_client).apply(lambda realm_management, create_client: f"{realm_management.client_id}.{create_client.name}"))
-        ```
 
         ## Import
 
@@ -258,68 +244,6 @@ class HardcodedRoleMapper(pulumi.CustomResource):
         The LDAP hardcoded role mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
 
         ## Example Usage
-        ### Realm Role)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            realm_id=realm.id,
-            username_ldap_attribute="cn",
-            rdn_ldap_attribute="cn",
-            uuid_ldap_attribute="entryDN",
-            user_object_classes=[
-                "simpleSecurityObject",
-                "organizationalRole",
-            ],
-            connection_url="ldap://openldap",
-            users_dn="dc=example,dc=org",
-            bind_dn="cn=admin,dc=example,dc=org",
-            bind_credential="admin")
-        realm_admin_role = keycloak.Role("realmAdminRole",
-            realm_id=realm.id,
-            description="My Realm Role")
-        assign_admin_role_to_all_users = keycloak.ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers",
-            realm_id=realm.id,
-            ldap_user_federation_id=ldap_user_federation.id,
-            role=realm_admin_role.name)
-        ```
-        ### Client Role)
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            realm_id=realm.id,
-            username_ldap_attribute="cn",
-            rdn_ldap_attribute="cn",
-            uuid_ldap_attribute="entryDN",
-            user_object_classes=[
-                "simpleSecurityObject",
-                "organizationalRole",
-            ],
-            connection_url="ldap://openldap",
-            users_dn="dc=example,dc=org",
-            bind_dn="cn=admin,dc=example,dc=org",
-            bind_credential="admin")
-        realm_management = keycloak.openid.get_client_output(realm_id=realm.id,
-            client_id="realm-management")
-        create_client = pulumi.Output.all(realm.id, realm_management).apply(lambda id, realm_management: keycloak.get_role_output(realm_id=id,
-            client_id=realm_management.id,
-            name="create-client"))
-        assign_admin_role_to_all_users = keycloak.ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers",
-            realm_id=realm.id,
-            ldap_user_federation_id=ldap_user_federation.id,
-            role=pulumi.Output.all(realm_management, create_client).apply(lambda realm_management, create_client: f"{realm_management.client_id}.{create_client.name}"))
-        ```
 
         ## Import
 
@@ -339,6 +263,10 @@ class HardcodedRoleMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            HardcodedRoleMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

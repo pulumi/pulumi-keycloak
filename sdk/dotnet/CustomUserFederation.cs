@@ -10,38 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Keycloak = Pulumi.Keycloak;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
-    ///     {
-    ///         RealmName = "test",
-    ///         Enabled = true,
-    ///     });
-    /// 
-    ///     var customUserFederation = new Keycloak.CustomUserFederation("customUserFederation", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         ProviderId = "custom",
-    ///         Enabled = true,
-    ///         Config = 
-    ///         {
-    ///             { "dummyString", "foobar" },
-    ///             { "dummyBool", true },
-    ///             { "multivalue", "value1##value2" },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Custom user federation providers can be imported using the format `{{realm_id}}/{{custom_user_federation_id}}`. The ID of the custom user federation provider can be found within the Keycloak GUI and is typically a GUIDbash

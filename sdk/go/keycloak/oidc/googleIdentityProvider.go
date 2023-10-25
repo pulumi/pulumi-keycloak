@@ -17,48 +17,6 @@ import (
 //
 // OIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
-//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/oidc"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Realm:   pulumi.String("my-realm"),
-//				Enabled: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = oidc.NewGoogleIdentityProvider(ctx, "google", &oidc.GoogleIdentityProviderArgs{
-//				Realm:        realm.ID(),
-//				ClientId:     pulumi.Any(_var.Google_identity_provider_client_id),
-//				ClientSecret: pulumi.Any(_var.Google_identity_provider_client_secret),
-//				TrustEmail:   pulumi.Bool(true),
-//				HostedDomain: pulumi.String("example.com"),
-//				SyncMode:     pulumi.String("IMPORT"),
-//				ExtraConfig: pulumi.AnyMap{
-//					"myCustomConfigKey": pulumi.Any("myValue"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // This resource does not yet support importing.
