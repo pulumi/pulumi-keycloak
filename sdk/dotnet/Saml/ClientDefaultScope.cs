@@ -10,6 +10,53 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Saml
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.IO;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var samlClient = new Keycloak.Saml.Client("samlClient", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "saml-client",
+    ///         SignDocuments = false,
+    ///         SignAssertions = true,
+    ///         IncludeAuthnStatement = true,
+    ///         SigningCertificate = File.ReadAllText("saml-cert.pem"),
+    ///         SigningPrivateKey = File.ReadAllText("saml-key.pem"),
+    ///     });
+    /// 
+    ///     var clientScope = new Keycloak.Saml.ClientScope("clientScope", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var clientDefaultScopes = new Keycloak.Saml.ClientDefaultScope("clientDefaultScopes", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = keycloak_saml_client.Client.Id,
+    ///         DefaultScopes = new[]
+    ///         {
+    ///             "role_list",
+    ///             clientScope.Name,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.

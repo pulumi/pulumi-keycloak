@@ -20,6 +20,127 @@ namespace Pulumi.Keycloak
     /// assign a role and a composite that includes that role to the same group.
     /// 
     /// ## Example Usage
+    /// ### Exhaustive Roles)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var realmRole = new Keycloak.Role("realmRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Description = "My Realm Role",
+    ///     });
+    /// 
+    ///     var client = new Keycloak.OpenId.Client("client", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "client",
+    ///         Enabled = true,
+    ///         AccessType = "BEARER-ONLY",
+    ///     });
+    /// 
+    ///     var clientRole = new Keycloak.Role("clientRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = keycloak_client.Client.Id,
+    ///         Description = "My Client Role",
+    ///     });
+    /// 
+    ///     var @group = new Keycloak.Group("group", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var groupRoles = new Keycloak.GroupRoles("groupRoles", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         GroupId = @group.Id,
+    ///         RoleIds = new[]
+    ///         {
+    ///             realmRole.Id,
+    ///             clientRole.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Non Exhaustive Roles)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var realmRole = new Keycloak.Role("realmRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Description = "My Realm Role",
+    ///     });
+    /// 
+    ///     var client = new Keycloak.OpenId.Client("client", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "client",
+    ///         Enabled = true,
+    ///         AccessType = "BEARER-ONLY",
+    ///     });
+    /// 
+    ///     var clientRole = new Keycloak.Role("clientRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = keycloak_client.Client.Id,
+    ///         Description = "My Client Role",
+    ///     });
+    /// 
+    ///     var @group = new Keycloak.Group("group", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var groupRoleAssociation1 = new Keycloak.GroupRoles("groupRoleAssociation1", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         GroupId = @group.Id,
+    ///         Exhaustive = false,
+    ///         RoleIds = new[]
+    ///         {
+    ///             realmRole.Id,
+    ///         },
+    ///     });
+    /// 
+    ///     var groupRoleAssociation2 = new Keycloak.GroupRoles("groupRoleAssociation2", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         GroupId = @group.Id,
+    ///         Exhaustive = false,
+    ///         RoleIds = new[]
+    ///         {
+    ///             clientRole.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 

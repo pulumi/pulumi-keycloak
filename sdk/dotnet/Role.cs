@@ -15,6 +15,172 @@ namespace Pulumi.Keycloak
     /// Roles allow you define privileges within Keycloak and map them to users and groups.
     /// 
     /// ## Example Usage
+    /// ### Realm Role)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var realmRole = new Keycloak.Role("realmRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Description = "My Realm Role",
+    ///         Attributes = 
+    ///         {
+    ///             { "key", "value" },
+    ///             { "multivalue", "value1##value2" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Client Role)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var openidClient = new Keycloak.OpenId.Client("openidClient", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "client",
+    ///         Enabled = true,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ValidRedirectUris = new[]
+    ///         {
+    ///             "http://localhost:8080/openid-callback",
+    ///         },
+    ///     });
+    /// 
+    ///     var clientRole = new Keycloak.Role("clientRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = keycloak_client.Openid_client.Id,
+    ///         Description = "My Client Role",
+    ///         Attributes = 
+    ///         {
+    ///             { "key", "value" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Composite Role)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     // realm roles
+    ///     var createRole = new Keycloak.Role("createRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Attributes = 
+    ///         {
+    ///             { "key", "value" },
+    ///         },
+    ///     });
+    /// 
+    ///     var readRole = new Keycloak.Role("readRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Attributes = 
+    ///         {
+    ///             { "key", "value" },
+    ///         },
+    ///     });
+    /// 
+    ///     var updateRole = new Keycloak.Role("updateRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Attributes = 
+    ///         {
+    ///             { "key", "value" },
+    ///         },
+    ///     });
+    /// 
+    ///     var deleteRole = new Keycloak.Role("deleteRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Attributes = 
+    ///         {
+    ///             { "key", "value" },
+    ///         },
+    ///     });
+    /// 
+    ///     // client role
+    ///     var openidClient = new Keycloak.OpenId.Client("openidClient", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "client",
+    ///         Enabled = true,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ValidRedirectUris = new[]
+    ///         {
+    ///             "http://localhost:8080/openid-callback",
+    ///         },
+    ///     });
+    /// 
+    ///     var clientRole = new Keycloak.Role("clientRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = keycloak_client.Openid_client.Id,
+    ///         Description = "My Client Role",
+    ///         Attributes = 
+    ///         {
+    ///             { "key", "value" },
+    ///         },
+    ///     });
+    /// 
+    ///     var adminRole = new Keycloak.Role("adminRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         CompositeRoles = new[]
+    ///         {
+    ///             createRole.Id,
+    ///             readRole.Id,
+    ///             updateRole.Id,
+    ///             deleteRole.Id,
+    ///             clientRole.Id,
+    ///         },
+    ///         Attributes = 
+    ///         {
+    ///             { "key", "value" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 

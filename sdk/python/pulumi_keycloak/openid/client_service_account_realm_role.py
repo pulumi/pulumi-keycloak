@@ -180,6 +180,25 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
         If you'd like to attach client roles to a service account, please use the `openid.ClientServiceAccountRole`
         resource.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        realm_role = keycloak.Role("realmRole", realm_id=realm.id)
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            service_accounts_enabled=True)
+        client_service_account_role = keycloak.openid.ClientServiceAccountRealmRole("clientServiceAccountRole",
+            realm_id=realm.id,
+            service_account_user_id=client.service_account_user_id,
+            role=realm_role.name)
+        ```
+
         ## Import
 
         This resource can be imported using the format `{{realmId}}/{{serviceAccountUserId}}/{{roleId}}`. Examplebash
@@ -206,6 +225,25 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
 
         If you'd like to attach client roles to a service account, please use the `openid.ClientServiceAccountRole`
         resource.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        realm_role = keycloak.Role("realmRole", realm_id=realm.id)
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            service_accounts_enabled=True)
+        client_service_account_role = keycloak.openid.ClientServiceAccountRealmRole("clientServiceAccountRole",
+            realm_id=realm.id,
+            service_account_user_id=client.service_account_user_id,
+            role=realm_role.name)
+        ```
 
         ## Import
 

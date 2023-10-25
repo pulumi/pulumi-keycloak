@@ -263,6 +263,43 @@ class HardcodedRoleProtocolMapper(pulumi.CustomResource):
         multiple different clients.
 
         ## Example Usage
+        ### Client)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        role = keycloak.Role("role", realm_id=realm.id)
+        openid_client = keycloak.openid.Client("openidClient",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
+        hardcoded_role_mapper = keycloak.openid.HardcodedRoleProtocolMapper("hardcodedRoleMapper",
+            realm_id=realm.id,
+            client_id=openid_client.id,
+            role_id=role.id)
+        ```
+        ### Client Scope)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        role = keycloak.Role("role", realm_id=realm.id)
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        hardcoded_role_mapper = keycloak.openid.HardcodedRoleProtocolMapper("hardcodedRoleMapper",
+            realm_id=realm.id,
+            client_scope_id=client_scope.id,
+            role_id=role.id)
+        ```
 
         ## Import
 
@@ -299,6 +336,43 @@ class HardcodedRoleProtocolMapper(pulumi.CustomResource):
         multiple different clients.
 
         ## Example Usage
+        ### Client)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        role = keycloak.Role("role", realm_id=realm.id)
+        openid_client = keycloak.openid.Client("openidClient",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
+        hardcoded_role_mapper = keycloak.openid.HardcodedRoleProtocolMapper("hardcodedRoleMapper",
+            realm_id=realm.id,
+            client_id=openid_client.id,
+            role_id=role.id)
+        ```
+        ### Client Scope)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        role = keycloak.Role("role", realm_id=realm.id)
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        hardcoded_role_mapper = keycloak.openid.HardcodedRoleProtocolMapper("hardcodedRoleMapper",
+            realm_id=realm.id,
+            client_scope_id=client_scope.id,
+            role_id=role.id)
+        ```
 
         ## Import
 

@@ -324,6 +324,22 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        keystore_hmac_generated = keycloak.RealmKeystoreHmacGenerated("keystoreHmacGenerated",
+            realm_id=realm.id,
+            enabled=True,
+            active=True,
+            priority=100,
+            algorithm="HS256",
+            secret_size=64)
+        ```
+
         ## Import
 
         Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
@@ -352,6 +368,22 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
         Allows for creating and managing `hmac-generated` Realm keystores within Keycloak.
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        keystore_hmac_generated = keycloak.RealmKeystoreHmacGenerated("keystoreHmacGenerated",
+            realm_id=realm.id,
+            enabled=True,
+            active=True,
+            priority=100,
+            algorithm="HS256",
+            secret_size=64)
+        ```
 
         ## Import
 

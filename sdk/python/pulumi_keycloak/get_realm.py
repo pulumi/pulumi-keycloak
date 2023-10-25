@@ -566,6 +566,16 @@ def get_realm(attributes: Optional[Mapping[str, Any]] = None,
     This data source can be used to fetch properties of a Keycloak realm for
     usage with other resources.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.get_realm(realm="my-realm")
+    group = keycloak.Role("group", realm_id=realm.id)
+    ```
+
 
     :param str realm: The realm name.
     """
@@ -660,6 +670,16 @@ def get_realm_output(attributes: Optional[pulumi.Input[Optional[Mapping[str, Any
     """
     This data source can be used to fetch properties of a Keycloak realm for
     usage with other resources.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.get_realm(realm="my-realm")
+    group = keycloak.Role("group", realm_id=realm.id)
+    ```
 
 
     :param str realm: The realm name.

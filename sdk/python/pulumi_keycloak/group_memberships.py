@@ -189,6 +189,25 @@ class GroupMemberships(pulumi.CustomResource):
 
         This resource paginates its data loading on refresh by 50 items.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        group = keycloak.Group("group", realm_id=realm.id)
+        user = keycloak.User("user",
+            realm_id=realm.id,
+            username="my-user")
+        group_members = keycloak.GroupMemberships("groupMembers",
+            realm_id=realm.id,
+            group_id=group.id,
+            members=[user.username])
+        ```
+
         ## Import
 
         This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server. [1]providers/mrparkers/keycloak/latest/docs/resources/group_memberships
@@ -221,6 +240,25 @@ class GroupMemberships(pulumi.CustomResource):
         To non-exclusively manage the group's of a user, see the [`UserGroups` resource][1]
 
         This resource paginates its data loading on refresh by 50 items.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        group = keycloak.Group("group", realm_id=realm.id)
+        user = keycloak.User("user",
+            realm_id=realm.id,
+            username="my-user")
+        group_members = keycloak.GroupMemberships("groupMembers",
+            realm_id=realm.id,
+            group_id=group.id,
+            members=[user.username])
+        ```
 
         ## Import
 

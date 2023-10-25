@@ -14,6 +14,32 @@ namespace Pulumi.Keycloak.Saml
     /// 
     /// Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var samlClientScope = new Keycloak.Saml.ClientScope("samlClientScope", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Description = "This scope will map a user's group memberships to SAML assertion",
+    ///         GuiOrder = 1,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID. Examplebash

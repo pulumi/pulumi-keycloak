@@ -11,6 +11,38 @@ import * as utilities from "../utilities";
  * The LDAP user attribute mapper can be used to map a single LDAP attribute
  * to an attribute on the Keycloak user model.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
+ *     realmId: realm.id,
+ *     usernameLdapAttribute: "cn",
+ *     rdnLdapAttribute: "cn",
+ *     uuidLdapAttribute: "entryDN",
+ *     userObjectClasses: [
+ *         "simpleSecurityObject",
+ *         "organizationalRole",
+ *     ],
+ *     connectionUrl: "ldap://openldap",
+ *     usersDn: "dc=example,dc=org",
+ *     bindDn: "cn=admin,dc=example,dc=org",
+ *     bindCredential: "admin",
+ * });
+ * const ldapUserAttributeMapper = new keycloak.ldap.UserAttributeMapper("ldapUserAttributeMapper", {
+ *     realmId: realm.id,
+ *     ldapUserFederationId: ldapUserFederation.id,
+ *     userModelAttribute: "foo",
+ *     ldapAttribute: "bar",
+ * });
+ * ```
+ *
  * ## Import
  *
  * LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash

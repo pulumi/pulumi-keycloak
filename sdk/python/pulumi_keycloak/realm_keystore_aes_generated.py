@@ -287,6 +287,21 @@ class RealmKeystoreAesGenerated(pulumi.CustomResource):
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        keystore_aes_generated = keycloak.RealmKeystoreAesGenerated("keystoreAesGenerated",
+            realm_id=realm.id,
+            enabled=True,
+            active=True,
+            priority=100,
+            secret_size=16)
+        ```
+
         ## Import
 
         Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
@@ -314,6 +329,21 @@ class RealmKeystoreAesGenerated(pulumi.CustomResource):
         Allows for creating and managing `aes-generated` Realm keystores within Keycloak.
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        keystore_aes_generated = keycloak.RealmKeystoreAesGenerated("keystoreAesGenerated",
+            realm_id=realm.id,
+            enabled=True,
+            active=True,
+            priority=100,
+            secret_size=16)
+        ```
 
         ## Import
 

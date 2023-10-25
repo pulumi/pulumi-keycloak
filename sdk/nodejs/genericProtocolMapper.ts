@@ -14,6 +14,34 @@ import * as utilities from "./utilities";
  * Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors.
  * Therefore, if possible, a specific mapper should be used instead.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const samlClient = new keycloak.saml.Client("samlClient", {
+ *     realmId: realm.id,
+ *     clientId: "test-client",
+ * });
+ * const samlHardcodeAttributeMapper = new keycloak.GenericProtocolMapper("samlHardcodeAttributeMapper", {
+ *     realmId: realm.id,
+ *     clientId: samlClient.id,
+ *     protocol: "saml",
+ *     protocolMapper: "saml-hardcode-attribute-mapper",
+ *     config: {
+ *         "attribute.name": "name",
+ *         "attribute.nameformat": "Basic",
+ *         "attribute.value": "value",
+ *         "friendly.name": "display name",
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * Protocol mappers can be imported using the following format`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` Examplebash

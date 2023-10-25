@@ -178,6 +178,32 @@ class ClientDefaultScopes(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            client_id="test-client",
+            access_type="CONFIDENTIAL")
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        client_default_scopes = keycloak.openid.ClientDefaultScopes("clientDefaultScopes",
+            realm_id=realm.id,
+            client_id=client.id,
+            default_scopes=[
+                "profile",
+                "email",
+                "roles",
+                "web-origins",
+                client_scope.name,
+            ])
+        ```
+
         ## Import
 
         This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
@@ -195,6 +221,32 @@ class ClientDefaultScopes(pulumi.CustomResource):
                  args: ClientDefaultScopesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            client_id="test-client",
+            access_type="CONFIDENTIAL")
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        client_default_scopes = keycloak.openid.ClientDefaultScopes("clientDefaultScopes",
+            realm_id=realm.id,
+            client_id=client.id,
+            default_scopes=[
+                "profile",
+                "email",
+                "roles",
+                "web-origins",
+                client_scope.name,
+            ])
+        ```
+
         ## Import
 
         This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.

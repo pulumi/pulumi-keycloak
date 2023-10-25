@@ -354,6 +354,36 @@ class Bindings(pulumi.CustomResource):
         a single run of `pulumi up`. In any case, do not attempt to use both the arguments within the `Realm` resource
         and this resource to manage authentication flow bindings, you should choose one or the other.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        flow = keycloak.authentication.Flow("flow",
+            realm_id=realm.id,
+            alias="my-flow-alias")
+        # first execution
+        execution_one = keycloak.authentication.Execution("executionOne",
+            realm_id=realm.id,
+            parent_flow_alias=flow.alias,
+            authenticator="auth-cookie",
+            requirement="ALTERNATIVE")
+        # second execution
+        execution_two = keycloak.authentication.Execution("executionTwo",
+            realm_id=realm.id,
+            parent_flow_alias=flow.alias,
+            authenticator="identity-provider-redirector",
+            requirement="ALTERNATIVE",
+            opts=pulumi.ResourceOptions(depends_on=[execution_one]))
+        browser_authentication_binding = keycloak.authentication.Bindings("browserAuthenticationBinding",
+            realm_id=realm.id,
+            browser_flow=flow.alias)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] browser_flow: The alias of the flow to assign to the realm BrowserFlow.
@@ -384,6 +414,36 @@ class Bindings(pulumi.CustomResource):
         resource is useful if you would like to create a realm and an authentication flow, and assign this flow to the realm within
         a single run of `pulumi up`. In any case, do not attempt to use both the arguments within the `Realm` resource
         and this resource to manage authentication flow bindings, you should choose one or the other.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        flow = keycloak.authentication.Flow("flow",
+            realm_id=realm.id,
+            alias="my-flow-alias")
+        # first execution
+        execution_one = keycloak.authentication.Execution("executionOne",
+            realm_id=realm.id,
+            parent_flow_alias=flow.alias,
+            authenticator="auth-cookie",
+            requirement="ALTERNATIVE")
+        # second execution
+        execution_two = keycloak.authentication.Execution("executionTwo",
+            realm_id=realm.id,
+            parent_flow_alias=flow.alias,
+            authenticator="identity-provider-redirector",
+            requirement="ALTERNATIVE",
+            opts=pulumi.ResourceOptions(depends_on=[execution_one]))
+        browser_authentication_binding = keycloak.authentication.Bindings("browserAuthenticationBinding",
+            realm_id=realm.id,
+            browser_flow=flow.alias)
+        ```
 
         :param str resource_name: The name of the resource.
         :param BindingsArgs args: The arguments to use to populate this resource's properties.

@@ -14,6 +14,39 @@ namespace Pulumi.Keycloak
     /// 
     /// &gt; You should not use `keycloak.DefaultGroups` with a group whose members are managed by `keycloak.GroupMemberships`.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var @group = new Keycloak.Group("group", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var @default = new Keycloak.DefaultGroups("default", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         GroupIds = new[]
+    ///         {
+    ///             @group.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in. Examplebash

@@ -96,6 +96,25 @@ def get_group(name: Optional[str] = None,
     This data source can be used to fetch properties of a Keycloak group for
     usage with other resources, such as `GroupRoles`.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.Realm("realm",
+        realm="my-realm",
+        enabled=True)
+    offline_access = keycloak.get_role_output(realm_id=realm.id,
+        name="offline_access")
+    group = keycloak.get_group_output(realm_id=realm.id,
+        name="group")
+    group_roles = keycloak.GroupRoles("groupRoles",
+        realm_id=realm.id,
+        group_id=group.id,
+        role_ids=[offline_access.id])
+    ```
+
 
     :param str name: The name of the group. If there are multiple groups match `name`, the first result will be returned.
     :param str realm_id: The realm this group exists within.
@@ -122,6 +141,25 @@ def get_group_output(name: Optional[pulumi.Input[str]] = None,
     """
     This data source can be used to fetch properties of a Keycloak group for
     usage with other resources, such as `GroupRoles`.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.Realm("realm",
+        realm="my-realm",
+        enabled=True)
+    offline_access = keycloak.get_role_output(realm_id=realm.id,
+        name="offline_access")
+    group = keycloak.get_group_output(realm_id=realm.id,
+        name="group")
+    group_roles = keycloak.GroupRoles("groupRoles",
+        realm_id=realm.id,
+        group_id=group.id,
+        role_ids=[offline_access.id])
+    ```
 
 
     :param str name: The name of the group. If there are multiple groups match `name`, the first result will be returned.

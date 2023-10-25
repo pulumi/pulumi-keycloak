@@ -342,6 +342,28 @@ class RealmEvents(pulumi.CustomResource):
         """
         Allows for managing Realm Events settings within Keycloak.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        realm_events = keycloak.RealmEvents("realmEvents",
+            realm_id=realm.id,
+            events_enabled=True,
+            events_expiration=3600,
+            admin_events_enabled=True,
+            admin_events_details_enabled=True,
+            enabled_event_types=[
+                "LOGIN",
+                "LOGOUT",
+            ],
+            events_listeners=["jboss-logging"])
+        ```
+
         ## Import
 
         This resource currently does not support importing.
@@ -364,6 +386,28 @@ class RealmEvents(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Allows for managing Realm Events settings within Keycloak.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        realm_events = keycloak.RealmEvents("realmEvents",
+            realm_id=realm.id,
+            events_enabled=True,
+            events_expiration=3600,
+            admin_events_enabled=True,
+            admin_events_details_enabled=True,
+            enabled_event_types=[
+                "LOGIN",
+                "LOGOUT",
+            ],
+            events_listeners=["jboss-logging"])
+        ```
 
         ## Import
 

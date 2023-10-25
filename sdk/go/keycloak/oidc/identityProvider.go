@@ -17,6 +17,48 @@ import (
 //
 // OIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/oidc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = oidc.NewIdentityProvider(ctx, "realmIdentityProvider", &oidc.IdentityProviderArgs{
+//				Realm:            realm.ID(),
+//				Alias:            pulumi.String("my-idp"),
+//				AuthorizationUrl: pulumi.String("https://authorizationurl.com"),
+//				ClientId:         pulumi.String("clientID"),
+//				ClientSecret:     pulumi.String("clientSecret"),
+//				TokenUrl:         pulumi.String("https://tokenurl.com"),
+//				ExtraConfig: pulumi.Map{
+//					"clientAuthMethod": pulumi.Any("client_secret_post"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias. Examplebash

@@ -14,6 +14,71 @@ import (
 )
 
 // This resource can be used to create client policy.
+//
+// ## Example Usage
+//
+// In this example, we'll create a new OpenID client, then enabled permissions for the client. A client without permissions disabled cannot be assigned by a client policy. We'll use the `openid.ClientPolicy` resource to create a new client policy, which could be applied to many clients, for a realm and a resource_server_id.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			openidClient, err := openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
+//				ClientId:               pulumi.String("openid_client"),
+//				RealmId:                realm.ID(),
+//				AccessType:             pulumi.String("CONFIDENTIAL"),
+//				ServiceAccountsEnabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClientPermissions(ctx, "myPermission", &openid.ClientPermissionsArgs{
+//				RealmId:  realm.ID(),
+//				ClientId: openidClient.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			realmManagement, err := openid.LookupClient(ctx, &openid.LookupClientArgs{
+//				RealmId:  "my-realm",
+//				ClientId: "realm-management",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClientPolicy(ctx, "tokenExchange", &openid.ClientPolicyArgs{
+//				ResourceServerId: *pulumi.String(realmManagement.Id),
+//				RealmId:          realm.ID(),
+//				Logic:            pulumi.String("POSITIVE"),
+//				DecisionStrategy: pulumi.String("UNANIMOUS"),
+//				Clients: pulumi.StringArray{
+//					openidClient.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type ClientPolicy struct {
 	pulumi.CustomResourceState
 

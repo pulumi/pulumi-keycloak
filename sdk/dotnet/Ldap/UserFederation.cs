@@ -17,6 +17,51 @@ namespace Pulumi.Keycloak.Ldap
     /// will exist within the realm and will be able to log in to clients. Federated
     /// users can have their attributes defined using mappers.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Enabled = true,
+    ///         UsernameLdapAttribute = "cn",
+    ///         RdnLdapAttribute = "cn",
+    ///         UuidLdapAttribute = "entryDN",
+    ///         UserObjectClasses = new[]
+    ///         {
+    ///             "simpleSecurityObject",
+    ///             "organizationalRole",
+    ///         },
+    ///         ConnectionUrl = "ldap://openldap",
+    ///         UsersDn = "dc=example,dc=org",
+    ///         BindDn = "cn=admin,dc=example,dc=org",
+    ///         BindCredential = "admin",
+    ///         ConnectionTimeout = "5s",
+    ///         ReadTimeout = "10s",
+    ///         Kerberos = new Keycloak.Ldap.Inputs.UserFederationKerberosArgs
+    ///         {
+    ///             KerberosRealm = "FOO.LOCAL",
+    ///             ServerPrincipal = "HTTP/host.foo.com@FOO.LOCAL",
+    ///             KeyTab = "/etc/host.keytab",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`. The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUIDbash

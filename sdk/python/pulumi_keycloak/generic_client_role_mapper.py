@@ -227,6 +227,103 @@ class GenericClientRoleMapper(pulumi.CustomResource):
         inside an access token for a client.
 
         ## Example Usage
+        ### Realm Role To Client)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="BEARER-ONLY")
+        realm_role = keycloak.Role("realmRole",
+            realm_id=realm.id,
+            description="My Realm Role")
+        client_role_mapper = keycloak.GenericClientRoleMapper("clientRoleMapper",
+            realm_id=realm.id,
+            client_id=client.id,
+            role_id=realm_role.id)
+        ```
+        ### Client Role To Client)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client_a = keycloak.openid.Client("clientA",
+            realm_id=realm.id,
+            client_id="client-a",
+            enabled=True,
+            access_type="BEARER-ONLY",
+            full_scope_allowed=False)
+        client_role_a = keycloak.Role("clientRoleA",
+            realm_id=realm.id,
+            client_id=client_a.id,
+            description="My Client Role")
+        client_b = keycloak.openid.Client("clientB",
+            realm_id=realm.id,
+            client_id="client-b",
+            enabled=True,
+            access_type="BEARER-ONLY")
+        client_role_b = keycloak.Role("clientRoleB",
+            realm_id=realm.id,
+            client_id=client_b.id,
+            description="My Client Role")
+        client_b_role_mapper = keycloak.GenericClientRoleMapper("clientBRoleMapper",
+            realm_id=realm.id,
+            client_id=client_b.id,
+            role_id=client_role_a.id)
+        ```
+        ### Realm Role To Client Scope)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        realm_role = keycloak.Role("realmRole",
+            realm_id=realm.id,
+            description="My Realm Role")
+        client_role_mapper = keycloak.GenericClientRoleMapper("clientRoleMapper",
+            realm_id=realm.id,
+            client_scope_id=client_scope.id,
+            role_id=realm_role.id)
+        ```
+        ### Client Role To Client Scope)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="BEARER-ONLY")
+        client_role = keycloak.Role("clientRole",
+            realm_id=realm.id,
+            client_id=client.id,
+            description="My Client Role")
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        client_b_role_mapper = keycloak.GenericClientRoleMapper("clientBRoleMapper",
+            realm_id=realm.id,
+            client_scope_id=client_scope.id,
+            role_id=client_role.id)
+        ```
 
         ## Import
 
@@ -259,6 +356,103 @@ class GenericClientRoleMapper(pulumi.CustomResource):
         inside an access token for a client.
 
         ## Example Usage
+        ### Realm Role To Client)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="BEARER-ONLY")
+        realm_role = keycloak.Role("realmRole",
+            realm_id=realm.id,
+            description="My Realm Role")
+        client_role_mapper = keycloak.GenericClientRoleMapper("clientRoleMapper",
+            realm_id=realm.id,
+            client_id=client.id,
+            role_id=realm_role.id)
+        ```
+        ### Client Role To Client)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client_a = keycloak.openid.Client("clientA",
+            realm_id=realm.id,
+            client_id="client-a",
+            enabled=True,
+            access_type="BEARER-ONLY",
+            full_scope_allowed=False)
+        client_role_a = keycloak.Role("clientRoleA",
+            realm_id=realm.id,
+            client_id=client_a.id,
+            description="My Client Role")
+        client_b = keycloak.openid.Client("clientB",
+            realm_id=realm.id,
+            client_id="client-b",
+            enabled=True,
+            access_type="BEARER-ONLY")
+        client_role_b = keycloak.Role("clientRoleB",
+            realm_id=realm.id,
+            client_id=client_b.id,
+            description="My Client Role")
+        client_b_role_mapper = keycloak.GenericClientRoleMapper("clientBRoleMapper",
+            realm_id=realm.id,
+            client_id=client_b.id,
+            role_id=client_role_a.id)
+        ```
+        ### Realm Role To Client Scope)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        realm_role = keycloak.Role("realmRole",
+            realm_id=realm.id,
+            description="My Realm Role")
+        client_role_mapper = keycloak.GenericClientRoleMapper("clientRoleMapper",
+            realm_id=realm.id,
+            client_scope_id=client_scope.id,
+            role_id=realm_role.id)
+        ```
+        ### Client Role To Client Scope)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="BEARER-ONLY")
+        client_role = keycloak.Role("clientRole",
+            realm_id=realm.id,
+            client_id=client.id,
+            description="My Client Role")
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        client_b_role_mapper = keycloak.GenericClientRoleMapper("clientBRoleMapper",
+            realm_id=realm.id,
+            client_scope_id=client_scope.id,
+            role_id=client_role.id)
+        ```
 
         ## Import
 

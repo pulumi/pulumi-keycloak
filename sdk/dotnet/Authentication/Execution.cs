@@ -17,6 +17,55 @@ namespace Pulumi.Keycloak.Authentication
     /// 
     /// &gt; Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var flow = new Keycloak.Authentication.Flow("flow", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Alias = "my-flow-alias",
+    ///     });
+    /// 
+    ///     // first execution
+    ///     var executionOne = new Keycloak.Authentication.Execution("executionOne", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ParentFlowAlias = flow.Alias,
+    ///         Authenticator = "auth-cookie",
+    ///         Requirement = "ALTERNATIVE",
+    ///     });
+    /// 
+    ///     // second execution
+    ///     var executionTwo = new Keycloak.Authentication.Execution("executionTwo", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ParentFlowAlias = flow.Alias,
+    ///         Authenticator = "identity-provider-redirector",
+    ///         Requirement = "ALTERNATIVE",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             executionOne,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Authentication executions can be imported using the formats`{{realmId}}/{{parentFlowAlias}}/{{authenticationExecutionId}}`. Examplebash

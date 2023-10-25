@@ -20,6 +20,47 @@ namespace Pulumi.Keycloak
     /// Groups can also be federated from external data sources, such as LDAP or Active Directory. This resource **should not**
     /// be used to manage groups that were created this way.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var parentGroup = new Keycloak.Group("parentGroup", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var childGroup = new Keycloak.Group("childGroup", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ParentId = parentGroup.Id,
+    ///     });
+    /// 
+    ///     var childGroupWithOptionalAttributes = new Keycloak.Group("childGroupWithOptionalAttributes", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ParentId = parentGroup.Id,
+    ///         Attributes = 
+    ///         {
+    ///             { "foo", "bar" },
+    ///             { "multivalue", "value1##value2" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID. Examplebash

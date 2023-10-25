@@ -140,6 +140,21 @@ class DefaultGroups(pulumi.CustomResource):
 
         > You should not use `DefaultGroups` with a group whose members are managed by `GroupMemberships`.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        group = keycloak.Group("group", realm_id=realm.id)
+        default = keycloak.DefaultGroups("default",
+            realm_id=realm.id,
+            group_ids=[group.id])
+        ```
+
         ## Import
 
         Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in. Examplebash
@@ -163,6 +178,21 @@ class DefaultGroups(pulumi.CustomResource):
         Allows for managing a realm's default groups.
 
         > You should not use `DefaultGroups` with a group whose members are managed by `GroupMemberships`.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        group = keycloak.Group("group", realm_id=realm.id)
+        default = keycloak.DefaultGroups("default",
+            realm_id=realm.id,
+            group_ids=[group.id])
+        ```
 
         ## Import
 

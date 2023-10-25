@@ -13,6 +13,49 @@ namespace Pulumi.Keycloak.Authentication
     /// Allows for managing an authentication execution's configuration. If a particular authentication execution supports additional
     /// configuration (such as with the `identity-provider-redirector` execution), this can be managed with this resource.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var flow = new Keycloak.Authentication.Flow("flow", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Alias = "my-flow-alias",
+    ///     });
+    /// 
+    ///     var execution = new Keycloak.Authentication.Execution("execution", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ParentFlowAlias = flow.Alias,
+    ///         Authenticator = "identity-provider-redirector",
+    ///     });
+    /// 
+    ///     var config = new Keycloak.Authentication.ExecutionConfig("config", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ExecutionId = execution.Id,
+    ///         Alias = "my-config-alias",
+    ///         Config = 
+    ///         {
+    ///             { "defaultProvider", "my-config-default-idp" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Configurations can be imported using the format `{{realm}}/{{authenticationExecutionId}}/{{authenticationExecutionConfigId}}`. If the `authenticationExecutionId` is incorrect, the import will still be successful. A subsequent apply will change the `authenticationExecutionId` to the correct one, which causes the configuration to be replaced. Examplebash

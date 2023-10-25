@@ -295,6 +295,39 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        token_exchange_realm = keycloak.Realm("tokenExchangeRealm",
+            realm="token-exchange_destination_realm",
+            enabled=True)
+        token_exchange_my_oidc_idp = keycloak.oidc.IdentityProvider("tokenExchangeMyOidcIdp",
+            realm=token_exchange_realm.id,
+            alias="myIdp",
+            authorization_url="http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/auth",
+            token_url="http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/token",
+            client_id="clientId",
+            client_secret="secret",
+            default_scopes="openid")
+        token_exchange_webapp_client = keycloak.openid.Client("token-exchangeWebappClient",
+            realm_id=token_exchange_realm.id,
+            client_id="webapp_client",
+            client_secret="secret",
+            description="a webapp client on the destination realm",
+            access_type="CONFIDENTIAL",
+            standard_flow_enabled=True,
+            valid_redirect_uris=["http://localhost:8080/*"])
+        #relevant part
+        oidc_idp_permission = keycloak.IdentityProviderTokenExchangeScopePermission("oidcIdpPermission",
+            realm_id=token_exchange_realm.id,
+            provider_alias=token_exchange_my_oidc_idp.alias,
+            policy_type="client",
+            clients=[token_exchange_webapp_client.id])
+        ```
+
         ## Import
 
         This resource can be imported using the format `{{realm_id}}/{{provider_alias}}`, where `provider_alias` is the alias that you assign to the identity provider upon creation. Examplebash
@@ -317,6 +350,39 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
                  args: IdentityProviderTokenExchangeScopePermissionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        token_exchange_realm = keycloak.Realm("tokenExchangeRealm",
+            realm="token-exchange_destination_realm",
+            enabled=True)
+        token_exchange_my_oidc_idp = keycloak.oidc.IdentityProvider("tokenExchangeMyOidcIdp",
+            realm=token_exchange_realm.id,
+            alias="myIdp",
+            authorization_url="http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/auth",
+            token_url="http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/token",
+            client_id="clientId",
+            client_secret="secret",
+            default_scopes="openid")
+        token_exchange_webapp_client = keycloak.openid.Client("token-exchangeWebappClient",
+            realm_id=token_exchange_realm.id,
+            client_id="webapp_client",
+            client_secret="secret",
+            description="a webapp client on the destination realm",
+            access_type="CONFIDENTIAL",
+            standard_flow_enabled=True,
+            valid_redirect_uris=["http://localhost:8080/*"])
+        #relevant part
+        oidc_idp_permission = keycloak.IdentityProviderTokenExchangeScopePermission("oidcIdpPermission",
+            realm_id=token_exchange_realm.id,
+            provider_alias=token_exchange_my_oidc_idp.alias,
+            policy_type="client",
+            clients=[token_exchange_webapp_client.id])
+        ```
+
         ## Import
 
         This resource can be imported using the format `{{realm_id}}/{{provider_alias}}`, where `provider_alias` is the alias that you assign to the identity provider upon creation. Examplebash

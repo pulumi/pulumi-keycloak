@@ -393,6 +393,19 @@ def get_client(client_id: Optional[str] = None,
     """
     This data source can be used to fetch properties of a Keycloak client that uses the SAML protocol.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm_management = keycloak.saml.get_client(realm_id="my-realm",
+        client_id="realm-management")
+    admin = keycloak.get_role(realm_id="my-realm",
+        client_id=realm_management.id,
+        name="realm-admin")
+    ```
+
 
     :param str client_id: The client id (not its unique ID).
     :param str realm_id: The realm id.
@@ -451,6 +464,19 @@ def get_client_output(client_id: Optional[pulumi.Input[str]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientResult]:
     """
     This data source can be used to fetch properties of a Keycloak client that uses the SAML protocol.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm_management = keycloak.saml.get_client(realm_id="my-realm",
+        client_id="realm-management")
+    admin = keycloak.get_role(realm_id="my-realm",
+        client_id=realm_management.id,
+        name="realm-admin")
+    ```
 
 
     :param str client_id: The client id (not its unique ID).

@@ -178,6 +178,33 @@ class ClientDefaultScope(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        saml_client = keycloak.saml.Client("samlClient",
+            realm_id=realm.id,
+            client_id="saml-client",
+            sign_documents=False,
+            sign_assertions=True,
+            include_authn_statement=True,
+            signing_certificate=(lambda path: open(path).read())("saml-cert.pem"),
+            signing_private_key=(lambda path: open(path).read())("saml-key.pem"))
+        client_scope = keycloak.saml.ClientScope("clientScope", realm_id=realm.id)
+        client_default_scopes = keycloak.saml.ClientDefaultScope("clientDefaultScopes",
+            realm_id=realm.id,
+            client_id=keycloak_saml_client["client"]["id"],
+            default_scopes=[
+                "role_list",
+                client_scope.name,
+            ])
+        ```
+
         ## Import
 
         This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
@@ -195,6 +222,33 @@ class ClientDefaultScope(pulumi.CustomResource):
                  args: ClientDefaultScopeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        saml_client = keycloak.saml.Client("samlClient",
+            realm_id=realm.id,
+            client_id="saml-client",
+            sign_documents=False,
+            sign_assertions=True,
+            include_authn_statement=True,
+            signing_certificate=(lambda path: open(path).read())("saml-cert.pem"),
+            signing_private_key=(lambda path: open(path).read())("saml-key.pem"))
+        client_scope = keycloak.saml.ClientScope("clientScope", realm_id=realm.id)
+        client_default_scopes = keycloak.saml.ClientDefaultScope("clientDefaultScopes",
+            realm_id=realm.id,
+            client_id=keycloak_saml_client["client"]["id"],
+            default_scopes=[
+                "role_list",
+                client_scope.name,
+            ])
+        ```
+
         ## Import
 
         This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.

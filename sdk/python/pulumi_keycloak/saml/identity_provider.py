@@ -1577,6 +1577,30 @@ class IdentityProvider(pulumi.CustomResource):
 
         SAML (Security Assertion Markup Language) identity providers allows users to authenticate through a third-party system using the SAML protocol.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        realm_saml_identity_provider = keycloak.saml.IdentityProvider("realmSamlIdentityProvider",
+            realm=realm.id,
+            alias="my-saml-idp",
+            entity_id="https://domain.com/entity_id",
+            single_sign_on_service_url="https://domain.com/adfs/ls/",
+            single_logout_service_url="https://domain.com/adfs/ls/?wa=wsignout1.0",
+            backchannel_supported=True,
+            post_binding_response=True,
+            post_binding_logout=True,
+            post_binding_authn_request=True,
+            store_token=False,
+            trust_email=True,
+            force_authn=True)
+        ```
+
         ## Import
 
         Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias. Examplebash
@@ -1634,6 +1658,30 @@ class IdentityProvider(pulumi.CustomResource):
         Allows for creating and managing SAML Identity Providers within Keycloak.
 
         SAML (Security Assertion Markup Language) identity providers allows users to authenticate through a third-party system using the SAML protocol.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        realm_saml_identity_provider = keycloak.saml.IdentityProvider("realmSamlIdentityProvider",
+            realm=realm.id,
+            alias="my-saml-idp",
+            entity_id="https://domain.com/entity_id",
+            single_sign_on_service_url="https://domain.com/adfs/ls/",
+            single_logout_service_url="https://domain.com/adfs/ls/?wa=wsignout1.0",
+            backchannel_supported=True,
+            post_binding_response=True,
+            post_binding_logout=True,
+            post_binding_authn_request=True,
+            store_token=False,
+            trust_email=True,
+            force_authn=True)
+        ```
 
         ## Import
 

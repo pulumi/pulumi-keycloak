@@ -178,6 +178,32 @@ class ClientOptionalScopes(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            client_id="test-client",
+            access_type="CONFIDENTIAL")
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        client_optional_scopes = keycloak.openid.ClientOptionalScopes("clientOptionalScopes",
+            realm_id=realm.id,
+            client_id=client.id,
+            optional_scopes=[
+                "address",
+                "phone",
+                "offline_access",
+                "microprofile-jwt",
+                client_scope.name,
+            ])
+        ```
+
         ## Import
 
         This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
@@ -195,6 +221,32 @@ class ClientOptionalScopes(pulumi.CustomResource):
                  args: ClientOptionalScopesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            client_id="test-client",
+            access_type="CONFIDENTIAL")
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        client_optional_scopes = keycloak.openid.ClientOptionalScopes("clientOptionalScopes",
+            realm_id=realm.id,
+            client_id=client.id,
+            optional_scopes=[
+                "address",
+                "phone",
+                "offline_access",
+                "microprofile-jwt",
+                client_scope.name,
+            ])
+        ```
+
         ## Import
 
         This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.

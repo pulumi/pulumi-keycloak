@@ -14,6 +14,48 @@ import * as utilities from "../utilities";
  * multiple different clients.
  *
  * ## Example Usage
+ * ### Client)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const openidClient = new keycloak.openid.Client("openidClient", {
+ *     realmId: realm.id,
+ *     clientId: "client",
+ *     enabled: true,
+ *     accessType: "CONFIDENTIAL",
+ *     validRedirectUris: ["http://localhost:8080/openid-callback"],
+ * });
+ * const userPropertyMapper = new keycloak.openid.UserPropertyProtocolMapper("userPropertyMapper", {
+ *     realmId: realm.id,
+ *     clientId: openidClient.id,
+ *     userProperty: "email",
+ *     claimName: "email",
+ * });
+ * ```
+ * ### Client Scope)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
+ * const userPropertyMapper = new keycloak.openid.UserPropertyProtocolMapper("userPropertyMapper", {
+ *     realmId: realm.id,
+ *     clientScopeId: clientScope.id,
+ *     userProperty: "email",
+ *     claimName: "email",
+ * });
+ * ```
  *
  * ## Import
  *

@@ -448,6 +448,39 @@ class User(pulumi.CustomResource):
         Keycloak is not recommended. Instead, users should be federated from external sources by configuring user federation providers
         or identity providers.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        user = keycloak.User("user",
+            realm_id=realm.id,
+            username="bob",
+            enabled=True,
+            email="bob@domain.com",
+            first_name="Bob",
+            last_name="Bobson")
+        user_with_initial_password = keycloak.User("userWithInitialPassword",
+            realm_id=realm.id,
+            username="alice",
+            enabled=True,
+            email="alice@domain.com",
+            first_name="Alice",
+            last_name="Aliceberg",
+            attributes={
+                "foo": "bar",
+                "multivalue": "value1##value2",
+            },
+            initial_password=keycloak.UserInitialPasswordArgs(
+                value="some password",
+                temporary=True,
+            ))
+        ```
+
         ## Import
 
         Users can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak assigns to the user upon creation. This value can be found in the GUI when editing the user. Examplebash
@@ -480,6 +513,39 @@ class User(pulumi.CustomResource):
         This resource was created primarily to enable the acceptance tests for the `Group` resource. Creating users within
         Keycloak is not recommended. Instead, users should be federated from external sources by configuring user federation providers
         or identity providers.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        user = keycloak.User("user",
+            realm_id=realm.id,
+            username="bob",
+            enabled=True,
+            email="bob@domain.com",
+            first_name="Bob",
+            last_name="Bobson")
+        user_with_initial_password = keycloak.User("userWithInitialPassword",
+            realm_id=realm.id,
+            username="alice",
+            enabled=True,
+            email="alice@domain.com",
+            first_name="Alice",
+            last_name="Aliceberg",
+            attributes={
+                "foo": "bar",
+                "multivalue": "value1##value2",
+            },
+            initial_password=keycloak.UserInitialPasswordArgs(
+                value="some password",
+                temporary=True,
+            ))
+        ```
 
         ## Import
 

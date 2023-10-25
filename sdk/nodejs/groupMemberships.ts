@@ -21,6 +21,28 @@ import * as utilities from "./utilities";
  *
  * This resource paginates its data loading on refresh by 50 items.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const group = new keycloak.Group("group", {realmId: realm.id});
+ * const user = new keycloak.User("user", {
+ *     realmId: realm.id,
+ *     username: "my-user",
+ * });
+ * const groupMembers = new keycloak.GroupMemberships("groupMembers", {
+ *     realmId: realm.id,
+ *     groupId: group.id,
+ *     members: [user.username],
+ * });
+ * ```
+ *
  * ## Import
  *
  * This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server. [1]providers/mrparkers/keycloak/latest/docs/resources/group_memberships

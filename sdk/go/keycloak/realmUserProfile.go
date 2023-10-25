@@ -24,6 +24,133 @@ import (
 // The realm linked to the `RealmUserProfile` resource must have the user profile feature enabled.
 // It can be done via the administration UI, or by setting the `userProfileEnabled` realm attribute to `true`.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm: pulumi.String("my-realm"),
+//				Attributes: pulumi.Map{
+//					"userProfileEnabled": pulumi.Any(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON0, err := json.Marshal([]string{
+//				"opt1",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			tmpJSON1, err := json.Marshal(map[string]interface{}{
+//				"key": "val",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json1 := string(tmpJSON1)
+//			tmpJSON2, err := json.Marshal(map[string]interface{}{
+//				"key": "val",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json2 := string(tmpJSON2)
+//			_, err = keycloak.NewRealmUserProfile(ctx, "userprofile", &keycloak.RealmUserProfileArgs{
+//				RealmId: pulumi.Any(keycloak_realm.My_realm.Id),
+//				Attributes: keycloak.RealmUserProfileAttributeArray{
+//					&keycloak.RealmUserProfileAttributeArgs{
+//						Name:        pulumi.String("field1"),
+//						DisplayName: pulumi.String("Field 1"),
+//						Group:       pulumi.String("group1"),
+//						EnabledWhenScopes: pulumi.StringArray{
+//							pulumi.String("offline_access"),
+//						},
+//						RequiredForRoles: pulumi.StringArray{
+//							pulumi.String("user"),
+//						},
+//						RequiredForScopes: pulumi.StringArray{
+//							pulumi.String("offline_access"),
+//						},
+//						Permissions: &keycloak.RealmUserProfileAttributePermissionsArgs{
+//							Views: pulumi.StringArray{
+//								pulumi.String("admin"),
+//								pulumi.String("user"),
+//							},
+//							Edits: pulumi.StringArray{
+//								pulumi.String("admin"),
+//								pulumi.String("user"),
+//							},
+//						},
+//						Validators: keycloak.RealmUserProfileAttributeValidatorArray{
+//							&keycloak.RealmUserProfileAttributeValidatorArgs{
+//								Name: pulumi.String("person-name-prohibited-characters"),
+//							},
+//							&keycloak.RealmUserProfileAttributeValidatorArgs{
+//								Name: pulumi.String("pattern"),
+//								Config: pulumi.StringMap{
+//									"pattern":       pulumi.String("^[a-z]+$"),
+//									"error-message": pulumi.String("Nope"),
+//								},
+//							},
+//						},
+//						Annotations: pulumi.StringMap{
+//							"foo": pulumi.String("bar"),
+//						},
+//					},
+//					&keycloak.RealmUserProfileAttributeArgs{
+//						Name: pulumi.String("field2"),
+//						Validators: keycloak.RealmUserProfileAttributeValidatorArray{
+//							&keycloak.RealmUserProfileAttributeValidatorArgs{
+//								Name: pulumi.String("options"),
+//								Config: pulumi.StringMap{
+//									"options": pulumi.String(json0),
+//								},
+//							},
+//						},
+//						Annotations: pulumi.StringMap{
+//							"foo": pulumi.String(json1),
+//						},
+//					},
+//				},
+//				Groups: keycloak.RealmUserProfileGroupArray{
+//					&keycloak.RealmUserProfileGroupArgs{
+//						Name:               pulumi.String("group1"),
+//						DisplayHeader:      pulumi.String("Group 1"),
+//						DisplayDescription: pulumi.String("A first group"),
+//						Annotations: pulumi.StringMap{
+//							"foo":  pulumi.String("bar"),
+//							"foo2": pulumi.String(json2),
+//						},
+//					},
+//					&keycloak.RealmUserProfileGroupArgs{
+//						Name: pulumi.String("group2"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // This resource currently does not support importing.

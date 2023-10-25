@@ -302,6 +302,34 @@ class FullNameMapper(pulumi.CustomResource):
         The LDAP full name mapper can map a user's full name from an LDAP attribute to the first and last name attributes of a
         Keycloak user.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
+            user_object_classes=[
+                "simpleSecurityObject",
+                "organizationalRole",
+            ],
+            connection_url="ldap://openldap",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        ldap_full_name_mapper = keycloak.ldap.FullNameMapper("ldapFullNameMapper",
+            realm_id=realm.id,
+            ldap_user_federation_id=ldap_user_federation.id,
+            ldap_full_name_attribute="cn")
+        ```
+
         ## Import
 
         LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
@@ -330,6 +358,34 @@ class FullNameMapper(pulumi.CustomResource):
 
         The LDAP full name mapper can map a user's full name from an LDAP attribute to the first and last name attributes of a
         Keycloak user.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
+            user_object_classes=[
+                "simpleSecurityObject",
+                "organizationalRole",
+            ],
+            connection_url="ldap://openldap",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        ldap_full_name_mapper = keycloak.ldap.FullNameMapper("ldapFullNameMapper",
+            realm_id=realm.id,
+            ldap_user_federation_id=ldap_user_federation.id,
+            ldap_full_name_attribute="cn")
+        ```
 
         ## Import
 

@@ -13,6 +13,29 @@ import * as utilities from "../utilities";
  * Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
  * multiple different clients.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const samlClient = new keycloak.saml.Client("samlClient", {
+ *     realmId: realm.id,
+ *     clientId: "saml-client",
+ * });
+ * const samlUserPropertyMapper = new keycloak.saml.UserPropertyProtocolMapper("samlUserPropertyMapper", {
+ *     realmId: realm.id,
+ *     clientId: samlClient.id,
+ *     userProperty: "email",
+ *     samlAttributeName: "email",
+ *     samlAttributeNameFormat: "Unspecified",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash

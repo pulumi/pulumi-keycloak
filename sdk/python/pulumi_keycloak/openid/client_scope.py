@@ -296,6 +296,22 @@ class ClientScope(pulumi.CustomResource):
         Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm. They can also
         be used by clients to conditionally request claims or roles for a user based on the OAuth 2.0 `scope` parameter.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        openid_client_scope = keycloak.openid.ClientScope("openidClientScope",
+            realm_id=realm.id,
+            description="When requested, this scope will map a user's group memberships to a claim",
+            include_in_token_scope=True,
+            gui_order=1)
+        ```
+
         ## Import
 
         Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID. Examplebash
@@ -324,6 +340,22 @@ class ClientScope(pulumi.CustomResource):
 
         Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm. They can also
         be used by clients to conditionally request claims or roles for a user based on the OAuth 2.0 `scope` parameter.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        openid_client_scope = keycloak.openid.ClientScope("openidClientScope",
+            realm_id=realm.id,
+            description="When requested, this scope will map a user's group memberships to a claim",
+            include_in_token_scope=True,
+            gui_order=1)
+        ```
 
         ## Import
 

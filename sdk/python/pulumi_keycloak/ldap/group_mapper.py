@@ -794,6 +794,40 @@ class GroupMapper(pulumi.CustomResource):
         The LDAP group mapper can be used to map an LDAP user's groups from some DN to Keycloak groups. This group mapper will also
         create the groups within Keycloak if they do not already exist.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
+            user_object_classes=[
+                "simpleSecurityObject",
+                "organizationalRole",
+            ],
+            connection_url="ldap://openldap",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        ldap_group_mapper = keycloak.ldap.GroupMapper("ldapGroupMapper",
+            realm_id=realm.id,
+            ldap_user_federation_id=ldap_user_federation.id,
+            ldap_groups_dn="dc=example,dc=org",
+            group_name_ldap_attribute="cn",
+            group_object_classes=["groupOfNames"],
+            membership_attribute_type="DN",
+            membership_ldap_attribute="member",
+            membership_user_ldap_attribute="cn",
+            memberof_ldap_attribute="memberOf")
+        ```
+
         ## Import
 
         LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
@@ -834,6 +868,40 @@ class GroupMapper(pulumi.CustomResource):
 
         The LDAP group mapper can be used to map an LDAP user's groups from some DN to Keycloak groups. This group mapper will also
         create the groups within Keycloak if they do not already exist.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
+            user_object_classes=[
+                "simpleSecurityObject",
+                "organizationalRole",
+            ],
+            connection_url="ldap://openldap",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        ldap_group_mapper = keycloak.ldap.GroupMapper("ldapGroupMapper",
+            realm_id=realm.id,
+            ldap_user_federation_id=ldap_user_federation.id,
+            ldap_groups_dn="dc=example,dc=org",
+            group_name_ldap_attribute="cn",
+            group_object_classes=["groupOfNames"],
+            membership_attribute_type="DN",
+            membership_ldap_attribute="member",
+            membership_user_ldap_attribute="cn",
+            memberof_ldap_attribute="memberOf")
+        ```
 
         ## Import
 

@@ -12,6 +12,43 @@ namespace Pulumi.Keycloak
     /// <summary>
     /// Allows for managing Realm Events settings within Keycloak.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var realmEvents = new Keycloak.RealmEvents("realmEvents", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         EventsEnabled = true,
+    ///         EventsExpiration = 3600,
+    ///         AdminEventsEnabled = true,
+    ///         AdminEventsDetailsEnabled = true,
+    ///         EnabledEventTypes = new[]
+    ///         {
+    ///             "LOGIN",
+    ///             "LOGOUT",
+    ///         },
+    ///         EventsListeners = new[]
+    ///         {
+    ///             "jboss-logging",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// This resource currently does not support importing.

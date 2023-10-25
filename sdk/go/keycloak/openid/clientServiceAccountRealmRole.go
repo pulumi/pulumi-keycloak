@@ -19,6 +19,55 @@ import (
 // If you'd like to attach client roles to a service account, please use the `openid.ClientServiceAccountRole`
 // resource.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			realmRole, err := keycloak.NewRole(ctx, "realmRole", &keycloak.RoleArgs{
+//				RealmId: realm.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			client, err := openid.NewClient(ctx, "client", &openid.ClientArgs{
+//				RealmId:                realm.ID(),
+//				ServiceAccountsEnabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClientServiceAccountRealmRole(ctx, "clientServiceAccountRole", &openid.ClientServiceAccountRealmRoleArgs{
+//				RealmId:              realm.ID(),
+//				ServiceAccountUserId: client.ServiceAccountUserId,
+//				Role:                 realmRole.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // This resource can be imported using the format `{{realmId}}/{{serviceAccountUserId}}/{{roleId}}`. Examplebash

@@ -468,6 +468,35 @@ class UserAttributeMapper(pulumi.CustomResource):
         The LDAP user attribute mapper can be used to map a single LDAP attribute
         to an attribute on the Keycloak user model.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
+            user_object_classes=[
+                "simpleSecurityObject",
+                "organizationalRole",
+            ],
+            connection_url="ldap://openldap",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        ldap_user_attribute_mapper = keycloak.ldap.UserAttributeMapper("ldapUserAttributeMapper",
+            realm_id=realm.id,
+            ldap_user_federation_id=ldap_user_federation.id,
+            user_model_attribute="foo",
+            ldap_attribute="bar")
+        ```
+
         ## Import
 
         LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
@@ -501,6 +530,35 @@ class UserAttributeMapper(pulumi.CustomResource):
 
         The LDAP user attribute mapper can be used to map a single LDAP attribute
         to an attribute on the Keycloak user model.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
+            user_object_classes=[
+                "simpleSecurityObject",
+                "organizationalRole",
+            ],
+            connection_url="ldap://openldap",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        ldap_user_attribute_mapper = keycloak.ldap.UserAttributeMapper("ldapUserAttributeMapper",
+            realm_id=realm.id,
+            ldap_user_federation_id=ldap_user_federation.id,
+            user_model_attribute="foo",
+            ldap_attribute="bar")
+        ```
 
         ## Import
 

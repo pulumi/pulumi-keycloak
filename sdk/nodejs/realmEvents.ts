@@ -7,6 +7,30 @@ import * as utilities from "./utilities";
 /**
  * Allows for managing Realm Events settings within Keycloak.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const realmEvents = new keycloak.RealmEvents("realmEvents", {
+ *     realmId: realm.id,
+ *     eventsEnabled: true,
+ *     eventsExpiration: 3600,
+ *     adminEventsEnabled: true,
+ *     adminEventsDetailsEnabled: true,
+ *     enabledEventTypes: [
+ *         "LOGIN",
+ *         "LOGOUT",
+ *     ],
+ *     eventsListeners: ["jboss-logging"],
+ * });
+ * ```
+ *
  * ## Import
  *
  * This resource currently does not support importing.

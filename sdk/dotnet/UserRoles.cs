@@ -20,6 +20,66 @@ namespace Pulumi.Keycloak
     /// a role and a composite that includes that role to the same user.
     /// 
     /// ## Example Usage
+    /// ### Exhaustive Roles)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var realmRole = new Keycloak.Role("realmRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Description = "My Realm Role",
+    ///     });
+    /// 
+    ///     var client = new Keycloak.OpenId.Client("client", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "client",
+    ///         Enabled = true,
+    ///         AccessType = "BEARER-ONLY",
+    ///     });
+    /// 
+    ///     var clientRole = new Keycloak.Role("clientRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = keycloak_client.Client.Id,
+    ///         Description = "My Client Role",
+    ///     });
+    /// 
+    ///     var user = new Keycloak.User("user", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Username = "bob",
+    ///         Enabled = true,
+    ///         Email = "bob@domain.com",
+    ///         FirstName = "Bob",
+    ///         LastName = "Bobson",
+    ///     });
+    /// 
+    ///     var userRoles = new Keycloak.UserRoles("userRoles", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         UserId = user.Id,
+    ///         RoleIds = new[]
+    ///         {
+    ///             realmRole.Id,
+    ///             clientRole.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 

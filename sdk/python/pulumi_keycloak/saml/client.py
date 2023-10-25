@@ -1495,6 +1495,25 @@ class Client(pulumi.CustomResource):
         Clients are entities that can use Keycloak for user authentication. Typically, clients are applications that redirect users
         to Keycloak for authentication in order to take advantage of Keycloak's user sessions for SSO.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        saml_client = keycloak.saml.Client("samlClient",
+            realm_id=realm.id,
+            client_id="saml-client",
+            sign_documents=False,
+            sign_assertions=True,
+            include_authn_statement=True,
+            signing_certificate=(lambda path: open(path).read())("saml-cert.pem"),
+            signing_private_key=(lambda path: open(path).read())("saml-key.pem"))
+        ```
+
         ## Import
 
         Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID. Examplebash
@@ -1550,6 +1569,25 @@ class Client(pulumi.CustomResource):
 
         Clients are entities that can use Keycloak for user authentication. Typically, clients are applications that redirect users
         to Keycloak for authentication in order to take advantage of Keycloak's user sessions for SSO.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        saml_client = keycloak.saml.Client("samlClient",
+            realm_id=realm.id,
+            client_id="saml-client",
+            sign_documents=False,
+            sign_assertions=True,
+            include_authn_statement=True,
+            signing_certificate=(lambda path: open(path).read())("saml-cert.pem"),
+            signing_private_key=(lambda path: open(path).read())("saml-key.pem"))
+        ```
 
         ## Import
 

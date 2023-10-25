@@ -18,6 +18,42 @@ import * as utilities from "../utilities";
  * resource is useful if you would like to create a realm and an authentication flow, and assign this flow to the realm within
  * a single run of `pulumi up`. In any case, do not attempt to use both the arguments within the `keycloak.Realm` resource
  * and this resource to manage authentication flow bindings, you should choose one or the other.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const flow = new keycloak.authentication.Flow("flow", {
+ *     realmId: realm.id,
+ *     alias: "my-flow-alias",
+ * });
+ * // first execution
+ * const executionOne = new keycloak.authentication.Execution("executionOne", {
+ *     realmId: realm.id,
+ *     parentFlowAlias: flow.alias,
+ *     authenticator: "auth-cookie",
+ *     requirement: "ALTERNATIVE",
+ * });
+ * // second execution
+ * const executionTwo = new keycloak.authentication.Execution("executionTwo", {
+ *     realmId: realm.id,
+ *     parentFlowAlias: flow.alias,
+ *     authenticator: "identity-provider-redirector",
+ *     requirement: "ALTERNATIVE",
+ * }, {
+ *     dependsOn: [executionOne],
+ * });
+ * const browserAuthenticationBinding = new keycloak.authentication.Bindings("browserAuthenticationBinding", {
+ *     realmId: realm.id,
+ *     browserFlow: flow.alias,
+ * });
+ * ```
  */
 export class Bindings extends pulumi.CustomResource {
     /**

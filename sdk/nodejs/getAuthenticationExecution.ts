@@ -6,6 +6,23 @@ import * as utilities from "./utilities";
 
 /**
  * This data source can be used to fetch the ID of an authentication execution within Keycloak.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const browserAuthCookie = keycloak.getAuthenticationExecutionOutput({
+ *     realmId: realm.id,
+ *     parentFlowAlias: "browser",
+ *     providerId: "auth-cookie",
+ * });
+ * ```
  */
 export function getAuthenticationExecution(args: GetAuthenticationExecutionArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthenticationExecutionResult> {
 
@@ -49,6 +66,23 @@ export interface GetAuthenticationExecutionResult {
 }
 /**
  * This data source can be used to fetch the ID of an authentication execution within Keycloak.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const browserAuthCookie = keycloak.getAuthenticationExecutionOutput({
+ *     realmId: realm.id,
+ *     parentFlowAlias: "browser",
+ *     providerId: "auth-cookie",
+ * });
+ * ```
  */
 export function getAuthenticationExecutionOutput(args: GetAuthenticationExecutionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthenticationExecutionResult> {
     return pulumi.output(args).apply((a: any) => getAuthenticationExecution(a, opts))

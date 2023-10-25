@@ -12,6 +12,70 @@ import * as utilities from "./utilities";
  * A realm manages a logical collection of users, credentials, roles, and groups. Users log in to realms and can be federated
  * from multiple sources.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     accessCodeLifespan: "1h",
+ *     attributes: {
+ *         mycustomAttribute: "myCustomValue",
+ *     },
+ *     displayName: "my realm",
+ *     displayNameHtml: "<b>my realm</b>",
+ *     enabled: true,
+ *     internationalization: {
+ *         defaultLocale: "en",
+ *         supportedLocales: [
+ *             "en",
+ *             "de",
+ *             "es",
+ *         ],
+ *     },
+ *     loginTheme: "base",
+ *     passwordPolicy: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername",
+ *     realm: "my-realm",
+ *     securityDefenses: {
+ *         bruteForceDetection: {
+ *             failureResetTimeSeconds: 43200,
+ *             maxFailureWaitSeconds: 900,
+ *             maxLoginFailures: 30,
+ *             minimumQuickLoginWaitSeconds: 60,
+ *             permanentLockout: false,
+ *             quickLoginCheckMilliSeconds: 1000,
+ *             waitIncrementSeconds: 60,
+ *         },
+ *         headers: {
+ *             contentSecurityPolicy: "frame-src 'self'; frame-ancestors 'self'; object-src 'none';",
+ *             contentSecurityPolicyReportOnly: "",
+ *             strictTransportSecurity: "max-age=31536000; includeSubDomains",
+ *             xContentTypeOptions: "nosniff",
+ *             xFrameOptions: "DENY",
+ *             xRobotsTag: "none",
+ *             xXssProtection: "1; mode=block",
+ *         },
+ *     },
+ *     smtpServer: {
+ *         auth: {
+ *             password: "password",
+ *             username: "tom",
+ *         },
+ *         from: "example@example.com",
+ *         host: "smtp.example.com",
+ *     },
+ *     sslRequired: "external",
+ *     webAuthnPolicy: {
+ *         relyingPartyEntityName: "Example",
+ *         relyingPartyId: "keycloak.example.com",
+ *         signatureAlgorithms: [
+ *             "ES256",
+ *             "RS256",
+ *         ],
+ *     },
+ * });
+ * ```
  * ## Default Client Scopes
  *
  * - `defaultDefaultClientScopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default default client-scopes.

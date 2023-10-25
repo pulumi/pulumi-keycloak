@@ -216,6 +216,68 @@ class HardcodedRoleMapper(pulumi.CustomResource):
         The LDAP hardcoded role mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
 
         ## Example Usage
+        ### Realm Role)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
+            user_object_classes=[
+                "simpleSecurityObject",
+                "organizationalRole",
+            ],
+            connection_url="ldap://openldap",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        realm_admin_role = keycloak.Role("realmAdminRole",
+            realm_id=realm.id,
+            description="My Realm Role")
+        assign_admin_role_to_all_users = keycloak.ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers",
+            realm_id=realm.id,
+            ldap_user_federation_id=ldap_user_federation.id,
+            role=realm_admin_role.name)
+        ```
+        ### Client Role)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
+            user_object_classes=[
+                "simpleSecurityObject",
+                "organizationalRole",
+            ],
+            connection_url="ldap://openldap",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        realm_management = keycloak.openid.get_client_output(realm_id=realm.id,
+            client_id="realm-management")
+        create_client = pulumi.Output.all(realm.id, realm_management).apply(lambda id, realm_management: keycloak.get_role_output(realm_id=id,
+            client_id=realm_management.id,
+            name="create-client"))
+        assign_admin_role_to_all_users = keycloak.ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers",
+            realm_id=realm.id,
+            ldap_user_federation_id=ldap_user_federation.id,
+            role=pulumi.Output.all(realm_management, create_client).apply(lambda realm_management, create_client: f"{realm_management.client_id}.{create_client.name}"))
+        ```
 
         ## Import
 
@@ -244,6 +306,68 @@ class HardcodedRoleMapper(pulumi.CustomResource):
         The LDAP hardcoded role mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
 
         ## Example Usage
+        ### Realm Role)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
+            user_object_classes=[
+                "simpleSecurityObject",
+                "organizationalRole",
+            ],
+            connection_url="ldap://openldap",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        realm_admin_role = keycloak.Role("realmAdminRole",
+            realm_id=realm.id,
+            description="My Realm Role")
+        assign_admin_role_to_all_users = keycloak.ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers",
+            realm_id=realm.id,
+            ldap_user_federation_id=ldap_user_federation.id,
+            role=realm_admin_role.name)
+        ```
+        ### Client Role)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
+            user_object_classes=[
+                "simpleSecurityObject",
+                "organizationalRole",
+            ],
+            connection_url="ldap://openldap",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        realm_management = keycloak.openid.get_client_output(realm_id=realm.id,
+            client_id="realm-management")
+        create_client = pulumi.Output.all(realm.id, realm_management).apply(lambda id, realm_management: keycloak.get_role_output(realm_id=id,
+            client_id=realm_management.id,
+            name="create-client"))
+        assign_admin_role_to_all_users = keycloak.ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers",
+            realm_id=realm.id,
+            ldap_user_federation_id=ldap_user_federation.id,
+            role=pulumi.Output.all(realm_management, create_client).apply(lambda realm_management, create_client: f"{realm_management.client_id}.{create_client.name}"))
+        ```
 
         ## Import
 

@@ -68,6 +68,19 @@ def get_authentication_flow(alias: Optional[str] = None,
     """
     This data source can be used to fetch the ID of an authentication flow within Keycloak.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.Realm("realm",
+        realm="my-realm",
+        enabled=True)
+    browser_auth_cookie = keycloak.get_authentication_flow_output(realm_id=realm.id,
+        alias="browser")
+    ```
+
 
     :param str alias: The alias of the flow.
     :param str realm_id: The realm the authentication flow exists in.
@@ -90,6 +103,19 @@ def get_authentication_flow_output(alias: Optional[pulumi.Input[str]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthenticationFlowResult]:
     """
     This data source can be used to fetch the ID of an authentication flow within Keycloak.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.Realm("realm",
+        realm="my-realm",
+        enabled=True)
+    browser_auth_cookie = keycloak.get_authentication_flow_output(realm_id=realm.id,
+        alias="browser")
+    ```
 
 
     :param str alias: The alias of the flow.

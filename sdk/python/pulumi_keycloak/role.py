@@ -292,6 +292,103 @@ class Role(pulumi.CustomResource):
         Roles allow you define privileges within Keycloak and map them to users and groups.
 
         ## Example Usage
+        ### Realm Role)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        realm_role = keycloak.Role("realmRole",
+            realm_id=realm.id,
+            description="My Realm Role",
+            attributes={
+                "key": "value",
+                "multivalue": "value1##value2",
+            })
+        ```
+        ### Client Role)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        openid_client = keycloak.openid.Client("openidClient",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
+        client_role = keycloak.Role("clientRole",
+            realm_id=realm.id,
+            client_id=keycloak_client["openid_client"]["id"],
+            description="My Client Role",
+            attributes={
+                "key": "value",
+            })
+        ```
+        ### Composite Role)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        # realm roles
+        create_role = keycloak.Role("createRole",
+            realm_id=realm.id,
+            attributes={
+                "key": "value",
+            })
+        read_role = keycloak.Role("readRole",
+            realm_id=realm.id,
+            attributes={
+                "key": "value",
+            })
+        update_role = keycloak.Role("updateRole",
+            realm_id=realm.id,
+            attributes={
+                "key": "value",
+            })
+        delete_role = keycloak.Role("deleteRole",
+            realm_id=realm.id,
+            attributes={
+                "key": "value",
+            })
+        # client role
+        openid_client = keycloak.openid.Client("openidClient",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
+        client_role = keycloak.Role("clientRole",
+            realm_id=realm.id,
+            client_id=keycloak_client["openid_client"]["id"],
+            description="My Client Role",
+            attributes={
+                "key": "value",
+            })
+        admin_role = keycloak.Role("adminRole",
+            realm_id=realm.id,
+            composite_roles=[
+                create_role.id,
+                read_role.id,
+                update_role.id,
+                delete_role.id,
+                client_role.id,
+            ],
+            attributes={
+                "key": "value",
+            })
+        ```
 
         ## Import
 
@@ -322,6 +419,103 @@ class Role(pulumi.CustomResource):
         Roles allow you define privileges within Keycloak and map them to users and groups.
 
         ## Example Usage
+        ### Realm Role)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        realm_role = keycloak.Role("realmRole",
+            realm_id=realm.id,
+            description="My Realm Role",
+            attributes={
+                "key": "value",
+                "multivalue": "value1##value2",
+            })
+        ```
+        ### Client Role)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        openid_client = keycloak.openid.Client("openidClient",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
+        client_role = keycloak.Role("clientRole",
+            realm_id=realm.id,
+            client_id=keycloak_client["openid_client"]["id"],
+            description="My Client Role",
+            attributes={
+                "key": "value",
+            })
+        ```
+        ### Composite Role)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        # realm roles
+        create_role = keycloak.Role("createRole",
+            realm_id=realm.id,
+            attributes={
+                "key": "value",
+            })
+        read_role = keycloak.Role("readRole",
+            realm_id=realm.id,
+            attributes={
+                "key": "value",
+            })
+        update_role = keycloak.Role("updateRole",
+            realm_id=realm.id,
+            attributes={
+                "key": "value",
+            })
+        delete_role = keycloak.Role("deleteRole",
+            realm_id=realm.id,
+            attributes={
+                "key": "value",
+            })
+        # client role
+        openid_client = keycloak.openid.Client("openidClient",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
+        client_role = keycloak.Role("clientRole",
+            realm_id=realm.id,
+            client_id=keycloak_client["openid_client"]["id"],
+            description="My Client Role",
+            attributes={
+                "key": "value",
+            })
+        admin_role = keycloak.Role("adminRole",
+            realm_id=realm.id,
+            composite_roles=[
+                create_role.id,
+                read_role.id,
+                update_role.id,
+                delete_role.id,
+                client_role.id,
+            ],
+            attributes={
+                "key": "value",
+            })
+        ```
 
         ## Import
 

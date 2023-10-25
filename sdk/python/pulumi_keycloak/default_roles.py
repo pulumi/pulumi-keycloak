@@ -141,6 +141,19 @@ class DefaultRoles(pulumi.CustomResource):
         Note: This feature was added in Keycloak v13, so this resource will not work on older versions of Keycloak.
 
         ## Example Usage
+        ### Realm Role)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        default_roles = keycloak.DefaultRoles("defaultRoles",
+            realm_id=realm.id,
+            default_roles=["uma_authorization"])
+        ```
 
         ## Import
 
@@ -167,6 +180,19 @@ class DefaultRoles(pulumi.CustomResource):
         Note: This feature was added in Keycloak v13, so this resource will not work on older versions of Keycloak.
 
         ## Example Usage
+        ### Realm Role)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        default_roles = keycloak.DefaultRoles("defaultRoles",
+            realm_id=realm.id,
+            default_roles=["uma_authorization"])
+        ```
 
         ## Import
 
