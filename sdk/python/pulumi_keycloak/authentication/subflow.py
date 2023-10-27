@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['SubflowArgs', 'Subflow']
@@ -34,52 +34,17 @@ class SubflowArgs:
         :param pulumi.Input[str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
                or `DISABLED`. Defaults to `DISABLED`.
         """
-        SubflowArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            alias=alias,
-            parent_flow_alias=parent_flow_alias,
-            realm_id=realm_id,
-            authenticator=authenticator,
-            description=description,
-            provider_id=provider_id,
-            requirement=requirement,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             alias: Optional[pulumi.Input[str]] = None,
-             parent_flow_alias: Optional[pulumi.Input[str]] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             authenticator: Optional[pulumi.Input[str]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             provider_id: Optional[pulumi.Input[str]] = None,
-             requirement: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if alias is None:
-            raise TypeError("Missing 'alias' argument")
-        if parent_flow_alias is None and 'parentFlowAlias' in kwargs:
-            parent_flow_alias = kwargs['parentFlowAlias']
-        if parent_flow_alias is None:
-            raise TypeError("Missing 'parent_flow_alias' argument")
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-        if realm_id is None:
-            raise TypeError("Missing 'realm_id' argument")
-        if provider_id is None and 'providerId' in kwargs:
-            provider_id = kwargs['providerId']
-
-        _setter("alias", alias)
-        _setter("parent_flow_alias", parent_flow_alias)
-        _setter("realm_id", realm_id)
+        pulumi.set(__self__, "alias", alias)
+        pulumi.set(__self__, "parent_flow_alias", parent_flow_alias)
+        pulumi.set(__self__, "realm_id", realm_id)
         if authenticator is not None:
-            _setter("authenticator", authenticator)
+            pulumi.set(__self__, "authenticator", authenticator)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if provider_id is not None:
-            _setter("provider_id", provider_id)
+            pulumi.set(__self__, "provider_id", provider_id)
         if requirement is not None:
-            _setter("requirement", requirement)
+            pulumi.set(__self__, "requirement", requirement)
 
     @property
     @pulumi.getter
@@ -192,49 +157,20 @@ class _SubflowState:
         :param pulumi.Input[str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
                or `DISABLED`. Defaults to `DISABLED`.
         """
-        _SubflowState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            alias=alias,
-            authenticator=authenticator,
-            description=description,
-            parent_flow_alias=parent_flow_alias,
-            provider_id=provider_id,
-            realm_id=realm_id,
-            requirement=requirement,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             alias: Optional[pulumi.Input[str]] = None,
-             authenticator: Optional[pulumi.Input[str]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             parent_flow_alias: Optional[pulumi.Input[str]] = None,
-             provider_id: Optional[pulumi.Input[str]] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             requirement: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if parent_flow_alias is None and 'parentFlowAlias' in kwargs:
-            parent_flow_alias = kwargs['parentFlowAlias']
-        if provider_id is None and 'providerId' in kwargs:
-            provider_id = kwargs['providerId']
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-
         if alias is not None:
-            _setter("alias", alias)
+            pulumi.set(__self__, "alias", alias)
         if authenticator is not None:
-            _setter("authenticator", authenticator)
+            pulumi.set(__self__, "authenticator", authenticator)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if parent_flow_alias is not None:
-            _setter("parent_flow_alias", parent_flow_alias)
+            pulumi.set(__self__, "parent_flow_alias", parent_flow_alias)
         if provider_id is not None:
-            _setter("provider_id", provider_id)
+            pulumi.set(__self__, "provider_id", provider_id)
         if realm_id is not None:
-            _setter("realm_id", realm_id)
+            pulumi.set(__self__, "realm_id", realm_id)
         if requirement is not None:
-            _setter("requirement", requirement)
+            pulumi.set(__self__, "requirement", requirement)
 
     @property
     @pulumi.getter
@@ -434,10 +370,6 @@ class Subflow(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            SubflowArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

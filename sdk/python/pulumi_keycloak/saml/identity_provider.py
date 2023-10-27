@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['IdentityProviderArgs', 'IdentityProvider']
@@ -90,235 +90,76 @@ class IdentityProviderArgs:
         :param pulumi.Input[bool] want_assertions_signed: Indicates whether this service provider expects a signed Assertion.
         :param pulumi.Input[str] xml_sign_key_info_key_name_transformer: The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
         """
-        IdentityProviderArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            alias=alias,
-            entity_id=entity_id,
-            realm=realm,
-            single_sign_on_service_url=single_sign_on_service_url,
-            add_read_token_role_on_create=add_read_token_role_on_create,
-            authenticate_by_default=authenticate_by_default,
-            authn_context_class_refs=authn_context_class_refs,
-            authn_context_comparison_type=authn_context_comparison_type,
-            authn_context_decl_refs=authn_context_decl_refs,
-            backchannel_supported=backchannel_supported,
-            display_name=display_name,
-            enabled=enabled,
-            extra_config=extra_config,
-            first_broker_login_flow_alias=first_broker_login_flow_alias,
-            force_authn=force_authn,
-            gui_order=gui_order,
-            hide_on_login_page=hide_on_login_page,
-            link_only=link_only,
-            login_hint=login_hint,
-            name_id_policy_format=name_id_policy_format,
-            post_binding_authn_request=post_binding_authn_request,
-            post_binding_logout=post_binding_logout,
-            post_binding_response=post_binding_response,
-            post_broker_login_flow_alias=post_broker_login_flow_alias,
-            principal_attribute=principal_attribute,
-            principal_type=principal_type,
-            provider_id=provider_id,
-            signature_algorithm=signature_algorithm,
-            signing_certificate=signing_certificate,
-            single_logout_service_url=single_logout_service_url,
-            store_token=store_token,
-            sync_mode=sync_mode,
-            trust_email=trust_email,
-            validate_signature=validate_signature,
-            want_assertions_encrypted=want_assertions_encrypted,
-            want_assertions_signed=want_assertions_signed,
-            xml_sign_key_info_key_name_transformer=xml_sign_key_info_key_name_transformer,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             alias: Optional[pulumi.Input[str]] = None,
-             entity_id: Optional[pulumi.Input[str]] = None,
-             realm: Optional[pulumi.Input[str]] = None,
-             single_sign_on_service_url: Optional[pulumi.Input[str]] = None,
-             add_read_token_role_on_create: Optional[pulumi.Input[bool]] = None,
-             authenticate_by_default: Optional[pulumi.Input[bool]] = None,
-             authn_context_class_refs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             authn_context_comparison_type: Optional[pulumi.Input[str]] = None,
-             authn_context_decl_refs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             backchannel_supported: Optional[pulumi.Input[bool]] = None,
-             display_name: Optional[pulumi.Input[str]] = None,
-             enabled: Optional[pulumi.Input[bool]] = None,
-             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-             first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
-             force_authn: Optional[pulumi.Input[bool]] = None,
-             gui_order: Optional[pulumi.Input[str]] = None,
-             hide_on_login_page: Optional[pulumi.Input[bool]] = None,
-             link_only: Optional[pulumi.Input[bool]] = None,
-             login_hint: Optional[pulumi.Input[str]] = None,
-             name_id_policy_format: Optional[pulumi.Input[str]] = None,
-             post_binding_authn_request: Optional[pulumi.Input[bool]] = None,
-             post_binding_logout: Optional[pulumi.Input[bool]] = None,
-             post_binding_response: Optional[pulumi.Input[bool]] = None,
-             post_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
-             principal_attribute: Optional[pulumi.Input[str]] = None,
-             principal_type: Optional[pulumi.Input[str]] = None,
-             provider_id: Optional[pulumi.Input[str]] = None,
-             signature_algorithm: Optional[pulumi.Input[str]] = None,
-             signing_certificate: Optional[pulumi.Input[str]] = None,
-             single_logout_service_url: Optional[pulumi.Input[str]] = None,
-             store_token: Optional[pulumi.Input[bool]] = None,
-             sync_mode: Optional[pulumi.Input[str]] = None,
-             trust_email: Optional[pulumi.Input[bool]] = None,
-             validate_signature: Optional[pulumi.Input[bool]] = None,
-             want_assertions_encrypted: Optional[pulumi.Input[bool]] = None,
-             want_assertions_signed: Optional[pulumi.Input[bool]] = None,
-             xml_sign_key_info_key_name_transformer: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if alias is None:
-            raise TypeError("Missing 'alias' argument")
-        if entity_id is None and 'entityId' in kwargs:
-            entity_id = kwargs['entityId']
-        if entity_id is None:
-            raise TypeError("Missing 'entity_id' argument")
-        if realm is None:
-            raise TypeError("Missing 'realm' argument")
-        if single_sign_on_service_url is None and 'singleSignOnServiceUrl' in kwargs:
-            single_sign_on_service_url = kwargs['singleSignOnServiceUrl']
-        if single_sign_on_service_url is None:
-            raise TypeError("Missing 'single_sign_on_service_url' argument")
-        if add_read_token_role_on_create is None and 'addReadTokenRoleOnCreate' in kwargs:
-            add_read_token_role_on_create = kwargs['addReadTokenRoleOnCreate']
-        if authenticate_by_default is None and 'authenticateByDefault' in kwargs:
-            authenticate_by_default = kwargs['authenticateByDefault']
-        if authn_context_class_refs is None and 'authnContextClassRefs' in kwargs:
-            authn_context_class_refs = kwargs['authnContextClassRefs']
-        if authn_context_comparison_type is None and 'authnContextComparisonType' in kwargs:
-            authn_context_comparison_type = kwargs['authnContextComparisonType']
-        if authn_context_decl_refs is None and 'authnContextDeclRefs' in kwargs:
-            authn_context_decl_refs = kwargs['authnContextDeclRefs']
-        if backchannel_supported is None and 'backchannelSupported' in kwargs:
-            backchannel_supported = kwargs['backchannelSupported']
-        if display_name is None and 'displayName' in kwargs:
-            display_name = kwargs['displayName']
-        if extra_config is None and 'extraConfig' in kwargs:
-            extra_config = kwargs['extraConfig']
-        if first_broker_login_flow_alias is None and 'firstBrokerLoginFlowAlias' in kwargs:
-            first_broker_login_flow_alias = kwargs['firstBrokerLoginFlowAlias']
-        if force_authn is None and 'forceAuthn' in kwargs:
-            force_authn = kwargs['forceAuthn']
-        if gui_order is None and 'guiOrder' in kwargs:
-            gui_order = kwargs['guiOrder']
-        if hide_on_login_page is None and 'hideOnLoginPage' in kwargs:
-            hide_on_login_page = kwargs['hideOnLoginPage']
-        if link_only is None and 'linkOnly' in kwargs:
-            link_only = kwargs['linkOnly']
-        if login_hint is None and 'loginHint' in kwargs:
-            login_hint = kwargs['loginHint']
-        if name_id_policy_format is None and 'nameIdPolicyFormat' in kwargs:
-            name_id_policy_format = kwargs['nameIdPolicyFormat']
-        if post_binding_authn_request is None and 'postBindingAuthnRequest' in kwargs:
-            post_binding_authn_request = kwargs['postBindingAuthnRequest']
-        if post_binding_logout is None and 'postBindingLogout' in kwargs:
-            post_binding_logout = kwargs['postBindingLogout']
-        if post_binding_response is None and 'postBindingResponse' in kwargs:
-            post_binding_response = kwargs['postBindingResponse']
-        if post_broker_login_flow_alias is None and 'postBrokerLoginFlowAlias' in kwargs:
-            post_broker_login_flow_alias = kwargs['postBrokerLoginFlowAlias']
-        if principal_attribute is None and 'principalAttribute' in kwargs:
-            principal_attribute = kwargs['principalAttribute']
-        if principal_type is None and 'principalType' in kwargs:
-            principal_type = kwargs['principalType']
-        if provider_id is None and 'providerId' in kwargs:
-            provider_id = kwargs['providerId']
-        if signature_algorithm is None and 'signatureAlgorithm' in kwargs:
-            signature_algorithm = kwargs['signatureAlgorithm']
-        if signing_certificate is None and 'signingCertificate' in kwargs:
-            signing_certificate = kwargs['signingCertificate']
-        if single_logout_service_url is None and 'singleLogoutServiceUrl' in kwargs:
-            single_logout_service_url = kwargs['singleLogoutServiceUrl']
-        if store_token is None and 'storeToken' in kwargs:
-            store_token = kwargs['storeToken']
-        if sync_mode is None and 'syncMode' in kwargs:
-            sync_mode = kwargs['syncMode']
-        if trust_email is None and 'trustEmail' in kwargs:
-            trust_email = kwargs['trustEmail']
-        if validate_signature is None and 'validateSignature' in kwargs:
-            validate_signature = kwargs['validateSignature']
-        if want_assertions_encrypted is None and 'wantAssertionsEncrypted' in kwargs:
-            want_assertions_encrypted = kwargs['wantAssertionsEncrypted']
-        if want_assertions_signed is None and 'wantAssertionsSigned' in kwargs:
-            want_assertions_signed = kwargs['wantAssertionsSigned']
-        if xml_sign_key_info_key_name_transformer is None and 'xmlSignKeyInfoKeyNameTransformer' in kwargs:
-            xml_sign_key_info_key_name_transformer = kwargs['xmlSignKeyInfoKeyNameTransformer']
-
-        _setter("alias", alias)
-        _setter("entity_id", entity_id)
-        _setter("realm", realm)
-        _setter("single_sign_on_service_url", single_sign_on_service_url)
+        pulumi.set(__self__, "alias", alias)
+        pulumi.set(__self__, "entity_id", entity_id)
+        pulumi.set(__self__, "realm", realm)
+        pulumi.set(__self__, "single_sign_on_service_url", single_sign_on_service_url)
         if add_read_token_role_on_create is not None:
-            _setter("add_read_token_role_on_create", add_read_token_role_on_create)
+            pulumi.set(__self__, "add_read_token_role_on_create", add_read_token_role_on_create)
         if authenticate_by_default is not None:
-            _setter("authenticate_by_default", authenticate_by_default)
+            pulumi.set(__self__, "authenticate_by_default", authenticate_by_default)
         if authn_context_class_refs is not None:
-            _setter("authn_context_class_refs", authn_context_class_refs)
+            pulumi.set(__self__, "authn_context_class_refs", authn_context_class_refs)
         if authn_context_comparison_type is not None:
-            _setter("authn_context_comparison_type", authn_context_comparison_type)
+            pulumi.set(__self__, "authn_context_comparison_type", authn_context_comparison_type)
         if authn_context_decl_refs is not None:
-            _setter("authn_context_decl_refs", authn_context_decl_refs)
+            pulumi.set(__self__, "authn_context_decl_refs", authn_context_decl_refs)
         if backchannel_supported is not None:
-            _setter("backchannel_supported", backchannel_supported)
+            pulumi.set(__self__, "backchannel_supported", backchannel_supported)
         if display_name is not None:
-            _setter("display_name", display_name)
+            pulumi.set(__self__, "display_name", display_name)
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if extra_config is not None:
-            _setter("extra_config", extra_config)
+            pulumi.set(__self__, "extra_config", extra_config)
         if first_broker_login_flow_alias is not None:
-            _setter("first_broker_login_flow_alias", first_broker_login_flow_alias)
+            pulumi.set(__self__, "first_broker_login_flow_alias", first_broker_login_flow_alias)
         if force_authn is not None:
-            _setter("force_authn", force_authn)
+            pulumi.set(__self__, "force_authn", force_authn)
         if gui_order is not None:
-            _setter("gui_order", gui_order)
+            pulumi.set(__self__, "gui_order", gui_order)
         if hide_on_login_page is not None:
-            _setter("hide_on_login_page", hide_on_login_page)
+            pulumi.set(__self__, "hide_on_login_page", hide_on_login_page)
         if link_only is not None:
-            _setter("link_only", link_only)
+            pulumi.set(__self__, "link_only", link_only)
         if login_hint is not None:
-            _setter("login_hint", login_hint)
+            pulumi.set(__self__, "login_hint", login_hint)
         if name_id_policy_format is not None:
-            _setter("name_id_policy_format", name_id_policy_format)
+            pulumi.set(__self__, "name_id_policy_format", name_id_policy_format)
         if post_binding_authn_request is not None:
-            _setter("post_binding_authn_request", post_binding_authn_request)
+            pulumi.set(__self__, "post_binding_authn_request", post_binding_authn_request)
         if post_binding_logout is not None:
-            _setter("post_binding_logout", post_binding_logout)
+            pulumi.set(__self__, "post_binding_logout", post_binding_logout)
         if post_binding_response is not None:
-            _setter("post_binding_response", post_binding_response)
+            pulumi.set(__self__, "post_binding_response", post_binding_response)
         if post_broker_login_flow_alias is not None:
-            _setter("post_broker_login_flow_alias", post_broker_login_flow_alias)
+            pulumi.set(__self__, "post_broker_login_flow_alias", post_broker_login_flow_alias)
         if principal_attribute is not None:
-            _setter("principal_attribute", principal_attribute)
+            pulumi.set(__self__, "principal_attribute", principal_attribute)
         if principal_type is not None:
-            _setter("principal_type", principal_type)
+            pulumi.set(__self__, "principal_type", principal_type)
         if provider_id is not None:
-            _setter("provider_id", provider_id)
+            pulumi.set(__self__, "provider_id", provider_id)
         if signature_algorithm is not None:
-            _setter("signature_algorithm", signature_algorithm)
+            pulumi.set(__self__, "signature_algorithm", signature_algorithm)
         if signing_certificate is not None:
-            _setter("signing_certificate", signing_certificate)
+            pulumi.set(__self__, "signing_certificate", signing_certificate)
         if single_logout_service_url is not None:
-            _setter("single_logout_service_url", single_logout_service_url)
+            pulumi.set(__self__, "single_logout_service_url", single_logout_service_url)
         if store_token is not None:
-            _setter("store_token", store_token)
+            pulumi.set(__self__, "store_token", store_token)
         if sync_mode is not None:
-            _setter("sync_mode", sync_mode)
+            pulumi.set(__self__, "sync_mode", sync_mode)
         if trust_email is not None:
-            _setter("trust_email", trust_email)
+            pulumi.set(__self__, "trust_email", trust_email)
         if validate_signature is not None:
-            _setter("validate_signature", validate_signature)
+            pulumi.set(__self__, "validate_signature", validate_signature)
         if want_assertions_encrypted is not None:
-            _setter("want_assertions_encrypted", want_assertions_encrypted)
+            pulumi.set(__self__, "want_assertions_encrypted", want_assertions_encrypted)
         if want_assertions_signed is not None:
-            _setter("want_assertions_signed", want_assertions_signed)
+            pulumi.set(__self__, "want_assertions_signed", want_assertions_signed)
         if xml_sign_key_info_key_name_transformer is not None:
-            _setter("xml_sign_key_info_key_name_transformer", xml_sign_key_info_key_name_transformer)
+            pulumi.set(__self__, "xml_sign_key_info_key_name_transformer", xml_sign_key_info_key_name_transformer)
 
     @property
     @pulumi.getter
@@ -843,237 +684,82 @@ class _IdentityProviderState:
         :param pulumi.Input[bool] want_assertions_signed: Indicates whether this service provider expects a signed Assertion.
         :param pulumi.Input[str] xml_sign_key_info_key_name_transformer: The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
         """
-        _IdentityProviderState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            add_read_token_role_on_create=add_read_token_role_on_create,
-            alias=alias,
-            authenticate_by_default=authenticate_by_default,
-            authn_context_class_refs=authn_context_class_refs,
-            authn_context_comparison_type=authn_context_comparison_type,
-            authn_context_decl_refs=authn_context_decl_refs,
-            backchannel_supported=backchannel_supported,
-            display_name=display_name,
-            enabled=enabled,
-            entity_id=entity_id,
-            extra_config=extra_config,
-            first_broker_login_flow_alias=first_broker_login_flow_alias,
-            force_authn=force_authn,
-            gui_order=gui_order,
-            hide_on_login_page=hide_on_login_page,
-            internal_id=internal_id,
-            link_only=link_only,
-            login_hint=login_hint,
-            name_id_policy_format=name_id_policy_format,
-            post_binding_authn_request=post_binding_authn_request,
-            post_binding_logout=post_binding_logout,
-            post_binding_response=post_binding_response,
-            post_broker_login_flow_alias=post_broker_login_flow_alias,
-            principal_attribute=principal_attribute,
-            principal_type=principal_type,
-            provider_id=provider_id,
-            realm=realm,
-            signature_algorithm=signature_algorithm,
-            signing_certificate=signing_certificate,
-            single_logout_service_url=single_logout_service_url,
-            single_sign_on_service_url=single_sign_on_service_url,
-            store_token=store_token,
-            sync_mode=sync_mode,
-            trust_email=trust_email,
-            validate_signature=validate_signature,
-            want_assertions_encrypted=want_assertions_encrypted,
-            want_assertions_signed=want_assertions_signed,
-            xml_sign_key_info_key_name_transformer=xml_sign_key_info_key_name_transformer,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             add_read_token_role_on_create: Optional[pulumi.Input[bool]] = None,
-             alias: Optional[pulumi.Input[str]] = None,
-             authenticate_by_default: Optional[pulumi.Input[bool]] = None,
-             authn_context_class_refs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             authn_context_comparison_type: Optional[pulumi.Input[str]] = None,
-             authn_context_decl_refs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             backchannel_supported: Optional[pulumi.Input[bool]] = None,
-             display_name: Optional[pulumi.Input[str]] = None,
-             enabled: Optional[pulumi.Input[bool]] = None,
-             entity_id: Optional[pulumi.Input[str]] = None,
-             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-             first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
-             force_authn: Optional[pulumi.Input[bool]] = None,
-             gui_order: Optional[pulumi.Input[str]] = None,
-             hide_on_login_page: Optional[pulumi.Input[bool]] = None,
-             internal_id: Optional[pulumi.Input[str]] = None,
-             link_only: Optional[pulumi.Input[bool]] = None,
-             login_hint: Optional[pulumi.Input[str]] = None,
-             name_id_policy_format: Optional[pulumi.Input[str]] = None,
-             post_binding_authn_request: Optional[pulumi.Input[bool]] = None,
-             post_binding_logout: Optional[pulumi.Input[bool]] = None,
-             post_binding_response: Optional[pulumi.Input[bool]] = None,
-             post_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
-             principal_attribute: Optional[pulumi.Input[str]] = None,
-             principal_type: Optional[pulumi.Input[str]] = None,
-             provider_id: Optional[pulumi.Input[str]] = None,
-             realm: Optional[pulumi.Input[str]] = None,
-             signature_algorithm: Optional[pulumi.Input[str]] = None,
-             signing_certificate: Optional[pulumi.Input[str]] = None,
-             single_logout_service_url: Optional[pulumi.Input[str]] = None,
-             single_sign_on_service_url: Optional[pulumi.Input[str]] = None,
-             store_token: Optional[pulumi.Input[bool]] = None,
-             sync_mode: Optional[pulumi.Input[str]] = None,
-             trust_email: Optional[pulumi.Input[bool]] = None,
-             validate_signature: Optional[pulumi.Input[bool]] = None,
-             want_assertions_encrypted: Optional[pulumi.Input[bool]] = None,
-             want_assertions_signed: Optional[pulumi.Input[bool]] = None,
-             xml_sign_key_info_key_name_transformer: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if add_read_token_role_on_create is None and 'addReadTokenRoleOnCreate' in kwargs:
-            add_read_token_role_on_create = kwargs['addReadTokenRoleOnCreate']
-        if authenticate_by_default is None and 'authenticateByDefault' in kwargs:
-            authenticate_by_default = kwargs['authenticateByDefault']
-        if authn_context_class_refs is None and 'authnContextClassRefs' in kwargs:
-            authn_context_class_refs = kwargs['authnContextClassRefs']
-        if authn_context_comparison_type is None and 'authnContextComparisonType' in kwargs:
-            authn_context_comparison_type = kwargs['authnContextComparisonType']
-        if authn_context_decl_refs is None and 'authnContextDeclRefs' in kwargs:
-            authn_context_decl_refs = kwargs['authnContextDeclRefs']
-        if backchannel_supported is None and 'backchannelSupported' in kwargs:
-            backchannel_supported = kwargs['backchannelSupported']
-        if display_name is None and 'displayName' in kwargs:
-            display_name = kwargs['displayName']
-        if entity_id is None and 'entityId' in kwargs:
-            entity_id = kwargs['entityId']
-        if extra_config is None and 'extraConfig' in kwargs:
-            extra_config = kwargs['extraConfig']
-        if first_broker_login_flow_alias is None and 'firstBrokerLoginFlowAlias' in kwargs:
-            first_broker_login_flow_alias = kwargs['firstBrokerLoginFlowAlias']
-        if force_authn is None and 'forceAuthn' in kwargs:
-            force_authn = kwargs['forceAuthn']
-        if gui_order is None and 'guiOrder' in kwargs:
-            gui_order = kwargs['guiOrder']
-        if hide_on_login_page is None and 'hideOnLoginPage' in kwargs:
-            hide_on_login_page = kwargs['hideOnLoginPage']
-        if internal_id is None and 'internalId' in kwargs:
-            internal_id = kwargs['internalId']
-        if link_only is None and 'linkOnly' in kwargs:
-            link_only = kwargs['linkOnly']
-        if login_hint is None and 'loginHint' in kwargs:
-            login_hint = kwargs['loginHint']
-        if name_id_policy_format is None and 'nameIdPolicyFormat' in kwargs:
-            name_id_policy_format = kwargs['nameIdPolicyFormat']
-        if post_binding_authn_request is None and 'postBindingAuthnRequest' in kwargs:
-            post_binding_authn_request = kwargs['postBindingAuthnRequest']
-        if post_binding_logout is None and 'postBindingLogout' in kwargs:
-            post_binding_logout = kwargs['postBindingLogout']
-        if post_binding_response is None and 'postBindingResponse' in kwargs:
-            post_binding_response = kwargs['postBindingResponse']
-        if post_broker_login_flow_alias is None and 'postBrokerLoginFlowAlias' in kwargs:
-            post_broker_login_flow_alias = kwargs['postBrokerLoginFlowAlias']
-        if principal_attribute is None and 'principalAttribute' in kwargs:
-            principal_attribute = kwargs['principalAttribute']
-        if principal_type is None and 'principalType' in kwargs:
-            principal_type = kwargs['principalType']
-        if provider_id is None and 'providerId' in kwargs:
-            provider_id = kwargs['providerId']
-        if signature_algorithm is None and 'signatureAlgorithm' in kwargs:
-            signature_algorithm = kwargs['signatureAlgorithm']
-        if signing_certificate is None and 'signingCertificate' in kwargs:
-            signing_certificate = kwargs['signingCertificate']
-        if single_logout_service_url is None and 'singleLogoutServiceUrl' in kwargs:
-            single_logout_service_url = kwargs['singleLogoutServiceUrl']
-        if single_sign_on_service_url is None and 'singleSignOnServiceUrl' in kwargs:
-            single_sign_on_service_url = kwargs['singleSignOnServiceUrl']
-        if store_token is None and 'storeToken' in kwargs:
-            store_token = kwargs['storeToken']
-        if sync_mode is None and 'syncMode' in kwargs:
-            sync_mode = kwargs['syncMode']
-        if trust_email is None and 'trustEmail' in kwargs:
-            trust_email = kwargs['trustEmail']
-        if validate_signature is None and 'validateSignature' in kwargs:
-            validate_signature = kwargs['validateSignature']
-        if want_assertions_encrypted is None and 'wantAssertionsEncrypted' in kwargs:
-            want_assertions_encrypted = kwargs['wantAssertionsEncrypted']
-        if want_assertions_signed is None and 'wantAssertionsSigned' in kwargs:
-            want_assertions_signed = kwargs['wantAssertionsSigned']
-        if xml_sign_key_info_key_name_transformer is None and 'xmlSignKeyInfoKeyNameTransformer' in kwargs:
-            xml_sign_key_info_key_name_transformer = kwargs['xmlSignKeyInfoKeyNameTransformer']
-
         if add_read_token_role_on_create is not None:
-            _setter("add_read_token_role_on_create", add_read_token_role_on_create)
+            pulumi.set(__self__, "add_read_token_role_on_create", add_read_token_role_on_create)
         if alias is not None:
-            _setter("alias", alias)
+            pulumi.set(__self__, "alias", alias)
         if authenticate_by_default is not None:
-            _setter("authenticate_by_default", authenticate_by_default)
+            pulumi.set(__self__, "authenticate_by_default", authenticate_by_default)
         if authn_context_class_refs is not None:
-            _setter("authn_context_class_refs", authn_context_class_refs)
+            pulumi.set(__self__, "authn_context_class_refs", authn_context_class_refs)
         if authn_context_comparison_type is not None:
-            _setter("authn_context_comparison_type", authn_context_comparison_type)
+            pulumi.set(__self__, "authn_context_comparison_type", authn_context_comparison_type)
         if authn_context_decl_refs is not None:
-            _setter("authn_context_decl_refs", authn_context_decl_refs)
+            pulumi.set(__self__, "authn_context_decl_refs", authn_context_decl_refs)
         if backchannel_supported is not None:
-            _setter("backchannel_supported", backchannel_supported)
+            pulumi.set(__self__, "backchannel_supported", backchannel_supported)
         if display_name is not None:
-            _setter("display_name", display_name)
+            pulumi.set(__self__, "display_name", display_name)
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if entity_id is not None:
-            _setter("entity_id", entity_id)
+            pulumi.set(__self__, "entity_id", entity_id)
         if extra_config is not None:
-            _setter("extra_config", extra_config)
+            pulumi.set(__self__, "extra_config", extra_config)
         if first_broker_login_flow_alias is not None:
-            _setter("first_broker_login_flow_alias", first_broker_login_flow_alias)
+            pulumi.set(__self__, "first_broker_login_flow_alias", first_broker_login_flow_alias)
         if force_authn is not None:
-            _setter("force_authn", force_authn)
+            pulumi.set(__self__, "force_authn", force_authn)
         if gui_order is not None:
-            _setter("gui_order", gui_order)
+            pulumi.set(__self__, "gui_order", gui_order)
         if hide_on_login_page is not None:
-            _setter("hide_on_login_page", hide_on_login_page)
+            pulumi.set(__self__, "hide_on_login_page", hide_on_login_page)
         if internal_id is not None:
-            _setter("internal_id", internal_id)
+            pulumi.set(__self__, "internal_id", internal_id)
         if link_only is not None:
-            _setter("link_only", link_only)
+            pulumi.set(__self__, "link_only", link_only)
         if login_hint is not None:
-            _setter("login_hint", login_hint)
+            pulumi.set(__self__, "login_hint", login_hint)
         if name_id_policy_format is not None:
-            _setter("name_id_policy_format", name_id_policy_format)
+            pulumi.set(__self__, "name_id_policy_format", name_id_policy_format)
         if post_binding_authn_request is not None:
-            _setter("post_binding_authn_request", post_binding_authn_request)
+            pulumi.set(__self__, "post_binding_authn_request", post_binding_authn_request)
         if post_binding_logout is not None:
-            _setter("post_binding_logout", post_binding_logout)
+            pulumi.set(__self__, "post_binding_logout", post_binding_logout)
         if post_binding_response is not None:
-            _setter("post_binding_response", post_binding_response)
+            pulumi.set(__self__, "post_binding_response", post_binding_response)
         if post_broker_login_flow_alias is not None:
-            _setter("post_broker_login_flow_alias", post_broker_login_flow_alias)
+            pulumi.set(__self__, "post_broker_login_flow_alias", post_broker_login_flow_alias)
         if principal_attribute is not None:
-            _setter("principal_attribute", principal_attribute)
+            pulumi.set(__self__, "principal_attribute", principal_attribute)
         if principal_type is not None:
-            _setter("principal_type", principal_type)
+            pulumi.set(__self__, "principal_type", principal_type)
         if provider_id is not None:
-            _setter("provider_id", provider_id)
+            pulumi.set(__self__, "provider_id", provider_id)
         if realm is not None:
-            _setter("realm", realm)
+            pulumi.set(__self__, "realm", realm)
         if signature_algorithm is not None:
-            _setter("signature_algorithm", signature_algorithm)
+            pulumi.set(__self__, "signature_algorithm", signature_algorithm)
         if signing_certificate is not None:
-            _setter("signing_certificate", signing_certificate)
+            pulumi.set(__self__, "signing_certificate", signing_certificate)
         if single_logout_service_url is not None:
-            _setter("single_logout_service_url", single_logout_service_url)
+            pulumi.set(__self__, "single_logout_service_url", single_logout_service_url)
         if single_sign_on_service_url is not None:
-            _setter("single_sign_on_service_url", single_sign_on_service_url)
+            pulumi.set(__self__, "single_sign_on_service_url", single_sign_on_service_url)
         if store_token is not None:
-            _setter("store_token", store_token)
+            pulumi.set(__self__, "store_token", store_token)
         if sync_mode is not None:
-            _setter("sync_mode", sync_mode)
+            pulumi.set(__self__, "sync_mode", sync_mode)
         if trust_email is not None:
-            _setter("trust_email", trust_email)
+            pulumi.set(__self__, "trust_email", trust_email)
         if validate_signature is not None:
-            _setter("validate_signature", validate_signature)
+            pulumi.set(__self__, "validate_signature", validate_signature)
         if want_assertions_encrypted is not None:
-            _setter("want_assertions_encrypted", want_assertions_encrypted)
+            pulumi.set(__self__, "want_assertions_encrypted", want_assertions_encrypted)
         if want_assertions_signed is not None:
-            _setter("want_assertions_signed", want_assertions_signed)
+            pulumi.set(__self__, "want_assertions_signed", want_assertions_signed)
         if xml_sign_key_info_key_name_transformer is not None:
-            _setter("xml_sign_key_info_key_name_transformer", xml_sign_key_info_key_name_transformer)
+            pulumi.set(__self__, "xml_sign_key_info_key_name_transformer", xml_sign_key_info_key_name_transformer)
 
     @property
     @pulumi.getter(name="addReadTokenRoleOnCreate")
@@ -1701,10 +1387,6 @@ class IdentityProvider(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            IdentityProviderArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

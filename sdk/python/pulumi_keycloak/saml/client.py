@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -86,215 +86,72 @@ class ClientArgs:
         :param pulumi.Input[str] signing_private_key: If documents or assertions from the client are signed, this private key will be used to verify the signature.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
         """
-        ClientArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            client_id=client_id,
-            realm_id=realm_id,
-            assertion_consumer_post_url=assertion_consumer_post_url,
-            assertion_consumer_redirect_url=assertion_consumer_redirect_url,
-            authentication_flow_binding_overrides=authentication_flow_binding_overrides,
-            base_url=base_url,
-            canonicalization_method=canonicalization_method,
-            client_signature_required=client_signature_required,
-            description=description,
-            enabled=enabled,
-            encrypt_assertions=encrypt_assertions,
-            encryption_certificate=encryption_certificate,
-            extra_config=extra_config,
-            force_name_id_format=force_name_id_format,
-            force_post_binding=force_post_binding,
-            front_channel_logout=front_channel_logout,
-            full_scope_allowed=full_scope_allowed,
-            idp_initiated_sso_relay_state=idp_initiated_sso_relay_state,
-            idp_initiated_sso_url_name=idp_initiated_sso_url_name,
-            include_authn_statement=include_authn_statement,
-            login_theme=login_theme,
-            logout_service_post_binding_url=logout_service_post_binding_url,
-            logout_service_redirect_binding_url=logout_service_redirect_binding_url,
-            master_saml_processing_url=master_saml_processing_url,
-            name=name,
-            name_id_format=name_id_format,
-            root_url=root_url,
-            sign_assertions=sign_assertions,
-            sign_documents=sign_documents,
-            signature_algorithm=signature_algorithm,
-            signature_key_name=signature_key_name,
-            signing_certificate=signing_certificate,
-            signing_private_key=signing_private_key,
-            valid_redirect_uris=valid_redirect_uris,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             client_id: Optional[pulumi.Input[str]] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             assertion_consumer_post_url: Optional[pulumi.Input[str]] = None,
-             assertion_consumer_redirect_url: Optional[pulumi.Input[str]] = None,
-             authentication_flow_binding_overrides: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']] = None,
-             base_url: Optional[pulumi.Input[str]] = None,
-             canonicalization_method: Optional[pulumi.Input[str]] = None,
-             client_signature_required: Optional[pulumi.Input[bool]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             enabled: Optional[pulumi.Input[bool]] = None,
-             encrypt_assertions: Optional[pulumi.Input[bool]] = None,
-             encryption_certificate: Optional[pulumi.Input[str]] = None,
-             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-             force_name_id_format: Optional[pulumi.Input[bool]] = None,
-             force_post_binding: Optional[pulumi.Input[bool]] = None,
-             front_channel_logout: Optional[pulumi.Input[bool]] = None,
-             full_scope_allowed: Optional[pulumi.Input[bool]] = None,
-             idp_initiated_sso_relay_state: Optional[pulumi.Input[str]] = None,
-             idp_initiated_sso_url_name: Optional[pulumi.Input[str]] = None,
-             include_authn_statement: Optional[pulumi.Input[bool]] = None,
-             login_theme: Optional[pulumi.Input[str]] = None,
-             logout_service_post_binding_url: Optional[pulumi.Input[str]] = None,
-             logout_service_redirect_binding_url: Optional[pulumi.Input[str]] = None,
-             master_saml_processing_url: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             name_id_format: Optional[pulumi.Input[str]] = None,
-             root_url: Optional[pulumi.Input[str]] = None,
-             sign_assertions: Optional[pulumi.Input[bool]] = None,
-             sign_documents: Optional[pulumi.Input[bool]] = None,
-             signature_algorithm: Optional[pulumi.Input[str]] = None,
-             signature_key_name: Optional[pulumi.Input[str]] = None,
-             signing_certificate: Optional[pulumi.Input[str]] = None,
-             signing_private_key: Optional[pulumi.Input[str]] = None,
-             valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if client_id is None and 'clientId' in kwargs:
-            client_id = kwargs['clientId']
-        if client_id is None:
-            raise TypeError("Missing 'client_id' argument")
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-        if realm_id is None:
-            raise TypeError("Missing 'realm_id' argument")
-        if assertion_consumer_post_url is None and 'assertionConsumerPostUrl' in kwargs:
-            assertion_consumer_post_url = kwargs['assertionConsumerPostUrl']
-        if assertion_consumer_redirect_url is None and 'assertionConsumerRedirectUrl' in kwargs:
-            assertion_consumer_redirect_url = kwargs['assertionConsumerRedirectUrl']
-        if authentication_flow_binding_overrides is None and 'authenticationFlowBindingOverrides' in kwargs:
-            authentication_flow_binding_overrides = kwargs['authenticationFlowBindingOverrides']
-        if base_url is None and 'baseUrl' in kwargs:
-            base_url = kwargs['baseUrl']
-        if canonicalization_method is None and 'canonicalizationMethod' in kwargs:
-            canonicalization_method = kwargs['canonicalizationMethod']
-        if client_signature_required is None and 'clientSignatureRequired' in kwargs:
-            client_signature_required = kwargs['clientSignatureRequired']
-        if encrypt_assertions is None and 'encryptAssertions' in kwargs:
-            encrypt_assertions = kwargs['encryptAssertions']
-        if encryption_certificate is None and 'encryptionCertificate' in kwargs:
-            encryption_certificate = kwargs['encryptionCertificate']
-        if extra_config is None and 'extraConfig' in kwargs:
-            extra_config = kwargs['extraConfig']
-        if force_name_id_format is None and 'forceNameIdFormat' in kwargs:
-            force_name_id_format = kwargs['forceNameIdFormat']
-        if force_post_binding is None and 'forcePostBinding' in kwargs:
-            force_post_binding = kwargs['forcePostBinding']
-        if front_channel_logout is None and 'frontChannelLogout' in kwargs:
-            front_channel_logout = kwargs['frontChannelLogout']
-        if full_scope_allowed is None and 'fullScopeAllowed' in kwargs:
-            full_scope_allowed = kwargs['fullScopeAllowed']
-        if idp_initiated_sso_relay_state is None and 'idpInitiatedSsoRelayState' in kwargs:
-            idp_initiated_sso_relay_state = kwargs['idpInitiatedSsoRelayState']
-        if idp_initiated_sso_url_name is None and 'idpInitiatedSsoUrlName' in kwargs:
-            idp_initiated_sso_url_name = kwargs['idpInitiatedSsoUrlName']
-        if include_authn_statement is None and 'includeAuthnStatement' in kwargs:
-            include_authn_statement = kwargs['includeAuthnStatement']
-        if login_theme is None and 'loginTheme' in kwargs:
-            login_theme = kwargs['loginTheme']
-        if logout_service_post_binding_url is None and 'logoutServicePostBindingUrl' in kwargs:
-            logout_service_post_binding_url = kwargs['logoutServicePostBindingUrl']
-        if logout_service_redirect_binding_url is None and 'logoutServiceRedirectBindingUrl' in kwargs:
-            logout_service_redirect_binding_url = kwargs['logoutServiceRedirectBindingUrl']
-        if master_saml_processing_url is None and 'masterSamlProcessingUrl' in kwargs:
-            master_saml_processing_url = kwargs['masterSamlProcessingUrl']
-        if name_id_format is None and 'nameIdFormat' in kwargs:
-            name_id_format = kwargs['nameIdFormat']
-        if root_url is None and 'rootUrl' in kwargs:
-            root_url = kwargs['rootUrl']
-        if sign_assertions is None and 'signAssertions' in kwargs:
-            sign_assertions = kwargs['signAssertions']
-        if sign_documents is None and 'signDocuments' in kwargs:
-            sign_documents = kwargs['signDocuments']
-        if signature_algorithm is None and 'signatureAlgorithm' in kwargs:
-            signature_algorithm = kwargs['signatureAlgorithm']
-        if signature_key_name is None and 'signatureKeyName' in kwargs:
-            signature_key_name = kwargs['signatureKeyName']
-        if signing_certificate is None and 'signingCertificate' in kwargs:
-            signing_certificate = kwargs['signingCertificate']
-        if signing_private_key is None and 'signingPrivateKey' in kwargs:
-            signing_private_key = kwargs['signingPrivateKey']
-        if valid_redirect_uris is None and 'validRedirectUris' in kwargs:
-            valid_redirect_uris = kwargs['validRedirectUris']
-
-        _setter("client_id", client_id)
-        _setter("realm_id", realm_id)
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "realm_id", realm_id)
         if assertion_consumer_post_url is not None:
-            _setter("assertion_consumer_post_url", assertion_consumer_post_url)
+            pulumi.set(__self__, "assertion_consumer_post_url", assertion_consumer_post_url)
         if assertion_consumer_redirect_url is not None:
-            _setter("assertion_consumer_redirect_url", assertion_consumer_redirect_url)
+            pulumi.set(__self__, "assertion_consumer_redirect_url", assertion_consumer_redirect_url)
         if authentication_flow_binding_overrides is not None:
-            _setter("authentication_flow_binding_overrides", authentication_flow_binding_overrides)
+            pulumi.set(__self__, "authentication_flow_binding_overrides", authentication_flow_binding_overrides)
         if base_url is not None:
-            _setter("base_url", base_url)
+            pulumi.set(__self__, "base_url", base_url)
         if canonicalization_method is not None:
-            _setter("canonicalization_method", canonicalization_method)
+            pulumi.set(__self__, "canonicalization_method", canonicalization_method)
         if client_signature_required is not None:
-            _setter("client_signature_required", client_signature_required)
+            pulumi.set(__self__, "client_signature_required", client_signature_required)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if encrypt_assertions is not None:
-            _setter("encrypt_assertions", encrypt_assertions)
+            pulumi.set(__self__, "encrypt_assertions", encrypt_assertions)
         if encryption_certificate is not None:
-            _setter("encryption_certificate", encryption_certificate)
+            pulumi.set(__self__, "encryption_certificate", encryption_certificate)
         if extra_config is not None:
-            _setter("extra_config", extra_config)
+            pulumi.set(__self__, "extra_config", extra_config)
         if force_name_id_format is not None:
-            _setter("force_name_id_format", force_name_id_format)
+            pulumi.set(__self__, "force_name_id_format", force_name_id_format)
         if force_post_binding is not None:
-            _setter("force_post_binding", force_post_binding)
+            pulumi.set(__self__, "force_post_binding", force_post_binding)
         if front_channel_logout is not None:
-            _setter("front_channel_logout", front_channel_logout)
+            pulumi.set(__self__, "front_channel_logout", front_channel_logout)
         if full_scope_allowed is not None:
-            _setter("full_scope_allowed", full_scope_allowed)
+            pulumi.set(__self__, "full_scope_allowed", full_scope_allowed)
         if idp_initiated_sso_relay_state is not None:
-            _setter("idp_initiated_sso_relay_state", idp_initiated_sso_relay_state)
+            pulumi.set(__self__, "idp_initiated_sso_relay_state", idp_initiated_sso_relay_state)
         if idp_initiated_sso_url_name is not None:
-            _setter("idp_initiated_sso_url_name", idp_initiated_sso_url_name)
+            pulumi.set(__self__, "idp_initiated_sso_url_name", idp_initiated_sso_url_name)
         if include_authn_statement is not None:
-            _setter("include_authn_statement", include_authn_statement)
+            pulumi.set(__self__, "include_authn_statement", include_authn_statement)
         if login_theme is not None:
-            _setter("login_theme", login_theme)
+            pulumi.set(__self__, "login_theme", login_theme)
         if logout_service_post_binding_url is not None:
-            _setter("logout_service_post_binding_url", logout_service_post_binding_url)
+            pulumi.set(__self__, "logout_service_post_binding_url", logout_service_post_binding_url)
         if logout_service_redirect_binding_url is not None:
-            _setter("logout_service_redirect_binding_url", logout_service_redirect_binding_url)
+            pulumi.set(__self__, "logout_service_redirect_binding_url", logout_service_redirect_binding_url)
         if master_saml_processing_url is not None:
-            _setter("master_saml_processing_url", master_saml_processing_url)
+            pulumi.set(__self__, "master_saml_processing_url", master_saml_processing_url)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if name_id_format is not None:
-            _setter("name_id_format", name_id_format)
+            pulumi.set(__self__, "name_id_format", name_id_format)
         if root_url is not None:
-            _setter("root_url", root_url)
+            pulumi.set(__self__, "root_url", root_url)
         if sign_assertions is not None:
-            _setter("sign_assertions", sign_assertions)
+            pulumi.set(__self__, "sign_assertions", sign_assertions)
         if sign_documents is not None:
-            _setter("sign_documents", sign_documents)
+            pulumi.set(__self__, "sign_documents", sign_documents)
         if signature_algorithm is not None:
-            _setter("signature_algorithm", signature_algorithm)
+            pulumi.set(__self__, "signature_algorithm", signature_algorithm)
         if signature_key_name is not None:
-            _setter("signature_key_name", signature_key_name)
+            pulumi.set(__self__, "signature_key_name", signature_key_name)
         if signing_certificate is not None:
-            _setter("signing_certificate", signing_certificate)
+            pulumi.set(__self__, "signing_certificate", signing_certificate)
         if signing_private_key is not None:
-            _setter("signing_private_key", signing_private_key)
+            pulumi.set(__self__, "signing_private_key", signing_private_key)
         if valid_redirect_uris is not None:
-            _setter("valid_redirect_uris", valid_redirect_uris)
+            pulumi.set(__self__, "valid_redirect_uris", valid_redirect_uris)
 
     @property
     @pulumi.getter(name="clientId")
@@ -781,231 +638,80 @@ class _ClientState:
         :param pulumi.Input[str] signing_private_key_sha1: (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
         """
-        _ClientState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            assertion_consumer_post_url=assertion_consumer_post_url,
-            assertion_consumer_redirect_url=assertion_consumer_redirect_url,
-            authentication_flow_binding_overrides=authentication_flow_binding_overrides,
-            base_url=base_url,
-            canonicalization_method=canonicalization_method,
-            client_id=client_id,
-            client_signature_required=client_signature_required,
-            description=description,
-            enabled=enabled,
-            encrypt_assertions=encrypt_assertions,
-            encryption_certificate=encryption_certificate,
-            encryption_certificate_sha1=encryption_certificate_sha1,
-            extra_config=extra_config,
-            force_name_id_format=force_name_id_format,
-            force_post_binding=force_post_binding,
-            front_channel_logout=front_channel_logout,
-            full_scope_allowed=full_scope_allowed,
-            idp_initiated_sso_relay_state=idp_initiated_sso_relay_state,
-            idp_initiated_sso_url_name=idp_initiated_sso_url_name,
-            include_authn_statement=include_authn_statement,
-            login_theme=login_theme,
-            logout_service_post_binding_url=logout_service_post_binding_url,
-            logout_service_redirect_binding_url=logout_service_redirect_binding_url,
-            master_saml_processing_url=master_saml_processing_url,
-            name=name,
-            name_id_format=name_id_format,
-            realm_id=realm_id,
-            root_url=root_url,
-            sign_assertions=sign_assertions,
-            sign_documents=sign_documents,
-            signature_algorithm=signature_algorithm,
-            signature_key_name=signature_key_name,
-            signing_certificate=signing_certificate,
-            signing_certificate_sha1=signing_certificate_sha1,
-            signing_private_key=signing_private_key,
-            signing_private_key_sha1=signing_private_key_sha1,
-            valid_redirect_uris=valid_redirect_uris,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             assertion_consumer_post_url: Optional[pulumi.Input[str]] = None,
-             assertion_consumer_redirect_url: Optional[pulumi.Input[str]] = None,
-             authentication_flow_binding_overrides: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']] = None,
-             base_url: Optional[pulumi.Input[str]] = None,
-             canonicalization_method: Optional[pulumi.Input[str]] = None,
-             client_id: Optional[pulumi.Input[str]] = None,
-             client_signature_required: Optional[pulumi.Input[bool]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             enabled: Optional[pulumi.Input[bool]] = None,
-             encrypt_assertions: Optional[pulumi.Input[bool]] = None,
-             encryption_certificate: Optional[pulumi.Input[str]] = None,
-             encryption_certificate_sha1: Optional[pulumi.Input[str]] = None,
-             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-             force_name_id_format: Optional[pulumi.Input[bool]] = None,
-             force_post_binding: Optional[pulumi.Input[bool]] = None,
-             front_channel_logout: Optional[pulumi.Input[bool]] = None,
-             full_scope_allowed: Optional[pulumi.Input[bool]] = None,
-             idp_initiated_sso_relay_state: Optional[pulumi.Input[str]] = None,
-             idp_initiated_sso_url_name: Optional[pulumi.Input[str]] = None,
-             include_authn_statement: Optional[pulumi.Input[bool]] = None,
-             login_theme: Optional[pulumi.Input[str]] = None,
-             logout_service_post_binding_url: Optional[pulumi.Input[str]] = None,
-             logout_service_redirect_binding_url: Optional[pulumi.Input[str]] = None,
-             master_saml_processing_url: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             name_id_format: Optional[pulumi.Input[str]] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             root_url: Optional[pulumi.Input[str]] = None,
-             sign_assertions: Optional[pulumi.Input[bool]] = None,
-             sign_documents: Optional[pulumi.Input[bool]] = None,
-             signature_algorithm: Optional[pulumi.Input[str]] = None,
-             signature_key_name: Optional[pulumi.Input[str]] = None,
-             signing_certificate: Optional[pulumi.Input[str]] = None,
-             signing_certificate_sha1: Optional[pulumi.Input[str]] = None,
-             signing_private_key: Optional[pulumi.Input[str]] = None,
-             signing_private_key_sha1: Optional[pulumi.Input[str]] = None,
-             valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if assertion_consumer_post_url is None and 'assertionConsumerPostUrl' in kwargs:
-            assertion_consumer_post_url = kwargs['assertionConsumerPostUrl']
-        if assertion_consumer_redirect_url is None and 'assertionConsumerRedirectUrl' in kwargs:
-            assertion_consumer_redirect_url = kwargs['assertionConsumerRedirectUrl']
-        if authentication_flow_binding_overrides is None and 'authenticationFlowBindingOverrides' in kwargs:
-            authentication_flow_binding_overrides = kwargs['authenticationFlowBindingOverrides']
-        if base_url is None and 'baseUrl' in kwargs:
-            base_url = kwargs['baseUrl']
-        if canonicalization_method is None and 'canonicalizationMethod' in kwargs:
-            canonicalization_method = kwargs['canonicalizationMethod']
-        if client_id is None and 'clientId' in kwargs:
-            client_id = kwargs['clientId']
-        if client_signature_required is None and 'clientSignatureRequired' in kwargs:
-            client_signature_required = kwargs['clientSignatureRequired']
-        if encrypt_assertions is None and 'encryptAssertions' in kwargs:
-            encrypt_assertions = kwargs['encryptAssertions']
-        if encryption_certificate is None and 'encryptionCertificate' in kwargs:
-            encryption_certificate = kwargs['encryptionCertificate']
-        if encryption_certificate_sha1 is None and 'encryptionCertificateSha1' in kwargs:
-            encryption_certificate_sha1 = kwargs['encryptionCertificateSha1']
-        if extra_config is None and 'extraConfig' in kwargs:
-            extra_config = kwargs['extraConfig']
-        if force_name_id_format is None and 'forceNameIdFormat' in kwargs:
-            force_name_id_format = kwargs['forceNameIdFormat']
-        if force_post_binding is None and 'forcePostBinding' in kwargs:
-            force_post_binding = kwargs['forcePostBinding']
-        if front_channel_logout is None and 'frontChannelLogout' in kwargs:
-            front_channel_logout = kwargs['frontChannelLogout']
-        if full_scope_allowed is None and 'fullScopeAllowed' in kwargs:
-            full_scope_allowed = kwargs['fullScopeAllowed']
-        if idp_initiated_sso_relay_state is None and 'idpInitiatedSsoRelayState' in kwargs:
-            idp_initiated_sso_relay_state = kwargs['idpInitiatedSsoRelayState']
-        if idp_initiated_sso_url_name is None and 'idpInitiatedSsoUrlName' in kwargs:
-            idp_initiated_sso_url_name = kwargs['idpInitiatedSsoUrlName']
-        if include_authn_statement is None and 'includeAuthnStatement' in kwargs:
-            include_authn_statement = kwargs['includeAuthnStatement']
-        if login_theme is None and 'loginTheme' in kwargs:
-            login_theme = kwargs['loginTheme']
-        if logout_service_post_binding_url is None and 'logoutServicePostBindingUrl' in kwargs:
-            logout_service_post_binding_url = kwargs['logoutServicePostBindingUrl']
-        if logout_service_redirect_binding_url is None and 'logoutServiceRedirectBindingUrl' in kwargs:
-            logout_service_redirect_binding_url = kwargs['logoutServiceRedirectBindingUrl']
-        if master_saml_processing_url is None and 'masterSamlProcessingUrl' in kwargs:
-            master_saml_processing_url = kwargs['masterSamlProcessingUrl']
-        if name_id_format is None and 'nameIdFormat' in kwargs:
-            name_id_format = kwargs['nameIdFormat']
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-        if root_url is None and 'rootUrl' in kwargs:
-            root_url = kwargs['rootUrl']
-        if sign_assertions is None and 'signAssertions' in kwargs:
-            sign_assertions = kwargs['signAssertions']
-        if sign_documents is None and 'signDocuments' in kwargs:
-            sign_documents = kwargs['signDocuments']
-        if signature_algorithm is None and 'signatureAlgorithm' in kwargs:
-            signature_algorithm = kwargs['signatureAlgorithm']
-        if signature_key_name is None and 'signatureKeyName' in kwargs:
-            signature_key_name = kwargs['signatureKeyName']
-        if signing_certificate is None and 'signingCertificate' in kwargs:
-            signing_certificate = kwargs['signingCertificate']
-        if signing_certificate_sha1 is None and 'signingCertificateSha1' in kwargs:
-            signing_certificate_sha1 = kwargs['signingCertificateSha1']
-        if signing_private_key is None and 'signingPrivateKey' in kwargs:
-            signing_private_key = kwargs['signingPrivateKey']
-        if signing_private_key_sha1 is None and 'signingPrivateKeySha1' in kwargs:
-            signing_private_key_sha1 = kwargs['signingPrivateKeySha1']
-        if valid_redirect_uris is None and 'validRedirectUris' in kwargs:
-            valid_redirect_uris = kwargs['validRedirectUris']
-
         if assertion_consumer_post_url is not None:
-            _setter("assertion_consumer_post_url", assertion_consumer_post_url)
+            pulumi.set(__self__, "assertion_consumer_post_url", assertion_consumer_post_url)
         if assertion_consumer_redirect_url is not None:
-            _setter("assertion_consumer_redirect_url", assertion_consumer_redirect_url)
+            pulumi.set(__self__, "assertion_consumer_redirect_url", assertion_consumer_redirect_url)
         if authentication_flow_binding_overrides is not None:
-            _setter("authentication_flow_binding_overrides", authentication_flow_binding_overrides)
+            pulumi.set(__self__, "authentication_flow_binding_overrides", authentication_flow_binding_overrides)
         if base_url is not None:
-            _setter("base_url", base_url)
+            pulumi.set(__self__, "base_url", base_url)
         if canonicalization_method is not None:
-            _setter("canonicalization_method", canonicalization_method)
+            pulumi.set(__self__, "canonicalization_method", canonicalization_method)
         if client_id is not None:
-            _setter("client_id", client_id)
+            pulumi.set(__self__, "client_id", client_id)
         if client_signature_required is not None:
-            _setter("client_signature_required", client_signature_required)
+            pulumi.set(__self__, "client_signature_required", client_signature_required)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if encrypt_assertions is not None:
-            _setter("encrypt_assertions", encrypt_assertions)
+            pulumi.set(__self__, "encrypt_assertions", encrypt_assertions)
         if encryption_certificate is not None:
-            _setter("encryption_certificate", encryption_certificate)
+            pulumi.set(__self__, "encryption_certificate", encryption_certificate)
         if encryption_certificate_sha1 is not None:
-            _setter("encryption_certificate_sha1", encryption_certificate_sha1)
+            pulumi.set(__self__, "encryption_certificate_sha1", encryption_certificate_sha1)
         if extra_config is not None:
-            _setter("extra_config", extra_config)
+            pulumi.set(__self__, "extra_config", extra_config)
         if force_name_id_format is not None:
-            _setter("force_name_id_format", force_name_id_format)
+            pulumi.set(__self__, "force_name_id_format", force_name_id_format)
         if force_post_binding is not None:
-            _setter("force_post_binding", force_post_binding)
+            pulumi.set(__self__, "force_post_binding", force_post_binding)
         if front_channel_logout is not None:
-            _setter("front_channel_logout", front_channel_logout)
+            pulumi.set(__self__, "front_channel_logout", front_channel_logout)
         if full_scope_allowed is not None:
-            _setter("full_scope_allowed", full_scope_allowed)
+            pulumi.set(__self__, "full_scope_allowed", full_scope_allowed)
         if idp_initiated_sso_relay_state is not None:
-            _setter("idp_initiated_sso_relay_state", idp_initiated_sso_relay_state)
+            pulumi.set(__self__, "idp_initiated_sso_relay_state", idp_initiated_sso_relay_state)
         if idp_initiated_sso_url_name is not None:
-            _setter("idp_initiated_sso_url_name", idp_initiated_sso_url_name)
+            pulumi.set(__self__, "idp_initiated_sso_url_name", idp_initiated_sso_url_name)
         if include_authn_statement is not None:
-            _setter("include_authn_statement", include_authn_statement)
+            pulumi.set(__self__, "include_authn_statement", include_authn_statement)
         if login_theme is not None:
-            _setter("login_theme", login_theme)
+            pulumi.set(__self__, "login_theme", login_theme)
         if logout_service_post_binding_url is not None:
-            _setter("logout_service_post_binding_url", logout_service_post_binding_url)
+            pulumi.set(__self__, "logout_service_post_binding_url", logout_service_post_binding_url)
         if logout_service_redirect_binding_url is not None:
-            _setter("logout_service_redirect_binding_url", logout_service_redirect_binding_url)
+            pulumi.set(__self__, "logout_service_redirect_binding_url", logout_service_redirect_binding_url)
         if master_saml_processing_url is not None:
-            _setter("master_saml_processing_url", master_saml_processing_url)
+            pulumi.set(__self__, "master_saml_processing_url", master_saml_processing_url)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if name_id_format is not None:
-            _setter("name_id_format", name_id_format)
+            pulumi.set(__self__, "name_id_format", name_id_format)
         if realm_id is not None:
-            _setter("realm_id", realm_id)
+            pulumi.set(__self__, "realm_id", realm_id)
         if root_url is not None:
-            _setter("root_url", root_url)
+            pulumi.set(__self__, "root_url", root_url)
         if sign_assertions is not None:
-            _setter("sign_assertions", sign_assertions)
+            pulumi.set(__self__, "sign_assertions", sign_assertions)
         if sign_documents is not None:
-            _setter("sign_documents", sign_documents)
+            pulumi.set(__self__, "sign_documents", sign_documents)
         if signature_algorithm is not None:
-            _setter("signature_algorithm", signature_algorithm)
+            pulumi.set(__self__, "signature_algorithm", signature_algorithm)
         if signature_key_name is not None:
-            _setter("signature_key_name", signature_key_name)
+            pulumi.set(__self__, "signature_key_name", signature_key_name)
         if signing_certificate is not None:
-            _setter("signing_certificate", signing_certificate)
+            pulumi.set(__self__, "signing_certificate", signing_certificate)
         if signing_certificate_sha1 is not None:
-            _setter("signing_certificate_sha1", signing_certificate_sha1)
+            pulumi.set(__self__, "signing_certificate_sha1", signing_certificate_sha1)
         if signing_private_key is not None:
-            _setter("signing_private_key", signing_private_key)
+            pulumi.set(__self__, "signing_private_key", signing_private_key)
         if signing_private_key_sha1 is not None:
-            _setter("signing_private_key_sha1", signing_private_key_sha1)
+            pulumi.set(__self__, "signing_private_key_sha1", signing_private_key_sha1)
         if valid_redirect_uris is not None:
-            _setter("valid_redirect_uris", valid_redirect_uris)
+            pulumi.set(__self__, "valid_redirect_uris", valid_redirect_uris)
 
     @property
     @pulumi.getter(name="assertionConsumerPostUrl")
@@ -1607,10 +1313,6 @@ class Client(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ClientArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -1661,7 +1363,6 @@ class Client(pulumi.CustomResource):
 
             __props__.__dict__["assertion_consumer_post_url"] = assertion_consumer_post_url
             __props__.__dict__["assertion_consumer_redirect_url"] = assertion_consumer_redirect_url
-            authentication_flow_binding_overrides = _utilities.configure(authentication_flow_binding_overrides, ClientAuthenticationFlowBindingOverridesArgs, True)
             __props__.__dict__["authentication_flow_binding_overrides"] = authentication_flow_binding_overrides
             __props__.__dict__["base_url"] = base_url
             __props__.__dict__["canonicalization_method"] = canonicalization_method
