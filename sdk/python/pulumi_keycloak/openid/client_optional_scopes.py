@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['ClientOptionalScopesArgs', 'ClientOptionalScopes']
@@ -23,36 +23,9 @@ class ClientOptionalScopesArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] optional_scopes: An array of client scope names to attach to this client as optional scopes.
         :param pulumi.Input[str] realm_id: The realm this client and scopes exists in.
         """
-        ClientOptionalScopesArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            client_id=client_id,
-            optional_scopes=optional_scopes,
-            realm_id=realm_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             client_id: Optional[pulumi.Input[str]] = None,
-             optional_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if client_id is None and 'clientId' in kwargs:
-            client_id = kwargs['clientId']
-        if client_id is None:
-            raise TypeError("Missing 'client_id' argument")
-        if optional_scopes is None and 'optionalScopes' in kwargs:
-            optional_scopes = kwargs['optionalScopes']
-        if optional_scopes is None:
-            raise TypeError("Missing 'optional_scopes' argument")
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-        if realm_id is None:
-            raise TypeError("Missing 'realm_id' argument")
-
-        _setter("client_id", client_id)
-        _setter("optional_scopes", optional_scopes)
-        _setter("realm_id", realm_id)
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "optional_scopes", optional_scopes)
+        pulumi.set(__self__, "realm_id", realm_id)
 
     @property
     @pulumi.getter(name="clientId")
@@ -103,33 +76,12 @@ class _ClientOptionalScopesState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] optional_scopes: An array of client scope names to attach to this client as optional scopes.
         :param pulumi.Input[str] realm_id: The realm this client and scopes exists in.
         """
-        _ClientOptionalScopesState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            client_id=client_id,
-            optional_scopes=optional_scopes,
-            realm_id=realm_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             client_id: Optional[pulumi.Input[str]] = None,
-             optional_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if client_id is None and 'clientId' in kwargs:
-            client_id = kwargs['clientId']
-        if optional_scopes is None and 'optionalScopes' in kwargs:
-            optional_scopes = kwargs['optionalScopes']
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-
         if client_id is not None:
-            _setter("client_id", client_id)
+            pulumi.set(__self__, "client_id", client_id)
         if optional_scopes is not None:
-            _setter("optional_scopes", optional_scopes)
+            pulumi.set(__self__, "optional_scopes", optional_scopes)
         if realm_id is not None:
-            _setter("realm_id", realm_id)
+            pulumi.set(__self__, "realm_id", realm_id)
 
     @property
     @pulumi.getter(name="clientId")
@@ -261,10 +213,6 @@ class ClientOptionalScopes(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ClientOptionalScopesArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

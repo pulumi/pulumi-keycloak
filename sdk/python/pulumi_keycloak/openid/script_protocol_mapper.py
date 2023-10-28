@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['ScriptProtocolMapperArgs', 'ScriptProtocolMapper']
@@ -39,78 +39,25 @@ class ScriptProtocolMapperArgs:
         :param pulumi.Input[bool] multivalued: Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         """
-        ScriptProtocolMapperArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            claim_name=claim_name,
-            realm_id=realm_id,
-            script=script,
-            add_to_access_token=add_to_access_token,
-            add_to_id_token=add_to_id_token,
-            add_to_userinfo=add_to_userinfo,
-            claim_value_type=claim_value_type,
-            client_id=client_id,
-            client_scope_id=client_scope_id,
-            multivalued=multivalued,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             claim_name: Optional[pulumi.Input[str]] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             script: Optional[pulumi.Input[str]] = None,
-             add_to_access_token: Optional[pulumi.Input[bool]] = None,
-             add_to_id_token: Optional[pulumi.Input[bool]] = None,
-             add_to_userinfo: Optional[pulumi.Input[bool]] = None,
-             claim_value_type: Optional[pulumi.Input[str]] = None,
-             client_id: Optional[pulumi.Input[str]] = None,
-             client_scope_id: Optional[pulumi.Input[str]] = None,
-             multivalued: Optional[pulumi.Input[bool]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if claim_name is None and 'claimName' in kwargs:
-            claim_name = kwargs['claimName']
-        if claim_name is None:
-            raise TypeError("Missing 'claim_name' argument")
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-        if realm_id is None:
-            raise TypeError("Missing 'realm_id' argument")
-        if script is None:
-            raise TypeError("Missing 'script' argument")
-        if add_to_access_token is None and 'addToAccessToken' in kwargs:
-            add_to_access_token = kwargs['addToAccessToken']
-        if add_to_id_token is None and 'addToIdToken' in kwargs:
-            add_to_id_token = kwargs['addToIdToken']
-        if add_to_userinfo is None and 'addToUserinfo' in kwargs:
-            add_to_userinfo = kwargs['addToUserinfo']
-        if claim_value_type is None and 'claimValueType' in kwargs:
-            claim_value_type = kwargs['claimValueType']
-        if client_id is None and 'clientId' in kwargs:
-            client_id = kwargs['clientId']
-        if client_scope_id is None and 'clientScopeId' in kwargs:
-            client_scope_id = kwargs['clientScopeId']
-
-        _setter("claim_name", claim_name)
-        _setter("realm_id", realm_id)
-        _setter("script", script)
+        pulumi.set(__self__, "claim_name", claim_name)
+        pulumi.set(__self__, "realm_id", realm_id)
+        pulumi.set(__self__, "script", script)
         if add_to_access_token is not None:
-            _setter("add_to_access_token", add_to_access_token)
+            pulumi.set(__self__, "add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
-            _setter("add_to_id_token", add_to_id_token)
+            pulumi.set(__self__, "add_to_id_token", add_to_id_token)
         if add_to_userinfo is not None:
-            _setter("add_to_userinfo", add_to_userinfo)
+            pulumi.set(__self__, "add_to_userinfo", add_to_userinfo)
         if claim_value_type is not None:
-            _setter("claim_value_type", claim_value_type)
+            pulumi.set(__self__, "claim_value_type", claim_value_type)
         if client_id is not None:
-            _setter("client_id", client_id)
+            pulumi.set(__self__, "client_id", client_id)
         if client_scope_id is not None:
-            _setter("client_scope_id", client_scope_id)
+            pulumi.set(__self__, "client_scope_id", client_scope_id)
         if multivalued is not None:
-            _setter("multivalued", multivalued)
+            pulumi.set(__self__, "multivalued", multivalued)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter(name="claimName")
@@ -273,75 +220,28 @@ class _ScriptProtocolMapperState:
         :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
         :param pulumi.Input[str] script: JavaScript code to compute the claim value.
         """
-        _ScriptProtocolMapperState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            add_to_access_token=add_to_access_token,
-            add_to_id_token=add_to_id_token,
-            add_to_userinfo=add_to_userinfo,
-            claim_name=claim_name,
-            claim_value_type=claim_value_type,
-            client_id=client_id,
-            client_scope_id=client_scope_id,
-            multivalued=multivalued,
-            name=name,
-            realm_id=realm_id,
-            script=script,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             add_to_access_token: Optional[pulumi.Input[bool]] = None,
-             add_to_id_token: Optional[pulumi.Input[bool]] = None,
-             add_to_userinfo: Optional[pulumi.Input[bool]] = None,
-             claim_name: Optional[pulumi.Input[str]] = None,
-             claim_value_type: Optional[pulumi.Input[str]] = None,
-             client_id: Optional[pulumi.Input[str]] = None,
-             client_scope_id: Optional[pulumi.Input[str]] = None,
-             multivalued: Optional[pulumi.Input[bool]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             script: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if add_to_access_token is None and 'addToAccessToken' in kwargs:
-            add_to_access_token = kwargs['addToAccessToken']
-        if add_to_id_token is None and 'addToIdToken' in kwargs:
-            add_to_id_token = kwargs['addToIdToken']
-        if add_to_userinfo is None and 'addToUserinfo' in kwargs:
-            add_to_userinfo = kwargs['addToUserinfo']
-        if claim_name is None and 'claimName' in kwargs:
-            claim_name = kwargs['claimName']
-        if claim_value_type is None and 'claimValueType' in kwargs:
-            claim_value_type = kwargs['claimValueType']
-        if client_id is None and 'clientId' in kwargs:
-            client_id = kwargs['clientId']
-        if client_scope_id is None and 'clientScopeId' in kwargs:
-            client_scope_id = kwargs['clientScopeId']
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-
         if add_to_access_token is not None:
-            _setter("add_to_access_token", add_to_access_token)
+            pulumi.set(__self__, "add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
-            _setter("add_to_id_token", add_to_id_token)
+            pulumi.set(__self__, "add_to_id_token", add_to_id_token)
         if add_to_userinfo is not None:
-            _setter("add_to_userinfo", add_to_userinfo)
+            pulumi.set(__self__, "add_to_userinfo", add_to_userinfo)
         if claim_name is not None:
-            _setter("claim_name", claim_name)
+            pulumi.set(__self__, "claim_name", claim_name)
         if claim_value_type is not None:
-            _setter("claim_value_type", claim_value_type)
+            pulumi.set(__self__, "claim_value_type", claim_value_type)
         if client_id is not None:
-            _setter("client_id", client_id)
+            pulumi.set(__self__, "client_id", client_id)
         if client_scope_id is not None:
-            _setter("client_scope_id", client_scope_id)
+            pulumi.set(__self__, "client_scope_id", client_scope_id)
         if multivalued is not None:
-            _setter("multivalued", multivalued)
+            pulumi.set(__self__, "multivalued", multivalued)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if realm_id is not None:
-            _setter("realm_id", realm_id)
+            pulumi.set(__self__, "realm_id", realm_id)
         if script is not None:
-            _setter("script", script)
+            pulumi.set(__self__, "script", script)
 
     @property
     @pulumi.getter(name="addToAccessToken")
@@ -645,10 +545,6 @@ class ScriptProtocolMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ScriptProtocolMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

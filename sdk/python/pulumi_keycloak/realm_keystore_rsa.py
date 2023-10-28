@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['RealmKeystoreRsaArgs', 'RealmKeystoreRsa']
@@ -33,54 +33,19 @@ class RealmKeystoreRsaArgs:
         :param pulumi.Input[str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[int] priority: Priority for the provider. Defaults to `0`
         """
-        RealmKeystoreRsaArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            certificate=certificate,
-            private_key=private_key,
-            realm_id=realm_id,
-            active=active,
-            algorithm=algorithm,
-            enabled=enabled,
-            name=name,
-            priority=priority,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             certificate: Optional[pulumi.Input[str]] = None,
-             private_key: Optional[pulumi.Input[str]] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             active: Optional[pulumi.Input[bool]] = None,
-             algorithm: Optional[pulumi.Input[str]] = None,
-             enabled: Optional[pulumi.Input[bool]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             priority: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if certificate is None:
-            raise TypeError("Missing 'certificate' argument")
-        if private_key is None and 'privateKey' in kwargs:
-            private_key = kwargs['privateKey']
-        if private_key is None:
-            raise TypeError("Missing 'private_key' argument")
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-        if realm_id is None:
-            raise TypeError("Missing 'realm_id' argument")
-
-        _setter("certificate", certificate)
-        _setter("private_key", private_key)
-        _setter("realm_id", realm_id)
+        pulumi.set(__self__, "certificate", certificate)
+        pulumi.set(__self__, "private_key", private_key)
+        pulumi.set(__self__, "realm_id", realm_id)
         if active is not None:
-            _setter("active", active)
+            pulumi.set(__self__, "active", active)
         if algorithm is not None:
-            _setter("algorithm", algorithm)
+            pulumi.set(__self__, "algorithm", algorithm)
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if priority is not None:
-            _setter("priority", priority)
+            pulumi.set(__self__, "priority", priority)
 
     @property
     @pulumi.getter
@@ -201,51 +166,22 @@ class _RealmKeystoreRsaState:
         :param pulumi.Input[str] private_key: Private RSA Key encoded in PEM format.
         :param pulumi.Input[str] realm_id: The realm this keystore exists in.
         """
-        _RealmKeystoreRsaState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            active=active,
-            algorithm=algorithm,
-            certificate=certificate,
-            enabled=enabled,
-            name=name,
-            priority=priority,
-            private_key=private_key,
-            realm_id=realm_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             active: Optional[pulumi.Input[bool]] = None,
-             algorithm: Optional[pulumi.Input[str]] = None,
-             certificate: Optional[pulumi.Input[str]] = None,
-             enabled: Optional[pulumi.Input[bool]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             priority: Optional[pulumi.Input[int]] = None,
-             private_key: Optional[pulumi.Input[str]] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if private_key is None and 'privateKey' in kwargs:
-            private_key = kwargs['privateKey']
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-
         if active is not None:
-            _setter("active", active)
+            pulumi.set(__self__, "active", active)
         if algorithm is not None:
-            _setter("algorithm", algorithm)
+            pulumi.set(__self__, "algorithm", algorithm)
         if certificate is not None:
-            _setter("certificate", certificate)
+            pulumi.set(__self__, "certificate", certificate)
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if priority is not None:
-            _setter("priority", priority)
+            pulumi.set(__self__, "priority", priority)
         if private_key is not None:
-            _setter("private_key", private_key)
+            pulumi.set(__self__, "private_key", private_key)
         if realm_id is not None:
-            _setter("realm_id", realm_id)
+            pulumi.set(__self__, "realm_id", realm_id)
 
     @property
     @pulumi.getter
@@ -411,10 +347,6 @@ class RealmKeystoreRsa(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            RealmKeystoreRsaArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

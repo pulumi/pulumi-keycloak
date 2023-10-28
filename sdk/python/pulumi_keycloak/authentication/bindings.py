@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['BindingsArgs', 'Bindings']
@@ -31,58 +31,19 @@ class BindingsArgs:
         :param pulumi.Input[str] registration_flow: The alias of the flow to assign to the realm RegistrationFlow.
         :param pulumi.Input[str] reset_credentials_flow: The alias of the flow to assign to the realm ResetCredentialsFlow.
         """
-        BindingsArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            realm_id=realm_id,
-            browser_flow=browser_flow,
-            client_authentication_flow=client_authentication_flow,
-            direct_grant_flow=direct_grant_flow,
-            docker_authentication_flow=docker_authentication_flow,
-            registration_flow=registration_flow,
-            reset_credentials_flow=reset_credentials_flow,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             realm_id: Optional[pulumi.Input[str]] = None,
-             browser_flow: Optional[pulumi.Input[str]] = None,
-             client_authentication_flow: Optional[pulumi.Input[str]] = None,
-             direct_grant_flow: Optional[pulumi.Input[str]] = None,
-             docker_authentication_flow: Optional[pulumi.Input[str]] = None,
-             registration_flow: Optional[pulumi.Input[str]] = None,
-             reset_credentials_flow: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-        if realm_id is None:
-            raise TypeError("Missing 'realm_id' argument")
-        if browser_flow is None and 'browserFlow' in kwargs:
-            browser_flow = kwargs['browserFlow']
-        if client_authentication_flow is None and 'clientAuthenticationFlow' in kwargs:
-            client_authentication_flow = kwargs['clientAuthenticationFlow']
-        if direct_grant_flow is None and 'directGrantFlow' in kwargs:
-            direct_grant_flow = kwargs['directGrantFlow']
-        if docker_authentication_flow is None and 'dockerAuthenticationFlow' in kwargs:
-            docker_authentication_flow = kwargs['dockerAuthenticationFlow']
-        if registration_flow is None and 'registrationFlow' in kwargs:
-            registration_flow = kwargs['registrationFlow']
-        if reset_credentials_flow is None and 'resetCredentialsFlow' in kwargs:
-            reset_credentials_flow = kwargs['resetCredentialsFlow']
-
-        _setter("realm_id", realm_id)
+        pulumi.set(__self__, "realm_id", realm_id)
         if browser_flow is not None:
-            _setter("browser_flow", browser_flow)
+            pulumi.set(__self__, "browser_flow", browser_flow)
         if client_authentication_flow is not None:
-            _setter("client_authentication_flow", client_authentication_flow)
+            pulumi.set(__self__, "client_authentication_flow", client_authentication_flow)
         if direct_grant_flow is not None:
-            _setter("direct_grant_flow", direct_grant_flow)
+            pulumi.set(__self__, "direct_grant_flow", direct_grant_flow)
         if docker_authentication_flow is not None:
-            _setter("docker_authentication_flow", docker_authentication_flow)
+            pulumi.set(__self__, "docker_authentication_flow", docker_authentication_flow)
         if registration_flow is not None:
-            _setter("registration_flow", registration_flow)
+            pulumi.set(__self__, "registration_flow", registration_flow)
         if reset_credentials_flow is not None:
-            _setter("reset_credentials_flow", reset_credentials_flow)
+            pulumi.set(__self__, "reset_credentials_flow", reset_credentials_flow)
 
     @property
     @pulumi.getter(name="realmId")
@@ -189,57 +150,20 @@ class _BindingsState:
         :param pulumi.Input[str] registration_flow: The alias of the flow to assign to the realm RegistrationFlow.
         :param pulumi.Input[str] reset_credentials_flow: The alias of the flow to assign to the realm ResetCredentialsFlow.
         """
-        _BindingsState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            browser_flow=browser_flow,
-            client_authentication_flow=client_authentication_flow,
-            direct_grant_flow=direct_grant_flow,
-            docker_authentication_flow=docker_authentication_flow,
-            realm_id=realm_id,
-            registration_flow=registration_flow,
-            reset_credentials_flow=reset_credentials_flow,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             browser_flow: Optional[pulumi.Input[str]] = None,
-             client_authentication_flow: Optional[pulumi.Input[str]] = None,
-             direct_grant_flow: Optional[pulumi.Input[str]] = None,
-             docker_authentication_flow: Optional[pulumi.Input[str]] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             registration_flow: Optional[pulumi.Input[str]] = None,
-             reset_credentials_flow: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if browser_flow is None and 'browserFlow' in kwargs:
-            browser_flow = kwargs['browserFlow']
-        if client_authentication_flow is None and 'clientAuthenticationFlow' in kwargs:
-            client_authentication_flow = kwargs['clientAuthenticationFlow']
-        if direct_grant_flow is None and 'directGrantFlow' in kwargs:
-            direct_grant_flow = kwargs['directGrantFlow']
-        if docker_authentication_flow is None and 'dockerAuthenticationFlow' in kwargs:
-            docker_authentication_flow = kwargs['dockerAuthenticationFlow']
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-        if registration_flow is None and 'registrationFlow' in kwargs:
-            registration_flow = kwargs['registrationFlow']
-        if reset_credentials_flow is None and 'resetCredentialsFlow' in kwargs:
-            reset_credentials_flow = kwargs['resetCredentialsFlow']
-
         if browser_flow is not None:
-            _setter("browser_flow", browser_flow)
+            pulumi.set(__self__, "browser_flow", browser_flow)
         if client_authentication_flow is not None:
-            _setter("client_authentication_flow", client_authentication_flow)
+            pulumi.set(__self__, "client_authentication_flow", client_authentication_flow)
         if direct_grant_flow is not None:
-            _setter("direct_grant_flow", direct_grant_flow)
+            pulumi.set(__self__, "direct_grant_flow", direct_grant_flow)
         if docker_authentication_flow is not None:
-            _setter("docker_authentication_flow", docker_authentication_flow)
+            pulumi.set(__self__, "docker_authentication_flow", docker_authentication_flow)
         if realm_id is not None:
-            _setter("realm_id", realm_id)
+            pulumi.set(__self__, "realm_id", realm_id)
         if registration_flow is not None:
-            _setter("registration_flow", registration_flow)
+            pulumi.set(__self__, "registration_flow", registration_flow)
         if reset_credentials_flow is not None:
-            _setter("reset_credentials_flow", reset_credentials_flow)
+            pulumi.set(__self__, "reset_credentials_flow", reset_credentials_flow)
 
     @property
     @pulumi.getter(name="browserFlow")
@@ -455,10 +379,6 @@ class Bindings(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            BindingsArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

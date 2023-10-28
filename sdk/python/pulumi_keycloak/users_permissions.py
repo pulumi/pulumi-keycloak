@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -26,58 +26,19 @@ class UsersPermissionsArgs:
         """
         The set of arguments for constructing a UsersPermissions resource.
         """
-        UsersPermissionsArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            realm_id=realm_id,
-            impersonate_scope=impersonate_scope,
-            manage_group_membership_scope=manage_group_membership_scope,
-            manage_scope=manage_scope,
-            map_roles_scope=map_roles_scope,
-            user_impersonated_scope=user_impersonated_scope,
-            view_scope=view_scope,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             realm_id: Optional[pulumi.Input[str]] = None,
-             impersonate_scope: Optional[pulumi.Input['UsersPermissionsImpersonateScopeArgs']] = None,
-             manage_group_membership_scope: Optional[pulumi.Input['UsersPermissionsManageGroupMembershipScopeArgs']] = None,
-             manage_scope: Optional[pulumi.Input['UsersPermissionsManageScopeArgs']] = None,
-             map_roles_scope: Optional[pulumi.Input['UsersPermissionsMapRolesScopeArgs']] = None,
-             user_impersonated_scope: Optional[pulumi.Input['UsersPermissionsUserImpersonatedScopeArgs']] = None,
-             view_scope: Optional[pulumi.Input['UsersPermissionsViewScopeArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-        if realm_id is None:
-            raise TypeError("Missing 'realm_id' argument")
-        if impersonate_scope is None and 'impersonateScope' in kwargs:
-            impersonate_scope = kwargs['impersonateScope']
-        if manage_group_membership_scope is None and 'manageGroupMembershipScope' in kwargs:
-            manage_group_membership_scope = kwargs['manageGroupMembershipScope']
-        if manage_scope is None and 'manageScope' in kwargs:
-            manage_scope = kwargs['manageScope']
-        if map_roles_scope is None and 'mapRolesScope' in kwargs:
-            map_roles_scope = kwargs['mapRolesScope']
-        if user_impersonated_scope is None and 'userImpersonatedScope' in kwargs:
-            user_impersonated_scope = kwargs['userImpersonatedScope']
-        if view_scope is None and 'viewScope' in kwargs:
-            view_scope = kwargs['viewScope']
-
-        _setter("realm_id", realm_id)
+        pulumi.set(__self__, "realm_id", realm_id)
         if impersonate_scope is not None:
-            _setter("impersonate_scope", impersonate_scope)
+            pulumi.set(__self__, "impersonate_scope", impersonate_scope)
         if manage_group_membership_scope is not None:
-            _setter("manage_group_membership_scope", manage_group_membership_scope)
+            pulumi.set(__self__, "manage_group_membership_scope", manage_group_membership_scope)
         if manage_scope is not None:
-            _setter("manage_scope", manage_scope)
+            pulumi.set(__self__, "manage_scope", manage_scope)
         if map_roles_scope is not None:
-            _setter("map_roles_scope", map_roles_scope)
+            pulumi.set(__self__, "map_roles_scope", map_roles_scope)
         if user_impersonated_scope is not None:
-            _setter("user_impersonated_scope", user_impersonated_scope)
+            pulumi.set(__self__, "user_impersonated_scope", user_impersonated_scope)
         if view_scope is not None:
-            _setter("view_scope", view_scope)
+            pulumi.set(__self__, "view_scope", view_scope)
 
     @property
     @pulumi.getter(name="realmId")
@@ -159,67 +120,24 @@ class _UsersPermissionsState:
         Input properties used for looking up and filtering UsersPermissions resources.
         :param pulumi.Input[str] authorization_resource_server_id: Resource server id representing the realm management client on which this permission is managed
         """
-        _UsersPermissionsState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            authorization_resource_server_id=authorization_resource_server_id,
-            enabled=enabled,
-            impersonate_scope=impersonate_scope,
-            manage_group_membership_scope=manage_group_membership_scope,
-            manage_scope=manage_scope,
-            map_roles_scope=map_roles_scope,
-            realm_id=realm_id,
-            user_impersonated_scope=user_impersonated_scope,
-            view_scope=view_scope,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             authorization_resource_server_id: Optional[pulumi.Input[str]] = None,
-             enabled: Optional[pulumi.Input[bool]] = None,
-             impersonate_scope: Optional[pulumi.Input['UsersPermissionsImpersonateScopeArgs']] = None,
-             manage_group_membership_scope: Optional[pulumi.Input['UsersPermissionsManageGroupMembershipScopeArgs']] = None,
-             manage_scope: Optional[pulumi.Input['UsersPermissionsManageScopeArgs']] = None,
-             map_roles_scope: Optional[pulumi.Input['UsersPermissionsMapRolesScopeArgs']] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             user_impersonated_scope: Optional[pulumi.Input['UsersPermissionsUserImpersonatedScopeArgs']] = None,
-             view_scope: Optional[pulumi.Input['UsersPermissionsViewScopeArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if authorization_resource_server_id is None and 'authorizationResourceServerId' in kwargs:
-            authorization_resource_server_id = kwargs['authorizationResourceServerId']
-        if impersonate_scope is None and 'impersonateScope' in kwargs:
-            impersonate_scope = kwargs['impersonateScope']
-        if manage_group_membership_scope is None and 'manageGroupMembershipScope' in kwargs:
-            manage_group_membership_scope = kwargs['manageGroupMembershipScope']
-        if manage_scope is None and 'manageScope' in kwargs:
-            manage_scope = kwargs['manageScope']
-        if map_roles_scope is None and 'mapRolesScope' in kwargs:
-            map_roles_scope = kwargs['mapRolesScope']
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-        if user_impersonated_scope is None and 'userImpersonatedScope' in kwargs:
-            user_impersonated_scope = kwargs['userImpersonatedScope']
-        if view_scope is None and 'viewScope' in kwargs:
-            view_scope = kwargs['viewScope']
-
         if authorization_resource_server_id is not None:
-            _setter("authorization_resource_server_id", authorization_resource_server_id)
+            pulumi.set(__self__, "authorization_resource_server_id", authorization_resource_server_id)
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if impersonate_scope is not None:
-            _setter("impersonate_scope", impersonate_scope)
+            pulumi.set(__self__, "impersonate_scope", impersonate_scope)
         if manage_group_membership_scope is not None:
-            _setter("manage_group_membership_scope", manage_group_membership_scope)
+            pulumi.set(__self__, "manage_group_membership_scope", manage_group_membership_scope)
         if manage_scope is not None:
-            _setter("manage_scope", manage_scope)
+            pulumi.set(__self__, "manage_scope", manage_scope)
         if map_roles_scope is not None:
-            _setter("map_roles_scope", map_roles_scope)
+            pulumi.set(__self__, "map_roles_scope", map_roles_scope)
         if realm_id is not None:
-            _setter("realm_id", realm_id)
+            pulumi.set(__self__, "realm_id", realm_id)
         if user_impersonated_scope is not None:
-            _setter("user_impersonated_scope", user_impersonated_scope)
+            pulumi.set(__self__, "user_impersonated_scope", user_impersonated_scope)
         if view_scope is not None:
-            _setter("view_scope", view_scope)
+            pulumi.set(__self__, "view_scope", view_scope)
 
     @property
     @pulumi.getter(name="authorizationResourceServerId")
@@ -342,10 +260,6 @@ class UsersPermissions(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            UsersPermissionsArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -367,20 +281,14 @@ class UsersPermissions(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = UsersPermissionsArgs.__new__(UsersPermissionsArgs)
 
-            impersonate_scope = _utilities.configure(impersonate_scope, UsersPermissionsImpersonateScopeArgs, True)
             __props__.__dict__["impersonate_scope"] = impersonate_scope
-            manage_group_membership_scope = _utilities.configure(manage_group_membership_scope, UsersPermissionsManageGroupMembershipScopeArgs, True)
             __props__.__dict__["manage_group_membership_scope"] = manage_group_membership_scope
-            manage_scope = _utilities.configure(manage_scope, UsersPermissionsManageScopeArgs, True)
             __props__.__dict__["manage_scope"] = manage_scope
-            map_roles_scope = _utilities.configure(map_roles_scope, UsersPermissionsMapRolesScopeArgs, True)
             __props__.__dict__["map_roles_scope"] = map_roles_scope
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
-            user_impersonated_scope = _utilities.configure(user_impersonated_scope, UsersPermissionsUserImpersonatedScopeArgs, True)
             __props__.__dict__["user_impersonated_scope"] = user_impersonated_scope
-            view_scope = _utilities.configure(view_scope, UsersPermissionsViewScopeArgs, True)
             __props__.__dict__["view_scope"] = view_scope
             __props__.__dict__["authorization_resource_server_id"] = None
             __props__.__dict__["enabled"] = None

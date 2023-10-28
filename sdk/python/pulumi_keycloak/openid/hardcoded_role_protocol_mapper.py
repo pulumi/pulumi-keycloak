@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['HardcodedRoleProtocolMapperArgs', 'HardcodedRoleProtocolMapper']
@@ -27,45 +27,14 @@ class HardcodedRoleProtocolMapperArgs:
         :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         """
-        HardcodedRoleProtocolMapperArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            realm_id=realm_id,
-            role_id=role_id,
-            client_id=client_id,
-            client_scope_id=client_scope_id,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             realm_id: Optional[pulumi.Input[str]] = None,
-             role_id: Optional[pulumi.Input[str]] = None,
-             client_id: Optional[pulumi.Input[str]] = None,
-             client_scope_id: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-        if realm_id is None:
-            raise TypeError("Missing 'realm_id' argument")
-        if role_id is None and 'roleId' in kwargs:
-            role_id = kwargs['roleId']
-        if role_id is None:
-            raise TypeError("Missing 'role_id' argument")
-        if client_id is None and 'clientId' in kwargs:
-            client_id = kwargs['clientId']
-        if client_scope_id is None and 'clientScopeId' in kwargs:
-            client_scope_id = kwargs['clientScopeId']
-
-        _setter("realm_id", realm_id)
-        _setter("role_id", role_id)
+        pulumi.set(__self__, "realm_id", realm_id)
+        pulumi.set(__self__, "role_id", role_id)
         if client_id is not None:
-            _setter("client_id", client_id)
+            pulumi.set(__self__, "client_id", client_id)
         if client_scope_id is not None:
-            _setter("client_scope_id", client_scope_id)
+            pulumi.set(__self__, "client_scope_id", client_scope_id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter(name="realmId")
@@ -144,43 +113,16 @@ class _HardcodedRoleProtocolMapperState:
         :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
         :param pulumi.Input[str] role_id: The ID of the role to map to an access token.
         """
-        _HardcodedRoleProtocolMapperState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            client_id=client_id,
-            client_scope_id=client_scope_id,
-            name=name,
-            realm_id=realm_id,
-            role_id=role_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             client_id: Optional[pulumi.Input[str]] = None,
-             client_scope_id: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             role_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if client_id is None and 'clientId' in kwargs:
-            client_id = kwargs['clientId']
-        if client_scope_id is None and 'clientScopeId' in kwargs:
-            client_scope_id = kwargs['clientScopeId']
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-        if role_id is None and 'roleId' in kwargs:
-            role_id = kwargs['roleId']
-
         if client_id is not None:
-            _setter("client_id", client_id)
+            pulumi.set(__self__, "client_id", client_id)
         if client_scope_id is not None:
-            _setter("client_scope_id", client_scope_id)
+            pulumi.set(__self__, "client_scope_id", client_scope_id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if realm_id is not None:
-            _setter("realm_id", realm_id)
+            pulumi.set(__self__, "realm_id", realm_id)
         if role_id is not None:
-            _setter("role_id", role_id)
+            pulumi.set(__self__, "role_id", role_id)
 
     @property
     @pulumi.getter(name="clientId")
@@ -396,10 +338,6 @@ class HardcodedRoleProtocolMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            HardcodedRoleProtocolMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

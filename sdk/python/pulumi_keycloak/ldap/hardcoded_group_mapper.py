@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['HardcodedGroupMapperArgs', 'HardcodedGroupMapper']
@@ -25,38 +25,11 @@ class HardcodedGroupMapperArgs:
         :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
         :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
         """
-        HardcodedGroupMapperArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            group=group,
-            ldap_user_federation_id=ldap_user_federation_id,
-            realm_id=realm_id,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             group: Optional[pulumi.Input[str]] = None,
-             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if group is None:
-            raise TypeError("Missing 'group' argument")
-        if ldap_user_federation_id is None and 'ldapUserFederationId' in kwargs:
-            ldap_user_federation_id = kwargs['ldapUserFederationId']
-        if ldap_user_federation_id is None:
-            raise TypeError("Missing 'ldap_user_federation_id' argument")
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-        if realm_id is None:
-            raise TypeError("Missing 'realm_id' argument")
-
-        _setter("group", group)
-        _setter("ldap_user_federation_id", ldap_user_federation_id)
-        _setter("realm_id", realm_id)
+        pulumi.set(__self__, "group", group)
+        pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
+        pulumi.set(__self__, "realm_id", realm_id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -121,35 +94,14 @@ class _HardcodedGroupMapperState:
         :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
         :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
         """
-        _HardcodedGroupMapperState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            group=group,
-            ldap_user_federation_id=ldap_user_federation_id,
-            name=name,
-            realm_id=realm_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             group: Optional[pulumi.Input[str]] = None,
-             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if ldap_user_federation_id is None and 'ldapUserFederationId' in kwargs:
-            ldap_user_federation_id = kwargs['ldapUserFederationId']
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-
         if group is not None:
-            _setter("group", group)
+            pulumi.set(__self__, "group", group)
         if ldap_user_federation_id is not None:
-            _setter("ldap_user_federation_id", ldap_user_federation_id)
+            pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if realm_id is not None:
-            _setter("realm_id", realm_id)
+            pulumi.set(__self__, "realm_id", realm_id)
 
     @property
     @pulumi.getter
@@ -237,10 +189,6 @@ class HardcodedGroupMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            HardcodedGroupMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
