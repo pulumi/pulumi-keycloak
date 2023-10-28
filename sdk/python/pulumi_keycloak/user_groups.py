@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['UserGroupsArgs', 'UserGroups']
@@ -25,40 +25,11 @@ class UserGroupsArgs:
         :param pulumi.Input[str] user_id: The ID of the user this resource should manage groups for.
         :param pulumi.Input[bool] exhaustive: Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
         """
-        UserGroupsArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            group_ids=group_ids,
-            realm_id=realm_id,
-            user_id=user_id,
-            exhaustive=exhaustive,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             user_id: Optional[pulumi.Input[str]] = None,
-             exhaustive: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if group_ids is None and 'groupIds' in kwargs:
-            group_ids = kwargs['groupIds']
-        if group_ids is None:
-            raise TypeError("Missing 'group_ids' argument")
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-        if realm_id is None:
-            raise TypeError("Missing 'realm_id' argument")
-        if user_id is None and 'userId' in kwargs:
-            user_id = kwargs['userId']
-        if user_id is None:
-            raise TypeError("Missing 'user_id' argument")
-
-        _setter("group_ids", group_ids)
-        _setter("realm_id", realm_id)
-        _setter("user_id", user_id)
+        pulumi.set(__self__, "group_ids", group_ids)
+        pulumi.set(__self__, "realm_id", realm_id)
+        pulumi.set(__self__, "user_id", user_id)
         if exhaustive is not None:
-            _setter("exhaustive", exhaustive)
+            pulumi.set(__self__, "exhaustive", exhaustive)
 
     @property
     @pulumi.getter(name="groupIds")
@@ -123,37 +94,14 @@ class _UserGroupsState:
         :param pulumi.Input[str] realm_id: The realm this group exists in.
         :param pulumi.Input[str] user_id: The ID of the user this resource should manage groups for.
         """
-        _UserGroupsState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            exhaustive=exhaustive,
-            group_ids=group_ids,
-            realm_id=realm_id,
-            user_id=user_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             exhaustive: Optional[pulumi.Input[bool]] = None,
-             group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             user_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if group_ids is None and 'groupIds' in kwargs:
-            group_ids = kwargs['groupIds']
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-        if user_id is None and 'userId' in kwargs:
-            user_id = kwargs['userId']
-
         if exhaustive is not None:
-            _setter("exhaustive", exhaustive)
+            pulumi.set(__self__, "exhaustive", exhaustive)
         if group_ids is not None:
-            _setter("group_ids", group_ids)
+            pulumi.set(__self__, "group_ids", group_ids)
         if realm_id is not None:
-            _setter("realm_id", realm_id)
+            pulumi.set(__self__, "realm_id", realm_id)
         if user_id is not None:
-            _setter("user_id", user_id)
+            pulumi.set(__self__, "user_id", user_id)
 
     @property
     @pulumi.getter
@@ -343,10 +291,6 @@ class UserGroups(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            UserGroupsArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -26,59 +26,18 @@ class GroupPermissionsArgs:
         """
         The set of arguments for constructing a GroupPermissions resource.
         """
-        GroupPermissionsArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            group_id=group_id,
-            realm_id=realm_id,
-            manage_members_scope=manage_members_scope,
-            manage_membership_scope=manage_membership_scope,
-            manage_scope=manage_scope,
-            view_members_scope=view_members_scope,
-            view_scope=view_scope,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             group_id: Optional[pulumi.Input[str]] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             manage_members_scope: Optional[pulumi.Input['GroupPermissionsManageMembersScopeArgs']] = None,
-             manage_membership_scope: Optional[pulumi.Input['GroupPermissionsManageMembershipScopeArgs']] = None,
-             manage_scope: Optional[pulumi.Input['GroupPermissionsManageScopeArgs']] = None,
-             view_members_scope: Optional[pulumi.Input['GroupPermissionsViewMembersScopeArgs']] = None,
-             view_scope: Optional[pulumi.Input['GroupPermissionsViewScopeArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if group_id is None and 'groupId' in kwargs:
-            group_id = kwargs['groupId']
-        if group_id is None:
-            raise TypeError("Missing 'group_id' argument")
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-        if realm_id is None:
-            raise TypeError("Missing 'realm_id' argument")
-        if manage_members_scope is None and 'manageMembersScope' in kwargs:
-            manage_members_scope = kwargs['manageMembersScope']
-        if manage_membership_scope is None and 'manageMembershipScope' in kwargs:
-            manage_membership_scope = kwargs['manageMembershipScope']
-        if manage_scope is None and 'manageScope' in kwargs:
-            manage_scope = kwargs['manageScope']
-        if view_members_scope is None and 'viewMembersScope' in kwargs:
-            view_members_scope = kwargs['viewMembersScope']
-        if view_scope is None and 'viewScope' in kwargs:
-            view_scope = kwargs['viewScope']
-
-        _setter("group_id", group_id)
-        _setter("realm_id", realm_id)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "realm_id", realm_id)
         if manage_members_scope is not None:
-            _setter("manage_members_scope", manage_members_scope)
+            pulumi.set(__self__, "manage_members_scope", manage_members_scope)
         if manage_membership_scope is not None:
-            _setter("manage_membership_scope", manage_membership_scope)
+            pulumi.set(__self__, "manage_membership_scope", manage_membership_scope)
         if manage_scope is not None:
-            _setter("manage_scope", manage_scope)
+            pulumi.set(__self__, "manage_scope", manage_scope)
         if view_members_scope is not None:
-            _setter("view_members_scope", view_members_scope)
+            pulumi.set(__self__, "view_members_scope", view_members_scope)
         if view_scope is not None:
-            _setter("view_scope", view_scope)
+            pulumi.set(__self__, "view_scope", view_scope)
 
     @property
     @pulumi.getter(name="groupId")
@@ -160,67 +119,24 @@ class _GroupPermissionsState:
         Input properties used for looking up and filtering GroupPermissions resources.
         :param pulumi.Input[str] authorization_resource_server_id: Resource server id representing the realm management client on which this permission is managed
         """
-        _GroupPermissionsState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            authorization_resource_server_id=authorization_resource_server_id,
-            enabled=enabled,
-            group_id=group_id,
-            manage_members_scope=manage_members_scope,
-            manage_membership_scope=manage_membership_scope,
-            manage_scope=manage_scope,
-            realm_id=realm_id,
-            view_members_scope=view_members_scope,
-            view_scope=view_scope,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             authorization_resource_server_id: Optional[pulumi.Input[str]] = None,
-             enabled: Optional[pulumi.Input[bool]] = None,
-             group_id: Optional[pulumi.Input[str]] = None,
-             manage_members_scope: Optional[pulumi.Input['GroupPermissionsManageMembersScopeArgs']] = None,
-             manage_membership_scope: Optional[pulumi.Input['GroupPermissionsManageMembershipScopeArgs']] = None,
-             manage_scope: Optional[pulumi.Input['GroupPermissionsManageScopeArgs']] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             view_members_scope: Optional[pulumi.Input['GroupPermissionsViewMembersScopeArgs']] = None,
-             view_scope: Optional[pulumi.Input['GroupPermissionsViewScopeArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if authorization_resource_server_id is None and 'authorizationResourceServerId' in kwargs:
-            authorization_resource_server_id = kwargs['authorizationResourceServerId']
-        if group_id is None and 'groupId' in kwargs:
-            group_id = kwargs['groupId']
-        if manage_members_scope is None and 'manageMembersScope' in kwargs:
-            manage_members_scope = kwargs['manageMembersScope']
-        if manage_membership_scope is None and 'manageMembershipScope' in kwargs:
-            manage_membership_scope = kwargs['manageMembershipScope']
-        if manage_scope is None and 'manageScope' in kwargs:
-            manage_scope = kwargs['manageScope']
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-        if view_members_scope is None and 'viewMembersScope' in kwargs:
-            view_members_scope = kwargs['viewMembersScope']
-        if view_scope is None and 'viewScope' in kwargs:
-            view_scope = kwargs['viewScope']
-
         if authorization_resource_server_id is not None:
-            _setter("authorization_resource_server_id", authorization_resource_server_id)
+            pulumi.set(__self__, "authorization_resource_server_id", authorization_resource_server_id)
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if group_id is not None:
-            _setter("group_id", group_id)
+            pulumi.set(__self__, "group_id", group_id)
         if manage_members_scope is not None:
-            _setter("manage_members_scope", manage_members_scope)
+            pulumi.set(__self__, "manage_members_scope", manage_members_scope)
         if manage_membership_scope is not None:
-            _setter("manage_membership_scope", manage_membership_scope)
+            pulumi.set(__self__, "manage_membership_scope", manage_membership_scope)
         if manage_scope is not None:
-            _setter("manage_scope", manage_scope)
+            pulumi.set(__self__, "manage_scope", manage_scope)
         if realm_id is not None:
-            _setter("realm_id", realm_id)
+            pulumi.set(__self__, "realm_id", realm_id)
         if view_members_scope is not None:
-            _setter("view_members_scope", view_members_scope)
+            pulumi.set(__self__, "view_members_scope", view_members_scope)
         if view_scope is not None:
-            _setter("view_scope", view_scope)
+            pulumi.set(__self__, "view_scope", view_scope)
 
     @property
     @pulumi.getter(name="authorizationResourceServerId")
@@ -343,10 +259,6 @@ class GroupPermissions(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            GroupPermissionsArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -371,18 +283,13 @@ class GroupPermissions(pulumi.CustomResource):
             if group_id is None and not opts.urn:
                 raise TypeError("Missing required property 'group_id'")
             __props__.__dict__["group_id"] = group_id
-            manage_members_scope = _utilities.configure(manage_members_scope, GroupPermissionsManageMembersScopeArgs, True)
             __props__.__dict__["manage_members_scope"] = manage_members_scope
-            manage_membership_scope = _utilities.configure(manage_membership_scope, GroupPermissionsManageMembershipScopeArgs, True)
             __props__.__dict__["manage_membership_scope"] = manage_membership_scope
-            manage_scope = _utilities.configure(manage_scope, GroupPermissionsManageScopeArgs, True)
             __props__.__dict__["manage_scope"] = manage_scope
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
-            view_members_scope = _utilities.configure(view_members_scope, GroupPermissionsViewMembersScopeArgs, True)
             __props__.__dict__["view_members_scope"] = view_members_scope
-            view_scope = _utilities.configure(view_scope, GroupPermissionsViewScopeArgs, True)
             __props__.__dict__["view_scope"] = view_scope
             __props__.__dict__["authorization_resource_server_id"] = None
             __props__.__dict__["enabled"] = None

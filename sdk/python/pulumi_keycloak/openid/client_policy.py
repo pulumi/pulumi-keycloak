@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['ClientPolicyArgs', 'ClientPolicy']
@@ -31,52 +31,17 @@ class ClientPolicyArgs:
         :param pulumi.Input[str] logic: (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
         :param pulumi.Input[str] name: The name of this client policy.
         """
-        ClientPolicyArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            clients=clients,
-            realm_id=realm_id,
-            resource_server_id=resource_server_id,
-            decision_strategy=decision_strategy,
-            description=description,
-            logic=logic,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             clients: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             resource_server_id: Optional[pulumi.Input[str]] = None,
-             decision_strategy: Optional[pulumi.Input[str]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             logic: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if clients is None:
-            raise TypeError("Missing 'clients' argument")
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-        if realm_id is None:
-            raise TypeError("Missing 'realm_id' argument")
-        if resource_server_id is None and 'resourceServerId' in kwargs:
-            resource_server_id = kwargs['resourceServerId']
-        if resource_server_id is None:
-            raise TypeError("Missing 'resource_server_id' argument")
-        if decision_strategy is None and 'decisionStrategy' in kwargs:
-            decision_strategy = kwargs['decisionStrategy']
-
-        _setter("clients", clients)
-        _setter("realm_id", realm_id)
-        _setter("resource_server_id", resource_server_id)
+        pulumi.set(__self__, "clients", clients)
+        pulumi.set(__self__, "realm_id", realm_id)
+        pulumi.set(__self__, "resource_server_id", resource_server_id)
         if decision_strategy is not None:
-            _setter("decision_strategy", decision_strategy)
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if logic is not None:
-            _setter("logic", logic)
+            pulumi.set(__self__, "logic", logic)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -183,49 +148,20 @@ class _ClientPolicyState:
         :param pulumi.Input[str] realm_id: The realm this client policy exists within.
         :param pulumi.Input[str] resource_server_id: The ID of the resource server this client policy is attached to.
         """
-        _ClientPolicyState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            clients=clients,
-            decision_strategy=decision_strategy,
-            description=description,
-            logic=logic,
-            name=name,
-            realm_id=realm_id,
-            resource_server_id=resource_server_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             clients: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             decision_strategy: Optional[pulumi.Input[str]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             logic: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             realm_id: Optional[pulumi.Input[str]] = None,
-             resource_server_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if decision_strategy is None and 'decisionStrategy' in kwargs:
-            decision_strategy = kwargs['decisionStrategy']
-        if realm_id is None and 'realmId' in kwargs:
-            realm_id = kwargs['realmId']
-        if resource_server_id is None and 'resourceServerId' in kwargs:
-            resource_server_id = kwargs['resourceServerId']
-
         if clients is not None:
-            _setter("clients", clients)
+            pulumi.set(__self__, "clients", clients)
         if decision_strategy is not None:
-            _setter("decision_strategy", decision_strategy)
+            pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if logic is not None:
-            _setter("logic", logic)
+            pulumi.set(__self__, "logic", logic)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if realm_id is not None:
-            _setter("realm_id", realm_id)
+            pulumi.set(__self__, "realm_id", realm_id)
         if resource_server_id is not None:
-            _setter("resource_server_id", resource_server_id)
+            pulumi.set(__self__, "resource_server_id", resource_server_id)
 
     @property
     @pulumi.getter
@@ -415,10 +351,6 @@ class ClientPolicy(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ClientPolicyArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
