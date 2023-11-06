@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['UserTemplateImporterIdentityProviderMapperArgs', 'UserTemplateImporterIdentityProviderMapper']
@@ -27,14 +27,41 @@ class UserTemplateImporterIdentityProviderMapperArgs:
         :param pulumi.Input[str] name: The name of the mapper.
         :param pulumi.Input[str] template: Template to use to format the username to import. Substitutions are enclosed in \\${}. For example: '\\$\\${ALIAS}.\\$\\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\\<NAME\\> references an ID or Access token claim.
         """
-        pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
-        pulumi.set(__self__, "realm", realm)
+        UserTemplateImporterIdentityProviderMapperArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            identity_provider_alias=identity_provider_alias,
+            realm=realm,
+            extra_config=extra_config,
+            name=name,
+            template=template,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             identity_provider_alias: Optional[pulumi.Input[str]] = None,
+             realm: Optional[pulumi.Input[str]] = None,
+             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             template: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if identity_provider_alias is None and 'identityProviderAlias' in kwargs:
+            identity_provider_alias = kwargs['identityProviderAlias']
+        if identity_provider_alias is None:
+            raise TypeError("Missing 'identity_provider_alias' argument")
+        if realm is None:
+            raise TypeError("Missing 'realm' argument")
+        if extra_config is None and 'extraConfig' in kwargs:
+            extra_config = kwargs['extraConfig']
+
+        _setter("identity_provider_alias", identity_provider_alias)
+        _setter("realm", realm)
         if extra_config is not None:
-            pulumi.set(__self__, "extra_config", extra_config)
+            _setter("extra_config", extra_config)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if template is not None:
-            pulumi.set(__self__, "template", template)
+            _setter("template", template)
 
     @property
     @pulumi.getter(name="identityProviderAlias")
@@ -113,16 +140,39 @@ class _UserTemplateImporterIdentityProviderMapperState:
         :param pulumi.Input[str] realm: The name of the realm.
         :param pulumi.Input[str] template: Template to use to format the username to import. Substitutions are enclosed in \\${}. For example: '\\$\\${ALIAS}.\\$\\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\\<NAME\\> references an ID or Access token claim.
         """
+        _UserTemplateImporterIdentityProviderMapperState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            extra_config=extra_config,
+            identity_provider_alias=identity_provider_alias,
+            name=name,
+            realm=realm,
+            template=template,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             identity_provider_alias: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm: Optional[pulumi.Input[str]] = None,
+             template: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if extra_config is None and 'extraConfig' in kwargs:
+            extra_config = kwargs['extraConfig']
+        if identity_provider_alias is None and 'identityProviderAlias' in kwargs:
+            identity_provider_alias = kwargs['identityProviderAlias']
+
         if extra_config is not None:
-            pulumi.set(__self__, "extra_config", extra_config)
+            _setter("extra_config", extra_config)
         if identity_provider_alias is not None:
-            pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
+            _setter("identity_provider_alias", identity_provider_alias)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm is not None:
-            pulumi.set(__self__, "realm", realm)
+            _setter("realm", realm)
         if template is not None:
-            pulumi.set(__self__, "template", template)
+            _setter("template", template)
 
     @property
     @pulumi.getter(name="extraConfig")
@@ -306,6 +356,10 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            UserTemplateImporterIdentityProviderMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['MsadLdsUserAccountControlMapperArgs', 'MsadLdsUserAccountControlMapper']
@@ -23,10 +23,33 @@ class MsadLdsUserAccountControlMapperArgs:
         :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
         :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
         """
-        pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
-        pulumi.set(__self__, "realm_id", realm_id)
+        MsadLdsUserAccountControlMapperArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ldap_user_federation_id=ldap_user_federation_id,
+            realm_id=realm_id,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if ldap_user_federation_id is None and 'ldapUserFederationId' in kwargs:
+            ldap_user_federation_id = kwargs['ldapUserFederationId']
+        if ldap_user_federation_id is None:
+            raise TypeError("Missing 'ldap_user_federation_id' argument")
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+
+        _setter("ldap_user_federation_id", ldap_user_federation_id)
+        _setter("realm_id", realm_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="ldapUserFederationId")
@@ -77,12 +100,31 @@ class _MsadLdsUserAccountControlMapperState:
         :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
         """
+        _MsadLdsUserAccountControlMapperState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ldap_user_federation_id=ldap_user_federation_id,
+            name=name,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if ldap_user_federation_id is None and 'ldapUserFederationId' in kwargs:
+            ldap_user_federation_id = kwargs['ldapUserFederationId']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+
         if ldap_user_federation_id is not None:
-            pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
+            _setter("ldap_user_federation_id", ldap_user_federation_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter(name="ldapUserFederationId")
@@ -242,6 +284,10 @@ class MsadLdsUserAccountControlMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            MsadLdsUserAccountControlMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

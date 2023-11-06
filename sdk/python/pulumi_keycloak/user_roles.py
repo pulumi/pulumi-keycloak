@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['UserRolesArgs', 'UserRoles']
@@ -25,11 +25,40 @@ class UserRolesArgs:
         :param pulumi.Input[str] user_id: The ID of the user this resource should manage roles for.
         :param pulumi.Input[bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
         """
-        pulumi.set(__self__, "realm_id", realm_id)
-        pulumi.set(__self__, "role_ids", role_ids)
-        pulumi.set(__self__, "user_id", user_id)
+        UserRolesArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            realm_id=realm_id,
+            role_ids=role_ids,
+            user_id=user_id,
+            exhaustive=exhaustive,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             realm_id: Optional[pulumi.Input[str]] = None,
+             role_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             user_id: Optional[pulumi.Input[str]] = None,
+             exhaustive: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if role_ids is None and 'roleIds' in kwargs:
+            role_ids = kwargs['roleIds']
+        if role_ids is None:
+            raise TypeError("Missing 'role_ids' argument")
+        if user_id is None and 'userId' in kwargs:
+            user_id = kwargs['userId']
+        if user_id is None:
+            raise TypeError("Missing 'user_id' argument")
+
+        _setter("realm_id", realm_id)
+        _setter("role_ids", role_ids)
+        _setter("user_id", user_id)
         if exhaustive is not None:
-            pulumi.set(__self__, "exhaustive", exhaustive)
+            _setter("exhaustive", exhaustive)
 
     @property
     @pulumi.getter(name="realmId")
@@ -94,14 +123,37 @@ class _UserRolesState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_ids: A list of role IDs to map to the user
         :param pulumi.Input[str] user_id: The ID of the user this resource should manage roles for.
         """
+        _UserRolesState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            exhaustive=exhaustive,
+            realm_id=realm_id,
+            role_ids=role_ids,
+            user_id=user_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             exhaustive: Optional[pulumi.Input[bool]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             role_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             user_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if role_ids is None and 'roleIds' in kwargs:
+            role_ids = kwargs['roleIds']
+        if user_id is None and 'userId' in kwargs:
+            user_id = kwargs['userId']
+
         if exhaustive is not None:
-            pulumi.set(__self__, "exhaustive", exhaustive)
+            _setter("exhaustive", exhaustive)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if role_ids is not None:
-            pulumi.set(__self__, "role_ids", role_ids)
+            _setter("role_ids", role_ids)
         if user_id is not None:
-            pulumi.set(__self__, "user_id", user_id)
+            _setter("user_id", user_id)
 
     @property
     @pulumi.getter
@@ -297,6 +349,10 @@ class UserRoles(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            UserRolesArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

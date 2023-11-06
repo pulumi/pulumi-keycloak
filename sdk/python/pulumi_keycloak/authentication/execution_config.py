@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['ExecutionConfigArgs', 'ExecutionConfig']
@@ -25,10 +25,39 @@ class ExecutionConfigArgs:
         :param pulumi.Input[str] execution_id: The authentication execution this configuration is attached to.
         :param pulumi.Input[str] realm_id: The realm the authentication execution exists in.
         """
-        pulumi.set(__self__, "alias", alias)
-        pulumi.set(__self__, "config", config)
-        pulumi.set(__self__, "execution_id", execution_id)
-        pulumi.set(__self__, "realm_id", realm_id)
+        ExecutionConfigArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            alias=alias,
+            config=config,
+            execution_id=execution_id,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             alias: Optional[pulumi.Input[str]] = None,
+             config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             execution_id: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if alias is None:
+            raise TypeError("Missing 'alias' argument")
+        if config is None:
+            raise TypeError("Missing 'config' argument")
+        if execution_id is None and 'executionId' in kwargs:
+            execution_id = kwargs['executionId']
+        if execution_id is None:
+            raise TypeError("Missing 'execution_id' argument")
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+
+        _setter("alias", alias)
+        _setter("config", config)
+        _setter("execution_id", execution_id)
+        _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter
@@ -93,14 +122,35 @@ class _ExecutionConfigState:
         :param pulumi.Input[str] execution_id: The authentication execution this configuration is attached to.
         :param pulumi.Input[str] realm_id: The realm the authentication execution exists in.
         """
+        _ExecutionConfigState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            alias=alias,
+            config=config,
+            execution_id=execution_id,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             alias: Optional[pulumi.Input[str]] = None,
+             config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             execution_id: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if execution_id is None and 'executionId' in kwargs:
+            execution_id = kwargs['executionId']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+
         if alias is not None:
-            pulumi.set(__self__, "alias", alias)
+            _setter("alias", alias)
         if config is not None:
-            pulumi.set(__self__, "config", config)
+            _setter("config", config)
         if execution_id is not None:
-            pulumi.set(__self__, "execution_id", execution_id)
+            _setter("execution_id", execution_id)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter
@@ -258,6 +308,10 @@ class ExecutionConfig(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ExecutionConfigArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

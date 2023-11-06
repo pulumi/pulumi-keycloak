@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['IdentityProviderArgs', 'IdentityProvider']
@@ -78,62 +78,199 @@ class IdentityProviderArgs:
         :param pulumi.Input[str] user_info_url: User Info URL.
         :param pulumi.Input[bool] validate_signature: Enable/disable signature validation of external IDP signatures. Defaults to `false`.
         """
-        pulumi.set(__self__, "alias", alias)
-        pulumi.set(__self__, "authorization_url", authorization_url)
-        pulumi.set(__self__, "client_id", client_id)
-        pulumi.set(__self__, "client_secret", client_secret)
-        pulumi.set(__self__, "realm", realm)
-        pulumi.set(__self__, "token_url", token_url)
+        IdentityProviderArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            alias=alias,
+            authorization_url=authorization_url,
+            client_id=client_id,
+            client_secret=client_secret,
+            realm=realm,
+            token_url=token_url,
+            accepts_prompt_none_forward_from_client=accepts_prompt_none_forward_from_client,
+            add_read_token_role_on_create=add_read_token_role_on_create,
+            authenticate_by_default=authenticate_by_default,
+            backchannel_supported=backchannel_supported,
+            default_scopes=default_scopes,
+            disable_user_info=disable_user_info,
+            display_name=display_name,
+            enabled=enabled,
+            extra_config=extra_config,
+            first_broker_login_flow_alias=first_broker_login_flow_alias,
+            gui_order=gui_order,
+            hide_on_login_page=hide_on_login_page,
+            issuer=issuer,
+            jwks_url=jwks_url,
+            link_only=link_only,
+            login_hint=login_hint,
+            logout_url=logout_url,
+            post_broker_login_flow_alias=post_broker_login_flow_alias,
+            provider_id=provider_id,
+            store_token=store_token,
+            sync_mode=sync_mode,
+            trust_email=trust_email,
+            ui_locales=ui_locales,
+            user_info_url=user_info_url,
+            validate_signature=validate_signature,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             alias: Optional[pulumi.Input[str]] = None,
+             authorization_url: Optional[pulumi.Input[str]] = None,
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_secret: Optional[pulumi.Input[str]] = None,
+             realm: Optional[pulumi.Input[str]] = None,
+             token_url: Optional[pulumi.Input[str]] = None,
+             accepts_prompt_none_forward_from_client: Optional[pulumi.Input[bool]] = None,
+             add_read_token_role_on_create: Optional[pulumi.Input[bool]] = None,
+             authenticate_by_default: Optional[pulumi.Input[bool]] = None,
+             backchannel_supported: Optional[pulumi.Input[bool]] = None,
+             default_scopes: Optional[pulumi.Input[str]] = None,
+             disable_user_info: Optional[pulumi.Input[bool]] = None,
+             display_name: Optional[pulumi.Input[str]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+             gui_order: Optional[pulumi.Input[str]] = None,
+             hide_on_login_page: Optional[pulumi.Input[bool]] = None,
+             issuer: Optional[pulumi.Input[str]] = None,
+             jwks_url: Optional[pulumi.Input[str]] = None,
+             link_only: Optional[pulumi.Input[bool]] = None,
+             login_hint: Optional[pulumi.Input[str]] = None,
+             logout_url: Optional[pulumi.Input[str]] = None,
+             post_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+             provider_id: Optional[pulumi.Input[str]] = None,
+             store_token: Optional[pulumi.Input[bool]] = None,
+             sync_mode: Optional[pulumi.Input[str]] = None,
+             trust_email: Optional[pulumi.Input[bool]] = None,
+             ui_locales: Optional[pulumi.Input[bool]] = None,
+             user_info_url: Optional[pulumi.Input[str]] = None,
+             validate_signature: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if alias is None:
+            raise TypeError("Missing 'alias' argument")
+        if authorization_url is None and 'authorizationUrl' in kwargs:
+            authorization_url = kwargs['authorizationUrl']
+        if authorization_url is None:
+            raise TypeError("Missing 'authorization_url' argument")
+        if client_id is None and 'clientId' in kwargs:
+            client_id = kwargs['clientId']
+        if client_id is None:
+            raise TypeError("Missing 'client_id' argument")
+        if client_secret is None and 'clientSecret' in kwargs:
+            client_secret = kwargs['clientSecret']
+        if client_secret is None:
+            raise TypeError("Missing 'client_secret' argument")
+        if realm is None:
+            raise TypeError("Missing 'realm' argument")
+        if token_url is None and 'tokenUrl' in kwargs:
+            token_url = kwargs['tokenUrl']
+        if token_url is None:
+            raise TypeError("Missing 'token_url' argument")
+        if accepts_prompt_none_forward_from_client is None and 'acceptsPromptNoneForwardFromClient' in kwargs:
+            accepts_prompt_none_forward_from_client = kwargs['acceptsPromptNoneForwardFromClient']
+        if add_read_token_role_on_create is None and 'addReadTokenRoleOnCreate' in kwargs:
+            add_read_token_role_on_create = kwargs['addReadTokenRoleOnCreate']
+        if authenticate_by_default is None and 'authenticateByDefault' in kwargs:
+            authenticate_by_default = kwargs['authenticateByDefault']
+        if backchannel_supported is None and 'backchannelSupported' in kwargs:
+            backchannel_supported = kwargs['backchannelSupported']
+        if default_scopes is None and 'defaultScopes' in kwargs:
+            default_scopes = kwargs['defaultScopes']
+        if disable_user_info is None and 'disableUserInfo' in kwargs:
+            disable_user_info = kwargs['disableUserInfo']
+        if display_name is None and 'displayName' in kwargs:
+            display_name = kwargs['displayName']
+        if extra_config is None and 'extraConfig' in kwargs:
+            extra_config = kwargs['extraConfig']
+        if first_broker_login_flow_alias is None and 'firstBrokerLoginFlowAlias' in kwargs:
+            first_broker_login_flow_alias = kwargs['firstBrokerLoginFlowAlias']
+        if gui_order is None and 'guiOrder' in kwargs:
+            gui_order = kwargs['guiOrder']
+        if hide_on_login_page is None and 'hideOnLoginPage' in kwargs:
+            hide_on_login_page = kwargs['hideOnLoginPage']
+        if jwks_url is None and 'jwksUrl' in kwargs:
+            jwks_url = kwargs['jwksUrl']
+        if link_only is None and 'linkOnly' in kwargs:
+            link_only = kwargs['linkOnly']
+        if login_hint is None and 'loginHint' in kwargs:
+            login_hint = kwargs['loginHint']
+        if logout_url is None and 'logoutUrl' in kwargs:
+            logout_url = kwargs['logoutUrl']
+        if post_broker_login_flow_alias is None and 'postBrokerLoginFlowAlias' in kwargs:
+            post_broker_login_flow_alias = kwargs['postBrokerLoginFlowAlias']
+        if provider_id is None and 'providerId' in kwargs:
+            provider_id = kwargs['providerId']
+        if store_token is None and 'storeToken' in kwargs:
+            store_token = kwargs['storeToken']
+        if sync_mode is None and 'syncMode' in kwargs:
+            sync_mode = kwargs['syncMode']
+        if trust_email is None and 'trustEmail' in kwargs:
+            trust_email = kwargs['trustEmail']
+        if ui_locales is None and 'uiLocales' in kwargs:
+            ui_locales = kwargs['uiLocales']
+        if user_info_url is None and 'userInfoUrl' in kwargs:
+            user_info_url = kwargs['userInfoUrl']
+        if validate_signature is None and 'validateSignature' in kwargs:
+            validate_signature = kwargs['validateSignature']
+
+        _setter("alias", alias)
+        _setter("authorization_url", authorization_url)
+        _setter("client_id", client_id)
+        _setter("client_secret", client_secret)
+        _setter("realm", realm)
+        _setter("token_url", token_url)
         if accepts_prompt_none_forward_from_client is not None:
-            pulumi.set(__self__, "accepts_prompt_none_forward_from_client", accepts_prompt_none_forward_from_client)
+            _setter("accepts_prompt_none_forward_from_client", accepts_prompt_none_forward_from_client)
         if add_read_token_role_on_create is not None:
-            pulumi.set(__self__, "add_read_token_role_on_create", add_read_token_role_on_create)
+            _setter("add_read_token_role_on_create", add_read_token_role_on_create)
         if authenticate_by_default is not None:
-            pulumi.set(__self__, "authenticate_by_default", authenticate_by_default)
+            _setter("authenticate_by_default", authenticate_by_default)
         if backchannel_supported is not None:
-            pulumi.set(__self__, "backchannel_supported", backchannel_supported)
+            _setter("backchannel_supported", backchannel_supported)
         if default_scopes is not None:
-            pulumi.set(__self__, "default_scopes", default_scopes)
+            _setter("default_scopes", default_scopes)
         if disable_user_info is not None:
-            pulumi.set(__self__, "disable_user_info", disable_user_info)
+            _setter("disable_user_info", disable_user_info)
         if display_name is not None:
-            pulumi.set(__self__, "display_name", display_name)
+            _setter("display_name", display_name)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if extra_config is not None:
-            pulumi.set(__self__, "extra_config", extra_config)
+            _setter("extra_config", extra_config)
         if first_broker_login_flow_alias is not None:
-            pulumi.set(__self__, "first_broker_login_flow_alias", first_broker_login_flow_alias)
+            _setter("first_broker_login_flow_alias", first_broker_login_flow_alias)
         if gui_order is not None:
-            pulumi.set(__self__, "gui_order", gui_order)
+            _setter("gui_order", gui_order)
         if hide_on_login_page is not None:
-            pulumi.set(__self__, "hide_on_login_page", hide_on_login_page)
+            _setter("hide_on_login_page", hide_on_login_page)
         if issuer is not None:
-            pulumi.set(__self__, "issuer", issuer)
+            _setter("issuer", issuer)
         if jwks_url is not None:
-            pulumi.set(__self__, "jwks_url", jwks_url)
+            _setter("jwks_url", jwks_url)
         if link_only is not None:
-            pulumi.set(__self__, "link_only", link_only)
+            _setter("link_only", link_only)
         if login_hint is not None:
-            pulumi.set(__self__, "login_hint", login_hint)
+            _setter("login_hint", login_hint)
         if logout_url is not None:
-            pulumi.set(__self__, "logout_url", logout_url)
+            _setter("logout_url", logout_url)
         if post_broker_login_flow_alias is not None:
-            pulumi.set(__self__, "post_broker_login_flow_alias", post_broker_login_flow_alias)
+            _setter("post_broker_login_flow_alias", post_broker_login_flow_alias)
         if provider_id is not None:
-            pulumi.set(__self__, "provider_id", provider_id)
+            _setter("provider_id", provider_id)
         if store_token is not None:
-            pulumi.set(__self__, "store_token", store_token)
+            _setter("store_token", store_token)
         if sync_mode is not None:
-            pulumi.set(__self__, "sync_mode", sync_mode)
+            _setter("sync_mode", sync_mode)
         if trust_email is not None:
-            pulumi.set(__self__, "trust_email", trust_email)
+            _setter("trust_email", trust_email)
         if ui_locales is not None:
-            pulumi.set(__self__, "ui_locales", ui_locales)
+            _setter("ui_locales", ui_locales)
         if user_info_url is not None:
-            pulumi.set(__self__, "user_info_url", user_info_url)
+            _setter("user_info_url", user_info_url)
         if validate_signature is not None:
-            pulumi.set(__self__, "validate_signature", validate_signature)
+            _setter("validate_signature", validate_signature)
 
     @property
     @pulumi.getter
@@ -574,70 +711,199 @@ class _IdentityProviderState:
         :param pulumi.Input[str] user_info_url: User Info URL.
         :param pulumi.Input[bool] validate_signature: Enable/disable signature validation of external IDP signatures. Defaults to `false`.
         """
+        _IdentityProviderState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            accepts_prompt_none_forward_from_client=accepts_prompt_none_forward_from_client,
+            add_read_token_role_on_create=add_read_token_role_on_create,
+            alias=alias,
+            authenticate_by_default=authenticate_by_default,
+            authorization_url=authorization_url,
+            backchannel_supported=backchannel_supported,
+            client_id=client_id,
+            client_secret=client_secret,
+            default_scopes=default_scopes,
+            disable_user_info=disable_user_info,
+            display_name=display_name,
+            enabled=enabled,
+            extra_config=extra_config,
+            first_broker_login_flow_alias=first_broker_login_flow_alias,
+            gui_order=gui_order,
+            hide_on_login_page=hide_on_login_page,
+            internal_id=internal_id,
+            issuer=issuer,
+            jwks_url=jwks_url,
+            link_only=link_only,
+            login_hint=login_hint,
+            logout_url=logout_url,
+            post_broker_login_flow_alias=post_broker_login_flow_alias,
+            provider_id=provider_id,
+            realm=realm,
+            store_token=store_token,
+            sync_mode=sync_mode,
+            token_url=token_url,
+            trust_email=trust_email,
+            ui_locales=ui_locales,
+            user_info_url=user_info_url,
+            validate_signature=validate_signature,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             accepts_prompt_none_forward_from_client: Optional[pulumi.Input[bool]] = None,
+             add_read_token_role_on_create: Optional[pulumi.Input[bool]] = None,
+             alias: Optional[pulumi.Input[str]] = None,
+             authenticate_by_default: Optional[pulumi.Input[bool]] = None,
+             authorization_url: Optional[pulumi.Input[str]] = None,
+             backchannel_supported: Optional[pulumi.Input[bool]] = None,
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_secret: Optional[pulumi.Input[str]] = None,
+             default_scopes: Optional[pulumi.Input[str]] = None,
+             disable_user_info: Optional[pulumi.Input[bool]] = None,
+             display_name: Optional[pulumi.Input[str]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+             gui_order: Optional[pulumi.Input[str]] = None,
+             hide_on_login_page: Optional[pulumi.Input[bool]] = None,
+             internal_id: Optional[pulumi.Input[str]] = None,
+             issuer: Optional[pulumi.Input[str]] = None,
+             jwks_url: Optional[pulumi.Input[str]] = None,
+             link_only: Optional[pulumi.Input[bool]] = None,
+             login_hint: Optional[pulumi.Input[str]] = None,
+             logout_url: Optional[pulumi.Input[str]] = None,
+             post_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
+             provider_id: Optional[pulumi.Input[str]] = None,
+             realm: Optional[pulumi.Input[str]] = None,
+             store_token: Optional[pulumi.Input[bool]] = None,
+             sync_mode: Optional[pulumi.Input[str]] = None,
+             token_url: Optional[pulumi.Input[str]] = None,
+             trust_email: Optional[pulumi.Input[bool]] = None,
+             ui_locales: Optional[pulumi.Input[bool]] = None,
+             user_info_url: Optional[pulumi.Input[str]] = None,
+             validate_signature: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if accepts_prompt_none_forward_from_client is None and 'acceptsPromptNoneForwardFromClient' in kwargs:
+            accepts_prompt_none_forward_from_client = kwargs['acceptsPromptNoneForwardFromClient']
+        if add_read_token_role_on_create is None and 'addReadTokenRoleOnCreate' in kwargs:
+            add_read_token_role_on_create = kwargs['addReadTokenRoleOnCreate']
+        if authenticate_by_default is None and 'authenticateByDefault' in kwargs:
+            authenticate_by_default = kwargs['authenticateByDefault']
+        if authorization_url is None and 'authorizationUrl' in kwargs:
+            authorization_url = kwargs['authorizationUrl']
+        if backchannel_supported is None and 'backchannelSupported' in kwargs:
+            backchannel_supported = kwargs['backchannelSupported']
+        if client_id is None and 'clientId' in kwargs:
+            client_id = kwargs['clientId']
+        if client_secret is None and 'clientSecret' in kwargs:
+            client_secret = kwargs['clientSecret']
+        if default_scopes is None and 'defaultScopes' in kwargs:
+            default_scopes = kwargs['defaultScopes']
+        if disable_user_info is None and 'disableUserInfo' in kwargs:
+            disable_user_info = kwargs['disableUserInfo']
+        if display_name is None and 'displayName' in kwargs:
+            display_name = kwargs['displayName']
+        if extra_config is None and 'extraConfig' in kwargs:
+            extra_config = kwargs['extraConfig']
+        if first_broker_login_flow_alias is None and 'firstBrokerLoginFlowAlias' in kwargs:
+            first_broker_login_flow_alias = kwargs['firstBrokerLoginFlowAlias']
+        if gui_order is None and 'guiOrder' in kwargs:
+            gui_order = kwargs['guiOrder']
+        if hide_on_login_page is None and 'hideOnLoginPage' in kwargs:
+            hide_on_login_page = kwargs['hideOnLoginPage']
+        if internal_id is None and 'internalId' in kwargs:
+            internal_id = kwargs['internalId']
+        if jwks_url is None and 'jwksUrl' in kwargs:
+            jwks_url = kwargs['jwksUrl']
+        if link_only is None and 'linkOnly' in kwargs:
+            link_only = kwargs['linkOnly']
+        if login_hint is None and 'loginHint' in kwargs:
+            login_hint = kwargs['loginHint']
+        if logout_url is None and 'logoutUrl' in kwargs:
+            logout_url = kwargs['logoutUrl']
+        if post_broker_login_flow_alias is None and 'postBrokerLoginFlowAlias' in kwargs:
+            post_broker_login_flow_alias = kwargs['postBrokerLoginFlowAlias']
+        if provider_id is None and 'providerId' in kwargs:
+            provider_id = kwargs['providerId']
+        if store_token is None and 'storeToken' in kwargs:
+            store_token = kwargs['storeToken']
+        if sync_mode is None and 'syncMode' in kwargs:
+            sync_mode = kwargs['syncMode']
+        if token_url is None and 'tokenUrl' in kwargs:
+            token_url = kwargs['tokenUrl']
+        if trust_email is None and 'trustEmail' in kwargs:
+            trust_email = kwargs['trustEmail']
+        if ui_locales is None and 'uiLocales' in kwargs:
+            ui_locales = kwargs['uiLocales']
+        if user_info_url is None and 'userInfoUrl' in kwargs:
+            user_info_url = kwargs['userInfoUrl']
+        if validate_signature is None and 'validateSignature' in kwargs:
+            validate_signature = kwargs['validateSignature']
+
         if accepts_prompt_none_forward_from_client is not None:
-            pulumi.set(__self__, "accepts_prompt_none_forward_from_client", accepts_prompt_none_forward_from_client)
+            _setter("accepts_prompt_none_forward_from_client", accepts_prompt_none_forward_from_client)
         if add_read_token_role_on_create is not None:
-            pulumi.set(__self__, "add_read_token_role_on_create", add_read_token_role_on_create)
+            _setter("add_read_token_role_on_create", add_read_token_role_on_create)
         if alias is not None:
-            pulumi.set(__self__, "alias", alias)
+            _setter("alias", alias)
         if authenticate_by_default is not None:
-            pulumi.set(__self__, "authenticate_by_default", authenticate_by_default)
+            _setter("authenticate_by_default", authenticate_by_default)
         if authorization_url is not None:
-            pulumi.set(__self__, "authorization_url", authorization_url)
+            _setter("authorization_url", authorization_url)
         if backchannel_supported is not None:
-            pulumi.set(__self__, "backchannel_supported", backchannel_supported)
+            _setter("backchannel_supported", backchannel_supported)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_secret is not None:
-            pulumi.set(__self__, "client_secret", client_secret)
+            _setter("client_secret", client_secret)
         if default_scopes is not None:
-            pulumi.set(__self__, "default_scopes", default_scopes)
+            _setter("default_scopes", default_scopes)
         if disable_user_info is not None:
-            pulumi.set(__self__, "disable_user_info", disable_user_info)
+            _setter("disable_user_info", disable_user_info)
         if display_name is not None:
-            pulumi.set(__self__, "display_name", display_name)
+            _setter("display_name", display_name)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if extra_config is not None:
-            pulumi.set(__self__, "extra_config", extra_config)
+            _setter("extra_config", extra_config)
         if first_broker_login_flow_alias is not None:
-            pulumi.set(__self__, "first_broker_login_flow_alias", first_broker_login_flow_alias)
+            _setter("first_broker_login_flow_alias", first_broker_login_flow_alias)
         if gui_order is not None:
-            pulumi.set(__self__, "gui_order", gui_order)
+            _setter("gui_order", gui_order)
         if hide_on_login_page is not None:
-            pulumi.set(__self__, "hide_on_login_page", hide_on_login_page)
+            _setter("hide_on_login_page", hide_on_login_page)
         if internal_id is not None:
-            pulumi.set(__self__, "internal_id", internal_id)
+            _setter("internal_id", internal_id)
         if issuer is not None:
-            pulumi.set(__self__, "issuer", issuer)
+            _setter("issuer", issuer)
         if jwks_url is not None:
-            pulumi.set(__self__, "jwks_url", jwks_url)
+            _setter("jwks_url", jwks_url)
         if link_only is not None:
-            pulumi.set(__self__, "link_only", link_only)
+            _setter("link_only", link_only)
         if login_hint is not None:
-            pulumi.set(__self__, "login_hint", login_hint)
+            _setter("login_hint", login_hint)
         if logout_url is not None:
-            pulumi.set(__self__, "logout_url", logout_url)
+            _setter("logout_url", logout_url)
         if post_broker_login_flow_alias is not None:
-            pulumi.set(__self__, "post_broker_login_flow_alias", post_broker_login_flow_alias)
+            _setter("post_broker_login_flow_alias", post_broker_login_flow_alias)
         if provider_id is not None:
-            pulumi.set(__self__, "provider_id", provider_id)
+            _setter("provider_id", provider_id)
         if realm is not None:
-            pulumi.set(__self__, "realm", realm)
+            _setter("realm", realm)
         if store_token is not None:
-            pulumi.set(__self__, "store_token", store_token)
+            _setter("store_token", store_token)
         if sync_mode is not None:
-            pulumi.set(__self__, "sync_mode", sync_mode)
+            _setter("sync_mode", sync_mode)
         if token_url is not None:
-            pulumi.set(__self__, "token_url", token_url)
+            _setter("token_url", token_url)
         if trust_email is not None:
-            pulumi.set(__self__, "trust_email", trust_email)
+            _setter("trust_email", trust_email)
         if ui_locales is not None:
-            pulumi.set(__self__, "ui_locales", ui_locales)
+            _setter("ui_locales", ui_locales)
         if user_info_url is not None:
-            pulumi.set(__self__, "user_info_url", user_info_url)
+            _setter("user_info_url", user_info_url)
         if validate_signature is not None:
-            pulumi.set(__self__, "validate_signature", validate_signature)
+            _setter("validate_signature", validate_signature)
 
     @property
     @pulumi.getter(name="acceptsPromptNoneForwardFromClient")
@@ -1175,6 +1441,10 @@ class IdentityProvider(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            IdentityProviderArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['UserPropertyProtocolMapperArgs', 'UserPropertyProtocolMapper']
@@ -37,23 +37,76 @@ class UserPropertyProtocolMapperArgs:
         :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified. `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         """
-        pulumi.set(__self__, "claim_name", claim_name)
-        pulumi.set(__self__, "realm_id", realm_id)
-        pulumi.set(__self__, "user_property", user_property)
+        UserPropertyProtocolMapperArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            claim_name=claim_name,
+            realm_id=realm_id,
+            user_property=user_property,
+            add_to_access_token=add_to_access_token,
+            add_to_id_token=add_to_id_token,
+            add_to_userinfo=add_to_userinfo,
+            claim_value_type=claim_value_type,
+            client_id=client_id,
+            client_scope_id=client_scope_id,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             claim_name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             user_property: Optional[pulumi.Input[str]] = None,
+             add_to_access_token: Optional[pulumi.Input[bool]] = None,
+             add_to_id_token: Optional[pulumi.Input[bool]] = None,
+             add_to_userinfo: Optional[pulumi.Input[bool]] = None,
+             claim_value_type: Optional[pulumi.Input[str]] = None,
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_scope_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if claim_name is None and 'claimName' in kwargs:
+            claim_name = kwargs['claimName']
+        if claim_name is None:
+            raise TypeError("Missing 'claim_name' argument")
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if user_property is None and 'userProperty' in kwargs:
+            user_property = kwargs['userProperty']
+        if user_property is None:
+            raise TypeError("Missing 'user_property' argument")
+        if add_to_access_token is None and 'addToAccessToken' in kwargs:
+            add_to_access_token = kwargs['addToAccessToken']
+        if add_to_id_token is None and 'addToIdToken' in kwargs:
+            add_to_id_token = kwargs['addToIdToken']
+        if add_to_userinfo is None and 'addToUserinfo' in kwargs:
+            add_to_userinfo = kwargs['addToUserinfo']
+        if claim_value_type is None and 'claimValueType' in kwargs:
+            claim_value_type = kwargs['claimValueType']
+        if client_id is None and 'clientId' in kwargs:
+            client_id = kwargs['clientId']
+        if client_scope_id is None and 'clientScopeId' in kwargs:
+            client_scope_id = kwargs['clientScopeId']
+
+        _setter("claim_name", claim_name)
+        _setter("realm_id", realm_id)
+        _setter("user_property", user_property)
         if add_to_access_token is not None:
-            pulumi.set(__self__, "add_to_access_token", add_to_access_token)
+            _setter("add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
-            pulumi.set(__self__, "add_to_id_token", add_to_id_token)
+            _setter("add_to_id_token", add_to_id_token)
         if add_to_userinfo is not None:
-            pulumi.set(__self__, "add_to_userinfo", add_to_userinfo)
+            _setter("add_to_userinfo", add_to_userinfo)
         if claim_value_type is not None:
-            pulumi.set(__self__, "claim_value_type", claim_value_type)
+            _setter("claim_value_type", claim_value_type)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_scope_id is not None:
-            pulumi.set(__self__, "client_scope_id", client_scope_id)
+            _setter("client_scope_id", client_scope_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="claimName")
@@ -202,26 +255,73 @@ class _UserPropertyProtocolMapperState:
         :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
         :param pulumi.Input[str] user_property: The built in user property (such as email) to map a claim for.
         """
+        _UserPropertyProtocolMapperState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            add_to_access_token=add_to_access_token,
+            add_to_id_token=add_to_id_token,
+            add_to_userinfo=add_to_userinfo,
+            claim_name=claim_name,
+            claim_value_type=claim_value_type,
+            client_id=client_id,
+            client_scope_id=client_scope_id,
+            name=name,
+            realm_id=realm_id,
+            user_property=user_property,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             add_to_access_token: Optional[pulumi.Input[bool]] = None,
+             add_to_id_token: Optional[pulumi.Input[bool]] = None,
+             add_to_userinfo: Optional[pulumi.Input[bool]] = None,
+             claim_name: Optional[pulumi.Input[str]] = None,
+             claim_value_type: Optional[pulumi.Input[str]] = None,
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_scope_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             user_property: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if add_to_access_token is None and 'addToAccessToken' in kwargs:
+            add_to_access_token = kwargs['addToAccessToken']
+        if add_to_id_token is None and 'addToIdToken' in kwargs:
+            add_to_id_token = kwargs['addToIdToken']
+        if add_to_userinfo is None and 'addToUserinfo' in kwargs:
+            add_to_userinfo = kwargs['addToUserinfo']
+        if claim_name is None and 'claimName' in kwargs:
+            claim_name = kwargs['claimName']
+        if claim_value_type is None and 'claimValueType' in kwargs:
+            claim_value_type = kwargs['claimValueType']
+        if client_id is None and 'clientId' in kwargs:
+            client_id = kwargs['clientId']
+        if client_scope_id is None and 'clientScopeId' in kwargs:
+            client_scope_id = kwargs['clientScopeId']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if user_property is None and 'userProperty' in kwargs:
+            user_property = kwargs['userProperty']
+
         if add_to_access_token is not None:
-            pulumi.set(__self__, "add_to_access_token", add_to_access_token)
+            _setter("add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
-            pulumi.set(__self__, "add_to_id_token", add_to_id_token)
+            _setter("add_to_id_token", add_to_id_token)
         if add_to_userinfo is not None:
-            pulumi.set(__self__, "add_to_userinfo", add_to_userinfo)
+            _setter("add_to_userinfo", add_to_userinfo)
         if claim_name is not None:
-            pulumi.set(__self__, "claim_name", claim_name)
+            _setter("claim_name", claim_name)
         if claim_value_type is not None:
-            pulumi.set(__self__, "claim_value_type", claim_value_type)
+            _setter("claim_value_type", claim_value_type)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_scope_id is not None:
-            pulumi.set(__self__, "client_scope_id", client_scope_id)
+            _setter("client_scope_id", client_scope_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if user_property is not None:
-            pulumi.set(__self__, "user_property", user_property)
+            _setter("user_property", user_property)
 
     @property
     @pulumi.getter(name="addToAccessToken")
@@ -509,6 +609,10 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            UserPropertyProtocolMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

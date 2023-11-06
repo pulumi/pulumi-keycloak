@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['GroupMapperArgs', 'GroupMapper']
@@ -53,35 +53,126 @@ class GroupMapperArgs:
         :param pulumi.Input[bool] preserve_group_inheritance: When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
         :param pulumi.Input[str] user_roles_retrieve_strategy: Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
         """
-        pulumi.set(__self__, "group_name_ldap_attribute", group_name_ldap_attribute)
-        pulumi.set(__self__, "group_object_classes", group_object_classes)
-        pulumi.set(__self__, "ldap_groups_dn", ldap_groups_dn)
-        pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
-        pulumi.set(__self__, "membership_ldap_attribute", membership_ldap_attribute)
-        pulumi.set(__self__, "membership_user_ldap_attribute", membership_user_ldap_attribute)
-        pulumi.set(__self__, "realm_id", realm_id)
+        GroupMapperArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            group_name_ldap_attribute=group_name_ldap_attribute,
+            group_object_classes=group_object_classes,
+            ldap_groups_dn=ldap_groups_dn,
+            ldap_user_federation_id=ldap_user_federation_id,
+            membership_ldap_attribute=membership_ldap_attribute,
+            membership_user_ldap_attribute=membership_user_ldap_attribute,
+            realm_id=realm_id,
+            drop_non_existing_groups_during_sync=drop_non_existing_groups_during_sync,
+            groups_ldap_filter=groups_ldap_filter,
+            groups_path=groups_path,
+            ignore_missing_groups=ignore_missing_groups,
+            mapped_group_attributes=mapped_group_attributes,
+            memberof_ldap_attribute=memberof_ldap_attribute,
+            membership_attribute_type=membership_attribute_type,
+            mode=mode,
+            name=name,
+            preserve_group_inheritance=preserve_group_inheritance,
+            user_roles_retrieve_strategy=user_roles_retrieve_strategy,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             group_name_ldap_attribute: Optional[pulumi.Input[str]] = None,
+             group_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             ldap_groups_dn: Optional[pulumi.Input[str]] = None,
+             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+             membership_ldap_attribute: Optional[pulumi.Input[str]] = None,
+             membership_user_ldap_attribute: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             drop_non_existing_groups_during_sync: Optional[pulumi.Input[bool]] = None,
+             groups_ldap_filter: Optional[pulumi.Input[str]] = None,
+             groups_path: Optional[pulumi.Input[str]] = None,
+             ignore_missing_groups: Optional[pulumi.Input[bool]] = None,
+             mapped_group_attributes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             memberof_ldap_attribute: Optional[pulumi.Input[str]] = None,
+             membership_attribute_type: Optional[pulumi.Input[str]] = None,
+             mode: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             preserve_group_inheritance: Optional[pulumi.Input[bool]] = None,
+             user_roles_retrieve_strategy: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if group_name_ldap_attribute is None and 'groupNameLdapAttribute' in kwargs:
+            group_name_ldap_attribute = kwargs['groupNameLdapAttribute']
+        if group_name_ldap_attribute is None:
+            raise TypeError("Missing 'group_name_ldap_attribute' argument")
+        if group_object_classes is None and 'groupObjectClasses' in kwargs:
+            group_object_classes = kwargs['groupObjectClasses']
+        if group_object_classes is None:
+            raise TypeError("Missing 'group_object_classes' argument")
+        if ldap_groups_dn is None and 'ldapGroupsDn' in kwargs:
+            ldap_groups_dn = kwargs['ldapGroupsDn']
+        if ldap_groups_dn is None:
+            raise TypeError("Missing 'ldap_groups_dn' argument")
+        if ldap_user_federation_id is None and 'ldapUserFederationId' in kwargs:
+            ldap_user_federation_id = kwargs['ldapUserFederationId']
+        if ldap_user_federation_id is None:
+            raise TypeError("Missing 'ldap_user_federation_id' argument")
+        if membership_ldap_attribute is None and 'membershipLdapAttribute' in kwargs:
+            membership_ldap_attribute = kwargs['membershipLdapAttribute']
+        if membership_ldap_attribute is None:
+            raise TypeError("Missing 'membership_ldap_attribute' argument")
+        if membership_user_ldap_attribute is None and 'membershipUserLdapAttribute' in kwargs:
+            membership_user_ldap_attribute = kwargs['membershipUserLdapAttribute']
+        if membership_user_ldap_attribute is None:
+            raise TypeError("Missing 'membership_user_ldap_attribute' argument")
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if drop_non_existing_groups_during_sync is None and 'dropNonExistingGroupsDuringSync' in kwargs:
+            drop_non_existing_groups_during_sync = kwargs['dropNonExistingGroupsDuringSync']
+        if groups_ldap_filter is None and 'groupsLdapFilter' in kwargs:
+            groups_ldap_filter = kwargs['groupsLdapFilter']
+        if groups_path is None and 'groupsPath' in kwargs:
+            groups_path = kwargs['groupsPath']
+        if ignore_missing_groups is None and 'ignoreMissingGroups' in kwargs:
+            ignore_missing_groups = kwargs['ignoreMissingGroups']
+        if mapped_group_attributes is None and 'mappedGroupAttributes' in kwargs:
+            mapped_group_attributes = kwargs['mappedGroupAttributes']
+        if memberof_ldap_attribute is None and 'memberofLdapAttribute' in kwargs:
+            memberof_ldap_attribute = kwargs['memberofLdapAttribute']
+        if membership_attribute_type is None and 'membershipAttributeType' in kwargs:
+            membership_attribute_type = kwargs['membershipAttributeType']
+        if preserve_group_inheritance is None and 'preserveGroupInheritance' in kwargs:
+            preserve_group_inheritance = kwargs['preserveGroupInheritance']
+        if user_roles_retrieve_strategy is None and 'userRolesRetrieveStrategy' in kwargs:
+            user_roles_retrieve_strategy = kwargs['userRolesRetrieveStrategy']
+
+        _setter("group_name_ldap_attribute", group_name_ldap_attribute)
+        _setter("group_object_classes", group_object_classes)
+        _setter("ldap_groups_dn", ldap_groups_dn)
+        _setter("ldap_user_federation_id", ldap_user_federation_id)
+        _setter("membership_ldap_attribute", membership_ldap_attribute)
+        _setter("membership_user_ldap_attribute", membership_user_ldap_attribute)
+        _setter("realm_id", realm_id)
         if drop_non_existing_groups_during_sync is not None:
-            pulumi.set(__self__, "drop_non_existing_groups_during_sync", drop_non_existing_groups_during_sync)
+            _setter("drop_non_existing_groups_during_sync", drop_non_existing_groups_during_sync)
         if groups_ldap_filter is not None:
-            pulumi.set(__self__, "groups_ldap_filter", groups_ldap_filter)
+            _setter("groups_ldap_filter", groups_ldap_filter)
         if groups_path is not None:
-            pulumi.set(__self__, "groups_path", groups_path)
+            _setter("groups_path", groups_path)
         if ignore_missing_groups is not None:
-            pulumi.set(__self__, "ignore_missing_groups", ignore_missing_groups)
+            _setter("ignore_missing_groups", ignore_missing_groups)
         if mapped_group_attributes is not None:
-            pulumi.set(__self__, "mapped_group_attributes", mapped_group_attributes)
+            _setter("mapped_group_attributes", mapped_group_attributes)
         if memberof_ldap_attribute is not None:
-            pulumi.set(__self__, "memberof_ldap_attribute", memberof_ldap_attribute)
+            _setter("memberof_ldap_attribute", memberof_ldap_attribute)
         if membership_attribute_type is not None:
-            pulumi.set(__self__, "membership_attribute_type", membership_attribute_type)
+            _setter("membership_attribute_type", membership_attribute_type)
         if mode is not None:
-            pulumi.set(__self__, "mode", mode)
+            _setter("mode", mode)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if preserve_group_inheritance is not None:
-            pulumi.set(__self__, "preserve_group_inheritance", preserve_group_inheritance)
+            _setter("preserve_group_inheritance", preserve_group_inheritance)
         if user_roles_retrieve_strategy is not None:
-            pulumi.set(__self__, "user_roles_retrieve_strategy", user_roles_retrieve_strategy)
+            _setter("user_roles_retrieve_strategy", user_roles_retrieve_strategy)
 
     @property
     @pulumi.getter(name="groupNameLdapAttribute")
@@ -342,42 +433,119 @@ class _GroupMapperState:
         :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
         :param pulumi.Input[str] user_roles_retrieve_strategy: Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
         """
+        _GroupMapperState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            drop_non_existing_groups_during_sync=drop_non_existing_groups_during_sync,
+            group_name_ldap_attribute=group_name_ldap_attribute,
+            group_object_classes=group_object_classes,
+            groups_ldap_filter=groups_ldap_filter,
+            groups_path=groups_path,
+            ignore_missing_groups=ignore_missing_groups,
+            ldap_groups_dn=ldap_groups_dn,
+            ldap_user_federation_id=ldap_user_federation_id,
+            mapped_group_attributes=mapped_group_attributes,
+            memberof_ldap_attribute=memberof_ldap_attribute,
+            membership_attribute_type=membership_attribute_type,
+            membership_ldap_attribute=membership_ldap_attribute,
+            membership_user_ldap_attribute=membership_user_ldap_attribute,
+            mode=mode,
+            name=name,
+            preserve_group_inheritance=preserve_group_inheritance,
+            realm_id=realm_id,
+            user_roles_retrieve_strategy=user_roles_retrieve_strategy,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             drop_non_existing_groups_during_sync: Optional[pulumi.Input[bool]] = None,
+             group_name_ldap_attribute: Optional[pulumi.Input[str]] = None,
+             group_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             groups_ldap_filter: Optional[pulumi.Input[str]] = None,
+             groups_path: Optional[pulumi.Input[str]] = None,
+             ignore_missing_groups: Optional[pulumi.Input[bool]] = None,
+             ldap_groups_dn: Optional[pulumi.Input[str]] = None,
+             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+             mapped_group_attributes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             memberof_ldap_attribute: Optional[pulumi.Input[str]] = None,
+             membership_attribute_type: Optional[pulumi.Input[str]] = None,
+             membership_ldap_attribute: Optional[pulumi.Input[str]] = None,
+             membership_user_ldap_attribute: Optional[pulumi.Input[str]] = None,
+             mode: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             preserve_group_inheritance: Optional[pulumi.Input[bool]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             user_roles_retrieve_strategy: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if drop_non_existing_groups_during_sync is None and 'dropNonExistingGroupsDuringSync' in kwargs:
+            drop_non_existing_groups_during_sync = kwargs['dropNonExistingGroupsDuringSync']
+        if group_name_ldap_attribute is None and 'groupNameLdapAttribute' in kwargs:
+            group_name_ldap_attribute = kwargs['groupNameLdapAttribute']
+        if group_object_classes is None and 'groupObjectClasses' in kwargs:
+            group_object_classes = kwargs['groupObjectClasses']
+        if groups_ldap_filter is None and 'groupsLdapFilter' in kwargs:
+            groups_ldap_filter = kwargs['groupsLdapFilter']
+        if groups_path is None and 'groupsPath' in kwargs:
+            groups_path = kwargs['groupsPath']
+        if ignore_missing_groups is None and 'ignoreMissingGroups' in kwargs:
+            ignore_missing_groups = kwargs['ignoreMissingGroups']
+        if ldap_groups_dn is None and 'ldapGroupsDn' in kwargs:
+            ldap_groups_dn = kwargs['ldapGroupsDn']
+        if ldap_user_federation_id is None and 'ldapUserFederationId' in kwargs:
+            ldap_user_federation_id = kwargs['ldapUserFederationId']
+        if mapped_group_attributes is None and 'mappedGroupAttributes' in kwargs:
+            mapped_group_attributes = kwargs['mappedGroupAttributes']
+        if memberof_ldap_attribute is None and 'memberofLdapAttribute' in kwargs:
+            memberof_ldap_attribute = kwargs['memberofLdapAttribute']
+        if membership_attribute_type is None and 'membershipAttributeType' in kwargs:
+            membership_attribute_type = kwargs['membershipAttributeType']
+        if membership_ldap_attribute is None and 'membershipLdapAttribute' in kwargs:
+            membership_ldap_attribute = kwargs['membershipLdapAttribute']
+        if membership_user_ldap_attribute is None and 'membershipUserLdapAttribute' in kwargs:
+            membership_user_ldap_attribute = kwargs['membershipUserLdapAttribute']
+        if preserve_group_inheritance is None and 'preserveGroupInheritance' in kwargs:
+            preserve_group_inheritance = kwargs['preserveGroupInheritance']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if user_roles_retrieve_strategy is None and 'userRolesRetrieveStrategy' in kwargs:
+            user_roles_retrieve_strategy = kwargs['userRolesRetrieveStrategy']
+
         if drop_non_existing_groups_during_sync is not None:
-            pulumi.set(__self__, "drop_non_existing_groups_during_sync", drop_non_existing_groups_during_sync)
+            _setter("drop_non_existing_groups_during_sync", drop_non_existing_groups_during_sync)
         if group_name_ldap_attribute is not None:
-            pulumi.set(__self__, "group_name_ldap_attribute", group_name_ldap_attribute)
+            _setter("group_name_ldap_attribute", group_name_ldap_attribute)
         if group_object_classes is not None:
-            pulumi.set(__self__, "group_object_classes", group_object_classes)
+            _setter("group_object_classes", group_object_classes)
         if groups_ldap_filter is not None:
-            pulumi.set(__self__, "groups_ldap_filter", groups_ldap_filter)
+            _setter("groups_ldap_filter", groups_ldap_filter)
         if groups_path is not None:
-            pulumi.set(__self__, "groups_path", groups_path)
+            _setter("groups_path", groups_path)
         if ignore_missing_groups is not None:
-            pulumi.set(__self__, "ignore_missing_groups", ignore_missing_groups)
+            _setter("ignore_missing_groups", ignore_missing_groups)
         if ldap_groups_dn is not None:
-            pulumi.set(__self__, "ldap_groups_dn", ldap_groups_dn)
+            _setter("ldap_groups_dn", ldap_groups_dn)
         if ldap_user_federation_id is not None:
-            pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
+            _setter("ldap_user_federation_id", ldap_user_federation_id)
         if mapped_group_attributes is not None:
-            pulumi.set(__self__, "mapped_group_attributes", mapped_group_attributes)
+            _setter("mapped_group_attributes", mapped_group_attributes)
         if memberof_ldap_attribute is not None:
-            pulumi.set(__self__, "memberof_ldap_attribute", memberof_ldap_attribute)
+            _setter("memberof_ldap_attribute", memberof_ldap_attribute)
         if membership_attribute_type is not None:
-            pulumi.set(__self__, "membership_attribute_type", membership_attribute_type)
+            _setter("membership_attribute_type", membership_attribute_type)
         if membership_ldap_attribute is not None:
-            pulumi.set(__self__, "membership_ldap_attribute", membership_ldap_attribute)
+            _setter("membership_ldap_attribute", membership_ldap_attribute)
         if membership_user_ldap_attribute is not None:
-            pulumi.set(__self__, "membership_user_ldap_attribute", membership_user_ldap_attribute)
+            _setter("membership_user_ldap_attribute", membership_user_ldap_attribute)
         if mode is not None:
-            pulumi.set(__self__, "mode", mode)
+            _setter("mode", mode)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if preserve_group_inheritance is not None:
-            pulumi.set(__self__, "preserve_group_inheritance", preserve_group_inheritance)
+            _setter("preserve_group_inheritance", preserve_group_inheritance)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if user_roles_retrieve_strategy is not None:
-            pulumi.set(__self__, "user_roles_retrieve_strategy", user_roles_retrieve_strategy)
+            _setter("user_roles_retrieve_strategy", user_roles_retrieve_strategy)
 
     @property
     @pulumi.getter(name="dropNonExistingGroupsDuringSync")
@@ -753,6 +921,10 @@ class GroupMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            GroupMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

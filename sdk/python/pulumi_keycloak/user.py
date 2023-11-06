@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -38,24 +38,69 @@ class UserArgs:
         :param pulumi.Input['UserInitialPasswordArgs'] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
         :param pulumi.Input[str] last_name: The user's last name.
         """
-        pulumi.set(__self__, "realm_id", realm_id)
-        pulumi.set(__self__, "username", username)
+        UserArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            realm_id=realm_id,
+            username=username,
+            attributes=attributes,
+            email=email,
+            email_verified=email_verified,
+            enabled=enabled,
+            federated_identities=federated_identities,
+            first_name=first_name,
+            initial_password=initial_password,
+            last_name=last_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             realm_id: Optional[pulumi.Input[str]] = None,
+             username: Optional[pulumi.Input[str]] = None,
+             attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             email: Optional[pulumi.Input[str]] = None,
+             email_verified: Optional[pulumi.Input[bool]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]] = None,
+             first_name: Optional[pulumi.Input[str]] = None,
+             initial_password: Optional[pulumi.Input['UserInitialPasswordArgs']] = None,
+             last_name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if username is None:
+            raise TypeError("Missing 'username' argument")
+        if email_verified is None and 'emailVerified' in kwargs:
+            email_verified = kwargs['emailVerified']
+        if federated_identities is None and 'federatedIdentities' in kwargs:
+            federated_identities = kwargs['federatedIdentities']
+        if first_name is None and 'firstName' in kwargs:
+            first_name = kwargs['firstName']
+        if initial_password is None and 'initialPassword' in kwargs:
+            initial_password = kwargs['initialPassword']
+        if last_name is None and 'lastName' in kwargs:
+            last_name = kwargs['lastName']
+
+        _setter("realm_id", realm_id)
+        _setter("username", username)
         if attributes is not None:
-            pulumi.set(__self__, "attributes", attributes)
+            _setter("attributes", attributes)
         if email is not None:
-            pulumi.set(__self__, "email", email)
+            _setter("email", email)
         if email_verified is not None:
-            pulumi.set(__self__, "email_verified", email_verified)
+            _setter("email_verified", email_verified)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if federated_identities is not None:
-            pulumi.set(__self__, "federated_identities", federated_identities)
+            _setter("federated_identities", federated_identities)
         if first_name is not None:
-            pulumi.set(__self__, "first_name", first_name)
+            _setter("first_name", first_name)
         if initial_password is not None:
-            pulumi.set(__self__, "initial_password", initial_password)
+            _setter("initial_password", initial_password)
         if last_name is not None:
-            pulumi.set(__self__, "last_name", last_name)
+            _setter("last_name", last_name)
 
     @property
     @pulumi.getter(name="realmId")
@@ -200,26 +245,67 @@ class _UserState:
         :param pulumi.Input[str] realm_id: The realm this user belongs to.
         :param pulumi.Input[str] username: The unique username of this user.
         """
+        _UserState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            attributes=attributes,
+            email=email,
+            email_verified=email_verified,
+            enabled=enabled,
+            federated_identities=federated_identities,
+            first_name=first_name,
+            initial_password=initial_password,
+            last_name=last_name,
+            realm_id=realm_id,
+            username=username,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             email: Optional[pulumi.Input[str]] = None,
+             email_verified: Optional[pulumi.Input[bool]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]] = None,
+             first_name: Optional[pulumi.Input[str]] = None,
+             initial_password: Optional[pulumi.Input['UserInitialPasswordArgs']] = None,
+             last_name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             username: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if email_verified is None and 'emailVerified' in kwargs:
+            email_verified = kwargs['emailVerified']
+        if federated_identities is None and 'federatedIdentities' in kwargs:
+            federated_identities = kwargs['federatedIdentities']
+        if first_name is None and 'firstName' in kwargs:
+            first_name = kwargs['firstName']
+        if initial_password is None and 'initialPassword' in kwargs:
+            initial_password = kwargs['initialPassword']
+        if last_name is None and 'lastName' in kwargs:
+            last_name = kwargs['lastName']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+
         if attributes is not None:
-            pulumi.set(__self__, "attributes", attributes)
+            _setter("attributes", attributes)
         if email is not None:
-            pulumi.set(__self__, "email", email)
+            _setter("email", email)
         if email_verified is not None:
-            pulumi.set(__self__, "email_verified", email_verified)
+            _setter("email_verified", email_verified)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if federated_identities is not None:
-            pulumi.set(__self__, "federated_identities", federated_identities)
+            _setter("federated_identities", federated_identities)
         if first_name is not None:
-            pulumi.set(__self__, "first_name", first_name)
+            _setter("first_name", first_name)
         if initial_password is not None:
-            pulumi.set(__self__, "initial_password", initial_password)
+            _setter("initial_password", initial_password)
         if last_name is not None:
-            pulumi.set(__self__, "last_name", last_name)
+            _setter("last_name", last_name)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if username is not None:
-            pulumi.set(__self__, "username", username)
+            _setter("username", username)
 
     @property
     @pulumi.getter
@@ -479,6 +565,10 @@ class User(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            UserArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -509,6 +599,11 @@ class User(pulumi.CustomResource):
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["federated_identities"] = federated_identities
             __props__.__dict__["first_name"] = first_name
+            if initial_password is not None and not isinstance(initial_password, UserInitialPasswordArgs):
+                initial_password = initial_password or {}
+                def _setter(key, value):
+                    initial_password[key] = value
+                UserInitialPasswordArgs._configure(_setter, **initial_password)
             __props__.__dict__["initial_password"] = initial_password
             __props__.__dict__["last_name"] = last_name
             if realm_id is None and not opts.urn:

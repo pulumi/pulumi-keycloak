@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['ClientServiceAccountRoleArgs', 'ClientServiceAccountRole']
@@ -25,10 +25,41 @@ class ClientServiceAccountRoleArgs:
         :param pulumi.Input[str] role: The name of the role that is assigned.
         :param pulumi.Input[str] service_account_user_id: The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
         """
-        pulumi.set(__self__, "client_id", client_id)
-        pulumi.set(__self__, "realm_id", realm_id)
-        pulumi.set(__self__, "role", role)
-        pulumi.set(__self__, "service_account_user_id", service_account_user_id)
+        ClientServiceAccountRoleArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            client_id=client_id,
+            realm_id=realm_id,
+            role=role,
+            service_account_user_id=service_account_user_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             client_id: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             role: Optional[pulumi.Input[str]] = None,
+             service_account_user_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if client_id is None and 'clientId' in kwargs:
+            client_id = kwargs['clientId']
+        if client_id is None:
+            raise TypeError("Missing 'client_id' argument")
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if role is None:
+            raise TypeError("Missing 'role' argument")
+        if service_account_user_id is None and 'serviceAccountUserId' in kwargs:
+            service_account_user_id = kwargs['serviceAccountUserId']
+        if service_account_user_id is None:
+            raise TypeError("Missing 'service_account_user_id' argument")
+
+        _setter("client_id", client_id)
+        _setter("realm_id", realm_id)
+        _setter("role", role)
+        _setter("service_account_user_id", service_account_user_id)
 
     @property
     @pulumi.getter(name="clientId")
@@ -93,14 +124,37 @@ class _ClientServiceAccountRoleState:
         :param pulumi.Input[str] role: The name of the role that is assigned.
         :param pulumi.Input[str] service_account_user_id: The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
         """
+        _ClientServiceAccountRoleState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            client_id=client_id,
+            realm_id=realm_id,
+            role=role,
+            service_account_user_id=service_account_user_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             client_id: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             role: Optional[pulumi.Input[str]] = None,
+             service_account_user_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if client_id is None and 'clientId' in kwargs:
+            client_id = kwargs['clientId']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if service_account_user_id is None and 'serviceAccountUserId' in kwargs:
+            service_account_user_id = kwargs['serviceAccountUserId']
+
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if role is not None:
-            pulumi.set(__self__, "role", role)
+            _setter("role", role)
         if service_account_user_id is not None:
-            pulumi.set(__self__, "service_account_user_id", service_account_user_id)
+            _setter("service_account_user_id", service_account_user_id)
 
     @property
     @pulumi.getter(name="clientId")
@@ -266,6 +320,10 @@ class ClientServiceAccountRole(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ClientServiceAccountRoleArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['FullNameMapperArgs', 'FullNameMapper']
@@ -29,15 +29,52 @@ class FullNameMapperArgs:
         :param pulumi.Input[bool] read_only: When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
         :param pulumi.Input[bool] write_only: When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
         """
-        pulumi.set(__self__, "ldap_full_name_attribute", ldap_full_name_attribute)
-        pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
-        pulumi.set(__self__, "realm_id", realm_id)
+        FullNameMapperArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ldap_full_name_attribute=ldap_full_name_attribute,
+            ldap_user_federation_id=ldap_user_federation_id,
+            realm_id=realm_id,
+            name=name,
+            read_only=read_only,
+            write_only=write_only,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ldap_full_name_attribute: Optional[pulumi.Input[str]] = None,
+             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             read_only: Optional[pulumi.Input[bool]] = None,
+             write_only: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if ldap_full_name_attribute is None and 'ldapFullNameAttribute' in kwargs:
+            ldap_full_name_attribute = kwargs['ldapFullNameAttribute']
+        if ldap_full_name_attribute is None:
+            raise TypeError("Missing 'ldap_full_name_attribute' argument")
+        if ldap_user_federation_id is None and 'ldapUserFederationId' in kwargs:
+            ldap_user_federation_id = kwargs['ldapUserFederationId']
+        if ldap_user_federation_id is None:
+            raise TypeError("Missing 'ldap_user_federation_id' argument")
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if read_only is None and 'readOnly' in kwargs:
+            read_only = kwargs['readOnly']
+        if write_only is None and 'writeOnly' in kwargs:
+            write_only = kwargs['writeOnly']
+
+        _setter("ldap_full_name_attribute", ldap_full_name_attribute)
+        _setter("ldap_user_federation_id", ldap_user_federation_id)
+        _setter("realm_id", realm_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if read_only is not None:
-            pulumi.set(__self__, "read_only", read_only)
+            _setter("read_only", read_only)
         if write_only is not None:
-            pulumi.set(__self__, "write_only", write_only)
+            _setter("write_only", write_only)
 
     @property
     @pulumi.getter(name="ldapFullNameAttribute")
@@ -130,18 +167,49 @@ class _FullNameMapperState:
         :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
         :param pulumi.Input[bool] write_only: When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
         """
+        _FullNameMapperState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ldap_full_name_attribute=ldap_full_name_attribute,
+            ldap_user_federation_id=ldap_user_federation_id,
+            name=name,
+            read_only=read_only,
+            realm_id=realm_id,
+            write_only=write_only,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ldap_full_name_attribute: Optional[pulumi.Input[str]] = None,
+             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             read_only: Optional[pulumi.Input[bool]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             write_only: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if ldap_full_name_attribute is None and 'ldapFullNameAttribute' in kwargs:
+            ldap_full_name_attribute = kwargs['ldapFullNameAttribute']
+        if ldap_user_federation_id is None and 'ldapUserFederationId' in kwargs:
+            ldap_user_federation_id = kwargs['ldapUserFederationId']
+        if read_only is None and 'readOnly' in kwargs:
+            read_only = kwargs['readOnly']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if write_only is None and 'writeOnly' in kwargs:
+            write_only = kwargs['writeOnly']
+
         if ldap_full_name_attribute is not None:
-            pulumi.set(__self__, "ldap_full_name_attribute", ldap_full_name_attribute)
+            _setter("ldap_full_name_attribute", ldap_full_name_attribute)
         if ldap_user_federation_id is not None:
-            pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
+            _setter("ldap_user_federation_id", ldap_user_federation_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if read_only is not None:
-            pulumi.set(__self__, "read_only", read_only)
+            _setter("read_only", read_only)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if write_only is not None:
-            pulumi.set(__self__, "write_only", write_only)
+            _setter("write_only", write_only)
 
     @property
     @pulumi.getter(name="ldapFullNameAttribute")
@@ -337,6 +405,10 @@ class FullNameMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            FullNameMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

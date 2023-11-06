@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ProviderArgs', 'Provider']
@@ -38,32 +38,89 @@ class ProviderArgs:
         :param pulumi.Input[bool] tls_insecure_skip_verify: Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
                should be avoided.
         """
-        pulumi.set(__self__, "client_id", client_id)
-        pulumi.set(__self__, "url", url)
+        ProviderArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            client_id=client_id,
+            url=url,
+            additional_headers=additional_headers,
+            base_path=base_path,
+            client_secret=client_secret,
+            client_timeout=client_timeout,
+            initial_login=initial_login,
+            password=password,
+            realm=realm,
+            red_hat_sso=red_hat_sso,
+            root_ca_certificate=root_ca_certificate,
+            tls_insecure_skip_verify=tls_insecure_skip_verify,
+            username=username,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             client_id: Optional[pulumi.Input[str]] = None,
+             url: Optional[pulumi.Input[str]] = None,
+             additional_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             base_path: Optional[pulumi.Input[str]] = None,
+             client_secret: Optional[pulumi.Input[str]] = None,
+             client_timeout: Optional[pulumi.Input[int]] = None,
+             initial_login: Optional[pulumi.Input[bool]] = None,
+             password: Optional[pulumi.Input[str]] = None,
+             realm: Optional[pulumi.Input[str]] = None,
+             red_hat_sso: Optional[pulumi.Input[bool]] = None,
+             root_ca_certificate: Optional[pulumi.Input[str]] = None,
+             tls_insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
+             username: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if client_id is None and 'clientId' in kwargs:
+            client_id = kwargs['clientId']
+        if client_id is None:
+            raise TypeError("Missing 'client_id' argument")
+        if url is None:
+            raise TypeError("Missing 'url' argument")
+        if additional_headers is None and 'additionalHeaders' in kwargs:
+            additional_headers = kwargs['additionalHeaders']
+        if base_path is None and 'basePath' in kwargs:
+            base_path = kwargs['basePath']
+        if client_secret is None and 'clientSecret' in kwargs:
+            client_secret = kwargs['clientSecret']
+        if client_timeout is None and 'clientTimeout' in kwargs:
+            client_timeout = kwargs['clientTimeout']
+        if initial_login is None and 'initialLogin' in kwargs:
+            initial_login = kwargs['initialLogin']
+        if red_hat_sso is None and 'redHatSso' in kwargs:
+            red_hat_sso = kwargs['redHatSso']
+        if root_ca_certificate is None and 'rootCaCertificate' in kwargs:
+            root_ca_certificate = kwargs['rootCaCertificate']
+        if tls_insecure_skip_verify is None and 'tlsInsecureSkipVerify' in kwargs:
+            tls_insecure_skip_verify = kwargs['tlsInsecureSkipVerify']
+
+        _setter("client_id", client_id)
+        _setter("url", url)
         if additional_headers is not None:
-            pulumi.set(__self__, "additional_headers", additional_headers)
+            _setter("additional_headers", additional_headers)
         if base_path is not None:
-            pulumi.set(__self__, "base_path", base_path)
+            _setter("base_path", base_path)
         if client_secret is not None:
-            pulumi.set(__self__, "client_secret", client_secret)
+            _setter("client_secret", client_secret)
         if client_timeout is None:
             client_timeout = (_utilities.get_env_int('KEYCLOAK_CLIENT_TIMEOUT') or 5)
         if client_timeout is not None:
-            pulumi.set(__self__, "client_timeout", client_timeout)
+            _setter("client_timeout", client_timeout)
         if initial_login is not None:
-            pulumi.set(__self__, "initial_login", initial_login)
+            _setter("initial_login", initial_login)
         if password is not None:
-            pulumi.set(__self__, "password", password)
+            _setter("password", password)
         if realm is not None:
-            pulumi.set(__self__, "realm", realm)
+            _setter("realm", realm)
         if red_hat_sso is not None:
-            pulumi.set(__self__, "red_hat_sso", red_hat_sso)
+            _setter("red_hat_sso", red_hat_sso)
         if root_ca_certificate is not None:
-            pulumi.set(__self__, "root_ca_certificate", root_ca_certificate)
+            _setter("root_ca_certificate", root_ca_certificate)
         if tls_insecure_skip_verify is not None:
-            pulumi.set(__self__, "tls_insecure_skip_verify", tls_insecure_skip_verify)
+            _setter("tls_insecure_skip_verify", tls_insecure_skip_verify)
         if username is not None:
-            pulumi.set(__self__, "username", username)
+            _setter("username", username)
 
     @property
     @pulumi.getter(name="clientId")
@@ -261,6 +318,10 @@ class Provider(pulumi.ProviderResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ProviderArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

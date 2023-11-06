@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['IdentityProviderTokenExchangeScopePermissionArgs', 'IdentityProviderTokenExchangeScopePermission']
@@ -25,11 +25,40 @@ class IdentityProviderTokenExchangeScopePermissionArgs:
         :param pulumi.Input[str] realm_id: The realm that the identity provider exists in.
         :param pulumi.Input[str] policy_type: Defaults to "client" This is also the only value policy type supported by this provider.
         """
-        pulumi.set(__self__, "clients", clients)
-        pulumi.set(__self__, "provider_alias", provider_alias)
-        pulumi.set(__self__, "realm_id", realm_id)
+        IdentityProviderTokenExchangeScopePermissionArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            clients=clients,
+            provider_alias=provider_alias,
+            realm_id=realm_id,
+            policy_type=policy_type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             clients: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             provider_alias: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             policy_type: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if clients is None:
+            raise TypeError("Missing 'clients' argument")
+        if provider_alias is None and 'providerAlias' in kwargs:
+            provider_alias = kwargs['providerAlias']
+        if provider_alias is None:
+            raise TypeError("Missing 'provider_alias' argument")
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if policy_type is None and 'policyType' in kwargs:
+            policy_type = kwargs['policyType']
+
+        _setter("clients", clients)
+        _setter("provider_alias", provider_alias)
+        _setter("realm_id", realm_id)
         if policy_type is not None:
-            pulumi.set(__self__, "policy_type", policy_type)
+            _setter("policy_type", policy_type)
 
     @property
     @pulumi.getter
@@ -102,22 +131,61 @@ class _IdentityProviderTokenExchangeScopePermissionState:
         :param pulumi.Input[str] provider_alias: Alias of the identity provider.
         :param pulumi.Input[str] realm_id: The realm that the identity provider exists in.
         """
+        _IdentityProviderTokenExchangeScopePermissionState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            authorization_idp_resource_id=authorization_idp_resource_id,
+            authorization_resource_server_id=authorization_resource_server_id,
+            authorization_token_exchange_scope_permission_id=authorization_token_exchange_scope_permission_id,
+            clients=clients,
+            policy_id=policy_id,
+            policy_type=policy_type,
+            provider_alias=provider_alias,
+            realm_id=realm_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             authorization_idp_resource_id: Optional[pulumi.Input[str]] = None,
+             authorization_resource_server_id: Optional[pulumi.Input[str]] = None,
+             authorization_token_exchange_scope_permission_id: Optional[pulumi.Input[str]] = None,
+             clients: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             policy_id: Optional[pulumi.Input[str]] = None,
+             policy_type: Optional[pulumi.Input[str]] = None,
+             provider_alias: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if authorization_idp_resource_id is None and 'authorizationIdpResourceId' in kwargs:
+            authorization_idp_resource_id = kwargs['authorizationIdpResourceId']
+        if authorization_resource_server_id is None and 'authorizationResourceServerId' in kwargs:
+            authorization_resource_server_id = kwargs['authorizationResourceServerId']
+        if authorization_token_exchange_scope_permission_id is None and 'authorizationTokenExchangeScopePermissionId' in kwargs:
+            authorization_token_exchange_scope_permission_id = kwargs['authorizationTokenExchangeScopePermissionId']
+        if policy_id is None and 'policyId' in kwargs:
+            policy_id = kwargs['policyId']
+        if policy_type is None and 'policyType' in kwargs:
+            policy_type = kwargs['policyType']
+        if provider_alias is None and 'providerAlias' in kwargs:
+            provider_alias = kwargs['providerAlias']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+
         if authorization_idp_resource_id is not None:
-            pulumi.set(__self__, "authorization_idp_resource_id", authorization_idp_resource_id)
+            _setter("authorization_idp_resource_id", authorization_idp_resource_id)
         if authorization_resource_server_id is not None:
-            pulumi.set(__self__, "authorization_resource_server_id", authorization_resource_server_id)
+            _setter("authorization_resource_server_id", authorization_resource_server_id)
         if authorization_token_exchange_scope_permission_id is not None:
-            pulumi.set(__self__, "authorization_token_exchange_scope_permission_id", authorization_token_exchange_scope_permission_id)
+            _setter("authorization_token_exchange_scope_permission_id", authorization_token_exchange_scope_permission_id)
         if clients is not None:
-            pulumi.set(__self__, "clients", clients)
+            _setter("clients", clients)
         if policy_id is not None:
-            pulumi.set(__self__, "policy_id", policy_id)
+            _setter("policy_id", policy_id)
         if policy_type is not None:
-            pulumi.set(__self__, "policy_type", policy_type)
+            _setter("policy_type", policy_type)
         if provider_alias is not None:
-            pulumi.set(__self__, "provider_alias", provider_alias)
+            _setter("provider_alias", provider_alias)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
 
     @property
     @pulumi.getter(name="authorizationIdpResourceId")
@@ -333,6 +401,10 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            IdentityProviderTokenExchangeScopePermissionArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

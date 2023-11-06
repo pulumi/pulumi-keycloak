@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['ClientAuthorizationScopeArgs', 'ClientAuthorizationScope']
@@ -22,14 +22,45 @@ class ClientAuthorizationScopeArgs:
         """
         The set of arguments for constructing a ClientAuthorizationScope resource.
         """
-        pulumi.set(__self__, "realm_id", realm_id)
-        pulumi.set(__self__, "resource_server_id", resource_server_id)
+        ClientAuthorizationScopeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            realm_id=realm_id,
+            resource_server_id=resource_server_id,
+            display_name=display_name,
+            icon_uri=icon_uri,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             realm_id: Optional[pulumi.Input[str]] = None,
+             resource_server_id: Optional[pulumi.Input[str]] = None,
+             display_name: Optional[pulumi.Input[str]] = None,
+             icon_uri: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if resource_server_id is None and 'resourceServerId' in kwargs:
+            resource_server_id = kwargs['resourceServerId']
+        if resource_server_id is None:
+            raise TypeError("Missing 'resource_server_id' argument")
+        if display_name is None and 'displayName' in kwargs:
+            display_name = kwargs['displayName']
+        if icon_uri is None and 'iconUri' in kwargs:
+            icon_uri = kwargs['iconUri']
+
+        _setter("realm_id", realm_id)
+        _setter("resource_server_id", resource_server_id)
         if display_name is not None:
-            pulumi.set(__self__, "display_name", display_name)
+            _setter("display_name", display_name)
         if icon_uri is not None:
-            pulumi.set(__self__, "icon_uri", icon_uri)
+            _setter("icon_uri", icon_uri)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="realmId")
@@ -88,16 +119,43 @@ class _ClientAuthorizationScopeState:
         """
         Input properties used for looking up and filtering ClientAuthorizationScope resources.
         """
+        _ClientAuthorizationScopeState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            display_name=display_name,
+            icon_uri=icon_uri,
+            name=name,
+            realm_id=realm_id,
+            resource_server_id=resource_server_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             display_name: Optional[pulumi.Input[str]] = None,
+             icon_uri: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             resource_server_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if display_name is None and 'displayName' in kwargs:
+            display_name = kwargs['displayName']
+        if icon_uri is None and 'iconUri' in kwargs:
+            icon_uri = kwargs['iconUri']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if resource_server_id is None and 'resourceServerId' in kwargs:
+            resource_server_id = kwargs['resourceServerId']
+
         if display_name is not None:
-            pulumi.set(__self__, "display_name", display_name)
+            _setter("display_name", display_name)
         if icon_uri is not None:
-            pulumi.set(__self__, "icon_uri", icon_uri)
+            _setter("icon_uri", icon_uri)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if resource_server_id is not None:
-            pulumi.set(__self__, "resource_server_id", resource_server_id)
+            _setter("resource_server_id", resource_server_id)
 
     @property
     @pulumi.getter(name="displayName")
@@ -179,6 +237,10 @@ class ClientAuthorizationScope(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ClientAuthorizationScopeArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

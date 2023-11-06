@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['ClientUserPolicyArgs', 'ClientUserPolicy']
@@ -24,16 +24,53 @@ class ClientUserPolicyArgs:
         """
         The set of arguments for constructing a ClientUserPolicy resource.
         """
-        pulumi.set(__self__, "decision_strategy", decision_strategy)
-        pulumi.set(__self__, "realm_id", realm_id)
-        pulumi.set(__self__, "resource_server_id", resource_server_id)
-        pulumi.set(__self__, "users", users)
+        ClientUserPolicyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            realm_id=realm_id,
+            resource_server_id=resource_server_id,
+            users=users,
+            description=description,
+            logic=logic,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             resource_server_id: Optional[pulumi.Input[str]] = None,
+             users: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             logic: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+        if decision_strategy is None:
+            raise TypeError("Missing 'decision_strategy' argument")
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if resource_server_id is None and 'resourceServerId' in kwargs:
+            resource_server_id = kwargs['resourceServerId']
+        if resource_server_id is None:
+            raise TypeError("Missing 'resource_server_id' argument")
+        if users is None:
+            raise TypeError("Missing 'users' argument")
+
+        _setter("decision_strategy", decision_strategy)
+        _setter("realm_id", realm_id)
+        _setter("resource_server_id", resource_server_id)
+        _setter("users", users)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if logic is not None:
-            pulumi.set(__self__, "logic", logic)
+            _setter("logic", logic)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -112,20 +149,49 @@ class _ClientUserPolicyState:
         """
         Input properties used for looking up and filtering ClientUserPolicy resources.
         """
+        _ClientUserPolicyState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            decision_strategy=decision_strategy,
+            description=description,
+            logic=logic,
+            name=name,
+            realm_id=realm_id,
+            resource_server_id=resource_server_id,
+            users=users,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             decision_strategy: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             logic: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             resource_server_id: Optional[pulumi.Input[str]] = None,
+             users: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if decision_strategy is None and 'decisionStrategy' in kwargs:
+            decision_strategy = kwargs['decisionStrategy']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if resource_server_id is None and 'resourceServerId' in kwargs:
+            resource_server_id = kwargs['resourceServerId']
+
         if decision_strategy is not None:
-            pulumi.set(__self__, "decision_strategy", decision_strategy)
+            _setter("decision_strategy", decision_strategy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if logic is not None:
-            pulumi.set(__self__, "logic", logic)
+            _setter("logic", logic)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if resource_server_id is not None:
-            pulumi.set(__self__, "resource_server_id", resource_server_id)
+            _setter("resource_server_id", resource_server_id)
         if users is not None:
-            pulumi.set(__self__, "users", users)
+            _setter("users", users)
 
     @property
     @pulumi.getter(name="decisionStrategy")
@@ -227,6 +293,10 @@ class ClientUserPolicy(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ClientUserPolicyArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

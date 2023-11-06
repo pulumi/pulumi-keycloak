@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['ScriptProtocolMapperArgs', 'ScriptProtocolMapper']
@@ -35,20 +35,69 @@ class ScriptProtocolMapperArgs:
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[bool] single_value_attribute: When `true`, all values will be stored under one attribute with multiple attribute values. Defaults to `true`.
         """
-        pulumi.set(__self__, "realm_id", realm_id)
-        pulumi.set(__self__, "saml_attribute_name", saml_attribute_name)
-        pulumi.set(__self__, "saml_attribute_name_format", saml_attribute_name_format)
-        pulumi.set(__self__, "script", script)
+        ScriptProtocolMapperArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            realm_id=realm_id,
+            saml_attribute_name=saml_attribute_name,
+            saml_attribute_name_format=saml_attribute_name_format,
+            script=script,
+            client_id=client_id,
+            client_scope_id=client_scope_id,
+            friendly_name=friendly_name,
+            name=name,
+            single_value_attribute=single_value_attribute,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             realm_id: Optional[pulumi.Input[str]] = None,
+             saml_attribute_name: Optional[pulumi.Input[str]] = None,
+             saml_attribute_name_format: Optional[pulumi.Input[str]] = None,
+             script: Optional[pulumi.Input[str]] = None,
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_scope_id: Optional[pulumi.Input[str]] = None,
+             friendly_name: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             single_value_attribute: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if realm_id is None:
+            raise TypeError("Missing 'realm_id' argument")
+        if saml_attribute_name is None and 'samlAttributeName' in kwargs:
+            saml_attribute_name = kwargs['samlAttributeName']
+        if saml_attribute_name is None:
+            raise TypeError("Missing 'saml_attribute_name' argument")
+        if saml_attribute_name_format is None and 'samlAttributeNameFormat' in kwargs:
+            saml_attribute_name_format = kwargs['samlAttributeNameFormat']
+        if saml_attribute_name_format is None:
+            raise TypeError("Missing 'saml_attribute_name_format' argument")
+        if script is None:
+            raise TypeError("Missing 'script' argument")
+        if client_id is None and 'clientId' in kwargs:
+            client_id = kwargs['clientId']
+        if client_scope_id is None and 'clientScopeId' in kwargs:
+            client_scope_id = kwargs['clientScopeId']
+        if friendly_name is None and 'friendlyName' in kwargs:
+            friendly_name = kwargs['friendlyName']
+        if single_value_attribute is None and 'singleValueAttribute' in kwargs:
+            single_value_attribute = kwargs['singleValueAttribute']
+
+        _setter("realm_id", realm_id)
+        _setter("saml_attribute_name", saml_attribute_name)
+        _setter("saml_attribute_name_format", saml_attribute_name_format)
+        _setter("script", script)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_scope_id is not None:
-            pulumi.set(__self__, "client_scope_id", client_scope_id)
+            _setter("client_scope_id", client_scope_id)
         if friendly_name is not None:
-            pulumi.set(__self__, "friendly_name", friendly_name)
+            _setter("friendly_name", friendly_name)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if single_value_attribute is not None:
-            pulumi.set(__self__, "single_value_attribute", single_value_attribute)
+            _setter("single_value_attribute", single_value_attribute)
 
     @property
     @pulumi.getter(name="realmId")
@@ -183,24 +232,65 @@ class _ScriptProtocolMapperState:
         :param pulumi.Input[str] script: JavaScript code to compute the attribute value.
         :param pulumi.Input[bool] single_value_attribute: When `true`, all values will be stored under one attribute with multiple attribute values. Defaults to `true`.
         """
+        _ScriptProtocolMapperState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            client_id=client_id,
+            client_scope_id=client_scope_id,
+            friendly_name=friendly_name,
+            name=name,
+            realm_id=realm_id,
+            saml_attribute_name=saml_attribute_name,
+            saml_attribute_name_format=saml_attribute_name_format,
+            script=script,
+            single_value_attribute=single_value_attribute,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             client_id: Optional[pulumi.Input[str]] = None,
+             client_scope_id: Optional[pulumi.Input[str]] = None,
+             friendly_name: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             realm_id: Optional[pulumi.Input[str]] = None,
+             saml_attribute_name: Optional[pulumi.Input[str]] = None,
+             saml_attribute_name_format: Optional[pulumi.Input[str]] = None,
+             script: Optional[pulumi.Input[str]] = None,
+             single_value_attribute: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if client_id is None and 'clientId' in kwargs:
+            client_id = kwargs['clientId']
+        if client_scope_id is None and 'clientScopeId' in kwargs:
+            client_scope_id = kwargs['clientScopeId']
+        if friendly_name is None and 'friendlyName' in kwargs:
+            friendly_name = kwargs['friendlyName']
+        if realm_id is None and 'realmId' in kwargs:
+            realm_id = kwargs['realmId']
+        if saml_attribute_name is None and 'samlAttributeName' in kwargs:
+            saml_attribute_name = kwargs['samlAttributeName']
+        if saml_attribute_name_format is None and 'samlAttributeNameFormat' in kwargs:
+            saml_attribute_name_format = kwargs['samlAttributeNameFormat']
+        if single_value_attribute is None and 'singleValueAttribute' in kwargs:
+            single_value_attribute = kwargs['singleValueAttribute']
+
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if client_scope_id is not None:
-            pulumi.set(__self__, "client_scope_id", client_scope_id)
+            _setter("client_scope_id", client_scope_id)
         if friendly_name is not None:
-            pulumi.set(__self__, "friendly_name", friendly_name)
+            _setter("friendly_name", friendly_name)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if realm_id is not None:
-            pulumi.set(__self__, "realm_id", realm_id)
+            _setter("realm_id", realm_id)
         if saml_attribute_name is not None:
-            pulumi.set(__self__, "saml_attribute_name", saml_attribute_name)
+            _setter("saml_attribute_name", saml_attribute_name)
         if saml_attribute_name_format is not None:
-            pulumi.set(__self__, "saml_attribute_name_format", saml_attribute_name_format)
+            _setter("saml_attribute_name_format", saml_attribute_name_format)
         if script is not None:
-            pulumi.set(__self__, "script", script)
+            _setter("script", script)
         if single_value_attribute is not None:
-            pulumi.set(__self__, "single_value_attribute", single_value_attribute)
+            _setter("single_value_attribute", single_value_attribute)
 
     @property
     @pulumi.getter(name="clientId")
@@ -434,6 +524,10 @@ class ScriptProtocolMapper(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ScriptProtocolMapperArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
