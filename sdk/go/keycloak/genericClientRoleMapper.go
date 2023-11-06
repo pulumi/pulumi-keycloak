@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // !> **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `GenericRoleMapper` instead.
@@ -379,12 +378,6 @@ func (i *GenericClientRoleMapper) ToGenericClientRoleMapperOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(GenericClientRoleMapperOutput)
 }
 
-func (i *GenericClientRoleMapper) ToOutput(ctx context.Context) pulumix.Output[*GenericClientRoleMapper] {
-	return pulumix.Output[*GenericClientRoleMapper]{
-		OutputState: i.ToGenericClientRoleMapperOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GenericClientRoleMapperArrayInput is an input type that accepts GenericClientRoleMapperArray and GenericClientRoleMapperArrayOutput values.
 // You can construct a concrete instance of `GenericClientRoleMapperArrayInput` via:
 //
@@ -408,12 +401,6 @@ func (i GenericClientRoleMapperArray) ToGenericClientRoleMapperArrayOutput() Gen
 
 func (i GenericClientRoleMapperArray) ToGenericClientRoleMapperArrayOutputWithContext(ctx context.Context) GenericClientRoleMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GenericClientRoleMapperArrayOutput)
-}
-
-func (i GenericClientRoleMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*GenericClientRoleMapper] {
-	return pulumix.Output[[]*GenericClientRoleMapper]{
-		OutputState: i.ToGenericClientRoleMapperArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GenericClientRoleMapperMapInput is an input type that accepts GenericClientRoleMapperMap and GenericClientRoleMapperMapOutput values.
@@ -441,12 +428,6 @@ func (i GenericClientRoleMapperMap) ToGenericClientRoleMapperMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GenericClientRoleMapperMapOutput)
 }
 
-func (i GenericClientRoleMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*GenericClientRoleMapper] {
-	return pulumix.Output[map[string]*GenericClientRoleMapper]{
-		OutputState: i.ToGenericClientRoleMapperMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GenericClientRoleMapperOutput struct{ *pulumi.OutputState }
 
 func (GenericClientRoleMapperOutput) ElementType() reflect.Type {
@@ -459,12 +440,6 @@ func (o GenericClientRoleMapperOutput) ToGenericClientRoleMapperOutput() Generic
 
 func (o GenericClientRoleMapperOutput) ToGenericClientRoleMapperOutputWithContext(ctx context.Context) GenericClientRoleMapperOutput {
 	return o
-}
-
-func (o GenericClientRoleMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*GenericClientRoleMapper] {
-	return pulumix.Output[*GenericClientRoleMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The ID of the client this role mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
@@ -501,12 +476,6 @@ func (o GenericClientRoleMapperArrayOutput) ToGenericClientRoleMapperArrayOutput
 	return o
 }
 
-func (o GenericClientRoleMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*GenericClientRoleMapper] {
-	return pulumix.Output[[]*GenericClientRoleMapper]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GenericClientRoleMapperArrayOutput) Index(i pulumi.IntInput) GenericClientRoleMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GenericClientRoleMapper {
 		return vs[0].([]*GenericClientRoleMapper)[vs[1].(int)]
@@ -525,12 +494,6 @@ func (o GenericClientRoleMapperMapOutput) ToGenericClientRoleMapperMapOutput() G
 
 func (o GenericClientRoleMapperMapOutput) ToGenericClientRoleMapperMapOutputWithContext(ctx context.Context) GenericClientRoleMapperMapOutput {
 	return o
-}
-
-func (o GenericClientRoleMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*GenericClientRoleMapper] {
-	return pulumix.Output[map[string]*GenericClientRoleMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GenericClientRoleMapperMapOutput) MapIndex(k pulumi.StringInput) GenericClientRoleMapperOutput {

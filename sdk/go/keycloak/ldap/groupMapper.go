@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing group mappers for Keycloak users federated via LDAP.
@@ -363,12 +362,6 @@ func (i *GroupMapper) ToGroupMapperOutputWithContext(ctx context.Context) GroupM
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMapperOutput)
 }
 
-func (i *GroupMapper) ToOutput(ctx context.Context) pulumix.Output[*GroupMapper] {
-	return pulumix.Output[*GroupMapper]{
-		OutputState: i.ToGroupMapperOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GroupMapperArrayInput is an input type that accepts GroupMapperArray and GroupMapperArrayOutput values.
 // You can construct a concrete instance of `GroupMapperArrayInput` via:
 //
@@ -392,12 +385,6 @@ func (i GroupMapperArray) ToGroupMapperArrayOutput() GroupMapperArrayOutput {
 
 func (i GroupMapperArray) ToGroupMapperArrayOutputWithContext(ctx context.Context) GroupMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMapperArrayOutput)
-}
-
-func (i GroupMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*GroupMapper] {
-	return pulumix.Output[[]*GroupMapper]{
-		OutputState: i.ToGroupMapperArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GroupMapperMapInput is an input type that accepts GroupMapperMap and GroupMapperMapOutput values.
@@ -425,12 +412,6 @@ func (i GroupMapperMap) ToGroupMapperMapOutputWithContext(ctx context.Context) G
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMapperMapOutput)
 }
 
-func (i GroupMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*GroupMapper] {
-	return pulumix.Output[map[string]*GroupMapper]{
-		OutputState: i.ToGroupMapperMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GroupMapperOutput struct{ *pulumi.OutputState }
 
 func (GroupMapperOutput) ElementType() reflect.Type {
@@ -443,12 +424,6 @@ func (o GroupMapperOutput) ToGroupMapperOutput() GroupMapperOutput {
 
 func (o GroupMapperOutput) ToGroupMapperOutputWithContext(ctx context.Context) GroupMapperOutput {
 	return o
-}
-
-func (o GroupMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*GroupMapper] {
-	return pulumix.Output[*GroupMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 // When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
@@ -555,12 +530,6 @@ func (o GroupMapperArrayOutput) ToGroupMapperArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o GroupMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*GroupMapper] {
-	return pulumix.Output[[]*GroupMapper]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GroupMapperArrayOutput) Index(i pulumi.IntInput) GroupMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GroupMapper {
 		return vs[0].([]*GroupMapper)[vs[1].(int)]
@@ -579,12 +548,6 @@ func (o GroupMapperMapOutput) ToGroupMapperMapOutput() GroupMapperMapOutput {
 
 func (o GroupMapperMapOutput) ToGroupMapperMapOutputWithContext(ctx context.Context) GroupMapperMapOutput {
 	return o
-}
-
-func (o GroupMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*GroupMapper] {
-	return pulumix.Output[map[string]*GroupMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GroupMapperMapOutput) MapIndex(k pulumi.StringInput) GroupMapperOutput {

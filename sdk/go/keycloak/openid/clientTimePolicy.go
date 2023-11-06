@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ClientTimePolicy struct {
@@ -186,12 +185,6 @@ func (i *ClientTimePolicy) ToClientTimePolicyOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(ClientTimePolicyOutput)
 }
 
-func (i *ClientTimePolicy) ToOutput(ctx context.Context) pulumix.Output[*ClientTimePolicy] {
-	return pulumix.Output[*ClientTimePolicy]{
-		OutputState: i.ToClientTimePolicyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ClientTimePolicyArrayInput is an input type that accepts ClientTimePolicyArray and ClientTimePolicyArrayOutput values.
 // You can construct a concrete instance of `ClientTimePolicyArrayInput` via:
 //
@@ -215,12 +208,6 @@ func (i ClientTimePolicyArray) ToClientTimePolicyArrayOutput() ClientTimePolicyA
 
 func (i ClientTimePolicyArray) ToClientTimePolicyArrayOutputWithContext(ctx context.Context) ClientTimePolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientTimePolicyArrayOutput)
-}
-
-func (i ClientTimePolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*ClientTimePolicy] {
-	return pulumix.Output[[]*ClientTimePolicy]{
-		OutputState: i.ToClientTimePolicyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ClientTimePolicyMapInput is an input type that accepts ClientTimePolicyMap and ClientTimePolicyMapOutput values.
@@ -248,12 +235,6 @@ func (i ClientTimePolicyMap) ToClientTimePolicyMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(ClientTimePolicyMapOutput)
 }
 
-func (i ClientTimePolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientTimePolicy] {
-	return pulumix.Output[map[string]*ClientTimePolicy]{
-		OutputState: i.ToClientTimePolicyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ClientTimePolicyOutput struct{ *pulumi.OutputState }
 
 func (ClientTimePolicyOutput) ElementType() reflect.Type {
@@ -266,12 +247,6 @@ func (o ClientTimePolicyOutput) ToClientTimePolicyOutput() ClientTimePolicyOutpu
 
 func (o ClientTimePolicyOutput) ToClientTimePolicyOutputWithContext(ctx context.Context) ClientTimePolicyOutput {
 	return o
-}
-
-func (o ClientTimePolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientTimePolicy] {
-	return pulumix.Output[*ClientTimePolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientTimePolicyOutput) DayMonth() pulumi.StringPtrOutput {
@@ -360,12 +335,6 @@ func (o ClientTimePolicyArrayOutput) ToClientTimePolicyArrayOutputWithContext(ct
 	return o
 }
 
-func (o ClientTimePolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ClientTimePolicy] {
-	return pulumix.Output[[]*ClientTimePolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ClientTimePolicyArrayOutput) Index(i pulumi.IntInput) ClientTimePolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ClientTimePolicy {
 		return vs[0].([]*ClientTimePolicy)[vs[1].(int)]
@@ -384,12 +353,6 @@ func (o ClientTimePolicyMapOutput) ToClientTimePolicyMapOutput() ClientTimePolic
 
 func (o ClientTimePolicyMapOutput) ToClientTimePolicyMapOutputWithContext(ctx context.Context) ClientTimePolicyMapOutput {
 	return o
-}
-
-func (o ClientTimePolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientTimePolicy] {
-	return pulumix.Output[map[string]*ClientTimePolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientTimePolicyMapOutput) MapIndex(k pulumi.StringInput) ClientTimePolicyOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -63,12 +62,6 @@ func (i UserFederationCacheArgs) ToUserFederationCacheOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(UserFederationCacheOutput)
 }
 
-func (i UserFederationCacheArgs) ToOutput(ctx context.Context) pulumix.Output[UserFederationCache] {
-	return pulumix.Output[UserFederationCache]{
-		OutputState: i.ToUserFederationCacheOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i UserFederationCacheArgs) ToUserFederationCachePtrOutput() UserFederationCachePtrOutput {
 	return i.ToUserFederationCachePtrOutputWithContext(context.Background())
 }
@@ -110,12 +103,6 @@ func (i *userFederationCachePtrType) ToUserFederationCachePtrOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(UserFederationCachePtrOutput)
 }
 
-func (i *userFederationCachePtrType) ToOutput(ctx context.Context) pulumix.Output[*UserFederationCache] {
-	return pulumix.Output[*UserFederationCache]{
-		OutputState: i.ToUserFederationCachePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserFederationCacheOutput struct{ *pulumi.OutputState }
 
 func (UserFederationCacheOutput) ElementType() reflect.Type {
@@ -138,12 +125,6 @@ func (o UserFederationCacheOutput) ToUserFederationCachePtrOutputWithContext(ctx
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v UserFederationCache) *UserFederationCache {
 		return &v
 	}).(UserFederationCachePtrOutput)
-}
-
-func (o UserFederationCacheOutput) ToOutput(ctx context.Context) pulumix.Output[UserFederationCache] {
-	return pulumix.Output[UserFederationCache]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Day of the week the entry will become invalid on
@@ -183,12 +164,6 @@ func (o UserFederationCachePtrOutput) ToUserFederationCachePtrOutput() UserFeder
 
 func (o UserFederationCachePtrOutput) ToUserFederationCachePtrOutputWithContext(ctx context.Context) UserFederationCachePtrOutput {
 	return o
-}
-
-func (o UserFederationCachePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*UserFederationCache] {
-	return pulumix.Output[*UserFederationCache]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserFederationCachePtrOutput) Elem() UserFederationCacheOutput {
@@ -296,12 +271,6 @@ func (i UserFederationKerberosArgs) ToUserFederationKerberosOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(UserFederationKerberosOutput)
 }
 
-func (i UserFederationKerberosArgs) ToOutput(ctx context.Context) pulumix.Output[UserFederationKerberos] {
-	return pulumix.Output[UserFederationKerberos]{
-		OutputState: i.ToUserFederationKerberosOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i UserFederationKerberosArgs) ToUserFederationKerberosPtrOutput() UserFederationKerberosPtrOutput {
 	return i.ToUserFederationKerberosPtrOutputWithContext(context.Background())
 }
@@ -343,12 +312,6 @@ func (i *userFederationKerberosPtrType) ToUserFederationKerberosPtrOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(UserFederationKerberosPtrOutput)
 }
 
-func (i *userFederationKerberosPtrType) ToOutput(ctx context.Context) pulumix.Output[*UserFederationKerberos] {
-	return pulumix.Output[*UserFederationKerberos]{
-		OutputState: i.ToUserFederationKerberosPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserFederationKerberosOutput struct{ *pulumi.OutputState }
 
 func (UserFederationKerberosOutput) ElementType() reflect.Type {
@@ -371,12 +334,6 @@ func (o UserFederationKerberosOutput) ToUserFederationKerberosPtrOutputWithConte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v UserFederationKerberos) *UserFederationKerberos {
 		return &v
 	}).(UserFederationKerberosPtrOutput)
-}
-
-func (o UserFederationKerberosOutput) ToOutput(ctx context.Context) pulumix.Output[UserFederationKerberos] {
-	return pulumix.Output[UserFederationKerberos]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The name of the kerberos realm, e.g. FOO.LOCAL.
@@ -411,12 +368,6 @@ func (o UserFederationKerberosPtrOutput) ToUserFederationKerberosPtrOutput() Use
 
 func (o UserFederationKerberosPtrOutput) ToUserFederationKerberosPtrOutputWithContext(ctx context.Context) UserFederationKerberosPtrOutput {
 	return o
-}
-
-func (o UserFederationKerberosPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*UserFederationKerberos] {
-	return pulumix.Output[*UserFederationKerberos]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserFederationKerberosPtrOutput) Elem() UserFederationKerberosOutput {

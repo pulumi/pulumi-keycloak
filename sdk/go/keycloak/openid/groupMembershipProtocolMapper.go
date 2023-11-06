@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing group membership protocol mappers within Keycloak.
@@ -295,12 +294,6 @@ func (i *GroupMembershipProtocolMapper) ToGroupMembershipProtocolMapperOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipProtocolMapperOutput)
 }
 
-func (i *GroupMembershipProtocolMapper) ToOutput(ctx context.Context) pulumix.Output[*GroupMembershipProtocolMapper] {
-	return pulumix.Output[*GroupMembershipProtocolMapper]{
-		OutputState: i.ToGroupMembershipProtocolMapperOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GroupMembershipProtocolMapperArrayInput is an input type that accepts GroupMembershipProtocolMapperArray and GroupMembershipProtocolMapperArrayOutput values.
 // You can construct a concrete instance of `GroupMembershipProtocolMapperArrayInput` via:
 //
@@ -324,12 +317,6 @@ func (i GroupMembershipProtocolMapperArray) ToGroupMembershipProtocolMapperArray
 
 func (i GroupMembershipProtocolMapperArray) ToGroupMembershipProtocolMapperArrayOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipProtocolMapperArrayOutput)
-}
-
-func (i GroupMembershipProtocolMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*GroupMembershipProtocolMapper] {
-	return pulumix.Output[[]*GroupMembershipProtocolMapper]{
-		OutputState: i.ToGroupMembershipProtocolMapperArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GroupMembershipProtocolMapperMapInput is an input type that accepts GroupMembershipProtocolMapperMap and GroupMembershipProtocolMapperMapOutput values.
@@ -357,12 +344,6 @@ func (i GroupMembershipProtocolMapperMap) ToGroupMembershipProtocolMapperMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipProtocolMapperMapOutput)
 }
 
-func (i GroupMembershipProtocolMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*GroupMembershipProtocolMapper] {
-	return pulumix.Output[map[string]*GroupMembershipProtocolMapper]{
-		OutputState: i.ToGroupMembershipProtocolMapperMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GroupMembershipProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (GroupMembershipProtocolMapperOutput) ElementType() reflect.Type {
@@ -375,12 +356,6 @@ func (o GroupMembershipProtocolMapperOutput) ToGroupMembershipProtocolMapperOutp
 
 func (o GroupMembershipProtocolMapperOutput) ToGroupMembershipProtocolMapperOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperOutput {
 	return o
-}
-
-func (o GroupMembershipProtocolMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*GroupMembershipProtocolMapper] {
-	return pulumix.Output[*GroupMembershipProtocolMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Indicates if the property should be added as a claim to the access token. Defaults to `true`.
@@ -442,12 +417,6 @@ func (o GroupMembershipProtocolMapperArrayOutput) ToGroupMembershipProtocolMappe
 	return o
 }
 
-func (o GroupMembershipProtocolMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*GroupMembershipProtocolMapper] {
-	return pulumix.Output[[]*GroupMembershipProtocolMapper]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GroupMembershipProtocolMapperArrayOutput) Index(i pulumi.IntInput) GroupMembershipProtocolMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GroupMembershipProtocolMapper {
 		return vs[0].([]*GroupMembershipProtocolMapper)[vs[1].(int)]
@@ -466,12 +435,6 @@ func (o GroupMembershipProtocolMapperMapOutput) ToGroupMembershipProtocolMapperM
 
 func (o GroupMembershipProtocolMapperMapOutput) ToGroupMembershipProtocolMapperMapOutputWithContext(ctx context.Context) GroupMembershipProtocolMapperMapOutput {
 	return o
-}
-
-func (o GroupMembershipProtocolMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*GroupMembershipProtocolMapper] {
-	return pulumix.Output[map[string]*GroupMembershipProtocolMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GroupMembershipProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) GroupMembershipProtocolMapperOutput {

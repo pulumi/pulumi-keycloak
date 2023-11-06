@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing `hmac-generated` Realm keystores within Keycloak.
@@ -210,12 +209,6 @@ func (i *RealmKeystoreHmacGenerated) ToRealmKeystoreHmacGeneratedOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreHmacGeneratedOutput)
 }
 
-func (i *RealmKeystoreHmacGenerated) ToOutput(ctx context.Context) pulumix.Output[*RealmKeystoreHmacGenerated] {
-	return pulumix.Output[*RealmKeystoreHmacGenerated]{
-		OutputState: i.ToRealmKeystoreHmacGeneratedOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RealmKeystoreHmacGeneratedArrayInput is an input type that accepts RealmKeystoreHmacGeneratedArray and RealmKeystoreHmacGeneratedArrayOutput values.
 // You can construct a concrete instance of `RealmKeystoreHmacGeneratedArrayInput` via:
 //
@@ -239,12 +232,6 @@ func (i RealmKeystoreHmacGeneratedArray) ToRealmKeystoreHmacGeneratedArrayOutput
 
 func (i RealmKeystoreHmacGeneratedArray) ToRealmKeystoreHmacGeneratedArrayOutputWithContext(ctx context.Context) RealmKeystoreHmacGeneratedArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreHmacGeneratedArrayOutput)
-}
-
-func (i RealmKeystoreHmacGeneratedArray) ToOutput(ctx context.Context) pulumix.Output[[]*RealmKeystoreHmacGenerated] {
-	return pulumix.Output[[]*RealmKeystoreHmacGenerated]{
-		OutputState: i.ToRealmKeystoreHmacGeneratedArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RealmKeystoreHmacGeneratedMapInput is an input type that accepts RealmKeystoreHmacGeneratedMap and RealmKeystoreHmacGeneratedMapOutput values.
@@ -272,12 +259,6 @@ func (i RealmKeystoreHmacGeneratedMap) ToRealmKeystoreHmacGeneratedMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreHmacGeneratedMapOutput)
 }
 
-func (i RealmKeystoreHmacGeneratedMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RealmKeystoreHmacGenerated] {
-	return pulumix.Output[map[string]*RealmKeystoreHmacGenerated]{
-		OutputState: i.ToRealmKeystoreHmacGeneratedMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RealmKeystoreHmacGeneratedOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreHmacGeneratedOutput) ElementType() reflect.Type {
@@ -290,12 +271,6 @@ func (o RealmKeystoreHmacGeneratedOutput) ToRealmKeystoreHmacGeneratedOutput() R
 
 func (o RealmKeystoreHmacGeneratedOutput) ToRealmKeystoreHmacGeneratedOutputWithContext(ctx context.Context) RealmKeystoreHmacGeneratedOutput {
 	return o
-}
-
-func (o RealmKeystoreHmacGeneratedOutput) ToOutput(ctx context.Context) pulumix.Output[*RealmKeystoreHmacGenerated] {
-	return pulumix.Output[*RealmKeystoreHmacGenerated]{
-		OutputState: o.OutputState,
-	}
 }
 
 // When `false`, key in not used for signing. Defaults to `true`.
@@ -347,12 +322,6 @@ func (o RealmKeystoreHmacGeneratedArrayOutput) ToRealmKeystoreHmacGeneratedArray
 	return o
 }
 
-func (o RealmKeystoreHmacGeneratedArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RealmKeystoreHmacGenerated] {
-	return pulumix.Output[[]*RealmKeystoreHmacGenerated]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RealmKeystoreHmacGeneratedArrayOutput) Index(i pulumi.IntInput) RealmKeystoreHmacGeneratedOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RealmKeystoreHmacGenerated {
 		return vs[0].([]*RealmKeystoreHmacGenerated)[vs[1].(int)]
@@ -371,12 +340,6 @@ func (o RealmKeystoreHmacGeneratedMapOutput) ToRealmKeystoreHmacGeneratedMapOutp
 
 func (o RealmKeystoreHmacGeneratedMapOutput) ToRealmKeystoreHmacGeneratedMapOutputWithContext(ctx context.Context) RealmKeystoreHmacGeneratedMapOutput {
 	return o
-}
-
-func (o RealmKeystoreHmacGeneratedMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RealmKeystoreHmacGenerated] {
-	return pulumix.Output[map[string]*RealmKeystoreHmacGenerated]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RealmKeystoreHmacGeneratedMapOutput) MapIndex(k pulumi.StringInput) RealmKeystoreHmacGeneratedOutput {
