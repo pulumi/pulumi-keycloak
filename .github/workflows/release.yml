@@ -7,6 +7,7 @@ env:
       3.1.301
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GOVERSION: 1.21.x
+  GRADLEVERSION: "7.6"
   JAVAVERSION: "11"
   KEYCLOAK_CLIENT_ID: terraform
   KEYCLOAK_CLIENT_SECRET: 884e0f95-0f42-4a63-9b1f-94274655669e
@@ -80,7 +81,7 @@ jobs:
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
       with:
-        gradle-version: "7.6"
+        gradle-version: ${{ env.GRADLEVERSION }}
     - name: Download provider + tfgen binaries
       uses: actions/download-artifact@v2
       with:
@@ -375,7 +376,7 @@ jobs:
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
       with:
-        gradle-version: "7.6"
+        gradle-version: ${{ env.GRADLEVERSION }}
     - name: Download provider + tfgen binaries
       uses: actions/download-artifact@v2
       with:
