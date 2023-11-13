@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing `rsa` Realm keystores within Keycloak.
@@ -189,12 +188,6 @@ func (i *RealmKeystoreRsa) ToRealmKeystoreRsaOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreRsaOutput)
 }
 
-func (i *RealmKeystoreRsa) ToOutput(ctx context.Context) pulumix.Output[*RealmKeystoreRsa] {
-	return pulumix.Output[*RealmKeystoreRsa]{
-		OutputState: i.ToRealmKeystoreRsaOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RealmKeystoreRsaArrayInput is an input type that accepts RealmKeystoreRsaArray and RealmKeystoreRsaArrayOutput values.
 // You can construct a concrete instance of `RealmKeystoreRsaArrayInput` via:
 //
@@ -218,12 +211,6 @@ func (i RealmKeystoreRsaArray) ToRealmKeystoreRsaArrayOutput() RealmKeystoreRsaA
 
 func (i RealmKeystoreRsaArray) ToRealmKeystoreRsaArrayOutputWithContext(ctx context.Context) RealmKeystoreRsaArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreRsaArrayOutput)
-}
-
-func (i RealmKeystoreRsaArray) ToOutput(ctx context.Context) pulumix.Output[[]*RealmKeystoreRsa] {
-	return pulumix.Output[[]*RealmKeystoreRsa]{
-		OutputState: i.ToRealmKeystoreRsaArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RealmKeystoreRsaMapInput is an input type that accepts RealmKeystoreRsaMap and RealmKeystoreRsaMapOutput values.
@@ -251,12 +238,6 @@ func (i RealmKeystoreRsaMap) ToRealmKeystoreRsaMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreRsaMapOutput)
 }
 
-func (i RealmKeystoreRsaMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RealmKeystoreRsa] {
-	return pulumix.Output[map[string]*RealmKeystoreRsa]{
-		OutputState: i.ToRealmKeystoreRsaMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RealmKeystoreRsaOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreRsaOutput) ElementType() reflect.Type {
@@ -269,12 +250,6 @@ func (o RealmKeystoreRsaOutput) ToRealmKeystoreRsaOutput() RealmKeystoreRsaOutpu
 
 func (o RealmKeystoreRsaOutput) ToRealmKeystoreRsaOutputWithContext(ctx context.Context) RealmKeystoreRsaOutput {
 	return o
-}
-
-func (o RealmKeystoreRsaOutput) ToOutput(ctx context.Context) pulumix.Output[*RealmKeystoreRsa] {
-	return pulumix.Output[*RealmKeystoreRsa]{
-		OutputState: o.OutputState,
-	}
 }
 
 // When `false`, key in not used for signing. Defaults to `true`.
@@ -331,12 +306,6 @@ func (o RealmKeystoreRsaArrayOutput) ToRealmKeystoreRsaArrayOutputWithContext(ct
 	return o
 }
 
-func (o RealmKeystoreRsaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RealmKeystoreRsa] {
-	return pulumix.Output[[]*RealmKeystoreRsa]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RealmKeystoreRsaArrayOutput) Index(i pulumi.IntInput) RealmKeystoreRsaOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RealmKeystoreRsa {
 		return vs[0].([]*RealmKeystoreRsa)[vs[1].(int)]
@@ -355,12 +324,6 @@ func (o RealmKeystoreRsaMapOutput) ToRealmKeystoreRsaMapOutput() RealmKeystoreRs
 
 func (o RealmKeystoreRsaMapOutput) ToRealmKeystoreRsaMapOutputWithContext(ctx context.Context) RealmKeystoreRsaMapOutput {
 	return o
-}
-
-func (o RealmKeystoreRsaMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RealmKeystoreRsa] {
-	return pulumix.Output[map[string]*RealmKeystoreRsa]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RealmKeystoreRsaMapOutput) MapIndex(k pulumi.StringInput) RealmKeystoreRsaOutput {

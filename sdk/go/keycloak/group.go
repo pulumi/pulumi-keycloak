@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing Groups within Keycloak.
@@ -206,12 +205,6 @@ func (i *Group) ToGroupOutputWithContext(ctx context.Context) GroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupOutput)
 }
 
-func (i *Group) ToOutput(ctx context.Context) pulumix.Output[*Group] {
-	return pulumix.Output[*Group]{
-		OutputState: i.ToGroupOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GroupArrayInput is an input type that accepts GroupArray and GroupArrayOutput values.
 // You can construct a concrete instance of `GroupArrayInput` via:
 //
@@ -235,12 +228,6 @@ func (i GroupArray) ToGroupArrayOutput() GroupArrayOutput {
 
 func (i GroupArray) ToGroupArrayOutputWithContext(ctx context.Context) GroupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupArrayOutput)
-}
-
-func (i GroupArray) ToOutput(ctx context.Context) pulumix.Output[[]*Group] {
-	return pulumix.Output[[]*Group]{
-		OutputState: i.ToGroupArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GroupMapInput is an input type that accepts GroupMap and GroupMapOutput values.
@@ -268,12 +255,6 @@ func (i GroupMap) ToGroupMapOutputWithContext(ctx context.Context) GroupMapOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMapOutput)
 }
 
-func (i GroupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Group] {
-	return pulumix.Output[map[string]*Group]{
-		OutputState: i.ToGroupMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GroupOutput struct{ *pulumi.OutputState }
 
 func (GroupOutput) ElementType() reflect.Type {
@@ -286,12 +267,6 @@ func (o GroupOutput) ToGroupOutput() GroupOutput {
 
 func (o GroupOutput) ToGroupOutputWithContext(ctx context.Context) GroupOutput {
 	return o
-}
-
-func (o GroupOutput) ToOutput(ctx context.Context) pulumix.Output[*Group] {
-	return pulumix.Output[*Group]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
@@ -333,12 +308,6 @@ func (o GroupArrayOutput) ToGroupArrayOutputWithContext(ctx context.Context) Gro
 	return o
 }
 
-func (o GroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Group] {
-	return pulumix.Output[[]*Group]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GroupArrayOutput) Index(i pulumi.IntInput) GroupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Group {
 		return vs[0].([]*Group)[vs[1].(int)]
@@ -357,12 +326,6 @@ func (o GroupMapOutput) ToGroupMapOutput() GroupMapOutput {
 
 func (o GroupMapOutput) ToGroupMapOutputWithContext(ctx context.Context) GroupMapOutput {
 	return o
-}
-
-func (o GroupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Group] {
-	return pulumix.Output[map[string]*Group]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GroupMapOutput) MapIndex(k pulumi.StringInput) GroupOutput {

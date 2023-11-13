@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This data source can be used to fetch the realm roles of a user within Keycloak.
@@ -120,12 +119,6 @@ func (o GetUserRealmRolesResultOutput) ToGetUserRealmRolesResultOutput() GetUser
 
 func (o GetUserRealmRolesResultOutput) ToGetUserRealmRolesResultOutputWithContext(ctx context.Context) GetUserRealmRolesResultOutput {
 	return o
-}
-
-func (o GetUserRealmRolesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetUserRealmRolesResult] {
-	return pulumix.Output[GetUserRealmRolesResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

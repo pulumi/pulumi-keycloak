@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type HardcodedRoleIdentityMapper struct {
@@ -138,12 +137,6 @@ func (i *HardcodedRoleIdentityMapper) ToHardcodedRoleIdentityMapperOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleIdentityMapperOutput)
 }
 
-func (i *HardcodedRoleIdentityMapper) ToOutput(ctx context.Context) pulumix.Output[*HardcodedRoleIdentityMapper] {
-	return pulumix.Output[*HardcodedRoleIdentityMapper]{
-		OutputState: i.ToHardcodedRoleIdentityMapperOutputWithContext(ctx).OutputState,
-	}
-}
-
 // HardcodedRoleIdentityMapperArrayInput is an input type that accepts HardcodedRoleIdentityMapperArray and HardcodedRoleIdentityMapperArrayOutput values.
 // You can construct a concrete instance of `HardcodedRoleIdentityMapperArrayInput` via:
 //
@@ -167,12 +160,6 @@ func (i HardcodedRoleIdentityMapperArray) ToHardcodedRoleIdentityMapperArrayOutp
 
 func (i HardcodedRoleIdentityMapperArray) ToHardcodedRoleIdentityMapperArrayOutputWithContext(ctx context.Context) HardcodedRoleIdentityMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleIdentityMapperArrayOutput)
-}
-
-func (i HardcodedRoleIdentityMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*HardcodedRoleIdentityMapper] {
-	return pulumix.Output[[]*HardcodedRoleIdentityMapper]{
-		OutputState: i.ToHardcodedRoleIdentityMapperArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // HardcodedRoleIdentityMapperMapInput is an input type that accepts HardcodedRoleIdentityMapperMap and HardcodedRoleIdentityMapperMapOutput values.
@@ -200,12 +187,6 @@ func (i HardcodedRoleIdentityMapperMap) ToHardcodedRoleIdentityMapperMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedRoleIdentityMapperMapOutput)
 }
 
-func (i HardcodedRoleIdentityMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*HardcodedRoleIdentityMapper] {
-	return pulumix.Output[map[string]*HardcodedRoleIdentityMapper]{
-		OutputState: i.ToHardcodedRoleIdentityMapperMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type HardcodedRoleIdentityMapperOutput struct{ *pulumi.OutputState }
 
 func (HardcodedRoleIdentityMapperOutput) ElementType() reflect.Type {
@@ -218,12 +199,6 @@ func (o HardcodedRoleIdentityMapperOutput) ToHardcodedRoleIdentityMapperOutput()
 
 func (o HardcodedRoleIdentityMapperOutput) ToHardcodedRoleIdentityMapperOutputWithContext(ctx context.Context) HardcodedRoleIdentityMapperOutput {
 	return o
-}
-
-func (o HardcodedRoleIdentityMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*HardcodedRoleIdentityMapper] {
-	return pulumix.Output[*HardcodedRoleIdentityMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o HardcodedRoleIdentityMapperOutput) ExtraConfig() pulumi.MapOutput {
@@ -264,12 +239,6 @@ func (o HardcodedRoleIdentityMapperArrayOutput) ToHardcodedRoleIdentityMapperArr
 	return o
 }
 
-func (o HardcodedRoleIdentityMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*HardcodedRoleIdentityMapper] {
-	return pulumix.Output[[]*HardcodedRoleIdentityMapper]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o HardcodedRoleIdentityMapperArrayOutput) Index(i pulumi.IntInput) HardcodedRoleIdentityMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *HardcodedRoleIdentityMapper {
 		return vs[0].([]*HardcodedRoleIdentityMapper)[vs[1].(int)]
@@ -288,12 +257,6 @@ func (o HardcodedRoleIdentityMapperMapOutput) ToHardcodedRoleIdentityMapperMapOu
 
 func (o HardcodedRoleIdentityMapperMapOutput) ToHardcodedRoleIdentityMapperMapOutputWithContext(ctx context.Context) HardcodedRoleIdentityMapperMapOutput {
 	return o
-}
-
-func (o HardcodedRoleIdentityMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*HardcodedRoleIdentityMapper] {
-	return pulumix.Output[map[string]*HardcodedRoleIdentityMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o HardcodedRoleIdentityMapperMapOutput) MapIndex(k pulumi.StringInput) HardcodedRoleIdentityMapperOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing an authentication subflow within Keycloak.
@@ -240,12 +239,6 @@ func (i *Subflow) ToSubflowOutputWithContext(ctx context.Context) SubflowOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(SubflowOutput)
 }
 
-func (i *Subflow) ToOutput(ctx context.Context) pulumix.Output[*Subflow] {
-	return pulumix.Output[*Subflow]{
-		OutputState: i.ToSubflowOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SubflowArrayInput is an input type that accepts SubflowArray and SubflowArrayOutput values.
 // You can construct a concrete instance of `SubflowArrayInput` via:
 //
@@ -269,12 +262,6 @@ func (i SubflowArray) ToSubflowArrayOutput() SubflowArrayOutput {
 
 func (i SubflowArray) ToSubflowArrayOutputWithContext(ctx context.Context) SubflowArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SubflowArrayOutput)
-}
-
-func (i SubflowArray) ToOutput(ctx context.Context) pulumix.Output[[]*Subflow] {
-	return pulumix.Output[[]*Subflow]{
-		OutputState: i.ToSubflowArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SubflowMapInput is an input type that accepts SubflowMap and SubflowMapOutput values.
@@ -302,12 +289,6 @@ func (i SubflowMap) ToSubflowMapOutputWithContext(ctx context.Context) SubflowMa
 	return pulumi.ToOutputWithContext(ctx, i).(SubflowMapOutput)
 }
 
-func (i SubflowMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Subflow] {
-	return pulumix.Output[map[string]*Subflow]{
-		OutputState: i.ToSubflowMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SubflowOutput struct{ *pulumi.OutputState }
 
 func (SubflowOutput) ElementType() reflect.Type {
@@ -320,12 +301,6 @@ func (o SubflowOutput) ToSubflowOutput() SubflowOutput {
 
 func (o SubflowOutput) ToSubflowOutputWithContext(ctx context.Context) SubflowOutput {
 	return o
-}
-
-func (o SubflowOutput) ToOutput(ctx context.Context) pulumix.Output[*Subflow] {
-	return pulumix.Output[*Subflow]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The alias for this authentication subflow.
@@ -380,12 +355,6 @@ func (o SubflowArrayOutput) ToSubflowArrayOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o SubflowArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Subflow] {
-	return pulumix.Output[[]*Subflow]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SubflowArrayOutput) Index(i pulumi.IntInput) SubflowOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Subflow {
 		return vs[0].([]*Subflow)[vs[1].(int)]
@@ -404,12 +373,6 @@ func (o SubflowMapOutput) ToSubflowMapOutput() SubflowMapOutput {
 
 func (o SubflowMapOutput) ToSubflowMapOutputWithContext(ctx context.Context) SubflowMapOutput {
 	return o
-}
-
-func (o SubflowMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Subflow] {
-	return pulumix.Output[map[string]*Subflow]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SubflowMapOutput) MapIndex(k pulumi.StringInput) SubflowOutput {

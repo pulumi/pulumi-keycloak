@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for managing a realm's default groups.
@@ -168,12 +167,6 @@ func (i *DefaultGroups) ToDefaultGroupsOutputWithContext(ctx context.Context) De
 	return pulumi.ToOutputWithContext(ctx, i).(DefaultGroupsOutput)
 }
 
-func (i *DefaultGroups) ToOutput(ctx context.Context) pulumix.Output[*DefaultGroups] {
-	return pulumix.Output[*DefaultGroups]{
-		OutputState: i.ToDefaultGroupsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DefaultGroupsArrayInput is an input type that accepts DefaultGroupsArray and DefaultGroupsArrayOutput values.
 // You can construct a concrete instance of `DefaultGroupsArrayInput` via:
 //
@@ -197,12 +190,6 @@ func (i DefaultGroupsArray) ToDefaultGroupsArrayOutput() DefaultGroupsArrayOutpu
 
 func (i DefaultGroupsArray) ToDefaultGroupsArrayOutputWithContext(ctx context.Context) DefaultGroupsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DefaultGroupsArrayOutput)
-}
-
-func (i DefaultGroupsArray) ToOutput(ctx context.Context) pulumix.Output[[]*DefaultGroups] {
-	return pulumix.Output[[]*DefaultGroups]{
-		OutputState: i.ToDefaultGroupsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DefaultGroupsMapInput is an input type that accepts DefaultGroupsMap and DefaultGroupsMapOutput values.
@@ -230,12 +217,6 @@ func (i DefaultGroupsMap) ToDefaultGroupsMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(DefaultGroupsMapOutput)
 }
 
-func (i DefaultGroupsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DefaultGroups] {
-	return pulumix.Output[map[string]*DefaultGroups]{
-		OutputState: i.ToDefaultGroupsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DefaultGroupsOutput struct{ *pulumi.OutputState }
 
 func (DefaultGroupsOutput) ElementType() reflect.Type {
@@ -248,12 +229,6 @@ func (o DefaultGroupsOutput) ToDefaultGroupsOutput() DefaultGroupsOutput {
 
 func (o DefaultGroupsOutput) ToDefaultGroupsOutputWithContext(ctx context.Context) DefaultGroupsOutput {
 	return o
-}
-
-func (o DefaultGroupsOutput) ToOutput(ctx context.Context) pulumix.Output[*DefaultGroups] {
-	return pulumix.Output[*DefaultGroups]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A set of group ids that should be default groups on the realm referenced by `realmId`.
@@ -280,12 +255,6 @@ func (o DefaultGroupsArrayOutput) ToDefaultGroupsArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o DefaultGroupsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DefaultGroups] {
-	return pulumix.Output[[]*DefaultGroups]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DefaultGroupsArrayOutput) Index(i pulumi.IntInput) DefaultGroupsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DefaultGroups {
 		return vs[0].([]*DefaultGroups)[vs[1].(int)]
@@ -304,12 +273,6 @@ func (o DefaultGroupsMapOutput) ToDefaultGroupsMapOutput() DefaultGroupsMapOutpu
 
 func (o DefaultGroupsMapOutput) ToDefaultGroupsMapOutputWithContext(ctx context.Context) DefaultGroupsMapOutput {
 	return o
-}
-
-func (o DefaultGroupsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DefaultGroups] {
-	return pulumix.Output[map[string]*DefaultGroups]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DefaultGroupsMapOutput) MapIndex(k pulumi.StringInput) DefaultGroupsOutput {

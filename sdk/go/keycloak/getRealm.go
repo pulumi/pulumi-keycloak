@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This data source can be used to fetch properties of a Keycloak realm for
@@ -180,12 +179,6 @@ func (o LookupRealmResultOutput) ToLookupRealmResultOutput() LookupRealmResultOu
 
 func (o LookupRealmResultOutput) ToLookupRealmResultOutputWithContext(ctx context.Context) LookupRealmResultOutput {
 	return o
-}
-
-func (o LookupRealmResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupRealmResult] {
-	return pulumix.Output[LookupRealmResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupRealmResultOutput) AccessCodeLifespan() pulumi.StringOutput {

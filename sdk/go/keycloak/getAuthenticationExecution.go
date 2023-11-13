@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This data source can be used to fetch the ID of an authentication execution within Keycloak.
@@ -114,12 +113,6 @@ func (o GetAuthenticationExecutionResultOutput) ToGetAuthenticationExecutionResu
 
 func (o GetAuthenticationExecutionResultOutput) ToGetAuthenticationExecutionResultOutputWithContext(ctx context.Context) GetAuthenticationExecutionResultOutput {
 	return o
-}
-
-func (o GetAuthenticationExecutionResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAuthenticationExecutionResult] {
-	return pulumix.Output[GetAuthenticationExecutionResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

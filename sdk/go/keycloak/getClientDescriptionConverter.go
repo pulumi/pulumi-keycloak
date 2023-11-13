@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/6.0/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
@@ -183,12 +182,6 @@ func (o GetClientDescriptionConverterResultOutput) ToGetClientDescriptionConvert
 
 func (o GetClientDescriptionConverterResultOutput) ToGetClientDescriptionConverterResultOutputWithContext(ctx context.Context) GetClientDescriptionConverterResultOutput {
 	return o
-}
-
-func (o GetClientDescriptionConverterResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetClientDescriptionConverterResult] {
-	return pulumix.Output[GetClientDescriptionConverterResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetClientDescriptionConverterResultOutput) Access() pulumi.MapOutput {

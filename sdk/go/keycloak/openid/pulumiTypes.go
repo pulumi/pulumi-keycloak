@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -49,12 +48,6 @@ func (i ClientAuthenticationFlowBindingOverridesArgs) ToClientAuthenticationFlow
 
 func (i ClientAuthenticationFlowBindingOverridesArgs) ToClientAuthenticationFlowBindingOverridesOutputWithContext(ctx context.Context) ClientAuthenticationFlowBindingOverridesOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthenticationFlowBindingOverridesOutput)
-}
-
-func (i ClientAuthenticationFlowBindingOverridesArgs) ToOutput(ctx context.Context) pulumix.Output[ClientAuthenticationFlowBindingOverrides] {
-	return pulumix.Output[ClientAuthenticationFlowBindingOverrides]{
-		OutputState: i.ToClientAuthenticationFlowBindingOverridesOutputWithContext(ctx).OutputState,
-	}
 }
 
 func (i ClientAuthenticationFlowBindingOverridesArgs) ToClientAuthenticationFlowBindingOverridesPtrOutput() ClientAuthenticationFlowBindingOverridesPtrOutput {
@@ -98,12 +91,6 @@ func (i *clientAuthenticationFlowBindingOverridesPtrType) ToClientAuthentication
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthenticationFlowBindingOverridesPtrOutput)
 }
 
-func (i *clientAuthenticationFlowBindingOverridesPtrType) ToOutput(ctx context.Context) pulumix.Output[*ClientAuthenticationFlowBindingOverrides] {
-	return pulumix.Output[*ClientAuthenticationFlowBindingOverrides]{
-		OutputState: i.ToClientAuthenticationFlowBindingOverridesPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ClientAuthenticationFlowBindingOverridesOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthenticationFlowBindingOverridesOutput) ElementType() reflect.Type {
@@ -128,12 +115,6 @@ func (o ClientAuthenticationFlowBindingOverridesOutput) ToClientAuthenticationFl
 	}).(ClientAuthenticationFlowBindingOverridesPtrOutput)
 }
 
-func (o ClientAuthenticationFlowBindingOverridesOutput) ToOutput(ctx context.Context) pulumix.Output[ClientAuthenticationFlowBindingOverrides] {
-	return pulumix.Output[ClientAuthenticationFlowBindingOverrides]{
-		OutputState: o.OutputState,
-	}
-}
-
 // Browser flow id, (flow needs to exist)
 func (o ClientAuthenticationFlowBindingOverridesOutput) BrowserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClientAuthenticationFlowBindingOverrides) *string { return v.BrowserId }).(pulumi.StringPtrOutput)
@@ -156,12 +137,6 @@ func (o ClientAuthenticationFlowBindingOverridesPtrOutput) ToClientAuthenticatio
 
 func (o ClientAuthenticationFlowBindingOverridesPtrOutput) ToClientAuthenticationFlowBindingOverridesPtrOutputWithContext(ctx context.Context) ClientAuthenticationFlowBindingOverridesPtrOutput {
 	return o
-}
-
-func (o ClientAuthenticationFlowBindingOverridesPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientAuthenticationFlowBindingOverrides] {
-	return pulumix.Output[*ClientAuthenticationFlowBindingOverrides]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientAuthenticationFlowBindingOverridesPtrOutput) Elem() ClientAuthenticationFlowBindingOverridesOutput {
@@ -239,12 +214,6 @@ func (i ClientAuthorizationArgs) ToClientAuthorizationOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationOutput)
 }
 
-func (i ClientAuthorizationArgs) ToOutput(ctx context.Context) pulumix.Output[ClientAuthorization] {
-	return pulumix.Output[ClientAuthorization]{
-		OutputState: i.ToClientAuthorizationOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i ClientAuthorizationArgs) ToClientAuthorizationPtrOutput() ClientAuthorizationPtrOutput {
 	return i.ToClientAuthorizationPtrOutputWithContext(context.Background())
 }
@@ -286,12 +255,6 @@ func (i *clientAuthorizationPtrType) ToClientAuthorizationPtrOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationPtrOutput)
 }
 
-func (i *clientAuthorizationPtrType) ToOutput(ctx context.Context) pulumix.Output[*ClientAuthorization] {
-	return pulumix.Output[*ClientAuthorization]{
-		OutputState: i.ToClientAuthorizationPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ClientAuthorizationOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthorizationOutput) ElementType() reflect.Type {
@@ -314,12 +277,6 @@ func (o ClientAuthorizationOutput) ToClientAuthorizationPtrOutputWithContext(ctx
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientAuthorization) *ClientAuthorization {
 		return &v
 	}).(ClientAuthorizationPtrOutput)
-}
-
-func (o ClientAuthorizationOutput) ToOutput(ctx context.Context) pulumix.Output[ClientAuthorization] {
-	return pulumix.Output[ClientAuthorization]{
-		OutputState: o.OutputState,
-	}
 }
 
 // When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
@@ -354,12 +311,6 @@ func (o ClientAuthorizationPtrOutput) ToClientAuthorizationPtrOutput() ClientAut
 
 func (o ClientAuthorizationPtrOutput) ToClientAuthorizationPtrOutputWithContext(ctx context.Context) ClientAuthorizationPtrOutput {
 	return o
-}
-
-func (o ClientAuthorizationPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientAuthorization] {
-	return pulumix.Output[*ClientAuthorization]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientAuthorizationPtrOutput) Elem() ClientAuthorizationOutput {
@@ -447,12 +398,6 @@ func (i ClientGroupPolicyGroupArgs) ToClientGroupPolicyGroupOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(ClientGroupPolicyGroupOutput)
 }
 
-func (i ClientGroupPolicyGroupArgs) ToOutput(ctx context.Context) pulumix.Output[ClientGroupPolicyGroup] {
-	return pulumix.Output[ClientGroupPolicyGroup]{
-		OutputState: i.ToClientGroupPolicyGroupOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ClientGroupPolicyGroupArrayInput is an input type that accepts ClientGroupPolicyGroupArray and ClientGroupPolicyGroupArrayOutput values.
 // You can construct a concrete instance of `ClientGroupPolicyGroupArrayInput` via:
 //
@@ -478,12 +423,6 @@ func (i ClientGroupPolicyGroupArray) ToClientGroupPolicyGroupArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ClientGroupPolicyGroupArrayOutput)
 }
 
-func (i ClientGroupPolicyGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]ClientGroupPolicyGroup] {
-	return pulumix.Output[[]ClientGroupPolicyGroup]{
-		OutputState: i.ToClientGroupPolicyGroupArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ClientGroupPolicyGroupOutput struct{ *pulumi.OutputState }
 
 func (ClientGroupPolicyGroupOutput) ElementType() reflect.Type {
@@ -496,12 +435,6 @@ func (o ClientGroupPolicyGroupOutput) ToClientGroupPolicyGroupOutput() ClientGro
 
 func (o ClientGroupPolicyGroupOutput) ToClientGroupPolicyGroupOutputWithContext(ctx context.Context) ClientGroupPolicyGroupOutput {
 	return o
-}
-
-func (o ClientGroupPolicyGroupOutput) ToOutput(ctx context.Context) pulumix.Output[ClientGroupPolicyGroup] {
-	return pulumix.Output[ClientGroupPolicyGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientGroupPolicyGroupOutput) ExtendChildren() pulumi.BoolOutput {
@@ -528,12 +461,6 @@ func (o ClientGroupPolicyGroupArrayOutput) ToClientGroupPolicyGroupArrayOutput()
 
 func (o ClientGroupPolicyGroupArrayOutput) ToClientGroupPolicyGroupArrayOutputWithContext(ctx context.Context) ClientGroupPolicyGroupArrayOutput {
 	return o
-}
-
-func (o ClientGroupPolicyGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ClientGroupPolicyGroup] {
-	return pulumix.Output[[]ClientGroupPolicyGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientGroupPolicyGroupArrayOutput) Index(i pulumi.IntInput) ClientGroupPolicyGroupOutput {
@@ -577,12 +504,6 @@ func (i ClientPermissionsConfigureScopeArgs) ToClientPermissionsConfigureScopeOu
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsConfigureScopeOutput)
 }
 
-func (i ClientPermissionsConfigureScopeArgs) ToOutput(ctx context.Context) pulumix.Output[ClientPermissionsConfigureScope] {
-	return pulumix.Output[ClientPermissionsConfigureScope]{
-		OutputState: i.ToClientPermissionsConfigureScopeOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i ClientPermissionsConfigureScopeArgs) ToClientPermissionsConfigureScopePtrOutput() ClientPermissionsConfigureScopePtrOutput {
 	return i.ToClientPermissionsConfigureScopePtrOutputWithContext(context.Background())
 }
@@ -624,12 +545,6 @@ func (i *clientPermissionsConfigureScopePtrType) ToClientPermissionsConfigureSco
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsConfigureScopePtrOutput)
 }
 
-func (i *clientPermissionsConfigureScopePtrType) ToOutput(ctx context.Context) pulumix.Output[*ClientPermissionsConfigureScope] {
-	return pulumix.Output[*ClientPermissionsConfigureScope]{
-		OutputState: i.ToClientPermissionsConfigureScopePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ClientPermissionsConfigureScopeOutput struct{ *pulumi.OutputState }
 
 func (ClientPermissionsConfigureScopeOutput) ElementType() reflect.Type {
@@ -652,12 +567,6 @@ func (o ClientPermissionsConfigureScopeOutput) ToClientPermissionsConfigureScope
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientPermissionsConfigureScope) *ClientPermissionsConfigureScope {
 		return &v
 	}).(ClientPermissionsConfigureScopePtrOutput)
-}
-
-func (o ClientPermissionsConfigureScopeOutput) ToOutput(ctx context.Context) pulumix.Output[ClientPermissionsConfigureScope] {
-	return pulumix.Output[ClientPermissionsConfigureScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientPermissionsConfigureScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -684,12 +593,6 @@ func (o ClientPermissionsConfigureScopePtrOutput) ToClientPermissionsConfigureSc
 
 func (o ClientPermissionsConfigureScopePtrOutput) ToClientPermissionsConfigureScopePtrOutputWithContext(ctx context.Context) ClientPermissionsConfigureScopePtrOutput {
 	return o
-}
-
-func (o ClientPermissionsConfigureScopePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientPermissionsConfigureScope] {
-	return pulumix.Output[*ClientPermissionsConfigureScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientPermissionsConfigureScopePtrOutput) Elem() ClientPermissionsConfigureScopeOutput {
@@ -764,12 +667,6 @@ func (i ClientPermissionsManageScopeArgs) ToClientPermissionsManageScopeOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsManageScopeOutput)
 }
 
-func (i ClientPermissionsManageScopeArgs) ToOutput(ctx context.Context) pulumix.Output[ClientPermissionsManageScope] {
-	return pulumix.Output[ClientPermissionsManageScope]{
-		OutputState: i.ToClientPermissionsManageScopeOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i ClientPermissionsManageScopeArgs) ToClientPermissionsManageScopePtrOutput() ClientPermissionsManageScopePtrOutput {
 	return i.ToClientPermissionsManageScopePtrOutputWithContext(context.Background())
 }
@@ -811,12 +708,6 @@ func (i *clientPermissionsManageScopePtrType) ToClientPermissionsManageScopePtrO
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsManageScopePtrOutput)
 }
 
-func (i *clientPermissionsManageScopePtrType) ToOutput(ctx context.Context) pulumix.Output[*ClientPermissionsManageScope] {
-	return pulumix.Output[*ClientPermissionsManageScope]{
-		OutputState: i.ToClientPermissionsManageScopePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ClientPermissionsManageScopeOutput struct{ *pulumi.OutputState }
 
 func (ClientPermissionsManageScopeOutput) ElementType() reflect.Type {
@@ -839,12 +730,6 @@ func (o ClientPermissionsManageScopeOutput) ToClientPermissionsManageScopePtrOut
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientPermissionsManageScope) *ClientPermissionsManageScope {
 		return &v
 	}).(ClientPermissionsManageScopePtrOutput)
-}
-
-func (o ClientPermissionsManageScopeOutput) ToOutput(ctx context.Context) pulumix.Output[ClientPermissionsManageScope] {
-	return pulumix.Output[ClientPermissionsManageScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientPermissionsManageScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -871,12 +756,6 @@ func (o ClientPermissionsManageScopePtrOutput) ToClientPermissionsManageScopePtr
 
 func (o ClientPermissionsManageScopePtrOutput) ToClientPermissionsManageScopePtrOutputWithContext(ctx context.Context) ClientPermissionsManageScopePtrOutput {
 	return o
-}
-
-func (o ClientPermissionsManageScopePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientPermissionsManageScope] {
-	return pulumix.Output[*ClientPermissionsManageScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientPermissionsManageScopePtrOutput) Elem() ClientPermissionsManageScopeOutput {
@@ -951,12 +830,6 @@ func (i ClientPermissionsMapRolesClientScopeScopeArgs) ToClientPermissionsMapRol
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsMapRolesClientScopeScopeOutput)
 }
 
-func (i ClientPermissionsMapRolesClientScopeScopeArgs) ToOutput(ctx context.Context) pulumix.Output[ClientPermissionsMapRolesClientScopeScope] {
-	return pulumix.Output[ClientPermissionsMapRolesClientScopeScope]{
-		OutputState: i.ToClientPermissionsMapRolesClientScopeScopeOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i ClientPermissionsMapRolesClientScopeScopeArgs) ToClientPermissionsMapRolesClientScopeScopePtrOutput() ClientPermissionsMapRolesClientScopeScopePtrOutput {
 	return i.ToClientPermissionsMapRolesClientScopeScopePtrOutputWithContext(context.Background())
 }
@@ -998,12 +871,6 @@ func (i *clientPermissionsMapRolesClientScopeScopePtrType) ToClientPermissionsMa
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsMapRolesClientScopeScopePtrOutput)
 }
 
-func (i *clientPermissionsMapRolesClientScopeScopePtrType) ToOutput(ctx context.Context) pulumix.Output[*ClientPermissionsMapRolesClientScopeScope] {
-	return pulumix.Output[*ClientPermissionsMapRolesClientScopeScope]{
-		OutputState: i.ToClientPermissionsMapRolesClientScopeScopePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ClientPermissionsMapRolesClientScopeScopeOutput struct{ *pulumi.OutputState }
 
 func (ClientPermissionsMapRolesClientScopeScopeOutput) ElementType() reflect.Type {
@@ -1026,12 +893,6 @@ func (o ClientPermissionsMapRolesClientScopeScopeOutput) ToClientPermissionsMapR
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientPermissionsMapRolesClientScopeScope) *ClientPermissionsMapRolesClientScopeScope {
 		return &v
 	}).(ClientPermissionsMapRolesClientScopeScopePtrOutput)
-}
-
-func (o ClientPermissionsMapRolesClientScopeScopeOutput) ToOutput(ctx context.Context) pulumix.Output[ClientPermissionsMapRolesClientScopeScope] {
-	return pulumix.Output[ClientPermissionsMapRolesClientScopeScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientPermissionsMapRolesClientScopeScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -1058,12 +919,6 @@ func (o ClientPermissionsMapRolesClientScopeScopePtrOutput) ToClientPermissionsM
 
 func (o ClientPermissionsMapRolesClientScopeScopePtrOutput) ToClientPermissionsMapRolesClientScopeScopePtrOutputWithContext(ctx context.Context) ClientPermissionsMapRolesClientScopeScopePtrOutput {
 	return o
-}
-
-func (o ClientPermissionsMapRolesClientScopeScopePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientPermissionsMapRolesClientScopeScope] {
-	return pulumix.Output[*ClientPermissionsMapRolesClientScopeScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientPermissionsMapRolesClientScopeScopePtrOutput) Elem() ClientPermissionsMapRolesClientScopeScopeOutput {
@@ -1138,12 +993,6 @@ func (i ClientPermissionsMapRolesCompositeScopeArgs) ToClientPermissionsMapRoles
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsMapRolesCompositeScopeOutput)
 }
 
-func (i ClientPermissionsMapRolesCompositeScopeArgs) ToOutput(ctx context.Context) pulumix.Output[ClientPermissionsMapRolesCompositeScope] {
-	return pulumix.Output[ClientPermissionsMapRolesCompositeScope]{
-		OutputState: i.ToClientPermissionsMapRolesCompositeScopeOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i ClientPermissionsMapRolesCompositeScopeArgs) ToClientPermissionsMapRolesCompositeScopePtrOutput() ClientPermissionsMapRolesCompositeScopePtrOutput {
 	return i.ToClientPermissionsMapRolesCompositeScopePtrOutputWithContext(context.Background())
 }
@@ -1185,12 +1034,6 @@ func (i *clientPermissionsMapRolesCompositeScopePtrType) ToClientPermissionsMapR
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsMapRolesCompositeScopePtrOutput)
 }
 
-func (i *clientPermissionsMapRolesCompositeScopePtrType) ToOutput(ctx context.Context) pulumix.Output[*ClientPermissionsMapRolesCompositeScope] {
-	return pulumix.Output[*ClientPermissionsMapRolesCompositeScope]{
-		OutputState: i.ToClientPermissionsMapRolesCompositeScopePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ClientPermissionsMapRolesCompositeScopeOutput struct{ *pulumi.OutputState }
 
 func (ClientPermissionsMapRolesCompositeScopeOutput) ElementType() reflect.Type {
@@ -1213,12 +1056,6 @@ func (o ClientPermissionsMapRolesCompositeScopeOutput) ToClientPermissionsMapRol
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientPermissionsMapRolesCompositeScope) *ClientPermissionsMapRolesCompositeScope {
 		return &v
 	}).(ClientPermissionsMapRolesCompositeScopePtrOutput)
-}
-
-func (o ClientPermissionsMapRolesCompositeScopeOutput) ToOutput(ctx context.Context) pulumix.Output[ClientPermissionsMapRolesCompositeScope] {
-	return pulumix.Output[ClientPermissionsMapRolesCompositeScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientPermissionsMapRolesCompositeScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -1245,12 +1082,6 @@ func (o ClientPermissionsMapRolesCompositeScopePtrOutput) ToClientPermissionsMap
 
 func (o ClientPermissionsMapRolesCompositeScopePtrOutput) ToClientPermissionsMapRolesCompositeScopePtrOutputWithContext(ctx context.Context) ClientPermissionsMapRolesCompositeScopePtrOutput {
 	return o
-}
-
-func (o ClientPermissionsMapRolesCompositeScopePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientPermissionsMapRolesCompositeScope] {
-	return pulumix.Output[*ClientPermissionsMapRolesCompositeScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientPermissionsMapRolesCompositeScopePtrOutput) Elem() ClientPermissionsMapRolesCompositeScopeOutput {
@@ -1325,12 +1156,6 @@ func (i ClientPermissionsMapRolesScopeArgs) ToClientPermissionsMapRolesScopeOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsMapRolesScopeOutput)
 }
 
-func (i ClientPermissionsMapRolesScopeArgs) ToOutput(ctx context.Context) pulumix.Output[ClientPermissionsMapRolesScope] {
-	return pulumix.Output[ClientPermissionsMapRolesScope]{
-		OutputState: i.ToClientPermissionsMapRolesScopeOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i ClientPermissionsMapRolesScopeArgs) ToClientPermissionsMapRolesScopePtrOutput() ClientPermissionsMapRolesScopePtrOutput {
 	return i.ToClientPermissionsMapRolesScopePtrOutputWithContext(context.Background())
 }
@@ -1372,12 +1197,6 @@ func (i *clientPermissionsMapRolesScopePtrType) ToClientPermissionsMapRolesScope
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsMapRolesScopePtrOutput)
 }
 
-func (i *clientPermissionsMapRolesScopePtrType) ToOutput(ctx context.Context) pulumix.Output[*ClientPermissionsMapRolesScope] {
-	return pulumix.Output[*ClientPermissionsMapRolesScope]{
-		OutputState: i.ToClientPermissionsMapRolesScopePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ClientPermissionsMapRolesScopeOutput struct{ *pulumi.OutputState }
 
 func (ClientPermissionsMapRolesScopeOutput) ElementType() reflect.Type {
@@ -1400,12 +1219,6 @@ func (o ClientPermissionsMapRolesScopeOutput) ToClientPermissionsMapRolesScopePt
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientPermissionsMapRolesScope) *ClientPermissionsMapRolesScope {
 		return &v
 	}).(ClientPermissionsMapRolesScopePtrOutput)
-}
-
-func (o ClientPermissionsMapRolesScopeOutput) ToOutput(ctx context.Context) pulumix.Output[ClientPermissionsMapRolesScope] {
-	return pulumix.Output[ClientPermissionsMapRolesScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientPermissionsMapRolesScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -1432,12 +1245,6 @@ func (o ClientPermissionsMapRolesScopePtrOutput) ToClientPermissionsMapRolesScop
 
 func (o ClientPermissionsMapRolesScopePtrOutput) ToClientPermissionsMapRolesScopePtrOutputWithContext(ctx context.Context) ClientPermissionsMapRolesScopePtrOutput {
 	return o
-}
-
-func (o ClientPermissionsMapRolesScopePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientPermissionsMapRolesScope] {
-	return pulumix.Output[*ClientPermissionsMapRolesScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientPermissionsMapRolesScopePtrOutput) Elem() ClientPermissionsMapRolesScopeOutput {
@@ -1512,12 +1319,6 @@ func (i ClientPermissionsTokenExchangeScopeArgs) ToClientPermissionsTokenExchang
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsTokenExchangeScopeOutput)
 }
 
-func (i ClientPermissionsTokenExchangeScopeArgs) ToOutput(ctx context.Context) pulumix.Output[ClientPermissionsTokenExchangeScope] {
-	return pulumix.Output[ClientPermissionsTokenExchangeScope]{
-		OutputState: i.ToClientPermissionsTokenExchangeScopeOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i ClientPermissionsTokenExchangeScopeArgs) ToClientPermissionsTokenExchangeScopePtrOutput() ClientPermissionsTokenExchangeScopePtrOutput {
 	return i.ToClientPermissionsTokenExchangeScopePtrOutputWithContext(context.Background())
 }
@@ -1559,12 +1360,6 @@ func (i *clientPermissionsTokenExchangeScopePtrType) ToClientPermissionsTokenExc
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsTokenExchangeScopePtrOutput)
 }
 
-func (i *clientPermissionsTokenExchangeScopePtrType) ToOutput(ctx context.Context) pulumix.Output[*ClientPermissionsTokenExchangeScope] {
-	return pulumix.Output[*ClientPermissionsTokenExchangeScope]{
-		OutputState: i.ToClientPermissionsTokenExchangeScopePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ClientPermissionsTokenExchangeScopeOutput struct{ *pulumi.OutputState }
 
 func (ClientPermissionsTokenExchangeScopeOutput) ElementType() reflect.Type {
@@ -1587,12 +1382,6 @@ func (o ClientPermissionsTokenExchangeScopeOutput) ToClientPermissionsTokenExcha
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientPermissionsTokenExchangeScope) *ClientPermissionsTokenExchangeScope {
 		return &v
 	}).(ClientPermissionsTokenExchangeScopePtrOutput)
-}
-
-func (o ClientPermissionsTokenExchangeScopeOutput) ToOutput(ctx context.Context) pulumix.Output[ClientPermissionsTokenExchangeScope] {
-	return pulumix.Output[ClientPermissionsTokenExchangeScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientPermissionsTokenExchangeScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -1619,12 +1408,6 @@ func (o ClientPermissionsTokenExchangeScopePtrOutput) ToClientPermissionsTokenEx
 
 func (o ClientPermissionsTokenExchangeScopePtrOutput) ToClientPermissionsTokenExchangeScopePtrOutputWithContext(ctx context.Context) ClientPermissionsTokenExchangeScopePtrOutput {
 	return o
-}
-
-func (o ClientPermissionsTokenExchangeScopePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientPermissionsTokenExchangeScope] {
-	return pulumix.Output[*ClientPermissionsTokenExchangeScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientPermissionsTokenExchangeScopePtrOutput) Elem() ClientPermissionsTokenExchangeScopeOutput {
@@ -1699,12 +1482,6 @@ func (i ClientPermissionsViewScopeArgs) ToClientPermissionsViewScopeOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsViewScopeOutput)
 }
 
-func (i ClientPermissionsViewScopeArgs) ToOutput(ctx context.Context) pulumix.Output[ClientPermissionsViewScope] {
-	return pulumix.Output[ClientPermissionsViewScope]{
-		OutputState: i.ToClientPermissionsViewScopeOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i ClientPermissionsViewScopeArgs) ToClientPermissionsViewScopePtrOutput() ClientPermissionsViewScopePtrOutput {
 	return i.ToClientPermissionsViewScopePtrOutputWithContext(context.Background())
 }
@@ -1746,12 +1523,6 @@ func (i *clientPermissionsViewScopePtrType) ToClientPermissionsViewScopePtrOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPermissionsViewScopePtrOutput)
 }
 
-func (i *clientPermissionsViewScopePtrType) ToOutput(ctx context.Context) pulumix.Output[*ClientPermissionsViewScope] {
-	return pulumix.Output[*ClientPermissionsViewScope]{
-		OutputState: i.ToClientPermissionsViewScopePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ClientPermissionsViewScopeOutput struct{ *pulumi.OutputState }
 
 func (ClientPermissionsViewScopeOutput) ElementType() reflect.Type {
@@ -1774,12 +1545,6 @@ func (o ClientPermissionsViewScopeOutput) ToClientPermissionsViewScopePtrOutputW
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClientPermissionsViewScope) *ClientPermissionsViewScope {
 		return &v
 	}).(ClientPermissionsViewScopePtrOutput)
-}
-
-func (o ClientPermissionsViewScopeOutput) ToOutput(ctx context.Context) pulumix.Output[ClientPermissionsViewScope] {
-	return pulumix.Output[ClientPermissionsViewScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientPermissionsViewScopeOutput) DecisionStrategy() pulumi.StringPtrOutput {
@@ -1806,12 +1571,6 @@ func (o ClientPermissionsViewScopePtrOutput) ToClientPermissionsViewScopePtrOutp
 
 func (o ClientPermissionsViewScopePtrOutput) ToClientPermissionsViewScopePtrOutputWithContext(ctx context.Context) ClientPermissionsViewScopePtrOutput {
 	return o
-}
-
-func (o ClientPermissionsViewScopePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientPermissionsViewScope] {
-	return pulumix.Output[*ClientPermissionsViewScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientPermissionsViewScopePtrOutput) Elem() ClientPermissionsViewScopeOutput {
@@ -1884,12 +1643,6 @@ func (i ClientRolePolicyRoleArgs) ToClientRolePolicyRoleOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(ClientRolePolicyRoleOutput)
 }
 
-func (i ClientRolePolicyRoleArgs) ToOutput(ctx context.Context) pulumix.Output[ClientRolePolicyRole] {
-	return pulumix.Output[ClientRolePolicyRole]{
-		OutputState: i.ToClientRolePolicyRoleOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ClientRolePolicyRoleArrayInput is an input type that accepts ClientRolePolicyRoleArray and ClientRolePolicyRoleArrayOutput values.
 // You can construct a concrete instance of `ClientRolePolicyRoleArrayInput` via:
 //
@@ -1915,12 +1668,6 @@ func (i ClientRolePolicyRoleArray) ToClientRolePolicyRoleArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(ClientRolePolicyRoleArrayOutput)
 }
 
-func (i ClientRolePolicyRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]ClientRolePolicyRole] {
-	return pulumix.Output[[]ClientRolePolicyRole]{
-		OutputState: i.ToClientRolePolicyRoleArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ClientRolePolicyRoleOutput struct{ *pulumi.OutputState }
 
 func (ClientRolePolicyRoleOutput) ElementType() reflect.Type {
@@ -1933,12 +1680,6 @@ func (o ClientRolePolicyRoleOutput) ToClientRolePolicyRoleOutput() ClientRolePol
 
 func (o ClientRolePolicyRoleOutput) ToClientRolePolicyRoleOutputWithContext(ctx context.Context) ClientRolePolicyRoleOutput {
 	return o
-}
-
-func (o ClientRolePolicyRoleOutput) ToOutput(ctx context.Context) pulumix.Output[ClientRolePolicyRole] {
-	return pulumix.Output[ClientRolePolicyRole]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientRolePolicyRoleOutput) Id() pulumi.StringOutput {
@@ -1961,12 +1702,6 @@ func (o ClientRolePolicyRoleArrayOutput) ToClientRolePolicyRoleArrayOutput() Cli
 
 func (o ClientRolePolicyRoleArrayOutput) ToClientRolePolicyRoleArrayOutputWithContext(ctx context.Context) ClientRolePolicyRoleArrayOutput {
 	return o
-}
-
-func (o ClientRolePolicyRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ClientRolePolicyRole] {
-	return pulumix.Output[[]ClientRolePolicyRole]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientRolePolicyRoleArrayOutput) Index(i pulumi.IntInput) ClientRolePolicyRoleOutput {
@@ -2008,12 +1743,6 @@ func (i GetClientAuthenticationFlowBindingOverrideArgs) ToGetClientAuthenticatio
 	return pulumi.ToOutputWithContext(ctx, i).(GetClientAuthenticationFlowBindingOverrideOutput)
 }
 
-func (i GetClientAuthenticationFlowBindingOverrideArgs) ToOutput(ctx context.Context) pulumix.Output[GetClientAuthenticationFlowBindingOverride] {
-	return pulumix.Output[GetClientAuthenticationFlowBindingOverride]{
-		OutputState: i.ToGetClientAuthenticationFlowBindingOverrideOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetClientAuthenticationFlowBindingOverrideArrayInput is an input type that accepts GetClientAuthenticationFlowBindingOverrideArray and GetClientAuthenticationFlowBindingOverrideArrayOutput values.
 // You can construct a concrete instance of `GetClientAuthenticationFlowBindingOverrideArrayInput` via:
 //
@@ -2039,12 +1768,6 @@ func (i GetClientAuthenticationFlowBindingOverrideArray) ToGetClientAuthenticati
 	return pulumi.ToOutputWithContext(ctx, i).(GetClientAuthenticationFlowBindingOverrideArrayOutput)
 }
 
-func (i GetClientAuthenticationFlowBindingOverrideArray) ToOutput(ctx context.Context) pulumix.Output[[]GetClientAuthenticationFlowBindingOverride] {
-	return pulumix.Output[[]GetClientAuthenticationFlowBindingOverride]{
-		OutputState: i.ToGetClientAuthenticationFlowBindingOverrideArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetClientAuthenticationFlowBindingOverrideOutput struct{ *pulumi.OutputState }
 
 func (GetClientAuthenticationFlowBindingOverrideOutput) ElementType() reflect.Type {
@@ -2057,12 +1780,6 @@ func (o GetClientAuthenticationFlowBindingOverrideOutput) ToGetClientAuthenticat
 
 func (o GetClientAuthenticationFlowBindingOverrideOutput) ToGetClientAuthenticationFlowBindingOverrideOutputWithContext(ctx context.Context) GetClientAuthenticationFlowBindingOverrideOutput {
 	return o
-}
-
-func (o GetClientAuthenticationFlowBindingOverrideOutput) ToOutput(ctx context.Context) pulumix.Output[GetClientAuthenticationFlowBindingOverride] {
-	return pulumix.Output[GetClientAuthenticationFlowBindingOverride]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetClientAuthenticationFlowBindingOverrideOutput) BrowserId() pulumi.StringOutput {
@@ -2085,12 +1802,6 @@ func (o GetClientAuthenticationFlowBindingOverrideArrayOutput) ToGetClientAuthen
 
 func (o GetClientAuthenticationFlowBindingOverrideArrayOutput) ToGetClientAuthenticationFlowBindingOverrideArrayOutputWithContext(ctx context.Context) GetClientAuthenticationFlowBindingOverrideArrayOutput {
 	return o
-}
-
-func (o GetClientAuthenticationFlowBindingOverrideArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetClientAuthenticationFlowBindingOverride] {
-	return pulumix.Output[[]GetClientAuthenticationFlowBindingOverride]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetClientAuthenticationFlowBindingOverrideArrayOutput) Index(i pulumi.IntInput) GetClientAuthenticationFlowBindingOverrideOutput {
@@ -2136,12 +1847,6 @@ func (i GetClientAuthorizationArgs) ToGetClientAuthorizationOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(GetClientAuthorizationOutput)
 }
 
-func (i GetClientAuthorizationArgs) ToOutput(ctx context.Context) pulumix.Output[GetClientAuthorization] {
-	return pulumix.Output[GetClientAuthorization]{
-		OutputState: i.ToGetClientAuthorizationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetClientAuthorizationArrayInput is an input type that accepts GetClientAuthorizationArray and GetClientAuthorizationArrayOutput values.
 // You can construct a concrete instance of `GetClientAuthorizationArrayInput` via:
 //
@@ -2167,12 +1872,6 @@ func (i GetClientAuthorizationArray) ToGetClientAuthorizationArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(GetClientAuthorizationArrayOutput)
 }
 
-func (i GetClientAuthorizationArray) ToOutput(ctx context.Context) pulumix.Output[[]GetClientAuthorization] {
-	return pulumix.Output[[]GetClientAuthorization]{
-		OutputState: i.ToGetClientAuthorizationArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetClientAuthorizationOutput struct{ *pulumi.OutputState }
 
 func (GetClientAuthorizationOutput) ElementType() reflect.Type {
@@ -2185,12 +1884,6 @@ func (o GetClientAuthorizationOutput) ToGetClientAuthorizationOutput() GetClient
 
 func (o GetClientAuthorizationOutput) ToGetClientAuthorizationOutputWithContext(ctx context.Context) GetClientAuthorizationOutput {
 	return o
-}
-
-func (o GetClientAuthorizationOutput) ToOutput(ctx context.Context) pulumix.Output[GetClientAuthorization] {
-	return pulumix.Output[GetClientAuthorization]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetClientAuthorizationOutput) AllowRemoteResourceManagement() pulumi.BoolOutput {
@@ -2221,12 +1914,6 @@ func (o GetClientAuthorizationArrayOutput) ToGetClientAuthorizationArrayOutput()
 
 func (o GetClientAuthorizationArrayOutput) ToGetClientAuthorizationArrayOutputWithContext(ctx context.Context) GetClientAuthorizationArrayOutput {
 	return o
-}
-
-func (o GetClientAuthorizationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetClientAuthorization] {
-	return pulumix.Output[[]GetClientAuthorization]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetClientAuthorizationArrayOutput) Index(i pulumi.IntInput) GetClientAuthorizationOutput {
@@ -2270,12 +1957,6 @@ func (i GetClientServiceAccountUserFederatedIdentityArgs) ToGetClientServiceAcco
 	return pulumi.ToOutputWithContext(ctx, i).(GetClientServiceAccountUserFederatedIdentityOutput)
 }
 
-func (i GetClientServiceAccountUserFederatedIdentityArgs) ToOutput(ctx context.Context) pulumix.Output[GetClientServiceAccountUserFederatedIdentity] {
-	return pulumix.Output[GetClientServiceAccountUserFederatedIdentity]{
-		OutputState: i.ToGetClientServiceAccountUserFederatedIdentityOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetClientServiceAccountUserFederatedIdentityArrayInput is an input type that accepts GetClientServiceAccountUserFederatedIdentityArray and GetClientServiceAccountUserFederatedIdentityArrayOutput values.
 // You can construct a concrete instance of `GetClientServiceAccountUserFederatedIdentityArrayInput` via:
 //
@@ -2301,12 +1982,6 @@ func (i GetClientServiceAccountUserFederatedIdentityArray) ToGetClientServiceAcc
 	return pulumi.ToOutputWithContext(ctx, i).(GetClientServiceAccountUserFederatedIdentityArrayOutput)
 }
 
-func (i GetClientServiceAccountUserFederatedIdentityArray) ToOutput(ctx context.Context) pulumix.Output[[]GetClientServiceAccountUserFederatedIdentity] {
-	return pulumix.Output[[]GetClientServiceAccountUserFederatedIdentity]{
-		OutputState: i.ToGetClientServiceAccountUserFederatedIdentityArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetClientServiceAccountUserFederatedIdentityOutput struct{ *pulumi.OutputState }
 
 func (GetClientServiceAccountUserFederatedIdentityOutput) ElementType() reflect.Type {
@@ -2319,12 +1994,6 @@ func (o GetClientServiceAccountUserFederatedIdentityOutput) ToGetClientServiceAc
 
 func (o GetClientServiceAccountUserFederatedIdentityOutput) ToGetClientServiceAccountUserFederatedIdentityOutputWithContext(ctx context.Context) GetClientServiceAccountUserFederatedIdentityOutput {
 	return o
-}
-
-func (o GetClientServiceAccountUserFederatedIdentityOutput) ToOutput(ctx context.Context) pulumix.Output[GetClientServiceAccountUserFederatedIdentity] {
-	return pulumix.Output[GetClientServiceAccountUserFederatedIdentity]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetClientServiceAccountUserFederatedIdentityOutput) IdentityProvider() pulumi.StringOutput {
@@ -2351,12 +2020,6 @@ func (o GetClientServiceAccountUserFederatedIdentityArrayOutput) ToGetClientServ
 
 func (o GetClientServiceAccountUserFederatedIdentityArrayOutput) ToGetClientServiceAccountUserFederatedIdentityArrayOutputWithContext(ctx context.Context) GetClientServiceAccountUserFederatedIdentityArrayOutput {
 	return o
-}
-
-func (o GetClientServiceAccountUserFederatedIdentityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetClientServiceAccountUserFederatedIdentity] {
-	return pulumix.Output[[]GetClientServiceAccountUserFederatedIdentity]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetClientServiceAccountUserFederatedIdentityArrayOutput) Index(i pulumi.IntInput) GetClientServiceAccountUserFederatedIdentityOutput {

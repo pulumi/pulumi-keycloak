@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type HardcodedGroupMapper struct {
@@ -136,12 +135,6 @@ func (i *HardcodedGroupMapper) ToHardcodedGroupMapperOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedGroupMapperOutput)
 }
 
-func (i *HardcodedGroupMapper) ToOutput(ctx context.Context) pulumix.Output[*HardcodedGroupMapper] {
-	return pulumix.Output[*HardcodedGroupMapper]{
-		OutputState: i.ToHardcodedGroupMapperOutputWithContext(ctx).OutputState,
-	}
-}
-
 // HardcodedGroupMapperArrayInput is an input type that accepts HardcodedGroupMapperArray and HardcodedGroupMapperArrayOutput values.
 // You can construct a concrete instance of `HardcodedGroupMapperArrayInput` via:
 //
@@ -165,12 +158,6 @@ func (i HardcodedGroupMapperArray) ToHardcodedGroupMapperArrayOutput() Hardcoded
 
 func (i HardcodedGroupMapperArray) ToHardcodedGroupMapperArrayOutputWithContext(ctx context.Context) HardcodedGroupMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedGroupMapperArrayOutput)
-}
-
-func (i HardcodedGroupMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*HardcodedGroupMapper] {
-	return pulumix.Output[[]*HardcodedGroupMapper]{
-		OutputState: i.ToHardcodedGroupMapperArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // HardcodedGroupMapperMapInput is an input type that accepts HardcodedGroupMapperMap and HardcodedGroupMapperMapOutput values.
@@ -198,12 +185,6 @@ func (i HardcodedGroupMapperMap) ToHardcodedGroupMapperMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedGroupMapperMapOutput)
 }
 
-func (i HardcodedGroupMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*HardcodedGroupMapper] {
-	return pulumix.Output[map[string]*HardcodedGroupMapper]{
-		OutputState: i.ToHardcodedGroupMapperMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type HardcodedGroupMapperOutput struct{ *pulumi.OutputState }
 
 func (HardcodedGroupMapperOutput) ElementType() reflect.Type {
@@ -216,12 +197,6 @@ func (o HardcodedGroupMapperOutput) ToHardcodedGroupMapperOutput() HardcodedGrou
 
 func (o HardcodedGroupMapperOutput) ToHardcodedGroupMapperOutputWithContext(ctx context.Context) HardcodedGroupMapperOutput {
 	return o
-}
-
-func (o HardcodedGroupMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*HardcodedGroupMapper] {
-	return pulumix.Output[*HardcodedGroupMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Group to grant to user.
@@ -258,12 +233,6 @@ func (o HardcodedGroupMapperArrayOutput) ToHardcodedGroupMapperArrayOutputWithCo
 	return o
 }
 
-func (o HardcodedGroupMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*HardcodedGroupMapper] {
-	return pulumix.Output[[]*HardcodedGroupMapper]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o HardcodedGroupMapperArrayOutput) Index(i pulumi.IntInput) HardcodedGroupMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *HardcodedGroupMapper {
 		return vs[0].([]*HardcodedGroupMapper)[vs[1].(int)]
@@ -282,12 +251,6 @@ func (o HardcodedGroupMapperMapOutput) ToHardcodedGroupMapperMapOutput() Hardcod
 
 func (o HardcodedGroupMapperMapOutput) ToHardcodedGroupMapperMapOutputWithContext(ctx context.Context) HardcodedGroupMapperMapOutput {
 	return o
-}
-
-func (o HardcodedGroupMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*HardcodedGroupMapper] {
-	return pulumix.Output[map[string]*HardcodedGroupMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o HardcodedGroupMapperMapOutput) MapIndex(k pulumi.StringInput) HardcodedGroupMapperOutput {

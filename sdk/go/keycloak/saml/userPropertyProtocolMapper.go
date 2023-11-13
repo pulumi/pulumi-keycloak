@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing user property protocol mappers for SAML clients within Keycloak.
@@ -247,12 +246,6 @@ func (i *UserPropertyProtocolMapper) ToUserPropertyProtocolMapperOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(UserPropertyProtocolMapperOutput)
 }
 
-func (i *UserPropertyProtocolMapper) ToOutput(ctx context.Context) pulumix.Output[*UserPropertyProtocolMapper] {
-	return pulumix.Output[*UserPropertyProtocolMapper]{
-		OutputState: i.ToUserPropertyProtocolMapperOutputWithContext(ctx).OutputState,
-	}
-}
-
 // UserPropertyProtocolMapperArrayInput is an input type that accepts UserPropertyProtocolMapperArray and UserPropertyProtocolMapperArrayOutput values.
 // You can construct a concrete instance of `UserPropertyProtocolMapperArrayInput` via:
 //
@@ -276,12 +269,6 @@ func (i UserPropertyProtocolMapperArray) ToUserPropertyProtocolMapperArrayOutput
 
 func (i UserPropertyProtocolMapperArray) ToUserPropertyProtocolMapperArrayOutputWithContext(ctx context.Context) UserPropertyProtocolMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserPropertyProtocolMapperArrayOutput)
-}
-
-func (i UserPropertyProtocolMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserPropertyProtocolMapper] {
-	return pulumix.Output[[]*UserPropertyProtocolMapper]{
-		OutputState: i.ToUserPropertyProtocolMapperArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // UserPropertyProtocolMapperMapInput is an input type that accepts UserPropertyProtocolMapperMap and UserPropertyProtocolMapperMapOutput values.
@@ -309,12 +296,6 @@ func (i UserPropertyProtocolMapperMap) ToUserPropertyProtocolMapperMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(UserPropertyProtocolMapperMapOutput)
 }
 
-func (i UserPropertyProtocolMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserPropertyProtocolMapper] {
-	return pulumix.Output[map[string]*UserPropertyProtocolMapper]{
-		OutputState: i.ToUserPropertyProtocolMapperMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserPropertyProtocolMapperOutput struct{ *pulumi.OutputState }
 
 func (UserPropertyProtocolMapperOutput) ElementType() reflect.Type {
@@ -327,12 +308,6 @@ func (o UserPropertyProtocolMapperOutput) ToUserPropertyProtocolMapperOutput() U
 
 func (o UserPropertyProtocolMapperOutput) ToUserPropertyProtocolMapperOutputWithContext(ctx context.Context) UserPropertyProtocolMapperOutput {
 	return o
-}
-
-func (o UserPropertyProtocolMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*UserPropertyProtocolMapper] {
-	return pulumix.Output[*UserPropertyProtocolMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
@@ -389,12 +364,6 @@ func (o UserPropertyProtocolMapperArrayOutput) ToUserPropertyProtocolMapperArray
 	return o
 }
 
-func (o UserPropertyProtocolMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserPropertyProtocolMapper] {
-	return pulumix.Output[[]*UserPropertyProtocolMapper]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o UserPropertyProtocolMapperArrayOutput) Index(i pulumi.IntInput) UserPropertyProtocolMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserPropertyProtocolMapper {
 		return vs[0].([]*UserPropertyProtocolMapper)[vs[1].(int)]
@@ -413,12 +382,6 @@ func (o UserPropertyProtocolMapperMapOutput) ToUserPropertyProtocolMapperMapOutp
 
 func (o UserPropertyProtocolMapperMapOutput) ToUserPropertyProtocolMapperMapOutputWithContext(ctx context.Context) UserPropertyProtocolMapperMapOutput {
 	return o
-}
-
-func (o UserPropertyProtocolMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserPropertyProtocolMapper] {
-	return pulumix.Output[map[string]*UserPropertyProtocolMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserPropertyProtocolMapperMapOutput) MapIndex(k pulumi.StringInput) UserPropertyProtocolMapperOutput {
