@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type HardcodedAttributeIdentityProviderMapper struct {
@@ -161,12 +160,6 @@ func (i *HardcodedAttributeIdentityProviderMapper) ToHardcodedAttributeIdentityP
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedAttributeIdentityProviderMapperOutput)
 }
 
-func (i *HardcodedAttributeIdentityProviderMapper) ToOutput(ctx context.Context) pulumix.Output[*HardcodedAttributeIdentityProviderMapper] {
-	return pulumix.Output[*HardcodedAttributeIdentityProviderMapper]{
-		OutputState: i.ToHardcodedAttributeIdentityProviderMapperOutputWithContext(ctx).OutputState,
-	}
-}
-
 // HardcodedAttributeIdentityProviderMapperArrayInput is an input type that accepts HardcodedAttributeIdentityProviderMapperArray and HardcodedAttributeIdentityProviderMapperArrayOutput values.
 // You can construct a concrete instance of `HardcodedAttributeIdentityProviderMapperArrayInput` via:
 //
@@ -190,12 +183,6 @@ func (i HardcodedAttributeIdentityProviderMapperArray) ToHardcodedAttributeIdent
 
 func (i HardcodedAttributeIdentityProviderMapperArray) ToHardcodedAttributeIdentityProviderMapperArrayOutputWithContext(ctx context.Context) HardcodedAttributeIdentityProviderMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedAttributeIdentityProviderMapperArrayOutput)
-}
-
-func (i HardcodedAttributeIdentityProviderMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*HardcodedAttributeIdentityProviderMapper] {
-	return pulumix.Output[[]*HardcodedAttributeIdentityProviderMapper]{
-		OutputState: i.ToHardcodedAttributeIdentityProviderMapperArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // HardcodedAttributeIdentityProviderMapperMapInput is an input type that accepts HardcodedAttributeIdentityProviderMapperMap and HardcodedAttributeIdentityProviderMapperMapOutput values.
@@ -223,12 +210,6 @@ func (i HardcodedAttributeIdentityProviderMapperMap) ToHardcodedAttributeIdentit
 	return pulumi.ToOutputWithContext(ctx, i).(HardcodedAttributeIdentityProviderMapperMapOutput)
 }
 
-func (i HardcodedAttributeIdentityProviderMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*HardcodedAttributeIdentityProviderMapper] {
-	return pulumix.Output[map[string]*HardcodedAttributeIdentityProviderMapper]{
-		OutputState: i.ToHardcodedAttributeIdentityProviderMapperMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type HardcodedAttributeIdentityProviderMapperOutput struct{ *pulumi.OutputState }
 
 func (HardcodedAttributeIdentityProviderMapperOutput) ElementType() reflect.Type {
@@ -241,12 +222,6 @@ func (o HardcodedAttributeIdentityProviderMapperOutput) ToHardcodedAttributeIden
 
 func (o HardcodedAttributeIdentityProviderMapperOutput) ToHardcodedAttributeIdentityProviderMapperOutputWithContext(ctx context.Context) HardcodedAttributeIdentityProviderMapperOutput {
 	return o
-}
-
-func (o HardcodedAttributeIdentityProviderMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*HardcodedAttributeIdentityProviderMapper] {
-	return pulumix.Output[*HardcodedAttributeIdentityProviderMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 // OIDC Claim
@@ -297,12 +272,6 @@ func (o HardcodedAttributeIdentityProviderMapperArrayOutput) ToHardcodedAttribut
 	return o
 }
 
-func (o HardcodedAttributeIdentityProviderMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*HardcodedAttributeIdentityProviderMapper] {
-	return pulumix.Output[[]*HardcodedAttributeIdentityProviderMapper]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o HardcodedAttributeIdentityProviderMapperArrayOutput) Index(i pulumi.IntInput) HardcodedAttributeIdentityProviderMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *HardcodedAttributeIdentityProviderMapper {
 		return vs[0].([]*HardcodedAttributeIdentityProviderMapper)[vs[1].(int)]
@@ -321,12 +290,6 @@ func (o HardcodedAttributeIdentityProviderMapperMapOutput) ToHardcodedAttributeI
 
 func (o HardcodedAttributeIdentityProviderMapperMapOutput) ToHardcodedAttributeIdentityProviderMapperMapOutputWithContext(ctx context.Context) HardcodedAttributeIdentityProviderMapperMapOutput {
 	return o
-}
-
-func (o HardcodedAttributeIdentityProviderMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*HardcodedAttributeIdentityProviderMapper] {
-	return pulumix.Output[map[string]*HardcodedAttributeIdentityProviderMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o HardcodedAttributeIdentityProviderMapperMapOutput) MapIndex(k pulumi.StringInput) HardcodedAttributeIdentityProviderMapperOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing full name mappers for Keycloak users federated via LDAP.
@@ -223,12 +222,6 @@ func (i *FullNameMapper) ToFullNameMapperOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(FullNameMapperOutput)
 }
 
-func (i *FullNameMapper) ToOutput(ctx context.Context) pulumix.Output[*FullNameMapper] {
-	return pulumix.Output[*FullNameMapper]{
-		OutputState: i.ToFullNameMapperOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FullNameMapperArrayInput is an input type that accepts FullNameMapperArray and FullNameMapperArrayOutput values.
 // You can construct a concrete instance of `FullNameMapperArrayInput` via:
 //
@@ -252,12 +245,6 @@ func (i FullNameMapperArray) ToFullNameMapperArrayOutput() FullNameMapperArrayOu
 
 func (i FullNameMapperArray) ToFullNameMapperArrayOutputWithContext(ctx context.Context) FullNameMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FullNameMapperArrayOutput)
-}
-
-func (i FullNameMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*FullNameMapper] {
-	return pulumix.Output[[]*FullNameMapper]{
-		OutputState: i.ToFullNameMapperArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FullNameMapperMapInput is an input type that accepts FullNameMapperMap and FullNameMapperMapOutput values.
@@ -285,12 +272,6 @@ func (i FullNameMapperMap) ToFullNameMapperMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(FullNameMapperMapOutput)
 }
 
-func (i FullNameMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FullNameMapper] {
-	return pulumix.Output[map[string]*FullNameMapper]{
-		OutputState: i.ToFullNameMapperMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FullNameMapperOutput struct{ *pulumi.OutputState }
 
 func (FullNameMapperOutput) ElementType() reflect.Type {
@@ -303,12 +284,6 @@ func (o FullNameMapperOutput) ToFullNameMapperOutput() FullNameMapperOutput {
 
 func (o FullNameMapperOutput) ToFullNameMapperOutputWithContext(ctx context.Context) FullNameMapperOutput {
 	return o
-}
-
-func (o FullNameMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*FullNameMapper] {
-	return pulumix.Output[*FullNameMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The name of the LDAP attribute containing the user's full name.
@@ -355,12 +330,6 @@ func (o FullNameMapperArrayOutput) ToFullNameMapperArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o FullNameMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FullNameMapper] {
-	return pulumix.Output[[]*FullNameMapper]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FullNameMapperArrayOutput) Index(i pulumi.IntInput) FullNameMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FullNameMapper {
 		return vs[0].([]*FullNameMapper)[vs[1].(int)]
@@ -379,12 +348,6 @@ func (o FullNameMapperMapOutput) ToFullNameMapperMapOutput() FullNameMapperMapOu
 
 func (o FullNameMapperMapOutput) ToFullNameMapperMapOutputWithContext(ctx context.Context) FullNameMapperMapOutput {
 	return o
-}
-
-func (o FullNameMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FullNameMapper] {
-	return pulumix.Output[map[string]*FullNameMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FullNameMapperMapOutput) MapIndex(k pulumi.StringInput) FullNameMapperOutput {

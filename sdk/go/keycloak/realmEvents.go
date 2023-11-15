@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for managing Realm Events settings within Keycloak.
@@ -209,12 +208,6 @@ func (i *RealmEvents) ToRealmEventsOutputWithContext(ctx context.Context) RealmE
 	return pulumi.ToOutputWithContext(ctx, i).(RealmEventsOutput)
 }
 
-func (i *RealmEvents) ToOutput(ctx context.Context) pulumix.Output[*RealmEvents] {
-	return pulumix.Output[*RealmEvents]{
-		OutputState: i.ToRealmEventsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RealmEventsArrayInput is an input type that accepts RealmEventsArray and RealmEventsArrayOutput values.
 // You can construct a concrete instance of `RealmEventsArrayInput` via:
 //
@@ -238,12 +231,6 @@ func (i RealmEventsArray) ToRealmEventsArrayOutput() RealmEventsArrayOutput {
 
 func (i RealmEventsArray) ToRealmEventsArrayOutputWithContext(ctx context.Context) RealmEventsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RealmEventsArrayOutput)
-}
-
-func (i RealmEventsArray) ToOutput(ctx context.Context) pulumix.Output[[]*RealmEvents] {
-	return pulumix.Output[[]*RealmEvents]{
-		OutputState: i.ToRealmEventsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RealmEventsMapInput is an input type that accepts RealmEventsMap and RealmEventsMapOutput values.
@@ -271,12 +258,6 @@ func (i RealmEventsMap) ToRealmEventsMapOutputWithContext(ctx context.Context) R
 	return pulumi.ToOutputWithContext(ctx, i).(RealmEventsMapOutput)
 }
 
-func (i RealmEventsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RealmEvents] {
-	return pulumix.Output[map[string]*RealmEvents]{
-		OutputState: i.ToRealmEventsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RealmEventsOutput struct{ *pulumi.OutputState }
 
 func (RealmEventsOutput) ElementType() reflect.Type {
@@ -289,12 +270,6 @@ func (o RealmEventsOutput) ToRealmEventsOutput() RealmEventsOutput {
 
 func (o RealmEventsOutput) ToRealmEventsOutputWithContext(ctx context.Context) RealmEventsOutput {
 	return o
-}
-
-func (o RealmEventsOutput) ToOutput(ctx context.Context) pulumix.Output[*RealmEvents] {
-	return pulumix.Output[*RealmEvents]{
-		OutputState: o.OutputState,
-	}
 }
 
 // When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
@@ -346,12 +321,6 @@ func (o RealmEventsArrayOutput) ToRealmEventsArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o RealmEventsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RealmEvents] {
-	return pulumix.Output[[]*RealmEvents]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RealmEventsArrayOutput) Index(i pulumi.IntInput) RealmEventsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RealmEvents {
 		return vs[0].([]*RealmEvents)[vs[1].(int)]
@@ -370,12 +339,6 @@ func (o RealmEventsMapOutput) ToRealmEventsMapOutput() RealmEventsMapOutput {
 
 func (o RealmEventsMapOutput) ToRealmEventsMapOutputWithContext(ctx context.Context) RealmEventsMapOutput {
 	return o
-}
-
-func (o RealmEventsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RealmEvents] {
-	return pulumix.Output[map[string]*RealmEvents]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RealmEventsMapOutput) MapIndex(k pulumi.StringInput) RealmEventsOutput {

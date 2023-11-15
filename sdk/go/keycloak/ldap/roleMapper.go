@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing role mappers for Keycloak users federated via LDAP.
@@ -333,12 +332,6 @@ func (i *RoleMapper) ToRoleMapperOutputWithContext(ctx context.Context) RoleMapp
 	return pulumi.ToOutputWithContext(ctx, i).(RoleMapperOutput)
 }
 
-func (i *RoleMapper) ToOutput(ctx context.Context) pulumix.Output[*RoleMapper] {
-	return pulumix.Output[*RoleMapper]{
-		OutputState: i.ToRoleMapperOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RoleMapperArrayInput is an input type that accepts RoleMapperArray and RoleMapperArrayOutput values.
 // You can construct a concrete instance of `RoleMapperArrayInput` via:
 //
@@ -362,12 +355,6 @@ func (i RoleMapperArray) ToRoleMapperArrayOutput() RoleMapperArrayOutput {
 
 func (i RoleMapperArray) ToRoleMapperArrayOutputWithContext(ctx context.Context) RoleMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RoleMapperArrayOutput)
-}
-
-func (i RoleMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*RoleMapper] {
-	return pulumix.Output[[]*RoleMapper]{
-		OutputState: i.ToRoleMapperArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RoleMapperMapInput is an input type that accepts RoleMapperMap and RoleMapperMapOutput values.
@@ -395,12 +382,6 @@ func (i RoleMapperMap) ToRoleMapperMapOutputWithContext(ctx context.Context) Rol
 	return pulumi.ToOutputWithContext(ctx, i).(RoleMapperMapOutput)
 }
 
-func (i RoleMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RoleMapper] {
-	return pulumix.Output[map[string]*RoleMapper]{
-		OutputState: i.ToRoleMapperMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RoleMapperOutput struct{ *pulumi.OutputState }
 
 func (RoleMapperOutput) ElementType() reflect.Type {
@@ -413,12 +394,6 @@ func (o RoleMapperOutput) ToRoleMapperOutput() RoleMapperOutput {
 
 func (o RoleMapperOutput) ToRoleMapperOutputWithContext(ctx context.Context) RoleMapperOutput {
 	return o
-}
-
-func (o RoleMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*RoleMapper] {
-	return pulumix.Output[*RoleMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 // When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `useRealmRolesMapping` is `false`.
@@ -510,12 +485,6 @@ func (o RoleMapperArrayOutput) ToRoleMapperArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o RoleMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RoleMapper] {
-	return pulumix.Output[[]*RoleMapper]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RoleMapperArrayOutput) Index(i pulumi.IntInput) RoleMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RoleMapper {
 		return vs[0].([]*RoleMapper)[vs[1].(int)]
@@ -534,12 +503,6 @@ func (o RoleMapperMapOutput) ToRoleMapperMapOutput() RoleMapperMapOutput {
 
 func (o RoleMapperMapOutput) ToRoleMapperMapOutputWithContext(ctx context.Context) RoleMapperMapOutput {
 	return o
-}
-
-func (o RoleMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RoleMapper] {
-	return pulumix.Output[map[string]*RoleMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RoleMapperMapOutput) MapIndex(k pulumi.StringInput) RoleMapperOutput {

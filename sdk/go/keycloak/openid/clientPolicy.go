@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This resource can be used to create client policy.
@@ -232,12 +231,6 @@ func (i *ClientPolicy) ToClientPolicyOutputWithContext(ctx context.Context) Clie
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPolicyOutput)
 }
 
-func (i *ClientPolicy) ToOutput(ctx context.Context) pulumix.Output[*ClientPolicy] {
-	return pulumix.Output[*ClientPolicy]{
-		OutputState: i.ToClientPolicyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ClientPolicyArrayInput is an input type that accepts ClientPolicyArray and ClientPolicyArrayOutput values.
 // You can construct a concrete instance of `ClientPolicyArrayInput` via:
 //
@@ -261,12 +254,6 @@ func (i ClientPolicyArray) ToClientPolicyArrayOutput() ClientPolicyArrayOutput {
 
 func (i ClientPolicyArray) ToClientPolicyArrayOutputWithContext(ctx context.Context) ClientPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPolicyArrayOutput)
-}
-
-func (i ClientPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*ClientPolicy] {
-	return pulumix.Output[[]*ClientPolicy]{
-		OutputState: i.ToClientPolicyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ClientPolicyMapInput is an input type that accepts ClientPolicyMap and ClientPolicyMapOutput values.
@@ -294,12 +281,6 @@ func (i ClientPolicyMap) ToClientPolicyMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(ClientPolicyMapOutput)
 }
 
-func (i ClientPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientPolicy] {
-	return pulumix.Output[map[string]*ClientPolicy]{
-		OutputState: i.ToClientPolicyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ClientPolicyOutput struct{ *pulumi.OutputState }
 
 func (ClientPolicyOutput) ElementType() reflect.Type {
@@ -312,12 +293,6 @@ func (o ClientPolicyOutput) ToClientPolicyOutput() ClientPolicyOutput {
 
 func (o ClientPolicyOutput) ToClientPolicyOutputWithContext(ctx context.Context) ClientPolicyOutput {
 	return o
-}
-
-func (o ClientPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientPolicy] {
-	return pulumix.Output[*ClientPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The clients allowed by this client policy.
@@ -369,12 +344,6 @@ func (o ClientPolicyArrayOutput) ToClientPolicyArrayOutputWithContext(ctx contex
 	return o
 }
 
-func (o ClientPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ClientPolicy] {
-	return pulumix.Output[[]*ClientPolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ClientPolicyArrayOutput) Index(i pulumi.IntInput) ClientPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ClientPolicy {
 		return vs[0].([]*ClientPolicy)[vs[1].(int)]
@@ -393,12 +362,6 @@ func (o ClientPolicyMapOutput) ToClientPolicyMapOutput() ClientPolicyMapOutput {
 
 func (o ClientPolicyMapOutput) ToClientPolicyMapOutputWithContext(ctx context.Context) ClientPolicyMapOutput {
 	return o
-}
-
-func (o ClientPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientPolicy] {
-	return pulumix.Output[map[string]*ClientPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientPolicyMapOutput) MapIndex(k pulumi.StringInput) ClientPolicyOutput {

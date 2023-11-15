@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing LDAP user federation providers within Keycloak.
@@ -504,12 +503,6 @@ func (i *UserFederation) ToUserFederationOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(UserFederationOutput)
 }
 
-func (i *UserFederation) ToOutput(ctx context.Context) pulumix.Output[*UserFederation] {
-	return pulumix.Output[*UserFederation]{
-		OutputState: i.ToUserFederationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // UserFederationArrayInput is an input type that accepts UserFederationArray and UserFederationArrayOutput values.
 // You can construct a concrete instance of `UserFederationArrayInput` via:
 //
@@ -533,12 +526,6 @@ func (i UserFederationArray) ToUserFederationArrayOutput() UserFederationArrayOu
 
 func (i UserFederationArray) ToUserFederationArrayOutputWithContext(ctx context.Context) UserFederationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserFederationArrayOutput)
-}
-
-func (i UserFederationArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserFederation] {
-	return pulumix.Output[[]*UserFederation]{
-		OutputState: i.ToUserFederationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // UserFederationMapInput is an input type that accepts UserFederationMap and UserFederationMapOutput values.
@@ -566,12 +553,6 @@ func (i UserFederationMap) ToUserFederationMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(UserFederationMapOutput)
 }
 
-func (i UserFederationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserFederation] {
-	return pulumix.Output[map[string]*UserFederation]{
-		OutputState: i.ToUserFederationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserFederationOutput struct{ *pulumi.OutputState }
 
 func (UserFederationOutput) ElementType() reflect.Type {
@@ -584,12 +565,6 @@ func (o UserFederationOutput) ToUserFederationOutput() UserFederationOutput {
 
 func (o UserFederationOutput) ToUserFederationOutputWithContext(ctx context.Context) UserFederationOutput {
 	return o
-}
-
-func (o UserFederationOutput) ToOutput(ctx context.Context) pulumix.Output[*UserFederation] {
-	return pulumix.Output[*UserFederation]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The number of users to sync within a single transaction. Defaults to `1000`.
@@ -766,12 +741,6 @@ func (o UserFederationArrayOutput) ToUserFederationArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o UserFederationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserFederation] {
-	return pulumix.Output[[]*UserFederation]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o UserFederationArrayOutput) Index(i pulumi.IntInput) UserFederationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserFederation {
 		return vs[0].([]*UserFederation)[vs[1].(int)]
@@ -790,12 +759,6 @@ func (o UserFederationMapOutput) ToUserFederationMapOutput() UserFederationMapOu
 
 func (o UserFederationMapOutput) ToUserFederationMapOutputWithContext(ctx context.Context) UserFederationMapOutput {
 	return o
-}
-
-func (o UserFederationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserFederation] {
-	return pulumix.Output[map[string]*UserFederation]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserFederationMapOutput) MapIndex(k pulumi.StringInput) UserFederationOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing Keycloak clients that use the OpenID Connect protocol.
@@ -640,12 +639,6 @@ func (i *Client) ToClientOutputWithContext(ctx context.Context) ClientOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientOutput)
 }
 
-func (i *Client) ToOutput(ctx context.Context) pulumix.Output[*Client] {
-	return pulumix.Output[*Client]{
-		OutputState: i.ToClientOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ClientArrayInput is an input type that accepts ClientArray and ClientArrayOutput values.
 // You can construct a concrete instance of `ClientArrayInput` via:
 //
@@ -669,12 +662,6 @@ func (i ClientArray) ToClientArrayOutput() ClientArrayOutput {
 
 func (i ClientArray) ToClientArrayOutputWithContext(ctx context.Context) ClientArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientArrayOutput)
-}
-
-func (i ClientArray) ToOutput(ctx context.Context) pulumix.Output[[]*Client] {
-	return pulumix.Output[[]*Client]{
-		OutputState: i.ToClientArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ClientMapInput is an input type that accepts ClientMap and ClientMapOutput values.
@@ -702,12 +689,6 @@ func (i ClientMap) ToClientMapOutputWithContext(ctx context.Context) ClientMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(ClientMapOutput)
 }
 
-func (i ClientMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Client] {
-	return pulumix.Output[map[string]*Client]{
-		OutputState: i.ToClientMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ClientOutput struct{ *pulumi.OutputState }
 
 func (ClientOutput) ElementType() reflect.Type {
@@ -720,12 +701,6 @@ func (o ClientOutput) ToClientOutput() ClientOutput {
 
 func (o ClientOutput) ToClientOutputWithContext(ctx context.Context) ClientOutput {
 	return o
-}
-
-func (o ClientOutput) ToOutput(ctx context.Context) pulumix.Output[*Client] {
-	return pulumix.Output[*Client]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The amount of time in seconds before an access token expires. This will override the default for the realm.
@@ -979,12 +954,6 @@ func (o ClientArrayOutput) ToClientArrayOutputWithContext(ctx context.Context) C
 	return o
 }
 
-func (o ClientArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Client] {
-	return pulumix.Output[[]*Client]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ClientArrayOutput) Index(i pulumi.IntInput) ClientOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Client {
 		return vs[0].([]*Client)[vs[1].(int)]
@@ -1003,12 +972,6 @@ func (o ClientMapOutput) ToClientMapOutput() ClientMapOutput {
 
 func (o ClientMapOutput) ToClientMapOutputWithContext(ctx context.Context) ClientMapOutput {
 	return o
-}
-
-func (o ClientMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Client] {
-	return pulumix.Output[map[string]*Client]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientMapOutput) MapIndex(k pulumi.StringInput) ClientOutput {

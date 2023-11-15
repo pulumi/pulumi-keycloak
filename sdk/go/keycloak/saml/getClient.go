@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This data source can be used to fetch properties of a Keycloak client that uses the SAML protocol.
@@ -149,12 +148,6 @@ func (o LookupClientResultOutput) ToLookupClientResultOutput() LookupClientResul
 
 func (o LookupClientResultOutput) ToLookupClientResultOutputWithContext(ctx context.Context) LookupClientResultOutput {
 	return o
-}
-
-func (o LookupClientResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupClientResult] {
-	return pulumix.Output[LookupClientResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupClientResultOutput) AssertionConsumerPostUrl() pulumi.StringOutput {

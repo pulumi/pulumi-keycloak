@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing `java-keystore` Realm keystores within Keycloak.
@@ -255,12 +254,6 @@ func (i *RealmKeystoreJavaGenerated) ToRealmKeystoreJavaGeneratedOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreJavaGeneratedOutput)
 }
 
-func (i *RealmKeystoreJavaGenerated) ToOutput(ctx context.Context) pulumix.Output[*RealmKeystoreJavaGenerated] {
-	return pulumix.Output[*RealmKeystoreJavaGenerated]{
-		OutputState: i.ToRealmKeystoreJavaGeneratedOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RealmKeystoreJavaGeneratedArrayInput is an input type that accepts RealmKeystoreJavaGeneratedArray and RealmKeystoreJavaGeneratedArrayOutput values.
 // You can construct a concrete instance of `RealmKeystoreJavaGeneratedArrayInput` via:
 //
@@ -284,12 +277,6 @@ func (i RealmKeystoreJavaGeneratedArray) ToRealmKeystoreJavaGeneratedArrayOutput
 
 func (i RealmKeystoreJavaGeneratedArray) ToRealmKeystoreJavaGeneratedArrayOutputWithContext(ctx context.Context) RealmKeystoreJavaGeneratedArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreJavaGeneratedArrayOutput)
-}
-
-func (i RealmKeystoreJavaGeneratedArray) ToOutput(ctx context.Context) pulumix.Output[[]*RealmKeystoreJavaGenerated] {
-	return pulumix.Output[[]*RealmKeystoreJavaGenerated]{
-		OutputState: i.ToRealmKeystoreJavaGeneratedArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RealmKeystoreJavaGeneratedMapInput is an input type that accepts RealmKeystoreJavaGeneratedMap and RealmKeystoreJavaGeneratedMapOutput values.
@@ -317,12 +304,6 @@ func (i RealmKeystoreJavaGeneratedMap) ToRealmKeystoreJavaGeneratedMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(RealmKeystoreJavaGeneratedMapOutput)
 }
 
-func (i RealmKeystoreJavaGeneratedMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RealmKeystoreJavaGenerated] {
-	return pulumix.Output[map[string]*RealmKeystoreJavaGenerated]{
-		OutputState: i.ToRealmKeystoreJavaGeneratedMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RealmKeystoreJavaGeneratedOutput struct{ *pulumi.OutputState }
 
 func (RealmKeystoreJavaGeneratedOutput) ElementType() reflect.Type {
@@ -335,12 +316,6 @@ func (o RealmKeystoreJavaGeneratedOutput) ToRealmKeystoreJavaGeneratedOutput() R
 
 func (o RealmKeystoreJavaGeneratedOutput) ToRealmKeystoreJavaGeneratedOutputWithContext(ctx context.Context) RealmKeystoreJavaGeneratedOutput {
 	return o
-}
-
-func (o RealmKeystoreJavaGeneratedOutput) ToOutput(ctx context.Context) pulumix.Output[*RealmKeystoreJavaGenerated] {
-	return pulumix.Output[*RealmKeystoreJavaGenerated]{
-		OutputState: o.OutputState,
-	}
 }
 
 // When `false`, key in not used for signing. Defaults to `true`.
@@ -407,12 +382,6 @@ func (o RealmKeystoreJavaGeneratedArrayOutput) ToRealmKeystoreJavaGeneratedArray
 	return o
 }
 
-func (o RealmKeystoreJavaGeneratedArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RealmKeystoreJavaGenerated] {
-	return pulumix.Output[[]*RealmKeystoreJavaGenerated]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RealmKeystoreJavaGeneratedArrayOutput) Index(i pulumi.IntInput) RealmKeystoreJavaGeneratedOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RealmKeystoreJavaGenerated {
 		return vs[0].([]*RealmKeystoreJavaGenerated)[vs[1].(int)]
@@ -431,12 +400,6 @@ func (o RealmKeystoreJavaGeneratedMapOutput) ToRealmKeystoreJavaGeneratedMapOutp
 
 func (o RealmKeystoreJavaGeneratedMapOutput) ToRealmKeystoreJavaGeneratedMapOutputWithContext(ctx context.Context) RealmKeystoreJavaGeneratedMapOutput {
 	return o
-}
-
-func (o RealmKeystoreJavaGeneratedMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RealmKeystoreJavaGenerated] {
-	return pulumix.Output[map[string]*RealmKeystoreJavaGenerated]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RealmKeystoreJavaGeneratedMapOutput) MapIndex(k pulumi.StringInput) RealmKeystoreJavaGeneratedOutput {
