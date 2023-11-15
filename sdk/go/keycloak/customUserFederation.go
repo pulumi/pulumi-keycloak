@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -242,12 +241,6 @@ func (i *CustomUserFederation) ToCustomUserFederationOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(CustomUserFederationOutput)
 }
 
-func (i *CustomUserFederation) ToOutput(ctx context.Context) pulumix.Output[*CustomUserFederation] {
-	return pulumix.Output[*CustomUserFederation]{
-		OutputState: i.ToCustomUserFederationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CustomUserFederationArrayInput is an input type that accepts CustomUserFederationArray and CustomUserFederationArrayOutput values.
 // You can construct a concrete instance of `CustomUserFederationArrayInput` via:
 //
@@ -271,12 +264,6 @@ func (i CustomUserFederationArray) ToCustomUserFederationArrayOutput() CustomUse
 
 func (i CustomUserFederationArray) ToCustomUserFederationArrayOutputWithContext(ctx context.Context) CustomUserFederationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CustomUserFederationArrayOutput)
-}
-
-func (i CustomUserFederationArray) ToOutput(ctx context.Context) pulumix.Output[[]*CustomUserFederation] {
-	return pulumix.Output[[]*CustomUserFederation]{
-		OutputState: i.ToCustomUserFederationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CustomUserFederationMapInput is an input type that accepts CustomUserFederationMap and CustomUserFederationMapOutput values.
@@ -304,12 +291,6 @@ func (i CustomUserFederationMap) ToCustomUserFederationMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(CustomUserFederationMapOutput)
 }
 
-func (i CustomUserFederationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CustomUserFederation] {
-	return pulumix.Output[map[string]*CustomUserFederation]{
-		OutputState: i.ToCustomUserFederationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CustomUserFederationOutput struct{ *pulumi.OutputState }
 
 func (CustomUserFederationOutput) ElementType() reflect.Type {
@@ -322,12 +303,6 @@ func (o CustomUserFederationOutput) ToCustomUserFederationOutput() CustomUserFed
 
 func (o CustomUserFederationOutput) ToCustomUserFederationOutputWithContext(ctx context.Context) CustomUserFederationOutput {
 	return o
-}
-
-func (o CustomUserFederationOutput) ToOutput(ctx context.Context) pulumix.Output[*CustomUserFederation] {
-	return pulumix.Output[*CustomUserFederation]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
@@ -394,12 +369,6 @@ func (o CustomUserFederationArrayOutput) ToCustomUserFederationArrayOutputWithCo
 	return o
 }
 
-func (o CustomUserFederationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CustomUserFederation] {
-	return pulumix.Output[[]*CustomUserFederation]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CustomUserFederationArrayOutput) Index(i pulumi.IntInput) CustomUserFederationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CustomUserFederation {
 		return vs[0].([]*CustomUserFederation)[vs[1].(int)]
@@ -418,12 +387,6 @@ func (o CustomUserFederationMapOutput) ToCustomUserFederationMapOutput() CustomU
 
 func (o CustomUserFederationMapOutput) ToCustomUserFederationMapOutputWithContext(ctx context.Context) CustomUserFederationMapOutput {
 	return o
-}
-
-func (o CustomUserFederationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CustomUserFederation] {
-	return pulumix.Output[map[string]*CustomUserFederation]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CustomUserFederationMapOutput) MapIndex(k pulumi.StringInput) CustomUserFederationOutput {

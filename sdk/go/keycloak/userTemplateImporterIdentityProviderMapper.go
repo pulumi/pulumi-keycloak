@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing an username template importer identity provider mapper within Keycloak.
@@ -211,12 +210,6 @@ func (i *UserTemplateImporterIdentityProviderMapper) ToUserTemplateImporterIdent
 	return pulumi.ToOutputWithContext(ctx, i).(UserTemplateImporterIdentityProviderMapperOutput)
 }
 
-func (i *UserTemplateImporterIdentityProviderMapper) ToOutput(ctx context.Context) pulumix.Output[*UserTemplateImporterIdentityProviderMapper] {
-	return pulumix.Output[*UserTemplateImporterIdentityProviderMapper]{
-		OutputState: i.ToUserTemplateImporterIdentityProviderMapperOutputWithContext(ctx).OutputState,
-	}
-}
-
 // UserTemplateImporterIdentityProviderMapperArrayInput is an input type that accepts UserTemplateImporterIdentityProviderMapperArray and UserTemplateImporterIdentityProviderMapperArrayOutput values.
 // You can construct a concrete instance of `UserTemplateImporterIdentityProviderMapperArrayInput` via:
 //
@@ -240,12 +233,6 @@ func (i UserTemplateImporterIdentityProviderMapperArray) ToUserTemplateImporterI
 
 func (i UserTemplateImporterIdentityProviderMapperArray) ToUserTemplateImporterIdentityProviderMapperArrayOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserTemplateImporterIdentityProviderMapperArrayOutput)
-}
-
-func (i UserTemplateImporterIdentityProviderMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserTemplateImporterIdentityProviderMapper] {
-	return pulumix.Output[[]*UserTemplateImporterIdentityProviderMapper]{
-		OutputState: i.ToUserTemplateImporterIdentityProviderMapperArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // UserTemplateImporterIdentityProviderMapperMapInput is an input type that accepts UserTemplateImporterIdentityProviderMapperMap and UserTemplateImporterIdentityProviderMapperMapOutput values.
@@ -273,12 +260,6 @@ func (i UserTemplateImporterIdentityProviderMapperMap) ToUserTemplateImporterIde
 	return pulumi.ToOutputWithContext(ctx, i).(UserTemplateImporterIdentityProviderMapperMapOutput)
 }
 
-func (i UserTemplateImporterIdentityProviderMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserTemplateImporterIdentityProviderMapper] {
-	return pulumix.Output[map[string]*UserTemplateImporterIdentityProviderMapper]{
-		OutputState: i.ToUserTemplateImporterIdentityProviderMapperMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserTemplateImporterIdentityProviderMapperOutput struct{ *pulumi.OutputState }
 
 func (UserTemplateImporterIdentityProviderMapperOutput) ElementType() reflect.Type {
@@ -291,12 +272,6 @@ func (o UserTemplateImporterIdentityProviderMapperOutput) ToUserTemplateImporter
 
 func (o UserTemplateImporterIdentityProviderMapperOutput) ToUserTemplateImporterIdentityProviderMapperOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperOutput {
 	return o
-}
-
-func (o UserTemplateImporterIdentityProviderMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*UserTemplateImporterIdentityProviderMapper] {
-	return pulumix.Output[*UserTemplateImporterIdentityProviderMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
@@ -340,12 +315,6 @@ func (o UserTemplateImporterIdentityProviderMapperArrayOutput) ToUserTemplateImp
 	return o
 }
 
-func (o UserTemplateImporterIdentityProviderMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserTemplateImporterIdentityProviderMapper] {
-	return pulumix.Output[[]*UserTemplateImporterIdentityProviderMapper]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o UserTemplateImporterIdentityProviderMapperArrayOutput) Index(i pulumi.IntInput) UserTemplateImporterIdentityProviderMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserTemplateImporterIdentityProviderMapper {
 		return vs[0].([]*UserTemplateImporterIdentityProviderMapper)[vs[1].(int)]
@@ -364,12 +333,6 @@ func (o UserTemplateImporterIdentityProviderMapperMapOutput) ToUserTemplateImpor
 
 func (o UserTemplateImporterIdentityProviderMapperMapOutput) ToUserTemplateImporterIdentityProviderMapperMapOutputWithContext(ctx context.Context) UserTemplateImporterIdentityProviderMapperMapOutput {
 	return o
-}
-
-func (o UserTemplateImporterIdentityProviderMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserTemplateImporterIdentityProviderMapper] {
-	return pulumix.Output[map[string]*UserTemplateImporterIdentityProviderMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserTemplateImporterIdentityProviderMapperMapOutput) MapIndex(k pulumi.StringInput) UserTemplateImporterIdentityProviderMapperOutput {

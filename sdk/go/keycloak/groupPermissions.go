@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type GroupPermissions struct {
@@ -137,12 +136,6 @@ func (i *GroupPermissions) ToGroupPermissionsOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPermissionsOutput)
 }
 
-func (i *GroupPermissions) ToOutput(ctx context.Context) pulumix.Output[*GroupPermissions] {
-	return pulumix.Output[*GroupPermissions]{
-		OutputState: i.ToGroupPermissionsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GroupPermissionsArrayInput is an input type that accepts GroupPermissionsArray and GroupPermissionsArrayOutput values.
 // You can construct a concrete instance of `GroupPermissionsArrayInput` via:
 //
@@ -166,12 +159,6 @@ func (i GroupPermissionsArray) ToGroupPermissionsArrayOutput() GroupPermissionsA
 
 func (i GroupPermissionsArray) ToGroupPermissionsArrayOutputWithContext(ctx context.Context) GroupPermissionsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPermissionsArrayOutput)
-}
-
-func (i GroupPermissionsArray) ToOutput(ctx context.Context) pulumix.Output[[]*GroupPermissions] {
-	return pulumix.Output[[]*GroupPermissions]{
-		OutputState: i.ToGroupPermissionsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GroupPermissionsMapInput is an input type that accepts GroupPermissionsMap and GroupPermissionsMapOutput values.
@@ -199,12 +186,6 @@ func (i GroupPermissionsMap) ToGroupPermissionsMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPermissionsMapOutput)
 }
 
-func (i GroupPermissionsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*GroupPermissions] {
-	return pulumix.Output[map[string]*GroupPermissions]{
-		OutputState: i.ToGroupPermissionsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GroupPermissionsOutput struct{ *pulumi.OutputState }
 
 func (GroupPermissionsOutput) ElementType() reflect.Type {
@@ -217,12 +198,6 @@ func (o GroupPermissionsOutput) ToGroupPermissionsOutput() GroupPermissionsOutpu
 
 func (o GroupPermissionsOutput) ToGroupPermissionsOutputWithContext(ctx context.Context) GroupPermissionsOutput {
 	return o
-}
-
-func (o GroupPermissionsOutput) ToOutput(ctx context.Context) pulumix.Output[*GroupPermissions] {
-	return pulumix.Output[*GroupPermissions]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Resource server id representing the realm management client on which this permission is managed
@@ -278,12 +253,6 @@ func (o GroupPermissionsArrayOutput) ToGroupPermissionsArrayOutputWithContext(ct
 	return o
 }
 
-func (o GroupPermissionsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*GroupPermissions] {
-	return pulumix.Output[[]*GroupPermissions]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GroupPermissionsArrayOutput) Index(i pulumi.IntInput) GroupPermissionsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GroupPermissions {
 		return vs[0].([]*GroupPermissions)[vs[1].(int)]
@@ -302,12 +271,6 @@ func (o GroupPermissionsMapOutput) ToGroupPermissionsMapOutput() GroupPermission
 
 func (o GroupPermissionsMapOutput) ToGroupPermissionsMapOutputWithContext(ctx context.Context) GroupPermissionsMapOutput {
 	return o
-}
-
-func (o GroupPermissionsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*GroupPermissions] {
-	return pulumix.Output[map[string]*GroupPermissions]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GroupPermissionsMapOutput) MapIndex(k pulumi.StringInput) GroupPermissionsOutput {

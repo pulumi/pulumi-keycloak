@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing user attribute mappers for Keycloak users
@@ -268,12 +267,6 @@ func (i *UserAttributeMapper) ToUserAttributeMapperOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(UserAttributeMapperOutput)
 }
 
-func (i *UserAttributeMapper) ToOutput(ctx context.Context) pulumix.Output[*UserAttributeMapper] {
-	return pulumix.Output[*UserAttributeMapper]{
-		OutputState: i.ToUserAttributeMapperOutputWithContext(ctx).OutputState,
-	}
-}
-
 // UserAttributeMapperArrayInput is an input type that accepts UserAttributeMapperArray and UserAttributeMapperArrayOutput values.
 // You can construct a concrete instance of `UserAttributeMapperArrayInput` via:
 //
@@ -297,12 +290,6 @@ func (i UserAttributeMapperArray) ToUserAttributeMapperArrayOutput() UserAttribu
 
 func (i UserAttributeMapperArray) ToUserAttributeMapperArrayOutputWithContext(ctx context.Context) UserAttributeMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserAttributeMapperArrayOutput)
-}
-
-func (i UserAttributeMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserAttributeMapper] {
-	return pulumix.Output[[]*UserAttributeMapper]{
-		OutputState: i.ToUserAttributeMapperArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // UserAttributeMapperMapInput is an input type that accepts UserAttributeMapperMap and UserAttributeMapperMapOutput values.
@@ -330,12 +317,6 @@ func (i UserAttributeMapperMap) ToUserAttributeMapperMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(UserAttributeMapperMapOutput)
 }
 
-func (i UserAttributeMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserAttributeMapper] {
-	return pulumix.Output[map[string]*UserAttributeMapper]{
-		OutputState: i.ToUserAttributeMapperMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserAttributeMapperOutput struct{ *pulumi.OutputState }
 
 func (UserAttributeMapperOutput) ElementType() reflect.Type {
@@ -348,12 +329,6 @@ func (o UserAttributeMapperOutput) ToUserAttributeMapperOutput() UserAttributeMa
 
 func (o UserAttributeMapperOutput) ToUserAttributeMapperOutputWithContext(ctx context.Context) UserAttributeMapperOutput {
 	return o
-}
-
-func (o UserAttributeMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*UserAttributeMapper] {
-	return pulumix.Output[*UserAttributeMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 // When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
@@ -420,12 +395,6 @@ func (o UserAttributeMapperArrayOutput) ToUserAttributeMapperArrayOutputWithCont
 	return o
 }
 
-func (o UserAttributeMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserAttributeMapper] {
-	return pulumix.Output[[]*UserAttributeMapper]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o UserAttributeMapperArrayOutput) Index(i pulumi.IntInput) UserAttributeMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserAttributeMapper {
 		return vs[0].([]*UserAttributeMapper)[vs[1].(int)]
@@ -444,12 +413,6 @@ func (o UserAttributeMapperMapOutput) ToUserAttributeMapperMapOutput() UserAttri
 
 func (o UserAttributeMapperMapOutput) ToUserAttributeMapperMapOutputWithContext(ctx context.Context) UserAttributeMapperMapOutput {
 	return o
-}
-
-func (o UserAttributeMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserAttributeMapper] {
-	return pulumix.Output[map[string]*UserAttributeMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o UserAttributeMapperMapOutput) MapIndex(k pulumi.StringInput) UserAttributeMapperOutput {

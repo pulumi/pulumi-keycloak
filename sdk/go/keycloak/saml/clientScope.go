@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing Keycloak client scopes that can be attached to clients that use the SAML protocol.
@@ -189,12 +188,6 @@ func (i *ClientScope) ToClientScopeOutputWithContext(ctx context.Context) Client
 	return pulumi.ToOutputWithContext(ctx, i).(ClientScopeOutput)
 }
 
-func (i *ClientScope) ToOutput(ctx context.Context) pulumix.Output[*ClientScope] {
-	return pulumix.Output[*ClientScope]{
-		OutputState: i.ToClientScopeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ClientScopeArrayInput is an input type that accepts ClientScopeArray and ClientScopeArrayOutput values.
 // You can construct a concrete instance of `ClientScopeArrayInput` via:
 //
@@ -218,12 +211,6 @@ func (i ClientScopeArray) ToClientScopeArrayOutput() ClientScopeArrayOutput {
 
 func (i ClientScopeArray) ToClientScopeArrayOutputWithContext(ctx context.Context) ClientScopeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientScopeArrayOutput)
-}
-
-func (i ClientScopeArray) ToOutput(ctx context.Context) pulumix.Output[[]*ClientScope] {
-	return pulumix.Output[[]*ClientScope]{
-		OutputState: i.ToClientScopeArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ClientScopeMapInput is an input type that accepts ClientScopeMap and ClientScopeMapOutput values.
@@ -251,12 +238,6 @@ func (i ClientScopeMap) ToClientScopeMapOutputWithContext(ctx context.Context) C
 	return pulumi.ToOutputWithContext(ctx, i).(ClientScopeMapOutput)
 }
 
-func (i ClientScopeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientScope] {
-	return pulumix.Output[map[string]*ClientScope]{
-		OutputState: i.ToClientScopeMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ClientScopeOutput struct{ *pulumi.OutputState }
 
 func (ClientScopeOutput) ElementType() reflect.Type {
@@ -269,12 +250,6 @@ func (o ClientScopeOutput) ToClientScopeOutput() ClientScopeOutput {
 
 func (o ClientScopeOutput) ToClientScopeOutputWithContext(ctx context.Context) ClientScopeOutput {
 	return o
-}
-
-func (o ClientScopeOutput) ToOutput(ctx context.Context) pulumix.Output[*ClientScope] {
-	return pulumix.Output[*ClientScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 // When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
@@ -316,12 +291,6 @@ func (o ClientScopeArrayOutput) ToClientScopeArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o ClientScopeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ClientScope] {
-	return pulumix.Output[[]*ClientScope]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ClientScopeArrayOutput) Index(i pulumi.IntInput) ClientScopeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ClientScope {
 		return vs[0].([]*ClientScope)[vs[1].(int)]
@@ -340,12 +309,6 @@ func (o ClientScopeMapOutput) ToClientScopeMapOutput() ClientScopeMapOutput {
 
 func (o ClientScopeMapOutput) ToClientScopeMapOutputWithContext(ctx context.Context) ClientScopeMapOutput {
 	return o
-}
-
-func (o ClientScopeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClientScope] {
-	return pulumix.Output[map[string]*ClientScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClientScopeMapOutput) MapIndex(k pulumi.StringInput) ClientScopeOutput {

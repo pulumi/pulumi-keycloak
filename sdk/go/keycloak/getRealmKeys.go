@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
@@ -91,12 +90,6 @@ func (o GetRealmKeysResultOutput) ToGetRealmKeysResultOutput() GetRealmKeysResul
 
 func (o GetRealmKeysResultOutput) ToGetRealmKeysResultOutputWithContext(ctx context.Context) GetRealmKeysResultOutput {
 	return o
-}
-
-func (o GetRealmKeysResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetRealmKeysResult] {
-	return pulumix.Output[GetRealmKeysResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetRealmKeysResultOutput) Algorithms() pulumi.StringArrayOutput {

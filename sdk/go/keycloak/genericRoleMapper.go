@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allow for creating and managing a client's or client scope's role mappings within Keycloak.
@@ -377,12 +376,6 @@ func (i *GenericRoleMapper) ToGenericRoleMapperOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(GenericRoleMapperOutput)
 }
 
-func (i *GenericRoleMapper) ToOutput(ctx context.Context) pulumix.Output[*GenericRoleMapper] {
-	return pulumix.Output[*GenericRoleMapper]{
-		OutputState: i.ToGenericRoleMapperOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GenericRoleMapperArrayInput is an input type that accepts GenericRoleMapperArray and GenericRoleMapperArrayOutput values.
 // You can construct a concrete instance of `GenericRoleMapperArrayInput` via:
 //
@@ -406,12 +399,6 @@ func (i GenericRoleMapperArray) ToGenericRoleMapperArrayOutput() GenericRoleMapp
 
 func (i GenericRoleMapperArray) ToGenericRoleMapperArrayOutputWithContext(ctx context.Context) GenericRoleMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GenericRoleMapperArrayOutput)
-}
-
-func (i GenericRoleMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*GenericRoleMapper] {
-	return pulumix.Output[[]*GenericRoleMapper]{
-		OutputState: i.ToGenericRoleMapperArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GenericRoleMapperMapInput is an input type that accepts GenericRoleMapperMap and GenericRoleMapperMapOutput values.
@@ -439,12 +426,6 @@ func (i GenericRoleMapperMap) ToGenericRoleMapperMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GenericRoleMapperMapOutput)
 }
 
-func (i GenericRoleMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*GenericRoleMapper] {
-	return pulumix.Output[map[string]*GenericRoleMapper]{
-		OutputState: i.ToGenericRoleMapperMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GenericRoleMapperOutput struct{ *pulumi.OutputState }
 
 func (GenericRoleMapperOutput) ElementType() reflect.Type {
@@ -457,12 +438,6 @@ func (o GenericRoleMapperOutput) ToGenericRoleMapperOutput() GenericRoleMapperOu
 
 func (o GenericRoleMapperOutput) ToGenericRoleMapperOutputWithContext(ctx context.Context) GenericRoleMapperOutput {
 	return o
-}
-
-func (o GenericRoleMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*GenericRoleMapper] {
-	return pulumix.Output[*GenericRoleMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The ID of the client this role mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
@@ -499,12 +474,6 @@ func (o GenericRoleMapperArrayOutput) ToGenericRoleMapperArrayOutputWithContext(
 	return o
 }
 
-func (o GenericRoleMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*GenericRoleMapper] {
-	return pulumix.Output[[]*GenericRoleMapper]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GenericRoleMapperArrayOutput) Index(i pulumi.IntInput) GenericRoleMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GenericRoleMapper {
 		return vs[0].([]*GenericRoleMapper)[vs[1].(int)]
@@ -523,12 +492,6 @@ func (o GenericRoleMapperMapOutput) ToGenericRoleMapperMapOutput() GenericRoleMa
 
 func (o GenericRoleMapperMapOutput) ToGenericRoleMapperMapOutputWithContext(ctx context.Context) GenericRoleMapperMapOutput {
 	return o
-}
-
-func (o GenericRoleMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*GenericRoleMapper] {
-	return pulumix.Output[map[string]*GenericRoleMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GenericRoleMapperMapOutput) MapIndex(k pulumi.StringInput) GenericRoleMapperOutput {

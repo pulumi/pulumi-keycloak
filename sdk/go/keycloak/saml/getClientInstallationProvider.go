@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This data source can be used to retrieve Installation Provider of a SAML Client.
@@ -150,12 +149,6 @@ func (o GetClientInstallationProviderResultOutput) ToGetClientInstallationProvid
 
 func (o GetClientInstallationProviderResultOutput) ToGetClientInstallationProviderResultOutputWithContext(ctx context.Context) GetClientInstallationProviderResultOutput {
 	return o
-}
-
-func (o GetClientInstallationProviderResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetClientInstallationProviderResult] {
-	return pulumix.Output[GetClientInstallationProviderResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetClientInstallationProviderResultOutput) ClientId() pulumi.StringOutput {

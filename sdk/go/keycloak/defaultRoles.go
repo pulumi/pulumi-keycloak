@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows managing default realm roles within Keycloak.
@@ -163,12 +162,6 @@ func (i *DefaultRoles) ToDefaultRolesOutputWithContext(ctx context.Context) Defa
 	return pulumi.ToOutputWithContext(ctx, i).(DefaultRolesOutput)
 }
 
-func (i *DefaultRoles) ToOutput(ctx context.Context) pulumix.Output[*DefaultRoles] {
-	return pulumix.Output[*DefaultRoles]{
-		OutputState: i.ToDefaultRolesOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DefaultRolesArrayInput is an input type that accepts DefaultRolesArray and DefaultRolesArrayOutput values.
 // You can construct a concrete instance of `DefaultRolesArrayInput` via:
 //
@@ -192,12 +185,6 @@ func (i DefaultRolesArray) ToDefaultRolesArrayOutput() DefaultRolesArrayOutput {
 
 func (i DefaultRolesArray) ToDefaultRolesArrayOutputWithContext(ctx context.Context) DefaultRolesArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DefaultRolesArrayOutput)
-}
-
-func (i DefaultRolesArray) ToOutput(ctx context.Context) pulumix.Output[[]*DefaultRoles] {
-	return pulumix.Output[[]*DefaultRoles]{
-		OutputState: i.ToDefaultRolesArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DefaultRolesMapInput is an input type that accepts DefaultRolesMap and DefaultRolesMapOutput values.
@@ -225,12 +212,6 @@ func (i DefaultRolesMap) ToDefaultRolesMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(DefaultRolesMapOutput)
 }
 
-func (i DefaultRolesMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DefaultRoles] {
-	return pulumix.Output[map[string]*DefaultRoles]{
-		OutputState: i.ToDefaultRolesMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DefaultRolesOutput struct{ *pulumi.OutputState }
 
 func (DefaultRolesOutput) ElementType() reflect.Type {
@@ -243,12 +224,6 @@ func (o DefaultRolesOutput) ToDefaultRolesOutput() DefaultRolesOutput {
 
 func (o DefaultRolesOutput) ToDefaultRolesOutputWithContext(ctx context.Context) DefaultRolesOutput {
 	return o
-}
-
-func (o DefaultRolesOutput) ToOutput(ctx context.Context) pulumix.Output[*DefaultRoles] {
-	return pulumix.Output[*DefaultRoles]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Realm level roles assigned to new users by default.
@@ -275,12 +250,6 @@ func (o DefaultRolesArrayOutput) ToDefaultRolesArrayOutputWithContext(ctx contex
 	return o
 }
 
-func (o DefaultRolesArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DefaultRoles] {
-	return pulumix.Output[[]*DefaultRoles]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DefaultRolesArrayOutput) Index(i pulumi.IntInput) DefaultRolesOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DefaultRoles {
 		return vs[0].([]*DefaultRoles)[vs[1].(int)]
@@ -299,12 +268,6 @@ func (o DefaultRolesMapOutput) ToDefaultRolesMapOutput() DefaultRolesMapOutput {
 
 func (o DefaultRolesMapOutput) ToDefaultRolesMapOutputWithContext(ctx context.Context) DefaultRolesMapOutput {
 	return o
-}
-
-func (o DefaultRolesMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DefaultRoles] {
-	return pulumix.Output[map[string]*DefaultRoles]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DefaultRolesMapOutput) MapIndex(k pulumi.StringInput) DefaultRolesOutput {

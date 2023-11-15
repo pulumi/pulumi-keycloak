@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows for creating and managing an attribute importer identity provider mapper within Keycloak.
@@ -246,12 +245,6 @@ func (i *AttributeImporterIdentityProviderMapper) ToAttributeImporterIdentityPro
 	return pulumi.ToOutputWithContext(ctx, i).(AttributeImporterIdentityProviderMapperOutput)
 }
 
-func (i *AttributeImporterIdentityProviderMapper) ToOutput(ctx context.Context) pulumix.Output[*AttributeImporterIdentityProviderMapper] {
-	return pulumix.Output[*AttributeImporterIdentityProviderMapper]{
-		OutputState: i.ToAttributeImporterIdentityProviderMapperOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AttributeImporterIdentityProviderMapperArrayInput is an input type that accepts AttributeImporterIdentityProviderMapperArray and AttributeImporterIdentityProviderMapperArrayOutput values.
 // You can construct a concrete instance of `AttributeImporterIdentityProviderMapperArrayInput` via:
 //
@@ -275,12 +268,6 @@ func (i AttributeImporterIdentityProviderMapperArray) ToAttributeImporterIdentit
 
 func (i AttributeImporterIdentityProviderMapperArray) ToAttributeImporterIdentityProviderMapperArrayOutputWithContext(ctx context.Context) AttributeImporterIdentityProviderMapperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AttributeImporterIdentityProviderMapperArrayOutput)
-}
-
-func (i AttributeImporterIdentityProviderMapperArray) ToOutput(ctx context.Context) pulumix.Output[[]*AttributeImporterIdentityProviderMapper] {
-	return pulumix.Output[[]*AttributeImporterIdentityProviderMapper]{
-		OutputState: i.ToAttributeImporterIdentityProviderMapperArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AttributeImporterIdentityProviderMapperMapInput is an input type that accepts AttributeImporterIdentityProviderMapperMap and AttributeImporterIdentityProviderMapperMapOutput values.
@@ -308,12 +295,6 @@ func (i AttributeImporterIdentityProviderMapperMap) ToAttributeImporterIdentityP
 	return pulumi.ToOutputWithContext(ctx, i).(AttributeImporterIdentityProviderMapperMapOutput)
 }
 
-func (i AttributeImporterIdentityProviderMapperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AttributeImporterIdentityProviderMapper] {
-	return pulumix.Output[map[string]*AttributeImporterIdentityProviderMapper]{
-		OutputState: i.ToAttributeImporterIdentityProviderMapperMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AttributeImporterIdentityProviderMapperOutput struct{ *pulumi.OutputState }
 
 func (AttributeImporterIdentityProviderMapperOutput) ElementType() reflect.Type {
@@ -326,12 +307,6 @@ func (o AttributeImporterIdentityProviderMapperOutput) ToAttributeImporterIdenti
 
 func (o AttributeImporterIdentityProviderMapperOutput) ToAttributeImporterIdentityProviderMapperOutputWithContext(ctx context.Context) AttributeImporterIdentityProviderMapperOutput {
 	return o
-}
-
-func (o AttributeImporterIdentityProviderMapperOutput) ToOutput(ctx context.Context) pulumix.Output[*AttributeImporterIdentityProviderMapper] {
-	return pulumix.Output[*AttributeImporterIdentityProviderMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 // For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attributeName`.
@@ -390,12 +365,6 @@ func (o AttributeImporterIdentityProviderMapperArrayOutput) ToAttributeImporterI
 	return o
 }
 
-func (o AttributeImporterIdentityProviderMapperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AttributeImporterIdentityProviderMapper] {
-	return pulumix.Output[[]*AttributeImporterIdentityProviderMapper]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AttributeImporterIdentityProviderMapperArrayOutput) Index(i pulumi.IntInput) AttributeImporterIdentityProviderMapperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AttributeImporterIdentityProviderMapper {
 		return vs[0].([]*AttributeImporterIdentityProviderMapper)[vs[1].(int)]
@@ -414,12 +383,6 @@ func (o AttributeImporterIdentityProviderMapperMapOutput) ToAttributeImporterIde
 
 func (o AttributeImporterIdentityProviderMapperMapOutput) ToAttributeImporterIdentityProviderMapperMapOutputWithContext(ctx context.Context) AttributeImporterIdentityProviderMapperMapOutput {
 	return o
-}
-
-func (o AttributeImporterIdentityProviderMapperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AttributeImporterIdentityProviderMapper] {
-	return pulumix.Output[map[string]*AttributeImporterIdentityProviderMapper]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AttributeImporterIdentityProviderMapperMapOutput) MapIndex(k pulumi.StringInput) AttributeImporterIdentityProviderMapperOutput {
