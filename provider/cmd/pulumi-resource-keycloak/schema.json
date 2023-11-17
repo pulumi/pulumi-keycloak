@@ -280,7 +280,7 @@
                 },
                 "minimumQuickLoginWaitSeconds": {
                     "type": "integer",
-                    "description": "How long to wait after a quick login failure.\n- `max_failure_wait_seconds ` - (Optional) Max. time a user will be locked out.\n"
+                    "description": "How long to wait after a quick login failure.\n"
                 },
                 "permanentLockout": {
                     "type": "boolean",
@@ -8800,8 +8800,7 @@
                     "description": "The amount of time in seconds before an access token expires. This will override the default for the realm.\n"
                 },
                 "accessType": {
-                    "type": "string",
-                    "description": "Specifies the type of client, which can be one of the following:\n"
+                    "type": "string"
                 },
                 "adminUrl": {
                     "type": "string",
@@ -8833,7 +8832,7 @@
                 },
                 "clientAuthenticatorType": {
                     "type": "string",
-                    "description": "Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:\n- `client-secret` (Default) Use client id and client secret to authenticate client.\n- `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = \u003calg\u003e`\n- `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = \u003csubjectDn\u003e`\n- `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = \u003calg\u003e`\n"
+                    "description": "Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:\n"
                 },
                 "clientId": {
                     "type": "string",
@@ -9028,8 +9027,7 @@
                     "description": "The amount of time in seconds before an access token expires. This will override the default for the realm.\n"
                 },
                 "accessType": {
-                    "type": "string",
-                    "description": "Specifies the type of client, which can be one of the following:\n"
+                    "type": "string"
                 },
                 "adminUrl": {
                     "type": "string",
@@ -9061,7 +9059,7 @@
                 },
                 "clientAuthenticatorType": {
                     "type": "string",
-                    "description": "Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:\n- `client-secret` (Default) Use client id and client secret to authenticate client.\n- `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = \u003calg\u003e`\n- `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = \u003csubjectDn\u003e`\n- `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = \u003calg\u003e`\n"
+                    "description": "Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:\n"
                 },
                 "clientId": {
                     "type": "string",
@@ -9227,8 +9225,7 @@
                         "description": "The amount of time in seconds before an access token expires. This will override the default for the realm.\n"
                     },
                     "accessType": {
-                        "type": "string",
-                        "description": "Specifies the type of client, which can be one of the following:\n"
+                        "type": "string"
                     },
                     "adminUrl": {
                         "type": "string",
@@ -9260,7 +9257,7 @@
                     },
                     "clientAuthenticatorType": {
                         "type": "string",
-                        "description": "Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:\n- `client-secret` (Default) Use client id and client secret to authenticate client.\n- `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = \u003calg\u003e`\n- `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = \u003csubjectDn\u003e`\n- `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = \u003calg\u003e`\n"
+                        "description": "Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:\n"
                     },
                     "clientId": {
                         "type": "string",
