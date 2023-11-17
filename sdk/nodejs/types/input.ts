@@ -256,7 +256,6 @@ export interface RealmSecurityDefensesBruteForceDetection {
     maxLoginFailures?: pulumi.Input<number>;
     /**
      * How long to wait after a quick login failure.
-     * - `maxFailureWaitSeconds ` - (Optional) Max. time a user will be locked out.
      */
     minimumQuickLoginWaitSeconds?: pulumi.Input<number>;
     /**

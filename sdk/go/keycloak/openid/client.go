@@ -77,8 +77,7 @@ type Client struct {
 
 	// The amount of time in seconds before an access token expires. This will override the default for the realm.
 	AccessTokenLifespan pulumi.StringOutput `pulumi:"accessTokenLifespan"`
-	// Specifies the type of client, which can be one of the following:
-	AccessType pulumi.StringOutput `pulumi:"accessType"`
+	AccessType          pulumi.StringOutput `pulumi:"accessType"`
 	// URL to the admin interface of the client.
 	AdminUrl pulumi.StringOutput `pulumi:"adminUrl"`
 	// Override realm authentication flow bindings
@@ -94,10 +93,6 @@ type Client struct {
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl pulumi.StringOutput `pulumi:"baseUrl"`
 	// Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
-	// - `client-secret` (Default) Use client id and client secret to authenticate client.
-	// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
-	// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
-	// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
 	ClientAuthenticatorType pulumi.StringPtrOutput `pulumi:"clientAuthenticatorType"`
 	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
 	ClientId pulumi.StringOutput `pulumi:"clientId"`
@@ -222,8 +217,7 @@ func GetClient(ctx *pulumi.Context,
 type clientState struct {
 	// The amount of time in seconds before an access token expires. This will override the default for the realm.
 	AccessTokenLifespan *string `pulumi:"accessTokenLifespan"`
-	// Specifies the type of client, which can be one of the following:
-	AccessType *string `pulumi:"accessType"`
+	AccessType          *string `pulumi:"accessType"`
 	// URL to the admin interface of the client.
 	AdminUrl *string `pulumi:"adminUrl"`
 	// Override realm authentication flow bindings
@@ -239,10 +233,6 @@ type clientState struct {
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl *string `pulumi:"baseUrl"`
 	// Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
-	// - `client-secret` (Default) Use client id and client secret to authenticate client.
-	// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
-	// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
-	// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
 	ClientAuthenticatorType *string `pulumi:"clientAuthenticatorType"`
 	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
 	ClientId *string `pulumi:"clientId"`
@@ -322,8 +312,7 @@ type clientState struct {
 type ClientState struct {
 	// The amount of time in seconds before an access token expires. This will override the default for the realm.
 	AccessTokenLifespan pulumi.StringPtrInput
-	// Specifies the type of client, which can be one of the following:
-	AccessType pulumi.StringPtrInput
+	AccessType          pulumi.StringPtrInput
 	// URL to the admin interface of the client.
 	AdminUrl pulumi.StringPtrInput
 	// Override realm authentication flow bindings
@@ -339,10 +328,6 @@ type ClientState struct {
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl pulumi.StringPtrInput
 	// Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
-	// - `client-secret` (Default) Use client id and client secret to authenticate client.
-	// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
-	// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
-	// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
 	ClientAuthenticatorType pulumi.StringPtrInput
 	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
 	ClientId pulumi.StringPtrInput
@@ -426,8 +411,7 @@ func (ClientState) ElementType() reflect.Type {
 type clientArgs struct {
 	// The amount of time in seconds before an access token expires. This will override the default for the realm.
 	AccessTokenLifespan *string `pulumi:"accessTokenLifespan"`
-	// Specifies the type of client, which can be one of the following:
-	AccessType string `pulumi:"accessType"`
+	AccessType          string  `pulumi:"accessType"`
 	// URL to the admin interface of the client.
 	AdminUrl *string `pulumi:"adminUrl"`
 	// Override realm authentication flow bindings
@@ -443,10 +427,6 @@ type clientArgs struct {
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl *string `pulumi:"baseUrl"`
 	// Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
-	// - `client-secret` (Default) Use client id and client secret to authenticate client.
-	// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
-	// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
-	// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
 	ClientAuthenticatorType *string `pulumi:"clientAuthenticatorType"`
 	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
 	ClientId string `pulumi:"clientId"`
@@ -523,8 +503,7 @@ type clientArgs struct {
 type ClientArgs struct {
 	// The amount of time in seconds before an access token expires. This will override the default for the realm.
 	AccessTokenLifespan pulumi.StringPtrInput
-	// Specifies the type of client, which can be one of the following:
-	AccessType pulumi.StringInput
+	AccessType          pulumi.StringInput
 	// URL to the admin interface of the client.
 	AdminUrl pulumi.StringPtrInput
 	// Override realm authentication flow bindings
@@ -540,10 +519,6 @@ type ClientArgs struct {
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl pulumi.StringPtrInput
 	// Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
-	// - `client-secret` (Default) Use client id and client secret to authenticate client.
-	// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
-	// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
-	// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
 	ClientAuthenticatorType pulumi.StringPtrInput
 	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
 	ClientId pulumi.StringInput
@@ -708,7 +683,6 @@ func (o ClientOutput) AccessTokenLifespan() pulumi.StringOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.AccessTokenLifespan }).(pulumi.StringOutput)
 }
 
-// Specifies the type of client, which can be one of the following:
 func (o ClientOutput) AccessType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.AccessType }).(pulumi.StringOutput)
 }
@@ -751,10 +725,6 @@ func (o ClientOutput) BaseUrl() pulumi.StringOutput {
 }
 
 // Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
-// - `client-secret` (Default) Use client id and client secret to authenticate client.
-// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
-// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
-// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
 func (o ClientOutput) ClientAuthenticatorType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.ClientAuthenticatorType }).(pulumi.StringPtrOutput)
 }

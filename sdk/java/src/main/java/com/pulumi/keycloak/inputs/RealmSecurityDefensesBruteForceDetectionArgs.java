@@ -55,7 +55,6 @@ public final class RealmSecurityDefensesBruteForceDetectionArgs extends com.pulu
 
     /**
      * How long to wait after a quick login failure.
-     * - ` max_failure_wait_seconds  ` - (Optional) Max. time a user will be locked out.
      * 
      */
     @Import(name="minimumQuickLoginWaitSeconds")
@@ -63,7 +62,6 @@ public final class RealmSecurityDefensesBruteForceDetectionArgs extends com.pulu
 
     /**
      * @return How long to wait after a quick login failure.
-     * - ` max_failure_wait_seconds  ` - (Optional) Max. time a user will be locked out.
      * 
      */
     public Optional<Output<Integer>> minimumQuickLoginWaitSeconds() {
@@ -198,7 +196,6 @@ public final class RealmSecurityDefensesBruteForceDetectionArgs extends com.pulu
 
         /**
          * @param minimumQuickLoginWaitSeconds How long to wait after a quick login failure.
-         * - ` max_failure_wait_seconds  ` - (Optional) Max. time a user will be locked out.
          * 
          * @return builder
          * 
@@ -210,7 +207,6 @@ public final class RealmSecurityDefensesBruteForceDetectionArgs extends com.pulu
 
         /**
          * @param minimumQuickLoginWaitSeconds How long to wait after a quick login failure.
-         * - ` max_failure_wait_seconds  ` - (Optional) Max. time a user will be locked out.
          * 
          * @return builder
          * 

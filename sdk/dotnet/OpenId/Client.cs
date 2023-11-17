@@ -70,9 +70,6 @@ namespace Pulumi.Keycloak.OpenId
         [Output("accessTokenLifespan")]
         public Output<string> AccessTokenLifespan { get; private set; } = null!;
 
-        /// <summary>
-        /// Specifies the type of client, which can be one of the following:
-        /// </summary>
         [Output("accessType")]
         public Output<string> AccessType { get; private set; } = null!;
 
@@ -120,10 +117,6 @@ namespace Pulumi.Keycloak.OpenId
 
         /// <summary>
         /// Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
-        /// - `client-secret` (Default) Use client id and client secret to authenticate client.
-        /// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
-        /// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
-        /// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
         /// </summary>
         [Output("clientAuthenticatorType")]
         public Output<string?> ClientAuthenticatorType { get; private set; } = null!;
@@ -399,9 +392,6 @@ namespace Pulumi.Keycloak.OpenId
         [Input("accessTokenLifespan")]
         public Input<string>? AccessTokenLifespan { get; set; }
 
-        /// <summary>
-        /// Specifies the type of client, which can be one of the following:
-        /// </summary>
         [Input("accessType", required: true)]
         public Input<string> AccessType { get; set; } = null!;
 
@@ -449,10 +439,6 @@ namespace Pulumi.Keycloak.OpenId
 
         /// <summary>
         /// Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
-        /// - `client-secret` (Default) Use client id and client secret to authenticate client.
-        /// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
-        /// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
-        /// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
         /// </summary>
         [Input("clientAuthenticatorType")]
         public Input<string>? ClientAuthenticatorType { get; set; }
@@ -707,9 +693,6 @@ namespace Pulumi.Keycloak.OpenId
         [Input("accessTokenLifespan")]
         public Input<string>? AccessTokenLifespan { get; set; }
 
-        /// <summary>
-        /// Specifies the type of client, which can be one of the following:
-        /// </summary>
         [Input("accessType")]
         public Input<string>? AccessType { get; set; }
 
@@ -757,10 +740,6 @@ namespace Pulumi.Keycloak.OpenId
 
         /// <summary>
         /// Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
-        /// - `client-secret` (Default) Use client id and client secret to authenticate client.
-        /// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
-        /// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
-        /// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
         /// </summary>
         [Input("clientAuthenticatorType")]
         public Input<string>? ClientAuthenticatorType { get; set; }

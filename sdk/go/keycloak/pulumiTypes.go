@@ -1371,7 +1371,6 @@ type RealmSecurityDefensesBruteForceDetection struct {
 	// How many failures before wait is triggered.
 	MaxLoginFailures *int `pulumi:"maxLoginFailures"`
 	// How long to wait after a quick login failure.
-	// - ` maxFailureWaitSeconds  ` - (Optional) Max. time a user will be locked out.
 	MinimumQuickLoginWaitSeconds *int `pulumi:"minimumQuickLoginWaitSeconds"`
 	// When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
 	PermanentLockout *bool `pulumi:"permanentLockout"`
@@ -1399,7 +1398,6 @@ type RealmSecurityDefensesBruteForceDetectionArgs struct {
 	// How many failures before wait is triggered.
 	MaxLoginFailures pulumi.IntPtrInput `pulumi:"maxLoginFailures"`
 	// How long to wait after a quick login failure.
-	// - ` maxFailureWaitSeconds  ` - (Optional) Max. time a user will be locked out.
 	MinimumQuickLoginWaitSeconds pulumi.IntPtrInput `pulumi:"minimumQuickLoginWaitSeconds"`
 	// When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
 	PermanentLockout pulumi.BoolPtrInput `pulumi:"permanentLockout"`
@@ -1501,7 +1499,6 @@ func (o RealmSecurityDefensesBruteForceDetectionOutput) MaxLoginFailures() pulum
 }
 
 // How long to wait after a quick login failure.
-// - ` maxFailureWaitSeconds  ` - (Optional) Max. time a user will be locked out.
 func (o RealmSecurityDefensesBruteForceDetectionOutput) MinimumQuickLoginWaitSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.MinimumQuickLoginWaitSeconds }).(pulumi.IntPtrOutput)
 }
@@ -1575,7 +1572,6 @@ func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) MaxLoginFailures() pu
 }
 
 // How long to wait after a quick login failure.
-// - ` maxFailureWaitSeconds  ` - (Optional) Max. time a user will be locked out.
 func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) MinimumQuickLoginWaitSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RealmSecurityDefensesBruteForceDetection) *int {
 		if v == nil {

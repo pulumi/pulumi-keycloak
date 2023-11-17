@@ -216,7 +216,6 @@ export interface RealmSecurityDefensesBruteForceDetection {
     maxLoginFailures?: number;
     /**
      * How long to wait after a quick login failure.
-     * - `maxFailureWaitSeconds ` - (Optional) Max. time a user will be locked out.
      */
     minimumQuickLoginWaitSeconds?: number;
     /**

@@ -25,7 +25,6 @@ public final class RealmSecurityDefensesBruteForceDetection {
     private @Nullable Integer maxLoginFailures;
     /**
      * @return How long to wait after a quick login failure.
-     * - ` max_failure_wait_seconds  ` - (Optional) Max. time a user will be locked out.
      * 
      */
     private @Nullable Integer minimumQuickLoginWaitSeconds;
@@ -65,7 +64,6 @@ public final class RealmSecurityDefensesBruteForceDetection {
     }
     /**
      * @return How long to wait after a quick login failure.
-     * - ` max_failure_wait_seconds  ` - (Optional) Max. time a user will be locked out.
      * 
      */
     public Optional<Integer> minimumQuickLoginWaitSeconds() {

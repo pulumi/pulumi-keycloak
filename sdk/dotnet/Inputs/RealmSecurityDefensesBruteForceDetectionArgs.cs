@@ -29,7 +29,6 @@ namespace Pulumi.Keycloak.Inputs
 
         /// <summary>
         /// How long to wait after a quick login failure.
-        /// - `max_failure_wait_seconds ` - (Optional) Max. time a user will be locked out.
         /// </summary>
         [Input("minimumQuickLoginWaitSeconds")]
         public Input<int>? MinimumQuickLoginWaitSeconds { get; set; }

@@ -36,17 +36,9 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.accessTokenLifespan);
     }
 
-    /**
-     * Specifies the type of client, which can be one of the following:
-     * 
-     */
     @Import(name="accessType")
     private @Nullable Output<String> accessType;
 
-    /**
-     * @return Specifies the type of client, which can be one of the following:
-     * 
-     */
     public Optional<Output<String>> accessType() {
         return Optional.ofNullable(this.accessType);
     }
@@ -158,10 +150,6 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
-     * - `client-secret` (Default) Use client id and client secret to authenticate client.
-     * - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
-     * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
-     * - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
      * 
      */
     @Import(name="clientAuthenticatorType")
@@ -169,10 +157,6 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
-     * - `client-secret` (Default) Use client id and client secret to authenticate client.
-     * - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
-     * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
-     * - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
      * 
      */
     public Optional<Output<String>> clientAuthenticatorType() {
@@ -805,23 +789,11 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
             return accessTokenLifespan(Output.of(accessTokenLifespan));
         }
 
-        /**
-         * @param accessType Specifies the type of client, which can be one of the following:
-         * 
-         * @return builder
-         * 
-         */
         public Builder accessType(@Nullable Output<String> accessType) {
             $.accessType = accessType;
             return this;
         }
 
-        /**
-         * @param accessType Specifies the type of client, which can be one of the following:
-         * 
-         * @return builder
-         * 
-         */
         public Builder accessType(String accessType) {
             return accessType(Output.of(accessType));
         }
@@ -975,10 +947,6 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param clientAuthenticatorType Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
-         * - `client-secret` (Default) Use client id and client secret to authenticate client.
-         * - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
-         * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
-         * - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
          * 
          * @return builder
          * 
@@ -990,10 +958,6 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param clientAuthenticatorType Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
-         * - `client-secret` (Default) Use client id and client secret to authenticate client.
-         * - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
-         * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
-         * - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
          * 
          * @return builder
          * 
