@@ -27,8 +27,8 @@ import * as utilities from "../utilities";
  *     signDocuments: false,
  *     signAssertions: true,
  *     includeAuthnStatement: true,
- *     signingCertificate: fs.readFileSync("saml-cert.pem"),
- *     signingPrivateKey: fs.readFileSync("saml-key.pem"),
+ *     signingCertificate: fs.readFileSync("saml-cert.pem", "utf8"),
+ *     signingPrivateKey: fs.readFileSync("saml-key.pem", "utf8"),
  * });
  * const samlIdpDescriptor = keycloak.saml.getClientInstallationProviderOutput({
  *     realmId: realm.id,
@@ -105,8 +105,8 @@ export interface GetClientInstallationProviderResult {
  *     signDocuments: false,
  *     signAssertions: true,
  *     includeAuthnStatement: true,
- *     signingCertificate: fs.readFileSync("saml-cert.pem"),
- *     signingPrivateKey: fs.readFileSync("saml-key.pem"),
+ *     signingCertificate: fs.readFileSync("saml-cert.pem", "utf8"),
+ *     signingPrivateKey: fs.readFileSync("saml-key.pem", "utf8"),
  * });
  * const samlIdpDescriptor = keycloak.saml.getClientInstallationProviderOutput({
  *     realmId: realm.id,
