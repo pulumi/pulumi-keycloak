@@ -22,8 +22,8 @@ import * as utilities from "../utilities";
  *     signDocuments: false,
  *     signAssertions: true,
  *     includeAuthnStatement: true,
- *     signingCertificate: fs.readFileSync("saml-cert.pem"),
- *     signingPrivateKey: fs.readFileSync("saml-key.pem"),
+ *     signingCertificate: fs.readFileSync("saml-cert.pem", "utf8"),
+ *     signingPrivateKey: fs.readFileSync("saml-key.pem", "utf8"),
  * });
  * const clientScope = new keycloak.saml.ClientScope("clientScope", {realmId: realm.id});
  * const clientDefaultScopes = new keycloak.saml.ClientDefaultScope("clientDefaultScopes", {
