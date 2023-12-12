@@ -61,11 +61,11 @@ public final class ClientGroupPolicyGroup {
             return this;
         }
         public ClientGroupPolicyGroup build() {
-            final var o = new ClientGroupPolicyGroup();
-            o.extendChildren = extendChildren;
-            o.id = id;
-            o.path = path;
-            return o;
+            final var _resultValue = new ClientGroupPolicyGroup();
+            _resultValue.extendChildren = extendChildren;
+            _resultValue.id = id;
+            _resultValue.path = path;
+            return _resultValue;
         }
     }
 }

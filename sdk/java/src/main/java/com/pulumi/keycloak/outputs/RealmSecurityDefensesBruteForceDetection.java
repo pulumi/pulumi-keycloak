@@ -157,15 +157,15 @@ public final class RealmSecurityDefensesBruteForceDetection {
             return this;
         }
         public RealmSecurityDefensesBruteForceDetection build() {
-            final var o = new RealmSecurityDefensesBruteForceDetection();
-            o.failureResetTimeSeconds = failureResetTimeSeconds;
-            o.maxFailureWaitSeconds = maxFailureWaitSeconds;
-            o.maxLoginFailures = maxLoginFailures;
-            o.minimumQuickLoginWaitSeconds = minimumQuickLoginWaitSeconds;
-            o.permanentLockout = permanentLockout;
-            o.quickLoginCheckMilliSeconds = quickLoginCheckMilliSeconds;
-            o.waitIncrementSeconds = waitIncrementSeconds;
-            return o;
+            final var _resultValue = new RealmSecurityDefensesBruteForceDetection();
+            _resultValue.failureResetTimeSeconds = failureResetTimeSeconds;
+            _resultValue.maxFailureWaitSeconds = maxFailureWaitSeconds;
+            _resultValue.maxLoginFailures = maxLoginFailures;
+            _resultValue.minimumQuickLoginWaitSeconds = minimumQuickLoginWaitSeconds;
+            _resultValue.permanentLockout = permanentLockout;
+            _resultValue.quickLoginCheckMilliSeconds = quickLoginCheckMilliSeconds;
+            _resultValue.waitIncrementSeconds = waitIncrementSeconds;
+            return _resultValue;
         }
     }
 }

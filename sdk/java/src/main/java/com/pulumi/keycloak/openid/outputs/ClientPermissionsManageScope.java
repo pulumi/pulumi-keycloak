@@ -66,11 +66,11 @@ public final class ClientPermissionsManageScope {
             return policies(List.of(policies));
         }
         public ClientPermissionsManageScope build() {
-            final var o = new ClientPermissionsManageScope();
-            o.decisionStrategy = decisionStrategy;
-            o.description = description;
-            o.policies = policies;
-            return o;
+            final var _resultValue = new ClientPermissionsManageScope();
+            _resultValue.decisionStrategy = decisionStrategy;
+            _resultValue.description = description;
+            _resultValue.policies = policies;
+            return _resultValue;
         }
     }
 }

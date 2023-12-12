@@ -72,10 +72,10 @@ public final class RealmUserProfileAttributePermissions {
             return views(List.of(views));
         }
         public RealmUserProfileAttributePermissions build() {
-            final var o = new RealmUserProfileAttributePermissions();
-            o.edits = edits;
-            o.views = views;
-            return o;
+            final var _resultValue = new RealmUserProfileAttributePermissions();
+            _resultValue.edits = edits;
+            _resultValue.views = views;
+            return _resultValue;
         }
     }
 }

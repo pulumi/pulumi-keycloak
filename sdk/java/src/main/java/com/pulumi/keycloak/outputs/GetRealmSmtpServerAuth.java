@@ -49,10 +49,10 @@ public final class GetRealmSmtpServerAuth {
             return this;
         }
         public GetRealmSmtpServerAuth build() {
-            final var o = new GetRealmSmtpServerAuth();
-            o.password = password;
-            o.username = username;
-            return o;
+            final var _resultValue = new GetRealmSmtpServerAuth();
+            _resultValue.password = password;
+            _resultValue.username = username;
+            return _resultValue;
         }
     }
 }

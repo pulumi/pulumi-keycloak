@@ -68,11 +68,11 @@ public final class GetAuthenticationFlowResult {
             return this;
         }
         public GetAuthenticationFlowResult build() {
-            final var o = new GetAuthenticationFlowResult();
-            o.alias = alias;
-            o.id = id;
-            o.realmId = realmId;
-            return o;
+            final var _resultValue = new GetAuthenticationFlowResult();
+            _resultValue.alias = alias;
+            _resultValue.id = id;
+            _resultValue.realmId = realmId;
+            return _resultValue;
         }
     }
 }

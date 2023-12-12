@@ -57,10 +57,10 @@ public final class GetRealmSecurityDefense {
             return headers(List.of(headers));
         }
         public GetRealmSecurityDefense build() {
-            final var o = new GetRealmSecurityDefense();
-            o.bruteForceDetections = bruteForceDetections;
-            o.headers = headers;
-            return o;
+            final var _resultValue = new GetRealmSecurityDefense();
+            _resultValue.bruteForceDetections = bruteForceDetections;
+            _resultValue.headers = headers;
+            return _resultValue;
         }
     }
 }

@@ -114,15 +114,15 @@ public final class GetClientScopeResult {
             return this;
         }
         public GetClientScopeResult build() {
-            final var o = new GetClientScopeResult();
-            o.consentScreenText = consentScreenText;
-            o.description = description;
-            o.guiOrder = guiOrder;
-            o.id = id;
-            o.includeInTokenScope = includeInTokenScope;
-            o.name = name;
-            o.realmId = realmId;
-            return o;
+            final var _resultValue = new GetClientScopeResult();
+            _resultValue.consentScreenText = consentScreenText;
+            _resultValue.description = description;
+            _resultValue.guiOrder = guiOrder;
+            _resultValue.id = id;
+            _resultValue.includeInTokenScope = includeInTokenScope;
+            _resultValue.name = name;
+            _resultValue.realmId = realmId;
+            return _resultValue;
         }
     }
 }

@@ -50,10 +50,10 @@ public final class ClientRolePolicyRole {
             return this;
         }
         public ClientRolePolicyRole build() {
-            final var o = new ClientRolePolicyRole();
-            o.id = id;
-            o.required = required;
-            return o;
+            final var _resultValue = new ClientRolePolicyRole();
+            _resultValue.id = id;
+            _resultValue.required = required;
+            return _resultValue;
         }
     }
 }

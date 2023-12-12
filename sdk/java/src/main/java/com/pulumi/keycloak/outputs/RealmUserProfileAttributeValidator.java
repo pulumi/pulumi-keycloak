@@ -67,10 +67,10 @@ public final class RealmUserProfileAttributeValidator {
             return this;
         }
         public RealmUserProfileAttributeValidator build() {
-            final var o = new RealmUserProfileAttributeValidator();
-            o.config = config;
-            o.name = name;
-            return o;
+            final var _resultValue = new RealmUserProfileAttributeValidator();
+            _resultValue.config = config;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

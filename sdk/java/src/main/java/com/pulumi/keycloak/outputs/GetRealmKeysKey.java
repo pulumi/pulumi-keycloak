@@ -180,16 +180,16 @@ public final class GetRealmKeysKey {
             return this;
         }
         public GetRealmKeysKey build() {
-            final var o = new GetRealmKeysKey();
-            o.algorithm = algorithm;
-            o.certificate = certificate;
-            o.kid = kid;
-            o.providerId = providerId;
-            o.providerPriority = providerPriority;
-            o.publicKey = publicKey;
-            o.status = status;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetRealmKeysKey();
+            _resultValue.algorithm = algorithm;
+            _resultValue.certificate = certificate;
+            _resultValue.kid = kid;
+            _resultValue.providerId = providerId;
+            _resultValue.providerPriority = providerPriority;
+            _resultValue.publicKey = publicKey;
+            _resultValue.status = status;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

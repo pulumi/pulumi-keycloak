@@ -84,13 +84,13 @@ public final class GetClientDescriptionConverterProtocolMapper {
             return this;
         }
         public GetClientDescriptionConverterProtocolMapper build() {
-            final var o = new GetClientDescriptionConverterProtocolMapper();
-            o.config = config;
-            o.id = id;
-            o.name = name;
-            o.protocol = protocol;
-            o.protocolMapper = protocolMapper;
-            return o;
+            final var _resultValue = new GetClientDescriptionConverterProtocolMapper();
+            _resultValue.config = config;
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.protocol = protocol;
+            _resultValue.protocolMapper = protocolMapper;
+            return _resultValue;
         }
     }
 }

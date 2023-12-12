@@ -216,17 +216,17 @@ public final class RealmUserProfileAttribute {
             return validators(List.of(validators));
         }
         public RealmUserProfileAttribute build() {
-            final var o = new RealmUserProfileAttribute();
-            o.annotations = annotations;
-            o.displayName = displayName;
-            o.enabledWhenScopes = enabledWhenScopes;
-            o.group = group;
-            o.name = name;
-            o.permissions = permissions;
-            o.requiredForRoles = requiredForRoles;
-            o.requiredForScopes = requiredForScopes;
-            o.validators = validators;
-            return o;
+            final var _resultValue = new RealmUserProfileAttribute();
+            _resultValue.annotations = annotations;
+            _resultValue.displayName = displayName;
+            _resultValue.enabledWhenScopes = enabledWhenScopes;
+            _resultValue.group = group;
+            _resultValue.name = name;
+            _resultValue.permissions = permissions;
+            _resultValue.requiredForRoles = requiredForRoles;
+            _resultValue.requiredForScopes = requiredForScopes;
+            _resultValue.validators = validators;
+            return _resultValue;
         }
     }
 }

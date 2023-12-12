@@ -84,11 +84,11 @@ public final class UserFederatedIdentity {
             return this;
         }
         public UserFederatedIdentity build() {
-            final var o = new UserFederatedIdentity();
-            o.identityProvider = identityProvider;
-            o.userId = userId;
-            o.userName = userName;
-            return o;
+            final var _resultValue = new UserFederatedIdentity();
+            _resultValue.identityProvider = identityProvider;
+            _resultValue.userId = userId;
+            _resultValue.userName = userName;
+            return _resultValue;
         }
     }
 }

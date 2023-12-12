@@ -68,10 +68,10 @@ public final class UserInitialPassword {
             return this;
         }
         public UserInitialPassword build() {
-            final var o = new UserInitialPassword();
-            o.temporary = temporary;
-            o.value = value;
-            return o;
+            final var _resultValue = new UserInitialPassword();
+            _resultValue.temporary = temporary;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

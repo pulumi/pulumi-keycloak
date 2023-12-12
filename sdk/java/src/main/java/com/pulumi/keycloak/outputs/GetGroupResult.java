@@ -103,14 +103,14 @@ public final class GetGroupResult {
             return this;
         }
         public GetGroupResult build() {
-            final var o = new GetGroupResult();
-            o.attributes = attributes;
-            o.id = id;
-            o.name = name;
-            o.parentId = parentId;
-            o.path = path;
-            o.realmId = realmId;
-            return o;
+            final var _resultValue = new GetGroupResult();
+            _resultValue.attributes = attributes;
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.parentId = parentId;
+            _resultValue.path = path;
+            _resultValue.realmId = realmId;
+            return _resultValue;
         }
     }
 }

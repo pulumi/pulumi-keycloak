@@ -106,12 +106,12 @@ public final class RealmUserProfileGroup {
             return this;
         }
         public RealmUserProfileGroup build() {
-            final var o = new RealmUserProfileGroup();
-            o.annotations = annotations;
-            o.displayDescription = displayDescription;
-            o.displayHeader = displayHeader;
-            o.name = name;
-            return o;
+            final var _resultValue = new RealmUserProfileGroup();
+            _resultValue.annotations = annotations;
+            _resultValue.displayDescription = displayDescription;
+            _resultValue.displayHeader = displayHeader;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

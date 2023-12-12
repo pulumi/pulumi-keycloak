@@ -66,11 +66,11 @@ public final class ClientPermissionsTokenExchangeScope {
             return policies(List.of(policies));
         }
         public ClientPermissionsTokenExchangeScope build() {
-            final var o = new ClientPermissionsTokenExchangeScope();
-            o.decisionStrategy = decisionStrategy;
-            o.description = description;
-            o.policies = policies;
-            return o;
+            final var _resultValue = new ClientPermissionsTokenExchangeScope();
+            _resultValue.decisionStrategy = decisionStrategy;
+            _resultValue.description = description;
+            _resultValue.policies = policies;
+            return _resultValue;
         }
     }
 }

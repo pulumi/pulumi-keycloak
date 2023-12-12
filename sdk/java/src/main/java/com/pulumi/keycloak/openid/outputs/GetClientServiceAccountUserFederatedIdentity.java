@@ -60,11 +60,11 @@ public final class GetClientServiceAccountUserFederatedIdentity {
             return this;
         }
         public GetClientServiceAccountUserFederatedIdentity build() {
-            final var o = new GetClientServiceAccountUserFederatedIdentity();
-            o.identityProvider = identityProvider;
-            o.userId = userId;
-            o.userName = userName;
-            return o;
+            final var _resultValue = new GetClientServiceAccountUserFederatedIdentity();
+            _resultValue.identityProvider = identityProvider;
+            _resultValue.userId = userId;
+            _resultValue.userName = userName;
+            return _resultValue;
         }
     }
 }

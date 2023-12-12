@@ -228,18 +228,18 @@ public final class RealmWebAuthnPolicy {
             return this;
         }
         public RealmWebAuthnPolicy build() {
-            final var o = new RealmWebAuthnPolicy();
-            o.acceptableAaguids = acceptableAaguids;
-            o.attestationConveyancePreference = attestationConveyancePreference;
-            o.authenticatorAttachment = authenticatorAttachment;
-            o.avoidSameAuthenticatorRegister = avoidSameAuthenticatorRegister;
-            o.createTimeout = createTimeout;
-            o.relyingPartyEntityName = relyingPartyEntityName;
-            o.relyingPartyId = relyingPartyId;
-            o.requireResidentKey = requireResidentKey;
-            o.signatureAlgorithms = signatureAlgorithms;
-            o.userVerificationRequirement = userVerificationRequirement;
-            return o;
+            final var _resultValue = new RealmWebAuthnPolicy();
+            _resultValue.acceptableAaguids = acceptableAaguids;
+            _resultValue.attestationConveyancePreference = attestationConveyancePreference;
+            _resultValue.authenticatorAttachment = authenticatorAttachment;
+            _resultValue.avoidSameAuthenticatorRegister = avoidSameAuthenticatorRegister;
+            _resultValue.createTimeout = createTimeout;
+            _resultValue.relyingPartyEntityName = relyingPartyEntityName;
+            _resultValue.relyingPartyId = relyingPartyId;
+            _resultValue.requireResidentKey = requireResidentKey;
+            _resultValue.signatureAlgorithms = signatureAlgorithms;
+            _resultValue.userVerificationRequirement = userVerificationRequirement;
+            return _resultValue;
         }
     }
 }

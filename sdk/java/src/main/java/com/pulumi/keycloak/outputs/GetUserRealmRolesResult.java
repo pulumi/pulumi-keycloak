@@ -91,12 +91,12 @@ public final class GetUserRealmRolesResult {
             return this;
         }
         public GetUserRealmRolesResult build() {
-            final var o = new GetUserRealmRolesResult();
-            o.id = id;
-            o.realmId = realmId;
-            o.roleNames = roleNames;
-            o.userId = userId;
-            return o;
+            final var _resultValue = new GetUserRealmRolesResult();
+            _resultValue.id = id;
+            _resultValue.realmId = realmId;
+            _resultValue.roleNames = roleNames;
+            _resultValue.userId = userId;
+            return _resultValue;
         }
     }
 }

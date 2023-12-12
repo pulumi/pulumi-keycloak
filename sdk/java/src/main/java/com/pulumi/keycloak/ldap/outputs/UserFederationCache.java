@@ -125,13 +125,13 @@ public final class UserFederationCache {
             return this;
         }
         public UserFederationCache build() {
-            final var o = new UserFederationCache();
-            o.evictionDay = evictionDay;
-            o.evictionHour = evictionHour;
-            o.evictionMinute = evictionMinute;
-            o.maxLifespan = maxLifespan;
-            o.policy = policy;
-            return o;
+            final var _resultValue = new UserFederationCache();
+            _resultValue.evictionDay = evictionDay;
+            _resultValue.evictionHour = evictionHour;
+            _resultValue.evictionMinute = evictionMinute;
+            _resultValue.maxLifespan = maxLifespan;
+            _resultValue.policy = policy;
+            return _resultValue;
         }
     }
 }
