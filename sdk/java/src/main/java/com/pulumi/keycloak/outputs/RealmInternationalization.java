@@ -69,10 +69,10 @@ public final class RealmInternationalization {
             return supportedLocales(List.of(supportedLocales));
         }
         public RealmInternationalization build() {
-            final var o = new RealmInternationalization();
-            o.defaultLocale = defaultLocale;
-            o.supportedLocales = supportedLocales;
-            return o;
+            final var _resultValue = new RealmInternationalization();
+            _resultValue.defaultLocale = defaultLocale;
+            _resultValue.supportedLocales = supportedLocales;
+            return _resultValue;
         }
     }
 }

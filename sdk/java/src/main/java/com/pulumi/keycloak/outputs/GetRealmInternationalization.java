@@ -53,10 +53,10 @@ public final class GetRealmInternationalization {
             return supportedLocales(List.of(supportedLocales));
         }
         public GetRealmInternationalization build() {
-            final var o = new GetRealmInternationalization();
-            o.defaultLocale = defaultLocale;
-            o.supportedLocales = supportedLocales;
-            return o;
+            final var _resultValue = new GetRealmInternationalization();
+            _resultValue.defaultLocale = defaultLocale;
+            _resultValue.supportedLocales = supportedLocales;
+            return _resultValue;
         }
     }
 }

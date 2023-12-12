@@ -94,14 +94,14 @@ public final class GetRealmOtpPolicy {
             return this;
         }
         public GetRealmOtpPolicy build() {
-            final var o = new GetRealmOtpPolicy();
-            o.algorithm = algorithm;
-            o.digits = digits;
-            o.initialCounter = initialCounter;
-            o.lookAheadWindow = lookAheadWindow;
-            o.period = period;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetRealmOtpPolicy();
+            _resultValue.algorithm = algorithm;
+            _resultValue.digits = digits;
+            _resultValue.initialCounter = initialCounter;
+            _resultValue.lookAheadWindow = lookAheadWindow;
+            _resultValue.period = period;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

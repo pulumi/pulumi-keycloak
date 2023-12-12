@@ -67,10 +67,10 @@ public final class ClientAuthenticationFlowBindingOverrides {
             return this;
         }
         public ClientAuthenticationFlowBindingOverrides build() {
-            final var o = new ClientAuthenticationFlowBindingOverrides();
-            o.browserId = browserId;
-            o.directGrantId = directGrantId;
-            return o;
+            final var _resultValue = new ClientAuthenticationFlowBindingOverrides();
+            _resultValue.browserId = browserId;
+            _resultValue.directGrantId = directGrantId;
+            return _resultValue;
         }
     }
 }

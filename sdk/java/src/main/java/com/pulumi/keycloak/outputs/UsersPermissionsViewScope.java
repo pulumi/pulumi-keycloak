@@ -66,11 +66,11 @@ public final class UsersPermissionsViewScope {
             return policies(List.of(policies));
         }
         public UsersPermissionsViewScope build() {
-            final var o = new UsersPermissionsViewScope();
-            o.decisionStrategy = decisionStrategy;
-            o.description = description;
-            o.policies = policies;
-            return o;
+            final var _resultValue = new UsersPermissionsViewScope();
+            _resultValue.decisionStrategy = decisionStrategy;
+            _resultValue.description = description;
+            _resultValue.policies = policies;
+            return _resultValue;
         }
     }
 }

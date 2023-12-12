@@ -65,10 +65,10 @@ public final class RealmSmtpServerAuth {
             return this;
         }
         public RealmSmtpServerAuth build() {
-            final var o = new RealmSmtpServerAuth();
-            o.password = password;
-            o.username = username;
-            return o;
+            final var _resultValue = new RealmSmtpServerAuth();
+            _resultValue.password = password;
+            _resultValue.username = username;
+            return _resultValue;
         }
     }
 }

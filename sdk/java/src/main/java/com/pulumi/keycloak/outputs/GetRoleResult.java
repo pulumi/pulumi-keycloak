@@ -128,15 +128,15 @@ public final class GetRoleResult {
             return this;
         }
         public GetRoleResult build() {
-            final var o = new GetRoleResult();
-            o.attributes = attributes;
-            o.clientId = clientId;
-            o.compositeRoles = compositeRoles;
-            o.description = description;
-            o.id = id;
-            o.name = name;
-            o.realmId = realmId;
-            return o;
+            final var _resultValue = new GetRoleResult();
+            _resultValue.attributes = attributes;
+            _resultValue.clientId = clientId;
+            _resultValue.compositeRoles = compositeRoles;
+            _resultValue.description = description;
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.realmId = realmId;
+            return _resultValue;
         }
     }
 }

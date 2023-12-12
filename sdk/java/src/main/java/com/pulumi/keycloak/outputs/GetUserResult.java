@@ -208,18 +208,18 @@ public final class GetUserResult {
             return this;
         }
         public GetUserResult build() {
-            final var o = new GetUserResult();
-            o.attributes = attributes;
-            o.email = email;
-            o.emailVerified = emailVerified;
-            o.enabled = enabled;
-            o.federatedIdentities = federatedIdentities;
-            o.firstName = firstName;
-            o.id = id;
-            o.lastName = lastName;
-            o.realmId = realmId;
-            o.username = username;
-            return o;
+            final var _resultValue = new GetUserResult();
+            _resultValue.attributes = attributes;
+            _resultValue.email = email;
+            _resultValue.emailVerified = emailVerified;
+            _resultValue.enabled = enabled;
+            _resultValue.federatedIdentities = federatedIdentities;
+            _resultValue.firstName = firstName;
+            _resultValue.id = id;
+            _resultValue.lastName = lastName;
+            _resultValue.realmId = realmId;
+            _resultValue.username = username;
+            return _resultValue;
         }
     }
 }

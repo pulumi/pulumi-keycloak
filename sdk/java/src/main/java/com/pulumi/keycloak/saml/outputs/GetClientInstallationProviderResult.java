@@ -98,13 +98,13 @@ public final class GetClientInstallationProviderResult {
             return this;
         }
         public GetClientInstallationProviderResult build() {
-            final var o = new GetClientInstallationProviderResult();
-            o.clientId = clientId;
-            o.id = id;
-            o.providerId = providerId;
-            o.realmId = realmId;
-            o.value = value;
-            return o;
+            final var _resultValue = new GetClientInstallationProviderResult();
+            _resultValue.clientId = clientId;
+            _resultValue.id = id;
+            _resultValue.providerId = providerId;
+            _resultValue.realmId = realmId;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

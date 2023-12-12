@@ -79,12 +79,12 @@ public final class GetAuthenticationExecutionResult {
             return this;
         }
         public GetAuthenticationExecutionResult build() {
-            final var o = new GetAuthenticationExecutionResult();
-            o.id = id;
-            o.parentFlowAlias = parentFlowAlias;
-            o.providerId = providerId;
-            o.realmId = realmId;
-            return o;
+            final var _resultValue = new GetAuthenticationExecutionResult();
+            _resultValue.id = id;
+            _resultValue.parentFlowAlias = parentFlowAlias;
+            _resultValue.providerId = providerId;
+            _resultValue.realmId = realmId;
+            return _resultValue;
         }
     }
 }

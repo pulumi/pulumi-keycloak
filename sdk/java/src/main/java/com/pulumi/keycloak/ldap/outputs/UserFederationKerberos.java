@@ -106,12 +106,12 @@ public final class UserFederationKerberos {
             return this;
         }
         public UserFederationKerberos build() {
-            final var o = new UserFederationKerberos();
-            o.kerberosRealm = kerberosRealm;
-            o.keyTab = keyTab;
-            o.serverPrincipal = serverPrincipal;
-            o.useKerberosForPasswordAuthentication = useKerberosForPasswordAuthentication;
-            return o;
+            final var _resultValue = new UserFederationKerberos();
+            _resultValue.kerberosRealm = kerberosRealm;
+            _resultValue.keyTab = keyTab;
+            _resultValue.serverPrincipal = serverPrincipal;
+            _resultValue.useKerberosForPasswordAuthentication = useKerberosForPasswordAuthentication;
+            return _resultValue;
         }
     }
 }

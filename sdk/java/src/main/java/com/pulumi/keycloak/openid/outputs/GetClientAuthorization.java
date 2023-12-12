@@ -72,12 +72,12 @@ public final class GetClientAuthorization {
             return this;
         }
         public GetClientAuthorization build() {
-            final var o = new GetClientAuthorization();
-            o.allowRemoteResourceManagement = allowRemoteResourceManagement;
-            o.decisionStrategy = decisionStrategy;
-            o.keepDefaults = keepDefaults;
-            o.policyEnforcementMode = policyEnforcementMode;
-            return o;
+            final var _resultValue = new GetClientAuthorization();
+            _resultValue.allowRemoteResourceManagement = allowRemoteResourceManagement;
+            _resultValue.decisionStrategy = decisionStrategy;
+            _resultValue.keepDefaults = keepDefaults;
+            _resultValue.policyEnforcementMode = policyEnforcementMode;
+            return _resultValue;
         }
     }
 }

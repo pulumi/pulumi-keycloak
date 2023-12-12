@@ -66,11 +66,11 @@ public final class UsersPermissionsManageGroupMembershipScope {
             return policies(List.of(policies));
         }
         public UsersPermissionsManageGroupMembershipScope build() {
-            final var o = new UsersPermissionsManageGroupMembershipScope();
-            o.decisionStrategy = decisionStrategy;
-            o.description = description;
-            o.policies = policies;
-            return o;
+            final var _resultValue = new UsersPermissionsManageGroupMembershipScope();
+            _resultValue.decisionStrategy = decisionStrategy;
+            _resultValue.description = description;
+            _resultValue.policies = policies;
+            return _resultValue;
         }
     }
 }

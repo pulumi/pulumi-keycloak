@@ -222,19 +222,19 @@ public final class GetClientAuthorizationPolicyResult {
             return this;
         }
         public GetClientAuthorizationPolicyResult build() {
-            final var o = new GetClientAuthorizationPolicyResult();
-            o.decisionStrategy = decisionStrategy;
-            o.id = id;
-            o.logic = logic;
-            o.name = name;
-            o.owner = owner;
-            o.policies = policies;
-            o.realmId = realmId;
-            o.resourceServerId = resourceServerId;
-            o.resources = resources;
-            o.scopes = scopes;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetClientAuthorizationPolicyResult();
+            _resultValue.decisionStrategy = decisionStrategy;
+            _resultValue.id = id;
+            _resultValue.logic = logic;
+            _resultValue.name = name;
+            _resultValue.owner = owner;
+            _resultValue.policies = policies;
+            _resultValue.realmId = realmId;
+            _resultValue.resourceServerId = resourceServerId;
+            _resultValue.resources = resources;
+            _resultValue.scopes = scopes;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

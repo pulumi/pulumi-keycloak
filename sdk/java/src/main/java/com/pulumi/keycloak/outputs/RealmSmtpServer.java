@@ -221,18 +221,18 @@ public final class RealmSmtpServer {
             return this;
         }
         public RealmSmtpServer build() {
-            final var o = new RealmSmtpServer();
-            o.auth = auth;
-            o.envelopeFrom = envelopeFrom;
-            o.from = from;
-            o.fromDisplayName = fromDisplayName;
-            o.host = host;
-            o.port = port;
-            o.replyTo = replyTo;
-            o.replyToDisplayName = replyToDisplayName;
-            o.ssl = ssl;
-            o.starttls = starttls;
-            return o;
+            final var _resultValue = new RealmSmtpServer();
+            _resultValue.auth = auth;
+            _resultValue.envelopeFrom = envelopeFrom;
+            _resultValue.from = from;
+            _resultValue.fromDisplayName = fromDisplayName;
+            _resultValue.host = host;
+            _resultValue.port = port;
+            _resultValue.replyTo = replyTo;
+            _resultValue.replyToDisplayName = replyToDisplayName;
+            _resultValue.ssl = ssl;
+            _resultValue.starttls = starttls;
+            return _resultValue;
         }
     }
 }

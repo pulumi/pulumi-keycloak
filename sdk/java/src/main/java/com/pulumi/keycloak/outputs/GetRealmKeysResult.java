@@ -118,13 +118,13 @@ public final class GetRealmKeysResult {
             return statuses(List.of(statuses));
         }
         public GetRealmKeysResult build() {
-            final var o = new GetRealmKeysResult();
-            o.algorithms = algorithms;
-            o.id = id;
-            o.keys = keys;
-            o.realmId = realmId;
-            o.statuses = statuses;
-            return o;
+            final var _resultValue = new GetRealmKeysResult();
+            _resultValue.algorithms = algorithms;
+            _resultValue.id = id;
+            _resultValue.keys = keys;
+            _resultValue.realmId = realmId;
+            _resultValue.statuses = statuses;
+            return _resultValue;
         }
     }
 }

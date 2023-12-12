@@ -52,10 +52,10 @@ public final class RealmSecurityDefenses {
             return this;
         }
         public RealmSecurityDefenses build() {
-            final var o = new RealmSecurityDefenses();
-            o.bruteForceDetection = bruteForceDetection;
-            o.headers = headers;
-            return o;
+            final var _resultValue = new RealmSecurityDefenses();
+            _resultValue.bruteForceDetection = bruteForceDetection;
+            _resultValue.headers = headers;
+            return _resultValue;
         }
     }
 }

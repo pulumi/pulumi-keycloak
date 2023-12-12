@@ -104,15 +104,15 @@ public final class GetRealmSecurityDefenseHeader {
             return this;
         }
         public GetRealmSecurityDefenseHeader build() {
-            final var o = new GetRealmSecurityDefenseHeader();
-            o.contentSecurityPolicy = contentSecurityPolicy;
-            o.contentSecurityPolicyReportOnly = contentSecurityPolicyReportOnly;
-            o.strictTransportSecurity = strictTransportSecurity;
-            o.xContentTypeOptions = xContentTypeOptions;
-            o.xFrameOptions = xFrameOptions;
-            o.xRobotsTag = xRobotsTag;
-            o.xXssProtection = xXssProtection;
-            return o;
+            final var _resultValue = new GetRealmSecurityDefenseHeader();
+            _resultValue.contentSecurityPolicy = contentSecurityPolicy;
+            _resultValue.contentSecurityPolicyReportOnly = contentSecurityPolicyReportOnly;
+            _resultValue.strictTransportSecurity = strictTransportSecurity;
+            _resultValue.xContentTypeOptions = xContentTypeOptions;
+            _resultValue.xFrameOptions = xFrameOptions;
+            _resultValue.xRobotsTag = xRobotsTag;
+            _resultValue.xXssProtection = xXssProtection;
+            return _resultValue;
         }
     }
 }

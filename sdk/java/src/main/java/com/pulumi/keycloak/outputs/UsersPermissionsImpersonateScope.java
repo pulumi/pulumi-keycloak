@@ -66,11 +66,11 @@ public final class UsersPermissionsImpersonateScope {
             return policies(List.of(policies));
         }
         public UsersPermissionsImpersonateScope build() {
-            final var o = new UsersPermissionsImpersonateScope();
-            o.decisionStrategy = decisionStrategy;
-            o.description = description;
-            o.policies = policies;
-            return o;
+            final var _resultValue = new UsersPermissionsImpersonateScope();
+            _resultValue.decisionStrategy = decisionStrategy;
+            _resultValue.description = description;
+            _resultValue.policies = policies;
+            return _resultValue;
         }
     }
 }
