@@ -4,6 +4,41 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Allows for creating and managing hardcoded attribute mappers for Keycloak identity provider.
+ *
+ * The identity provider hardcoded attribute mapper will set the specified value to the IDP attribute.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const oidcIdentityProvider = new keycloak.oidc.IdentityProvider("oidcIdentityProvider", {
+ *     realm: realm.id,
+ *     alias: "my-idp",
+ *     authorizationUrl: "https://authorizationurl.com",
+ *     clientId: "clientID",
+ *     clientSecret: "clientSecret",
+ *     tokenUrl: "https://tokenurl.com",
+ * });
+ * const oidcHardcodedAttributeIdentityProviderMapper = new keycloak.HardcodedAttributeIdentityProviderMapper("oidcHardcodedAttributeIdentityProviderMapper", {
+ *     realm: realm.id,
+ *     identityProviderAlias: oidcIdentityProvider.alias,
+ *     attributeName: "attribute",
+ *     attributeValue: "value",
+ *     userSession: true,
+ *     extraConfig: {
+ *         syncMode: "INHERIT",
+ *     },
+ * });
+ * ```
+ */
 export class HardcodedAttributeIdentityProviderMapper extends pulumi.CustomResource {
     /**
      * Get an existing HardcodedAttributeIdentityProviderMapper resource's state with the given name, ID, and optional extra
@@ -33,28 +68,28 @@ export class HardcodedAttributeIdentityProviderMapper extends pulumi.CustomResou
     }
 
     /**
-     * OIDC Claim
+     * The name of the IDP attribute to set.
      */
     public readonly attributeName!: pulumi.Output<string | undefined>;
     /**
-     * User Attribute
+     * The value to set to the attribute. You can hardcode any value like 'foo'.
      */
     public readonly attributeValue!: pulumi.Output<string | undefined>;
     public readonly extraConfig!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * IDP Alias
+     * The IDP alias of the attribute to set.
      */
     public readonly identityProviderAlias!: pulumi.Output<string>;
     /**
-     * IDP Mapper Name
+     * Display name of this mapper when displayed in the console.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Realm Name
+     * The realm ID that this mapper will exist in.
      */
     public readonly realm!: pulumi.Output<string>;
     /**
-     * Is Attribute Related To a User Session
+     * Is Attribute related to a User Session.
      */
     public readonly userSession!: pulumi.Output<boolean>;
 
@@ -107,28 +142,28 @@ export class HardcodedAttributeIdentityProviderMapper extends pulumi.CustomResou
  */
 export interface HardcodedAttributeIdentityProviderMapperState {
     /**
-     * OIDC Claim
+     * The name of the IDP attribute to set.
      */
     attributeName?: pulumi.Input<string>;
     /**
-     * User Attribute
+     * The value to set to the attribute. You can hardcode any value like 'foo'.
      */
     attributeValue?: pulumi.Input<string>;
     extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
-     * IDP Alias
+     * The IDP alias of the attribute to set.
      */
     identityProviderAlias?: pulumi.Input<string>;
     /**
-     * IDP Mapper Name
+     * Display name of this mapper when displayed in the console.
      */
     name?: pulumi.Input<string>;
     /**
-     * Realm Name
+     * The realm ID that this mapper will exist in.
      */
     realm?: pulumi.Input<string>;
     /**
-     * Is Attribute Related To a User Session
+     * Is Attribute related to a User Session.
      */
     userSession?: pulumi.Input<boolean>;
 }
@@ -138,28 +173,28 @@ export interface HardcodedAttributeIdentityProviderMapperState {
  */
 export interface HardcodedAttributeIdentityProviderMapperArgs {
     /**
-     * OIDC Claim
+     * The name of the IDP attribute to set.
      */
     attributeName?: pulumi.Input<string>;
     /**
-     * User Attribute
+     * The value to set to the attribute. You can hardcode any value like 'foo'.
      */
     attributeValue?: pulumi.Input<string>;
     extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
-     * IDP Alias
+     * The IDP alias of the attribute to set.
      */
     identityProviderAlias: pulumi.Input<string>;
     /**
-     * IDP Mapper Name
+     * Display name of this mapper when displayed in the console.
      */
     name?: pulumi.Input<string>;
     /**
-     * Realm Name
+     * The realm ID that this mapper will exist in.
      */
     realm: pulumi.Input<string>;
     /**
-     * Is Attribute Related To a User Session
+     * Is Attribute related to a User Session.
      */
     userSession: pulumi.Input<boolean>;
 }

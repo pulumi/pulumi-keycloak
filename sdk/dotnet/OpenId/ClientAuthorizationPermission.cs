@@ -9,6 +9,108 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    /// <summary>
+    /// ## # keycloak.openid.ClientAuthorizationPermission
+    /// 
+    /// Allows you to manage openid Client Authorization Permissions.
+    /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var testClient = new Keycloak.OpenId.Client("testClient", new()
+    ///     {
+    ///         ClientId = "client_id",
+    ///         RealmId = realm.Id,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ServiceAccountsEnabled = true,
+    ///         Authorization = new Keycloak.OpenId.Inputs.ClientAuthorizationArgs
+    ///         {
+    ///             PolicyEnforcementMode = "ENFORCING",
+    ///         },
+    ///     });
+    /// 
+    ///     var @default = Keycloak.OpenId.GetClientAuthorizationPolicy.Invoke(new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ResourceServerId = testClient.ResourceServerId,
+    ///         Name = "default",
+    ///     });
+    /// 
+    ///     var testClientAuthorizationResource = new Keycloak.OpenId.ClientAuthorizationResource("testClientAuthorizationResource", new()
+    ///     {
+    ///         ResourceServerId = testClient.ResourceServerId,
+    ///         RealmId = realm.Id,
+    ///         Uris = new[]
+    ///         {
+    ///             "/endpoint/*",
+    ///         },
+    ///     });
+    /// 
+    ///     var testClientAuthorizationScope = new Keycloak.OpenId.ClientAuthorizationScope("testClientAuthorizationScope", new()
+    ///     {
+    ///         ResourceServerId = testClient.ResourceServerId,
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var testClientAuthorizationPermission = new Keycloak.OpenId.ClientAuthorizationPermission("testClientAuthorizationPermission", new()
+    ///     {
+    ///         ResourceServerId = testClient.ResourceServerId,
+    ///         RealmId = realm.Id,
+    ///         Policies = new[]
+    ///         {
+    ///             @default.Apply(@default =&gt; @default.Apply(getClientAuthorizationPolicyResult =&gt; getClientAuthorizationPolicyResult.Id)),
+    ///         },
+    ///         Resources = new[]
+    ///         {
+    ///             testClientAuthorizationResource.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm this group exists in.
+    /// - `resource_server_id` - (Required) The ID of the resource server.
+    /// - `name` - (Required) The name of the permission.
+    /// - `description` - (Optional) A description for the authorization permission.
+    /// - `decision_strategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`. Defaults to `UNANIMOUS`.
+    /// - `policies` - (Optional) A list of policy IDs that must be applied to the scopes defined by this permission.
+    /// - `resources` - (Optional) A list of resource IDs that this permission must be applied to. Conflicts with `resource_type`.
+    /// - `resource_type` - (Optional) When specified, this permission will be evaluated for all instances of a given resource type. Conflicts with `resources`.
+    /// - `scopes` - (Optional) A list of scope IDs that this permission must be applied to.
+    /// - `type` - (Optional) The type of permission, can be one of `resource` or `scope`.
+    /// 
+    /// ### Attributes Reference
+    /// 
+    /// In addition to the arguments listed above, the following computed attributes are exported:
+    /// 
+    /// - `id` - Permission ID representing the permission.
+    /// 
+    /// ## Import
+    /// 
+    /// Client authorization permissions can be imported using the format`{{realmId}}/{{resourceServerId}}/{{permissionId}}`. Examplebash
+    /// 
+    /// ```sh
+    ///  $ pulumi import keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9
+    /// ```
+    /// </summary>
     [KeycloakResourceType("keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission")]
     public partial class ClientAuthorizationPermission : global::Pulumi.CustomResource
     {

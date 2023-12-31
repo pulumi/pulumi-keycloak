@@ -12,16 +12,88 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows for creating and managing hardcoded group mappers for Keycloak users federated via LDAP.
+//
+// The LDAP hardcoded group mapper will grant a specified Keycloak group to each Keycloak user linked with LDAP.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/ldap"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
+//				RealmId:               realm.ID(),
+//				UsernameLdapAttribute: pulumi.String("cn"),
+//				RdnLdapAttribute:      pulumi.String("cn"),
+//				UuidLdapAttribute:     pulumi.String("entryDN"),
+//				UserObjectClasses: pulumi.StringArray{
+//					pulumi.String("simpleSecurityObject"),
+//					pulumi.String("organizationalRole"),
+//				},
+//				ConnectionUrl:  pulumi.String("ldap://openldap"),
+//				UsersDn:        pulumi.String("dc=example,dc=org"),
+//				BindDn:         pulumi.String("cn=admin,dc=example,dc=org"),
+//				BindCredential: pulumi.String("admin"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			realmGroup, err := keycloak.NewGroup(ctx, "realmGroup", &keycloak.GroupArgs{
+//				RealmId: realm.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ldap.NewHardcodedGroupMapper(ctx, "assignGroupToUsers", &ldap.HardcodedGroupMapperArgs{
+//				RealmId:              realm.ID(),
+//				LdapUserFederationId: ldapUserFederation.ID(),
+//				Group:                realmGroup.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
+//
+// ```sh
+//
+//	$ pulumi import keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper assign_group_to_users my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+//
+// ```
 type HardcodedGroupMapper struct {
 	pulumi.CustomResourceState
 
-	// Group to grant to user.
+	// The name of the group which should be assigned to the users.
 	Group pulumi.StringOutput `pulumi:"group"`
-	// The ldap user federation provider to attach this mapper to.
+	// The ID of the LDAP user federation provider to attach this mapper to.
 	LdapUserFederationId pulumi.StringOutput `pulumi:"ldapUserFederationId"`
-	// Display name of the mapper when displayed in the console.
+	// Display name of this mapper when displayed in the console.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The realm in which the ldap user federation provider exists.
+	// The realm that this LDAP mapper will exist in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
@@ -64,24 +136,24 @@ func GetHardcodedGroupMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering HardcodedGroupMapper resources.
 type hardcodedGroupMapperState struct {
-	// Group to grant to user.
+	// The name of the group which should be assigned to the users.
 	Group *string `pulumi:"group"`
-	// The ldap user federation provider to attach this mapper to.
+	// The ID of the LDAP user federation provider to attach this mapper to.
 	LdapUserFederationId *string `pulumi:"ldapUserFederationId"`
-	// Display name of the mapper when displayed in the console.
+	// Display name of this mapper when displayed in the console.
 	Name *string `pulumi:"name"`
-	// The realm in which the ldap user federation provider exists.
+	// The realm that this LDAP mapper will exist in.
 	RealmId *string `pulumi:"realmId"`
 }
 
 type HardcodedGroupMapperState struct {
-	// Group to grant to user.
+	// The name of the group which should be assigned to the users.
 	Group pulumi.StringPtrInput
-	// The ldap user federation provider to attach this mapper to.
+	// The ID of the LDAP user federation provider to attach this mapper to.
 	LdapUserFederationId pulumi.StringPtrInput
-	// Display name of the mapper when displayed in the console.
+	// Display name of this mapper when displayed in the console.
 	Name pulumi.StringPtrInput
-	// The realm in which the ldap user federation provider exists.
+	// The realm that this LDAP mapper will exist in.
 	RealmId pulumi.StringPtrInput
 }
 
@@ -90,25 +162,25 @@ func (HardcodedGroupMapperState) ElementType() reflect.Type {
 }
 
 type hardcodedGroupMapperArgs struct {
-	// Group to grant to user.
+	// The name of the group which should be assigned to the users.
 	Group string `pulumi:"group"`
-	// The ldap user federation provider to attach this mapper to.
+	// The ID of the LDAP user federation provider to attach this mapper to.
 	LdapUserFederationId string `pulumi:"ldapUserFederationId"`
-	// Display name of the mapper when displayed in the console.
+	// Display name of this mapper when displayed in the console.
 	Name *string `pulumi:"name"`
-	// The realm in which the ldap user federation provider exists.
+	// The realm that this LDAP mapper will exist in.
 	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a HardcodedGroupMapper resource.
 type HardcodedGroupMapperArgs struct {
-	// Group to grant to user.
+	// The name of the group which should be assigned to the users.
 	Group pulumi.StringInput
-	// The ldap user federation provider to attach this mapper to.
+	// The ID of the LDAP user federation provider to attach this mapper to.
 	LdapUserFederationId pulumi.StringInput
-	// Display name of the mapper when displayed in the console.
+	// Display name of this mapper when displayed in the console.
 	Name pulumi.StringPtrInput
-	// The realm in which the ldap user federation provider exists.
+	// The realm that this LDAP mapper will exist in.
 	RealmId pulumi.StringInput
 }
 
@@ -199,22 +271,22 @@ func (o HardcodedGroupMapperOutput) ToHardcodedGroupMapperOutputWithContext(ctx 
 	return o
 }
 
-// Group to grant to user.
+// The name of the group which should be assigned to the users.
 func (o HardcodedGroupMapperOutput) Group() pulumi.StringOutput {
 	return o.ApplyT(func(v *HardcodedGroupMapper) pulumi.StringOutput { return v.Group }).(pulumi.StringOutput)
 }
 
-// The ldap user federation provider to attach this mapper to.
+// The ID of the LDAP user federation provider to attach this mapper to.
 func (o HardcodedGroupMapperOutput) LdapUserFederationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *HardcodedGroupMapper) pulumi.StringOutput { return v.LdapUserFederationId }).(pulumi.StringOutput)
 }
 
-// Display name of the mapper when displayed in the console.
+// Display name of this mapper when displayed in the console.
 func (o HardcodedGroupMapperOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *HardcodedGroupMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The realm in which the ldap user federation provider exists.
+// The realm that this LDAP mapper will exist in.
 func (o HardcodedGroupMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *HardcodedGroupMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }

@@ -6,6 +6,7 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from .audience_protocol_mapper import *
+from .audience_resolve_protocol_mapper import *
 from .audience_resolve_protocol_mappter import *
 from .client import *
 from .client_aggregate_policy import *

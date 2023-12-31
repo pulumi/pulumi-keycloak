@@ -22,6 +22,143 @@ import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * ## # keycloak.openid.ClientPermissions
+ * 
+ * Allows you to manage all openid client Scope Based Permissions.
+ * 
+ * This is part of a preview keycloak feature. You need to enable this feature to be able to use this resource. More
+ * information about enabling the preview feature can be found
+ * here: https://www.keycloak.org/docs/latest/securing_apps/index.html#_token-exchange
+ * 
+ * When enabling Openid Client Permissions, Keycloak does several things automatically:
+ * 
+ * 1. Enable Authorization on build-in realm-management client
+ * 2. Create scopes &#34;view&#34;, &#34;manage&#34;, &#34;configure&#34;, &#34;map-roles&#34;, &#34;map-roles-client-scope&#34;, &#34;map-roles-composite&#34;, &#34;
+ *    token-exchange&#34;
+ * 3. Create a resource representing the openid client
+ * 4. Create all scope based permission for the scopes and openid client resource
+ * 
+ * If the realm-management Authorization is not enable, you have to ceate a dependency (`depends_on`) with the policy and
+ * the openid client.
+ * 
+ * ### Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.openid.Client;
+ * import com.pulumi.keycloak.openid.ClientArgs;
+ * import com.pulumi.keycloak.openid.OpenidFunctions;
+ * import com.pulumi.keycloak.openid.inputs.GetClientArgs;
+ * import com.pulumi.keycloak.User;
+ * import com.pulumi.keycloak.UserArgs;
+ * import com.pulumi.keycloak.openid.ClientUserPolicy;
+ * import com.pulumi.keycloak.openid.ClientUserPolicyArgs;
+ * import com.pulumi.keycloak.openid.ClientPermissions;
+ * import com.pulumi.keycloak.openid.ClientPermissionsArgs;
+ * import com.pulumi.keycloak.openid.inputs.ClientPermissionsViewScopeArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
+ *             .realm(&#34;realm&#34;)
+ *             .build());
+ * 
+ *         var myOpenidClient = new Client(&#34;myOpenidClient&#34;, ClientArgs.builder()        
+ *             .realmId(realm.id())
+ *             .clientId(&#34;my_openid_client&#34;)
+ *             .clientSecret(&#34;secret&#34;)
+ *             .accessType(&#34;CONFIDENTIAL&#34;)
+ *             .standardFlowEnabled(true)
+ *             .validRedirectUris(&#34;http://localhost:8080/*&#34;)
+ *             .build());
+ * 
+ *         final var realmManagement = OpenidFunctions.getClient(GetClientArgs.builder()
+ *             .realmId(realm.id())
+ *             .clientId(&#34;realm-management&#34;)
+ *             .build());
+ * 
+ *         var testUser = new User(&#34;testUser&#34;, UserArgs.builder()        
+ *             .realmId(realm.id())
+ *             .username(&#34;test-user&#34;)
+ *             .email(&#34;test-user@fakedomain.com&#34;)
+ *             .firstName(&#34;Testy&#34;)
+ *             .lastName(&#34;Tester&#34;)
+ *             .build());
+ * 
+ *         var testClientUserPolicy = new ClientUserPolicy(&#34;testClientUserPolicy&#34;, ClientUserPolicyArgs.builder()        
+ *             .resourceServerId(realmManagement.applyValue(getClientResult -&gt; getClientResult).applyValue(realmManagement -&gt; realmManagement.applyValue(getClientResult -&gt; getClientResult.id())))
+ *             .realmId(realm.id())
+ *             .users(testUser.id())
+ *             .logic(&#34;POSITIVE&#34;)
+ *             .decisionStrategy(&#34;UNANIMOUS&#34;)
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(myOpenidClient)
+ *                 .build());
+ * 
+ *         var myPermission = new ClientPermissions(&#34;myPermission&#34;, ClientPermissionsArgs.builder()        
+ *             .realmId(realm.id())
+ *             .clientId(myOpenidClient.id())
+ *             .viewScope(ClientPermissionsViewScopeArgs.builder()
+ *                 .policies(testClientUserPolicy.id())
+ *                 .description(&#34;my description&#34;)
+ *                 .decisionStrategy(&#34;UNANIMOUS&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realm_id` - (Required) The realm this group exists in.
+ * - `client_id` - (Required) The id of the client that provides the role.
+ * 
+ * #### Permission Scopes
+ * 
+ * Permission scopes can be defined using the following attributes:
+ * 
+ * - `view_scope`
+ * - `manage_scope`
+ * - `configure_scope`
+ * - `map_roles_scope`
+ * - `map_roles_client_scope_scope`
+ * - `map_roles_composite_scope`
+ * - `token_exchange_scope`
+ * 
+ * Each of these attributes have the following schema:
+ * 
+ * - `policies` - (Optional) A list of policy IDs
+ * - `description` - (Optional) A description for the permission scope
+ * - `decision_strategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+ * 
+ * ### Attributes Reference
+ * 
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ * 
+ * - `authorization_resource_server_id` - Resource server id representing the realm management client on which this
+ *   permission is managed.
+ * 
+ */
 @ResourceType(type="keycloak:openid/clientPermissions:ClientPermissions")
 public class ClientPermissions extends com.pulumi.resources.CustomResource {
     /**

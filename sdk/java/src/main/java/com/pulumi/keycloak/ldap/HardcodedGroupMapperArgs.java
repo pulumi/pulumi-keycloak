@@ -16,14 +16,14 @@ public final class HardcodedGroupMapperArgs extends com.pulumi.resources.Resourc
     public static final HardcodedGroupMapperArgs Empty = new HardcodedGroupMapperArgs();
 
     /**
-     * Group to grant to user.
+     * The name of the group which should be assigned to the users.
      * 
      */
     @Import(name="group", required=true)
     private Output<String> group;
 
     /**
-     * @return Group to grant to user.
+     * @return The name of the group which should be assigned to the users.
      * 
      */
     public Output<String> group() {
@@ -31,14 +31,14 @@ public final class HardcodedGroupMapperArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The ldap user federation provider to attach this mapper to.
+     * The ID of the LDAP user federation provider to attach this mapper to.
      * 
      */
     @Import(name="ldapUserFederationId", required=true)
     private Output<String> ldapUserFederationId;
 
     /**
-     * @return The ldap user federation provider to attach this mapper to.
+     * @return The ID of the LDAP user federation provider to attach this mapper to.
      * 
      */
     public Output<String> ldapUserFederationId() {
@@ -46,14 +46,14 @@ public final class HardcodedGroupMapperArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Display name of the mapper when displayed in the console.
+     * Display name of this mapper when displayed in the console.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Display name of the mapper when displayed in the console.
+     * @return Display name of this mapper when displayed in the console.
      * 
      */
     public Optional<Output<String>> name() {
@@ -61,14 +61,14 @@ public final class HardcodedGroupMapperArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The realm in which the ldap user federation provider exists.
+     * The realm that this LDAP mapper will exist in.
      * 
      */
     @Import(name="realmId", required=true)
     private Output<String> realmId;
 
     /**
-     * @return The realm in which the ldap user federation provider exists.
+     * @return The realm that this LDAP mapper will exist in.
      * 
      */
     public Output<String> realmId() {
@@ -103,7 +103,7 @@ public final class HardcodedGroupMapperArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param group Group to grant to user.
+         * @param group The name of the group which should be assigned to the users.
          * 
          * @return builder
          * 
@@ -114,7 +114,7 @@ public final class HardcodedGroupMapperArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param group Group to grant to user.
+         * @param group The name of the group which should be assigned to the users.
          * 
          * @return builder
          * 
@@ -124,7 +124,7 @@ public final class HardcodedGroupMapperArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param ldapUserFederationId The ldap user federation provider to attach this mapper to.
+         * @param ldapUserFederationId The ID of the LDAP user federation provider to attach this mapper to.
          * 
          * @return builder
          * 
@@ -135,7 +135,7 @@ public final class HardcodedGroupMapperArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param ldapUserFederationId The ldap user federation provider to attach this mapper to.
+         * @param ldapUserFederationId The ID of the LDAP user federation provider to attach this mapper to.
          * 
          * @return builder
          * 
@@ -145,7 +145,7 @@ public final class HardcodedGroupMapperArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param name Display name of the mapper when displayed in the console.
+         * @param name Display name of this mapper when displayed in the console.
          * 
          * @return builder
          * 
@@ -156,7 +156,7 @@ public final class HardcodedGroupMapperArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param name Display name of the mapper when displayed in the console.
+         * @param name Display name of this mapper when displayed in the console.
          * 
          * @return builder
          * 
@@ -166,7 +166,7 @@ public final class HardcodedGroupMapperArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param realmId The realm in which the ldap user federation provider exists.
+         * @param realmId The realm that this LDAP mapper will exist in.
          * 
          * @return builder
          * 
@@ -177,7 +177,7 @@ public final class HardcodedGroupMapperArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param realmId The realm in which the ldap user federation provider exists.
+         * @param realmId The realm that this LDAP mapper will exist in.
          * 
          * @return builder
          * 

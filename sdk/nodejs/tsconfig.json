@@ -63,6 +63,7 @@
         "oidc/identityProvider.ts",
         "oidc/index.ts",
         "openid/audienceProtocolMapper.ts",
+        "openid/audienceResolveProtocolMapper.ts",
         "openid/audienceResolveProtocolMappter.ts",
         "openid/client.ts",
         "openid/clientAggregatePolicy.ts",

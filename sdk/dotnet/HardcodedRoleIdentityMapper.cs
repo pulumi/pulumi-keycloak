@@ -9,6 +9,57 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    /// <summary>
+    /// Allows for creating and managing hardcoded role mappers for Keycloak identity provider.
+    /// 
+    /// The identity provider hardcoded role mapper grants a specified Keycloak role to each Keycloak user from the LDAP provider.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var oidcIdentityProvider = new Keycloak.Oidc.IdentityProvider("oidcIdentityProvider", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         Alias = "my-idp",
+    ///         AuthorizationUrl = "https://authorizationurl.com",
+    ///         ClientId = "clientID",
+    ///         ClientSecret = "clientSecret",
+    ///         TokenUrl = "https://tokenurl.com",
+    ///     });
+    /// 
+    ///     var realmRole = new Keycloak.Role("realmRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Description = "My Realm Role",
+    ///     });
+    /// 
+    ///     var oidcHardcodedRoleIdentityMapper = new Keycloak.HardcodedRoleIdentityMapper("oidcHardcodedRoleIdentityMapper", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         IdentityProviderAlias = oidcIdentityProvider.Alias,
+    ///         Role = "my-realm-role",
+    ///         ExtraConfig = 
+    ///         {
+    ///             { "syncMode", "INHERIT" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [KeycloakResourceType("keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper")]
     public partial class HardcodedRoleIdentityMapper : global::Pulumi.CustomResource
     {
@@ -16,25 +67,25 @@ namespace Pulumi.Keycloak
         public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
 
         /// <summary>
-        /// IDP Alias
+        /// The IDP alias of the attribute to set.
         /// </summary>
         [Output("identityProviderAlias")]
         public Output<string> IdentityProviderAlias { get; private set; } = null!;
 
         /// <summary>
-        /// IDP Mapper Name
+        /// Display name of this mapper when displayed in the console.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Realm Name
+        /// The realm ID that this mapper will exist in.
         /// </summary>
         [Output("realm")]
         public Output<string> Realm { get; private set; } = null!;
 
         /// <summary>
-        /// Role Name
+        /// The name of the role which should be assigned to the users.
         /// </summary>
         [Output("role")]
         public Output<string?> Role { get; private set; } = null!;
@@ -94,25 +145,25 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// IDP Alias
+        /// The IDP alias of the attribute to set.
         /// </summary>
         [Input("identityProviderAlias", required: true)]
         public Input<string> IdentityProviderAlias { get; set; } = null!;
 
         /// <summary>
-        /// IDP Mapper Name
+        /// Display name of this mapper when displayed in the console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Realm Name
+        /// The realm ID that this mapper will exist in.
         /// </summary>
         [Input("realm", required: true)]
         public Input<string> Realm { get; set; } = null!;
 
         /// <summary>
-        /// Role Name
+        /// The name of the role which should be assigned to the users.
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
@@ -134,25 +185,25 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// IDP Alias
+        /// The IDP alias of the attribute to set.
         /// </summary>
         [Input("identityProviderAlias")]
         public Input<string>? IdentityProviderAlias { get; set; }
 
         /// <summary>
-        /// IDP Mapper Name
+        /// Display name of this mapper when displayed in the console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Realm Name
+        /// The realm ID that this mapper will exist in.
         /// </summary>
         [Input("realm")]
         public Input<string>? Realm { get; set; }
 
         /// <summary>
-        /// Role Name
+        /// The name of the role which should be assigned to the users.
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }

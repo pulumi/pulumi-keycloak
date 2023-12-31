@@ -18,14 +18,14 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
     public static final AttributeToRoleIdentityMapperArgs Empty = new AttributeToRoleIdentityMapperArgs();
 
     /**
-     * Attribute Friendly Name
+     * Attribute Friendly Name. Conflicts with `attribute_name`.
      * 
      */
     @Import(name="attributeFriendlyName")
     private @Nullable Output<String> attributeFriendlyName;
 
     /**
-     * @return Attribute Friendly Name
+     * @return Attribute Friendly Name. Conflicts with `attribute_name`.
      * 
      */
     public Optional<Output<String>> attributeFriendlyName() {
@@ -33,14 +33,14 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
     }
 
     /**
-     * Attribute Name
+     * Attribute Name.
      * 
      */
     @Import(name="attributeName")
     private @Nullable Output<String> attributeName;
 
     /**
-     * @return Attribute Name
+     * @return Attribute Name.
      * 
      */
     public Optional<Output<String>> attributeName() {
@@ -48,14 +48,14 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
     }
 
     /**
-     * Attribute Value
+     * Attribute Value.
      * 
      */
     @Import(name="attributeValue")
     private @Nullable Output<String> attributeValue;
 
     /**
-     * @return Attribute Value
+     * @return Attribute Value.
      * 
      */
     public Optional<Output<String>> attributeValue() {
@@ -92,22 +92,30 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
         return Optional.ofNullable(this.claimValue);
     }
 
+    /**
+     * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+     * 
+     */
     @Import(name="extraConfig")
     private @Nullable Output<Map<String,Object>> extraConfig;
 
+    /**
+     * @return Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+     * 
+     */
     public Optional<Output<Map<String,Object>>> extraConfig() {
         return Optional.ofNullable(this.extraConfig);
     }
 
     /**
-     * IDP Alias
+     * The alias of the associated identity provider.
      * 
      */
     @Import(name="identityProviderAlias", required=true)
     private Output<String> identityProviderAlias;
 
     /**
-     * @return IDP Alias
+     * @return The alias of the associated identity provider.
      * 
      */
     public Output<String> identityProviderAlias() {
@@ -115,14 +123,14 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
     }
 
     /**
-     * IDP Mapper Name
+     * The name of the mapper.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return IDP Mapper Name
+     * @return The name of the mapper.
      * 
      */
     public Optional<Output<String>> name() {
@@ -130,14 +138,14 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
     }
 
     /**
-     * Realm Name
+     * The name of the realm.
      * 
      */
     @Import(name="realm", required=true)
     private Output<String> realm;
 
     /**
-     * @return Realm Name
+     * @return The name of the realm.
      * 
      */
     public Output<String> realm() {
@@ -145,14 +153,14 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
     }
 
     /**
-     * Role Name
+     * Role Name.
      * 
      */
     @Import(name="role", required=true)
     private Output<String> role;
 
     /**
-     * @return Role Name
+     * @return Role Name.
      * 
      */
     public Output<String> role() {
@@ -193,7 +201,7 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param attributeFriendlyName Attribute Friendly Name
+         * @param attributeFriendlyName Attribute Friendly Name. Conflicts with `attribute_name`.
          * 
          * @return builder
          * 
@@ -204,7 +212,7 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param attributeFriendlyName Attribute Friendly Name
+         * @param attributeFriendlyName Attribute Friendly Name. Conflicts with `attribute_name`.
          * 
          * @return builder
          * 
@@ -214,7 +222,7 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param attributeName Attribute Name
+         * @param attributeName Attribute Name.
          * 
          * @return builder
          * 
@@ -225,7 +233,7 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param attributeName Attribute Name
+         * @param attributeName Attribute Name.
          * 
          * @return builder
          * 
@@ -235,7 +243,7 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param attributeValue Attribute Value
+         * @param attributeValue Attribute Value.
          * 
          * @return builder
          * 
@@ -246,7 +254,7 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param attributeValue Attribute Value
+         * @param attributeValue Attribute Value.
          * 
          * @return builder
          * 
@@ -297,17 +305,29 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
             return claimValue(Output.of(claimValue));
         }
 
+        /**
+         * @param extraConfig Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+         * 
+         * @return builder
+         * 
+         */
         public Builder extraConfig(@Nullable Output<Map<String,Object>> extraConfig) {
             $.extraConfig = extraConfig;
             return this;
         }
 
+        /**
+         * @param extraConfig Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+         * 
+         * @return builder
+         * 
+         */
         public Builder extraConfig(Map<String,Object> extraConfig) {
             return extraConfig(Output.of(extraConfig));
         }
 
         /**
-         * @param identityProviderAlias IDP Alias
+         * @param identityProviderAlias The alias of the associated identity provider.
          * 
          * @return builder
          * 
@@ -318,7 +338,7 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param identityProviderAlias IDP Alias
+         * @param identityProviderAlias The alias of the associated identity provider.
          * 
          * @return builder
          * 
@@ -328,7 +348,7 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param name IDP Mapper Name
+         * @param name The name of the mapper.
          * 
          * @return builder
          * 
@@ -339,7 +359,7 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param name IDP Mapper Name
+         * @param name The name of the mapper.
          * 
          * @return builder
          * 
@@ -349,7 +369,7 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param realm Realm Name
+         * @param realm The name of the realm.
          * 
          * @return builder
          * 
@@ -360,7 +380,7 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param realm Realm Name
+         * @param realm The name of the realm.
          * 
          * @return builder
          * 
@@ -370,7 +390,7 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param role Role Name
+         * @param role Role Name.
          * 
          * @return builder
          * 
@@ -381,7 +401,7 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param role Role Name
+         * @param role Role Name.
          * 
          * @return builder
          * 

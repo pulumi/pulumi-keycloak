@@ -4,6 +4,43 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Allows for creating and managing hardcoded role mappers for Keycloak identity provider.
+ *
+ * The identity provider hardcoded role mapper grants a specified Keycloak role to each Keycloak user from the LDAP provider.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const oidcIdentityProvider = new keycloak.oidc.IdentityProvider("oidcIdentityProvider", {
+ *     realm: realm.id,
+ *     alias: "my-idp",
+ *     authorizationUrl: "https://authorizationurl.com",
+ *     clientId: "clientID",
+ *     clientSecret: "clientSecret",
+ *     tokenUrl: "https://tokenurl.com",
+ * });
+ * const realmRole = new keycloak.Role("realmRole", {
+ *     realmId: realm.id,
+ *     description: "My Realm Role",
+ * });
+ * const oidcHardcodedRoleIdentityMapper = new keycloak.HardcodedRoleIdentityMapper("oidcHardcodedRoleIdentityMapper", {
+ *     realm: realm.id,
+ *     identityProviderAlias: oidcIdentityProvider.alias,
+ *     role: "my-realm-role",
+ *     extraConfig: {
+ *         syncMode: "INHERIT",
+ *     },
+ * });
+ * ```
+ */
 export class HardcodedRoleIdentityMapper extends pulumi.CustomResource {
     /**
      * Get an existing HardcodedRoleIdentityMapper resource's state with the given name, ID, and optional extra
@@ -34,19 +71,19 @@ export class HardcodedRoleIdentityMapper extends pulumi.CustomResource {
 
     public readonly extraConfig!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * IDP Alias
+     * The IDP alias of the attribute to set.
      */
     public readonly identityProviderAlias!: pulumi.Output<string>;
     /**
-     * IDP Mapper Name
+     * Display name of this mapper when displayed in the console.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Realm Name
+     * The realm ID that this mapper will exist in.
      */
     public readonly realm!: pulumi.Output<string>;
     /**
-     * Role Name
+     * The name of the role which should be assigned to the users.
      */
     public readonly role!: pulumi.Output<string | undefined>;
 
@@ -93,19 +130,19 @@ export class HardcodedRoleIdentityMapper extends pulumi.CustomResource {
 export interface HardcodedRoleIdentityMapperState {
     extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
-     * IDP Alias
+     * The IDP alias of the attribute to set.
      */
     identityProviderAlias?: pulumi.Input<string>;
     /**
-     * IDP Mapper Name
+     * Display name of this mapper when displayed in the console.
      */
     name?: pulumi.Input<string>;
     /**
-     * Realm Name
+     * The realm ID that this mapper will exist in.
      */
     realm?: pulumi.Input<string>;
     /**
-     * Role Name
+     * The name of the role which should be assigned to the users.
      */
     role?: pulumi.Input<string>;
 }
@@ -116,19 +153,19 @@ export interface HardcodedRoleIdentityMapperState {
 export interface HardcodedRoleIdentityMapperArgs {
     extraConfig?: pulumi.Input<{[key: string]: any}>;
     /**
-     * IDP Alias
+     * The IDP alias of the attribute to set.
      */
     identityProviderAlias: pulumi.Input<string>;
     /**
-     * IDP Mapper Name
+     * Display name of this mapper when displayed in the console.
      */
     name?: pulumi.Input<string>;
     /**
-     * Realm Name
+     * The realm ID that this mapper will exist in.
      */
     realm: pulumi.Input<string>;
     /**
-     * Role Name
+     * The name of the role which should be assigned to the users.
      */
     role?: pulumi.Input<string>;
 }

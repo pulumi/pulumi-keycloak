@@ -17,31 +17,90 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Allows for creating and managing hardcoded attribute mappers for Keycloak identity provider.
+ * 
+ * The identity provider hardcoded attribute mapper will set the specified value to the IDP attribute.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.oidc.IdentityProvider;
+ * import com.pulumi.keycloak.oidc.IdentityProviderArgs;
+ * import com.pulumi.keycloak.HardcodedAttributeIdentityProviderMapper;
+ * import com.pulumi.keycloak.HardcodedAttributeIdentityProviderMapperArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
+ *             .realm(&#34;my-realm&#34;)
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var oidcIdentityProvider = new IdentityProvider(&#34;oidcIdentityProvider&#34;, IdentityProviderArgs.builder()        
+ *             .realm(realm.id())
+ *             .alias(&#34;my-idp&#34;)
+ *             .authorizationUrl(&#34;https://authorizationurl.com&#34;)
+ *             .clientId(&#34;clientID&#34;)
+ *             .clientSecret(&#34;clientSecret&#34;)
+ *             .tokenUrl(&#34;https://tokenurl.com&#34;)
+ *             .build());
+ * 
+ *         var oidcHardcodedAttributeIdentityProviderMapper = new HardcodedAttributeIdentityProviderMapper(&#34;oidcHardcodedAttributeIdentityProviderMapper&#34;, HardcodedAttributeIdentityProviderMapperArgs.builder()        
+ *             .realm(realm.id())
+ *             .identityProviderAlias(oidcIdentityProvider.alias())
+ *             .attributeName(&#34;attribute&#34;)
+ *             .attributeValue(&#34;value&#34;)
+ *             .userSession(true)
+ *             .extraConfig(Map.of(&#34;syncMode&#34;, &#34;INHERIT&#34;))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper")
 public class HardcodedAttributeIdentityProviderMapper extends com.pulumi.resources.CustomResource {
     /**
-     * OIDC Claim
+     * The name of the IDP attribute to set.
      * 
      */
     @Export(name="attributeName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attributeName;
 
     /**
-     * @return OIDC Claim
+     * @return The name of the IDP attribute to set.
      * 
      */
     public Output<Optional<String>> attributeName() {
         return Codegen.optional(this.attributeName);
     }
     /**
-     * User Attribute
+     * The value to set to the attribute. You can hardcode any value like &#39;foo&#39;.
      * 
      */
     @Export(name="attributeValue", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attributeValue;
 
     /**
-     * @return User Attribute
+     * @return The value to set to the attribute. You can hardcode any value like &#39;foo&#39;.
      * 
      */
     public Output<Optional<String>> attributeValue() {
@@ -54,56 +113,56 @@ public class HardcodedAttributeIdentityProviderMapper extends com.pulumi.resourc
         return Codegen.optional(this.extraConfig);
     }
     /**
-     * IDP Alias
+     * The IDP alias of the attribute to set.
      * 
      */
     @Export(name="identityProviderAlias", refs={String.class}, tree="[0]")
     private Output<String> identityProviderAlias;
 
     /**
-     * @return IDP Alias
+     * @return The IDP alias of the attribute to set.
      * 
      */
     public Output<String> identityProviderAlias() {
         return this.identityProviderAlias;
     }
     /**
-     * IDP Mapper Name
+     * Display name of this mapper when displayed in the console.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return IDP Mapper Name
+     * @return Display name of this mapper when displayed in the console.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * Realm Name
+     * The realm ID that this mapper will exist in.
      * 
      */
     @Export(name="realm", refs={String.class}, tree="[0]")
     private Output<String> realm;
 
     /**
-     * @return Realm Name
+     * @return The realm ID that this mapper will exist in.
      * 
      */
     public Output<String> realm() {
         return this.realm;
     }
     /**
-     * Is Attribute Related To a User Session
+     * Is Attribute related to a User Session.
      * 
      */
     @Export(name="userSession", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> userSession;
 
     /**
-     * @return Is Attribute Related To a User Session
+     * @return Is Attribute related to a User Session.
      * 
      */
     public Output<Boolean> userSession() {

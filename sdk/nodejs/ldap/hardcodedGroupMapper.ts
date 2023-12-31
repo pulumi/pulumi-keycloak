@@ -4,6 +4,51 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * Allows for creating and managing hardcoded group mappers for Keycloak users federated via LDAP.
+ *
+ * The LDAP hardcoded group mapper will grant a specified Keycloak group to each Keycloak user linked with LDAP.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
+ *     realmId: realm.id,
+ *     usernameLdapAttribute: "cn",
+ *     rdnLdapAttribute: "cn",
+ *     uuidLdapAttribute: "entryDN",
+ *     userObjectClasses: [
+ *         "simpleSecurityObject",
+ *         "organizationalRole",
+ *     ],
+ *     connectionUrl: "ldap://openldap",
+ *     usersDn: "dc=example,dc=org",
+ *     bindDn: "cn=admin,dc=example,dc=org",
+ *     bindCredential: "admin",
+ * });
+ * const realmGroup = new keycloak.Group("realmGroup", {realmId: realm.id});
+ * const assignGroupToUsers = new keycloak.ldap.HardcodedGroupMapper("assignGroupToUsers", {
+ *     realmId: realm.id,
+ *     ldapUserFederationId: ldapUserFederation.id,
+ *     group: realmGroup.name,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
+ *
+ * ```sh
+ *  $ pulumi import keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper assign_group_to_users my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+ * ```
+ */
 export class HardcodedGroupMapper extends pulumi.CustomResource {
     /**
      * Get an existing HardcodedGroupMapper resource's state with the given name, ID, and optional extra
@@ -33,19 +78,19 @@ export class HardcodedGroupMapper extends pulumi.CustomResource {
     }
 
     /**
-     * Group to grant to user.
+     * The name of the group which should be assigned to the users.
      */
     public readonly group!: pulumi.Output<string>;
     /**
-     * The ldap user federation provider to attach this mapper to.
+     * The ID of the LDAP user federation provider to attach this mapper to.
      */
     public readonly ldapUserFederationId!: pulumi.Output<string>;
     /**
-     * Display name of the mapper when displayed in the console.
+     * Display name of this mapper when displayed in the console.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The realm in which the ldap user federation provider exists.
+     * The realm that this LDAP mapper will exist in.
      */
     public readonly realmId!: pulumi.Output<string>;
 
@@ -92,19 +137,19 @@ export class HardcodedGroupMapper extends pulumi.CustomResource {
  */
 export interface HardcodedGroupMapperState {
     /**
-     * Group to grant to user.
+     * The name of the group which should be assigned to the users.
      */
     group?: pulumi.Input<string>;
     /**
-     * The ldap user federation provider to attach this mapper to.
+     * The ID of the LDAP user federation provider to attach this mapper to.
      */
     ldapUserFederationId?: pulumi.Input<string>;
     /**
-     * Display name of the mapper when displayed in the console.
+     * Display name of this mapper when displayed in the console.
      */
     name?: pulumi.Input<string>;
     /**
-     * The realm in which the ldap user federation provider exists.
+     * The realm that this LDAP mapper will exist in.
      */
     realmId?: pulumi.Input<string>;
 }
@@ -114,19 +159,19 @@ export interface HardcodedGroupMapperState {
  */
 export interface HardcodedGroupMapperArgs {
     /**
-     * Group to grant to user.
+     * The name of the group which should be assigned to the users.
      */
     group: pulumi.Input<string>;
     /**
-     * The ldap user federation provider to attach this mapper to.
+     * The ID of the LDAP user federation provider to attach this mapper to.
      */
     ldapUserFederationId: pulumi.Input<string>;
     /**
-     * Display name of the mapper when displayed in the console.
+     * Display name of this mapper when displayed in the console.
      */
     name?: pulumi.Input<string>;
     /**
-     * The realm in which the ldap user federation provider exists.
+     * The realm that this LDAP mapper will exist in.
      */
     realmId: pulumi.Input<string>;
 }

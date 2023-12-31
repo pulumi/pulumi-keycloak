@@ -9,6 +9,137 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    /// <summary>
+    /// ## # keycloak.openid.ClientPermissions
+    /// 
+    /// Allows you to manage all openid client Scope Based Permissions.
+    /// 
+    /// This is part of a preview keycloak feature. You need to enable this feature to be able to use this resource. More
+    /// information about enabling the preview feature can be found
+    /// here: https://www.keycloak.org/docs/latest/securing_apps/index.html#_token-exchange
+    /// 
+    /// When enabling Openid Client Permissions, Keycloak does several things automatically:
+    /// 
+    /// 1. Enable Authorization on build-in realm-management client
+    /// 2. Create scopes "view", "manage", "configure", "map-roles", "map-roles-client-scope", "map-roles-composite", "
+    ///    token-exchange"
+    /// 3. Create a resource representing the openid client
+    /// 4. Create all scope based permission for the scopes and openid client resource
+    /// 
+    /// If the realm-management Authorization is not enable, you have to ceate a dependency (`depends_on`) with the policy and
+    /// the openid client.
+    /// 
+    /// ### Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "realm",
+    ///     });
+    /// 
+    ///     var myOpenidClient = new Keycloak.OpenId.Client("myOpenidClient", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "my_openid_client",
+    ///         ClientSecret = "secret",
+    ///         AccessType = "CONFIDENTIAL",
+    ///         StandardFlowEnabled = true,
+    ///         ValidRedirectUris = new[]
+    ///         {
+    ///             "http://localhost:8080/*",
+    ///         },
+    ///     });
+    /// 
+    ///     var realmManagement = Keycloak.OpenId.GetClient.Invoke(new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "realm-management",
+    ///     });
+    /// 
+    ///     var testUser = new Keycloak.User("testUser", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Username = "test-user",
+    ///         Email = "test-user@fakedomain.com",
+    ///         FirstName = "Testy",
+    ///         LastName = "Tester",
+    ///     });
+    /// 
+    ///     var testClientUserPolicy = new Keycloak.OpenId.ClientUserPolicy("testClientUserPolicy", new()
+    ///     {
+    ///         ResourceServerId = realmManagement.Apply(getClientResult =&gt; getClientResult.Id),
+    ///         RealmId = realm.Id,
+    ///         Users = new[]
+    ///         {
+    ///             testUser.Id,
+    ///         },
+    ///         Logic = "POSITIVE",
+    ///         DecisionStrategy = "UNANIMOUS",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             myOpenidClient,
+    ///         },
+    ///     });
+    /// 
+    ///     var myPermission = new Keycloak.OpenId.ClientPermissions("myPermission", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = myOpenidClient.Id,
+    ///         ViewScope = new Keycloak.OpenId.Inputs.ClientPermissionsViewScopeArgs
+    ///         {
+    ///             Policies = new[]
+    ///             {
+    ///                 testClientUserPolicy.Id,
+    ///             },
+    ///             Description = "my description",
+    ///             DecisionStrategy = "UNANIMOUS",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm this group exists in.
+    /// - `client_id` - (Required) The id of the client that provides the role.
+    /// 
+    /// #### Permission Scopes
+    /// 
+    /// Permission scopes can be defined using the following attributes:
+    /// 
+    /// - `view_scope`
+    /// - `manage_scope`
+    /// - `configure_scope`
+    /// - `map_roles_scope`
+    /// - `map_roles_client_scope_scope`
+    /// - `map_roles_composite_scope`
+    /// - `token_exchange_scope`
+    /// 
+    /// Each of these attributes have the following schema:
+    /// 
+    /// - `policies` - (Optional) A list of policy IDs
+    /// - `description` - (Optional) A description for the permission scope
+    /// - `decision_strategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+    /// 
+    /// ### Attributes Reference
+    /// 
+    /// In addition to the arguments listed above, the following computed attributes are exported:
+    /// 
+    /// - `authorization_resource_server_id` - Resource server id representing the realm management client on which this
+    ///   permission is managed.
+    /// </summary>
     [KeycloakResourceType("keycloak:openid/clientPermissions:ClientPermissions")]
     public partial class ClientPermissions : global::Pulumi.CustomResource
     {

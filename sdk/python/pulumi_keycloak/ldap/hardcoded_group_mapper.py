@@ -20,10 +20,10 @@ class HardcodedGroupMapperArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a HardcodedGroupMapper resource.
-        :param pulumi.Input[str] group: Group to grant to user.
-        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
-        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
-        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
+        :param pulumi.Input[str] group: The name of the group which should be assigned to the users.
+        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
+        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
         """
         pulumi.set(__self__, "group", group)
         pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
@@ -35,7 +35,7 @@ class HardcodedGroupMapperArgs:
     @pulumi.getter
     def group(self) -> pulumi.Input[str]:
         """
-        Group to grant to user.
+        The name of the group which should be assigned to the users.
         """
         return pulumi.get(self, "group")
 
@@ -47,7 +47,7 @@ class HardcodedGroupMapperArgs:
     @pulumi.getter(name="ldapUserFederationId")
     def ldap_user_federation_id(self) -> pulumi.Input[str]:
         """
-        The ldap user federation provider to attach this mapper to.
+        The ID of the LDAP user federation provider to attach this mapper to.
         """
         return pulumi.get(self, "ldap_user_federation_id")
 
@@ -59,7 +59,7 @@ class HardcodedGroupMapperArgs:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[str]:
         """
-        The realm in which the ldap user federation provider exists.
+        The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
 
@@ -71,7 +71,7 @@ class HardcodedGroupMapperArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Display name of the mapper when displayed in the console.
+        Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
@@ -89,10 +89,10 @@ class _HardcodedGroupMapperState:
                  realm_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering HardcodedGroupMapper resources.
-        :param pulumi.Input[str] group: Group to grant to user.
-        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
-        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
-        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
+        :param pulumi.Input[str] group: The name of the group which should be assigned to the users.
+        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
         """
         if group is not None:
             pulumi.set(__self__, "group", group)
@@ -107,7 +107,7 @@ class _HardcodedGroupMapperState:
     @pulumi.getter
     def group(self) -> Optional[pulumi.Input[str]]:
         """
-        Group to grant to user.
+        The name of the group which should be assigned to the users.
         """
         return pulumi.get(self, "group")
 
@@ -119,7 +119,7 @@ class _HardcodedGroupMapperState:
     @pulumi.getter(name="ldapUserFederationId")
     def ldap_user_federation_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ldap user federation provider to attach this mapper to.
+        The ID of the LDAP user federation provider to attach this mapper to.
         """
         return pulumi.get(self, "ldap_user_federation_id")
 
@@ -131,7 +131,7 @@ class _HardcodedGroupMapperState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Display name of the mapper when displayed in the console.
+        Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
@@ -143,7 +143,7 @@ class _HardcodedGroupMapperState:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The realm in which the ldap user federation provider exists.
+        The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
 
@@ -163,13 +163,53 @@ class HardcodedGroupMapper(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a HardcodedGroupMapper resource with the given unique name, props, and options.
+        Allows for creating and managing hardcoded group mappers for Keycloak users federated via LDAP.
+
+        The LDAP hardcoded group mapper will grant a specified Keycloak group to each Keycloak user linked with LDAP.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
+            user_object_classes=[
+                "simpleSecurityObject",
+                "organizationalRole",
+            ],
+            connection_url="ldap://openldap",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        realm_group = keycloak.Group("realmGroup", realm_id=realm.id)
+        assign_group_to_users = keycloak.ldap.HardcodedGroupMapper("assignGroupToUsers",
+            realm_id=realm.id,
+            ldap_user_federation_id=ldap_user_federation.id,
+            group=realm_group.name)
+        ```
+
+        ## Import
+
+        LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper assign_group_to_users my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] group: Group to grant to user.
-        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
-        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
-        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
+        :param pulumi.Input[str] group: The name of the group which should be assigned to the users.
+        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
         """
         ...
     @overload
@@ -178,7 +218,47 @@ class HardcodedGroupMapper(pulumi.CustomResource):
                  args: HardcodedGroupMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a HardcodedGroupMapper resource with the given unique name, props, and options.
+        Allows for creating and managing hardcoded group mappers for Keycloak users federated via LDAP.
+
+        The LDAP hardcoded group mapper will grant a specified Keycloak group to each Keycloak user linked with LDAP.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
+            user_object_classes=[
+                "simpleSecurityObject",
+                "organizationalRole",
+            ],
+            connection_url="ldap://openldap",
+            users_dn="dc=example,dc=org",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        realm_group = keycloak.Group("realmGroup", realm_id=realm.id)
+        assign_group_to_users = keycloak.ldap.HardcodedGroupMapper("assignGroupToUsers",
+            realm_id=realm.id,
+            ldap_user_federation_id=ldap_user_federation.id,
+            group=realm_group.name)
+        ```
+
+        ## Import
+
+        LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper assign_group_to_users my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
         :param str resource_name: The name of the resource.
         :param HardcodedGroupMapperArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -238,10 +318,10 @@ class HardcodedGroupMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] group: Group to grant to user.
-        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
-        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
-        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
+        :param pulumi.Input[str] group: The name of the group which should be assigned to the users.
+        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -257,7 +337,7 @@ class HardcodedGroupMapper(pulumi.CustomResource):
     @pulumi.getter
     def group(self) -> pulumi.Output[str]:
         """
-        Group to grant to user.
+        The name of the group which should be assigned to the users.
         """
         return pulumi.get(self, "group")
 
@@ -265,7 +345,7 @@ class HardcodedGroupMapper(pulumi.CustomResource):
     @pulumi.getter(name="ldapUserFederationId")
     def ldap_user_federation_id(self) -> pulumi.Output[str]:
         """
-        The ldap user federation provider to attach this mapper to.
+        The ID of the LDAP user federation provider to attach this mapper to.
         """
         return pulumi.get(self, "ldap_user_federation_id")
 
@@ -273,7 +353,7 @@ class HardcodedGroupMapper(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Display name of the mapper when displayed in the console.
+        Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
@@ -281,7 +361,7 @@ class HardcodedGroupMapper(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
         """
-        The realm in which the ldap user federation provider exists.
+        The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
 

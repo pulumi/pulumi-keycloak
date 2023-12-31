@@ -25,14 +25,14 @@ public final class HardcodedRoleIdentityMapperArgs extends com.pulumi.resources.
     }
 
     /**
-     * IDP Alias
+     * The IDP alias of the attribute to set.
      * 
      */
     @Import(name="identityProviderAlias", required=true)
     private Output<String> identityProviderAlias;
 
     /**
-     * @return IDP Alias
+     * @return The IDP alias of the attribute to set.
      * 
      */
     public Output<String> identityProviderAlias() {
@@ -40,14 +40,14 @@ public final class HardcodedRoleIdentityMapperArgs extends com.pulumi.resources.
     }
 
     /**
-     * IDP Mapper Name
+     * Display name of this mapper when displayed in the console.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return IDP Mapper Name
+     * @return Display name of this mapper when displayed in the console.
      * 
      */
     public Optional<Output<String>> name() {
@@ -55,14 +55,14 @@ public final class HardcodedRoleIdentityMapperArgs extends com.pulumi.resources.
     }
 
     /**
-     * Realm Name
+     * The realm ID that this mapper will exist in.
      * 
      */
     @Import(name="realm", required=true)
     private Output<String> realm;
 
     /**
-     * @return Realm Name
+     * @return The realm ID that this mapper will exist in.
      * 
      */
     public Output<String> realm() {
@@ -70,14 +70,14 @@ public final class HardcodedRoleIdentityMapperArgs extends com.pulumi.resources.
     }
 
     /**
-     * Role Name
+     * The name of the role which should be assigned to the users.
      * 
      */
     @Import(name="role")
     private @Nullable Output<String> role;
 
     /**
-     * @return Role Name
+     * @return The name of the role which should be assigned to the users.
      * 
      */
     public Optional<Output<String>> role() {
@@ -122,7 +122,7 @@ public final class HardcodedRoleIdentityMapperArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param identityProviderAlias IDP Alias
+         * @param identityProviderAlias The IDP alias of the attribute to set.
          * 
          * @return builder
          * 
@@ -133,7 +133,7 @@ public final class HardcodedRoleIdentityMapperArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param identityProviderAlias IDP Alias
+         * @param identityProviderAlias The IDP alias of the attribute to set.
          * 
          * @return builder
          * 
@@ -143,7 +143,7 @@ public final class HardcodedRoleIdentityMapperArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param name IDP Mapper Name
+         * @param name Display name of this mapper when displayed in the console.
          * 
          * @return builder
          * 
@@ -154,7 +154,7 @@ public final class HardcodedRoleIdentityMapperArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param name IDP Mapper Name
+         * @param name Display name of this mapper when displayed in the console.
          * 
          * @return builder
          * 
@@ -164,7 +164,7 @@ public final class HardcodedRoleIdentityMapperArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param realm Realm Name
+         * @param realm The realm ID that this mapper will exist in.
          * 
          * @return builder
          * 
@@ -175,7 +175,7 @@ public final class HardcodedRoleIdentityMapperArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param realm Realm Name
+         * @param realm The realm ID that this mapper will exist in.
          * 
          * @return builder
          * 
@@ -185,7 +185,7 @@ public final class HardcodedRoleIdentityMapperArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param role Role Name
+         * @param role The name of the role which should be assigned to the users.
          * 
          * @return builder
          * 
@@ -196,7 +196,7 @@ public final class HardcodedRoleIdentityMapperArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param role Role Name
+         * @param role The name of the role which should be assigned to the users.
          * 
          * @return builder
          * 
