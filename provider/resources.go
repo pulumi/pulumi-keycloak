@@ -111,15 +111,15 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"keycloak_realm": {
 				Fields: map[string]*tfbridge.SchemaInfo{
-					"realm": {
-						CSharpName: "RealmName",
-					},
+					"realm": {CSharpName: "RealmName"},
 				},
 			},
 			"keycloak_users_permissions": {
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
 			},
-			"keycloak_realm_keystore_java_keystore": {Tok: makeResource(mainMod, "RealmKeystoreJavaGenerated")},
+			"keycloak_realm_keystore_java_keystore": {
+				Tok: makeResource(mainMod, "RealmKeystoreJavaGenerated"),
+			},
 			"keycloak_ldap_hardcoded_group_mapper": {
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
 			},
