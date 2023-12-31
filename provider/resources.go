@@ -35,12 +35,9 @@ const (
 	// packages:
 	mainPkg = "keycloak"
 	// modules:
-	mainMod           = "index"          // the y module
-	ldapMod           = "Ldap"           // the ldap module
-	oidcMod           = "Oidc"           // the oidc module
-	openIDMod         = "OpenId"         // the openid module
-	samlMod           = "Saml"           // the Saml module
-	authenticationMod = "Authentication" // the Authentication module
+	mainMod   = "index"  // the main module
+	openIDMod = "OpenId" // the openid module
+	samlMod   = "Saml"   // the Saml module
 )
 
 func makeDataSource(mod string, res string) tokens.ModuleMember {
