@@ -208,7 +208,14 @@
                 "current": "keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper"
             },
             "keycloak_openid_audience_resolve_protocol_mapper": {
-                "current": "keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter"
+                "current": "keycloak:openid/audienceResolveProtocolMapper:AudienceResolveProtocolMapper",
+                "past": [
+                    {
+                        "name": "keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "keycloak_openid_client": {
                 "current": "keycloak:openid/client:Client",
@@ -930,7 +937,15 @@
             }
         }
     },
-    "auto-settings": {},
+    "auto-settings": {
+        "resources": {
+            "keycloak_openid_audience_resolve_protocol_mapper": {
+                "aliases": [
+                    "keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter"
+                ]
+            }
+        }
+    },
     "renames": {
         "resources": {
             "keycloak:authentication/bindings:Bindings": "keycloak_authentication_bindings",
@@ -984,7 +999,8 @@
             "keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider": "keycloak_oidc_google_identity_provider",
             "keycloak:oidc/identityProvider:IdentityProvider": "keycloak_oidc_identity_provider",
             "keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper": "keycloak_openid_audience_protocol_mapper",
-            "keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter": "keycloak_openid_audience_resolve_protocol_mapper",
+            "keycloak:openid/audienceResolveProtocolMapper:AudienceResolveProtocolMapper": "keycloak_openid_audience_resolve_protocol_mapper",
+            "keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter": "keycloak_openid_audience_resolve_protocol_mapper_legacy",
             "keycloak:openid/client:Client": "keycloak_openid_client",
             "keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy": "keycloak_openid_client_aggregate_policy",
             "keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission": "keycloak_openid_client_authorization_permission",
@@ -1821,6 +1837,11 @@
                 "clientScopeId": "client_scope_id",
                 "includedClientAudience": "included_client_audience",
                 "includedCustomAudience": "included_custom_audience",
+                "realmId": "realm_id"
+            },
+            "keycloak:openid/audienceResolveProtocolMapper:AudienceResolveProtocolMapper": {
+                "clientId": "client_id",
+                "clientScopeId": "client_scope_id",
                 "realmId": "realm_id"
             },
             "keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter": {

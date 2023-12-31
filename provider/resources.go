@@ -135,49 +135,27 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_openid_client_authorization_resource": {
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
 			},
-			"keycloak_openid_client_authorization_scope": {
-				Tok: makeResource(openIDMod, "ClientAuthorizationScope"),
-			},
 			"keycloak_openid_client_aggregate_policy": {
-				Tok:  makeResource(openIDMod, "ClientAggregatePolicy"),
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
 			},
 			"keycloak_openid_client_client_policy": {Tok: makeResource(openIDMod, "ClientPolicy")},
 			"keycloak_openid_client_group_policy": {
-				Tok:  makeResource(openIDMod, "ClientGroupPolicy"),
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
 			},
 			"keycloak_openid_client_js_policy": {
-				Tok:  makeResource(openIDMod, "ClientJsPolicy"),
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
 			},
 			"keycloak_openid_client_role_policy": {
-				Tok:  makeResource(openIDMod, "ClientRolePolicy"),
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
 			},
 			"keycloak_openid_client_time_policy": {
-				Tok:  makeResource(openIDMod, "ClientTimePolicy"),
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
 			},
 			"keycloak_openid_client_user_policy": {
-				Tok:  makeResource(openIDMod, "ClientUserPolicy"),
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
-			},
-			"keycloak_openid_user_client_role_protocol_mapper": {
-				Tok: makeResource(openIDMod, "UserClientRoleProtocolMapper"),
-			},
-			"keycloak_openid_user_session_note_protocol_mapper": {
-				Tok: makeResource(openIDMod, "UserSessionNoteProtocolMapper"),
 			},
 			"keycloak_openid_client_permissions": {
-				Tok:  makeResource(openIDMod, "ClientPermissions"),
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
-			},
-			"keycloak_openid_audience_resolve_protocol_mapper": {
-				Tok: makeResource(openIDMod, "AudienceResolveProtocolMappter"),
-			},
-			"keycloak_openid_script_protocol_mapper": {
-				Tok: makeResource(openIDMod, "ScriptProtocolMapper"),
 			},
 
 			"keycloak_saml_client":                         {Tok: makeResource(samlMod, "Client")},
