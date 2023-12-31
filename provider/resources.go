@@ -75,6 +75,7 @@ func Provider() tfbridge.ProviderInfo {
 		Repository:        "https://github.com/pulumi/pulumi-keycloak",
 		TFProviderLicense: ref(tfbridge.MITLicenseType),
 		MetadataInfo:      tfbridge.NewProviderMetadata(metadata),
+		UpstreamRepoPath:  "./upstream",
 
 		Config: map[string]*tfbridge.SchemaInfo{
 			"client_timeout": {

@@ -5,7 +5,7 @@ go 1.21
 replace (
 	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20230912190043-e6d96b3b8f7e
 	github.com/hashicorp/vault => github.com/hashicorp/vault v1.2.0
-	github.com/mrparkers/terraform-provider-keycloak => github.com/pulumi/terraform-provider-keycloak v0.0.0-20230627215010-59381e0aea4c
+	github.com/mrparkers/terraform-provider-keycloak => ../upstream
 )
 
 require (
