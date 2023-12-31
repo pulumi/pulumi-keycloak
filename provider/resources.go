@@ -23,7 +23,7 @@ import (
 
 	"github.com/mrparkers/terraform-provider-keycloak/provider"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	tfbridgetokens "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
+	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
@@ -198,13 +198,13 @@ func Provider() tfbridge.ProviderInfo {
 		},
 	}
 
-	prov.MustComputeTokens(tfbridgetokens.KnownModules("keycloak_", mainMod, []string{
+	prov.MustComputeTokens(tks.KnownModules("keycloak_", mainMod, []string{
 		"ldap_",
 		"oidc_",
 		"openid_",
 		"saml_",
 		"authentication_",
-	}, tfbridgetokens.MakeStandard(mainPkg)))
+	}, tks.MakeStandard(mainPkg)))
 
 	prov.MustApplyAutoAliases()
 
