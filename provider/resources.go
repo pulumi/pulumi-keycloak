@@ -76,6 +76,7 @@ func Provider() tfbridge.ProviderInfo {
 		TFProviderLicense: ref(tfbridge.MITLicenseType),
 		MetadataInfo:      tfbridge.NewProviderMetadata(metadata),
 		UpstreamRepoPath:  "./upstream",
+		Version:           version.Version,
 
 		Config: map[string]*tfbridge.SchemaInfo{
 			"client_timeout": {

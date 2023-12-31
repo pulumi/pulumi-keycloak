@@ -2,34 +2,44 @@
     "auto-aliasing": {
         "resources": {
             "keycloak_attribute_importer_identity_provider_mapper": {
-                "current": "keycloak:index/attributeImporterIdentityProviderMapper:AttributeImporterIdentityProviderMapper"
+                "current": "keycloak:index/attributeImporterIdentityProviderMapper:AttributeImporterIdentityProviderMapper",
+                "majorVersion": 5
             },
             "keycloak_attribute_to_role_identity_provider_mapper": {
-                "current": "keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper"
+                "current": "keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper",
+                "majorVersion": 5
             },
             "keycloak_authentication_bindings": {
-                "current": "keycloak:authentication/bindings:Bindings"
+                "current": "keycloak:authentication/bindings:Bindings",
+                "majorVersion": 5
             },
             "keycloak_authentication_execution": {
-                "current": "keycloak:authentication/execution:Execution"
+                "current": "keycloak:authentication/execution:Execution",
+                "majorVersion": 5
             },
             "keycloak_authentication_execution_config": {
-                "current": "keycloak:authentication/executionConfig:ExecutionConfig"
+                "current": "keycloak:authentication/executionConfig:ExecutionConfig",
+                "majorVersion": 5
             },
             "keycloak_authentication_flow": {
-                "current": "keycloak:authentication/flow:Flow"
+                "current": "keycloak:authentication/flow:Flow",
+                "majorVersion": 5
             },
             "keycloak_authentication_subflow": {
-                "current": "keycloak:authentication/subflow:Subflow"
+                "current": "keycloak:authentication/subflow:Subflow",
+                "majorVersion": 5
             },
             "keycloak_custom_identity_provider_mapper": {
-                "current": "keycloak:index/customIdentityProviderMapping:CustomIdentityProviderMapping"
+                "current": "keycloak:index/customIdentityProviderMapping:CustomIdentityProviderMapping",
+                "majorVersion": 5
             },
             "keycloak_custom_user_federation": {
-                "current": "keycloak:index/customUserFederation:CustomUserFederation"
+                "current": "keycloak:index/customUserFederation:CustomUserFederation",
+                "majorVersion": 5
             },
             "keycloak_default_groups": {
                 "current": "keycloak:index/defaultGroups:DefaultGroups",
+                "majorVersion": 5,
                 "fields": {
                     "group_ids": {
                         "maxItemsOne": false
@@ -38,6 +48,7 @@
             },
             "keycloak_default_roles": {
                 "current": "keycloak:index/defaultRoles:DefaultRoles",
+                "majorVersion": 5,
                 "fields": {
                     "default_roles": {
                         "maxItemsOne": false
@@ -45,22 +56,28 @@
                 }
             },
             "keycloak_generic_client_protocol_mapper": {
-                "current": "keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper"
+                "current": "keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper",
+                "majorVersion": 5
             },
             "keycloak_generic_client_role_mapper": {
-                "current": "keycloak:index/genericClientRoleMapper:GenericClientRoleMapper"
+                "current": "keycloak:index/genericClientRoleMapper:GenericClientRoleMapper",
+                "majorVersion": 5
             },
             "keycloak_generic_protocol_mapper": {
-                "current": "keycloak:index/genericProtocolMapper:GenericProtocolMapper"
+                "current": "keycloak:index/genericProtocolMapper:GenericProtocolMapper",
+                "majorVersion": 5
             },
             "keycloak_generic_role_mapper": {
-                "current": "keycloak:index/genericRoleMapper:GenericRoleMapper"
+                "current": "keycloak:index/genericRoleMapper:GenericRoleMapper",
+                "majorVersion": 5
             },
             "keycloak_group": {
-                "current": "keycloak:index/group:Group"
+                "current": "keycloak:index/group:Group",
+                "majorVersion": 5
             },
             "keycloak_group_memberships": {
                 "current": "keycloak:index/groupMemberships:GroupMemberships",
+                "majorVersion": 5,
                 "fields": {
                     "members": {
                         "maxItemsOne": false
@@ -69,6 +86,7 @@
             },
             "keycloak_group_permissions": {
                 "current": "keycloak:index/groupPermissions:GroupPermissions",
+                "majorVersion": 5,
                 "fields": {
                     "manage_members_scope": {
                         "maxItemsOne": true,
@@ -124,6 +142,7 @@
             },
             "keycloak_group_roles": {
                 "current": "keycloak:index/groupRoles:GroupRoles",
+                "majorVersion": 5,
                 "fields": {
                     "role_ids": {
                         "maxItemsOne": false
@@ -131,13 +150,16 @@
                 }
             },
             "keycloak_hardcoded_attribute_identity_provider_mapper": {
-                "current": "keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper"
+                "current": "keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper",
+                "majorVersion": 5
             },
             "keycloak_hardcoded_role_identity_provider_mapper": {
-                "current": "keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper"
+                "current": "keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper",
+                "majorVersion": 5
             },
             "keycloak_identity_provider_token_exchange_scope_permission": {
                 "current": "keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission",
+                "majorVersion": 5,
                 "fields": {
                     "clients": {
                         "maxItemsOne": false
@@ -145,10 +167,12 @@
                 }
             },
             "keycloak_ldap_full_name_mapper": {
-                "current": "keycloak:ldap/fullNameMapper:FullNameMapper"
+                "current": "keycloak:ldap/fullNameMapper:FullNameMapper",
+                "majorVersion": 5
             },
             "keycloak_ldap_group_mapper": {
                 "current": "keycloak:ldap/groupMapper:GroupMapper",
+                "majorVersion": 5,
                 "fields": {
                     "group_object_classes": {
                         "maxItemsOne": false
@@ -159,22 +183,28 @@
                 }
             },
             "keycloak_ldap_hardcoded_attribute_mapper": {
-                "current": "keycloak:ldap/hardcodedAttributeMapper:HardcodedAttributeMapper"
+                "current": "keycloak:ldap/hardcodedAttributeMapper:HardcodedAttributeMapper",
+                "majorVersion": 5
             },
             "keycloak_ldap_hardcoded_group_mapper": {
-                "current": "keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper"
+                "current": "keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper",
+                "majorVersion": 5
             },
             "keycloak_ldap_hardcoded_role_mapper": {
-                "current": "keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper"
+                "current": "keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper",
+                "majorVersion": 5
             },
             "keycloak_ldap_msad_lds_user_account_control_mapper": {
-                "current": "keycloak:ldap/msadLdsUserAccountControlMapper:MsadLdsUserAccountControlMapper"
+                "current": "keycloak:ldap/msadLdsUserAccountControlMapper:MsadLdsUserAccountControlMapper",
+                "majorVersion": 5
             },
             "keycloak_ldap_msad_user_account_control_mapper": {
-                "current": "keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper"
+                "current": "keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper",
+                "majorVersion": 5
             },
             "keycloak_ldap_role_mapper": {
                 "current": "keycloak:ldap/roleMapper:RoleMapper",
+                "majorVersion": 5,
                 "fields": {
                     "role_object_classes": {
                         "maxItemsOne": false
@@ -182,10 +212,12 @@
                 }
             },
             "keycloak_ldap_user_attribute_mapper": {
-                "current": "keycloak:ldap/userAttributeMapper:UserAttributeMapper"
+                "current": "keycloak:ldap/userAttributeMapper:UserAttributeMapper",
+                "majorVersion": 5
             },
             "keycloak_ldap_user_federation": {
                 "current": "keycloak:ldap/userFederation:UserFederation",
+                "majorVersion": 5,
                 "fields": {
                     "cache": {
                         "maxItemsOne": true
@@ -199,13 +231,16 @@
                 }
             },
             "keycloak_oidc_google_identity_provider": {
-                "current": "keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider"
+                "current": "keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider",
+                "majorVersion": 5
             },
             "keycloak_oidc_identity_provider": {
-                "current": "keycloak:oidc/identityProvider:IdentityProvider"
+                "current": "keycloak:oidc/identityProvider:IdentityProvider",
+                "majorVersion": 5
             },
             "keycloak_openid_audience_protocol_mapper": {
-                "current": "keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper"
+                "current": "keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper",
+                "majorVersion": 5
             },
             "keycloak_openid_audience_resolve_protocol_mapper": {
                 "current": "keycloak:openid/audienceResolveProtocolMapper:AudienceResolveProtocolMapper",
@@ -213,12 +248,14 @@
                     {
                         "name": "keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 5
                     }
-                ]
+                ],
+                "majorVersion": 5
             },
             "keycloak_openid_client": {
                 "current": "keycloak:openid/client:Client",
+                "majorVersion": 5,
                 "fields": {
                     "authentication_flow_binding_overrides": {
                         "maxItemsOne": true
@@ -239,6 +276,7 @@
             },
             "keycloak_openid_client_aggregate_policy": {
                 "current": "keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy",
+                "majorVersion": 5,
                 "fields": {
                     "policies": {
                         "maxItemsOne": false
@@ -247,6 +285,7 @@
             },
             "keycloak_openid_client_authorization_permission": {
                 "current": "keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission",
+                "majorVersion": 5,
                 "fields": {
                     "policies": {
                         "maxItemsOne": false
@@ -261,6 +300,7 @@
             },
             "keycloak_openid_client_authorization_resource": {
                 "current": "keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource",
+                "majorVersion": 5,
                 "fields": {
                     "scopes": {
                         "maxItemsOne": false
@@ -271,10 +311,12 @@
                 }
             },
             "keycloak_openid_client_authorization_scope": {
-                "current": "keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope"
+                "current": "keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope",
+                "majorVersion": 5
             },
             "keycloak_openid_client_client_policy": {
                 "current": "keycloak:openid/clientPolicy:ClientPolicy",
+                "majorVersion": 5,
                 "fields": {
                     "clients": {
                         "maxItemsOne": false
@@ -283,6 +325,7 @@
             },
             "keycloak_openid_client_default_scopes": {
                 "current": "keycloak:openid/clientDefaultScopes:ClientDefaultScopes",
+                "majorVersion": 5,
                 "fields": {
                     "default_scopes": {
                         "maxItemsOne": false
@@ -291,6 +334,7 @@
             },
             "keycloak_openid_client_group_policy": {
                 "current": "keycloak:openid/clientGroupPolicy:ClientGroupPolicy",
+                "majorVersion": 5,
                 "fields": {
                     "groups": {
                         "maxItemsOne": false
@@ -298,10 +342,12 @@
                 }
             },
             "keycloak_openid_client_js_policy": {
-                "current": "keycloak:openid/clientJsPolicy:ClientJsPolicy"
+                "current": "keycloak:openid/clientJsPolicy:ClientJsPolicy",
+                "majorVersion": 5
             },
             "keycloak_openid_client_optional_scopes": {
                 "current": "keycloak:openid/clientOptionalScopes:ClientOptionalScopes",
+                "majorVersion": 5,
                 "fields": {
                     "optional_scopes": {
                         "maxItemsOne": false
@@ -310,6 +356,7 @@
             },
             "keycloak_openid_client_permissions": {
                 "current": "keycloak:openid/clientPermissions:ClientPermissions",
+                "majorVersion": 5,
                 "fields": {
                     "configure_scope": {
                         "maxItemsOne": true,
@@ -385,6 +432,7 @@
             },
             "keycloak_openid_client_role_policy": {
                 "current": "keycloak:openid/clientRolePolicy:ClientRolePolicy",
+                "majorVersion": 5,
                 "fields": {
                     "role": {
                         "maxItemsOne": false
@@ -392,19 +440,24 @@
                 }
             },
             "keycloak_openid_client_scope": {
-                "current": "keycloak:openid/clientScope:ClientScope"
+                "current": "keycloak:openid/clientScope:ClientScope",
+                "majorVersion": 5
             },
             "keycloak_openid_client_service_account_realm_role": {
-                "current": "keycloak:openid/clientServiceAccountRealmRole:ClientServiceAccountRealmRole"
+                "current": "keycloak:openid/clientServiceAccountRealmRole:ClientServiceAccountRealmRole",
+                "majorVersion": 5
             },
             "keycloak_openid_client_service_account_role": {
-                "current": "keycloak:openid/clientServiceAccountRole:ClientServiceAccountRole"
+                "current": "keycloak:openid/clientServiceAccountRole:ClientServiceAccountRole",
+                "majorVersion": 5
             },
             "keycloak_openid_client_time_policy": {
-                "current": "keycloak:openid/clientTimePolicy:ClientTimePolicy"
+                "current": "keycloak:openid/clientTimePolicy:ClientTimePolicy",
+                "majorVersion": 5
             },
             "keycloak_openid_client_user_policy": {
                 "current": "keycloak:openid/clientUserPolicy:ClientUserPolicy",
+                "majorVersion": 5,
                 "fields": {
                     "users": {
                         "maxItemsOne": false
@@ -412,37 +465,48 @@
                 }
             },
             "keycloak_openid_full_name_protocol_mapper": {
-                "current": "keycloak:openid/fullNameProtocolMapper:FullNameProtocolMapper"
+                "current": "keycloak:openid/fullNameProtocolMapper:FullNameProtocolMapper",
+                "majorVersion": 5
             },
             "keycloak_openid_group_membership_protocol_mapper": {
-                "current": "keycloak:openid/groupMembershipProtocolMapper:GroupMembershipProtocolMapper"
+                "current": "keycloak:openid/groupMembershipProtocolMapper:GroupMembershipProtocolMapper",
+                "majorVersion": 5
             },
             "keycloak_openid_hardcoded_claim_protocol_mapper": {
-                "current": "keycloak:openid/hardcodedClaimProtocolMapper:HardcodedClaimProtocolMapper"
+                "current": "keycloak:openid/hardcodedClaimProtocolMapper:HardcodedClaimProtocolMapper",
+                "majorVersion": 5
             },
             "keycloak_openid_hardcoded_role_protocol_mapper": {
-                "current": "keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper"
+                "current": "keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper",
+                "majorVersion": 5
             },
             "keycloak_openid_script_protocol_mapper": {
-                "current": "keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper"
+                "current": "keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper",
+                "majorVersion": 5
             },
             "keycloak_openid_user_attribute_protocol_mapper": {
-                "current": "keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper"
+                "current": "keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper",
+                "majorVersion": 5
             },
             "keycloak_openid_user_client_role_protocol_mapper": {
-                "current": "keycloak:openid/userClientRoleProtocolMapper:UserClientRoleProtocolMapper"
+                "current": "keycloak:openid/userClientRoleProtocolMapper:UserClientRoleProtocolMapper",
+                "majorVersion": 5
             },
             "keycloak_openid_user_property_protocol_mapper": {
-                "current": "keycloak:openid/userPropertyProtocolMapper:UserPropertyProtocolMapper"
+                "current": "keycloak:openid/userPropertyProtocolMapper:UserPropertyProtocolMapper",
+                "majorVersion": 5
             },
             "keycloak_openid_user_realm_role_protocol_mapper": {
-                "current": "keycloak:openid/userRealmRoleProtocolMapper:UserRealmRoleProtocolMapper"
+                "current": "keycloak:openid/userRealmRoleProtocolMapper:UserRealmRoleProtocolMapper",
+                "majorVersion": 5
             },
             "keycloak_openid_user_session_note_protocol_mapper": {
-                "current": "keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper"
+                "current": "keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper",
+                "majorVersion": 5
             },
             "keycloak_realm": {
                 "current": "keycloak:index/realm:Realm",
+                "majorVersion": 5,
                 "fields": {
                     "default_default_client_scopes": {
                         "maxItemsOne": false
@@ -516,6 +580,7 @@
             },
             "keycloak_realm_events": {
                 "current": "keycloak:index/realmEvents:RealmEvents",
+                "majorVersion": 5,
                 "fields": {
                     "enabled_event_types": {
                         "maxItemsOne": false
@@ -526,25 +591,32 @@
                 }
             },
             "keycloak_realm_keystore_aes_generated": {
-                "current": "keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated"
+                "current": "keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated",
+                "majorVersion": 5
             },
             "keycloak_realm_keystore_ecdsa_generated": {
-                "current": "keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated"
+                "current": "keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated",
+                "majorVersion": 5
             },
             "keycloak_realm_keystore_hmac_generated": {
-                "current": "keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated"
+                "current": "keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated",
+                "majorVersion": 5
             },
             "keycloak_realm_keystore_java_keystore": {
-                "current": "keycloak:index/realmKeystoreJavaGenerated:RealmKeystoreJavaGenerated"
+                "current": "keycloak:index/realmKeystoreJavaGenerated:RealmKeystoreJavaGenerated",
+                "majorVersion": 5
             },
             "keycloak_realm_keystore_rsa": {
-                "current": "keycloak:index/realmKeystoreRsa:RealmKeystoreRsa"
+                "current": "keycloak:index/realmKeystoreRsa:RealmKeystoreRsa",
+                "majorVersion": 5
             },
             "keycloak_realm_keystore_rsa_generated": {
-                "current": "keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated"
+                "current": "keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated",
+                "majorVersion": 5
             },
             "keycloak_realm_user_profile": {
                 "current": "keycloak:index/realmUserProfile:RealmUserProfile",
+                "majorVersion": 5,
                 "fields": {
                     "attribute": {
                         "maxItemsOne": false,
@@ -584,10 +656,12 @@
                 }
             },
             "keycloak_required_action": {
-                "current": "keycloak:index/requiredAction:RequiredAction"
+                "current": "keycloak:index/requiredAction:RequiredAction",
+                "majorVersion": 5
             },
             "keycloak_role": {
                 "current": "keycloak:index/role:Role",
+                "majorVersion": 5,
                 "fields": {
                     "composite_roles": {
                         "maxItemsOne": false
@@ -596,6 +670,7 @@
             },
             "keycloak_saml_client": {
                 "current": "keycloak:saml/client:Client",
+                "majorVersion": 5,
                 "fields": {
                     "authentication_flow_binding_overrides": {
                         "maxItemsOne": true
@@ -607,6 +682,7 @@
             },
             "keycloak_saml_client_default_scopes": {
                 "current": "keycloak:saml/clientDefaultScope:ClientDefaultScope",
+                "majorVersion": 5,
                 "fields": {
                     "default_scopes": {
                         "maxItemsOne": false
@@ -614,10 +690,12 @@
                 }
             },
             "keycloak_saml_client_scope": {
-                "current": "keycloak:saml/clientScope:ClientScope"
+                "current": "keycloak:saml/clientScope:ClientScope",
+                "majorVersion": 5
             },
             "keycloak_saml_identity_provider": {
                 "current": "keycloak:saml/identityProvider:IdentityProvider",
+                "majorVersion": 5,
                 "fields": {
                     "authn_context_class_refs": {
                         "maxItemsOne": false
@@ -628,16 +706,20 @@
                 }
             },
             "keycloak_saml_script_protocol_mapper": {
-                "current": "keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper"
+                "current": "keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper",
+                "majorVersion": 5
             },
             "keycloak_saml_user_attribute_protocol_mapper": {
-                "current": "keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper"
+                "current": "keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper",
+                "majorVersion": 5
             },
             "keycloak_saml_user_property_protocol_mapper": {
-                "current": "keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper"
+                "current": "keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper",
+                "majorVersion": 5
             },
             "keycloak_user": {
                 "current": "keycloak:index/user:User",
+                "majorVersion": 5,
                 "fields": {
                     "federated_identity": {
                         "maxItemsOne": false
@@ -649,6 +731,7 @@
             },
             "keycloak_user_groups": {
                 "current": "keycloak:index/userGroups:UserGroups",
+                "majorVersion": 5,
                 "fields": {
                     "group_ids": {
                         "maxItemsOne": false
@@ -657,6 +740,7 @@
             },
             "keycloak_user_roles": {
                 "current": "keycloak:index/userRoles:UserRoles",
+                "majorVersion": 5,
                 "fields": {
                     "role_ids": {
                         "maxItemsOne": false
@@ -664,10 +748,12 @@
                 }
             },
             "keycloak_user_template_importer_identity_provider_mapper": {
-                "current": "keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper"
+                "current": "keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper",
+                "majorVersion": 5
             },
             "keycloak_users_permissions": {
                 "current": "keycloak:index/usersPermissions:UsersPermissions",
+                "majorVersion": 5,
                 "fields": {
                     "impersonate_scope": {
                         "maxItemsOne": true,
@@ -734,13 +820,16 @@
         },
         "datasources": {
             "keycloak_authentication_execution": {
-                "current": "keycloak:index/getAuthenticationExecution:getAuthenticationExecution"
+                "current": "keycloak:index/getAuthenticationExecution:getAuthenticationExecution",
+                "majorVersion": 5
             },
             "keycloak_authentication_flow": {
-                "current": "keycloak:index/getAuthenticationFlow:getAuthenticationFlow"
+                "current": "keycloak:index/getAuthenticationFlow:getAuthenticationFlow",
+                "majorVersion": 5
             },
             "keycloak_client_description_converter": {
                 "current": "keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter",
+                "majorVersion": 5,
                 "fields": {
                     "default_client_scopes": {
                         "maxItemsOne": false
@@ -763,10 +852,12 @@
                 }
             },
             "keycloak_group": {
-                "current": "keycloak:index/getGroup:getGroup"
+                "current": "keycloak:index/getGroup:getGroup",
+                "majorVersion": 5
             },
             "keycloak_openid_client": {
                 "current": "keycloak:openid/getClient:getClient",
+                "majorVersion": 5,
                 "fields": {
                     "authentication_flow_binding_overrides": {
                         "maxItemsOne": false
@@ -787,6 +878,7 @@
             },
             "keycloak_openid_client_authorization_policy": {
                 "current": "keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy",
+                "majorVersion": 5,
                 "fields": {
                     "policies": {
                         "maxItemsOne": false
@@ -800,10 +892,12 @@
                 }
             },
             "keycloak_openid_client_scope": {
-                "current": "keycloak:openid/getClientScope:getClientScope"
+                "current": "keycloak:openid/getClientScope:getClientScope",
+                "majorVersion": 5
             },
             "keycloak_openid_client_service_account_user": {
                 "current": "keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser",
+                "majorVersion": 5,
                 "fields": {
                     "federated_identity": {
                         "maxItemsOne": false
@@ -812,6 +906,7 @@
             },
             "keycloak_realm": {
                 "current": "keycloak:index/getRealm:getRealm",
+                "majorVersion": 5,
                 "fields": {
                     "default_default_client_scopes": {
                         "maxItemsOne": false
@@ -885,6 +980,7 @@
             },
             "keycloak_realm_keys": {
                 "current": "keycloak:index/getRealmKeys:getRealmKeys",
+                "majorVersion": 5,
                 "fields": {
                     "algorithms": {
                         "maxItemsOne": false
@@ -899,6 +995,7 @@
             },
             "keycloak_role": {
                 "current": "keycloak:index/getRole:getRole",
+                "majorVersion": 5,
                 "fields": {
                     "composite_roles": {
                         "maxItemsOne": false
@@ -907,6 +1004,7 @@
             },
             "keycloak_saml_client": {
                 "current": "keycloak:saml/getClient:getClient",
+                "majorVersion": 5,
                 "fields": {
                     "authentication_flow_binding_overrides": {
                         "maxItemsOne": false
@@ -917,10 +1015,12 @@
                 }
             },
             "keycloak_saml_client_installation_provider": {
-                "current": "keycloak:saml/getClientInstallationProvider:getClientInstallationProvider"
+                "current": "keycloak:saml/getClientInstallationProvider:getClientInstallationProvider",
+                "majorVersion": 5
             },
             "keycloak_user": {
                 "current": "keycloak:index/getUser:getUser",
+                "majorVersion": 5,
                 "fields": {
                     "federated_identity": {
                         "maxItemsOne": false
@@ -929,6 +1029,7 @@
             },
             "keycloak_user_realm_roles": {
                 "current": "keycloak:index/getUserRealmRoles:getUserRealmRoles",
+                "majorVersion": 5,
                 "fields": {
                     "role_names": {
                         "maxItemsOne": false
