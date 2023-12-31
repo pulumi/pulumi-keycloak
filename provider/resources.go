@@ -18,7 +18,6 @@ import (
 	"fmt"
 	"path"
 	"strings"
-	"unicode"
 	// embed is used to store bridge-metadata.json in the compiled binary
 	_ "embed"
 
@@ -44,27 +43,20 @@ const (
 	authenticationMod = "Authentication" // the Authentication module
 )
 
-// makeMember manufactures a type token for the package and the given module and type.
-func makeMember(mod string, mem string) tokens.ModuleMember {
-	moduleName := strings.ToLower(mod)
-	fn := string(unicode.ToLower(rune(mem[0]))) + mem[1:]
-	token := moduleName + "/" + fn
-	return tokens.ModuleMember(mainPkg + ":" + token + ":" + mem)
-}
-
-func makeType(mod string, typ string) tokens.Type {
-	return tokens.Type(makeMember(mod, typ))
-}
-
 func makeDataSource(mod string, res string) tokens.ModuleMember {
-	return makeMember(mod, res)
+	mod = strings.ToLower(mod)
+	return tfbridge.MakeDataSource(mainPkg, mod, res)
 }
 
 func makeResource(mod string, res string) tokens.Type {
-	return makeType(mod, res)
+	mod = strings.ToLower(mod)
+	return tfbridge.MakeResource(mainPkg, mod, res)
 }
 
 func ref[T any](t T) *T { return &t }
+
+//go:embed cmd/pulumi-resource-keycloak/bridge-metadata.json
+var metadata []byte
 
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
@@ -158,19 +150,7 @@ func Provider() tfbridge.ProviderInfo {
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
 			},
 
-			"keycloak_saml_client":                         {Tok: makeResource(samlMod, "Client")},
-			"keycloak_saml_identity_provider":              {Tok: makeResource(samlMod, "IdentityProvider")},
-			"keycloak_saml_user_attribute_protocol_mapper": {Tok: makeResource(samlMod, "UserAttributeProtocolMapper")},
-			"keycloak_saml_user_property_protocol_mapper":  {Tok: makeResource(samlMod, "UserPropertyProtocolMapper")},
-			"keycloak_saml_client_scope":                   {Tok: makeResource(samlMod, "ClientScope")},
-			"keycloak_saml_client_default_scopes":          {Tok: makeResource(samlMod, "ClientDefaultScope")},
-			"keycloak_saml_script_protocol_mapper":         {Tok: makeResource(samlMod, "ScriptProtocolMapper")},
-
-			"keycloak_authentication_execution":        {Tok: makeResource(authenticationMod, "Execution")},
-			"keycloak_authentication_execution_config": {Tok: makeResource(authenticationMod, "ExecutionConfig")},
-			"keycloak_authentication_flow":             {Tok: makeResource(authenticationMod, "Flow")},
-			"keycloak_authentication_subflow":          {Tok: makeResource(authenticationMod, "Subflow")},
-			"keycloak_authentication_bindings":         {Tok: makeResource(authenticationMod, "Bindings")},
+			"keycloak_saml_client_default_scopes": {Tok: makeResource(samlMod, "ClientDefaultScope")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"keycloak_authentication_execution": {Tok: makeDataSource(mainMod, "getAuthenticationExecution")},
@@ -195,14 +175,12 @@ func Provider() tfbridge.ProviderInfo {
 			),
 			GenerateResourceContainerTypes: true,
 		},
-		Python: (func() *tfbridge.PythonInfo {
-			i := &tfbridge.PythonInfo{
-				Requires: map[string]string{
-					"pulumi": ">=3.0.0,<4.0.0",
-				}}
-			i.PyProject.Enabled = true
-			return i
-		})(),
+		Python: &tfbridge.PythonInfo{
+			Requires: map[string]string{
+				"pulumi": ">=3.0.0,<4.0.0",
+			},
+			PyProject: struct{ Enabled bool }{true},
+		},
 
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{
@@ -234,6 +212,3 @@ func Provider() tfbridge.ProviderInfo {
 
 	return prov
 }
-
-//go:embed cmd/pulumi-resource-keycloak/bridge-metadata.json
-var metadata []byte
